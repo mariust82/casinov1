@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE xml>
+<xml>
+  <application>
+    <default_character_encoding>UTF-8</default_character_encoding>
+    <default_page>index</default_page>
+    <default_extension>html</default_extension>
+    <auto_routing>0</auto_routing>
+    <paths>
+      <controllers>application/controllers</controllers>
+      <wrappers>application/wrappers</wrappers>
+      <views>application/views</views>
+      <listeners>application/listeners</listeners>
+      <dao>application/models/dao</dao>
+      <tags>application/taglib</tags>
+      <compilations>
+        <lucinda>{COMPILATIONS_PATH}</lucinda>
+      </compilations>
+    </paths>
+    <environments>
+      <lucinda>{HOST_NAME}</lucinda>
+    </environments>
+    <templates_extension>html</templates_extension>
+  </application>
+  <formats>
+    <format extension="html" content_type="text/html" class="BypassWrapper"/>
+    <format extension="json" content_type="application/json" class="JsonWrapper"/>
+  </formats>
+  <errors>
+    <lucinda>
+      <reporters>
+        <sql table="bugs"/>
+      </reporters>
+      <renderer display_errors="1">
+        <html/>
+        <json/>
+      </renderer>
+    </lucinda>
+  </errors>
+  <routes>
+    <route url="index" controller="IndexController" view="index"/>
+    <route url="banking/(name)" controller="CasinosByBankingMethodController" view="casinos"/>
+    <route url="banking" controller="BankingMethodsController" view="banking-methods"/>
+    <route url="casinos/(type)" controller="CasinosByLabelController" view="casinos"/>
+    <route url="casinos" controller="CasinosController" view="banking-methods"/>
+    <route url="reviews/(name)-review" controller="CasinoInfoController" view="casino-info"/>
+    <route url="visit/(name)" controller="CasinoVisitController"/>
+    <route url="warn/(name)" controller="CasinoWarningController" view="casino-warning"/>
+    <route url="bonus-list/(type)" controller="CasinosByBonusTypeController" view="casinos"/>
+    <route url="bonus-list" controller="BonusesController" view="bonus-types"/>
+    <route url="countries-list/(name)" controller="CasinosByCountryController" view="casinos"/>
+    <route url="countries" controller="CountriesController" view="countries"/>
+    <route url="compatability/(os)" controller="CasinosByOperatingSystemController" view="casinos"/>
+    <route url="compatability" controller="OperatingSystemsController" view="operating-systems"/>
+    <route url="softwares/(name)" controller="CasinosBySoftwareController" view="casinos"/>
+    <route url="softwares" controller="SoftwaresController" view="softwares"/>
+    <route url="games/(type)" controller="GamesByTypeController" view="games"/>
+    <route url="games" controller="GamesController" view="game-types"/>
+    <route url="play/(name)" controller="GameInfoController" view="game-info"/>
+    <route url="play-counter/(name)" controller="GamePlayCounterController"/>
+    <route url="features/(version)" controller="CasinosByPlayVersionController" view="casinos"/>
+    <route url="features" controller="PlayVersionsController" view="play-versions"/>
+    <route url="privacy" controller="PrivacyPolicyController" view="privacy-policy"/>
+    <route url="terms" controller="TermsAndConditionsController" view="terms-and-conditions"/>
+    <route url="contact" controller="ContactUsController" view="contact-us"/>
+    <route url="casinos-filter" controller="CasinosFilterController" view="casinos-list"/>
+    <route url="games-filter" controller="GamesFilterController" view="games-list"/>
+    <route url="search" controller="SearchController"/>
+    <route url="search/advanced" controller="SearchAdvancedController" view="search"/>
+    <route url="search/more-casinos/(page)" controller="SearchMoreCasinosController"/>
+    <route url="search/more-games/(page)" controller="SearchMoreGamesController"/>
+    <route url="casino/rate/(name)" controller="CasinoRateController"/>
+    <route url="casino/review-write/(name)" controller="CasinoReviewWriteController"/>
+    <route url="casino/review-like" controller="CasinoReviewLikeController"/>
+    <route url="casino/more-reviews/(name)/(page)" controller="CasinoMoreReviewsController" view="reviews"/>
+  </routes>
+</xml>
