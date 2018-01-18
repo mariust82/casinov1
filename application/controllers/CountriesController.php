@@ -1,4 +1,6 @@
 <?php
+require_once("application/models/dao/Countries.php");
+
 /*
 * Countries list by number of casinos
 * 
@@ -7,8 +9,9 @@
 * @source 
 */
 class CountriesController extends ParentsListController {
-	public function run() {
-		parent::run();
-		// response
-	}
+    protected function getResults()
+    {
+        $object = new Countries();
+        return $object->getAllByNumberOfCasinos();
+    }
 }

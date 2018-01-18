@@ -7,7 +7,7 @@
 * @source 
 * @pathParameter os string Name of operating system
 */
-class CasinosByOperatingSystemController extends CasinosListController {
+class CasinosByCompatibilityController extends CasinosListController {
 	public function run() {
 		parent::run();
 		// response

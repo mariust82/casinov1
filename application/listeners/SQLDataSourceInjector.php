@@ -1,5 +1,6 @@
 <?php
 require_once("vendor/lucinda/sql-data-access/loader.php");
+require_once("application/models/DB.php");
 
 /**
  * Reads xml for sql database servers credentials based on detected environment, creates datasource objects on these then injects datasource

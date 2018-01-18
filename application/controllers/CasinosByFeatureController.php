@@ -7,7 +7,7 @@
 * @source 
 * @pathParameter version string Name of play version
 */
-class CasinosByPlayVersionController extends CasinosListController {
+class CasinosByFeatureController extends CasinosListController {
 	public function run() {
 		parent::run();
 		// response

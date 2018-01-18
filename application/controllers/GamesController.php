@@ -1,4 +1,6 @@
 <?php
+require_once("application/models/dao/GameTypes.php");
+
 /*
 * Game types list by number of games.
 * 
@@ -8,25 +10,8 @@
 */
 class GamesController extends Controller {
 	public function run() {
-		
-$this->response->setAttribute("results", array (
-  'random#9' => 2,
-  'random#3' => 5,
-  'random#6' => 6,
-  'random#7' => 10,
-  'random#4' => 5,
-  'random#5' => 5,
-  'random#8' => 7,
-));
-$this->response->setAttribute("icons", array (
-  'random#6' => 'random#4',
-  'random#9' => 'random#6',
-  'random#4' => 'random#5',
-  'random#1' => 'random#6',
-  'random#5' => 'random#9',
-  'random#7' => 'random#9',
-  'random#8' => 'random#2',
-  'random#10' => 'random#8',
-));
+		$object = new GameTypes();
+		$this->response->setAttribute("results", $object->getAllByNumberOfGames());
+        $this->response->setAttribute("icons", $object->getGamesByType());
 	}
 }

@@ -1,4 +1,6 @@
 <?php
+require_once("application/models/dao/BonusTypes.php");
+
 /*
 * Bonus types list by number of casinos.
 * 
@@ -7,8 +9,9 @@
 * @source 
 */
 class BonusesController extends ParentsListController {
-	public function run() {
-		parent::run();
-		// response
-	}
+    protected function getResults()
+    {
+        $object = new BonusTypes();
+        return $object->getAllByNumberOfCasinos();
+    }
 }

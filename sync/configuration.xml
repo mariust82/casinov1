@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<xml>
+    <application>
+        <environments>
+            <lucinda>/var/www/html/casinoslists</lucinda>
+        </environments>
+    </application>
+    <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
+        <lucinda>https://api.datamother.com</lucinda>
+    </rest_api>
+    <servers>
+        <sql>
+            <lucinda>
+                <server driver="mysql" host="localhost" port="3306" username="root" password="niggers" schema="casinoslists"/>
+            </lucinda>
+        </sql>
+    </servers>
+    <geoip>
+        <lucinda>/tmp/ip2country.mmdb</lucinda>
+    </geoip>
+    <contacts>tan@hliscorp.com,lucian@hliscorp.co,alexandru@hliscorp.com</contacts>
+</xml>
