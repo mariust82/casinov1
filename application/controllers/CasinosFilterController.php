@@ -1,10 +1,15 @@
 <?php
+require_once("application/models/CasinoFilter.php");
+require_once("application/models/CasinoSortCriteria.php");
+require_once("application/models/dao/CasinosList.php");
+
 /*
 * Filters casinos according to selections
 * 
 * @requestMethod GET
 * @responseFormat HTML
-* @source 
+* @source
+* @pathParameter page integer Results page for casinos.
 * @requestParameter country_accepted boolean If (country) accepted filter is checked.
 * @requestParameter free_bonus boolean If free bonus filter is checked.
 * @requestParameter banking_method string Value of current banking method, if current page is "Banking"
@@ -16,9 +21,24 @@
 * @requestParameter play_version string Value of current play version, if  current page is "Features"
 * @requestParameter sort string Value can be "default", "top rated" or "newest"
 */
-class CasinosFilterController extends CasinosListController {
+class CasinosFilterController extends Controller {
+    const LIMIT = 20;
+
 	public function run() {
-		parent::run();
-		// response
+		$page = (integer) $this->request->getValidator()->getPathParameter("page");
+        $object = new CasinosList(new CasinoFilter($_GET, $this->request->getAttribute("country")));
+
+        if($page==0) {
+            $total = $object->getTotal();
+            if($total) {
+                $this->response->setAttribute("total_casinos", $total);
+                $this->response->setAttribute("casinos", $object->getResults((isset($_GET["sort"]) ? $_GET["sort"] : CasinoSortCriteria::NONE), self::LIMIT, $page * self::LIMIT));
+            } else {
+                $this->response->setAttribute("total_casinos", 0);
+                $this->response->setAttribute("casinos", array());
+            }
+        } else {
+            $this->response->setAttribute("casinos", $object->getResults((isset($_GET["sort"]) ? $_GET["sort"] : CasinoSortCriteria::NONE), self::LIMIT, $page * self::LIMIT));
+        }
 	}
 }

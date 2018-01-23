@@ -1,14 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aherne
- * Date: 18.01.2018
- * Time: 12:51
- */
+require_once("entities/Country.php");
+require_once("CasinoCounter.php");
+require_once("FieldValidator.php");
 
-class Countries
+class Countries implements CasinoCounter, FieldValidator
 {
-    public function getAllByNumberOfCasinos() {
+    public function getCasinosCount()
+    {
         return DB("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -19,5 +17,14 @@ class Countries
         GROUP BY t1.id
         ORDER BY counter DESC 
         ")->toMap("unit","counter");
+    }
+
+    public function getIDByCode($code)
+    {
+        return DB("SELECT id from countries WHERE code=:code", array(':code' => $code))->toValue();
+    }
+
+    public function validate($name) {
+        return DB("SELECT name FROM countries WHERE name=:name",array(":name"=>$name))->toValue();
     }
 }

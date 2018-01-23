@@ -3,12 +3,11 @@ class Casino {
 	public $id;
 	public $name;
 	public $rating;
-	public $is_accepted;
 	public $softwares;
-	public $bonus_first_deposit;
-	public $bonus_free;
 	public $languages;
 	public $currencies;
+	public $bonus_first_deposit;
+	public $bonus_free;
 	public $is_live_dealer;
 	public $date_established;
 	public $emails;
@@ -22,4 +21,7 @@ class Casino {
 	public $withdrawal_timeframes;
 	public $deposit_methods;
 	public $withdraw_methods;
+    public $is_country_accepted;
+    public $is_language_accepted;
+    public $is_currency_accepted;
 }

@@ -1,14 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aherne
- * Date: 18.01.2018
- * Time: 14:18
- */
+require_once("FieldValidator.php");
 
-class GameTypes
+class GameTypes implements FieldValidator
 {
-    public function getAllByNumberOfGames() {
+    public function getGamesCount() {
         return DB("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -27,5 +22,9 @@ class GameTypes
         INNER JOIN games AS t2 ON t1.id = t2.game_type_id
         GROUP BY t1.id
         ")->toMap("unit","game");
+    }
+
+    public function validate($name) {
+        return DB("SELECT name FROM game_types WHERE name=:name",array(":name"=>$name))->toValue();
     }
 }

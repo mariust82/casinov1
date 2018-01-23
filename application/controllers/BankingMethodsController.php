@@ -1,5 +1,6 @@
 <?php
 require_once("application/models/dao/BankingMethods.php");
+require_once("application/controllers/CasinosCounterController.php");
 
 /*
 * Banking methods list by number of casinos.
@@ -8,10 +9,9 @@ require_once("application/models/dao/BankingMethods.php");
 * @responseFormat HTML
 * @source 
 */
-class BankingMethodsController extends ParentsListController {
-    protected function getResults()
+class BankingMethodsController extends CasinosCounterController {
+    protected function getCounter()
     {
-        $object = new BankingMethods();
-        return $object->getAllByNumberOfCasinos();
+        return new BankingMethods();
     }
 }

@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aherne
- * Date: 18.01.2018
- * Time: 13:11
- */
+require_once("CasinoCounter.php");
+require_once("FieldValidator.php");
 
-class PlayVersions
+class PlayVersions implements CasinoCounter
 {
-    public function getAllByNumberOfCasinos() {
+    public function getCasinosCount() {
         return DB("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -30,5 +26,10 @@ class PlayVersions
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
         WHERE t1.name = :name AND t3.is_open = 1
         ", array(":name"=>$playVersionName))->toValue();
+    }
+
+    public function validate($name)
+    {
+        return DB("SELECT name FROM play_versions WHERE name=:name",array(":name"=>$name))->toValue();
     }
 }

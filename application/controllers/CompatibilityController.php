@@ -9,15 +9,15 @@ require_once("application/models/dao/PlayVersions.php");
 * @responseFormat HTML
 * @source 
 */
-class CompatibilityController extends ParentsListController {
-	protected function getResults()
+class CompatibilityController extends Controller {
+	public function run()
     {
         $object = new OperatingSystems();
-        $tmp1 = $object->getAllByNumberOfCasinos();
+        $tmp1 = $object->getCasinosCount();
 
         $object = new PlayVersions();
-        $tmp2 = $object->getAllByNumberOfCasinos();
+        $tmp2 = $object->getCasinosCount();
 
-        return array_merge($tmp1, $tmp2);
+        $this->response->setAttribute("results", array_merge($tmp1, $tmp2));
     }
 }

@@ -1,4 +1,6 @@
 <?php
+require_once("application/models/dao/GameManufacturers.php");
+require_once("CasinosListController.php");
 /*
 * Casinos list by software.
 * 
@@ -8,8 +10,23 @@
 * @pathParameter name string Name of software
 */
 class CasinosBySoftwareController extends CasinosListController {
-	public function run() {
-		parent::run();
-		// response
-	}
+    protected function getSelectedEntity()
+    {
+        $parameter = $this->request->getValidator()->getPathParameter("name");
+        if(!$parameter) {
+            throw new PathNotFoundException();
+        }
+        $parameter = str_replace("-"," ", $parameter);
+        $object = new GameManufacturers();
+        $name = $object->validate($parameter);
+        if(!$name) {
+            throw new PathNotFoundException();
+        }
+        return $name;
+    }
+
+    protected function getFilter()
+    {
+        return new CasinoFilter(array("software"=>$this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
+    }
 }

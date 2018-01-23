@@ -10,8 +10,8 @@ require_once("application/models/dao/Casinos.php");
 * @responseFormat HTML
 * @source 
 */
-class FeaturesController extends ParentsListController {
-    protected function getResults() {
+class FeaturesController extends Controller {
+    public function run() {
         $result = array();
 
 		// get nr casinos for play version: live dealer
@@ -29,6 +29,6 @@ class FeaturesController extends ParentsListController {
         // get nr casinos for "Jackpot"
         $result["Jackpot Casinos"] = 0;
 
-        return $result;
+        $this->response->setAttribute("results", $result);
 	}
 }

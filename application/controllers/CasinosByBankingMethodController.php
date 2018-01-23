@@ -1,4 +1,7 @@
 <?php
+require_once("application/models/dao/BankingMethods.php");
+require_once("CasinosListController.php");
+
 /*
 * Casinos list by banking method
 * 
@@ -8,8 +11,23 @@
 * @pathParameter name string Name of banking method
 */
 class CasinosByBankingMethodController extends CasinosListController {
-	public function run() {
-		parent::run();
-		// response
-	}
+    protected function getSelectedEntity()
+    {
+        $parameter = $this->request->getValidator()->getPathParameter("name");
+        if(!$parameter) {
+            throw new PathNotFoundException();
+        }
+        $parameter = str_replace("-"," ", $parameter);
+        $object = new BankingMethods();
+        $name = $object->validate($parameter);
+        if(!$name) {
+            throw new PathNotFoundException();
+        }
+        return $name;
+    }
+
+    protected function getFilter()
+    {
+        return new CasinoFilter(array("banking_method"=>$this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
+    }
 }

@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aherne
- * Date: 18.01.2018
- * Time: 12:38
- */
+require_once("CasinoCounter.php");
+require_once("FieldValidator.php");
 
-class BonusTypes
+class BonusTypes implements CasinoCounter, FieldValidator
 {
-    public function getAllByNumberOfCasinos() {
+    public function getCasinosCount() {
         return DB("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -19,5 +15,9 @@ class BonusTypes
         GROUP BY t1.id
         ORDER BY counter DESC 
         ")->toMap("unit","counter");
+    }
+
+    public function validate($name) {
+        return DB("SELECT name FROM bonus_types WHERE name=:name",array(":name"=>$name))->toValue();
     }
 }
