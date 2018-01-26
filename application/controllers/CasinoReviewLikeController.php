@@ -1,4 +1,7 @@
 <?php
+require_once("application/models/dao/CasinoReviews.php");
+require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedException.php");
+
 /*
 * Increments like on a casino review.
 * 
@@ -9,6 +12,10 @@
 */
 class CasinoReviewLikeController extends Controller {
 	public function run() {
-		// response
+	    $_POST["id"] = 10;
+        $object = new CasinoReviews();
+        if(!$object->incrementLikes($_POST["id"])) {
+            throw new OperationFailedException("Casino not found!");
+        }
 	}
 }

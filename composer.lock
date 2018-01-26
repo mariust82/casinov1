@@ -114,16 +114,16 @@
         },
         {
             "name": "lucinda/mvc",
-            "version": "v1.0.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/php-servlets-api.git",
-                "reference": "31139fdf66f7d676f09f8c3e1fa468da966046e0"
+                "reference": "db399ffd5544ab53609786994dca027254995a29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/php-servlets-api/zipball/31139fdf66f7d676f09f8c3e1fa468da966046e0",
-                "reference": "31139fdf66f7d676f09f8c3e1fa468da966046e0",
+                "url": "https://api.github.com/repos/aherne/php-servlets-api/zipball/db399ffd5544ab53609786994dca027254995a29",
+                "reference": "db399ffd5544ab53609786994dca027254995a29",
                 "shasum": ""
             },
             "type": "library",
@@ -146,7 +146,7 @@
                 "servlets",
                 "view resolvers"
             ],
-            "time": "2017-12-29T09:49:33+00:00"
+            "time": "2018-01-26T08:43:53+00:00"
         },
         {
             "name": "lucinda/nosql-data-access",

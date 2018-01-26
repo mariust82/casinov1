@@ -18,6 +18,7 @@ class CasinoFilter
     private $bonus_type;
     private $country;
     private $software;
+    private $game;
 
     private $operating_system;
     private $play_version;
@@ -32,7 +33,7 @@ class CasinoFilter
             $this->$item =  !empty($requestParameters[$item]);
         }
 
-        $strings = array("banking_method", "label", "bonus_type", "country", "software");
+        $strings = array("banking_method", "label", "bonus_type", "country", "software", "game");
         foreach($strings as $item) {
             $this->$item =  (!empty($requestParameters[$item])?preg_replace("/[^a-zA-Z0-9\ \.\@\-\(\)]/","", $requestParameters[$item]):"");
         }
@@ -111,5 +112,9 @@ class CasinoFilter
 
     public function getDetectedCountry() {
         return $this->detectedCountry;
+    }
+
+    public function getGame() {
+        return $this->game;
     }
 }

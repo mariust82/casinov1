@@ -79,9 +79,9 @@
     <route url="softwares/(name)" controller="CasinosBySoftwareController" view="casinos"/>
     <route url="softwares" controller="SoftwaresController" view="softwares"/>
     <route url="games/(type)" controller="GamesByTypeController" view="games"/>
-    <route url="games" controller="GamesController" view="game-types"/>
+    <route url="games" controller="GameTypesController" view="game-types"/>
     <route url="play/(name)" controller="GameInfoController" view="game-info"/>
-    <route url="play-counter/(name)" controller="GamePlayCounterController"/>
+    <route url="play-counter" controller="GamePlayCounterController" extension="json"/>
     <route url="features/(name)" controller="CasinosByFeatureController" view="casinos"/>
     <route url="features" controller="FeaturesController" view="features"/>
     <route url="privacy" view="privacy-policy"/>
@@ -91,13 +91,13 @@
     <route url="casinos-filter" controller="CasinosFilterController" view="casinos-list"/>
     <route url="games-filter/(page)" controller="GamesFilterController" view="games-list"/>
     <route url="games-filter" controller="GamesFilterController" view="games-list"/>
-    <route url="search" controller="SearchController"/>
+    <route url="search" controller="SearchController" extension="json"/>
     <route url="search/advanced" controller="SearchAdvancedController" view="search"/>
-    <route url="search/more-casinos/(page)" controller="SearchMoreCasinosController"/>
-    <route url="search/more-games/(page)" controller="SearchMoreGamesController"/>
-    <route url="casino/rate/(name)" controller="CasinoRateController"/>
-    <route url="casino/review-write/(name)" controller="CasinoReviewWriteController"/>
-    <route url="casino/review-like" controller="CasinoReviewLikeController"/>
+    <route url="search/more-casinos/(page)" controller="SearchMoreCasinosController" extension="json"/>
+    <route url="search/more-games/(page)" controller="SearchMoreGamesController" extension="json"/>
+    <route url="casino/rate" controller="CasinoRateController" extension="json"/>
+    <route url="casino/review-write" controller="CasinoReviewWriteController" extension="json"/>
+    <route url="casino/review-like" controller="CasinoReviewLikeController" extension="json"/>
     <route url="casino/more-reviews/(name)/(page)" controller="CasinoMoreReviewsController" view="reviews"/>
   </routes>
   <servers>
@@ -112,4 +112,5 @@
     <dev>devapi.datamother.com</dev>
     <live>api.datamother.com</live>
   </rest_api>
+  <gameplay repo_path="/public/img/sync" width="500" height="300"/>
 </xml>

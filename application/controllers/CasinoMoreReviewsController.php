@@ -1,4 +1,7 @@
 <?php
+require_once("application/models/dao/CasinoReviews.php");
+require_once("application/models/dao/Casinos.php");
+
 /*
 * Gets more reviews/replies on a casino.
 * 
@@ -11,20 +14,13 @@
 */
 class CasinoMoreReviewsController extends Controller {
 	public function run() {
-		
-$this->response->setAttribute("reviews", array (
-  0 => 
-  array (
-    'id' => 6,
-    'name' => 'random#9',
-    'email' => 'random#7',
-    'body' => 'random#6',
-    'likes' => 1,
-    'country' => 'random#4',
-    'rating' => 2,
-    'date' => '2018-01-17 15:37:12',
-    'parent' => 3,
-  ),
-));
+	    // get casino ID
+        $object = new Casinos();
+        $casinoID = $object->getID(str_replace("-", " ", $this->request->getValidator()->getPathParameter("name")));
+        if(!$casinoID) throw new PathNotFoundException();
+
+        // get reviews
+        $object = new CasinoReviews();
+        $this->response->setAttribute("reviews", $object->getAll($casinoID, (integer) $this->request->getValidator()->getPathParameter("page"), (!empty($_GET["id"])?(integer) $_GET["id"]:0)));
 	}
 }

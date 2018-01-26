@@ -4,12 +4,10 @@ require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
 
 abstract class CasinosListController extends Controller {
-    const LIMIT = 20;
-
 	public function run() {
 	    $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
 
-		$this->response->setAttribute("parents", $this->getParents());
+		$this->response->setAttribute("menu", $this->getMenu());
 
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
 
@@ -17,7 +15,7 @@ abstract class CasinosListController extends Controller {
         $total = $object->getTotal();
         if($total>0) {
             $this->response->setAttribute("total_casinos", $total);
-            $this->response->setAttribute("casinos", $object->getResults((isset($_GET["sort"])?$_GET["sort"]:CasinoSortCriteria::NONE), self::LIMIT, (isset($_GET["offset"])?(integer) $_GET["offset"]:0)));
+            $this->response->setAttribute("casinos", $object->getResults(CasinoSortCriteria::NONE, 0));
         } else {
             $this->response->setAttribute("total_casinos", 0);
             $this->response->setAttribute("casinos", array());
@@ -26,7 +24,7 @@ abstract class CasinosListController extends Controller {
 
     abstract protected function getSelectedEntity();
 
-	protected function getParents() {
+	protected function getMenu() {
 	    $countryName = $this->request->getAttribute("country")->name;
 	    $entityName = $this->response->getAttribute("selected_entity");
 	    return [

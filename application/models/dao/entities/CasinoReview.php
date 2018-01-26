@@ -5,8 +5,11 @@ class CasinoReview {
 	public $email;
 	public $body;
 	public $likes;
+    public $ip;
 	public $country;
 	public $rating;
 	public $date;
 	public $parent;
+    public $children = array();
+    public $total_children = 0;
 }

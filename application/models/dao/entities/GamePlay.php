@@ -1,6 +1,8 @@
 <?php
 class GamePlay {
-	public $status;
-	public $pattern;
-	public $match;
+    public $width;
+    public $height;
+    public $screenshot;
+    public $url;
+    public $status;
 }

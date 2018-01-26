@@ -4,6 +4,7 @@ require_once("entities/CasinoBonus.php");
 
 class CasinosList
 {
+    const LIMIT = 20;
     private $filter;
 
     public function __construct(CasinoFilter $filter)
@@ -11,7 +12,7 @@ class CasinosList
         $this->filter = $filter;
     }
 
-    public function getResults($sortBy, $limit, $offset) {
+    public function getResults($sortBy, $page) {
         $output = array();
 
         // build query
@@ -27,7 +28,7 @@ class CasinosList
                 $query .= "ORDER BY t1.priority ASC, t1.id DESC"."\n";
                 break;
         }
-        $query .= "LIMIT ".$limit." OFFSET ".$offset;
+        $query .= "LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT);
 
         // execute query
         $resultSet = DB($query);
@@ -131,6 +132,9 @@ class CasinosList
             $query.="INNER JOIN casinos__play_versions AS t9 ON t1.id = t9.casino_id AND t9.play_version_id = (SELECT id FROM play_versions WHERE name='".$this->filter->getPlayVersion()."')"."\n";
         }
         if($this->filter->getSoftware()) {
+            $query.="INNER JOIN casinos__game_manufacturers AS t10 ON t1.id = t10.casino_id AND t10.game_manufacturer_id = (SELECT id FROM game_manufacturers WHERE name='".$this->filter->getSoftware()."')"."\n";
+        }
+        if($this->filter->getGame()) {
             $query.="INNER JOIN casinos__game_manufacturers AS t10 ON t1.id = t10.casino_id AND t10.game_manufacturer_id = (SELECT id FROM game_manufacturers WHERE name='".$this->filter->getSoftware()."')"."\n";
         }
         $query.="WHERE t1.is_open = 1 AND ";

@@ -4,13 +4,14 @@ require_once("entities/Game.php");
 class GamesList
 {
     private $filter;
+    const LIMIT = 24;
 
     public function __construct(GameFilter $filter)
     {
         $this->filter = $filter;
     }
 
-    public function getResults($sortBy, $limit, $offset) {
+    public function getResults($sortBy, $page) {
         $output = array();
 
         // build query
@@ -26,7 +27,7 @@ class GamesList
                 $query .= "ORDER BY t1.priority ASC, t1.id DESC"."\n";
                 break;
         }
-        $query .= "LIMIT ".$limit." OFFSET ".$offset;
+        $query .= "LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT);
 
         // execute query
         $resultSet = DB($query);

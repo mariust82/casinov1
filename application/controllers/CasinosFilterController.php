@@ -22,23 +22,22 @@ require_once("application/models/dao/CasinosList.php");
 * @requestParameter sort string Value can be "default", "top rated" or "newest"
 */
 class CasinosFilterController extends Controller {
-    const LIMIT = 20;
 
 	public function run() {
 		$page = (integer) $this->request->getValidator()->getPathParameter("page");
         $object = new CasinosList(new CasinoFilter($_GET, $this->request->getAttribute("country")));
-
         if($page==0) {
             $total = $object->getTotal();
             if($total) {
                 $this->response->setAttribute("total_casinos", $total);
-                $this->response->setAttribute("casinos", $object->getResults((isset($_GET["sort"]) ? $_GET["sort"] : CasinoSortCriteria::NONE), self::LIMIT, $page * self::LIMIT));
+                $this->response->setAttribute("casinos", $object->getResults((isset($_GET["sort"]) ? $_GET["sort"] : CasinoSortCriteria::NONE), $page));
             } else {
                 $this->response->setAttribute("total_casinos", 0);
                 $this->response->setAttribute("casinos", array());
             }
         } else {
-            $this->response->setAttribute("casinos", $object->getResults((isset($_GET["sort"]) ? $_GET["sort"] : CasinoSortCriteria::NONE), self::LIMIT, $page * self::LIMIT));
+            $this->response->setAttribute("total_casinos", 0);
+            $this->response->setAttribute("casinos", $object->getResults((isset($_GET["sort"]) ? $_GET["sort"] : CasinoSortCriteria::NONE), $page));
         }
 	}
 }
