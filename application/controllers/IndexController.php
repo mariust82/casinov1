@@ -18,18 +18,18 @@ class IndexController extends Controller {
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
 
         $object = new CasinosList(new CasinoFilter(array(), $this->request->getAttribute("country")));
-        $this->response->setAttribute("best_casinos", $object->getResults(CasinoSortCriteria::TOP_RATED, 10,0));
+        $this->response->setAttribute("best_casinos", $object->getResults(CasinoSortCriteria::TOP_RATED, 0,10));
 
         $object = new CasinosList(new CasinoFilter(array("country_accepted"=>1), $this->request->getAttribute("country")));
-        $this->response->setAttribute("country_casinos", $object->getResults(CasinoSortCriteria::NONE, 5,0));
+        $this->response->setAttribute("country_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
 
         $object = new CasinosList(new CasinoFilter(array(), $this->request->getAttribute("country")));
-        $this->response->setAttribute("new_casinos", $object->getResults(CasinoSortCriteria::NEWEST, 5,0));
+        $this->response->setAttribute("new_casinos", $object->getResults(CasinoSortCriteria::NEWEST, 0,5));
 
         $object = new CasinosList(new CasinoFilter(array("bonus_type"=>"No Deposit Bonus"), $this->request->getAttribute("country")));
-        $this->response->setAttribute("no_deposit_casinos", $object->getResults(CasinoSortCriteria::NONE, 5,0));
+        $this->response->setAttribute("no_deposit_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
 
         $object = new GamesList(new GameFilter(array(), $this->request->getAttribute("country")));
-        $this->response->setAttribute("new_games", $object->getResults(GameSortCriteria::NEWEST, 5,0));
+        $this->response->setAttribute("new_games", $object->getResults(GameSortCriteria::NEWEST, 0,6));
 	}
 }

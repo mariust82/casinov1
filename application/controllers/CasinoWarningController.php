@@ -22,7 +22,7 @@ class CasinoWarningController extends Controller {
 
 		// get recommended casinos
         $object = new CasinosList(new CasinoFilter(array("software"=>$result->softwares, "country_accepted"=>true), $this->request->getAttribute("country")));
-        $this->response->setAttribute("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 5,0));
+        $this->response->setAttribute("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
 
         // set menu
         $this->response->setAttribute("menu", $this->getMenu());

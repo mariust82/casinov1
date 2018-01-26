@@ -28,9 +28,9 @@ class GameInfoController extends Controller {
 		$this->response->setAttribute("game", $result);
 
         $object = new CasinosList(new CasinoFilter(array("software"=>$result->software, "country_accepted"=>true), $this->request->getAttribute("country")));
-        $this->response->setAttribute("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 5,0));
+        $this->response->setAttribute("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
 
         $object = new GamesList(new GameFilter(array("game_type"=>$result->type)));
-        $this->response->setAttribute("recommended_games", $object->getResults(GameSortCriteria::NONE, 6, 0));
+        $this->response->setAttribute("recommended_games", $object->getResults(GameSortCriteria::NONE, 0, 6));
 	}
 }

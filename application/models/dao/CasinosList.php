@@ -12,7 +12,7 @@ class CasinosList
         $this->filter = $filter;
     }
 
-    public function getResults($sortBy, $page) {
+    public function getResults($sortBy, $page, $limit = self::LIMIT) {
         $output = array();
 
         // build query
@@ -28,7 +28,7 @@ class CasinosList
                 $query .= "ORDER BY t1.priority ASC, t1.id DESC"."\n";
                 break;
         }
-        $query .= "LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT);
+        $query .= "LIMIT ".$limit." OFFSET ".($page*$limit);
 
         // execute query
         $resultSet = DB($query);
