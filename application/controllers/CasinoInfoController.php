@@ -14,7 +14,6 @@ class CasinoInfoController extends Controller {
 	public function run() {
 		$this->response->setAttribute("country", $this->request->getAttribute("country"));
 
-
 		// validate inputs
 		$casinoName = $this->request->getValidator()->getPathParameter("name");
 		if(!$casinoName) throw new PathNotFoundException();

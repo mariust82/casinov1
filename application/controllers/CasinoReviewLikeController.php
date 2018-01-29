@@ -12,10 +12,10 @@ require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedExc
 */
 class CasinoReviewLikeController extends Controller {
 	public function run() {
-	    $_POST["id"] = 10;
+	    $_POST["id"] = 1;
         $object = new CasinoReviews();
-        if(!$object->incrementLikes($_POST["id"])) {
-            throw new OperationFailedException("Casino not found!");
+        if(!$object->incrementLikes($_POST["id"], ip2long($this->request->getAttribute("ip")))) {
+            throw new OperationFailedException("Review already liked!");
         }
 	}
 }

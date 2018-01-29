@@ -1,4 +1,7 @@
 <?php
+require_once("application/models/dao/CasinosSearch.php");
+require_once("application/models/dao/GamesSearch.php");
+
 /*
 * Page to display after show all results is clicked @ search page
 * 
@@ -8,16 +11,17 @@
 * @requestParameter value string Value of searched string
 */
 class SearchAdvancedController extends Controller {
+    const LIMIT = 5;
+
 	public function run() {
-		
-$this->response->setAttribute("value", 'random#10');
-$this->response->setAttribute("casinos", array (
-  0 => 'random#1',
-));
-$this->response->setAttribute("total_casinos", 6);
-$this->response->setAttribute("games", array (
-  0 => 'random#10',
-));
-$this->response->setAttribute("total_games", 2);
+	    $this->response->setAttribute("value", $_GET["value"]);
+
+        $casinos = new CasinosSearch($_GET["value"]);
+        $this->response->setAttribute("casinos", $casinos->getResults(self::LIMIT,0));
+        $this->response->setAttribute("total_casinos", $casinos->getTotal());
+
+        $games = new GamesSearch($_GET["value"]);
+        $this->response->setAttribute("games", $games->getResults(self::LIMIT,0));
+        $this->response->setAttribute("total_games", $games->getTotal());
 	}
 }

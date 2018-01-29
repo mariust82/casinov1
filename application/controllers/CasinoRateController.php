@@ -15,7 +15,7 @@ require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedExc
 class CasinoRateController extends Controller {
 	public function run() {
         $object = new Casinos();
-        $success = $object->rate($_POST["name"], $this->request->getAttribute("ip"), $_POST["value"]);
+        $success = $object->rate($_POST["name"], ip2long($this->request->getAttribute("ip")), $_POST["value"]);
         if(!$success) throw new OperationFailedException($success===null?"Casino not found!":"Casino already rated!");
 	}
 }

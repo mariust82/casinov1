@@ -21,6 +21,6 @@ class CasinoMoreReviewsController extends Controller {
 
         // get reviews
         $object = new CasinoReviews();
-        $this->response->setAttribute("reviews", $object->getAll($casinoID, (integer) $this->request->getValidator()->getPathParameter("page"), (!empty($_GET["id"])?(integer) $_GET["id"]:0)));
+        $this->response->setAttribute("reviews", $object->getAll($casinoID, (integer) $this->request->getValidator()->getPathParameter("page"), (integer) $this->request->getAttribute("id")));
 	}
 }

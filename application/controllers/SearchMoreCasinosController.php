@@ -1,4 +1,6 @@
 <?php
+require_once("application/models/dao/CasinosSearch.php");
+
 /*
 * Searches for casinos after show 5 more @ advanced search is clicked
 * 
@@ -9,10 +11,12 @@
 * @requestParameter value string Value of searched string
 */
 class SearchMoreCasinosController extends Controller {
+    const LIMIT = 5;
+
 	public function run() {
-		
-$this->response->setAttribute("casinos", array (
-  0 => 'random#4',
-));
+	    $page = (integer) $this->request->getValidator()->getPathParameter("page");
+
+        $object = new CasinosSearch($_GET["value"]);
+        $this->response->setAttribute("results", $object->getResults(self::LIMIT,self::LIMIT*$page));
 	}
 }

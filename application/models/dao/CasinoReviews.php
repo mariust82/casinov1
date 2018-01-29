@@ -73,7 +73,13 @@ class CasinoReviews
         return array_values($output);
     }
 
-    public function incrementLikes($id) {
+    public function incrementLikes($id, $ip) {
+        $reviewID = DB("SELECT id FROM casinos__reviews_likes WHERE review_id = :review_id AND ip = :ip",array(":review_id"=>$id, ":ip"=>$ip))->toValue();
+        if($reviewID) {
+            return 0;
+        } else {
+            DB("INSERT INTO casinos__reviews_likes SET review_id = :review_id, ip = :ip",array(":review_id"=>$id, ":ip"=>$ip));
+        }
         return DB("UPDATE casinos__reviews SET likes = likes + 1 WHERE id=:id",array(":id"=>$id))->getAffectedRows();
     }
 

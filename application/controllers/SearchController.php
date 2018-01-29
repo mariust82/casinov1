@@ -1,4 +1,7 @@
 <?php
+require_once("application/models/dao/CasinosSearch.php");
+require_once("application/models/dao/GamesSearch.php");
+
 /*
 * Searches database for casinos and games
 * 
@@ -8,13 +11,12 @@
 * @requestParameter value string Value of searched string
 */
 class SearchController extends Controller {
+    const LIMIT = 3;
 	public function run() {
-		
-$this->response->setAttribute("casinos", array (
-  0 => 'random#1',
-));
-$this->response->setAttribute("games", array (
-  0 => 'random#5',
-));
+	    $casinos = new CasinosSearch($this->request->getParameter("value"));
+	    $this->response->setAttribute("casinos", $casinos->getResults(self::LIMIT,0));
+
+        $games = new GamesSearch($this->request->getParameter("value"));
+        $this->response->setAttribute("games", $games->getResults(self::LIMIT,0));
 	}
 }

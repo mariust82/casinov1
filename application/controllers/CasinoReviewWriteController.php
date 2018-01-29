@@ -20,7 +20,7 @@ class CasinoReviewWriteController extends Controller {
         $review->name = strip_tags($_POST["name"]);
         $review->email = strip_tags($_POST["email"]);
         $review->body = strip_tags($_POST["body"]);
-        $review->ip = $this->request->getAttribute("ip");
+        $review->ip = ip2long($this->request->getAttribute("ip"));
         $review->country = $this->request->getAttribute("country")->id;
         $review->parent = (integer) $_POST["parent"];
 
