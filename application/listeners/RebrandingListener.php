@@ -1,6 +1,6 @@
 <?php
 require_once("application/models/DB.php");
-require_once("application/models/PathParameterValidator.php");
+require_once("application/models/dao/Rebranding.php");
 
 class RebrandingListener extends RequestListener {
 	public function run() {
@@ -11,7 +11,7 @@ class RebrandingListener extends RequestListener {
 				if(!empty($route["rebrand_tables"])) {
 					// attempt to rebrand
 					$tables = explode(",",(string) $route["rebrand_tables"]);
-					$ppv = new PathParameterValidator($this->request->getValidator()->getPage());
+					$ppv = new Rebranding($this->request->getValidator()->getPage());
 					$success = $ppv->validate($tables, $this->request->getValidator()->getPathParameters());
 					if(!$success) {
 						header("HTTP/1.1 301 Moved Permanently");
