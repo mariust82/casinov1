@@ -3,6 +3,7 @@ require_once("vendor/lucinda/errors/loader.php");
 require_once("vendor/lucinda/logging/loader.php");
 require_once("src/error_handling/ErrorRendererFinder.php");
 require_once("src/error_handling/ErrorReportersFinder.php");
+require_once("hlis/sitebase/errors/ClientErrorReporter.php");
 
 /**
  * Sets up error handling in your application by binding PHP-ERRORS-API & PHP-LOGGING-API with content of "errors" tag @ CONFIGURATION.XML, 
@@ -72,8 +73,15 @@ class ErrorListener extends ApplicationListener {
 	 * @return LogReporter[] List of ErrorReporter to delegate error reporting to.
 	 */
 	private function getReporters() {
-		$erf = new ErrorReportersFinder($this->application->getXML()->errors, $this->application->getAttribute("environment"));
-		return $erf->getReporters();
+        $xml = $this->application->getXML();
+        $environment = $this->application->getAttribute("environment");
+        $reporter = $xml->errors->$environment->reporter;
+        if (isset($reporter->async)) {
+            return array(new ClientErrorReporter());
+        } else {
+            $erf = new ErrorReportersFinder($xml->errors, $environment);
+            return $erf->getReporters();
+        }
 	}
 
 
