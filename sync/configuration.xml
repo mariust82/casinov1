@@ -7,13 +7,21 @@
         </environments>
     </application>
     <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
-        <lucinda>https://api.datamother.com</lucinda>
+        <lucinda>api.datamother.com</lucinda>
+        <dev>devapi.datamother.com</dev>
+        <live>api.datamother.com</live>
     </rest_api>
     <servers>
         <sql>
             <lucinda>
-                <server driver="mysql" host="localhost" port="3306" username="root" password="niggers" schema="casinoslists"/>
+                <server driver="mysql" host="localhost" port="3306" username="lucinda" password="hliscorp" schema="casinoslists"/>
             </lucinda>
+            <dev>
+                <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_dev"/>
+            </dev>
+            <live>
+                <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go"/>
+            </live>
         </sql>
     </servers>
     <geoip>

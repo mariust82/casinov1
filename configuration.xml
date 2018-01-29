@@ -15,10 +15,14 @@
       <tags>application/taglib</tags>
       <compilations>
         <lucinda>/tmp/compilations_casinolists</lucinda>
+        <dev>/tmp/compilations_dev</dev>
+        <live>/tmp/compilations_live</live>
       </compilations>
     </paths>
     <environments>
       <lucinda>www.casinoslists.local</lucinda>
+      <dev>dev.casinoslists.com</dev>
+      <live>www.casinoslists.com</live>
     </environments>
     <templates_extension>html</templates_extension>
   </application>
@@ -107,9 +111,15 @@
       <lucinda>
         <server driver="mysql" host="localhost" port="3306" username="lucinda" password="hliscorp" schema="casinoslists"/>
       </lucinda>
+      <dev>
+        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_dev"/>
+      </dev>
+      <live>
+        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go"/>
+      </live>
     </sql>
   </servers>
-  <rest_api auth_key="0R1vIoTs3BNMzIFpYT8bMk6mwcBq1NIRF8YyscM7">
+  <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
     <lucinda>api.datamother.com</lucinda>
     <dev>devapi.datamother.com</dev>
     <live>api.datamother.com</live>
