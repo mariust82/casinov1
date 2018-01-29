@@ -40,9 +40,10 @@ class CasinoInfoController extends Controller {
 	}
     protected function getMenu() {
         $countryName = $this->request->getAttribute("country")->name;
+        $softwareName = $this->response->getAttribute("casino")->softwares[0];
         return [
             "/countries-list/".strtolower(str_replace(" ", "-", $countryName))=>$countryName." Casinos",
-            "/".$this->request->getURI()->getPage()=>$this->response->getAttribute("casino")->name,
+            "/softwares/".strtolower(str_replace(" ", "-", $softwareName))=>$softwareName." Casinos",
             "/bonus-list/no-deposit-bonus"=>"No Deposit Casinos",
             "/casinos/best"=>"Best Casinos",
             "/casinos/safe"=>"Safe Casinos",

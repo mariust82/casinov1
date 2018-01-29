@@ -12,6 +12,7 @@ class CasinoFilter
 
     private $country_accepted = false;
     private $free_bonus = false;
+    private $promoted = false;
 
     private $banking_method;
     private $label;
@@ -28,7 +29,7 @@ class CasinoFilter
     public function __construct($requestParameters, Country $detectedCountry) {
         $this->detectedCountry = $detectedCountry;
 
-        $booleans = array("country_accepted", "free_bonus");
+        $booleans = array("country_accepted", "free_bonus", "promoted");
         foreach($booleans as $item) {
             $this->$item =  !empty($requestParameters[$item]);
         }
@@ -76,6 +77,10 @@ class CasinoFilter
 
     public function getBankingMethod() {
         return $this->banking_method;
+    }
+
+    public function getPromoted() {
+        return $this->promoted;
     }
 
     public function getCasinoLabel() {

@@ -53,4 +53,8 @@ class Casinos implements FieldValidator
         }
         return $affectedRows;
     }
+
+    public function click($id) {
+        DB("UPDATE casinos SET clicks = clicks+1 WHERE id=:id",array(":id"=>$id));
+    }
 }

@@ -24,6 +24,9 @@ class CasinosList
             case CasinoSortCriteria::TOP_RATED:
                 $query .= "ORDER BY average_rating DESC, t1.priority ASC, t1.id DESC"."\n";
                 break;
+            case CasinoSortCriteria::POPULARITY:
+                $query .= "ORDER BY t1.clicks DESC, t1.id DESC"."\n";
+                break;
             default:
                 $query .= "ORDER BY t1.priority ASC, t1.id DESC"."\n";
                 break;
@@ -140,6 +143,9 @@ class CasinosList
         $query.="WHERE t1.is_open = 1 AND ";
         if($this->filter->getHighRoller()) {
             $query.="t1.is_high_roller = 1 AND ";
+        }
+        if($this->filter->getPromoted()) {
+            $query.="t1.status_id = 0 AND ";
         }
         $query = substr($query,0, -4)."\n";
         return $query;

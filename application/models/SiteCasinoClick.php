@@ -8,8 +8,9 @@ class SiteCasinoClick extends CasinoClick
 
     protected function getCasinoStatus($name)
     {
-        $casinos_ctrl = new Casinos();
-        $this->info = $casinos_ctrl->getBasicInfo($name);
+        $object = new Casinos();
+        $this->info = $object->getBasicInfo($name);
+        $object->click($this->info->id);
         if (!$this->info) {
             return CasinoStatus::NOT_FOUND;
         }
