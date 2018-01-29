@@ -4,12 +4,14 @@
     <application>
         <environments>
             <lucinda>/var/www/html/casinoslists</lucinda>
+            <dev>/home/casinoslists/public_html/dev/site</dev>
+            <live>/home/casinoslists/public_html/live/site</live>
         </environments>
     </application>
     <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
-        <lucinda>api.datamother.com</lucinda>
-        <dev>devapi.datamother.com</dev>
-        <live>api.datamother.com</live>
+        <lucinda>https://api.datamother.com</lucinda>
+        <dev>https://devapi.datamother.com</dev>
+        <live>https://api.datamother.com</live>
     </rest_api>
     <servers>
         <sql>
@@ -26,8 +28,7 @@
     </servers>
     <geoip>
         <lucinda>/tmp/ip2country.mmdb</lucinda>
-        <dev>/tmp/ip2country.mmdb</dev>
-        <live>/tmp/ip2country.mmdb</live>
+        <lucinda>/tmp/ip2country.mmdb</lucinda>
     </geoip>
     <contacts>tan@hliscorp.com,lucian@hliscorp.co,alexandru@hliscorp.com</contacts>
 </xml>
