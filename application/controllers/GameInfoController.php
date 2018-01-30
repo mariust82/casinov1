@@ -7,6 +7,7 @@ require_once("application/models/CasinoFilter.php");
 require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/GameFilter.php");
 require_once("application/models/GameSortCriteria.php");
+require_once("application/models/dao/GameTypes.php");
 
 /*
 * Game info by game name.

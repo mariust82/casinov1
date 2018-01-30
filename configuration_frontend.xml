@@ -14,7 +14,7 @@
       <dao>application/models/dao</dao>
       <tags>application/taglib</tags>
       <compilations>
-        <frontend>/tmp/compilations_casinolists</frontend>
+        <frontend>/tmp/compilations_frontend</frontend>
       </compilations>
     </paths>
     <environments>
@@ -80,5 +80,4 @@
     <route url="casino/more-reviews/(name)/(page)" controller="CasinoMoreReviewsController" view="reviews"/>
     <route url="newsletter/subscribe" controller="NewsletterSubscribeController" extension="json"/>
   </routes>
-  <gameplay repo_path="/public/img/sync" width="500" height="300"/>
 </xml>
