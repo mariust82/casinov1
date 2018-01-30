@@ -20,6 +20,9 @@ class GameInfoController extends Controller {
 	public function run() {
 	    $info = $this->application->getXML()->gameplay;
 
+        $object = new GameTypes();
+        $this->response->setAttribute("game_types", array_keys($object->getGamesCount()));
+
 	    $object = new GameInfo(
 	        str_replace("-"," ", $this->request->getValidator()->getPathParameter("name")),
             new GamePlayer((string) $info["repo_path"], (string) $info["width"], (string) $info["height"], $this->request->getProtocol()=="https"));

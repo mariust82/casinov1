@@ -39,11 +39,7 @@ class GamePlayer
         $object->height = $this->height;
         $object->screenshot = $this->getScreenshot($game_name);
         $object->status = $this->getStatus($status, $pattern);
-        if($object->status == null) {
-            $object->url = $object->screenshot;
-        } else {
-            $object->url = $this->getUrl($pattern, $matches, $status);
-        }
+        $object->url = $this->getUrl($pattern, $matches, $status);
         return $object;
     }
 
@@ -57,23 +53,22 @@ class GamePlayer
      */
     private function getUrl($pattern, $matches, $status){
         $output = "";
-        if(!$status || $status=="unavailable") {
-            $output = "";
-        } else {
-            $token=mt_rand(100000,mt_getrandmax());
-            $template_url = $pattern;
-            $template_url = str_replace("{MODULE}", $matches, $template_url);
-            $template_url = str_replace("{WIDTH}", $this->width, $template_url);
-            $template_url = str_replace("{HEIGHT}", $this->height, $template_url);
-            $template_url = str_replace("{TOKEN}", $token, $template_url);
-            if(strpos($template_url, "{MODULE_1}")!==false) {
-                $parts = explode(",",$matches);
-                foreach($parts as $i=>$part) {
-                    $template_url = str_replace("{MODULE_".($i+1)."}", $part, $template_url);
-                }
-            }
-            $output = $template_url;
+        if($status == "screenshot") {
+            return "";
         }
+        $token=mt_rand(100000,mt_getrandmax());
+        $template_url = $pattern;
+        $template_url = str_replace("{MODULE}", $matches, $template_url);
+        $template_url = str_replace("{WIDTH}", $this->width, $template_url);
+        $template_url = str_replace("{HEIGHT}", $this->height, $template_url);
+        $template_url = str_replace("{TOKEN}", $token, $template_url);
+        if(strpos($template_url, "{MODULE_1}")!==false) {
+            $parts = explode(",",$matches);
+            foreach($parts as $i=>$part) {
+                $template_url = str_replace("{MODULE_".($i+1)."}", $part, $template_url);
+            }
+        }
+        $output = $template_url;
         return $output;
     }
 
