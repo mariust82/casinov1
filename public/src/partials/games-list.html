@@ -1,0 +1,25 @@
+<div class="games">
+	<div class="games-list">
+		{{#each items}}
+			<div class="game">
+				<a href="#" class="game-holder">
+					<span class="game-img">
+						<img src="{{img}}" alt="">
+					</span>
+					<span class="game-desc">
+						<span class="game-title">{{title}}</span>
+						<span class="game-options">
+							<span class="game-played">
+								<span class="game-play">
+									<i class="icon-times_played_icon"></i>
+								</span>
+								Times played: 3
+							</span>
+							<span class="game-soft">RTG</span>
+						</span>
+					</span>
+				</a>
+			</div>
+		{{/each}}
+	</div>
+</div>

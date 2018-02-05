@@ -4,3 +4,4 @@ vendor
 .project
 .buildpath
 hlis
+/public/src/images

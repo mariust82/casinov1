@@ -1,0 +1,77 @@
+.textfield::-webkit-input-placeholder {
+    color:#A8AEC8;
+    opacity:1;
+    transition:opacity .3s;
+}
+
+.textfield::-moz-placeholder  {
+    color:#A8AEC8;
+    opacity:1;
+    transition:opacity .3s;
+}
+
+.textfield:-ms-input-placeholder {
+    color:#A8AEC8;
+    opacity:1;
+    transition:opacity .3s;
+}
+
+.textfield:focus::-webkit-input-placeholder {
+    opacity:0;
+}
+
+.textfield:focus::-moz-placeholder {
+    opacity:0;
+}
+
+.textfield:focus:-ms-input-placeholder {
+    opacity:0;
+}
+
+
+.header-search input::-webkit-input-placeholder {
+    color:#fff;
+    opacity:1;
+    transition:opacity .3s;
+}
+
+.header-search input::-moz-placeholder  {
+    color:#fff;
+    opacity:1;
+    transition:opacity .3s;
+}
+
+.header-search input:-ms-input-placeholder {
+    color:#fff;
+    opacity:1;
+    transition:opacity .3s;
+}
+
+.header-search input:focus::-webkit-input-placeholder {
+    opacity:0;
+}
+
+.header-search input:focus::-moz-placeholder {
+    opacity:0;
+}
+
+.header-search input:focus:-ms-input-placeholder {
+    opacity:0;
+}
+
+
+.textfield-holder.not-valid .textfield::-webkit-input-placeholder {
+    color:#f93b00;
+}
+
+.textfield-holder.not-valid .textfield::-moz-placeholder  {
+    color:#f93b00;
+}
+
+.textfield-holder.not-valid .textfield:-moz-placeholder {
+    color:#f93b00;
+}
+
+.textfield-holder.not-valid .textfield:-ms-input-placeholder {
+    color:#f93b00;
+}
