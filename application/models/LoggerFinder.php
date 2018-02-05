@@ -33,6 +33,11 @@ class LoggerFinder {
 		if($xml->sql) {
 			$this->loggers[] = $this->getSQLLogger($xml->sql);
 		}
+
+		// add custom async logger
+		if($xml->async) {
+            $this->loggers[] = $this->getAsyncLogger($xml->sql);
+        }
 	}
 	
 	/**
@@ -95,13 +100,14 @@ class LoggerFinder {
 	 *
 	 * @param SimpleXMLElement $xml XML settings for sql logger.
 	 * @throws ApplicationException On invalid XML content.
+	 * @throws ServletException If SQLDataSourceInjector listener has not ran
 	 * @return Logger
 	 */
 	private function getSQLLogger(SimpleXMLElement $xml) {
 		require_once("application/models/loggers/SQLLogger.php");
 		
 		if(!class_exists("SQLConnectionFactory")) {
-			throw new ApplicationException("SQLDataSourceInjector listener has not ran!");
+			throw new ServletException("SQLDataSourceInjector listener has not ran!");
 		}
 		
 		$serverName = (string) $xml["server"];
@@ -111,4 +117,14 @@ class LoggerFinder {
 		}
 		return new SQLLogger($tableName, (string) $xml["rotation"], ($serverName?SQLConnectionFactory::getInstance($serverName):SQLConnectionSingleton::getInstance()));
 	}
+
+    /**
+     * Gets logger able to forward payload to DataMother
+     *
+     * @return Logger
+     */
+	private function getAsyncLogger() {
+        require_once("application/models/loggers/AsyncLogger.php");
+        return new AsyncLogger();
+    }
 }

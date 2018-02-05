@@ -1,5 +1,8 @@
 <?php
-ini_set("display_errors",1);
-// starts MVC api
+// take control of STDERR
+require_once("src/error_handling/ErrorsFrontController.php");
+new ErrorsFrontController();
+
+// take control of STDOUT
 require_once("vendor/lucinda/mvc/loader.php");
 new FrontController();

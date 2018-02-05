@@ -20,15 +20,13 @@ class IPDetectionListener extends RequestListener
         CountryDetection::$DB_FILE = (string)$this->application->getXML()->geoip->$env;
 
         // detects and saves country
-        $countryDetected = CountryDetection::getInstance()->getCountry();
+        $country = CountryDetection::getInstance()->getCountry();
         $countries = new Countries();
-        $country = new Country();
-        if ($countryDetected == null) { // if country could not be detected, defaults to US
+        if ($country == null) {
+            // if country could not be detected, defaults to US
+            $country = new Country();
             $country->code = "US";
             $country->name = "United States";
-        } else {
-            $country->code = $countryDetected->code;
-            $country->name = $countryDetected->name;
         }
         $country->id = $countries->getIDByCode($country->code);
         $this->request->setAttribute('country', $country);

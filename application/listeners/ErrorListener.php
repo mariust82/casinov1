@@ -1,12 +1,10 @@
 <?php
-require_once("vendor/lucinda/errors/loader.php");
 require_once("vendor/lucinda/logging/loader.php");
 require_once("src/error_handling/ErrorRendererFinder.php");
 require_once("src/error_handling/ErrorReportersFinder.php");
-require_once("hlis/sitebase/errors/ClientErrorReporter.php");
 
 /**
- * Sets up error handling in your application by binding PHP-ERRORS-API & PHP-LOGGING-API with content of "errors" tag @ CONFIGURATION.XML, 
+ * Fine tunes error handling in your application by binding PHP-ERRORS-API & PHP-LOGGING-API with content of "errors" tag @ CONFIGURATION.XML,
  * itself handled by SERVLETS API.
  * 
  * Syntax for "errors" XML  tag is:
@@ -26,16 +24,14 @@ require_once("hlis/sitebase/errors/ClientErrorReporter.php");
  * 
  * @attribute error_handler
  */
-class ErrorListener extends ApplicationListener {
-	const DEFAULT_LOG_FILE = "errors";
-
+class ErrorListener extends RequestListener {
 	/**
 	 * {@inheritDoc}
 	 * @see Runnable::run()
 	 */
 	public function run() {
-		// generate error handler
-		$errorHandler = new ErrorHandler();
+		// updates framework handler based on data in XML & Request
+        $errorHandler = PHPException::getErrorHandler();
 		$reporters = $this->getReporters();
 		foreach($reporters as $reporter) {
 			$errorHandler->addReporter($reporter);
@@ -44,13 +40,8 @@ class ErrorListener extends ApplicationListener {
 		if($renderer) {
 			$errorHandler->setRenderer($this->getRenderer());
 		}
-		
-		// inject handler into classes that automatically catch PHP errors
-		PHPException::setErrorHandler($errorHandler);
-		set_exception_handler(array($errorHandler,"handle"));
-		ini_set("display_errors",0);
 
-		// saves error_handler for latter manipulation (if any)
+		// saves handler for latter manipulation
 		$this->application->setAttribute("error_handler", $errorHandler);
 	}
 
@@ -73,15 +64,8 @@ class ErrorListener extends ApplicationListener {
 	 * @return LogReporter[] List of ErrorReporter to delegate error reporting to.
 	 */
 	private function getReporters() {
-        $xml = $this->application->getXML();
-        $environment = $this->application->getAttribute("environment");
-        $reporter = $xml->errors->$environment->reporter;
-        if (isset($reporter->async)) {
-            return array(new ClientErrorReporter());
-        } else {
-            $erf = new ErrorReportersFinder($xml->errors, $environment);
-            return $erf->getReporters();
-        }
+		$erf = new ErrorReportersFinder($this->application->getXML()->errors, $this->application->getAttribute("environment"));
+		return $erf->getReporters();
 	}
 
 
@@ -105,7 +89,7 @@ class ErrorListener extends ApplicationListener {
 	 * @return ErrorRenderer|null Object to delegate error rendering to.
 	 */
 	private function getRenderer() {
-		$erf = new ErrorRendererFinder($this->application->getXML()->errors, $this->application);
+		$erf = new ErrorRendererFinder($this->application->getXML()->errors, $this->application, $this->request);
 		return $erf->getRenderer();
 	}
 }

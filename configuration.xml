@@ -42,8 +42,7 @@
   <errors>
     <lucinda>
       <renderer display_errors="1">
-        <html/>
-        <json/>
+        <async/>
       </renderer>
     </lucinda>
     <dev>
