@@ -32,7 +32,7 @@ require_once("application/models/DB.php");
  *  	</sql>
  *  </database>
  */
-class SQLDataSourceInjector extends ApplicationListener {
+class SQLDataSourceInjector extends RequestListener {
 	public function run() {
 		$environment = $this->application->getAttribute("environment");
 		

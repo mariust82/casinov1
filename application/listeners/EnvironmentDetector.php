@@ -13,7 +13,7 @@
  * 
  * @attribute environment 
  */
-class EnvironmentDetector  extends ApplicationListener {
+class EnvironmentDetector  extends RequestListener {
 	public function run() {
 		$this->application->setAttribute("environment", $this->getEnvironment());
 	}

@@ -41,23 +41,27 @@
   </listeners>
   <errors>
     <lucinda>
+      <reporters>
+          <async/>
+      </reporters>
       <renderer display_errors="1">
-        <async/>
+          <html/>
+          <json/>
       </renderer>
     </lucinda>
     <dev>
-      <reporter>
+      <reporters>
         <async/>
-      </reporter>
+      </reporters>
       <renderer display_errors="1">
         <html/>
         <json/>
       </renderer>
     </dev>
     <live>
-      <reporter>
+      <reporters>
         <async/>
-      </reporter>
+      </reporters>
       <renderer display_errors="0">
         <html/>
         <json/>
