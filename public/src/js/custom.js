@@ -10,11 +10,27 @@
         initCustomSelect();
         initSearch();
         initMobileMenu();
+        copyToClipboard();
 
         $('.js-tooltip').tooltipster({
             trigger: 'click',
             maxWidth: 279,
             animation: 'grow'
+        });
+
+        $('.js-copy-tooltip').tooltipster({
+            trigger: 'click',
+            maxWidth: 260,
+            minWidth: 260,
+            animation: 'grow',
+            contentAsHTML: true,
+            functionBefore: function(instance, helper) {
+                instance.content('\
+                    <div class="centered">\
+                        <i class="icon icon-icon_available"></i> Code copied to clipboard\
+                    </div>\
+                ');
+            }
         });
 
         $('.js-tooltip-content').tooltipster({
@@ -32,12 +48,28 @@
         });
     });
 
+    function copyToClipboard() {
+        var btn = $('.js-copy-to-clip');
+
+        btn.on('click', function(e) {
+            initAction(this);
+            e.preventDefault();
+        });
+
+        function initAction(element) {
+            var $temp = $('<input readonly>');
+            $('body').append($temp);
+            $temp.val($(element).data('code')).select();
+            document.execCommand('copy');
+            $temp.remove();
+        }
+    }
+
     function initMobileMenu() {
         var btn = $('#js-mobile-menu-opener, #js-mobile-menu-close');
         var menu =  $('.header-menu');
 
         btn.on('click',  function(e) {
-            console.log("nnn"); 
             $('body').toggleClass('menu-opened');
             btn.toggleClass('active');
 

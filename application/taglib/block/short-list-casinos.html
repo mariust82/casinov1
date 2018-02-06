@@ -5,7 +5,7 @@
 			<div class="subtitle">
 				<p>$[description]</p>
 				<div class="heading-btn desktop">
-					<a href="#" class="button">Show all <i class="icon-chevron-right"></i></a>
+					<a href="$[goto]" class="button">Show all <i class="icon-chevron-right"></i></a>
 				</div>
 			</div>
 		</div>
@@ -20,7 +20,7 @@
 			<div class="list-body">
 				<std:set name="i" value="0"/>
 				<std:foreach var="$[data]" value="result">
-					<item:casino i="${i}"/>
+					<item:casino i="${i}" id="$[id]"/>
 					<std:set name="i" value="${i}+1"/>
 				</std:foreach>
 
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 		<div class="mobile btn-holder">
-			<a href="#" class="btn btn-big">SHOW ALL<i class="icon-chevron-right"></i></a>
+			<a href="$[goto]" class="btn btn-big">SHOW ALL<i class="icon-chevron-right"></i></a>
 		</div>
 	</div>
 </div>

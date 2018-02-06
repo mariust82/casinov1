@@ -3,12 +3,12 @@
 		<div class="heading">
 			<h2 class="title mobile-flex">
 				<span>Pick Best Casinos</span> 
-				<a href="#" class="text-link mobile">SHOW ALL <i class="icon-chevron-right"></i></a>
+				<a href="/casinos/best" class="text-link mobile">SHOW ALL <i class="icon-chevron-right"></i></a>
 			</h2>
 			<div class="subtitle">
 				<p>Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite.</p>
 				<div class="heading-btn desktop">
-					<a href="/casinos" class="button">Show all <i class="icon-chevron-right"></i></a>
+					<a href="/casinos/best" class="button">Show all <i class="icon-chevron-right"></i></a>
 				</div>
 			</div>
 		</div>
@@ -17,13 +17,25 @@
         <div class="swiper-container" id="main-carousel">
             <div class="swiper-wrapper">
             	<std:foreach var="${data.best_casinos}" value="item">
+            		<std:if condition="${item.rating} > 8">
+            			<std:set name="rate_trending" value="Excellent"/>
+            		<std:elseif condition="${item.rating} > 6 && ${item.rating} <= 8">
+            			<std:set name="rate_trending" value="Very good"/>
+            		<std:elseif condition="${item.rating} > 3 && ${item.rating} <= 6">
+            			<std:set name="rate_trending" value="Good"/>
+            		<std:elseif condition="${item.rating} > 1 && ${item.rating} <= 3">
+            			<std:set name="rate_trending" value="Poor"/>
+            		<std:else>
+            			<std:set name="rate_trending" value="Terrible"/>
+            		</std:if>
+            		
 	                <div class="swiper-slide">
 	                	<a href="#" class="carousel-slide">
 	                		<div class="carousel-slide-img">
 	                			<div>
 	                				<img src="${get_img_dir()}/casino-logos/${normalize_logo(${item.name})}.png" width="85" height="56" alt="">
 	                			</div>
-		                		<div class="carousel-slide-rating">${item.rating}</div>
+		                		<div class="carousel-slide-rating ${normalize(${rate_trending})}">${item.rating}</div>
 	                		</div>
 	                		<div class="carousel-slide-bottom">
 	                			<div class="carousel-slide-title">${item.name}</div>

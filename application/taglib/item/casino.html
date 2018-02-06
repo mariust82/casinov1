@@ -1,3 +1,14 @@
+<std:if condition="${result.rating} > 8">
+	<std:set name="rate_trending" value="Excellent"/>
+<std:elseif condition="${result.rating} > 6 && ${result.rating} <= 8">
+	<std:set name="rate_trending" value="Very good"/>
+<std:elseif condition="${result.rating} > 3 && ${result.rating} <= 6">
+	<std:set name="rate_trending" value="Good"/>
+<std:elseif condition="${result.rating} > 1 && ${result.rating} <= 3">
+	<std:set name="rate_trending" value="Poor"/>
+<std:else>
+	<std:set name="rate_trending" value="Terrible"/>
+</std:if>
 
 <div class="list-item">
 	<div class="list-item-cell">
@@ -5,32 +16,52 @@
 			<div class="list-flag">
 				<img src="${get_img_dir()}/flags/${data.country.code}.png" width="30" height="20" alt="">
 			</div>
-			<div class="list-rating {{score-class}}">
+			<div class="list-rating ${normalize(${rate_trending})}">
 				<div class="list-rating-wrap">
-					<div class="list-rating-score">{{score}}</div>
-					<div class="list-rating-text"></div>
+					<div class="list-rating-score">
+						${result.rating}
+					</div>
+					<div class="list-rating-text">${rate_trending}</div>
 				</div>
 			</div>
-			<a href="#" class="list-title">${result.name}</a>
+			<a href="/reviews/${normalize(${result.name})}-review" class="list-title">${result.name}</a>
 		</div>
 	</div>
 	<div class="list-item-cell">
 		<div class="multirow">
 			<div class="list-item-flex">
-				<span class="list-item-trun">1x2 Gaming</span> 
-				<span class="bubble bubble-long js-tooltip" title="NetEnt, Playtech, RTG, BetOnSoft, NYX Interactive, NextGen Gaming, Betdigital, Tabcat, Games">+2</span>
+				<span class="list-item-trun"> 
+					${get_string(${result.softwares})} 
+				</span>
+
+				<std:set name="extra" value="count(${result.softwares})-1"/>
+				<std:if condition="${extra} > 0">
+					<span class="bubble bubble-long js-tooltip" title="${get_string(${result.softwares})}">
+						+${extra}
+					</span>
+				</std:if>
 			</div>
 		</div>
 	</div>
 	<div class="list-item-cell">
-		<span class="btn-round js-tooltip-content" data-tooltip-content="">{{fdb}}</span>
+		<std:if condition="${result.bonus_first_deposit.amount} != ''">
+			<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-first-$[i]">${result.bonus_first_deposit.amount}</span>
+			<div class="tooltip-templates">
+				<box:bonus-first id="tooltip-$[id]-first-$[i]"/>
+			</div>
+		</std:if>
 	</div>
 	<div class="list-item-cell">
-		<span class="btn-round js-tooltip-content" data-tooltip-content="">{{db}}</span>
+		<std:if condition="${result.bonus_free.amount} != ''">
+			<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-free-$[i]">${result.bonus_free.amount}</span>
+			<div class="tooltip-templates">
+				<box:bonus-free id="tooltip-$[id]-free-$[i]"/>
+			</div>
+		</std:if>
 	</div>
 	<div class="list-item-cell">
 		<div class="list-flex">
-			<a href="#" rel="nofollow" class="btn btn-small">Visit</a>
+			<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn btn-small">Visit</a>
 			<a href="#" class="btn btn-circle">
 				<i class="icon-chevron-right"></i>
 			</a>

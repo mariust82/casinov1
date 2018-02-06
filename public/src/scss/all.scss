@@ -447,6 +447,24 @@ a {
             text-align:center;
             border-radius:2px;
             line-height:12px;
+
+
+            &.very-good{
+                color:#96CB00;
+                border:1px solid #96CB00;
+            }
+            &.good{
+                color:#E9CA00;
+                border:1px solid #E9CA00;
+            }
+            &.poor{
+                color:#F17D0A;
+                border:1px solid #F17D0A;
+            }
+            &.terrible{
+                color:#DB2424;
+                border:1px solid #DB2424;
+            }
         }
 
         &-bottom{
@@ -511,7 +529,7 @@ a {
 
     .swiper-container{
         @media screen and (max-width: 690px) {
-            overflow:visible;
+            // overflow:visible;
         }
     }
 }
@@ -1622,7 +1640,10 @@ a {
     padding:10px;
     display:block;
     margin:0 0 15px;
-    cursor:pointer;
+
+    &.js-copy-tooltip{
+        cursor:pointer;
+    }
 }
 
 .bonus-box{
@@ -3527,5 +3548,23 @@ a {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+}
+
+.centered{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tooltipster-content{
+    overflow:visible;
+    
+    .centered{
+        padding:5px 0;
+    }
+
+    i{
+        margin:0 5px 0 0;
     }
 }

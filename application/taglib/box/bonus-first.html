@@ -1,0 +1,44 @@
+<div id="$[id]" class="tooltip-content">
+	<div class="tooltip-templates-heading">
+		<h2 class="tooltip-templates-title">${result.name} First Deposit Bonus</h2>
+		<div class="tooltip-templates-button">
+			<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn btn-small">VISIT CASINO</a>
+		</div>
+	</div>
+	<div class="tooltip-templates-body">
+		<div class="bonus-box bonus-first">
+			<div class="bonus-box-heading">${result.bonus_first_deposit.amount} First Deposit Bonus</div>
+			<div class="bonus-box-body">
+
+				<std:set name="code_class" value=""/>
+				<std:if condition="${result.bonus_first_deposit.code} != 'No code required'">
+				    <std:set name="code_class" value="js-copy-to-clip js-copy-tooltip"/>
+				</std:if>
+
+				<div class="bonus-box-btn dashed ${code_class}" data-code="${result.bonus_first_deposit.code}">${result.bonus_first_deposit.code}</div>
+				<std:unset name="code_class"/>
+
+				<ul class="bonus-box-list">
+					<li> 
+						<span class="bonus-box-list-label">Wagering</span>
+						<strong>${result.bonus_first_deposit.wagering}</strong> 
+					</li>
+					<li>
+						<span class="bonus-box-list-label">Games allowed</span>
+						<strong class="list-item-flex">
+							<span class="list-item-trun">${result.bonus_first_deposit.games_allowed} </span>
+							<span class="bubble js-tooltip" title="${result.bonus_first_deposit.games_allowed}">More</span>
+						</strong>
+					</li>
+					<std:if condition="${result.bonus_first_deposit.min_deposit} != ''">
+						<li>
+							<span class="bonus-box-list-label">Min. deposit</span>
+							<strong>${result.bonus_first_deposit.min_deposit}</strong>
+						</li>
+					</std:if>
+				</ul>
+			</div>
+			<div class="bonus-box-circle"><i class="icon-free-bonus-icon"></i></div>
+		</div>
+	</div>
+</div>

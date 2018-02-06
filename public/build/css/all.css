@@ -2642,6 +2642,26 @@ a:hover, a:active, a:visited, a:focus {
   line-height: 12px;
 }
 
+.carousel-slide-rating.very-good {
+  color: #96CB00;
+  border: 1px solid #96CB00;
+}
+
+.carousel-slide-rating.good {
+  color: #E9CA00;
+  border: 1px solid #E9CA00;
+}
+
+.carousel-slide-rating.poor {
+  color: #F17D0A;
+  border: 1px solid #F17D0A;
+}
+
+.carousel-slide-rating.terrible {
+  color: #DB2424;
+  border: 1px solid #DB2424;
+}
+
 .carousel-slide-bottom {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2714,12 +2734,6 @@ a:hover, a:active, a:visited, a:focus {
 .carousel-next {
   right: -50px;
   left: auto;
-}
-
-@media screen and (max-width: 690px) {
-  .carousel .swiper-container {
-    overflow: visible;
-  }
 }
 
 .heading {
@@ -3962,6 +3976,9 @@ a:hover, a:active, a:visited, a:focus {
   padding: 10px;
   display: block;
   margin: 0 0 15px;
+}
+
+.dashed.js-copy-tooltip {
   cursor: pointer;
 }
 
@@ -6258,6 +6275,30 @@ a:hover, a:active, a:visited, a:focus {
         -ms-flex-align: center;
             align-items: center;
   }
+}
+
+.centered {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.tooltipster-content {
+  overflow: visible;
+}
+
+.tooltipster-content .centered {
+  padding: 5px 0;
+}
+
+.tooltipster-content i {
+  margin: 0 5px 0 0;
 }
 
 /*# sourceMappingURL=maps/all.css.map */

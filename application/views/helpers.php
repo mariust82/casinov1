@@ -20,6 +20,17 @@ function normalize_logo($name)
     return strtolower($str);
 }
 
+function get_string($name)
+{
+    $string = array();
+
+    foreach ($name as $key => $value) {
+        $string[$key] = $value;
+    }
+
+    return $string = implode(", ", $string);
+}
+
 function get_img_dir()
 {
     $dir = "/public/build/images";
