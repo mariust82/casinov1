@@ -5,3 +5,4 @@ vendor
 .buildpath
 hlis
 /public/src/images
+index.php
