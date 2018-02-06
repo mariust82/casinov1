@@ -1173,6 +1173,10 @@ a {
 
         img{
             width:100%;
+
+            @media screen and (max-width: 1023px) {
+                height:auto;
+            }
         }
     }
 
@@ -1838,7 +1842,7 @@ a {
         margin:0 15px 0 0;
     }
 
-    &-games{
+    &-is-img{
         a{
             height:100px;
             padding: 10px 15px 10px 0;
@@ -1851,7 +1855,7 @@ a {
     color:$common-color;
 }
 
-.casinos-nav{
+.links-nav{
     margin:0 0 25px;
 
     .container{
@@ -3559,7 +3563,7 @@ a {
 
 .tooltipster-content{
     overflow:visible;
-    
+
     .centered{
         padding:5px 0;
     }

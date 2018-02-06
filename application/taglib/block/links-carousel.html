@@ -1,0 +1,13 @@
+<div class="links-nav">
+  <div class="container">
+    <div class="swiper-container" id="links-nav">
+        <div class="swiper-wrapper">
+          <std:foreach var="$[data]" key ="key" value="result">
+              <div class="swiper-slide">
+                <a href="${key}">${result}</a>
+              </div>
+          </std:foreach>
+        </div>
+    </div>
+  </div>
+</div>

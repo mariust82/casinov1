@@ -1,5 +1,19 @@
-<pre>${var_dump(${data.menu})}</pre>
-<pre>${var_dump(${data.country})}</pre>
-<pre>${var_dump(${data.selected_entity})}</pre>
-<pre>${var_dump(${data.total_casinos})}</pre>
-<pre>${var_dump(${data.casinos})}</pre>
+<import file="templates/include-header"/>
+	<block:links-carousel data="${data.menu}" goto="/games"/>
+	<div class="block">
+		<div class="container">
+			<div class="headeing">
+				<div class="title">${data.selected_entity} Casinos</div>
+				<div class="subtitle">
+					<p class="js-condense">Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite. Most importantly, to be awarded this rating a casino must demonstrate the highest levels of customer service and player satisfaction over a number of years. We have no hesitation in recommending these casinos as safe and fun places to play online. Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite. Most importantly, to be awarded this rating a casino must demonstrate the highest levels of customer service and player satisfaction over a number of years. We have no hesitation in recommending these casinos as safe and fun places to play online</p>
+				</div>
+			</div>
+			<filter:casinos/>
+			<div class="qty-items">${data.total_casinos} results</div>
+			<block:list-casinos id="1" data="${data.casinos}"/>
+			<div class="btn-holder">
+				<a href="#" class="btn-bordered load">LOAD MORE CASINOS</a>
+			</div>
+		</div>
+	</div>
+<import file="templates/include-footer"/>

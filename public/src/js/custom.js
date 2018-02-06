@@ -211,7 +211,7 @@
             }
         });
 
-        var swiper = new Swiper('#casinos-nav', {
+        var swiper = new Swiper('#links-nav', {
             slidesPerView: 'auto',
             spaceBetween: 30,
             freeMode: true

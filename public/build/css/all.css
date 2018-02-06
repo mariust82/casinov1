@@ -3461,6 +3461,12 @@ a:hover, a:active, a:visited, a:focus {
   width: 100%;
 }
 
+@media screen and (max-width: 1023px) {
+  .game-img img {
+    height: auto;
+  }
+}
+
 .game-desc {
   display: block;
   padding: 15px 10px 12px;
@@ -4188,7 +4194,7 @@ a:hover, a:active, a:visited, a:focus {
   margin: 0 15px 0 0;
 }
 
-.category-games a {
+.category-is-img a {
   height: 100px;
   padding: 10px 15px 10px 0;
   border: none;
@@ -4198,16 +4204,16 @@ a:hover, a:active, a:visited, a:focus {
   color: #2171CE;
 }
 
-.casinos-nav {
+.links-nav {
   margin: 0 0 25px;
 }
 
-.casinos-nav .container {
+.links-nav .container {
   border-bottom: 1px solid #E8EAF3;
   box-shadow: 0 2px 7px -4px rgba(0, 0, 0, 0.16);
 }
 
-.casinos-nav a {
+.links-nav a {
   display: block;
   padding: 0 0 15px;
   color: #2171CE;
@@ -4216,15 +4222,15 @@ a:hover, a:active, a:visited, a:focus {
   border-bottom: 2px solid transparent;
 }
 
-.casinos-nav a.active, .casinos-nav a:hover {
+.links-nav a.active, .links-nav a:hover {
   border-bottom-color: #2171CE;
 }
 
-.casinos-nav .swiper-slide {
+.links-nav .swiper-slide {
   width: auto;
 }
 
-.casinos-nav .swiper-container:after {
+.links-nav .swiper-container:after {
   content: '';
   position: absolute;
   top: 0;

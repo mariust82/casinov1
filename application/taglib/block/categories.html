@@ -1,0 +1,35 @@
+<std:set name="img_class" value=""/>
+<std:if condition="$[image]">
+	<std:set name="img_class" value="category-is-img"/>
+</std:if>
+
+<div class="block">
+	<div class="container">
+		<div class="headeing">
+			<div class="title">$[name]</div>
+			<div class="subtitle">
+				<p class="js-condense">$[description]</p>
+			</div>
+		</div>
+		<div class="categories">
+			<div class="categories-list">
+				<std:foreach var="${data.results}" key="key" value="result">
+					<div class="category ${img_class}">
+						<a href="$[goto]/${normalize(${key})}">
+							<std:if condition="$[image]">
+								<span class="category-img">
+									<img src="${get_img_dir()}/games/${normalize(${data.icons.${key}})}.jpg" alt="${key}" width="136" height="100">
+								</span>
+							</std:if>
+							<span class="category-body">
+								<span class="category-title">${key}</span>
+								<span class="category-qty">${result}</span>
+							</span>
+							<i class="icon-chevron-right"></i>
+						</a>
+					</div>
+				</std:foreach>
+			</div>
+		</div>
+	</div>
+</div>
