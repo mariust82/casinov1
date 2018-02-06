@@ -4,62 +4,62 @@
     "carousel":{
         "items":[
             {
-              "img":"images/casino-logos/casino-room.png",
+              "img":"images/casino-logos/casino_room.png",
               "rating":"10",
               "title":"Casino Room"
             },
             {
-              "img":"images/casino-logos/21-dukes-moons.png",
+              "img":"images/casino-logos/21_dukes_moons.png",
               "rating":"10",
               "title":"Royal Vegas Online Casino"
             },
             {
-              "img":"images/casino-logos/ac-casino.png",
+              "img":"images/casino-logos/ac_casino.png",
               "rating":"10",
               "title":"Lincoln Casino"
             },
             {
-              "img":"images/casino-logos/all-irish-casino.png",
+              "img":"images/casino-logos/all_irish_casino.png",
               "rating":"10",
               "title":"Casino Room"
             },
             {
-              "img":"images/casino-logos/all-jackpots-casino.png",
+              "img":"images/casino-logos/all_jackpots_casino.png",
               "rating":"9",
               "title":"Sloto Cash"
             },
             {
-              "img":"images/casino-logos/all-stars-slots.png",
+              "img":"images/casino-logos/all_irish_casino.png",
               "rating":"10",
               "title":"Royal Blood Casino"
             },
             {
-              "img":"images/casino-logos/casino-room.png",
+              "img":"images/casino-logos/casino_room.png",
               "rating":"9",
               "title":"Casino Room"
             },
             {
-              "img":"images/casino-logos/21-dukes-moons.png",
+              "img":"images/casino-logos/21_dukes_moons.png",
               "rating":"10",
               "title":"Royal Vegas Online Casino"
             },
             {
-              "img":"images/casino-logos/ac-casino.png",
+              "img":"images/casino-logos/ac_casino.png",
               "rating":"9",
               "title":"Lincoln Casino"
             },
             {
-              "img":"images/casino-logos/all-irish-casino.png",
+              "img":"images/casino-logos/all_irish_casino.png",
               "rating":"10",
               "title":"Casino Room"
             },
             {
-              "img":"images/casino-logos/all-jackpots-casino.png",
+              "img":"images/casino-logos/all_jackpots_casino.png",
               "rating":"10",
               "title":"Sloto Cash"
             },
             {
-              "img":"images/casino-logos/all-stars-slots.png",
+              "img":"images/casino-logos/all_irish_casino.png",
               "rating":"10",
               "title":"Royal Blood Casino"
             }
@@ -68,35 +68,35 @@
     "search-casinos":{
         "items":[
             {
-              "img":"images/casino-logos/casino-room.png",
+              "img":"images/casino-logos/casino_room.png",
               "title":"<strong>Casino</strong> Room"
             },
             {
-              "img":"images/casino-logos/casino-rv.png",
+              "img":"images/casino-logos/casino_rv.png",
               "title":"Very Vegas Mobile <strong>Casino</strong>"
             },
             {
-              "img":"images/casino-logos/casino-fiz.png",
+              "img":"images/casino-logos/casino_fiz.png",
               "title":"Casino <strong>Room</strong>"
             },
             {
-              "img":"images/casino-logos/casino-room.png",
+              "img":"images/casino-logos/casino_room.png",
               "title":"<strong>Casino</strong> Room"
             },
             {
-              "img":"images/casino-logos/casino-rv.png",
+              "img":"images/casino-logos/casino_rv.png",
               "title":"Very Vegas Mobile <strong>Casino</strong>"
             },
             {
-              "img":"images/casino-logos/casino-fiz.png",
+              "img":"images/casino-logos/casino_fiz.png",
               "title":"Casino <strong>Room</strong>"
             },
             {
-              "img":"images/casino-logos/casino-room.png",
+              "img":"images/casino-logos/casino_room.png",
               "title":"<strong>Casino</strong> Room"
             },
             {
-              "img":"images/casino-logos/casino-rv.png",
+              "img":"images/casino-logos/casino_rv.png",
               "title":"Very Vegas Mobile <strong>Casino</strong>"
             }
         ]
@@ -342,7 +342,7 @@
               "tranding-changes":"+2",
               "rate-score":"9.8",
               "rate-tranding":"positive",
-              "logo":"images/casino-logos/21-dukes-moons.png",
+              "logo":"images/casino-logos/21_dukes_moons.png",
               "flag":"images/flags/RO.png",
               "title":"21 Dukes Casino",
               "cond1":"$/€20 No deposit bonus",
@@ -355,7 +355,7 @@
               "tranding-changes":"",
               "rate-score":"9.7",
               "rate-tranding":"positive",
-              "logo":"images/casino-logos/ac-casino.png",
+              "logo":"images/casino-logos/ac_casino.png",
               "flag":"images/flags/RO.png",
               "title":"AC Casino",
               "cond1":"€25 No deposit bonus",
@@ -368,7 +368,7 @@
               "tranding-changes":"+2",
               "rate-score":"9.6",
               "rate-tranding":"positive",
-              "logo":"images/casino-logos/all-irish-casino.png",
+              "logo":"images/casino-logos/all_irish_casino.png",
               "flag":"images/flags/RO.png",
               "title":"All Irish Casino",
               "cond1":"",
@@ -381,7 +381,7 @@
               "tranding-changes":"-2",
               "rate-score":"9.4",
               "rate-tranding":"positive",
-              "logo":"images/casino-logos/all-stars-slots.png",
+              "logo":"images/casino-logos/all_irish_casino.png",
               "flag":"images/flags/RO.png",
               "title":"All Star Slots",
               "cond1":"20 Free Spins",
@@ -394,7 +394,7 @@
               "tranding-changes":"+2",
               "rate-score":"9.2",
               "rate-tranding":"positive",
-              "logo":"images/casino-logos/casino-calzone.png",
+              "logo":"images/casino-logos/casino_calzone.png",
               "flag":"images/flags/RO.png",
               "title":"Casino Calzone",
               "cond1":"$/€/£600 No deposit bonus",
