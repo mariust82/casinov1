@@ -7,7 +7,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '1193',
     'name' => 'Mars Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -52,7 +52,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '1164',
     'name' => 'Aunty Acid Bingo',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -100,7 +100,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '1088',
     'name' => 'Lucky Ladies Bingo',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -141,7 +141,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '1087',
     'name' => 'Girly Bingo',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -188,7 +188,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '1045',
     'name' => 'Love My Bingo',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -235,7 +235,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '978',
     'name' => 'M88 Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -279,7 +279,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '947',
     'name' => 'Mini Mobile Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -320,7 +320,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '946',
     'name' => 'Mambo Slots Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -361,7 +361,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '944',
     'name' => 'My Touch Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -402,7 +402,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '943',
     'name' => 'Lucky Gold Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -443,7 +443,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '942',
     'name' => 'Lucky Admiral Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -484,7 +484,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '928',
     'name' => 'Royalio Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -532,7 +532,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '920',
     'name' => 'Boss Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -579,7 +579,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '917',
     'name' => 'Jojobet Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -622,7 +622,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '908',
     'name' => 'House Of Bingo',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -670,7 +670,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '907',
     'name' => 'Harrys Bingo',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -718,7 +718,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '906',
     'name' => 'Gone Bingo',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -766,7 +766,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '851',
     'name' => 'Win2Fun Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -805,7 +805,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '845',
     'name' => 'Aunty Acid Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -846,7 +846,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '819',
     'name' => 'Quackpot Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Cozy Games',

@@ -11,7 +11,7 @@ $this->response->setAttribute("best_casinos", array (
   array (
     'id' => '257',
     'name' => 'Jackpot Capital',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -57,7 +57,7 @@ $this->response->setAttribute("best_casinos", array (
   array (
     'id' => '878',
     'name' => 'Stake7 Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Merkur Gaming',
@@ -99,7 +99,7 @@ $this->response->setAttribute("best_casinos", array (
   array (
     'id' => '785',
     'name' => 'VegasCasino.io',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'BetSoft',
@@ -146,7 +146,7 @@ $this->response->setAttribute("best_casinos", array (
   array (
     'id' => '340',
     'name' => 'Exclusive Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -185,7 +185,7 @@ $this->response->setAttribute("best_casinos", array (
   array (
     'id' => '1171',
     'name' => '1xBit Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -242,7 +242,7 @@ $this->response->setAttribute("best_casinos", array (
   array (
     'id' => '1124',
     'name' => 'Bet East Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Ezugi',
@@ -281,7 +281,7 @@ $this->response->setAttribute("best_casinos", array (
   array (
     'id' => '1091',
     'name' => 'Bitcoin Penguin Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'SoftSwiss',
@@ -320,7 +320,7 @@ $this->response->setAttribute("best_casinos", array (
   array (
     'id' => '1065',
     'name' => 'Betive Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -366,7 +366,7 @@ $this->response->setAttribute("best_casinos", array (
   array (
     'id' => '1064',
     'name' => 'HRwager Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'SoftSwiss',
@@ -405,7 +405,7 @@ $this->response->setAttribute("best_casinos", array (
   array (
     'id' => '1039',
     'name' => 'Planet Kings Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -453,7 +453,7 @@ $this->response->setAttribute("country_casinos", array (
   array (
     'id' => '1371',
     'name' => 'Casino 5plusbet5',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -513,7 +513,7 @@ $this->response->setAttribute("country_casinos", array (
   array (
     'id' => '1369',
     'name' => 'UpTown Pokies Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -559,7 +559,7 @@ $this->response->setAttribute("country_casinos", array (
   array (
     'id' => '1351',
     'name' => 'EuroBets Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -605,7 +605,7 @@ $this->response->setAttribute("country_casinos", array (
   array (
     'id' => '1334',
     'name' => '24VIP Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -653,7 +653,7 @@ $this->response->setAttribute("country_casinos", array (
   array (
     'id' => '1307',
     'name' => 'Spintastic Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -696,7 +696,7 @@ $this->response->setAttribute("new_casinos", array (
   array (
     'id' => '1371',
     'name' => 'Casino 5plusbet5',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -756,7 +756,7 @@ $this->response->setAttribute("new_casinos", array (
   array (
     'id' => '1369',
     'name' => 'UpTown Pokies Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -802,7 +802,7 @@ $this->response->setAttribute("new_casinos", array (
   array (
     'id' => '1351',
     'name' => 'EuroBets Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -848,7 +848,7 @@ $this->response->setAttribute("new_casinos", array (
   array (
     'id' => '1334',
     'name' => '24VIP Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -896,7 +896,7 @@ $this->response->setAttribute("new_casinos", array (
   array (
     'id' => '1307',
     'name' => 'Spintastic Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -939,7 +939,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
   array (
     'id' => '1369',
     'name' => 'UpTown Pokies Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -985,7 +985,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
   array (
     'id' => '1351',
     'name' => 'EuroBets Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -1031,7 +1031,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
   array (
     'id' => '1334',
     'name' => '24VIP Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -1079,7 +1079,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
   array (
     'id' => '1182',
     'name' => 'Casino Brango',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -1125,7 +1125,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
   array (
     'id' => '1155',
     'name' => 'BoVegas Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'RTG',

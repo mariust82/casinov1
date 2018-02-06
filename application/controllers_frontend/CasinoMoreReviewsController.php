@@ -25,7 +25,7 @@ class CasinoMoreReviewsController extends Controller {
         'likes' => '0',
         'ip' => NULL,
         'country' => 'United States',
-        'rating' => NULL,
+        'rating' => 6,
         'date' => '2018-01-26 12:36:41',
         'parent' => NULL,
         'children' => 
@@ -42,7 +42,7 @@ class CasinoMoreReviewsController extends Controller {
         'likes' => '0',
         'ip' => NULL,
         'country' => 'United States',
-        'rating' => NULL,
+        'rating' => 6,
         'date' => '2018-01-26 12:36:40',
         'parent' => NULL,
         'children' => 

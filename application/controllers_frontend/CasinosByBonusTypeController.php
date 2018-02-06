@@ -23,7 +23,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '1357',
     'name' => 'Babe Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -88,7 +88,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '1315',
     'name' => 'Breakout Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -132,7 +132,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '988',
     'name' => 'OG Palace Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -172,7 +172,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '942',
     'name' => 'Lucky Admiral Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -213,7 +213,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '917',
     'name' => 'Jojobet Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -256,7 +256,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '882',
     'name' => 'Versailles Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -297,7 +297,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '851',
     'name' => 'Win2Fun Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -336,7 +336,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '830',
     'name' => 'Diamond Reels Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -375,7 +375,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '790',
     'name' => 'Sugar Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -422,7 +422,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '684',
     'name' => 'NederBet Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -466,7 +466,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '657',
     'name' => 'Parasino Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -527,7 +527,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '591',
     'name' => 'LaRomere Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -567,7 +567,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '587',
     'name' => 'Carat Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -609,7 +609,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '389',
     'name' => 'Crazy Spins Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -650,7 +650,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '330',
     'name' => 'Platinum Reels Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'Saucify',
@@ -689,7 +689,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '319',
     'name' => 'Intrabahis Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -731,7 +731,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '250',
     'name' => 'Grand Wild Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -777,7 +777,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '74',
     'name' => 'Carat Bingo',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -819,7 +819,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '952',
     'name' => 'Naija Gaming Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -866,7 +866,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '610',
     'name' => 'Mr Mega Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',

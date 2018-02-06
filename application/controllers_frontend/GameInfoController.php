@@ -43,7 +43,7 @@ $this->response->setAttribute("recommended_casinos", array (
   array (
     'id' => '829',
     'name' => 'Touch Lucky Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -104,7 +104,7 @@ $this->response->setAttribute("recommended_casinos", array (
   array (
     'id' => '724',
     'name' => 'Sapphire Rooms Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -158,7 +158,7 @@ $this->response->setAttribute("recommended_casinos", array (
   array (
     'id' => '629',
     'name' => 'Chomp Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',

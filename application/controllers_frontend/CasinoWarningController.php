@@ -4,7 +4,7 @@ class CasinoWarningController extends Controller {
         $this->response->setAttribute("casino", array (
   'id' => '10',
   'name' => 'Casino Bellevue',
-  'rating' => NULL,
+  'rating' => 6,
   'softwares' => 'RTG',
   'languages' => NULL,
   'currencies' => NULL,
@@ -35,7 +35,7 @@ $this->response->setAttribute("recommended_casinos", array (
   array (
     'id' => '1189',
     'name' => 'Hera Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -83,7 +83,7 @@ $this->response->setAttribute("recommended_casinos", array (
   array (
     'id' => '1029',
     'name' => '5Dimes Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -123,7 +123,7 @@ $this->response->setAttribute("recommended_casinos", array (
   array (
     'id' => '830',
     'name' => 'Diamond Reels Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -162,7 +162,7 @@ $this->response->setAttribute("recommended_casinos", array (
   array (
     'id' => '509',
     'name' => 'Platinum Casino',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -214,7 +214,7 @@ $this->response->setAttribute("recommended_casinos", array (
   array (
     'id' => '107',
     'name' => 'Slots Inferno',
-    'rating' => NULL,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'RTG',
