@@ -9,7 +9,7 @@ class CasinoInfoController extends Controller {
 $this->response->setAttribute("casino", array (
   'id' => '257',
   'name' => 'Jackpot Capital',
-  'rating' => '0.1429',
+  'rating' => '4',
   'softwares' => 
   array (
     0 => 'RTG',

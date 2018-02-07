@@ -1,0 +1,35 @@
+<div class="review $[class] {{owner}}" data-review-id="${result.id}">
+	<div class="review-wrap">
+		<div class="review-info">
+			<div class="review-info-top">
+				<div class="review-flag">
+					<img src="${get_img_dir()}/flags/${data.country.code}.png" alt="${data.country.code}" width="15" height="12">
+				</div>
+				<div class="review-info-body">
+					<div class="review-name">${result.name}</div>
+					<div class="review-date">${date("d m Y",  strtotime(${result.date}))}</div>
+				</div>
+			</div>
+			<div class="list-rating ${normalize(get_rating(${result.rating}))}">
+				<div class="list-rating-wrap">
+					<div class="list-rating-score">${ceil(${result.rating})}</div>
+					<div class="list-rating-text">${get_rating(${result.rating})}</div>
+				</div>
+			</div>
+		</div>
+		<div class="review-body">
+			<div class="review-text">
+				<p>${result.body}</p>
+			</div>
+			<div class="review-underline">
+				<a href="#" class="review-replies js-reply-btn">Reply</a>
+				<div class="votes">
+					<a href="#" class="votes-like">
+						<i class="icon-icon_likes"></i>
+						<span class="bubble bubble-vote">${result.likes}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,6 +1,11 @@
 <?php
 class GameInfoController extends Controller {
     public function run() {
+$this->response->setAttribute("country", array (
+  'id' => '34',
+  'code' => 'US',
+  'name' => 'United States',
+));
         $this->response->setAttribute("game_types", array (
   0 => 'Video Slots',
   1 => 'Video Poker',
@@ -26,8 +31,8 @@ $this->response->setAttribute("game", array (
     0 => 'HTML5',
   ),
   'is_mobile' => true,
-  'is_3d' => NULL,
-  'overview' => NULL,
+  'is_3d' => false,
+  'overview' => 'Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite. Most importantly, to be awarded this rating a casino must demonstrate the highest levels of customer service and player satisfaction over a number of years. We have no hesitation in recommending these casinos as safe and fun places to play online.',
   'times_played' => '0',
   'play' => 
   array (

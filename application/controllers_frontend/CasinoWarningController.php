@@ -1,6 +1,12 @@
 <?php
 class CasinoWarningController extends Controller {
     public function run() {
+    $this->response->setAttribute("country", array (
+      'id' => '34',
+      'code' => 'US',
+      'name' => 'United States',
+    ));
+    
         $this->response->setAttribute("casino", array (
   'id' => '10',
   'name' => 'Casino Bellevue',

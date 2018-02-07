@@ -1,5 +1,7 @@
+<std:set name="page" value="casinos"/>
+
 <import file="templates/include-header"/>
-	<block:links-carousel data="${data.menu}" goto="/games"/>
+	<block:links-carousel data="${data.menu}"/>
 	<div class="block">
 		<div class="container">
 			<div class="headeing">
@@ -10,7 +12,8 @@
 			</div>
 			<filter:casinos/>
 			<div class="qty-items">${data.total_casinos} results</div>
-			<block:list-casinos id="1" data="${data.casinos}"/>
+
+			<item:casino type="SOFTWARE" data="${data.casinos}"/>
 			<div class="btn-holder">
 				<a href="#" class="btn-bordered load">LOAD MORE CASINOS</a>
 			</div>

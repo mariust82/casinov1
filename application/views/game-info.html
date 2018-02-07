@@ -1,3 +1,116 @@
-<pre>${var_dump(${data.game})}</pre>
-<pre>${var_dump(${data.recommended_casinos})}</pre>
-<pre>${var_dump(${data.recommended_games})}</pre>
+<std:set name="page" value="games"/>
+
+<import file="templates/include-header"/>
+	<block:links-carousel-games data="${data.game_types}"/>
+
+	<div class="block">
+		<div class="container">
+			<div class="player-title">
+				<div class="title">${data.game.name}</div>
+				<span class="game-played">
+					<span class="game-play">
+						<i class="icon-times_played_icon"></i>
+					</span>
+					Times played: ${data.game.times_played}
+				</span>
+			</div>
+			<div class="player">
+				<div class="player-holder">
+					<img src="${get_img_dir()}/games/img.jpg" alt="${data.game.name}">
+				</div>
+				<div class="player-overlay"></div>
+				<div class="player-play">
+					<i class="icon-play"></i>
+				</div>
+			</div>
+			<div class="player-controls">
+				<a href="#" class="player-controls-btn">
+					<i class="icon-spinner"></i>
+				</a>
+				<a href="#" class="player-controls-btn">
+					<i class="icon-enlarge"></i>
+				</a>
+			</div>
+			<div class="game-info">
+				<h3 class="title title-small">Game info</h3>
+				<div class="game-info-table">
+					<div class="game-info-cell">
+						<div class="game-info-title">GAME TYPE</div>
+						<div class="game-info-val">${data.game.type}</div>
+					</div>
+					<div class="game-info-cell">
+						<div class="game-info-title">SOFTWARE</div>
+						<div class="game-info-val">${data.game.software}</div>
+					</div>
+					<div class="game-info-cell">
+						<div class="game-info-title">RELEASE DATE</div>
+						<div class="game-info-val">${date("M d, Y",  strtotime(${data.game.release_date}))}</div>
+					</div>
+					<div class="game-info-cell">
+						<div class="game-info-title">TECHNOLOGY</div>
+						<div class="game-info-val">
+							<std:set name="numItems" value="count(${data.game.technologies})"/>
+							<std:set name="i" value="0"/>
+							<std:foreach var="${data.game.technologies}" value="result">
+							      ${result}
+							      <std:set name="i" value="${i}+1"/>
+							      <std:if condition="${i}+1 < ${numItems}">, </std:if>
+							</std:foreach>
+						</div>
+					</div>
+					<div class="game-info-cell">
+						<div class="game-info-sign">
+							<std:if condition="${data.game.is_mobile}">
+								<i class="icon-icon_available"></i>
+							<std:else>
+								<i class="icon-icon_unavailable"></i>
+							</std:if>
+						</div>
+						<div class="game-info-title">MOBILE</div>
+					</div>
+					<div class="game-info-cell">
+						<div class="game-info-sign">
+							<std:if condition="${data.game.is_3d}">
+								<i class="icon-icon_available"></i>
+							<std:else>
+								<i class="icon-icon_unavailable"></i>
+							</std:if>
+						</div>
+						<div class="game-info-title">3D ANIMATION</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="block game-description">
+		<div class="container">
+			<h3 class="title title-small">Game overview</h3>
+			<p>${data.game.overview}</p>
+		</div>
+	</div>
+
+	<div class="block related">
+		<div class="container">
+			<div class="headeing">
+				<div class="title title-middle">We recommend the following casinos</div>
+			</div>
+			<item:casino type="SOFTWARE" id="1" data="${data.recommended_casinos}"/>
+		</div>
+	</div>
+
+	<div class="block related">
+		<div class="container">
+			<div class="headeing">
+				<div class="title title-middle">Similar games</div>
+			</div>
+			<item:game data="${data.recommended_games}"/>
+		</div>
+	</div>
+
+	<!-- <div>
+		<pre>${var_dump(${data.game})}</pre>
+	</div> -->
+
+<import file="templates/include-footer"/>
+

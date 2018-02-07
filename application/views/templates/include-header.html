@@ -24,22 +24,25 @@
 						<i class="icon-logo"><i class="path1"></i><i class="path2"></i></i>
 					</a>
 				</div>
+				<a href="#" class="header-search-mobile js-mobile-search-opener">
+					<i class="icon-search"></i>
+				</a>
 				<nav class="header-menu">
 					<a href="#" class="mobile-menu-close" id="js-mobile-menu-close">
 						<i class="icon-arrow-left2"></i>
 					</a>
 					<ul>
 						<li class="mobile">
-							<a href="/" class="active">HOMEPAGE</a>
+							<a href="/" class="${get_active(${page}, 'index')}">HOMEPAGE</a>
 						</li>
-						<li><a href="/casinos">CASINOS</a></li>
-						<li><a href="/softwares">SOFTWARES</a></li>
-						<li><a href="/bonus-list">BONUSES</a></li>
-						<li><a href="/countries">COUNTRIES</a></li>
-						<li><a href="/compatability">COMPATIBILITY</a></li>
-						<li><a href="/banking">BANKING</a></li>
-						<li><a href="/features">FEATURES</a></li>
-						<li><a href="/games">GAMES</a></li>
+						<li><a class="${get_active(${page}, 'casinos')}" href="/casinos">CASINOS</a></li>
+						<li><a class="${get_active(${page}, 'softwares')}" href="/softwares">SOFTWARES</a></li>
+						<li><a class="${get_active(${page}, 'bonus-list')}" href="/bonus-list">BONUSES</a></li>
+						<li><a class="${get_active(${page}, 'countries')}" href="/countries">COUNTRIES</a></li>
+						<li><a class="${get_active(${page}, 'compatability')}" href="/compatability">COMPATIBILITY</a></li>
+						<li><a class="${get_active(${page}, 'banking')}" href="/banking">BANKING</a></li>
+						<li><a class="${get_active(${page}, 'features')}" href="/features">FEATURES</a></li>
+						<li><a class="${get_active(${page}, 'games')}" href="/games">GAMES</a></li>
 					</ul>
 				</nav>
 				<div class="header-search">
@@ -47,28 +50,66 @@
 						<i class="icon-search"></i>
 					</a>
 					<div class="header-search-input">
+						<div class="header-search-mobile">
+							<a href="#" class="mobile-menu-close js-mobile-search-close">
+								<i class="icon-arrow-left2"></i>
+							</a>
+						</div>
 						<input type="text" placeholder="Search here">
+						<div class="header-search-mobile">
+							<a href="#" class="mobile-search-clear js-mobile-search-clear">
+								<i class="icon-icon_plus"></i>
+							</a>
+						</div>
 					</div>
 					<a href="#" class="header-search-close js-search-close">
 						<i class="icon-icon_plus"></i>
 					</a>
+					<div class="search-drop js-search-drop">
+						<nav class="search-list">
+							<div class="search-list-block">
+								<div class="search-list-heading">
+									<span>CASINOS</span>
+								</div>
+								<ul>
+									<li><a href="#"><span class="mark">Cool</span> Cat Casino</a></li>
+									<li><a href="#"><span class="mark">Cool</span> Play Casino</a></li>
+									<li><a href="#"><span class="mark">Cool</span> Xtreme Casino</a></li>
+								</ul>
+							</div>
+							<div class="search-list-block">
+								<div class="search-list-heading">
+									<span>GAMES</span>
+								</div>
+								<ul>
+									<li><a href="#"><span class="mark">Cool</span> Buck</a></li>
+									<li><a href="#"><span class="mark">Cool</span> Diamonds 2</a></li>
+									<li><a href="#">Genesis Gaming <span class="mark">Cool</span> As Ice</a></li>
+								</ul>
+							</div>
+							<a href="#" class="btn btn-middle fullwide">SHOW ALL RESULTS</a>
+						</nav>
+					</div>
 				</div>
 			</div>
 		</header>
-		<div class="promo ">
-			<div class="promo-img">
-				<img src="${get_img_dir()}/text-header/home-img.jpg" width="1920" height="320" alt="">
-			</div>
-			<div class="promo-text">
-				<h1 class="promo-title">
-					<span>Welcome to</span> <br> 
-					<strong>CASINOSLISTS.COM</strong>
-				</h1>
-				<div class="promo-icon">
-					<i class="icon-crown"></i>
+
+		<std:if condition="${page} == 'index'">
+			<div class="promo ">
+				<div class="promo-img">
+					<img src="${get_img_dir()}/text-header/home-img.jpg" width="1920" height="320" alt="">
 				</div>
-				<h3 class="promo-subtitle">Best Online Casino Lists &amp; Bonuses updated on a daily basis.</h3>
+				<div class="promo-text">
+					<h1 class="promo-title">
+						<span>Welcome to</span> <br> 
+						<strong>CASINOSLISTS.COM</strong>
+					</h1>
+					<div class="promo-icon">
+						<i class="icon-crown"></i>
+					</div>
+					<h3 class="promo-subtitle">Best Online Casino Lists &amp; Bonuses updated on a daily basis.</h3>
+				</div>
 			</div>
-		</div>
+		</std:if>
 
 		<div class="main">

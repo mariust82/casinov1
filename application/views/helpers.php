@@ -20,6 +20,15 @@ function normalize_logo($name)
     return strtolower($str);
 }
 
+function get_active($page, $item)
+{
+    $class = "";
+    if ($page == $item) {
+        $class = "active";
+    }
+    return $class;
+}
+
 function get_string($name)
 {
     $string = array();
@@ -29,6 +38,34 @@ function get_string($name)
     }
 
     return $string = implode(", ", $string);
+}
+
+function get_rating($name)
+{
+    if ($name > 8) {
+        $string = 'Excellent';
+    } elseif($name > 6 && $name <= 8){
+        $string = 'Very good';
+    } elseif($name > 3 && $name <= 6){
+        $string = 'Good';
+    } elseif($name > 1 && $name <= 3){
+        $string = 'Poor';
+    } else {
+        $string = 'Terrible';
+    }
+
+    return $string;
+}
+
+function get_country_status($name)
+{
+    if ($name) {
+        $string = 'accepted';
+    } else {
+        $string = 'not accepted';
+    }
+
+    return $string;
 }
 
 function get_img_dir()
