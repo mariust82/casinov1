@@ -46,9 +46,9 @@ function get_rating($name)
         $string = 'Excellent';
     } elseif($name > 6 && $name <= 8){
         $string = 'Very good';
-    } elseif($name > 3 && $name <= 6){
+    } elseif($name > 4 && $name <= 6){
         $string = 'Good';
-    } elseif($name > 1 && $name <= 3){
+    } elseif($name > 2 && $name <= 4){
         $string = 'Poor';
     } else {
         $string = 'Terrible';
@@ -70,7 +70,7 @@ function get_country_status($name)
 
 function get_img_dir()
 {
-    $dir = "/public/build/images";
+    $dir = "/public/sync";
     return $dir;
 }
 

@@ -19,9 +19,11 @@
 							<li><a href="/reviews/${normalize(${result})}-review">${result}</a></li>
 						</std:foreach>
 					</ul>
-					<div class="search-list-more">
-						<a href="#" id="js-search-more-casinos">Show 5 more <i class="icon-chevron-down"></i></a>
-					</div>
+					<std:if condition="${data.total_casinos} > 4">
+						<div class="search-list-more">
+							<a href="#" id="js-search-more-casinos">Show 5 more <i class="icon-chevron-down"></i></a>
+						</div>
+					</std:if>
 				</div>
 				<div class="search-list-block">
 					<div class="search-list-heading">
@@ -33,9 +35,11 @@
 							<li><a href="/play/${normalize(${result})}">${result}</a></li>
 						</std:foreach>
 					</ul>
-					<div class="search-list-more">
-						<a href="#" id="js-search-more-pages">Show 5 more <i class="icon-chevron-down"></i></a>
-					</div>
+					<std:if condition="${data.total_games} > 4">
+						<div class="search-list-more">
+							<a href="#" id="js-search-more-pages">Show 5 more <i class="icon-chevron-down"></i></a>
+						</div>
+					</std:if>
 				</div>
 			</nav>
 		</div>

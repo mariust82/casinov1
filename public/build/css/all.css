@@ -3853,6 +3853,10 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
+.textfield.disabled {
+  pointer-events: none;
+}
+
 .form-btn {
   font-size: 11px;
   color: #fff;
@@ -5011,6 +5015,10 @@ a:hover, a:active, a:visited, a:focus {
   padding: 20px 15px;
 }
 
+.review-child .list-rating {
+  margin: 0;
+}
+
 .review-list {
   padding: 30px 0 0 0;
   border-top: 1px solid #E8EAF3;
@@ -5446,6 +5454,7 @@ a:hover, a:active, a:visited, a:focus {
           align-items: baseline;
   overflow: hidden;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
+  display: none;
 }
 
 @media screen and (max-width: 690px) {
@@ -5468,13 +5477,26 @@ a:hover, a:active, a:visited, a:focus {
   opacity: 0;
 }
 
-.br-widget {
+.br-wrapper {
+  margin: 0 0 25px;
+}
+
+.rating-container {
+  width: 280px;
+  margin: 0 20px 0 0;
+}
+
+.rating-container.not-valid .br-widget a {
+  background: #DB2424;
+}
+
+.rating-container .br-widget {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.br-widget a {
+.rating-container .br-widget a {
   background: #E8EAF3;
   width: 18px;
   height: 18px;
@@ -5482,20 +5504,12 @@ a:hover, a:active, a:visited, a:focus {
   border-radius: 50%;
 }
 
-.br-widget a:first-child {
+.rating-container .br-widget a:first-child {
   margin: 0;
 }
 
-.br-widget a.br-selected, .br-widget a.br-current, .br-widget a.br-active {
+.rating-container .br-widget a.br-selected, .rating-container .br-widget a.br-current, .rating-container .br-widget a.br-active {
   background: #96CB00;
-}
-
-.br-wrapper {
-  margin: 0 0 25px;
-}
-
-.rating-container {
-  width: 280px;
 }
 
 .rating-current {
@@ -5533,6 +5547,15 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.flex-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -5583,6 +5606,13 @@ a:hover, a:active, a:visited, a:focus {
   .reviews-more .btn-more {
     width: 94%;
   }
+}
+
+.reviews-num {
+  float: right;
+  font-size: 13px;
+  color: #60686A;
+  font-weight: 400;
 }
 
 .btn-more {
@@ -6698,6 +6728,11 @@ a:hover, a:active, a:visited, a:focus {
 .mobile-popup-body .tooltip-content {
   padding: 0;
   margin: 32px 0 0 0;
+}
+
+.upper {
+  text-transform: uppercase;
+  font-size: 13px;
 }
 
 /*# sourceMappingURL=maps/all.css.map */

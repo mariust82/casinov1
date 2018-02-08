@@ -18,10 +18,10 @@
             <div class="swiper-wrapper">
             	<std:foreach var="${data.best_casinos}" value="item">
 	                <div class="swiper-slide">
-	                	<a href="/reviews/${normalize_logo(${item.name})}-review" class="carousel-slide">
+	                	<a href="/reviews/${normalize(${item.name})}-review" class="carousel-slide">
 	                		<div class="carousel-slide-img">
 	                			<div>
-	                				<img src="${get_img_dir()}/casino-logos/${normalize_logo(${item.name})}.png" width="85" height="56" alt="">
+	                				<img src="${get_img_dir()}/casino_logo_dark/124x82/${normalize_logo(${item.name})}.png" width="85" height="56" alt="">
 	                			</div>
 		                		<div class="carousel-slide-rating ${normalize(get_rating(${item.rating}))}">
 			                		${ceil(${item.rating})}

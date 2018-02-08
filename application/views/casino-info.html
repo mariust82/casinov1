@@ -33,7 +33,7 @@
 				</div>
 				<div class="casino-review-heading-right">
 					<div class="casino-review-heading-img">
-						<img src="${get_img_dir()}/casino-logos/${normalize_logo(${data.casino.name})}.png" alt="" width="124" height="82">
+						<img src="${get_img_dir()}/casino_logo_dark/124x82/${normalize_logo(${data.casino.name})}.png" alt="" width="124" height="82">
 					</div>
 
 					<div class="list-rating ${normalize(get_rating(${data.casino.rating}))}">
@@ -205,39 +205,46 @@
 	<div class="section">
 		<div class="container">
 			<div class="box">
-				<div class="title title-small">Reviews</div>
-				<div id="reviews" class="reviews">
-					<div class="reviews-form" id="reviews-form">
+				<div class="title title-small">
+					Reviews
+					<div class="reviews-num">
+						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
+					</div>
+				</div>
+				<div id="reviews">
+					<div class="reviews-form review" id="reviews-form" data-img-dir="${get_img_dir()}/flags/${data.country.code}.png" data-country="${data.country.code}" data-casino-id="${data.casino.id}">
 						<forms:review rating="1"/>
 					</div>
 					<std:if condition="${data.total_reviews} > 0">
 						<div class="review-list">
-							<std:foreach var="${data.reviews}" value="result">
-								<item:review class="review-parent"/>
-
-								<div class="reply">
-									<div class="reply-body">
-										<forms:review rating="0"/>
-									</div>
-
-									<std:foreach var="${result.children}" value="result">
-										<item:review class="review-child"/>
-									</std:foreach>
-
-									<std:if condition="count(${result.total_children}) > 2">
-										<div class="review-more">
-											<a href="#" class="btn-more">
-												SHOW 3 MORE REPLIES
-												<i class="icon-chevron-down"></i>
-											</a>
+							<div id="review-data-holder">
+								<std:foreach var="${data.reviews}" value="result">
+									<item:review class="review-parent"/>
+								
+									<div class="reply review">
+										<div class="reply-body">
+											<forms:review rating="0"/>
 										</div>
-									</std:if>
-								</div>
-							</std:foreach>
+								
+										<std:foreach var="${result.children}" value="result">
+											<item:review class="review-child"/>
+										</std:foreach>
+								
+										<std:if condition="count(${result.total_children}) > 2">
+											<div class="review-more">
+												<a href="#" class="btn-more">
+													SHOW 3 MORE REPLIES
+													<i class="icon-chevron-down"></i>
+												</a>
+											</div>
+										</std:if>
+									</div>
+								</std:foreach>
+							</div>
 
 							<std:if condition="${data.total_reviews} > 4">
 								<div class="reviews-more">
-									<a href="#" class="btn-more">
+									<a href="#" class="btn-more js-more-reviews" data-id="${data.casino.id}">
 										Show More Reviews
 										<i class="icon-chevron-down"></i>
 									</a>
@@ -306,4 +313,3 @@
 		</div>
 	</div>
 <import file="templates/include-footer"/>
-

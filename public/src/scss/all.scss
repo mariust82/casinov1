@@ -1501,6 +1501,10 @@ a {
             padding:10px;
         }
     }
+
+    &.disabled{
+        pointer-events:none;
+    }
 }
 
 
@@ -2500,6 +2504,10 @@ a {
         .review-wrap{
             padding:20px 15px;
         }
+
+        .list-rating{
+            margin:0;
+        }
     }
 
     &-list{
@@ -2840,6 +2848,8 @@ a {
     overflow:hidden;
     font-family:$second-font;
 
+    display:none;
+
     @media screen and (max-width: 690px) {
         justify-content: center;
     }
@@ -2857,27 +2867,6 @@ a {
     opacity:0;
 }
 
-.br-widget{
-    display: flex;
-
-    a{
-        background:#E8EAF3;
-        width:18px;
-        height:18px;
-        margin:0 0 0 12px;
-        border-radius:50%;
-
-        &:first-child{
-            margin:0;
-        }
-
-        &.br-selected,
-        &.br-current,
-        &.br-active{
-            background:#96CB00;
-        }
-    }
-}
 
 .br-wrapper{
     margin:0 0 25px;
@@ -2885,6 +2874,35 @@ a {
 
 .rating-container{
     width:280px;
+    margin:0 20px 0 0;
+
+    &.not-valid{
+        .br-widget a{
+            background:#DB2424;
+        }
+    }
+
+    .br-widget{
+        display: flex;
+
+        a{
+            background:#E8EAF3;
+            width:18px;
+            height:18px;
+            margin:0 0 0 12px;
+            border-radius:50%;
+
+            &:first-child{
+                margin:0;
+            }
+
+            &.br-selected,
+            &.br-current,
+            &.br-active{
+                background:#96CB00;
+            }
+        }
+    }
 }
 
 .rating-current{
@@ -2915,6 +2933,11 @@ a {
 .flex{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.flex-left{
+    display: flex;
     align-items: center;
 }
 
@@ -2957,6 +2980,13 @@ a {
             width:94%;
         }
     }
+}
+
+.reviews-num{
+    float:right;
+    font-size:13px;
+    color:#60686A;
+    font-weight:400;
 }
 
 .btn-more{
@@ -3898,4 +3928,9 @@ a {
             margin:32px 0 0 0;
         }
     }
+}
+
+.upper{
+    text-transform:uppercase;
+    font-size:13px;
 }

@@ -1,6 +1,11 @@
 <?php
 class CasinoMoreReviewsController extends Controller {
     public function run() {
+    $this->response->setAttribute("country", array (
+      'id' => '34',
+      'code' => 'US',
+      'name' => 'United States',
+    ));
         $this->response->setAttribute("reviews", array (
   0 => 
   array (
