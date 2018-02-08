@@ -24,7 +24,7 @@
 						<i class="icon-logo"><i class="path1"></i><i class="path2"></i></i>
 					</a>
 				</div>
-				<a href="#" class="header-search-mobile js-mobile-search-opener">
+				<a href="#" class="header-search-mobile js-mobile-search-opener js-trigger-search">
 					<i class="icon-search"></i>
 				</a>
 				<nav class="header-menu">
@@ -45,11 +45,11 @@
 						<li><a class="${get_active(${page}, 'games')}" href="/games">GAMES</a></li>
 					</ul>
 				</nav>
-				<div class="header-search">
-					<a href="#" class="header-search-btn js-search-opener">
+				<div class="header-search" id="search" data-img-dir="${get_img_dir()}">
+					<a href="#" class="header-search-btn js-search-opener js-trigger-search">
 						<i class="icon-search"></i>
 					</a>
-					<div class="header-search-input">
+					<div class="header-search-input" id="search-form">
 						<div class="header-search-mobile">
 							<a href="#" class="mobile-menu-close js-mobile-search-close">
 								<i class="icon-arrow-left2"></i>
@@ -66,8 +66,9 @@
 						<i class="icon-icon_plus"></i>
 					</a>
 					<div class="search-drop js-search-drop">
-						<nav class="search-list">
-							<div class="search-list-block">
+						<div id="search-empty"></div>
+						<nav class="search-list search-results">
+							<div class="search-list-block" id="search-casinos">
 								<div class="search-list-heading">
 									<span>CASINOS</span>
 								</div>
@@ -77,7 +78,7 @@
 									<li><a href="#"><span class="mark">Cool</span> Xtreme Casino</a></li>
 								</ul>
 							</div>
-							<div class="search-list-block">
+							<div class="search-list-block" id="search-pages">
 								<div class="search-list-heading">
 									<span>GAMES</span>
 								</div>
