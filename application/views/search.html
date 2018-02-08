@@ -1,7 +1,43 @@
 <std:set name="page" value="search"/>
 
-<pre>${var_dump(${data.value})}</pre>
-<pre>${var_dump(${data.casinos})}</pre>
-<pre>${var_dump(${data.total_casinos})}</pre>
-<pre>${var_dump(${data.games})}</pre>
-<pre>${var_dump(${data.total_games})}</pre>
+<import file="templates/include-header"/>
+	<div class="container">
+		<div class="search">
+			<div class="search-btn">
+				<a href="#" onclick="window.history.back()" class="button"><i class="icon-arrow-left2"></i> Back</a>
+			</div>
+			<h1 class="search-title">Search results for "<span>${data.value}</span>"</h1>
+
+			<nav class="search-list">
+				<div class="search-list-block">
+					<div class="search-list-heading">
+						<span>CASINOS</span>
+						<span>${data.total_casinos} Results</span>
+					</div>
+					<ul id="all-casinos-container">
+						<std:foreach var="${data.casinos}" key="key" value="result">
+							<li><a href="/reviews/${normalize(${result})}-review">${result}</a></li>
+						</std:foreach>
+					</ul>
+					<div class="search-list-more">
+						<a href="#" id="js-search-more-casinos">Show 5 more <i class="icon-chevron-down"></i></a>
+					</div>
+				</div>
+				<div class="search-list-block">
+					<div class="search-list-heading">
+						<span>GAMES</span>
+						<span>${data.total_games} Results <i class=""></i></span>
+					</div>
+					<ul id="all-games-container">
+						<std:foreach var="${data.games}" key="key" value="result">
+							<li><a href="/play/${normalize(${result})}">${result}</a></li>
+						</std:foreach>
+					</ul>
+					<div class="search-list-more">
+						<a href="#" id="js-search-more-pages">Show 5 more <i class="icon-chevron-down"></i></a>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
+<import file="templates/include-footer"/>

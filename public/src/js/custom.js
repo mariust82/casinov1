@@ -11,7 +11,7 @@
         initMobileMenu();
         copyToClipboard();
         initMoboleBonusesPop();
-        new SearchPanel ( $('.header-search') );
+        new SearchPanel ( $('.header') );
 
         tooltipConfig = {
             trigger: 'click',
@@ -59,6 +59,7 @@
         var _obj = obj,
             _self = this,
             _searchButton = _obj.find('.js-trigger-search'),
+            _searchAllButton = _obj.find('#search-all'),
             _searchContainer = _obj.find('#search'),
             _searchForm = _obj.find('#search-form'),
             _searchBody = _obj.find('.search-results'),
@@ -67,8 +68,8 @@
             _searchCasinosContainer = _searchContainer.find('#search-casinos ul'),
             _searchPagesContainer = _searchContainer.find('#search-pages ul'),
             _searchEmptyContainer = _searchContainer.find('#search-empty'),
-            // _searchMoreCasinos = _searchContainer.find('.js-search-more-casinos'),
-            // _searchMorePages = _searchContainer.find('.js-search-more-pages'),
+            _searchMoreCasinos = $('#js-search-more-casinos'),
+            _searchMorePages = $('#js-search-more-pages'),
             _imgDir = _searchContainer.data('img-dir'),
             _loadNewContent = true,
             _loadMoreContent = false,
@@ -82,7 +83,6 @@
         // window.contentBeforeSearch = $('.main').html();
 
         var _onEvent = function() {
-                // _initSearch();
 
                 _searchButton.on(
                     'click',
@@ -102,14 +102,21 @@
                             _hidePanel();
                             _resetPages();
                         } else if (e.keyCode == 13) {
-                            // _ajaxRequestPopup('/search/advanced.json');
-                            location.href = "/search/advanced/?value="+_searchInput.val();
+                            if (_searchInput.val() != '') {
+                                location.href = '/search/advanced?value='+_searchInput.val();
+                            }
                             _resetPages();
                         } else {
                             var searchPopup = _obj.find('#search__popup');
                             searchPopup.addClass('load');
                             _ajaxRequestPopup('/search');
                             _resetPages();
+                        }
+
+                        if (_searchInput.val() != '') {
+                            _searchAllButton.parent().fadeIn();
+                        } else {
+                            _searchAllButton.parent().fadeOut();
                         }
                     }
                 });
@@ -124,58 +131,81 @@
                     }
                 );
 
-                // _searchMorePages.on(
-                //     'click',
-                //     function() {
-                //         _ajaxRequestPopup('/search/pages.json', _fromPages);
-                //         _loadMoreContent = true;
-                //         _fromPages++;
-                //         return false;
-                //     }
-                // );
-
-                // _searchMoreCasinos.on(
-                //     'click',
-                //     function() {
-                //         _ajaxRequestPopup('/search/casinos.json', _fromCasinos);
-                //         _loadMoreContent = true;
-                //         _fromCasinos++;
-                //         return false;
-                //     }
-                // );
-            },
-
-            _initSearch = function() {
-                var btn = $('.js-trigger-search, .search-back');
-                var searchForm = $('.search');
-                var searchFormBody = $('.search-results, .search-box, .search-input', searchForm);
-
-                btn.on('click', function(e) {
-                    setTimeout(function() {
-                        $('body').toggleClass('search-expanded');
-                        searchForm.find('.search-textfield').focus();
-                    }, 200);
-
-                    $('.js-trigger-search').toggleClass('active');
-
-                    searchForm.css({
-                        'left': btn[0].getBoundingClientRect().right - searchForm.width(),
-                        'right': 'auto'
-                    });
-
-                    $(document).on('click touchstart', function(e) {
-                        if ($(e.target).closest(searchFormBody).length == 0 && $(e.target).closest(btn).length == 0) {
-                            $("body").removeClass('search-expanded');
-                            btn.removeClass('active');
+                _searchAllButton.on(
+                    'click',
+                    function() {
+                        if (_searchInput.val() != '') {
+                            location.href = '/search/advanced?value='+_searchInput.val();
                         }
-                    });
-                    e.preventDefault();
-                });
+
+                        return false;
+                    }
+                );
+
+                _searchMorePages.on(
+                    'click',
+                    function() {
+                        _ajaxMore('/search/more-games/'+_fromPages, $('.search-title span').text(), $('#all-games-container'));
+                        _loadMoreContent = true;
+                        _fromPages++;
+                        return false;
+                    }
+                );
+
+                _searchMoreCasinos.on(
+                    'click',
+                    function() {
+                        _ajaxMore('/search/more-casinos/'+_fromCasinos, $('.search-title span').text(), $('#all-casinos-container'));
+                        _loadMoreContent = true;
+                        _fromCasinos++;
+                        return false;
+                    }
+                );
             },
+
             _clearSearchBody = function() {
                 _searchCasinosContainer.empty();
                 _searchPagesContainer.empty();
             },
+
+            _ajaxMore = function(target, val, container) {
+                if (BUSY_REQUEST) return;
+                BUSY_REQUEST = true;
+                _request.abort();
+                _request = $.ajax({
+                    url: target,
+                    data: {
+                        value: val
+                    },
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function(data) {
+                        _hideLoading();
+                        _loadMoreData(data, container);
+                    },
+                    error: function(XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != "abort") {
+                            _hideLoading();
+                            console.log('err');
+                            _showEmptyMessage();
+                        }
+                    },
+                    complete: function() {
+                        _hideLoading();
+                        BUSY_REQUEST = false;
+                    }
+                });
+
+                var loadDelay = setTimeout(function() {
+                    _searchContainer.addClass('loading');
+                }, 300);
+
+                _hideLoading = function(){
+                    clearTimeout(loadDelay);
+                    _searchContainer.removeClass('loading');
+                }
+            },
+
             _ajaxRequestPopup = function(target, page) {
                 if (BUSY_REQUEST) return;
                 BUSY_REQUEST = true;
@@ -212,6 +242,37 @@
                 _hideLoading = function(){
                     clearTimeout(loadDelay);
                     _searchContainer.removeClass('loading');
+                }
+            },
+
+            getWebName = function(name) {
+                return name.replace(/\s/g, '-').toLowerCase();
+            },
+
+            getItemPattern = function(itemData) {
+                var pattern = '<li>\
+                    <a class="search-results-label" href="/'+itemData.link+'">\
+                        '+itemData.name+'\
+                    </a>\
+                </li>';
+
+
+                return pattern;
+            },
+
+            _loadMoreData = function(data, container) {
+                var items = data.body.results;
+
+                console.log(items); 
+
+                for (var item in items) {
+
+                    var _item = getItemPattern({
+                        link: 'reviews/'+getWebName(items[item])+'-review',
+                        name: items[item]
+                    });
+
+                    container.append(_item);
                 }
             },
 
@@ -269,27 +330,11 @@
                             .addClass('single');
                     }
 
-                    function getWebName(name) {
-                        return name.replace(/\s/g, '_').toLowerCase();
-                    }
-
-                    function getItemPattern(itemData) {
-                        var pattern = '<li>\
-                            <a href="/'+itemData.link+'">\
-                                '+itemData.name+'\
-                            </a>\
-                        </li>';
-
-
-                        return pattern;
-                    }
-
                     for (var casino in casinos) {
 
                         var _item = getItemPattern({
-                            link: casinos[casino].url,
-                            img: _imgDir + '/casino_logo_light/124x82/' + casinos[casino].code + '.png',
-                            name: casinos[casino].name
+                            link: 'reviews/'+getWebName(casinos[casino])+'-review',
+                            name: casinos[casino]
                         });
                         _searchCasinosContainer.append(_item);
                     }
@@ -297,15 +342,13 @@
                     for (var page in pages) {
 
                         var _item = getItemPattern({
-                            link: pages[page].url,
-                            // img: _imgDir + '/top10_search_pages/' + getWebName(pages[page].name) + '.png',
-                            name: pages[page].name
+                            link: 'play/'+getWebName(pages[page]),
+                            name: pages[page]
                         });
 
                         _searchPagesContainer.append(_item);
                     }
                 }
-                // _updateCustomScroll();
                 _illumination();
             },
 
@@ -314,32 +357,6 @@
                 _fromCasinos = 2;
             },
 
-            _updateCustomScroll =function(){
-                var headHeight = $('.search-box').outerHeight();
-                var wh = $(window).height()-headHeight;
-                if (wh > 652) {
-                    wh = 652;
-                }
-
-                scrollingBlock.mCustomScrollbar('destroy');
-                scrollingBlock.mCustomScrollbar('update');
-                setTimeout(function() {
-                    scrollingBlock.mCustomScrollbar({
-                      set_height:wh,
-
-                      scrollInertia: 0,
-                      // autoHideScrollbar: true,
-                      advanced: {
-                          updateOnContentResize: true
-                      }
-                    });
-
-                    if (_loadMoreContent) {
-                        scrollingBlock.mCustomScrollbar("scrollTo", "bottom");
-                    }
-                    _loadMoreContent = false;
-                }, 0);
-            },
             _showEmptyMessage = function(){
                 _searchCasinosContainer.parent().hide();
                 _searchPagesContainer.parent().hide();
@@ -351,7 +368,7 @@
                 _searchEmptyContainer.hide();
             },
             _hidePopup = function() {
-                $('body').removeClass('search-expanded');
+                searchDropClose($('.js-search-drop'));
                 _loadNewContent = true;
             },
             _hidePanel = function() {
@@ -425,7 +442,6 @@
             return false;
         });
     }
-
 
     function copyToClipboard() {
         var btn = $('.js-copy-to-clip');

@@ -2391,7 +2391,7 @@ a:hover, a:active, a:visited, a:focus {
   left: 0;
   display: none;
   background: #fff;
-  z-index: 10;
+  z-index: 11;
   padding: 30px;
   border-radius: 2px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
@@ -2410,12 +2410,13 @@ a:hover, a:active, a:visited, a:focus {
   font-weight: 600;
 }
 
-.search-drop .btn {
+.search-drop .search-all-holder {
   margin: 30px 0 0 0;
+  display: none;
 }
 
 @media screen and (max-width: 690px) {
-  .search-drop .btn {
+  .search-drop .search-all-holder {
     position: absolute;
     bottom: 0;
     left: 0;
