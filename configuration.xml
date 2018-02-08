@@ -130,7 +130,7 @@
   <gameplay repo_path="/public/img/sync" width="500" height="300"/>
   <geoip>
     <lucinda>/tmp/ip2country.mmdb</lucinda>
-    <dev>/tmp/ip2country.mmdb</dev>
-    <live>/tmp/ip2country.mmdb</live>
+    <dev>/home/casinoslists/public_html/ip2country.mmdb</dev>
+    <live>/home/casinoslists/public_html/ip2country.mmdb</live>
   </geoip>
 </xml>

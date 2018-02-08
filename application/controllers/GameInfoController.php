@@ -19,6 +19,8 @@ require_once("application/models/dao/GameTypes.php");
 */
 class GameInfoController extends Controller {
 	public function run() {
+        $this->response->setAttribute("country", $this->request->getAttribute("country"));
+
 	    $info = $this->application->getXML()->gameplay;
 
         $object = new GameTypes();

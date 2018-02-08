@@ -2,12 +2,16 @@
 class GameFilter
 {
     private $game_type;
-    private $software;
+    private $software = array();
 
     public function __construct($requestParameters) {
-        $fields = array("game_type", "software");
-        foreach($fields as $item) {
-            $this->$item =  (!empty($requestParameters[$item])?preg_replace("/[^a-zA-Z0-9\ \.\@\-\(\)]/","", $requestParameters[$item]):"");
+        $this->game_type = (!empty($requestParameters["game_type"])?preg_replace("/[^a-zA-Z0-9\ \.\@\-\(\)]/","", $requestParameters["game_type"]):"");
+
+        if(!empty($requestParameters["software"])) {
+            $softwares = explode(",", $requestParameters["software"]);
+            foreach($softwares as $item) {
+                $this->software[] =  preg_replace("/[^a-zA-Z0-9\ \.\@\-\(\)]/","", $item);
+            }
         }
     }
 
@@ -15,7 +19,7 @@ class GameFilter
         return $this->game_type;
     }
 
-    public function getSoftware() {
+    public function getSoftwares() {
         return $this->software;
     }
 }
