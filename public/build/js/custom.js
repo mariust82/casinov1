@@ -104,6 +104,7 @@
                         } else if (e.keyCode == 13) {
                             if (_searchInput.val() != '') {
                                 location.href = '/search/advanced?value='+_searchInput.val();
+                                _searchInput.val('');
                             }
                             _resetPages();
                         } else {
@@ -136,6 +137,7 @@
                     function() {
                         if (_searchInput.val() != '') {
                             location.href = '/search/advanced?value='+_searchInput.val();
+                            _searchInput.val('');
                         }
 
                         return false;

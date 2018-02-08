@@ -258,6 +258,10 @@ a {
             position:absolute;
             bottom:0;
             left:0;
+            width:100%;
+        }
+
+        .btn{
             border-radius:0;
         }
     }
@@ -3814,9 +3818,12 @@ a {
                 margin:0 0 0 5px;
             }
 
-            &:hover{
-                color:#000;
+            @media screen and (min-width: 690px) {
+                &:hover{
+                    color:#000;
+                }
             }
+
         }
     }
 

@@ -2420,8 +2420,12 @@ a:hover, a:active, a:visited, a:focus {
     position: absolute;
     bottom: 0;
     left: 0;
-    border-radius: 0;
+    width: 100%;
   }
+}
+
+.search-drop .search-all-holder .btn {
+  border-radius: 0;
 }
 
 .header-menu {
@@ -6603,8 +6607,10 @@ a:hover, a:active, a:visited, a:focus {
   margin: 0 0 0 5px;
 }
 
-.search-list-more a:hover {
-  color: #000;
+@media screen and (min-width: 690px) {
+  .search-list-more a:hover {
+    color: #000;
+  }
 }
 
 .fullwide {
