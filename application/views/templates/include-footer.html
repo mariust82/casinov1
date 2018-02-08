@@ -3,22 +3,22 @@
 			<div class="container">
 				<nav class="footer-nav">
 					<ul>
-						<li><a href="#">CASINOS</a></li>
-						<li><a href="#">SOFTWARES</a></li>
-						<li><a href="#">BONUSES</a></li>
-						<li><a href="#">COUNTRIES</a></li>
-						<li><a href="#">COMPATIBILITY</a></li>
-						<li><a href="#">BANKING</a></li>
-						<li><a href="#">FEATURES</a></li>
-						<li><a href="#">GAMES</a></li>
+						<li><a class="${get_active(${page}, 'casinos')}" href="/casinos">CASINOS</a></li>
+						<li><a class="${get_active(${page}, 'softwares')}" href="/softwares">SOFTWARES</a></li>
+						<li><a class="${get_active(${page}, 'bonus-list')}" href="/bonus-list">BONUSES</a></li>
+						<li><a class="${get_active(${page}, 'countries')}" href="/countries">COUNTRIES</a></li>
+						<li><a class="${get_active(${page}, 'compatability')}" href="/compatability">COMPATIBILITY</a></li>
+						<li><a class="${get_active(${page}, 'banking')}" href="/banking">BANKING</a></li>
+						<li><a class="${get_active(${page}, 'features')}" href="/features">FEATURES</a></li>
+						<li><a class="${get_active(${page}, 'games')}" href="/games">GAMES</a></li>
 					</ul>
 				</nav>
 				<nav class="footer-nav">
 					<ul>
-						<li><a href="#">TERMS &amp; CONDITIONS</a></li>
-						<li><a href="#">PRIVACY POLICY</a></li>
+						<li><a href="/terms">TERMS &amp; CONDITIONS</a></li>
+						<li><a href="/privacy">PRIVACY POLICY</a></li>
 						<li><a href="#">STAY AWAY CASINOS</a></li>
-						<li><a href="#">CONTACT US</a></li>
+						<li><a href="/contact">CONTACT US</a></li>
 					</ul>
 				</nav>
 				<div class="footer-logo">

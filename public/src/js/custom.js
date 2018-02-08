@@ -11,14 +11,16 @@
         initSearch();
         initMobileMenu();
         copyToClipboard();
+        initMoboleBonusesPop();
 
-        $('.js-tooltip').tooltipster({
+        tooltipConfig = {
             trigger: 'click',
             maxWidth: 279,
-            animation: 'grow'
-        });
+            animation: 'grow',
+            contentCloning: true
+        };
 
-        $('.js-copy-tooltip').tooltipster({
+        copyTooltipConfig = {
             trigger: 'click',
             maxWidth: 260,
             minWidth: 260,
@@ -31,9 +33,9 @@
                     </div>\
                 ');
             }
-        });
+        };
 
-        $('.js-tooltip-content').tooltipster({
+        contentTooltipConfig = {
             trigger: 'click',
             minWidth: 460,
             animation: 'grow',
@@ -45,8 +47,64 @@
             functionAfter: function(){
                 $('body').removeClass('shadow');
             }
-        });
+        };
+
+        $('.js-tooltip').tooltipster(tooltipConfig);
+        $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+        $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+
     });
+
+    function initMoboleBonusesPop() {
+        var _container = $('.list-item');
+        var _mobilePop = $('.js-mobile-pop');
+        var _btnOpen = $('.js-mobile-pop-open');
+        var _btnClose = $('.js-mobile-pop-close');
+
+        function cloneContent(_this) {
+            var _contentHolder = _this.closest(_container).find('.mobile-popup-body');
+            var _items = _this.closest(_container).find('.tooltip-content');
+
+            _items.each(function(index, el) {
+                $(el).clone().appendTo(_contentHolder);
+            });
+
+            _contentHolder.find('.tooltip-content').each(function(index, el) {
+                var tempText = $(el).find('.list-item-trun').text();
+                $(el).find('.list-item-trun').next('.bubble').attr('title', tempText);
+            });
+
+            _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
+            _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+            copyToClipboard();
+            showPop(_this);
+
+        }
+
+        function showPop(_this) {
+            _this
+                .closest(_container)
+                .find(_mobilePop)
+                .fadeIn('fast');
+        }
+
+        _btnOpen.on('click', function(e) {
+
+            cloneContent($(this));
+            return false;
+        });
+
+        _btnClose.on('click', function(e) {
+            $(this)
+                .closest(_mobilePop)
+                .fadeOut('fast')
+                .find('.mobile-popup-body')
+                .html('');
+                
+            return false;
+        });
+    }
+
 
     function copyToClipboard() {
         var btn = $('.js-copy-to-clip');

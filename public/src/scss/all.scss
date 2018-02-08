@@ -3824,3 +3824,70 @@ a {
 .fullwide{
     width:100%;
 }
+
+.js-tooltip-content{
+    @media screen and (max-width: 690px) {
+        pointer-events:none;
+    }
+}
+
+.mobile-popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:10;
+    background:#fff;
+
+    &-heading{
+        background:$common-color;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0 10px 0 0;
+        margin:0 0 20px;
+    }
+
+    &-title{
+        font-size:16px;
+        margin:0 0 20px;
+        color:#465156;
+        padding:0 10px;
+        text-align:center;
+    }
+
+    &-close{
+        width:50px;
+        height:50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color:#fff;
+        font-size:15px;
+        border-right:1px solid #3383E0;
+    }
+
+    &-body{
+        overflow-x:auto;
+        height:67%;
+
+        @media screen and (max-width: 375px) {
+            height:80%;
+        }
+
+        @media screen and (max-width: 374px) {
+            height:75%;
+        }
+
+        .tooltip-templates-heading{
+            display:none;
+        }
+
+        .tooltip-content{
+            padding:0;
+            margin:32px 0 0 0;
+        }
+    }
+}

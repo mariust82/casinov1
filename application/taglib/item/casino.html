@@ -44,10 +44,10 @@
 				</div>
 				<div class="list-item-cell">
 					<std:if condition="${result.bonus_first_deposit.amount} != ''">
-						<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-first-$[i]">${result.bonus_first_deposit.amount}</span>
+						<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-first-${i}">${result.bonus_first_deposit.amount}</span>
 						
 						<div class="tooltip-templates">
-							<div id="tooltip-$[id]-first-$[i]" class="tooltip-content bonus-first">
+							<div id="tooltip-$[id]-first-${i}" class="tooltip-content bonus-first">
 								<box:bonus data="result" modifier="bonus_first_deposit" heading="1" title="First Deposit Bonus" icon="icon-free-bonus-icon"/>
 							</div>
 						</div>
@@ -55,10 +55,10 @@
 				</div>
 				<div class="list-item-cell">
 					<std:if condition="${result.bonus_free.amount} != ''">
-						<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-free-$[i]">${result.bonus_free.amount}</span>
+						<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-free-${i}">${result.bonus_free.amount}</span>
 
 						<div class="tooltip-templates">
-							<div id="tooltip-$[id]-free-$[i]" class="tooltip-content bonus-free">
+							<div id="tooltip-$[id]-free-${i}" class="tooltip-content bonus-free">
 								<box:bonus data="result" modifier="bonus_free" heading="1" title="Free Deposit Bonus" icon="icon-icon_bonuses"/>
 							</div>
 						</div>
@@ -67,10 +67,20 @@
 				<div class="list-item-cell">
 					<div class="list-flex">
 						<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn btn-small">Visit</a>
-						<a href="#" class="btn btn-circle">
+						<a href="#" class="btn btn-circle js-mobile-pop-open">
 							<i class="icon-chevron-right"></i>
 						</a>
 					</div>
+				</div>
+				<div class="mobile-popup js-mobile-pop">
+					<div class="mobile-popup-heading">
+						<a href="#" class="mobile-popup-close js-mobile-pop-close">
+							<i class="icon-arrow-left2"></i>
+						</a>
+						<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="button">VISIT CASINO</a>
+					</div>
+					<div class="mobile-popup-title">${result.name} Welcome Package</div>
+					<div class="mobile-popup-body"></div>
 				</div>
 			</div>
 			<std:set name="i" value="${i}+1"/>
