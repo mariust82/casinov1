@@ -57,8 +57,8 @@ class GamesList
         INNER JOIN game_manufacturers AS t2 ON t1.game_manufacturer_id = t2.id
         INNER JOIN game_types AS t3 ON t1.game_type_id = t3.id
         WHERE 1 AND ";
-        if($this->filter->getSoftware()) {
-            $query.="t2.name='".$this->filter->getSoftware()."' AND ";
+        if($this->filter->getSoftwares()) {
+            $query.="t2.name IN ('".implode("','", $this->filter->getSoftwares())."') AND ";
         }
         if($this->filter->getGameType()) {
             $query.="t3.name='".$this->filter->getGameType()."' AND ";
