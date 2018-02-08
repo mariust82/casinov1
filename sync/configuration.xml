@@ -28,7 +28,8 @@
     </servers>
     <geoip>
         <lucinda>/tmp/ip2country.mmdb</lucinda>
-        <lucinda>/tmp/ip2country.mmdb</lucinda>
+        <dev>/home/casinoslists/public_html/ip2country.mmdb</dev>
+        <live>/home/casinoslists/public_html/ip2country.mmdb</live>
     </geoip>
     <contacts>tan@hliscorp.com,lucian@hliscorp.co,alexandru@hliscorp.com</contacts>
 </xml>
