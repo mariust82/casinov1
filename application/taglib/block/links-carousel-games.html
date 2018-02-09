@@ -4,7 +4,11 @@
         <div class="swiper-wrapper">
           <std:foreach var="$[data]" key ="key" value="result">
               <div class="swiper-slide">
-                <a href="/games/${normalize(${result})}">${result}</a>
+                <std:if condition="'$[type]'=='0'">
+                  <a href="/games/${normalize(${result})}">${result}</a>
+                <std:else>
+                  <a class="${get_active($[type], ${result})}" href="/games/${normalize(${result})}">${result}</a>
+                </std:if>
               </div>
           </std:foreach>
         </div>

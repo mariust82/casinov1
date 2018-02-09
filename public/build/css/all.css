@@ -2500,6 +2500,10 @@ a:hover, a:active, a:visited, a:focus {
   color: #2171CE;
 }
 
+.header-menu li a.active {
+  pointer-events: none;
+}
+
 .mobile-search-opened {
   overflow: hidden;
 }
@@ -6009,8 +6013,8 @@ a:hover, a:active, a:visited, a:focus {
   left: 50%;
   z-index: 10;
   background: rgba(255, 255, 255, 0.8);
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -6023,7 +6027,12 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 23px;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.player-play i {
+  margin: 0 0 0 7px;
 }
 
 .player-title {

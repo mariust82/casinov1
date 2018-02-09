@@ -324,6 +324,10 @@ a {
                 background:#fff;
                 color:$common-color;
             }
+
+            &.active{
+                pointer-events:none;
+            }
         }
     }
 }
@@ -3335,15 +3339,20 @@ a {
         left:50%;
         z-index:10;
         background:rgba(255, 255, 255, .8);
-        width:60px;
-        height:60px;
+        width:100px;
+        height:100px;
         border-radius:50%;
         transform:translate(-50%, -50%);
 
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size:23px;
+        font-size:40px;
+        cursor:pointer;
+
+        i{
+            margin:0 0 0 7px;
+        }
     }
 
     &-title{

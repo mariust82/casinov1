@@ -1,7 +1,7 @@
 <std:set name="page" value="games"/>
 
 <import file="templates/include-header"/>
-	<block:links-carousel-games data="${data.game_types}"/>
+	<block:links-carousel-games type="${data.game.type}" data="${data.game_types}"/>
 
 	<div class="block">
 		<div class="container">
@@ -107,10 +107,4 @@
 			<item:game data="${data.recommended_games}"/>
 		</div>
 	</div>
-
-	<!-- <div>
-		<pre>${var_dump(${data.game})}</pre>
-	</div> -->
-
 <import file="templates/include-footer"/>
-
