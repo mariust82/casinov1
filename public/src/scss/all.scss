@@ -1540,6 +1540,10 @@ a {
 .subscribe{
     margin:0 0 30px;
 
+    .action-field{
+        margin:10px 0 0 0;
+    }
+
     @media screen and (max-width: 690px) {
         text-align:left;
         margin:0 0 12px;
@@ -4053,4 +4057,9 @@ a {
             }
         }
     }
+}
+
+
+#contact-us-success{
+    display:none;
 }

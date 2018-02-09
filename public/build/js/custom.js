@@ -40,6 +40,12 @@
             runPlayCounter(_name);
         }
 
+        if ($('.contact-form').length > 0) {
+            new handleContactUs($( '.contact-form' ));
+        }
+
+        new newsletter($( '.contact-form' ));
+
         tooltipConfig = {
             trigger: 'click',
             maxWidth: 279,
@@ -82,6 +88,203 @@
 
     });
 
+    function newsletter(obj){
+        var _wrap = obj,
+            _field_email = $('.news-email'),
+            _send_btn = $('.news-btn'),
+            _contact_success = $('#news-success'),
+            _contact_error = $('#news-note'),
+            _contact_error_class = 'not-valid',
+             email,
+            _request = new XMLHttpRequest();
+
+       _prepMessage = function(){
+                email = _field_email.val();
+                ok = true;
+
+            if(email === '' || !validateEmail(email)){
+                _field_email.parent().addClass(_contact_error_class);
+                ok = false;
+            } else {
+                _field_email.parent().removeClass(_contact_error_class);
+            }
+
+           if(!ok) {
+               _contact_error.show();
+           } else {
+               _contact_error.hide();
+           }
+
+            return ok;
+        },
+
+       _sendMessage = function(name, email, message){
+            _request.abort();
+            _request = $.ajax( {
+                url: "/newsletter/subscribe",
+                data: {
+                    email: email,
+                },
+                dataType: 'json',
+                timeout: 20000,
+                type: 'POST',
+                success: function ( response ) {
+                    if(response.status =="ok") {
+                        if(response.body.success === 1) {
+                            _contact_success.show();
+                            _contact_error.hide();
+                            _send_btn.prop('disabled', true);
+                            _field_email.val('');
+                            _onEvents();
+                            $('.action-added').remove();
+                        }
+                    }
+                    else if(response.status=="error") {
+                        // console.error(response.body);
+                        var arr = JSON.parse(response.body);
+
+                        $('.action-added').remove();
+                        $.each(arr, function(index, val) {
+                            var $msg = '<div class="action-field action-added not-valid ">'+val+'</div>';
+                            $('.review-submit-holder .msg-holder').append($msg);
+                        });
+                    }
+                },
+                error: function ( XMLHttpRequest ) {
+                    console.error("Could not send message!");
+                }
+            });
+        },
+
+       _onEvents = function(){
+            _send_btn.on({
+                'click': function(e){
+                   var error = _prepMessage();
+                   if (error === false) {
+                       e.stopPropagation();
+                   } else {
+                        _sendMessage(name);
+                   }
+                }
+            });
+        },
+
+       _init = function(){
+            _onEvents();
+        };
+
+       _init();
+    }
+
+    function handleContactUs(obj){
+        var _wrap = obj,
+            _field_name = $('.contact-name'),
+            _field_email = $('.contact-email'),
+            _field_message = $('.contact-message'),
+            _send_btn = $('.contact-btn'),
+            _contact_success = $('#contact-us-success'),
+            _contact_error = $('#contact-us-note'),
+            _contact_error_class = 'not-valid',
+             name,
+             email,
+             message,
+            _request = new XMLHttpRequest();
+
+       _prepMessage = function(){
+                name = _field_name.val();
+                email = _field_email.val();
+                message = _field_message.val();
+                ok = true;
+
+            if(name === '' || !_validateInputName(name)){
+                _field_name.parent().addClass(_contact_error_class);
+                ok = false;
+            } else {
+                _field_name.parent().removeClass(_contact_error_class);
+            }
+            if(email === '' || !validateEmail(email)){
+                _field_email.parent().addClass(_contact_error_class);
+                ok = false;
+            } else {
+                _field_email.parent().removeClass(_contact_error_class);
+            }
+            if(message === '' || !_validateInputMessage(message)){
+                _field_message.parent().addClass(_contact_error_class);
+                ok = false;
+            } else {
+                _field_message.parent().removeClass(_contact_error_class);
+            }
+
+           if(!ok) {
+               _contact_error.show();
+           } else {
+               _contact_error.hide();
+           }
+
+            return ok;
+        },
+
+       _sendMessage = function(name, email, message){
+            _request.abort();
+            _request = $.ajax( {
+                url: "/contact/send",
+                data: {
+                    name: name,
+                    email: email,
+                    message: message
+                },
+                dataType: 'json',
+                timeout: 20000,
+                type: 'POST',
+                success: function ( response ) {
+                    if(response.status =="ok") {
+                        if(response.body.success === 1) {
+                            _contact_success.show();
+                            _contact_error.hide();
+                            _send_btn.prop('disabled', true);
+                            _field_name.val('');
+                            _field_email.val('');
+                            _field_message.val('');
+                            _onEvents();
+                            $('.action-added').remove();
+                        }
+                    }
+                    else if(response.status=="error") {
+                        // console.error(response.body);
+                        var arr = JSON.parse(response.body);
+
+                        $('.action-added').remove();
+                        $.each(arr, function(index, val) {
+                            var $msg = '<div class="action-field action-added not-valid ">'+val+'</div>';
+                            $('.review-submit-holder .msg-holder').append($msg);
+                        });
+                    }
+                },
+                error: function ( XMLHttpRequest ) {
+                    console.error("Could not send message!");
+                }
+            });
+        },
+
+       _onEvents = function(){
+            _send_btn.on({
+                'click': function(e){
+                   var error = _prepMessage();
+                   if (error === false) {
+                       e.stopPropagation();
+                   } else {
+                        _sendMessage(name, email, message);
+                   }
+                }
+            });
+        },
+
+       _init = function(){
+            _onEvents();
+        };
+
+       _init();
+    }
 
     var Filters = function(obj) {
         var _obj = obj,
