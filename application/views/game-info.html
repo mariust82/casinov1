@@ -14,22 +14,39 @@
 					Times played: ${data.game.times_played}
 				</span>
 			</div>
-			<div class="player">
-				<div class="player-holder">
-					<img src="${get_img_dir()}/game_ss/960x720/${normalize_logo(${data.game.name})}.jpg" alt="${data.game.name}">
+			<div id="player-wrap" class="player-wrap">
+				<div class="player">
+					<div class="player-holder">
+						<std:if condition="${data.game.play.status} == 'auto-play'">
+
+							<iframe scrolling="no" id="single-play" class="play-demo js-run-counter" data-name="${data.game.name}" src="${data.game.play.url}" width="${data.game.play.width}" height="${data.game.play.height}"></iframe>
+						<std:elseif condition="${data.game.play.status} == 'click-popup-play'">
+							<img class="player-img" src="${data.game.play.screenshot}" alt="${data.game.name}">
+							<div class="player-overlay"></div>
+							<div class="player-play" id="go-to-page" data-name="${data.game.name}" data-width="${data.game.play.width}" data-height="${data.game.play.height}">
+								<i class="icon-play"></i>
+							</div>
+
+						<std:elseif condition="${data.game.play.status} == 'redirect'">
+							<iframe style="display:none;" scrolling="no" id="single-play" class="play-demo" src="" width="${data.game.play.width}" height="${data.game.play.height}"></iframe>
+							<img class="player-img" src="${data.game.play.screenshot}" alt="${data.game.name}">
+							<div class="player-overlay"></div>
+							<div class="player-play" id="go-to-frame" data-name="${data.game.name}" data-url="${data.game.play.url}">
+								<i class="icon-play"></i>
+							</div>
+							
+						</std:if>
+					</div>
 				</div>
-				<div class="player-overlay"></div>
-				<div class="player-play">
-					<i class="icon-play"></i>
+				<div class="player-controls">
+					<a href="#" class="player-controls-btn" id="play-replay" >
+						<i class="icon-spinner"></i>
+					</a>
+					<a href="#" class="player-controls-btn" id="play-fullscreen">
+						<i class="icon-enlarge"></i>
+						<svg viewBox="206.18 80 18 18"><path d="M19.666,3.09,15.12,7.635V4.009H13.1V11.08h7.071V9.06H16.545L21.09,4.514,19.666,3.09M4.009,13.1v2.02H7.635L3.09,19.666,4.514,21.09,9.06,16.545v3.626h2.02V13.1Z" transform="translate(203.09 76.91)"></path></svg>
+					</a>
 				</div>
-			</div>
-			<div class="player-controls">
-				<a href="#" class="player-controls-btn">
-					<i class="icon-spinner"></i>
-				</a>
-				<a href="#" class="player-controls-btn">
-					<i class="icon-enlarge"></i>
-				</a>
 			</div>
 			<div class="game-info">
 				<h3 class="title title-small">Game info</h3>

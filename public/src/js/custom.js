@@ -17,6 +17,10 @@
         showMoreReviews();
         new SearchPanel ( $('.header') );
 
+        if ($('#player-wrap').length > 0){
+            initPlayerControls();
+        }
+
         if ($('#reviews').length > 0){
             $('.review').each(function(i) {
                 new AddingReview ( $(this) );
@@ -25,6 +29,11 @@
 
         if ($('.js-vote').length > 0) {
             new Vote ( $('.js-vote') );
+        }
+
+        if ($('.js-run-counter').length > 0) {
+            var _name = $('.js-run-counter').data('name');
+            runPlayCounter(_name);
         }
 
         tooltipConfig = {
@@ -68,6 +77,100 @@
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
 
     });
+
+    function goToPage(game_name, width, height) {
+        window.open("http://game.casinoslists.com/game_play.php?game="+game_name+"&width="+width+"&height="+height,"_blank","toolbar=0,location=0,menubar=0,width="+width+",height="+height);
+    }
+
+    function goToFrame(url) {
+        var frame = $('#single-play');
+        var container = $('.player-holder');
+
+        container.addClass('playing');
+        frame.attr('src',url);
+    }
+
+    var reloadFrame = function(btnReload){
+        var _init = function(){
+            btnReload.on({
+                click: function(){
+                    _reload();
+                }
+            });
+        };
+        var _reload = function(){
+            var frame = $('#single-play');
+            var src = frame.attr('src');
+            frame.attr('src', null);
+            frame.attr('src', src);
+        };
+        
+        _init();
+    };
+
+    function runPlayCounter(_name) {
+        _request = new XMLHttpRequest;
+
+        if(BUSY_REQUEST) return;
+        BUSY_REQUEST = true;
+        _request.abort();
+
+        _request = $.ajax( {
+            url: '/play-counter',
+            data:{
+                name: _name
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                console.log('bbbb'); 
+            },
+            error: function ( XMLHttpRequest ) {
+                if ( XMLHttpRequest.statusText != "abort" ) {
+                    console.log( 'err' );
+                }
+            },
+            complete: function(){
+                BUSY_REQUEST = false;
+            }
+        } );
+    }
+
+    function initPlayerControls() {
+        var _btnFull = $('#play-fullscreen');
+        var _btnReplay = $('#play-replay');
+        var _btnGoPage = $('#go-to-page');
+        var _btnGoFrame = $('#go-to-frame');
+        var _container = $('#player-wrap');
+        var _body = $('body');
+
+        _btnGoFrame.on('click', function() {
+            var _name = $(this).data('name');
+            var _url = $(this).data('url');
+            goToFrame(_url);
+            runPlayCounter(_name);
+            return false;
+        });
+
+        _btnGoPage.on('click', function() {
+            var _name = $(this).data('name');
+            var _width = $(this).data('width');
+            var _height = $(this).data('height');
+            goToPage(_name, _width, _height);
+            runPlayCounter(_name);
+            return false;
+        });
+
+        _btnReplay.on('click', function() {
+            reloadFrame($(this));
+            return false;
+        });
+
+        _btnFull.on('click', function() {
+            _body.toggleClass('fullscreen');
+            return false;
+        });
+    }
 
     function initReviewForm() {
         var field = $('.expanding');
