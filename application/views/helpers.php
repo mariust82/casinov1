@@ -29,6 +29,18 @@ function get_active($page, $item)
     return $class;
 }
 
+function get_arr_from_string($name)
+{
+    $name = explode(",", $name);
+    return $name[0];
+}
+
+function get_length_arr_from_string($name)
+{
+    $name = explode(",", $name);
+    return count($name);
+}
+
 function get_string($name)
 {
     $string = array();

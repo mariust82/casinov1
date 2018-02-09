@@ -15,6 +15,7 @@
         initReplies();
         initTexfieldsLabels();
         showMoreReviews();
+        checkStringLength();
         new SearchPanel ( $('.header') );
 
         if ($('#filters').length > 0) {
@@ -87,6 +88,22 @@
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
 
     });
+
+    function checkStringLength(argument) {
+        var box = $('.bonus-box');
+
+        box.each(function(index, el) {
+            var parent = $(this).find('.list-item-flex').width();
+            var child = $(this).find('.list-item-trun').width();
+            var bubble = $(this).find('.bubble');
+
+            if (child == parent) {
+                bubble.show();
+            }
+
+
+        });
+    }
 
     function newsletter(obj){
         var _wrap = obj,

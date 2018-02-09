@@ -112,6 +112,7 @@ a {
 
 .header{
     background:$common-color;
+    box-shadow: 0 2px 6px  rgba(14, 69, 133, .24);
 
     @media screen and (max-width: 1023px) {
         height:50px;
@@ -270,7 +271,6 @@ a {
 
 .header-menu{
     width:100%;
-    overflow:hidden;
     transition: width 0.3s ease-out;
     margin:0 0 0 30px;
 
@@ -308,7 +308,7 @@ a {
 
         a{
             display:block;
-            padding:33px 17px 23px;
+            padding:33px 17.5px 23px;
             font-size:12px;
             font-weight:600;
             color:#fff;
@@ -356,6 +356,9 @@ a {
 }
 
 .search-opened{
+    .header-menu{
+        overflow:hidden;
+    }
 
     @media screen and (min-width: 1024px) {
         .header-menu{
@@ -403,7 +406,7 @@ a {
 
 .main{
     flex:1 0 auto;
-    padding:40px 0 80px;
+    padding:40px 0 101px;
 
     @media screen and (max-width: 1023px) {
         padding:20px 0 60px;
@@ -416,7 +419,7 @@ a {
 
     &-icon{
         font-size:17px;
-        margin:22px 0 27px;
+        margin:19px 0 28px;
 
         @media screen and (max-width: 690px) {
             margin:10px 0;
@@ -465,7 +468,7 @@ a {
 
         span{
             font-size:21px;
-            line-height:1;
+            line-height:1.5;
             font-weight:400;
 
             @media screen and (max-width: 690px) {
@@ -476,6 +479,7 @@ a {
         strong{
             font-size:32px;
             font-weight:600;
+            letter-spacing: 1.3px;
 
             @media screen and (max-width: 690px) {
                 font-size:25px;
@@ -486,6 +490,8 @@ a {
     &-subtitle{
         font-size:16px;
         text-align:center;
+        position: relative;
+        top: -5px;
 
         @media screen and (max-width: 690px) {
             font-size:14px;
@@ -494,10 +500,15 @@ a {
 }
 
 .carousel{
-    margin:0 0 50px;
+    margin:0 0 45px;
 
     @media screen and (max-width: 690px) {
         margin:0 0 25px;
+    }
+
+    .swiper-container{
+        padding:10px 0;
+        margin:-10px 0 0 0;
     }
 
     .align-right{
@@ -510,7 +521,7 @@ a {
 
     .swiper-slide{
         width:140px;
-        height:140px;
+        height:150px;
     }
 
     &-slide{
@@ -526,7 +537,7 @@ a {
             display: flex;
             justify-content: center;
             align-items: center;
-            height:87px;
+            height:100px;
             width:100%;
             flex-shrink: 0;
             position:relative;
@@ -575,7 +586,7 @@ a {
             background:#F7F7F7;
             padding:5px 10px;
             flex-grow: 1;
-            height:42px;
+            height:50px;
         }
 
         &-title{
@@ -591,7 +602,7 @@ a {
         justify-content: center;
         align-items: center;
         position: absolute;
-        top: 50%;
+        top: 53%;
         width: 42px;
         height: 42px;
         border-radius:50%;
@@ -619,12 +630,12 @@ a {
     }
 
     &-prev {
-      left: -50px;
+      left: -64px;
       right: auto;
     }
 
     &-next {
-      right: -50px;
+      right: -64px;
       left: auto;
     }
 
@@ -636,7 +647,7 @@ a {
 }
 
 .heading{
-    margin:0 0 40px;
+    margin:0 0 23px;
 
     .title{
         margin:0 0 15px;
@@ -663,8 +674,8 @@ a {
 
     &-underlined{
         font-size:18px;
-        margin:0 0 24px;
-        padding:0 0 5px;
+        margin: 0 0 16px;
+        padding:0 0 3px;
         border-bottom:2px solid $common-color;
 
         @media screen and (max-width: 690px) {
@@ -704,7 +715,7 @@ a {
     .heading-btn{
         flex-shrink: 0;
         min-width:135px;
-        margin:0 0 0 50px;
+        margin:11px 0 0 50px;
     }
 
     .button{
@@ -758,7 +769,7 @@ a {
 }
 
 .block{
-    margin:0 0 50px;
+    margin:0 0 49px;
 
     @media screen and (max-width: 690px) {
         margin:0 0 30px;
@@ -797,11 +808,10 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding:10px 0;
+    padding:11px 0;
     border-bottom:1px solid #E8EAF3;
 
     &-trun{
-        width:50%;
         overflow:hidden;
         white-space:nowrap;
         text-overflow:ellipsis;
@@ -818,7 +828,7 @@ a {
         flex-shrink: 0;
 
         &:nth-child(1){
-            width:35%;
+            width:35.5%;
             padding: 0 5px 0 0;
 
             @media screen and (max-width: 1023px) {
@@ -831,7 +841,7 @@ a {
         }
 
         &:nth-child(2){
-            width:20%;
+            width:25%;
 
             @media screen and (max-width: 1023px) {
                 width:23%;
@@ -843,7 +853,7 @@ a {
         }
 
         &:nth-child(3){
-            width:20%;
+            width:17%;
 
             @media screen and (max-width: 690px) {
                 width:37%;
@@ -859,7 +869,7 @@ a {
         }
 
         &:nth-child(5){
-            width:12%;
+            width:10.5%;
 
             .list-flex{
                 justify-content: flex-end;
@@ -949,14 +959,14 @@ a {
 }
 
 .list{
-    margin:18px 0 0 0;
+    margin:23px 0 0 0;
 
     @media screen and (max-width: 690px) {
         margin:10px 0 0 0;
     }
 
     &-flag{
-        margin:0 10px 0 0;
+        margin:0 9px 0 0;
 
         @media screen and (max-width: 690px) {
             margin:0 3px 0 0;
@@ -987,7 +997,7 @@ a {
 
 .list-rating{
     margin:0 10px 0 0;
-    width:90px;
+    width:80px;
 
     @media screen and (max-width: 1023px) {
         width:auto;
@@ -1006,6 +1016,8 @@ a {
     &-score{
         color:#fff;
         font-size:12px;
+        line-height:17px;
+        align-self: stretch;
         width:20px;
         flex-shrink: 0;
         background:#5DC916;
@@ -1053,7 +1065,7 @@ a {
         width:100%;
         color:#676767;
         font-size:10px;
-        padding:0 10px;
+        padding:2px 0;
         text-align:center;
     }
 }
@@ -1161,7 +1173,8 @@ a {
     }
 
     &-small{
-        padding:6px 15px;
+        padding: 7px 16px 8px;
+        margin: -2px 0 0 0;
     }
 
     &-middle{
@@ -1298,6 +1311,7 @@ a {
         font-weight:700;
         color:#465156;
         margin:0 0 10px;
+        font-size:14px;
         white-space:nowrap;
         overflow:hidden;
         text-overflow:ellipsis;
@@ -1308,6 +1322,10 @@ a {
         justify-content: space-between;
         font-size:13px;
         color:#878CA4;
+    }
+
+    &-soft{
+        text-transform:uppercase;
     }
 
     &-played{
@@ -1388,7 +1406,7 @@ a {
 
 .footer{
     border-top:3px solid #DCE4EB;
-    padding:43px 0 0 0;
+    padding:38px 0 0 0;
     text-align:center;
 
     @media screen and (max-width: 690px) {
@@ -1415,7 +1433,7 @@ a {
 
         li{
             display:inline-block;
-            margin:0 15px;
+            margin:0 13px;
 
             @media screen and (max-width: 1023px) {
                 margin:0 11px;
@@ -1446,7 +1464,7 @@ a {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin:0 0 25px;
+        margin:0 0 21px;
 
         @media screen and (max-width: 690px) {
             border-bottom:1px solid #E8EAF3;
@@ -1462,9 +1480,10 @@ a {
     }
 
     .icon-begambleaware{
-        margin:0 0 0 23px;
         font-size:17px;
         color:#242A2D;
+        position: relative;
+        left: 4px;
     }
 
     .social{
@@ -1487,6 +1506,9 @@ a {
 
 .notice-logo{
     font-size:46px;
+    position: relative;
+    left: -21px;
+    top: 2px;
 
     @media screen and (max-width: 690px) {
         font-size:40px;
@@ -1561,12 +1583,12 @@ a {
         font-size:14px;
         color:#465156;
         font-weight:700;
-        margin:0 0 10px;
+        margin:0 0 11px;
     }
 
     &-subtitle{
         font-size:13px;
-        margin:0 0 15px;
+        margin:0 0 20px;
         color:#676767;
     }
 
@@ -1770,11 +1792,25 @@ a {
     border-radius:5px;
     position:relative;
 
+    .bubble{
+        display:none;
+    }
+
+    .list-item-flex{
+        overflow:hidden;
+    }
+
     &-body{
         border:1px solid rgba(0, 0, 0, .16);
         border-width:0 1px 1px;
         padding:20px;
         border-radius:0 0 5px 5px;
+    }
+
+    &-list{
+        strong{
+            font-weight:600;
+        }
     }
 
     &-heading{
@@ -1808,10 +1844,6 @@ a {
             top: -5px;
             margin:0 !important;
         }
-    }
-
-    .list-item-trun{
-        width:35%;
     }
 
     &-list{
@@ -2326,11 +2358,13 @@ a {
     }
 
     .list-rating{
-        width:auto;
+        width:120px;
     }
 
     .list-rating-score{
         font-size:15px;
+        line-height:24px;
+        width:30px;
     }
 
     .list-rating-text{
@@ -2735,6 +2769,10 @@ a {
         padding:1px 10px;
         margin:0 30px 0 0;
         background:#fff;
+
+        span{
+            display:none;
+        }
     }
 
     &-submit-holder{

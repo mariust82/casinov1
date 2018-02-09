@@ -33,7 +33,7 @@
 								<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
 							<std:else>
 								<span class="list-item-trun"> 
-									${get_string(${result.softwares})} 
+									${result.softwares.0} 
 								</span>
 
 								<std:set name="extra" value="count(${result.softwares})-1"/>
