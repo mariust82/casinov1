@@ -9,7 +9,7 @@
 	<div class="list-body">
 		<std:set name="i" value="0"/>
 		<std:foreach var="$[data]" value="result">
-			<div class="list-item">
+			<div class="list-item loaded-item">
 				<div class="list-item-cell">
 					<div class="list-flex">
 						<div class="list-flag">
@@ -93,7 +93,4 @@
 		<std:unset name="i"/>
 		<std:unset name="result"/>
 	</div>
-</div>
-<div class="mobile btn-holder">
-	<a href="$[goto]" class="btn btn-big">SHOW ALL<i class="icon-chevron-right"></i></a>
 </div>

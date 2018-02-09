@@ -17,6 +17,10 @@
         showMoreReviews();
         new SearchPanel ( $('.header') );
 
+        if ($('#filters').length > 0) {
+            new Filters ( $('#filters') );
+        }
+
         if ($('#player-wrap').length > 0){
             initPlayerControls();
         }
@@ -77,6 +81,141 @@
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
 
     });
+
+
+    var Filters = function(obj) {
+        var _obj = obj,
+            _self = this,
+            _switchers = _obj.find('input[type=checkbox]'),
+            _radios = _obj.find('input[type=radio]'),
+            _selectFilter = _obj.find('select[name=soft]'),
+            _targetContainer = $('.data-container'),
+            _targetAddContainer = $('.data-add-container'),
+            _paramName = _targetContainer.data('type'),
+            _paramValue = _targetContainer.data('type-value'),
+            _moreButton,
+            _request = new XMLHttpRequest();
+
+            if (typeof _paramName == 'undefined') {
+                _paramName = 'type';
+            }
+
+            _url = _obj.data('url');
+
+        var _onEvent = function() {
+                _moreButton = $('.js-more-items');
+
+                _switchers.off();
+                _switchers.on('click', function() {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
+
+                _radios.off();
+                _radios.on('click', function() {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
+
+                _selectFilter.off();
+                _selectFilter.on('change', function() {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
+
+                _moreButton.off();
+                _moreButton.on('click', function() {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add');
+
+                    return false;
+                });
+
+            },
+
+            _getAjaxParams = function (_paramName , _paramValue, _action) {
+                var _ajaxDataParams = {};
+
+                $.each(_switchers, function(index, el) {
+                    if ($(el).is(':checked')) {
+                    _ajaxDataParams[$(el).attr('name')] = 1;
+                    }
+                });
+
+                $.each(_radios, function(index, el) {
+                    if ($(el).is(':checked')) {
+                    _ajaxDataParams[$(el).attr('name')] = $(el).attr('value');
+                    }
+                });
+
+                _ajaxDataParams[_paramName] = _paramValue;
+                _ajaxDataParams['filter_by'] = _selectFilter.val();
+
+                if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 1;
+                AJAX_CUR_PAGE++;
+                if (_action != 'add') {
+                    AJAX_CUR_PAGE = 1;
+                }
+                // _ajaxDataParams['page'] = AJAX_CUR_PAGE;
+
+                return _ajaxDataParams;
+            }
+
+            _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
+                if (true) {}
+                if (BUSY_REQUEST) return;
+                BUSY_REQUEST = true;
+                _request.abort();
+                _request = $.ajax({
+                    url: _url+AJAX_CUR_PAGE,
+                    data: _ajaxDataParams,
+                    dataType: 'html',
+                    type: 'GET',
+                    success: function(data) {
+                        // console.log(data);
+
+                        if (_action == 'replace') {
+                            _targetContainer.html(data);
+                            _targetAddContainer.html('');
+                        } else {
+                            var cont = $(data).find('.loaded-item');
+                            _targetAddContainer.append(cont);
+                            // _moreButton.hide();
+                        }
+                        // initRateSlider();
+                        // changeNumSize();
+                        _construct();
+
+                        $('.js-tooltip').tooltipster(tooltipConfig);
+                        $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                        $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+                        initMoboleBonusesPop();
+                    },
+                    error: function(XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != "abort") {
+                            console.log('err');
+                        }
+                    },
+                    complete: function() {
+                        BUSY_REQUEST = false;
+                    }
+                });
+
+                var loadDelay = setTimeout(function() {
+                }, 300);
+
+                _hideLoading = function(){
+                    clearTimeout(loadDelay);
+                }
+            },
+
+            _loadData = function(data) {
+
+            },
+            _construct = function() {
+                _onEvent();
+                _obj[0].obj = _self;
+            };
+
+        _construct();
+    };
+
 
     function goToPage(game_name, width, height) {
         window.open("http://game.casinoslists.com/game_play.php?game="+game_name+"&width="+width+"&height="+height,"_blank","toolbar=0,location=0,menubar=0,width="+width+",height="+height);

@@ -1328,13 +1328,13 @@ corresponds to the arrow we want to display */
   /*border: 1px solid #0d7ac7;*/
 }
 
-/* Base for label styling */
 [type="radio"]:not(:checked),
 [type="radio"]:checked {
   position: absolute;
   left: -9999px;
 }
 
+/*
 [type="radio"]:not(:checked) + label,
 [type="radio"]:checked + label {
   position: relative;
@@ -1344,22 +1344,18 @@ corresponds to the arrow we want to display */
   display: block;
 }
 
-/* checkbox aspect */
 [type="radio"]:not(:checked) + label:before,
 [type="radio"]:checked + label:before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 15px;
+  left: 0; top: 0;
+  width: 15px; 
   height: 15px;
   background: #fff;
   border-radius: 5px;
-  border: 2px solid #dee1e9;
-  border-radius: 50%;
+  border:2px solid #dee1e9;
+  border-radius:50%;
 }
-
-/* checked mark aspect */
 [type="radio"]:not(:checked) + label:after,
 [type="radio"]:checked + label:after {
   content: '•';
@@ -1373,41 +1369,30 @@ corresponds to the arrow we want to display */
   transition: all .2s;
 }
 
-/* checked mark aspect changes */
 [type="radio"]:not(:checked) + label:after {
   opacity: 0;
-  -webkit-transform: scale(0);
-          transform: scale(0);
+  transform: scale(0);
 }
-
 [type="radio"]:checked + label:after {
   opacity: 1;
-  -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
 }
-
-/* disabled checkbox */
 [type="radio"]:disabled:not(:checked) + label:before,
 [type="radio"]:disabled:checked + label:before {
   box-shadow: none;
   border-color: #bbb;
   background-color: #ddd;
 }
-
 [type="radio"]:disabled:checked + label:after {
   color: #999;
 }
-
 [type="radio"]:disabled + label {
   color: #aaa;
 }
-
-/* accessibility */
 [type="radio"]:checked:focus + label:before,
 [type="radio"]:not(:checked):focus + label:before {
   border: 2px solid #0d7ac7;
-}
-
+}*/
 .select2-container {
   box-sizing: border-box;
   display: inline-block;
@@ -3499,8 +3484,15 @@ a:hover, a:active, a:visited, a:focus {
   margin: 25px 0 0 0;
 }
 
+.games:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
 .games-list {
   margin: -30px 0 0 -30px;
+  font-size: 0;
 }
 
 @media screen and (max-width: 1023px) {
@@ -3522,7 +3514,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .game {
-  float: left;
+  display: inline-block;
   width: 33.33%;
   padding: 30px 0 0 30px;
 }
@@ -4559,7 +4551,8 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
-.filter-sort-buttons a {
+.filter-sort-buttons a, .filter-sort-buttons label {
+  cursor: pointer;
   display: block;
   padding: 5px 25px;
   background: #F7F7F7;
@@ -4568,24 +4561,30 @@ a:hover, a:active, a:visited, a:focus {
   border-width: 1px 1px 1px 0;
 }
 
-.filter-sort-buttons a:first-child {
+.filter-sort-buttons a:first-child, .filter-sort-buttons a.first, .filter-sort-buttons label:first-child, .filter-sort-buttons label.first {
   border-width: 1px;
   border-radius: 4px 0 0 4px;
 }
 
-.filter-sort-buttons a:last-child {
+.filter-sort-buttons a:last-child, .filter-sort-buttons label:last-child {
   border-radius: 0 4px 4px 0;
 }
 
 @media screen and (max-width: 690px) {
-  .filter-sort-buttons a {
+  .filter-sort-buttons a, .filter-sort-buttons label {
     padding: 5px;
     width: 33.33%;
     text-align: center;
   }
 }
 
-.filter-sort-buttons a:hover, .filter-sort-buttons a.active {
+.filter-sort-buttons a:hover, .filter-sort-buttons a.active, .filter-sort-buttons label:hover, .filter-sort-buttons label.active {
+  background: #2171CE;
+  border-color: #2171CE;
+  color: #fff;
+}
+
+.filter-sort-buttons input[type=radio]:checked + label {
   background: #2171CE;
   border-color: #2171CE;
   color: #fff;

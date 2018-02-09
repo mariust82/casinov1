@@ -90,7 +90,32 @@ function get_page_type()
 {
     $url = parse_url("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
 
-    return $pieces = explode("/", $url["path"]);
+    $pieces = explode("/", $url["path"]);
+
+    switch ($pieces[1]) {
+        case 'casinos':
+            $piece = 'label';
+            break;
+        case 'softwares':
+            $piece = 'software';
+            break;
+        case 'bonus-list':
+            $piece = 'bonus_type';
+            break;
+        case 'countries-list':
+            $piece = 'country';
+            break;
+        case 'compatability':
+            $piece = 'compatibility';
+            break;
+        case 'banking':
+            $piece = 'banking_method';
+            break;
+        case 'features':
+            $piece = 'feature';
+            break;
+    }
+    return $piece;
 }
 
 function format_filter_date($date, $format = 'F Y')

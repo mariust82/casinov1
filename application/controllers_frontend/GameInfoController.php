@@ -40,9 +40,9 @@ $this->response->setAttribute("game", array (
     'height' => '300',
     'screenshot' => '/public/img/sync/game_ss/500x300/Gamevy_Roulette_ss.jpg',
     'url' => 'https://games.gamevy.com/prod/roulette-eu/index.html?mode=fun&platform=gamevy',
-    // 'status' => 'auto-play',
+    'status' => 'auto-play',
     // 'status' => 'click-popup-play',
-    'status' => 'redirect',
+    // 'status' => 'redirect',
   ),
 ));
 $this->response->setAttribute("recommended_casinos", array (

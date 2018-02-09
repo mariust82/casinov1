@@ -1208,8 +1208,15 @@ a {
 .games{
     margin:25px 0 0 0;
 
+    &:after{
+        display:block;
+        clear:both;
+        content:""
+    }
+
     &-list{
         margin:-30px 0 0 -30px;
+        font-size:0;
 
         @media screen and (max-width: 1023px) {
             margin:-20px 0 0 -20px;
@@ -1228,7 +1235,7 @@ a {
 }
 
 .game{
-    float:left;
+    display:inline-block;
     width:33.33%;
     padding:30px 0 0 30px;
 
@@ -2122,7 +2129,8 @@ a {
                 width:100%;
             }
 
-            a{
+            a,label{
+                cursor:pointer;
                 display:block;
                 padding:5px 25px;
                 background:#F7F7F7;
@@ -2130,7 +2138,8 @@ a {
                 border:1px solid #C1C9CF;
                 border-width:1px 1px 1px 0;
 
-                &:first-child{
+                &:first-child,
+                &.first{
                     border-width:1px;
                     border-radius:4px 0 0 4px;
                 }
@@ -2147,6 +2156,13 @@ a {
 
                 &:hover,
                 &.active{
+                    background:$common-color;
+                    border-color:$common-color;
+                    color:#fff;
+                }
+            }
+            input[type=radio]:checked{
+                &+label{
                     background:$common-color;
                     border-color:$common-color;
                     color:#fff;
