@@ -9,8 +9,8 @@
   cursor: pointer;
   line-height: 19px;
   display: block;
-  width: 18px; 
-  height: 18px;
+  width: 16px; 
+  height: 16px;
 }
 
 [type="checkbox"]:not(:checked) + label:before,

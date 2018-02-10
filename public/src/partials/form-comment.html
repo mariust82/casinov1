@@ -1,32 +1,34 @@
 <div class="form">
 	<div class="form-row">
 		{{#if rating}}
-			<div class="rating-container">
-				<label class="form-label">
-					<span class="flex">
-						RATE CASINO
-						<span class="rating-current">
-							<span class="rating-current-text"></span>
-							<span class="rating-current-value">0/10</span>
+			<div class="flex-left">
+				<div class="rating-container">
+					<label class="form-label">
+						<span class="flex">
+							RATE CASINO
+							<span class="rating-current">
+								<span class="rating-current-text"></span>
+								<span class="rating-current-value">0/10</span>
+							</span>
 						</span>
-					</span>
-				</label>
-				<select class="rating-bar" autocomplete="off">
-					<option value=""></option>
-					<option value="1">Terrible</option>
-					<option value="2">Terrible</option>
-					<option value="3">Poor</option>
-					<option value="4">Poor</option>
-					<option value="5">Poor</option>
-					<option value="6">Good</option>
-					<option value="7">Good</option>
-					<option value="8">Very good</option>
-					<option value="9">Excellent</option>
-					<option value="10">Excellent</option>
-				</select>
+					</label>
+					<select class="rating-bar" autocomplete="off">
+						<option value=""></option>
+						<option value="1">Terrible</option>
+						<option value="2">Terrible</option>
+						<option value="3">Poor</option>
+						<option value="4">Poor</option>
+						<option value="5">Poor</option>
+						<option value="6">Good</option>
+						<option value="7">Good</option>
+						<option value="8">Very good</option>
+						<option value="9">Excellent</option>
+						<option value="10">Excellent</option>
+					</select>
+				</div>
 			</div>
-			<label class="form-label">ADD REVIEW</label>
 		{{/if}}
+		<label class="form-label">ADD REVIEW</label>
 		<div class="textfield-holder">
 			<textarea rows="5" class="expanding textfield" placeholder="Write your review..."></textarea>
 		</div>

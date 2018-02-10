@@ -1266,8 +1266,8 @@ corresponds to the arrow we want to display */
   cursor: pointer;
   line-height: 19px;
   display: block;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 [type="checkbox"]:not(:checked) + label:before,
@@ -2240,7 +2240,7 @@ a:hover, a:active, a:visited, a:focus {
       -ms-flex-align: center;
           align-items: center;
   overflow: hidden;
-  padding: 10px 0 5px;
+  padding: 10px 18px 5px 0;
   width: 21px;
   transition: width 0.3s ease-out;
   position: relative;
@@ -2466,7 +2466,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .header-menu li a {
   display: block;
-  padding: 33px 17.5px 23px;
+  padding: 33px 17.7px 23px;
   font-size: 12px;
   font-weight: 600;
   color: #fff;
@@ -2532,6 +2532,7 @@ a:hover, a:active, a:visited, a:focus {
   border-bottom: 1px solid #fff;
   transition: width 0.3s ease-in;
   overflow: visible;
+  padding: 10px 0 5px;
 }
 
 @media screen and (max-width: 1023px) {
@@ -2917,6 +2918,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .title-small {
   font-size: 16px;
+  margin: 0 0 18px;
 }
 
 @media screen and (max-width: 690px) {
@@ -3398,9 +3400,11 @@ a:hover, a:active, a:visited, a:focus {
 
 .bubble-vote {
   font-size: 11px;
-  padding: 3px 10px;
+  padding: 4px 12px;
   color: #A8AEC8;
   background: #fff;
+  margin: 0 0 0 5px;
+  height: auto;
 }
 
 .btn-round {
@@ -3863,8 +3867,8 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .textfield.expanding {
-  height: 56px;
-  padding: 17px 20px;
+  height: 49px;
+  padding: 15px 16px 13px;
 }
 
 @media screen and (max-width: 690px) {
@@ -4022,6 +4026,10 @@ a:hover, a:active, a:visited, a:focus {
   padding: 6px 10px;
 }
 
+.tooltipster-sidetip .tooltipster-content .bonus-box-list-label {
+  width: 45%;
+}
+
 .tooltipster-sidetip.tooltipster-top .tooltipster-arrow-border {
   border-top-color: rgba(0, 0, 0, 0.09);
 }
@@ -4130,9 +4138,9 @@ a:hover, a:active, a:visited, a:focus {
   text-transform: uppercase;
   color: #465156;
   background: #F7F7F7;
-  padding: 10px;
+  padding: 13px 10px;
   display: block;
-  margin: 0 0 15px;
+  margin: 0 0 16px;
 }
 
 .dashed.js-copy-tooltip {
@@ -4154,7 +4162,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .bonus-box-body {
   border: 1px solid rgba(0, 0, 0, 0.16);
-  border-width: 0 1px 1px;
+  border-top: 2px dashed #F17D0A;
   padding: 20px;
   border-radius: 0 0 5px 5px;
 }
@@ -4168,7 +4176,7 @@ a:hover, a:active, a:visited, a:focus {
   font-size: 14px;
   font-weight: 600;
   text-align: center;
-  padding: 20px 0;
+  padding: 19px 0 12px;
   overflow: hidden;
   border-radius: 5px 5px 0 0;
   border-bottom-width: 2px;
@@ -4179,10 +4187,10 @@ a:hover, a:active, a:visited, a:focus {
   position: absolute;
   top: 0;
   left: 50%;
-  width: 45px;
-  height: 45px;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  width: 42px;
+  height: 42px;
+  -webkit-transform: translate(-50%, -41%);
+          transform: translate(-50%, -41%);
   border-radius: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4215,7 +4223,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .bonus-box-list-label {
-  width: 40%;
+  width: 29%;
   padding: 0 5px 0 0;
   -ms-flex-negative: 0;
       flex-shrink: 0;
@@ -4251,6 +4259,10 @@ a:hover, a:active, a:visited, a:focus {
   border-bottom-color: #4AB802;
 }
 
+.bonus-free .bonus-box-body {
+  border-top-color: #4AB802;
+}
+
 .bonus-free .dashed {
   border-color: #4AB802;
 }
@@ -4260,7 +4272,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .categories {
-  margin: 50px 0;
+  margin: 38px 0;
 }
 
 @media screen and (max-width: 1023px) {
@@ -4270,6 +4282,10 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .categories-list {
+  margin: -20px 0 0 -30px;
+}
+
+.categories-list.category-is-img {
   margin: -30px 0 0 -30px;
 }
 
@@ -4285,9 +4301,17 @@ a:hover, a:active, a:visited, a:focus {
   content: "";
 }
 
+.categories-games-list {
+  margin: -30px 0 0 -30px;
+}
+
 .category {
   float: left;
   width: 33.33%;
+  padding: 20px 0 0 30px;
+}
+
+.category.category-is-img {
   padding: 30px 0 0 30px;
 }
 
@@ -4314,7 +4338,7 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 10px 15px;
+  padding: 10px 21px 10px 15px;
   border-left: 3px solid #2171CE;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.16);
   border-radius: 2px;
@@ -4327,6 +4351,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .category i {
   color: #2171CE;
+  font-size: 11px;
 }
 
 .category-title {
@@ -4360,8 +4385,12 @@ a:hover, a:active, a:visited, a:focus {
 
 .category-is-img a {
   height: 100px;
-  padding: 10px 15px 10px 0;
+  padding: 10px 20px 10px 0;
   border: none;
+}
+
+.category-is-img a i {
+  font-size: 12px;
 }
 
 .condense_control {
@@ -4369,7 +4398,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .links-nav {
-  margin: 0 0 25px;
+  margin: 4px 0 25px;
 }
 
 .links-nav .container {
@@ -4408,7 +4437,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .filter {
-  margin: 20px 0;
+  margin: 23px 0 25px;
   font-size: 13px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4447,7 +4476,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .filter-label {
   color: #A8AEC8;
-  margin: 0 20px 0 0;
+  margin: 0 19px 0 0;
 }
 
 @media screen and (max-width: 1023px) {
@@ -4591,7 +4620,7 @@ a:hover, a:active, a:visited, a:focus {
 .filter-sort-buttons a, .filter-sort-buttons label {
   cursor: pointer;
   display: block;
-  padding: 5px 25px;
+  padding: 5px 24px;
   background: #F7F7F7;
   color: #60686A;
   border: 1px solid #C1C9CF;
@@ -4640,7 +4669,7 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 0 0 0 10px;
+  margin: 0 0 0 23px;
 }
 
 .filter-check-item:first-child {
@@ -4731,6 +4760,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .casino-review {
   margin: 0 0 30px;
+  padding: 3px 0 0 0;
 }
 
 .casino-review-title {
@@ -4811,11 +4841,12 @@ a:hover, a:active, a:visited, a:focus {
 
 .casino-review .list-rating {
   width: 120px;
+  margin: 0;
 }
 
 .casino-review .list-rating-score {
   font-size: 15px;
-  line-height: 24px;
+  line-height: 26px;
   width: 30px;
 }
 
@@ -4891,7 +4922,7 @@ a:hover, a:active, a:visited, a:focus {
 .box {
   border-radius: 2px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.16);
-  padding: 20px;
+  padding: 20px 20px 25px 20px;
 }
 
 @media screen and (max-width: 690px) {
@@ -4900,11 +4931,20 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
+@media screen and (min-width: 691px) {
+  .box-alt {
+    padding: 30px;
+  }
+  .box-alt2 {
+    padding: 20px 30px 30px;
+  }
+}
+
 .def-list-item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 20px 0 0 0;
+  margin: 22px 0 0 0;
 }
 
 .def-list-item:first-child {
@@ -4912,7 +4952,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .def-list-key {
-  width: 26%;
+  width: 27%;
   padding: 0 5px 0 0;
   color: #878CA4;
   -ms-flex-negative: 0;
@@ -4930,6 +4970,7 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  line-height: 1.4;
   width: 74%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4988,7 +5029,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .bonus-item {
-  margin: 50px 0 0 0;
+  margin: 35px 0 0 0;
 }
 
 @media screen and (max-width: 1023px) {
@@ -5034,17 +5075,13 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .review-parent .review-wrap {
-  padding: 20px;
+  padding: 20px 30px;
 }
 
 @media screen and (max-width: 690px) {
   .review-parent .review-wrap {
     padding: 10px;
   }
-}
-
-.review-child {
-  border-top: 1px solid #E8EAF3;
 }
 
 @media screen and (max-width: 690px) {
@@ -5054,7 +5091,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .review-child .review-wrap {
-  padding: 20px 15px;
+  padding: 10px;
 }
 
 .review-child .list-rating {
@@ -5062,10 +5099,10 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .review-list {
-  padding: 30px 0 0 0;
+  padding: 11px 0 0 0;
   border-top: 1px solid #E8EAF3;
-  margin-left: -20px;
-  margin-right: -20px;
+  margin-left: -30px;
+  margin-right: -30px;
 }
 
 @media screen and (max-width: 690px) {
@@ -5073,6 +5110,10 @@ a:hover, a:active, a:visited, a:focus {
     margin-left: -10px;
     margin-right: -10px;
   }
+}
+
+.review-list .list-rating {
+  margin: 0;
 }
 
 .review-rate {
@@ -5226,7 +5267,7 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin: 0 0 15px;
+  margin: 0 0 16px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -5263,7 +5304,7 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 20px 0 0 0;
+  margin: 22px 0 0 0;
 }
 
 @media screen and (max-width: 690px) {
@@ -5281,6 +5322,7 @@ a:hover, a:active, a:visited, a:focus {
   display: -ms-flexbox;
   display: flex;
   font-weight: 600;
+  margin: 0 0 5px;
 }
 
 @media screen and (max-width: 690px) {
@@ -5324,7 +5366,7 @@ a:hover, a:active, a:visited, a:focus {
   color: #A8AEC8;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 2px;
-  padding: 1px 10px;
+  padding: 1px 5px;
   margin: 0 30px 0 0;
   background: #fff;
 }
@@ -5417,6 +5459,10 @@ a:hover, a:active, a:visited, a:focus {
   min-height: 16px;
 }
 
+#reviews {
+  margin: 28px 0 0 0;
+}
+
 @media screen and (max-width: 690px) {
   .reviews-form .review-info {
     -webkit-box-align: center;
@@ -5442,7 +5488,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .form-row {
-  margin-bottom: 20px;
+  margin-bottom: 27px;
 }
 
 @media screen and (max-width: 690px) {
@@ -5451,11 +5497,19 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
+.form-row .flex-left {
+  margin: 0 0 5px;
+}
+
+.form-row .textfield-holder {
+  margin: -6px 0 0 0;
+}
+
 .form-label {
   color: #465156;
   font-weight: 600;
   display: block;
-  margin: 0 0 15px;
+  margin: 0 0 23px;
 }
 
 .form-col {
@@ -5607,6 +5661,12 @@ a:hover, a:active, a:visited, a:focus {
           align-items: center;
 }
 
+@media screen and (max-width: 690px) {
+  .flex-left {
+    display: block;
+  }
+}
+
 .reply {
   padding: 0 20px 0 60px;
 }
@@ -5710,8 +5770,12 @@ a:hover, a:active, a:visited, a:focus {
   margin: 0 0 0 30px;
 }
 
+.def-column {
+  margin: -4px 0 0 0;
+}
+
 .def-column-item {
-  margin: 20px 0 0 0;
+  margin: 17px 0 0 0;
   line-height: 1.9;
 }
 
@@ -5725,6 +5789,10 @@ a:hover, a:active, a:visited, a:focus {
 
 .def-column-val {
   color: #465156;
+}
+
+.def-column-val p {
+  line-height: 26px;
 }
 
 .hidden {
@@ -6909,6 +6977,11 @@ a:hover, a:active, a:visited, a:focus {
 
 #contact-us-success {
   display: none;
+}
+
+.data-container .qty-items {
+  margin: 0 0 -14px;
+  position: relative;
 }
 
 /*# sourceMappingURL=maps/all.css.map */
