@@ -1,4 +1,4 @@
-<div class="review $[class]" data-id="${result.id}" data-img-dir="${get_img_dir()}/flags/${data.country.code}.png" data-country="${data.country.code}">
+<div class="review $[class] ${normalize(${result.name})}" data-id="${result.id}" data-img-dir="${get_img_dir()}/flags/${data.country.code}.png" data-country="${data.country.code}">
 	<div class="review-wrap">
 		<div class="review-info">
 			<div class="review-info-top">
@@ -25,8 +25,8 @@
 				<std:if condition="'$[class]'=='review-parent'">
 					<a href="#" class="review-replies js-reply-btn">Reply <span>${result.total_children}</span></a>
 				</std:if>
-				<div class="votes">
-					<a href="#" class="votes-like">
+				<div class="votes js-vote">
+					<a href="#" class="votes-like vote-button" data-type="review" data-success="1" data-id="${result.id}">
 						<i class="icon-icon_likes"></i>
 						<span class="bubble bubble-vote">${result.likes}</span>
 					</a>

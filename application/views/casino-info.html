@@ -27,7 +27,7 @@
 				<div class="casino-review-heading-left">
 					<h1 class="casino-review-title">${data.casino.name} Casino Review</h1>
 					<div class="btn-group">
-						<a href="#" class="btn-bordered">PLAYER REVIEWS</a>
+						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
 						<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
 					</div>
 				</div>
@@ -45,8 +45,8 @@
 				</div>
 
 				<div class="btn-group btn-group-mobile">
-					<a href="#" class="btn-bordered">PLAYER REVIEWS</a>
-					<a href="#" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
+					<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
+					<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
 				</div>
 			</div>
 		</div>
@@ -211,48 +211,7 @@
 						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
 					</div>
 				</div>
-				<div id="reviews">
-					<div class="reviews-form review" id="reviews-form" data-img-dir="${get_img_dir()}/flags/${data.country.code}.png" data-country="${data.country.code}" data-casino-id="${data.casino.id}">
-						<forms:review rating="1"/>
-					</div>
-					<std:if condition="${data.total_reviews} > 0">
-						<div class="review-list">
-							<div id="review-data-holder">
-								<std:foreach var="${data.reviews}" value="result">
-									<item:review class="review-parent"/>
-								
-									<div class="reply review">
-										<div class="reply-body">
-											<forms:review rating="0"/>
-										</div>
-								
-										<std:foreach var="${result.children}" value="result">
-											<item:review class="review-child"/>
-										</std:foreach>
-								
-										<std:if condition="count(${result.total_children}) > 2">
-											<div class="review-more">
-												<a href="#" class="btn-more">
-													SHOW 3 MORE REPLIES
-													<i class="icon-chevron-down"></i>
-												</a>
-											</div>
-										</std:if>
-									</div>
-								</std:foreach>
-							</div>
-
-							<std:if condition="${data.total_reviews} > 4">
-								<div class="reviews-more">
-									<a href="#" class="btn-more js-more-reviews" data-id="${data.casino.id}">
-										Show More Reviews
-										<i class="icon-chevron-down"></i>
-									</a>
-								</div>
-							</std:if>
-						</div>
-					</std:if>
-				</div>
+				<import file="templates/include-reviews"/>
 			</div>
 		</div>
 	</div>
@@ -312,4 +271,5 @@
 			</div>
 		</div>
 	</div>
+
 <import file="templates/include-footer"/>

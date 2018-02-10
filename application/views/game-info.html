@@ -18,16 +18,16 @@
 				<div class="player">
 					<div class="player-holder">
 						<std:if condition="${data.game.play.status} == 'auto-play'">
-
 							<iframe scrolling="no" id="single-play" class="play-demo js-run-counter" data-name="${data.game.name}" src="${data.game.play.url}" width="${data.game.play.width}" height="${data.game.play.height}"></iframe>
-						<std:elseif condition="${data.game.play.status} == 'click-popup-play'">
+
+						<std:elseif condition="${data.game.play.status} == 'click-popup-play' || ${data.game.play.status} == 'redirect'">
 							<img class="player-img" src="${data.game.play.screenshot}" alt="${data.game.name}">
 							<div class="player-overlay"></div>
 							<div class="player-play" id="go-to-page" data-name="${data.game.name}" data-width="${data.game.play.width}" data-height="${data.game.play.height}">
 								<i class="icon-play"></i>
 							</div>
 
-						<std:elseif condition="${data.game.play.status} == 'redirect'">
+						<std:else>
 							<iframe style="display:none;" scrolling="no" id="single-play" class="play-demo" src="" width="${data.game.play.width}" height="${data.game.play.height}"></iframe>
 							<img class="player-img" src="${data.game.play.screenshot}" alt="${data.game.name}">
 							<div class="player-overlay"></div>

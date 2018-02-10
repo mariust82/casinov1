@@ -7765,7 +7765,7 @@ S2.define('jquery.select2',[
       allowClear: true,
       minimumResultsForSearch: options.minimumResultsForSearch,
       placeholder: options.placeholder,
-      closeOnSelect: false,
+      closeOnSelect: true,
       templateSelection: function() {
         return self.options.templateSelection(self.$element.val() || [], $('option', self.$element).length);
       },

@@ -16,6 +16,8 @@
         initTexfieldsLabels();
         showMoreReviews();
         checkStringLength();
+
+
         new SearchPanel ( $('.header') );
 
         if ($('#filters').length > 0) {
@@ -29,6 +31,11 @@
         if ($('#reviews').length > 0){
             $('.review').each(function(i) {
                 new AddingReview ( $(this) );
+            });
+
+            $('[href="#reviews"]').on('click', function() {
+                initScrollTo($('#reviews'), 100);
+                return false;
             });
         }
 
@@ -45,7 +52,7 @@
             new handleContactUs($( '.contact-form' ));
         }
 
-        new newsletter($( '.contact-form' ));
+        new newsletter($( '.subscribe' ));
 
         tooltipConfig = {
             trigger: 'click',
@@ -107,8 +114,8 @@
 
     function newsletter(obj){
         var _wrap = obj,
-            _field_email = $('.news-email'),
-            _send_btn = $('.news-btn'),
+            _field_email = _wrap.find('.news-email'),
+            _send_btn = _wrap.find('.news-btn'),
             _contact_success = $('#news-success'),
             _contact_error = $('#news-note'),
             _contact_error_class = 'not-valid',
@@ -135,7 +142,7 @@
             return ok;
         },
 
-       _sendMessage = function(name, email, message){
+       _sendNews = function(email){
             _request.abort();
             _request = $.ajax( {
                 url: "/newsletter/subscribe",
@@ -147,14 +154,11 @@
                 type: 'POST',
                 success: function ( response ) {
                     if(response.status =="ok") {
-                        if(response.body.success === 1) {
-                            _contact_success.show();
-                            _contact_error.hide();
-                            _send_btn.prop('disabled', true);
-                            _field_email.val('');
-                            _onEvents();
-                            $('.action-added').remove();
-                        }
+                        _contact_success.show();
+                        _contact_error.hide();
+                        _send_btn.prop('disabled', true);
+                        _field_email.val('');
+                        _onEvents();
                     }
                     else if(response.status=="error") {
                         // console.error(response.body);
@@ -180,7 +184,7 @@
                    if (error === false) {
                        e.stopPropagation();
                    } else {
-                        _sendMessage(name);
+                        _sendNews(email);
                    }
                 }
             });
@@ -198,7 +202,7 @@
             _field_name = $('.contact-name'),
             _field_email = $('.contact-email'),
             _field_message = $('.contact-message'),
-            _send_btn = $('.contact-btn'),
+            _contact_btn = $('.contact-btn'),
             _contact_success = $('#contact-us-success'),
             _contact_error = $('#contact-us-note'),
             _contact_error_class = 'not-valid',
@@ -207,12 +211,11 @@
              message,
             _request = new XMLHttpRequest();
 
-       _prepMessage = function(){
+       _prepContact = function(){
                 name = _field_name.val();
                 email = _field_email.val();
                 message = _field_message.val();
                 ok = true;
-
             if(name === '' || !_validateInputName(name)){
                 _field_name.parent().addClass(_contact_error_class);
                 ok = false;
@@ -258,7 +261,7 @@
                         if(response.body.success === 1) {
                             _contact_success.show();
                             _contact_error.hide();
-                            _send_btn.prop('disabled', true);
+                            _contact_btn.prop('disabled', true);
                             _field_name.val('');
                             _field_email.val('');
                             _field_message.val('');
@@ -284,9 +287,10 @@
         },
 
        _onEvents = function(){
-            _send_btn.on({
+            _contact_btn.on({
                 'click': function(e){
-                   var error = _prepMessage();
+                   var error = _prepContact();
+
                    if (error === false) {
                        e.stopPropagation();
                    } else {
@@ -365,7 +369,10 @@
                 });
 
                 _ajaxDataParams[_paramName] = _paramValue;
-                _ajaxDataParams['filter_by'] = _selectFilter.val();
+
+                if (typeof _selectFilter.val() != 'undefined') {
+                    _ajaxDataParams['filter_by'] = _selectFilter.val().join();
+                }
 
                 if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 1;
                 AJAX_CUR_PAGE++;
@@ -378,7 +385,6 @@
             }
 
             _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
-                if (true) {}
                 if (BUSY_REQUEST) return;
                 BUSY_REQUEST = true;
                 _request.abort();
@@ -554,29 +560,22 @@
                     var _success = $(this).data('success');
                     var _target = $(this).data('type');
 
-                    _updateVote($(this), _getTarget(_target), _getData(_target, _id,_success));
+                    _updateVote($(this), _getTarget(_target), _getData(_target, _id, _success));
 
                     return false;
                 });
 
             },
 
-            _getData = function(_target, _id,_success){
-                var _ret = {is_like:_success};
-                if (_target == 'review') _ret.review_id = _id;
-                else _ret.article_id = _id;
+            _getData = function(_target, _id, _success){
+                var _ret = {id:_id};
+                // if (_target == 'review') _ret.review_id = _id;
+                // else _ret.article_id = _id;
                 return _ret;
             }
 
             _getTarget = function(_arg) {
-                var _target;
-                if (_arg == 'review') {
-                    _target = '/casino/review/rate.json';
-                }
-
-                if (_arg == 'article') {
-                    _target = '/article/rate.json';
-                }
+                var _target = '/casino/review-like';
 
                 return _target;
             },
@@ -595,16 +594,17 @@
                         //console.log(data.body.likes);
                         //var currentVotes = _this.find('.vote-block-num');
                         //currentVotes.text(parseInt(currentVotes.text())+1);
-                        $(_this.parent().parent()).find('.votes-like .vote-block-num, .like .vote-block-num').text(data.body.likes);
-                        $(_this.parent().parent()).find('.votes-dislike .vote-block-num, .dislike .vote-block-num').text(data.body.dislikes);
+                        var _holderLikes = $(_this).find('.bubble-vote');
+                        var _oldLikes = _holderLikes.text();
+                        _holderLikes.text(++_oldLikes);
 
-                        _this.closest(_obj).next('.action-field.success').show();
+                        // _this.closest(_obj).next('.action-field.success').show();
                         //_this.parent().addClass('disabled');
                     },
                     error: function ( XMLHttpRequest ) {
                         if ( XMLHttpRequest.statusText != "abort" ) {
                             console.log( 'err' );
-                            _this.closest(_obj).next('.action-field.not-valid').show();
+                            // _this.closest(_obj).next('.action-field.not-valid').show();
                         }
                     },
                     complete: function(){
@@ -618,9 +618,10 @@
     function AddingReview(obj){
 
         var _wrap = obj,
-            _imgDir = _wrap.data('img-dir'),
-            _countryCode = _wrap.data('country'),
+            _imgDir = $('#reviews-form').data('img-dir'),
+            _countryCode = $('#reviews-form').data('country'),
             _send_btn = _wrap.find('input[name=submit]'),
+            _holderChild = $('.reply-data-holder'),
             _qty = $('.reviews-qty'),
             _contact_error_class = 'not-valid',
             _casinoID = $('.reviews').data('id'),
@@ -642,7 +643,7 @@
              _childReplies,
             _request = new XMLHttpRequest();
 
-       _prepMessage = function(_self){
+       _prepReview = function(_self){
 
             var parent = _self;
 
@@ -660,12 +661,9 @@
             _rate_slider_result = $('.rating-current-value span').text();
             ok = true;
 
-            console.log(parent); 
-
-            typeof _reviewID
-            if (typeof _reviewID != "undefined") {
+            if (_field_name.closest('.reply').length > 0) {
                 _is_child = true;
-                _reviewHolder = parent.find('.replies');
+                _reviewHolder = parent.find(_holderChild);
                 _childReplies = parent.find('.js-reply-btn span');
             } else {
                 _is_child = false;
@@ -709,8 +707,6 @@
                     parent.find($('.rating-container')).removeClass(_contact_error_class);
                 }
             }
-
-            console.log(ok, _is_child); 
 
             return ok;
         },
@@ -767,16 +763,15 @@
 
         _loadData = function(data) {
 
-
             if ($.isEmptyObject(data)) {
-                // _showEmptyMessage();
+                _showEmptyMessage();
             } else {
 
                 function getItemPattern() {
                     var pattern;
 
                     if (_is_child) {
-                        pattern = '<div class="review review-child" data-id="'+data.body.id+'" data-img-dir="'+_imgDir+'" data-country="'+_countryCode+'">\
+                        pattern = '<div class="review review-child '+name.toLowerCase()+'" data-id="'+data.body.id+'" data-img-dir="'+_imgDir+'" data-country="'+_countryCode+'">\
                             <div class="review-wrap">\
                                 <div class="review-info">\
                                     <div class="review-info-top">\
@@ -788,20 +783,14 @@
                                             <div class="review-date">'+_getCurrDate()+'</div>\
                                         </div>\
                                     </div>\
-                                    <div class="list-rating '+getWebName(get_rating(_rate_slider_result))+'">\
-                                        <div class="list-rating-wrap">\
-                                            <div class="list-rating-score">'+_rate_slider_result+'</div>\
-                                            <div class="list-rating-text">'+get_rating(_rate_slider_result)+'</div>\
-                                        </div>\
-                                    </div>\
                                 </div>\
                                 <div class="review-body">\
                                     <div class="review-text">\
                                         <p>'+message+'</p>\
                                     </div>\
                                     <div class="review-underline">\
-                                        <div class="votes">\
-                                            <a href="#" class="votes-like"  data-id="'+data.body.id+'">\
+                                        <div class="votes js-vote">\
+                                            <a href="#" class="votes-like vote-button" data-id="'+data.body.id+'">\
                                                 <i class="icon-icon_likes"></i>\
                                                 <span class="bubble bubble-vote">0</span>\
                                             </a>\
@@ -813,7 +802,7 @@
                         ';
                     } else {
                         pattern = '\
-                        <div class="review review-parent" data-id="'+data.body.id+'" data-img-dir="'+_imgDir+'" data-country="'+_countryCode+'">\
+                        <div class="review review-parent '+name.toLowerCase()+'" data-id="'+data.body.id+'" data-img-dir="'+_imgDir+'" data-country="'+_countryCode+'">\
                             <div class="review-wrap">\
                                 <div class="review-info">\
                                     <div class="review-info-top">\
@@ -838,8 +827,8 @@
                                     </div>\
                                     <div class="review-underline">\
                                         <a href="#" class="review-replies js-reply-btn">Reply</a>\
-                                        <div class="votes">\
-                                            <a href="#" class="votes-like"  data-id="'+data.body.id+'">\
+                                        <div class="votes js-vote">\
+                                            <a href="#" class="votes-like vote-button"  data-id="'+data.body.id+'">\
                                                 <i class="icon-icon_likes"></i>\
                                                 <span class="bubble bubble-vote">0</span>\
                                             </a>\
@@ -914,7 +903,7 @@
 
             new Vote ( $('.js-vote') );
 
-            $('.review').each(function() {
+            $('.review, .reply').each(function() {
                 new AddingReview ( $(this) );
             });
         },
@@ -935,7 +924,7 @@
             _send_btn.off();
             _send_btn.on({
                 'click': function(e){
-                   var error = _prepMessage(_wrap);
+                   var error = _prepReview(_wrap);
 
                    if (error === false) {
                        e.stopPropagation();
@@ -963,33 +952,75 @@
        _init();
     }
 
+    function initScrollTo(_target, _offset) {
+
+        if (typeof _target !== "undefined") {
+            action(_target, _offset);
+        } else {
+            var btn = $('.js-scroll');
+
+            btn.on('click', function(a) {
+                var target = $($(this).attr('href'));
+                // var targetOffset = target.offset().top;
+
+                action(target, 0);
+
+                a.preventDefault();
+            });
+        }
+
+        function action(target, offset) {
+            $('html, body').animate({
+                scrollTop: target.offset().top - offset
+            }, 1000);
+        }
+    }
+
     function showMoreReviews() {
         var _btn = $('.js-more-reviews');
-        var _holder = $('#review-data-holder');
+        var _totalReviews = _btn.data('reviews');
+        var _holderParent = $('#review-data-holder');
+        var _holderChild = $('.reply-data-holder');
         var _name = $('.rating-container').data('casino-name');
         var _request = new XMLHttpRequest;
-        if( typeof CURRENT_REVIEWS_PAGE_NR ) CURRENT_REVIEWS_PAGE_NR = 1;
-        CURRENT_REVIEWS_PAGE_NR++;
+        var currentReplyId
 
         _btn.on('click',  function() {
-            _addReviews();
+            _addReviews($(this), $(this).data('type'));
             return false;
         });
 
-        var _addReviews = function(){
+
+        var _addReviews = function(_this, _type){
+
             if(BUSY_REQUEST) return;
             BUSY_REQUEST = true;
             _request.abort();
 
             _request = $.ajax( {
-                url: '/casino/more-reviews/'+getWebName(_name)+'/'+CURRENT_REVIEWS_PAGE_NR,
+                url: '/casino/more-reviews/'+getWebName(_name)+'/'+_this.data('page'),
                 dataType: 'HTML',
-                data:{id:_btn.data('id')},
+                data:{id:_this.data('id')},
                 type: 'GET',
                 success: function (data) {
-                    _holder.append(data);
+                    if (_type == 'review') {
+                        _holderParent.append(data);
+                        if (_this.data('page') >= _this.data('total') / 5) {
+                            _this.hide();
+                        }
+                    } else if (_type == 'reply') {
+                        _this.closest('.reply').find(_holderChild).append(data);
+                    }
+
+                    if (_this.data('page') >= _this.data('total') / 5) {
+                        _this.hide();
+                    }
+
+                    var _page = _this.data('page');
+
+                    _this.data('page', ++_page);
+
                     _refreshData();
-                    _btn.hide();
                 },
                 error: function ( XMLHttpRequest ) {
                     if ( XMLHttpRequest.statusText != "abort" ) {
@@ -1273,14 +1304,11 @@
                     </a>\
                 </li>';
 
-
                 return pattern;
             },
 
             _loadMoreData = function(data, container) {
                 var items = data.body.results;
-
-                console.log(items); 
 
                 for (var item in items) {
 
@@ -1587,7 +1615,7 @@
         $('.js-filter').select2MultiCheckboxes({
             templateSelection: function(selected, total) {
               // return "Selected " + selected.length + " of " + total;
-              return selected[0];
+              return "Game software";
             }
         })
     };
