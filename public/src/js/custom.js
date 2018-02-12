@@ -318,6 +318,7 @@
             _paramName = _targetContainer.data('type'),
             _paramValue = _targetContainer.data('type-value'),
             _moreButton,
+            _resetButton,
             _request = new XMLHttpRequest();
 
             if (typeof _paramName == 'undefined') {
@@ -328,6 +329,7 @@
 
         var _onEvent = function() {
                 _moreButton = $('.js-more-items');
+                _resetButton = $('.js-reset-items');
 
                 _switchers.off();
                 _switchers.on('click', function() {
@@ -351,6 +353,13 @@
                     return false;
                 });
 
+                _resetButton.off();
+                _resetButton.on('click', function() {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset'), 'add');
+
+                    return false;
+                });
+
             },
 
             _getAjaxParams = function (_paramName , _paramValue, _action) {
@@ -360,11 +369,23 @@
                     if ($(el).is(':checked')) {
                     _ajaxDataParams[$(el).attr('name')] = 1;
                     }
+
+                    if (_action == 'reset') {
+                        _ajaxDataParams[$(el).attr('name')] = '';
+                        $(el).prop('checked', false);
+                    }
                 });
 
                 $.each(_radios, function(index, el) {
                     if ($(el).is(':checked')) {
                     _ajaxDataParams[$(el).attr('name')] = $(el).attr('value');
+                    }
+
+                    if (_action == 'reset') {
+                       _ajaxDataParams[$(el).attr('name')] = 1;
+                       if (index == 0) {
+                        $(el).prop('checked', true);
+                       }
                     }
                 });
 
@@ -372,11 +393,15 @@
 
                 if (typeof _selectFilter.val() != 'undefined') {
                     _ajaxDataParams['filter_by'] = _selectFilter.val().join();
+
+                    if (_action == 'reset') {
+                        _ajaxDataParams['filter_by'] = '';
+                    }
                 }
 
                 if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 1;
                 AJAX_CUR_PAGE++;
-                if (_action != 'add') {
+                if (_action != 'add' || _action == 'reset') {
                     AJAX_CUR_PAGE = 1;
                 }
                 // _ajaxDataParams['page'] = AJAX_CUR_PAGE;
@@ -403,6 +428,10 @@
                             var cont = $(data).find('.loaded-item');
                             _targetAddContainer.append(cont);
                             // _moreButton.hide();
+                        }
+
+                        if ($(data).filter('.empty-content').length > 0) {
+                            _moreButton.hide();
                         }
                         // initRateSlider();
                         // changeNumSize();
