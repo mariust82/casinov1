@@ -4,14 +4,12 @@
         <div class="swiper-wrapper">
           <std:foreach var="$[data]" key ="key" value="result">
               <div class="swiper-slide">
-                <div class="swiper-slide">
                   <std:if condition="'$[type]'=='0'">
                     <a href="${key}">${result}</a>
                   <std:else>
                     <std:set name="croppedItem" value="str_replace(' Casinos', '', ${result})"/>
                     <a class="${get_active($[type], ${croppedItem})}" href="${key}">${result}</a>
                   </std:if>
-                </div>
               </div>
           </std:foreach>
         </div>

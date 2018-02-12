@@ -19,9 +19,12 @@
 
 			<div class="data-add-container"></div>
 
-			<div class="btn-holder">
-				<a href="#" class="btn-bordered load js-more-items">LOAD MORE GAMES</a>
-			</div>
+			<std:if condition="${data.total_games} > 24">
+				<div class="btn-holder">
+					<a href="#" class="btn-bordered load js-more-items">LOAD MORE GAMES</a>
+				</div>
+			</std:if>
+
 		</div>
 	</div>
 <import file="templates/include-footer"/>

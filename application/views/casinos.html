@@ -16,9 +16,16 @@
 				<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
 			</div>
 			<div class="data-add-container"></div>
-			<div class="btn-holder">
-				<a href="#" class="btn-bordered load js-more-items">LOAD MORE CASINOS</a>
-			</div>
+
+			<std:if condition="${data.total_casinos} > 20">
+				<div class="btn-holder">
+					<a href="#" class="btn-bordered load js-more-items">LOAD MORE CASINOS</a>
+				</div>
+			</std:if>
 		</div>
 	</div>
+
+	<!-- <div>
+		<pre>${var_dump(${data.selected_entity})}</pre>
+	</div> -->
 <import file="templates/include-footer"/>

@@ -4426,6 +4426,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .links-nav .swiper-slide {
   width: auto;
+  margin-right: 30px;
 }
 
 .links-nav .swiper-container:after {

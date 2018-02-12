@@ -121,12 +121,14 @@
 								<std:if condition="${data.casino.is_live_dealer}">Yes<std:else>No</std:if>
 							</div>
 						</div>
-						<div class="def-list-item">
-							<div class="def-list-key">Established</div>
-							<div class="def-list-val">
-								${date("M d, Y",  strtotime(${data.casino.date_established}))}
+						<std:if condition="${data.casino.date_established} != '0000-00-00'">
+							<div class="def-list-item">
+								<div class="def-list-key">Established</div>
+								<div class="def-list-val">
+									${date("M d, Y",  strtotime(${data.casino.date_established}))}
+								</div>
 							</div>
-						</div>
+						</std:if>
 						<div class="def-list-item">
 							<div class="def-list-key">Email</div>
 							<div class="def-list-val">

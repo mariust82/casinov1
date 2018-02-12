@@ -1,4 +1,4 @@
-<div class="list">
+<div class="list" data-total="${data.total_casinos}">
 	<div class="list-heading list-item">
 		<div class="list-item-cell list-heading-title">CASINO</div>
 		<div class="list-item-cell list-heading-title">$[type]</div>
@@ -30,7 +30,9 @@
 					<div class="multirow">
 						<div class="list-item-flex">
 							<std:if condition="'$[type]' === 'ESTABLISHED'">
-								<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
+								<std:if condition="${result.date_established} != '0000-00-00'">
+									<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
+								</std:if>
 							<std:else>
 								<span class="list-item-trun"> 
 									${result.softwares.0} 

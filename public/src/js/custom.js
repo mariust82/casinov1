@@ -319,6 +319,7 @@
             _paramValue = _targetContainer.data('type-value'),
             _moreButton,
             _resetButton,
+            _itemsPerPage = 20,
             _request = new XMLHttpRequest();
 
             if (typeof _paramName == 'undefined') {
@@ -394,12 +395,14 @@
                 if (typeof _selectFilter.val() != 'undefined') {
                     _ajaxDataParams['filter_by'] = _selectFilter.val().join();
 
+                    _itemsPerPage = 24;
+
                     if (_action == 'reset') {
                         _ajaxDataParams['filter_by'] = '';
                     }
                 }
 
-                if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 1;
+                if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 0;
                 AJAX_CUR_PAGE++;
                 if (_action != 'add' || _action == 'reset') {
                     AJAX_CUR_PAGE = 1;
@@ -428,6 +431,10 @@
                             var cont = $(data).find('.loaded-item');
                             _targetAddContainer.append(cont);
                             // _moreButton.hide();
+                        }
+
+                        if (AJAX_CUR_PAGE >= Math.ceil($(data).filter('[data-total]').data('total') / _itemsPerPage)) {
+                            _moreButton.hide();
                         }
 
                         if ($(data).filter('.empty-content').length > 0) {
