@@ -87,6 +87,13 @@ function get_country_status($name)
     return $string;
 }
 
+function get_flags_dir()
+{
+    $dir = "/public/build/images/flags";
+    return $dir;
+}
+
+
 function get_img_dir()
 {
     $dir = "/public/sync";

@@ -15,7 +15,7 @@
 				<div class="qty-items">${data.total_casinos} results</div>
 				<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
 			</div>
-			<div class="data-add-container"></div>
+			<div class="data-add-container" data-total="${data.total_casinos}"></div>
 
 			<std:if condition="${data.total_casinos} > 20">
 				<div class="btn-holder">
@@ -24,8 +24,4 @@
 			</std:if>
 		</div>
 	</div>
-
-	<!-- <div>
-		<pre>${var_dump(${data.selected_entity})}</pre>
-	</div> -->
 <import file="templates/include-footer"/>

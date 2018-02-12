@@ -317,6 +317,8 @@
             _targetAddContainer = $('.data-add-container'),
             _paramName = _targetContainer.data('type'),
             _paramValue = _targetContainer.data('type-value'),
+            _ajaxContent = $('.aj-content'),
+            _emptyContent = $('.empty-filters'),
             _moreButton,
             _resetButton,
             _itemsPerPage = 20,
@@ -405,7 +407,7 @@
                 if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 0;
                 AJAX_CUR_PAGE++;
                 if (_action != 'add' || _action == 'reset') {
-                    AJAX_CUR_PAGE = 1;
+                    AJAX_CUR_PAGE = 0;
                 }
                 // _ajaxDataParams['page'] = AJAX_CUR_PAGE;
 
@@ -427,19 +429,28 @@
                         if (_action == 'replace') {
                             _targetContainer.html(data);
                             _targetAddContainer.html('');
+
+                            var loadTotal = $(data).filter('[data-load-total]').data('load-total');
+
+                            if (loadTotal > 0) {
+                                $('[data-total]').data('total', loadTotal);
+                            }
                         } else {
                             var cont = $(data).find('.loaded-item');
                             _targetAddContainer.append(cont);
                             // _moreButton.hide();
+
+                            if (cont.length == 0) {
+                                _moreButton.hide();
+                                _ajaxContent.hide();
+                                _emptyContent.show();
+                            }
                         }
 
-                        if (AJAX_CUR_PAGE >= Math.ceil($(data).filter('[data-total]').data('total') / _itemsPerPage)) {
+                        if (AJAX_CUR_PAGE >= Math.ceil($('.data-add-container').data('total') / _itemsPerPage)) {
                             _moreButton.hide();
                         }
 
-                        if ($(data).filter('.empty-content').length > 0) {
-                            _moreButton.hide();
-                        }
                         // initRateSlider();
                         // changeNumSize();
                         _construct();

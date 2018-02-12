@@ -1,9 +1,9 @@
-<div class="review $[class] ${normalize(${result.name})}" data-id="${result.id}" data-img-dir="${get_img_dir()}/flags/${data.country.code}.png" data-country="${data.country.code}">
+<div class="review $[class] ${normalize(${result.name})}" data-id="${result.id}" data-img-dir="${get_flags_dir()}/${data.country.code}.png" data-country="${data.country.code}">
 	<div class="review-wrap">
 		<div class="review-info">
 			<div class="review-info-top">
 				<div class="review-flag">
-					<img src="${get_img_dir()}/flags/${data.country.code}.png" alt="${data.country.code}" width="15" height="12">
+					<img src="${get_flags_dir()}/${data.country.code}.png" alt="${data.country.code}" width="15" height="12">
 				</div>
 				<div class="review-info-body">
 					<div class="review-name">${result.name}</div>

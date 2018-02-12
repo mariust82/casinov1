@@ -1,13 +1,7 @@
 <std:set name="page" value="games-list"/>
 
-<std:if condition="${data.total_games} > 0">
-	<div data-total="${data.total_games}">
-		<item:game data="${data.games}"/>
-	</div>
-<std:else>
-	<import file="templates/include-reset-filters"/>
-</std:if>
+<div class="aj-content" data-load-total="${data.total_games}">
+	<item:game data="${data.games}"/>
+</div>
 
-<!-- <div>
-	<pre>${var_dump(${data})}</pre>
-</div> -->
+<import file="templates/include-reset-filters"/>

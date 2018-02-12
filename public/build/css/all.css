@@ -7027,4 +7027,8 @@ a:hover, a:active, a:visited, a:focus {
   position: relative;
 }
 
+.empty-filters {
+  display: none;
+}
+
 /*# sourceMappingURL=maps/all.css.map */
