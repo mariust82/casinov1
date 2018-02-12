@@ -1,8 +1,10 @@
 <std:set name="page" value="casinos-list"/>
 
 <std:if condition="${data.total_casinos} > 0">
-	<div class="qty-items">${data.total_casinos} results</div>
-	<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
+	<div data-total="${data.total_casinos}">
+		<div class="qty-items">${data.total_casinos} results</div>
+		<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
+	</div>
 <std:else>
 	<import file="templates/include-reset-filters"/>
 </std:if>

@@ -1,7 +1,9 @@
 <std:set name="page" value="games-list"/>
 
 <std:if condition="${data.total_games} > 0">
-	<item:game data="${data.games}"/>
+	<div data-total="${data.total_games}">
+		<item:game data="${data.games}"/>
+	</div>
 <std:else>
 	<import file="templates/include-reset-filters"/>
 </std:if>
