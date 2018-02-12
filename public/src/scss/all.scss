@@ -6,6 +6,7 @@
 @import '_checkbox';
 @import '_select2';
 @import '_input-placeholder';
+@import '_loader';
 // @import '_jquery.dropit';
 // @import '_ion.rangeSlider';
 // @import '_ion.rangeSlider.skinNice';
@@ -1787,7 +1788,7 @@ a {
 }
 
 .shadow .overlay{
-    display:block;
+    display:block !important;
 }
 
 .dashed{
@@ -3479,7 +3480,7 @@ a {
         position:relative;
         height:0;
         padding-bottom:720/960*100%;
-        
+
         background:#000;
 
         &.playing{
@@ -4225,4 +4226,33 @@ a {
 
 .empty-filters{
     display:none;
+}
+
+.data-container{
+    position:relative;
+}
+
+.loader{
+    display:none;
+    position:fixed;
+    top:50%;
+    left:50%;
+    background:#fff;
+    padding:5px;
+    border-radius:5px;
+    transform:translate(-50%, -50%);
+    z-index:101;
+}
+
+
+.holder{
+    transition:all .3s;
+}
+
+.data-container-holder{
+    position:relative;
+}
+
+.loading{
+    opacity:0;
 }

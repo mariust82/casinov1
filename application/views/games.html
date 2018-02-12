@@ -13,11 +13,15 @@
 			
 			<filter:games/>
 
-			<div class="data-container" data-type-value="${data.selected_entity}">
-				<item:game data="${data.games}"/>
+			<div class="data-container-holder">
+				<div class="holder">
+					<div class="data-container" data-type-value="${data.selected_entity}">
+						<item:game data="${data.games}"/>
+					</div>
+					<div class="data-add-container" data-total="${data.total_games}"></div>
+				</div>
+				<import file="templates/include-reset-filters"/>
 			</div>
-
-			<div class="data-add-container" data-total="${data.total_games}"></div>
 
 			<std:if condition="${data.total_games} > 24">
 				<div class="btn-holder">

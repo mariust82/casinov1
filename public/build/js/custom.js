@@ -319,6 +319,7 @@
             _paramValue = _targetContainer.data('type-value'),
             _ajaxContent = $('.aj-content'),
             _emptyContent = $('.empty-filters'),
+            _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
             _moreButton,
             _resetButton,
             _itemsPerPage = 20,
@@ -415,6 +416,8 @@
             }
 
             _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
+                $('.overlay, .loader').fadeIn('fast');
+
                 if (BUSY_REQUEST) return;
                 BUSY_REQUEST = true;
                 _request.abort();
@@ -424,7 +427,8 @@
                     dataType: 'html',
                     type: 'GET',
                     success: function(data) {
-                        // console.log(data);
+                        var cont = $(data).find('.loaded-item');
+                        // var cont = $(data).filter('.loaded-item');
 
                         if (_action == 'replace') {
                             _targetContainer.html(data);
@@ -435,16 +439,16 @@
                             if (loadTotal > 0) {
                                 $('[data-total]').data('total', loadTotal);
                             }
-                        } else {
-                            var cont = $(data).find('.loaded-item');
-                            _targetAddContainer.append(cont);
-                            // _moreButton.hide();
+
+                            console.log($(data).find(_emptyContent)); 
 
                             if (cont.length == 0) {
                                 _moreButton.hide();
-                                _ajaxContent.hide();
+                                _loaderHolder.hide();
                                 _emptyContent.show();
                             }
+                        } else {
+                            _targetAddContainer.append(cont);
                         }
 
                         if (AJAX_CUR_PAGE >= Math.ceil($('.data-add-container').data('total') / _itemsPerPage)) {
@@ -467,6 +471,7 @@
                     },
                     complete: function() {
                         BUSY_REQUEST = false;
+                        $('.overlay, .loader').fadeOut('fast');
                     }
                 });
 
