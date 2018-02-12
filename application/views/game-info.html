@@ -27,6 +27,10 @@
 								<i class="icon-play"></i>
 							</div>
 
+						<std:elseif condition="${data.game.play.status} == 'screenshot'">
+							<img class="player-img" src="${get_img_dir()}/game_ss/960x720/${normalize_game(${data.game.name})}.jpg" alt="${data.game.name}">
+							<div class="player-overlay"></div>
+
 						<std:else>
 							<iframe style="display:none;" scrolling="no" id="single-play" class="play-demo" src="" width="${data.game.play.width}" height="${data.game.play.height}"></iframe>
 							<img class="player-img" src="${get_img_dir()}/game_ss/960x720/${normalize_game(${data.game.name})}.jpg" alt="${data.game.name}">

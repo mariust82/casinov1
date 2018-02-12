@@ -6134,7 +6134,7 @@ a:hover, a:active, a:visited, a:focus {
 .player-holder {
   position: relative;
   height: 0;
-  padding-bottom: 56.25%;
+  padding-bottom: 75%;
   background: #000;
 }
 

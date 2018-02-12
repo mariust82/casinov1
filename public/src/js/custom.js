@@ -1459,7 +1459,6 @@
                 _searchCasinosContainer.parent().show();
                 _searchPagesContainer.parent().show();
                 _searchEmptyContainer.hide();
-                _searchAllButton.parent().fadeIn();
             },
             _hidePopup = function() {
                 searchDropClose($('.js-search-drop'));

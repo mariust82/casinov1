@@ -254,48 +254,60 @@
 						<div class="def-column-key">Minimum withdrawal</div>
 						<div class="def-column-val">${data.casino.withdrawal_minimum}</div>
 					</div>
-					<div class="def-column-item">
-						<div class="def-column-key">Withdrawal limits</div>
-						<div class="def-column-val">
-							<std:foreach var="${data.casino.withdrawal_limits}" key ="key" value="result">
-								<p>${result}</p>
-							</std:foreach>
+
+					<std:if condition="count(${data.casino.withdrawal_limits}) > 0">
+						<div class="def-column-item">
+							<div class="def-column-key">Withdrawal limits</div>
+							<div class="def-column-val">
+								<std:foreach var="${data.casino.withdrawal_limits}" key ="key" value="result">
+									<p>${result}</p>
+								</std:foreach>
+							</div>
 						</div>
-					</div>
-					<div class="def-column-item">
-						<div class="def-column-key">Withdrawal pending time</div>
-						<div class="def-column-val">
-							<std:foreach var="${data.casino.withdrawal_timeframes}" key ="key" value="result">
-								<p>${result}</p>
-							</std:foreach>
+					</std:if>
+
+					<std:if condition="count(${data.casino.withdrawal_timeframes}) > 0">
+						<div class="def-column-item">
+							<div class="def-column-key">Withdrawal pending time</div>
+							<div class="def-column-val">
+								<std:foreach var="${data.casino.withdrawal_timeframes}" key ="key" value="result">
+									<p>${result}</p>
+								</std:foreach>
+							</div>
 						</div>
-					</div>
-					<div class="def-column-item">
-						<div class="def-column-key">Deposit methods</div>
-						<div class="def-column-val">
-							<p>
-								<std:set name="numItems" value="count(${data.casino.deposit_methods})"/>
+					</std:if>
+
+					<std:if condition="count(${data.casino.deposit_methods}) > 0">
+						<div class="def-column-item">
+							<div class="def-column-key">Deposit methods</div>
+							<div class="def-column-val">
+								<p>
+									<std:set name="numItems" value="count(${data.casino.deposit_methods})"/>
+									<std:set name="i" value="0"/>
+									<std:foreach var="${data.casino.deposit_methods}" key ="key" value="result">
+									      ${result} 
+									      <std:set name="i" value="${i}+1"/>
+									      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
+									</std:foreach>
+								</p>
+							</div>
+						</div>
+					</std:if>
+
+					<std:if condition="count(${data.casino.withdraw_methods}) > 0">
+						<div class="def-column-item">
+							<div class="def-column-key">Withdrawal methods</div>
+							<div class="def-column-val">
+								<std:set name="numItems" value="count(${data.casino.withdraw_methods})"/>
 								<std:set name="i" value="0"/>
-								<std:foreach var="${data.casino.deposit_methods}" key ="key" value="result">
-								      ${result} 
+								<std:foreach var="${data.casino.withdraw_methods}" key ="key" value="result">
+								      ${result}
 								      <std:set name="i" value="${i}+1"/>
 								      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
 								</std:foreach>
-							</p>
+							</div>
 						</div>
-					</div>
-					<div class="def-column-item">
-						<div class="def-column-key">Withdrawal methods</div>
-						<div class="def-column-val">
-							<std:set name="numItems" value="count(${data.casino.withdraw_methods})"/>
-							<std:set name="i" value="0"/>
-							<std:foreach var="${data.casino.withdraw_methods}" key ="key" value="result">
-							      ${result}
-							      <std:set name="i" value="${i}+1"/>
-							      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
-							</std:foreach>
-						</div>
-					</div>
+					</std:if>
 				</div>
 			</div>
 		</div>
