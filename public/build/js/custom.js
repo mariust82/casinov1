@@ -1435,11 +1435,13 @@
                 _searchCasinosContainer.parent().hide();
                 _searchPagesContainer.parent().hide();
                 _searchEmptyContainer.show();
+                _searchAllButton.parent().fadeOut();
             },
             _hideEmptyMessage = function(){
                 _searchCasinosContainer.parent().show();
                 _searchPagesContainer.parent().show();
                 _searchEmptyContainer.hide();
+                _searchAllButton.parent().fadeIn();
             },
             _hidePopup = function() {
                 searchDropClose($('.js-search-drop'));
