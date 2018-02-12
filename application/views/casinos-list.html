@@ -1,4 +1,8 @@
 <std:set name="page" value="casinos-list"/>
 
-<div class="qty-items">${data.total_casinos} results</div>
-<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
+<div class="aj-content" data-load-total="${data.total_casinos}">
+	<div class="qty-items">${data.total_casinos} results</div>
+	<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
+</div>
+
+<import file="templates/include-reset-filters"/>

@@ -20,6 +20,13 @@ function normalize_logo($name)
     return strtolower($str);
 }
 
+function normalize_game($name)
+{
+    $str = str_replace(" ", "_", $name);
+    $str = str_replace("#", "_", $str)."_ss";
+    return $str;
+}
+
 function get_active($page, $item)
 {
     $class = "";
@@ -79,6 +86,13 @@ function get_country_status($name)
 
     return $string;
 }
+
+function get_flags_dir()
+{
+    $dir = "/public/build/images/flags";
+    return $dir;
+}
+
 
 function get_img_dir()
 {

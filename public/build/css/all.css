@@ -4426,6 +4426,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .links-nav .swiper-slide {
   width: auto;
+  margin-right: 30px;
 }
 
 .links-nav .swiper-container:after {
@@ -7024,6 +7025,10 @@ a:hover, a:active, a:visited, a:focus {
 .data-container .qty-items {
   margin: 0 0 -14px;
   position: relative;
+}
+
+.empty-filters {
+  display: none;
 }
 
 /*# sourceMappingURL=maps/all.css.map */

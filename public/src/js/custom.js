@@ -317,7 +317,11 @@
             _targetAddContainer = $('.data-add-container'),
             _paramName = _targetContainer.data('type'),
             _paramValue = _targetContainer.data('type-value'),
+            _ajaxContent = $('.aj-content'),
+            _emptyContent = $('.empty-filters'),
             _moreButton,
+            _resetButton,
+            _itemsPerPage = 20,
             _request = new XMLHttpRequest();
 
             if (typeof _paramName == 'undefined') {
@@ -328,6 +332,7 @@
 
         var _onEvent = function() {
                 _moreButton = $('.js-more-items');
+                _resetButton = $('.js-reset-items');
 
                 _switchers.off();
                 _switchers.on('click', function() {
@@ -351,6 +356,13 @@
                     return false;
                 });
 
+                _resetButton.off();
+                _resetButton.on('click', function() {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset'), 'add');
+
+                    return false;
+                });
+
             },
 
             _getAjaxParams = function (_paramName , _paramValue, _action) {
@@ -360,11 +372,23 @@
                     if ($(el).is(':checked')) {
                     _ajaxDataParams[$(el).attr('name')] = 1;
                     }
+
+                    if (_action == 'reset') {
+                        _ajaxDataParams[$(el).attr('name')] = '';
+                        $(el).prop('checked', false);
+                    }
                 });
 
                 $.each(_radios, function(index, el) {
                     if ($(el).is(':checked')) {
                     _ajaxDataParams[$(el).attr('name')] = $(el).attr('value');
+                    }
+
+                    if (_action == 'reset') {
+                       _ajaxDataParams[$(el).attr('name')] = 1;
+                       if (index == 0) {
+                        $(el).prop('checked', true);
+                       }
                     }
                 });
 
@@ -372,12 +396,18 @@
 
                 if (typeof _selectFilter.val() != 'undefined') {
                     _ajaxDataParams['filter_by'] = _selectFilter.val().join();
+
+                    _itemsPerPage = 24;
+
+                    if (_action == 'reset') {
+                        _ajaxDataParams['filter_by'] = '';
+                    }
                 }
 
-                if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 1;
+                if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 0;
                 AJAX_CUR_PAGE++;
-                if (_action != 'add') {
-                    AJAX_CUR_PAGE = 1;
+                if (_action != 'add' || _action == 'reset') {
+                    AJAX_CUR_PAGE = 0;
                 }
                 // _ajaxDataParams['page'] = AJAX_CUR_PAGE;
 
@@ -399,11 +429,28 @@
                         if (_action == 'replace') {
                             _targetContainer.html(data);
                             _targetAddContainer.html('');
+
+                            var loadTotal = $(data).filter('[data-load-total]').data('load-total');
+
+                            if (loadTotal > 0) {
+                                $('[data-total]').data('total', loadTotal);
+                            }
                         } else {
                             var cont = $(data).find('.loaded-item');
                             _targetAddContainer.append(cont);
                             // _moreButton.hide();
+
+                            if (cont.length == 0) {
+                                _moreButton.hide();
+                                _ajaxContent.hide();
+                                _emptyContent.show();
+                            }
                         }
+
+                        if (AJAX_CUR_PAGE >= Math.ceil($('.data-add-container').data('total') / _itemsPerPage)) {
+                            _moreButton.hide();
+                        }
+
                         // initRateSlider();
                         // changeNumSize();
                         _construct();
@@ -1406,11 +1453,13 @@
                 _searchCasinosContainer.parent().hide();
                 _searchPagesContainer.parent().hide();
                 _searchEmptyContainer.show();
+                _searchAllButton.parent().fadeOut();
             },
             _hideEmptyMessage = function(){
                 _searchCasinosContainer.parent().show();
                 _searchPagesContainer.parent().show();
                 _searchEmptyContainer.hide();
+                _searchAllButton.parent().fadeIn();
             },
             _hidePopup = function() {
                 searchDropClose($('.js-search-drop'));

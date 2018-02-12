@@ -2069,6 +2069,7 @@ a {
 
     .swiper-slide{
         width:auto;
+        margin-right:30px;
     }
 
     .swiper-container{
@@ -4219,4 +4220,8 @@ a {
         margin: 0 0 -14px;
         position:relative;
     }
+}
+
+.empty-filters{
+    display:none;
 }

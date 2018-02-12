@@ -61,7 +61,7 @@
 						<div class="def-list-item">
 							<div class="def-list-key">Country</div>
 							<div class="def-list-val">
-								<img src="${get_img_dir()}/flags/${data.country.code}.png" alt="" width="15" height="12">
+								<img src="${get_flags_dir()}/${data.country.code}.png" alt="" width="15" height="12">
 								${data.country.name} 
 								${get_country_status(${data.casino.is_country_accepted})}
 							</div>
@@ -80,7 +80,7 @@
 								<std:foreach var="${data.casino.languages}" key ="key" value="result">
 								      ${result}
 								      <std:set name="i" value="${i}+1"/>
-								      <std:if condition="${i}+1 < ${numItems}">, </std:if>
+								      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
 								</std:foreach>
 							</div>
 						</div>
@@ -98,7 +98,7 @@
 								<std:foreach var="${data.casino.currencies}" key ="key" value="result">
 								      ${result}
 								      <std:set name="i" value="${i}+1"/>
-								      <std:if condition="${i}+1 < ${numItems}">, </std:if>
+								      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
 								</std:foreach>
 							</div>
 						</div>
@@ -121,12 +121,14 @@
 								<std:if condition="${data.casino.is_live_dealer}">Yes<std:else>No</std:if>
 							</div>
 						</div>
-						<div class="def-list-item">
-							<div class="def-list-key">Established</div>
-							<div class="def-list-val">
-								${date("M d, Y",  strtotime(${data.casino.date_established}))}
+						<std:if condition="${data.casino.date_established} != '0000-00-00'">
+							<div class="def-list-item">
+								<div class="def-list-key">Established</div>
+								<div class="def-list-val">
+									${date("M d, Y",  strtotime(${data.casino.date_established}))}
+								</div>
 							</div>
-						</div>
+						</std:if>
 						<div class="def-list-item">
 							<div class="def-list-key">Email</div>
 							<div class="def-list-val">
@@ -159,7 +161,7 @@
 								<std:foreach var="${data.casino.licenses}" key ="key" value="result">
 								      ${result}
 								      <std:set name="i" value="${i}+1"/>
-								      <std:if condition="${i}+1 < ${numItems}">, </std:if>
+								      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
 								</std:foreach>
 							</div>
 						</div>
@@ -172,7 +174,7 @@
 									<std:foreach var="${data.casino.certifiers}" key ="key" value="result">
 									      ${result}
 									      <std:set name="i" value="${i}+1"/>
-									      <std:if condition="${i}+1 < ${numItems}">, </std:if>
+									      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
 									</std:foreach>
 								</div>
 							</div>
@@ -186,11 +188,14 @@
 				<div class="box">
 					<div class="title title-small">Welcome package</div>
 					<div class="bonus-holder">
-						<div class="bonus-item">
-							<div class="bonus-box bonus-free">
-								<box:bonus data="data.casino" modifier="bonus_free" heading="0" title="Free Deposit Bonus" icon="icon-icon_bonuses"/>
+						<std:if condition="!is_null(${data.casino.bonus_free})">
+							<div class="bonus-item">
+								<div class="bonus-box bonus-free">
+									<box:bonus data="data.casino" modifier="bonus_free" heading="0" title="Free Deposit Bonus" icon="icon-icon_bonuses"/>
+								</div>
 							</div>
-						</div>
+						</std:if>
+
 						<div class="bonus-item">
 							<div class="bonus-box bonus-first">
 								<box:bonus data="data.casino" modifier="bonus_first_deposit" heading="0" title="First Deposit Bonus" icon="icon-free-bonus-icon"/>
@@ -250,7 +255,7 @@
 								<std:foreach var="${data.casino.deposit_methods}" key ="key" value="result">
 								      ${result} 
 								      <std:set name="i" value="${i}+1"/>
-								      <std:if condition="${i}+1 < ${numItems}">, </std:if>
+								      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
 								</std:foreach>
 							</p>
 						</div>
@@ -263,7 +268,7 @@
 							<std:foreach var="${data.casino.withdraw_methods}" key ="key" value="result">
 							      ${result}
 							      <std:set name="i" value="${i}+1"/>
-							      <std:if condition="${i}+1 < ${numItems}">, </std:if>
+							      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
 							</std:foreach>
 						</div>
 					</div>
