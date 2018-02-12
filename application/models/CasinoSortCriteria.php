@@ -2,7 +2,7 @@
 class CasinoSortCriteria
 {
     const NONE = 1;
-    const NEWEST = 2;
-    const TOP_RATED = 3;
+    const TOP_RATED = 2;
+    const NEWEST = 3;
     const POPULARITY = 4;
 }
