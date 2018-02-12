@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "61cb86bf77ed38fd392c8e9e88f815a3",
+    "content-hash": "a617fea5d5a12751871d74cbcd9bad6f",
     "packages": [
         {
             "name": "lucinda/errors",
@@ -77,6 +77,44 @@
                 "http"
             ],
             "time": "2018-01-28T11:50:06+00:00"
+        },
+        {
+            "name": "lucinda/internationalization",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/php-internationalization-api.git",
+                "reference": "2d80472e79b72d6cd34529aa3c1100e1d5421650"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/php-internationalization-api/zipball/2d80472e79b72d6cd34529aa3c1100e1d5421650",
+                "reference": "2d80472e79b72d6cd34529aa3c1100e1d5421650",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gettext": "*"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Light weight i18n API performing internationalization via gettext and PO & MO files",
+            "homepage": "https://github.com/aherne/php-internationalization-api",
+            "keywords": [
+                "gettext",
+                "internationalization",
+                "localization"
+            ],
+            "time": "2018-02-12T13:52:35+00:00"
         },
         {
             "name": "lucinda/logging",
