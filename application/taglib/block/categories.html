@@ -12,13 +12,13 @@
 			</div>
 		</div>
 		<div class="categories">
-			<div class="categories-list">
+			<div class="categories-list ${img_class}">
 				<std:foreach var="${data.results}" key="key" value="result">
 					<div class="category ${img_class}">
 						<a href="$[goto]/${normalize(${key})}">
 							<std:if condition="$[image]">
 								<span class="category-img">
-									<img src="${get_img_dir()}/games/${normalize(${data.icons.${key}})}.jpg" alt="${key}" width="136" height="100">
+									<img src="${get_img_dir()}/game_ss/136x100/${normalize_logo(${data.icons.${key}})}.jpg" alt="${key}" width="136" height="100">
 								</span>
 							</std:if>
 							<span class="category-body">

@@ -11,7 +11,48 @@
         initMobileMenu();
         copyToClipboard();
         initMoboleBonusesPop();
+        initReviewForm();
+        initReplies();
+        initTexfieldsLabels();
+        showMoreReviews();
+        checkStringLength();
+
+
         new SearchPanel ( $('.header') );
+
+        if ($('#filters').length > 0) {
+            new Filters ( $('#filters') );
+        }
+
+        if ($('#player-wrap').length > 0){
+            initPlayerControls();
+        }
+
+        if ($('#reviews').length > 0){
+            $('.review').each(function(i) {
+                new AddingReview ( $(this) );
+            });
+
+            $('[href="#reviews"]').on('click', function() {
+                initScrollTo($('#reviews'), 100);
+                return false;
+            });
+        }
+
+        if ($('.js-vote').length > 0) {
+            new Vote ( $('.js-vote') );
+        }
+
+        if ($('.js-run-counter').length > 0) {
+            var _name = $('.js-run-counter').data('name');
+            runPlayCounter(_name);
+        }
+
+        if ($('.contact-form').length > 0) {
+            new handleContactUs($( '.contact-form' ));
+        }
+
+        new newsletter($( '.subscribe' ));
 
         tooltipConfig = {
             trigger: 'click',
@@ -54,6 +95,1011 @@
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
 
     });
+
+    function checkStringLength(argument) {
+        var box = $('.bonus-box');
+
+        box.each(function(index, el) {
+            var parent = $(this).find('.list-item-flex').width();
+            var child = $(this).find('.list-item-trun').width();
+            var bubble = $(this).find('.bubble');
+
+            if (child == parent) {
+                bubble.show();
+            }
+
+
+        });
+    }
+
+    function newsletter(obj){
+        var _wrap = obj,
+            _field_email = _wrap.find('.news-email'),
+            _send_btn = _wrap.find('.news-btn'),
+            _contact_success = $('#news-success'),
+            _contact_error = $('#news-note'),
+            _contact_error_class = 'not-valid',
+             email,
+            _request = new XMLHttpRequest();
+
+       _prepMessage = function(){
+                email = _field_email.val();
+                ok = true;
+
+            if(email === '' || !validateEmail(email)){
+                _field_email.parent().addClass(_contact_error_class);
+                ok = false;
+            } else {
+                _field_email.parent().removeClass(_contact_error_class);
+            }
+
+           if(!ok) {
+               _contact_error.show();
+           } else {
+               _contact_error.hide();
+           }
+
+            return ok;
+        },
+
+       _sendNews = function(email){
+            _request.abort();
+            _request = $.ajax( {
+                url: "/newsletter/subscribe",
+                data: {
+                    email: email,
+                },
+                dataType: 'json',
+                timeout: 20000,
+                type: 'POST',
+                success: function ( response ) {
+                    if(response.status =="ok") {
+                        _contact_success.show();
+                        _contact_error.hide();
+                        _send_btn.prop('disabled', true);
+                        _field_email.val('');
+                        _onEvents();
+                    }
+                    else if(response.status=="error") {
+                        // console.error(response.body);
+                        var arr = JSON.parse(response.body);
+
+                        $('.action-added').remove();
+                        $.each(arr, function(index, val) {
+                            var $msg = '<div class="action-field action-added not-valid ">'+val+'</div>';
+                            $('.review-submit-holder .msg-holder').append($msg);
+                        });
+                    }
+                },
+                error: function ( XMLHttpRequest ) {
+                    console.error("Could not send message!");
+                }
+            });
+        },
+
+       _onEvents = function(){
+            _send_btn.on({
+                'click': function(e){
+                   var error = _prepMessage();
+                   if (error === false) {
+                       e.stopPropagation();
+                   } else {
+                        _sendNews(email);
+                   }
+                }
+            });
+        },
+
+       _init = function(){
+            _onEvents();
+        };
+
+       _init();
+    }
+
+    function handleContactUs(obj){
+        var _wrap = obj,
+            _field_name = $('.contact-name'),
+            _field_email = $('.contact-email'),
+            _field_message = $('.contact-message'),
+            _contact_btn = $('.contact-btn'),
+            _contact_success = $('#contact-us-success'),
+            _contact_error = $('#contact-us-note'),
+            _contact_error_class = 'not-valid',
+             name,
+             email,
+             message,
+            _request = new XMLHttpRequest();
+
+       _prepContact = function(){
+                name = _field_name.val();
+                email = _field_email.val();
+                message = _field_message.val();
+                ok = true;
+            if(name === '' || !_validateInputName(name)){
+                _field_name.parent().addClass(_contact_error_class);
+                ok = false;
+            } else {
+                _field_name.parent().removeClass(_contact_error_class);
+            }
+            if(email === '' || !validateEmail(email)){
+                _field_email.parent().addClass(_contact_error_class);
+                ok = false;
+            } else {
+                _field_email.parent().removeClass(_contact_error_class);
+            }
+            if(message === '' || !_validateInputMessage(message)){
+                _field_message.parent().addClass(_contact_error_class);
+                ok = false;
+            } else {
+                _field_message.parent().removeClass(_contact_error_class);
+            }
+
+           if(!ok) {
+               _contact_error.show();
+           } else {
+               _contact_error.hide();
+           }
+
+            return ok;
+        },
+
+       _sendMessage = function(name, email, message){
+            _request.abort();
+            _request = $.ajax( {
+                url: "/contact/send",
+                data: {
+                    name: name,
+                    email: email,
+                    message: message
+                },
+                dataType: 'json',
+                timeout: 20000,
+                type: 'POST',
+                success: function ( response ) {
+                    if(response.status =="ok") {
+                        if(response.body.success === 1) {
+                            _contact_success.show();
+                            _contact_error.hide();
+                            _contact_btn.prop('disabled', true);
+                            _field_name.val('');
+                            _field_email.val('');
+                            _field_message.val('');
+                            _onEvents();
+                            $('.action-added').remove();
+                        }
+                    }
+                    else if(response.status=="error") {
+                        // console.error(response.body);
+                        var arr = JSON.parse(response.body);
+
+                        $('.action-added').remove();
+                        $.each(arr, function(index, val) {
+                            var $msg = '<div class="action-field action-added not-valid ">'+val+'</div>';
+                            $('.review-submit-holder .msg-holder').append($msg);
+                        });
+                    }
+                },
+                error: function ( XMLHttpRequest ) {
+                    console.error("Could not send message!");
+                }
+            });
+        },
+
+       _onEvents = function(){
+            _contact_btn.on({
+                'click': function(e){
+                   var error = _prepContact();
+
+                   if (error === false) {
+                       e.stopPropagation();
+                   } else {
+                        _sendMessage(name, email, message);
+                   }
+                }
+            });
+        },
+
+       _init = function(){
+            _onEvents();
+        };
+
+       _init();
+    }
+
+    var Filters = function(obj) {
+        var _obj = obj,
+            _self = this,
+            _switchers = _obj.find('input[type=checkbox]'),
+            _radios = _obj.find('input[type=radio]'),
+            _selectFilter = _obj.find('select[name=soft]'),
+            _targetContainer = $('.data-container'),
+            _targetAddContainer = $('.data-add-container'),
+            _paramName = _targetContainer.data('type'),
+            _paramValue = _targetContainer.data('type-value'),
+            _moreButton,
+            _request = new XMLHttpRequest();
+
+            if (typeof _paramName == 'undefined') {
+                _paramName = 'type';
+            }
+
+            _url = _obj.data('url');
+
+        var _onEvent = function() {
+                _moreButton = $('.js-more-items');
+
+                _switchers.off();
+                _switchers.on('click', function() {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
+
+                _radios.off();
+                _radios.on('click', function() {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
+
+                _selectFilter.off();
+                _selectFilter.on('change', function() {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
+
+                _moreButton.off();
+                _moreButton.on('click', function() {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add');
+
+                    return false;
+                });
+
+            },
+
+            _getAjaxParams = function (_paramName , _paramValue, _action) {
+                var _ajaxDataParams = {};
+
+                $.each(_switchers, function(index, el) {
+                    if ($(el).is(':checked')) {
+                    _ajaxDataParams[$(el).attr('name')] = 1;
+                    }
+                });
+
+                $.each(_radios, function(index, el) {
+                    if ($(el).is(':checked')) {
+                    _ajaxDataParams[$(el).attr('name')] = $(el).attr('value');
+                    }
+                });
+
+                _ajaxDataParams[_paramName] = _paramValue;
+
+                if (typeof _selectFilter.val() != 'undefined') {
+                    _ajaxDataParams['filter_by'] = _selectFilter.val().join();
+                }
+
+                if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 1;
+                AJAX_CUR_PAGE++;
+                if (_action != 'add') {
+                    AJAX_CUR_PAGE = 1;
+                }
+                // _ajaxDataParams['page'] = AJAX_CUR_PAGE;
+
+                return _ajaxDataParams;
+            }
+
+            _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
+                if (BUSY_REQUEST) return;
+                BUSY_REQUEST = true;
+                _request.abort();
+                _request = $.ajax({
+                    url: _url+AJAX_CUR_PAGE,
+                    data: _ajaxDataParams,
+                    dataType: 'html',
+                    type: 'GET',
+                    success: function(data) {
+                        // console.log(data);
+
+                        if (_action == 'replace') {
+                            _targetContainer.html(data);
+                            _targetAddContainer.html('');
+                        } else {
+                            var cont = $(data).find('.loaded-item');
+                            _targetAddContainer.append(cont);
+                            // _moreButton.hide();
+                        }
+                        // initRateSlider();
+                        // changeNumSize();
+                        _construct();
+
+                        $('.js-tooltip').tooltipster(tooltipConfig);
+                        $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                        $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+                        initMoboleBonusesPop();
+                    },
+                    error: function(XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != "abort") {
+                            console.log('err');
+                        }
+                    },
+                    complete: function() {
+                        BUSY_REQUEST = false;
+                    }
+                });
+
+                var loadDelay = setTimeout(function() {
+                }, 300);
+
+                _hideLoading = function(){
+                    clearTimeout(loadDelay);
+                }
+            },
+
+            _loadData = function(data) {
+
+            },
+            _construct = function() {
+                _onEvent();
+                _obj[0].obj = _self;
+            };
+
+        _construct();
+    };
+
+
+    function goToPage(game_name, width, height) {
+        window.open("http://game.casinoslists.com/game_play.php?game="+game_name+"&width="+width+"&height="+height,"_blank","toolbar=0,location=0,menubar=0,width="+width+",height="+height);
+    }
+
+    function goToFrame(url) {
+        var frame = $('#single-play');
+        var container = $('.player-holder');
+
+        container.addClass('playing');
+        frame.attr('src',url);
+    }
+
+    var reloadFrame = function(btnReload){
+        var _init = function(){
+            btnReload.on({
+                click: function(){
+                    _reload();
+                }
+            });
+        };
+        var _reload = function(){
+            var frame = $('#single-play');
+            var src = frame.attr('src');
+            frame.attr('src', null);
+            frame.attr('src', src);
+        };
+        
+        _init();
+    };
+
+    function runPlayCounter(_name) {
+        _request = new XMLHttpRequest;
+
+        if(BUSY_REQUEST) return;
+        BUSY_REQUEST = true;
+        _request.abort();
+
+        _request = $.ajax( {
+            url: '/play-counter',
+            data:{
+                name: _name
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                console.log('bbbb'); 
+            },
+            error: function ( XMLHttpRequest ) {
+                if ( XMLHttpRequest.statusText != "abort" ) {
+                    console.log( 'err' );
+                }
+            },
+            complete: function(){
+                BUSY_REQUEST = false;
+            }
+        } );
+    }
+
+    function initPlayerControls() {
+        var _btnFull = $('#play-fullscreen');
+        var _btnReplay = $('#play-replay');
+        var _btnGoPage = $('#go-to-page');
+        var _btnGoFrame = $('#go-to-frame');
+        var _container = $('#player-wrap');
+        var _body = $('body');
+
+        _btnGoFrame.on('click', function() {
+            var _name = $(this).data('name');
+            var _url = $(this).data('url');
+            goToFrame(_url);
+            runPlayCounter(_name);
+            return false;
+        });
+
+        _btnGoPage.on('click', function() {
+            var _name = $(this).data('name');
+            var _width = $(this).data('width');
+            var _height = $(this).data('height');
+            goToPage(_name, _width, _height);
+            runPlayCounter(_name);
+            return false;
+        });
+
+        _btnReplay.on('click', function() {
+            reloadFrame($(this));
+            return false;
+        });
+
+        _btnFull.on('click', function() {
+            _body.toggleClass('fullscreen');
+            return false;
+        });
+    }
+
+    function initReviewForm() {
+        var field = $('.expanding');
+        var hiddenBlocks = $('.js-expanding-textfields');
+
+        field.on('focus', function() {
+            $(this).removeClass('expanding');
+            $(this).closest('.form').find(hiddenBlocks).slideDown();
+        });
+    }
+
+    var Vote = function(obj) {
+
+            var _obj = obj,
+                _trigger = _obj.find('.vote-button'),
+                _request = new XMLHttpRequest;
+
+            var _init = function() {
+                _trigger.off();
+                _trigger.on('click', function() {
+                    var _id = $(this).data('id');
+                    var _success = $(this).data('success');
+                    var _target = $(this).data('type');
+
+                    _updateVote($(this), _getTarget(_target), _getData(_target, _id, _success));
+
+                    return false;
+                });
+
+            },
+
+            _getData = function(_target, _id, _success){
+                var _ret = {id:_id};
+                // if (_target == 'review') _ret.review_id = _id;
+                // else _ret.article_id = _id;
+                return _ret;
+            }
+
+            _getTarget = function(_arg) {
+                var _target = '/casino/review-like';
+
+                return _target;
+            },
+
+            _updateVote = function(_this, _target, _data){
+                if(BUSY_REQUEST) return;
+                BUSY_REQUEST = true;
+                _request.abort();
+
+                _request = $.ajax( {
+                    url: _target,
+                    data:_data,
+                    dataType: 'json',
+                    type: 'post',
+                    success: function (data) {
+                        //console.log(data.body.likes);
+                        //var currentVotes = _this.find('.vote-block-num');
+                        //currentVotes.text(parseInt(currentVotes.text())+1);
+                        var _holderLikes = $(_this).find('.bubble-vote');
+                        var _oldLikes = _holderLikes.text();
+                        _holderLikes.text(++_oldLikes);
+
+                        // _this.closest(_obj).next('.action-field.success').show();
+                        //_this.parent().addClass('disabled');
+                    },
+                    error: function ( XMLHttpRequest ) {
+                        if ( XMLHttpRequest.statusText != "abort" ) {
+                            console.log( 'err' );
+                            // _this.closest(_obj).next('.action-field.not-valid').show();
+                        }
+                    },
+                    complete: function(){
+                        BUSY_REQUEST = false;
+                    }
+                } );
+            };
+        _init();
+    };
+
+    function AddingReview(obj){
+
+        var _wrap = obj,
+            _imgDir = $('#reviews-form').data('img-dir'),
+            _countryCode = $('#reviews-form').data('country'),
+            _send_btn = _wrap.find('input[name=submit]'),
+            _holderChild = $('.reply-data-holder'),
+            _qty = $('.reviews-qty'),
+            _contact_error_class = 'not-valid',
+            _casinoID = $('.reviews').data('id'),
+            _storage_name = localStorage.getItem('casino_'+_casinoID+'_name'),
+            _storage_casino_id_reviewed = localStorage.getItem('casino_'+_casinoID+'_reviewed'),
+            _storage_review_score = localStorage.getItem('casino_'+_casinoID+'_score'),
+            _field_name,
+            _field_email,
+            _field_message,
+            _contact_error_required,
+            _contact_error_rate,
+            _reviewHolder,
+             name,
+             email,
+             message,
+             _is_child,
+             _reviewID,
+             _rate_slider_result,
+             _childReplies,
+            _request = new XMLHttpRequest();
+
+       _prepReview = function(_self){
+
+            var parent = _self;
+
+            _reviewID = parent.data('id');
+            _field_name = parent.find('input[name=name]');
+            _field_email = parent.find('input[name=email]');
+            _field_message = parent.find('textarea[name=body]');
+            _contact_error_required = parent.find('.field-error-required');
+            _contact_error_rate = parent.find('.field-error-rate');
+            _contact_error = parent.find('.field-error');
+            name = _field_name.val();
+            email = _field_email.val();
+            message = _field_message.val();
+            casino_id = parent.data('casino-id');
+            _rate_slider_result = $('.rating-current-value span').text();
+            ok = true;
+
+            if (_field_name.closest('.reply').length > 0) {
+                _is_child = true;
+                _reviewHolder = parent.find(_holderChild);
+                _childReplies = parent.find('.js-reply-btn span');
+            } else {
+                _is_child = false;
+                _reviewHolder = $('#review-data-holder');
+            }
+
+            if(name === '' || !_validateInputName(name)){
+                _field_name.parent().addClass(_contact_error_class);
+                ok = false;
+            } else {
+                _field_name.parent().removeClass(_contact_error_class);
+            }
+            if(email === '' || !validateEmail(email)){
+                _field_email.parent().addClass(_contact_error_class);
+                ok = false;
+            } else {
+                _field_email.parent().removeClass(_contact_error_class);
+            }
+            if(message === '' || !_validateInputMessage(message)){
+                _field_message.parent().addClass(_contact_error_class);
+                ok = false;
+            } else {
+                _field_message.parent().removeClass(_contact_error_class);
+            }
+
+
+            if(!ok) {
+                _contact_error_required.show();
+            } else {
+                _contact_error.hide();
+                _contact_error_required.hide();
+            }
+
+            if (!_is_child) {
+                if (_rate_slider_result === '0') {
+                    _contact_error_rate.show();
+                    parent.find($('.rating-container')).addClass(_contact_error_class);
+                    ok = false;
+                } else {
+                    _contact_error_rate.hide();
+                    parent.find($('.rating-container')).removeClass(_contact_error_class);
+                }
+            }
+
+            return ok;
+        },
+
+        _changeName = function(){
+            $('#reviews-form input[name=name]').on('keyup', function() {
+                $('#reviews-form .review-name').text($(this).val());
+            });
+        },
+
+        _prepAjaxData = function(){
+            var ajaxData = {
+                casino_id: casino_id,
+                author: name,
+                email: email,
+                body: message
+            };
+
+            if (_is_child) {
+                ajaxData['parent_id'] = _reviewID;
+            }
+
+            _sendReview(ajaxData);
+        },
+
+       _sendReview = function(ajaxData){
+            _request.abort();
+            _request = $.ajax( {
+                url: "/casino/review-write",
+                data: ajaxData,
+                dataType: 'json',
+                timeout: 20000,
+                type: 'POST',
+                success: function ( data ) {
+                    if(data.status =="ok") {
+                        _loadData(data);
+                        // _send_btn.prop('disabled', true);
+                        _field_name.val('');
+                        _field_email.val('');
+                        _field_message.val('');
+                        _onEvents();
+                    }
+                    else if(data.status=="error") {
+                        console.error(data.body);
+                    }
+                },
+                error: function ( jqXHR ) {
+                    _errors_found = $.parseJSON(jqXHR.responseJSON.body);
+                    console.error("Could not send message!");
+                    _contact_error.html(_errors_found.join('<br />')).show();
+                }
+            });
+        },
+
+        _loadData = function(data) {
+
+            if ($.isEmptyObject(data)) {
+                _showEmptyMessage();
+            } else {
+
+                function getItemPattern() {
+                    var pattern;
+
+                    if (_is_child) {
+                        pattern = '<div class="review review-child '+name.toLowerCase()+'" data-id="'+data.body.id+'" data-img-dir="'+_imgDir+'" data-country="'+_countryCode+'">\
+                            <div class="review-wrap">\
+                                <div class="review-info">\
+                                    <div class="review-info-top">\
+                                        <div class="review-flag">\
+                                            <img src="'+_imgDir+'" alt="'+_countryCode+'" width="15" height="12">\
+                                        </div>\
+                                        <div class="review-info-body">\
+                                            <div class="review-name">'+name+'</div>\
+                                            <div class="review-date">'+_getCurrDate()+'</div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="review-body">\
+                                    <div class="review-text">\
+                                        <p>'+message+'</p>\
+                                    </div>\
+                                    <div class="review-underline">\
+                                        <div class="votes js-vote">\
+                                            <a href="#" class="votes-like vote-button" data-id="'+data.body.id+'">\
+                                                <i class="icon-icon_likes"></i>\
+                                                <span class="bubble bubble-vote">0</span>\
+                                            </a>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        ';
+                    } else {
+                        pattern = '\
+                        <div class="review review-parent '+name.toLowerCase()+'" data-id="'+data.body.id+'" data-img-dir="'+_imgDir+'" data-country="'+_countryCode+'">\
+                            <div class="review-wrap">\
+                                <div class="review-info">\
+                                    <div class="review-info-top">\
+                                        <div class="review-flag">\
+                                            <img src="'+_imgDir+'" alt="'+_countryCode+'" width="15" height="12">\
+                                        </div>\
+                                        <div class="review-info-body">\
+                                            <div class="review-name">'+name+'</div>\
+                                            <div class="review-date">'+_getCurrDate()+'</div>\
+                                        </div>\
+                                    </div>\
+                                    <div class="list-rating '+getWebName(get_rating(_rate_slider_result))+'">\
+                                        <div class="list-rating-wrap">\
+                                            <div class="list-rating-score">'+_rate_slider_result+'</div>\
+                                            <div class="list-rating-text">'+get_rating(_rate_slider_result)+'</div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="review-body">\
+                                    <div class="review-text">\
+                                        <p>'+message+'</p>\
+                                    </div>\
+                                    <div class="review-underline">\
+                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
+                                        <div class="votes js-vote">\
+                                            <a href="#" class="votes-like vote-button"  data-id="'+data.body.id+'">\
+                                                <i class="icon-icon_likes"></i>\
+                                                <span class="bubble bubble-vote">0</span>\
+                                            </a>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        <div class="reply">\
+                            <div class="reply-body">\
+                                <div class="form">\
+                                    <div class="form-row">\
+                                        <div class="textfield-holder">\
+                                            <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
+                                        </div>\
+                                    </div>\
+                                    <div class="hidden js-expanding-textfields">\
+                                        <div class="form-row form-multicol">\
+                                            <div class="form-col">\
+                                                <div class="textfield-holder error">\
+                                                    <input type="text" name="name" class="textfield" placeholder="Name">\
+                                                </div>\
+                                            </div>\
+                                            <div class="form-col">\
+                                                <div class="textfield-holder error">\
+                                                    <input type="text" name="email" class="textfield" placeholder="Email">\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                        <div class="form-row">\
+                                            <div class="review-submit-holder">\
+                                                <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
+                                                <div>\
+                                                    <div class="field-error-required not-valid action-field">\
+                                                        Please fill in the required fields.\
+                                                    </div>\
+                                                    <div class="field-success success action-field">\
+                                                        Thank You!\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class="replies"></div>\
+                        </div>\
+                        ';
+                    }
+
+                    return pattern;
+                }
+
+                _reviewHolder.prepend(getItemPattern());
+                _refreshData();
+            }
+        },
+
+        _refreshData = function(){
+            if (!_is_child){
+                _qty.text(parseInt(_qty.text())+1);
+
+                localStorage.setItem('casino_'+_casinoID+'_reviewed', 1);
+                localStorage.setItem('casino_'+_casinoID+'_name', name);
+                localStorage.setItem('casino_'+_casinoID+'_score', _rate_slider_result);
+            }
+            if (_is_child) _childReplies.text(parseInt(_childReplies.text())+1);
+
+            initReplies();
+            initReviewForm();
+            initTexfieldsLabels();
+
+            new Vote ( $('.js-vote') );
+
+            $('.review, .reply').each(function() {
+                new AddingReview ( $(this) );
+            });
+        },
+
+        _doIfReviewedAlready = function(){
+            var formContainer = $('#reviews-form');
+
+            _changeName(_storage_name);
+            $('.review-rating', formContainer).addClass('active');
+            $('textarea', formContainer).addClass('disabled');
+            $('.review-name', formContainer).text(_storage_name);
+            $('.review-rating-num', formContainer).text(_storage_review_score);
+            $('.review-rating-bar', formContainer).css('width', _storage_review_score+'0%');
+            $('textarea[name=body]', formContainer).attr('placeholder', 'You have already reviewed');
+        },
+
+        _initForms = function() {
+            _send_btn.off();
+            _send_btn.on({
+                'click': function(e){
+                   var error = _prepReview(_wrap);
+
+                   if (error === false) {
+                       e.stopPropagation();
+                   } else {
+                        _prepAjaxData();
+                   }
+                }
+            });
+        },
+
+       _onEvents = function(){
+            if (_storage_casino_id_reviewed) {
+                _doIfReviewedAlready();
+                _initForms();
+            } else {
+                _initForms();
+                _changeName();
+            }
+        },
+
+       _init = function(){
+            _onEvents();
+        };
+
+       _init();
+    }
+
+    function initScrollTo(_target, _offset) {
+
+        if (typeof _target !== "undefined") {
+            action(_target, _offset);
+        } else {
+            var btn = $('.js-scroll');
+
+            btn.on('click', function(a) {
+                var target = $($(this).attr('href'));
+                // var targetOffset = target.offset().top;
+
+                action(target, 0);
+
+                a.preventDefault();
+            });
+        }
+
+        function action(target, offset) {
+            $('html, body').animate({
+                scrollTop: target.offset().top - offset
+            }, 1000);
+        }
+    }
+
+    function showMoreReviews() {
+        var _btn = $('.js-more-reviews');
+        var _totalReviews = _btn.data('reviews');
+        var _holderParent = $('#review-data-holder');
+        var _holderChild = $('.reply-data-holder');
+        var _name = $('.rating-container').data('casino-name');
+        var _request = new XMLHttpRequest;
+        var currentReplyId
+
+        _btn.on('click',  function() {
+            _addReviews($(this), $(this).data('type'));
+            return false;
+        });
+
+
+        var _addReviews = function(_this, _type){
+
+            if(BUSY_REQUEST) return;
+            BUSY_REQUEST = true;
+            _request.abort();
+
+            _request = $.ajax( {
+                url: '/casino/more-reviews/'+getWebName(_name)+'/'+_this.data('page'),
+                dataType: 'HTML',
+                data:{id:_this.data('id')},
+                type: 'GET',
+                success: function (data) {
+                    if (_type == 'review') {
+                        _holderParent.append(data);
+                        if (_this.data('page') >= _this.data('total') / 5) {
+                            _this.hide();
+                        }
+                    } else if (_type == 'reply') {
+                        _this.closest('.reply').find(_holderChild).append(data);
+                    }
+
+                    if (_this.data('page') >= _this.data('total') / 5) {
+                        _this.hide();
+                    }
+
+                    var _page = _this.data('page');
+
+                    _this.data('page', ++_page);
+
+                    _refreshData();
+                },
+                error: function ( XMLHttpRequest ) {
+                    if ( XMLHttpRequest.statusText != "abort" ) {
+                        console.log( 'err' );
+                    }
+                },
+                complete: function(){
+                    BUSY_REQUEST = false;
+                }
+            } );
+        },
+
+        _refreshData = function(){
+            initReplies();
+            initReviewForm();
+            initTexfieldsLabels();
+
+            new Vote ( $('.js-vote') );
+            $('.review').each(function() {
+                new AddingReview ( $(this) );
+            });
+        };
+    }
+
+    function get_rating($name) {
+        if ($name > 8) {
+            $string = 'Excellent';
+        } else if($name > 6 && $name <= 8){
+            $string = 'Very good';
+        } else if($name > 4 && $name <= 6){
+            $string = 'Good';
+        } else if($name > 2 && $name <= 4){
+            $string = 'Poor';
+        } else {
+            $string = 'Terrible';
+        }
+
+        return $string;
+    }
+
+    var Score = function(obj) {
+
+            var _obj = obj,
+                _name = _obj.name,
+                _score = _obj.value,
+                _request = new XMLHttpRequest;
+
+            var _init = function() {
+                _updateScore(_name, _score);
+            },
+
+            _updateScore = function(_name, _score){
+                if(BUSY_REQUEST) return;
+                BUSY_REQUEST = true;
+                _request.abort();
+
+                _request = $.ajax( {
+                    url: '/casino/rate',
+                    data: {
+                        name: _name,
+                        value: _score
+                    },
+                    dataType: 'json',
+                    type: 'post',
+                    success: function (data) {
+                        $('.rating-container').next('.action-field').show();
+                    },
+                    error: function ( XMLHttpRequest ) {
+                        if ( XMLHttpRequest.statusText != "abort" ) {
+                            console.log( 'err' );
+                        }
+                    },
+                    complete: function(){
+                        BUSY_REQUEST = false;
+                    }
+                } );
+            };
+        _init();
+    };
 
     var SearchPanel = function(obj) {
         var _obj = obj,
@@ -258,14 +1304,11 @@
                     </a>\
                 </li>';
 
-
                 return pattern;
             },
 
             _loadMoreData = function(data, container) {
                 var items = data.body.results;
-
-                console.log(items); 
 
                 for (var item in items) {
 
@@ -394,6 +1437,32 @@
 
         _construct();
     };
+
+    function initTexfieldsLabels() {
+        var field = $('.textfield');
+
+        field.focus(function() {
+            $(this).parent().addClass('active').removeClass('not-valid');
+        });
+
+        field.blur(function() {
+            if ($(this).val() == '') {
+                $(this).parent().removeClass('active');
+            }
+        });
+    }
+
+    function initReplies() {
+        var container = $('.review-parent');
+        var btn = $('.js-reply-btn');
+
+        btn.off();
+        btn.on('click', function(e) {
+            console.log("rep"); 
+            $(this).closest(container).next().find('.reply-body').slideToggle();
+            e.preventDefault();
+        });
+    }
 
     function initMoboleBonusesPop() {
         var _container = $('.list-item');
@@ -546,14 +1615,16 @@
         $('.js-filter').select2MultiCheckboxes({
             templateSelection: function(selected, total) {
               // return "Selected " + selected.length + " of " + total;
-              return selected[0];
+              return "Game software";
             }
         })
-    }
+    };
 
     function initBarRating() {
         var container = $('.rating-container');
-        $('.rating-bar', container).barrating('show', {
+        var defRating = container.data('casino-rating');
+
+        var ratingParams = {
             showSelectedRating: false,
             onSelect: function(value, text, event) {
                 if (typeof event != 'undefined') {
@@ -568,12 +1639,33 @@
                         .addClass(getWebName(text));
                     _this
                         .closest(container)
-                        .find('.rating-current-value')
-                        .text(value + '/10' );
+                        .find('.rating-current-value span')
+                        .text(value );
+
+                    _this
+                        .closest(container)
+                        .find('.rating-current')
+                        .attr('data-rating-current', value);
+
+                    new Score ({
+                        value: value,
+                        name: container.data('casino-name')
+                    });
                 }
             }
-        });
-        // $('.rating-bar', container).barrating('set', 3);
+        };
+
+        // if (defRating > 0) {
+
+        //     $('.rating-bar')
+        //     .barrating('destroy')
+        //     .prop('value', defRating)
+        //     .barrating(ratingParams);
+
+        //     $('.rating-current-value').html(defRating+'/10');
+        // };
+
+        $('.rating-bar', container).barrating('show', ratingParams);
     }
 
     function getWebName(name) {
@@ -656,6 +1748,30 @@
             spaceBetween: 30,
             freeMode: true
         });
+    }
+
+    function validateEmail(email){
+        var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
+        return pattern.test(email);
+    }
+
+    function _validateInputName(txt) {
+         var regex = /^[a-zA-Z0-9 ]+$/;
+         return regex.test(txt);
+     }
+
+    function _validateInputMessage(txt) {
+         var regex = /^[\w\.,:;\s]+$/;
+         return regex.test(txt);
+     }
+
+    function _getCurrDate(){
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        return today = dd + ' ' + mm + ' ' + yyyy;
     }
 
 })(jQuery);

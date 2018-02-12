@@ -9,8 +9,8 @@
   cursor: pointer;
   line-height: 19px;
   display: block;
-  width: 18px; 
-  height: 18px;
+  width: 16px; 
+  height: 16px;
 }
 
 [type="checkbox"]:not(:checked) + label:before,
@@ -77,13 +77,12 @@
 
 
 
-
-/* Base for label styling */
 [type="radio"]:not(:checked),
 [type="radio"]:checked {
   position: absolute;
   left: -9999px;
 }
+/*
 [type="radio"]:not(:checked) + label,
 [type="radio"]:checked + label {
   position: relative;
@@ -93,7 +92,6 @@
   display: block;
 }
 
-/* checkbox aspect */
 [type="radio"]:not(:checked) + label:before,
 [type="radio"]:checked + label:before {
   content: '';
@@ -106,7 +104,6 @@
   border:2px solid #dee1e9;
   border-radius:50%;
 }
-/* checked mark aspect */
 [type="radio"]:not(:checked) + label:after,
 [type="radio"]:checked + label:after {
   content: '•';
@@ -120,7 +117,6 @@
   transition: all .2s;
 }
 
-/* checked mark aspect changes */
 [type="radio"]:not(:checked) + label:after {
   opacity: 0;
   transform: scale(0);
@@ -129,7 +125,6 @@
   opacity: 1;
   transform: scale(1);
 }
-/* disabled checkbox */
 [type="radio"]:disabled:not(:checked) + label:before,
 [type="radio"]:disabled:checked + label:before {
   box-shadow: none;
@@ -142,8 +137,7 @@
 [type="radio"]:disabled + label {
   color: #aaa;
 }
-/* accessibility */
 [type="radio"]:checked:focus + label:before,
 [type="radio"]:not(:checked):focus + label:before {
   border: 2px solid #0d7ac7;
-}
+}*/

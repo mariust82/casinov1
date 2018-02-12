@@ -1,23 +1,31 @@
-<div class="filter filter-alt">
+<div class="filter filter-alt" id="filters" data-url="/games-filter/">
 	<div class="qty-items">${data.total_games} results</div>
 	<div class="filter-group">
 		<div class="filter-select">
 			<div class="filter-label">Filter by:</div>
 			<div class="filter-select-holder">
-				<select class="select js-filter">
-					<option>Game software</option>
-					<option>Game software</option>
-					<option>Game software</option>
-					<option>Game software</option>
+				<select class="select js-filter" name="soft">
+					<std:foreach var="${data.game_types}" value="result">
+						<option value="${result}">${result}</option>
+					</std:foreach>
 				</select>
 			</div>
 		</div>
 		<div class="filter-sort">
 			<div class="filter-label">Sort by:</div>
 			<div class="filter-sort-buttons">
-				<a href="#" class="active">Default</a>
-				<a href="#">Most played</a>
-				<a href="#">Newest</a>
+				<input checked type="radio" name="sort" value="1" id="default">
+				<label for="default" class="first">
+					Default
+				</label>
+				<input type="radio" name="sort" value="2" id="top-rated">
+				<label for="top-rated">
+					Top rated
+				</label>
+				<input type="radio" name="sort" value="3" id="newest">
+				<label for="newest">
+					Newest
+				</label>
 			</div>
 		</div>
 	</div>

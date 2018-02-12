@@ -1,7 +1,7 @@
 <std:set name="page" value="casinos"/>
 
 <import file="templates/include-header"/>
-	<block:links-carousel data="${data.menu}"/>
+	<block:links-carousel type="${data.selected_entity}" data="${data.menu}"/>
 	<div class="block">
 		<div class="container">
 			<div class="headeing">
@@ -11,11 +11,13 @@
 				</div>
 			</div>
 			<filter:casinos/>
-			<div class="qty-items">${data.total_casinos} results</div>
-
-			<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
+			<div class="data-container" data-type="${get_page_type()}" data-type-value="${data.selected_entity}">
+				<div class="qty-items">${data.total_casinos} results</div>
+				<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
+			</div>
+			<div class="data-add-container"></div>
 			<div class="btn-holder">
-				<a href="#" class="btn-bordered load">LOAD MORE CASINOS</a>
+				<a href="#" class="btn-bordered load js-more-items">LOAD MORE CASINOS</a>
 			</div>
 		</div>
 	</div>

@@ -29,6 +29,18 @@ function get_active($page, $item)
     return $class;
 }
 
+function get_arr_from_string($name)
+{
+    $name = explode(",", $name);
+    return $name[0];
+}
+
+function get_length_arr_from_string($name)
+{
+    $name = explode(",", $name);
+    return count($name);
+}
+
 function get_string($name)
 {
     $string = array();
@@ -46,9 +58,9 @@ function get_rating($name)
         $string = 'Excellent';
     } elseif($name > 6 && $name <= 8){
         $string = 'Very good';
-    } elseif($name > 3 && $name <= 6){
+    } elseif($name > 4 && $name <= 6){
         $string = 'Good';
-    } elseif($name > 1 && $name <= 3){
+    } elseif($name > 2 && $name <= 4){
         $string = 'Poor';
     } else {
         $string = 'Terrible';
@@ -70,7 +82,7 @@ function get_country_status($name)
 
 function get_img_dir()
 {
-    $dir = "/public/build/images";
+    $dir = "/public/sync";
     return $dir;
 }
 
@@ -90,7 +102,32 @@ function get_page_type()
 {
     $url = parse_url("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
 
-    return $pieces = explode("/", $url["path"]);
+    $pieces = explode("/", $url["path"]);
+
+    switch ($pieces[1]) {
+        case 'casinos':
+            $piece = 'label';
+            break;
+        case 'softwares':
+            $piece = 'software';
+            break;
+        case 'bonus-list':
+            $piece = 'bonus_type';
+            break;
+        case 'countries-list':
+            $piece = 'country';
+            break;
+        case 'compatability':
+            $piece = 'compatibility';
+            break;
+        case 'banking':
+            $piece = 'banking_method';
+            break;
+        case 'features':
+            $piece = 'feature';
+            break;
+    }
+    return $piece;
 }
 
 function format_filter_date($date, $format = 'F Y')

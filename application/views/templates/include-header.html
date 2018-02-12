@@ -7,8 +7,8 @@
     <meta name="format-detection" content="address=no">
     <title>Casinos Lists</title>
     <meta name="description" content="Page Description">
-    <link rel="icon" type="image/png" href="/public/favicon.ico"/>
-    <link rel="stylesheet" type="text/css" href="${get_public_dir()}/css/all.css?ver=0.0.3" media="all">
+    <link rel="icon" type="image/png" href="/public/favicon.ico?ver=0.0.1"/>
+    <link rel="stylesheet" type="text/css" href="${get_public_dir()}/css/all.css?ver=0.0.4" media="all">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 </head>
 <body data-page="">
@@ -66,7 +66,7 @@
 						<i class="icon-icon_plus"></i>
 					</a>
 					<div class="search-drop js-search-drop">
-						<div id="search-empty"></div>
+						<div id="search-empty"> Sorry, there are no suggestions for your query. </div>
 						<nav class="search-list search-results">
 							<div class="search-list-block" id="search-casinos">
 								<div class="search-list-heading">
@@ -80,10 +80,10 @@
 								</div>
 								<ul></ul>
 							</div>
-							<div class="search-all-holder">
-								<a href="#" class="btn btn-middle fullwide" id="search-all">SHOW ALL RESULTS</a>
-							</div>
 						</nav>
+						<div class="search-all-holder">
+							<a href="#" class="btn btn-middle fullwide" id="search-all">SHOW ALL RESULTS</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -92,7 +92,7 @@
 		<std:if condition="${page} == 'index'">
 			<div class="promo ">
 				<div class="promo-img">
-					<img src="${get_img_dir()}/text-header/home-img.jpg" width="1920" height="320" alt="">
+					<img src="/public/build/images/text-header/home-img.jpg" width="1920" height="320" alt="">
 				</div>
 				<div class="promo-text">
 					<h1 class="promo-title">

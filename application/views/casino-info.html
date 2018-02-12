@@ -1,7 +1,7 @@
 <std:set name="page" value="casino-info"/>
 
 <import file="templates/include-header"/>
-	<block:links-carousel data="${data.menu}"/>
+	<block:links-carousel type="0" data="${data.menu}"/>
 
 	<std:if condition="${data.casino.status} == 'Blacklisted'">
 		<div class="container">
@@ -27,13 +27,13 @@
 				<div class="casino-review-heading-left">
 					<h1 class="casino-review-title">${data.casino.name} Casino Review</h1>
 					<div class="btn-group">
-						<a href="#" class="btn-bordered">PLAYER REVIEWS</a>
+						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
 						<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
 					</div>
 				</div>
 				<div class="casino-review-heading-right">
 					<div class="casino-review-heading-img">
-						<img src="${get_img_dir()}/casino-logos/${normalize_logo(${data.casino.name})}.png" alt="" width="124" height="82">
+						<img src="${get_img_dir()}/casino_logo_dark/124x82/${normalize_logo(${data.casino.name})}.png" alt="" width="124" height="82">
 					</div>
 
 					<div class="list-rating ${normalize(get_rating(${data.casino.rating}))}">
@@ -45,8 +45,8 @@
 				</div>
 
 				<div class="btn-group btn-group-mobile">
-					<a href="#" class="btn-bordered">PLAYER REVIEWS</a>
-					<a href="#" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
+					<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
+					<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
 				</div>
 			</div>
 		</div>
@@ -105,7 +105,7 @@
 						<div class="def-list-item">
 							<div class="def-list-key">Software</div>
 							<div class="def-list-val">
-								<div class="list-item-trun">${get_string(${data.casino.softwares})}</div>
+								<div class="list-item-trun">${data.casino.softwares.0}</div>
 								<std:set name="extra" value="count(${data.casino.softwares})-1"/>
 								<std:if condition="${extra} > 0">
 									<span class="bubble bubble-long js-tooltip" title="${get_string(${data.casino.softwares})}">
@@ -204,56 +204,22 @@
 
 	<div class="section">
 		<div class="container">
-			<div class="box">
-				<div class="title title-small">Reviews</div>
-				<div id="reviews" class="reviews">
-					<div class="reviews-form" id="reviews-form">
-						<forms:review rating="1"/>
+			<div class="box box-alt">
+				<div class="title title-middle">
+					Reviews
+					<div class="reviews-num">
+						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
 					</div>
-					<std:if condition="${data.total_reviews} > 0">
-						<div class="review-list">
-							<std:foreach var="${data.reviews}" value="result">
-								<item:review class="review-parent"/>
-
-								<div class="reply">
-									<div class="reply-body">
-										<forms:review rating="0"/>
-									</div>
-
-									<std:foreach var="${result.children}" value="result">
-										<item:review class="review-child"/>
-									</std:foreach>
-
-									<std:if condition="count(${result.total_children}) > 2">
-										<div class="review-more">
-											<a href="#" class="btn-more">
-												SHOW 3 MORE REPLIES
-												<i class="icon-chevron-down"></i>
-											</a>
-										</div>
-									</std:if>
-								</div>
-							</std:foreach>
-
-							<std:if condition="${data.total_reviews} > 4">
-								<div class="reviews-more">
-									<a href="#" class="btn-more">
-										Show More Reviews
-										<i class="icon-chevron-down"></i>
-									</a>
-								</div>
-							</std:if>
-						</div>
-					</std:if>
 				</div>
+				<import file="templates/include-reviews"/>
 			</div>
 		</div>
 	</div>
 
 	<div class="section">
 		<div class="container">
-			<div class="box">
-				<div class="title title-small">Banking</div>
+			<div class="box box-alt2">
+				<div class="title title-middle">Banking</div>
 				<div class="def-column">
 					<div class="def-column-item">
 						<div class="def-column-key">Minimum withdrawal</div>
@@ -305,5 +271,5 @@
 			</div>
 		</div>
 	</div>
-<import file="templates/include-footer"/>
 
+<import file="templates/include-footer"/>

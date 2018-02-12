@@ -1,3 +1,61 @@
 <std:set name="page" value="contact-us"/>
 
-CONTACT US
+<import file="templates/include-header"/>
+	<div class="contact contact-form">
+		<div class="container">
+			<div class="message message-success" id="contact-us-success">
+				<i class="icon-icon_available"></i>
+				Thank you! Your message was successfully sent.
+				<div class="close">
+					<i class="icon-icon_unavailable"></i>
+				</div>
+			</div>
+			<div class="heading">
+				<h1 class="title">Contact Us</h1>
+				<div class="subtitle">
+					<p>Contact CasinosLists representatives by filling in the form below and we will be happy to get back to you shortly.</p>
+				</div>
+			</div>
+			<div class="twocolumn">
+				<div class="form">
+					<h3 class="title title-middle">Leave us a message</h3>
+					<div class="form-row form-multicol">
+						<div class="form-col">
+							<div class="textfield-holder">
+								<input type="text" class="textfield contact-name" placeholder="Name">
+							</div>
+						</div>
+						<div class="form-col">
+							<div class="textfield-holder ">
+								<input type="text" class="textfield contact-email" placeholder="Email">
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="textfield-holder">
+							<textarea rows="5" class="textfield contact-message" placeholder="Write your message..."></textarea>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="review-submit-holder">
+							<input class="btn btn-middle contact-btn" type="submit" value="SEND MESSAGE">
+							<div class="not-valid action-field" id="contact-us-note">
+								Please fill in the required fields.
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="contact-side">
+					<h3 class="title title-middle">Get in touch</h3>
+					<div class="contact-mail">
+						<div class="contact-mail-ico">
+							<i class="icon-mail"></i>
+						</div>
+						<a href="mailto:support@casinoslists.com">support@casinoslists.com</a>
+					</div>
+					<import file="templates/include-social"/>
+				</div>
+			</div>
+		</div>
+	</div>
+<import file="templates/include-footer"/>

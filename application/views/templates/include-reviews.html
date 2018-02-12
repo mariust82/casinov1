@@ -1,0 +1,43 @@
+<div id="reviews">
+	<div class="reviews-form review" id="reviews-form" data-img-dir="${get_img_dir()}/flags/${data.country.code}.png" data-country="${data.country.code}" data-casino-id="${data.casino.id}">
+		<forms:review rating="1"/>
+	</div>
+	<std:if condition="${data.total_reviews} > 0">
+		<div class="review-list">
+			<div id="review-data-holder">
+				<std:foreach var="${data.reviews}" value="result">
+					<item:review class="review-parent"/>
+				
+					<div class="reply review">
+						<div class="reply-body">
+							<forms:review rating="0"/>
+						</div>
+				
+						<std:foreach var="${result.children}" value="result">
+							<item:review class="review-child"/>
+						</std:foreach>
+						<div class="reply-data-holder"></div>
+				
+						<std:if condition="count(${result.total_children}) > 2">
+							<div class="review-more">
+								<a href="#" class="btn-more js-more-reviews" data-type="reply" data-id="${result.id}" data-total="${result.total_children}" data-page="2">
+									SHOW 3 MORE REPLIES
+									<i class="icon-chevron-down"></i>
+								</a>
+							</div>
+						</std:if>
+					</div>
+				</std:foreach>
+			</div>
+
+			<std:if condition="${data.total_reviews} > 4">
+				<div class="reviews-more">
+					<a href="#" class="btn-more js-more-reviews" data-type="review" data-id="0" data-total="${data.total_reviews}" data-page="2">
+						Show More Reviews
+						<i class="icon-chevron-down"></i>
+					</a>
+				</div>
+			</std:if>
+		</div>
+	</std:if>
+</div>
