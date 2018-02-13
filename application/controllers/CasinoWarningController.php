@@ -16,6 +16,8 @@ require_once("application/models/dao/CasinosMenu.php");
 */
 class CasinoWarningController extends Controller {
 	public function run() {
+        $this->response->setAttribute("country", $this->request->getAttribute("country"));
+
         $menuTop = new TopMenu($this->request->getValidator()->getPage());
         $this->response->setAttribute("menu_top", $menuTop->getEntries());
 
