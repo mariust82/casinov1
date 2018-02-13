@@ -3706,6 +3706,29 @@ a:hover, a:active, a:visited, a:focus {
   content: "";
 }
 
+.data-games .data-add-container {
+  margin: 0 0 0 -30px;
+  font-size: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .data-games .data-add-container {
+    margin: 0 0 0 -20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .data-games .data-add-container {
+    margin: 0 0 0 -10px;
+  }
+}
+
+.data-games .data-add-container:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
 .game {
   display: inline-block;
   width: 33.33%;

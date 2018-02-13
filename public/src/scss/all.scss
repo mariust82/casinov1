@@ -1258,6 +1258,25 @@ a {
     }
 }
 
+.data-games .data-add-container{
+    margin:0 0 0 -30px;
+    font-size:0;
+
+    @media screen and (max-width: 1023px) {
+        margin:0 0 0 -20px;
+    }
+
+    @media screen and (max-width: 767px) {
+        margin:0 0 0 -10px;
+    }
+
+    &:after{
+        display:block;
+        clear:both;
+        content:""
+    }
+}
+
 .game{
     display:inline-block;
     width:33.33%;
