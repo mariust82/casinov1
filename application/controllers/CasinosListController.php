@@ -2,10 +2,18 @@
 require_once("application/models/CasinoFilter.php");
 require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
+require_once("application/models/dao/TopMenu.php");
+require_once("application/models/dao/CasinosMenu.php");
 
 abstract class CasinosListController extends Controller {
 	public function run() {
-	    $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
+        $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
+
+        $menuTop = new TopMenu($this->request->getValidator()->getPage());
+        $this->response->setAttribute("menu_top", $menuTop->getEntries());
+
+        $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $this->response->getAttribute("selected_entity"), $this->request->getURI()->getPage());
+        $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
 
 		$this->response->setAttribute("menu", $this->getMenu());
 

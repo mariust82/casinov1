@@ -5,6 +5,7 @@ require_once("application/models/dao/CasinosList.php");
 require_once("application/models/GameFilter.php");
 require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/GamesList.php");
+require_once("application/models/dao/TopMenu.php");
 
 /*
 * Homepage
@@ -15,6 +16,9 @@ require_once("application/models/dao/GamesList.php");
 */
 class IndexController extends Controller {
 	public function run() {
+	    $menu = new TopMenu($this->request->getValidator()->getPage());
+	    $this->response->setAttribute("menu_top", $menu->getEntries());
+
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
 
         $object = new CasinosList(new CasinoFilter(array("country_accepted"=>1, "promoted"=>1), $this->request->getAttribute("country")));

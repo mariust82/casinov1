@@ -3,6 +3,8 @@ require_once("application/models/dao/GameTypes.php");
 require_once("application/models/dao/GamesList.php");
 require_once("application/models/GameFilter.php");
 require_once("application/models/GameSortCriteria.php");
+require_once("application/models/dao/TopMenu.php");
+require_once("application/models/dao/GamesMenu.php");
 
 /*
 * Games list by game type.
@@ -14,7 +16,13 @@ require_once("application/models/GameSortCriteria.php");
 */
 class GamesByTypeController extends Controller {
 	public function run() {
-        $this->response->setAttribute("selected_entity", $this->getSelectedEntity()); // TODO: add me to doc!
+        $menu = new TopMenu($this->request->getValidator()->getPage());
+        $this->response->setAttribute("menu_top", $menu->getEntries());
+
+        $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
+
+        $menu = new GamesMenu($this->response->getAttribute("selected_entity"));
+        $this->response->setAttribute("menu_bottom", $menu->getEntries());
 
         $object = new GameTypes();
         $this->response->setAttribute("game_types", array_keys($object->getGamesCount()));
