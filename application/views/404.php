@@ -152,5 +152,11 @@
 	<div class="overlay"></div>
 	<script src="/public/build/js/assets.js"></script>
 	<script src="/public/build/js/custom.js?ver=0.0.2"></script>
+
+	<script>
+	    setTimeout(function () {
+	        window.location.href = "/";
+	    }, 10000)
+	</script>
 </body>
 </html>
