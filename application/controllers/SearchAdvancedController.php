@@ -1,6 +1,7 @@
 <?php
 require_once("application/models/dao/CasinosSearch.php");
 require_once("application/models/dao/GamesSearch.php");
+require_once("application/models/dao/TopMenu.php");
 
 /*
 * Page to display after show all results is clicked @ search page
@@ -15,6 +16,9 @@ class SearchAdvancedController extends Controller {
 
 	public function run() {
 	    $this->response->setAttribute("value", $_GET["value"]);
+
+        $menu = new TopMenu($this->request->getValidator()->getPage());
+        $this->response->setAttribute("menu_top", $menu->getEntries());
 
         $casinos = new CasinosSearch($_GET["value"]);
         $this->response->setAttribute("casinos", $casinos->getResults(self::LIMIT,0));

@@ -8,6 +8,8 @@ require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/GameFilter.php");
 require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/GameTypes.php");
+require_once("application/models/dao/TopMenu.php");
+require_once("application/models/dao/GamesMenu.php");
 
 /*
 * Game info by game name.
@@ -38,5 +40,11 @@ class GameInfoController extends Controller {
 
         $object = new GamesList(new GameFilter(array("game_type"=>$result->type)));
         $this->response->setAttribute("recommended_games", $object->getResults(GameSortCriteria::NONE, 0, 6));
+
+        $menuTop = new TopMenu($this->request->getValidator()->getPage());
+        $this->response->setAttribute("menu_top", $menuTop->getEntries());
+
+        $menuBottom = new GamesMenu($result->type);
+        $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
 	}
 }

@@ -91,10 +91,10 @@
     <route url="play-counter" controller="GamePlayCounterController" extension="json"/>
     <route url="features/(name)" controller="CasinosByFeatureController" view="casinos"/>
     <route url="features" controller="FeaturesController" view="features"/>
-    <route url="privacy" view="privacy-policy"/>
-    <route url="terms" view="terms-and-conditions"/>
-    <route url="contact" view="contact-us"/>
-    <route url="contact/send" controller="ContactSendController"/>
+    <route url="privacy" controller="PrivacyController" view="privacy-policy"/>
+    <route url="terms" controller="TermsController" view="terms-and-conditions"/>
+    <route url="contact" controller="ContactController" view="contact-us"/>
+    <route url="contact/send" controller="ContactSendController" extension="json"/>
     <route url="casinos-filter/(page)" controller="CasinosFilterController" view="casinos-list"/>
     <route url="casinos-filter" controller="CasinosFilterController" view="casinos-list"/>
     <route url="games-filter/(page)" controller="GamesFilterController" view="games-list"/>

@@ -3,6 +3,8 @@ require_once("application/models/dao/Casinos.php");
 require_once("application/models/CasinoFilter.php");
 require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
+require_once("application/models/dao/TopMenu.php");
+require_once("application/models/dao/CasinosMenu.php");
 
 /*
 * Warning page to display about some casinos.
@@ -14,9 +16,15 @@ require_once("application/models/dao/CasinosList.php");
 */
 class CasinoWarningController extends Controller {
 	public function run() {
+        $menuTop = new TopMenu($this->request->getValidator()->getPage());
+        $this->response->setAttribute("menu_top", $menuTop->getEntries());
+
+        $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $this->getSelectedEntity(), $this->request->getURI()->getPage());
+        $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
+
 	    // set casino info
 		$casinos = new Casinos();
-        $result = $casinos->getBasicInfo(str_replace("-"," ", $this->request->getValidator()->getPathParameter("name")));
+        $result = $casinos->getBasicInfo($this->getSelectedEntity());
 		if(!$result) throw new PathNotFoundException();
 		$this->response->setAttribute("casino", $result);
 
@@ -26,6 +34,10 @@ class CasinoWarningController extends Controller {
 
         // set menu
         $this->response->setAttribute("menu", $this->getMenu());
+    }
+
+    private function getSelectedEntity() {
+        return str_replace("-"," ", $this->request->getValidator()->getPathParameter("name"));
     }
 
     protected function getMenu() {

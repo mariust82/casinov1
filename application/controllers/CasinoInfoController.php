@@ -1,6 +1,8 @@
 <?php
 require_once("application/models/dao/CasinoInfo.php");
 require_once("application/models/dao/CasinoReviews.php");
+require_once("application/models/dao/TopMenu.php");
+require_once("application/models/dao/CasinosMenu.php");
 
 /*
 * Info/review page of casino
@@ -37,6 +39,14 @@ class CasinoInfoController extends Controller {
 
         // get menu
         $this->response->setAttribute("menu", $this->getMenu());
+
+
+        $menuTop = new TopMenu($this->request->getValidator()->getPage());
+        $this->response->setAttribute("menu_top", $menuTop->getEntries());
+
+        $softwareName = $this->response->getAttribute("casino")->softwares[0];
+        $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $softwareName, "softwares/".strtolower(str_replace(" ", "-", $softwareName)));
+        $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
 	}
     protected function getMenu() {
         $countryName = $this->request->getAttribute("country")->name;
