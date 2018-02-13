@@ -2,11 +2,11 @@
 class SearchMoreCasinosController extends Controller {
     public function run() {
         $this->response->setAttribute("results", array (
-  0 => 'EuroSlots Casino',
-  1 => 'Gossip Slots Casino',
-  2 => 'Huge Slots Casino',
-  3 => 'Kaiser Slots Casino',
-  4 => 'Liberty Slots Casino',
+  0 => '1xBit Casino',
+  1 => '1xSlots Casino',
+  2 => '21 Casino',
+  3 => '21 Dukes Casino',
+  4 => '21 Grand Casino',
 ));
 
     }

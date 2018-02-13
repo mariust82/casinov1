@@ -1,12 +1,12 @@
 <?php
 class GameInfoController extends Controller {
     public function run() {
-$this->response->setAttribute("country", array (
+        $this->response->setAttribute("country", array (
   'id' => '34',
   'code' => 'US',
   'name' => 'United States',
 ));
-        $this->response->setAttribute("game_types", array (
+$this->response->setAttribute("game_types", array (
   0 => 'Video Slots',
   1 => 'Video Poker',
   2 => 'Classic Slots',
@@ -21,76 +21,214 @@ $this->response->setAttribute("country", array (
   11 => 'Craps',
 ));
 $this->response->setAttribute("game", array (
-  'id' => '4276',
-  'name' => 'Gamevy Roulette',
-  'type' => 'Roulette',
-  'software' => 'Gamevy',
-  'release_date' => '2016-08-04',
+  'id' => '6966',
+  'name' => 'Planet Fortune',
+  'type' => 'Video Slots',
+  'software' => 'Play n GO',
+  'release_date' => '2018-01-25',
   'technologies' => 
   array (
     0 => 'HTML5',
+    1 => 'Flash',
   ),
   'is_mobile' => true,
-  'is_3d' => false,
-  'overview' => 'Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite. Most importantly, to be awarded this rating a casino must demonstrate the highest levels of customer service and player satisfaction over a number of years. We have no hesitation in recommending these casinos as safe and fun places to play online.',
+  'is_3d' => true,
+  'overview' => NULL,
   'times_played' => '0',
   'play' => 
   array (
-    'width' => '500',
-    'height' => '300',
-    'screenshot' => '/public/img/sync/game_ss/500x300/Gamevy_Roulette_ss.jpg',
-    'url' => 'https://games.gamevy.com/prod/roulette-eu/index.html?mode=fun&platform=gamevy',
-    // 'status' => 'auto-play',
-    // 'status' => 'click-popup-play',
-    // 'status' => 'redirect',
-    'status' => NULL,
+    'width' => '960',
+    'height' => '720',
+    'screenshot' => '/public/img/sync/game_ss/960x720/Planet_Fortune_ss.jpg',
+    'url' => 'http://showcase.playngo.com/Casino/PlayFlash?pid=2&gid=planetfortune',
+    'status' => 'redirect',
   ),
 ));
 $this->response->setAttribute("recommended_casinos", array (
   0 => 
   array (
-    'id' => '829',
-    'name' => 'Touch Lucky Casino',
-    'rating' => 6,
+    'id' => '74',
+    'name' => 'Carat Bingo',
+    'rating' => 0,
     'softwares' => 
     array (
-      0 => 'MicroGaming',
-      1 => 'IGT',
-      2 => 'NYX Interactive',
-      3 => 'NextGen Gaming',
-      4 => 'Nektan',
-      5 => 'NetEnt',
-      6 => 'Aristocrat',
-      7 => 'ELK Studios',
-      8 => 'Big Time Gaming',
-      9 => 'Blueprint Gaming',
-      10 => 'Realistic Games',
-      11 => 'Lightning Box Games',
-      12 => 'Scientific Games',
-      13 => 'Gamevy',
-      14 => 'Felt Gaming',
-      15 => 'Iron Dog Studio',
+      0 => 'NetEnt',
+      1 => 'MicroGaming',
+      2 => 'Aberrant',
+      3 => 'Play n GO',
     ),
     'languages' => NULL,
     'currencies' => NULL,
     'bonus_first_deposit' => 
     array (
-      'amount' => '100% + 10 FS',
-      'min_deposit' => '£10',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'Slots (FS - Cleopatra)',
+      'amount' => '100%',
+      'min_deposit' => '€10',
+      'wagering' => '40x(D+B)',
+      'games_allowed' => 'Slots,Bingo & Casino',
+      'code' => 'No code required',
+    ),
+    'bonus_free' => NULL,
+    'is_live_dealer' => NULL,
+    'date_established' => '2012-01-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'is_currency_accepted' => NULL,
+  ),
+  1 => 
+  array (
+    'id' => '785',
+    'name' => 'VegasCasino.io',
+    'rating' => 0,
+    'softwares' => 
+    array (
+      0 => 'BetSoft',
+      1 => 'Quickspin',
+      2 => 'Ezugi',
+      3 => 'Play n GO',
+      4 => 'Endorphina',
+      5 => 'GameArt',
+      6 => 'Booming Games',
+      7 => 'Pragmatic Play',
+      8 => 'BetGames',
+    ),
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '150%',
+      'min_deposit' => '0.001 ........ .... .. . BTC.',
+      'wagering' => '35xB',
+      'games_allowed' => 'All',
+      'code' => 'WELCOME150',
+    ),
+    'bonus_free' => NULL,
+    'is_live_dealer' => NULL,
+    'date_established' => '2014-12-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'is_currency_accepted' => NULL,
+  ),
+  2 => 
+  array (
+    'id' => '1171',
+    'name' => '1xBit Casino',
+    'rating' => 0,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'BetSoft',
+      2 => 'Tom Horn',
+      3 => 'MicroGaming',
+      4 => 'Novomatic',
+      5 => 'Playtech',
+      6 => 'XPG',
+      7 => 'EGT',
+      8 => 'IGT',
+      9 => 'Aristocrat',
+      10 => 'Evolution Gaming',
+      11 => 'Ezugi',
+      12 => 'Playson',
+      13 => 'Igrosoft',
+      14 => 'Play n GO',
+      15 => 'Endorphina',
+      16 => 'Pragmatic Play',
+      17 => 'GameArt',
+      18 => 'Amatic Industries',
+    ),
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100%',
+      'min_deposit' => '0.005 BTC',
+      'wagering' => '5xB',
+      'games_allowed' => 'All',
+      'code' => 'No code required',
+    ),
+    'bonus_free' => NULL,
+    'is_live_dealer' => NULL,
+    'date_established' => '2007-09-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'is_currency_accepted' => NULL,
+  ),
+  3 => 
+  array (
+    'id' => '441',
+    'name' => 'Mobilautomaten Casino',
+    'rating' => 0,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'Relax Gaming',
+      2 => 'NYX Interactive',
+      3 => 'MicroGaming',
+      4 => 'Playtech',
+      5 => 'BetSoft',
+      6 => 'Games OS',
+      7 => 'WMS Gaming',
+      8 => 'Yggdrasil Gaming',
+      9 => 'Thunderkick',
+      10 => 'Evolution Gaming',
+      11 => 'Quickspin',
+      12 => 'Play n GO',
+    ),
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100%',
+      'min_deposit' => '€10',
+      'wagering' => '35x(D+B)',
+      'games_allowed' => 'All',
       'code' => 'No code required',
     ),
     'bonus_free' => 
     array (
-      'amount' => '£5',
+      'amount' => '€10',
       'min_deposit' => '',
-      'wagering' => '100xB',
-      'games_allowed' => 'Slots',
+      'wagering' => '45xB',
+      'games_allowed' => 'All',
       'code' => 'No code required',
     ),
     'is_live_dealer' => NULL,
-    'date_established' => '2015-12-04',
+    'date_established' => '2016-06-01',
     'emails' => NULL,
     'phones' => NULL,
     'is_live_chat' => NULL,
@@ -106,99 +244,44 @@ $this->response->setAttribute("recommended_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
-  1 => 
+  4 => 
   array (
-    'id' => '724',
-    'name' => 'Sapphire Rooms Casino',
-    'rating' => 6,
+    'id' => '312',
+    'name' => '1xBet Casino',
+    'rating' => 0,
     'softwares' => 
     array (
-      0 => 'MicroGaming',
-      1 => 'Realistic Games',
-      2 => 'Lightning Box Games',
-      3 => 'Scientific Games',
-      4 => 'Gamevy',
-      5 => 'Felt Gaming',
-      6 => 'Iron Dog Studio',
-      7 => 'Big Time Gaming',
-      8 => 'Blueprint Gaming',
-      9 => 'NYX Interactive',
-      10 => 'NextGen Gaming',
-      11 => 'Nektan',
-      12 => 'NetEnt',
-      13 => 'IGT',
-      14 => 'Aristocrat',
-      15 => 'ELK Studios',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '200% ',
-      'min_deposit' => '€/£10',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'No code required',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2014-11-10',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'average_rating' => 0,
-  ),
-  2 => 
-  array (
-    'id' => '629',
-    'name' => 'Chomp Casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'MicroGaming',
-      1 => 'Gamevy',
-      2 => 'NextGen Gaming',
-      3 => 'Nektan',
-      4 => 'NetEnt',
-      5 => 'IGT',
+      0 => 'NetEnt',
+      1 => 'EGT',
+      2 => 'MicroGaming',
+      3 => 'Novomatic',
+      4 => 'Playtech',
+      5 => 'BetSoft',
       6 => 'Aristocrat',
-      7 => 'ELK Studios',
-      8 => 'Big Time Gaming',
-      9 => 'Blueprint Gaming',
-      10 => 'Realistic Games',
-      11 => 'Lightning Box Games',
-      12 => 'Scientific Games',
-      13 => 'Felt Gaming',
-      14 => 'Iron Dog Studio',
-      15 => 'NYX Interactive',
+      7 => 'Evolution Gaming',
+      8 => 'Ezugi',
+      9 => 'Igrosoft',
+      10 => 'Play n GO',
+      11 => 'Endorphina',
+      12 => 'GameArt',
+      13 => 'Amatic Industries',
+      14 => 'Betgames TV',
+      15 => 'Tom Horn',
     ),
     'languages' => NULL,
     'currencies' => NULL,
     'bonus_first_deposit' => 
     array (
-      'amount' => '100% + 50 FS',
-      'min_deposit' => '£10',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'All ( FS - Starbust)',
+      'amount' => '100%',
+      'min_deposit' => '$/€/£50.5',
+      'wagering' => '5xB',
+      'games_allowed' => 'All',
       'code' => 'No code required',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
-    'date_established' => '2014-04-14',
+    'date_established' => '2007-01-01',
     'emails' => NULL,
     'phones' => NULL,
     'is_live_chat' => NULL,
@@ -214,93 +297,228 @@ $this->response->setAttribute("recommended_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
 ));
 $this->response->setAttribute("recommended_games", array (
-  6875 => 
+  6966 => 
   array (
-    'id' => '6875',
-    'name' => 'NetEnt French Roulette',
+    'id' => '6966',
+    'name' => 'Planet Fortune',
     'type' => NULL,
-    'software' => 'NetEnt',
+    'software' => 'Play n GO',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6868 => 
+  6965 => 
   array (
-    'id' => '6868',
-    'name' => 'LuckyStreak Roulette',
+    'id' => '6965',
+    'name' => 'Mighty Arthur',
     'type' => NULL,
-    'software' => 'LuckyStreak',
+    'software' => 'Quickspin',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6637 => 
+  6964 => 
   array (
-    'id' => '6637',
-    'name' => 'Saucify European Roulette',
+    'id' => '6964',
+    'name' => 'Pied Piper',
     'type' => NULL,
-    'software' => 'Saucify',
+    'software' => 'Quickspin',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6635 => 
+  6962 => 
   array (
-    'id' => '6635',
-    'name' => 'Intouch Games European Roulette',
+    'id' => '6962',
+    'name' => 'Rapunzels Tower',
     'type' => NULL,
-    'software' => 'Intouch Games',
+    'software' => 'Quickspin',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6489 => 
+  6961 => 
   array (
-    'id' => '6489',
-    'name' => 'Digital Gaming Solutions American Roulette',
+    'id' => '6961',
+    'name' => 'Grill King',
     'type' => NULL,
-    'software' => 'Digital Gaming Solutions',
+    'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6341 => 
+  6960 => 
   array (
-    'id' => '6341',
-    'name' => 'Visionary iGaming American Roulette',
+    'id' => '6960',
+    'name' => 'Gates of Hell',
     'type' => NULL,
-    'software' => 'Visionary iGaming',
+    'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+  ),
+));
+$this->response->setAttribute("menu_top", array (
+  0 => 
+  array (
+    'title' => 'CASINOS',
+    'url' => '/casinos',
+    'is_active' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'SOFTWARES',
+    'url' => '/softwares',
+    'is_active' => false,
+  ),
+  2 => 
+  array (
+    'title' => 'BONUSES',
+    'url' => '/bonus-list',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'COUNTRIES',
+    'url' => '/countries',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'COMPATIBILITY',
+    'url' => '/compatability',
+    'is_active' => false,
+  ),
+  5 => 
+  array (
+    'title' => 'BANKING',
+    'url' => '/banking',
+    'is_active' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'FEATURES',
+    'url' => '/features',
+    'is_active' => false,
+  ),
+  7 => 
+  array (
+    'title' => 'GAMES',
+    'url' => '/games',
+    'is_active' => false,
+  ),
+));
+$this->response->setAttribute("menu_bottom", array (
+  0 => 
+  array (
+    'title' => 'Video Slots',
+    'url' => '/games/video-slots',
+    'is_active' => true,
+  ),
+  1 => 
+  array (
+    'title' => 'Video Poker',
+    'url' => '/games/video-poker',
+    'is_active' => false,
+  ),
+  2 => 
+  array (
+    'title' => 'Classic Slots',
+    'url' => '/games/classic-slots',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'Scratch Cards',
+    'url' => '/games/scratch-cards',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'Blackjack',
+    'url' => '/games/blackjack',
+    'is_active' => false,
+  ),
+  5 => 
+  array (
+    'title' => 'Other',
+    'url' => '/games/other',
+    'is_active' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'Roulette',
+    'url' => '/games/roulette',
+    'is_active' => false,
+  ),
+  7 => 
+  array (
+    'title' => 'Table Games',
+    'url' => '/games/table-games',
+    'is_active' => false,
+  ),
+  8 => 
+  array (
+    'title' => 'Keno',
+    'url' => '/games/keno',
+    'is_active' => false,
+  ),
+  9 => 
+  array (
+    'title' => 'Bingo',
+    'url' => '/games/bingo',
+    'is_active' => false,
+  ),
+  10 => 
+  array (
+    'title' => 'Baccarat',
+    'url' => '/games/baccarat',
+    'is_active' => false,
+  ),
+  11 => 
+  array (
+    'title' => 'Craps',
+    'url' => '/games/craps',
+    'is_active' => false,
   ),
 ));
 

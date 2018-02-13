@@ -2,11 +2,11 @@
 class SearchMoreGamesController extends Controller {
     public function run() {
         $this->response->setAttribute("results", array (
-  0 => 'Crazy Slots',
-  1 => 'Days of Our Slots',
-  2 => 'Devil Slot',
-  3 => 'Disco Slot',
-  4 => 'Dodge City Slots',
+  0 => 'A Christmas Carol',
+  1 => 'Aladdins Treasure',
+  2 => 'Alaska Wild',
+  3 => 'Alaskan Fishing',
+  4 => 'Alaskan Husky',
 ));
 
     }

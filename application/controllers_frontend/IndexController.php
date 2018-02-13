@@ -1,7 +1,57 @@
 <?php
 class IndexController extends Controller {
     public function run() {
-        $this->response->setAttribute("country", array (
+        $this->response->setAttribute("menu_top", array (
+  0 => 
+  array (
+    'title' => 'CASINOS',
+    'url' => '/casinos',
+    'is_active' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'SOFTWARES',
+    'url' => '/softwares',
+    'is_active' => false,
+  ),
+  2 => 
+  array (
+    'title' => 'BONUSES',
+    'url' => '/bonus-list',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'COUNTRIES',
+    'url' => '/countries',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'COMPATIBILITY',
+    'url' => '/compatability',
+    'is_active' => false,
+  ),
+  5 => 
+  array (
+    'title' => 'BANKING',
+    'url' => '/banking',
+    'is_active' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'FEATURES',
+    'url' => '/features',
+    'is_active' => false,
+  ),
+  7 => 
+  array (
+    'title' => 'GAMES',
+    'url' => '/games',
+    'is_active' => false,
+  ),
+));
+$this->response->setAttribute("country", array (
   'id' => '34',
   'code' => 'US',
   'name' => 'United States',
@@ -11,7 +61,7 @@ $this->response->setAttribute("best_casinos", array (
   array (
     'id' => '257',
     'name' => 'Jackpot Capital',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -51,13 +101,12 @@ $this->response->setAttribute("best_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   1 => 
   array (
     'id' => '878',
     'name' => 'Stake7 Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Merkur Gaming',
@@ -93,13 +142,12 @@ $this->response->setAttribute("best_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   2 => 
   array (
     'id' => '785',
     'name' => 'VegasCasino.io',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'BetSoft',
@@ -140,13 +188,12 @@ $this->response->setAttribute("best_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   3 => 
   array (
     'id' => '340',
     'name' => 'Exclusive Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -179,13 +226,12 @@ $this->response->setAttribute("best_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   4 => 
   array (
     'id' => '1171',
     'name' => '1xBit Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -236,13 +282,12 @@ $this->response->setAttribute("best_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   5 => 
   array (
     'id' => '1124',
     'name' => 'Bet East Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Ezugi',
@@ -275,13 +320,12 @@ $this->response->setAttribute("best_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   6 => 
   array (
     'id' => '1091',
     'name' => 'Bitcoin Penguin Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'SoftSwiss',
@@ -314,13 +358,12 @@ $this->response->setAttribute("best_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   7 => 
   array (
     'id' => '1065',
     'name' => 'Betive Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -360,13 +403,12 @@ $this->response->setAttribute("best_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   8 => 
   array (
     'id' => '1064',
     'name' => 'HRwager Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'SoftSwiss',
@@ -399,13 +441,12 @@ $this->response->setAttribute("best_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   9 => 
   array (
     'id' => '1039',
     'name' => 'Planet Kings Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -445,15 +486,61 @@ $this->response->setAttribute("best_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
 ));
 $this->response->setAttribute("country_casinos", array (
   0 => 
   array (
+    'id' => '1334',
+    'name' => '24VIP Casino',
+    'rating' => 0,
+    'softwares' => 
+    array (
+      0 => 'Rival',
+      1 => 'Vivo Gaming',
+      2 => 'BetSoft',
+    ),
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100% + 240 FS',
+      'min_deposit' => '$25',
+      'wagering' => '15x(D+B)',
+      'games_allowed' => 'Slots, Keno, Bingo, Specialty games (FS - Variety of Slots)',
+      'code' => 'No code required',
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '$15',
+      'min_deposit' => '',
+      'wagering' => '20xB',
+      'games_allowed' => 'Slots, Keno, Bingo, Specialty Games and Scratch Cards',
+      'code' => 'No code required',
+    ),
+    'is_live_dealer' => NULL,
+    'date_established' => '2017-09-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'is_currency_accepted' => NULL,
+  ),
+  1 => 
+  array (
     'id' => '1371',
     'name' => 'Casino 5plusbet5',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -507,13 +594,12 @@ $this->response->setAttribute("country_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
-  1 => 
+  2 => 
   array (
     'id' => '1369',
     'name' => 'UpTown Pokies Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -553,13 +639,12 @@ $this->response->setAttribute("country_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
-  2 => 
+  3 => 
   array (
     'id' => '1351',
     'name' => 'EuroBets Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -599,61 +684,12 @@ $this->response->setAttribute("country_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
-  ),
-  3 => 
-  array (
-    'id' => '1334',
-    'name' => '24VIP Casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-      1 => 'Vivo Gaming',
-      2 => 'BetSoft',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100% + 240 FS',
-      'min_deposit' => '$25',
-      'wagering' => '15x(D+B)',
-      'games_allowed' => 'Slots, Keno, Bingo, Specialty games (FS - Variety of Slots)',
-      'code' => 'No code required',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$15',
-      'min_deposit' => '',
-      'wagering' => '20xB',
-      'games_allowed' => 'Slots, Keno, Bingo, Specialty Games and Scratch Cards',
-      'code' => 'No code required',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2017-09-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   4 => 
   array (
     'id' => '1307',
     'name' => 'Spintastic Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -688,7 +724,6 @@ $this->response->setAttribute("country_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
 ));
 $this->response->setAttribute("new_casinos", array (
@@ -696,7 +731,7 @@ $this->response->setAttribute("new_casinos", array (
   array (
     'id' => '1371',
     'name' => 'Casino 5plusbet5',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -750,13 +785,12 @@ $this->response->setAttribute("new_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   1 => 
   array (
     'id' => '1369',
     'name' => 'UpTown Pokies Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -796,13 +830,12 @@ $this->response->setAttribute("new_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   2 => 
   array (
     'id' => '1351',
     'name' => 'EuroBets Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -842,13 +875,12 @@ $this->response->setAttribute("new_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   3 => 
   array (
     'id' => '1334',
     'name' => '24VIP Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -890,13 +922,12 @@ $this->response->setAttribute("new_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   4 => 
   array (
     'id' => '1307',
     'name' => 'Spintastic Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -931,7 +962,6 @@ $this->response->setAttribute("new_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
 ));
 $this->response->setAttribute("no_deposit_casinos", array (
@@ -939,7 +969,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
   array (
     'id' => '1369',
     'name' => 'UpTown Pokies Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -979,13 +1009,12 @@ $this->response->setAttribute("no_deposit_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   1 => 
   array (
     'id' => '1351',
     'name' => 'EuroBets Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -1025,13 +1054,12 @@ $this->response->setAttribute("no_deposit_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   2 => 
   array (
     'id' => '1334',
     'name' => '24VIP Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -1073,13 +1101,12 @@ $this->response->setAttribute("no_deposit_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   3 => 
   array (
     'id' => '1182',
     'name' => 'Casino Brango',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -1119,13 +1146,12 @@ $this->response->setAttribute("no_deposit_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   4 => 
   array (
     'id' => '1155',
     'name' => 'BoVegas Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -1165,7 +1191,6 @@ $this->response->setAttribute("no_deposit_casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
 ));
 $this->response->setAttribute("new_games", array (
@@ -1176,7 +1201,9 @@ $this->response->setAttribute("new_games", array (
     'type' => NULL,
     'software' => 'Play n GO',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
@@ -1190,7 +1217,9 @@ $this->response->setAttribute("new_games", array (
     'type' => NULL,
     'software' => 'Quickspin',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
@@ -1204,7 +1233,9 @@ $this->response->setAttribute("new_games", array (
     'type' => NULL,
     'software' => 'Quickspin',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
@@ -1218,7 +1249,9 @@ $this->response->setAttribute("new_games", array (
     'type' => NULL,
     'software' => 'Quickspin',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
@@ -1232,7 +1265,9 @@ $this->response->setAttribute("new_games", array (
     'type' => NULL,
     'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
@@ -1246,7 +1281,9 @@ $this->response->setAttribute("new_games", array (
     'type' => NULL,
     'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,

@@ -2,6 +2,106 @@
 class CasinosByFeatureController extends Controller {
     public function run() {
         $this->response->setAttribute("selected_entity", 'Live Dealer');
+$this->response->setAttribute("menu_top", array (
+  0 => 
+  array (
+    'title' => 'CASINOS',
+    'url' => '/casinos',
+    'is_active' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'SOFTWARES',
+    'url' => '/softwares',
+    'is_active' => false,
+  ),
+  2 => 
+  array (
+    'title' => 'BONUSES',
+    'url' => '/bonus-list',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'COUNTRIES',
+    'url' => '/countries',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'COMPATIBILITY',
+    'url' => '/compatability',
+    'is_active' => false,
+  ),
+  5 => 
+  array (
+    'title' => 'BANKING',
+    'url' => '/banking',
+    'is_active' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'FEATURES',
+    'url' => '/features',
+    'is_active' => true,
+  ),
+  7 => 
+  array (
+    'title' => 'GAMES',
+    'url' => '/games',
+    'is_active' => false,
+  ),
+));
+$this->response->setAttribute("menu_bottom", array (
+  0 => 
+  array (
+    'title' => 'United States Casinos',
+    'url' => '/countries-list/united-states',
+    'is_active' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'Live Dealer Casinos',
+    'url' => '/features/live-dealer',
+    'is_active' => true,
+  ),
+  2 => 
+  array (
+    'title' => 'No Deposit Casinos',
+    'url' => '/bonus-list/no-deposit-bonus',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'Best Casinos',
+    'url' => '/casinos/best',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'Safe Casinos',
+    'url' => '/casinos/safe',
+    'is_active' => false,
+  ),
+  5 => 
+  array (
+    'title' => 'New Casinos',
+    'url' => '/casinos/new',
+    'is_active' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'Recommended Casinos',
+    'url' => '/casinos/recommended',
+    'is_active' => false,
+  ),
+  7 => 
+  array (
+    'title' => 'Stay Away Casinos',
+    'url' => '/casinos/stay-away',
+    'is_active' => false,
+  ),
+));
 $this->response->setAttribute("menu", array (
   '/countries-list/united-states' => 'United States Casinos',
   '/features/live-dealer' => 'Live Dealer Casinos',
@@ -23,7 +123,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '1357',
     'name' => 'Babe Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -82,13 +182,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   1 => 
   array (
     'id' => '1315',
     'name' => 'Breakout Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -126,13 +225,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   2 => 
   array (
     'id' => '1193',
     'name' => 'Mars Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -171,13 +269,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   3 => 
   array (
     'id' => '1184',
     'name' => 'Burnbet Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -219,13 +316,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   4 => 
   array (
     'id' => '1073',
     'name' => 'Naughty Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -265,13 +361,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   5 => 
   array (
     'id' => '1029',
     'name' => '5Dimes Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -305,13 +400,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   6 => 
   array (
     'id' => '1016',
     'name' => 'Ramses Gold Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -353,13 +447,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   7 => 
   array (
     'id' => '978',
     'name' => 'M88 Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -397,13 +490,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   8 => 
   array (
     'id' => '920',
     'name' => 'Boss Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -444,13 +536,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   9 => 
   array (
     'id' => '917',
     'name' => 'Jojobet Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -487,13 +578,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   10 => 
   array (
     'id' => '882',
     'name' => 'Versailles Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -528,13 +618,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   11 => 
   array (
     'id' => '684',
     'name' => 'NederBet Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -572,13 +661,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   12 => 
   array (
     'id' => '682',
     'name' => 'Casino Girl',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'BetSoft',
@@ -614,13 +702,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   13 => 
   array (
     'id' => '657',
     'name' => 'Parasino Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -675,13 +762,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   14 => 
   array (
     'id' => '591',
     'name' => 'LaRomere Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -715,13 +801,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   15 => 
   array (
     'id' => '587',
     'name' => 'Carat Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -757,13 +842,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   16 => 
   array (
     'id' => '509',
     'name' => 'Platinum Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -809,13 +893,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   17 => 
   array (
     'id' => '389',
     'name' => 'Crazy Spins Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -850,13 +933,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   18 => 
   array (
     'id' => '334',
     'name' => 'MoneyStorm Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'BetSoft',
@@ -889,13 +971,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   19 => 
   array (
     'id' => '319',
     'name' => 'Intrabahis Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -931,7 +1012,6 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
 ));
 

@@ -1,7 +1,131 @@
 <?php
 class GamesByTypeController extends Controller {
     public function run() {
-        $this->response->setAttribute("selected_entity", 'Roulette');
+        $this->response->setAttribute("menu_top", array (
+  0 => 
+  array (
+    'title' => 'CASINOS',
+    'url' => '/casinos',
+    'is_active' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'SOFTWARES',
+    'url' => '/softwares',
+    'is_active' => false,
+  ),
+  2 => 
+  array (
+    'title' => 'BONUSES',
+    'url' => '/bonus-list',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'COUNTRIES',
+    'url' => '/countries',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'COMPATIBILITY',
+    'url' => '/compatability',
+    'is_active' => false,
+  ),
+  5 => 
+  array (
+    'title' => 'BANKING',
+    'url' => '/banking',
+    'is_active' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'FEATURES',
+    'url' => '/features',
+    'is_active' => false,
+  ),
+  7 => 
+  array (
+    'title' => 'GAMES',
+    'url' => '/games',
+    'is_active' => true,
+  ),
+));
+$this->response->setAttribute("selected_entity", 'Video Slots');
+$this->response->setAttribute("menu_bottom", array (
+  0 => 
+  array (
+    'title' => 'Video Slots',
+    'url' => '/games/video-slots',
+    'is_active' => true,
+  ),
+  1 => 
+  array (
+    'title' => 'Video Poker',
+    'url' => '/games/video-poker',
+    'is_active' => false,
+  ),
+  2 => 
+  array (
+    'title' => 'Classic Slots',
+    'url' => '/games/classic-slots',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'Scratch Cards',
+    'url' => '/games/scratch-cards',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'Blackjack',
+    'url' => '/games/blackjack',
+    'is_active' => false,
+  ),
+  5 => 
+  array (
+    'title' => 'Other',
+    'url' => '/games/other',
+    'is_active' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'Roulette',
+    'url' => '/games/roulette',
+    'is_active' => false,
+  ),
+  7 => 
+  array (
+    'title' => 'Table Games',
+    'url' => '/games/table-games',
+    'is_active' => false,
+  ),
+  8 => 
+  array (
+    'title' => 'Keno',
+    'url' => '/games/keno',
+    'is_active' => false,
+  ),
+  9 => 
+  array (
+    'title' => 'Bingo',
+    'url' => '/games/bingo',
+    'is_active' => false,
+  ),
+  10 => 
+  array (
+    'title' => 'Baccarat',
+    'url' => '/games/baccarat',
+    'is_active' => false,
+  ),
+  11 => 
+  array (
+    'title' => 'Craps',
+    'url' => '/games/craps',
+    'is_active' => false,
+  ),
+));
 $this->response->setAttribute("game_types", array (
   0 => 'Video Slots',
   1 => 'Video Poker',
@@ -16,338 +140,386 @@ $this->response->setAttribute("game_types", array (
   10 => 'Baccarat',
   11 => 'Craps',
 ));
-$this->response->setAttribute("total_games", 156);
+$this->response->setAttribute("total_games", 4525);
 $this->response->setAttribute("games", array (
-  6875 => 
+  6966 => 
   array (
-    'id' => '6875',
-    'name' => 'NetEnt French Roulette',
+    'id' => '6966',
+    'name' => 'Planet Fortune',
     'type' => NULL,
-    'software' => 'NetEnt',
+    'software' => 'Play n GO',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6868 => 
+  6965 => 
   array (
-    'id' => '6868',
-    'name' => 'LuckyStreak Roulette',
+    'id' => '6965',
+    'name' => 'Mighty Arthur',
     'type' => NULL,
-    'software' => 'LuckyStreak',
+    'software' => 'Quickspin',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6637 => 
+  6964 => 
   array (
-    'id' => '6637',
-    'name' => 'Saucify European Roulette',
+    'id' => '6964',
+    'name' => 'Pied Piper',
     'type' => NULL,
-    'software' => 'Saucify',
+    'software' => 'Quickspin',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6635 => 
+  6962 => 
   array (
-    'id' => '6635',
-    'name' => 'Intouch Games European Roulette',
+    'id' => '6962',
+    'name' => 'Rapunzels Tower',
     'type' => NULL,
-    'software' => 'Intouch Games',
+    'software' => 'Quickspin',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6489 => 
+  6961 => 
   array (
-    'id' => '6489',
-    'name' => 'Digital Gaming Solutions American Roulette',
+    'id' => '6961',
+    'name' => 'Grill King',
     'type' => NULL,
-    'software' => 'Digital Gaming Solutions',
+    'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6341 => 
+  6960 => 
   array (
-    'id' => '6341',
-    'name' => 'Visionary iGaming American Roulette',
+    'id' => '6960',
+    'name' => 'Gates of Hell',
     'type' => NULL,
-    'software' => 'Visionary iGaming',
+    'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6340 => 
+  6959 => 
   array (
-    'id' => '6340',
-    'name' => 'Visionary iGaming European Roulette',
+    'id' => '6959',
+    'name' => 'Treasure of Shaman',
     'type' => NULL,
-    'software' => 'Visionary iGaming',
+    'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6322 => 
+  6958 => 
   array (
-    'id' => '6322',
-    'name' => 'Takisto European Roulette',
+    'id' => '6958',
+    'name' => 'Sweet Paradise',
     'type' => NULL,
-    'software' => 'Takisto',
+    'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6318 => 
+  6957 => 
   array (
-    'id' => '6318',
-    'name' => 'Takisto American Roulette',
+    'id' => '6957',
+    'name' => 'Sea Underwater Club',
     'type' => NULL,
-    'software' => 'Takisto',
+    'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6295 => 
+  6956 => 
   array (
-    'id' => '6295',
-    'name' => '888 Software French Roulette',
+    'id' => '6956',
+    'name' => 'Maniac House',
     'type' => NULL,
-    'software' => '888 Software',
+    'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6294 => 
+  6955 => 
   array (
-    'id' => '6294',
-    'name' => 'European Low Stakes Roulette',
+    'id' => '6955',
+    'name' => 'Lapland',
     'type' => NULL,
-    'software' => '888 Software',
+    'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6264 => 
+  6954 => 
   array (
-    'id' => '6264',
-    'name' => '888 Software 3D Roulette',
+    'id' => '6954',
+    'name' => 'Gemstone of Aztec',
     'type' => NULL,
-    'software' => '888 Software',
+    'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6230 => 
+  6953 => 
   array (
-    'id' => '6230',
-    'name' => 'Flamys Roulette',
+    'id' => '6953',
+    'name' => 'Forest Ant',
     'type' => NULL,
-    'software' => 'R Franco',
+    'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6130 => 
+  6952 => 
   array (
-    'id' => '6130',
-    'name' => 'Roulette Royal',
+    'id' => '6952',
+    'name' => 'Cheerful Farmer',
     'type' => NULL,
-    'software' => 'NeoGames',
+    'software' => 'Fugaso',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6129 => 
+  6946 => 
   array (
-    'id' => '6129',
-    'name' => 'NeoGames Roulette Pro',
+    'id' => '6946',
+    'name' => 'Bird of Thunder',
     'type' => NULL,
-    'software' => 'NeoGames',
+    'software' => 'Habanero',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6128 => 
+  6945 => 
   array (
-    'id' => '6128',
-    'name' => 'Roulette Lounge',
+    'id' => '6945',
+    'name' => 'Panda Panda',
     'type' => NULL,
-    'software' => 'NeoGames',
+    'software' => 'Habanero',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  6060 => 
+  6944 => 
   array (
-    'id' => '6060',
-    'name' => 'NeoGames European Roulette',
+    'id' => '6944',
+    'name' => 'The Dead Escape',
     'type' => NULL,
-    'software' => 'NeoGames',
+    'software' => 'Habanero',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  5984 => 
+  6943 => 
   array (
-    'id' => '5984',
-    'name' => 'European Roulette',
+    'id' => '6943',
+    'name' => 'Scruffy Scallywags',
     'type' => NULL,
-    'software' => 'Holland Power Gaming',
+    'software' => 'Habanero',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  5951 => 
+  6942 => 
   array (
-    'id' => '5951',
-    'name' => 'Arrows Edge European Roulette',
+    'id' => '6942',
+    'name' => 'Cake Valley',
     'type' => NULL,
-    'software' => 'Arrows Edge',
+    'software' => 'Habanero',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  5946 => 
+  6941 => 
   array (
-    'id' => '5946',
-    'name' => 'Arrows Edge American Roulette',
+    'id' => '6941',
+    'name' => 'Rolling Roger',
     'type' => NULL,
-    'software' => 'Arrows Edge',
+    'software' => 'Habanero',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  5854 => 
+  6940 => 
   array (
-    'id' => '5854',
-    'name' => 'Euro Games Technology European Roulette',
+    'id' => '6940',
+    'name' => 'Santas Village',
     'type' => NULL,
-    'software' => 'Euro Games Technology',
+    'software' => 'Habanero',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  5655 => 
+  6939 => 
   array (
-    'id' => '5655',
-    'name' => 'Roulette with Track',
+    'id' => '6939',
+    'name' => '5 Mariachis',
     'type' => NULL,
-    'software' => 'Playson',
+    'software' => 'Habanero',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  5602 => 
+  6937 => 
   array (
-    'id' => '5602',
-    'name' => 'Mini Roulette V2',
+    'id' => '6937',
+    'name' => 'Wizard Shop',
     'type' => NULL,
-    'software' => 'OpenBet',
+    'software' => 'Push Gaming',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
   ),
-  5593 => 
+  6936 => 
   array (
-    'id' => '5593',
-    'name' => 'Roulette Single Euro Lo Roller',
+    'id' => '6936',
+    'name' => 'Dragon Sisters',
     'type' => NULL,
-    'software' => 'OpenBet',
+    'software' => 'Push Gaming',
     'release_date' => NULL,
-    'technologies' => NULL,
+    'technologies' => 
+    array (
+    ),
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,

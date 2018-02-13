@@ -1,7 +1,57 @@
 <?php
 class BankingMethodsController extends Controller {
     public function run() {
-        $this->response->setAttribute("results", array (
+        $this->response->setAttribute("menu_top", array (
+  0 => 
+  array (
+    'title' => 'CASINOS',
+    'url' => '/casinos',
+    'is_active' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'SOFTWARES',
+    'url' => '/softwares',
+    'is_active' => false,
+  ),
+  2 => 
+  array (
+    'title' => 'BONUSES',
+    'url' => '/bonus-list',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'COUNTRIES',
+    'url' => '/countries',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'COMPATIBILITY',
+    'url' => '/compatability',
+    'is_active' => false,
+  ),
+  5 => 
+  array (
+    'title' => 'BANKING',
+    'url' => '/banking',
+    'is_active' => true,
+  ),
+  6 => 
+  array (
+    'title' => 'FEATURES',
+    'url' => '/features',
+    'is_active' => false,
+  ),
+  7 => 
+  array (
+    'title' => 'GAMES',
+    'url' => '/games',
+    'is_active' => false,
+  ),
+));
+$this->response->setAttribute("results", array (
   'Visa' => '1077',
   'MasterCard' => '1034',
   'Neteller' => '958',
@@ -30,14 +80,14 @@ class BankingMethodsController extends Controller {
   'iDebit' => '108',
   'UseMyServices' => '102',
   'Yandex.Money' => '87',
-  'American Express' => '77',
   'Boku' => '77',
+  'American Express' => '77',
   'Neosurf' => '75',
   'TrustPay' => '75',
   'Diners Club' => '73',
   'Boleto Bancario' => '72',
-  'Postepay' => '69',
   'eKonto' => '69',
+  'Postepay' => '69',
   'eCheck' => '66',
   'Abaqoos' => '66',
   'Instant Banking By Citadel' => '66',
@@ -56,8 +106,8 @@ class BankingMethodsController extends Controller {
   'ClickandBuy' => '30',
   'Teleingreso' => '29',
   'Cheque' => '28',
-  'Siru Mobile' => '26',
   'SafetyPay' => '26',
+  'Siru Mobile' => '26',
   'CartaSi' => '25',
   'Kalibra Card' => '25',
   'EasyEFT' => '23',
@@ -66,53 +116,53 @@ class BankingMethodsController extends Controller {
   'Discover' => '14',
   'Epro' => '13',
   'JCB' => '12',
+  'Western Union' => '10',
   'OKPAY' => '10',
   'Carte Bleue' => '10',
-  'Western Union' => '10',
   'Money Order' => '9',
   'LiqPay' => '9',
-  'AGMO' => '8',
-  'Dankort' => '8',
   'Wallet One' => '8',
   'Lottomaticard' => '8',
+  'AGMO' => '8',
+  'Dankort' => '8',
+  'swiff' => '7',
   'Page en Efectivo' => '7',
   'Phone Bill' => '7',
   'eNETS' => '7',
-  'swiff' => '7',
+  'Payforit' => '6',
   'MST Gift Card' => '6',
   'PaySpark' => '6',
   'EURO 6000' => '6',
   'Speedcard' => '6',
   'Transfer Money' => '6',
-  'Payforit' => '6',
+  'Paytrail' => '5',
   'OchaPay' => '5',
   'Paybox' => '5',
   'SID' => '5',
   'Money@Mail.ru' => '5',
-  'Paytrail' => '5',
+  'Privat24' => '4',
   'Interkassa' => '4',
   'Direct Money' => '4',
   'iBANQ' => '4',
-  'Privat24' => '4',
+  'Intercash' => '3',
   'CASHU' => '3',
   'Kalixa' => '3',
   'Vanilla Card' => '3',
   'Switch' => '3',
   'Euroset' => '3',
-  'Intercash' => '3',
+  'Allied Wallet' => '2',
   'Cuenta Digital' => '2',
   'ELV' => '2',
   'INPAY' => '2',
   'Pago Facil' => '2',
   'MoneyGram' => '2',
   '4B' => '2',
-  'Allied Wallet' => '2',
+  'PayNearMe' => '1',
   'AsiaPay' => '1',
   'GoCash' => '1',
   'easydebit' => '1',
   'BT Landlines' => '1',
   'MyMonedero' => '1',
-  'PayNearMe' => '1',
 ));
 
     }

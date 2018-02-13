@@ -2,6 +2,106 @@
 class CasinosByCompatibilityController extends Controller {
     public function run() {
         $this->response->setAttribute("selected_entity", 'Mac');
+$this->response->setAttribute("menu_top", array (
+  0 => 
+  array (
+    'title' => 'CASINOS',
+    'url' => '/casinos',
+    'is_active' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'SOFTWARES',
+    'url' => '/softwares',
+    'is_active' => false,
+  ),
+  2 => 
+  array (
+    'title' => 'BONUSES',
+    'url' => '/bonus-list',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'COUNTRIES',
+    'url' => '/countries',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'COMPATIBILITY',
+    'url' => '/compatability',
+    'is_active' => true,
+  ),
+  5 => 
+  array (
+    'title' => 'BANKING',
+    'url' => '/banking',
+    'is_active' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'FEATURES',
+    'url' => '/features',
+    'is_active' => false,
+  ),
+  7 => 
+  array (
+    'title' => 'GAMES',
+    'url' => '/games',
+    'is_active' => false,
+  ),
+));
+$this->response->setAttribute("menu_bottom", array (
+  0 => 
+  array (
+    'title' => 'United States Casinos',
+    'url' => '/countries-list/united-states',
+    'is_active' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'Mac Casinos',
+    'url' => '/compatability/mac',
+    'is_active' => true,
+  ),
+  2 => 
+  array (
+    'title' => 'No Deposit Casinos',
+    'url' => '/bonus-list/no-deposit-bonus',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'Best Casinos',
+    'url' => '/casinos/best',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'Safe Casinos',
+    'url' => '/casinos/safe',
+    'is_active' => false,
+  ),
+  5 => 
+  array (
+    'title' => 'New Casinos',
+    'url' => '/casinos/new',
+    'is_active' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'Recommended Casinos',
+    'url' => '/casinos/recommended',
+    'is_active' => false,
+  ),
+  7 => 
+  array (
+    'title' => 'Stay Away Casinos',
+    'url' => '/casinos/stay-away',
+    'is_active' => false,
+  ),
+));
 $this->response->setAttribute("menu", array (
   '/countries-list/united-states' => 'United States Casinos',
   '/compatability/mac' => 'Mac Casinos',
@@ -23,7 +123,7 @@ $this->response->setAttribute("casinos", array (
   array (
     'id' => '29',
     'name' => 'Tropica Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Rival',
@@ -63,13 +163,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   1 => 
   array (
     'id' => '1357',
     'name' => 'Babe Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -128,13 +227,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   2 => 
   array (
     'id' => '1315',
     'name' => 'Breakout Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -172,13 +270,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   3 => 
   array (
     'id' => '1193',
     'name' => 'Mars Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -217,13 +314,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   4 => 
   array (
     'id' => '1189',
     'name' => 'Hera Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -265,13 +361,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   5 => 
   array (
     'id' => '1184',
     'name' => 'Burnbet Casino',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -313,13 +408,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   6 => 
   array (
     'id' => '1164',
     'name' => 'Aunty Acid Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -361,13 +455,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   7 => 
   array (
     'id' => '1090',
     'name' => 'Quackpot Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -407,13 +500,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   8 => 
   array (
     'id' => '1089',
     'name' => 'Merlin Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -453,13 +545,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   9 => 
   array (
     'id' => '1088',
     'name' => 'Lucky Ladies Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -494,13 +585,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   10 => 
   array (
     'id' => '1087',
     'name' => 'Girly Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -541,13 +631,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   11 => 
   array (
     'id' => '1085',
     'name' => 'Eat Sleep Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -587,13 +676,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   12 => 
   array (
     'id' => '1084',
     'name' => 'Viking Winners Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -633,13 +721,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   13 => 
   array (
     'id' => '1083',
     'name' => 'Time Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -679,13 +766,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   14 => 
   array (
     'id' => '1082',
     'name' => 'The Prize Finder Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -725,13 +811,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   15 => 
   array (
     'id' => '1080',
     'name' => 'Champers Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -771,13 +856,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   16 => 
   array (
     'id' => '1073',
     'name' => 'Naughty Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -817,13 +901,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   17 => 
   array (
     'id' => '1071',
     'name' => 'Lucky Touch Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -863,13 +946,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   18 => 
   array (
     'id' => '1070',
     'name' => 'Play2win Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -902,13 +984,12 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
   19 => 
   array (
     'id' => '1045',
     'name' => 'Love My Bingo',
-    'rating' => 6,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -949,7 +1030,6 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
-    'average_rating' => 0,
   ),
 ));
 
