@@ -10,12 +10,19 @@
 					<p class="js-condense">Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite. Most importantly, to be awarded this rating a casino must demonstrate the highest levels of customer service and player satisfaction over a number of years. We have no hesitation in recommending these casinos as safe and fun places to play online. Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite. Most importantly, to be awarded this rating a casino must demonstrate the highest levels of customer service and player satisfaction over a number of years. We have no hesitation in recommending these casinos as safe and fun places to play online</p>
 				</div>
 			</div>
+			
 			<filter:casinos/>
-			<div class="data-container" data-type="${get_page_type()}" data-type-value="${data.selected_entity}">
-				<div class="qty-items">${data.total_casinos} results</div>
-				<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
+
+			<div class="data-container-holder">
+				<div class="holder">
+					<div class="data-container" data-type="${get_page_type()}" data-type-value="${data.selected_entity}">
+						<div class="qty-items">${data.total_casinos} results</div>
+						<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
+					</div>
+					<div class="data-add-container" data-total="${data.total_casinos}"></div>
+				</div>
+				<import file="templates/include-reset-filters"/>
 			</div>
-			<div class="data-add-container" data-total="${data.total_casinos}"></div>
 
 			<std:if condition="${data.total_casinos} > 20">
 				<div class="btn-holder">
