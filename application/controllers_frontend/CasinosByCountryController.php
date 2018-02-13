@@ -102,16 +102,6 @@ $this->response->setAttribute("menu_bottom", array (
     'is_active' => false,
   ),
 ));
-$this->response->setAttribute("menu", array (
-  '/countries-list/united-states' => 'United States Casinos',
-  '/countries-list/sweden' => 'Sweden Casinos',
-  '/bonus-list/no-deposit-bonus' => 'No Deposit Casinos',
-  '/casinos/best' => 'Best Casinos',
-  '/casinos/safe' => 'Safe Casinos',
-  '/casinos/new' => 'New Casinos',
-  '/casinos/recommended' => 'Recommended Casinos',
-  '/casinos/stay-away' => 'Stay Away Casinos',
-));
 $this->response->setAttribute("country", array (
   'id' => '34',
   'code' => 'US',

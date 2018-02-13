@@ -358,16 +358,6 @@ $this->response->setAttribute("recommended_casinos", array (
     'is_currency_accepted' => NULL,
   ),
 ));
-$this->response->setAttribute("menu", array (
-  '/countries-list/united-states' => 'United States Casinos',
-  '/warn/tropica-casino' => 'Tropica Casino',
-  '/bonus-list/no-deposit-bonus' => 'No Deposit Casinos',
-  '/casinos/best' => 'Best Casinos',
-  '/casinos/safe' => 'Safe Casinos',
-  '/casinos/new' => 'New Casinos',
-  '/casinos/recommended' => 'Recommended Casinos',
-  '/casinos/stay-away' => 'Stay Away Casinos',
-));
 
     }
 }

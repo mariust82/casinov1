@@ -15,8 +15,6 @@ abstract class CasinosListController extends Controller {
         $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $this->response->getAttribute("selected_entity"), $this->request->getURI()->getPage());
         $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
 
-		$this->response->setAttribute("menu", $this->getMenu());
-
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
 
         $object = new CasinosList($this->getFilter());
@@ -31,21 +29,6 @@ abstract class CasinosListController extends Controller {
     }
 
     abstract protected function getSelectedEntity();
-
-	protected function getMenu() {
-	    $countryName = $this->request->getAttribute("country")->name;
-	    $entityName = $this->response->getAttribute("selected_entity");
-	    return [
-	        "/countries-list/".$this->generatePathParameter($countryName)=>$countryName." Casinos",
-            "/".$this->request->getURI()->getPage()=>$entityName." Casinos",
-            "/bonus-list/no-deposit-bonus"=>"No Deposit Casinos",
-            "/casinos/best"=>"Best Casinos",
-            "/casinos/safe"=>"Safe Casinos",
-            "/casinos/new"=>"New Casinos",
-            "/casinos/recommended"=>"Recommended Casinos",
-            "/casinos/stay-away"=>"Stay Away Casinos",
-        ];
-    }
 
 	abstract protected function getFilter();
 

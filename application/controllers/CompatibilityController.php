@@ -1,6 +1,7 @@
 <?php
 require_once("application/models/dao/OperatingSystems.php");
 require_once("application/models/dao/PlayVersions.php");
+require_once("application/models/dao/TopMenu.php");
 
 /*
 * Operating system and play version list by number of casinos.
@@ -12,6 +13,9 @@ require_once("application/models/dao/PlayVersions.php");
 class CompatibilityController extends Controller {
 	public function run()
     {
+        $menu = new TopMenu($this->request->getValidator()->getPage());
+        $this->response->setAttribute("menu_top", $menu->getEntries());
+
         $object = new OperatingSystems();
         $tmp1 = $object->getCasinosCount();
 

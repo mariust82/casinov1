@@ -38,9 +38,6 @@ class CasinoInfoController extends Controller {
         }
 
         // get menu
-        $this->response->setAttribute("menu", $this->getMenu());
-
-
         $menuTop = new TopMenu($this->request->getValidator()->getPage());
         $this->response->setAttribute("menu_top", $menuTop->getEntries());
 
@@ -48,18 +45,4 @@ class CasinoInfoController extends Controller {
         $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $softwareName, "softwares/".strtolower(str_replace(" ", "-", $softwareName)));
         $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
 	}
-    protected function getMenu() {
-        $countryName = $this->request->getAttribute("country")->name;
-        $softwareName = $this->response->getAttribute("casino")->softwares[0];
-        return [
-            "/countries-list/".strtolower(str_replace(" ", "-", $countryName))=>$countryName." Casinos",
-            "/softwares/".strtolower(str_replace(" ", "-", $softwareName))=>$softwareName." Casinos",
-            "/bonus-list/no-deposit-bonus"=>"No Deposit Casinos",
-            "/casinos/best"=>"Best Casinos",
-            "/casinos/safe"=>"Safe Casinos",
-            "/casinos/new"=>"New Casinos",
-            "/casinos/recommended"=>"Recommended Casinos",
-            "/casinos/stay-away"=>"Stay Away Casinos",
-        ];
-    }
 }

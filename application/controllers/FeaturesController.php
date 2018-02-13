@@ -2,6 +2,7 @@
 require_once("application/models/dao/PlayVersions.php");
 require_once("application/models/dao/Certifications.php");
 require_once("application/models/dao/Casinos.php");
+require_once("application/models/dao/TopMenu.php");
 
 /*
 * Play versions by number of casinos.
@@ -12,6 +13,9 @@ require_once("application/models/dao/Casinos.php");
 */
 class FeaturesController extends Controller {
     public function run() {
+        $menu = new TopMenu($this->request->getValidator()->getPage());
+        $this->response->setAttribute("menu_top", $menu->getEntries());
+
         $result = array();
 
 		// get nr casinos for play version: live dealer
