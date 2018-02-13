@@ -2,14 +2,9 @@
   <div class="container">
     <div class="swiper-container" id="links-nav">
         <div class="swiper-wrapper">
-          <std:foreach var="$[data]" key ="key" value="result">
+          <std:foreach var="${data.menu_bottom}" key ="key" value="result">
               <div class="swiper-slide">
-                  <std:if condition="'$[type]'=='0'">
-                    <a href="${key}">${result}</a>
-                  <std:else>
-                    <std:set name="croppedItem" value="str_replace(' Casinos', '', ${result})"/>
-                    <a class="${get_active($[type], ${croppedItem})}" href="${key}">${result}</a>
-                  </std:if>
+                  <a class="${(${result.is_active}?'active':'')}" href="${result.url}">${result.title}</a>
               </div>
           </std:foreach>
         </div>

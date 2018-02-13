@@ -1,7 +1,7 @@
 <std:set name="page" value="casino-info"/>
 
 <import file="templates/include-header"/>
-	<block:links-carousel type="0" data="${data.menu}"/>
+	<block:links-carousel/>
 
 	<std:if condition="${data.casino.status} == 'Blacklisted'">
 		<div class="container">
