@@ -205,6 +205,7 @@
             _contact_btn = $('.contact-btn'),
             _contact_success = $('#contact-us-success'),
             _contact_error = $('#contact-us-note'),
+            _server_error = $('#server-error-note'),
             _contact_error_class = 'not-valid',
              name,
              email,
@@ -258,26 +259,20 @@
                 type: 'POST',
                 success: function ( response ) {
                     if(response.status =="ok") {
-                        if(response.body.success === 1) {
-                            _contact_success.show();
-                            _contact_error.hide();
-                            _contact_btn.prop('disabled', true);
-                            _field_name.val('');
-                            _field_email.val('');
-                            _field_message.val('');
-                            _onEvents();
-                            $('.action-added').remove();
-                        }
+                        _contact_success.show();
+                        _contact_error.hide();
+                        _server_error.hide();
+                        _contact_btn.prop('disabled', true);
+                        _field_name.val('');
+                        _field_email.val('');
+                        _field_message.val('');
+                        _onEvents();
                     }
                     else if(response.status=="error") {
                         // console.error(response.body);
                         var arr = JSON.parse(response.body);
 
-                        $('.action-added').remove();
-                        $.each(arr, function(index, val) {
-                            var $msg = '<div class="action-field action-added not-valid ">'+val+'</div>';
-                            $('.review-submit-holder .msg-holder').append($msg);
-                        });
+                        _server_error.show();
                     }
                 },
                 error: function ( XMLHttpRequest ) {
