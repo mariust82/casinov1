@@ -1809,7 +1809,7 @@
      }
 
     function _validateInputMessage(txt) {
-         var regex = /^[\w\.,:;\s]+$/;
+         var regex = /^[\w\.,:;!\s]+$/;
          return regex.test(txt);
      }
 
