@@ -40,6 +40,8 @@ class CasinoInfoController extends Controller {
         // get menu
         $menuTop = new TopMenu($this->request->getValidator()->getPage());
         $this->response->setAttribute("menu_top", $menuTop->getEntries());
+        var_dump($this->response->getAttribute("menu_top"));
+        die();
 
         $softwareName = $this->response->getAttribute("casino")->softwares[0];
         $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $softwareName, "softwares/".strtolower(str_replace(" ", "-", $softwareName)));
