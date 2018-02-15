@@ -4,7 +4,7 @@ require_once("entities/CasinoBonus.php");
 
 class CasinosList
 {
-    const LIMIT = 20;
+    const LIMIT = 25;
     private $filter;
 
     public function __construct(CasinoFilter $filter)
