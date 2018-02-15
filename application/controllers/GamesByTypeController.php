@@ -26,7 +26,7 @@ class GamesByTypeController extends Controller {
         $this->response->setAttribute("menu_bottom", $menu->getEntries());
 
         $object = new GameManufacturers();
-        $this->response->setAttribute("game_types", $object->getAll());
+        $this->response->setAttribute("software", $object->getAll());
 
         $object = new GamesList(new GameFilter(array("game_type"=>$this->response->getAttribute("selected_entity"))));
         $total = $object->getTotal();
