@@ -20,4 +20,8 @@ class GameManufacturers implements CasinoCounter, FieldValidator
     public function validate($name) {
         return DB("SELECT name FROM game_manufacturers WHERE name=:name",array(":name"=>$name))->toValue();
     }
+
+    public function getAll() {
+        return DB("SELECT name FROM game_manufacturers ORDER BY name ASC")->toColumn();
+    }
 }
