@@ -67,6 +67,7 @@ class TopMenu
                 break;
             case "games":
             case "games/(type)":
+            case "play/(name)":
                 return "GAMES";
                 break;
             default:
