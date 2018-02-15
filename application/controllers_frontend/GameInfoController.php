@@ -6,7 +6,7 @@ class GameInfoController extends Controller {
   'code' => 'US',
   'name' => 'United States',
 ));
-$this->response->setAttribute("game_types", array (
+$this->response->setAttribute("software", array (
   0 => 'Video Slots',
   1 => 'Video Poker',
   2 => 'Classic Slots',
@@ -444,7 +444,7 @@ $this->response->setAttribute("menu_top", array (
   array (
     'title' => 'GAMES',
     'url' => '/games',
-    'is_active' => false,
+    'is_active' => true,
   ),
 ));
 $this->response->setAttribute("menu_bottom", array (

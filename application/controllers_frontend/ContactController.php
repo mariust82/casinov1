@@ -1,5 +1,5 @@
 <?php
-class FeaturesController extends Controller {
+class ContactController extends Controller {
     public function run() {
         $this->response->setAttribute("menu_top", array (
   0 => 
@@ -42,7 +42,7 @@ class FeaturesController extends Controller {
   array (
     'title' => 'FEATURES',
     'url' => '/features',
-    'is_active' => true,
+    'is_active' => false,
   ),
   7 => 
   array (
@@ -50,12 +50,6 @@ class FeaturesController extends Controller {
     'url' => '/games',
     'is_active' => false,
   ),
-));
-        $this->response->setAttribute("results", array (
-  'Live Dealer' => '512',
-  'eCOGRA Casinos' => '141',
-  'High Roller Casinos' => 0,
-  'Jackpot Casinos' => 0,
 ));
 
     }
