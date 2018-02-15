@@ -104,11 +104,9 @@
             var child = $(this).find('.list-item-trun').width();
             var bubble = $(this).find('.bubble');
 
-            if (child == parent) {
+            if (child + 10 > parent) {
                 bubble.show();
             }
-
-
         });
     }
 
@@ -391,12 +389,12 @@
                 _ajaxDataParams[_paramName] = _paramValue;
 
                 if (typeof _selectFilter.val() != 'undefined') {
-                    _ajaxDataParams['filter_by'] = _selectFilter.val().join();
+                    _ajaxDataParams['software'] = _selectFilter.val().join();
 
                     _itemsPerPage = 24;
 
                     if (_action == 'reset') {
-                        _ajaxDataParams['filter_by'] = '';
+                        _ajaxDataParams['software'] = '';
                     }
                 }
 
@@ -1794,7 +1792,8 @@
         var swiper = new Swiper('#links-nav', {
             slidesPerView: 'auto',
             spaceBetween: 30,
-            freeMode: true
+            freeMode: true,
+            // loop: true
         });
     }
 

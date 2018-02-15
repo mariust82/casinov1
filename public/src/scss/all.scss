@@ -592,9 +592,10 @@ a {
         }
 
         &-title{
-            font-size:11px;
+            font-size:13px;
             font-weight:600;
             text-align:center;
+            color:#465156;
         }
     }
 
@@ -1758,6 +1759,10 @@ a {
 
     .tooltipster-box{
         border-radius:2px;
+
+        .btn-small{
+            padding: 8px 23px 9px;
+        }
     }
 }
 
@@ -1863,6 +1868,11 @@ a {
         border-radius:5px 5px 0 0;
         border-bottom-width:2px;
         border-bottom-style:dashed; 
+
+        span{
+            position:relative;
+            z-index:10;
+        }
     }
 
     &-circle{
@@ -2093,7 +2103,8 @@ a {
     }
 
     .swiper-container{
-        &:after{
+        &:after,
+        &:before{
             content:'';
             position:absolute;
             top:0;
@@ -2106,6 +2117,16 @@ a {
             background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
             background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 );
+        }
+
+        &:before{
+            right:auto;
+            left:0;
+            width:2%;
+            background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+            background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+            background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
         }
     }
 }
@@ -2322,11 +2343,12 @@ a {
     font-size:12px;
     text-align:center;
     text-transform:uppercase;
-    padding:10px 30px;
+    padding:13px 30px;
     background:#fff;
     color:$common-color;
     border:2px solid $common-color;
     box-shadow:0px 1px 6px rgba(0, 0, 0, .16);
+    font-weight:600;
 
     &:hover{
         background:$common-color;
@@ -2439,6 +2461,10 @@ a {
         &:first-child{
             margin:0;
         }
+    }
+
+    .btn-bordered{
+        padding:10px 30px;
     }
 
     &-mobile{

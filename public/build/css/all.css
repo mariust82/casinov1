@@ -2978,9 +2978,10 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .carousel-slide-title {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   text-align: center;
+  color: #465156;
 }
 
 .carousel-prev, .carousel-next {
@@ -4275,6 +4276,10 @@ a:hover, a:active, a:visited, a:focus {
   border-radius: 2px;
 }
 
+.tooltipster-sidetip .tooltipster-box .btn-small {
+  padding: 8px 23px 9px;
+}
+
 .tooltip-templates {
   display: none;
 }
@@ -4382,6 +4387,11 @@ a:hover, a:active, a:visited, a:focus {
   border-radius: 5px 5px 0 0;
   border-bottom-width: 2px;
   border-bottom-style: dashed;
+}
+
+.bonus-box-heading span {
+  position: relative;
+  z-index: 10;
 }
 
 .bonus-box-circle {
@@ -4625,7 +4635,7 @@ a:hover, a:active, a:visited, a:focus {
   margin-right: 30px;
 }
 
-.links-nav .swiper-container:after {
+.links-nav .swiper-container:after, .links-nav .swiper-container:before {
   content: '';
   position: absolute;
   top: 0;
@@ -4636,6 +4646,14 @@ a:hover, a:active, a:visited, a:focus {
   pointer-events: none;
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, white 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 );
+}
+
+.links-nav .swiper-container:before {
+  right: auto;
+  left: 0;
+  width: 2%;
+  background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
 }
 
 .filter {
@@ -4927,11 +4945,12 @@ a:hover, a:active, a:visited, a:focus {
   font-size: 12px;
   text-align: center;
   text-transform: uppercase;
-  padding: 10px 30px;
+  padding: 13px 30px;
   background: #fff;
   color: #2171CE;
   border: 2px solid #2171CE;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.16);
+  font-weight: 600;
 }
 
 .btn-bordered:hover {
@@ -5062,6 +5081,10 @@ a:hover, a:active, a:visited, a:focus {
 
 .btn-group a:first-child {
   margin: 0;
+}
+
+.btn-group .btn-bordered {
+  padding: 10px 30px;
 }
 
 .btn-group-mobile {

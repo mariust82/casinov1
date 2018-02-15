@@ -5,7 +5,7 @@
 			<div class="filter-label">Filter by:</div>
 			<div class="filter-select-holder">
 				<select class="select js-filter" name="soft">
-					<std:foreach var="${data.game_types}" value="result">
+					<std:foreach var="${data.software}" value="result">
 						<option value="${result}">${result}</option>
 					</std:foreach>
 				</select>
@@ -20,7 +20,7 @@
 				</label>
 				<input type="radio" name="sort" value="2" id="top-rated">
 				<label for="top-rated">
-					Top rated
+					Most Played
 				</label>
 				<input type="radio" name="sort" value="3" id="newest">
 				<label for="newest">
