@@ -17,7 +17,10 @@
         showMoreReviews();
         checkStringLength();
 
-
+        $('.message .close').on('click', function(e) {
+            $(this).parent().fadeOut();
+            e.preventDefault();
+        });
         new SearchPanel ( $('.header') );
 
         if ($('#filters').length > 0) {
@@ -433,8 +436,6 @@
                                 $('[data-total]').data('total', loadTotal);
                             }
 
-                            console.log($(data).find(_emptyContent)); 
-
                             if (cont.length == 0) {
                                 _moreButton.hide();
                                 _loaderHolder.hide();
@@ -533,7 +534,6 @@
             dataType: 'json',
             type: 'post',
             success: function (data) {
-                console.log('bbbb'); 
             },
             error: function ( XMLHttpRequest ) {
                 if ( XMLHttpRequest.statusText != "abort" ) {
@@ -691,8 +691,6 @@
        _prepReview = function(_self){
 
             var parent = _self;
-
-            _reviewID = parent.data('id');
             _field_name = parent.find('input[name=name]');
             _field_email = parent.find('input[name=email]');
             _field_message = parent.find('textarea[name=body]');
@@ -702,8 +700,9 @@
             name = _field_name.val();
             email = _field_email.val();
             message = _field_message.val();
-            casino_id = parent.data('casino-id');
+            casino_name = $('.rating-container').data('casino-name');
             _rate_slider_result = $('.rating-current-value span').text();
+            _reviewID = _field_name.closest('.reply').prev().data('id');
             ok = true;
 
             if (_field_name.closest('.reply').length > 0) {
@@ -764,14 +763,15 @@
 
         _prepAjaxData = function(){
             var ajaxData = {
-                casino_id: casino_id,
-                author: name,
+                casino: casino_name,
+                name: name,
                 email: email,
                 body: message
             };
 
             if (_is_child) {
-                ajaxData['parent_id'] = _reviewID;
+                console.log(casino_name); 
+                ajaxData['parent'] = _reviewID;
             }
 
             _sendReview(ajaxData);
@@ -796,6 +796,8 @@
                     }
                     else if(data.status=="error") {
                         console.error(data.body);
+                        _errors_found = $.parseJSON(jqXHR.responseJSON.body);
+                        _contact_error.html(_errors_found.join('<br />')).show();
                     }
                 },
                 error: function ( jqXHR ) {
@@ -919,7 +921,7 @@
                                     </div>\
                                 </div>\
                             </div>\
-                            <div class="replies"></div>\
+                            <div class="reply-data-holder"></div>\
                         </div>\
                         ';
                     }
@@ -1025,7 +1027,7 @@
         var _btn = $('.js-more-reviews');
         var _totalReviews = _btn.data('reviews');
         var _holderParent = $('#review-data-holder');
-        var _holderChild = $('.reply-data-holder');
+        var _holderMoreChild = $('.reply-data-holder');
         var _name = $('.rating-container').data('casino-name');
         var _request = new XMLHttpRequest;
         var currentReplyId
@@ -1054,7 +1056,7 @@
                             _this.hide();
                         }
                     } else if (_type == 'reply') {
-                        _this.closest('.reply').find(_holderChild).append(data);
+                        _this.closest('.reply').find(_holderMoreChild).append(data);
                     }
 
                     if (_this.data('page') >= _this.data('total') / 5) {
@@ -1653,10 +1655,10 @@
 
     function initCustomSelect() {
         //custom select
-        $('.js-filter').select2({
-            minimumResultsForSearch: -1,
-            dropdownCssClass: 'filters-sort-dropdown'
-        });
+        // $('.js-filter').select2({
+        //     minimumResultsForSearch: -1,
+        //     dropdownCssClass: 'filters-sort-dropdown'
+        // });
 
         $('.js-filter').select2MultiCheckboxes({
             templateSelection: function(selected, total) {
@@ -1664,6 +1666,8 @@
               return "Game software";
             }
         })
+
+        $('.js-filter > option').prop("selected",false);
     };
 
     function initBarRating() {

@@ -30,7 +30,7 @@
 				<div class="holder">
 					<div class="data-container" data-type="${get_page_type()}" data-type-value="${data.selected_entity}">
 						<div class="qty-items">${data.total_casinos} results</div>
-						<std:if condition="${data.selected_entity} != 'New'">
+						<std:if condition="${data.selected_entity} == 'New'">
 							<item:casino type="ESTABLISHED" id="1" data="${data.casinos}"/>
 						<std:else>
 							<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>

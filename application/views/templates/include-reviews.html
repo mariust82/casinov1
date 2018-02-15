@@ -2,9 +2,9 @@
 	<div class="reviews-form review" id="reviews-form" data-img-dir="${get_flags_dir()}/${data.country.code}.png" data-country="${data.country.code}" data-casino-id="${data.casino.id}">
 		<forms:review rating="1"/>
 	</div>
-	<std:if condition="${data.total_reviews} > 0">
-		<div class="review-list">
-			<div id="review-data-holder">
+	<div class="review-list">
+		<div id="review-data-holder">
+			<std:if condition="${data.total_reviews} > 0">
 				<std:foreach var="${data.reviews}" value="result">
 					<item:review class="review-parent"/>
 				
@@ -28,16 +28,16 @@
 						</std:if>
 					</div>
 				</std:foreach>
-			</div>
-
-			<std:if condition="${data.total_reviews} > 4">
-				<div class="reviews-more">
-					<a href="#" class="btn-more js-more-reviews" data-type="review" data-id="0" data-total="${data.total_reviews}" data-page="2">
-						Show More Reviews
-						<i class="icon-chevron-down"></i>
-					</a>
-				</div>
 			</std:if>
 		</div>
-	</std:if>
+
+		<std:if condition="${data.total_reviews} > 4">
+			<div class="reviews-more">
+				<a href="#" class="btn-more js-more-reviews" data-type="review" data-id="0" data-total="${data.total_reviews}" data-page="2">
+					Show More Reviews
+					<i class="icon-chevron-down"></i>
+				</a>
+			</div>
+		</std:if>
+	</div>
 </div>

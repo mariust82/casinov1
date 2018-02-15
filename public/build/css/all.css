@@ -2591,6 +2591,7 @@ a:hover, a:active, a:visited, a:focus {
   width: 100%;
   transition: width 0.3s ease-out;
   margin: 0 0 0 30px;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1023px) {
@@ -2703,7 +2704,7 @@ a:hover, a:active, a:visited, a:focus {
 .search-opened .header-search {
   width: 100%;
   border-bottom: 1px solid #fff;
-  transition: width 0.3s ease-in;
+  transition: width 0.2s ease-in;
   overflow: visible;
   padding: 10px 0 5px;
 }
@@ -5338,7 +5339,6 @@ a:hover, a:active, a:visited, a:focus {
 
 .review-list {
   padding: 11px 0 0 0;
-  border-top: 1px solid #E8EAF3;
   margin-left: -30px;
   margin-right: -30px;
 }
@@ -6650,6 +6650,7 @@ a:hover, a:active, a:visited, a:focus {
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
 }
 
 .close {
@@ -7004,6 +7005,8 @@ a:hover, a:active, a:visited, a:focus {
           justify-content: space-between;
   border-bottom: 1px solid rgba(0, 0, 0, 0.14);
   padding: 0 0 10px;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .search-list-block {
@@ -7277,6 +7280,10 @@ a:hover, a:active, a:visited, a:focus {
 
 .loading {
   opacity: 0;
+}
+
+#search-empty {
+  text-align: center;
 }
 
 /*# sourceMappingURL=maps/all.css.map */
