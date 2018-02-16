@@ -103,11 +103,11 @@
         var box = $('.bonus-box');
 
         box.each(function(index, el) {
-            var parent = $(this).find('.list-item-flex').width();
-            var child = $(this).find('.list-item-trun').width();
+            // var parent = $(this).find('.list-item-flex');
+            var child = $(this).find('.list-item-trun');
             var bubble = $(this).find('.bubble');
 
-            if (child + 10 > parent) {
+            if (child.text().length >= 21) {
                 bubble.show();
             }
         });
