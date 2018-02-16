@@ -6584,6 +6584,12 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
+@media screen and (max-width: 690px) {
+  .contact .form {
+    margin: 0 0 30px;
+  }
+}
+
 .contact-side {
   width: 25%;
   margin: 0 0 0 40px;
