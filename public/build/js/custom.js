@@ -1337,12 +1337,12 @@
                 });
 
                 var loadDelay = setTimeout(function() {
-                    _searchContainer.addClass('loading');
+                    // _searchContainer.addClass('loading');
                 }, 300);
 
                 _hideLoading = function(){
                     clearTimeout(loadDelay);
-                    _searchContainer.removeClass('loading');
+                    // _searchContainer.removeClass('loading');
                 }
             },
 
