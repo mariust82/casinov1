@@ -4079,7 +4079,7 @@ a {
         margin:0 0 50px;
 
         @media screen and (max-width: 690px) {
-            font-size:16px;
+            font-size:14px;
             margin:0 0 30px;
         }
     }
@@ -4091,6 +4091,12 @@ a {
 
     &-btn-holder{
         margin:0 0 15px;
+    }
+
+    .btn-middle{
+        @media screen and (min-width: 690px) {
+            padding:13px 41px 12px;
+        }
     }
 }
 
