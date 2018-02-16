@@ -38,17 +38,18 @@
 						<import file="templates/include-menu"/>
 					</ul>
 				</nav>
-				<div class="header-search" id="search" data-img-dir="${get_img_dir()}">
+				<div class="header-search ${(${page}=='search'?'force-visible':'')}" id="search" data-img-dir="${get_img_dir()}">
 					<a href="#" class="header-search-btn js-search-opener js-trigger-search">
 						<i class="icon-search"></i>
 					</a>
 					<div class="header-search-input" id="search-form">
 						<div class="header-search-mobile">
-							<a href="#" class="mobile-menu-close js-mobile-search-close">
+							<a href="#" class="mobile-menu-close ${(${page}=='search'?'js-history-back':'js-mobile-search-close')}">
 								<i class="icon-arrow-left2"></i>
 							</a>
 						</div>
-						<input type="text" placeholder="Search here">
+						<i class="icon-search header-search-mobile"></i>
+						<input type="text" placeholder="Search here" value="${(${page}=='search'?${data.value}:'')}">
 						<div class="header-search-mobile">
 							<a href="#" class="mobile-search-clear js-mobile-search-clear">
 								<i class="icon-icon_plus"></i>
@@ -85,7 +86,7 @@
 		<std:if condition="${page} == 'index'">
 			<div class="promo ">
 				<div class="promo-img">
-					<img src="/public/build/images/text-header/home-img.jpg" width="1920" height="320" alt="">
+					<!-- <img src="/public/build/images/text-header/home-img-mobile.jpg" width="1920" height="320" alt=""> -->
 				</div>
 				<div class="promo-text">
 					<h1 class="promo-title">

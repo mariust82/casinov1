@@ -21,6 +21,12 @@
             $(this).parent().fadeOut();
             e.preventDefault();
         });
+
+        $('.js-history-back').on('click', function(e) {
+            window.history.back();
+            e.preventDefault();
+        });
+
         new SearchPanel ( $('.header') );
 
         if ($('#filters').length > 0) {
@@ -1292,12 +1298,12 @@
                 });
 
                 var loadDelay = setTimeout(function() {
-                    _searchContainer.addClass('loading');
+                    // _searchContainer.addClass('loading');
                 }, 300);
 
                 _hideLoading = function(){
                     clearTimeout(loadDelay);
-                    _searchContainer.removeClass('loading');
+                    // _searchContainer.removeClass('loading');
                 }
             },
 
