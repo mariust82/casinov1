@@ -1735,7 +1735,11 @@
         lessText: "Read Less",
         ellipsis: "...",
        });
+        if($().condense) {
+            $('.js-condense').next('.js-condense').fadeIn();
+        }
     }
+
 
     function initMultirow() {
         var multirowContainer = $('.js-multirow');

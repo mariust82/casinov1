@@ -7367,4 +7367,8 @@ a:hover, a:active, a:visited, a:focus {
   text-align: center;
 }
 
+.js-condense {
+  display: none;
+}
+
 /*# sourceMappingURL=maps/all.css.map */
