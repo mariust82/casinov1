@@ -1778,7 +1778,7 @@
     }
 
     function sliderInit() {
-        var swiper = new Swiper('#main-carousel', {
+        var swiperMain = new Swiper('#main-carousel', {
             slidesPerView: 6,
             // centeredSlides: true,
             spaceBetween: 5,
@@ -1803,12 +1803,34 @@
             }
         });
 
-        var swiper = new Swiper('#links-nav', {
+        var swiperLinks = new Swiper('#links-nav', {
             slidesPerView: 'auto',
             spaceBetween: 30,
-            freeMode: true,
+            // freeMode: true,
             // loop: true
         });
+
+        var inter;
+        $('.links-nav .links-right').on('mouseover', function(event) {
+            inter = setInterval(function(){
+                swiperLinks.slideNext(300);
+            }, 400);
+
+            $(this).on('mouseleave', function() {
+               clearInterval(inter);
+            });
+        });
+
+        $('.links-nav .links-left').on('mouseover', function(event) {
+            inter = setInterval(function(){
+                swiperLinks.slidePrev(300);
+            }, 400);
+
+            $(this).on('mouseleave', function() {
+               clearInterval(inter);
+            });
+        });
+
     }
 
     function validateEmail(email){
