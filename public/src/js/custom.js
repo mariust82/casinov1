@@ -1810,26 +1810,29 @@
             // loop: true
         });
 
-        var inter;
-        $('.links-nav .links-right').on('mouseover', function(event) {
-            inter = setInterval(function(){
-                swiperLinks.slideNext(300);
-            }, 400);
+        if ($(window).width() > 691) {
+            var inter;
+            $('.links-nav .links-right').on('mouseover', function(event) {
+                inter = setInterval(function(){
+                    swiperLinks.slideNext(300);
+                }, 400);
 
-            $(this).on('mouseleave', function() {
-               clearInterval(inter);
+                $(this).on('mouseleave', function() {
+                   clearInterval(inter);
+                });
             });
-        });
 
-        $('.links-nav .links-left').on('mouseover', function(event) {
-            inter = setInterval(function(){
-                swiperLinks.slidePrev(300);
-            }, 400);
+            $('.links-nav .links-left').on('mouseover', function(event) {
+                inter = setInterval(function(){
+                    swiperLinks.slidePrev(300);
+                }, 400);
 
-            $(this).on('mouseleave', function() {
-               clearInterval(inter);
+                $(this).on('mouseleave', function() {
+                   clearInterval(inter);
+                });
             });
-        });
+        }
+
 
     }
 
