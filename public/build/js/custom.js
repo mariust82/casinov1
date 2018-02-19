@@ -15,7 +15,8 @@
         initReplies();
         initTexfieldsLabels();
         showMoreReviews();
-        checkStringLength();
+        checkStringLength($('.list .bonus-box'), 21);
+        checkStringLength($('.bonus-item .bonus-box'), 33);
 
         $('.message .close').on('click', function(e) {
             $(this).parent().fadeOut();
@@ -105,15 +106,15 @@
 
     });
 
-    function checkStringLength(argument) {
-        var box = $('.bonus-box');
+    function checkStringLength(box, num) {
+        // var box = $('.bonus-box');
 
-        box.each(function(index, el) {
+        $(box).each(function(index, el) {
             // var parent = $(this).find('.list-item-flex');
             var child = $(this).find('.list-item-trun');
             var bubble = $(this).find('.bubble');
 
-            if (child.text().length >= 21) {
+            if (child.text().length >= num) {
                 bubble.show();
             }
         });
@@ -463,6 +464,7 @@
                         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
                         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                         initMoboleBonusesPop();
+                        checkStringLength($('.list .bonus-box'), 21);
                     },
                     error: function(XMLHttpRequest) {
                         if (XMLHttpRequest.statusText != "abort") {
@@ -772,11 +774,11 @@
                 casino: casino_name,
                 name: name,
                 email: email,
-                body: message
+                body: message,
+                parent: 0
             };
 
             if (_is_child) {
-                console.log(casino_name); 
                 ajaxData['parent'] = _reviewID;
             }
 
@@ -907,7 +909,7 @@
                                             </div>\
                                             <div class="form-col">\
                                                 <div class="textfield-holder error">\
-                                                    <input type="text" name="email" class="textfield" placeholder="Email">\
+                                                    <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
                                                 </div>\
                                             </div>\
                                         </div>\

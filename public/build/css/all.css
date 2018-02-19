@@ -2791,6 +2791,12 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
+@media screen and (max-width: 690px) {
+  .main {
+    padding: 10px 0 50px;
+  }
+}
+
 .promo {
   position: relative;
 }
@@ -4338,7 +4344,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .tooltipster-sidetip .tooltipster-box .btn-small {
-  padding: 8px 23px 9px;
+  padding: 9px 23px 9px;
 }
 
 .tooltip-templates {
@@ -4438,6 +4444,12 @@ a:hover, a:active, a:visited, a:focus {
   border-top: 2px dashed #F17D0A;
   padding: 20px;
   border-radius: 0 0 5px 5px;
+}
+
+@media screen and (max-width: 690px) {
+  .bonus-box-body {
+    padding: 10px;
+  }
 }
 
 .bonus-box-list strong {
@@ -4684,6 +4696,13 @@ a:hover, a:active, a:visited, a:focus {
   box-shadow: 0 2px 7px -4px rgba(0, 0, 0, 0.16);
 }
 
+@media screen and (max-width: 690px) {
+  .links-nav .container {
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
+  }
+}
+
 .links-nav a {
   display: block;
   padding: 0 0 15px;
@@ -4691,6 +4710,12 @@ a:hover, a:active, a:visited, a:focus {
   font-weight: 600;
   font-size: 13px;
   border-bottom: 2px solid transparent;
+}
+
+@media screen and (max-width: 690px) {
+  .links-nav a {
+    padding: 0 0 12px;
+  }
 }
 
 .links-nav a.active, .links-nav a:hover {
@@ -5052,6 +5077,12 @@ a:hover, a:active, a:visited, a:focus {
   padding: 3px 0 0 0;
 }
 
+@media screen and (max-width: 690px) {
+  .casino-review {
+    margin: 0 0 15px;
+  }
+}
+
 .casino-review-title {
   font-size: 24px;
   font-weight: 700;
@@ -5133,14 +5164,66 @@ a:hover, a:active, a:visited, a:focus {
   margin: 0;
 }
 
+@media screen and (max-width: 690px) {
+  .casino-review .list-rating {
+    width: 102px;
+  }
+}
+
 .casino-review .list-rating-score {
   font-size: 15px;
   line-height: 26px;
   width: 30px;
 }
 
+@media screen and (max-width: 690px) {
+  .casino-review .list-rating-score {
+    width: 25px;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
+
 .casino-review .list-rating-text {
   font-size: 14px;
+}
+
+@media screen and (max-width: 690px) {
+  .casino-review .list-rating-text {
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.casino-review-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 690px) {
+  .casino-review-mobile {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.casino-review-country {
+  margin: 13px 0 0 0;
+  font-size: 13px;
+  color: #60686A;
+}
+
+.casino-review-country img {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin: 0 4px 0 0;
 }
 
 .btn-group a {
@@ -5286,10 +5369,6 @@ a:hover, a:active, a:visited, a:focus {
 
 .def-list-val i.icon-icon_available {
   font-size: 10px;
-}
-
-.def-list-val .list-item-trun {
-  width: 20%;
 }
 
 .icon-icon_unavailable {

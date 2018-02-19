@@ -48,6 +48,12 @@
 					<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
 					<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
 				</div>
+
+				<div class="casino-review-country casino-review-mobile">
+					<img src="${get_flags_dir()}/${data.country.code}.png" alt="" width="20" height="14">
+					${data.country.name} 
+					${get_country_status(${data.casino.is_country_accepted})}
+				</div>
 			</div>
 		</div>
 	</div>

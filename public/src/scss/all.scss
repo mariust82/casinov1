@@ -442,6 +442,10 @@ a {
     @media screen and (max-width: 1023px) {
         padding:20px 0 60px;
     }
+
+    @media screen and (max-width: 690px) {
+        padding:10px 0 50px;
+    }
 }
 
 
@@ -1826,7 +1830,7 @@ a {
         border-radius:2px;
 
         .btn-small{
-            padding: 8px 23px 9px;
+            padding: 9px 23px 9px;
         }
     }
 }
@@ -1921,6 +1925,10 @@ a {
         border-top:2px dashed #F17D0A;
         padding:20px;
         border-radius:0 0 5px 5px;
+
+        @media screen and (max-width: 690px) {
+            padding:10px;
+        }
     }
 
     &-list{
@@ -2152,6 +2160,11 @@ a {
     .container{
         border-bottom:1px solid #E8EAF3;
         box-shadow:0 2px 7px -4px rgba(0, 0, 0, 0.16);
+
+        @media screen and (max-width: 690px) {
+            border:none;
+            box-shadow:0 1px 3px rgba(0, 0, 0, 0.16);
+        }
     }
 
     a{
@@ -2161,6 +2174,10 @@ a {
         font-weight:600;
         font-size:13px;
         border-bottom:2px solid transparent;
+
+        @media screen and (max-width: 690px) {
+            padding:0 0 12px;
+        }
 
         &.active,
         &:hover{
@@ -2453,6 +2470,10 @@ a {
     margin:0 0 30px;
     padding: 3px 0 0 0;
 
+    @media screen and (max-width: 690px) {
+        margin:0 0 15px;
+    }
+
     &-title{
         font-size:24px;
         font-weight:700;
@@ -2513,16 +2534,53 @@ a {
     .list-rating{
         width:120px;
         margin:0;
+
+        @media screen and (max-width: 690px) {
+            width:102px;
+        }
     }
 
     .list-rating-score{
         font-size:15px;
         line-height: 26px;
         width:30px;
+
+        @media screen and (max-width: 690px) {
+            width:25px;
+            line-height:24px;
+            font-size:12px;
+            font-weight:700;
+        }
     }
 
     .list-rating-text{
         font-size:14px;
+
+        @media screen and (max-width: 690px) {
+            font-size:12px;
+            font-weight:600;
+        }
+    }
+
+    &-mobile{
+        display:none;
+
+        @media screen and (max-width: 690px) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &-country{
+        margin:13px 0 0 0;
+        font-size:13px;
+        color:#60686A;
+
+        img{
+            flex-shrink: 0;
+            margin:0 4px 0 0;
+        }
     }
 }
 
@@ -2644,10 +2702,6 @@ a {
             &.icon-icon_available{
                 font-size:10px;
             }
-        }
-
-        .list-item-trun{
-            width:20%;
         }
     }
 }
