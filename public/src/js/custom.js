@@ -1805,35 +1805,33 @@
 
         var swiperLinks = new Swiper('#links-nav', {
             slidesPerView: 'auto',
+            // loopedSlides: 100,
             spaceBetween: 30,
+            virtualTranslate: false,
             // freeMode: true,
-            // loop: true
+            // loop: true,
+            allowTouchMove:false,
+            slidesOffsetAfter:-180,
+            breakpoints: {
+                1024: {
+                    allowTouchMove:true,
+                }
+            }
         });
 
-        if ($(window).width() > 691) {
+        if ($(window).width() > 1024) {
             var inter;
-            $('.links-nav .links-right').on('mouseover', function(event) {
-                inter = setInterval(function(){
-                    swiperLinks.slideNext(300);
-                }, 400);
+            $('.links-nav a').on('mouseenter', function(e) {
+                var container = $(this).closest('.swiper-container');
+                var curPosition = e;
 
-                $(this).on('mouseleave', function() {
-                   clearInterval(inter);
-                });
-            });
-
-            $('.links-nav .links-left').on('mouseover', function(event) {
-                inter = setInterval(function(){
-                    swiperLinks.slidePrev(300);
-                }, 400);
-
-                $(this).on('mouseleave', function() {
-                   clearInterval(inter);
-                });
+                if (curPosition.clientX > container.offset().left + (container.width()/1.3)) {
+                    swiperLinks.slideNext(500);
+                } else if (curPosition.clientX < container.offset().left + (container.width()/6)){
+                    swiperLinks.slidePrev(500);
+                }
             });
         }
-
-
     }
 
     function validateEmail(email){
