@@ -114,7 +114,7 @@ class CasinosList
                 $condition = "t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$this->filter->getBonusType()."')";
             } else {
                 $condition = ($this->filter->getBonusType()?"t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$this->filter->getBonusType()."') AND ":"");
-                $condition .= ($this->filter->getFreeBonus()?"t4.bonus_type_id IN (4,5) AND ":"");
+                $condition .= ($this->filter->getFreeBonus()?"t4.bonus_type_id = 6 AND ":"");
                 $condition = substr($condition,0,-4);
             }
             $query.="INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id AND ".$condition."\n";
