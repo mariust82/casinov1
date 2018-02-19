@@ -5,7 +5,20 @@
 	<div class="block">
 		<div class="container">
 			<div class="headeing">
-				<div class="title">${data.selected_entity} Casinos</div>
+				<div class="title">${data.selected_entity} Casinos List ${date("F Y")}</div>
+				<!-- <std:foreach var="${data.menu_top}" value="result">
+					<std:if condition="${result.is_active}">
+						<std:if condition="${result.title}=='CASINOS'">
+						<std:elseif condition="${result.title}=='SOFTWARES'">
+						<std:elseif condition="${result.title}=='BONUSES'">
+						<std:elseif condition="${result.title}=='COUNTRIES'">
+						<std:elseif condition="${result.title}=='COMPATIBILITY'">
+						<std:elseif condition="${result.title}=='BANKING'">
+						<std:elseif condition="${result.title}=='FEATURES'">
+						<std:else>
+						</std:if>
+					</std:if>
+				</std:foreach> -->
 				<div class="subtitle">
 					<p class="js-condense">Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite. Most importantly, to be awarded this rating a casino must demonstrate the highest levels of customer service and player satisfaction over a number of years. We have no hesitation in recommending these casinos as safe and fun places to play online. Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite. Most importantly, to be awarded this rating a casino must demonstrate the highest levels of customer service and player satisfaction over a number of years. We have no hesitation in recommending these casinos as safe and fun places to play online</p>
 				</div>
@@ -17,7 +30,11 @@
 				<div class="holder">
 					<div class="data-container" data-type="${get_page_type()}" data-type-value="${data.selected_entity}">
 						<div class="qty-items">${data.total_casinos} results</div>
-						<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
+						<std:if condition="${data.selected_entity} == 'New'">
+							<item:casino type="ESTABLISHED" id="1" data="${data.casinos}"/>
+						<std:else>
+							<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
+						</std:if>
 					</div>
 					<div class="data-add-container" data-total="${data.total_casinos}"></div>
 				</div>

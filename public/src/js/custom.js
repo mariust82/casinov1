@@ -15,8 +15,18 @@
         initReplies();
         initTexfieldsLabels();
         showMoreReviews();
-        checkStringLength();
+        checkStringLength($('.list .bonus-box'), 21);
+        checkStringLength($('.bonus-item .bonus-box'), 33);
 
+        $('.message .close').on('click', function(e) {
+            $(this).parent().fadeOut();
+            e.preventDefault();
+        });
+
+        $('.js-history-back').on('click', function(e) {
+            window.history.back();
+            e.preventDefault();
+        });
 
         new SearchPanel ( $('.header') );
 
@@ -96,19 +106,17 @@
 
     });
 
-    function checkStringLength(argument) {
-        var box = $('.bonus-box');
+    function checkStringLength(box, num) {
+        // var box = $('.bonus-box');
 
-        box.each(function(index, el) {
-            var parent = $(this).find('.list-item-flex').width();
-            var child = $(this).find('.list-item-trun').width();
+        $(box).each(function(index, el) {
+            // var parent = $(this).find('.list-item-flex');
+            var child = $(this).find('.list-item-trun');
             var bubble = $(this).find('.bubble');
 
-            if (child == parent) {
+            if (child.text().length >= num) {
                 bubble.show();
             }
-
-
         });
     }
 
@@ -391,12 +399,12 @@
                 _ajaxDataParams[_paramName] = _paramValue;
 
                 if (typeof _selectFilter.val() != 'undefined') {
-                    _ajaxDataParams['filter_by'] = _selectFilter.val().join();
+                    _ajaxDataParams['software'] = _selectFilter.val().join();
 
                     _itemsPerPage = 24;
 
                     if (_action == 'reset') {
-                        _ajaxDataParams['filter_by'] = '';
+                        _ajaxDataParams['software'] = '';
                     }
                 }
 
@@ -435,8 +443,6 @@
                                 $('[data-total]').data('total', loadTotal);
                             }
 
-                            console.log($(data).find(_emptyContent)); 
-
                             if (cont.length == 0) {
                                 _moreButton.hide();
                                 _loaderHolder.hide();
@@ -458,6 +464,7 @@
                         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
                         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                         initMoboleBonusesPop();
+                        checkStringLength($('.list .bonus-box'), 21);
                     },
                     error: function(XMLHttpRequest) {
                         if (XMLHttpRequest.statusText != "abort") {
@@ -535,7 +542,6 @@
             dataType: 'json',
             type: 'post',
             success: function (data) {
-                console.log('bbbb'); 
             },
             error: function ( XMLHttpRequest ) {
                 if ( XMLHttpRequest.statusText != "abort" ) {
@@ -693,8 +699,6 @@
        _prepReview = function(_self){
 
             var parent = _self;
-
-            _reviewID = parent.data('id');
             _field_name = parent.find('input[name=name]');
             _field_email = parent.find('input[name=email]');
             _field_message = parent.find('textarea[name=body]');
@@ -704,8 +708,9 @@
             name = _field_name.val();
             email = _field_email.val();
             message = _field_message.val();
-            casino_id = parent.data('casino-id');
+            casino_name = $('.rating-container').data('casino-name');
             _rate_slider_result = $('.rating-current-value span').text();
+            _reviewID = _field_name.closest('.reply').prev().data('id');
             ok = true;
 
             if (_field_name.closest('.reply').length > 0) {
@@ -766,14 +771,15 @@
 
         _prepAjaxData = function(){
             var ajaxData = {
-                casino_id: casino_id,
-                author: name,
+                casino: casino_name,
+                name: name,
                 email: email,
-                body: message
+                body: message,
+                parent: 0
             };
 
             if (_is_child) {
-                ajaxData['parent_id'] = _reviewID;
+                ajaxData['parent'] = _reviewID;
             }
 
             _sendReview(ajaxData);
@@ -798,6 +804,8 @@
                     }
                     else if(data.status=="error") {
                         console.error(data.body);
+                        _errors_found = $.parseJSON(jqXHR.responseJSON.body);
+                        _contact_error.html(_errors_found.join('<br />')).show();
                     }
                 },
                 error: function ( jqXHR ) {
@@ -901,7 +909,7 @@
                                             </div>\
                                             <div class="form-col">\
                                                 <div class="textfield-holder error">\
-                                                    <input type="text" name="email" class="textfield" placeholder="Email">\
+                                                    <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
                                                 </div>\
                                             </div>\
                                         </div>\
@@ -921,7 +929,7 @@
                                     </div>\
                                 </div>\
                             </div>\
-                            <div class="replies"></div>\
+                            <div class="reply-data-holder"></div>\
                         </div>\
                         ';
                     }
@@ -1027,7 +1035,7 @@
         var _btn = $('.js-more-reviews');
         var _totalReviews = _btn.data('reviews');
         var _holderParent = $('#review-data-holder');
-        var _holderChild = $('.reply-data-holder');
+        var _holderMoreChild = $('.reply-data-holder');
         var _name = $('.rating-container').data('casino-name');
         var _request = new XMLHttpRequest;
         var currentReplyId
@@ -1056,7 +1064,7 @@
                             _this.hide();
                         }
                     } else if (_type == 'reply') {
-                        _this.closest('.reply').find(_holderChild).append(data);
+                        _this.closest('.reply').find(_holderMoreChild).append(data);
                     }
 
                     if (_this.data('page') >= _this.data('total') / 5) {
@@ -1292,12 +1300,12 @@
                 });
 
                 var loadDelay = setTimeout(function() {
-                    _searchContainer.addClass('loading');
+                    // _searchContainer.addClass('loading');
                 }, 300);
 
                 _hideLoading = function(){
                     clearTimeout(loadDelay);
-                    _searchContainer.removeClass('loading');
+                    // _searchContainer.removeClass('loading');
                 }
             },
 
@@ -1331,12 +1339,12 @@
                 });
 
                 var loadDelay = setTimeout(function() {
-                    _searchContainer.addClass('loading');
+                    // _searchContainer.addClass('loading');
                 }, 300);
 
                 _hideLoading = function(){
                     clearTimeout(loadDelay);
-                    _searchContainer.removeClass('loading');
+                    // _searchContainer.removeClass('loading');
                 }
             },
 
@@ -1655,10 +1663,10 @@
 
     function initCustomSelect() {
         //custom select
-        $('.js-filter').select2({
-            minimumResultsForSearch: -1,
-            dropdownCssClass: 'filters-sort-dropdown'
-        });
+        // $('.js-filter').select2({
+        //     minimumResultsForSearch: -1,
+        //     dropdownCssClass: 'filters-sort-dropdown'
+        // });
 
         $('.js-filter').select2MultiCheckboxes({
             templateSelection: function(selected, total) {
@@ -1666,6 +1674,8 @@
               return "Game software";
             }
         })
+
+        $('.js-filter > option').prop("selected",false);
     };
 
     function initBarRating() {
@@ -1727,7 +1737,11 @@
         lessText: "Read Less",
         ellipsis: "...",
        });
+        if($().condense) {
+            $('.js-condense').next('.js-condense').fadeIn();
+        }
     }
+
 
     function initMultirow() {
         var multirowContainer = $('.js-multirow');
@@ -1766,7 +1780,7 @@
     }
 
     function sliderInit() {
-        var swiper = new Swiper('#main-carousel', {
+        var swiperMain = new Swiper('#main-carousel', {
             slidesPerView: 6,
             // centeredSlides: true,
             spaceBetween: 5,
@@ -1791,11 +1805,35 @@
             }
         });
 
-        var swiper = new Swiper('#links-nav', {
+        var swiperLinks = new Swiper('#links-nav', {
             slidesPerView: 'auto',
+            // loopedSlides: 100,
             spaceBetween: 30,
-            freeMode: true
+            virtualTranslate: false,
+            // freeMode: true,
+            // loop: true,
+            allowTouchMove:false,
+            slidesOffsetAfter:-180,
+            breakpoints: {
+                1024: {
+                    allowTouchMove:true,
+                }
+            }
         });
+
+        if ($(window).width() > 1024) {
+            var inter;
+            $('.links-nav a').on('mouseenter', function(e) {
+                var container = $(this).closest('.swiper-container');
+                var curPosition = e;
+
+                if (curPosition.clientX > container.offset().left + (container.width()/1.3)) {
+                    swiperLinks.slideNext(500);
+                } else if (curPosition.clientX < container.offset().left + (container.width()/6)){
+                    swiperLinks.slidePrev(500);
+                }
+            });
+        }
     }
 
     function validateEmail(email){

@@ -126,7 +126,7 @@ $this->response->setAttribute("menu_bottom", array (
     'is_active' => false,
   ),
 ));
-$this->response->setAttribute("game_types", array (
+$this->response->setAttribute("software", array (
   0 => 'Video Slots',
   1 => 'Video Poker',
   2 => 'Classic Slots',

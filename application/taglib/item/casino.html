@@ -29,7 +29,7 @@
 				<div class="list-item-cell">
 					<div class="multirow">
 						<div class="list-item-flex">
-							<std:if condition="'$[type]' === 'ESTABLISHED'">
+							<std:if condition="'$[type]' == 'ESTABLISHED'">
 								<std:if condition="${result.date_established} != '0000-00-00'">
 									<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
 								</std:if>
