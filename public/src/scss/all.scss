@@ -2703,7 +2703,6 @@ a {
         display: flex;
         align-items: baseline;
 
-
         img{
             display:inline-block;
             vertical-align:middle;
@@ -2717,6 +2716,10 @@ a {
             &.icon-icon_available{
                 font-size:10px;
             }
+        }
+
+        .bubble{
+            top: -1px;
         }
     }
 }

@@ -9,7 +9,7 @@
 				<div class="title">${data.game.name}</div>
 				<span class="game-played">
 					<span class="game-play">
-						<i class="icon-times_played_icon"></i>
+						<i class="icon-play"></i>
 					</span>
 					Times played: ${data.game.times_played}
 				</span>
@@ -104,12 +104,14 @@
 		</div>
 	</div>
 
-	<div class="block game-description">
-		<div class="container">
-			<h3 class="title title-small">Game overview</h3>
-			<p>${data.game.overview}</p>
+	<std:if condition="${data.game.overview}">
+		<div class="block game-description">
+			<div class="container">
+				<h3 class="title title-small">Game overview</h3>
+				<p>${data.game.overview}</p>
+			</div>
 		</div>
-	</div>
+	</std:if>
 
 	<std:if condition="count(${data.recommended_casinos})>0">
 		<div class="block related">
