@@ -37,6 +37,7 @@
     <listener class="ErrorListener"/>
     <listener class="RebrandingListener"/>
     <listener class="IPDetectionListener"/>
+    <listener class="MockFeeder"/>
     <listener class="ViewLanguageResolver"/>
   </listeners>
   <errors>
