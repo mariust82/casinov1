@@ -360,15 +360,12 @@
                             counter++;
                         }
                     });
-
-                    console.log(counter); 
-
-                    // _selectFilter.off();
-                    // _selectFilter.on('change', function() {
-                    //     _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
-                    // });
                 });
 
+                _selectFilter.off();
+                _selectFilter.on('change', function() {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
 
                 _moreButton.off();
                 _moreButton.on('click', function() {
@@ -414,6 +411,8 @@
                 });
 
                 _ajaxDataParams[_paramName] = _paramValue;
+
+                console.log(_selectFilter.val()); 
 
                 if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
                     _ajaxDataParams['software'] = _selectFilter.val().join();
@@ -817,8 +816,9 @@
                         // _send_btn.prop('disabled', true);
                         _field_name.val('');
                         _field_email.val('');
-                        _field_message.val('');
+                        _field_message.val('').addClass('expanding');
                         _onEvents();
+                        $('.form .js-expanding-textfields').slideUp();
                     }
                     else if(data.status=="error") {
                         console.error(data.body);

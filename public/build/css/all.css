@@ -6347,7 +6347,7 @@ a:hover, a:active, a:visited, a:focus {
   transition: transform .3s;
   transition: transform .3s, -webkit-transform .3s;
   font-family: 'icomoon' !important;
-  content: "\e900";
+  content: "\e901";
   font-size: 5px;
   color: #60686A;
 }
