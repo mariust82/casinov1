@@ -2,6 +2,11 @@
     BUSY_REQUEST = false;
 
     $(document).ready(function() {
+
+        // setTimeout(function(){
+        //     debugger;
+        // }, 1000);
+
         // initMultirow();
         sliderInit();
         initExpandingText();
@@ -348,10 +353,22 @@
                     _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
                 });
 
-                _selectFilter.off();
-                _selectFilter.on('change', function() {
-                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                $('.js-filter > option').on('click', function() {
+                    var counter = 0;
+                    $('.js-filter > option').each(function(index, el) {
+                        if ($(this).prop("selected")) {
+                            counter++;
+                        }
+                    });
+
+                    console.log(counter); 
+
+                    // _selectFilter.off();
+                    // _selectFilter.on('change', function() {
+                    //     _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                    // });
                 });
+
 
                 _moreButton.off();
                 _moreButton.on('click', function() {
@@ -398,13 +415,14 @@
 
                 _ajaxDataParams[_paramName] = _paramValue;
 
-                if (typeof _selectFilter.val() != 'undefined') {
+                if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
                     _ajaxDataParams['software'] = _selectFilter.val().join();
 
                     _itemsPerPage = 24;
 
                     if (_action == 'reset') {
                         _ajaxDataParams['software'] = '';
+
                     }
                 }
 
@@ -452,7 +470,7 @@
                             _targetAddContainer.append(cont);
                         }
 
-                        if (AJAX_CUR_PAGE >= Math.ceil($('.data-add-container').data('total') / _itemsPerPage)) {
+                        if (AJAX_CUR_PAGE >= Math.floor($('.data-add-container').data('total') / _itemsPerPage)) {
                             _moreButton.hide();
                         }
 
@@ -1668,6 +1686,8 @@
         //     dropdownCssClass: 'filters-sort-dropdown'
         // });
 
+        var _filterOptions = $('.js-filter > option');
+
         $('.js-filter').select2MultiCheckboxes({
             templateSelection: function(selected, total) {
               // return "Selected " + selected.length + " of " + total;
@@ -1675,7 +1695,7 @@
             }
         })
 
-        $('.js-filter > option').prop("selected",false);
+        _filterOptions.prop("selected",false);
     };
 
     function initBarRating() {
@@ -1816,6 +1836,10 @@
             slidesOffsetAfter:-180,
             breakpoints: {
                 1024: {
+                    allowTouchMove:true,
+                },
+                690: {
+                    spaceBetween: 15,
                     allowTouchMove:true,
                 }
             }

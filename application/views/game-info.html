@@ -111,21 +111,25 @@
 		</div>
 	</div>
 
-	<div class="block related">
-		<div class="container">
-			<div class="headeing">
-				<div class="title title-middle">Play this game for real money at these casinos</div>
+	<std:if condition="count(${data.recommended_casinos})>0">
+		<div class="block related">
+			<div class="container">
+				<div class="headeing">
+					<div class="title title-middle">Play this game for real money at these casinos</div>
+				</div>
+				<item:casino type="SOFTWARE" id="1" data="${data.recommended_casinos}"/>
 			</div>
-			<item:casino type="SOFTWARE" id="1" data="${data.recommended_casinos}"/>
 		</div>
-	</div>
+	</std:if>
 
-	<div class="block related">
-		<div class="container">
-			<div class="headeing">
-				<div class="title title-middle">Similar games</div>
+	<std:if condition="count(${data.recommended_games})>0">
+		<div class="block related">
+			<div class="container">
+				<div class="headeing">
+					<div class="title title-middle">Similar games</div>
+				</div>
+				<item:game data="${data.recommended_games}"/>
 			</div>
-			<item:game data="${data.recommended_games}"/>
 		</div>
-	</div>
+	</std:if>
 <import file="templates/include-footer"/>

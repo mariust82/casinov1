@@ -3798,9 +3798,6 @@ a:hover, a:active, a:visited, a:focus {
   .game {
     width: 100%;
   }
-  .game:nth-child(1), .game:nth-child(2), .game:nth-child(3) {
-    display: none;
-  }
 }
 
 .game-play {
@@ -3885,6 +3882,12 @@ a:hover, a:active, a:visited, a:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+@media screen and (max-width: 375px) {
+  .block .game:nth-child(1), .block .game:nth-child(2), .block .game:nth-child(3) {
+    display: none;
+  }
 }
 
 .game-info-table {
@@ -6322,6 +6325,12 @@ a:hover, a:active, a:visited, a:focus {
   border-color: #C1C9CF;
 }
 
+@media screen and (max-width: 690px) {
+  .select2-container--default .select2-selection--single {
+    border-color: #2171CE;
+  }
+}
+
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
   border: none;
   margin-left: -5px;
@@ -6356,6 +6365,12 @@ a:hover, a:active, a:visited, a:focus {
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
   color: #60686A;
+}
+
+@media screen and (max-width: 690px) {
+  .select2-container--default .select2-selection--single .select2-selection__rendered {
+    text-align: center;
+  }
 }
 
 .select2-container--focus.select2-container--default .select2-selection--single .select2-selection__rendered {
@@ -7075,6 +7090,7 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 690px) {
   .page-404-title {
     font-size: 141px;
+    margin: 0 0 15px;
   }
 }
 
@@ -7098,6 +7114,12 @@ a:hover, a:active, a:visited, a:focus {
 
 .page-404-btn-holder {
   margin: 0 0 15px;
+}
+
+@media screen and (max-width: 690px) {
+  .page-404-btn-holder .btn-middle {
+    padding: 13px 35px 12px;
+  }
 }
 
 @media screen and (min-width: 690px) {
