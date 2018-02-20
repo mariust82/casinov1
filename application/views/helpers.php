@@ -5,6 +5,10 @@
  * @param $name
  * @return string
  */
+function detect_casinos_word($name)
+{
+    return strpos($name, 'Casinos');
+}
 
 function normalize($name)
 {

@@ -330,7 +330,7 @@
             _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
             _moreButton,
             _resetButton,
-            _itemsPerPage = 20,
+            _itemsPerPage = 25,
             _request = new XMLHttpRequest();
 
             if (typeof _paramName == 'undefined') {

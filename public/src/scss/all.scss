@@ -1353,9 +1353,13 @@ a {
         border-radius:50%;
         width:18px;
         height:18px;
-        font-size:16px;
+        font-size:9px;
         flex-shrink: 0;
         margin:0 5px 0 0;
+
+        i{
+            margin: 0 0 0 1px;
+        }
     }
 
     &-holder{
@@ -1417,6 +1421,7 @@ a {
 
     }
 }
+
 
 .block{
     .game{
@@ -2543,6 +2548,10 @@ a {
 
         @media screen and (max-width: 690px) {
             width:102px;
+        }
+
+        &-wrap{
+            border-radius: 2px;
         }
     }
 

@@ -143,8 +143,8 @@ img, figure {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?ckpx72");
-  src: url("../fonts/icomoon.eot?ckpx72#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?ckpx72") format("truetype"), url("../fonts/icomoon.woff?ckpx72") format("woff"), url("../fonts/icomoon.svg?ckpx72#icomoon") format("svg");
+  src: url("../fonts/icomoon.eot?stten6");
+  src: url("../fonts/icomoon.eot?stten6#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?stten6") format("truetype"), url("../fonts/icomoon.woff?stten6") format("woff"), url("../fonts/icomoon.svg?stten6#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -164,7 +164,7 @@ img, figure {
 }
 
 .icon-search:before {
-  content: "\e907";
+  content: "\e900";
 }
 
 .icon-mail:before {
@@ -223,36 +223,32 @@ img, figure {
   content: "\e927";
 }
 
-.icon-times_played_icon:before {
-  content: "\e929";
-}
-
 .icon-chevron-down:before {
-  content: "\e900";
-}
-
-.icon-chevron-left:before {
   content: "\e901";
 }
 
-.icon-chevron-right:before {
+.icon-chevron-left:before {
   content: "\e902";
 }
 
-.icon-chevron-up:before {
+.icon-chevron-right:before {
   content: "\e903";
 }
 
-.icon-facebook:before {
+.icon-chevron-up:before {
   content: "\e904";
 }
 
-.icon-google-plus:before {
+.icon-facebook:before {
   content: "\e905";
 }
 
-.icon-icon_available:before {
+.icon-google-plus:before {
   content: "\e906";
+}
+
+.icon-icon_available:before {
+  content: "\e907";
 }
 
 .icon-icon_banking:before {
@@ -3815,10 +3811,14 @@ a:hover, a:active, a:visited, a:focus {
   border-radius: 50%;
   width: 18px;
   height: 18px;
-  font-size: 16px;
+  font-size: 9px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
   margin: 0 5px 0 0;
+}
+
+.game-play i {
+  margin: 0 0 0 1px;
 }
 
 .game-holder {
@@ -5171,6 +5171,10 @@ a:hover, a:active, a:visited, a:focus {
   .casino-review .list-rating {
     width: 102px;
   }
+}
+
+.casino-review .list-rating-wrap {
+  border-radius: 2px;
 }
 
 .casino-review .list-rating-score {
