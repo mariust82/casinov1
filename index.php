@@ -5,4 +5,4 @@ new ErrorsFrontController();
 
 // take control of STDOUT
 require_once("vendor/lucinda/mvc/loader.php");
-new FrontController("configuration_frontend.xml");
+new FrontController();
