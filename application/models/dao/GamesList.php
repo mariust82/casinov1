@@ -4,7 +4,7 @@ require_once("entities/Game.php");
 class GamesList
 {
     private $filter;
-    const LIMIT = 24;
+    const LIMIT = 12;
 
     public function __construct(GameFilter $filter)
     {
