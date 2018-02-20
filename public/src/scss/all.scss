@@ -1342,12 +1342,6 @@ a {
 
     @media screen and (max-width: 375px) {
         width:100%;
-
-        &:nth-child(1),
-        &:nth-child(2),
-        &:nth-child(3){
-            display:none;
-        }
     }
 
     &-play{
@@ -1421,6 +1415,18 @@ a {
 
     &-soft{
 
+    }
+}
+
+.block{
+    .game{
+        @media screen and (max-width: 375px) {
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(3){
+                display:none;
+            }
+        }
     }
 }
 
@@ -3480,6 +3486,10 @@ a {
 
 .select2-container--default .select2-selection--single{
     border-color: #C1C9CF;
+
+    @media screen and (max-width: 690px) {
+        border-color: #2171CE;
+    }
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow b{
@@ -3515,6 +3525,10 @@ a {
 
 .select2-container--default .select2-selection--single .select2-selection__rendered{
     color:#60686A;
+
+    @media screen and (max-width: 690px) {
+        text-align:center;
+    }
 }
 
 .select2-container--focus.select2-container--default .select2-selection--single .select2-selection__rendered{
@@ -4125,6 +4139,7 @@ a {
 
         @media screen and (max-width: 690px) {
             font-size:141px;
+            margin: 0 0 15px;
         }
     }
 
@@ -4146,6 +4161,12 @@ a {
 
     &-btn-holder{
         margin:0 0 15px;
+
+        .btn-middle{
+            @media screen and (max-width: 690px) {
+                padding:13px 35px 12px;
+            }
+        }
     }
 
     .btn-middle{
