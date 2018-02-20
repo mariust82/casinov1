@@ -417,7 +417,7 @@
                 if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
                     _ajaxDataParams['software'] = _selectFilter.val().join();
 
-                    _itemsPerPage = 24;
+                    _itemsPerPage = 12;
 
                     if (_action == 'reset') {
                         _ajaxDataParams['software'] = '';
@@ -464,6 +464,10 @@
                                 _moreButton.hide();
                                 _loaderHolder.hide();
                                 _emptyContent.show();
+                            } else {
+                                _moreButton.show();
+                                _loaderHolder.show();
+                                _emptyContent.hide();
                             }
                         } else {
                             _targetAddContainer.append(cont);
