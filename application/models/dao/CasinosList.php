@@ -67,17 +67,17 @@ class CasinosList
         SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.minimum_deposit, t1.games, t2.name 
         FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
-        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus')
+        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins')
         ";
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {
             $bonus = new CasinoBonus();
-            $bonus->amount = $row["amount"];
+            $bonus->amount = ($row["name"]=="Free Spins"?$row["amount"]." FS":$row["amount"]);
             $bonus->min_deposit = $row["minimum_deposit"];
             $bonus->wagering = $row["wagering"];
             $bonus->games_allowed = $row["games"];
             $bonus->code = $row["codes"];
-            if($row["name"]=="No Deposit Bonus") {
+            if($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins") {
                 $output[$row["casino_id"]]->bonus_free = $bonus;
             } else {
                 $output[$row["casino_id"]]->bonus_first_deposit = $bonus;
@@ -114,7 +114,7 @@ class CasinosList
                 $condition = "t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$this->filter->getBonusType()."')";
             } else {
                 $condition = ($this->filter->getBonusType()?"t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$this->filter->getBonusType()."') AND ":"");
-                $condition .= ($this->filter->getFreeBonus()?"t4.bonus_type_id = 6 AND ":"");
+                $condition .= ($this->filter->getFreeBonus()?"t4.bonus_type_id IN (5,6) AND ":"");
                 $condition = substr($condition,0,-4);
             }
             $query.="INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id AND ".$condition."\n";
