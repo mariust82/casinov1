@@ -2176,7 +2176,7 @@ a {
 
         @media screen and (max-width: 690px) {
             border:none;
-            box-shadow:0 1px 3px rgba(0, 0, 0, 0.16);
+            box-shadow:0 2px 3px rgba(0, 0, 0, 0.16);
         }
     }
 
@@ -2775,8 +2775,17 @@ a {
         margin:0;
     }
 
+    // &.review-parent+.reply{
+    //     border-bottom:1px solid #E8EAF3;
+    // }
+
+    &.review-child{
+        border-bottom:1px solid #E8EAF3;
+    }
+
     &.admin{
         border:none !important;
+        margin: 10px 0 0 0;
 
         &>.review-wrap{
             background:#F7F7F7;
@@ -2813,7 +2822,10 @@ a {
     }
 
     &-child{
-        // border-top:1px solid #E8EAF3;
+
+        // &+.reply{
+        //     border-bottom:1px solid #E8EAF3;
+        // }
 
         @media screen and (max-width: 690px) {
             border-top:0;
@@ -3135,9 +3147,9 @@ a {
     &-row{
         margin-bottom: 27px;
 
-        &:last-child{
-            margin:0;
-        }
+        // &:last-child{
+        //     margin:0;
+        // }
 
         @media screen and (max-width: 690px) {
             margin-bottom:15px;
@@ -3290,14 +3302,41 @@ a {
     padding:0 20px 0 60px;
 
     @media screen and (max-width: 690px) {
-        padding:0 0px 0 30px;
+        padding:0 10px 0 30px;
+    }
+
+    .form-row{
+        margin-top:20px;
+        margin-bottom:0;
+
+        &:first-child{
+            margin-top:10px;
+        }
     }
 
     &-body{
         display:none;
+        margin: 0 0 0 -30px;
 
         @media screen and (max-width: 690px) {
             padding:10px 0 0 0;
+            margin: 0 0 0 -20px;
+        }
+    }
+
+    .reply{
+        padding:0 0 0 60px;
+
+        @media screen and (max-width: 690px) {
+            padding:0 10px 0 30px;
+        }
+
+        .reply-body {
+            margin: 15px 0 15px -50px;
+
+            @media screen and (max-width: 690px) {
+                margin: 0px -10px 0px -20px;
+            }
         }
     }
 

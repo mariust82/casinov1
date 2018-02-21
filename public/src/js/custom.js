@@ -714,6 +714,7 @@
              _reviewID,
              _rate_slider_result,
              _childReplies,
+             _parentName = '',
             _request = new XMLHttpRequest();
 
        _prepReview = function(_self){
@@ -735,11 +736,17 @@
 
             if (_field_name.closest('.reply').length > 0) {
                 _is_child = true;
-                _reviewHolder = parent.find(_holderChild);
+                _reviewHolder = parent.find(_holderChild).first();;
                 _childReplies = parent.find('.js-reply-btn span');
             } else {
                 _is_child = false;
                 _reviewHolder = $('#review-data-holder');
+            }
+
+            if (_field_name.closest('.reply').parent('.reply-data-holder').length > 0) {
+                _is_reply_child = true;
+            } else {
+                _is_reply_child = false;
             }
 
             if(name === '' || !_validateInputName(name)){
@@ -798,6 +805,11 @@
                 parent: 0
             };
 
+            if (_is_reply_child) {
+                _parentName = '<strong>@'+_field_name.closest('.reply').prev().find('.review-name').first().text()+'</strong> ';
+                ajaxData['body'] = _parentName+message;
+            }
+
             if (_is_child) {
                 ajaxData['parent'] = _reviewID;
             }
@@ -806,6 +818,7 @@
         },
 
        _sendReview = function(ajaxData){
+            console.log(ajaxData); 
             _request.abort();
             _request = $.ajax( {
                 url: "/casino/review-write",
@@ -847,7 +860,8 @@
                     var pattern;
 
                     if (_is_child) {
-                        pattern = '<div class="review review-child '+name.toLowerCase()+'" data-id="'+data.body.id+'" data-img-dir="'+_imgDir+'" data-country="'+_countryCode+'">\
+                        pattern = '\
+                        <div class="review review-child '+name.toLowerCase()+'" data-id="'+data.body.id+'" data-img-dir="'+_imgDir+'">\
                             <div class="review-wrap">\
                                 <div class="review-info">\
                                     <div class="review-info-top">\
@@ -862,9 +876,10 @@
                                 </div>\
                                 <div class="review-body">\
                                     <div class="review-text">\
-                                        <p>'+message+'</p>\
+                                        <p>'+_parentName+message+'</p>\
                                     </div>\
                                     <div class="review-underline">\
+                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
                                         <div class="votes js-vote">\
                                             <a href="#" class="votes-like vote-button" data-id="'+data.body.id+'">\
                                                 <i class="icon-icon_likes"></i>\
@@ -875,10 +890,49 @@
                                 </div>\
                             </div>\
                         </div>\
+                        <div class="reply">\
+                            <div class="reply-body">\
+                                <div class="form">\
+                                    <div class="form-row">\
+                                        <div class="textfield-holder">\
+                                            <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
+                                        </div>\
+                                    </div>\
+                                    <div class="hidden js-expanding-textfields">\
+                                        <div class="form-row form-multicol">\
+                                            <div class="form-col">\
+                                                <div class="textfield-holder error">\
+                                                    <input type="text" name="name" class="textfield" placeholder="Name">\
+                                                </div>\
+                                            </div>\
+                                            <div class="form-col">\
+                                                <div class="textfield-holder error">\
+                                                    <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                        <div class="form-row">\
+                                            <div class="review-submit-holder">\
+                                                <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
+                                                <div>\
+                                                    <div class="field-error-required not-valid action-field">\
+                                                        Please fill in the required fields.\
+                                                    </div>\
+                                                    <div class="field-success success action-field">\
+                                                        Thank You!\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                            <div class="reply-data-holder"></div>\
+                        </div>\
                         ';
                     } else {
                         pattern = '\
-                        <div class="review review-parent '+name.toLowerCase()+'" data-id="'+data.body.id+'" data-img-dir="'+_imgDir+'" data-country="'+_countryCode+'">\
+                        <div class="review review-parent '+name.toLowerCase()+'" data-id="'+data.body.id+'">\
                             <div class="review-wrap">\
                                 <div class="review-info">\
                                     <div class="review-info-top">\
@@ -899,7 +953,7 @@
                                 </div>\
                                 <div class="review-body">\
                                     <div class="review-text">\
-                                        <p>'+message+'</p>\
+                                        <p>'+_parentName+message+'</p>\
                                     </div>\
                                     <div class="review-underline">\
                                         <a href="#" class="review-replies js-reply-btn">Reply</a>\
@@ -1576,15 +1630,17 @@
     }
 
     function initReplies() {
-        var container = $('.review-parent');
+        var container = $('.review-parent, .review-child');
         var btn = $('.js-reply-btn');
 
-        btn.off();
-        btn.on('click', function(e) {
-            console.log("rep"); 
-            $(this).closest(container).next().find('.reply-body').slideToggle();
-            e.preventDefault();
+        btn.each(function(index, el) {
+            $(this).off();
+            $(this).on('click', function(e) {
+                $(this).closest(container).next().find('.reply-body').first().slideToggle();
+                e.preventDefault();
+            });
         });
+
     }
 
     function initMoboleBonusesPop() {
@@ -1966,8 +2022,12 @@
     }
 
     function _validateInputName(txt) {
-         var regex = /^[a-zA-Z0-9 ]+$/;
-         return regex.test(txt);
+         // var regex = /^[a-zA-Z0-9 ]+$/;
+         // return regex.test(txt);
+
+         if (txt != '') {
+            return true;
+         }
      }
 
     function _validateInputMessage(txt) {

@@ -4704,7 +4704,7 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 690px) {
   .links-nav .container {
     border: none;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16);
   }
 }
 
@@ -5448,8 +5448,13 @@ a:hover, a:active, a:visited, a:focus {
   margin: 0;
 }
 
+.review.review-child {
+  border-bottom: 1px solid #E8EAF3;
+}
+
 .review.admin {
   border: none !important;
+  margin: 10px 0 0 0;
 }
 
 .review.admin > .review-wrap {
@@ -5889,10 +5894,6 @@ a:hover, a:active, a:visited, a:focus {
   margin-bottom: 27px;
 }
 
-.form-row:last-child {
-  margin: 0;
-}
-
 @media screen and (max-width: 690px) {
   .form-row {
     margin-bottom: 15px;
@@ -6075,17 +6076,48 @@ a:hover, a:active, a:visited, a:focus {
 
 @media screen and (max-width: 690px) {
   .reply {
-    padding: 0 0px 0 30px;
+    padding: 0 10px 0 30px;
   }
+}
+
+.reply .form-row {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.reply .form-row:first-child {
+  margin-top: 10px;
 }
 
 .reply-body {
   display: none;
+  margin: 0 0 0 -30px;
 }
 
 @media screen and (max-width: 690px) {
   .reply-body {
     padding: 10px 0 0 0;
+    margin: 0 0 0 -20px;
+  }
+}
+
+.reply .reply {
+  padding: 0 0 0 60px;
+}
+
+@media screen and (max-width: 690px) {
+  .reply .reply {
+    padding: 0 10px 0 30px;
+  }
+}
+
+.reply .reply .reply-body {
+  margin: 15px 0 15px -50px;
+}
+
+@media screen and (max-width: 690px) {
+  .reply .reply .reply-body {
+    margin: 0px -10px 0px -20px;
   }
 }
 
