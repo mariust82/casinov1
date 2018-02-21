@@ -13,7 +13,7 @@
 				<div class="list-item-cell">
 					<div class="list-flex">
 						<div class="list-flag">
-							<img src="${get_flags_dir()}/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
+							<img class="${normalize(get_country_status(${result.is_country_accepted}))}" src="${get_flags_dir()}/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
 						</div>
 						<div class="list-rating ${normalize(get_rating(${result.rating}))}">
 							<div class="list-rating-wrap">

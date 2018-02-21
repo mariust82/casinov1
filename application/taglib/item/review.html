@@ -7,10 +7,10 @@
 				</div>
 				<div class="review-info-body">
 					<div class="review-name">${result.name}</div>
-					<div class="review-date">${date("d m Y",  strtotime(${result.date}))}</div>
+					<div class="review-date">${format_filter_date(${result.date})}</div>
 				</div>
 			</div>
-			<std:if condition="$[class] != 'review-child'">
+			<std:if condition="'$[class]' != 'review-child'">
 				<div class="list-rating ${normalize(get_rating(${result.rating}))}">
 					<div class="list-rating-wrap">
 						<div class="list-rating-score">${ceil(${result.rating})}</div>

@@ -798,7 +798,7 @@ $this->response->setAttribute("casinos", array (
     'withdrawal_timeframes' => NULL,
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
+    'is_country_accepted' => '0z',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
   ),

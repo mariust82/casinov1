@@ -108,7 +108,6 @@
         $('.js-tooltip').tooltipster(tooltipConfig);
         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
-
     });
 
     function checkStringLength(box, num) {
@@ -412,8 +411,6 @@
 
                 _ajaxDataParams[_paramName] = _paramValue;
 
-                console.log(_selectFilter.val()); 
-
                 if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
                     _ajaxDataParams['software'] = _selectFilter.val().join();
 
@@ -456,6 +453,8 @@
 
                             var loadTotal = $(data).filter('[data-load-total]').data('load-total');
 
+                            $('.qty-items span').text(loadTotal);
+
                             if (loadTotal > 0) {
                                 $('[data-total]').data('total', loadTotal);
                             }
@@ -485,7 +484,7 @@
                         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
                         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                         initMoboleBonusesPop();
-                        checkStringLength($('.list .bonus-box'), 21);
+                        checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
                     },
                     error: function(XMLHttpRequest) {
                         if (XMLHttpRequest.statusText != "abort") {
@@ -698,7 +697,7 @@
             _holderChild = $('.reply-data-holder'),
             _qty = $('.reviews-qty'),
             _contact_error_class = 'not-valid',
-            _casinoID = $('.reviews').data('id'),
+            _casinoID = $('.reviews-form').data('casino-id'),
             _storage_name = localStorage.getItem('casino_'+_casinoID+'_name'),
             _storage_casino_id_reviewed = localStorage.getItem('casino_'+_casinoID+'_reviewed'),
             _storage_review_score = localStorage.getItem('casino_'+_casinoID+'_score'),
@@ -991,9 +990,8 @@
             _changeName(_storage_name);
             $('.review-rating', formContainer).addClass('active');
             $('textarea', formContainer).addClass('disabled');
-            $('.review-name', formContainer).text(_storage_name);
-            $('.review-rating-num', formContainer).text(_storage_review_score);
-            $('.review-rating-bar', formContainer).css('width', _storage_review_score+'0%');
+            $('.rating-bar').barrating('set', _storage_review_score);
+            $('.rating-current-value span').text(_storage_review_score);
             $('textarea[name=body]', formContainer).attr('placeholder', 'You have already reviewed');
         },
 
@@ -1191,17 +1189,41 @@
             _searchCasinosContainer = _searchContainer.find('#search-casinos ul'),
             _searchPagesContainer = _searchContainer.find('#search-pages ul'),
             _searchEmptyContainer = _searchContainer.find('#search-empty'),
+
             _searchMoreCasinos = $('#js-search-more-casinos'),
+            _searchMoreCasinosNumHolder = $('.more-num', _searchMoreCasinos),
+            _searchMoreCasinosNum = _searchMoreCasinosNumHolder.data('total-casinos'),
+
             _searchMorePages = $('#js-search-more-pages'),
+            _searchMorePagesNumHolder = $('.more-num', _searchMorePages),
+            _searchMorePagesNum = _searchMorePagesNumHolder.data('total-games'),
+
             _imgDir = _searchContainer.data('img-dir'),
             _loadNewContent = true,
             _loadMoreContent = false,
-            _clickCounter = 0,
-            _fromPages = 2,
-            _fromCasinos = 2,
+
+            _showMoreNum = 5,
+            _fromCasinos = 1,
+            _fromPages = 1,
+
+            _clicksCasinos = Math.floor(_searchMoreCasinosNum / _showMoreNum),
+            _clicksPages = Math.floor(_searchMorePagesNum / _showMoreNum),
+
+            _remainderCasinos = _searchMoreCasinosNum % _showMoreNum,
+            _remainderPages = _searchMorePagesNum % _showMoreNum,
+
             loadDelay = 0,
             // scrollingBlock = $('.js-scrolling'),
             _request = new XMLHttpRequest();
+
+
+            if (_remainderCasinos < _showMoreNum && _clicksCasinos == 1) {
+                _searchMoreCasinosNumHolder.text(_remainderCasinos);
+            }
+
+            if (_remainderPages < _showMoreNum && _clicksPages == 1) {
+                _searchMorePagesNumHolder.text(_remainderPages);
+            }
 
         // window.contentBeforeSearch = $('.main').html();
 
@@ -1267,22 +1289,45 @@
                     }
                 );
 
-                _searchMorePages.on(
-                    'click',
-                    function() {
-                        _ajaxMore('/search/more-games/'+_fromPages, $('.search-title span').text(), $('#all-games-container'));
-                        _loadMoreContent = true;
-                        _fromPages++;
-                        return false;
-                    }
-                );
-
                 _searchMoreCasinos.on(
                     'click',
                     function() {
                         _ajaxMore('/search/more-casinos/'+_fromCasinos, $('.search-title span').text(), $('#all-casinos-container'));
                         _loadMoreContent = true;
+                        
+                        if (_fromCasinos >= _clicksCasinos) {
+                            _searchMoreCasinos.fadeOut();
+                        } else {
+                            _searchMoreCasinos.fadeIn();
+                        }
+
+                        if (_fromCasinos >= _clicksCasinos - 1 && _remainderCasinos > 0) {
+                            _searchMoreCasinosNumHolder.text(_remainderCasinos);
+                        }
+
                         _fromCasinos++;
+
+                        return false;
+                    }
+                );
+
+                _searchMorePages.on(
+                    'click',
+                    function() {
+                        _ajaxMore('/search/more-games/'+_fromPages, $('.search-title span').text(), $('#all-games-container'));
+                        _loadMoreContent = true;
+                        
+                        if (_fromPages >= _clicksPages) {
+                            _searchMorePages.fadeOut();
+                        } else {
+                            _searchMorePages.fadeIn();
+                        }
+
+                        if (_fromPages >= _clicksPages - 1 && _remainderPages > 0) {
+                            _searchMorePagesNumHolder.text(_remainderPages);
+                        }
+
+                        _fromPages++;
                         return false;
                     }
                 );
@@ -1755,15 +1800,45 @@
     }
 
     function initExpandingText() {
-       $('.js-condense').condense({
-        condensedLength: 410,
-        moreText: "Read More",
-        lessText: "Read Less",
-        ellipsis: "...",
-       });
-        if($().condense) {
-            $('.js-condense').next('.js-condense').fadeIn();
+        function cInit() {
+           $('.js-condense').condense({
+            condensedLength: 410,
+            moreText: "Read More",
+            lessText: "Read Less",
+            ellipsis: "...",
+            debug: false
+           });
+           if($().condense) {
+            // $('.js-condense').next('.js-condense').fadeIn();
+
+            $('.js-condense').css({
+                maxHeight: '100%'
+            });
+           }
         }
+
+        function cDestroy() {
+            $('.js-condense').each(function(index, el) {
+                if ($(this).is(':visible')) {
+                    $(this).remove();
+                } else {
+                    $(this).show().attr('style', '').insertAfter('.condensedParent');
+                    $(this).find('.condense_control').remove();
+                    $('.condensedParent').remove();
+                }
+            });
+        }
+
+        cInit();
+
+        var resizeTimer;
+        $(window).resize(function(event) {
+            clearTimeout(resizeTimer);
+              resizeTimer = setTimeout(function() {
+                cDestroy();
+                cInit();
+              }, 250);
+        });
     }
 
 
@@ -1829,15 +1904,24 @@
             }
         });
 
-        var swiperLinks = new Swiper('#links-nav', {
+        var linksSwiperParams = {
             slidesPerView: 'auto',
-            // loopedSlides: 100,
             spaceBetween: 30,
-            virtualTranslate: false,
-            // freeMode: true,
-            // loop: true,
+            // virtualTranslate: false,
             allowTouchMove:false,
-            slidesOffsetAfter:-180,
+            slidesOffsetAfter:-220,
+            on: {
+                slideChangeTransitionStart: function (argument) {
+                    $('.links-left').fadeIn('fast');
+                },
+                slideChangeTransitionEnd: function (argument) {
+
+                    if (this.translate == 0) {
+                        $('.links-left').fadeOut('fast');
+                    }
+
+                },
+            },
             breakpoints: {
                 1024: {
                     allowTouchMove:true,
@@ -1847,20 +1931,32 @@
                     allowTouchMove:true,
                 }
             }
-        });
+        }
+
+        var swiperLinks = new Swiper('.links-casinos #links-nav', linksSwiperParams);
+
+        linksSwiperParams['slidesOffsetAfter'] = -330; //for games links slider
+        var swiperLinks2 = new Swiper('.links-games #links-nav', linksSwiperParams);
 
         if ($(window).width() > 1024) {
-            var inter;
-            $('.links-nav a').on('mouseenter', function(e) {
-                var container = $(this).closest('.swiper-container');
-                var curPosition = e;
+            $('.links-casinos .links-nav a').on('mouseenter', function(e) {
+                swiperAction($(this), e, swiperLinks);
+            });
+
+            $('.links-games .links-nav a').on('mouseenter', function(e) {
+                swiperAction($(this), e, swiperLinks2);
+            });
+
+            function swiperAction(_this, _e, _id) {
+                var container = _this.closest('.swiper-container');
+                var curPosition = _e;
 
                 if (curPosition.clientX > container.offset().left + (container.width()/1.3)) {
-                    swiperLinks.slideNext(500);
+                    _id.slideNext(500);
                 } else if (curPosition.clientX < container.offset().left + (container.width()/6)){
-                    swiperLinks.slidePrev(500);
+                    _id.slidePrev(500);
                 }
-            });
+            }
         }
     }
 
@@ -1885,7 +1981,7 @@
         var mm = today.getMonth()+1; //January is 0!
         var yyyy = today.getFullYear();
 
-        return today = dd + ' ' + mm + ' ' + yyyy;
+        return today = dd + '.' + mm + '.' + yyyy;
     }
 
 })(jQuery);

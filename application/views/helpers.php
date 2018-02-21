@@ -10,6 +10,11 @@ function detect_casinos_word($name)
     return strpos($name, 'Casinos');
 }
 
+function detect_casino_word($name)
+{
+    return strpos($name, 'Casino');
+}
+
 function normalize($name)
 {
     $str = str_replace(" ", "-", $name);
@@ -148,7 +153,7 @@ function get_page_type()
     return $piece;
 }
 
-function format_filter_date($date, $format = 'F Y')
+function format_filter_date($date, $format = 'd.m.Y')
 {
     return date($format, strtotime($date));
 }

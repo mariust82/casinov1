@@ -21,7 +21,7 @@
 					</ul>
 					<std:if condition="${data.total_casinos} > 4">
 						<div class="search-list-more">
-							<a href="#" id="js-search-more-casinos">Show 5 more <i class="icon-chevron-down"></i></a>
+							<a href="#" id="js-search-more-casinos">Show <span class="more-num" data-total-casinos="${data.total_casinos}">5</span> more <i class="icon-chevron-down"></i></a>
 						</div>
 					</std:if>
 				</div>
@@ -37,7 +37,7 @@
 					</ul>
 					<std:if condition="${data.total_games} > 4">
 						<div class="search-list-more">
-							<a href="#" id="js-search-more-pages">Show 5 more <i class="icon-chevron-down"></i></a>
+							<a href="#" id="js-search-more-pages">Show <span class="more-num" data-total-games="${data.total_games}">5</span> more <i class="icon-chevron-down"></i></a>
 						</div>
 					</std:if>
 				</div>

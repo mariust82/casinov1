@@ -108,8 +108,93 @@ $this->response->setAttribute("casino", array (
   'is_currency_accepted' => '1',
   'status' => 'Blacklisted',
 ));
-$this->response->setAttribute("total_reviews", 0);
+$this->response->setAttribute("total_reviews", 6);
 $this->response->setAttribute("reviews", array (
+  0 => 
+  array (
+    'id' => '6',
+    'name' => 'Tester',
+    'email' => 'a@a.com',
+    'body' => 'I\'m testing this functionality!',
+    'likes' => '0',
+    'ip' => NULL,
+    'country' => 'United States',
+    'rating' => 7,
+    'date' => '2018-01-26 12:36:34',
+    'parent' => NULL,
+    'children' => 
+    array (
+    ),
+    'total_children' => 0,
+  ),
+  1 => 
+  array (
+    'id' => '4',
+    'name' => 'Tester',
+    'email' => 'a@a.com',
+    'body' => 'I\'m testing this functionality!',
+    'likes' => '0',
+    'ip' => NULL,
+    'country' => 'United States',
+    'rating' => 7,
+    'date' => '2018-01-26 12:36:26',
+    'parent' => NULL,
+    'children' => 
+    array (
+    ),
+    'total_children' => 0,
+  ),
+  2 => 
+  array (
+    'id' => '5',
+    'name' => 'Tester',
+    'email' => 'a@a.com',
+    'body' => 'I\'m testing this functionality!',
+    'likes' => '0',
+    'ip' => NULL,
+    'country' => 'United States',
+    'rating' => 7,
+    'date' => '2018-01-26 12:36:26',
+    'parent' => NULL,
+    'children' => 
+    array (
+    ),
+    'total_children' => 0,
+  ),
+  3 => 
+  array (
+    'id' => '3',
+    'name' => 'Tester',
+    'email' => 'a@a.com',
+    'body' => 'I\'m testing this functionality!',
+    'likes' => '0',
+    'ip' => NULL,
+    'country' => 'United States',
+    'rating' => 7,
+    'date' => '2018-01-26 12:36:25',
+    'parent' => NULL,
+    'children' => 
+    array (
+    ),
+    'total_children' => 0,
+  ),
+  4 => 
+  array (
+    'id' => '2',
+    'name' => 'Tester',
+    'email' => 'a@a.com',
+    'body' => 'I\'m testing this functionality!',
+    'likes' => '0',
+    'ip' => NULL,
+    'country' => 'United States',
+    'rating' => 7,
+    'date' => '2018-01-26 12:36:23',
+    'parent' => NULL,
+    'children' => 
+    array (
+    ),
+    'total_children' => 0,
+  ),
 ));
 $this->response->setAttribute("menu_top", array (
   0 => 
