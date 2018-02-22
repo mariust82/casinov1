@@ -333,7 +333,7 @@
             _request = new XMLHttpRequest();
 
             if (typeof _paramName == 'undefined') {
-                _paramName = 'game_type';
+                _paramName = 'type';
             }
 
             _url = _obj.data('url');
