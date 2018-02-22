@@ -6597,6 +6597,13 @@ a:hover, a:active, a:visited, a:focus {
           transform: translate(-50%, -50%);
 }
 
+@media screen and (max-width: 767px) {
+  .player img,
+  .player iframe {
+    height: 100%;
+  }
+}
+
 .player-overlay {
   position: absolute;
   top: 0;
