@@ -73,7 +73,7 @@
             trigger: 'click',
             maxWidth: 279,
             animation: 'grow',
-            contentCloning: true
+            // contentCloning: true
         };
 
         copyTooltipConfig = {
@@ -109,6 +109,7 @@
         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
     });
+    
 
     function checkStringLength(box, num) {
         // var box = $('.bonus-box');
@@ -119,7 +120,8 @@
             var bubble = $(this).find('.bubble');
 
             if (child.text().length >= num) {
-                bubble.show();
+                // bubble.show();
+                bubble.css('visibility', 'visible');
             }
         });
     }
@@ -1874,7 +1876,7 @@
 
         function cDestroy() {
             $('.js-condense').each(function(index, el) {
-                if ($(this).is(':visible')) {
+                if ($(this).hasClass('.cloned')) {
                     $(this).remove();
                 } else {
                     $(this).show().attr('style', '').insertAfter('.condensedParent');

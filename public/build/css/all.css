@@ -4436,7 +4436,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .bonus-box .bubble {
-  display: none;
+  visibility: hidden;
 }
 
 .bonus-box .list-item-flex {
@@ -6569,6 +6569,12 @@ a:hover, a:active, a:visited, a:focus {
   background: #000;
 }
 
+@media screen and (max-width: 767px) {
+  .player-holder {
+    padding-bottom: 56.25%;
+  }
+}
+
 .player-holder.playing .player-img,
 .player-holder.playing .player-overlay,
 .player-holder.playing .player-play {
@@ -6582,11 +6588,12 @@ a:hover, a:active, a:visited, a:focus {
 .player img,
 .player iframe {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   display: block;
   width: 100%;
-  height: 100%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 
 .player-overlay {

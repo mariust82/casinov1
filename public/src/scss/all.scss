@@ -1925,7 +1925,8 @@ a {
     position:relative;
 
     .bubble{
-        display:none;
+        // display:none;
+        visibility:hidden;
     }
 
     .list-item-flex{
@@ -3729,8 +3730,11 @@ a {
         position:relative;
         height:0;
         padding-bottom:720/960*100%;
-
         background:#000;
+
+        @media screen and (max-width: 767px) {
+            padding-bottom:56.25%;
+        }
 
         &.playing{
             .player-img,
@@ -3747,12 +3751,12 @@ a {
 
     img,
     iframe{
-        position:absolute;
-        top:0;
-        left:0;
-        display:block;
-        width:100%;
-        height:100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: 100%;
+        transform: translate(-50%, -50%);
     }
 
     &-overlay{

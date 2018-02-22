@@ -2505,104 +2505,104 @@ $.Tooltipster.prototype = {
 		
 		var self = this;
 		
-		if (!self.__destroyed) {
+		// if (!self.__destroyed) {
 			
-			if(self.__state != 'closed'){
+		// 	if(self.__state != 'closed'){
 				
-				// no closing delay
-				self.option('animationDuration', 0)
-					// force closing
-					._close(null, null, true);
-			}
-			else {
-				// there might be an open timeout still running
-				self.__timeoutsClear();
-			}
+		// 		// no closing delay
+		// 		self.option('animationDuration', 0)
+		// 			// force closing
+		// 			._close(null, null, true);
+		// 	}
+		// 	else {
+		// 		// there might be an open timeout still running
+		// 		self.__timeoutsClear();
+		// 	}
 			
-			// send event
-			self._trigger('destroy');
+		// 	// send event
+		// 	self._trigger('destroy');
 			
-			self.__destroyed = true;
+		// 	self.__destroyed = true;
 			
-			self._$origin
-				.removeData(self.__namespace)
-				// remove the open trigger listeners
-				.off('.'+ self.__namespace +'-triggerOpen');
+		// 	self._$origin
+		// 		.removeData(self.__namespace)
+		// 		// remove the open trigger listeners
+		// 		.off('.'+ self.__namespace +'-triggerOpen');
 			
-			// remove the touch listener
-			$(env.window.document.body).off('.' + self.__namespace +'-triggerOpen');
+		// 	// remove the touch listener
+		// 	$(env.window.document.body).off('.' + self.__namespace +'-triggerOpen');
 			
-			var ns = self._$origin.data('tooltipster-ns');
+		// 	var ns = self._$origin.data('tooltipster-ns');
 			
-			// if the origin has been removed from DOM, its data may
-			// well have been destroyed in the process and there would
-			// be nothing to clean up or restore
-			if (ns) {
+		// 	// if the origin has been removed from DOM, its data may
+		// 	// well have been destroyed in the process and there would
+		// 	// be nothing to clean up or restore
+		// 	if (ns) {
 				
-				// if there are no more tooltips on this element
-				if (ns.length === 1) {
+		// 		// if there are no more tooltips on this element
+		// 		if (ns.length === 1) {
 					
-					// optional restoration of a title attribute
-					var title = null;
-					if (self.__options.restoration == 'previous') {
-						title = self._$origin.data('tooltipster-initialTitle');
-					}
-					else if (self.__options.restoration == 'current') {
+		// 			// optional restoration of a title attribute
+		// 			var title = null;
+		// 			if (self.__options.restoration == 'previous') {
+		// 				title = self._$origin.data('tooltipster-initialTitle');
+		// 			}
+		// 			else if (self.__options.restoration == 'current') {
 						
-						// old school technique to stringify when outerHTML is not supported
-						title = (typeof self.__Content == 'string') ?
-							self.__Content :
-							$('<div></div>').append(self.__Content).html();
-					}
+		// 				// old school technique to stringify when outerHTML is not supported
+		// 				title = (typeof self.__Content == 'string') ?
+		// 					self.__Content :
+		// 					$('<div></div>').append(self.__Content).html();
+		// 			}
 					
-					if (title) {
-						self._$origin.attr('title', title);
-					}
+		// 			if (title) {
+		// 				self._$origin.attr('title', title);
+		// 			}
 					
-					// final cleaning
+		// 			// final cleaning
 					
-					self._$origin.removeClass('tooltipstered');
+		// 			self._$origin.removeClass('tooltipstered');
 					
-					self._$origin
-						.removeData('tooltipster-ns')
-						.removeData('tooltipster-initialTitle');
-				}
-				else {
-					// remove the instance namespace from the list of namespaces of
-					// tooltips present on the element
-					ns = $.grep(ns, function(el, i) {
-						return el !== self.__namespace;
-					});
-					self._$origin.data('tooltipster-ns', ns);
-				}
-			}
+		// 			self._$origin
+		// 				.removeData('tooltipster-ns')
+		// 				.removeData('tooltipster-initialTitle');
+		// 		}
+		// 		else {
+		// 			// remove the instance namespace from the list of namespaces of
+		// 			// tooltips present on the element
+		// 			ns = $.grep(ns, function(el, i) {
+		// 				return el !== self.__namespace;
+		// 			});
+		// 			self._$origin.data('tooltipster-ns', ns);
+		// 		}
+		// 	}
 			
-			// last event
-			self._trigger('destroyed');
+		// 	// last event
+		// 	self._trigger('destroyed');
 			
-			// unbind private and public event listeners
-			self._off();
-			self.off();
+		// 	// unbind private and public event listeners
+		// 	self._off();
+		// 	self.off();
 			
-			// remove external references, just in case
-			self.__Content = null;
-			self.__$emitterPrivate = null;
-			self.__$emitterPublic = null;
-			self.__options.parent = null;
-			self._$origin = null;
-			self._$tooltip = null;
+		// 	// remove external references, just in case
+		// 	self.__Content = null;
+		// 	self.__$emitterPrivate = null;
+		// 	self.__$emitterPublic = null;
+		// 	self.__options.parent = null;
+		// 	self._$origin = null;
+		// 	self._$tooltip = null;
 			
-			// make sure the object is no longer referenced in there to prevent
-			// memory leaks
-			$.tooltipster.__instancesLatestArr = $.grep($.tooltipster.__instancesLatestArr, function(el, i) {
-				return self !== el;
-			});
+		// 	// make sure the object is no longer referenced in there to prevent
+		// 	// memory leaks
+		// 	$.tooltipster.__instancesLatestArr = $.grep($.tooltipster.__instancesLatestArr, function(el, i) {
+		// 		return self !== el;
+		// 	});
 			
-			clearInterval(self.__garbageCollector);
-		}
-		else {
-			self.__destroyError();
-		}
+		// 	clearInterval(self.__garbageCollector);
+		// }
+		// else {
+		// 	self.__destroyError();
+		// }
 		
 		// we return the scope rather than true so that the call to
 		// .tooltipster('destroy') actually returns the matched elements

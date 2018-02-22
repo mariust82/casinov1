@@ -112,7 +112,7 @@
         var fullbody = $.trim(elem.html());
         var fulltext = $.trim(elem.text());
         var delim = opts.delim;
-        var clone = elem.clone();
+        var clone = elem.clone().addClass('cloned');
         var delta = 0;
 
         do {
