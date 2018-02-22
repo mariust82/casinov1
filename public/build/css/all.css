@@ -6086,7 +6086,8 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .reply .form-row:first-child {
-  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-top: 0;
 }
 
 .reply-body {
