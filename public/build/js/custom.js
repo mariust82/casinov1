@@ -1640,7 +1640,6 @@
                 e.preventDefault();
             });
         });
-
     }
 
     function initMoboleBonusesPop() {
