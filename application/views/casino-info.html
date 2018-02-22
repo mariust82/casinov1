@@ -78,11 +78,11 @@
 							<div class="def-list-item">
 								<div class="def-list-key">Languages</div>
 								<div class="def-list-val">
-									<std:if condition="${data.casino.is_language_accepted}">
+									<!-- <std:if condition="${data.casino.is_language_accepted}">
 										<i class="icon-icon_available"></i>
 									<std:else>
 										<i class="icon-icon_unavailable"></i>
-									</std:if>
+									</std:if> -->
 
 									<std:set name="numItems" value="count(${data.casino.languages})"/>
 									<std:set name="i" value="0"/>
@@ -99,11 +99,11 @@
 							<div class="def-list-item">
 								<div class="def-list-key">Currencies</div>
 								<div class="def-list-val">
-									<std:if condition="${data.casino.is_currency_accepted}">
+									<!-- <std:if condition="${data.casino.is_currency_accepted}">
 										<i class="icon-icon_available"></i>
 									<std:else>
 										<i class="icon-icon_unavailable"></i>
-									</std:if>
+									</std:if> -->
 
 									<std:set name="numItems" value="count(${data.casino.currencies})"/>
 									<std:set name="i" value="0"/>

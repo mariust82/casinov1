@@ -333,7 +333,7 @@
             _request = new XMLHttpRequest();
 
             if (typeof _paramName == 'undefined') {
-                _paramName = 'type';
+                _paramName = 'game_type';
             }
 
             _url = _obj.data('url');
@@ -2031,8 +2031,12 @@
      }
 
     function _validateInputMessage(txt) {
-         var regex = /^[\w\.,:;!\s]+$/;
-         return regex.test(txt);
+         // var regex = /^[\w\.,:;!\s]+$/;
+         // return regex.test(txt);
+
+         if (txt != '') {
+            return true;
+         }
      }
 
     function _getCurrDate(){
