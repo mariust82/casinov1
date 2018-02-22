@@ -6572,7 +6572,7 @@ a:hover, a:active, a:visited, a:focus {
 
 @media screen and (max-width: 767px) {
   .player-holder {
-    padding-bottom: 56.25%;
+    padding-bottom: 50%;
   }
 }
 
