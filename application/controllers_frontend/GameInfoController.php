@@ -40,8 +40,9 @@ $this->response->setAttribute("game", array (
     'width' => '960',
     'height' => '720',
     'screenshot' => '/public/img/sync/game_ss/960x720/Planet_Fortune_ss.jpg',
-    'url' => 'http://showcase.playngo.com/Casino/PlayFlash?pid=2&gid=planetfortune',
-    'status' => 'redirect',
+    'url' => 'https://netent-static.casinomodule.com/games/starburst_mobile_html/game/starburst_mobile_html.xhtml?server=https://netent-game.casinomodule.com/&lang=en&sessId=DEMO-1691716968547&gameId=starburst_mobile_html',
+    // 'status' => 'redirect',
+    'status' => 'auto-play',
   ),
 ));
 $this->response->setAttribute("recommended_casinos", array (
