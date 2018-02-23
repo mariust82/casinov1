@@ -1,5 +1,6 @@
 <?php
 require_once("application/models/mailing/MailMessage.php");
+require_once("application/models/dao/Subscriptions.php");
 
 class NewsletterSubscribeController extends Controller
 {
@@ -8,9 +9,20 @@ class NewsletterSubscribeController extends Controller
     const EMAIL = "support@casinoslists.com";
 
     public function run() {
+        $this->sendMail();
+        $this->saveSubscription();
+    }
+
+    private function sendMail() {
         $message = new MailMessage(self::SUBJECT, self::MESSAGE.": ".$_POST["email"]);
         $message->setReplyTo($_POST["email"]);
         $message->addTo(self::EMAIL);
         $message->send();
+    }
+
+
+    private function saveSubscription() {
+        $object = new Subscriptions();
+        $object->save($_POST["email"], $this->request->getAttribute("ip"), $this->request->getAttribute("country"));
     }
 }
