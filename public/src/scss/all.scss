@@ -3732,6 +3732,7 @@ a {
         height:0;
         padding-bottom:720/960*100%;
         background:#000;
+        overflow:hidden;
 
         @media screen and (max-width: 767px) {
             padding-bottom:50%;
@@ -3761,6 +3762,7 @@ a {
 
         @media screen and (max-width: 767px) {
             height:100%;
+            width:auto;
         }
     }
 
@@ -4444,6 +4446,9 @@ a {
         height:19px;
     }
 }
+.player-wrap{
+    position:relative;
+}
 .fullscreen{
     overflow:hidden;
 
@@ -4505,7 +4510,6 @@ a {
         }
     }
 }
-
 
 #contact-us-success{
     display:none;

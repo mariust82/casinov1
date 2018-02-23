@@ -6568,6 +6568,7 @@ a:hover, a:active, a:visited, a:focus {
   height: 0;
   padding-bottom: 75%;
   background: #000;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 767px) {
@@ -6601,6 +6602,7 @@ a:hover, a:active, a:visited, a:focus {
   .player img,
   .player iframe {
     height: 100%;
+    width: auto;
   }
 }
 
@@ -7416,6 +7418,10 @@ a:hover, a:active, a:visited, a:focus {
   display: none;
   width: 19px;
   height: 19px;
+}
+
+.player-wrap {
+  position: relative;
 }
 
 .fullscreen {
