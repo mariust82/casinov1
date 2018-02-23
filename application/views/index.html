@@ -2,8 +2,8 @@
 
 <import file="templates/include-header"/>
 	<import file="templates/include-carousel"/>
-	<block:list-casinos-short id="1" data="${data.country_casinos}" type="SOFTWARE" goto="/countries-list/${normalize(${data.country.name})}" name="${data.country.name} Casinos" description="Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite."/>
-	<block:list-casinos-short id="2" data="${data.new_casinos}" type="ESTABLISHED" goto="/casinos/new" name="New Casinos" description="Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite."/>
-	<block:list-casinos-short id="3" data="${data.no_deposit_casinos}" type="SOFTWARE" goto="/bonus-list/no-deposit-bonus" name="No Deposit Casinos" description="Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite."/>
-	<block:list-games-short id="4" data="${data.new_games}" goto="/games" name="New Games" description="Very few of the casinos we review attain a 5 star rating. High quality software, great games, and fast and convenient withdrawal processing are all a prerequisite. Most importantly, to be awarded this rating a casino must demonstrate..."/>
+	<block:list-casinos-short id="1" data="${data.country_casinos}" type="SOFTWARE" goto="/countries-list/${normalize(${data.country.name})}" name="${data.country.name} Casinos" description=""/>
+	<block:list-casinos-short id="2" data="${data.new_casinos}" type="ESTABLISHED" goto="/casinos/new" name="New Casinos" description=""/>
+	<block:list-casinos-short id="3" data="${data.no_deposit_casinos}" type="SOFTWARE" goto="/bonus-list/no-deposit-bonus" name="No Deposit Casinos" description=""/>
+	<block:list-games-short id="4" data="${data.new_games}" goto="/games" name="New Games" description=""/>
 <import file="templates/include-footer"/>
