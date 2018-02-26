@@ -26,12 +26,13 @@
 }
 [type="checkbox"]:not(:checked) + label:after,
 [type="checkbox"]:checked + label:after {
-  content: '✔';
+  font-family: 'icomoon' !important;
+  content: '\e907';
   position: absolute;
   top: 50%; 
   left: 5px;
-  margin:-4px 0 0 0;
-  font-size: 13px;
+  margin:-2px 0 0 -1px;
+  font-size: 9px;
   line-height: 0.8;
   color: $common-color;
   transition: all .2s;

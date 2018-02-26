@@ -1,5 +1,6 @@
 ;(function($) {
     BUSY_REQUEST = false;
+    var ww = $(window).width();
 
     $(document).ready(function() {
 
@@ -15,7 +16,7 @@
         initSearch();
         initMobileMenu();
         copyToClipboard();
-        initMoboleBonusesPop();
+        initMoboleBonusesPop(ww);
         initReviewForm();
         initReplies();
         initTexfieldsLabels();
@@ -108,6 +109,12 @@
         $('.js-tooltip').tooltipster(tooltipConfig);
         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+    });
+
+    $(window).resize(function(event) {
+        ww = $(window).width();
+
+        initMoboleBonusesPop(ww);
     });
     
 
@@ -485,7 +492,7 @@
                         $('.js-tooltip').tooltipster(tooltipConfig);
                         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
                         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
-                        initMoboleBonusesPop();
+                        initMoboleBonusesPop(ww);
                         checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
                     },
                     error: function(XMLHttpRequest) {
@@ -1348,7 +1355,7 @@
                 _searchMoreCasinos.on(
                     'click',
                     function() {
-                        _ajaxMore('/search/more-casinos/'+_fromCasinos, $('.search-title span').text(), $('#all-casinos-container'));
+                        _ajaxMore('/search/more-casinos/'+_fromCasinos, $('.search-title span').text(), $('#all-casinos-container'), 'casinos');
                         _loadMoreContent = true;
                         
                         if (_fromCasinos >= _clicksCasinos) {
@@ -1370,7 +1377,7 @@
                 _searchMorePages.on(
                     'click',
                     function() {
-                        _ajaxMore('/search/more-games/'+_fromPages, $('.search-title span').text(), $('#all-games-container'));
+                        _ajaxMore('/search/more-games/'+_fromPages, $('.search-title span').text(), $('#all-games-container'), 'games');
                         _loadMoreContent = true;
                         
                         if (_fromPages >= _clicksPages) {
@@ -1394,7 +1401,7 @@
                 _searchPagesContainer.empty();
             },
 
-            _ajaxMore = function(target, val, container) {
+            _ajaxMore = function(target, val, container, type) {
                 if (BUSY_REQUEST) return;
                 BUSY_REQUEST = true;
                 _request.abort();
@@ -1407,7 +1414,7 @@
                     type: 'GET',
                     success: function(data) {
                         _hideLoading();
-                        _loadMoreData(data, container);
+                        _loadMoreData(data, container, type);
                     },
                     error: function(XMLHttpRequest) {
                         if (XMLHttpRequest.statusText != "abort") {
@@ -1485,13 +1492,19 @@
                 return pattern;
             },
 
-            _loadMoreData = function(data, container) {
+            _loadMoreData = function(data, container, type) {
                 var items = data.body.results;
+                var link;
 
                 for (var item in items) {
+                    if (type == 'games') {
+                        link = 'play/'+getWebName(items[item]);
+                    } else if(type == 'casinos') {
+                        link = 'reviews/'+getWebName(items[item])+'-review';
+                    }
 
                     var _item = getItemPattern({
-                        link: 'reviews/'+getWebName(items[item])+'-review',
+                        link: link,
                         name: items[item]
                     });
 
@@ -1644,54 +1657,59 @@
         });
     }
 
-    function initMoboleBonusesPop() {
+    function initMoboleBonusesPop(_ww) {
         var _container = $('.list-item');
         var _mobilePop = $('.js-mobile-pop');
         var _btnOpen = $('.js-mobile-pop-open');
         var _btnClose = $('.js-mobile-pop-close');
 
-        function cloneContent(_this) {
-            var _contentHolder = _this.closest(_container).find('.mobile-popup-body');
-            var _items = _this.closest(_container).find('.tooltip-content');
+        _btnOpen.off('click');
 
-            _items.each(function(index, el) {
-                $(el).clone().appendTo(_contentHolder);
+        if (_ww <= 690) {
+
+            function cloneContent(_this) {
+                var _contentHolder = _this.closest(_container).find('.mobile-popup-body');
+                var _items = _this.closest(_container).find('.tooltip-content');
+
+                _items.each(function(index, el) {
+                    $(el).clone().appendTo(_contentHolder);
+                });
+
+                _contentHolder.find('.tooltip-content').each(function(index, el) {
+                    var tempText = $(el).find('.list-item-trun').text();
+                    $(el).find('.list-item-trun').next('.bubble').attr('title', tempText);
+                });
+
+                _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
+                _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                copyToClipboard();
+                showPop(_this);
+
+            }
+
+            function showPop(_this) {
+                _this
+                    .closest(_container)
+                    .find(_mobilePop)
+                    .fadeIn('fast');
+            }
+
+            _btnOpen.on('click', function(e) {
+
+                cloneContent($(this));
+                return false;
             });
 
-            _contentHolder.find('.tooltip-content').each(function(index, el) {
-                var tempText = $(el).find('.list-item-trun').text();
-                $(el).find('.list-item-trun').next('.bubble').attr('title', tempText);
+            _btnClose.on('click', function(e) {
+                $(this)
+                    .closest(_mobilePop)
+                    .fadeOut('fast')
+                    .find('.mobile-popup-body')
+                    .html('');
+                    
+                return false;
             });
-
-            _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
-            _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-            copyToClipboard();
-            showPop(_this);
-
         }
-
-        function showPop(_this) {
-            _this
-                .closest(_container)
-                .find(_mobilePop)
-                .fadeIn('fast');
-        }
-
-        _btnOpen.on('click', function(e) {
-
-            cloneContent($(this));
-            return false;
-        });
-
-        _btnClose.on('click', function(e) {
-            $(this)
-                .closest(_mobilePop)
-                .fadeOut('fast')
-                .find('.mobile-popup-body')
-                .html('');
-                
-            return false;
-        });
     }
 
     function copyToClipboard() {

@@ -48,7 +48,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="list-item-cell">
+				<div class="list-item-cell js-mobile-pop-open">
 					<std:if condition="${result.bonus_first_deposit.amount} != ''">
 						<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-first-${i}">${result.bonus_first_deposit.amount}</span>
 						
@@ -73,7 +73,7 @@
 				<div class="list-item-cell">
 					<div class="list-flex">
 						<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn btn-small">Visit</a>
-						<a href="#" class="btn btn-circle js-mobile-pop-open">
+						<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn btn-circle">
 							<i class="icon-chevron-right"></i>
 						</a>
 					</div>

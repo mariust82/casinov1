@@ -6,7 +6,7 @@
 	<div class="warning">
 		<div class="container">
 			<div class="warning-heading">
-				<h1 class="warning-title">${data.casino.name} Casino - Warning</h1>
+				<h1 class="warning-title">${data.casino.name} ${(detect_casino_word(${data.casino.name})?'':'Casino')} - Warning</h1>
 				<div class="warning-img">
 					<img src="${get_img_dir()}/casino_logo_light/124x82/${normalize_logo(${data.casino.name})}.png" alt="" width="124" height="82">
 				</div>

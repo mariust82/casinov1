@@ -3,7 +3,6 @@
 @import '_icons';
 @import '_swiper';
 @import '_tooltipster';
-@import '_checkbox';
 @import '_select2';
 @import '_input-placeholder';
 @import '_loader';
@@ -194,6 +193,8 @@ a {
             padding:0 15px;
             color:#fff;
             width:100%;
+            caret-color:red;
+
 
             @media screen and (max-width: 690px) {
                 flex-grow: 1;
@@ -423,6 +424,7 @@ a {
     text-transform:uppercase;
     position: relative;
     top: -4px;
+    width:119px;
 
     @media screen and (max-width: 1023px) {
         top: -1px;
@@ -3686,19 +3688,22 @@ a {
         vertical-align:middle;
     }
 }
+
 .select2-container--default .select2-results__option[aria-selected=true] .wrap{
     &:after {
-      content: '✔';
+      font-family:'icomoon';
+      content: '\e907';
       position: absolute;
       top: 10px; 
       left: 5px;
-      font-size: 13px;
+      font-size: 9px;
       line-height: 0.8;
       color: $common-color;
       transform:translateY(-50%);
       transition: all .2s;
     }
 }
+
 
 .select2-container--default.select2-container--open.select2-container--below .select2-selection--single, 
 .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple{
@@ -4572,6 +4577,7 @@ a {
     display:none;
 }
 
+
 .js-condense{
     max-height:78px;
     overflow:hidden;
@@ -4590,3 +4596,5 @@ img.not-accepted{
   filter: gray;
   -webkit-filter: grayscale(100%);
 }
+
+@import '_checkbox';
