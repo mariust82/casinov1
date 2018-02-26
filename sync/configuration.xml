@@ -27,7 +27,7 @@
         </sql>
     </servers>
     <images path="public/sync">
-        <image type="casino_logo_dark">
+        <image type="casino_logo_light">
             <format width="124" height="82"/>
         </image>
         <image type="game_ss">
