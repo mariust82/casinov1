@@ -19,7 +19,7 @@ class CasinosList
         $query = $this->getQuery(array("t1.id", "t1.name", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"));
         switch($sortBy) {
             case CasinoSortCriteria::NEWEST:
-                $query .= "ORDER BY t1.id DESC"."\n";
+                $query .= "ORDER BY t1.date_established DESC"."\n";
                 break;
             case CasinoSortCriteria::TOP_RATED:
                 $query .= "ORDER BY average_rating DESC, t1.priority ASC, t1.id DESC"."\n";
@@ -150,6 +150,9 @@ class CasinosList
         }
         if($this->filter->getPromoted()) {
             $query.="t1.status_id = 0 AND ";
+        }
+        if($this->filter->getCasinoLabel()=="New") {
+            $query.="t1.date_established > DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND ";
         }
         $query = substr($query,0, -4)."\n";
         return $query;

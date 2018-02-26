@@ -21,7 +21,7 @@ abstract class CasinosListController extends Controller {
         $total = $object->getTotal();
         if($total>0) {
             $this->response->setAttribute("total_casinos", $total);
-            $this->response->setAttribute("casinos", $object->getResults(CasinoSortCriteria::NONE, 0));
+            $this->response->setAttribute("casinos", $object->getResults($this->getSortCriteria(), 0));
         } else {
             $this->response->setAttribute("total_casinos", 0);
             $this->response->setAttribute("casinos", array());
@@ -31,6 +31,10 @@ abstract class CasinosListController extends Controller {
     abstract protected function getSelectedEntity();
 
 	abstract protected function getFilter();
+
+	protected function getSortCriteria() {
+	    return CasinoSortCriteria::NONE;
+    }
 
 	protected function generatePathParameter($name) {
 	    return strtolower(str_replace(" ", "-", $name));
