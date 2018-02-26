@@ -49,7 +49,15 @@
 					</div>
 				</div>
 				<div class="list-item-cell js-mobile-pop-open">
-					<std:if condition="${result.bonus_first_deposit.amount} != ''">
+					<std:if condition="isset(${result.bonus_no_deposit})">
+						<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-no-${i}">${result.bonus_no_deposit.amount}</span>
+						
+						<div class="tooltip-templates">
+							<div id="tooltip-$[id]-no-${i}" class="tooltip-content bonus-first">
+								<box:bonus data="result" modifier="bonus_no_deposit" heading="1" title="No Deposit Bonus" icon="icon-free-bonus-icon"/>
+							</div>
+						</div>
+					<std:elseif condition="isset(${result.bonus_first_deposit})">
 						<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-first-${i}">${result.bonus_first_deposit.amount}</span>
 						
 						<div class="tooltip-templates">

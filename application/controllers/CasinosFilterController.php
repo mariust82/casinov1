@@ -24,6 +24,7 @@ require_once("application/models/dao/CasinosList.php");
 class CasinosFilterController extends Controller {
 
 	public function run() {
+	    $sortCriteria = $this->getSortCriteria();
 	    $this->response->setAttribute("country", $this->request->getAttribute("country"));
 		$page = (integer) $this->request->getValidator()->getPathParameter("page");
         $object = new CasinosList(new CasinoFilter($_GET, $this->request->getAttribute("country")));
@@ -31,14 +32,22 @@ class CasinosFilterController extends Controller {
             $total = $object->getTotal();
             if($total) {
                 $this->response->setAttribute("total_casinos", $total);
-                $this->response->setAttribute("casinos", $object->getResults((isset($_GET["sort"]) ? $_GET["sort"] : CasinoSortCriteria::NONE), $page));
+                $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page));
             } else {
                 $this->response->setAttribute("total_casinos", 0);
                 $this->response->setAttribute("casinos", array());
             }
         } else {
             $this->response->setAttribute("total_casinos", 0);
-            $this->response->setAttribute("casinos", $object->getResults((isset($_GET["sort"]) ? $_GET["sort"] : CasinoSortCriteria::NONE), $page));
+            $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page));
         }
 	}
+
+	private function getSortCriteria() {
+	    if($this->request->getParameter("sort")==CasinoSortCriteria::NONE && $this->request->getParameter("label")=="New") {
+            return CasinoSortCriteria::NEWEST;
+        } else {
+            return $_GET["sort"];
+        }
+    }
 }

@@ -21,9 +21,6 @@ class CasinoWarningController extends Controller {
         $menuTop = new TopMenu($this->request->getValidator()->getPage());
         $this->response->setAttribute("menu_top", $menuTop->getEntries());
 
-        $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $this->getSelectedEntity(), $this->request->getURI()->getPage());
-        $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
-
 	    // set casino info
 		$casinos = new Casinos();
         $result = $casinos->getBasicInfo($this->getSelectedEntity());
@@ -33,6 +30,9 @@ class CasinoWarningController extends Controller {
 		// get recommended casinos
         $object = new CasinosList(new CasinoFilter(array("software"=>$result->softwares, "country_accepted"=>true), $this->request->getAttribute("country")));
         $this->response->setAttribute("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
+
+        $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $result->softwares, "softwares/".strtolower(str_replace(" ","-", $result->softwares)));
+        $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
     }
 
     private function getSelectedEntity() {

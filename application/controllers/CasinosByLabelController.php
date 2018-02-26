@@ -29,4 +29,12 @@ class CasinosByLabelController extends CasinosListController {
     {
         return new CasinoFilter(array("label"=>$this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
     }
+
+    protected function getSortCriteria() {
+        if($this->response->getAttribute("selected_entity")=="New") {
+            return CasinoSortCriteria::NEWEST;
+        } else {
+            return CasinoSortCriteria::NONE;
+        }
+    }
 }

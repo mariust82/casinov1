@@ -6,7 +6,7 @@
 	<div class="warning">
 		<div class="container">
 			<div class="warning-heading">
-				<h1 class="warning-title">${data.casino.name} ${(detect_casino_word(${data.casino.name})?'':'Casino')} - Warning</h1>
+				<h1 class="warning-title">${data.casino.name} - Warning</h1>
 				<div class="warning-img">
 					<img src="${get_img_dir()}/casino_logo_light/124x82/${normalize_logo(${data.casino.name})}.png" alt="" width="124" height="82">
 				</div>
@@ -17,7 +17,7 @@
 				<h2 class="title title-middle">${data.casino.name} Casino is not recommended by us. Here is why:</h2>
 				<div class="warning-text">${data.casino.name} Casino has been warn and added to our illegitimate casinos Blacklist. This is due to the fact that they lost contact and got complaints from players that had trouble to cash out. All of our attempts to contact this casino were not fulfilled. We strongly advise that players will play at other casinos.</div>
 				<div class="warning-warn">Still want to visit ${data.casino.name} Casino?</div>
-				<a href="/visit/${normalize(${data.casino.name})}" target="_blank" rel="nofollow" class="btn btn-danger">I UNDERSTAND THE RISKS</a>
+				<a href="${data.casino.affiliate_link}" rel="nofollow" class="btn btn-danger">I UNDERSTAND THE RISKS</a>
 			</div>
 		</div>
 	</div>

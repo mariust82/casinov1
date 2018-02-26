@@ -1672,7 +1672,7 @@
                 var _items = _this.closest(_container).find('.tooltip-content');
 
                 _items.each(function(index, el) {
-                    $(el).clone().appendTo(_contentHolder);
+                    $(el).clone().prependTo(_contentHolder);
                 });
 
                 _contentHolder.find('.tooltip-content').each(function(index, el) {
