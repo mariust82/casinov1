@@ -6,7 +6,6 @@ abstract class AbstractSitemapController extends Controller
     public function run() {
         $this->response->setAttribute("pages", $this->getPages());
         $this->response->setAttribute("priority", $this->getPriority());
-        $this->response->setAttribute("date", date("Y-m-d"));
     }
 
     private function getPages() {
