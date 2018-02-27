@@ -14,6 +14,15 @@ class GameTypes implements FieldValidator
         ")->toMap("unit","counter");
     }
 
+    public function getAll() {
+        return DB("
+        SELECT DISTINCT t1.name
+        FROM game_types AS t1
+        INNER JOIN games AS t2 ON t1.id = t2.game_type_id
+        ORDER BY t1.name ASC 
+        ")->toColumn();
+    }
+
     public function getGamesByType() {
         return DB("
         SELECT
