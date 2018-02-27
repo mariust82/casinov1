@@ -871,7 +871,8 @@
                     var pattern;
                     var getLink = function(){
                         if (_field_name.closest('.reply').parent('#review-data-holder').length > 0) {
-                            return '<a href="#" class="review-replies js-reply-btn">Reply</a>';
+                            // return '<a href="#" class="review-replies js-reply-btn">Reply</a>';
+                            return '';
                         } else {
                             return '';
                         }
