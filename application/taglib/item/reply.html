@@ -1,0 +1,23 @@
+<div class="reply review">
+	<div class="reply-body">
+		<forms:review rating="0"/>
+	</div>
+
+	<div class="reply-data-holder">
+		<std:foreach var="${result.children}" value="result">
+			<item:review class="review-child"/>
+			<std:if condition="isset(${result.children})">
+				<item:reply-inner/>
+			</std:if>
+		</std:foreach>
+	</div>
+
+	<std:if condition="count(${result.total_children}) > 2">
+		<div class="review-more">
+			<a href="#" class="btn-more js-more-reviews" data-type="reply" data-id="${result.id}" data-total="${result.total_children}" data-page="2">
+				SHOW 3 MORE REPLIES
+				<i class="icon-chevron-down"></i>
+			</a>
+		</div>
+	</std:if>
+</div>
