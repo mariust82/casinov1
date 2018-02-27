@@ -15,7 +15,7 @@ class CasinoReviews
 
         // get main reviews
         $resultSet = DB("
-            SELECT t1.*, t2.name AS country, t3.value AS rating
+            SELECT t1.*, t2.code AS country, t3.value AS rating
             FROM casinos__reviews AS t1
             INNER JOIN countries AS t2 ON t1.country_id = t2.id
             LEFT JOIN casinos__ratings AS t3 ON t1.casino_id = t3.casino_id AND t1.ip = t3.ip
@@ -50,7 +50,7 @@ class CasinoReviews
             }
 
             $resultSet = DB("
-                SELECT t1.*, t2.name AS country
+                SELECT t1.*, t2.code AS country
                 FROM casinos__reviews AS t1
                 INNER JOIN countries AS t2 ON t1.country_id = t2.id
                 WHERE t1.parent_id IN (".implode(",", array_keys($output)).")
