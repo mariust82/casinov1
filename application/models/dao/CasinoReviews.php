@@ -14,6 +14,7 @@ class CasinoReviews
         $output = array();
 
         // get main reviews
+        DB("SET names UTF8");
         $resultSet = DB("
             SELECT t1.*, t2.code AS country, t3.value AS rating
             FROM casinos__reviews AS t1
@@ -84,6 +85,7 @@ class CasinoReviews
     }
 
     public function insert($casino, CasinoReview $review) {
+        DB("SET names UTF8");
         $casinoID = DB("SELECT id FROM casinos WHERE name = :casino",array(":casino"=>$casino))->toValue();
         if(!$casinoID) return false;
         return DB("
