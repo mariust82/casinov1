@@ -57,4 +57,8 @@ class Casinos implements FieldValidator
     public function click($id) {
         DB("UPDATE casinos SET clicks = clicks+1 WHERE id=:id",array(":id"=>$id));
     }
+
+    public function getAll() {
+        return DB("SELECT name FROM casinos ORDER BY name ASC")->toColumn();
+    }
 }

@@ -17,11 +17,18 @@ class GameManufacturers implements CasinoCounter, FieldValidator
         ")->toMap("unit","counter");
     }
 
-    public function validate($name) {
-        return DB("SELECT name FROM game_manufacturers WHERE name=:name",array(":name"=>$name))->toValue();
+    public function getAll() {
+        return DB("
+        SELECT DISTINCT t1.name
+        FROM game_manufacturers AS t1
+        INNER JOIN casinos__game_manufacturers AS t2 ON t1.id = t2.game_manufacturer_id
+        INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
+        WHERE t3.is_open = 1
+        ORDER BY t1.name ASC 
+        ")->toColumn();
     }
 
-    public function getAll() {
-        return DB("SELECT name FROM game_manufacturers ORDER BY name ASC")->toColumn();
+    public function validate($name) {
+        return DB("SELECT name FROM game_manufacturers WHERE name=:name",array(":name"=>$name))->toValue();
     }
 }

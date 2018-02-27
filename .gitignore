@@ -6,3 +6,4 @@ vendor
 hlis
 /public/src/images
 index.php
+.htaccess
