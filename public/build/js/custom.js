@@ -816,10 +816,10 @@
                 parent: 0
             };
 
-            if (_is_reply_child) {
-                _parentName = '<strong>@'+_field_name.closest('.reply').prev().find('.review-name').first().text()+'</strong> ';
-                ajaxData['body'] = _parentName+message;
-            }
+            // if (_is_reply_child) {
+            //     _parentName = '<strong>@'+_field_name.closest('.reply').prev().find('.review-name').first().text()+'</strong> ';
+            //     ajaxData['body'] = _parentName+message;
+            // }
 
             if (_is_child) {
                 ajaxData['parent'] = _reviewID;
@@ -871,7 +871,8 @@
                     var pattern;
                     var getLink = function(){
                         if (_field_name.closest('.reply').parent('#review-data-holder').length > 0) {
-                            return '<a href="#" class="review-replies js-reply-btn">Reply</a>';
+                            // return '<a href="#" class="review-replies js-reply-btn">Reply</a>';
+                            return '';
                         } else {
                             return '';
                         }
