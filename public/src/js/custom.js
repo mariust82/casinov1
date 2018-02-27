@@ -752,6 +752,8 @@
                 _reviewHolder = $('#review-data-holder');
             }
 
+            console.log(_field_name.closest('.reply').parent('#review-data-holder').length == 0); 
+
             if (_field_name.closest('.reply').parent('.reply-data-holder').length > 0) {
                 _is_reply_child = true;
             } else {
@@ -867,6 +869,13 @@
 
                 function getItemPattern() {
                     var pattern;
+                    var getLink = function(){
+                        if (_field_name.closest('.reply').parent('#review-data-holder').length > 0) {
+                            return '<a href="#" class="review-replies js-reply-btn">Reply</a>';
+                        } else {
+                            return '';
+                        }
+                    };
 
                     if (_is_child) {
                         pattern = '\
@@ -888,7 +897,7 @@
                                         <p>'+_parentName+message+'</p>\
                                     </div>\
                                     <div class="review-underline">\
-                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
+                                        '+getLink()+'\
                                         <div class="votes js-vote">\
                                             <a href="#" class="votes-like vote-button" data-id="'+data.body.id+'">\
                                                 <i class="icon-icon_likes"></i>\

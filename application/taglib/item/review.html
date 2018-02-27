@@ -24,7 +24,9 @@
 				<p>${result.body}</p>
 			</div>
 			<div class="review-underline">
-				<a href="#" class="review-replies js-reply-btn">Reply <span>${result.total_children}</span></a>
+				<std:if condition="!isset(${last})">
+					<a href="#" class="review-replies js-reply-btn">Reply <span>${result.total_children}</span></a>
+				</std:if>
 				<div class="votes js-vote">
 					<a href="#" class="votes-like vote-button" data-type="review" data-success="1" data-id="${result.id}">
 						<i class="icon-icon_likes"></i>
@@ -34,10 +36,4 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="reply review">
-	<div class="reply-body">
-		<forms:review rating="0"/>
-	</div>
-	<div class="reply-data-holder"></div>
 </div>

@@ -1,22 +1,4 @@
 <std:foreach var="${data.reviews}" value="result">
 	<item:review class="review-parent"/>
-
-	<div class="reply review">
-		<div class="reply-body">
-			<forms:review rating="0"/>
-		</div>
-
-		<std:foreach var="${result.children}" value="result">
-			<item:review class="review-child"/>
-		</std:foreach>
-
-		<std:if condition="count(${result.total_children}) > 2">
-			<div class="review-more">
-				<a href="#" class="btn-more">
-					SHOW 3 MORE REPLIES
-					<i class="icon-chevron-down"></i>
-				</a>
-			</div>
-		</std:if>
-	</div>
+	<item:reply/>
 </std:foreach>
