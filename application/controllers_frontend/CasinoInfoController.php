@@ -141,6 +141,23 @@ $this->response->setAttribute("reviews", array (
     'parent' => NULL,
     'children' => 
     array (
+      1 => 
+      array (
+        'id' => '4',
+        'name' => 'Tester',
+        'email' => 'a@a.com',
+        'body' => 'I\'m testing this functionality!',
+        'likes' => '0',
+        'ip' => NULL,
+        'country' => 'US',
+        'rating' => 7,
+        'date' => '2018-01-26 12:36:26',
+        'parent' => NULL,
+        'children' => 
+        array (
+        ),
+        'total_children' => 0,
+      ),
     ),
     'total_children' => 0,
   ),

@@ -816,10 +816,10 @@
                 parent: 0
             };
 
-            if (_is_reply_child) {
-                _parentName = '<strong>@'+_field_name.closest('.reply').prev().find('.review-name').first().text()+'</strong> ';
-                ajaxData['body'] = _parentName+message;
-            }
+            // if (_is_reply_child) {
+            //     _parentName = '<strong>@'+_field_name.closest('.reply').prev().find('.review-name').first().text()+'</strong> ';
+            //     ajaxData['body'] = _parentName+message;
+            // }
 
             if (_is_child) {
                 ajaxData['parent'] = _reviewID;

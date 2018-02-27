@@ -24,7 +24,7 @@
 				<p>${result.body}</p>
 			</div>
 			<div class="review-underline">
-				<std:if condition="!isset(${last})">
+				<std:if condition="!isset(${last}) && '$[class]' != 'review-child'">
 					<a href="#" class="review-replies js-reply-btn">Reply <span>${result.total_children}</span></a>
 				</std:if>
 				<div class="votes js-vote">
