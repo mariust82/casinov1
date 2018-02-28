@@ -6,7 +6,7 @@ class GameInfoController extends Controller {
   'code' => 'US',
   'name' => 'United States',
 ));
-$this->response->setAttribute("software", array (
+$this->response->setAttribute("game_types", array (
   0 => 'Video Slots',
   1 => 'Video Poker',
   2 => 'Classic Slots',
@@ -40,9 +40,8 @@ $this->response->setAttribute("game", array (
     'width' => '960',
     'height' => '720',
     'screenshot' => '/public/img/sync/game_ss/960x720/Planet_Fortune_ss.jpg',
-    'url' => 'https://netent-static.casinomodule.com/games/starburst_mobile_html/game/starburst_mobile_html.xhtml?server=https://netent-game.casinomodule.com/&lang=en&sessId=DEMO-1691716968547&gameId=starburst_mobile_html',
-    // 'status' => 'redirect',
-    'status' => 'auto-play',
+    'url' => 'http://showcase.playngo.com/Casino/PlayFlash?pid=2&gid=planetfortune',
+    'status' => 'redirect',
   ),
 ));
 $this->response->setAttribute("recommended_casinos", array (
@@ -68,7 +67,14 @@ $this->response->setAttribute("recommended_casinos", array (
       'games_allowed' => 'Slots,Bingo & Casino',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '20 FS',
+      'min_deposit' => '',
+      'wagering' => '70xB',
+      'games_allowed' => 'Starburst',
+      'code' => 'No code required',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2012-01-01',
     'emails' => NULL,
@@ -521,6 +527,11 @@ $this->response->setAttribute("menu_bottom", array (
     'url' => '/games/craps',
     'is_active' => false,
   ),
+));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'Play Planet Fortune for Fun at CasinosLists.com',
+  'head_description' => 'Free Play Planet Fortune | Planet Fortune Demo Game, No Registration Required, Play the Game Planet Fortune at CasinosLists.com - 2018',
+  'body_title' => 'Planet Fortune',
 ));
 
     }

@@ -51,13 +51,18 @@ class CompatibilityController extends Controller {
     'is_active' => false,
   ),
 ));
-        $this->response->setAttribute("results", array (
+$this->response->setAttribute("results", array (
   'Mac' => '1088',
   'Linux' => '1026',
   'iOS' => '1010',
   'Android' => '1007',
   'Flash' => '1076',
   'Mobile' => '981',
+));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'Online Casinos Filtered by Compatibilities types - 2018',
+  'head_description' => 'Find an Online Casino that is Compatible with your Device and Operating System | Mobile Casinos, Mac Casinos, iPhone Casinos, Android Casinos and More!',
+  'body_title' => 'Casinos Compatibility',
 ));
 
     }

@@ -199,7 +199,14 @@ $this->response->setAttribute("casinos", array (
       'games_allowed' => 'Slots (FS - Fresh Fruits, Bake House, Santa Surprise, Under Water)',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '30 FS',
+      'min_deposit' => '',
+      'wagering' => '0',
+      'games_allowed' => 'Selected slots',
+      'code' => 'No code required',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-09-01',
     'emails' => NULL,
@@ -242,7 +249,14 @@ $this->response->setAttribute("casinos", array (
       'games_allowed' => 'All',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '20 FS',
+      'min_deposit' => '',
+      'wagering' => '70xB',
+      'games_allowed' => 'Las Cucas Locas Slot',
+      'code' => 'BRKWB (BRKWBM for Mobile)',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-10-01',
     'emails' => NULL,
@@ -1233,6 +1247,11 @@ $this->response->setAttribute("casinos", array (
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
   ),
+));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'Mac Casinos List | Best Casinos for Flash Users - 2018',
+  'head_description' => 'Mac Online Casinos List | All Mac Casinos on One List, Choose a Mac Casinos to Play at! CasinosLists.com - 2018',
+  'body_title' => 'Mac Casinos List February 2018',
 ));
 
     }

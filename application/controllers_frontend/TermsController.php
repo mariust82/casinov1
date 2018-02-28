@@ -51,6 +51,11 @@ class TermsController extends Controller {
     'is_active' => false,
   ),
 ));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'CasinosLists.com Terms and Conditions',
+  'head_description' => 'CasinosLists.com Terms and Conditions',
+  'body_title' => 'CasinosLists Terms and Conditions',
+));
 
     }
 }

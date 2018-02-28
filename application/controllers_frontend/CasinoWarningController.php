@@ -56,56 +56,6 @@ $this->response->setAttribute("menu_top", array (
     'is_active' => false,
   ),
 ));
-$this->response->setAttribute("menu_bottom", array (
-  0 => 
-  array (
-    'title' => 'United States Casinos',
-    'url' => '/countries-list/united-states',
-    'is_active' => false,
-  ),
-  1 => 
-  array (
-    'title' => 'tropica casino Casinos',
-    'url' => '/warn/tropica-casino',
-    'is_active' => true,
-  ),
-  2 => 
-  array (
-    'title' => 'No Deposit Casinos',
-    'url' => '/bonus-list/no-deposit-bonus',
-    'is_active' => false,
-  ),
-  3 => 
-  array (
-    'title' => 'Best Casinos',
-    'url' => '/casinos/best',
-    'is_active' => false,
-  ),
-  4 => 
-  array (
-    'title' => 'Safe Casinos',
-    'url' => '/casinos/safe',
-    'is_active' => false,
-  ),
-  5 => 
-  array (
-    'title' => 'New Casinos',
-    'url' => '/casinos/new',
-    'is_active' => false,
-  ),
-  6 => 
-  array (
-    'title' => 'Recommended Casinos',
-    'url' => '/casinos/recommended',
-    'is_active' => false,
-  ),
-  7 => 
-  array (
-    'title' => 'Stay Away Casinos',
-    'url' => '/casinos/stay-away',
-    'is_active' => false,
-  ),
-));
 $this->response->setAttribute("casino", array (
   'id' => '29',
   'name' => 'Tropica Casino',
@@ -201,7 +151,14 @@ $this->response->setAttribute("recommended_casinos", array (
       'games_allowed' => 'All except Progressives,Gameset,Doubleup',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '33 FS',
+      'min_deposit' => '',
+      'wagering' => '35xB',
+      'games_allowed' => 'Windy Farm Slot',
+      'code' => 'No code required',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2010-01-01',
     'emails' => NULL,
@@ -357,6 +314,61 @@ $this->response->setAttribute("recommended_casinos", array (
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
   ),
+));
+$this->response->setAttribute("menu_bottom", array (
+  0 => 
+  array (
+    'title' => 'United States Casinos',
+    'url' => '/countries-list/united-states',
+    'is_active' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'Rival Casinos',
+    'url' => '/softwares/rival',
+    'is_active' => true,
+  ),
+  2 => 
+  array (
+    'title' => 'No Deposit Casinos',
+    'url' => '/bonus-list/no-deposit-bonus',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'Best Casinos',
+    'url' => '/casinos/best',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'Safe Casinos',
+    'url' => '/casinos/safe',
+    'is_active' => false,
+  ),
+  5 => 
+  array (
+    'title' => 'New Casinos',
+    'url' => '/casinos/new',
+    'is_active' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'Recommended Casinos',
+    'url' => '/casinos/recommended',
+    'is_active' => false,
+  ),
+  7 => 
+  array (
+    'title' => 'Stay Away Casinos',
+    'url' => '/casinos/stay-away',
+    'is_active' => false,
+  ),
+));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'Hold Your Horses! Important message regarding Tropica Casino',
+  'head_description' => 'Stop! Important message regarding Tropica Casino',
+  'body_title' => 'Tropica Casino Note',
 ));
 
     }

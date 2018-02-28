@@ -59,6 +59,11 @@ $this->response->setAttribute("results", array (
   'Recommended' => '35',
   'Popular' => '15',
 ));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'Online Casinos Lists at CasinosLists.com - 2018',
+  'head_description' => 'Online Casinos Lists | Check out the Best, Safest, Newest and even most Popular Online Casinos lists! All at CasinosLists.com - 2018',
+  'body_title' => 'Online Casinos For Real Money',
+));
 
     }
 }

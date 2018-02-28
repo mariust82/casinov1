@@ -1235,6 +1235,11 @@ $this->response->setAttribute("casinos", array (
     'is_currency_accepted' => NULL,
   ),
 ));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'No Deposit Bonus Casinos List: Full list at CasinosLists.com - 2018',
+  'head_description' => 'No Deposit Bonus List | List of Online Casinos with No Deposit Bonus on Sign up, Best No Deposit Bonus for all Casinos on CasinosLists.com - 2018',
+  'body_title' => 'No Deposit Bonus Casinos List February 2018',
+));
 
     }
 }

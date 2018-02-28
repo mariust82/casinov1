@@ -7,55 +7,58 @@ class CasinoInfoController extends Controller {
   'name' => 'United States',
 ));
 $this->response->setAttribute("casino", array (
-  'id' => '29',
-  'name' => 'Tropica Casino',
+  'id' => '1334',
+  'name' => '24VIP Casino',
   'rating' => NULL,
   'softwares' => 
   array (
-    0 => 'Rival',
+    0 => 'BetSoft',
+    1 => 'Rival',
+    2 => 'Vivo Gaming',
   ),
   'languages' => 
   array (
     0 => 'English',
     1 => 'Spanish',
     2 => 'German',
-    3 => 'French',
-    4 => 'Italian',
+    3 => 'Swedish',
+    4 => 'Portuguese',
+    5 => 'French',
+    6 => 'Italian',
   ),
   'currencies' => 
   array (
     0 => 'USD',
     1 => 'EUR',
-    2 => 'AUD',
-    3 => 'ZAR',
+    2 => 'GBP',
+    3 => 'AUD',
+    4 => 'ZAR',
   ),
   'bonus_first_deposit' => 
   array (
-    'amount' => '200%',
-    'min_deposit' => '$/€/£25',
-    'wagering' => '25x(D+B)',
-    'games_allowed' => 'All except Keno,Roulette,Craps & Baccarat,Double Up,Red Dog,Sicbo,Progressive Games',
+    'amount' => '100% + 240 FS',
+    'min_deposit' => '$25',
+    'wagering' => '15x(D+B)',
+    'games_allowed' => 'Slots, Keno, Bingo, Specialty games (FS - Variety of Slots)',
     'code' => 'No code required',
   ),
   'bonus_free' => 
   array (
-    'amount' => '$/€/£50',
+    'amount' => '$15',
     'min_deposit' => '',
-    'wagering' => '60xB',
-    'games_allowed' => 'All',
+    'wagering' => '20xB',
+    'games_allowed' => 'Slots, Keno, Bingo, Specialty Games and Scratch Cards',
     'code' => 'No code required',
   ),
-  'is_live_dealer' => '0',
-  'date_established' => '2009-09-01',
+  'is_live_dealer' => '1',
+  'date_established' => '2017-09-01',
   'emails' => 
   array (
-    0 => 'support@tropicacasino.com',
+    0 => 'support@24vipcasino.com',
   ),
   'phones' => 
   array (
-    0 => 'General: +1 888-271-9514',
-    1 => 'United Kingdom: +44 080-823-47596',
-    2 => 'Canada: +1 888-271-9514',
+    0 => 'None',
   ),
   'is_live_chat' => '1',
   'licenses' => 
@@ -65,153 +68,47 @@ $this->response->setAttribute("casino", array (
   'certifiers' => 
   array (
   ),
-  'affiliate_program' => 'Refilliates',
+  'affiliate_program' => 'Superior Share',
   'affiliate_link' => NULL,
-  'withdrawal_minimum' => '$/€/AU$/R25',
+  'withdrawal_minimum' => '0',
   'withdrawal_limits' => 
   array (
-    0 => '$/€/AU$/R4000 per week',
+    0 => '$/€/£/AU$/R500 per day',
+    1 => '$/€/£/AU$/R2000 per week',
   ),
   'withdrawal_timeframes' => 
   array (
-    0 => 'Ewallets - 17-21 hours',
-    1 => 'Wire Transfer - immediate',
-    2 => 'Credit cards - 19-23 business days',
+    0 => 'Ewallets - 48-72 hours',
+    1 => 'Bitcoin Wallet - 48-72 hours',
+    2 => 'Credit cards - 2-7 business days',
   ),
   'deposit_methods' => 
   array (
-    0 => 'EcoPayz EcoCard',
-    1 => 'MasterCard',
-    2 => 'Neteller',
-    3 => 'Paysafe Card',
-    4 => 'Skrill Moneybookers',
-    5 => 'UseMyServices',
-    6 => 'Visa',
-    7 => 'Wire Transfer',
-    8 => 'Wirecard',
+    0 => 'Bitcoin Wallets',
+    1 => 'EcoPayz EcoCard',
+    2 => 'MasterCard',
+    3 => 'Neteller',
+    4 => 'Paysafe Card',
+    5 => 'Skrill Moneybookers',
+    6 => 'UPayCard',
+    7 => 'Visa',
   ),
   'withdraw_methods' => 
   array (
-    0 => 'EcoPayz EcoCard',
-    1 => 'MasterCard',
+    0 => 'Bitcoin Wallets',
+    1 => 'EcoPayz EcoCard',
     2 => 'Neteller',
-    3 => 'Paysafe Card',
-    4 => 'Skrill Moneybookers',
-    5 => 'UPayCard',
-    6 => 'UseMyServices',
-    7 => 'Visa',
-    8 => 'Wire Transfer',
-    9 => 'Wirecard',
+    3 => 'Skrill Moneybookers',
+    4 => 'UPayCard',
+    5 => 'Visa',
   ),
   'is_country_accepted' => '1',
   'is_language_accepted' => '1',
   'is_currency_accepted' => '1',
-  'status' => 'Blacklisted',
+  'status' => NULL,
 ));
-$this->response->setAttribute("total_reviews", 6);
+$this->response->setAttribute("total_reviews", 0);
 $this->response->setAttribute("reviews", array (
-  0 => 
-  array (
-    'id' => '6',
-    'name' => 'Tester',
-    'email' => 'a@a.com',
-    'body' => 'I\'m testing this functionality!',
-    'likes' => '0',
-    'ip' => NULL,
-    'country' => 'US',
-    'rating' => 7,
-    'date' => '2018-01-26 12:36:34',
-    'parent' => NULL,
-    'children' => 
-    array (
-    ),
-    'total_children' => 0,
-  ),
-  1 => 
-  array (
-    'id' => '4',
-    'name' => 'Tester',
-    'email' => 'a@a.com',
-    'body' => 'I\'m testing this functionality!',
-    'likes' => '0',
-    'ip' => NULL,
-    'country' => 'US',
-    'rating' => 7,
-    'date' => '2018-01-26 12:36:26',
-    'parent' => NULL,
-    'children' => 
-    array (
-      1 => 
-      array (
-        'id' => '4',
-        'name' => 'Tester',
-        'email' => 'a@a.com',
-        'body' => 'I\'m testing this functionality!',
-        'likes' => '0',
-        'ip' => NULL,
-        'country' => 'US',
-        'rating' => 7,
-        'date' => '2018-01-26 12:36:26',
-        'parent' => NULL,
-        'children' => 
-        array (
-        ),
-        'total_children' => 0,
-      ),
-    ),
-    'total_children' => 0,
-  ),
-  2 => 
-  array (
-    'id' => '5',
-    'name' => 'Tester',
-    'email' => 'a@a.com',
-    'body' => 'I\'m testing this functionality!',
-    'likes' => '0',
-    'ip' => NULL,
-    'country' => 'US',
-    'rating' => 7,
-    'date' => '2018-01-26 12:36:26',
-    'parent' => NULL,
-    'children' => 
-    array (
-    ),
-    'total_children' => 0,
-  ),
-  3 => 
-  array (
-    'id' => '3',
-    'name' => 'Tester',
-    'email' => 'a@a.com',
-    'body' => 'I\'m testing this functionality!',
-    'likes' => '0',
-    'ip' => NULL,
-    'country' => 'US',
-    'rating' => 7,
-    'date' => '2018-01-26 12:36:25',
-    'parent' => NULL,
-    'children' => 
-    array (
-    ),
-    'total_children' => 0,
-  ),
-  4 => 
-  array (
-    'id' => '2',
-    'name' => 'Tester',
-    'email' => 'a@a.com',
-    'body' => 'I\'m testing this functionality!',
-    'likes' => '0',
-    'ip' => NULL,
-    'country' => 'US',
-    'rating' => 7,
-    'date' => '2018-01-26 12:36:23',
-    'parent' => NULL,
-    'children' => 
-    array (
-    ),
-    'total_children' => 0,
-  ),
 ));
 $this->response->setAttribute("menu_top", array (
   0 => 
@@ -272,8 +169,8 @@ $this->response->setAttribute("menu_bottom", array (
   ),
   1 => 
   array (
-    'title' => 'Rival Casinos',
-    'url' => '/softwares/rival',
+    'title' => 'BetSoft Casinos',
+    'url' => '/softwares/betsoft',
     'is_active' => true,
   ),
   2 => 
@@ -312,6 +209,11 @@ $this->response->setAttribute("menu_bottom", array (
     'url' => '/casinos/stay-away',
     'is_active' => false,
   ),
+));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'Read 24VIP Casino Review at CasinosLists.com - 2018',
+  'head_description' => 'Full 24VIP Casino Review | Full Details About 24VIP Casino, 24VIP Casino Bonuses and Coupons, Best Reviews at CasinosLists.com - 2018',
+  'body_title' => '24VIP Casino review February 2018',
 ));
 
     }

@@ -154,7 +154,14 @@ $this->response->setAttribute("casinos", array (
       'games_allowed' => 'Slots (FS - Fresh Fruits, Bake House, Santa Surprise, Under Water)',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '30 FS',
+      'min_deposit' => '',
+      'wagering' => '0',
+      'games_allowed' => 'Selected slots',
+      'code' => 'No code required',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-09-01',
     'emails' => NULL,
@@ -197,7 +204,14 @@ $this->response->setAttribute("casinos", array (
       'games_allowed' => 'All',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '20 FS',
+      'min_deposit' => '',
+      'wagering' => '70xB',
+      'games_allowed' => 'Las Cucas Locas Slot',
+      'code' => 'BRKWB (BRKWBM for Mobile)',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-10-01',
     'emails' => NULL,
@@ -423,7 +437,14 @@ $this->response->setAttribute("casinos", array (
       'games_allowed' => 'Netent Games',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '5 FS',
+      'min_deposit' => '',
+      'wagering' => '40xB',
+      'games_allowed' => 'Netent Games',
+      'code' => 'No code required',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2015-03-01',
     'emails' => NULL,
@@ -469,7 +490,14 @@ $this->response->setAttribute("casinos", array (
       'games_allowed' => 'Slots except Scrooge, Devil\'s Delight and Bloodsuckers',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '15 FS',
+      'min_deposit' => '',
+      'wagering' => '50xB',
+      'games_allowed' => 'Jimi Hendrix, Gun’s and Roses and Motorhead ',
+      'code' => 'No code required',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2015-05-20',
     'emails' => NULL,
@@ -555,7 +583,14 @@ $this->response->setAttribute("casinos", array (
       'games_allowed' => 'Slots (FS - Guns N Roses)',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '10 FS',
+      'min_deposit' => '',
+      'wagering' => '70xB',
+      'games_allowed' => 'Guns N Roses',
+      'code' => '',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2010-11-01',
     'emails' => NULL,
@@ -698,7 +733,14 @@ $this->response->setAttribute("casinos", array (
       'games_allowed' => 'All except Video Poker,Roulette,Table Games & Live Casino',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '20 FS',
+      'min_deposit' => '',
+      'wagering' => '35xB',
+      'games_allowed' => 'Explosive Reels',
+      'code' => 'No code required',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2012-06-01',
     'emails' => NULL,
@@ -739,7 +781,14 @@ $this->response->setAttribute("casinos", array (
       'games_allowed' => 'Slots & Bingo',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '20 FS',
+      'min_deposit' => '',
+      'wagering' => '70xB',
+      'games_allowed' => 'All (FS - Starburst,Starburst Touch)',
+      'code' => 'No code required',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2012-03-01',
     'emails' => NULL,
@@ -831,7 +880,14 @@ $this->response->setAttribute("casinos", array (
       'games_allowed' => 'NetEnt Slots',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '10 FS',
+      'min_deposit' => '',
+      'wagering' => '35xB',
+      'games_allowed' => 'Slots',
+      'code' => 'No code required',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2015-12-08',
     'emails' => NULL,
@@ -876,7 +932,14 @@ $this->response->setAttribute("casinos", array (
       'games_allowed' => 'All',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '30 FS',
+      'min_deposit' => '',
+      'wagering' => '50xB',
+      'games_allowed' => 'Alien',
+      'code' => 'LIST30ALI',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2013-01-01',
     'emails' => NULL,
@@ -917,7 +980,14 @@ $this->response->setAttribute("casinos", array (
       'games_allowed' => 'Slots,Bingo & Casino',
       'code' => 'No code required',
     ),
-    'bonus_free' => NULL,
+    'bonus_free' => 
+    array (
+      'amount' => '20 FS',
+      'min_deposit' => '',
+      'wagering' => '70xB',
+      'games_allowed' => 'Starburst',
+      'code' => 'No code required',
+    ),
     'is_live_dealer' => NULL,
     'date_established' => '2012-01-01',
     'emails' => NULL,
@@ -1249,6 +1319,11 @@ $this->response->setAttribute("casinos", array (
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
   ),
+));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'NetEnt Casinos List: Find All NetEnt Casinos At CasinosLists.com',
+  'head_description' => 'Full NetEnt Casinos List | Details Information About NetEnt Casinos, All NetEnt Casinos and Games on one List - 2018',
+  'body_title' => 'NetEnt Casinos List February 2018',
 ));
 
     }

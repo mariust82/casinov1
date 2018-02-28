@@ -56,6 +56,11 @@ $this->response->setAttribute("results", array (
   'Free Spins' => '200',
   'Free Play' => '9',
 ));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'Online Casino Free Bonuses at CasinosLists.com - 2018',
+  'head_description' => 'Free Online Casino Bonus List | No Deposit Bonus List, Free Spins List, Free Play List. All Casino Bonuses on CasinosLists.com - 2018',
+  'body_title' => 'Online Casino Bonus Types',
+));
 
     }
 }

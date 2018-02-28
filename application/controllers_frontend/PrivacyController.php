@@ -51,6 +51,11 @@ class PrivacyController extends Controller {
     'is_active' => false,
   ),
 ));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'CasinosLists.com Privacy Policy',
+  'head_description' => 'CasinosLists.com Privacy Policy',
+  'body_title' => 'Privacy Policy on CasinosLists',
+));
 
     }
 }

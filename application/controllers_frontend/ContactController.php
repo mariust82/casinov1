@@ -51,6 +51,11 @@ class ContactController extends Controller {
     'is_active' => false,
   ),
 ));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'CasinosLists.com - Contact Us',
+  'head_description' => 'CasinosLists.com - Contact Us',
+  'body_title' => 'CasinosLists.com - Contact Us',
+));
 
     }
 }

@@ -51,11 +51,16 @@ class FeaturesController extends Controller {
     'is_active' => false,
   ),
 ));
-        $this->response->setAttribute("results", array (
+$this->response->setAttribute("results", array (
   'Live Dealer' => '512',
   'eCOGRA Casinos' => '141',
   'High Roller Casinos' => 0,
   'Jackpot Casinos' => 0,
+));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'Special Feature Casinos - Live Dealer, eCOGRA, High Roller Casinos',
+  'head_description' => 'Online Casinos with Special Features | Live Dealer Casinos List, eCOGRA Casinos List, High Roller Casinos List and More on CasinosLists.com - 2018',
+  'body_title' => 'Online Casino Features',
 ));
 
     }

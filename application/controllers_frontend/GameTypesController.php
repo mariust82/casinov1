@@ -79,6 +79,11 @@ $this->response->setAttribute("icons", array (
   'Video Poker' => 'Playtech 4 Line Jacks or Better',
   'Video Slots' => 'Aladdins Loot',
 ));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'Online Casino Games List - 2018',
+  'head_description' => 'Free Online Casino Games List | Play Online Casino Demo Games, Video Slots List, Blackjack List, Video Poker List, Roulette Games List and More! - 2018',
+  'body_title' => 'Online Casino Games List',
+));
 
     }
 }
