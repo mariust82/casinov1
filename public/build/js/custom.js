@@ -1267,10 +1267,6 @@
             _loadNewContent = true,
             _loadMoreContent = false,
 
-            _showMoreNum = 5,
-            _fromCasinos = 1,
-            _fromPages = 1,
-
             loadDelay = 0,
             // scrollingBlock = $('.js-scrolling'),
             _request = new XMLHttpRequest();
@@ -1365,6 +1361,10 @@
 
                 var _remainderCasinos = _searchMoreCasinosNum % _showMoreNum;
                 var _remainderPages = _searchMorePagesNum % _showMoreNum;
+
+                var _showMoreNum = 5;
+                var _fromCasinos = 1;
+                var _fromPages = 1;
 
                 if (_remainderCasinos < _showMoreNum && _clicksCasinos == 1) {
                     _searchMoreCasinosNumHolder.text(_remainderCasinos);
@@ -1620,7 +1620,7 @@
                             // _searchMorePages.show();
                         } else {
                             // _searchMorePages.hide();
-                            _fromPages = 2;
+                            _fromPages = 1;
                         }
                     } else {
                         _searchPagesContainer
@@ -1653,8 +1653,8 @@
             },
 
             _resetPages = function() {
-                _fromPages = 2;
-                _fromCasinos = 2;
+                _fromPages = 1;
+                _fromCasinos = 1;
             },
 
             _showEmptyMessage = function(){
