@@ -1,9 +1,14 @@
+<std:set name="bonus" value="Free"/>
+<std:if condition="'$[name]' == 'No Deposit Casinos'">
+	<std:set name="bonus" value="No deposit"/>
+</std:if>
+
 <div class="list">
 	<div class="list-heading list-item">
 		<div class="list-item-cell list-heading-title">CASINO</div>
 		<div class="list-item-cell list-heading-title">$[type]</div>
 		<div class="list-item-cell list-heading-title"><span>FIRST DEPOSIT</span> BONUS</div>
-		<div class="list-item-cell list-heading-title">NO DEPOSIT BONUS</div>
+		<div class="list-item-cell list-heading-title">${bonus} BONUS</div>
 		<div class="list-item-cell list-heading-title">&nbsp;</div>
 	</div>
 	<div class="list-body">
@@ -73,7 +78,7 @@
 
 						<div class="tooltip-templates">
 							<div id="tooltip-$[id]-free-${i}" class="tooltip-content bonus-free">
-								<box:bonus data="result" modifier="bonus_free" heading="1" title="No Deposit Bonus" icon="icon-icon_bonuses"/>
+								<box:bonus data="result" modifier="bonus_free" heading="1" title="${bonus} Bonus" icon="icon-icon_bonuses"/>
 							</div>
 						</div>
 					</std:if>
