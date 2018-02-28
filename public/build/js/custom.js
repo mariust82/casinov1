@@ -3,7 +3,18 @@
     var ww = $(window).width();
 
     $(document).ready(function() {
+        initSite();
+        initMobileMenu();
+        new SearchPanel ( $('.header') );
+    });
 
+    $(window).resize(function(event) {
+        ww = $(window).width();
+
+        initMoboleBonusesPop(ww);
+    });
+    
+    var initSite = function() {
         // setTimeout(function(){
         //     debugger;
         // }, 1000);
@@ -14,7 +25,6 @@
         initBarRating();
         initCustomSelect();
         initSearch();
-        initMobileMenu();
         copyToClipboard();
         initMoboleBonusesPop(ww);
         initReviewForm();
@@ -33,8 +43,6 @@
             window.history.back();
             e.preventDefault();
         });
-
-        new SearchPanel ( $('.header') );
 
         if ($('#filters').length > 0) {
             new Filters ( $('#filters') );
@@ -109,14 +117,7 @@
         $('.js-tooltip').tooltipster(tooltipConfig);
         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
-    });
-
-    $(window).resize(function(event) {
-        ww = $(window).width();
-
-        initMoboleBonusesPop(ww);
-    });
-    
+    }
 
     function checkStringLength(box, num) {
         // var box = $('.bonus-box');
@@ -524,7 +525,6 @@
 
         _construct();
     };
-
 
     function goToPage(game_name, width, height) {
         window.open("http://game.casinoslists.com/game_play.php?game="+game_name+"&width="+width+"&height="+height,"_blank","toolbar=0,location=0,menubar=0,width="+width+",height="+height);
@@ -1263,14 +1263,6 @@
             _searchPagesContainer = _searchContainer.find('#search-pages ul'),
             _searchEmptyContainer = _searchContainer.find('#search-empty'),
 
-            _searchMoreCasinos = $('#js-search-more-casinos'),
-            _searchMoreCasinosNumHolder = $('.more-num', _searchMoreCasinos),
-            _searchMoreCasinosNum = _searchMoreCasinosNumHolder.data('total-casinos'),
-
-            _searchMorePages = $('#js-search-more-pages'),
-            _searchMorePagesNumHolder = $('.more-num', _searchMorePages),
-            _searchMorePagesNum = _searchMorePagesNumHolder.data('total-games'),
-
             _imgDir = _searchContainer.data('img-dir'),
             _loadNewContent = true,
             _loadMoreContent = false,
@@ -1279,26 +1271,10 @@
             _fromCasinos = 1,
             _fromPages = 1,
 
-            _clicksCasinos = Math.floor(_searchMoreCasinosNum / _showMoreNum),
-            _clicksPages = Math.floor(_searchMorePagesNum / _showMoreNum),
-
-            _remainderCasinos = _searchMoreCasinosNum % _showMoreNum,
-            _remainderPages = _searchMorePagesNum % _showMoreNum,
-
             loadDelay = 0,
             // scrollingBlock = $('.js-scrolling'),
             _request = new XMLHttpRequest();
-
-
-            if (_remainderCasinos < _showMoreNum && _clicksCasinos == 1) {
-                _searchMoreCasinosNumHolder.text(_remainderCasinos);
-            }
-
-            if (_remainderPages < _showMoreNum && _clicksPages == 1) {
-                _searchMorePagesNumHolder.text(_remainderPages);
-            }
-
-        // window.contentBeforeSearch = $('.main').html();
+            window.contentBeforeSearch;
 
         var _onEvent = function() {
 
@@ -1321,8 +1297,9 @@
                             _resetPages();
                         } else if (e.keyCode == 13) {
                             if (_searchInput.val() != '') {
-                                location.href = '/search/advanced?value='+_searchInput.val();
-                                _searchInput.val('');
+                                // location.href = '/search/advanced?value='+_searchInput.val();
+                                // _searchInput.val('');
+                                _ajaxRequestAdvanced();
                             }
                             _resetPages();
                         } else {
@@ -1354,13 +1331,48 @@
                     'click',
                     function() {
                         if (_searchInput.val() != '') {
-                            location.href = '/search/advanced?value='+_searchInput.val();
-                            _searchInput.val('');
+                            // location.href = '/search/advanced?value='+_searchInput.val();
+                            // _searchInput.val('');
+                            _ajaxRequestAdvanced();
                         }
 
                         return false;
                     }
                 );
+            },
+
+            _closeSearch = function() {
+                $('#site-content').html('').append(contentBeforeSearch);
+                $('.js-search-drop').show();
+                $('body').removeClass('advanced-search-opened');
+
+                setTimeout(function(){
+                    initSite();
+                }, 1000);
+            },
+
+            _initMoreButtons = function() {
+                var _searchMoreCasinos = $('#js-search-more-casinos');
+                var _searchMoreCasinosNumHolder = $('.more-num', _searchMoreCasinos);
+                var _searchMoreCasinosNum = _searchMoreCasinosNumHolder.data('total-casinos');
+
+                var _searchMorePages = $('#js-search-more-pages');
+                var _searchMorePagesNumHolder = $('.more-num', _searchMorePages);
+                var _searchMorePagesNum = _searchMorePagesNumHolder.data('total-games');
+
+                var _clicksCasinos = Math.floor(_searchMoreCasinosNum / _showMoreNum);
+                var _clicksPages = Math.floor(_searchMorePagesNum / _showMoreNum);
+
+                var _remainderCasinos = _searchMoreCasinosNum % _showMoreNum;
+                var _remainderPages = _searchMorePagesNum % _showMoreNum;
+
+                if (_remainderCasinos < _showMoreNum && _clicksCasinos == 1) {
+                    _searchMoreCasinosNumHolder.text(_remainderCasinos);
+                }
+
+                if (_remainderPages < _showMoreNum && _clicksPages == 1) {
+                    _searchMorePagesNumHolder.text(_remainderPages);
+                }
 
                 _searchMoreCasinos.on(
                     'click',
@@ -1447,6 +1459,48 @@
                     clearTimeout(loadDelay);
                     // _searchContainer.removeClass('loading');
                 }
+            },
+
+            _ajaxRequestAdvanced = function() {
+                var _response_container = $('#site-content');
+                if (BUSY_REQUEST) return;
+                BUSY_REQUEST = true;
+                _request.abort();
+                _request = $.ajax({
+                    url: '/search/advanced',
+                    data: {
+                        value: _searchInput.val(),
+                    },
+                    dataType: 'HTML',
+                    type: 'GET',
+                    success: function(data) {
+                        $('body').addClass('advanced-search-opened');
+                        contentBeforeSearch = $('#site-content .main, #site-content .promo').detach();
+                        _response_container.html(data);
+                        _hidePopup();
+                        _initMoreButtons();
+
+                        _response_container.find('#js-search-back').each(function() {
+                            $(this).on({
+                                click: function() {
+                                    _closeSearch();
+                                }
+                            })
+                        });
+
+                        $('.js-mobile-search-close').on('click', function() {
+                            _closeSearch();
+                        });
+                    },
+                    error: function(XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != "abort") {
+                            console.log('err');
+                        }
+                    },
+                    complete: function() {
+                        BUSY_REQUEST = false;
+                    }
+                });
             },
 
             _ajaxRequestPopup = function(target, page) {
