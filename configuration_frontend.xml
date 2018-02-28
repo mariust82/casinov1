@@ -71,7 +71,7 @@
     <route url="games-filter/(page)" controller="GamesFilterController" view="games-list"/>
     <route url="games-filter" controller="GamesFilterController" view="games-list"/>
     <route url="search" controller="SearchController" extension="json"/>
-    <route url="search/advanced" controller="SearchAdvancedController" extension="json"/>
+    <route url="search/advanced" controller="SearchAdvancedController" view="search"/>
     <route url="search/more-casinos/(page)" controller="SearchMoreCasinosController" extension="json"/>
     <route url="search/more-games/(page)" controller="SearchMoreGamesController" extension="json"/>
     <route url="casino/rate" controller="CasinoRateController" extension="json"/>
