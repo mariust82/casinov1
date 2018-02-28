@@ -10,6 +10,7 @@ require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/GameTypes.php");
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/GamesMenu.php");
+require_once("application/models/dao/PageInfoDAO.php");
 
 /*
 * Game info by game name.
@@ -46,5 +47,9 @@ class GameInfoController extends Controller {
 
         $menuBottom = new GamesMenu($result->type);
         $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
-	}
+
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $result->name));
+
+    }
 }

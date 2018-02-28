@@ -5,6 +5,7 @@ require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/CasinosMenu.php");
+require_once("application/models/dao/PageInfoDAO.php");
 
 /*
 * Warning page to display about some casinos.
@@ -33,6 +34,11 @@ class CasinoWarningController extends Controller {
 
         $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $result->softwares, "softwares/".strtolower(str_replace(" ","-", $result->softwares)));
         $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
+
+        // get page info
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $result->name));
+
     }
 
     private function getSelectedEntity() {

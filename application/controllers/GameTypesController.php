@@ -1,6 +1,7 @@
 <?php
 require_once("application/models/dao/GameTypes.php");
 require_once("application/models/dao/TopMenu.php");
+require_once("application/models/dao/PageInfoDAO.php");
 
 /*
 * Game types list by number of games.
@@ -17,5 +18,9 @@ class GameTypesController extends Controller {
 		$object = new GameTypes();
 		$this->response->setAttribute("results", $object->getGamesCount());
         $this->response->setAttribute("icons", $object->getGamesByType());
+
+        // get page info
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
 	}
 }

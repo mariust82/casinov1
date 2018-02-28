@@ -24,8 +24,9 @@ require_once("application/models/dao/CasinosList.php");
 class CasinosFilterController extends Controller {
 
 	public function run() {
-	    $sortCriteria = $this->getSortCriteria();
 	    $this->response->setAttribute("country", $this->request->getAttribute("country"));
+
+        $sortCriteria = $this->getSortCriteria();
 		$page = (integer) $this->request->getValidator()->getPathParameter("page");
         $object = new CasinosList(new CasinoFilter($_GET, $this->request->getAttribute("country")));
         if($page==0) {

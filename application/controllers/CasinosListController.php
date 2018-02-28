@@ -4,6 +4,7 @@ require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/CasinosMenu.php");
+require_once("application/models/dao/PageInfoDAO.php");
 
 abstract class CasinosListController extends Controller {
 	public function run() {
@@ -26,6 +27,10 @@ abstract class CasinosListController extends Controller {
             $this->response->setAttribute("total_casinos", 0);
             $this->response->setAttribute("casinos", array());
         }
+
+        // get page info
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity")));
     }
 
     abstract protected function getSelectedEntity();

@@ -1,5 +1,6 @@
 <?php
 require_once("application/models/dao/TopMenu.php");
+require_once("application/models/dao/PageInfoDAO.php");
 
 /**
  * Controller
@@ -11,6 +12,9 @@ abstract class CasinosCounterController extends Controller {
 
 	    $object = $this->getCounter();
 		$this->response->setAttribute("results", $object->getCasinosCount());
+
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
 	}
 
     /**

@@ -6,6 +6,7 @@ require_once("application/models/GameFilter.php");
 require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/GamesList.php");
 require_once("application/models/dao/TopMenu.php");
+require_once("application/models/dao/PageInfoDAO.php");
 
 /*
 * Homepage
@@ -28,6 +29,9 @@ class IndexController extends Controller {
 
         $object = new GamesList(new GameFilter(array(), $this->request->getAttribute("country")));
         $this->response->setAttribute("new_games", $object->getResults(GameSortCriteria::NEWEST, 0,6));
+
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
 	}
 
 	private function getCasinos($filter, $sortBy, $limit) {

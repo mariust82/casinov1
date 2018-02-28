@@ -3,6 +3,7 @@ require_once("application/models/dao/PlayVersions.php");
 require_once("application/models/dao/Certifications.php");
 require_once("application/models/dao/Casinos.php");
 require_once("application/models/dao/TopMenu.php");
+require_once("application/models/dao/PageInfoDAO.php");
 
 /*
 * Play versions by number of casinos.
@@ -16,9 +17,16 @@ class FeaturesController extends Controller {
         $menu = new TopMenu($this->request->getValidator()->getPage());
         $this->response->setAttribute("menu_top", $menu->getEntries());
 
+        $this->response->setAttribute("results", $this->getResults());
+
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
+	}
+
+	private function getResults() {
         $result = array();
 
-		// get nr casinos for play version: live dealer
+        // get nr casinos for play version: live dealer
         $object = new PlayVersions();
         $result["Live Dealer"] = $object->getNumberOfCasinos("Live Dealer");
 
@@ -32,7 +40,6 @@ class FeaturesController extends Controller {
 
         // get nr casinos for "Jackpot"
         $result["Jackpot Casinos"] = 0;
-
-        $this->response->setAttribute("results", $result);
-	}
+        return $result;
+    }
 }

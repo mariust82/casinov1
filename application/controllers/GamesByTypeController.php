@@ -6,6 +6,7 @@ require_once("application/models/GameFilter.php");
 require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/GamesMenu.php");
+require_once("application/models/dao/PageInfoDAO.php");
 
 /*
 * Games list by game type.
@@ -37,6 +38,10 @@ class GamesByTypeController extends Controller {
             $this->response->setAttribute("total_games", 0);
             $this->response->setAttribute("games", array());
         }
+
+        // get page info
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity")));
 	}
 
 	private function getSelectedEntity(){
