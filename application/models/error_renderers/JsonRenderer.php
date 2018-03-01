@@ -1,6 +1,8 @@
 <?php
 /**
- * Default error renderer for JSON response format. You are invited to modify this class if you desire so.
+ * Error renderer for JSON response format.
+ *
+ * NOTICE: This class is designed to be open for change!
  */
 class JsonRenderer implements ErrorRenderer {
 	private $displayErrors;
@@ -22,45 +24,54 @@ class JsonRenderer implements ErrorRenderer {
 	 * @see ErrorRenderer::render()
 	 */
 	public function render($exception) {
+        $className = get_class($exception);
 		header("Content-Type: application/json; charset=".$this->charset);
-		if($exception instanceof SecurityPacket) {
-			switch($exception->getStatus()) {
-				case "unauthorized":
-					header("HTTP/1.1 401 Unauthorized");
-					echo json_encode(array("status"=>"unauthorized","body"=>"", "callback"=>$exception->getCallback()));
-					break;
-				case "forbidden":
-					header("HTTP/1.1 403 Forbidden");
-					echo json_encode(array("status"=>"forbidden","body"=>"", "callback"=>$exception->getCallback()));
-					break;
-				case "not_found":
-					header("HTTP/1.1 404 Not found");
-					echo json_encode(array("status"=>"not_found","body"=>"", "callback"=>$exception->getCallback()));
-					break;
-				case "login_ok":
-					echo json_encode(array("status"=>"login_ok","body"=>"", "callback"=>$exception->getCallback(), "token"=>$exception->getAccessToken()));
-					break;
-				default:
-					echo json_encode(array("status"=>$exception->getStatus(), "body"=>"", "callback"=>$exception->getCallback()));
-					break;
-			}
-		} else if($exception instanceof SecurityException) {
-			header("HTTP/1.1 400 Bad Request");
-			echo json_encode(array("status"=>"bad_request","body"=>""));
-		} else if($exception instanceof PathNotFoundException) {
-            header("HTTP/1.1 404 Not found");
-            echo json_encode(array("status"=>"not_found","body"=>""));
-        } else if($exception instanceof MethodNotAllowedException) {
-            header("HTTP/1.1 405 Method Not Allowed");
-            echo json_encode(array("status"=>"not_allowed","body"=>""));
-        } else {
-			header("HTTP/1.1 500 Internal server error");
-			if($this->displayErrors) {
-				echo json_encode(array("status"=>"error","body"=>$exception->getMessage()));
-			} else {
-				echo json_encode(array("status"=>"error","body"=>""));
-			}
-		}
+        $payload = array();
+        switch($className) {
+            case "SecurityPacket":
+                switch($exception->getStatus()) {
+                    case "unauthorized":
+                        header("HTTP/1.1 401 Unauthorized");
+                        $payload = array("status"=>"error","body"=>"", "callback"=>$exception->getCallback());
+                        break;
+                    case "forbidden":
+                        header("HTTP/1.1 403 Forbidden");
+                        $payload = array("status"=>"error","body"=>"", "callback"=>$exception->getCallback());
+                        break;
+                    case "not_found":
+                        header("HTTP/1.1 404 Not found");
+                        $payload = array("status"=>"error","body"=>"", "callback"=>$exception->getCallback());
+                        break;
+                    case "login_ok":
+                        $payload = array("status"=>"login_ok","body"=>"", "callback"=>$exception->getCallback(), "token"=>$exception->getAccessToken());
+                        break;
+                    default:
+                        $payload = array("status"=>$exception->getStatus(), "body"=>"", "callback"=>$exception->getCallback());
+                        break;
+                }
+                break;
+            case "MethodNotAllowedException":
+                header("HTTP/1.1 405 Method Not Allowed");
+                $payload = array("status"=>"error","body"=>"");
+                break;
+            case "SecurityException":
+                header("HTTP/1.1 400 Bad Request");
+                $payload = array("status"=>"error","body"=>"");
+                break;
+            case "PathNotFoundException":
+                header("HTTP/1.1 404 Not found");
+                $payload = array("status"=>"error","body"=>"");
+                break;
+            default:
+                header("HTTP/1.1 500 Internal server error");
+                if($this->displayErrors) {
+                    $payload = array("status"=>"error","body"=>$exception->getMessage());
+                } else {
+                    $payload = array("status"=>"error","body"=>"");
+                }
+                break;
+        }
+		echo json_encode($payload);
 		die();
 	}
 }
