@@ -75,6 +75,7 @@ $this->response->setAttribute("best_casinos", array (
       'wagering' => '30x(D+B)',
       'games_allowed' => 'All (FS - Ninja Star)',
       'code' => 'BIGFREECHIPLIST300',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
@@ -83,6 +84,7 @@ $this->response->setAttribute("best_casinos", array (
       'wagering' => '60xB',
       'games_allowed' => 'Slots,Keno & 7 Stud Poker,Pai Gow Poker',
       'code' => 'THEBIGFREECHIPLIST',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2008-01-01',
@@ -123,6 +125,7 @@ $this->response->setAttribute("best_casinos", array (
       'wagering' => '24x(D+B)',
       'games_allowed' => 'All',
       'code' => 'FD100',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
@@ -169,6 +172,7 @@ $this->response->setAttribute("best_casinos", array (
       'wagering' => '35xB',
       'games_allowed' => 'All',
       'code' => 'WELCOME150',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
@@ -207,14 +211,16 @@ $this->response->setAttribute("best_casinos", array (
       'wagering' => '0',
       'games_allowed' => 'Slots & Keno',
       'code' => 'TBFCL250',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
-      'amount' => '50 FS',
+      'amount' => '50',
       'min_deposit' => '',
       'wagering' => '30xB',
       'games_allowed' => 'All except Roulette,Craps & Baccarat,Sic Bo,War,Pai-Gow Poker',
       'code' => 'TBFCL50S',
+      'type' => 'Free Spins',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2012-01-01',
@@ -270,6 +276,7 @@ $this->response->setAttribute("best_casinos", array (
       'wagering' => '5xB',
       'games_allowed' => 'All',
       'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
@@ -308,6 +315,7 @@ $this->response->setAttribute("best_casinos", array (
       'wagering' => '35x(D+B)',
       'games_allowed' => 'All except BlackJack,Roulette and Table Games',
       'code' => '200FIRST',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
@@ -346,6 +354,7 @@ $this->response->setAttribute("best_casinos", array (
       'wagering' => '35x(D+B)',
       'games_allowed' => 'All',
       'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
@@ -391,14 +400,16 @@ $this->response->setAttribute("best_casinos", array (
       'wagering' => '45xB',
       'games_allowed' => 'All',
       'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
-      'amount' => '20 FS',
+      'amount' => '20',
       'min_deposit' => '',
       'wagering' => '45xB',
       'games_allowed' => 'Starbust,Aloha! Cluster Pays,Pyramid: Quest for Immortality,Attraction,Lights',
       'code' => 'No code required',
+      'type' => 'Free Spins',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2016-07-01',
@@ -436,6 +447,7 @@ $this->response->setAttribute("best_casinos", array (
       'wagering' => '35x(D+B)',
       'games_allowed' => 'All except Craps,Roulette and Dice Games',
       'code' => 'WELCOME500',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
@@ -474,6 +486,7 @@ $this->response->setAttribute("best_casinos", array (
       'wagering' => '30x(D+B)',
       'games_allowed' => 'Slots',
       'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
@@ -482,6 +495,7 @@ $this->response->setAttribute("best_casinos", array (
       'wagering' => '50xB',
       'games_allowed' => 'Slots',
       'code' => 'No code required',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2016-11-01',
@@ -523,6 +537,7 @@ $this->response->setAttribute("country_casinos", array (
       'wagering' => '15x(D+B)',
       'games_allowed' => 'Slots, Keno, Bingo, Specialty games (FS - Variety of Slots)',
       'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
@@ -531,6 +546,7 @@ $this->response->setAttribute("country_casinos", array (
       'wagering' => '20xB',
       'games_allowed' => 'Slots, Keno, Bingo, Specialty Games and Scratch Cards',
       'code' => 'No code required',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-09-01',
@@ -589,6 +605,7 @@ $this->response->setAttribute("country_casinos", array (
       'wagering' => '20xB',
       'games_allowed' => 'All',
       'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
@@ -627,6 +644,7 @@ $this->response->setAttribute("country_casinos", array (
       'wagering' => '35x(D+B)',
       'games_allowed' => 'Slots, Keno, Scratch Cards',
       'code' => 'POKIES1',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
@@ -635,6 +653,7 @@ $this->response->setAttribute("country_casinos", array (
       'wagering' => '60xB',
       'games_allowed' => 'Slots, Keno, Scratch Cards',
       'code' => 'GDAY10',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-12-19',
@@ -672,6 +691,7 @@ $this->response->setAttribute("country_casinos", array (
       'wagering' => '40x(D+B)',
       'games_allowed' => 'Slots',
       'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
@@ -680,6 +700,7 @@ $this->response->setAttribute("country_casinos", array (
       'wagering' => '60xB',
       'games_allowed' => 'Slots',
       'code' => 'No code required',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-08-01',
@@ -719,14 +740,16 @@ $this->response->setAttribute("country_casinos", array (
       'wagering' => '35xB',
       'games_allowed' => 'Slots (FS - Starburst)',
       'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
-      'amount' => '20 FS',
+      'amount' => '20',
       'min_deposit' => '',
       'wagering' => '35xB',
       'games_allowed' => 'Starburst',
       'code' => 'No code required',
+      'type' => 'Free Spins',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-07-01',
@@ -766,6 +789,7 @@ $this->response->setAttribute("new_casinos", array (
       'wagering' => '35x(D+B)',
       'games_allowed' => 'Slots, Keno, Scratch Cards',
       'code' => 'POKIES1',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
@@ -774,6 +798,7 @@ $this->response->setAttribute("new_casinos", array (
       'wagering' => '60xB',
       'games_allowed' => 'Slots, Keno, Scratch Cards',
       'code' => 'GDAY10',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-12-19',
@@ -811,6 +836,7 @@ $this->response->setAttribute("new_casinos", array (
       'wagering' => '30x(D+B)',
       'games_allowed' => 'Slots, Keno & Scratch Cards',
       'code' => 'CHERRY200',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
@@ -860,6 +886,7 @@ $this->response->setAttribute("new_casinos", array (
       'wagering' => '40xB',
       'games_allowed' => 'Slots, Keno, Bingo and Scratch Cards (FS - All slots except Jackpot games)',
       'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
@@ -900,6 +927,7 @@ $this->response->setAttribute("new_casinos", array (
       'wagering' => '15x(D+B)',
       'games_allowed' => 'Slots, Keno, Bingo, Specialty games (FS - Variety of Slots)',
       'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
@@ -908,6 +936,7 @@ $this->response->setAttribute("new_casinos", array (
       'wagering' => '20xB',
       'games_allowed' => 'Slots, Keno, Bingo, Specialty Games and Scratch Cards',
       'code' => 'No code required',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-09-01',
@@ -945,14 +974,16 @@ $this->response->setAttribute("new_casinos", array (
       'wagering' => '40x(D+B)',
       'games_allowed' => 'All except Progressive Slots',
       'code' => 'WELCOME100',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
-      'amount' => '30 FS',
+      'amount' => '30',
       'min_deposit' => '',
       'wagering' => '60xB',
       'games_allowed' => 'Sweet 16',
       'code' => 'TBFCL',
+      'type' => 'Free Spins',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-08-01',
@@ -992,6 +1023,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
       'wagering' => '35x(D+B)',
       'games_allowed' => 'Slots, Keno, Scratch Cards',
       'code' => 'POKIES1',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
@@ -1000,6 +1032,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
       'wagering' => '60xB',
       'games_allowed' => 'Slots, Keno, Scratch Cards',
       'code' => 'GDAY10',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-12-19',
@@ -1039,6 +1072,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
       'wagering' => '15x(D+B)',
       'games_allowed' => 'Slots, Keno, Bingo, Specialty games (FS - Variety of Slots)',
       'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
@@ -1047,6 +1081,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
       'wagering' => '20xB',
       'games_allowed' => 'Slots, Keno, Bingo, Specialty Games and Scratch Cards',
       'code' => 'No code required',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-09-01',
@@ -1084,6 +1119,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
       'wagering' => '40x(D+B)',
       'games_allowed' => 'Slots',
       'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
@@ -1092,6 +1128,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
       'wagering' => '60xB',
       'games_allowed' => 'Slots',
       'code' => 'No code required',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-08-01',
@@ -1129,6 +1166,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
       'wagering' => '15x(D+B)',
       'games_allowed' => 'Non Progressive Slots,Video Poker and Keno',
       'code' => 'BFCL150',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
@@ -1137,6 +1175,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
       'wagering' => '40xB',
       'games_allowed' => 'Non-progressive slots',
       'code' => 'BFCL40',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-05-01',
@@ -1174,6 +1213,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
       'wagering' => '30x(D+B)',
       'games_allowed' => 'Slots,Keno & Scratch Cards',
       'code' => 'WELCOME',
+      'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
@@ -1182,6 +1222,7 @@ $this->response->setAttribute("no_deposit_casinos", array (
       'wagering' => '60xB',
       'games_allowed' => 'Slots,Keno & Scratch Cards',
       'code' => 'CASINOSLISTSFREE',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
     'date_established' => '2017-03-01',
