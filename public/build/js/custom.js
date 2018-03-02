@@ -1736,7 +1736,7 @@
                 var _items = _this.closest(_container).find('.tooltip-content');
 
                 _items.each(function(index, el) {
-                    $(el).clone().prependTo(_contentHolder);
+                    $(el).clone().appendTo(_contentHolder);
                 });
 
                 _contentHolder.find('.tooltip-content').each(function(index, el) {
