@@ -51,25 +51,14 @@
 					</div>
 				</div>
 				<div class="list-item-cell js-mobile-pop-open">
-					<std:if condition="${data.is_mobile} && ${result.bonus_free}">
-						<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-free-${i}">
-							${result.bonus_free.amount}<std:if condition="${result.bonus_free.type}=='Free Spins'"> FS</std:if>
-						</span>
+					<std:if condition="${result.bonus_first_deposit}">
+                        <span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-first-${i}">${result.bonus_first_deposit.amount}</span>
 
-						<div class="tooltip-templates">
-							<div id="tooltip-$[id]-free-${i}" class="tooltip-content bonus-free">
-								<box:bonus data="result" modifier="bonus_free" heading="1" title="${bonus} Bonus" icon="icon-icon_bonuses"/>
-							</div>
-						</div>
-					</std:if>
-					<std:if condition="isset(${result.bonus_first_deposit})">
-							<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-first-${i}">${result.bonus_first_deposit.amount}</span>
-
-							<div class="tooltip-templates">
-								<div id="tooltip-$[id]-first-${i}" class="tooltip-content bonus-first">
-									<box:bonus data="result" modifier="bonus_first_deposit" heading="1" title="First Deposit Bonus" icon="icon-free-bonus-icon"/>
-								</div>
-							</div>
+                        <div class="tooltip-templates">
+                            <div id="tooltip-$[id]-first-${i}" class="tooltip-content bonus-first">
+                                <box:bonus data="result" modifier="bonus_first_deposit" heading="1" title="First Deposit Bonus" icon="icon-free-bonus-icon"/>
+                            </div>
+                        </div>
 					</std:if>
 				</div>
 				<div class="list-item-cell">

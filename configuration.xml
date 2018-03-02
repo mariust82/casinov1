@@ -38,7 +38,6 @@
     <listener class="ErrorListener"/>
     <listener class="RebrandingListener"/>
     <listener class="IPDetectionListener"/>
-    <listener class="MobileDetectionListener"/>
     <listener class="ViewLanguageResolver"/>
   </listeners>
   <errors>
