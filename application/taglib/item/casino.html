@@ -50,7 +50,7 @@
 						</div>
 					</div>
 				</div>
-				<std:if condition="check_user_agent('mobile')">
+				<std:if condition="${data.is_mobile}">
 					<div class="list-item-cell js-mobile-pop-open">
 						<std:if condition="${result.bonus_free.amount}">
 							<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-free-${i}">
