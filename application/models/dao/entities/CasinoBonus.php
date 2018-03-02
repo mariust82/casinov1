@@ -5,4 +5,5 @@ class CasinoBonus {
 	public $wagering;
 	public $games_allowed;
 	public $code;
+    public $type;
 }

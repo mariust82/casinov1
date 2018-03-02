@@ -50,8 +50,8 @@ class CasinoInfo
         $output->withdraw_methods = $this->getBankingMethodData("withdraw_methods", $output->id);
         $output->withdrawal_limits = $this->getWithdrawLimits($output->id, $primaryCurrencies);
         $output->withdrawal_timeframes = $this->getWithdrawTimeframes($output->id);
-        $output->bonus_first_deposit = $this->getBonus($output->id,  2);
-        $output->bonus_free = $this->getBonus($output->id, 6);
+        $output->bonus_first_deposit = $this->getBonus($output->id,  array("First Deposit Bonus"));
+        $output->bonus_free = $this->getBonus($output->id, array("Free Spins","No Deposit Bonus"));
 
         $this->appendCountryInfo($output, $countryId);
 
@@ -133,8 +133,11 @@ class CasinoInfo
         return $output;
     }
 
-    private function getBonus($id, $bonusTypeID) {
-        $row = DB("SELECT * FROM casinos__bonuses WHERE casino_id = ".$id." AND bonus_type_id = ".$bonusTypeID)->toRow();
+    private function getBonus($id, $bonusTypes) {
+        $row = DB("
+        SELECT t1.*, t2.name FROM casinos__bonuses AS t1
+        INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
+        WHERE t1.casino_id = ".$id." AND t2.name IN ('".implode("','", $bonusTypes)."')")->toRow();
         if(empty($row)) return;
         $object = new CasinoBonus();
         $object->amount = $row["amount"];
@@ -142,6 +145,7 @@ class CasinoInfo
         $object->wagering = $row["wagering"];
         $object->games_allowed = $row["games"];
         $object->code = $row["codes"];
+        $object->type = $row["name"];
         return $object;
     }
 
