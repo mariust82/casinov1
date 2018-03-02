@@ -51,7 +51,17 @@
 					</div>
 				</div>
 				<div class="list-item-cell js-mobile-pop-open">
-					<std:if condition="isset(${result.bonus_first_deposit})">
+					<std:if condition="${data.is_mobile} && isset(${result.bonus_free})">
+						<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-free-${i}">
+							${result.bonus_free.amount}<std:if condition="${result.bonus_free.type}=='Free Spins'"> FS</std:if>
+						</span>
+
+						<div class="tooltip-templates">
+							<div id="tooltip-$[id]-free-${i}" class="tooltip-content bonus-free">
+								<box:bonus data="result" modifier="bonus_free" heading="1" title="${bonus} Bonus" icon="icon-icon_bonuses"/>
+							</div>
+						</div>
+					<std:else/>
 						<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-first-${i}">${result.bonus_first_deposit.amount}</span>
 
 						<div class="tooltip-templates">
