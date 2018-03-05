@@ -54,7 +54,7 @@
 					<div class="list-item-cell js-mobile-pop-open">
 						<std:if condition="${result.bonus_free.amount}">
 							<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-free-${i}">
-								${result.bonus_free.amount}<std:if condition="${result.bonus_free.type}=='Free Spins'"> FS</std:if>
+								${result.bonus_free.amount}
 							</span>
 
 							<div class="tooltip-templates">
@@ -90,7 +90,7 @@
 					<div class="list-item-cell">
 						<std:if condition="${result.bonus_free}">
 							<span class="btn-round js-tooltip-content" data-tooltip-content="#tooltip-$[id]-free-${i}">
-								${result.bonus_free.amount}<std:if condition="${result.bonus_free.type}=='Free Spins'"> FS</std:if>
+								${result.bonus_free.amount}
 							</span>
 
 							<div class="tooltip-templates">
