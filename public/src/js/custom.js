@@ -18,6 +18,7 @@
         trigger: 'click',
         maxWidth: 279,
         animation: 'grow',
+        debug: false,
         // contentCloning: true
     };
 
@@ -27,6 +28,7 @@
         minWidth: 260,
         animation: 'grow',
         contentAsHTML: true,
+        debug: false,
         functionBefore: function(instance, helper) {
             instance.content('\
                 <div class="centered">\
@@ -42,6 +44,7 @@
         animation: 'grow',
         interactive: true,
         contentAsHTML: true,
+        debug: false,
         functionReady: function(){
             $('body').addClass('shadow');
         },
