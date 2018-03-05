@@ -140,7 +140,7 @@ class CasinoInfo
         WHERE t1.casino_id = ".$id." AND t2.name IN ('".implode("','", $bonusTypes)."')")->toRow();
         if(empty($row)) return;
         $object = new CasinoBonus();
-        $object->amount = $row["amount"];
+        $object->amount = $row["amount"].($row["name"]=="Free Spins" && (strpos($row["amount"],"FS")===false?" FS":""));;
         $object->min_deposit = $row["minimum_deposit"];
         $object->wagering = $row["wagering"];
         $object->games_allowed = $row["games"];
