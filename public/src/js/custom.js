@@ -13,6 +13,42 @@
 
         initMoboleBonusesPop(ww);
     });
+
+    tooltipConfig = {
+        trigger: 'click',
+        maxWidth: 279,
+        animation: 'grow',
+        // contentCloning: true
+    };
+
+    copyTooltipConfig = {
+        trigger: 'click',
+        maxWidth: 260,
+        minWidth: 260,
+        animation: 'grow',
+        contentAsHTML: true,
+        functionBefore: function(instance, helper) {
+            instance.content('\
+                <div class="centered">\
+                    <i class="icon icon-icon_available"></i> Code copied to clipboard\
+                </div>\
+            ');
+        }
+    };
+
+    contentTooltipConfig = {
+        trigger: 'click',
+        minWidth: 460,
+        animation: 'grow',
+        interactive: true,
+        contentAsHTML: true,
+        functionReady: function(){
+            $('body').addClass('shadow');
+        },
+        functionAfter: function(){
+            $('body').removeClass('shadow');
+        }
+    };
     
     var initSite = function() {
         // setTimeout(function(){
@@ -77,42 +113,6 @@
         }
 
         new newsletter($( '.subscribe' ));
-
-        tooltipConfig = {
-            trigger: 'click',
-            maxWidth: 279,
-            animation: 'grow',
-            // contentCloning: true
-        };
-
-        copyTooltipConfig = {
-            trigger: 'click',
-            maxWidth: 260,
-            minWidth: 260,
-            animation: 'grow',
-            contentAsHTML: true,
-            functionBefore: function(instance, helper) {
-                instance.content('\
-                    <div class="centered">\
-                        <i class="icon icon-icon_available"></i> Code copied to clipboard\
-                    </div>\
-                ');
-            }
-        };
-
-        contentTooltipConfig = {
-            trigger: 'click',
-            minWidth: 460,
-            animation: 'grow',
-            interactive: true,
-            contentAsHTML: true,
-            functionReady: function(){
-                $('body').addClass('shadow');
-            },
-            functionAfter: function(){
-                $('body').removeClass('shadow');
-            }
-        };
 
         $('.js-tooltip').tooltipster(tooltipConfig);
         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
@@ -494,6 +494,7 @@
                         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
                         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                         initMoboleBonusesPop(ww);
+
                         checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
                     },
                     error: function(XMLHttpRequest) {
