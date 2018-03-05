@@ -16,11 +16,13 @@ class CasinosByCountryController extends CasinosListController {
         if(!$parameter) {
             throw new PathNotFoundException();
         }
-        $parameter = str_replace("-"," ", $parameter);
+        if(!in_array($parameter,array("guinea-bissau","timor-leste"))) {
+            $parameter = str_replace("-"," ", $parameter);
+        }
         $object = new Countries();
         $name = $object->validate($parameter);
         if(!$name) {
-            throw new PathNotFoundException();
+            Response::sendRedirect("/countries");
         }
         return $name;
     }

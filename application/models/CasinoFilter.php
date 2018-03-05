@@ -65,6 +65,23 @@ class CasinoFilter
                     break;
             }
         }
+
+        // start hardcodings
+        switch($this->country) {
+            case "Democratic Peoples Republic of Korea":
+                $this->country = "Democratic People\'s Republic of Korea";
+                break;
+            case "Cote DIvoire":
+                $this->country = "Cote D\'Ivoire";
+                break;
+            case "Lao Peoples Democratic Republic":
+                $this->country = "Lao People\'s Democratic Republic";
+                break;
+        }
+        if($this->operating_system && $this->operating_system=="iphone") {
+            $this->operating_system = "iOS";
+        }
+        // end hardcodings
     }
 
     public function getCountryAccepted() {

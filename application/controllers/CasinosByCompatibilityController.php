@@ -34,8 +34,6 @@ class CasinosByCompatibilityController extends CasinosListController {
 
     protected function getFilter()
     {
-        $name = $this->response->getAttribute("selected_entity");
-        $name = ($name=="iPhone"?"ios":$name);
-        return new CasinoFilter(array("compatibility"=>$name), $this->request->getAttribute("country"));
+        return new CasinoFilter(array("compatibility"=>$this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
     }
 }
