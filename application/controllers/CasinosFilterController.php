@@ -28,6 +28,7 @@ class CasinosFilterController extends Controller {
 
         $sortCriteria = $this->getSortCriteria();
 		$page = (integer) $this->request->getValidator()->getPathParameter("page");
+		if(isset($_GET["compatibility"]) && $_GET["compatibility"]=="iPhone") $_GET["compatibility"]="iOS";
         $object = new CasinosList(new CasinoFilter($_GET, $this->request->getAttribute("country")));
         if($page==0) {
             $total = $object->getTotal();

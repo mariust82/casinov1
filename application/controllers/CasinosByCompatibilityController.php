@@ -19,6 +19,7 @@ class CasinosByCompatibilityController extends CasinosListController {
             throw new PathNotFoundException();
         }
         $parameter = str_replace("-"," ", $parameter);
+        if($parameter=="iphone") return "iPhone";
         $object = new OperatingSystems();
         $name = $object->validate($parameter);
         if(!$name) {
@@ -33,6 +34,8 @@ class CasinosByCompatibilityController extends CasinosListController {
 
     protected function getFilter()
     {
-        return new CasinoFilter(array("compatibility"=>$this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
+        $name = $this->response->getAttribute("selected_entity");
+        $name = ($name=="iPhone"?"ios":$name);
+        return new CasinoFilter(array("compatibility"=>$name), $this->request->getAttribute("country"));
     }
 }
