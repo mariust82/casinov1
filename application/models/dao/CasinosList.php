@@ -80,7 +80,6 @@ class CasinosList
             $bonus->type = $row["name"];
             if($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins") {
                 $output[$row["casino_id"]]->bonus_free = $bonus;
-                var_dump($bonus);die();
             } else {
                 $output[$row["casino_id"]]->bonus_first_deposit = $bonus;
             }
