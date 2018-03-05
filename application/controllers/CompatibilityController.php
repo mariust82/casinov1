@@ -26,6 +26,8 @@ class CompatibilityController extends Controller {
     private function getResults() {
         $object = new OperatingSystems();
         $tmp1 = $object->getCasinosCount();
+        $tmp1["iPhone"]=$tmp1["iOS"];
+        unset($tmp1["iOS"]);
         $object = new PlayVersions();
         $tmp2 = $object->getCasinosCount();
         return array_merge($tmp1, $tmp2);

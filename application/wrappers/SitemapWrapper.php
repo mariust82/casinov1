@@ -3,10 +3,10 @@ class SitemapWrapper extends ViewWrapper
 {
     public function run() {
         // get parameters based on which sitemap will be constructed
-        $pages = $this->objResponse->getAttribute("pages");
+        $pages = $this->response->getAttribute("pages");
         $lastModifiedDate = date("Y-m-d");
         $changeFrequency = "daily";
-        $priority = $this->objResponse->getAttribute("priority");
+        $priority = $this->response->getAttribute("priority");
 
         // construct xml
         $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>');
