@@ -182,30 +182,6 @@ function get_top_banking_url($name)
     return "/banking/top-10-$name-casinos";
 }
 
-
-function get_top_country_url($country_name)
-{
-    $country_name = normalize($country_name);
-    switch ($country_name) {
-        case 'united-states':
-            $country_name = 'usa';
-            break;
-        case 'united-kingdom':
-            $country_name = 'uk';
-            break;
-        case 'south-africa':
-            $country_name = 'south-african';
-            break;
-        case 'australia':
-            $country_name = 'australian';
-            break;
-        case 'canadia':
-            $country_name = 'canadian';
-            break;
-    }
-    return "/country/top-10-$country_name-online-casinos";
-}
-
 function get_bonus_from_code($code)
 {
     $code = ucwords(str_replace('_', ' ', $code)) . ' Bonus';

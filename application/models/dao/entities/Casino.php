@@ -2,6 +2,7 @@
 class Casino {
 	public $id;
 	public $name;
+    public $code;
 	public $rating;
 	public $softwares;
 	public $languages;

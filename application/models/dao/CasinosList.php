@@ -16,7 +16,7 @@ class CasinosList
         $output = array();
 
         // build query
-        $query = $this->getQuery(array("t1.id", "t1.name", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"));
+        $query = $this->getQuery(array("t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"));
         switch($sortBy) {
             case CasinoSortCriteria::NEWEST:
                 $query .= "ORDER BY t1.date_established DESC"."\n";
@@ -39,6 +39,7 @@ class CasinosList
             $object = new Casino();
             $object->id = $row["id"];
             $object->name = $row["name"];
+            $object->code = $row["code"];
             $object->rating = round($row["average_rating"]);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
