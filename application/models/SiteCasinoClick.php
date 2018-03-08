@@ -34,4 +34,11 @@ class SiteCasinoClick extends CasinoClick
     {
         return $this->info->affiliate_link;
     }
+
+    protected function send($casinoCode) {
+        $uuid = getUuid();
+        $tmp = CountryDetection::getInstance()->getCountry();
+        $country = ($tmp?$tmp->code:"");
+        Async::send("click-casino", array("uuid"=>$uuid, "country"=>$country, "casino"=>$this->info->code));
+    }
 }
