@@ -18,7 +18,7 @@ class Casinos implements FieldValidator
 
     public function getBasicInfo($name) {
         $row = DB("
-            SELECT t1.id, t1.name, t2.name AS status, t1.affiliate_link, t1.is_open, t4.name AS software
+            SELECT t1.id, t1.name, t1.code, t2.name AS status, t1.affiliate_link, t1.is_open, t4.name AS software
             FROM casinos AS t1
             LEFT JOIN casino_statuses AS t2 ON t1.status_id = t2.id
             LEFT JOIN casinos__game_manufacturers AS t3 ON t1.id = t3.casino_id AND t3.is_primary = 1
@@ -30,6 +30,7 @@ class Casinos implements FieldValidator
         $object = new Casino();
         $object->id = $row["id"];
         $object->name = $row["name"];
+        $object->code = $row["code"];
         $object->status = $row["status"];
         $object->affiliate_link = $row["affiliate_link"];
         $object->softwares = $row["software"];

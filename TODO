@@ -1,1 +1,44 @@
 1) (?) make 404 page use view language
+
+BUG: solve https://www.casinoslists.com/warn/lucky-thrillz-casino?lucinda=1
+    CMS: trim affiliate link & throw JS error if it doesn't start with http
+BUG: solve https://www.casinoslists.com/reviews/bet365-casino-review
+
+UPDATE casinos SET date=NOW() WHERE id IN (
+759,
+670,
+289,
+511,
+839,
+326,
+766,
+902,
+778,
+53,
+90,
+768,
+438,
+440,
+439,
+831,
+730,
+727,
+274,
+458,
+633,
+1424,
+288,
+958,
+907,
+908,
+886,
+250,
+159,
+515,
+878,
+163,
+92,
+237,
+482,
+65,
+1391)
