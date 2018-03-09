@@ -8,7 +8,7 @@
     <title>${data.page_info.head_title}</title>
     <meta name="description" content="${data.page_info.head_description}">
     <link rel="icon" type="image/png" href="/public/favicon.ico?ver=0.0.1"/>
-    <link rel="stylesheet" type="text/css" href="${get_public_dir()}/css/all.css?ver=0.3.0" media="all">
+    <link rel="stylesheet" type="text/css" href="/public/build/css/all.css?ver=0.3.0" media="all">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 </head>
 <body data-page="">
@@ -33,12 +33,12 @@
 					</a>
 					<ul>
 						<li class="mobile">
-							<a href="/" class="${get_active(${page}, 'index')}">HOMEPAGE</a>
+							<a href="/" class="${(${page}=='index'?'active':'')}">HOMEPAGE</a>
 						</li>
 						<import file="templates/include-menu"/>
 					</ul>
 				</nav>
-				<div class="header-search ${(${page}=='search'?'force-visible':'')}" id="search" data-img-dir="${get_img_dir()}">
+				<div class="header-search ${(${page}=='search'?'force-visible':'')}" id="search" data-img-dir="/public/sync">
 					<a href="#" class="header-search-btn js-search-opener js-trigger-search">
 						<i class="icon-search"></i>
 					</a>

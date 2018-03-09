@@ -1,19 +1,15 @@
 <?php
-/**
- * Prepares entity name to be used as path parameter.
- *
- * @param $name
- * @return string
- */
-
-function detect_casinos_word($name)
-{
-    return strpos($name, 'Casinos');
-}
-
-function detect_casino_word($name)
+function containsCasino($name)
 {
     return strpos($name, 'Casino');
+}
+
+function getCasinoLogo($name, $resolution) {
+    return "/public/sync/casino_logo_light/".$resolution."/".strtolower(str_replace(" ", "_", $name)).".png";
+}
+
+function getGameLogo($name, $resolution) {
+    return "/public/sync/game_ss/".$resolution."/".str_replace(" ", "_", $name)."_ss.jpg";
 }
 
 function normalize($name)
@@ -23,50 +19,9 @@ function normalize($name)
     return strtolower($str);
 }
 
-function normalize_logo($name)
-{
-    $str = str_replace(" ", "_", $name);
-    $str = str_replace("#", "_", $str);
-    return strtolower($str);
-}
-
-function normalize_game($name)
-{
-    $str = str_replace(" ", "_", $name);
-    $str = str_replace("#", "_", $str)."_ss";
-    return $str;
-}
-
-function get_active($page, $item)
-{
-    $class = "";
-    if ($page == $item) {
-        $class = "active";
-    }
-    return $class;
-}
-
-function get_arr_from_string($name)
-{
-    $name = explode(",", $name);
-    return $name[0];
-}
-
-function get_length_arr_from_string($name)
-{
-    $name = explode(",", $name);
-    return count($name);
-}
-
 function get_string($name)
 {
-    $string = array();
-
-    foreach ($name as $key => $value) {
-        $string[$key] = $value;
-    }
-
-    return $string = implode(", ", $string);
+    return implode(", ", $name);
 }
 
 function get_rating($name)
@@ -97,38 +52,11 @@ function get_country_status($name)
     return $string;
 }
 
-function get_flags_dir()
-{
-    $dir = "/public/build/images/flags";
-    return $dir;
-}
-
-
-function get_img_dir()
-{
-    $dir = "/public/sync";
-    return $dir;
-}
-
-function get_public_dir()
-{
-    $dir = "/public/build";
-    return $dir;
-}
-
-function get_external_url()
-{
-    $dir = "/link";
-    return $dir;
-}
-
 function get_page_type()
 {
-    $url = parse_url("http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
-
-    $pieces = explode("/", $url["path"]);
-
-    switch ($pieces[1]) {
+    $position = strpos($_SERVER["REQUEST_URI"],"/",1);
+    $url = ($position?substr($_SERVER["REQUEST_URI"],1, $position-1):$_SERVER["REQUEST_URI"]);
+    switch ($url) {
         case 'casinos':
             $piece = 'label';
             break;
@@ -158,36 +86,3 @@ function format_filter_date($date, $format = 'd.m.Y')
 {
     return date($format, strtotime($date));
 }
-
-function get_top_url($name, $type = 'country')
-{
-    if (function_exists("get_top_" . $type . "_url")) {
-        $func = "get_top_" . $type . "_url";
-        return $func($name);
-    }
-    return '/' . $type . '/top-10-' . normalize($name) . '-casinos';
-}
-
-function get_top_banking_url($name)
-{
-    $name = normalize($name);
-    switch ($name) {
-        case 'skrill-moneybookers':
-            $name = 'skrill';
-            break;
-        case 'ecopayz-ecocard':
-            $name = 'ecopayz';
-            break;
-    }
-    return "/banking/top-10-$name-casinos";
-}
-
-function get_bonus_from_code($code)
-{
-    $code = ucwords(str_replace('_', ' ', $code)) . ' Bonus';
-    return $code;
-}
-
-// function get_num_of_char($str) {
-//     return strlen($str);
-// }
