@@ -7,7 +7,7 @@ class ContactSendController extends Controller
     const EMAIL = "support@casinoslists.com";
 
     public function run() {
-        $message = new MailMessage(self::SUBJECT.$_POST["name"], $_POST["message"]);
+        $message = new MailMessage(self::SUBJECT.$_POST["email"], $_POST["message"]);
         $message->setReplyTo($_POST["email"], $_POST["name"]);
         $message->addTo(self::EMAIL);
         if($_POST["message"]!=strip_tags($_POST["message"])) {
