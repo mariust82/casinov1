@@ -14,23 +14,25 @@ class CasinosList
 
     public function getResults($sortBy, $page, $limit = self::LIMIT) {
         $output = array();
-
+        $order = "";
         // build query
-        $query = $this->getQuery(array("t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"));
         switch($sortBy) {
             case CasinoSortCriteria::NEWEST:
-                $query .= "ORDER BY t1.date_established DESC"."\n";
+                $order .= " ORDER BY t1.date_established DESC"."\n";
                 break;
             case CasinoSortCriteria::TOP_RATED:
-                $query .= "ORDER BY average_rating DESC, t1.priority ASC, t1.id DESC"."\n";
+                $order .= " ORDER BY average_rating DESC, t1.priority ASC, t1.id DESC"."\n";
                 break;
             case CasinoSortCriteria::POPULARITY:
-                $query .= "ORDER BY t1.clicks DESC, t1.id DESC"."\n";
+                $order .= " ORDER BY t1.clicks DESC, t1.id DESC"."\n";
                 break;
             default:
-                $query .= "ORDER BY t1.priority ASC, t1.id DESC"."\n";
+                $order .= " ORDER BY t1.priority ASC, t1.id DESC"."\n";
+                $this->filter->promoted = TRUE;
                 break;
         }
+        $query = $this->getQuery(array("t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"));
+        $query .= $order;
         $query .= "LIMIT ".$limit." OFFSET ".($page*$limit);
         // execute query
         $resultSet = DB($query);
