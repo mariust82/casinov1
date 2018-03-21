@@ -12,7 +12,7 @@ class CasinoFilter
 
     private $country_accepted = false;
     private $free_bonus = false;
-    private $promoted = false;
+    public $promoted = false;
 
     private $banking_method;
     private $label;
