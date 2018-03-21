@@ -30,7 +30,11 @@
 					<h1 class="casino-review-title">${data.page_info.body_title}</h1>
 					<div class="btn-group">
 						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
-						<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
+                                                <std:if condition="${data.casino.status} == 'Blacklisted' || ${data.casino.status} == 'Warning'">
+                                                    <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" rel="nofollow">PLAY NOW</a>
+                                                <std:else>
+                                                    <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
+                                                </std:if>
 					</div>
 				</div>
 				<div class="casino-review-heading-right">
