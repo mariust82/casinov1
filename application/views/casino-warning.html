@@ -21,14 +21,14 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="related">
-		<div class="container">
-			<div class="headeing">
-				<div class="title title-middle">We recommend the following casinos</div>
-			</div>
-			<item:casino type="SOFTWARE" data="${data.recommended_casinos}"/>
-		</div>
-	</div>
-
+        <std:if condition="count(${data.recommended_casinos}) > 0">
+            <div class="related">
+                    <div class="container">
+                            <div class="headeing">
+                                    <div class="title title-middle">We recommend the following casinos</div>
+                            </div>
+                            <item:casino type="SOFTWARE" data="${data.recommended_casinos}"/>
+                    </div>
+            </div>
+        </std:if>
 <import file="templates/include-footer"/>
