@@ -32,7 +32,7 @@ class CasinosList
                 break;
         }
         $query .= "LIMIT ".$limit." OFFSET ".($page*$limit);
-
+        echo $query;
         // execute query
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {
