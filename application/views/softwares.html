@@ -1,5 +1,3 @@
-<std:set name="page" value="softwares"/>
-
-<import file="templates/include-header"/>
-	<block:categories name="Online Casino Softwares List" goto="/softwares" image="false" description=""/>
-<import file="templates/include-footer"/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="softwares"/>
+	<categories:list-container name="Online Casino Softwares List" url="/softwares" image="false" description="" items="${data.results}"/>
+<site:bottom menu="${data.menu_top}"/>

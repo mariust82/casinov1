@@ -1,11 +1,11 @@
 <div class="filter filter-alt" id="filters" data-url="/games-filter/">
-	<div class="qty-items"><span>${data.total_games}</span> results</div>
+	<div class="qty-items"><span>$[total]</span> results</div>
 	<div class="filter-group">
 		<div class="filter-select">
 			<div class="filter-label">Filter by:</div>
 			<div class="filter-select-holder">
 				<select class="select js-filter" name="soft">
-					<std:foreach var="${data.software}" value="result">
+					<std:foreach var="$[software]" value="result">
 						<option value="${result}">${result}</option>
 					</std:foreach>
 				</select>

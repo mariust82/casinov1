@@ -3,7 +3,7 @@
     <div class="swiper-container" id="links-nav">
         <span class="links-left"></span>
         <div class="swiper-wrapper">
-          <std:foreach var="${data.menu_bottom}" key ="key" value="result">
+          <std:foreach var="$[items]" key ="key" value="result">
               <div class="swiper-slide">
                   <a class="${(${result.is_active}?'active':'')}" href="${result.url}">${result.title}</a>
               </div>

@@ -1,12 +1,113 @@
 <?php
-class CasinosFilterController extends Controller {
+class CasinosByLabelController extends Controller {
     public function run() {
-        $this->response->setAttribute("country", array (
+        $this->response->setAttribute("selected_entity", 'Live Dealer');
+$this->response->setAttribute("menu_top", array (
+  0 => 
+  array (
+    'title' => 'CASINOS',
+    'url' => '/casinos',
+    'is_active' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'SOFTWARES',
+    'url' => '/softwares',
+    'is_active' => false,
+  ),
+  2 => 
+  array (
+    'title' => 'BONUSES',
+    'url' => '/bonus-list',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'COUNTRIES',
+    'url' => '/countries',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'COMPATIBILITY',
+    'url' => '/compatability',
+    'is_active' => false,
+  ),
+  5 => 
+  array (
+    'title' => 'BANKING',
+    'url' => '/banking',
+    'is_active' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'FEATURES',
+    'url' => '/features',
+    'is_active' => true,
+  ),
+  7 => 
+  array (
+    'title' => 'GAMES',
+    'url' => '/games',
+    'is_active' => false,
+  ),
+));
+$this->response->setAttribute("menu_bottom", array (
+  0 => 
+  array (
+    'title' => 'United States Casinos',
+    'url' => '/countries-list/united-states',
+    'is_active' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'Live Dealer Casinos',
+    'url' => '/features/live-dealer',
+    'is_active' => true,
+  ),
+  2 => 
+  array (
+    'title' => 'No Deposit Casinos',
+    'url' => '/bonus-list/no-deposit-bonus',
+    'is_active' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'Best Casinos',
+    'url' => '/casinos/best',
+    'is_active' => false,
+  ),
+  4 => 
+  array (
+    'title' => 'Safe Casinos',
+    'url' => '/casinos/safe',
+    'is_active' => false,
+  ),
+  5 => 
+  array (
+    'title' => 'New Casinos',
+    'url' => '/casinos/new',
+    'is_active' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'Recommended Casinos',
+    'url' => '/casinos/recommended',
+    'is_active' => false,
+  ),
+  7 => 
+  array (
+    'title' => 'Stay Away Casinos',
+    'url' => '/casinos/stay-away',
+    'is_active' => false,
+  ),
+));
+$this->response->setAttribute("country", array (
   'id' => '34',
   'code' => 'US',
   'name' => 'United States',
 ));
-$this->response->setAttribute("total_casinos", 36);
+$this->response->setAttribute("total_casinos", 512);
 $this->response->setAttribute("casinos", array (
   0 => 
   array (
@@ -476,6 +577,11 @@ $this->response->setAttribute("casinos", array (
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
   ),
+));
+$this->response->setAttribute("page_info", array (
+  'head_title' => 'Live Dealer Casinos List | Find All Live Dealer  Casinos - 2018',
+  'head_description' => 'Live Dealer Online Casinos List | Choose a Live Dealer Casino to Play at! CasinosLists.com - 2018',
+  'body_title' => 'Live Dealer List',
 ));
 
 $this->response->setAttribute("is_mobile", NULL);

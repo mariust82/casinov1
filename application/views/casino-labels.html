@@ -1,5 +1,3 @@
-<std:set name="page" value="casinos"/>
-
-<import file="templates/include-header"/>
-	<block:categories name="Casinos" goto="/casinos" image="false" description=""/>
-<import file="templates/include-footer"/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casinos"/>
+	<categories:list-container name="Casinos" url="/casinos" image="false" description="" items="${data.results}"/>
+<site:bottom menu="${data.menu_top}"/>

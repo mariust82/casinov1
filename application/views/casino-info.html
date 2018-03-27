@@ -1,8 +1,7 @@
-<std:set name="page" value="casino-info"/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casino-info"/>
 
-<import file="templates/include-header"/>
 	<div class="links-casinos">
-		<block:links-carousel/>
+		<site:links-carousel items="${data.menu_bottom}"/>
 	</div>
 
 	<std:if condition="${data.casino.status} == 'Blacklisted'">
@@ -30,11 +29,11 @@
 					<h1 class="casino-review-title">${data.page_info.body_title}</h1>
 					<div class="btn-group">
 						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
-                                                <std:if condition="${data.casino.status} == 'Blacklisted' || ${data.casino.status} == 'Warning'">
-                                                    <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" rel="nofollow">PLAY NOW</a>
-                                                <std:else>
-                                                    <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
-                                                </std:if>
+                        <std:if condition="${data.casino.status} == 'Blacklisted' || ${data.casino.status} == 'Warning'">
+                            <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" rel="nofollow">PLAY NOW</a>
+                        <std:else>
+                            <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
+                        </std:if>
 					</div>
 				</div>
 				<div class="casino-review-heading-right">
@@ -82,11 +81,6 @@
 							<div class="def-list-item">
 								<div class="def-list-key">Languages</div>
 								<div class="def-list-val">
-									<!-- <std:if condition="${data.casino.is_language_accepted}">
-										<i class="icon-icon_available"></i>
-									<std:else>
-										<i class="icon-icon_unavailable"></i>
-									</std:if> -->
 
 									<std:set name="numItems" value="count(${data.casino.languages})"/>
 									<std:set name="i" value="0"/>
@@ -103,11 +97,6 @@
 							<div class="def-list-item">
 								<div class="def-list-key">Currencies</div>
 								<div class="def-list-val">
-									<!-- <std:if condition="${data.casino.is_currency_accepted}">
-										<i class="icon-icon_available"></i>
-									<std:else>
-										<i class="icon-icon_unavailable"></i>
-									</std:if> -->
 
 									<std:set name="numItems" value="count(${data.casino.currencies})"/>
 									<std:set name="i" value="0"/>
@@ -252,7 +241,7 @@
 						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
 					</div>
 				</div>
-				<import file="templates/include-reviews"/>
+				<review:list-container total="${data.total_reviews}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}"/>
 			</div>
 		</div>
 	</div>
@@ -325,4 +314,4 @@
 		</div>
 	</div>
 
-<import file="templates/include-footer"/>
+<site:bottom menu="${data.menu_top}"/>

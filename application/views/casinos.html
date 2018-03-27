@@ -1,8 +1,6 @@
-<std:set name="page" value="casinos"/>
-
-<import file="templates/include-header"/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casinos"/>
 	<div class="links-casinos">
-		<block:links-carousel/>
+		<site:links-carousel items="${data.menu_bottom}"/>
 	</div>
 	<div class="block">
 		<div class="container">
@@ -13,21 +11,21 @@
 				</div>
 			</div>
 			
-			<filter:casinos/>
+			<filter:casinos name="${data.country.name}" code="${data.country.code}"/>
 
 			<div class="data-container-holder">
 				<div class="holder">
 					<div class="data-container" data-type="${get_page_type()}" data-type-value="${data.selected_entity}">
 						<div class="qty-items">${data.total_casinos} results</div>
 						<std:if condition="${data.selected_entity} == 'New'">
-							<item:casino type="ESTABLISHED" id="1" data="${data.casinos}"/>
+							<casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
 						<std:else>
-							<item:casino type="SOFTWARE" id="1" data="${data.casinos}"/>
+							<casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
 						</std:if>
 					</div>
 					<div class="data-add-container" data-total="${data.total_casinos}"></div>
 				</div>
-				<import file="templates/include-reset-filters"/>
+				<filter:reset/>
 			</div>
 
 			<std:if condition="${data.total_casinos} > 24">
@@ -37,4 +35,4 @@
 			</std:if>
 		</div>
 	</div>
-<import file="templates/include-footer"/>
+<site:bottom menu="${data.menu_top}"/>

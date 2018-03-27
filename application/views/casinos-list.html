@@ -3,8 +3,8 @@
 <div class="aj-content" data-load-total="${data.total_casinos}">
 	<div class="qty-items">${data.total_casinos} results</div>
 	<std:if condition="isset($_GET['label']) && $_GET['label'] == 'New'">
-		<item:casino type="ESTABLISHED" id="${data.casinos.0.id}" data="${data.casinos}"/>
+		<casino:list type="ESTABLISHED" id="${data.casinos.0.id}" data="${data.casinos}"/>
 	<std:else>
-		<item:casino type="SOFTWARE" id="${data.casinos.0.id}" data="${data.casinos}"/>
+		<casino:list type="SOFTWARE" id="${data.casinos.0.id}" data="${data.casinos}"/>
 	</std:if>
 </div>
