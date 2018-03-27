@@ -50,6 +50,7 @@
     <route url="warn/(name)" controller="CasinoWarningController" view="casino-warning"/>
     <route url="bonus-list/(name)" controller="CasinosByBonusTypeController" view="casinos" rebrand_tables="bonus_types"/>
     <route url="bonus-list" controller="BonusesController" view="bonus-types"/>
+    <route url="casino/bonus" controller="CasinoBonusController" extension="json"/>
     <route url="countries-list/(name)" controller="CasinosByCountryController" view="casinos"/>
     <route url="countries" controller="CountriesController" view="countries"/>
     <route url="compatability/(name)" controller="CasinosByCompatibilityController" view="casinos"/>

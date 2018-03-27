@@ -41,15 +41,47 @@
     contentTooltipConfig = {
         trigger: 'click',
         minWidth: 460,
-        animation: 'grow',
         interactive: true,
         contentAsHTML: true,
         debug: false,
+        content: 'Loading...',
         functionReady: function(){
             $('body').addClass('shadow');
         },
         functionAfter: function(){
             $('body').removeClass('shadow');
+        },
+        functionBefore: function(instance, helper) {
+            
+            var $origin = $(helper.origin);
+
+            if ($origin.data('loaded') !== true) {
+
+                var _name = $origin.data('name');
+                var _is_free = $origin.data('is-free');
+                var _request = new XMLHttpRequest();
+
+                _request.abort();
+                _request = $.ajax( {
+                    url: "/casino/bonus",
+                    data: {
+                        casino: _name,
+                        is_free: _is_free,
+                    },
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (response) {
+                        if(response.status =="ok") {
+                            instance.content(getBonusPattern(response, _name));
+                            $('.js-tooltip').tooltipster(tooltipConfig);
+                            $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                            copyToClipboard();
+                            checkStringLength($('.bonus-box'), 21);
+                        }
+                        $origin.data('loaded', true);
+                    }
+                });
+            }
         }
     };
     
@@ -122,16 +154,83 @@
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
     }
 
-    function checkStringLength(box, num) {
-        // var box = $('.bonus-box');
+    function getBonusPattern(data, name) {
+        var _name = name;
+        var _amount = data.body.bonus.amount;
+        var _code = data.body.bonus.code;
+        var _games_allowed = data.body.bonus.games_allowed;
+        var _min_deposit = data.body.bonus.min_deposit;
+        var _type = data.body.bonus.type;
+        var _wagering = data.body.bonus.wagering;
+        var _block_class = 'bonus-free';
+        var _icon = 'icon-icon_bonuses';
+        var _code_class = '';
+        var _success_class = '';
 
+        if (_type == 'First Deposit Bonus') {
+            _block_class = 'bonus-first';
+            _icon = 'icon-free-bonus-icon';
+        };
+
+        if (_code != 'No code required') _code_class = 'js-copy-to-clip js-copy-tooltip';
+
+        if (_min_deposit == ''){
+            _min_deposit = 'Free';
+            _success_class = 'success';
+
+        };
+
+        var pattern = '\
+            <div class="tooltip-content '+_block_class+'">\
+                <div class="tooltip-templates-heading">\
+                    <h2 class="tooltip-templates-title">'+_name+' '+_type+'</h2>\
+                    <div class="tooltip-templates-button">\
+                        <a href="/visit/'+getWebName(_name)+'" target="_blank" rel="nofollow" class="btn btn-small">VISIT CASINO</a>\
+                    </div>\
+                </div>\
+                <div class="tooltip-templates-body">\
+                    <div class="bonus-box">\
+                        <div class="bonus-box-heading">\
+                            <span>'+_amount+' '+_type+'</span>\
+                        </div>\
+                        <div class="bonus-box-body">\
+                            <div class="bonus-box-btn dashed '+_code_class+'" data-code="'+_code+'">'+_code+'</div>\
+                            <std:unset name="code_class"/>\
+                            <ul class="bonus-box-list">\
+                                <li>\
+                                    <span class="bonus-box-list-label">Wagering</span>\
+                                    <strong>'+_wagering+'</strong>\
+                                </li>\
+                                <li>\
+                                    <span class="bonus-box-list-label">Games allowed</span>\
+                                    <strong class="list-item-flex">\
+                                        <span class="list-item-trun">'+_games_allowed+'</span>\
+                                        <span class="bubble js-tooltip tooltipstered" title="'+_games_allowed+'">More</span>\
+                                    </strong>\
+                                </li>\
+                                <li>\
+                                    <span class="bonus-box-list-label">Min. deposit</span>\
+                                    <strong class="'+_success_class+'">'+_min_deposit+'</strong>\
+                                </li>\
+                            </ul>\
+                        </div>\
+                        <div class="bonus-box-circle">\
+                            <i class="'+_icon+'"></i>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+        ';
+
+        return pattern;
+    }
+
+    function checkStringLength(box, num) {
         $(box).each(function(index, el) {
-            // var parent = $(this).find('.list-item-flex');
             var child = $(this).find('.list-item-trun');
             var bubble = $(this).find('.bubble');
 
             if (child.text().length >= num) {
-                // bubble.show();
                 bubble.css('visibility', 'visible');
             }
         });
@@ -1737,22 +1836,38 @@
 
             function cloneContent(_this) {
                 var _contentHolder = _this.closest(_container).find('.mobile-popup-body');
-                var _items = _this.closest(_container).find('.tooltip-content');
+                var _items = _this.closest(_container).find('.js-tooltip-content');
 
                 _items.each(function(index, el) {
-                    $(el).clone().appendTo(_contentHolder);
-                });
 
-                _contentHolder.find('.tooltip-content').each(function(index, el) {
-                    var tempText = $(el).find('.list-item-trun').text();
-                    $(el).find('.list-item-trun').next('.bubble').attr('title', tempText);
-                });
+                    var _name = $(el).data('name');
+                    var _is_free = $(el).data('is-free');
+                    var _request = new XMLHttpRequest();
 
-                _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
-                _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-                copyToClipboard();
+                    _request.abort();
+                    _request = $.ajax( {
+                        url: "/casino/bonus",
+                        data: {
+                            casino: _name,
+                            is_free: _is_free,
+                        },
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function (response) {
+                            if(response.status =="ok") {
+                                _contentHolder.append(getBonusPattern(response, _name));
+
+                                _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
+                                _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                                checkStringLength($('.bonus-box'), 21);
+                                copyToClipboard();
+                                $('.overlay, .loader').fadeOut('fast');
+                            }
+                        }
+                    });
+                });
+                
                 showPop(_this);
-
             }
 
             function showPop(_this) {
@@ -1763,7 +1878,7 @@
             }
 
             _btnOpen.on('click', function(e) {
-
+                $('.overlay, .loader').fadeIn('fast');
                 cloneContent($(this));
                 return false;
             });
