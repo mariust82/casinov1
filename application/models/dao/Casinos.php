@@ -40,6 +40,7 @@ class Casinos implements FieldValidator
     }
 
     public function getBonus($casinoID, $isFree) {
+        DB("SET names UTF8");
         $query = "
         SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.minimum_deposit, t1.games, t2.name 
         FROM casinos__bonuses AS t1
