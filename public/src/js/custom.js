@@ -44,7 +44,9 @@
         interactive: true,
         contentAsHTML: true,
         debug: false,
-        content: 'Loading...',
+        content: $('.loader'),
+        animation: 'fade',
+        contentCloning: false,
         functionReady: function(){
             $('body').addClass('shadow');
         },
@@ -73,10 +75,12 @@
                     success: function (response) {
                         if(response.status =="ok") {
                             instance.content(getBonusPattern(response, _name));
-                            $('.js-tooltip').tooltipster(tooltipConfig);
-                            $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-                            copyToClipboard();
-                            checkStringLength($('.bonus-box'), 21);
+                            setTimeout(function(){
+                                $('.js-tooltip').tooltipster(tooltipConfig);
+                                $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                                copyToClipboard();
+                                checkStringLength($('.bonus-box'), 15);
+                            }, 50)
                         }
                         $origin.data('loaded', true);
                     }

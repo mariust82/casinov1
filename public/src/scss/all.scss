@@ -1779,7 +1779,6 @@ a {
 
     }
 }
-
 .tooltipster-sidetip{
 
     .tooltipster-box{
@@ -1793,6 +1792,22 @@ a {
         color:#60686A;
         font-size:13px;
         padding:6px 10px;
+        position:relative;
+
+        .loader{
+            display:block;
+            position:relative;
+            padding: 150px 0;
+            width: 50px;
+            height: 50px;
+            box-sizing: content-box;
+
+            -webkit-transform:translate(-50%, 0);
+            -moz-transform:translate(-50%, 0);
+            -ms-transform:translate(-50%, 0);
+            -o-transform:translate(-50%, 0);
+            transform:translate(-50%, 0);
+        }
 
         .bonus-box-list-label{
             width:45%;
