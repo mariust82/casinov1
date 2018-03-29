@@ -39,7 +39,6 @@
     <listener class="RebrandingListener"/>
     <listener class="IPDetectionListener"/>
     <listener class="MobileDetectionListener"/>
-    <listener class="MockFeeder"/>
     <listener class="ViewLanguageResolver"/>
   </listeners>
   <errors>
