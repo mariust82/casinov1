@@ -1,7 +1,5 @@
-<std:set name="page" value="casino-warning"/>
-
-<import file="templates/include-header"/>
-	<block:links-carousel/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casino-warning"/>
+	<site:links-carousel items="${data.menu_bottom}"/>
 
 	<div class="warning">
 		<div class="container">
@@ -21,14 +19,15 @@
 			</div>
 		</div>
 	</div>
-        <std:if condition="count(${data.recommended_casinos}) > 0">
-            <div class="related">
-                    <div class="container">
-                            <div class="headeing">
-                                    <div class="title title-middle">We recommend the following casinos</div>
-                            </div>
-                            <item:casino type="SOFTWARE" data="${data.recommended_casinos}"/>
-                    </div>
+
+    <std:if condition="count(${data.recommended_casinos}) > 0">
+        <div class="related">
+            <div class="container">
+                <div class="headeing">
+                    <div class="title title-middle">We recommend the following casinos</div>
+                </div>
+                <casino:list type="SOFTWARE" id="1" data="${data.recommended_casinos}"/>
             </div>
-        </std:if>
-<import file="templates/include-footer"/>
+        </div>
+    </std:if>
+<site:bottom menu="${data.menu_top}"/>

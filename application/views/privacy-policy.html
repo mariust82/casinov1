@@ -1,6 +1,4 @@
-<std:set name="page" value="privacy-policy"/>
-
-<import file="templates/include-header"/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="privacy-policy"/>
 	<div class="container">
 		<div class="heading">
 			<h1 class="title">${data.page_info.body_title}</h1>
@@ -36,4 +34,4 @@
 			<p>Users are advised before using such social sharing buttons that they do so at their own discretion and note that social media platforms may track and save your request to share a web page respectively through your social media platform account.</p>
 		</div>
 	</div>
-<import file="templates/include-footer"/>
+<site:bottom menu="${data.menu_top}"/>

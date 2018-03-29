@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "lucinda/errors",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/php-errors-api.git",
-                "reference": "c5cf157123492481b61fa483529652bd8f085c29"
+                "reference": "c76107dd858337a26ac63c7a39bea8e699ebf72e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/php-errors-api/zipball/c5cf157123492481b61fa483529652bd8f085c29",
-                "reference": "c5cf157123492481b61fa483529652bd8f085c29",
+                "url": "https://api.github.com/repos/aherne/php-errors-api/zipball/c76107dd858337a26ac63c7a39bea8e699ebf72e",
+                "reference": "c76107dd858337a26ac63c7a39bea8e699ebf72e",
                 "shasum": ""
             },
             "type": "library",
@@ -42,7 +42,7 @@
                 "renderer",
                 "reporter"
             ],
-            "time": "2018-02-02T08:25:15+00:00"
+            "time": "2018-03-03T06:34:32+00:00"
         },
         {
             "name": "lucinda/http-caching",
@@ -80,16 +80,16 @@
         },
         {
             "name": "lucinda/internationalization",
-            "version": "v1.0.2",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/php-internationalization-api.git",
-                "reference": "2d80472e79b72d6cd34529aa3c1100e1d5421650"
+                "reference": "ecd04a7cae4f3e122e4466b9beac5327a291d908"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/php-internationalization-api/zipball/2d80472e79b72d6cd34529aa3c1100e1d5421650",
-                "reference": "2d80472e79b72d6cd34529aa3c1100e1d5421650",
+                "url": "https://api.github.com/repos/aherne/php-internationalization-api/zipball/ecd04a7cae4f3e122e4466b9beac5327a291d908",
+                "reference": "ecd04a7cae4f3e122e4466b9beac5327a291d908",
                 "shasum": ""
             },
             "require": {
@@ -114,7 +114,7 @@
                 "internationalization",
                 "localization"
             ],
-            "time": "2018-02-12T13:52:35+00:00"
+            "time": "2018-03-11T05:22:52+00:00"
         },
         {
             "name": "lucinda/logging",
@@ -152,16 +152,16 @@
         },
         {
             "name": "lucinda/mvc",
-            "version": "v1.4.0",
+            "version": "v1.4.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/php-servlets-api.git",
-                "reference": "1460a36616d67f10f75272de0479375f792056c4"
+                "reference": "ca047217e4a0a0c090928c98a62e2b71732e86fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/php-servlets-api/zipball/1460a36616d67f10f75272de0479375f792056c4",
-                "reference": "1460a36616d67f10f75272de0479375f792056c4",
+                "url": "https://api.github.com/repos/aherne/php-servlets-api/zipball/ca047217e4a0a0c090928c98a62e2b71732e86fb",
+                "reference": "ca047217e4a0a0c090928c98a62e2b71732e86fb",
                 "shasum": ""
             },
             "type": "library",
@@ -184,7 +184,7 @@
                 "servlets",
                 "view resolvers"
             ],
-            "time": "2018-01-30T11:02:03+00:00"
+            "time": "2018-03-03T15:53:03+00:00"
         },
         {
             "name": "lucinda/nosql-data-access",
@@ -303,16 +303,16 @@
         },
         {
             "name": "lucinda/sql-data-access",
-            "version": "v1.1.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/php-sql-data-access-api.git",
-                "reference": "e0113d505bf4edfb2264207c3bc2ef0065b36bad"
+                "reference": "8476e5f5b1b03e5ad645d519668ed22a39b6703d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/php-sql-data-access-api/zipball/e0113d505bf4edfb2264207c3bc2ef0065b36bad",
-                "reference": "e0113d505bf4edfb2264207c3bc2ef0065b36bad",
+                "url": "https://api.github.com/repos/aherne/php-sql-data-access-api/zipball/8476e5f5b1b03e5ad645d519668ed22a39b6703d",
+                "reference": "8476e5f5b1b03e5ad645d519668ed22a39b6703d",
                 "shasum": ""
             },
             "type": "library",
@@ -333,20 +333,20 @@
                 "data access",
                 "sql"
             ],
-            "time": "2018-01-28T12:07:39+00:00"
+            "time": "2018-03-03T06:28:35+00:00"
         },
         {
             "name": "lucinda/view-language",
-            "version": "v1.2.0",
+            "version": "v1.2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/php-view-language-api.git",
-                "reference": "58e70e685498154982372ac5fb173761c9450b41"
+                "reference": "37a27ddd63722973ae429ad820616727ca48bcf5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/php-view-language-api/zipball/58e70e685498154982372ac5fb173761c9450b41",
-                "reference": "58e70e685498154982372ac5fb173761c9450b41",
+                "url": "https://api.github.com/repos/aherne/php-view-language-api/zipball/37a27ddd63722973ae429ad820616727ca48bcf5",
+                "reference": "37a27ddd63722973ae429ad820616727ca48bcf5",
                 "shasum": ""
             },
             "type": "library",
@@ -368,7 +368,7 @@
                 "templating",
                 "views"
             ],
-            "time": "2018-01-27T09:41:38+00:00"
+            "time": "2018-03-03T07:04:14+00:00"
         }
     ],
     "packages-dev": [],

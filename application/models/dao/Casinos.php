@@ -1,5 +1,6 @@
 <?php
 require_once("entities/Casino.php");
+require_once("entities/CasinoBonus.php");
 require_once("FieldValidator.php");
 
 class Casinos implements FieldValidator
@@ -36,6 +37,27 @@ class Casinos implements FieldValidator
         $object->softwares = $row["software"];
         $object->is_open = $row["is_open"];
         return $object;
+    }
+
+    public function getBonus($casinoID, $isFree) {
+        DB("SET names UTF8");
+        $query = "
+        SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.minimum_deposit, t1.games, t2.name 
+        FROM casinos__bonuses AS t1
+        INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
+        WHERE t1.casino_id = $casinoID AND t2.name IN (".($isFree?"'No Deposit Bonus','Free Spins'":"'First Deposit Bonus'").")
+        ";
+        $resultSet = DB($query);
+        while($row = $resultSet->toRow()) {
+            $bonus = new CasinoBonus();
+            $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS","",$row["amount"])):$row["amount"]);
+            $bonus->min_deposit = $row["minimum_deposit"];
+            $bonus->wagering = $row["wagering"];
+            $bonus->games_allowed = $row["games"];
+            $bonus->code = $row["codes"];
+            $bonus->type = $row["name"];
+            return $bonus;
+        }
     }
 
     public function rate($name, $ip, $value) {

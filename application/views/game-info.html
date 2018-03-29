@@ -1,8 +1,6 @@
-<std:set name="page" value="games"/>
-
-<import file="templates/include-header"/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="games"/>
 	<div class="links-games">
-		<block:links-carousel/>
+		<site:links-carousel items="${data.menu_bottom}"/>
 	</div>
 
 	<div class="block">
@@ -121,7 +119,7 @@
 				<div class="headeing">
 					<div class="title title-middle">Play this game for real money at these casinos</div>
 				</div>
-				<item:casino type="SOFTWARE" id="1" data="${data.recommended_casinos}"/>
+				<casino:list type="SOFTWARE" id="1" data="${data.recommended_casinos}"/>
 			</div>
 		</div>
 	</std:if>
@@ -132,8 +130,8 @@
 				<div class="headeing">
 					<div class="title title-middle">Similar games</div>
 				</div>
-				<item:game data="${data.recommended_games}"/>
+				<game:list data="${data.recommended_games}"/>
 			</div>
 		</div>
 	</std:if>
-<import file="templates/include-footer"/>
+<site:bottom menu="${data.menu_top}"/>

@@ -4167,6 +4167,18 @@ a:hover, a:active, a:visited, a:focus {
   color: #60686A;
   font-size: 13px;
   padding: 6px 10px;
+  position: relative;
+}
+
+.tooltipster-sidetip .tooltipster-content .loader {
+  display: block;
+  position: relative;
+  padding: 150px 0;
+  width: 50px;
+  height: 50px;
+  box-sizing: content-box;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 
 .tooltipster-sidetip .tooltipster-content .bonus-box-list-label {

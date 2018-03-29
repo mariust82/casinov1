@@ -1,6 +1,4 @@
-<std:set name="page" value="terms-and-conditions"/>
-
-<import file="templates/include-header"/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="terms-and-conditions"/>
 	<div class="container">
 		<div class="heading">
 			<h1 class="title">${data.page_info.body_title}</h1>
@@ -37,4 +35,4 @@
 			<p>www.casinoslists.com may revise these terms of use for its website at any time without further notice.</p>
 		</div>
 	</div>
-<import file="templates/include-footer"/>
+<site:bottom menu="${data.menu_top}"/>

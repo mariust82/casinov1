@@ -1,7 +1,7 @@
 <?php
 class IndexController extends Controller {
     public function run() {
-        $this->response->setAttribute("menu_top", array (
+$this->response->setAttribute("menu_top", array (
   0 => 
   array (
     'title' => 'CASINOS',
@@ -60,6 +60,7 @@ $this->response->setAttribute("best_casinos", array (
   0 => 
   array (
     'id' => '257',
+    'code' => 'Jackpot Capital',
     'name' => 'Jackpot Capital',
     'rating' => 0,
     'softwares' => 
@@ -107,6 +108,7 @@ $this->response->setAttribute("best_casinos", array (
   1 => 
   array (
     'id' => '878',
+    'code' => 'Jackpot Capital',
     'name' => 'Stake7 Casino',
     'rating' => 0,
     'softwares' => 
@@ -149,6 +151,7 @@ $this->response->setAttribute("best_casinos", array (
   2 => 
   array (
     'id' => '785',
+    'code' => 'Jackpot Capital',
     'name' => 'VegasCasino.io',
     'rating' => 0,
     'softwares' => 
@@ -196,6 +199,7 @@ $this->response->setAttribute("best_casinos", array (
   3 => 
   array (
     'id' => '340',
+    'code' => 'Jackpot Capital',
     'name' => 'Exclusive Casino',
     'rating' => 0,
     'softwares' => 
@@ -243,6 +247,7 @@ $this->response->setAttribute("best_casinos", array (
   4 => 
   array (
     'id' => '1171',
+    'code' => 'Jackpot Capital',
     'name' => '1xBit Casino',
     'rating' => 0,
     'softwares' => 
@@ -300,6 +305,7 @@ $this->response->setAttribute("best_casinos", array (
   5 => 
   array (
     'id' => '1124',
+    'code' => 'Jackpot Capital',
     'name' => 'Bet East Casino',
     'rating' => 0,
     'softwares' => 
@@ -339,6 +345,7 @@ $this->response->setAttribute("best_casinos", array (
   6 => 
   array (
     'id' => '1091',
+    'code' => 'Jackpot Capital',
     'name' => 'Bitcoin Penguin Casino',
     'rating' => 0,
     'softwares' => 
@@ -378,6 +385,7 @@ $this->response->setAttribute("best_casinos", array (
   7 => 
   array (
     'id' => '1065',
+    'code' => 'Jackpot Capital',
     'name' => 'Betive Casino',
     'rating' => 0,
     'softwares' => 
@@ -432,6 +440,7 @@ $this->response->setAttribute("best_casinos", array (
   8 => 
   array (
     'id' => '1064',
+    'code' => 'Jackpot Capital',
     'name' => 'HRwager Casino',
     'rating' => 0,
     'softwares' => 
@@ -471,6 +480,7 @@ $this->response->setAttribute("best_casinos", array (
   9 => 
   array (
     'id' => '1039',
+    'code' => 'Jackpot Capital',
     'name' => 'Planet Kings Casino',
     'rating' => 0,
     'softwares' => 
@@ -1346,6 +1356,8 @@ $this->response->setAttribute("page_info", array (
   'head_description' => 'Detailed Online Casino Lists | Casino Bonuses Lists, Casino Softwares Lists, Casino Games Lists, Mobile Casinos Lists and More at CasinosLists.com – 2018',
   'body_title' => 'Welcome to casinoslists.com',
 ));
+
+$this->response->setAttribute("is_mobile", NULL);
 
     }
 }

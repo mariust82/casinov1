@@ -8,6 +8,7 @@ class CasinoInfoController extends Controller {
 ));
 $this->response->setAttribute("casino", array (
   'id' => '1334',
+  'code' => '24VIP Casino',
   'name' => '24VIP Casino',
   'rating' => NULL,
   'softwares' => 
@@ -41,6 +42,7 @@ $this->response->setAttribute("casino", array (
     'wagering' => '15x(D+B)',
     'games_allowed' => 'Slots, Keno, Bingo, Specialty games (FS - Variety of Slots)',
     'code' => 'No code required',
+    'type' => 'First Deposit Bonus',
   ),
   'bonus_free' => 
   array (
@@ -49,6 +51,7 @@ $this->response->setAttribute("casino", array (
     'wagering' => '20xB',
     'games_allowed' => 'Slots, Keno, Bingo, Specialty Games and Scratch Cards',
     'code' => 'No code required',
+    'type' => 'No Deposit Bonus',
   ),
   'is_live_dealer' => '1',
   'date_established' => '2017-09-01',
