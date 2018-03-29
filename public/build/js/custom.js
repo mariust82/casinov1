@@ -813,7 +813,7 @@
             _qty = $('.reviews-qty'),
             _contact_error_class = 'not-valid',
             _casinoID = $('.reviews-form').data('casino-id'),
-            _storage_name = localStorage.getItem('casino_'+_casinoID+'_name'),
+            // _storage_name = localStorage.getItem('casino_'+_casinoID+'_name'),
             _storage_casino_id_reviewed = localStorage.getItem('casino_'+_casinoID+'_reviewed'),
             _storage_review_score = localStorage.getItem('casino_'+_casinoID+'_score'),
              _reviewID,
@@ -857,6 +857,7 @@
                 if (parent.next().find('.reply-data-holder').length > 0) {
                     _reviewHolder = parent.next().find('.reply-data-holder');
                 } else {
+                    _reviewID = parent.closest('.reply').prev().data('id');
                     _setReviewerName(parent);
                     _reviewHolder = parent.closest('.reply-data-holder');
                 }
@@ -866,6 +867,7 @@
                 _is_child = false;
                 _reviewHolder = $('#review-data-holder');
             }
+
 
             if(name === '' || !_validateInputName(name)){
                 _field_name.parent().addClass(_contact_error_class);
@@ -1132,7 +1134,7 @@
                 _qty.text(parseInt(_qty.text())+1);
 
                 localStorage.setItem('casino_'+_casinoID+'_reviewed', 1);
-                localStorage.setItem('casino_'+_casinoID+'_name', name);
+                // localStorage.setItem('casino_'+_casinoID+'_name', name);
                 localStorage.setItem('casino_'+_casinoID+'_score', _rate_slider_result);
             }
             if (_is_child) _childReplies.text(parseInt(_childReplies.text())+1);
@@ -1152,7 +1154,7 @@
         _doIfReviewedAlready = function(){
             var formContainer = $('#reviews-form');
 
-            _changeName(_storage_name);
+            // _changeName(_storage_name);
             $('.review-rating', formContainer).addClass('active');
             $('textarea', formContainer).addClass('disabled');
             $('.rating-bar').barrating('set', _storage_review_score);
@@ -1230,7 +1232,6 @@
             return false;
         });
 
-
         var _addReviews = function(_this, _type){
 
             if(BUSY_REQUEST) return;
@@ -1240,7 +1241,10 @@
             _request = $.ajax( {
                 url: '/casino/more-reviews/'+getWebName(_name)+'/'+_this.data('page'),
                 dataType: 'HTML',
-                data:{id:_this.data('id')},
+                data:{
+                    id:_this.data('id'),
+                    type: _type
+                },
                 type: 'GET',
                 success: function (data) {
                     if (_type == 'review') {

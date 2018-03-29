@@ -2817,8 +2817,34 @@ a {
     }
 
     &.review-child{
-        border-bottom:1px solid #E8EAF3;
+        // border-bottom:1px solid #E8EAF3;
     }
+
+    &.review-parent{
+        position:relative;
+
+
+        &:after{
+            content:'';
+            border-bottom:1px solid #E8EAF3;
+            position:absolute;
+            top:0;
+            left:50%;
+            width:96%;
+            transform:translateX(-50%);
+
+            @media screen and (max-width: 690px) {
+                width:94%;
+            }
+        }
+
+        &:first-child{
+            &:after{
+                display:none;
+            }
+        }
+    }
+
 
     &.admin{
         border:none !important;
@@ -2853,7 +2879,7 @@ a {
             padding:20px 30px;
 
             @media screen and (max-width: 690px) {
-                padding:10px;
+                padding:15px 10px;
             }
         }
     }
@@ -2869,7 +2895,7 @@ a {
         }
 
         .review-wrap{
-            padding:10px;
+            padding:15px 10px;
         }
 
         .list-rating{
@@ -3186,8 +3212,10 @@ a {
 }
 
 .form{
-    .js-expanding-textfields{
-        margin-top: 27px;
+    @media screen and (min-width: 691px) {
+        .js-expanding-textfields{
+            margin-top: 27px;
+        }
     }
 
     &-row{
@@ -3364,7 +3392,7 @@ a {
         margin-bottom:0;
 
         &:first-child{
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             margin-top: 0;
         }
     }
@@ -3408,19 +3436,26 @@ a {
 
     .btn-more{
         margin:0 auto;
-        transform:translateY(-50%);
+        transform: translate(-10%, -50%);
     }
 }
 
 .reviews-more{
-    margin:25px 0 0 0;
+    padding:25px 0 0 0;
+    margin:5px 20px 0;
+    border-top:1px solid #E8EAF3;
+
+    @media screen and (max-width: 690px) {
+        margin:5px 10px 0;
+        padding:10px 0 0 0;
+    }
 
     .btn-more{
         margin:0 auto;
         padding:13px 10px 12px;
 
         @media screen and (max-width: 480px) {
-            width:94%;
+            width:100%;
         }
     }
 }

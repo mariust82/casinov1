@@ -80,16 +80,16 @@
         },
         {
             "name": "lucinda/internationalization",
-            "version": "v1.1.0",
+            "version": "v1.1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/php-internationalization-api.git",
-                "reference": "ecd04a7cae4f3e122e4466b9beac5327a291d908"
+                "reference": "487a9ca308befda32b9eddd4d0ba7ad1ea4d9fcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/php-internationalization-api/zipball/ecd04a7cae4f3e122e4466b9beac5327a291d908",
-                "reference": "ecd04a7cae4f3e122e4466b9beac5327a291d908",
+                "url": "https://api.github.com/repos/aherne/php-internationalization-api/zipball/487a9ca308befda32b9eddd4d0ba7ad1ea4d9fcf",
+                "reference": "487a9ca308befda32b9eddd4d0ba7ad1ea4d9fcf",
                 "shasum": ""
             },
             "require": {
@@ -114,7 +114,7 @@
                 "internationalization",
                 "localization"
             ],
-            "time": "2018-03-11T05:22:52+00:00"
+            "time": "2018-03-28T09:24:32+00:00"
         },
         {
             "name": "lucinda/logging",
@@ -152,16 +152,16 @@
         },
         {
             "name": "lucinda/mvc",
-            "version": "v1.4.3.1",
+            "version": "v1.4.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/php-servlets-api.git",
-                "reference": "ca047217e4a0a0c090928c98a62e2b71732e86fb"
+                "reference": "9f2f7eb219586d7ecfa62001c22a44929dae1a2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/php-servlets-api/zipball/ca047217e4a0a0c090928c98a62e2b71732e86fb",
-                "reference": "ca047217e4a0a0c090928c98a62e2b71732e86fb",
+                "url": "https://api.github.com/repos/aherne/php-servlets-api/zipball/9f2f7eb219586d7ecfa62001c22a44929dae1a2b",
+                "reference": "9f2f7eb219586d7ecfa62001c22a44929dae1a2b",
                 "shasum": ""
             },
             "type": "library",
@@ -184,7 +184,7 @@
                 "servlets",
                 "view resolvers"
             ],
-            "time": "2018-03-03T15:53:03+00:00"
+            "time": "2018-03-29T12:45:52+00:00"
         },
         {
             "name": "lucinda/nosql-data-access",

@@ -9,5 +9,5 @@ try {
     new FrontController("configuration_frontend.xml");
 } catch(PathNotFoundException $e) {
     $_SERVER["REQUEST_URI"] = "/404";
-    new FrontController();
+    new FrontController("configuration_frontend.xml");
 }
