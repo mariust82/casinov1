@@ -80,5 +80,7 @@
     <route url="casino/review-like" controller="CasinoReviewLikeController" extension="json"/>
     <route url="casino/more-reviews/(name)/(page)" controller="CasinoMoreReviewsController" view="reviews"/>
     <route url="newsletter/subscribe" controller="NewsletterSubscribeController" extension="json"/>
+    <route url="casino/bonus" controller="CasinoBonusController" extension="json"/>
+    <route url="404" controller="PageNotFoundController" view="404"/>
   </routes>
 </xml>
