@@ -829,7 +829,6 @@
              _is_child,
              _rate_slider_result,
              _childReplies,
-             _parentName = '',
             _request = new XMLHttpRequest();
 
        _prepReview = function(_self){
@@ -912,7 +911,9 @@
 
         _setReviewerName = function(parent){
             var name = parent.find('.review-name').text();
-            _parentName = '<strong>@'+name+'</strong> ';
+            var pattern = '<strong>@'+name+'</strong> ';
+
+            message = pattern+_field_message.val();
         },
 
         _changeName = function(){
@@ -991,7 +992,7 @@
                                 </div>\
                                 <div class="review-body">\
                                     <div class="review-text">\
-                                        <p>'+_parentName+message+'</p>\
+                                        <p>'+message+'</p>\
                                     </div>\
                                     <div class="review-underline">\
                                         <a href="#" class="review-replies js-reply-btn">Reply</a>\
@@ -1065,7 +1066,7 @@
                                 </div>\
                                 <div class="review-body">\
                                     <div class="review-text">\
-                                        <p>'+_parentName+message+'</p>\
+                                        <p>'+message+'</p>\
                                     </div>\
                                     <div class="review-underline">\
                                         <a href="#" class="review-replies js-reply-btn">Reply</a>\
