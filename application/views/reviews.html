@@ -1,4 +1,4 @@
 <std:foreach var="${data.reviews}" value="result">
-	<item:review class="review-parent"/>
-	<item:reply/>
+	<comment:info class="review-parent"/>
+	<comment:reply total="${result.total_children}"/>
 </std:foreach>

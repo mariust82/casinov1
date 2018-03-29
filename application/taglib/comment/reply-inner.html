@@ -1,14 +1,12 @@
 <div class="reply review">
 	<div class="reply-body">
-		<forms:review rating="false"/>
+		<comment:form rating="false"/>
 	</div>
 
 	<div class="reply-data-holder">
 		<std:foreach var="${result.children}" value="result">
-			<item:review class="review-child"/>
-			<std:if condition="isset(${result.children})">
-				<item:reply-inner/>
-			</std:if>
+			<std:set name="last" value="true"/>
+			<comment:info class="review-child" last="${last}"/>
 		</std:foreach>
 	</div>
 

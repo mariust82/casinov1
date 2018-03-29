@@ -3038,6 +3038,11 @@ a {
         }
     }
 
+    &-form{
+        display:none;
+        padding: 20px 0 0 0;
+    }
+
     &-name{
         color:#465156;
         display: flex;
@@ -3181,12 +3186,16 @@ a {
 }
 
 .form{
-    &-row{
-        margin-bottom: 27px;
+    .js-expanding-textfields{
+        margin-top: 27px;
+    }
 
-        // &:last-child{
-        //     margin:0;
-        // }
+    &-row{
+        margin-top: 27px;
+
+        &:first-child{
+            margin-top:0;
+        }
 
         @media screen and (max-width: 690px) {
             margin-bottom:15px;

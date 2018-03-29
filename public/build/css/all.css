@@ -5607,6 +5607,11 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
+.review-form {
+  display: none;
+  padding: 20px 0 0 0;
+}
+
 .review-name {
   color: #465156;
   display: -webkit-box;
@@ -5778,8 +5783,16 @@ a:hover, a:active, a:visited, a:focus {
   border-bottom: 1px solid #D9D9D9;
 }
 
+.form .js-expanding-textfields {
+  margin-top: 27px;
+}
+
 .form-row {
-  margin-bottom: 27px;
+  margin-top: 27px;
+}
+
+.form-row:first-child {
+  margin-top: 0;
 }
 
 @media screen and (max-width: 690px) {
