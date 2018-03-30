@@ -146,7 +146,7 @@ $this->response->setAttribute("reviews", array (
       1 => 
       array (
         'id' => '8',
-        'name' => 'Tester',
+        'name' => 'SHmester',
         'email' => 'a@a.com',
         'body' => 'I\'m testing this functionality!',
         'likes' => '0',
@@ -161,7 +161,7 @@ $this->response->setAttribute("reviews", array (
         'total_children' => 0,
       ),
     ),
-    'total_children' => 8,
+    'total_children' => 2,
   ),
   1 => 
   array (
