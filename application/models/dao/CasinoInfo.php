@@ -52,7 +52,7 @@ class CasinoInfo
         $output->withdrawal_limits = $this->getWithdrawLimits($output->id, $primaryCurrencies);
         $output->withdrawal_timeframes = $this->getWithdrawTimeframes($output->id);
         $output->bonus_first_deposit = $this->getBonus($output->id,  array("First Deposit Bonus"));
-        $output->bonus_free = $this->getBonus($output->id, array("Free Spins","No Deposit Bonus"));
+        $output->bonus_free = $this->getBonus($output->id, array("Free Spins","No Deposit Bonus","Free Play"));
 
         $this->appendCountryInfo($output, $countryId);
 
