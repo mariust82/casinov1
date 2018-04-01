@@ -40,12 +40,7 @@ class CasinoInfo
         if($output->withdrawal_minimum) $output->withdrawal_minimum = $primaryCurrencies.$output->withdrawal_minimum;
 
         // append softwares
-        $output->softwares = $this->getDerivedData("game_manufacturers", "game_manufacturer_id", $output->id);
-        $primary = $this->getPrimarySoftware($output->id);
-        if (($key = array_search($primary, $output->softwares)) !== false) {
-            unset($output->softwares[$key]);
-        }
-        $output->softwares['primary'] = $primary;
+        $output->softwares = $this->getDerivedData("game_manufacturers", "game_manufacturer_id", $output->id,"name","is_primary DESC,t1.id DESC");
         $output->languages = $this->getDerivedData("languages", "language_id", $output->id);
         $output->currencies = $this->getDerivedData("currencies", "currency_id", $output->id, "code"); // should be code
         $output->emails = $this->getDerivedData("emails", "", $output->id);
@@ -63,17 +58,7 @@ class CasinoInfo
 
         $this->result = $output;
     }
-    
-    private function getPrimarySoftware($id) {
-        return DB("
-                SELECT
-                t1.name
-                FROM game_manufacturers AS t1
-                INNER JOIN casinos__game_manufacturers AS t2 ON t1.id = t2.game_manufacturer_id
-                WHERE t2.casino_id = ".$id."  AND t2.is_primary = 1
-            ")->toValue();
-    }
-
+   
     private function getPrimaryCurrencies($id) {
         return DB("
                 SELECT
@@ -84,22 +69,27 @@ class CasinoInfo
             ")->toColumn();
     }
 
-    private function getDerivedData($entity, $linkingColumn, $id, $columnName="name") {
+    private function getDerivedData($entity, $linkingColumn, $id, $columnName="name",$order="") {
         if($linkingColumn) {
-            return DB("
+            $query = "
                 SELECT
                 t2.".$columnName."
                 FROM casinos__".$entity." AS t1
                 INNER JOIN ".$entity." AS t2 ON t1.".$linkingColumn." = t2.id
                 WHERE t1.casino_id = ".$id."
-            ")->toColumn();
+            ";
         } else {
-            return DB("
+            $query = "
                 SELECT value 
                 FROM casinos__".$entity." 
                 WHERE casino_id = ".$id."
-            ")->toColumn();
+            ";
         }
+        
+        if ($order != '') {
+            $query .= " ORDER BY ".$order;
+        }
+        return DB($query)->toColumn();
     }
 
     private function getBankingMethodData($entity, $id) {

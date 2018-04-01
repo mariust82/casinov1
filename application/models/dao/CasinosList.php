@@ -122,6 +122,9 @@ class CasinosList
             $query.="INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id AND ".$condition."\n";
         }
         if($this->filter->getCasinoLabel()) {
+            if ($this->filter->getCasinoLabel() == "Stay away") {
+                $this->filter->promoted = FALSE;
+            }
             $query.="INNER JOIN casinos__labels AS t5 ON t1.id = t5.casino_id AND t5.label_id = (SELECT id FROM casino_labels WHERE name='".$this->filter->getCasinoLabel()."')"."\n";
         }
         if($this->filter->getCertification()) {
