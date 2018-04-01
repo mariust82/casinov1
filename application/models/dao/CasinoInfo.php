@@ -41,6 +41,11 @@ class CasinoInfo
 
         // append softwares
         $output->softwares = $this->getDerivedData("game_manufacturers", "game_manufacturer_id", $output->id);
+        $primary = $this->getPrimarySoftware($output->id);
+        if (($key = array_search($primary, $output->softwares)) !== false) {
+            unset($output->softwares[$key]);
+        }
+        $output->softwares['primary'] = $primary;
         $output->languages = $this->getDerivedData("languages", "language_id", $output->id);
         $output->currencies = $this->getDerivedData("currencies", "currency_id", $output->id, "code"); // should be code
         $output->emails = $this->getDerivedData("emails", "", $output->id);
@@ -57,6 +62,16 @@ class CasinoInfo
         $this->appendCountryInfo($output, $countryId);
 
         $this->result = $output;
+    }
+    
+    private function getPrimarySoftware($id) {
+        return DB("
+                SELECT
+                t1.name
+                FROM game_manufacturers AS t1
+                INNER JOIN casinos__game_manufacturers AS t2 ON t1.id = t2.game_manufacturer_id
+                WHERE t2.casino_id = ".$id."  AND t2.is_primary = 1
+            ")->toValue();
     }
 
     private function getPrimaryCurrencies($id) {

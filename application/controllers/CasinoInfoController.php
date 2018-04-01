@@ -43,7 +43,7 @@ class CasinoInfoController extends Controller {
         $this->response->setAttribute("menu_top", $menuTop->getEntries());
 
 	$casinoInfo = $this->response->getAttribute("casino");
-        $softwareName = (!empty($casinoInfo->softwares)?$casinoInfo->softwares[0]:"NetEnt");
+        $softwareName = (!empty($casinoInfo->softwares)?$casinoInfo->softwares['primary']:"NetEnt");
         $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $softwareName, "softwares/".strtolower(str_replace(" ", "-", $softwareName)));
         $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
 
