@@ -1,0 +1,19 @@
+<div class="reply review">
+	<div class="reply-data-holder">
+		<std:set name="self_total" value="$[total]"/>
+
+		<std:if condition="$[total] > 0">
+			<std:foreach var="${result.children}" value="result">
+				<comment:info class="review-child"/>
+			</std:foreach>
+		</std:if>
+	</div>
+	<std:if condition="${self_total} > 5">
+		<div class="review-more">
+			<a href="#" class="btn-more js-more-reviews" data-type="reply" data-id="${result.id}" data-total="${self_total}" data-page="1">
+				SHOW MORE REPLIES
+				<i class="icon-chevron-down"></i>
+			</a>
+		</div>
+	</std:if>
+</div>

@@ -110,8 +110,76 @@ $this->response->setAttribute("casino", array (
   'is_currency_accepted' => '1',
   'status' => NULL,
 ));
-$this->response->setAttribute("total_reviews", 0);
+$this->response->setAttribute("total_reviews", 100);
 $this->response->setAttribute("reviews", array (
+  0 => 
+  array (
+    'id' => '6',
+    'name' => 'Tester',
+    'email' => 'a@a.com',
+    'body' => 'I\'m testing this functionality!',
+    'likes' => '0',
+    'ip' => NULL,
+    'country' => 'UA',
+    'rating' => 7,
+    'date' => '2018-01-26 12:36:34',
+    'parent' => NULL,
+    'children' => 
+    array (
+      0 => 
+      array (
+        'id' => '7',
+        'name' => 'Tester',
+        'email' => 'a@a.com',
+        'body' => 'I\'m testing this functionality!',
+        'likes' => '0',
+        'ip' => NULL,
+        'country' => 'UA',
+        'rating' => 7,
+        'date' => '2018-01-26 12:36:34',
+        'parent' => NULL,
+        'children' => 
+        array (
+        ),
+        'total_children' => 0,
+      ),
+      1 => 
+      array (
+        'id' => '8',
+        'name' => 'SHmester',
+        'email' => 'a@a.com',
+        'body' => 'I\'m testing this functionality!',
+        'likes' => '0',
+        'ip' => NULL,
+        'country' => 'UA',
+        'rating' => 7,
+        'date' => '2018-01-26 12:36:34',
+        'parent' => NULL,
+        'children' => 
+        array (
+        ),
+        'total_children' => 0,
+      ),
+    ),
+    'total_children' => 2,
+  ),
+  1 => 
+  array (
+    'id' => '4',
+    'name' => 'Tester',
+    'email' => 'a@a.com',
+    'body' => 'I\'m testing this functionality!',
+    'likes' => '0',
+    'ip' => NULL,
+    'country' => 'UA',
+    'rating' => 7,
+    'date' => '2018-01-26 12:36:26',
+    'parent' => NULL,
+    'children' => 
+    array (
+    ),
+    'total_children' => 0,
+  ),
 ));
 $this->response->setAttribute("menu_top", array (
   0 => 

@@ -810,13 +810,13 @@
             _imgDir = $('#reviews-form').data('img-dir'),
             _countryCode = $('#reviews-form').data('country'),
             _send_btn = _wrap.find('input[name=submit]'),
-            _holderChild = $('.reply-data-holder'),
             _qty = $('.reviews-qty'),
             _contact_error_class = 'not-valid',
             _casinoID = $('.reviews-form').data('casino-id'),
-            _storage_name = localStorage.getItem('casino_'+_casinoID+'_name'),
+            // _storage_name = localStorage.getItem('casino_'+_casinoID+'_name'),
             _storage_casino_id_reviewed = localStorage.getItem('casino_'+_casinoID+'_reviewed'),
             _storage_review_score = localStorage.getItem('casino_'+_casinoID+'_score'),
+             _reviewID,
             _field_name,
             _field_email,
             _field_message,
@@ -827,10 +827,8 @@
              email,
              message,
              _is_child,
-             _reviewID,
              _rate_slider_result,
              _childReplies,
-             _parentName = '',
             _request = new XMLHttpRequest();
 
        _prepReview = function(_self){
@@ -847,25 +845,28 @@
             message = _field_message.val();
             casino_name = $('.rating-container').data('casino-name');
             _rate_slider_result = $('.rating-current-value span').text();
-            _reviewID = _field_name.closest('.reply').prev().data('id');
+            _reviewID = 0;
             ok = true;
 
-            if (_field_name.closest('.reply').length > 0) {
+            if (parent.data('id') != undefined) {
+                _reviewID = parent.data('id');
                 _is_child = true;
-                _reviewHolder = parent.find(_holderChild).first();;
+
+
+                if (parent.next().find('.reply-data-holder').length > 0) {
+                    _reviewHolder = parent.next().find('.reply-data-holder');
+                } else {
+                    _reviewID = parent.closest('.reply').prev().data('id');
+                    _setReviewerName(parent);
+                    _reviewHolder = parent.closest('.reply-data-holder');
+                }
+
                 _childReplies = parent.find('.js-reply-btn span');
             } else {
                 _is_child = false;
                 _reviewHolder = $('#review-data-holder');
             }
 
-            console.log(_field_name.closest('.reply').parent('#review-data-holder').length == 0); 
-
-            if (_field_name.closest('.reply').parent('.reply-data-holder').length > 0) {
-                _is_reply_child = true;
-            } else {
-                _is_reply_child = false;
-            }
 
             if(name === '' || !_validateInputName(name)){
                 _field_name.parent().addClass(_contact_error_class);
@@ -908,6 +909,13 @@
             return ok;
         },
 
+        _setReviewerName = function(parent){
+            var name = parent.find('.review-name').text();
+            var pattern = '<strong>@'+name+'</strong> ';
+
+            message = pattern+_field_message.val();
+        },
+
         _changeName = function(){
             $('#reviews-form input[name=name]').on('keyup', function() {
                 $('#reviews-form .review-name').text($(this).val());
@@ -920,23 +928,13 @@
                 name: name,
                 email: email,
                 body: message,
-                parent: 0
+                parent: _reviewID
             };
-
-            // if (_is_reply_child) {
-            //     _parentName = '<strong>@'+_field_name.closest('.reply').prev().find('.review-name').first().text()+'</strong> ';
-            //     ajaxData['body'] = _parentName+message;
-            // }
-
-            if (_is_child) {
-                ajaxData['parent'] = _reviewID;
-            }
 
             _sendReview(ajaxData);
         },
 
        _sendReview = function(ajaxData){
-            console.log(ajaxData); 
             _request.abort();
             _request = $.ajax( {
                 url: "/casino/review-write",
@@ -976,14 +974,6 @@
 
                 function getItemPattern() {
                     var pattern;
-                    var getLink = function(){
-                        if (_field_name.closest('.reply').parent('#review-data-holder').length > 0) {
-                            // return '<a href="#" class="review-replies js-reply-btn">Reply</a>';
-                            return '';
-                        } else {
-                            return '';
-                        }
-                    };
 
                     if (_is_child) {
                         pattern = '\
@@ -1002,10 +992,10 @@
                                 </div>\
                                 <div class="review-body">\
                                     <div class="review-text">\
-                                        <p>'+_parentName+message+'</p>\
+                                        <p>'+message+'</p>\
                                     </div>\
                                     <div class="review-underline">\
-                                        '+getLink()+'\
+                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
                                         <div class="votes js-vote">\
                                             <a href="#" class="votes-like vote-button" data-id="'+data.body.id+'">\
                                                 <i class="icon-icon_likes"></i>\
@@ -1013,39 +1003,37 @@
                                             </a>\
                                         </div>\
                                     </div>\
-                                </div>\
-                            </div>\
-                        </div>\
-                        <div class="reply">\
-                            <div class="reply-body">\
-                                <div class="form">\
-                                    <div class="form-row">\
-                                        <div class="textfield-holder">\
-                                            <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
-                                        </div>\
-                                    </div>\
-                                    <div class="hidden js-expanding-textfields">\
-                                        <div class="form-row form-multicol">\
-                                            <div class="form-col">\
-                                                <div class="textfield-holder error">\
-                                                    <input type="text" name="name" class="textfield" placeholder="Name">\
+                                    <div class="review-form">\
+                                        <div class="form">\
+                                            <div class="form-row">\
+                                                <div class="textfield-holder">\
+                                                    <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
                                                 </div>\
                                             </div>\
-                                            <div class="form-col">\
-                                                <div class="textfield-holder error">\
-                                                    <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
-                                                </div>\
-                                            </div>\
-                                        </div>\
-                                        <div class="form-row">\
-                                            <div class="review-submit-holder">\
-                                                <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
-                                                <div>\
-                                                    <div class="field-error-required not-valid action-field">\
-                                                        Please fill in the required fields.\
+                                            <div class="hidden js-expanding-textfields">\
+                                                <div class="form-row form-multicol">\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="name" class="textfield" placeholder="Name">\
+                                                        </div>\
                                                     </div>\
-                                                    <div class="field-success success action-field">\
-                                                        Thank You!\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="form-row">\
+                                                    <div class="review-submit-holder">\
+                                                        <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
+                                                        <div>\
+                                                            <div class="field-error-required not-valid action-field">\
+                                                                Please fill in the required fields.\
+                                                            </div>\
+                                                            <div class="field-success success action-field">\
+                                                                Thank You!\
+                                                            </div>\
+                                                        </div>\
                                                     </div>\
                                                 </div>\
                                             </div>\
@@ -1053,7 +1041,6 @@
                                     </div>\
                                 </div>\
                             </div>\
-                            <div class="reply-data-holder"></div>\
                         </div>\
                         ';
                     } else {
@@ -1079,7 +1066,7 @@
                                 </div>\
                                 <div class="review-body">\
                                     <div class="review-text">\
-                                        <p>'+_parentName+message+'</p>\
+                                        <p>'+message+'</p>\
                                     </div>\
                                     <div class="review-underline">\
                                         <a href="#" class="review-replies js-reply-btn">Reply</a>\
@@ -1090,46 +1077,46 @@
                                             </a>\
                                         </div>\
                                     </div>\
+                                    <div class="review-form">\
+                                        <div class="form">\
+                                            <div class="form-row">\
+                                                <div class="textfield-holder">\
+                                                    <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
+                                                </div>\
+                                            </div>\
+                                            <div class="hidden js-expanding-textfields">\
+                                                <div class="form-row form-multicol">\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="name" class="textfield" placeholder="Name">\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="form-row">\
+                                                    <div class="review-submit-holder">\
+                                                        <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
+                                                        <div>\
+                                                            <div class="field-error-required not-valid action-field">\
+                                                                Please fill in the required fields.\
+                                                            </div>\
+                                                            <div class="field-success success action-field">\
+                                                                Thank You!\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
                                 </div>\
                             </div>\
                         </div>\
-                        <div class="reply">\
-                            <div class="reply-body">\
-                                <div class="form">\
-                                    <div class="form-row">\
-                                        <div class="textfield-holder">\
-                                            <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
-                                        </div>\
-                                    </div>\
-                                    <div class="hidden js-expanding-textfields">\
-                                        <div class="form-row form-multicol">\
-                                            <div class="form-col">\
-                                                <div class="textfield-holder error">\
-                                                    <input type="text" name="name" class="textfield" placeholder="Name">\
-                                                </div>\
-                                            </div>\
-                                            <div class="form-col">\
-                                                <div class="textfield-holder error">\
-                                                    <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
-                                                </div>\
-                                            </div>\
-                                        </div>\
-                                        <div class="form-row">\
-                                            <div class="review-submit-holder">\
-                                                <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
-                                                <div>\
-                                                    <div class="field-error-required not-valid action-field">\
-                                                        Please fill in the required fields.\
-                                                    </div>\
-                                                    <div class="field-success success action-field">\
-                                                        Thank You!\
-                                                    </div>\
-                                                </div>\
-                                            </div>\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                            </div>\
+                        <div class="reply review">\
                             <div class="reply-data-holder"></div>\
                         </div>\
                         ';
@@ -1148,12 +1135,13 @@
                 _qty.text(parseInt(_qty.text())+1);
 
                 localStorage.setItem('casino_'+_casinoID+'_reviewed', 1);
-                localStorage.setItem('casino_'+_casinoID+'_name', name);
+                // localStorage.setItem('casino_'+_casinoID+'_name', name);
                 localStorage.setItem('casino_'+_casinoID+'_score', _rate_slider_result);
             }
             if (_is_child) _childReplies.text(parseInt(_childReplies.text())+1);
 
-            initReplies();
+            // initReplies();
+            $('.review-form').slideUp();
             initReviewForm();
             initTexfieldsLabels();
 
@@ -1167,7 +1155,7 @@
         _doIfReviewedAlready = function(){
             var formContainer = $('#reviews-form');
 
-            _changeName(_storage_name);
+            // _changeName(_storage_name);
             $('.review-rating', formContainer).addClass('active');
             $('textarea', formContainer).addClass('disabled');
             $('.rating-bar').barrating('set', _storage_review_score);
@@ -1245,7 +1233,6 @@
             return false;
         });
 
-
         var _addReviews = function(_this, _type){
 
             if(BUSY_REQUEST) return;
@@ -1255,7 +1242,10 @@
             _request = $.ajax( {
                 url: '/casino/more-reviews/'+getWebName(_name)+'/'+_this.data('page'),
                 dataType: 'HTML',
-                data:{id:_this.data('id')},
+                data:{
+                    id:_this.data('id'),
+                    type: _type
+                },
                 type: 'GET',
                 success: function (data) {
                     if (_type == 'review') {
@@ -1289,7 +1279,7 @@
         },
 
         _refreshData = function(){
-            initReplies();
+            // initReplies();
             initReviewForm();
             initTexfieldsLabels();
 
@@ -1816,15 +1806,10 @@
     }
 
     function initReplies() {
-        var container = $('.review-parent, .review-child');
-        var btn = $('.js-reply-btn');
+        $('#reviews').on('click', '.js-reply-btn', function(e) {
+            $(this).parent().next().slideToggle();
 
-        btn.each(function(index, el) {
-            $(this).off();
-            $(this).on('click', function(e) {
-                $(this).closest(container).next().find('.reply-body').first().slideToggle();
-                e.preventDefault();
-            });
+            return false;
         });
     }
 
