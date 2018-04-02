@@ -12,7 +12,7 @@ class CasinoFilter
 
     private $country_accepted = false;
     private $free_bonus = false;
-    public $promoted = false;
+    private $promoted = false;
 
     private $banking_method;
     private $label;
@@ -90,6 +90,10 @@ class CasinoFilter
 
     public function getFreeBonus() {
         return $this->free_bonus;
+    }
+    
+    public function setPromoted($value) {
+        $this->promoted = $value;
     }
 
     public function getBankingMethod() {

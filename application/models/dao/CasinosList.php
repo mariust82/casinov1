@@ -28,7 +28,7 @@ class CasinosList
                 break;
             default:
                 $order .= " ORDER BY t1.priority ASC, t1.id DESC"."\n";
-                $this->filter->promoted = TRUE;
+                $this->filter->setPromoted(TRUE);
                 break;
         }
         $query = $this->getQuery(array("t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"));
@@ -123,7 +123,7 @@ class CasinosList
         }
         if($this->filter->getCasinoLabel()) {
             if ($this->filter->getCasinoLabel() == "Stay away") {
-                $this->filter->promoted = FALSE;
+                $this->filter->setPromoted(FALSE);
             }
             $query.="INNER JOIN casinos__labels AS t5 ON t1.id = t5.casino_id AND t5.label_id = (SELECT id FROM casino_labels WHERE name='".$this->filter->getCasinoLabel()."')"."\n";
         }
