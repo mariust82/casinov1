@@ -6647,9 +6647,9 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
-.player .play-demo {
+/*.player .play-demo {
   border: none;
-}
+}*/
 
 .player-controls {
   text-align: center;
