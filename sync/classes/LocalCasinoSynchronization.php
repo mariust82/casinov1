@@ -13,7 +13,7 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
         foreach($info["labels"] as $line) {
             if($line["id"]>3) continue;
             echo "INSERT INTO casinos__labels SET casino_id=".$casinoID.", label_id=".$line["id"]."";
-            DB::execute("INSERT INTO casinos__labels SET casino_id=:casino_id, label_id=:label_id",array(
+            DB::execute("INSERT IGNORE INTO casinos__labels SET casino_id=:casino_id, label_id=:label_id",array(
                 ":casino_id"=>$casinoID,
                 ":label_id"=>$line["id"]
             ));
@@ -23,7 +23,7 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
             // add best ( WHERE is_open=1 AND `score`>7.3 )
             $rand = rand(0,9);
             if($rand == 0 && !$info["status"]) {
-                DB::execute("INSERT INTO casinos__labels SET casino_id=:casino_id, label_id=:label_id",array(
+                DB::execute("INSERT IGNORE INTO casinos__labels SET casino_id=:casino_id, label_id=:label_id",array(
                     ":casino_id"=>$casinoID,
                     ":label_id"=>7
                 ));
@@ -32,7 +32,7 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
             // add safe ( WHERE is_open=1 AND (`wd_cred`+`casino_fairness`)/2>7.3 )
             $rand = rand(0,9);
             if($rand == 0 && !$info["status"]) {
-                DB::execute("INSERT INTO casinos__labels SET casino_id=:casino_id, label_id=:label_id",array(
+                DB::execute("INSERT IGNORE INTO casinos__labels SET casino_id=:casino_id, label_id=:label_id",array(
                     ":casino_id"=>$casinoID,
                     ":label_id"=>8
                 ));
@@ -40,7 +40,7 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
 
             // add stay away
             if($info["status"] && $info["status"]["name"]=="Blacklisted") {
-                DB::execute("INSERT INTO casinos__labels SET casino_id=:casino_id, label_id=:label_id",array(
+                DB::execute("INSERT IGNORE INTO casinos__labels SET casino_id=:casino_id, label_id=:label_id",array(
                     ":casino_id"=>$casinoID,
                     ":label_id"=>9
                 ));
