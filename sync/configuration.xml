@@ -10,7 +10,7 @@
     </application>
     <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
         <lucinda>https://api.datamother.com</lucinda>
-        <dev>https://devapi.datamother.com</dev>
+        <dev>https://api.datamother.com</dev>
         <live>https://api.datamother.com</live>
     </rest_api>
     <servers>
