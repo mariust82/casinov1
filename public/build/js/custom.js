@@ -806,6 +806,7 @@
 
     function AddingReview(obj){
 
+        this.obj = obj;
         var _wrap = obj,
             _imgDir = $('#reviews-form').data('img-dir'),
             _countryCode = $('#reviews-form').data('country'),
@@ -827,6 +828,7 @@
              email,
              message,
              _is_child,
+             _is_child_of_child,
              _rate_slider_result,
              _childReplies,
             _request = new XMLHttpRequest();
@@ -855,7 +857,9 @@
 
                 if (parent.next().find('.reply-data-holder').length > 0) {
                     _reviewHolder = parent.next().find('.reply-data-holder');
+                    _is_child_of_child = false;
                 } else {
+                    _is_child_of_child = true;
                     _reviewID = parent.closest('.reply').prev().data('id');
                     _setReviewerName(parent);
                     _reviewHolder = parent.closest('.reply-data-holder');
@@ -922,7 +926,7 @@
             });
         },
 
-        _prepAjaxData = function(){
+        _prepAjaxData = function(_this){
             var ajaxData = {
                 casino: casino_name,
                 name: name,
@@ -931,10 +935,10 @@
                 parent: _reviewID
             };
 
-            _sendReview(ajaxData);
+            _sendReview(ajaxData, _this);
         },
 
-       _sendReview = function(ajaxData){
+       _sendReview = function(ajaxData, _this){
             _request.abort();
             _request = $.ajax( {
                 url: "/casino/review-write",
@@ -944,7 +948,7 @@
                 type: 'POST',
                 success: function ( data ) {
                     if(data.status =="ok") {
-                        _loadData(data);
+                        _loadData(data, _this);
                         // _send_btn.prop('disabled', true);
                         _field_name.val('');
                         _field_email.val('');
@@ -966,7 +970,7 @@
             });
         },
 
-        _loadData = function(data) {
+        _loadData = function(data, _this) {
 
             if ($.isEmptyObject(data)) {
                 _showEmptyMessage();
@@ -1125,7 +1129,13 @@
                     return pattern;
                 }
 
-                _reviewHolder.prepend(getItemPattern());
+                if (_is_child_of_child) {
+                    $(getItemPattern()).insertAfter(_this)
+                } else {
+                    _reviewHolder.prepend(getItemPattern());
+                }
+
+
                 _refreshData();
             }
         },
@@ -1172,7 +1182,7 @@
                    if (error === false) {
                        e.stopPropagation();
                    } else {
-                        _prepAjaxData();
+                        _prepAjaxData(_wrap);
                    }
                 }
             });
