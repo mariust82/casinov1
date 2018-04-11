@@ -176,6 +176,10 @@
             _icon = 'icon-free-bonus-icon';
         };
 
+        if (_type == 'Free Play') {
+            _type = "Free Bonus";
+        };
+
         if (_code != 'No code required') _code_class = 'js-copy-to-clip js-copy-tooltip';
 
         if (_min_deposit == ''){

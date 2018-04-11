@@ -1,4 +1,15 @@
 <?php
+function getAbbreviation($name)
+{
+    $words = explode(" ", $name);
+    $abbr = "";
+
+    foreach ($words as $word) {
+      $abbr .= $word[0];
+    }
+    return $abbr;
+}
+
 function containsCasino($name)
 {
     return strpos($name, 'Casino');
