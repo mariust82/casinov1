@@ -125,7 +125,10 @@ class CasinosList
             if ($this->filter->getCasinoLabel() == "Stay away") {
                 $this->filter->setPromoted(FALSE);
             }
-            $query.="INNER JOIN casinos__labels AS t5 ON t1.id = t5.casino_id AND t5.label_id = (SELECT id FROM casino_labels WHERE name='".$this->filter->getCasinoLabel()."')"."\n";
+            
+            if ($this->filter->getCasinoLabel() != "New") {
+                $query.="INNER JOIN casinos__labels AS t5 ON t1.id = t5.casino_id AND t5.label_id = (SELECT id FROM casino_labels WHERE name='".$this->filter->getCasinoLabel()."')"."\n";
+            }
         }
         if($this->filter->getCertification()) {
             $query.="INNER JOIN casinos__certifications AS t6 ON t1.id = t6.casino_id AND t6.certification_id = (SELECT id FROM certifications WHERE name='".$this->filter->getCertification()."')"."\n";
