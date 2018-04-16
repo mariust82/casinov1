@@ -9,6 +9,8 @@
 class LocalCasinoSynchronization extends NewCasinoSynchronization
 {
     protected function setLabels($casinoID, $info) {
+        var_dump($casinoID);
+        var_dump($info);
         DB::execute("DELETE FROM casinos__labels WHERE casino_id = ".$casinoID);
         foreach($info["labels"] as $line) {
             if($line["id"]>3) continue;
