@@ -50,6 +50,7 @@
     <route url="warn/(name)" controller="CasinoWarningController" view="casino-warning"/>
     <route url="bonus-list/(name)" controller="CasinosByBonusTypeController" view="casinos" rebrand_tables="bonus_types"/>
     <route url="bonus-list" controller="BonusesController" view="bonus-types"/>
+    <route url="casino/bonus" controller="CasinoBonusController" extension="json"/>
     <route url="countries-list/(name)" controller="CasinosByCountryController" view="casinos"/>
     <route url="countries" controller="CountriesController" view="countries"/>
     <route url="compatability/(name)" controller="CasinosByCompatibilityController" view="casinos"/>
@@ -62,9 +63,9 @@
     <route url="play-counter" controller="GamePlayCounterController" extension="json"/>
     <route url="features/(name)" controller="CasinosByFeatureController" view="casinos"/>
     <route url="features" controller="FeaturesController" view="features"/>
-    <route url="privacy" view="privacy-policy"/>
-    <route url="terms" view="terms-and-conditions"/>
-    <route url="contact" view="contact-us"/>
+    <route url="privacy" controller="PrivacyController" view="privacy-policy"/>
+    <route url="terms" controller="TermsController" view="terms-and-conditions"/>
+    <route url="contact" controller="ContactController" view="contact-us"/>
     <route url="contact/send" controller="ContactSendController"/>
     <route url="casinos-filter/(page)" controller="CasinosFilterController" view="casinos-list"/>
     <route url="casinos-filter" controller="CasinosFilterController" view="casinos-list"/>
@@ -79,5 +80,7 @@
     <route url="casino/review-like" controller="CasinoReviewLikeController" extension="json"/>
     <route url="casino/more-reviews/(name)/(page)" controller="CasinoMoreReviewsController" view="reviews"/>
     <route url="newsletter/subscribe" controller="NewsletterSubscribeController" extension="json"/>
+    <route url="casino/bonus" controller="CasinoBonusController" extension="json"/>
+    <route url="404" controller="PageNotFoundController" view="404"/>
   </routes>
 </xml>

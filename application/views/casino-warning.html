@@ -1,34 +1,33 @@
-<std:set name="page" value="casino-warning"/>
-
-<import file="templates/include-header"/>
-	<block:links-carousel/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casino-warning"/>
+	<site:links-carousel items="${data.menu_bottom}"/>
 
 	<div class="warning">
 		<div class="container">
 			<div class="warning-heading">
 				<h1 class="warning-title">${data.page_info.body_title}</h1>
 				<div class="warning-img">
-					<img src="${get_img_dir()}/casino_logo_light/124x82/${normalize_logo(${data.casino.name})}.png" alt="" width="124" height="82">
+					<img src="${getCasinoLogo(${data.casino.name},'124x82')}" alt="" width="124" height="82">
 				</div>
 			</div>
 		</div>
 		<div class="container">
 			<div class="box">
-				<h2 class="title title-middle">${data.casino.name} Casino is not recommended by us. Here is why:</h2>
-				<div class="warning-text">${data.casino.name} Casino has been warn and added to our illegitimate casinos Blacklist. This is due to the fact that they lost contact and got complaints from players that had trouble to cash out. All of our attempts to contact this casino were not fulfilled. We strongly advise that players will play at other casinos.</div>
-				<div class="warning-warn">Still want to visit ${data.casino.name} Casino?</div>
+				<h2 class="title title-middle">${data.casino.name} is not recommended by us. Here is why:</h2>
+				<div class="warning-text">${data.casino.name} has been warn and added to our illegitimate casinos Blacklist. This is due to the fact that they lost contact and got complaints from players that had trouble to cash out. All of our attempts to contact this casino were not fulfilled. We strongly advise that players will play at other casinos.</div>
+				<div class="warning-warn">Still want to visit ${data.casino.name}?</div>
 				<a href="${data.casino.affiliate_link}" rel="nofollow" class="btn btn-danger">I UNDERSTAND THE RISKS</a>
 			</div>
 		</div>
 	</div>
 
-	<div class="related">
-		<div class="container">
-			<div class="headeing">
-				<div class="title title-middle">We recommend the following casinos</div>
-			</div>
-			<item:casino type="SOFTWARE" data="${data.recommended_casinos}"/>
-		</div>
-	</div>
-
-<import file="templates/include-footer"/>
+    <std:if condition="count(${data.recommended_casinos}) > 0">
+        <div class="related">
+            <div class="container">
+                <div class="headeing">
+                    <div class="title title-middle">We recommend the following casinos</div>
+                </div>
+                <casino:list type="SOFTWARE" id="1" data="${data.recommended_casinos}"/>
+            </div>
+        </div>
+    </std:if>
+<site:bottom menu="${data.menu_top}"/>

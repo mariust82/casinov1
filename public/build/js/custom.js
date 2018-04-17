@@ -41,15 +41,51 @@
     contentTooltipConfig = {
         trigger: 'click',
         minWidth: 460,
-        animation: 'grow',
         interactive: true,
         contentAsHTML: true,
         debug: false,
+        content: $('.loader'),
+        animation: 'fade',
+        contentCloning: false,
         functionReady: function(){
             $('body').addClass('shadow');
         },
         functionAfter: function(){
             $('body').removeClass('shadow');
+        },
+        functionBefore: function(instance, helper) {
+            
+            var $origin = $(helper.origin);
+
+            if ($origin.data('loaded') !== true) {
+
+                var _name = $origin.data('name');
+                var _is_free = $origin.data('is-free');
+                var _request = new XMLHttpRequest();
+
+                _request.abort();
+                _request = $.ajax( {
+                    url: "/casino/bonus",
+                    data: {
+                        casino: _name,
+                        is_free: _is_free,
+                    },
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (response) {
+                        if(response.status =="ok") {
+                            instance.content(getBonusPattern(response, _name));
+                            setTimeout(function(){
+                                $('.js-tooltip').tooltipster(tooltipConfig);
+                                $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                                copyToClipboard();
+                                checkStringLength($('.bonus-box'), 15);
+                            }, 50)
+                        }
+                        $origin.data('loaded', true);
+                    }
+                });
+            }
         }
     };
     
@@ -122,16 +158,87 @@
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
     }
 
-    function checkStringLength(box, num) {
-        // var box = $('.bonus-box');
+    function getBonusPattern(data, name) {
+        var _name = name;
+        var _amount = data.body.bonus.amount;
+        var _code = data.body.bonus.code;
+        var _games_allowed = data.body.bonus.games_allowed;
+        var _min_deposit = data.body.bonus.min_deposit;
+        var _type = data.body.bonus.type;
+        var _wagering = data.body.bonus.wagering;
+        var _block_class = 'bonus-free';
+        var _icon = 'icon-icon_bonuses';
+        var _code_class = '';
+        var _success_class = '';
 
+        if (_type == 'First Deposit Bonus') {
+            _block_class = 'bonus-first';
+            _icon = 'icon-free-bonus-icon';
+        };
+
+        if (_type == 'Free Play') {
+            _type = "Free Bonus";
+        };
+
+        if (_code != 'No code required') _code_class = 'js-copy-to-clip js-copy-tooltip';
+
+        if (_min_deposit == ''){
+            _min_deposit = 'Free';
+            _success_class = 'success';
+
+        };
+
+        var pattern = '\
+            <div class="tooltip-content '+_block_class+'">\
+                <div class="tooltip-templates-heading">\
+                    <h2 class="tooltip-templates-title">'+_name+' '+_type+'</h2>\
+                    <div class="tooltip-templates-button">\
+                        <a href="/visit/'+getWebName(_name)+'" target="_blank" rel="nofollow" class="btn btn-small">VISIT CASINO</a>\
+                    </div>\
+                </div>\
+                <div class="tooltip-templates-body">\
+                    <div class="bonus-box">\
+                        <div class="bonus-box-heading">\
+                            <span>'+_amount+' '+_type+'</span>\
+                        </div>\
+                        <div class="bonus-box-body">\
+                            <div class="bonus-box-btn dashed '+_code_class+'" data-code="'+_code+'">'+_code+'</div>\
+                            <std:unset name="code_class"/>\
+                            <ul class="bonus-box-list">\
+                                <li>\
+                                    <span class="bonus-box-list-label">Wagering</span>\
+                                    <strong>'+_wagering+'</strong>\
+                                </li>\
+                                <li>\
+                                    <span class="bonus-box-list-label">Games allowed</span>\
+                                    <strong class="list-item-flex">\
+                                        <span class="list-item-trun">'+_games_allowed+'</span>\
+                                        <span class="bubble js-tooltip tooltipstered" title="'+_games_allowed+'">More</span>\
+                                    </strong>\
+                                </li>\
+                                <li>\
+                                    <span class="bonus-box-list-label">Min. deposit</span>\
+                                    <strong class="'+_success_class+'">'+_min_deposit+'</strong>\
+                                </li>\
+                            </ul>\
+                        </div>\
+                        <div class="bonus-box-circle">\
+                            <i class="'+_icon+'"></i>\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+        ';
+
+        return pattern;
+    }
+
+    function checkStringLength(box, num) {
         $(box).each(function(index, el) {
-            // var parent = $(this).find('.list-item-flex');
             var child = $(this).find('.list-item-trun');
             var bubble = $(this).find('.bubble');
 
             if (child.text().length >= num) {
-                // bubble.show();
                 bubble.css('visibility', 'visible');
             }
         });
@@ -703,17 +810,18 @@
 
     function AddingReview(obj){
 
+        this.obj = obj;
         var _wrap = obj,
             _imgDir = $('#reviews-form').data('img-dir'),
             _countryCode = $('#reviews-form').data('country'),
             _send_btn = _wrap.find('input[name=submit]'),
-            _holderChild = $('.reply-data-holder'),
             _qty = $('.reviews-qty'),
             _contact_error_class = 'not-valid',
             _casinoID = $('.reviews-form').data('casino-id'),
-            _storage_name = localStorage.getItem('casino_'+_casinoID+'_name'),
+            // _storage_name = localStorage.getItem('casino_'+_casinoID+'_name'),
             _storage_casino_id_reviewed = localStorage.getItem('casino_'+_casinoID+'_reviewed'),
             _storage_review_score = localStorage.getItem('casino_'+_casinoID+'_score'),
+             _reviewID,
             _field_name,
             _field_email,
             _field_message,
@@ -724,10 +832,9 @@
              email,
              message,
              _is_child,
-             _reviewID,
+             _is_child_of_child,
              _rate_slider_result,
              _childReplies,
-             _parentName = '',
             _request = new XMLHttpRequest();
 
        _prepReview = function(_self){
@@ -744,25 +851,30 @@
             message = _field_message.val();
             casino_name = $('.rating-container').data('casino-name');
             _rate_slider_result = $('.rating-current-value span').text();
-            _reviewID = _field_name.closest('.reply').prev().data('id');
+            _reviewID = 0;
             ok = true;
 
-            if (_field_name.closest('.reply').length > 0) {
+            if (parent.data('id') != undefined) {
+                _reviewID = parent.data('id');
                 _is_child = true;
-                _reviewHolder = parent.find(_holderChild).first();;
+
+
+                if (parent.next().find('.reply-data-holder').length > 0) {
+                    _reviewHolder = parent.next().find('.reply-data-holder');
+                    _is_child_of_child = false;
+                } else {
+                    _is_child_of_child = true;
+                    _reviewID = parent.closest('.reply').prev().data('id');
+                    _setReviewerName(parent);
+                    _reviewHolder = parent.closest('.reply-data-holder');
+                }
+
                 _childReplies = parent.find('.js-reply-btn span');
             } else {
                 _is_child = false;
                 _reviewHolder = $('#review-data-holder');
             }
 
-            console.log(_field_name.closest('.reply').parent('#review-data-holder').length == 0); 
-
-            if (_field_name.closest('.reply').parent('.reply-data-holder').length > 0) {
-                _is_reply_child = true;
-            } else {
-                _is_reply_child = false;
-            }
 
             if(name === '' || !_validateInputName(name)){
                 _field_name.parent().addClass(_contact_error_class);
@@ -805,35 +917,32 @@
             return ok;
         },
 
+        _setReviewerName = function(parent){
+            var name = parent.find('.review-name').text();
+            var pattern = '<strong>@'+name+'</strong> ';
+
+            message = pattern+_field_message.val();
+        },
+
         _changeName = function(){
             $('#reviews-form input[name=name]').on('keyup', function() {
                 $('#reviews-form .review-name').text($(this).val());
             });
         },
 
-        _prepAjaxData = function(){
+        _prepAjaxData = function(_this){
             var ajaxData = {
                 casino: casino_name,
                 name: name,
                 email: email,
                 body: message,
-                parent: 0
+                parent: _reviewID
             };
 
-            // if (_is_reply_child) {
-            //     _parentName = '<strong>@'+_field_name.closest('.reply').prev().find('.review-name').first().text()+'</strong> ';
-            //     ajaxData['body'] = _parentName+message;
-            // }
-
-            if (_is_child) {
-                ajaxData['parent'] = _reviewID;
-            }
-
-            _sendReview(ajaxData);
+            _sendReview(ajaxData, _this);
         },
 
-       _sendReview = function(ajaxData){
-            console.log(ajaxData); 
+       _sendReview = function(ajaxData, _this){
             _request.abort();
             _request = $.ajax( {
                 url: "/casino/review-write",
@@ -843,7 +952,7 @@
                 type: 'POST',
                 success: function ( data ) {
                     if(data.status =="ok") {
-                        _loadData(data);
+                        _loadData(data, _this);
                         // _send_btn.prop('disabled', true);
                         _field_name.val('');
                         _field_email.val('');
@@ -865,7 +974,7 @@
             });
         },
 
-        _loadData = function(data) {
+        _loadData = function(data, _this) {
 
             if ($.isEmptyObject(data)) {
                 _showEmptyMessage();
@@ -873,14 +982,6 @@
 
                 function getItemPattern() {
                     var pattern;
-                    var getLink = function(){
-                        if (_field_name.closest('.reply').parent('#review-data-holder').length > 0) {
-                            // return '<a href="#" class="review-replies js-reply-btn">Reply</a>';
-                            return '';
-                        } else {
-                            return '';
-                        }
-                    };
 
                     if (_is_child) {
                         pattern = '\
@@ -899,10 +1000,10 @@
                                 </div>\
                                 <div class="review-body">\
                                     <div class="review-text">\
-                                        <p>'+_parentName+message+'</p>\
+                                        <p>'+message+'</p>\
                                     </div>\
                                     <div class="review-underline">\
-                                        '+getLink()+'\
+                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
                                         <div class="votes js-vote">\
                                             <a href="#" class="votes-like vote-button" data-id="'+data.body.id+'">\
                                                 <i class="icon-icon_likes"></i>\
@@ -910,39 +1011,37 @@
                                             </a>\
                                         </div>\
                                     </div>\
-                                </div>\
-                            </div>\
-                        </div>\
-                        <div class="reply">\
-                            <div class="reply-body">\
-                                <div class="form">\
-                                    <div class="form-row">\
-                                        <div class="textfield-holder">\
-                                            <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
-                                        </div>\
-                                    </div>\
-                                    <div class="hidden js-expanding-textfields">\
-                                        <div class="form-row form-multicol">\
-                                            <div class="form-col">\
-                                                <div class="textfield-holder error">\
-                                                    <input type="text" name="name" class="textfield" placeholder="Name">\
+                                    <div class="review-form">\
+                                        <div class="form">\
+                                            <div class="form-row">\
+                                                <div class="textfield-holder">\
+                                                    <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
                                                 </div>\
                                             </div>\
-                                            <div class="form-col">\
-                                                <div class="textfield-holder error">\
-                                                    <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
-                                                </div>\
-                                            </div>\
-                                        </div>\
-                                        <div class="form-row">\
-                                            <div class="review-submit-holder">\
-                                                <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
-                                                <div>\
-                                                    <div class="field-error-required not-valid action-field">\
-                                                        Please fill in the required fields.\
+                                            <div class="hidden js-expanding-textfields">\
+                                                <div class="form-row form-multicol">\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="name" class="textfield" placeholder="Name">\
+                                                        </div>\
                                                     </div>\
-                                                    <div class="field-success success action-field">\
-                                                        Thank You!\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="form-row">\
+                                                    <div class="review-submit-holder">\
+                                                        <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
+                                                        <div>\
+                                                            <div class="field-error-required not-valid action-field">\
+                                                                Please fill in the required fields.\
+                                                            </div>\
+                                                            <div class="field-success success action-field">\
+                                                                Thank You!\
+                                                            </div>\
+                                                        </div>\
                                                     </div>\
                                                 </div>\
                                             </div>\
@@ -950,7 +1049,6 @@
                                     </div>\
                                 </div>\
                             </div>\
-                            <div class="reply-data-holder"></div>\
                         </div>\
                         ';
                     } else {
@@ -976,7 +1074,7 @@
                                 </div>\
                                 <div class="review-body">\
                                     <div class="review-text">\
-                                        <p>'+_parentName+message+'</p>\
+                                        <p>'+message+'</p>\
                                     </div>\
                                     <div class="review-underline">\
                                         <a href="#" class="review-replies js-reply-btn">Reply</a>\
@@ -987,46 +1085,46 @@
                                             </a>\
                                         </div>\
                                     </div>\
+                                    <div class="review-form">\
+                                        <div class="form">\
+                                            <div class="form-row">\
+                                                <div class="textfield-holder">\
+                                                    <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
+                                                </div>\
+                                            </div>\
+                                            <div class="hidden js-expanding-textfields">\
+                                                <div class="form-row form-multicol">\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="name" class="textfield" placeholder="Name">\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="form-row">\
+                                                    <div class="review-submit-holder">\
+                                                        <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
+                                                        <div>\
+                                                            <div class="field-error-required not-valid action-field">\
+                                                                Please fill in the required fields.\
+                                                            </div>\
+                                                            <div class="field-success success action-field">\
+                                                                Thank You!\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
                                 </div>\
                             </div>\
                         </div>\
-                        <div class="reply">\
-                            <div class="reply-body">\
-                                <div class="form">\
-                                    <div class="form-row">\
-                                        <div class="textfield-holder">\
-                                            <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
-                                        </div>\
-                                    </div>\
-                                    <div class="hidden js-expanding-textfields">\
-                                        <div class="form-row form-multicol">\
-                                            <div class="form-col">\
-                                                <div class="textfield-holder error">\
-                                                    <input type="text" name="name" class="textfield" placeholder="Name">\
-                                                </div>\
-                                            </div>\
-                                            <div class="form-col">\
-                                                <div class="textfield-holder error">\
-                                                    <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
-                                                </div>\
-                                            </div>\
-                                        </div>\
-                                        <div class="form-row">\
-                                            <div class="review-submit-holder">\
-                                                <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
-                                                <div>\
-                                                    <div class="field-error-required not-valid action-field">\
-                                                        Please fill in the required fields.\
-                                                    </div>\
-                                                    <div class="field-success success action-field">\
-                                                        Thank You!\
-                                                    </div>\
-                                                </div>\
-                                            </div>\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                            </div>\
+                        <div class="reply review">\
                             <div class="reply-data-holder"></div>\
                         </div>\
                         ';
@@ -1035,7 +1133,13 @@
                     return pattern;
                 }
 
-                _reviewHolder.prepend(getItemPattern());
+                if (_is_child_of_child) {
+                    $(getItemPattern()).insertAfter(_this)
+                } else {
+                    _reviewHolder.prepend(getItemPattern());
+                }
+
+
                 _refreshData();
             }
         },
@@ -1045,12 +1149,13 @@
                 _qty.text(parseInt(_qty.text())+1);
 
                 localStorage.setItem('casino_'+_casinoID+'_reviewed', 1);
-                localStorage.setItem('casino_'+_casinoID+'_name', name);
+                // localStorage.setItem('casino_'+_casinoID+'_name', name);
                 localStorage.setItem('casino_'+_casinoID+'_score', _rate_slider_result);
             }
             if (_is_child) _childReplies.text(parseInt(_childReplies.text())+1);
 
-            initReplies();
+            // initReplies();
+            $('.review-form').slideUp();
             initReviewForm();
             initTexfieldsLabels();
 
@@ -1064,7 +1169,7 @@
         _doIfReviewedAlready = function(){
             var formContainer = $('#reviews-form');
 
-            _changeName(_storage_name);
+            // _changeName(_storage_name);
             $('.review-rating', formContainer).addClass('active');
             $('textarea', formContainer).addClass('disabled');
             $('.rating-bar').barrating('set', _storage_review_score);
@@ -1081,7 +1186,7 @@
                    if (error === false) {
                        e.stopPropagation();
                    } else {
-                        _prepAjaxData();
+                        _prepAjaxData(_wrap);
                    }
                 }
             });
@@ -1142,7 +1247,6 @@
             return false;
         });
 
-
         var _addReviews = function(_this, _type){
 
             if(BUSY_REQUEST) return;
@@ -1152,7 +1256,10 @@
             _request = $.ajax( {
                 url: '/casino/more-reviews/'+getWebName(_name)+'/'+_this.data('page'),
                 dataType: 'HTML',
-                data:{id:_this.data('id')},
+                data:{
+                    id:_this.data('id'),
+                    type: _type
+                },
                 type: 'GET',
                 success: function (data) {
                     if (_type == 'review') {
@@ -1186,7 +1293,7 @@
         },
 
         _refreshData = function(){
-            initReplies();
+            // initReplies();
             initReviewForm();
             initTexfieldsLabels();
 
@@ -1713,15 +1820,10 @@
     }
 
     function initReplies() {
-        var container = $('.review-parent, .review-child');
-        var btn = $('.js-reply-btn');
+        $('#reviews').on('click', '.js-reply-btn', function(e) {
+            $(this).parent().next().slideToggle();
 
-        btn.each(function(index, el) {
-            $(this).off();
-            $(this).on('click', function(e) {
-                $(this).closest(container).next().find('.reply-body').first().slideToggle();
-                e.preventDefault();
-            });
+            return false;
         });
     }
 
@@ -1737,22 +1839,38 @@
 
             function cloneContent(_this) {
                 var _contentHolder = _this.closest(_container).find('.mobile-popup-body');
-                var _items = _this.closest(_container).find('.tooltip-content');
+                var _items = _this.closest(_container).find('.js-tooltip-content');
 
                 _items.each(function(index, el) {
-                    $(el).clone().appendTo(_contentHolder);
-                });
 
-                _contentHolder.find('.tooltip-content').each(function(index, el) {
-                    var tempText = $(el).find('.list-item-trun').text();
-                    $(el).find('.list-item-trun').next('.bubble').attr('title', tempText);
-                });
+                    var _name = $(el).data('name');
+                    var _is_free = $(el).data('is-free');
+                    var _request = new XMLHttpRequest();
 
-                _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
-                _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-                copyToClipboard();
+                    _request.abort();
+                    _request = $.ajax( {
+                        url: "/casino/bonus",
+                        data: {
+                            casino: _name,
+                            is_free: _is_free,
+                        },
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function (response) {
+                            if(response.status =="ok") {
+                                _contentHolder.append(getBonusPattern(response, _name));
+
+                                _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
+                                _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                                checkStringLength($('.bonus-box'), 21);
+                                copyToClipboard();
+                                $('.overlay, .loader').fadeOut('fast');
+                            }
+                        }
+                    });
+                });
+                
                 showPop(_this);
-
             }
 
             function showPop(_this) {
@@ -1763,7 +1881,7 @@
             }
 
             _btnOpen.on('click', function(e) {
-
+                $('.overlay, .loader').fadeIn('fast');
                 cloneContent($(this));
                 return false;
             });

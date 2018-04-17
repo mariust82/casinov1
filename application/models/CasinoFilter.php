@@ -91,6 +91,10 @@ class CasinoFilter
     public function getFreeBonus() {
         return $this->free_bonus;
     }
+    
+    public function setPromoted($value) {
+        $this->promoted = $value;
+    }
 
     public function getBankingMethod() {
         return $this->banking_method;

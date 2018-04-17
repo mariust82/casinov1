@@ -14,25 +14,26 @@ class CasinosList
 
     public function getResults($sortBy, $page, $limit = self::LIMIT) {
         $output = array();
-
+        $order = "";
         // build query
-        $query = $this->getQuery(array("t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"));
         switch($sortBy) {
             case CasinoSortCriteria::NEWEST:
-                $query .= "ORDER BY t1.date_established DESC"."\n";
+                $order .= " ORDER BY t1.date_established DESC"."\n";
                 break;
             case CasinoSortCriteria::TOP_RATED:
-                $query .= "ORDER BY average_rating DESC, t1.priority ASC, t1.id DESC"."\n";
+                $order .= " ORDER BY average_rating DESC, t1.priority ASC, t1.id DESC"."\n";
                 break;
             case CasinoSortCriteria::POPULARITY:
-                $query .= "ORDER BY t1.clicks DESC, t1.id DESC"."\n";
+                $order .= " ORDER BY t1.clicks DESC, t1.id DESC"."\n";
                 break;
             default:
-                $query .= "ORDER BY t1.priority ASC, t1.id DESC"."\n";
+                $order .= " ORDER BY t1.priority ASC, t1.id DESC"."\n";
+                $this->filter->setPromoted(TRUE);
                 break;
         }
+        $query = $this->getQuery(array("t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"));
+        $query .= $order;
         $query .= "LIMIT ".$limit." OFFSET ".($page*$limit);
-
         // execute query
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {
@@ -68,7 +69,7 @@ class CasinosList
         SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.minimum_deposit, t1.games, t2.name 
         FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
-        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins')
+        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins','Free Play')
         ";
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {
@@ -79,13 +80,12 @@ class CasinosList
             $bonus->games_allowed = $row["games"];
             $bonus->code = $row["codes"];
             $bonus->type = $row["name"];
-            if($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins") {
+            if($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins" || $row["name"]=="Free Play") {
                 $output[$row["casino_id"]]->bonus_free = $bonus;
             } else {
                 $output[$row["casino_id"]]->bonus_first_deposit = $bonus;
             }
         }
-
         return array_values($output);
     }
 
@@ -122,7 +122,13 @@ class CasinosList
             $query.="INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id AND ".$condition."\n";
         }
         if($this->filter->getCasinoLabel()) {
-            $query.="INNER JOIN casinos__labels AS t5 ON t1.id = t5.casino_id AND t5.label_id = (SELECT id FROM casino_labels WHERE name='".$this->filter->getCasinoLabel()."')"."\n";
+            if ($this->filter->getCasinoLabel() == "Stay away") {
+                $this->filter->setPromoted(FALSE);
+            }
+            
+            if ($this->filter->getCasinoLabel() != "New") {
+                $query.="INNER JOIN casinos__labels AS t5 ON t1.id = t5.casino_id AND t5.label_id = (SELECT id FROM casino_labels WHERE name='".$this->filter->getCasinoLabel()."')"."\n";
+            }
         }
         if($this->filter->getCertification()) {
             $query.="INNER JOIN casinos__certifications AS t6 ON t1.id = t6.casino_id AND t6.certification_id = (SELECT id FROM certifications WHERE name='".$this->filter->getCertification()."')"."\n";

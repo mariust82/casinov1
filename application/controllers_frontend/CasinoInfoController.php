@@ -8,6 +8,7 @@ class CasinoInfoController extends Controller {
 ));
 $this->response->setAttribute("casino", array (
   'id' => '1334',
+  'code' => '24VIP Casino',
   'name' => '24VIP Casino',
   'rating' => NULL,
   'softwares' => 
@@ -41,6 +42,7 @@ $this->response->setAttribute("casino", array (
     'wagering' => '15x(D+B)',
     'games_allowed' => 'Slots, Keno, Bingo, Specialty games (FS - Variety of Slots)',
     'code' => 'No code required',
+    'type' => 'First Deposit Bonus',
   ),
   'bonus_free' => 
   array (
@@ -49,6 +51,7 @@ $this->response->setAttribute("casino", array (
     'wagering' => '20xB',
     'games_allowed' => 'Slots, Keno, Bingo, Specialty Games and Scratch Cards',
     'code' => 'No code required',
+    'type' => 'No Deposit Bonus',
   ),
   'is_live_dealer' => '1',
   'date_established' => '2017-09-01',
@@ -107,8 +110,76 @@ $this->response->setAttribute("casino", array (
   'is_currency_accepted' => '1',
   'status' => NULL,
 ));
-$this->response->setAttribute("total_reviews", 0);
+$this->response->setAttribute("total_reviews", 100);
 $this->response->setAttribute("reviews", array (
+  0 => 
+  array (
+    'id' => '6',
+    'name' => 'Tester',
+    'email' => 'a@a.com',
+    'body' => 'I\'m testing this functionality!',
+    'likes' => '0',
+    'ip' => NULL,
+    'country' => 'UA',
+    'rating' => 7,
+    'date' => '2018-01-26 12:36:34',
+    'parent' => NULL,
+    'children' => 
+    array (
+      0 => 
+      array (
+        'id' => '7',
+        'name' => 'Tester',
+        'email' => 'a@a.com',
+        'body' => 'I\'m testing this functionality!',
+        'likes' => '0',
+        'ip' => NULL,
+        'country' => 'UA',
+        'rating' => 7,
+        'date' => '2018-01-26 12:36:34',
+        'parent' => NULL,
+        'children' => 
+        array (
+        ),
+        'total_children' => 0,
+      ),
+      1 => 
+      array (
+        'id' => '8',
+        'name' => 'SHmester',
+        'email' => 'a@a.com',
+        'body' => 'I\'m testing this functionality!',
+        'likes' => '0',
+        'ip' => NULL,
+        'country' => 'UA',
+        'rating' => 7,
+        'date' => '2018-01-26 12:36:34',
+        'parent' => NULL,
+        'children' => 
+        array (
+        ),
+        'total_children' => 0,
+      ),
+    ),
+    'total_children' => 2,
+  ),
+  1 => 
+  array (
+    'id' => '4',
+    'name' => 'Tester',
+    'email' => 'a@a.com',
+    'body' => 'I\'m testing this functionality!',
+    'likes' => '0',
+    'ip' => NULL,
+    'country' => 'UA',
+    'rating' => 7,
+    'date' => '2018-01-26 12:36:26',
+    'parent' => NULL,
+    'children' => 
+    array (
+    ),
+    'total_children' => 0,
+  ),
 ));
 $this->response->setAttribute("menu_top", array (
   0 => 

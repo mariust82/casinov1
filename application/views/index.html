@@ -1,9 +1,7 @@
-<std:set name="page" value="index"/>
-
-<import file="templates/include-header"/>
-	<import file="templates/include-carousel"/>
-	<block:list-casinos-short id="1" data="${data.country_casinos}" type="SOFTWARE" goto="/countries-list/${normalize(${data.country.name})}" name="${data.country.name} Casinos" description="Below you can find a list of the online casinos that users from your country can play at. Make sure you give it a try, as you may find a new favourite."/>
-	<block:list-casinos-short id="2" data="${data.new_casinos}" type="ESTABLISHED" goto="/casinos/new" name="New Casinos" description="The online gambling world is on the constant move and we are always up-to-date with the latest established online casinos, to bring you their best bonuses and most modern gambling experience."/>
-	<block:list-casinos-short id="3" data="${data.no_deposit_casinos}" type="SOFTWARE" goto="/bonus-list/no-deposit-bonus" name="No Deposit Casinos" description="Why not try a casino you’ve never played before from our list of No Deposit Bonus casinos? This is a cost-free way to try something new, while you’re on the look-out for your next favorite casino."/>
-	<block:list-games-short id="4" data="${data.new_games}" goto="/games" name="New Games" description="Our compendium of games is available for all players, for free. So take your chances and try out your favorite software’s games before actually depositing, completely risk-free."/>
-<import file="templates/include-footer"/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="index"/>
+	<casino:carousel-container title="Pick Best Casinos" url="/casinos/best" items="${data.best_casinos}" country="${data.country}" description="Here is a selection of the top 10 online casinos, rated by our users. You’ll only find the highest quality softwares, the greatest games and the best bonuses, all in one place."/>
+	<casino:list-container id="1" data="${data.country_casinos}" type="SOFTWARE" url="/countries-list/${normalize(${data.country.name})}" name="${data.country.name} Casinos" description="Below you can find a list of the online casinos that users from your country can play at. Make sure you give it a try, as you may find a new favourite."/>
+	<casino:list-container id="2" data="${data.new_casinos}" type="ESTABLISHED" url="/casinos/new" name="New Casinos" description="The online gambling world is on the constant move and we are always up-to-date with the latest established online casinos, to bring you their best bonuses and most modern gambling experience."/>
+	<casino:list-container id="3" data="${data.no_deposit_casinos}" type="SOFTWARE" url="/bonus-list/no-deposit-bonus" name="No Deposit Casinos" description="Why not try a casino you’ve never played before from our list of No Deposit Bonus casinos? This is a cost-free way to try something new, while you’re on the look-out for your next favorite casino."/>
+	<game:list-container id="4" data="${data.new_games}" url="/games" name="New Games" description="Our compendium of games is available for all players, for free. So take your chances and try out your favorite software’s games before actually depositing, completely risk-free."/>
+<site:bottom menu="${data.menu_top}"/>

@@ -1,6 +1,4 @@
-<std:set name="page" value="contact-us"/>
-
-<import file="templates/include-header"/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="contact-us"/>
 	<div class="contact contact-form">
 		<div class="container">
 			<div class="message message-success" id="contact-us-success">
@@ -57,9 +55,9 @@
 						</div>
 						<a href="mailto:support@casinoslists.com">support@casinoslists.com</a>
 					</div>
-					<import file="templates/include-social"/>
+					<site:social/>
 				</div>
 			</div>
 		</div>
 	</div>
-<import file="templates/include-footer"/>
+<site:bottom menu="${data.menu_top}"/>

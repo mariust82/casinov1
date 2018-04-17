@@ -1,8 +1,6 @@
-<std:set name="page" value="games"/>
-
-<import file="templates/include-header"/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="games"/>
 	<div class="links-games">
-		<block:links-carousel/>
+		<site:links-carousel items="${data.menu_bottom}"/>
 	</div>
 	<div class="block">
 		<div class="container">
@@ -13,16 +11,16 @@
 				</div>
 			</div>
 			
-			<filter:games/>
+			<filter:games total="${data.total_games}" software="${data.software}"/>
 
 			<div class="data-container-holder data-games">
 				<div class="holder">
 					<div class="data-container" data-type-value="${data.selected_entity}">
-						<item:game data="${data.games}"/>
+						<game:list data="${data.games}"/>
 					</div>
 					<div class="data-add-container" data-total="${data.total_games}"></div>
 				</div>
-				<import file="templates/include-reset-filters"/>
+				<filter:reset/>
 			</div>
 
 			<std:if condition="${data.total_games} > 23">
@@ -33,4 +31,4 @@
 
 		</div>
 	</div>
-<import file="templates/include-footer"/>
+<site:bottom menu="${data.menu_top}"/>

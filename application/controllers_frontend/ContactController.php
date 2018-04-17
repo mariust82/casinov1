@@ -1,7 +1,7 @@
 <?php
 class ContactController extends Controller {
     public function run() {
-        $this->response->setAttribute("menu_top", array (
+$this->response->setAttribute("menu_top", array (
   0 => 
   array (
     'title' => 'CASINOS',

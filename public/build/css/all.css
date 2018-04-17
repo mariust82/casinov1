@@ -3498,6 +3498,7 @@ a:hover, a:active, a:visited, a:focus {
   display: inline-block;
   cursor: pointer;
   transition: background .3s;
+  white-space:nowrap;
 }
 
 @media screen and (max-width: 690px) {
@@ -4167,6 +4168,18 @@ a:hover, a:active, a:visited, a:focus {
   color: #60686A;
   font-size: 13px;
   padding: 6px 10px;
+  position: relative;
+}
+
+.tooltipster-sidetip .tooltipster-content .loader {
+  display: block;
+  position: relative;
+  padding: 150px 0;
+  width: 50px;
+  height: 50px;
+  box-sizing: content-box;
+  -webkit-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 
 .tooltipster-sidetip .tooltipster-content .bonus-box-list-label {
@@ -5324,8 +5337,29 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
-.review.review-child {
+.review.review-parent {
+  position: relative;
+}
+
+.review.review-parent:after {
+  content: '';
   border-bottom: 1px solid #E8EAF3;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 96%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+@media screen and (max-width: 690px) {
+  .review.review-parent:after {
+    width: 94%;
+  }
+}
+
+.review.review-parent:first-child:after {
+  display: none;
 }
 
 .review.admin {
@@ -5360,7 +5394,7 @@ a:hover, a:active, a:visited, a:focus {
 
 @media screen and (max-width: 690px) {
   .review-parent .review-wrap {
-    padding: 10px;
+    padding: 15px 10px;
   }
 }
 
@@ -5371,7 +5405,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .review-child .review-wrap {
-  padding: 10px;
+  padding: 15px 10px;
 }
 
 .review-child .list-rating {
@@ -5595,6 +5629,11 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
+.review-form {
+  display: none;
+  padding: 20px 0 0 0;
+}
+
 .review-name {
   color: #465156;
   display: -webkit-box;
@@ -5766,8 +5805,18 @@ a:hover, a:active, a:visited, a:focus {
   border-bottom: 1px solid #D9D9D9;
 }
 
+@media screen and (min-width: 691px) {
+  .form .js-expanding-textfields {
+    margin-top: 27px;
+  }
+}
+
 .form-row {
-  margin-bottom: 27px;
+  margin-top: 27px;
+}
+
+.form-row:first-child {
+  margin-top: 0;
 }
 
 @media screen and (max-width: 690px) {
@@ -5972,7 +6021,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .reply .form-row:first-child {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   margin-top: 0;
 }
 
@@ -6022,12 +6071,21 @@ a:hover, a:active, a:visited, a:focus {
 
 .review-more .btn-more {
   margin: 0 auto;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  -webkit-transform: translate(-10%, -50%);
+          transform: translate(-10%, -50%);
 }
 
 .reviews-more {
-  margin: 25px 0 0 0;
+  padding: 25px 0 0 0;
+  margin: 5px 20px 0;
+  border-top: 1px solid #E8EAF3;
+}
+
+@media screen and (max-width: 690px) {
+  .reviews-more {
+    margin: 5px 10px 0;
+    padding: 10px 0 0 0;
+  }
 }
 
 .reviews-more .btn-more {
@@ -6037,7 +6095,7 @@ a:hover, a:active, a:visited, a:focus {
 
 @media screen and (max-width: 480px) {
   .reviews-more .btn-more {
-    width: 94%;
+    width: 100%;
   }
 }
 
@@ -6590,9 +6648,9 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
-.player .play-demo {
+/*.player .play-demo {
   border: none;
-}
+}*/
 
 .player-controls {
   text-align: center;
@@ -7625,5 +7683,3 @@ img.not-accepted {
 [type="radio"]:not(:checked):focus + label:before {
   border: 2px solid #0d7ac7;
 }*/
-
-/*# sourceMappingURL=maps/all.css.map */

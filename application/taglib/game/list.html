@@ -1,0 +1,25 @@
+<div class="games">
+	<div class="games-list">
+		<std:foreach var="$[data]" value="result">
+			<div class="game loaded-item">
+				<a href="/play/${normalize(${result.name})}" class="game-holder">
+					<span class="game-img">
+						<img src="${getGameLogo(${result.name},'300x220')}" alt="${result.name}" width="300" height="220">
+					</span>
+					<span class="game-desc">
+						<span class="game-title">${result.name}</span>
+						<span class="game-options">
+							<span class="game-played">
+								<span class="game-play">
+									<i class="icon-play"></i>
+								</span>
+								Times played: ${result.times_played}
+							</span>
+							<span class="game-soft">${result.software}</span>
+						</span>
+					</span>
+				</a>
+			</div>
+		</std:foreach>
+	</div>
+</div>

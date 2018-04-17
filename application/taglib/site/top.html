@@ -1,0 +1,78 @@
+<site:header title="$[title]" description="$[description]"/>
+
+<div class="wrapper">
+	<header class="header">
+		<div class="container">
+			<a href="#" class="mobile-menu" id="js-mobile-menu-opener">
+				<i class="icon-menu_icon"></i>
+			</a>
+			<div class="header-logo">
+				<a href="/" class="logo">
+					<i class="icon-logo"><i class="path1"></i><i class="path2"></i></i>
+				</a>
+			</div>
+			<a href="#" class="header-search-mobile js-mobile-search-opener js-trigger-search">
+				<i class="icon-search"></i>
+			</a>
+			<nav class="header-menu">
+				<a href="#" class="mobile-menu-close" id="js-mobile-menu-close">
+					<i class="icon-arrow-left2"></i>
+				</a>
+				<ul>
+					<li class="mobile">
+						<a href="/" class="${('$[page]'=='index'?'active':'')}">HOMEPAGE</a>
+					</li>
+
+					<site:menu items="$[menu]"/>
+				</ul>
+			</nav>
+			<div class="header-search ${('$[page]'=='search'?'force-visible':'')}" id="search" data-img-dir="/public/sync">
+				<a href="#" class="header-search-btn js-search-opener js-trigger-search">
+					<i class="icon-search"></i>
+				</a>
+				<div class="header-search-input" id="search-form">
+					<div class="header-search-mobile">
+						<a href="#" class="mobile-menu-close ${('$[page]'=='search'?'js-history-back':'js-mobile-search-close')}">
+							<i class="icon-arrow-left2"></i>
+						</a>
+					</div>
+					<i class="icon-search header-search-mobile"></i>
+					<input type="text" placeholder="Search here" value="${('$[page]'=='search'?${data.value}:'')}">
+					<div class="header-search-mobile">
+						<a href="#" class="mobile-search-clear js-mobile-search-clear">
+							<i class="icon-icon_plus"></i>
+						</a>
+					</div>
+				</div>
+				<a href="#" class="header-search-close js-search-close">
+					<i class="icon-icon_plus"></i>
+				</a>
+				<div class="search-drop js-search-drop">
+					<div id="search-empty"> Sorry, there are no suggestions for your query. </div>
+					<nav class="search-list search-results">
+						<div class="search-list-block" id="search-casinos">
+							<div class="search-list-heading">
+								<span>CASINOS</span>
+							</div>
+							<ul></ul>
+						</div>
+						<div class="search-list-block" id="search-pages">
+							<div class="search-list-heading">
+								<span>GAMES</span>
+							</div>
+							<ul></ul>
+						</div>
+					</nav>
+					<div class="search-all-holder">
+						<a href="#" class="btn btn-middle fullwide" id="search-all">SHOW ALL RESULTS</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div id="site-content">
+		<std:if condition="'$[page]' == 'index'">
+			<site:welcome/>
+		</std:if>
+
+		<div class="main">

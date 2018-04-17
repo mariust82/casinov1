@@ -43,9 +43,6 @@
   </listeners>
   <errors>
     <lucinda>
-      <reporters>
-          <async/>
-      </reporters>
       <renderer display_errors="1">
           <html/>
           <json/>
@@ -110,6 +107,8 @@
     <route url="casino/review-like" controller="CasinoReviewLikeController" extension="json"/>
     <route url="casino/more-reviews/(name)/(page)" controller="CasinoMoreReviewsController" view="reviews"/>
     <route url="newsletter/subscribe" controller="NewsletterSubscribeController" extension="json"/>
+    <route url="casino/bonus" controller="CasinoBonusController" extension="json"/>
+    <route url="404" controller="PageNotFoundController" view="404"/>
 
     <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" extension="xml"/>
     <route url="sitemap_cas_bon.php" controller="sitemap/BonusTypesController" extension="xml"/>

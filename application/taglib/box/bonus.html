@@ -1,3 +1,9 @@
+<std:set name="bonus_type" value="${$[data].$[modifier].type}"/>
+
+<std:if condition="${bonus_type} == 'Free Play'">
+	<std:set name="bonus_type" value="Free Bonus"/>
+</std:if>
+
 <std:if condition="$[heading]">
 	<div class="tooltip-templates-heading">
 		<h2 class="tooltip-templates-title">${$[data].name} $[title]</h2>
@@ -9,7 +15,7 @@
 <div class="tooltip-templates-body">
 	<div class="bonus-box">
 		<div class="bonus-box-heading">
-			<span>${$[data].$[modifier].amount} ${$[data].$[modifier].type}</span>
+			<span>${$[data].$[modifier].amount} ${bonus_type}</span>
 		</div>
 		<div class="bonus-box-body">
 			<std:set name="code_class" value=""/>

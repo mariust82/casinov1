@@ -1,8 +1,6 @@
-<std:set name="page" value="games"/>
-
-<import file="templates/include-header"/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="games"/>
 	<div class="links-games">
-		<block:links-carousel/>
+		<site:links-carousel items="${data.menu_bottom}"/>
 	</div>
 
 	<div class="block">
@@ -23,19 +21,19 @@
 							<iframe scrolling="no" id="single-play" class="play-demo js-run-counter" data-name="${data.game.name}" src="${data.game.play.url}" width="${data.game.play.width}" height="${data.game.play.height}"></iframe>
 
 						<std:elseif condition="${data.game.play.status} == 'click-popup-play' || ${data.game.play.status} == 'redirect'">
-							<img class="player-img" src="${get_img_dir()}/game_ss/960x720/${normalize_game(${data.game.name})}.jpg" alt="${data.game.name}">
+							<img class="player-img" src="${getGameLogo(${data.game.name},'960x720')}" alt="${data.game.name}">
 							<div class="player-overlay"></div>
 							<div class="player-play" id="go-to-page" data-name="${data.game.name}" data-width="${data.game.play.width}" data-height="${data.game.play.height}">
 								<i class="icon-play"></i>
 							</div>
 
 						<std:elseif condition="${data.game.play.status} == 'screenshot'">
-							<img class="player-img" src="${get_img_dir()}/game_ss/960x720/${normalize_game(${data.game.name})}.jpg" alt="${data.game.name}">
+							<img class="player-img" src="${getGameLogo(${data.game.name},'960x720')}" alt="${data.game.name}">
 							<div class="player-overlay"></div>
 
 						<std:else>
 							<iframe style="display:none;" scrolling="no" id="single-play" class="play-demo" src="" width="${data.game.play.width}" height="${data.game.play.height}"></iframe>
-							<img class="player-img" src="${get_img_dir()}/game_ss/960x720/${normalize_game(${data.game.name})}.jpg" alt="${data.game.name}">
+							<img class="player-img" src="${getGameLogo(${data.game.name},'960x720')}" alt="${data.game.name}">
 							<div class="player-overlay"></div>
 							<div class="player-play" id="go-to-frame" data-name="${data.game.name}" data-url="${data.game.play.url}">
 								<i class="icon-play"></i>
@@ -121,7 +119,7 @@
 				<div class="headeing">
 					<div class="title title-middle">Play this game for real money at these casinos</div>
 				</div>
-				<item:casino type="SOFTWARE" id="1" data="${data.recommended_casinos}"/>
+				<casino:list type="SOFTWARE" id="1" data="${data.recommended_casinos}"/>
 			</div>
 		</div>
 	</std:if>
@@ -132,8 +130,8 @@
 				<div class="headeing">
 					<div class="title title-middle">Similar games</div>
 				</div>
-				<item:game data="${data.recommended_games}"/>
+				<game:list data="${data.recommended_games}"/>
 			</div>
 		</div>
 	</std:if>
-<import file="templates/include-footer"/>
+<site:bottom menu="${data.menu_top}"/>
