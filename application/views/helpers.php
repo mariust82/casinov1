@@ -32,7 +32,12 @@ function normalize($name)
 
 function get_string($name)
 {
-    return implode(", ", $name);
+    foreach ($name as $key => $item) {
+        if ($key != 0) {
+            $items[$key] = $item;
+        }
+    }
+    return implode(", ", $items);
 }
 
 function get_rating($name)
