@@ -25,7 +25,12 @@
 								<div class="list-rating-text">${get_rating(${result.rating})}</div>
 							</div>
 						</div>
-						<a href="/reviews/${normalize(${result.name})}-review" class="list-title">${result.name}</a>
+						<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
+							${result.name}
+							<std:if condition="'$[type]' == 'ESTABLISHED' && ${result.date_established} != '0000-00-00' && ${data.is_mobile}">
+								<div class="list-small-text">${date("M, d, Y",  strtotime(${result.date_established}))}</div>
+							</std:if>
+						</a>
 					</div>
 				</div>
 				<div class="list-item-cell">

@@ -3426,6 +3426,19 @@ a:hover, a:active, a:visited, a:focus {
   text-align: center;
 }
 
+.list-small-text{
+  display:none;
+}
+
+@media screen and (max-width: 690px) {
+  .list-small-text {
+    display:block;
+    text-transform:uppercase;
+    font-size:10px;
+    color:#878CA4;
+  }
+}
+
 .multirow-close {
   color: #2171CE;
   font-size: 12px;
