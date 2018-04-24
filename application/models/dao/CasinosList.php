@@ -18,16 +18,16 @@ class CasinosList
         // build query
         switch($sortBy) {
             case CasinoSortCriteria::NEWEST:
-                $order .= " ORDER BY t1.date_established DESC"."\n";
+                $order .= " ORDER BY t1.date_established DESC, t1.priority DESC"."\n";
                 break;
             case CasinoSortCriteria::TOP_RATED:
-                $order .= " ORDER BY average_rating DESC, t1.priority ASC, t1.id DESC"."\n";
+                $order .= " ORDER BY average_rating DESC, t1.priority DESC, t1.id DESC"."\n";
                 break;
             case CasinoSortCriteria::POPULARITY:
                 $order .= " ORDER BY t1.clicks DESC, t1.id DESC"."\n";
                 break;
             default:
-                $order .= " ORDER BY t1.priority ASC, t1.id DESC"."\n";
+                $order .= " ORDER BY t1.priority DESC, t1.id DESC"."\n";
                 $this->filter->setPromoted(TRUE);
                 break;
         }
