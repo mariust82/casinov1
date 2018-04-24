@@ -55,7 +55,7 @@ class GamesList
         
         if($this->filter->is_mobile) {
             $sub_join = " INNER JOIN games__features AS t4 ON t1.id = t4.game_id ";
-            $sub_where = "t4.feature_id = 7 AND ";
+            $sub_where = "t4.feature_id = 9 AND ";
         }
         
         $query = "
