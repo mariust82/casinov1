@@ -191,7 +191,7 @@
         var pattern = '\
             <div class="tooltip-content '+_block_class+'">\
                 <div class="tooltip-templates-heading">\
-                    <h2 class="tooltip-templates-title">'+_name+' '+_type+'</h2>\
+                    <div class="tooltip-templates-title">'+_name+' '+_type+'</div>\
                     <div class="tooltip-templates-button">\
                         <a href="/visit/'+getWebName(_name)+'" target="_blank" rel="nofollow" class="btn btn-small">VISIT CASINO</a>\
                     </div>\
