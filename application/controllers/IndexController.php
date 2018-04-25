@@ -21,12 +21,11 @@ class IndexController extends Controller {
 	    $this->response->setAttribute("menu_top", $menu->getEntries());
 
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
-
+        $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
         $this->response->setAttribute("best_casinos", $this->getCasinos(array("country_accepted"=>1, "promoted"=>1), CasinoSortCriteria::TOP_RATED, 10));
         $this->response->setAttribute("country_casinos", $this->getCasinos(array("country_accepted"=>1, "promoted"=>1), CasinoSortCriteria::POPULARITY, 5));
         $this->response->setAttribute("new_casinos", $this->getCasinos(array("country_accepted"=>1, "promoted"=>1), CasinoSortCriteria::NEWEST, 5));
         $this->response->setAttribute("no_deposit_casinos", $this->getCasinos(array("country_accepted"=>1, "promoted"=>1,"bonus_type"=>"No Deposit Bonus"), CasinoSortCriteria::NEWEST, 5));
-
         $object = new GamesList(new GameFilter(array(), $this->request->getAttribute("country")));
         $this->response->setAttribute("new_games", $object->getResults(GameSortCriteria::NEWEST, 0,6));
 
