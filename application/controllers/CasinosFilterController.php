@@ -25,7 +25,7 @@ class CasinosFilterController extends Controller {
 
 	public function run() {
 	    $this->response->setAttribute("country", $this->request->getAttribute("country"));
-
+            $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
         $sortCriteria = $this->getSortCriteria();
 		$page = (integer) $this->request->getValidator()->getPathParameter("page");
         $object = new CasinosList(new CasinoFilter($_GET, $this->request->getAttribute("country")));
