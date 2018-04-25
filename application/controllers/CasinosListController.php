@@ -9,7 +9,7 @@ require_once("application/models/dao/PageInfoDAO.php");
 abstract class CasinosListController extends Controller {
 	public function run() {
         $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
-
+        $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
         $menuTop = new TopMenu($this->request->getValidator()->getPage());
         $this->response->setAttribute("menu_top", $menuTop->getEntries());
 
