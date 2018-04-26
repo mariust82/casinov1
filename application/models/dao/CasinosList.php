@@ -4,7 +4,7 @@ require_once("entities/CasinoBonus.php");
 
 class CasinosList
 {
-    const LIMIT = 25;
+    const LIMIT = 50;
     private $filter;
 
     public function __construct(CasinoFilter $filter)
@@ -12,9 +12,12 @@ class CasinosList
         $this->filter = $filter;
     }
 
-    public function getResults($sortBy, $page, $limit = self::LIMIT) {
+    public function getResults($sortBy, $page, $limit = self::LIMIT,$offset = "") {
         $output = array();
         $order = "";
+        if ($offset == "") {
+            $offset = ($page*$limit);
+        }
         // build query
         switch($sortBy) {
             case CasinoSortCriteria::NEWEST:
@@ -33,7 +36,7 @@ class CasinosList
         }
         $query = $this->getQuery(array("t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"));
         $query .= $order;
-        $query .= "LIMIT ".$limit." OFFSET ".($page*$limit);
+        $query .= "LIMIT ".$limit." OFFSET ".$offset;
         // execute query
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {

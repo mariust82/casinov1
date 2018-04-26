@@ -33,14 +33,14 @@ class CasinosFilterController extends Controller {
             $total = $object->getTotal();
             if($total) {
                 $this->response->setAttribute("total_casinos", $total);
-                $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page));
+                $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page,100,(100*$page)/2));
             } else {
                 $this->response->setAttribute("total_casinos", 0);
                 $this->response->setAttribute("casinos", array());
             }
         } else {
             $this->response->setAttribute("total_casinos", 0);
-            $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page));
+            $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page,100,(100*$page)/2));
         }
 	}
 
