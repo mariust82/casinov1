@@ -24,7 +24,7 @@
 	<div class="filter-sort">
 		<div class="filter-label">Sort by:</div>
 		<div class="filter-sort-buttons">
-                    <std:if condition="${data.selected_entity} == 'Best'">
+                    <std:if condition="$[selected_entry] == 'Best'">
                         <input type="radio" name="sort" value="1" id="default">
 			<label for="default" class="first">
 				Default
@@ -37,7 +37,7 @@
 			<label for="newest">
 				Newest
 			</label>
-                    <std:elseif condition="${data.selected_entity} == 'New'">
+                    <std:elseif condition="$[selected_entry] == 'New'">
                         <input type="radio" name="sort" value="1" id="default">
 			<label for="default" class="first">
 				Default
