@@ -63,18 +63,24 @@ class Casinos implements FieldValidator
     public function rate($name, $ip, $value) {
         $casinoID = DB("SELECT id FROM casinos WHERE name=:name",array(":name"=>$name))->toValue();
         if(!$casinoID) return null;
-        $affectedRows = DB("
-          INSERT INTO casinos__ratings SET 
-            casino_id = :casino,
-            ip = :ip,
-            value = :value
-            ON DUPLICATE KEY UPDATE value = :value
-          ", array(":casino"=>$casinoID, ":ip"=>$ip, ":value"=>$value))->getAffectedRows();
-        if($affectedRows>0) {
-            DB("UPDATE casinos SET rating_total=rating_total+1, rating_votes=rating_votes+:value WHERE id=:casino",
-              array(":casino"=>$casinoID, ":value"=>$value));
+        $count = DB("SELECT COUNT(id) FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip",array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
+        if ($count == 0) {
+            $affectedRows = DB("
+              INSERT INTO casinos__ratings SET 
+                casino_id = :casino,
+                ip = :ip,
+                value = :value
+                ON DUPLICATE KEY UPDATE value = :value
+              ", array(":casino"=>$casinoID, ":ip"=>$ip, ":value"=>$value))->getAffectedRows();
+            if($affectedRows>0) {
+                DB("UPDATE casinos SET rating_total=rating_total+1, rating_votes=rating_votes+:value WHERE id=:casino",
+                  array(":casino"=>$casinoID, ":value"=>$value));
+            }
+            return $affectedRows;
+        } else {
+            return "Casino already rated!";
         }
-        return $affectedRows;
+        
     }
 
     public function click($id) {

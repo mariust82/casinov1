@@ -1345,6 +1345,11 @@
                     dataType: 'json',
                     type: 'post',
                     success: function (data) {
+                        if (data.body['success'] == "Casino already rated!") {
+                            $(".icon-icon_available").toggleClass("icon-icon_unavailable");
+                            $(".icon-icon_unavailable").removeClass("icon-icon_available");
+                            $('.thanx').html(data.body['success']);
+                        }
                         $('.rating-container').next('.action-field').show();
                     },
                     error: function ( XMLHttpRequest ) {
