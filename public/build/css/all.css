@@ -2539,10 +2539,6 @@ a:hover, a:active, a:visited, a:focus {
   color: #2171CE;
 }
 
-.header-menu li a.active {
-  pointer-events: none;
-}
-
 .mobile-search-opened .header-search {
   -webkit-transform: translateX(0);
           transform: translateX(0);
