@@ -49,9 +49,9 @@
       </renderer>
     </lucinda>
     <dev>
-      <reporters>
-        <async/>
-      </reporters>
+       <reporters>
+            <sql table="bugs"/>
+        </reporters>
       <renderer display_errors="1">
         <html/>
         <json/>
