@@ -44,7 +44,7 @@ class CasinosList
             $object->id = $row["id"];
             $object->name = $row["name"];
             $object->code = $row["code"];
-            $object->rating = round($row["average_rating"]);
+            $object->rating = ceil($row["average_rating"]);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
             $output[$row["id"]] = $object;

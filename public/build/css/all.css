@@ -2868,6 +2868,11 @@ a:hover, a:active, a:visited, a:focus {
   border: 1px solid #DB2424;
 }
 
+.carousel-slide-rating.no-score {
+  color: gray;
+  border: 1px solid gray;
+}
+
 .carousel-slide-bottom {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3420,8 +3425,16 @@ a:hover, a:active, a:visited, a:focus {
   border: 1px solid #DB2424;
 }
 
+.list-rating.no-score .list-rating-wrap {
+  border: 1px solid gray;
+}
+
 .list-rating.terrible .list-rating-score {
   background: #DB2424;
+}
+
+.list-rating.no-score .list-rating-score {
+  background: gray;
 }
 
 .list-rating-text {
@@ -5991,6 +6004,10 @@ a:hover, a:active, a:visited, a:focus {
 
 .rating-current-text.terrible {
   color: #DB2424;
+}
+
+.rating-current-text.no-score {
+  color: gray;
 }
 
 .rating-current-value {

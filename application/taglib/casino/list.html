@@ -19,10 +19,15 @@
 						</div>
 						<div class="list-rating ${normalize(get_rating(${result.rating}))}">
 							<div class="list-rating-wrap">
-								<div class="list-rating-score">
+                                                            <std:if condition="${result.rating} == 0">
+                                                                <div class="list-rating-score">-</div>
+                                                                <div class="list-rating-text">${get_rating(${result.rating})}</div>
+                                                            <std:else>
+                                                                <div class="list-rating-score">
 									${ceil(${result.rating})}
 								</div>
 								<div class="list-rating-text">${get_rating(${result.rating})}</div>
+                                                            </std:if>
 							</div>
 						</div>
 						<a href="/reviews/${normalize(${result.name})}-review" class="list-title">

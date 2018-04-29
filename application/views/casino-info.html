@@ -43,7 +43,7 @@
 
 					<div class="list-rating ${normalize(get_rating(${data.casino.rating}))}">
 						<div class="list-rating-wrap">
-                                                    <std:if condition="${ceil(${data.casino.rating})} == 0">
+                                                    <std:if condition="${data.casino.rating} == 0">
                                                         <div class="list-rating-score">-</div>
 							<div class="list-rating-text">No score</div>
                                                     <std:else>

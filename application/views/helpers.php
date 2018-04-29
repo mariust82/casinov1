@@ -50,6 +50,8 @@ function get_rating($name)
         $string = 'Good';
     } elseif($name > 2 && $name <= 4){
         $string = 'Poor';
+    } elseif($name == 0) {
+        $string = 'No score';
     } else {
         $string = 'Terrible';
     }
