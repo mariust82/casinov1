@@ -1,4 +1,5 @@
 RewriteEngine on
+RewriteRule ^casinos/safe$ / [R=301,L]
 Options -Indexes
 ErrorDocument 404 default
 RewriteRule ^favicon\.ico$ public/favicon.ico
