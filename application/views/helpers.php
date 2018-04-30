@@ -34,7 +34,7 @@ function get_string($name)
 {
     foreach ($name as $key => $item) {
         if ($key != 0) {
-            $items[$key] = $item;
+            $items[$key] = htmlentities('<a class="soft_link" href="/softwares/'.normalize($item).'">'.$item.'</a>');
         }
     }
     return implode(", ", $items);

@@ -885,6 +885,19 @@ button.swiper-pagination-bullet {
   }
 }
 
+.soft_link{
+    color: #2171CE;
+    display: inline-block !important;
+}
+
+.soft_link:visited{
+    color: #2171CE
+}
+
+.soft_link:hover{
+    color: #60686A;
+}
+
 @keyframes swiper-preloader-spin {
   100% {
     -webkit-transform: rotate(360deg);
@@ -901,7 +914,6 @@ button.swiper-pagination-bullet {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  pointer-events: none;
   /* this may be overriden in JS for fixed position origins */
   position: absolute;
 }
@@ -5264,6 +5276,11 @@ a:hover, a:active, a:visited, a:focus {
   .def-list-key {
     width: 33%;
   }
+}
+
+.comma{
+    margin-right: 3px;
+    margin-left: 3px;
 }
 
 .def-list-val {
