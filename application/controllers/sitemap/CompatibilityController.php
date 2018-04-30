@@ -3,7 +3,7 @@ require_once("AbstractSitemapController.php");
 
 class CompatibilityController extends AbstractSitemapController {
     protected function getItems() {
-        return ["Mobile","Android","iPhone"];
+        return ["Mobile"];
     }
 
     protected function getUrlPattern()
