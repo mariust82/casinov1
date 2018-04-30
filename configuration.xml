@@ -50,7 +50,7 @@
     </lucinda>
     <dev>
        <reporters>
-            <sql table="bugs"/>
+            <async/>
         </reporters>
       <renderer display_errors="1">
         <html/>
