@@ -3,7 +3,7 @@ require_once("AbstractSitemapController.php");
 
 class PagesController extends AbstractSitemapController {
     protected function getItems() {
-        return ["Casinos","Softwares","Bonus List","Countries","Compatability","Banking","Features","Games"];
+        return ["Casinos","Softwares","Bonus List","Countries","Banking","Games"];
     }
 
     protected function getUrlPattern()
