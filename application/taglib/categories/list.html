@@ -7,7 +7,8 @@
 	<div class="categories-list ${img_class}">
 		<std:foreach var="$[items]" key="key" value="result">
 			<div class="category ${img_class}">
-				<a href="$[url]/${normalize(${key})}">
+                            <std:if condition="${key} == 'Mobile'">
+                                <a href="/compatability/${normalize(${key})}">
 					<std:if condition="$[image]">
 						<span class="category-img">
 							<img src="${getGameLogo(${data.icons.${key}},'136x100')}" alt="${key}" width="136" height="100">
@@ -19,6 +20,46 @@
 					</span>
 					<i class="icon-chevron-right"></i>
 				</a>
+                                <std:elseif condition="${key} == 'eCOGRA'">
+                                    <a href="/features/${normalize(${key})}-casinos">
+					<std:if condition="$[image]">
+						<span class="category-img">
+							<img src="${getGameLogo(${data.icons.${key}},'136x100')}" alt="${key}" width="136" height="100">
+						</span>
+					</std:if>
+					<span class="category-body">
+						<span class="category-title">${key}</span>
+						<span class="category-qty">${result}</span>
+					</span>
+					<i class="icon-chevron-right"></i>
+                                    </a>
+                                <std:elseif condition="${key} == 'Live Dealer'">
+                                    <a href="/features/${normalize(${key})}">
+					<std:if condition="$[image]">
+						<span class="category-img">
+							<img src="${getGameLogo(${data.icons.${key}},'136x100')}" alt="${key}" width="136" height="100">
+						</span>
+					</std:if>
+					<span class="category-body">
+						<span class="category-title">${key}</span>
+						<span class="category-qty">${result}</span>
+					</span>
+					<i class="icon-chevron-right"></i>
+                                    </a>
+                                <std:else>
+                                    <a href="$[url]/${normalize(${key})}">
+					<std:if condition="$[image]">
+						<span class="category-img">
+							<img src="${getGameLogo(${data.icons.${key}},'136x100')}" alt="${key}" width="136" height="100">
+						</span>
+					</std:if>
+					<span class="category-body">
+						<span class="category-title">${key}</span>
+						<span class="category-qty">${result}</span>
+					</span>
+					<i class="icon-chevron-right"></i>
+                                    </a>
+                            </std:if>
 			</div>
 		</std:foreach>
 	</div>
