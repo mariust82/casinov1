@@ -27,12 +27,6 @@ class CasinosByFeatureController extends CasinosListController {
             case "ecogra casinos":
                 return "eCOGRA Casinos";
                 break;
-            case "high roller casinos":
-                return "High Roller Casinos";
-                break;
-            case "jackpot casinos":
-                return "Jackpot Casinos";
-                break;
             default:
                 throw new PathNotFoundException();
                 break;
