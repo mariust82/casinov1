@@ -2560,10 +2560,6 @@ a:hover, a:active, a:visited, a:focus {
           transform: translateX(0);
 }
 
-.header-menu ul li{
-    width: calc(100% / 5);
-}
-
 .advanced-search-opened .header-search {
   height: auto !important;
 }
@@ -2611,6 +2607,10 @@ a:hover, a:active, a:visited, a:focus {
     width: 0;
     transition: width 0.3s ease-in;
   }
+  
+  .header-menu ul li{
+    width: calc(100% / 5);
+}
 }
 
 .search-opened .header-search {
