@@ -176,7 +176,6 @@ padding:"inner"+a,content:b,"":"outer"+a},function(c,d){n.fn[d]=function(d,e){va
                         if (html) { text = html; }
 
                         $a = $('<a />', {
-                            'href': '#',
                             'data-rating-value': val,
                             'data-rating-text': text,
                             'html': (self.options.showValues) ? text : ''

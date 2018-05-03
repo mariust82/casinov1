@@ -9,6 +9,28 @@ class CasinoInfo
     public function __construct($name, $countryId) {
         $this->setResult($name, $countryId);
     }
+    
+    public function getUserVote($casinoID,$ip) {
+        return DB("SELECT value FROM casinos__ratings WHERE ip = ".ip2long($ip)." AND casino_id = $casinoID")->toValue();
+    }
+
+
+    public function setScoreClass($score) {
+        $score = ceil($score);
+//        var_dump($score);
+        if ($score == 1 || $score == 2) {
+            return "Terrible";
+        } elseif ($score == 3 || $score == 4) {
+            return "Poor";
+        } elseif ($score == 5 || $score == 6) {
+            return "Good";
+        } elseif ($score == 7 || $score == 8) {
+            return "Very Good";
+        } elseif ($score == 9 || $score == 10) {
+            return "Excellent";
+        }
+            
+    }
 
     private function setResult($name, $countryId) {
         DB("SET names UTF8");

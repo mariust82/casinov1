@@ -6,6 +6,19 @@
         initSite();
         initMobileMenu();
         new SearchPanel ( $('.header') );
+        
+        var user_rate = $('.rating-container').data('user-rate');
+        if (user_rate > 0) {
+            $('.br-widget').children().each(function() {
+                console.dir($(this).data('rating-value'));
+                $(this).unbind("mouseenter mouseleave mouseover");
+               if (parseInt($(this).data('rating-value')) <= parseInt(user_rate)) {
+                   $(this).addClass('br-active');
+               }
+            });
+            $('.br-widget').unbind("mouseenter mouseleave mouseover");
+        }   
+        
     });
 
     $(window).resize(function(event) {
