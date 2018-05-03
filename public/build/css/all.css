@@ -8,6 +8,10 @@ fieldset, img {
   border: 0;
 }
 
+.header-menu ul li a{
+    text-align: center;
+}
+
 img, object, embed {
   vertical-align: bottom;
 }
