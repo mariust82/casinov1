@@ -73,7 +73,7 @@ class Casinos implements FieldValidator
                 ON DUPLICATE KEY UPDATE value = :value
               ", array(":casino"=>$casinoID, ":ip"=>$ip, ":value"=>$value))->getAffectedRows();
             if($affectedRows>0) {
-                DB("UPDATE casinos SET rating_total=rating_total+1, rating_votes=rating_votes+:value WHERE id=:casino",
+                DB("UPDATE casinos SET rating_total=rating_total+:value, rating_votes=rating_votes+1 WHERE id=:casino",
                   array(":casino"=>$casinoID, ":value"=>$value));
             }
             return $affectedRows;
