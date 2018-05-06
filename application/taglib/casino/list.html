@@ -46,11 +46,11 @@
 									<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
 								</std:if>
 							<std:else>
-                                                                <a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}"> 
-									${result.softwares.0} 
+                                                                <a class="soft_link list-item-trun" href="/softwares/${normalize(${result.main_software})}"> 
+									${result.main_software} 
 								</a>
 
-								<std:set name="extra" value="count(${result.softwares})-1"/>
+								<std:set name="extra" value="count(${result.softwares})"/>
 								<std:if condition="${extra} > 0">
 									<span class="bubble bubble-long js-tooltip software_tooltip" title="${get_string(${result.softwares})}">
 										+${extra}
