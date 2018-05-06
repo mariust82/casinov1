@@ -9203,9 +9203,18 @@ $.Tooltipster.prototype = {
 	__trackerStart: function() {
 		var self = this,
                 $content = self._$tooltip.find('.tooltipster-content');
-                var data_arr = $.parseHTML($('.tooltipster-content').html());
-                var data = data_arr[0]['data'];
-                $('.tooltipster-content').html(data);
+                var data_str = self._$tooltip.find('.tooltipster-content').html();
+                console.dir(data_str);
+                var data_arr = data_str.split(', ');
+                var comma = ", ";
+                 $('.tooltipster-content').html("");
+                 for (var i = 0;i<data_arr.length;i++) {
+                    var normal = data_arr[i].toLowerCase().replace(/\s/g, '-');
+                    if (i == data_arr.length - 1) {
+                        comma = "";
+                    }
+                    $('.tooltipster-content').append('<a class="soft_link" href="/softwares/'+normal+'">'+data_arr[i]+'</a>'+comma);
+                 }
 		
 		// get the initial content size
 		if (self.__options.trackTooltip) {
