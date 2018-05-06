@@ -10,7 +10,11 @@ RewriteRule ^features$ / [R=301,L]
 RewriteRule ^features/high-roller-casinos$ / [R=301,L]
 RewriteRule ^features/jackpot-casinos$ / [R=301,L]
 
+
 Options -Indexes
 ErrorDocument 404 default
+RewriteCond %{REQUEST_URI} !^/BingSiteAuth.xml
 RewriteRule ^favicon\.ico$ public/favicon.ico
 RewriteRule !public/(.*) index.php
+
+
