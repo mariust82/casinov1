@@ -33,7 +33,7 @@
 						<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
 							${result.name}
 							<std:if condition="'$[type]' == 'ESTABLISHED' && ${result.date_established} != '0000-00-00' && ${data.is_mobile}">
-								<div class="list-small-text">${date("M, d, Y",  strtotime(${result.date_established}))}</div>
+								<div class="list-small-text">${result.date_formatted}</div>
 							</std:if>
 						</a>
 					</div>
@@ -43,7 +43,7 @@
 						<div class="list-item-flex">
 							<std:if condition="'$[type]' == 'ESTABLISHED'">
 								<std:if condition="${result.date_established} != '0000-00-00'">
-									<span class="upper">${result.date_formatted}</span>
+									<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
 								</std:if>
 							<std:else>
 								<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.main_software})}"> 
