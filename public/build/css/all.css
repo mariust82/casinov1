@@ -890,6 +890,10 @@ button.swiper-pagination-bullet {
     display: inline-block !important;
 }
 
+.tooltipster-content .soft_link{
+  display:inline !important;
+}
+
 .soft_link:visited{
     color: #2171CE
 }
