@@ -47,6 +47,7 @@ class CasinosList
             $object->rating = ceil($row["average_rating"]);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
+            $object->date_formatted = $this->formatDate($row["date_established"]);
             $output[$row["id"]] = $object;
         }
         if(empty($output)) return array();
@@ -101,6 +102,12 @@ class CasinosList
             }
         }
         return array_values($output);
+    }
+    
+    public function formatDate($date) {
+        $date_arr = explode('-', $date);
+        $month_name = date('M', strtotime($date));
+        return $month_name.'. '.$date_arr[2].', '.$date_arr[0];
     }
 
     public function getTotal() {
