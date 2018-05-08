@@ -4219,6 +4219,10 @@ a:hover, a:active, a:visited, a:focus {
   position: relative;
 }
 
+.tooltipster-content {
+    display: flex;
+}
+
 .tooltipster-sidetip .tooltipster-content .loader {
   display: block;
   position: relative;
