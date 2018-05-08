@@ -892,6 +892,7 @@ button.swiper-pagination-bullet {
 
 .tooltipster-content .soft_link{
   display:inline !important;
+  font-weight:initial;
 }
 
 .soft_link:visited{
