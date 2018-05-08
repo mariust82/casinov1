@@ -62,7 +62,7 @@
         contentCloning: false,
         functionReady: function(){
             $('body').addClass('shadow');
-            checkStringLength($('.bonus-box'), 21);
+            checkStringLength($('.bonus-box'), 15);
             $('.js-tooltip').tooltipster(tooltipConfig);
         },
         functionAfter: function(){
