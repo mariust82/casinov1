@@ -10,6 +10,22 @@ function getAbbreviation($name)
     return $abbr;
 }
 
+function setScoreClass($score) {
+    $score = ceil($score);
+    if ($score == 1 || $score == 2) {
+        return "Terrible";
+    } elseif ($score == 3 || $score == 4) {
+        return "Poor";
+    } elseif ($score == 5 || $score == 6) {
+        return "Good";
+    } elseif ($score == 7 || $score == 8) {
+        return "Very Good";
+    } elseif ($score == 9 || $score == 10) {
+        return "Excellent";
+    }
+            
+}
+
 function containsCasino($name)
 {
     return strpos($name, 'Casino');
@@ -45,6 +61,8 @@ function get_rating($name)
         $string = 'Good';
     } elseif($name > 2 && $name <= 4){
         $string = 'Poor';
+    } elseif($name == 0) {
+        $string = 'No score';
     } else {
         $string = 'Terrible';
     }

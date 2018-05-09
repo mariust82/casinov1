@@ -16,6 +16,7 @@ class CasinoRateController extends Controller {
 	public function run() {
         $object = new Casinos();
         $success = $object->rate($_POST["name"], ip2long($this->request->getAttribute("ip")), $_POST["value"]);
+        $this->response->setAttribute("success", $success);
         if(!$success) throw new OperationFailedException($success===null?"Casino not found!":"Casino already rated!");
 	}
 }

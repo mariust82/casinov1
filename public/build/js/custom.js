@@ -6,6 +6,19 @@
         initSite();
         initMobileMenu();
         new SearchPanel ( $('.header') );
+        
+        var user_rate = $('.rating-container').data('user-rate');
+        if (user_rate > 0) {
+            $('.br-widget').children().each(function() {
+                console.dir($(this).data('rating-value'));
+                $(this).unbind("mouseenter mouseleave mouseover");
+               if (parseInt($(this).data('rating-value')) <= parseInt(user_rate)) {
+                   $(this).addClass('br-active');
+               }
+            });
+            $('.br-widget').unbind("mouseenter mouseleave mouseover");
+        }   
+        
     });
 
     $(window).resize(function(event) {
@@ -49,6 +62,8 @@
         contentCloning: false,
         functionReady: function(){
             $('body').addClass('shadow');
+            checkStringLength($('.bonus-box'), 15);
+            $('.js-tooltip').tooltipster(tooltipConfig);
         },
         functionAfter: function(){
             $('body').removeClass('shadow');
@@ -191,7 +206,7 @@
         var pattern = '\
             <div class="tooltip-content '+_block_class+'">\
                 <div class="tooltip-templates-heading">\
-                    <h2 class="tooltip-templates-title">'+_name+' '+_type+'</h2>\
+                    <div class="tooltip-templates-title">'+_name+' '+_type+'</div>\
                     <div class="tooltip-templates-button">\
                         <a href="/visit/'+getWebName(_name)+'" target="_blank" rel="nofollow" class="btn btn-small">VISIT CASINO</a>\
                     </div>\
@@ -1345,6 +1360,11 @@
                     dataType: 'json',
                     type: 'post',
                     success: function (data) {
+                        if (data.body['success'] == "Casino already rated!") {
+                            $(".icon-icon_available").toggleClass("icon-icon_unavailable");
+                            $(".icon-icon_unavailable").removeClass("icon-icon_available");
+                            $('.thanx').html(data.body['success']);
+                        }
                         $('.rating-container').next('.action-field').show();
                     },
                     error: function ( XMLHttpRequest ) {

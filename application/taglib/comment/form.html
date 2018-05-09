@@ -2,13 +2,13 @@
 	<div class="form-row">
 		<std:if condition="$[rating]">
 			<div class="flex-left">
-				<div class="rating-container" data-casino-name="$[name]" data-casino-rating="${ceil($[rate])}">
+				<div class="rating-container" data-casino-name="$[name]" data-casino-rating="${ceil($[rate])}" data-user-rate="${ceil($[key])}">
 					<label class="form-label">
 						<span class="flex">
 							RATE CASINO
 							<span class="rating-current" data-rating-current="0">
-								<span class="rating-current-text"></span>
-								<span class="rating-current-value"><span>0</span>/10</span>
+								<span class="rating-current-text $[value]">$[id]</span>
+								<span class="rating-current-value"><span>${ceil($[key])}</span>/10</span>
 							</span>
 						</span>
 					</label>
@@ -28,7 +28,7 @@
 				</div>
 				<div class="action-field">
 					<i class="icon-icon_available"></i>
-					Thank you for rating $[name]!
+                                        <span class="thanx">Thank you for rating $[name]!</span>
 				</div>
 			</div>
 			<label class="form-label">ADD REVIEW</label>

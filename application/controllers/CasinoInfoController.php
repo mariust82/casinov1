@@ -25,7 +25,8 @@ class CasinoInfoController extends Controller {
 		$object = new CasinoInfo(str_replace("-"," ", $casinoName), $this->request->getAttribute("country")->id);
 		$info = $object->getResult();
 		if(empty($info)) throw new PathNotFoundException();
-        $this->response->setAttribute("casino", $info);
+                $this->response->setAttribute("casino", $info);
+                $this->response->setAttribute("user_score", $object->getUserVote($info->id,  $this->request->getAttribute('ip')) == FALSE?0:$object->getUserVote($info->id,  $this->request->getAttribute('ip')));
 
         // get reviews
         $object = new CasinoReviews();

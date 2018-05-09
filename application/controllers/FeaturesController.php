@@ -34,12 +34,6 @@ class FeaturesController extends Controller {
         $object = new Certifications();
         $result["eCOGRA Casinos"] = $object->getNumberOfCasinos("eCOGRA");
 
-        // get nr casinos for "High Roller"  (`prom_and_bon`+`support_level`)/2>7.3
-        $object = new Casinos();
-        $result["High Roller Casinos"] = $object->getHighRollerNumber();
-
-        // get nr casinos for "Jackpot"
-        $result["Jackpot Casinos"] = 0;
         return $result;
     }
 }

@@ -4,7 +4,7 @@ require_once("entities/CasinoBonus.php");
 
 class CasinosList
 {
-    const LIMIT = 25;
+    const LIMIT = 50;
     private $filter;
 
     public function __construct(CasinoFilter $filter)
@@ -12,28 +12,31 @@ class CasinosList
         $this->filter = $filter;
     }
 
-    public function getResults($sortBy, $page, $limit = self::LIMIT) {
+    public function getResults($sortBy, $page, $limit = self::LIMIT,$offset = "") {
         $output = array();
         $order = "";
+        if ($offset == "") {
+            $offset = ($page*$limit);
+        }
         // build query
         switch($sortBy) {
             case CasinoSortCriteria::NEWEST:
-                $order .= " ORDER BY t1.date_established DESC"."\n";
+                $order .= " ORDER BY t1.date_established DESC, t1.priority DESC"."\n";
                 break;
             case CasinoSortCriteria::TOP_RATED:
-                $order .= " ORDER BY average_rating DESC, t1.priority ASC, t1.id DESC"."\n";
+                $order .= " ORDER BY average_rating DESC, t1.priority DESC, t1.id DESC"."\n";
                 break;
             case CasinoSortCriteria::POPULARITY:
                 $order .= " ORDER BY t1.clicks DESC, t1.id DESC"."\n";
                 break;
             default:
-                $order .= " ORDER BY t1.priority ASC, t1.id DESC"."\n";
+                $order .= " ORDER BY t1.priority DESC, t1.id DESC"."\n";
                 $this->filter->setPromoted(TRUE);
                 break;
         }
         $query = $this->getQuery(array("t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"));
         $query .= $order;
-        $query .= "LIMIT ".$limit." OFFSET ".($page*$limit);
+        $query .= "LIMIT ".$limit." OFFSET ".$offset;
         // execute query
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {
@@ -41,29 +44,41 @@ class CasinosList
             $object->id = $row["id"];
             $object->name = $row["name"];
             $object->code = $row["code"];
-            $object->rating = round($row["average_rating"]);
+            $object->rating = ceil($row["average_rating"]);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
+            $object->date_formatted = $this->formatDate($row["date_established"]);
             $output[$row["id"]] = $object;
         }
         if(empty($output)) return array();
 
         // signal engine that utf8 is expected to come
         DB("SET names utf8");
-
+        //append main software
+        $query = "
+        SELECT t1.casino_id, t2.name 
+        FROM casinos__game_manufacturers AS t1
+        INNER JOIN game_manufacturers AS t2 ON t1.game_manufacturer_id = t2.id
+        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t1.is_primary = 1
+        ";
+        
+        
+        $resultSet = DB($query);
+        while($row = $resultSet->toRow()) {
+            $output[$row["casino_id"]]->main_software = $row["name"];
+        }
+        
         // append softwares
         $query = "
         SELECT t1.casino_id, t2.name 
         FROM casinos__game_manufacturers AS t1
         INNER JOIN game_manufacturers AS t2 ON t1.game_manufacturer_id = t2.id
-        WHERE t1.casino_id IN (".implode(",", array_keys($output)).")
-        ORDER BY t1.is_primary DESC
+        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t1.is_primary = 0;
         ";
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {
             $output[$row["casino_id"]]->softwares[] = $row["name"];
         }
-
         // append bonuses
         $query = "
         SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.minimum_deposit, t1.games, t2.name 
@@ -87,6 +102,12 @@ class CasinosList
             }
         }
         return array_values($output);
+    }
+    
+    public function formatDate($date) {
+        $date_arr = explode('-', $date);
+        $month_name = date('M', strtotime($date));
+        return $month_name.'. '.$date_arr[2].', '.$date_arr[0];
     }
 
     public function getTotal() {

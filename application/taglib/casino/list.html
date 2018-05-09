@@ -19,13 +19,23 @@
 						</div>
 						<div class="list-rating ${normalize(get_rating(${result.rating}))}">
 							<div class="list-rating-wrap">
-								<div class="list-rating-score">
+                                                            <std:if condition="${result.rating} == 0">
+                                                                <div class="list-rating-score">-</div>
+                                                                <div class="list-rating-text">${get_rating(${result.rating})}</div>
+                                                            <std:else>
+                                                                <div class="list-rating-score">
 									${ceil(${result.rating})}
 								</div>
 								<div class="list-rating-text">${get_rating(${result.rating})}</div>
+                                                            </std:if>
 							</div>
 						</div>
-						<a href="/reviews/${normalize(${result.name})}-review" class="list-title">${result.name}</a>
+						<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
+							${result.name}
+							<std:if condition="'$[type]' == 'ESTABLISHED' && ${result.date_established} != '0000-00-00' && ${data.is_mobile}">
+								<div class="list-small-text">${result.date_formatted}</div>
+							</std:if>
+						</a>
 					</div>
 				</div>
 				<div class="list-item-cell">
@@ -36,13 +46,12 @@
 									<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
 								</std:if>
 							<std:else>
-								<span class="list-item-trun"> 
-									${result.softwares.0} 
-								</span>
-
-								<std:set name="extra" value="count(${result.softwares})-1"/>
+								<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.main_software})}"> 
+									${result.main_software} 
+								</a>
+								<std:set name="extra" value="count(${result.softwares})"/>
 								<std:if condition="${extra} > 0">
-									<span class="bubble bubble-long js-tooltip" title="${get_string(${result.softwares})}">
+									<span class="bubble bubble-long js-tooltip software_tooltip" title="${get_string(${result.softwares})}">
 										+${extra}
 									</span>
 								</std:if>

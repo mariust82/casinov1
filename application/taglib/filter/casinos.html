@@ -24,7 +24,34 @@
 	<div class="filter-sort">
 		<div class="filter-label">Sort by:</div>
 		<div class="filter-sort-buttons">
-			<input checked type="radio" name="sort" value="1" id="default">
+                    <std:if condition="$[id] == 'Best'">
+                        <input type="radio" name="sort" value="1" id="default">
+			<label for="default" class="first">
+				Default
+			</label>
+			<input checked type="radio" name="sort" value="2" id="top-rated">
+			<label for="top-rated">
+				Top rated
+			</label>
+			<input type="radio" name="sort" value="3" id="newest">
+			<label for="newest">
+				Newest
+			</label>
+                    <std:elseif condition="$[id] == 'New'">
+                        <input type="radio" name="sort" value="1" id="default">
+			<label for="default" class="first">
+				Default
+			</label>
+			<input type="radio" name="sort" value="2" id="top-rated">
+			<label for="top-rated">
+				Top rated
+			</label>
+			<input checked type="radio" name="sort" value="3" id="newest">
+			<label for="newest">
+				Newest
+			</label>
+                        <std:else>
+                            <input checked type="radio" name="sort" value="1" id="default">
 			<label for="default" class="first">
 				Default
 			</label>
@@ -36,6 +63,8 @@
 			<label for="newest">
 				Newest
 			</label>
+                    </std:if>
+			
 		</div>
 	</div>
 </div>

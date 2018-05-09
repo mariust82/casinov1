@@ -43,8 +43,13 @@
 
 					<div class="list-rating ${normalize(get_rating(${data.casino.rating}))}">
 						<div class="list-rating-wrap">
-							<div class="list-rating-score">${ceil(${data.casino.rating})}</div>
+                                                    <std:if condition="${data.casino.rating} == 0">
+                                                        <div class="list-rating-score">-</div>
+							<div class="list-rating-text">No score</div>
+                                                    <std:else>
+                                                        <div class="list-rating-score">${ceil(${data.casino.rating})}</div>
 							<div class="list-rating-text">${get_rating(${data.casino.rating})}</div>
+                                                    </std:if>
 						</div>
 					</div>
 				</div>
@@ -112,15 +117,15 @@
 						<std:if condition="count(${data.casino.softwares}) > 0">
 							<div class="def-list-item">
 								<div class="def-list-key">Software</div>
-								<div class="def-list-val">
-									<div class="list-item-trun">${data.casino.softwares.0}</div>
-									<std:set name="extra" value="count(${data.casino.softwares})-1"/>
-									<std:if condition="${extra} > 0">
-										<span class="bubble bubble-long js-tooltip" title="${get_string(${data.casino.softwares})}">
-											+${extra}
-										</span>
-									</std:if>
-									<std:unset name="extra"/>
+                                                                <div class="tooltipster-content">
+                                                                    <std:foreach var="${data.casino.softwares}" key ="key" value="value">
+                                                                        <std:if condition="${value} == end(${data.casino.softwares})">
+                                                                            <a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>
+                                                                        <std:else>    
+                                                                            <a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>&nbsp;,
+                                                                        </std:if>
+                                                                        
+                                                                    </std:foreach>
 								</div>
 							</div>
 						</std:if>
@@ -241,7 +246,7 @@
 						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
 					</div>
 				</div>
-				<comment:list-container total="${data.total_reviews}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}"/>
+                                    <comment:list-container name="${setScoreClass(${data.user_score})}" value="${normalize(setScoreClass(${data.user_score}))}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}"/>
 			</div>
 		</div>
 	</div>
@@ -286,7 +291,7 @@
 									<std:set name="numItems" value="count(${data.casino.deposit_methods})"/>
 									<std:set name="i" value="0"/>
 									<std:foreach var="${data.casino.deposit_methods}" key ="key" value="result">
-									      ${result} 
+                                                                            <a class="soft_link" href="/banking/${normalize(${result})}"> ${result} </a>
 									      <std:set name="i" value="${i}+1"/>
 									      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
 									</std:foreach>
@@ -302,7 +307,7 @@
 								<std:set name="numItems" value="count(${data.casino.withdraw_methods})"/>
 								<std:set name="i" value="0"/>
 								<std:foreach var="${data.casino.withdraw_methods}" key ="key" value="result">
-								      ${result}
+								      <a class="soft_link" href="/banking/${normalize(${result})}"> ${result} </a>
 								      <std:set name="i" value="${i}+1"/>
 								      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
 								</std:foreach>

@@ -57,9 +57,6 @@ class CasinoFilter
                 case "eCOGRA Casinos":
                     $this->certification = "ecogra";
                     break;
-                case "High Roller Casinos":
-                    $this->high_roller = true;
-                    break;
                 default:
                     $this->country = "AAA"; // force empty result
                     break;

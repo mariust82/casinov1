@@ -9,6 +9,10 @@ class CasinoInfo
     public function __construct($name, $countryId) {
         $this->setResult($name, $countryId);
     }
+    
+    public function getUserVote($casinoID,$ip) {
+        return DB("SELECT value FROM casinos__ratings WHERE ip = ".ip2long($ip)." AND casino_id = $casinoID")->toValue();
+    }
 
     private function setResult($name, $countryId) {
         DB("SET names UTF8");

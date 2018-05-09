@@ -8,9 +8,7 @@ class TopMenu
         "SOFTWARES"=>"/softwares",
         "BONUSES"=>"/bonus-list",
         "COUNTRIES"=>"/countries",
-        "COMPATIBILITY"=>"/compatability",
         "BANKING"=>"/banking",
-        "FEATURES"=>"/features",
         "GAMES"=>"/games",
 
     ];

@@ -4,6 +4,7 @@ class Casino {
 	public $name;
     public $code;
 	public $rating;
+        public $main_software;
 	public $softwares;
 	public $languages;
 	public $currencies;

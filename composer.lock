@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "lucinda/errors",
-            "version": "v1.2.1",
+            "version": "v1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/php-errors-api.git",
-                "reference": "c76107dd858337a26ac63c7a39bea8e699ebf72e"
+                "reference": "af7f12e14c0643b82e88c1424c4d18c6e085a8dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/php-errors-api/zipball/c76107dd858337a26ac63c7a39bea8e699ebf72e",
-                "reference": "c76107dd858337a26ac63c7a39bea8e699ebf72e",
+                "url": "https://api.github.com/repos/aherne/php-errors-api/zipball/af7f12e14c0643b82e88c1424c4d18c6e085a8dd",
+                "reference": "af7f12e14c0643b82e88c1424c4d18c6e085a8dd",
                 "shasum": ""
             },
             "type": "library",
@@ -42,7 +42,7 @@
                 "renderer",
                 "reporter"
             ],
-            "time": "2018-03-03T06:34:32+00:00"
+            "time": "2018-04-27T13:58:00+00:00"
         },
         {
             "name": "lucinda/http-caching",
@@ -188,16 +188,16 @@
         },
         {
             "name": "lucinda/nosql-data-access",
-            "version": "v1.1.0",
+            "version": "v1.1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/php-nosql-data-access-api.git",
-                "reference": "d9ba3f0bfe1701bec2858bbc951a4dacfceba7e9"
+                "reference": "5c49aa3f8a881fbbf6a0c4bfc871d99add922619"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/php-nosql-data-access-api/zipball/d9ba3f0bfe1701bec2858bbc951a4dacfceba7e9",
-                "reference": "d9ba3f0bfe1701bec2858bbc951a4dacfceba7e9",
+                "url": "https://api.github.com/repos/aherne/php-nosql-data-access-api/zipball/5c49aa3f8a881fbbf6a0c4bfc871d99add922619",
+                "reference": "5c49aa3f8a881fbbf6a0c4bfc871d99add922619",
                 "shasum": ""
             },
             "type": "library",
@@ -224,7 +224,7 @@
                 "nosql",
                 "redis"
             ],
-            "time": "2018-01-28T11:58:28+00:00"
+            "time": "2018-04-13T09:22:40+00:00"
         },
         {
             "name": "lucinda/oauth2-client",

@@ -20,7 +20,7 @@
       </compilations>
     </paths>
     <environments>
-      <lucinda>www.casinoslists.local</lucinda>
+      <lucinda>casli.local</lucinda>
       <dev>dev.casinoslists.com</dev>
       <live>www.casinoslists.com</live>
     </environments>
@@ -49,9 +49,9 @@
       </renderer>
     </lucinda>
     <dev>
-      <reporters>
-        <async/>
-      </reporters>
+       <reporters>
+            <async/>
+        </reporters>
       <renderer display_errors="1">
         <html/>
         <json/>
@@ -138,7 +138,7 @@
   <servers>
     <sql>
       <lucinda>
-        <server driver="mysql" host="localhost" port="3306" username="lucinda" password="hliscorp" schema="casinoslists"/>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_dev"/>
       </lucinda>
       <dev>
         <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_dev"/>

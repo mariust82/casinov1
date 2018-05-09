@@ -1,5 +1,21 @@
 RewriteEngine on
+RewriteRule ^casinos/safe$ / [R=301,L]
+RewriteRule ^compatability$ / [R=301,L]
+RewriteRule ^compatability/mac$ / [R=301,L]
+RewriteRule ^compatability/linux$ / [R=301,L]
+RewriteRule ^compatability/flash$ / [R=301,L]
+RewriteRule ^compatability/iphone$ /compatability/mobile [R=301,L]
+RewriteRule ^compatability/android$ /compatability/mobile [R=301,L]
+RewriteRule ^features$ / [R=301,L]
+RewriteRule ^features/high-roller-casinos$ / [R=301,L]
+RewriteRule ^features/jackpot-casinos$ / [R=301,L]
+
+
 Options -Indexes
 ErrorDocument 404 default
 RewriteRule ^favicon\.ico$ public/favicon.ico
-RewriteRule !public/(.*) index.php
+RewriteCond %{REQUEST_URI} !^/public
+RewriteCond %{REQUEST_URI} !^/BingSiteAuth.xml
+# Redirects all requests to bootstrap, except those pointing at public/ folder
+RewriteRule ^(.*)$ index.php
+

@@ -50,13 +50,22 @@ class GamesList
     }
 
     private function getQuery($columns) {
+        $sub_join = "";
+        $sub_where = "";
+        
+        if($this->filter->is_mobile) {
+            $sub_join = " INNER JOIN games__features AS t4 ON t1.id = t4.game_id ";
+            $sub_where = "t4.feature_id = 7 AND ";
+        }
+        
         $query = "
         SELECT
             ".implode(",", $columns)."
         FROM games AS t1
         INNER JOIN game_manufacturers AS t2 ON t1.game_manufacturer_id = t2.id
         INNER JOIN game_types AS t3 ON t1.game_type_id = t3.id
-        WHERE 1 AND ";
+        ".$sub_join."
+        WHERE 1 AND ".$sub_where."";
         if($this->filter->getSoftwares()) {
             $query.="t2.name IN ('".implode("','", $this->filter->getSoftwares())."') AND ";
         }
