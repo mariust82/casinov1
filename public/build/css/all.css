@@ -4364,6 +4364,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .dashed.js-copy-tooltip {
   cursor: pointer;
+  word-wrap: break-word;
 }
 
 .bonus-box {
