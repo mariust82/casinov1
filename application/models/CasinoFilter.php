@@ -1,4 +1,5 @@
 <?php
+require_once 'dao/Casinos.php';
 /**
  * Created by PhpStorm.
  * User: aherne
@@ -11,6 +12,8 @@ class CasinoFilter
     private $detectedCountry;
 
     private $country_accepted = false;
+    private $currency_accepted = false;
+    private $language_accepted = false;
     private $free_bonus = false;
     private $promoted = false;
 
@@ -18,6 +21,8 @@ class CasinoFilter
     private $label;
     private $bonus_type;
     private $country;
+    public $currency_id;
+    public $language_id;
     private $software;
     private $game;
 
@@ -28,8 +33,13 @@ class CasinoFilter
 
     public function __construct($requestParameters, Country $detectedCountry) {
         $this->detectedCountry = $detectedCountry;
-
-        $booleans = array("country_accepted", "free_bonus", "promoted");
+        if (isset($requestParameters['country'])) {
+                $countries = new Countries();
+                $result = $countries->getCountryDetails($requestParameters['country']);
+                $this->currency_id = $result[0]['c_id'];
+                $this->language_id = $result[0]['l_id'];
+        }
+        $booleans = array("country_accepted","currency_accepted","lang_accepted","free_bonus", "promoted");
         foreach($booleans as $item) {
             $this->$item =  !empty($requestParameters[$item]);
         }
@@ -37,7 +47,9 @@ class CasinoFilter
         $strings = array("banking_method", "label", "bonus_type", "country", "software", "game");
         foreach($strings as $item) {
             $this->$item =  (!empty($requestParameters[$item])?preg_replace("/[^a-zA-Z0-9\ \.\@\-\(\)]/","", $requestParameters[$item]):"");
+            
         }
+        
 
         if(!empty($requestParameters["compatibility"])) {
             $compatibility = strtolower($requestParameters["compatibility"]);
@@ -83,6 +95,22 @@ class CasinoFilter
 
     public function getCountryAccepted() {
         return $this->country_accepted;
+    }
+    
+    public function getCurrencyAccepted() {
+        return $this->currency_accepted;
+    }
+    
+    public function getLanguageAccepted() {
+        return $this->language_accepted;
+    }
+    
+    public function getCurrencyID() {
+        return $this->currency_id;
+    }
+    
+    public function getLanguageID() {
+        return $this->language_id;
     }
 
     public function getFreeBonus() {
