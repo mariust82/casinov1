@@ -20,6 +20,27 @@
         }   
         
     });
+    
+    var windowToBottom = 0;
+    
+    $(window).on('scroll', function(){
+        
+        //scroll down
+        if (windowToBottom < $(window).scrollTop()) {
+            $('.header').removeClass('site__header_sticky');
+            windowToBottom = $(window).scrollTop();
+        //scroll up
+        } else { 
+            if ( (windowToBottom - $(window).scrollTop()) > ($(window).height() / 3) ) {
+                $('.header').addClass('site__header_sticky');
+                windowToBottom = $(window).scrollTop();
+            }
+        }
+        
+         if ($(window).scrollTop() === 0) {
+            $('.header').removeClass('site__header_sticky');
+        }
+    });
 
     $(window).resize(function(event) {
         ww = $(window).width();
