@@ -13,7 +13,7 @@ class CasinoFilter
 
     private $country_accepted = false;
     private $currency_accepted = false;
-    private $language_accepted = false;
+    private $lang_accepted = false;
     private $free_bonus = false;
     private $promoted = false;
 
@@ -102,7 +102,7 @@ class CasinoFilter
     }
     
     public function getLanguageAccepted() {
-        return $this->language_accepted;
+        return $this->lang_accepted;
     }
     
     public function getCurrencyID() {
