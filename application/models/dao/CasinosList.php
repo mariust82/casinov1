@@ -122,11 +122,16 @@ class CasinosList
             ".implode(",", $columns)."
         FROM casinos AS t1
         ";
+        
         if ($this->filter->getCurrencyAccepted()) {
-            $query.="INNER JOIN casinos__currencies AS t2 ON t1.id = t2.casino_id AND t2.currency_id = ".$this->filter->currency_id."\n";
-        } elseif($this->filter->getLanguageAccepted()) {
-            $query.="INNER JOIN casinos__languages AS t2 ON t1.id = t2.casino_id AND t2.language_id = ".$this->filter->language_id."\n";
-        } elseif($this->filter->getCountryAccepted()) {
+            $query.="INNER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id AND t15.currency_id = ".$this->filter->currency_id."\n";
+        } 
+        
+        if($this->filter->getLanguageAccepted()) {
+            $query.="INNER JOIN casinos__languages AS t16 ON t1.id = t16.casino_id AND t16.language_id = ".$this->filter->language_id."\n";
+        } 
+        
+        if($this->filter->getCountryAccepted()) {
             $query.="INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = ".$this->filter->getDetectedCountry()->id."\n";
         } else {
             $query.="LEFT JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = ".$this->filter->getDetectedCountry()->id."\n";
