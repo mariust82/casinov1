@@ -8,6 +8,13 @@ fieldset, img {
   border: 0;
 }
 
+.site__header_sticky{
+    position: fixed!important;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
 img, object, embed {
   vertical-align: bottom;
 }
