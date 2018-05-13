@@ -1412,6 +1412,7 @@
             _searchInput = _searchForm.find('input'),
             _searchUpdate = _searchForm.find('.js-mobile-search-clear'), // clear text
             _searchCasinosContainer = _searchContainer.find('#search-casinos ul'),
+            _searchListsContainer = _searchContainer.find('#search-lists ul'),
             _searchPagesContainer = _searchContainer.find('#search-pages ul'),
             _searchEmptyContainer = _searchContainer.find('#search-empty'),
 
@@ -1421,6 +1422,7 @@
 
             _showMoreNum = 5,
             _fromCasinos = 1,
+            _fromLists = 1,
             _fromPages = 1,
 
             loadDelay = 0,
@@ -1668,6 +1670,7 @@
                     dataType: 'json',
                     type: 'GET',
                     success: function(data) {
+                        console.dir(data);
                         _hideLoading();
                         _loadData(data);
                     },
@@ -1729,18 +1732,41 @@
             },
 
             _loadData = function(data) {
+                var lists = data.body.lists;
+                console.dir(lists);
                 var casinos = data.body.casinos;
                 var pages = data.body.games;
-
+                
                 if (!_loadMoreContent) {
                     _clearSearchBody();
                 }
 
-                if ($.isEmptyObject(casinos) && $.isEmptyObject(pages)) {
+                if ($.isEmptyObject(lists) && $.isEmptyObject(casinos) && $.isEmptyObject(pages)) {
                     _showEmptyMessage();
                 } else {
                     _hideEmptyMessage();
+                    
+                    if (!$.isEmptyObject(lists)) {
+                        _searchListsContainer
+                            .parent()
+                            .show()
+                            .next()
+                            .removeClass('single');
 
+                        if (data.body.total_lists > 3 && Math.ceil(data.body.total_lists / 3) > _fromLists) {
+                            // _searchMoreCasinos.show();
+                        } else {
+                            // _searchMoreCasinos.hide();
+                            _fromLists = 1;
+                        }
+                    } else {
+                        _searchListsContainer
+                            .parent()
+                            .hide()
+                            .next()
+                            .addClass('single');
+                    }
+                    
                     if (!$.isEmptyObject(casinos)) {
                         _searchCasinosContainer
                             .parent()
@@ -1780,6 +1806,15 @@
                             .hide()
                             .prev()
                             .addClass('single');
+                    }
+                    _searchListsContainer.html("");
+                    for (var i = 0; i< lists.length;i++) {
+
+                        var _item = getItemPattern({
+                            link: (lists[i]['url']),
+                            name: lists[i]['title']
+                        });
+                        _searchListsContainer.append(_item);
                     }
 
                     for (var casino in casinos) {

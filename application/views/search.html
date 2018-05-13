@@ -8,7 +8,23 @@
 		<h1 class="search-title">Search results for "<span>${data.value}</span>"</h1>
 
 		<nav class="search-list">
-			<div class="search-list-block">
+                        <div class="search-list-block">
+				<div class="search-list-heading">
+					<span>LISTS</span>
+					<span>${data.total_lists} Results</span>
+				</div>
+				<ul id="all-casinos-container">
+					<std:foreach var="${data.lists}" key="key" value="result">
+						<li><a href="/reviews/${normalize(${result})}-review">${result}</a></li>
+					</std:foreach>
+				</ul>
+				<std:if condition="${data.total_lists} > 4">
+					<div class="search-list-more">
+						<a href="#" id="js-search-more-casinos">Show <span class="more-num" data-total-casinos="${data.total_lists}">5</span> more <i class="icon-chevron-down"></i></a>
+					</div>
+				</std:if>
+			</div>
+                        <div class="search-list-block">
 				<div class="search-list-heading">
 					<span>CASINOS</span>
 					<span>${data.total_casinos} Results</span>
