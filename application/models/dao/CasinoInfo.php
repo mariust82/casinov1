@@ -69,7 +69,7 @@ class CasinoInfo
                 t2.symbol
                 FROM casinos__currencies AS t1
                 INNER JOIN currencies AS t2 ON t1.currency_id = t2.id
-                WHERE t1.casino_id = ".$id."
+                WHERE t1.casino_id = ".$id." AND t1.is_primary = 1
             ")->toColumn();
     }
 
