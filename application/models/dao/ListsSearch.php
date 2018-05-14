@@ -91,14 +91,7 @@ class ListsSearch {
         GROUP BY t1.id
         ORDER BY counter DESC 
         ");
-        $output = array();
-        $i = 0;
-        while($row = $res->toRow()) {
-            $output[$i]['name'] = $row['unit'];
-            $output[$i]['count'] = $row['counter'];
-            $output[$i]['url'] = "bonus-list/(name)";
-            $i++;
-        }
+        $output = $this->loop($res, "bonus-list/(name)");
         return $output;
     }
 
@@ -113,14 +106,7 @@ class ListsSearch {
         GROUP BY t1.id
         ORDER BY counter DESC
         ");
-        $labels = array();
-        $i = 0;
-        while($row = $res->toRow()) {
-            $labels[$i]['name'] = $row['unit'];
-            $labels[$i]['count'] = $row['counter'];
-            $labels[$i]['url'] = "casinos/(name)";
-            $i++;
-        }
+        $labels = $this->loop($res,"casinos/(name)");
         
         $res =  DB("
         SELECT
@@ -132,14 +118,7 @@ class ListsSearch {
         GROUP BY t1.id
         ORDER BY counter DESC 
         ");
-        $mobile = array();
-        $i = 0;
-        while($row = $res->toRow()) {
-            $mobile[$i]['name'] = $row['unit'];
-            $mobile[$i]['count'] = $row['counter'];
-            $mobile[$i]['url'] = "compatability/(name)";
-            $i++;
-        }
+        $mobile = $this->loop($res,"compatability/(name)");
         $array = array_merge($labels,$mobile);
         
         $res =  DB("
@@ -152,15 +131,20 @@ class ListsSearch {
         GROUP BY t1.id
         ORDER BY counter DESC 
         ");
-        $features = array();
+        $features = $this->loop($res,"features/(name)");
+        return array_merge($array,$features);
+    }
+    
+    private function loop($res,$url) {
+        $arr = array();
         $i = 0;
         while($row = $res->toRow()) {
-            $features[$i]['name'] = $row['unit'];
-            $features[$i]['count'] = $row['counter'];
-            $features[$i]['url'] = "features/(name)";
+            $arr[$i]['name'] = $row['unit'];
+            $arr[$i]['count'] = $row['counter'];
+            $arr[$i]['url'] = $url;
             $i++;
         }
-        return array_merge($array,$features);
+        return $arr;
     }
     
     public function getCountries() {
@@ -174,14 +158,7 @@ class ListsSearch {
         GROUP BY t1.id
         ORDER BY counter DESC 
         ");
-         $output = array();
-        $i = 0;
-        while($row = $res->toRow()) {
-            $output[$i]['name'] = $row['unit'];
-            $output[$i]['count'] = $row['counter'];
-            $output[$i]['url'] = "countries-list/(name)";
-            $i++;
-        }
+        $output = $this->loop($res,"countries-list/(name)");
         return $output;
     }
     
@@ -196,14 +173,7 @@ class ListsSearch {
         GROUP BY t1.id
         ORDER BY counter DESC 
         ");
-        $output = array();
-        $i = 0;
-        while($row = $res->toRow()) {
-            $output[$i]['name'] = $row['unit'];
-            $output[$i]['count'] = $row['counter'];
-            $output[$i]['url'] = "banking/(name)";
-            $i++;
-        }
+        $output = $this->loop($res,"banking/(name)");
         return $output;
     }
     
@@ -217,14 +187,7 @@ class ListsSearch {
         GROUP BY t1.id
         ORDER BY counter DESC  
         ");
-        $output = array();
-        $i = 0;
-        while($row = $res->toRow()) {
-            $output[$i]['name'] = $row['unit'];
-            $output[$i]['count'] = $row['counter'];
-            $output[$i]['url'] = "games/(type)";
-            $i++;
-        }
+        $output = $this->loop($res,"games/(type)");
         return $output;
     }
 }
