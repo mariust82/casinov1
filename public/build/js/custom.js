@@ -1890,12 +1890,14 @@
             },
 
             _showEmptyMessage = function(){
+                _searchListsContainer.parent().hide();
                 _searchCasinosContainer.parent().hide();
                 _searchPagesContainer.parent().hide();
                 _searchEmptyContainer.show();
                 _searchAllButton.parent().fadeOut();
             },
             _hideEmptyMessage = function(){
+                _searchListsContainer.parent().show();
                 _searchCasinosContainer.parent().show();
                 _searchPagesContainer.parent().show();
                 _searchEmptyContainer.hide();
