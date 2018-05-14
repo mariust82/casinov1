@@ -16,7 +16,8 @@ class SearchController extends Controller {
 	public function run() {
             $lists = new ListsSearch($this->request->getParameter("value"));
 	    $casinos = new CasinosSearch($this->request->getParameter("value"));
-            $this->response->setAttribute("lists", $lists->getResults(self::LIMIT,0));
+            $result = array_slice($lists->getResults(), 0, 3);
+            $this->response->setAttribute("lists", $result);
 	    $this->response->setAttribute("casinos", $casinos->getResults(self::LIMIT,0));
             
 

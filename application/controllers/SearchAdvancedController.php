@@ -1,4 +1,5 @@
 <?php
+require_once("application/models/dao/ListsSearch.php");
 require_once("application/models/dao/CasinosSearch.php");
 require_once("application/models/dao/GamesSearch.php");
 
@@ -14,8 +15,14 @@ class SearchAdvancedController extends Controller {
     const LIMIT = 5;
 
 	public function run() {
-	    $this->response->setAttribute("value", $_GET["value"]);
-
+        $this->response->setAttribute("value", $_GET["value"]);
+        
+        $lists = new ListsSearch($_GET["value"]);
+        $result = $lists->getResults();
+        $this->response->setAttribute("index",count($result) > 5 ? 5:  count($result));
+        $this->response->setAttribute("lists",$result);
+        $this->response->setAttribute("total_lists", count($result));
+        
         $casinos = new CasinosSearch($_GET["value"]);
         $this->response->setAttribute("casinos", $casinos->getResults(self::LIMIT,0));
         $this->response->setAttribute("total_casinos", $casinos->getTotal());

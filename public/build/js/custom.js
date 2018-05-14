@@ -1506,6 +1506,11 @@
             },
 
             _initMoreButtons = function() {
+                var _searchMoreLists = $('#js-search-more-lists');
+                var _searchMoreListsNumHolder = $('.more-lists', _searchMoreLists);
+                var _searchMoreListsNum = _searchMoreListsNumHolder.data('total-casinos');
+
+
                 var _searchMoreCasinos = $('#js-search-more-casinos');
                 var _searchMoreCasinosNumHolder = $('.more-num', _searchMoreCasinos);
                 var _searchMoreCasinosNum = _searchMoreCasinosNumHolder.data('total-casinos');
@@ -1514,12 +1519,18 @@
                 var _searchMorePagesNumHolder = $('.more-num', _searchMorePages);
                 var _searchMorePagesNum = _searchMorePagesNumHolder.data('total-games');
 
+                var _clicksLists = Math.floor(_searchMoreListsNum / _showMoreNum);
                 var _clicksCasinos = Math.floor(_searchMoreCasinosNum / _showMoreNum);
                 var _clicksPages = Math.floor(_searchMorePagesNum / _showMoreNum);
 
+                var _remainderLists = _searchMoreListsNum % _showMoreNum;
                 var _remainderCasinos = _searchMoreCasinosNum % _showMoreNum;
                 var _remainderPages = _searchMorePagesNum % _showMoreNum;
 
+                if (_remainderLists < _showMoreNum && _clicksLists == 1) {
+                    _searchMoreListsNumHolder.text(_remainderLists);
+                }
+                
                 if (_remainderCasinos < _showMoreNum && _clicksCasinos == 1) {
                     _searchMoreCasinosNumHolder.text(_remainderCasinos);
                 }
@@ -1528,6 +1539,28 @@
                     _searchMorePagesNumHolder.text(_remainderPages);
                 }
 
+                _searchMoreLists.on(
+                    'click',
+                    function() {
+                        _ajaxMore('/search/more-lists/'+_fromLists, $('.search-title span').text(), $('#all-lists-container'), 'lists');
+                        _loadMoreContent = true;
+                        
+                        if (_fromLists >= _clicksLists) {
+                            _searchMoreLists.fadeOut();
+                        } else {
+                            _searchMoreLists.fadeIn();
+                        }
+
+                        if (_fromLists >= _clicksLists - 1 && _remainderLists > 0) {
+                            _searchMoreListsNumHolder.text(_remainderLists);
+                        }
+
+                        _fromLists++;
+
+                        return false;
+                    }
+                );
+                
                 _searchMoreCasinos.on(
                     'click',
                     function() {
@@ -1573,6 +1606,7 @@
             },
 
             _clearSearchBody = function() {
+                _searchListsContainer.empty();
                 _searchCasinosContainer.empty();
                 _searchPagesContainer.empty();
             },
@@ -1713,21 +1747,32 @@
 
             _loadMoreData = function(data, container, type) {
                 var items = data.body.results;
+                console.dir(items);
                 var link;
+                if (type === 'lists') {
+                    for (var i =0;i<items.length;i++) {
+                        var _item = getItemPattern({
+                            link: items[i]['url'],
+                            name: items[i]['title']
+                        });
 
-                for (var item in items) {
-                    if (type == 'games') {
-                        link = 'play/'+getWebName(items[item]);
-                    } else if(type == 'casinos') {
-                        link = 'reviews/'+getWebName(items[item])+'-review';
+                        container.append(_item);
                     }
+                } else {
+                    for (var item in items) {
+                        if (type == 'games') {
+                            link = 'play/'+getWebName(items[item]);
+                        } else if(type == 'casinos') {
+                            link = 'reviews/'+getWebName(items[item])+'-review';
+                        }
 
-                    var _item = getItemPattern({
-                        link: link,
-                        name: items[item]
-                    });
+                        var _item = getItemPattern({
+                            link: link,
+                            name: items[item]
+                        });
 
-                    container.append(_item);
+                        container.append(_item);
+                    }
                 }
             },
 

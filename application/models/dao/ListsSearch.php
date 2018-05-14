@@ -19,19 +19,18 @@ class ListsSearch {
         $this->value = $value;
     }
     
-    public function getResults($limit,$offset) {
+    public function getResults() {
         if ($this->value == "") {
-            return $this->setData($this->getSoftwares($limit, $offset));
+            return $this->setData($this->getSoftwares());
         }
-        $caisnos = $this->getCasinos($limit, $offset);
-        $softwares = $this->getSoftwares($limit, $offset);
-        $bonuses = $this->getBonuses($limit, $offset);
-        $countries = $this->getCountries($limit, $offset);
-        $banking = $this->getBanking($limit, $offset);
-        $games = $this->getGames($limit, $offset);
+        $caisnos = $this->getCasinos();
+        $softwares = $this->getSoftwares();
+        $bonuses = $this->getBonuses();
+        $countries = $this->getCountries();
+        $banking = $this->getBanking();
+        $games = $this->getGames();
         $results = array_merge($caisnos,array_merge($softwares,array_merge($bonuses,array_merge($countries,array_merge($games,$banking)))));
-//        var_dump($this->setData(array_slice($results, 0, 3)));
-        return $this->setData(array_slice($results, 0, 3));
+        return $this->setData($results);
     }
     
     public function setData($arr) {
@@ -44,7 +43,7 @@ class ListsSearch {
         return $arr;
     }
     
-    public function getSoftwares($limit,$offset) {
+    public function getSoftwares() {
         if ($this->value == "") {
             $query = "
             SELECT
@@ -54,7 +53,7 @@ class ListsSearch {
             INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
             WHERE t3.is_open = 1 AND (t1.name = 'RTG' OR t1.name = 'NetEnt' OR t1.name = 'Playtech')
             GROUP BY t1.id
-            ORDER BY t1.id DESC LIMIT ".$limit." OFFSET ".$offset."
+            ORDER BY t1.id DESC
             ";
         } else {
            $query = "
@@ -65,7 +64,7 @@ class ListsSearch {
             INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
             WHERE t3.is_open = 1 AND t1.name LIKE '%".$this->value."%'
             GROUP BY t1.id
-            ORDER BY counter DESC LIMIT ".$limit." OFFSET ".$offset."
+            ORDER BY counter DESC
             "; 
         }
         
@@ -81,7 +80,7 @@ class ListsSearch {
         return $output;
     }
     
-    public function getBonuses($limit,$offset) {
+    public function getBonuses() {
         $res = DB("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -90,7 +89,7 @@ class ListsSearch {
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
         WHERE t1.name IN ('Free Play', 'Free Spins', 'No Deposit Bonus') AND t3.is_open = 1  AND t1.name LIKE '%".$this->value."%'
         GROUP BY t1.id
-        ORDER BY counter DESC  LIMIT ".$limit." OFFSET ".$offset."
+        ORDER BY counter DESC 
         ");
         $output = array();
         $i = 0;
@@ -103,7 +102,7 @@ class ListsSearch {
         return $output;
     }
 
-    public function getCasinos($limit,$offset) {
+    public function getCasinos() {
         $res =  DB("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -112,7 +111,7 @@ class ListsSearch {
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
         WHERE t3.is_open = 1 AND t1.id != 8 AND t1.name LIKE '%".$this->value."%'
         GROUP BY t1.id
-        ORDER BY counter DESC LIMIT ".$limit." OFFSET ".$offset."
+        ORDER BY counter DESC
         ");
         $labels = array();
         $i = 0;
@@ -131,7 +130,7 @@ class ListsSearch {
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
         WHERE t3.is_open = 1 AND (t1.id = 4 OR t1.id = 2) AND t1.name LIKE '%".$this->value."%'
         GROUP BY t1.id
-        ORDER BY counter DESC  LIMIT ".$limit." OFFSET ".$offset."
+        ORDER BY counter DESC 
         ");
         $mobile = array();
         $i = 0;
@@ -151,7 +150,7 @@ class ListsSearch {
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
         WHERE t3.is_open = 1 AND t1.id = 6 AND t1.name LIKE '%".$this->value."%'
         GROUP BY t1.id
-        ORDER BY counter DESC  LIMIT ".$limit." OFFSET ".$offset."
+        ORDER BY counter DESC 
         ");
         $features = array();
         $i = 0;
@@ -164,7 +163,7 @@ class ListsSearch {
         return array_merge($array,$features);
     }
     
-    public function getCountries($limit,$offset) {
+    public function getCountries() {
          $res = DB("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -173,7 +172,7 @@ class ListsSearch {
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
         WHERE t3.is_open = 1 AND t1.name LIKE '%".$this->value."%'
         GROUP BY t1.id
-        ORDER BY counter DESC  LIMIT ".$limit." OFFSET ".$offset."
+        ORDER BY counter DESC 
         ");
          $output = array();
         $i = 0;
@@ -186,7 +185,7 @@ class ListsSearch {
         return $output;
     }
     
-    public function getBanking($limit,$offset) {
+    public function getBanking() {
         $res = DB("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -195,7 +194,7 @@ class ListsSearch {
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
         WHERE t3.is_open = 1 AND t1.name LIKE '%".$this->value."%'
         GROUP BY t1.id
-        ORDER BY counter DESC  LIMIT ".$limit." OFFSET ".$offset."
+        ORDER BY counter DESC 
         ");
         $output = array();
         $i = 0;
@@ -208,7 +207,7 @@ class ListsSearch {
         return $output;
     }
     
-    public function getGames($limit,$offset) {
+    public function getGames() {
         $res = DB("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -216,7 +215,7 @@ class ListsSearch {
         INNER JOIN games AS t2 ON t1.id = t2.game_type_id
         WHERE t1.name LIKE '%".$this->value."%'
         GROUP BY t1.id
-        ORDER BY counter DESC   LIMIT ".$limit." OFFSET ".$offset."
+        ORDER BY counter DESC  
         ");
         $output = array();
         $i = 0;
