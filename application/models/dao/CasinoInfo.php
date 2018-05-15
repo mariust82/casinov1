@@ -29,7 +29,7 @@ class CasinoInfo
             $output->id = $row["id"];
             $output->name = $row["name"];
             $output->code = $row["code"];
-            $output->rating = $row["average_rating"];
+            $output->rating = ceil($row["average_rating"]);
             $output->is_live_dealer = $row["is_live_dealer"];
             $output->is_live_chat = $row["is_live_chat"];
             $output->date_established = $row["date_established"];
