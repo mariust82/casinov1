@@ -16,7 +16,20 @@ class Countries
     }
     
     public function getCountryDetails($name) {
-        return DB("SELECT t1.code,t1.id AS c_id,t2.name,t2.id AS l_id from countries AS t3 INNER JOIN countries__languages AS t4 ON (t3.id = t4.country_id) INNER JOIN currencies AS t1 ON (t1.id = t3.currency_id) INNER JOIN languages AS t2 ON (t2.id = t4.language_id) WHERE LCASE(t3.name)=:code", array(':code' => str_replace('-', ' ', $name)))->toList();
+        $output = $this->getExceptions();
+        if (!in_array($name, $output)) {
+            $name = str_replace('-', ' ', $name);
+        }
+        return DB("SELECT t1.code,t1.id AS c_id,t2.name,t2.id AS l_id from countries AS t3 INNER JOIN countries__languages AS t4 ON (t3.id = t4.country_id) INNER JOIN currencies AS t1 ON (t1.id = t3.currency_id) INNER JOIN languages AS t2 ON (t2.id = t4.language_id) WHERE LCASE(t3.name)=:code", array(':code' => $name))->toList();
+    }
+    
+    public function getExceptions() {
+        $res =  DB("SELECT t1.name from countries AS t1 WHERE t1.name LIKE '%-%'");
+        $output = array();
+        while($row = $res->toRow()) {
+            $output[] = $row['name'];
+        }
+        return $output;
     }
 
     public function validate($name) {
