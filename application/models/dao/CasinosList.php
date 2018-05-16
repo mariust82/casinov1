@@ -55,26 +55,13 @@ class CasinosList
 
         // signal engine that utf8 is expected to come
         DB("SET names utf8");
-        //append main software
-        $query = "
-        SELECT t1.casino_id, t2.name 
-        FROM casinos__game_manufacturers AS t1
-        INNER JOIN game_manufacturers AS t2 ON t1.game_manufacturer_id = t2.id
-        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t1.is_primary = 1
-        ";
-        
-        
-        $resultSet = DB($query);
-        while($row = $resultSet->toRow()) {
-            $output[$row["casino_id"]]->main_software = $row["name"];
-        }
         
         // append softwares
         $query = "
         SELECT t1.casino_id, t2.name 
         FROM casinos__game_manufacturers AS t1
         INNER JOIN game_manufacturers AS t2 ON t1.game_manufacturer_id = t2.id
-        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t1.is_primary = 0;
+        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") ORDER BY t1.is_primary DESC;
         ";
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {
