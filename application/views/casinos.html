@@ -10,8 +10,12 @@
 					<p class="js-condense"></p>
 				</div>
 			</div>
+                    <std:if condition="isset(${data.currency})">
+                            <filter:casinos id="${data.selected_entity}" name="${data.currency}" code="${data.language}" key="true"/>
+                    <std:else>
+                            <filter:casinos id="${data.selected_entity}" name="${data.country.name}" code="${data.country.code}"  key="false"/>
+                    </std:if>
 			
-			<filter:casinos id="${data.selected_entity}" name="${data.country.name}" code="${data.country.code}"/>
 
 			<div class="data-container-holder">
 				<div class="holder">

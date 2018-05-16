@@ -11,16 +11,11 @@ function getAbbreviation($name)
 }
 
 function setScoreClass($score) {
-    $score = ceil($score);
-    if ($score == 1 || $score == 2) {
-        return "Terrible";
-    } elseif ($score == 3 || $score == 4) {
+    if ($score >= 1 && $score <= 4.99) {
         return "Poor";
-    } elseif ($score == 5 || $score == 6) {
+    } elseif ($score >= 5 && $score <= 7.99) {
         return "Good";
-    } elseif ($score == 7 || $score == 8) {
-        return "Very Good";
-    } elseif ($score == 9 || $score == 10) {
+    } elseif ($score >= 8 && $score <= 10) {
         return "Excellent";
     }
             
@@ -48,23 +43,24 @@ function normalize($name)
 
 function get_string($name)
 {
-    return implode(", ", $name);
+    foreach ($name as $key => $item) {
+        if ($key != 0) {
+            $items[$key] = $item;
+        }
+    }
+    return implode(", ", $items);
 }
 
 function get_rating($name)
 {
-    if ($name > 8) {
-        $string = 'Excellent';
-    } elseif($name > 6 && $name <= 8){
-        $string = 'Very good';
-    } elseif($name > 4 && $name <= 6){
-        $string = 'Good';
-    } elseif($name > 2 && $name <= 4){
-        $string = 'Poor';
-    } elseif($name == 0) {
+    if($name == 0) {
         $string = 'No score';
-    } else {
-        $string = 'Terrible';
+    } elseif($name >= 1 && $name <= 4.99) {
+        $string = 'Poor';
+    } elseif($name >= 5 && $name <= 7.99) {
+        $string = 'Good';
+    } elseif($name >= 8 && $name <= 10) {
+        $string = 'Excellent';
     }
 
     return $string;

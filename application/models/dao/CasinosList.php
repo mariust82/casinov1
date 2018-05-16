@@ -37,6 +37,7 @@ class CasinosList
         $query = $this->getQuery(array("t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"));
         $query .= $order;
         $query .= "LIMIT ".$limit." OFFSET ".$offset;
+//        echo $query;
         // execute query
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {
@@ -54,26 +55,13 @@ class CasinosList
 
         // signal engine that utf8 is expected to come
         DB("SET names utf8");
-        //append main software
-        $query = "
-        SELECT t1.casino_id, t2.name 
-        FROM casinos__game_manufacturers AS t1
-        INNER JOIN game_manufacturers AS t2 ON t1.game_manufacturer_id = t2.id
-        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t1.is_primary = 1
-        ";
-        
-        
-        $resultSet = DB($query);
-        while($row = $resultSet->toRow()) {
-            $output[$row["casino_id"]]->main_software = $row["name"];
-        }
         
         // append softwares
         $query = "
         SELECT t1.casino_id, t2.name 
         FROM casinos__game_manufacturers AS t1
         INNER JOIN game_manufacturers AS t2 ON t1.game_manufacturer_id = t2.id
-        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t1.is_primary = 0;
+        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") ORDER BY t1.is_primary DESC;
         ";
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {
@@ -122,6 +110,15 @@ class CasinosList
             ".implode(",", $columns)."
         FROM casinos AS t1
         ";
+        
+        if ($this->filter->getCurrencyAccepted()) {
+            $query.="INNER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id AND t15.currency_id = ".$this->filter->currency_id."\n";
+        } 
+        
+        if($this->filter->getLanguageAccepted()) {
+            $query.="INNER JOIN casinos__languages AS t16 ON t1.id = t16.casino_id AND t16.language_id = ".$this->filter->language_id."\n";
+        } 
+        
         if($this->filter->getCountryAccepted()) {
             $query.="INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = ".$this->filter->getDetectedCountry()->id."\n";
         } else {

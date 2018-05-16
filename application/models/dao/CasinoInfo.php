@@ -29,7 +29,7 @@ class CasinoInfo
             $output->id = $row["id"];
             $output->name = $row["name"];
             $output->code = $row["code"];
-            $output->rating = $row["average_rating"];
+            $output->rating = ceil($row["average_rating"]);
             $output->is_live_dealer = $row["is_live_dealer"];
             $output->is_live_chat = $row["is_live_chat"];
             $output->date_established = $row["date_established"];
@@ -69,7 +69,7 @@ class CasinoInfo
                 t2.symbol
                 FROM casinos__currencies AS t1
                 INNER JOIN currencies AS t2 ON t1.currency_id = t2.id
-                WHERE t1.casino_id = ".$id."
+                WHERE t1.casino_id = ".$id." AND t1.is_primary = 1
             ")->toColumn();
     }
 

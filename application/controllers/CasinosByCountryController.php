@@ -21,6 +21,9 @@ class CasinosByCountryController extends CasinosListController {
         }
         $object = new Countries();
         $name = $object->validate($parameter);
+        $result = $object->getCountryDetails($name);
+        $this->response->setAttribute("currency",$result[0]['code']);
+        $this->response->setAttribute("language",$result[0]['name']);
         if(!$name) {
             Response::sendRedirect("/countries");
         }
