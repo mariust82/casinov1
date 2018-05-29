@@ -69,6 +69,8 @@ class SQLDataSourceInjector extends RequestListener {
 	 * @return SQLDataSource
 	 */
 	private function createDataSource(SimpleXMLElement $databaseInfo) {
+	    $this->application->setAttribute("parent_schema", (string) $databaseInfo["parent_schema"]);
+
 		$dataSource = new SQLDataSource();
 		$dataSource->setDriverName((string) $databaseInfo["driver"]);
 		$dataSource->setDriverOptions((array) $databaseInfo["options"]);
