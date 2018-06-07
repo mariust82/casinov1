@@ -2193,7 +2193,7 @@
             debug: false
            });
            if($().condense) {
-            // $('.js-condense').next('.js-condense').fadeIn();
+            $('.js-condense').next('.js-condense').fadeIn();
 
             $('.js-condense').css({
                 maxHeight: '100%'
