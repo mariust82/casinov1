@@ -3053,6 +3053,13 @@ a:hover, a:active, a:visited, a:focus {
   line-height: 26px;
 }
 
+.subtitle a{
+          color: #2171CE;
+}
+.subtitle em{
+        font-style: italic;
+}
+
 @media screen and (max-width: 690px) {
   .subtitle p {
     line-height: 24px;
