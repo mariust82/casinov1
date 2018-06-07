@@ -3044,9 +3044,6 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .subtitle {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .subtitle p {
