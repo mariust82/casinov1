@@ -20,7 +20,7 @@
       </compilations>
     </paths>
     <environments>
-      <lucinda>casli.local</lucinda>
+      <lucinda>www.casinoslists.local</lucinda>
       <dev>dev.casinoslists.com</dev>
       <live>www.casinoslists.com</live>
     </environments>
@@ -143,13 +143,13 @@
   <servers>
     <sql>
       <lucinda>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_dev"/>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="niggers" schema="casinoslists" parent_schema="admin_casinoslists"/>
       </lucinda>
       <dev>
-        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_dev"/>
+        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_dev" parent_schema="casinosl_admin_dev"/>
       </dev>
       <live>
-        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go"/>
+        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go" parent_schema="casinosl_admin"/>
       </live>
     </sql>
   </servers>
