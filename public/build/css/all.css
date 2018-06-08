@@ -4640,6 +4640,7 @@ a:hover, a:active, a:visited, a:focus {
   color: #2171CE;
   margin: 2px 0 0 0;
   display: block;
+  cursor:pointer;
 }
 
 .links-nav {
@@ -7598,15 +7599,24 @@ a:hover, a:active, a:visited, a:focus {
   display: none;
 }
 
-.js-condense {
+.condense-holder {
   max-height: 78px;
   overflow: hidden;
+  -webkit-transition:all .3s;
+  -moz-transition:all .3s;
+  -ms-transition:all .3s;
+  -o-transition:all .3s;
+  transition:all .3s;
 }
 
 @media screen and (max-width: 690px) {
-  .js-condense {
-    max-height: 215px;
+  .condense-holder {
+    max-height: 73px;
   }
+}
+
+.condense-holder.expanded{
+  max-height:100%;
 }
 
 .more-num {
