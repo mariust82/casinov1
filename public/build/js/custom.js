@@ -2185,8 +2185,12 @@
 
     function initExpandingText() {
         function cInit() {
+            var len = 420;
+            if ($(window).width() < 540) {
+                len = 145;
+            }
            $('.js-condense').condense({
-            condensedLength: 410,
+            condensedLength: len,
             moreText: "Read More",
             lessText: "Read Less",
             ellipsis: "...",
@@ -2224,7 +2228,6 @@
               }, 250);
         });
     }
-
 
     function initMultirow() {
         var multirowContainer = $('.js-multirow');
