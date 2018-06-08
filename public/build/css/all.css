@@ -4640,7 +4640,6 @@ a:hover, a:active, a:visited, a:focus {
   color: #2171CE;
   margin: 2px 0 0 0;
   display: block;
-  cursor:pointer;
 }
 
 .links-nav {
@@ -7599,45 +7598,15 @@ a:hover, a:active, a:visited, a:focus {
   display: none;
 }
 
-.links-casinos+.block .subtitle,
-.links-games+.block .subtitle{
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.condense-holder {
-  position:relative;
+.js-condense {
   max-height: 78px;
   overflow: hidden;
-  -webkit-transition:.3s;
-  -moz-transition:.3s;
-  -ms-transition:.3s;
-  -o-transition:.3s;
-  transition:.3s;
 }
 
 @media screen and (max-width: 690px) {
-  .condense-holder {
-    max-height: 73px;
+  .js-condense {
+    max-height: 215px;
   }
-}
-
-.condense-holder:after{
-  content: '...';
-  position: absolute;
-  bottom: 0;
-  right: 8px;
-  background: #fff;
-  line-height: 1.9;
-}
-
-.condense-holder.expanded{
-  max-height:100%;
-}
-
-.condense-holder.expanded:after{
-  display:none;
 }
 
 .more-num {

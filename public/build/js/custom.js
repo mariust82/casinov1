@@ -2184,26 +2184,49 @@
     }
 
     function initExpandingText() {
-        var _container = $('.js-condense');
-        var _containerMaxHeight = 78;
-        var _button = $('<span class="condense_control">Read More</span>');
-        
-        if (_container.height() > _containerMaxHeight) {
-            _container.wrap('<div class="condense-wrap"><div class="condense-holder"></div></div>');
-            _button.insertAfter('.condense-holder');
+        function cInit() {
+            var len = 380;
+            if ($(window).width() < 540) {
+                len = 140;
+            }
+           $('.js-condense').condense({
+            condensedLength: len,
+            moreText: "Read More",
+            lessText: "Read Less",
+            ellipsis: "...",
+            debug: false
+           });
+           if($().condense) {
+            $('.js-condense').next('.js-condense').fadeIn();
 
-            _button.on('click', function() {
-                var _block = $('.condense-holder');
+            $('.js-condense').css({
+                maxHeight: '100%'
+            });
+           }
+        }
 
-                if (_block.hasClass('expanded')) {
-                    _block.removeClass("expanded");
-                    $(this).html('Read More');
+        function cDestroy() {
+            $('.js-condense').each(function(index, el) {
+                if ($(this).hasClass('.cloned')) {
+                    $(this).remove();
                 } else {
-                    _block.addClass("expanded");
-                    $(this).html('Read Less');
+                    $(this).show().attr('style', '').insertAfter('.condensedParent');
+                    $(this).find('.condense_control').remove();
+                    $('.condensedParent').remove();
                 }
             });
         }
+
+        cInit();
+
+        var resizeTimer;
+        $(window).resize(function(event) {
+            clearTimeout(resizeTimer);
+              resizeTimer = setTimeout(function() {
+                cDestroy();
+                cInit();
+              }, 250);
+        });
     }
 
     function initMultirow() {
