@@ -11,7 +11,7 @@ class CasinoInfo
     }
     
     public function getUserVote($casinoID,$ip) {
-        return DB("SELECT value FROM casinos__ratings WHERE ip = ".ip2long($ip)." AND casino_id = $casinoID")->toValue();
+        return DB("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = $casinoID", array(":ip"=>$ip))->toValue();
     }
 
     private function setResult($name, $countryId) {
