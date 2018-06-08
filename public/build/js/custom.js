@@ -2187,7 +2187,7 @@
         var _container = $('.js-condense');
         var _containerMaxHeight = 78;
         var _button = $('<span class="condense_control">Read More</span>');
-
+        
         if (_container.height() > _containerMaxHeight) {
             _container.wrap('<div class="condense-wrap"><div class="condense-holder"></div></div>');
             _button.insertAfter('.condense-holder');
