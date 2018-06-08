@@ -2185,9 +2185,9 @@
 
     function initExpandingText() {
         function cInit() {
-            var len = 420;
+            var len = 380;
             if ($(window).width() < 540) {
-                len = 145;
+                len = 140;
             }
            $('.js-condense').condense({
             condensedLength: len,
