@@ -2185,15 +2185,19 @@
 
     function initExpandingText() {
         function cInit() {
+            var len = 380;
+            if ($(window).width() < 540) {
+                len = 140;
+            }
            $('.js-condense').condense({
-            condensedLength: 410,
+            condensedLength: len,
             moreText: "Read More",
             lessText: "Read Less",
             ellipsis: "...",
             debug: false
            });
            if($().condense) {
-            // $('.js-condense').next('.js-condense').fadeIn();
+            $('.js-condense').next('.js-condense').fadeIn();
 
             $('.js-condense').css({
                 maxHeight: '100%'
@@ -2224,7 +2228,6 @@
               }, 250);
         });
     }
-
 
     function initMultirow() {
         var multirowContainer = $('.js-multirow');

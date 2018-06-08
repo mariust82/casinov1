@@ -4638,6 +4638,8 @@ a:hover, a:active, a:visited, a:focus {
 
 .condense_control {
   color: #2171CE;
+  margin: 2px 0 0 0;
+  display: block;
 }
 
 .links-nav {
@@ -7757,3 +7759,16 @@ img.not-accepted {
 [type="radio"]:not(:checked):focus + label:before {
   border: 2px solid #0d7ac7;
 }*/
+
+.subtitle ol{
+  list-style:  decimal;
+   padding: 0 40px;
+   margin: 10px 0;
+   line-height: 26px;
+}
+.subtitle ul{
+  list-style:  disc;
+   padding: 0 40px;
+   margin: 10px 0;
+   line-height: 26px;
+}
