@@ -6,15 +6,9 @@ require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/CasinosMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
 
-require_once("hlis/tms_client/src/TextsManager.php");
-require_once("hlis/tms_client/src/LucindaRequest.php");
-
 abstract class CasinosListController extends Controller {
-    const VARIABLES_FOLDER = "application/models/tms_variables";
-
 	public function run() {
-        $tms = new \TMS\TextsManager(new \TMS\LucindaRequest($this->request), self::VARIABLES_FOLDER, $this->application->getAttribute("parent_schema"));
-        $this->response->setAttribute("tms", $tms->getTexts());
+        $this->response->setAttribute("tms", $this->request->getAttribute("tms")->getTexts(array("country"=>$this->request->getAttribute("country"))));
 
 	    //die($this->application->getAttribute("parent_schema"));
         $this->response->setAttribute("selected_entity", $this->getSelectedEntity());

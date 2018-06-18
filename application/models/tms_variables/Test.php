@@ -4,7 +4,7 @@ class Test extends \TMS\VariablesHolder
 {
     public function me()
     {
-        return "Lucinda";
+        return $this->parameters["country"]->name;
     }
 
     public function you()
