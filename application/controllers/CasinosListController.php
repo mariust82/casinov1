@@ -8,8 +8,6 @@ require_once("application/models/dao/PageInfoDAO.php");
 
 abstract class CasinosListController extends Controller {
 	public function run() {
-        $this->response->setAttribute("tms", $this->request->getAttribute("tms")->getTexts(array("country"=>$this->request->getAttribute("country"))));
-
 	    //die($this->application->getAttribute("parent_schema"));
         $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
