@@ -14,7 +14,11 @@ class TopRated extends \TMS\VariablesHolder {
         $filter = new CasinoFilter($filterParams, $this->parameters["response"]->getAttribute("country"));
         $object = new CasinosList($filter);
 
-        return $object->getResults(CasinoSortCriteria::TOP_RATED, 0, 1)[0]->name;
+        $casino = $object->getResults(CasinoSortCriteria::TOP_RATED, 0, 1)[0];
+        if($casino){
+            $casinoCode = strtolower(str_replace(" ","-", $casino->name));
+            return '<a href="/visit/'.$casinoCode.'">'.$casino->name.'</a>';
+        }
     }
 
     public function getTopRatedCasinoInTheSite(){
@@ -24,8 +28,10 @@ class TopRated extends \TMS\VariablesHolder {
           AND date_established > DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
           ORDER BY average_rating DESC, priority DESC, id DESC LIMIT 1
         ")->toValue();
-        $casinoCode = strtolower(str_replace(" ","-", $casinoName));
-        return '<a href="/visit/'.$casinoCode.'">'.$casinoName.'</a>';
+        if($casinoName) {
+            $casinoCode = strtolower(str_replace(" ", "-", $casinoName));
+            return '<a href="/visit/' . $casinoCode . '">' . $casinoName . '</a>';
+        }
     }
 
 }
