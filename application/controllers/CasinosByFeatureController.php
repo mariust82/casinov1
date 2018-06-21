@@ -35,6 +35,6 @@ class CasinosByFeatureController extends CasinosListController {
 
     protected function getFilter()
     {
-        return new CasinoFilter(array("feature"=>$this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
+        return "feature";
     }
 }

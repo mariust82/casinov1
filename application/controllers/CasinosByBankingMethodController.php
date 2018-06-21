@@ -28,6 +28,6 @@ class CasinosByBankingMethodController extends CasinosListController {
 
     protected function getFilter()
     {
-        return new CasinoFilter(array("banking_method"=>$this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
+        return "banking_method";
     }
 }

@@ -18,12 +18,14 @@
         <lucinda>/tmp/compilations_casinolists</lucinda>
         <dev>/tmp/compilations_dev</dev>
         <live>/tmp/compilations_live</live>
+        <alex>/tmp/compilations_live</alex>
       </compilations>
     </paths>
     <environments>
       <lucinda>www.casinoslists.local</lucinda>
       <dev>dev.casinoslists.com</dev>
       <live>www.casinoslists.com</live>
+      <alex>lists.local</alex>
     </environments>
     <templates_extension>html</templates_extension>
   </application>
@@ -72,6 +74,15 @@
         <json/>
       </renderer>
     </live>
+    <alex>
+      <reporters>
+        <async/>
+      </reporters>
+      <renderer display_errors="1">
+        <html/>
+        <json/>
+      </renderer>
+    </alex>
   </errors>
   <routes>
     <route url="index" controller="IndexController" view="index"/>
@@ -153,17 +164,22 @@
       <live>
         <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go" parent_schema="casinosl_admin"/>
       </live>
+      <alex>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_go" parent_schema="casinosl_admin"/>
+      </alex>
     </sql>
   </servers>
   <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
     <lucinda>api.datamother.com</lucinda>
     <dev>devapi.datamother.com</dev>
     <live>api.datamother.com</live>
+    <alex>api.datamother.com</alex>
   </rest_api>
   <gameplay repo_path="/public/img/sync" width="960" height="720"/>
   <geoip>
     <lucinda>/tmp/ip2country.mmdb</lucinda>
     <dev>/home/casinoslists/public_html/ip2country.mmdb</dev>
     <live>/home/casinoslists/public_html/ip2country.mmdb</live>
+    <alex>/home/casinoslists/public_html/ip2country.mmdb</alex>
   </geoip>
 </xml>

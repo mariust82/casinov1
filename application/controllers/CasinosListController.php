@@ -19,11 +19,17 @@ abstract class CasinosListController extends Controller {
 
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
 
-        $object = new CasinosList($this->getFilter());
+        $this->response->setAttribute("sort_criteria", $this->getSortCriteria());
+        $this->response->setAttribute("filter", $this->getFilter());
+
+        $filter = new CasinoFilter(array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
+        $this->response->setAttribute("filterObj", $filter);
+
+        $object = new CasinosList($filter);
         $total = $object->getTotal();
         if($total>0) {
             $this->response->setAttribute("total_casinos", $total);
-            $this->response->setAttribute("casinos", $object->getResults($this->getSortCriteria(), 0));
+            $this->response->setAttribute("casinos", $object->getResults($this->response->getAttribute("sort_criteria"), 0));
         } else {
             $this->response->setAttribute("total_casinos", 0);
             $this->response->setAttribute("casinos", array());
