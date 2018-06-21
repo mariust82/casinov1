@@ -1,7 +1,8 @@
 <?php
-class User extends \TMS\VariablesHolder
-{
-    public function country() {
+class User extends \TMS\VariablesHolder {
+
+    public function getCountry() {
         return $this->parameters["request"]->getAttribute("country")->name;
     }
+
 }

@@ -27,6 +27,6 @@ class CasinosBySoftwareController extends CasinosListController {
 
     protected function getFilter()
     {
-        return new CasinoFilter(array("software"=>$this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
+        return "software";
     }
 }
