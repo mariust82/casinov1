@@ -32,6 +32,6 @@ class CasinosByCountryController extends CasinosListController {
 
     protected function getFilter()
     {
-        return new CasinoFilter(array("country"=>$this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
+        return "country";
     }
 }

@@ -27,8 +27,7 @@ class CasinosByBonusTypeController extends CasinosListController {
 
     protected function getFilter()
     {
-
         // send it as filter
-        return new CasinoFilter(array("bonus_type"=>$this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
+        return "bonus_type";
     }
 }

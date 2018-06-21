@@ -6,16 +6,8 @@ require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/CasinosMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
 
-require_once("hlis/tms_client/src/TextsManager.php");
-require_once("hlis/tms_client/src/LucindaRequest.php");
-
 abstract class CasinosListController extends Controller {
-    const VARIABLES_FOLDER = "application/models/tms_variables";
-
 	public function run() {
-        $tms = new \TMS\TextsManager(new \TMS\LucindaRequest($this->request), self::VARIABLES_FOLDER, $this->application->getAttribute("parent_schema"));
-        $this->response->setAttribute("tms", $tms->getTexts());
-
 	    //die($this->application->getAttribute("parent_schema"));
         $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
@@ -27,11 +19,17 @@ abstract class CasinosListController extends Controller {
 
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
 
-        $object = new CasinosList($this->getFilter());
+        $this->response->setAttribute("sort_criteria", $this->getSortCriteria());
+        $this->response->setAttribute("filter", $this->getFilter());
+
+        $filter = new CasinoFilter(array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
+        $this->response->setAttribute("filterObj", $filter);
+
+        $object = new CasinosList($filter);
         $total = $object->getTotal();
         if($total>0) {
             $this->response->setAttribute("total_casinos", $total);
-            $this->response->setAttribute("casinos", $object->getResults($this->getSortCriteria(), 0));
+            $this->response->setAttribute("casinos", $object->getResults($this->response->getAttribute("sort_criteria"), 0));
         } else {
             $this->response->setAttribute("total_casinos", 0);
             $this->response->setAttribute("casinos", array());
