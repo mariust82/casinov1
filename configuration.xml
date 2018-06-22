@@ -18,7 +18,7 @@
         <lucinda>/tmp/compilations_casinolists</lucinda>
         <dev>/tmp/compilations_dev</dev>
         <live>/tmp/compilations_live</live>
-        <alex>/tmp/compilations_live</alex>
+        <alex>compilations</alex>
       </compilations>
     </paths>
     <environments>
