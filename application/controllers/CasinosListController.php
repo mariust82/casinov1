@@ -23,8 +23,6 @@ abstract class CasinosListController extends Controller {
         $this->response->setAttribute("filter", $this->getFilter());
 
         $filter = new CasinoFilter(array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
-        $this->response->setAttribute("filterObj", $filter);
-
         $object = new CasinosList($filter);
         $total = $object->getTotal();
         if($total>0) {
