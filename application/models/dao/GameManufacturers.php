@@ -31,4 +31,11 @@ class GameManufacturers implements CasinoCounter, FieldValidator
     public function validate($name) {
         return DB("SELECT name FROM game_manufacturers WHERE name=:name",array(":name"=>$name))->toValue();
     }
+
+    public function getSoftwareByType() {
+        return DB("
+        SELECT name AS unit
+        FROM game_manufacturers
+        ")->toMap("unit", "unit");
+    }
 }

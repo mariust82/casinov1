@@ -6,12 +6,14 @@
             <lucinda>/var/www/html/casinoslists</lucinda>
             <dev>/home/casinoslists/public_html/dev/site</dev>
             <live>/home/casinoslists/public_html/live/site</live>
+            <alex>C:\xampp\htdocs\casinoslists</alex>
         </environments>
     </application>
     <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
         <lucinda>https://api.datamother.com</lucinda>
         <dev>https://devapi.datamother.com</dev>
         <live>https://api.datamother.com</live>
+        <alex>https://api.datamother.com</alex>
     </rest_api>
     <servers>
         <sql>
@@ -24,6 +26,9 @@
             <live>
                 <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go"/>
             </live>
+            <alex>
+                <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_go"/>
+            </alex>
         </sql>
     </servers>
     <images path="public/sync">
@@ -35,11 +40,15 @@
             <format width="300" height="220"/>
             <format width="960" height="720"/>
         </image>
+        <image type="software_logo_light">
+            <format width="80" height="53"/>
+        </image>
     </images>
     <geoip>
         <lucinda>/tmp/ip2country.mmdb</lucinda>
         <dev>/home/casinoslists/public_html/ip2country.mmdb</dev>
         <live>/home/casinoslists/public_html/ip2country.mmdb</live>
+        <alex>C:\xampp\htdocs\ip2country.mmdb</alex>
     </geoip>
     <contacts>tan@hliscorp.com,lucian@hliscorp.co,alexandru@hliscorp.com,shay@hliscorp.com</contacts>
 </xml>

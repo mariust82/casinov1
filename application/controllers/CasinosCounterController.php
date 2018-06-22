@@ -12,14 +12,8 @@ abstract class CasinosCounterController extends Controller {
 
 	    $object = $this->getCounter();
 	    $results = $object->getCasinosCount();
-	    //Make user country be first in list
-        if(array_key_exists($this->request->getAttribute("country")->name, $results)){
-            $userCountry = array($this->request->getAttribute("country")->name => $results[$this->request->getAttribute("country")->name]);
-            unset($results[$this->request->getAttribute("country")->name]);
-            $results = $userCountry + $results;
-        }
-		$this->response->setAttribute("results", $results);
 
+		$this->response->setAttribute("results", $results);
 
 
         $object = new PageInfoDAO();
