@@ -7,7 +7,7 @@ require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/GamesList.php");
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
-
+require_once("application/controllers/BaseController.php");
 /*
 * Homepage
 * 
@@ -15,11 +15,8 @@ require_once("application/models/dao/PageInfoDAO.php");
 * @responseFormat HTML
 * @source https://xd.adobe.com/view/7bbdd623-2cdd-4cf4-971f-98d886e7a2b8/screen/8735ce6f-75af-4583-8dca-6b3c775399c6/Software-page?fullscreen
 */
-class IndexController extends Controller {
-	public function run() {
-	    $menu = new TopMenu($this->request->getValidator()->getPage());
-	    $this->response->setAttribute("menu_top", $menu->getEntries());
-
+class IndexController extends BaseController {
+	public function service() {
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
         $this->response->setAttribute("best_casinos", $this->getCasinos(array("promoted"=>1,"label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
@@ -33,9 +30,6 @@ class IndexController extends Controller {
         }
         $object = new GamesList($game_filter);
         $this->response->setAttribute("new_games", $object->getResults(GameSortCriteria::NEWEST, 0,6));
-
-        $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
 	}
 
 	private function getCasinos($filter, $sortBy, $limit) {
@@ -47,5 +41,10 @@ class IndexController extends Controller {
             $results = $object->getResults($sortBy, 0,$limit);
         }
         return $results;
+    }
+
+    protected function pageInfo(){
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
 }

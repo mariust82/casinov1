@@ -4,10 +4,8 @@ require_once("application/models/dao/GameManufacturers.php");
 require_once("application/models/dao/GamesList.php");
 require_once("application/models/GameFilter.php");
 require_once("application/models/GameSortCriteria.php");
-require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/GamesMenu.php");
-require_once("application/models/dao/PageInfoDAO.php");
-
+require_once("BaseController.php");
 /*
 * Games list by game type.
 * 
@@ -16,11 +14,8 @@ require_once("application/models/dao/PageInfoDAO.php");
 * @source https://xd.adobe.com/view/7bbdd623-2cdd-4cf4-971f-98d886e7a2b8/screen/cde70121-39ba-4e3e-bb0f-d39a534d5f5c/Game-list?fullscreen
 * @pathParameter type string Name of game type
 */
-class GamesByTypeController extends Controller {
-	public function run() {
-        $menu = new TopMenu($this->request->getValidator()->getPage());
-        $this->response->setAttribute("menu_top", $menu->getEntries());
-
+class GamesByTypeController extends BaseController {
+	public function service() {
         $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
 
         $menu = new GamesMenu($this->response->getAttribute("selected_entity"));
@@ -43,9 +38,6 @@ class GamesByTypeController extends Controller {
             $this->response->setAttribute("games", array());
         }
 
-        // get page info
-        $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity")));
 	}
 
 	private function getSelectedEntity(){
@@ -61,4 +53,11 @@ class GamesByTypeController extends Controller {
         }
         return $name;
     }
+
+    protected function pageInfo(){
+        // get page info
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity")));
+    }
+
 }

@@ -13,13 +13,13 @@ abstract class BaseController extends Controller {
         $menu = new TopMenu($this->request->getValidator()->getPage());
         $this->response->setAttribute("menu_top", $menu->getEntries());
 
-        $this->response->setAttribute("results", $this->getResults());
+        $this->service();
 
-        $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
+        $this->pageInfo();
 
         $this->response->setAttribute("version", $this->application->getVersion());
     }
+    abstract protected function service();
 
-    abstract protected function getResults();
+    abstract protected function pageInfo();
 }

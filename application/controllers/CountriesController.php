@@ -11,8 +11,7 @@ require_once("BaseController.php");
 */
 class CountriesController extends BaseController {
 
-    public function getResults() {
-
+    public function service() {
         $object = new Countries();
         $results = $object->getCasinosCount();
         //Make user country be first in list
@@ -21,8 +20,12 @@ class CountriesController extends BaseController {
             unset($results[$this->request->getAttribute("country")->name]);
             $results = $userCountry + $results;
         }
-        return $results;
+        $this->response->setAttribute("results", $results);
+    }
 
+    protected function pageInfo(){
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
 
 }
