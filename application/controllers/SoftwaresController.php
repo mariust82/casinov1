@@ -1,6 +1,6 @@
 <?php
 require_once("application/models/dao/GameManufacturers.php");
-require_once("BaseController.php");
+require_once("CasinosCounterController.php");
 /*
 * Software list by number of casinos.
 * 
@@ -8,9 +8,9 @@ require_once("BaseController.php");
 * @responseFormat HTML
 * @source https://xd.adobe.com/view/7bbdd623-2cdd-4cf4-971f-98d886e7a2b8/screen/2d8654a1-8033-4b0c-b193-aaaf41785d65/Software-Lists?fullscreen
 */
-class SoftwaresController extends BaseController {
-	protected function getResults() {
-        $object = new GameManufacturers();
-        return $object->getCasinosCount();
+class SoftwaresController extends CasinosCounterController {
+	protected function getCounter() {
+        return new GameManufacturers();
     }
+
 }

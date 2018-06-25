@@ -3,10 +3,8 @@ require_once("application/models/dao/Casinos.php");
 require_once("application/models/CasinoFilter.php");
 require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
-require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/CasinosMenu.php");
-require_once("application/models/dao/PageInfoDAO.php");
-
+require_once("BaseController.php");
 /*
 * Warning page to display about some casinos.
 * 
@@ -15,12 +13,9 @@ require_once("application/models/dao/PageInfoDAO.php");
 * @source 
 * @pathParameter name string Name of casino
 */
-class CasinoWarningController extends Controller {
-	public function run() {
+class CasinoWarningController extends BaseController {
+	public function service() {
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
-
-        $menuTop = new TopMenu($this->request->getValidator()->getPage());
-        $this->response->setAttribute("menu_top", $menuTop->getEntries());
 
 	    // set casino info
 		$casinos = new Casinos();
@@ -34,14 +29,15 @@ class CasinoWarningController extends Controller {
 
         $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $result->softwares, "softwares/".strtolower(str_replace(" ","-", $result->softwares)));
         $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
-
-        // get page info
-        $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $result->name));
-
     }
 
     private function getSelectedEntity() {
         return str_replace("-"," ", $this->request->getValidator()->getPathParameter("name"));
+    }
+
+    protected function pageInfo(){
+        // get page info
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("casino")->name));
     }
 }
