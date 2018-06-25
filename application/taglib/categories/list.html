@@ -9,7 +9,7 @@
                             <std:if condition="${key} == 'Mobile'">
                                 <a href="/compatability/${normalize(${key})}">
 					<std:if condition="$[image]">
-						<site:logo name="${data.icons.${key}}" type="$[type]" alt="${key}"/>
+						<site:logo name="${key}" type="$[type]" alt="${key}"/>
 					</std:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>
@@ -20,7 +20,7 @@
                                 <std:elseif condition="${key} == 'eCOGRA'">
                                     <a href="/features/${normalize(${key})}-casinos">
 					<std:if condition="$[image]">
-						<site:logo name="${data.icons.${key}}" type="$[type]" alt="${key}"/>
+						<site:logo name="${key}" type="$[type]" alt="${key}"/>
 					</std:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>
@@ -31,7 +31,7 @@
                                 <std:elseif condition="${key} == 'Live Dealer'">
                                     <a href="/features/${normalize(${key})}">
 					<std:if condition="$[image]">
-						<site:logo name="${data.icons.${key}}" type="$[type]" alt="${key}"/>
+						<site:logo name="${key}" type="$[type]" alt="${key}"/>
 					</std:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>
@@ -42,7 +42,7 @@
                                 <std:else>
                                     <a href="$[url]/${normalize(${key})}">
 					<std:if condition="$[image]">
-						<site:logo name="${data.icons.${key}}" type="$[type]" alt="${key}"/>
+						<site:logo name="${key}" type="$[type]" alt="${key}"/>
 					</std:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>

@@ -1,6 +1,6 @@
 <?php
 require_once("application/models/dao/CasinoLabels.php");
-require_once("application/controllers/CasinosCounterController.php");
+require_once("application/controllers/BaseController.php");
 
 /*
 * Casino labels list by number of casinos.
@@ -9,9 +9,10 @@ require_once("application/controllers/CasinosCounterController.php");
 * @responseFormat HTML
 * @source 
 */
-class CasinoLabelsController extends CasinosCounterController {
-    protected function getCounter()
+class CasinoLabelsController extends BaseController {
+    protected function getResults()
     {
-        return new CasinoLabels();
+        $object =  new CasinoLabels();
+        return $object->getCasinosCount();
     }
 }
