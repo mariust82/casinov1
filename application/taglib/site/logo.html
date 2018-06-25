@@ -1,0 +1,13 @@
+<std:if condition="'$[type]' == 'game'">
+    <span class="category-img">
+        <img src="${getGameLogo($[name],'136x100')}" alt="$[alt]" width="136" height="100">
+    </span>
+<std:elseif condition="'$[type]' == 'software'">
+    <span class="software-img">
+        <img src="${getSoftwareLogo($[name],'80x53')}" alt="$[alt]" width="80" height="53">
+    </span>
+<std:elseif condition="'$[type]' == 'game_type'">
+    <span class="category-img">
+        <img src="${getGameTypeLogo($[name],'136x100')}" alt="$[alt]" width="136" height="100">
+    </span>
+</std:if>

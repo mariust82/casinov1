@@ -1,6 +1,6 @@
 <?php
 require_once("application/models/dao/Countries.php");
-require_once("application/controllers/CasinosCounterController.php");
+require_once("BaseController.php");
 
 /*
 * Countries list by number of casinos
@@ -9,11 +9,9 @@ require_once("application/controllers/CasinosCounterController.php");
 * @responseFormat HTML
 * @source 
 */
-class CountriesController extends Controller {
+class CountriesController extends BaseController {
 
-    public function run() {
-        $menu = new TopMenu($this->request->getValidator()->getPage());
-        $this->response->setAttribute("menu_top", $menu->getEntries());
+    public function getResults() {
 
         $object = new Countries();
         $results = $object->getCasinosCount();
@@ -23,11 +21,8 @@ class CountriesController extends Controller {
             unset($results[$this->request->getAttribute("country")->name]);
             $results = $userCountry + $results;
         }
-        $this->response->setAttribute("results", $results);
+        return $results;
 
-
-        $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
 
 }
