@@ -3276,6 +3276,29 @@ a:hover, a:active, a:visited, a:focus {
   display: none;
 }
 
+.btn-err{
+  width:58px;
+  height: 30px;
+  padding: 5px 0;
+  border-radius: 4px;
+  text-align: center;
+}
+.btn-err svg{
+  height:18px;
+}
+.btn-blk{
+  background:#020A13;
+}
+.btn-blk:hover {
+  background: #000;
+}
+.btn-wrn{
+  background: #DB2424;
+}
+.btn-wrn:hover{
+  background: #C80E0E;
+}
+
 @media screen and (max-width: 690px) {
   .list-item-cell:nth-child(5) {
     width: 10%;
@@ -3287,6 +3310,35 @@ a:hover, a:active, a:visited, a:focus {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+  }
+
+  .btn-err{
+    padding: 0;
+    height:27px;
+    background: none;
+    text-align: right;
+  }
+  .btn-err svg{
+    width:27px;
+    height: 27px;
+  }
+  .btn-wrn path{
+    fill: #DB2424;
+  }
+  .btn-wrn path:hover{
+    fill: #C80E0E;
+  }
+  .btn-wrn:hover{
+    background: none;
+  }
+  .btn-blk path{
+    fill:#020A13;
+  }
+  .btn-blk path:hover{
+    fill:#000;
+  }
+  .btn-blk:hover {
+    background: none;
   }
 }
 
