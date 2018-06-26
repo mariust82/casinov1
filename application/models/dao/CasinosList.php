@@ -19,7 +19,7 @@ class CasinosList
             $offset = ($page*$limit);
         }
 
-        $queryGenerator = new CasinosListQuery($this->filter, array("t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"), $sortBy);
+        $queryGenerator = new CasinosListQuery($this->filter, array("status_id", "t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"), $sortBy);
         $query = $queryGenerator->getQuery();
         $query .= "LIMIT ".$limit." OFFSET ".$offset;
 //        echo $query;
@@ -34,6 +34,7 @@ class CasinosList
             $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
             $object->date_formatted = $this->formatDate($row["date_established"]);
+            $object->status = $row["status_id"];
             $output[$row["id"]] = $object;
         }
         if(empty($output)) return array();

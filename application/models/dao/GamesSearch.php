@@ -12,7 +12,7 @@ class GamesSearch
             SELECT name
             FROM games
             WHERE name LIKE :name
-            ORDER BY name ASC
+            ORDER BY id DESC, name ASC
             LIMIT ".$limit." OFFSET ".$offset,
             array(":name"=>"%".$this->value."%"))->toColumn();
     }
