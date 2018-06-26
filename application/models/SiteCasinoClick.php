@@ -10,11 +10,10 @@ class SiteCasinoClick extends CasinoClick
     {
         $object = new Casinos();
         $this->info = $object->getBasicInfo($name);
-        if(!$this->info){throw new PathNotFoundException();}
-        $object->click($this->info->id);
         if (!$this->info) {
-            return CasinoStatus::NOT_FOUND;
+            throw new PathNotFoundException();
         }
+        $object->click($this->info->id);
         if ($this->info->status || $this->info->is_open == 0) {
             return CasinoStatus::UNACTIVE;
         }
