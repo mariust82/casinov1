@@ -1,6 +1,8 @@
 <std:set name="img_class" value=""/>
-<std:if condition="$[image]">
+<std:if condition="'$[type]' == 'game_type'">
 	<std:set name="img_class" value="category-is-img"/>
+<std:elseif condition="'$[type]' == 'software'">
+	<std:set name="img_class" value="category-is-img-software"/>
 </std:if>
 <div class="categories">
 	<div class="categories-list ${img_class}">
@@ -45,7 +47,9 @@
 						<site:logo name="${key}" type="$[type]" alt="${key}"/>
 					</std:if>
 					<span class="category-body">
-						<span class="category-title">${key}</span>
+						<span class="category-title">${key}
+							<std:if condition="'$[type]' == 'software'">Casinos</std:if>
+						</span>
 						<span class="category-qty">${result}</span>
 					</span>
 					<i class="icon-chevron-right"></i>
