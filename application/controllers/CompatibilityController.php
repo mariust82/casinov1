@@ -1,8 +1,7 @@
 <?php
 require_once("application/models/dao/OperatingSystems.php");
 require_once("application/models/dao/PlayVersions.php");
-require_once("application/models/dao/TopMenu.php");
-require_once("application/models/dao/PageInfoDAO.php");
+require_once("BaseController.php");
 
 /*
 * Operating system and play version list by number of casinos.
@@ -11,16 +10,9 @@ require_once("application/models/dao/PageInfoDAO.php");
 * @responseFormat HTML
 * @source 
 */
-class CompatibilityController extends Controller {
-	public function run()
-    {
-        $menu = new TopMenu($this->request->getValidator()->getPage());
-        $this->response->setAttribute("menu_top", $menu->getEntries());
-
+class CompatibilityController extends BaseController {
+	public function service(){
         $this->response->setAttribute("results", $this->getResults());
-
-        $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
 
     private function getResults() {
@@ -31,5 +23,10 @@ class CompatibilityController extends Controller {
         $object = new PlayVersions();
         $tmp2 = $object->getCasinosCount();
         return array_merge($tmp1, $tmp2);
+    }
+
+    protected function pageInfo(){
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
 }

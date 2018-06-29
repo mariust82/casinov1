@@ -30,8 +30,16 @@ function getCasinoLogo($name, $resolution) {
     return "/public/sync/casino_logo_light/".$resolution."/".strtolower(str_replace(" ", "_", $name)).".png";
 }
 
+function getSoftwareLogo($name, $resolution) {
+    return "/public/sync/software_logo_light/".$resolution."/".strtolower(str_replace(" ", "_", $name)).".png";
+}
+
 function getGameLogo($name, $resolution) {
     return "/public/sync/game_ss/".$resolution."/".str_replace(" ", "_", $name)."_ss.jpg";
+}
+
+function getGameTypeLogo($name, $resolution) {
+    return "/public/sync/game_type_logo/".$resolution."/".strtolower(str_replace(" ", "_", $name)).".jpg";
 }
 
 function normalize($name)

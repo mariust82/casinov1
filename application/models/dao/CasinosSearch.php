@@ -12,7 +12,7 @@ class CasinosSearch
             SELECT name
             FROM casinos
             WHERE name LIKE :name
-            ORDER BY name ASC
+            ORDER BY date_established DESC, name ASC
             LIMIT ".$limit." OFFSET ".$offset,
             array(":name"=>"%".$this->value."%"))->toColumn();
     }

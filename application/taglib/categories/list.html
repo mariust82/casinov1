@@ -1,8 +1,9 @@
 <std:set name="img_class" value=""/>
-<std:if condition="$[image]">
+<std:if condition="'$[type]' == 'game_type'">
 	<std:set name="img_class" value="category-is-img"/>
+<std:elseif condition="'$[type]' == 'software'">
+	<std:set name="img_class" value="category-is-img-software"/>
 </std:if>
-
 <div class="categories">
 	<div class="categories-list ${img_class}">
 		<std:foreach var="$[items]" key="key" value="result">
@@ -10,9 +11,7 @@
                             <std:if condition="${key} == 'Mobile'">
                                 <a href="/compatability/${normalize(${key})}">
 					<std:if condition="$[image]">
-						<span class="category-img">
-							<img src="${getGameLogo(${data.icons.${key}},'136x100')}" alt="${key}" width="136" height="100">
-						</span>
+						<site:logo name="${key}" type="$[type]" alt="${key}"/>
 					</std:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>
@@ -23,9 +22,7 @@
                                 <std:elseif condition="${key} == 'eCOGRA'">
                                     <a href="/features/${normalize(${key})}-casinos">
 					<std:if condition="$[image]">
-						<span class="category-img">
-							<img src="${getGameLogo(${data.icons.${key}},'136x100')}" alt="${key}" width="136" height="100">
-						</span>
+						<site:logo name="${key}" type="$[type]" alt="${key}"/>
 					</std:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>
@@ -36,9 +33,7 @@
                                 <std:elseif condition="${key} == 'Live Dealer'">
                                     <a href="/features/${normalize(${key})}">
 					<std:if condition="$[image]">
-						<span class="category-img">
-							<img src="${getGameLogo(${data.icons.${key}},'136x100')}" alt="${key}" width="136" height="100">
-						</span>
+						<site:logo name="${key}" type="$[type]" alt="${key}"/>
 					</std:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>
@@ -49,12 +44,12 @@
                                 <std:else>
                                     <a href="$[url]/${normalize(${key})}">
 					<std:if condition="$[image]">
-						<span class="category-img">
-							<img src="${getGameLogo(${data.icons.${key}},'136x100')}" alt="${key}" width="136" height="100">
-						</span>
+						<site:logo name="${key}" type="$[type]" alt="${key}"/>
 					</std:if>
 					<span class="category-body">
-						<span class="category-title">${key}</span>
+						<span class="category-title">${key}
+							<std:if condition="'$[type]' == 'software'">Casinos</std:if>
+						</span>
 						<span class="category-qty">${result}</span>
 					</span>
 					<i class="icon-chevron-right"></i>

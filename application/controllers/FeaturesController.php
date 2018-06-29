@@ -2,8 +2,7 @@
 require_once("application/models/dao/PlayVersions.php");
 require_once("application/models/dao/Certifications.php");
 require_once("application/models/dao/Casinos.php");
-require_once("application/models/dao/TopMenu.php");
-require_once("application/models/dao/PageInfoDAO.php");
+require_once("BaseController.php");
 
 /*
 * Play versions by number of casinos.
@@ -12,15 +11,9 @@ require_once("application/models/dao/PageInfoDAO.php");
 * @responseFormat HTML
 * @source 
 */
-class FeaturesController extends Controller {
-    public function run() {
-        $menu = new TopMenu($this->request->getValidator()->getPage());
-        $this->response->setAttribute("menu_top", $menu->getEntries());
-
+class FeaturesController extends BaseController {
+    public function service() {
         $this->response->setAttribute("results", $this->getResults());
-
-        $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
 	}
 
 	private function getResults() {
@@ -35,5 +28,10 @@ class FeaturesController extends Controller {
         $result["eCOGRA Casinos"] = $object->getNumberOfCasinos("eCOGRA");
 
         return $result;
+    }
+
+    protected function pageInfo(){
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
 }

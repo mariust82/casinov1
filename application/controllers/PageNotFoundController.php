@@ -1,16 +1,12 @@
 <?php
-require_once("application/models/dao/TopMenu.php");
-require_once("application/models/dao/PageInfoDAO.php");
+require_once("BaseController.php");
 
-class PageNotFoundController extends Controller
-{
-    public function run() {
-        $menu = new TopMenu($this->request->getValidator()->getPage());
-        $this->response->setAttribute("menu_top", $menu->getEntries());
-
+class PageNotFoundController extends BaseController{
+    public function service() {
+        $this->response->setStatus(404);
+    }
+    protected function pageInfo(){
         $object = new PageInfoDAO();
         $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
-
-        $this->response->setStatus(404);
     }
 }

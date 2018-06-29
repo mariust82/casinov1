@@ -8,10 +8,8 @@ require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/GameFilter.php");
 require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/GameTypes.php");
-require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/GamesMenu.php");
-require_once("application/models/dao/PageInfoDAO.php");
-
+require_once ("BaseController.php");
 /*
 * Game info by game name.
 * 
@@ -20,8 +18,8 @@ require_once("application/models/dao/PageInfoDAO.php");
 * @source https://xd.adobe.com/view/7bbdd623-2cdd-4cf4-971f-98d886e7a2b8/screen/6735bd8e-75bb-415b-8204-66d6dca9122f/Single-Game-Page?fullscreen
 * @pathParameter name string Name of game
 */
-class GameInfoController extends Controller {
-	public function run() {
+class GameInfoController extends BaseController {
+	public function service() {
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
 
 	    $info = $this->application->getXML()->gameplay;
@@ -42,14 +40,13 @@ class GameInfoController extends Controller {
         $object = new GamesList(new GameFilter(array("game_type"=>$result->type)));
         $this->response->setAttribute("recommended_games", $object->getResults(GameSortCriteria::NONE, 0, 6));
 
-        $menuTop = new TopMenu($this->request->getValidator()->getPage());
-        $this->response->setAttribute("menu_top", $menuTop->getEntries());
-
         $menuBottom = new GamesMenu($result->type);
         $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
 
-        $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $result->name));
+    }
 
+    protected function pageInfo(){
+        $object = new PageInfoDAO();
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("game")->name));
     }
 }
