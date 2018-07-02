@@ -3059,7 +3059,7 @@ a:hover, a:active, a:visited, a:focus {
   float:left;
   max-width: 770px;
 }
-
+.js-condense span p:last-child{display:inline;}
 .subtitle a{
           color: #2171CE;
 }
@@ -4710,8 +4710,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .condense_control {
   color: #2171CE;
-  margin: 2px 0 0 0;
-  display: block;
+  margin: 2px 0 0 7px;
 }
 
 .links-nav {
