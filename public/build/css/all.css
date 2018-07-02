@@ -3049,12 +3049,15 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .subtitle p {
-  float:left;
-  max-width: 770px;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
   line-height: 26px;
+}
+
+.index-page p {
+  float:left;
+  max-width: 770px;
 }
 
 .subtitle a{
