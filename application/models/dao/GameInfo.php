@@ -1,25 +1,21 @@
 <?php
 require_once("entities/Game.php");
-require_once("entities/GamePlay.php");
 
 class GameInfo
 {
     private $result;
 
-    public function __construct($name, GamePlayer $player) {
-        $this->setResult($name, $player);
+    public function __construct($name) {
+        $this->setResult($name);
     }
 
-    private function setResult($name, GamePlayer $player) {
+    private function setResult($name) {
         $object = null;
         $resultSet = DB("
-            SELECT t1.id, t1.name, t1.times_played, t2.name AS game_type, t3.name AS software, t1.date_launched, t4.matches AS play_matches, t5.name AS play_type, t6.template_link AS play_pattern
+            SELECT t1.id, t1.name, t1.times_played, t2.name AS game_type, t3.name AS software, t1.date_launched
             FROM games AS t1
             INNER JOIN game_types AS t2 ON t1.game_type_id = t2.id
             INNER JOIN game_manufacturers AS t3 ON t1.game_manufacturer_id = t3.id
-            LEFT JOIN game_play__matches AS t4 ON t1.id = t4.game_id
-            LEFT JOIN game_play__types AS t5 ON t4.type_id = t5.id
-            LEFT JOIN game_play__patterns AS t6 ON t4.pattern_id = t6.id
             WHERE
             t1.name = :name
         ",array(":name"=>$name));
@@ -31,7 +27,6 @@ class GameInfo
             $object->type = $row["game_type"];
             $object->software = $row["software"];
             $object->release_date = $row["date_launched"];
-            $object->play = $player->compile($row["name"], $row["play_pattern"], $row["play_matches"], $row["play_type"]);
         }
         if(!$object) return;
 

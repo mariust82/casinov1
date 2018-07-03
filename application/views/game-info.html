@@ -17,29 +17,7 @@
 			<div id="player-wrap" class="player-wrap">
 				<div class="player">
 					<div class="player-holder">
-						<std:if condition="${data.game.play.status} == 'auto-play'">
-							<iframe scrolling="no" id="single-play" class="play-demo js-run-counter" data-name="${data.game.name}" src="${data.game.play.url}" width="${data.game.play.width}" height="${data.game.play.height}"></iframe>
-
-						<std:elseif condition="${data.game.play.status} == 'click-popup-play' || ${data.game.play.status} == 'redirect'">
-							<img class="player-img" src="${getGameLogo(${data.game.name},'960x720')}" alt="${data.game.name}">
-							<div class="player-overlay"></div>
-							<div class="player-play" id="go-to-page" data-name="${data.game.name}" data-width="${data.game.play.width}" data-height="${data.game.play.height}">
-								<i class="icon-play"></i>
-							</div>
-
-						<std:elseif condition="${data.game.play.status} == 'screenshot'">
-							<img class="player-img" src="${getGameLogo(${data.game.name},'960x720')}" alt="${data.game.name}">
-							<div class="player-overlay"></div>
-
-						<std:else>
-							<iframe style="display:none;" scrolling="no" id="single-play" class="play-demo" src="" width="${data.game.play.width}" height="${data.game.play.height}"></iframe>
-							<img class="player-img" src="${getGameLogo(${data.game.name},'960x720')}" alt="${data.game.name}">
-							<div class="player-overlay"></div>
-							<div class="player-play" id="go-to-frame" data-name="${data.game.name}" data-url="${data.game.play.url}">
-								<i class="icon-play"></i>
-							</div>
-							
-						</std:if>
+						<iframe src="${data.game_player.url}?game=${data.game.name}" width="${data.game_player.width}" height="${data.game_player.height}"></iframe>
 					</div>
 				</div>
 				<div class="player-controls">

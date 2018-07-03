@@ -176,11 +176,15 @@
     <live>api.datamother.com</live>
     <alex>api.datamother.com</alex>
   </rest_api>
-  <gameplay repo_path="/public/img/sync" width="960" height="720"/>
   <geoip>
     <lucinda>/tmp/ip2country.mmdb</lucinda>
     <dev>/home/casinoslists/public_html/ip2country.mmdb</dev>
     <live>/home/casinoslists/public_html/ip2country.mmdb</live>
     <alex>/home/casinoslists/public_html/ip2country.mmdb</alex>
   </geoip>
+  <gameplay width="960" height="720">
+    <lucinda>http://game.casinoslists.local</lucinda>
+    <dev>https://devgame.casinoslists.com</dev>
+    <live>https://game.casinoslists.com</live>
+  </gameplay>
 </xml>

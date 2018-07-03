@@ -1,7 +1,6 @@
 <?php
 require_once("application/models/dao/GameInfo.php");
 require_once("application/models/dao/GamesList.php");
-require_once("application/models/GamePlayer.php");
 require_once("application/models/dao/CasinosList.php");
 require_once("application/models/CasinoFilter.php");
 require_once("application/models/CasinoSortCriteria.php");
@@ -20,6 +19,7 @@ require_once ("BaseController.php");
 */
 class GameInfoController extends BaseController {
 	public function service() {
+
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
 
 	    $info = $this->application->getXML()->gameplay;
@@ -27,12 +27,12 @@ class GameInfoController extends BaseController {
         $object = new GameTypes();
         $this->response->setAttribute("game_types", array_keys($object->getGamesCount()));
 
-	    $object = new GameInfo(
-	        str_replace("-"," ", $this->request->getValidator()->getPathParameter("name")),
-            new GamePlayer((string) $info["repo_path"], (string) $info["width"], (string) $info["height"], $this->request->getProtocol()=="https"));
+	    $object = new GameInfo(str_replace("-"," ", $this->request->getValidator()->getPathParameter("name")));
         $result = $object->getResult();
         if(!$result) throw new PathNotFoundException();
 		$this->response->setAttribute("game", $result);
+
+        $this->response->setAttribute("game_player", $this->getPlayerInfo());
 
         $object = new CasinosList(new CasinoFilter(array("software"=>$result->software, "country_accepted"=>true), $this->request->getAttribute("country")));
         $this->response->setAttribute("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
@@ -42,7 +42,15 @@ class GameInfoController extends BaseController {
 
         $menuBottom = new GamesMenu($result->type);
         $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
+    }
 
+    private function getPlayerInfo() {
+        $output = array();
+        $xml = $this->application->getXML()->gameplay;
+        $output["url"] = (string) $xml->{$this->application->getAttribute("environment")};
+        $output["width"] = (string) $xml["width"];
+        $output["height"] = (string) $xml["height"];
+        return $output;
     }
 
     protected function pageInfo(){
