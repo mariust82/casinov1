@@ -29,6 +29,9 @@ class CasinoWarningController extends BaseController {
 
         $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $result->softwares, "softwares/".strtolower(str_replace(" ","-", $result->softwares)));
         $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
+
+	
+        $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
     }
 
     private function getSelectedEntity() {
