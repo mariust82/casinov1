@@ -921,8 +921,8 @@ button.swiper-pagination-bullet {
 /* GENERAL STRUCTURE RULES (do not edit this section) */
 .tooltipster-base {
   /* this ensures that a constrained height set by functionPosition,
-	if greater that the natural height of the tooltip, will be enforced
-	in browsers that support display:flex */
+  if greater that the natural height of the tooltip, will be enforced
+  in browsers that support display:flex */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -932,7 +932,7 @@ button.swiper-pagination-bullet {
 
 .tooltipster-box {
   /* see .tooltipster-base. flex-shrink 1 is only necessary for IE10-
-	and flex-basis auto for IE11- (at least) */
+  and flex-basis auto for IE11- (at least) */
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
@@ -1181,7 +1181,7 @@ corresponds to the arrow we want to display */
   margin-top: -10px;
   right: 0;
   /* top 0 to keep the arrow from overflowing .tooltipster-base when it has not
-	been positioned yet */
+  been positioned yet */
   top: 0;
   width: 10px;
 }
@@ -6669,6 +6669,18 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
+@media (min-width: 480px) and (max-width: 736px) {
+  .fullscreen .player-holder {
+    padding-bottom: 100%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .player-holder {
+    padding-bottom: 74%;
+  }
+}
+
 .player-holder.playing .player-img,
 .player-holder.playing .player-overlay,
 .player-holder.playing .player-play {
@@ -6687,32 +6699,12 @@ a:hover, a:active, a:visited, a:focus {
   display: block;
   width: 100%;
   height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-}
-
-@media screen and (max-width: 767px) {
-  .player img,
-  .player iframe {
-    width: 600px;
-    height: 300px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .player img,
-  .player iframe {
-    width: 480px;
-    height: 250px;
-  }
-}
-
-@media screen and (max-width: 479px) {
-  .player img,
-  .player iframe {
-    width: 300px;
-    height: 200px;
-  }
 }
 
 .player-overlay {
@@ -7568,19 +7560,47 @@ a:hover, a:active, a:visited, a:focus {
           justify-content: flex-end;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1024px) {
   .fullscreen .player-wrap {
-    display: block;
+    flex-direction:row-reverse;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .fullscreen .player-wrap {
+    padding:50px 0 0 0;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 736px) {
+  .fullscreen .player-wrap {
+    padding:0;
+  }
+}
+
 
 .fullscreen .player-wrap .player {
   width: calc(90% - 200px);
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1024px) {
   .fullscreen .player-wrap .player {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .fullscreen .player-wrap .player {
+    margin:0;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 736px) {
+  .fullscreen .player-wrap .player {
+    height:100%;
   }
 }
 
@@ -7601,16 +7621,43 @@ a:hover, a:active, a:visited, a:focus {
   padding: 60px 0;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1024px) {
   .fullscreen .player-wrap .player-controls {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    width: 220px;
+    margin:0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .fullscreen .player-wrap .player-controls {
     width: 100%;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    padding:20px 20px 0;
+    position:absolute;
+    top:0;
+    left:0;
+    flex-direction:row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 736px) {
+  .fullscreen .player-wrap .player-controls {
+    position:static;
+    width:60px;
+    height:100%;
+    padding:20px 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
   }
 }
 
@@ -7620,9 +7667,16 @@ a:hover, a:active, a:visited, a:focus {
       flex-shrink: 0;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 768px) {
   .fullscreen .player-wrap .player-controls a {
-    margin: 0 0 0 10px;
+    margin:0;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 736px) {
+  .fullscreen .player-wrap .player-controls a {
+    width:40px;
+    height:40px;
   }
 }
 
