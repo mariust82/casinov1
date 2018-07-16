@@ -4710,7 +4710,8 @@ a:hover, a:active, a:visited, a:focus {
 
 .condense_control {
   color: #2171CE;
-  margin: 2px 0 0 7px;
+  margin: 4px 0 0 0;
+  display:block;
 }
 
 .links-nav {
