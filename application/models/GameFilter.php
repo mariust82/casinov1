@@ -3,11 +3,11 @@ class GameFilter
 {
     private $game_type;
     private $software = array();
-    public $is_mobile;
+    private $is_mobile;
 
     public function __construct($requestParameters) {
         $this->game_type = (!empty($requestParameters["game_type"])?preg_replace("/[^a-zA-Z0-9\ \.\@\-\(\)]/","", $requestParameters["game_type"]):"");
-        $this->is_mobile = FALSE;
+        $this->is_mobile = !empty($requestParameters["is_mobile"]);
         if(!empty($requestParameters["software"])) {
             $softwares = explode(",", $requestParameters["software"]);
             foreach($softwares as $item) {
@@ -22,5 +22,9 @@ class GameFilter
 
     public function getSoftwares() {
         return $this->software;
+    }
+
+    public function isMobile() {
+        return $this->is_mobile;
     }
 }

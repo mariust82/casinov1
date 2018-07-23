@@ -69,7 +69,7 @@ class CasinosList
             $bonus->games_allowed = $row["games"];
             $bonus->code = $row["codes"];
             $bonus->type = $row["name"];
-            if($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins" || $row["name"]=="Free Play") {
+            if($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins" || $row["name"]=="Free Play" || $row["name"]=="Bonus Spins") {
                 $output[$row["casino_id"]]->bonus_free = $bonus;
             } else {
                 $output[$row["casino_id"]]->bonus_first_deposit = $bonus;

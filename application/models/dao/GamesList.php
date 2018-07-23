@@ -53,7 +53,7 @@ class GamesList
         $sub_join = "";
         $sub_where = "";
         
-        if($this->filter->is_mobile) {
+        if($this->filter->isMobile()) {
             $sub_join = " INNER JOIN games__features AS t4 ON t1.id = t4.game_id ";
             $sub_where = "t4.feature_id = 7 AND ";
         }
