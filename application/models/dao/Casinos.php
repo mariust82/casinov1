@@ -18,6 +18,7 @@ class Casinos implements FieldValidator
     }
 
     public function getBasicInfo($name) {
+	DB("SET names UTF8");
         $row = DB("
             SELECT t1.id, t1.name, t1.code, t2.name AS status, t1.affiliate_link, t1.is_open, t4.name AS software, t5.note
             FROM casinos AS t1
