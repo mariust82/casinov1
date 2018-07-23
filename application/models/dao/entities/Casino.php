@@ -26,4 +26,5 @@ class Casino {
     public $is_country_accepted;
     public $is_language_accepted;
     public $is_currency_accepted;
+    public $note;
 }
