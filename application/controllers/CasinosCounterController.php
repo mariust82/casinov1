@@ -1,13 +1,29 @@
 <?php
 require_once("BaseController.php");
+require_once("application/models/caching/CacheManager.php");
+require_once("application/models/caching/CacheKey.php");
 /**
  * Controller
  */
 abstract class CasinosCounterController extends BaseController {
     public function service() {
         $object = $this->getCounter();
-        $this->response->setAttribute("results", $object->getCasinosCount());
+        $this->response->setAttribute("results", $this->getResults($object));
     }
+
+    protected function getResults(CasinoCounter $object) {
+        $cacheManager = new CacheManager(new CacheKey(
+            "casinos_counter_".get_class($object)
+        ));
+        if($results = $cacheManager->get()) {
+            return $results;
+        } else {
+            $counts = $object->getCasinosCount();
+            $cacheManager->set($counts);
+            return $counts;
+        }
+    }
+
     /**
      * Gets counter instance
      *

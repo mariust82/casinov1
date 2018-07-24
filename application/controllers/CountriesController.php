@@ -1,6 +1,6 @@
 <?php
 require_once("application/models/dao/Countries.php");
-require_once("BaseController.php");
+require_once("CasinosCounterController.php");
 
 /*
 * Countries list by number of casinos
@@ -9,23 +9,31 @@ require_once("BaseController.php");
 * @responseFormat HTML
 * @source 
 */
-class CountriesController extends BaseController {
+class CountriesController extends CasinosCounterController {
+    protected function getResults(CasinoCounter $object) {
+        $cacheManager = new CacheManager(new CacheKey(
+            "casinos_counter_".$this->request->getAttribute("country")->code
+        ));
+        if($results = $cacheManager->get()) {
+            return $results;
+        } else {
+            $counts = $object->getCasinosCount();
 
-    public function service() {
-        $object = new Countries();
-        $results = $object->getCasinosCount();
-        //Make user country be first in list
-        if(array_key_exists($this->request->getAttribute("country")->name, $results)){
-            $userCountry = array($this->request->getAttribute("country")->name => $results[$this->request->getAttribute("country")->name]);
-            unset($results[$this->request->getAttribute("country")->name]);
-            $results = $userCountry + $results;
+            // start hardcoding: Make user country be first in list
+            if(array_key_exists($this->request->getAttribute("country")->name, $counts)){
+                $userCountry = array($this->request->getAttribute("country")->name => $counts[$this->request->getAttribute("country")->name]);
+                unset($results[$this->request->getAttribute("country")->name]);
+                $counts = $userCountry + $counts;
+            }
+            // end hardcoding
+
+            $cacheManager->set($counts);
+            return $counts;
         }
-        $this->response->setAttribute("results", $results);
     }
 
-    protected function pageInfo(){
-        $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
+    protected function getCounter(){
+        return new Countries();
     }
 
 }

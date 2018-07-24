@@ -23,11 +23,7 @@ class GamesByTypeController extends BaseController {
 
         $object = new GameManufacturers();
         $this->response->setAttribute("software", $object->getAll());
-        $is_mobile = $this->request->getAttribute("is_mobile");
-        $game_filter = new GameFilter(array("game_type"=>$this->response->getAttribute("selected_entity")));
-        if ($is_mobile) {
-            $game_filter->is_mobile = TRUE;
-        }
+        $game_filter = new GameFilter(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")));
         $object = new GamesList($game_filter);
         $total = $object->getTotal();
         if($total>0) {

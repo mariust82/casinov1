@@ -40,7 +40,7 @@ class CasinosList
         if(empty($output)) return array();
 
         // signal engine that utf8 is expected to come
-        DB("SET names utf8");
+
         
         // append softwares
         $query = "

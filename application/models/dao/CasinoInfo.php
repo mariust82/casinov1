@@ -15,7 +15,7 @@ class CasinoInfo
     }
 
     private function setResult($name, $countryId) {
-        DB("SET names UTF8");
+
         $resultSet = DB("
         SELECT t1.*, IF(t3.id IS NOT NULL, 1, 0) AS is_live_dealer, t4.name AS status, (t1.rating_total/t1.rating_votes) AS average_rating, t2.name AS affiliate_program
         FROM casinos AS t1

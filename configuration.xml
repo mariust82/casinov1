@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
   <application>
-    <version>0.4.8</version>
+    <version>0.5.0</version>
     <default_character_encoding>UTF-8</default_character_encoding>
     <default_page>index</default_page>
     <default_extension>html</default_extension>
@@ -39,6 +39,7 @@
     <listener class="EnvironmentDetector"/>
     <listener class="AsyncListener"/>
     <listener class="SQLDataSourceInjector"/>
+    <listener class="NoSQLDataSourceInjector"/>
     <listener class="QueryProfilingListener"/>
     <listener class="ErrorListener"/>
     <listener class="RebrandingListener"/>
@@ -157,18 +158,23 @@
   <servers>
     <sql>
       <lucinda>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="niggers" schema="casinoslists" parent_schema="admin_casinoslists"/>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="niggers" schema="casinoslists" parent_schema="admin_casinoslists" charset="utf8"/>
       </lucinda>
       <dev>
-        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_dev" parent_schema="casinosl_admin_dev"/>
+        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_dev" parent_schema="casinosl_admin_dev" charset="utf8"/>
       </dev>
       <live>
-        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go" parent_schema="casinosl_admin"/>
+        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
       </live>
       <alex>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_go" parent_schema="casinosl_admin"/>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
       </alex>
     </sql>
+    <nosql>
+      <lucinda>
+        <server driver="memcached" host="localhost"/>
+      </lucinda>
+    </nosql>
   </servers>
   <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
     <lucinda>api.datamother.com</lucinda>
