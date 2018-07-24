@@ -36,6 +36,11 @@ class CacheKeyAdvanced implements CacheKeyGenerator
         $this->value = $_SERVER["SERVER_NAME"]."_".$keyName."_".md5(json_encode($criteria));
     }
 
+    /**
+     * Gets value of key
+     *
+     * @return string
+     */
     public function getValue()
     {
         return $this->value;
