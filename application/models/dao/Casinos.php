@@ -38,7 +38,7 @@ class Casinos implements FieldValidator
         $object->affiliate_link = $row["affiliate_link"];
         $object->softwares = $row["software"];
         $object->is_open = $row["is_open"];
-        $object->note = $row["note"];
+        $object->note = str_replace("www.thebigfreechiplist.com", "www.casinoslists.com", $row["note"]);
 
         return $object;
     }
