@@ -4,8 +4,8 @@ require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
 require_once("application/models/dao/CasinosMenu.php");
 require_once("BaseController.php");
-require_once("application/models/caching/CacheManager.php");
-require_once("application/models/caching/CacheKeyAdvanced.php");
+require_once("hlis/server_caching/src/CacheManager.php");
+require_once("hlis/server_caching/src/CacheKeyAdvanced.php");
 
 abstract class CasinosListController extends BaseController {
 	public function service() {

@@ -1,7 +1,7 @@
 <?php
 require_once("BaseController.php");
-require_once("application/models/caching/CacheManager.php");
-require_once("application/models/caching/CacheKey.php");
+require_once("hlis/server_caching/src/CacheManager.php");
+require_once("hlis/server_caching/src/CacheKey.php");
 /**
  * Controller
  */

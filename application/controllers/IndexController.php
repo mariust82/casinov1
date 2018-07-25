@@ -8,8 +8,8 @@ require_once("application/models/dao/GamesList.php");
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
 require_once("application/controllers/BaseController.php");
-require_once("application/models/caching/CacheManager.php");
-require_once("application/models/caching/CacheKeyAdvanced.php");
+require_once("hlis/server_caching/src/CacheManager.php");
+require_once("hlis/server_caching/src/CacheKeyAdvanced.php");
 
 /*
 * Homepage
