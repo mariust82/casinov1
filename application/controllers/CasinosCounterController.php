@@ -1,7 +1,8 @@
 <?php
 require_once("BaseController.php");
 require_once("hlis/server_caching/src/CacheManager.php");
-require_once("hlis/server_caching/src/CacheKey.php");
+require_once("application/models/caching/CasinosCounterKey.php");
+
 /**
  * Controller
  */
@@ -12,9 +13,7 @@ abstract class CasinosCounterController extends BaseController {
     }
 
     protected function getResults(CasinoCounter $object) {
-        $cacheManager = new CacheManager(new CacheKey(
-            "casinos_counter_".get_class($object)
-        ));
+        $cacheManager = new CacheManager(new CasinosCounterKey(get_class($object)));
         if($results = $cacheManager->get()) {
             return $results;
         } else {

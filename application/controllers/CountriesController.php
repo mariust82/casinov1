@@ -11,9 +11,7 @@ require_once("CasinosCounterController.php");
 */
 class CountriesController extends CasinosCounterController {
     protected function getResults(CasinoCounter $object) {
-        $cacheManager = new CacheManager(new CacheKey(
-            "casinos_counter_".$this->request->getAttribute("country")->code
-        ));
+        $cacheManager = new CacheManager(new CasinosCounterKey($this->request->getAttribute("country")->code));
         if($results = $cacheManager->get()) {
             return $results;
         } else {

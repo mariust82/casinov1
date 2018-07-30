@@ -9,7 +9,8 @@ require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
 require_once("application/controllers/BaseController.php");
 require_once("hlis/server_caching/src/CacheManager.php");
-require_once("hlis/server_caching/src/CacheKeyAdvanced.php");
+require_once("application/models/caching/CasinosListKey.php");
+require_once("application/models/caching/GamesListKey.php");
 
 /*
 * Homepage
@@ -30,12 +31,12 @@ class IndexController extends BaseController {
 	}
 
 	private function getCasinos($filter, $sortBy, $limit) {
-	    $cacheManager = new CacheManager(new CacheKeyAdvanced(
-            "casinos_list",
-            ($filter+array("user_country"=>$this->request->getAttribute("country"))),
-           $sortBy,
-           0,
-           $limit
+	    $cacheManager = new CacheManager(new CasinosListKey(
+            $filter,
+            $this->request->getAttribute("country")->code,
+            $sortBy,
+            0,
+            $limit
         ));
 	    if($results = $cacheManager->get()) {
 	        return $results;
@@ -53,8 +54,7 @@ class IndexController extends BaseController {
     }
 
     private function getGames($filter, $sortBy, $limit) {
-	    $cacheManager = new CacheManager(new CacheKeyAdvanced(
-	        "games_list",
+	    $cacheManager = new CacheManager(new GamesListKey(
             $filter,
             $sortBy,
             0,

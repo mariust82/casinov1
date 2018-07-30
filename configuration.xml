@@ -171,14 +171,14 @@
       </alex>
     </sql>
     <nosql>
-      <lucinda>
-        <server driver="memcached" host="localhost"/>
-      </lucinda>
+        <lucinda>
+          <server driver="redis" host="localhost"/>
+        </lucinda>
         <dev>
-            <server driver="memcache" host="localhost"/>
+            <server driver="redis" host="localhost"/>
         </dev>
         <live>
-            <server driver="memcache" host="localhost"/>
+            <server driver="redis" host="localhost"/>
         </live>
     </nosql>
   </servers>

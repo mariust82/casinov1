@@ -5,7 +5,7 @@ require_once("application/models/dao/CasinosList.php");
 require_once("application/models/dao/CasinosMenu.php");
 require_once("BaseController.php");
 require_once("hlis/server_caching/src/CacheManager.php");
-require_once("hlis/server_caching/src/CacheKeyAdvanced.php");
+require_once("application/models/caching/CasinosListKey.php");
 
 abstract class CasinosListController extends BaseController {
 	public function service() {
@@ -27,12 +27,9 @@ abstract class CasinosListController extends BaseController {
     }
 
     private function getResults() {
-        $cacheManager = new CacheManager(new CacheKeyAdvanced(
-            "casinos_list",
-            array(
-                $this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity"),
-                "user_country"=>$this->request->getAttribute("country")
-            ),
+        $cacheManager = new CacheManager(new CasinosListKey(
+            array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")),
+            $this->request->getAttribute("country"),
             $this->response->getAttribute("sort_criteria"),
             0,
             50
