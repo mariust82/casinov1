@@ -22,7 +22,8 @@
         "lucinda/mvc": "~1.0",
         "lucinda/sql-data-access": "~1.0",
         "lucinda/view-language": "~1.0",
-        "lucinda/internationalization": "~1.0"
+        "lucinda/internationalization": "~1.0",
+        "lucinda/framework-engine": "~1.0"
     },
     "require-dev": {
         "lucinda/errors": "~1.0",
@@ -34,6 +35,7 @@
         "lucinda/mvc": "~1.0",
         "lucinda/sql-data-access": "~1.0",
         "lucinda/view-language": "~1.0",
-        "lucinda/internationalization": "~1.0"
+        "lucinda/internationalization": "~1.0",
+        "lucinda/framework-engine": "~1.0"
     }
 }

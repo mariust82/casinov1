@@ -9,6 +9,7 @@
     <auto_routing>0</auto_routing>
     <paths>
       <controllers>application/controllers</controllers>
+      <cacheables>application/models/cacheables</cacheables>
       <wrappers>application/wrappers</wrappers>
       <views>application/views</views>
       <listeners>application/listeners</listeners>
@@ -47,6 +48,7 @@
     <listener class="MobileDetectionListener"/>
     <listener class="TMSListener"/>
     <listener class="ViewLanguageResolver"/>
+    <listener class="HttpCachingListener"/>
   </listeners>
   <errors>
     <lucinda>
@@ -199,4 +201,5 @@
     <dev>https://devgame.casinoslists.com</dev>
     <live>https://game.casinoslists.com</live>
   </gameplay>
+  <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
 </xml>
