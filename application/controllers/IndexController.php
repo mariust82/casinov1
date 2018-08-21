@@ -8,7 +8,6 @@ require_once("application/models/dao/GamesList.php");
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
 require_once("application/controllers/BaseController.php");
-require_once("hlis/server_caching/src/CacheManager.php");
 require_once("application/models/caching/CasinosListKey.php");
 require_once("application/models/caching/GamesListKey.php");
 
@@ -31,44 +30,23 @@ class IndexController extends BaseController {
 	}
 
 	private function getCasinos($filter, $sortBy, $limit) {
-	    $cacheManager = new CacheManager(new CasinosListKey(
-            $filter,
-            $this->request->getAttribute("country")->code,
-            $sortBy,
-            0,
-            $limit
-        ));
-	    if($results = $cacheManager->get()) {
-	        return $results;
-        } else {
+
+        $object = new CasinosList(new CasinoFilter($filter, $this->request->getAttribute("country")));
+        $results = $object->getResults($sortBy, 0,$limit);
+        if(empty($results)) {
+            unset($filter["country_accepted"]);
             $object = new CasinosList(new CasinoFilter($filter, $this->request->getAttribute("country")));
             $results = $object->getResults($sortBy, 0,$limit);
-            if(empty($results)) {
-                unset($filter["country_accepted"]);
-                $object = new CasinosList(new CasinoFilter($filter, $this->request->getAttribute("country")));
-                $results = $object->getResults($sortBy, 0,$limit);
-            }
-            $cacheManager->set($results);
-            return $results;
         }
+        return $results;
     }
 
     private function getGames($filter, $sortBy, $limit) {
-	    $cacheManager = new CacheManager(new GamesListKey(
-            $filter,
-            $sortBy,
-            0,
-            $limit
-        ));
-        if($results = $cacheManager->get()) {
-            return $results;
-        } else {
-            $game_filter = new GameFilter($filter);
-            $object = new GamesList($game_filter);
-            $results = $object->getResults($sortBy, 0,$limit);
-            $cacheManager->set($results);
-            return $results;
-        }
+
+        $game_filter = new GameFilter($filter);
+        $object = new GamesList($game_filter);
+        $results = $object->getResults($sortBy, 0,$limit);
+        return $results;
     }
 
     protected function pageInfo(){
