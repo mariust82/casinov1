@@ -1,7 +1,6 @@
 <?php
 require_once("application/models/dao/GameTypes.php");
 require_once("BaseController.php");
-require_once("hlis/server_caching/src/CacheManager.php");
 require_once("application/models/caching/GamesCounterKey.php");
 
 /*
@@ -18,14 +17,8 @@ class GameTypesController extends BaseController {
 
 	private function getResults() {
         $object = new GameTypes();
-        $cacheManager = new CacheManager(new GamesCounterKey());
-        if($results = $cacheManager->get()) {
-            return $results;
-        } else {
-            $counts = $object->getGamesCount();
-            $cacheManager->set($counts);
-            return $counts;
-        }
+        $counts = $object->getGamesCount();
+        return $counts;
     }
 
     protected function pageInfo(){

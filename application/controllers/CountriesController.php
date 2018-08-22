@@ -10,24 +10,19 @@ require_once("CasinosCounterController.php");
 * @source 
 */
 class CountriesController extends CasinosCounterController {
+
     protected function getResults(CasinoCounter $object) {
-        $cacheManager = new CacheManager(new CasinosCounterKey($this->request->getAttribute("country")->code));
-        if($results = $cacheManager->get()) {
-            return $results;
-        } else {
-            $counts = $object->getCasinosCount();
+
+        $counts = $object->getCasinosCount();
 
             // start hardcoding: Make user country be first in list
             if(array_key_exists($this->request->getAttribute("country")->name, $counts)){
                 $userCountry = array($this->request->getAttribute("country")->name => $counts[$this->request->getAttribute("country")->name]);
-                unset($results[$this->request->getAttribute("country")->name]);
+                unset($counts[$this->request->getAttribute("country")->name]);
                 $counts = $userCountry + $counts;
             }
-            // end hardcoding
 
-            $cacheManager->set($counts);
             return $counts;
-        }
     }
 
     protected function getCounter(){

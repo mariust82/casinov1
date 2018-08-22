@@ -1,4 +1,6 @@
-;(function($) {
+var AJAX_CUR_PAGE = 1;
+(function($) {
+
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
@@ -497,7 +499,6 @@
         var _onEvent = function() {
                 _moreButton = $('.js-more-items');
                 _resetButton = $('.js-reset-items');
-
                 _switchers.off();
                 _switchers.on('click', function() {
                     _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
@@ -539,8 +540,8 @@
             },
 
             _getAjaxParams = function (_paramName , _paramValue, _action) {
-                var _ajaxDataParams = {};
 
+                var _ajaxDataParams = {};
                 $.each(_switchers, function(index, el) {
                     if ($(el).is(':checked')) {
                     _ajaxDataParams[$(el).attr('name')] = 1;
@@ -578,11 +579,12 @@
                     }
                 }
 
-                if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 0;
+                if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 1;
                 AJAX_CUR_PAGE++;
                 if (_action != 'add' || _action == 'reset') {
                     AJAX_CUR_PAGE = 0;
                 }
+
                 // _ajaxDataParams['page'] = AJAX_CUR_PAGE;
 
                 return _ajaxDataParams;
@@ -591,9 +593,17 @@
             _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
                 $('.overlay, .loader').fadeIn('fast');
 
+                var datatotal = $('.qty-items').attr('data-load-total');
+                datatotal = parseInt(datatotal);
+
+
+
+
+
                 if (BUSY_REQUEST) return;
                 BUSY_REQUEST = true;
                 _request.abort();
+
                 _request = $.ajax({
                     url: _url+AJAX_CUR_PAGE,
                     data: _ajaxDataParams,
@@ -601,13 +611,13 @@
                     type: 'GET',
                     success: function(data) {
                         var cont = $(data).find('.loaded-item');
+
                         // var cont = $(data).filter('.loaded-item');
+                        var loadTotal = $(data).filter('[data-load-total]').data('load-total');
 
                         if (_action == 'replace') {
                             _targetContainer.html(data);
                             _targetAddContainer.html('');
-
-                            var loadTotal = $(data).filter('[data-load-total]').data('load-total');
 
                             $('.qty-items span').text(loadTotal);
 
@@ -625,12 +635,24 @@
                                 _emptyContent.hide();
                             }
                         } else {
+
                             _targetAddContainer.append(cont);
+
+                            /*if( _ajaxDataParams['total_items_loaded'] >= datatotal){
+                                return false;
+                            }*/
                         }
 
-                        if (AJAX_CUR_PAGE >= Math.floor($('.data-add-container').data('total') / _itemsPerPage)) {
+                        var  itemsNumberLoaded  = $('.holder .loaded-item').length;
+                        if(loadTotal <= itemsNumberLoaded){
                             _moreButton.hide();
                         }
+
+
+
+                       /* if (AJAX_CUR_PAGE >= Math.floor($('.data-add-container').data('total') / _itemsPerPage)) {
+                            _moreButton.hide();
+                        }*/
 
                         // initRateSlider();
                         // changeNumSize();

@@ -4,10 +4,12 @@ require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
 require_once("application/models/dao/CasinosMenu.php");
 require_once("BaseController.php");
-require_once("hlis/server_caching/src/CacheManager.php");
 require_once("application/models/caching/CasinosListKey.php");
 
 abstract class CasinosListController extends BaseController {
+
+    const LIMIT = 100;
+
 	public function service() {
 	    //die($this->application->getAttribute("parent_schema"));
         $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
@@ -27,24 +29,13 @@ abstract class CasinosListController extends BaseController {
     }
 
     private function getResults() {
-        $cacheManager = new CacheManager(new CasinosListKey(
-            array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")),
-            $this->request->getAttribute("country"),
-            $this->response->getAttribute("sort_criteria"),
-            0,
-            50
-        ));
-        if($results = $cacheManager->get()) {
-            return $results;
-        } else {
+
             $filter = new CasinoFilter(array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
             $object = new CasinosList($filter);
             $results = array();
             $results["total"] = $object->getTotal();
-            $results["list"] = ($results["total"]>0?$object->getResults($this->response->getAttribute("sort_criteria"), 0):array());
-            $cacheManager->set($results);
+            $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->getAttribute("sort_criteria"), 1, self::LIMIT) : array());
             return $results;
-        }
     }
 
     abstract protected function getSelectedEntity();

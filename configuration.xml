@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
   <application>
-    <version>0.5.1</version>
+    <version>0.5.2</version>
     <default_character_encoding>UTF-8</default_character_encoding>
     <default_page>index</default_page>
     <default_extension>html</default_extension>
@@ -21,6 +21,7 @@
         <dev>/tmp/compilations_dev</dev>
         <live>/tmp/compilations_live</live>
         <alex>compilations</alex>
+        <amos>C:\xampp\htdocs\casinoslis_compilation</amos>
       </compilations>
     </paths>
     <environments>
@@ -28,6 +29,7 @@
       <dev>dev.casinoslists.com</dev>
       <live>www.casinoslists.com</live>
       <alex>lists.local</alex>
+      <amos>www.devcasinopro.adrian</amos>
     </environments>
     <templates_extension>html</templates_extension>
   </application>
@@ -48,7 +50,7 @@
     <listener class="MobileDetectionListener"/>
     <listener class="TMSListener"/>
     <listener class="ViewLanguageResolver"/>
-    <listener class="HttpCachingListener"/>
+   <!-- <listener class="HttpCachingListener"/>-->
   </listeners>
   <errors>
     <lucinda>
@@ -171,6 +173,11 @@
       <alex>
         <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
       </alex>
+
+      <amos>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinoslist" parent_schema="casinosl_admin" charset="utf8"/>
+      </amos>
+
     </sql>
     <nosql>
         <lucinda>
