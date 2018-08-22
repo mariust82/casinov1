@@ -36,12 +36,6 @@ class CasinoInfoController extends BaseController {
             $this->response->setAttribute("total_reviews", 0);
             $this->response->setAttribute("reviews", array());
         }
-
-	$casinoInfo = $this->response->getAttribute("casino");
-        $softwareName = (!empty($casinoInfo->softwares)?$casinoInfo->softwares[0]:"NetEnt");
-        $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $softwareName, "softwares/".strtolower(str_replace(" ", "-", $softwareName)));
-        $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
-
 	}
 
 	protected function pageInfo(){

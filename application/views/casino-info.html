@@ -1,8 +1,5 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casino-info"/>
 
-	<div class="links-casinos">
-		<site:links-carousel items="${data.menu_bottom}"/>
-	</div>
 
 	<std:if condition="${data.casino.status} == 'Blacklisted'">
 		<div class="container">
