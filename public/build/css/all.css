@@ -7641,12 +7641,7 @@ a:hover, a:active, a:visited, a:focus {
     -ms-flex-pack: justify;
     justify-content: space-between;
   }
-  .list-rating.no-score .list-rating-score{
-    background: #cecece;
-  }
-  .list-rating.no-score .list-rating-wrap{
-    border: 1px solid #cecece;
-  }
+
 }
 
 @media (min-width: 480px) and (max-width: 736px) {
@@ -7909,3 +7904,9 @@ img.not-accepted {
   color:#cecece;
 }
 
+.list-rating.no-score .list-rating-score{
+  background: #cecece;
+}
+.list-rating.no-score .list-rating-wrap{
+  border: 1px solid #cecece;
+}
