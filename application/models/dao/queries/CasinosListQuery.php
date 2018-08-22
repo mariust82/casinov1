@@ -10,7 +10,7 @@ class CasinosListQuery
 
     private function setQuery(CasinoFilter $filter, $columns, $sortBy) {
         $query = "
-        SELECT
+        SELECT DISTINCT
             ".implode(",", $columns)."
         FROM casinos AS t1
         ";
