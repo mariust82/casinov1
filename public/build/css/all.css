@@ -3357,7 +3357,7 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 1023px) {
   .list-item .list-rating-score {
     background: none;
-    color: #5DC916;
+    color: #cecece;
     width: 30px;
     padding: 1px 0;
     font-weight: 600;
@@ -3398,6 +3398,13 @@ a:hover, a:active, a:visited, a:focus {
   .list-item .list-rating.terrible .list-rating-score {
     background: none;
     color: #DB2424;
+  }
+  .list-rating.no-score .list-rating-score {
+    background: none;
+  }
+
+  .list-rating.no-score .list-rating-wrap .list-rating-text {
+    color:#cecece;
   }
 }
 
@@ -3488,7 +3495,9 @@ a:hover, a:active, a:visited, a:focus {
   background: #5DC916;
   text-align: center;
 }
-
+.list-rating.no-score .list-rating-score{
+  background: #cecece;
+}
 .list-rating.very-good .list-rating-wrap {
   border: 1px solid #96CB00;
 }
@@ -3525,9 +3534,7 @@ a:hover, a:active, a:visited, a:focus {
   background: #DB2424;
 }
 
-.list-rating.no-score .list-rating-score {
-  background: gray;
-}
+
 
 .list-rating-text {
   width: 100%;
@@ -7262,6 +7269,10 @@ a:hover, a:active, a:visited, a:focus {
     font-size: 141px;
     margin: 0 0 15px;
   }
+
+  .list-rating.no-score .list-rating-score{
+    background: none;
+  }
 }
 
 .page-404-subtitle {
@@ -7275,6 +7286,14 @@ a:hover, a:active, a:visited, a:focus {
     font-size: 14px;
     margin: 0 0 30px;
   }
+
+
+  .list-rating.no-score .list-rating-score{
+    background: none;
+  }
+  /*.list-rating.no-score .list-rating-wrap{
+    border: 1px solid #cecece;
+  }*/
 }
 
 .page-404-small {
@@ -7900,13 +7919,12 @@ img.not-accepted {
    line-height: 26px;
 }
 
-.list-rating.no-score .list-rating-wrap .list-rating-text {
-  color:#cecece;
-}
 
+/*
 .list-rating.no-score .list-rating-score{
   background: #cecece;
 }
+*/
 .list-rating.no-score .list-rating-wrap{
   border: 1px solid #cecece;
 }
