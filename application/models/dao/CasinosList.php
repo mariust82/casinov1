@@ -29,7 +29,7 @@ class CasinosList
         $query = $queryGenerator->getQuery();
         $query .= "LIMIT ".self::LIMIT ;
         $query .= !empty($offset) ? ' OFFSET ' . $offset : '';
-        //echo $query;
+
         // execute query
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {
@@ -95,7 +95,6 @@ class CasinosList
         // build query
         $queryGenerator = new CasinosListQuery($this->filter, array("COUNT(t1.id) AS nr"));
         $query = $queryGenerator->getQuery();
-
         return  DB($query)->toValue();
     }
 }

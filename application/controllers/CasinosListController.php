@@ -11,7 +11,6 @@ abstract class CasinosListController extends BaseController {
     const LIMIT = 100;
 
 	public function service() {
-	    //die($this->application->getAttribute("parent_schema"));
         $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
 
