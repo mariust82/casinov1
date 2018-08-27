@@ -27,7 +27,7 @@ class CasinosList
 
         $queryGenerator = new CasinosListQuery($this->filter, array("status_id", "t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"), $sortBy);
         $query = $queryGenerator->getQuery();
-        $query .= "LIMIT ".self::LIMIT ;
+        $query .= "LIMIT ". $limit ;
         $query .= !empty($offset) ? ' OFFSET ' . $offset : '';
 
         // execute query
