@@ -9,6 +9,7 @@ require_once("application/models/caching/CasinosListKey.php");
 abstract class CasinosListController extends BaseController {
 
     const LIMIT = 100;
+    const BEST_CASINO_LIMIT = 50;
 
 	public function service() {
         $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
@@ -29,11 +30,17 @@ abstract class CasinosListController extends BaseController {
 
     private function getResults() {
 
+           if( $this->response->getAttribute("selected_entity")){
+               $limit = self::BEST_CASINO_LIMIT;
+           }else{
+               $limit = self::LIMIT;
+           }
+
             $filter = new CasinoFilter(array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
             $object = new CasinosList($filter);
             $results = array();
             $results["total"] = $object->getTotal();
-            $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->getAttribute("sort_criteria"), 1, self::LIMIT) : array());
+            $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->getAttribute("sort_criteria"), 1, $limit) : array());
             return $results;
     }
 
