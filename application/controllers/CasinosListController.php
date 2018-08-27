@@ -30,7 +30,7 @@ abstract class CasinosListController extends BaseController {
 
     private function getResults() {
 
-           if( $this->response->getAttribute("selected_entity")){
+           if( $this->response->getAttribute("selected_entity") == 'Best'){
                $limit = self::BEST_CASINO_LIMIT;
            }else{
                $limit = self::LIMIT;
