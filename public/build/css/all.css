@@ -3059,7 +3059,7 @@ a:hover, a:active, a:visited, a:focus {
   float:left;
   max-width: 770px;
 }
-.js-condense span p:last-child{display:inline;}
+/* .js-condense span p:last-child{display:inline;} */
 .subtitle a{
           color: #2171CE;
 }
@@ -4717,10 +4717,28 @@ a:hover, a:active, a:visited, a:focus {
 
 .condense_control {
   color: #2171CE;
+  text-decoration: none;
   margin: 4px 0 0 0;
-  display:block;
+  display:inline-block;
+  cursor: pointer;
+  max-width: 72px;
+  overflow: hidden;
 }
-
+.condense_control .less {
+  display: none;
+}
+.opened .condense_control .less {
+  display: inline-block;
+}
+.opened .condense_control .more {
+  display: none;
+}
+.opened .cloned-text {
+  display: none;
+}
+.opened .hidden {
+  display: block;
+}
 .links-nav {
   margin: 4px 0 25px;
 }
@@ -7747,6 +7765,9 @@ a:hover, a:active, a:visited, a:focus {
 .js-condense {
   max-height: 78px;
   overflow: hidden;
+}
+.js-condense > span {
+  display: block;
 }
 
 @media screen and (max-width: 690px) {
