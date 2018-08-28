@@ -49,7 +49,7 @@ var AJAX_CUR_PAGE = 1;
 
         initMoboleBonusesPop(ww);
     });
-
+    
     tooltipConfig = {
         trigger: 'click',
         maxWidth: 279,
@@ -2204,53 +2204,148 @@ var AJAX_CUR_PAGE = 1;
     function getWebName(name) {
         return name.replace(/\s/g, '-').toLowerCase();
     }
+    // plugin condense
+    // function initExpandingText() {
+    //     function cInit() {
+    //         var len = 380;
+    //         if ($(window).width() < 540) {
+    //             len = 140;
+    //         }
+    //        $('.js-condense').condense({
+    //         condensedLength: len,
+    //         moreText: "Read More",
+    //         lessText: "Read Less",
+    //         ellipsis: "...",
+    //         debug: false
+    //        });
+    //        if($().condense) {
+    //         $('.js-condense').next('.js-condense').fadeIn();
 
+    //         $('.js-condense').css({
+    //             maxHeight: '100%'
+    //         });
+    //        }
+    //     }
+
+    //     function cDestroy() {
+    //         $('.js-condense').each(function(index, el) {
+    //             if ($(this).hasClass('.cloned')) {
+    //                 $(this).remove();
+    //             } else {
+    //                 $(this).show().attr('style', '').insertAfter('.condensedParent');
+    //                 $(this).find('.condense_control').remove();
+    //                 $('.condensedParent').remove();
+    //             }
+    //         });
+    //     }
+
+    //     cInit();
+
+    //     var resizeTimer;
+    //     $(window).resize(function(event) {
+    //         clearTimeout(resizeTimer);
+    //           resizeTimer = setTimeout(function() {
+    //             cDestroy();
+    //             cInit();
+    //           }, 250);
+    //     });
+    // }
     function initExpandingText() {
-        function cInit() {
-            var len = 380;
-            if ($(window).width() < 540) {
-                len = 140;
-            }
-           $('.js-condense').condense({
-            condensedLength: len,
-            moreText: "Read More",
-            lessText: "Read Less",
-            ellipsis: "...",
-            debug: false
-           });
-           if($().condense) {
-            $('.js-condense').next('.js-condense').fadeIn();
-
-            $('.js-condense').css({
-                maxHeight: '100%'
-            });
-           }
-        }
-
-        function cDestroy() {
-            $('.js-condense').each(function(index, el) {
-                if ($(this).hasClass('.cloned')) {
-                    $(this).remove();
-                } else {
-                    $(this).show().attr('style', '').insertAfter('.condensedParent');
-                    $(this).find('.condense_control').remove();
-                    $('.condensedParent').remove();
+        var arrayHolders = document.querySelectorAll(".js-condense"),
+            symbolWidth,symbolsCount,symbolsPerRow,rowsCount,itemText;
+        if (arrayHolders.length > 0) {
+            for( var i=0; i<arrayHolders.length; i++ ) {
+                symbolsCount = calculateSymbols( arrayHolders[i] );
+                createToggleButton(arrayHolders[i]);
+                var childsHolder = arrayHolders[i].querySelector('span');
+                if(childsHolder.clientHeight > parseInt( window.getComputedStyle(arrayHolders[i] ,null).getPropertyValue("max-height") )) {
+                    childs = childsHolder.children;
+                    if (childs.length > 1) {
+                        var flag = true;
+                        for(var i = 0; i<childs.length; i++) {
+                            if (childs[i].innerText.length > symbolsCount) {
+                                childs[i].classList.add('hidden');
+                                if (flag) {
+                                    flag = false;
+                                    itemText = childs[i].innerText.slice(0,symbolsCount) + '...';
+                                    createTextParagraf(itemText,childsHolder,childs[i]);
+    
+                                }
+                            }
+                            else {
+                                if (childs[i].innerText.length < symbolsPerRow) {
+                                    symbolsCount -= symbolsPerRow;
+                                }
+                                else {
+                                    symbolsCount -= childs[i].innerText.length;
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        childs[0].classList.add('hidden');
+                        itemText = childs[0].innerText.slice(0,symbolsCount) + '...';
+                        createTextParagraf(itemText,childsHolder,childs[0]);
+                    }
                 }
-            });
+
+            }
         }
-
-        cInit();
-
-        var resizeTimer;
-        $(window).resize(function(event) {
-            clearTimeout(resizeTimer);
-              resizeTimer = setTimeout(function() {
-                cDestroy();
-                cInit();
-              }, 250);
-        });
+        function createTextParagraf(itemText, parent, beforeNode) {
+            var textParagraf = document.createElement('p');
+            textParagraf.classList.add('cloned-text');
+            textParagraf.innerHTML = itemText;
+            parent.insertBefore(textParagraf, beforeNode);
+            parent.parentElement.style.maxHeight = '100%';
+            initToggleButton();
+            // arrayHolders
+        }
+        function createToggleButton(itemParent) {
+            var buttonToggle = document.createElement('a'),
+                buttonToggleLess = document.createElement('span'),
+                buttonToggleMore = document.createElement('span');
+            
+            buttonToggleLess.classList.add('less');
+            buttonToggleLess.innerHTML="Read Less";
+            buttonToggleMore.classList.add('more');
+            buttonToggleMore.innerHTML="Read More";
+            buttonToggle.appendChild(buttonToggleLess);
+            buttonToggle.appendChild(buttonToggleMore);
+            buttonToggle.classList.add('condense_control');
+            itemParent.appendChild(buttonToggle);
+        }
+        function calculateSymbols( itemHolder ) {
+            var lineHeight = parseInt( window.getComputedStyle(itemHolder.querySelector('p') ,null).getPropertyValue("line-height") ),
+            parentHeight = parseInt( window.getComputedStyle(itemHolder ,null).getPropertyValue("max-height") ),
+            parentWidth = parseInt( window.getComputedStyle(itemHolder ,null).getPropertyValue("width") );
+            //media queries when font size is changed
+            if (window.innerWidth < 690) {
+                symbolWidth = 5.4; //average value of letter width
+            }
+            else {
+                symbolWidth = 6.7; //average value of letter width
+            }
+            symbolsPerRow = Math.round( parentWidth/symbolWidth );
+            rowsCount = parseInt( parentHeight/lineHeight );
+            return rowsCount*symbolsPerRow - 30;
+        }
+        function initToggleButton() {
+            var buttonItems = document.querySelectorAll('a.condense_control');
+            if (buttonItems.length > 0) {
+                for(var i = 0; i<buttonItems.length; i++) {
+                    buttonItems[i].addEventListener('click', function(){
+                        var parentItem = this.parentElement;
+                        if(parentItem.classList.contains('opened')) {
+                            parentItem.classList.remove('opened');
+                        }
+                        else {
+                            parentItem.classList.add('opened');
+                        }
+                    });
+                }
+            }
+        }
     }
-
     function initMultirow() {
         var multirowContainer = $('.js-multirow');
         multirowContainer.each(function(index, el) {
