@@ -14,13 +14,11 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
 
     public function newestInCurentList(){
 
-        $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : '';
+        $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : null;
         $country = $this->getCountry();
 
-        if(
-            empty($filterPage) &&
-            empty($country)){
 
+        if(empty($filterPage)){
             return '';
         }
 
@@ -31,9 +29,9 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
         $newestNoDepInTheList->setFilter($filterParams);
 
          $casino =  $newestNoDepInTheList->getData(CasinoSortCriteria::NEWEST);
-         $bonus_type_value = !empty($casino[0]->bonus_first_deposit->type) ?  $casino[0]->bonus_first_deposit->type : '';
+         $bonus_type_value = !empty($casino[0]->bonus_first_deposit->amount) ? $casino[0]->bonus_first_deposit->amount : '';
 
-        return $bonus_type_value;
+        return $bonus_type_value ;
     }
 
     public function newesInTheSite(){
@@ -44,8 +42,7 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
         $newestNoDepInTheSite->setFilter($filterParams);
         $casino =  $newestNoDepInTheSite->getData(CasinoSortCriteria::NEWEST);
 
-        $bonus_type_value = !empty($casino[0]->bonus_first_deposit->type) ?  $casino[0]->bonus_first_deposit->type : '';
-
+        $bonus_type_value = !empty($casino[0]->bonus_first_deposit->amount) ?  $casino[0]->bonus_first_deposit->amount : '';
         return  $bonus_type_value;
 
     }
@@ -56,10 +53,7 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
         $country = $this->getCountry();
         $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : '';
 
-        if(
-            empty($filterPage) &&
-            empty($country)){
-
+        if(empty($filterPage)){
             return '';
         }
 
@@ -70,7 +64,7 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
         $newestNoDepInTheList->setFilter($filterParams);
 
         $casino =  $newestNoDepInTheList->getData(CasinoSortCriteria::TOP_RATED);
-        $bonus_type_value = !empty($casino[0]->bonus_first_deposit->type) ?  $casino[0]->bonus_first_deposit->type : '';
+        $bonus_type_value = !empty($casino[0]->bonus_first_deposit->amount) ?  $casino[0]->bonus_first_deposit->amount : '';
         return $bonus_type_value;
 
     }
@@ -83,7 +77,7 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
         $newestNoDepInTheSite->setFilter($filterParams);
         $casino =  $newestNoDepInTheSite->getData(CasinoSortCriteria::TOP_RATED);
 
-        $bonus_type_value = !empty($casino[0]->bonus_first_deposit->type) ?  $casino[0]->bonus_first_deposit->type : '';
+        $bonus_type_value = !empty($casino[0]->bonus_first_deposit->amount) ?  $casino[0]->bonus_first_deposit->amount : '';
 
         return  $bonus_type_value;
 

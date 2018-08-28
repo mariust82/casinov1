@@ -20,7 +20,6 @@ require_once("application/models/caching/GamesListKey.php");
 */
 class IndexController extends BaseController {
 	public function service() {
-        $this->response->setAttribute("country", $this->request->getAttribute("country"));
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
         $this->response->setAttribute("best_casinos", $this->getCasinos(array("promoted"=>1,"label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
         $this->response->setAttribute("country_casinos", $this->getCasinos(array("country_accepted"=>1, "promoted"=>1), CasinoSortCriteria::POPULARITY, 5));
