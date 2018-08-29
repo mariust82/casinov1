@@ -3399,9 +3399,6 @@ a:hover, a:active, a:visited, a:focus {
     background: none;
     color: #DB2424;
   }
-  .list-rating.no-score .list-rating-score {
-    background: none;
-  }
 
   .list-rating.no-score .list-rating-wrap .list-rating-text {
     color:#cecece;
@@ -7290,8 +7287,10 @@ a:hover, a:active, a:visited, a:focus {
     font-size: 14px;
     margin: 0 0 30px;
   }
+
   .list-rating.no-score .list-rating-score{
     display: none;
+
   }
 
   .list-rating.no-score .list-rating-score-mobile{
@@ -7300,7 +7299,8 @@ a:hover, a:active, a:visited, a:focus {
     transform: rotate(90deg);
     position: relative;
     left: 1px;
-
+    color: #cecece;
+    font-size: 10px;
   }
   /*.list-rating.no-score .list-rating-wrap{
     border: 1px solid #cecece;
