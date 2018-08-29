@@ -8,7 +8,6 @@ require_once 'application/models/dao/CasinosList.php';
 
 class NoDepositBonusData implements  NoDepositBonusInterface{
 
-    private $filter = [];
     private $country ='';
 
     function __construct($country)
