@@ -20,7 +20,7 @@ class CasinosList
 
         if($label == 'Best')
         {
-            $limit =   self::BEST_CASINO_LIMIT;
+            $limit = self::BEST_CASINO_LIMIT;
         }
 
         return $limit;
