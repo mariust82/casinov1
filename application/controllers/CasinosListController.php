@@ -10,6 +10,7 @@ abstract class CasinosListController extends BaseController {
 
     const LIMIT = 100;
 
+
 	public function service() {
         $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
@@ -29,7 +30,9 @@ abstract class CasinosListController extends BaseController {
 
     private function getResults() {
 
-            $filter = new CasinoFilter(array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
+            $filter = new CasinoFilter(
+                array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")),
+                $this->request->getAttribute("country"));
             $object = new CasinosList($filter);
             $results = array();
             $results["total"] = $object->getTotal();
