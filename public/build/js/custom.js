@@ -2204,91 +2204,46 @@ var AJAX_CUR_PAGE = 1;
     function getWebName(name) {
         return name.replace(/\s/g, '-').toLowerCase();
     }
-    // plugin condense
-    // function initExpandingText() {
-    //     function cInit() {
-    //         var len = 380;
-    //         if ($(window).width() < 540) {
-    //             len = 140;
-    //         }
-    //        $('.js-condense').condense({
-    //         condensedLength: len,
-    //         moreText: "Read More",
-    //         lessText: "Read Less",
-    //         ellipsis: "...",
-    //         debug: false
-    //        });
-    //        if($().condense) {
-    //         $('.js-condense').next('.js-condense').fadeIn();
-
-    //         $('.js-condense').css({
-    //             maxHeight: '100%'
-    //         });
-    //        }
-    //     }
-
-    //     function cDestroy() {
-    //         $('.js-condense').each(function(index, el) {
-    //             if ($(this).hasClass('.cloned')) {
-    //                 $(this).remove();
-    //             } else {
-    //                 $(this).show().attr('style', '').insertAfter('.condensedParent');
-    //                 $(this).find('.condense_control').remove();
-    //                 $('.condensedParent').remove();
-    //             }
-    //         });
-    //     }
-
-    //     cInit();
-
-    //     var resizeTimer;
-    //     $(window).resize(function(event) {
-    //         clearTimeout(resizeTimer);
-    //           resizeTimer = setTimeout(function() {
-    //             cDestroy();
-    //             cInit();
-    //           }, 250);
-    //     });
-    // }
     function initExpandingText() {
         var arrayHolders = document.querySelectorAll(".js-condense"),
             symbolWidth,symbolsCount,symbolsPerRow,rowsCount,itemText;
         if (arrayHolders.length > 0) {
             for( var i=0; i<arrayHolders.length; i++ ) {
-                symbolsCount = calculateSymbols( arrayHolders[i] );
-                createToggleButton(arrayHolders[i]);
-                var childsHolder = arrayHolders[i].querySelector('span');
-                if(childsHolder.clientHeight > parseInt( window.getComputedStyle(arrayHolders[i] ,null).getPropertyValue("max-height") )) {
-                    childs = childsHolder.children;
-                    if (childs.length > 1) {
-                        var flag = true;
-                        for(var i = 0; i<childs.length; i++) {
-                            if (childs[i].innerText.length > symbolsCount) {
-                                childs[i].classList.add('hidden');
-                                if (flag) {
-                                    flag = false;
-                                    itemText = childs[i].innerText.slice(0,symbolsCount) + '...';
-                                    createTextParagraf(itemText,childsHolder,childs[i]);
-    
-                                }
-                            }
-                            else {
-                                if (childs[i].innerText.length < symbolsPerRow) {
-                                    symbolsCount -= symbolsPerRow;
+                if (arrayHolders[i].innerText.length>0) {
+                    symbolsCount = calculateSymbols( arrayHolders[i] );
+                    createToggleButton(arrayHolders[i]);
+                    var childsHolder = arrayHolders[i].querySelector('span');
+                    if(childsHolder.clientHeight > parseInt( window.getComputedStyle(arrayHolders[i] ,null).getPropertyValue("max-height") )) {
+                        childs = childsHolder.children;
+                        if (childs.length > 1) {
+                            var flag = true;
+                            for(var i = 0; i<childs.length; i++) {
+                                if (childs[i].innerText.length > symbolsCount) {
+                                    childs[i].classList.add('hidden');
+                                    if (flag) {
+                                        flag = false;
+                                        itemText = childs[i].innerText.slice(0,symbolsCount) + '...';
+                                        createTextParagraf(itemText,childsHolder,childs[i]);
+        
+                                    }
                                 }
                                 else {
-                                    symbolsCount -= childs[i].innerText.length;
+                                    if (childs[i].innerText.length < symbolsPerRow) {
+                                        symbolsCount -= symbolsPerRow;
+                                    }
+                                    else {
+                                        symbolsCount -= childs[i].innerText.length;
+                                    }
                                 }
                             }
                         }
-                    }
-                    else {
-                        childs[0].classList.add('hidden');
-                        itemText = childs[0].innerText.slice(0,symbolsCount) + '...';
-                        createTextParagraf(itemText,childsHolder,childs[0]);
+                        else {
+                            childs[0].classList.add('hidden');
+                            itemText = childs[0].innerText.slice(0,symbolsCount) + '...';
+                            createTextParagraf(itemText,childsHolder,childs[0]);
+                        }
                     }
                 }
-
             }
         }
         function createTextParagraf(itemText, parent, beforeNode) {
