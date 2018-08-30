@@ -4,12 +4,51 @@ require_once("entities/MenuItem.php");
 class TopMenu
 {
     const ENTRIES = [
-        "CASINOS"=>"/casinos",
-        "SOFTWARES"=>"/softwares",
-        "BONUSES"=>"/bonus-list",
-        "COUNTRIES"=>"/countries",
-        "BANKING"=>"/banking",
-        "GAMES"=>"/games",
+
+        "CASINOS"=>[
+           "item_url" => "/casinos",
+            "sub_items" => [
+                "Best Casinos" => "/casinos/best",
+                "Live Casinos" => "/features/live-dealer",
+                "Mobile Casinos" => "/compatability/mobile",
+                "eCOGRA Casinos" => "/features/ecogra-casinos",
+                "Stay Away Casinos" => "/casinos/stay-away",
+                "Popular Casinos" => "/casinos/popular",
+                "All Casinos" => "/casinos"
+            ]
+        ],
+        "SOFTWARES"=>[
+            'item_url' => "/softwares",
+            'sub_items'=>[
+                'RTG Casinos' => '',
+                'Rival Casinos' => '',
+                'NetEnt Casinos' => '',
+                'Playtech Casinos' => '',
+                'MicroGaming Casinos' => '',
+                'BetSoft Casinos' => '',
+                'Saucify Casinos' => '',
+                'Cryptologic Casinos' => '',
+                'All Softwares' => '/softwares ',
+            ],
+        ],
+        "BONUSES"=>[
+            "item_url" => "/bonus-list",
+            "sub_items"=>[],
+        ],
+        "COUNTRIES"=>[
+            "item_url" =>"/countries",
+            "sub_items"=>[
+
+            ],
+        ],
+        "BANKING"=>[
+            "item_url" =>"/banking",
+            "sub_items"=>[],
+        ],
+        "GAMES"=>[
+            "item_url" =>"/games",
+            "sub_items"=>[],
+        ],
 
     ];
     private $pages = array();
@@ -20,13 +59,26 @@ class TopMenu
 
     private function setEntries($currentPage) {
         $selectedEntry = $this->getSelectedEntry($currentPage);
-        foreach(self::ENTRIES as $title=>$url) {
+        foreach(self::ENTRIES as $title=>$entry_data) {
             $object = new MenuItem();
             $object->title = $title;
-            $object->url = $url;
+            $object->url = $entry_data['item_url'];
             $object->is_active = ($title==$selectedEntry?true:false);
+
+            if(!empty($entry_data["sub_items"])){
+                $object->have_submenu = true;
+                foreach($entry_data["sub_items"] as $subItemTitle => $subItemUrl){
+                    $object->submenuItems[$subItemTitle] = $subItemUrl;
+                }
+            }
             $this->pages[] = $object;
         }
+
+       /* echo '<pre>';
+        print_r($this->pages);
+        echo '</pre>';
+
+        var_dump($this->pages); die();*/
     }
 
     private function getSelectedEntry($currentPage) {
@@ -53,7 +105,7 @@ class TopMenu
                 break;
             case "banking":
             case "banking/(name)":
-                return "BANKING";
+                return "BANKINGsss";
                 break;
             case "features":
             case "features/(name)":

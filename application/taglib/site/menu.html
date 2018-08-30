@@ -1,3 +1,12 @@
 <std:foreach var="$[items]" value="result">
-	<li><a class="${(${result.is_active}?'active':'')}" href="${result.url}">${result.title}</a></li>
+	<li><a class="${(${result.is_active}?' active ':'')} ${(${result.have_submenu}?' expand-holder ':'')}" href="${result.url}">${result.title}</a>
+
+	<std:if condition="!empty(${result.submenuItems})">
+		<ul class="expand-menu">
+			<std:foreach var="${result.submenuItems}" key="submenuTitle" value="submenuItemUrl">
+				<li class="expand-menu__list"><a class="expand-menu__list-item" href="${submenuItemUrl}">${submenuTitle}</a></li>
+			</std:foreach>
+		</ul>
+	</std:if>
+	</li>
 </std:foreach>
