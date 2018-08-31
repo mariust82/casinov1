@@ -104,12 +104,18 @@ class TopMenu
     private function setUserCountryInMenu(){
 
         $country_url =   "/countries-list/".strtolower(str_replace(" ", "-", $this->userCountry->name));
-         $countriesUrl = self::$entries['COUNTRIES']['sub_items'];
+        $countriesUrl = self::$entries['COUNTRIES']['sub_items'];
+
+        $newMenuItem = [];
 
          if(!in_array($country_url, $countriesUrl)){
              $key = $this->userCountry->name .' Casinos';
-             self::$entries['COUNTRIES']['sub_items'][$key] = $country_url;
+             //self::$entries['COUNTRIES']['sub_items'][$key] = $country_url;
+             $newMenuItem[$key] = $country_url;
+             $countriesUrl = array_merge($newMenuItem, $countriesUrl);
+             self::$entries['COUNTRIES']['sub_items'] = $countriesUrl;
          }
+
     }
 
     private function setEntries($currentPage) {
