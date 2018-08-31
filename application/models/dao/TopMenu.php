@@ -6,13 +6,7 @@ class TopMenu
 
     private $userCountry;
 
-     public  function __connstruct($user_country = ''){
-
-         $this->userCountry = $user_country;
-
-    }
-
-    const ENTRIES = [
+    private static $entries = [
 
         "NO DEPOSIT CASINOS"=>[
             "item_url" => "/bonus-list/no-deposit-bonus",
@@ -21,7 +15,7 @@ class TopMenu
         ],
 
         "NEW CASINOS"=>[
-            "item_url" => "casinos/new",
+            "item_url" => "/casinos/new",
             "sub_items" => [
             ]
         ],
@@ -52,14 +46,11 @@ class TopMenu
                 'All Softwares' => '/softwares',
             ],
         ],
-       /* "BONUSES"=>[
-            "item_url" => "/bonus-list",
-            "sub_items"=>[],
-        ],*/
+
         "COUNTRIES"=>[
             "item_url" =>"/countries",
             "sub_items"=>[
-                'USA Casinos' => '/countries-list/united-states',
+            //    'USA Casinos' => '/countries-list/united-states',
                 'UK Casinos' => '/countries-list/united-kingdom',
                 'Australia Casinos' => '/countries-list/australia',
                 'Germany Casinos' => '/countries-list/germany',
@@ -69,48 +60,61 @@ class TopMenu
                 'All Countries' => '/countries '
             ],
         ],
+
         "BANKING"=>[
             "item_url" =>"/banking",
             "sub_items"=>[
-                'Neteller Casinos' =>'',
-                'Skrill Moneybookers Casinos' => '',
-                'PayPal Casinos' => '',
-                'Bitcoin Wallets Casinos' => '',
-                'EcoPayz EcoCard Casinos' => '',
-                'Paysafe Card' => '',
+                'Neteller Casinos' =>'/banking/neteller',
+                'Skrill Moneybookers Casinos' => '/banking/skrill-moneybookers',
+                'PayPal Casinos' => '/banking/paypal',
+                'Bitcoin Wallets Casinos' => '/banking/bitcoin-wallets',
+                'EcoPayz EcoCard Casinos' => '/banking/ecopayz',
+                'Paysafe Card' => '/banking/paysafe-card',
                 'All Banking' => '/banking'
             ],
         ],
         "GAMES"=>[
             "item_url" =>"/games",
             "sub_items"=>[
-                'Video Slots' => '',
-                'Classic Slots' => '',
-                'Video Poker' => '',
-                'Scratch Cards' => '',
-                'Blackjack' => '',
-                'Roulette' => '',
-                'Table Games' => '',
-                'Bingo' => '',
-                'Baccarat' => '',
-                'Craps' => '',
-                'Keno' => '',
-                'Other' => '',
+                'Video Slots' => '/games/video-slots',
+                'Classic Slots' => '/games/classic-slots',
+                'Video Poker' => '/games/video-poker',
+                'Scratch Cards' => '/games/scratch-cards',
+                'Blackjack' => '/games/blackjack',
+                'Roulette' => '/games/roulette',
+                'Table Games' => '/games/table-games',
+                'Bingo' => '/games/bingo',
+                'Baccarat' => '/games/baccarat',
+                'Craps' => '/games/craps',
+                'Keno' => '/games/keno',
+                'Other' => '/games/other',
                 'All Games' => '/games'
-
             ],
         ],
 
     ];
     private $pages = array();
 
-    public function __construct($currentPage) {
+    public function __construct($currentPage, $user_country = '') {
+        $this->userCountry = $user_country;
+        $this->setUserCountryInMenu();
         $this->setEntries($currentPage);
+    }
+
+    private function setUserCountryInMenu(){
+
+        $country_url =   "/countries-list/".strtolower(str_replace(" ", "-", $this->userCountry->name));
+         $countriesUrl = self::$entries['COUNTRIES']['sub_items'];
+
+         if(!in_array($country_url, $countriesUrl)){
+             $key = $this->userCountry->name .' Casinos';
+             self::$entries['COUNTRIES']['sub_items'][$key] = $country_url;
+         }
     }
 
     private function setEntries($currentPage) {
         $selectedEntry = $this->getSelectedEntry($currentPage);
-        foreach(self::ENTRIES as $title=>$entry_data) {
+        foreach(self::$entries as $title=>$entry_data) {
             $object = new MenuItem();
             $object->title = $title;
             $object->url = $entry_data['item_url'];
@@ -124,12 +128,6 @@ class TopMenu
             }
             $this->pages[] = $object;
         }
-
-       /* echo '<pre>';
-        print_r($this->pages);
-        echo '</pre>';
-
-        var_dump($this->pages); die();*/
     }
 
     private function getSelectedEntry($currentPage) {
@@ -156,7 +154,7 @@ class TopMenu
                 break;
             case "banking":
             case "banking/(name)":
-                return "BANKINGsss";
+                return "BANKING";
                 break;
             case "features":
             case "features/(name)":

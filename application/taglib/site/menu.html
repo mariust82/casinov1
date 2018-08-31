@@ -3,7 +3,7 @@
 	<std:if condition="!${result.have_submenu}">
 		<li><a  class=" header-menu__item ${(${result.is_active}?' active ':'')} ${(${result.have_submenu}?' expand-holder ':'')}" href="${result.url}">${result.title}</a></li>
 	<std:else>
-		<li class="expand-holder"><span class="header-menu__item">${result.title}<i class="icon-chevron-down"></i></span>
+		<li class="expand-holder "><span class="header-menu__item ${(${result.is_active}?' active ':'')}">${result.title}<i class="icon-chevron-down"></i></span>
 			<std:if condition="!empty(${result.submenuItems})">
 				<ul class="expand-menu">
 					<std:foreach var="${result.submenuItems}" key="submenuTitle" value="submenuItemUrl">
