@@ -10,8 +10,11 @@ require_once("application/models/dao/PageInfoDAO.php");
 
 abstract class BaseController extends Controller {
     public function run() {
-        $this->response->setAttribute("country", $this->request->getAttribute("country"));
-        $menu = new TopMenu($this->request->getValidator()->getPage());
+
+        $country = $this->request->getAttribute("country");
+
+        $this->response->setAttribute("country", $country);
+        $menu = new TopMenu($this->request->getValidator()->getPage(), $country);
         $this->response->setAttribute("menu_top", $menu->getEntries());
 
         $this->service();

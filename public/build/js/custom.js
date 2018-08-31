@@ -5,6 +5,7 @@ var AJAX_CUR_PAGE = 1;
     var ww = $(window).width();
 
     $(document).ready(function() {
+        initToggleMenu();
         initSite();
         initMobileMenu();
         new SearchPanel ( $('.header') );
@@ -270,7 +271,40 @@ var AJAX_CUR_PAGE = 1;
 
         return pattern;
     }
+    function initToggleMenu() {
+        var targetNode = document.querySelector('.header-menu__list-holder');
+        if (targetNode) {
+            targetNode.addEventListener( 'click', function(e) {
+                var that = this,currentOpened,
+                    currentTarget = e.target;
+                while(currentTarget != that) {
+                    if(currentTarget.classList.contains( 'expand-holder' )) {
+                        currentOpened = document.querySelector('.expand-holder.opened');
+                        if (currentOpened == currentTarget) {
+                            var toggleSection = currentOpened.querySelector(".expand-menu");
+                            currentOpened.classList.remove('opened');
+                        }
+                        else {
+                            if(currentOpened) {
+                                currentOpened.classList.remove('opened');
+                                setTimeout(function(){
+                                    currentTarget.classList.add('opened');
+                                }, 400);
+                            }
+                            else {
+                                currentTarget.classList.add('opened');
+                            }
+                        }
 
+                        break;
+                    }
+                    else {
+                        currentTarget = currentTarget.parentNode;
+                    }
+                }
+            }, true);
+        }
+    }
     function checkStringLength(box, num) {
         $(box).each(function(index, el) {
             var child = $(this).find('.list-item-trun');
