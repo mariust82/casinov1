@@ -1,5 +1,6 @@
 <?php
-require_once("hlis/server_caching/src/CacheCriteriaKey.php");
+/*
+//require_once("hlis/server_caching/src/CacheCriteriaKey.php");
 
 class CasinosListKey extends CacheCriteriaKey
 {
@@ -11,3 +12,4 @@ class CasinosListKey extends CacheCriteriaKey
         return "list:".json_encode($filters);
     }
 }
+*/
