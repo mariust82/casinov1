@@ -3,14 +3,15 @@ class CasinosListQuery
 {
     private $query;
 
-    public function __construct(CasinoFilter $filter, $columns, $sortBy=null)
+    public function __construct(CasinoFilter $filter, $columns, $sortBy=null, $limit= 0 , $offset='')
     {
-        $this->setQuery($filter, $columns, $sortBy);
+        $this->setQuery($filter, $columns, $sortBy, $limit , $offset);
+
     }
 
-    private function setQuery(CasinoFilter $filter, $columns, $sortBy) {
+    private function setQuery(CasinoFilter $filter, $columns, $sortBy,  $limit= 0 , $offset) {
         $query = "
-        SELECT
+        SELECT DISTINCT
             ".implode(",", $columns)."
         FROM casinos AS t1
         ";
@@ -100,8 +101,17 @@ class CasinosListQuery
             }
             $query.=$order;
         }
+
+        if(!empty($limit)) {
+            $query .= " LIMIT " . $limit;
+        }
+
+        if(!empty($offset))
+            $query .= !empty($offset) ? ' OFFSET ' . $offset : '';
+
         $this->query = $query;
     }
+
 
     public function getQuery() {
         return $this->query;

@@ -23,25 +23,23 @@ require_once("application/models/dao/CasinosList.php");
 */
 class CasinosFilterController extends Controller {
 
+    const LIMIT = 100;
+
 	public function run() {
 	    $this->response->setAttribute("country", $this->request->getAttribute("country"));
-            $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
+        $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
         $sortCriteria = $this->getSortCriteria();
 		$page = (integer) $this->request->getValidator()->getPathParameter("page");
         $object = new CasinosList(new CasinoFilter($_GET, $this->request->getAttribute("country")));
-        if($page==0) {
-            $total = $object->getTotal();
-            if($total) {
-                $this->response->setAttribute("total_casinos", $total);
-                $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page,100,(100*$page)/2));
-            } else {
-                $this->response->setAttribute("total_casinos", 0);
-                $this->response->setAttribute("casinos", array());
-            }
-        } else {
-            $this->response->setAttribute("total_casinos", 0);
-            $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page,100,(100*$page)/2));
-        }
+
+        $total = $object->getTotal();
+
+        if(empty($page))
+            $page = 1;
+
+        $offset = ($page-1) * self::LIMIT;
+        $this->response->setAttribute("total_casinos", $total);
+        $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page,self::LIMIT,$offset));
 	}
 
 	private function getSortCriteria() {

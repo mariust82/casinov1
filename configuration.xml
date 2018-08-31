@@ -2,13 +2,14 @@
 <!DOCTYPE xml>
 <xml>
   <application>
-    <version>0.4.8</version>
+    <version>0.7.0</version>
     <default_character_encoding>UTF-8</default_character_encoding>
     <default_page>index</default_page>
     <default_extension>html</default_extension>
     <auto_routing>0</auto_routing>
     <paths>
       <controllers>application/controllers</controllers>
+      <cacheables>application/models/cacheables</cacheables>
       <wrappers>application/wrappers</wrappers>
       <views>application/views</views>
       <listeners>application/listeners</listeners>
@@ -20,6 +21,7 @@
         <dev>/tmp/compilations_dev</dev>
         <live>/tmp/compilations_live</live>
         <alex>compilations</alex>
+        <amos>C:\xampp\htdocs\casinoslis_compilation</amos>
       </compilations>
     </paths>
     <environments>
@@ -27,6 +29,7 @@
       <dev>dev.casinoslists.com</dev>
       <live>www.casinoslists.com</live>
       <alex>lists.local</alex>
+      <amos>www.devcasinopro.adrian</amos>
     </environments>
     <templates_extension>html</templates_extension>
   </application>
@@ -39,6 +42,7 @@
     <listener class="EnvironmentDetector"/>
     <listener class="AsyncListener"/>
     <listener class="SQLDataSourceInjector"/>
+    <listener class="NoSQLDataSourceInjector"/>
     <listener class="QueryProfilingListener"/>
     <listener class="ErrorListener"/>
     <listener class="RebrandingListener"/>
@@ -46,6 +50,7 @@
     <listener class="MobileDetectionListener"/>
     <listener class="TMSListener"/>
     <listener class="ViewLanguageResolver"/>
+   <!-- <listener class="HttpCachingListener"/>-->
   </listeners>
   <errors>
     <lucinda>
@@ -157,18 +162,32 @@
   <servers>
     <sql>
       <lucinda>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="niggers" schema="casinoslists" parent_schema="admin_casinoslists"/>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="niggers" schema="casinoslists" parent_schema="admin_casinoslists" charset="utf8"/>
       </lucinda>
       <dev>
-        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_dev" parent_schema="casinosl_admin_dev"/>
+        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_dev" parent_schema="casinosl_admin_dev" charset="utf8"/>
       </dev>
       <live>
-        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go" parent_schema="casinosl_admin"/>
+        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
       </live>
       <alex>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_go" parent_schema="casinosl_admin"/>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
       </alex>
+      <amos>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinoslist_dev" parent_schema="casinosl_admin" charset="utf8"/>
+      </amos>
     </sql>
+    <nosql>
+        <lucinda>
+          <server driver="redis" host="localhost"/>
+        </lucinda>
+        <dev>
+            <server driver="redis" host="localhost"/>
+        </dev>
+        <live>
+            <server driver="redis" host="localhost"/>
+        </live>
+    </nosql>
   </servers>
   <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
     <lucinda>api.datamother.com</lucinda>
@@ -187,4 +206,5 @@
     <dev>https://devgame.casinoslists.com</dev>
     <live>https://game.casinoslists.com</live>
   </gameplay>
+  <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
 </xml>

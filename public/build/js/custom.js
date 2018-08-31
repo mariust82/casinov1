@@ -1,4 +1,6 @@
-;(function($) {
+var AJAX_CUR_PAGE = 1;
+(function($) {
+
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
@@ -47,7 +49,7 @@
 
         initMoboleBonusesPop(ww);
     });
-
+    
     tooltipConfig = {
         trigger: 'click',
         maxWidth: 279,
@@ -497,7 +499,6 @@
         var _onEvent = function() {
                 _moreButton = $('.js-more-items');
                 _resetButton = $('.js-reset-items');
-
                 _switchers.off();
                 _switchers.on('click', function() {
                     _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
@@ -539,8 +540,8 @@
             },
 
             _getAjaxParams = function (_paramName , _paramValue, _action) {
-                var _ajaxDataParams = {};
 
+                var _ajaxDataParams = {};
                 $.each(_switchers, function(index, el) {
                     if ($(el).is(':checked')) {
                     _ajaxDataParams[$(el).attr('name')] = 1;
@@ -578,11 +579,12 @@
                     }
                 }
 
-                if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 0;
+                if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 1;
                 AJAX_CUR_PAGE++;
                 if (_action != 'add' || _action == 'reset') {
                     AJAX_CUR_PAGE = 0;
                 }
+
                 // _ajaxDataParams['page'] = AJAX_CUR_PAGE;
 
                 return _ajaxDataParams;
@@ -591,9 +593,17 @@
             _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
                 $('.overlay, .loader').fadeIn('fast');
 
+                var datatotal = $('.qty-items').attr('data-load-total');
+                datatotal = parseInt(datatotal);
+
+
+
+
+
                 if (BUSY_REQUEST) return;
                 BUSY_REQUEST = true;
                 _request.abort();
+
                 _request = $.ajax({
                     url: _url+AJAX_CUR_PAGE,
                     data: _ajaxDataParams,
@@ -601,13 +611,13 @@
                     type: 'GET',
                     success: function(data) {
                         var cont = $(data).find('.loaded-item');
+
                         // var cont = $(data).filter('.loaded-item');
+                        var loadTotal = $(data).filter('[data-load-total]').data('load-total');
 
                         if (_action == 'replace') {
                             _targetContainer.html(data);
                             _targetAddContainer.html('');
-
-                            var loadTotal = $(data).filter('[data-load-total]').data('load-total');
 
                             $('.qty-items span').text(loadTotal);
 
@@ -625,12 +635,24 @@
                                 _emptyContent.hide();
                             }
                         } else {
+
                             _targetAddContainer.append(cont);
+
+                            /*if( _ajaxDataParams['total_items_loaded'] >= datatotal){
+                                return false;
+                            }*/
                         }
 
-                        if (AJAX_CUR_PAGE >= Math.floor($('.data-add-container').data('total') / _itemsPerPage)) {
+                        var  itemsNumberLoaded  = $('.holder .loaded-item').length;
+                        if(loadTotal <= itemsNumberLoaded){
                             _moreButton.hide();
                         }
+
+
+
+                       /* if (AJAX_CUR_PAGE >= Math.floor($('.data-add-container').data('total') / _itemsPerPage)) {
+                            _moreButton.hide();
+                        }*/
 
                         // initRateSlider();
                         // changeNumSize();
@@ -2182,53 +2204,103 @@
     function getWebName(name) {
         return name.replace(/\s/g, '-').toLowerCase();
     }
-
     function initExpandingText() {
-        function cInit() {
-            var len = 380;
-            if ($(window).width() < 540) {
-                len = 140;
-            }
-           $('.js-condense').condense({
-            condensedLength: len,
-            moreText: "Read More",
-            lessText: "Read Less",
-            ellipsis: "...",
-            debug: false
-           });
-           if($().condense) {
-            $('.js-condense').next('.js-condense').fadeIn();
-
-            $('.js-condense').css({
-                maxHeight: '100%'
-            });
-           }
-        }
-
-        function cDestroy() {
-            $('.js-condense').each(function(index, el) {
-                if ($(this).hasClass('.cloned')) {
-                    $(this).remove();
-                } else {
-                    $(this).show().attr('style', '').insertAfter('.condensedParent');
-                    $(this).find('.condense_control').remove();
-                    $('.condensedParent').remove();
+        var arrayHolders = document.querySelectorAll(".js-condense"),
+            symbolWidth,symbolsCount,symbolsPerRow,rowsCount,itemText;
+        if (arrayHolders.length > 0) {
+            for( var i=0; i<arrayHolders.length; i++ ) {
+                if (arrayHolders[i].innerText.length>0) {
+                    symbolsCount = calculateSymbols( arrayHolders[i] );
+                    createToggleButton(arrayHolders[i]);
+                    var childsHolder = arrayHolders[i].querySelector('span');
+                    if(childsHolder.clientHeight > parseInt( window.getComputedStyle(arrayHolders[i] ,null).getPropertyValue("max-height") )) {
+                        childs = childsHolder.children;
+                        if (childs.length > 1) {
+                            var flag = true;
+                            for(var i = 0; i<childs.length; i++) {
+                                if (childs[i].innerText.length > symbolsCount) {
+                                    childs[i].classList.add('hidden');
+                                    if (flag) {
+                                        flag = false;
+                                        itemText = childs[i].innerText.slice(0,symbolsCount) + '...';
+                                        createTextParagraf(itemText,childsHolder,childs[i]);
+        
+                                    }
+                                }
+                                else {
+                                    if (childs[i].innerText.length < symbolsPerRow) {
+                                        symbolsCount -= symbolsPerRow;
+                                    }
+                                    else {
+                                        symbolsCount -= childs[i].innerText.length;
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            childs[0].classList.add('hidden');
+                            itemText = childs[0].innerText.slice(0,symbolsCount) + '...';
+                            createTextParagraf(itemText,childsHolder,childs[0]);
+                        }
+                    }
                 }
-            });
+            }
         }
-
-        cInit();
-
-        var resizeTimer;
-        $(window).resize(function(event) {
-            clearTimeout(resizeTimer);
-              resizeTimer = setTimeout(function() {
-                cDestroy();
-                cInit();
-              }, 250);
-        });
+        function createTextParagraf(itemText, parent, beforeNode) {
+            var textParagraf = document.createElement('p');
+            textParagraf.classList.add('cloned-text');
+            textParagraf.innerHTML = itemText;
+            parent.insertBefore(textParagraf, beforeNode);
+            parent.parentElement.style.maxHeight = '100%';
+            initToggleButton();
+            // arrayHolders
+        }
+        function createToggleButton(itemParent) {
+            var buttonToggle = document.createElement('a'),
+                buttonToggleLess = document.createElement('span'),
+                buttonToggleMore = document.createElement('span');
+            
+            buttonToggleLess.classList.add('less');
+            buttonToggleLess.innerHTML="Read Less";
+            buttonToggleMore.classList.add('more');
+            buttonToggleMore.innerHTML="Read More";
+            buttonToggle.appendChild(buttonToggleLess);
+            buttonToggle.appendChild(buttonToggleMore);
+            buttonToggle.classList.add('condense_control');
+            itemParent.appendChild(buttonToggle);
+        }
+        function calculateSymbols( itemHolder ) {
+            var lineHeight = parseInt( window.getComputedStyle(itemHolder.querySelector('p') ,null).getPropertyValue("line-height") ),
+            parentHeight = parseInt( window.getComputedStyle(itemHolder ,null).getPropertyValue("max-height") ),
+            parentWidth = parseInt( window.getComputedStyle(itemHolder ,null).getPropertyValue("width") );
+            //media queries when font size is changed
+            if (window.innerWidth < 690) {
+                symbolWidth = 5.4; //average value of letter width
+            }
+            else {
+                symbolWidth = 6.7; //average value of letter width
+            }
+            symbolsPerRow = Math.round( parentWidth/symbolWidth );
+            rowsCount = parseInt( parentHeight/lineHeight );
+            return rowsCount*symbolsPerRow - 30;
+        }
+        function initToggleButton() {
+            var buttonItems = document.querySelectorAll('a.condense_control');
+            if (buttonItems.length > 0) {
+                for(var i = 0; i<buttonItems.length; i++) {
+                    buttonItems[i].addEventListener('click', function(){
+                        var parentItem = this.parentElement;
+                        if(parentItem.classList.contains('opened')) {
+                            parentItem.classList.remove('opened');
+                        }
+                        else {
+                            parentItem.classList.add('opened');
+                        }
+                    });
+                }
+            }
+        }
     }
-
     function initMultirow() {
         var multirowContainer = $('.js-multirow');
         multirowContainer.each(function(index, el) {

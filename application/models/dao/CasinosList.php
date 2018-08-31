@@ -5,7 +5,8 @@ require_once("queries/CasinosListQuery.php");
 
 class CasinosList
 {
-    const LIMIT = 50;
+    const LIMIT = 100;
+    const BEST_CASINO_LIMIT = 50;
     private $filter;
 
     public function __construct(CasinoFilter $filter)
@@ -13,16 +14,43 @@ class CasinosList
         $this->filter = $filter;
     }
 
-    public function getResults($sortBy, $page, $limit = self::LIMIT,$offset = "") {
-        $output = array();
-        if ($offset == "") {
-            $offset = ($page*$limit);
+    private function setLimitCustomLimitForLabel($label){
+
+        $limit = self::LIMIT;
+
+        if($label == 'Best')
+        {
+            $limit = self::BEST_CASINO_LIMIT;
         }
 
-        $queryGenerator = new CasinosListQuery($this->filter, array("status_id", "t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"), $sortBy);
+        return $limit;
+    }
+
+    public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "") {
+
+        $output = array();
+        $label = $this->filter->getCasinoLabel();
+
+        if(!empty($label))
+            $limit = $this->setLimitCustomLimitForLabel($label);
+
+        if (!empty($offset) && $page > 1) {
+
+            $offset = ($page-1) *$limit ;
+        }else{
+            $offset = 0;
+        }
+
+        $queryGenerator = new CasinosListQuery(
+            $this->filter,
+            array("status_id", "t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"),
+            $sortBy,
+            $limit,
+            $offset
+        );
         $query = $queryGenerator->getQuery();
-        $query .= "LIMIT ".$limit." OFFSET ".$offset;
-//        echo $query;
+
+
         // execute query
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {
@@ -40,7 +68,7 @@ class CasinosList
         if(empty($output)) return array();
 
         // signal engine that utf8 is expected to come
-        DB("SET names utf8");
+
         
         // append softwares
         $query = "
@@ -88,6 +116,6 @@ class CasinosList
         // build query
         $queryGenerator = new CasinosListQuery($this->filter, array("COUNT(t1.id) AS nr"));
         $query = $queryGenerator->getQuery();
-        return (integer) DB($query)->toValue();
+        return  DB($query)->toValue();
     }
 }

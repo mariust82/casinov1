@@ -668,24 +668,33 @@ padding:"inner"+a,content:b,"":"outer"+a},function(c,d){n.fn[d]=function(d,e){va
                 }
 
 
-                $('.condense_control_more',clone).click(function(){
+                $('.condense_control_more',clone).click(function(e){
+                    e.preventDefault;
+                    e.stopPropagation;
                     debug('moreControl clicked.', opts);
                     $par.trigger(o.moreEvent);
                 });
 
-                $('.condense_control_less',$this).click(function(){
+                $('.condense_control_less',$this).click(function(e){
+                    e.preventDefault;
+                    e.stopPropagation;
                     debug('lessControl clicked.', opts);
                     $par.trigger(o.lessEvent);
                 });
 
                 var isExpanded = false;
-                $par.bind(o.lessEvent, function() {
+                $par.bind(o.lessEvent, function(e) {
+                    e.preventDefault;
+                    e.stopPropagation;
+
                     if(isExpanded) {
                         triggerCondense($par,o)
                         isExpanded = false;
                     }
                 });
-                $par.bind(o.moreEvent,   function() {
+                $par.bind(o.moreEvent,   function(e) {
+                    e.preventDefault;
+                    e.stopPropagation;
                     if(! isExpanded) {
                         triggerExpand($par,o)
                         isExpanded = true;

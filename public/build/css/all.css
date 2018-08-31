@@ -3059,7 +3059,7 @@ a:hover, a:active, a:visited, a:focus {
   float:left;
   max-width: 770px;
 }
-.js-condense span p:last-child{display:inline;}
+/* .js-condense span p:last-child{display:inline;} */
 .subtitle a{
           color: #2171CE;
 }
@@ -3357,7 +3357,7 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 1023px) {
   .list-item .list-rating-score {
     background: none;
-    color: #5DC916;
+    color: #cecece;
     width: 30px;
     padding: 1px 0;
     font-weight: 600;
@@ -3398,6 +3398,10 @@ a:hover, a:active, a:visited, a:focus {
   .list-item .list-rating.terrible .list-rating-score {
     background: none;
     color: #DB2424;
+  }
+
+  .list-rating.no-score .list-rating-wrap .list-rating-text {
+    color:#cecece;
   }
 }
 
@@ -3488,7 +3492,9 @@ a:hover, a:active, a:visited, a:focus {
   background: #5DC916;
   text-align: center;
 }
-
+.list-rating.no-score .list-rating-score{
+  background: #cecece;
+}
 .list-rating.very-good .list-rating-wrap {
   border: 1px solid #96CB00;
 }
@@ -3525,9 +3531,7 @@ a:hover, a:active, a:visited, a:focus {
   background: #DB2424;
 }
 
-.list-rating.no-score .list-rating-score {
-  background: gray;
-}
+
 
 .list-rating-text {
   width: 100%;
@@ -4597,7 +4601,11 @@ a:hover, a:active, a:visited, a:focus {
     margin: -20px 0 0 -20px;
   }
 }
-
+@media screen and (max-width: 640px) {
+  .categories-list.category-is-img {
+    margin: -15px 0 0;
+  }
+}
 .categories-list:after {
   display: block;
   clear: both;
@@ -4650,6 +4658,12 @@ a:hover, a:active, a:visited, a:focus {
     width: 50%;
   }
 }
+@media screen and (max-width: 640px) {
+  .category.category-is-img {
+    padding: 15px 0 0;
+    width: 100%;
+  }
+}
 
 @media screen and (max-width: 690px) {
   .category {
@@ -4676,13 +4690,21 @@ a:hover, a:active, a:visited, a:focus {
   font-weight: 700;
   display: block;
 }
-
 .category-qty {
   color: #2171CE;
   font-size: 14px;
   font-weight: 600;
   display: block;
 }
+@media screen and (max-width: 640px) {
+  .category-title {
+    font-size: 14px;
+  }
+  .category-qty {
+    font-size: 13px;
+  }
+}
+
 
 .category-body {
   -webkit-box-flex: 1;
@@ -4710,10 +4732,28 @@ a:hover, a:active, a:visited, a:focus {
 
 .condense_control {
   color: #2171CE;
+  text-decoration: none;
   margin: 4px 0 0 0;
-  display:block;
+  display:inline-block;
+  cursor: pointer;
+  max-width: 72px;
+  overflow: hidden;
 }
-
+.condense_control .less {
+  display: none;
+}
+.opened .condense_control .less {
+  display: inline-block;
+}
+.opened .condense_control .more {
+  display: none;
+}
+.opened .cloned-text {
+  display: none;
+}
+.opened .hidden {
+  display: block;
+}
 .links-nav {
   margin: 4px 0 25px;
 }
@@ -7262,6 +7302,10 @@ a:hover, a:active, a:visited, a:focus {
     font-size: 141px;
     margin: 0 0 15px;
   }
+
+  .list-rating.no-score .list-rating-score{
+    background: none;
+  }
 }
 
 .page-404-subtitle {
@@ -7270,11 +7314,33 @@ a:hover, a:active, a:visited, a:focus {
   margin: 0 0 50px;
 }
 
+.list-rating-score-mobile{
+  display: none;
+}
+
 @media screen and (max-width: 690px) {
   .page-404-subtitle {
     font-size: 14px;
     margin: 0 0 30px;
   }
+
+  .list-rating.no-score .list-rating-score{
+    display: none;
+
+  }
+
+  .list-rating.no-score .list-rating-score-mobile{
+    display: block;
+    background: none;
+    transform: rotate(90deg);
+    position: relative;
+    left: 1px;
+    color: #cecece;
+    font-size: 10px;
+  }
+  /*.list-rating.no-score .list-rating-wrap{
+    border: 1px solid #cecece;
+  }*/
 }
 
 .page-404-small {
@@ -7641,6 +7707,7 @@ a:hover, a:active, a:visited, a:focus {
     -ms-flex-pack: justify;
     justify-content: space-between;
   }
+
 }
 
 @media (min-width: 480px) and (max-width: 736px) {
@@ -7727,6 +7794,9 @@ a:hover, a:active, a:visited, a:focus {
 .js-condense {
   max-height: 78px;
   overflow: hidden;
+}
+.js-condense > span {
+  display: block;
 }
 
 @media screen and (max-width: 690px) {
@@ -7897,4 +7967,8 @@ img.not-accepted {
    padding: 0 40px;
    margin: 10px 0;
    line-height: 26px;
+}
+
+.list-rating.no-score .list-rating-wrap{
+  border: 1px solid #cecece;
 }

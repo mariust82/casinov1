@@ -6,6 +6,8 @@ require_once("application/models/GameFilter.php");
 require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/GamesMenu.php");
 require_once("BaseController.php");
+require_once("application/models/caching/GamesListKey.php");
+
 /*
 * Games list by game type.
 * 
@@ -23,22 +25,20 @@ class GamesByTypeController extends BaseController {
 
         $object = new GameManufacturers();
         $this->response->setAttribute("software", $object->getAll());
-        $is_mobile = $this->request->getAttribute("is_mobile");
-        $game_filter = new GameFilter(array("game_type"=>$this->response->getAttribute("selected_entity")));
-        if ($is_mobile) {
-            $game_filter->is_mobile = TRUE;
-        }
-        $object = new GamesList($game_filter);
-        $total = $object->getTotal();
-        if($total>0) {
-            $this->response->setAttribute("total_games", $total);
-            $this->response->setAttribute("games", $object->getResults(GameSortCriteria::NONE, 0));
-        } else {
-            $this->response->setAttribute("total_games", 0);
-            $this->response->setAttribute("games", array());
-        }
 
+        $results = $this->getResults();
+        $this->response->setAttribute("total_games", $results["total"]);
+        $this->response->setAttribute("games", $results["list"]);
 	}
+
+	private function getResults() {
+        $game_filter = new GameFilter(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")));
+        $object = new GamesList($game_filter);
+        $results = array();
+        $results["total"] = $object->getTotal();
+        $results["list"] = ($results["total"]>0?$object->getResults(GameSortCriteria::NONE, 0):array());
+        return $results;
+    }
 
 	private function getSelectedEntity(){
         $parameter = $this->request->getValidator()->getPathParameter("type");

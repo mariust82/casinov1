@@ -35,7 +35,7 @@ class ListsSearch {
     
     public function setData($arr) {
         for ($i = 0;$i<count($arr);$i++) {
-            DB("SET NAMES UTF8");
+
             $row = DB("SELECT * FROM pages WHERE url=:url",array(":url"=>$arr[$i]['url']))->toRow();
             $arr[$i]['url'] = str_replace('(name)', strtolower(str_replace(' ', '-', $arr[$i]['name'])), $arr[$i]['url']);
             $arr[$i]['title'] = str_replace("(year)",date('Y'),str_replace("(month)",date('F'),str_replace("(name)", $arr[$i]['name'], $row['body_title'])));

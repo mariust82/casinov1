@@ -16,8 +16,9 @@ class CasinosByLabelController extends CasinosListController {
         if(!$parameter) {
             throw new PathNotFoundException();
         }
+        $country =  $this->request->getAttribute("country");
         $parameter = str_replace("-"," ", $parameter);
-        $object = new CasinoLabels();
+        $object = new CasinoLabels($country);
         $name = $object->validate($parameter);
         if(!$name) {
             throw new PathNotFoundException();

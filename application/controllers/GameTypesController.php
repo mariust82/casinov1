@@ -1,6 +1,8 @@
 <?php
 require_once("application/models/dao/GameTypes.php");
 require_once("BaseController.php");
+require_once("application/models/caching/GamesCounterKey.php");
+
 /*
 * Game types list by number of games.
 * 
@@ -10,9 +12,15 @@ require_once("BaseController.php");
 */
 class GameTypesController extends BaseController {
 	protected function service() {
-		$object = new GameTypes();
-        $this->response->setAttribute("results", $object->getGamesCount());
+        $this->response->setAttribute("results", $this->getResults());
 	}
+
+	private function getResults() {
+        $object = new GameTypes();
+        $counts = $object->getGamesCount();
+        return $counts;
+    }
+
     protected function pageInfo(){
         $object = new PageInfoDAO();
         $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));

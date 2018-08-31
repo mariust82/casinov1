@@ -1,8 +1,10 @@
 <?php
+require_once("CasinoCounter.php");
+
 /**
  * Encapsulates operations with countries.
  */
-class Countries
+class Countries implements CasinoCounter
 {
     /**
      * Gets country ID based on ISO code.

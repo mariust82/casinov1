@@ -50,5 +50,9 @@
         <live>/home/casinoslists/public_html/ip2country.mmdb</live>
         <alex>C:\xampp\htdocs\ip2country.mmdb</alex>
     </geoip>
-    <contacts>tan@hliscorp.com,lucian@hliscorp.co,alexandru@hliscorp.com,shay@hliscorp.com</contacts>
+    <hosts>
+        <lucinda>www.casinoslists.local</lucinda>
+        <dev>dev.casinoslists.com</dev>
+        <live>www.casinoslists.com</live>
+    </hosts>
 </xml>

@@ -4,10 +4,14 @@ require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
 require_once("application/models/dao/CasinosMenu.php");
 require_once("BaseController.php");
+require_once("application/models/caching/CasinosListKey.php");
 
 abstract class CasinosListController extends BaseController {
+
+    const LIMIT = 100;
+
+
 	public function service() {
-	    //die($this->application->getAttribute("parent_schema"));
         $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
 
@@ -19,17 +23,21 @@ abstract class CasinosListController extends BaseController {
         $this->response->setAttribute("sort_criteria", $this->getSortCriteria());
         $this->response->setAttribute("filter", $this->getFilter());
 
-        $filter = new CasinoFilter(array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")), $this->request->getAttribute("country"));
-        $object = new CasinosList($filter);
-        $total = $object->getTotal();
-        if($total>0) {
-            $this->response->setAttribute("total_casinos", $total);
-            $this->response->setAttribute("casinos", $object->getResults($this->response->getAttribute("sort_criteria"), 0));
-        } else {
-            $this->response->setAttribute("total_casinos", 0);
-            $this->response->setAttribute("casinos", array());
-        }
+        $results = $this->getResults();
+        $this->response->setAttribute("total_casinos", $results["total"]);
+        $this->response->setAttribute("casinos", $results["list"]);
+    }
 
+    private function getResults() {
+
+            $filter = new CasinoFilter(
+                array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")),
+                $this->request->getAttribute("country"));
+            $object = new CasinosList($filter);
+            $results = array();
+            $results["total"] = $object->getTotal();
+            $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->getAttribute("sort_criteria"), 1, self::LIMIT) : array());
+            return $results;
     }
 
     abstract protected function getSelectedEntity();
