@@ -2203,7 +2203,7 @@ a {
   transition: all 0.3s ease;
 }
 
-@media screen and (min-width: 690px) {
+@media screen and (min-width: 1023px) {
   a:hover {
     color: #60686A;
   }
