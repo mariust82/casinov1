@@ -3,7 +3,28 @@ require_once("entities/MenuItem.php");
 
 class TopMenu
 {
+
+    private $userCountry;
+
+     public  function __connstruct($user_country = ''){
+
+         $this->userCountry = $user_country;
+
+    }
+
     const ENTRIES = [
+
+        "NO DEPOSIT CASINOS"=>[
+            "item_url" => "/bonus-list/no-deposit-bonus",
+            "sub_items" => [
+            ]
+        ],
+
+        "NEW CASINOS"=>[
+            "item_url" => "casinos/new",
+            "sub_items" => [
+            ]
+        ],
 
         "CASINOS"=>[
            "item_url" => "/casinos",
@@ -20,34 +41,64 @@ class TopMenu
         "SOFTWARES"=>[
             'item_url' => "/softwares",
             'sub_items'=>[
-                'RTG Casinos' => '',
-                'Rival Casinos' => '',
-                'NetEnt Casinos' => '',
-                'Playtech Casinos' => '',
-                'MicroGaming Casinos' => '',
-                'BetSoft Casinos' => '',
-                'Saucify Casinos' => '',
-                'Cryptologic Casinos' => '',
-                'All Softwares' => '/softwares ',
+                'RTG Casinos' => '/softwares/rtg',
+                'Rival Casinos' => '/softwares/rival',
+                'NetEnt Casinos' => '/softwares/netent',
+                'Playtech Casinos' => '/softwares/playtech',
+                'MicroGaming Casinos' => '/softwares/microgaming',
+                'BetSoft Casinos' => '/softwares/betsoft',
+                'Saucify Casinos' => '/softwares/saucify',
+                'Cryptologic Casinos' => '/softwares/cryptologic',
+                'All Softwares' => '/softwares',
             ],
         ],
-        "BONUSES"=>[
+       /* "BONUSES"=>[
             "item_url" => "/bonus-list",
             "sub_items"=>[],
-        ],
+        ],*/
         "COUNTRIES"=>[
             "item_url" =>"/countries",
             "sub_items"=>[
-
+                'USA Casinos' => '/countries-list/united-states',
+                'UK Casinos' => '/countries-list/united-kingdom',
+                'Australia Casinos' => '/countries-list/australia',
+                'Germany Casinos' => '/countries-list/germany',
+                'New Zealand Casinos' => '/countries-list/new-zealand',
+                'Netherlands Casinos' => '/countries-list/netherlands',
+                'Sweden Casinos' => '/countries-list/sweden',
+                'All Countries' => '/countries '
             ],
         ],
         "BANKING"=>[
             "item_url" =>"/banking",
-            "sub_items"=>[],
+            "sub_items"=>[
+                'Neteller Casinos' =>'',
+                'Skrill Moneybookers Casinos' => '',
+                'PayPal Casinos' => '',
+                'Bitcoin Wallets Casinos' => '',
+                'EcoPayz EcoCard Casinos' => '',
+                'Paysafe Card' => '',
+                'All Banking' => '/banking'
+            ],
         ],
         "GAMES"=>[
             "item_url" =>"/games",
-            "sub_items"=>[],
+            "sub_items"=>[
+                'Video Slots' => '',
+                'Classic Slots' => '',
+                'Video Poker' => '',
+                'Scratch Cards' => '',
+                'Blackjack' => '',
+                'Roulette' => '',
+                'Table Games' => '',
+                'Bingo' => '',
+                'Baccarat' => '',
+                'Craps' => '',
+                'Keno' => '',
+                'Other' => '',
+                'All Games' => '/games'
+
+            ],
         ],
 
     ];
