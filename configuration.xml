@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
   <application>
-    <version>0.5.4</version>
+    <version>0.7.0</version>
     <default_character_encoding>UTF-8</default_character_encoding>
     <default_page>index</default_page>
     <default_extension>html</default_extension>
@@ -173,11 +173,9 @@
       <alex>
         <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
       </alex>
-
       <amos>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinoslist" parent_schema="casinosl_admin" charset="utf8"/>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinoslist_dev" parent_schema="casinosl_admin" charset="utf8"/>
       </amos>
-
     </sql>
     <nosql>
         <lucinda>

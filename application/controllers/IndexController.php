@@ -20,7 +20,6 @@ require_once("application/models/caching/GamesListKey.php");
 */
 class IndexController extends BaseController {
 	public function service() {
-        $this->response->setAttribute("country", $this->request->getAttribute("country"));
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
         $this->response->setAttribute("best_casinos", $this->getCasinos(array("promoted"=>1,"label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
         $this->response->setAttribute("country_casinos", $this->getCasinos(array("country_accepted"=>1, "promoted"=>1), CasinoSortCriteria::POPULARITY, 5));
@@ -29,7 +28,7 @@ class IndexController extends BaseController {
         $this->response->setAttribute("new_games", $this->getGames(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")),GameSortCriteria::NEWEST, 6));
 	}
 
-	private function getCasinos($filter, $sortBy, $limit) {
+	private function  getCasinos($filter, $sortBy, $limit) {
 
         $object = new CasinosList(new CasinoFilter($filter, $this->request->getAttribute("country")));
         $results = $object->getResults($sortBy, 0,$limit);

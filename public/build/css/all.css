@@ -3497,9 +3497,6 @@ a:hover, a:active, a:visited, a:focus {
     background: none;
     color: #DB2424;
   }
-  .list-rating.no-score .list-rating-score {
-    background: none;
-  }
 
   .list-rating.no-score .list-rating-wrap .list-rating-text {
     color:#cecece;
@@ -7414,15 +7411,29 @@ a:hover, a:active, a:visited, a:focus {
   margin: 0 0 50px;
 }
 
+.list-rating-score-mobile{
+  display: none;
+}
+
 @media screen and (max-width: 690px) {
   .page-404-subtitle {
     font-size: 14px;
     margin: 0 0 30px;
   }
 
-
   .list-rating.no-score .list-rating-score{
+    display: none;
+
+  }
+
+  .list-rating.no-score .list-rating-score-mobile{
+    display: block;
     background: none;
+    transform: rotate(90deg);
+    position: relative;
+    left: 1px;
+    color: #cecece;
+    font-size: 10px;
   }
   /*.list-rating.no-score .list-rating-wrap{
     border: 1px solid #cecece;
@@ -8055,12 +8066,6 @@ img.not-accepted {
    line-height: 26px;
 }
 
-
-/*
-.list-rating.no-score .list-rating-score{
-  background: #cecece;
-}
-*/
 .list-rating.no-score .list-rating-wrap{
   border: 1px solid #cecece;
 }
