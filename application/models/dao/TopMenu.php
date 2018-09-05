@@ -95,10 +95,10 @@ class TopMenu
     ];
     private $pages = array();
 
-    public function __construct($currentPage, $user_country = '') {
+    public function __construct($currentPage, $specific_page = '' ,$user_country = '') {
         $this->userCountry = $user_country;
         $this->setUserCountryInMenu();
-        $this->setEntries($currentPage);
+        $this->setEntries($currentPage, $specific_page);
     }
 
     private function setUserCountryInMenu(){
@@ -118,8 +118,8 @@ class TopMenu
 
     }
 
-    private function setEntries($currentPage) {
-        $selectedEntry = $this->getSelectedEntry($currentPage);
+    private function setEntries($currentPage, $specific_page = '') {
+        $selectedEntry = $this->getSelectedEntry($currentPage, $specific_page);
         foreach(self::$entries as $title=>$entry_data) {
             $object = new MenuItem();
             $object->title = $title;
@@ -136,12 +136,27 @@ class TopMenu
         }
     }
 
-    private function getSelectedEntry($currentPage) {
+    private function getSelectedEntry($currentPage, $specificPage = '') {
+
         switch($currentPage) {
+            case "bonus-list/(name)":
+                return "NO DEPOSIT CASINOS";
+                break;
+
             case "casinos":
             case "casinos/(name)":
+                /*
+                 * NEW CASINOS Special case for the same url pattern "casinos/(name).
+                 * Should return a specific menu item
+                 *
+                 */
+                if($specificPage === "casinos/new"){
+                    return 'NEW CASINOS';
+                }
+
                 return "CASINOS";
                 break;
+
             case "softwares":
             case "softwares/(name)":
                 return "SOFTWARES";

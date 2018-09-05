@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Alexandru.D
- * Date: 6/22/2018
- * Time: 5:39 PM
- */
+
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
 
@@ -12,9 +7,10 @@ abstract class BaseController extends Controller {
     public function run() {
 
         $country = $this->request->getAttribute("country");
-
         $this->response->setAttribute("country", $country);
-        $menu = new TopMenu($this->request->getValidator()->getPage(), $country);
+        $specificPage = $this->request->getURI()->getPage();
+
+        $menu = new TopMenu($this->request->getValidator()->getPage(),$specificPage, $country);
         $this->response->setAttribute("menu_top", $menu->getEntries());
 
         $this->service();
