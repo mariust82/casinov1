@@ -50,7 +50,7 @@ class TopMenu
         "COUNTRIES"=>[
             "item_url" =>"/countries",
             "sub_items"=>[
-            //    'USA Casinos' => '/countries-list/united-states',
+                'USA Casinos' => '/countries-list/united-states',
                 'UK Casinos' => '/countries-list/united-kingdom',
                 'Australia Casinos' => '/countries-list/australia',
                 'Germany Casinos' => '/countries-list/germany',
@@ -109,12 +109,31 @@ class TopMenu
         $newMenuItem = [];
 
          if(!in_array($country_url, $countriesUrl)){
-             $key = $this->userCountry->name .' Casinos';
-             //self::$entries['COUNTRIES']['sub_items'][$key] = $country_url;
+             $country_name = $this->countryMenuNameByUrl($country_url);
+             $key = (!empty($country_name) ? $country_name : $this->userCountry->name ) .' Casinos';
              $newMenuItem[$key] = $country_url;
              $countriesUrl = array_merge($newMenuItem, $countriesUrl);
              self::$entries['COUNTRIES']['sub_items'] = $countriesUrl;
          }
+    }
+
+    /**
+     * set special case for the country name, based by url
+     */
+    private function countryMenuNameByUrl($country_url){
+
+        switch ($country_url){
+
+            case '/countries-list/united-states':
+                return 'US';
+                break;
+
+            case '/countries-list/united-kingdom':
+                return 'UK';
+                break;
+        }
+
+        return '';
 
     }
 
@@ -152,6 +171,7 @@ class TopMenu
                  */
                 if($specificPage === "casinos/new"){
                     return 'NEW CASINOS';
+                    break;
                 }
 
                 return "CASINOS";

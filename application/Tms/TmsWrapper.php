@@ -1,13 +1,12 @@
 <?php
 
 /**
- * a wrapper class for TMS, to keep implentation in one place
+ * a wrapper class for TMS, to keep implementation in one place
  * it return just the tms text.
- *
- * Class TmsData
  */
 
 require_once("hlis/tms_client/src/TextsManager.php");
+
 class TmsWrapper{
 
     private $application;
