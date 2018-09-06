@@ -5,7 +5,7 @@ class CasinoLabelsController extends AbstractSitemapController
 {
     protected function getItems()
     {
-        return ["Best", "New", "Recommended", "Popular", "Stay Away"];
+        return ["Best", "New", "Popular", "Stay Away"];
     }
 
     protected function getUrlPattern()
