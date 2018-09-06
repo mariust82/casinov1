@@ -11,6 +11,7 @@ class CasinosMenu
         "/compatability/mobile"=>"Mobile Casinos",
         "/casinos/new"=>"New Casinos",
         "/casinos/stay-away"=>"Stay Away Casinos",
+        "/casinos"=>"All Casinos",
     ];
     public $soft_arr;
     public $soft_entries;
