@@ -32,13 +32,10 @@ function getCasinoLogo($name, $resolution) {
     $logoFile = strtolower(str_replace(" ", "_", $name)).".png";
     $logo = $logoDirPath.'/'.$logoFile;
 
-    if(!file_exists($logo)){
+    if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$logo)){
         $logo =$logoDirPath."/no-logo-{$resolution}.png";
     }
-
     return $logo;
-
-  //  return "/public/sync/casino_logo_light/".$resolution."/".strtolower(str_replace(" ", "_", $name)).".png";
 }
 
 function getSoftwareLogo($name, $resolution) {
