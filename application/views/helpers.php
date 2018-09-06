@@ -31,9 +31,9 @@ function getCasinoLogo($name, $resolution) {
     $logoDirPath = "/public/sync/casino_logo_light/".$resolution;
     $logoFile = strtolower(str_replace(" ", "_", $name)).".png";
     $logo = $logoDirPath.'/'.$logoFile;
-    $defaultLogo = $logoDirPath."no-logo-{$resolution}";
+    
     if(!file_exists($logo)){
-        $logo =$logoDirPath .'/'.$defaultLogo;
+        $logo =$logoDirPath."/no-logo-{$resolution}";
     }
 
     return $logo;
