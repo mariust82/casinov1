@@ -28,11 +28,6 @@ RewriteRule ^favicon\.ico$ public/favicon.ico
 RewriteCond %{REQUEST_URI} !^/public
 RewriteCond %{REQUEST_URI} !^/BingSiteAuth.xml
 # Redirects all requests to bootstrap, except those pointing at public/ folder
-
-redirect 301 /bonus-list/free-spins /bonus-list/no-deposit-bonus
-redirect 301  /bonus-list/free-play /bonus-list/no-deposit-bonus
-RedirectMatch 301 ^(/bonus-list)$ /bonus-list/no-deposit-bonus
-
 RewriteRule ^(.*)$ index.php
 
 <IfModule php5_module>
