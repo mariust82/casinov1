@@ -27,7 +27,18 @@ function containsCasino($name)
 }
 
 function getCasinoLogo($name, $resolution) {
-    return "/public/sync/casino_logo_light/".$resolution."/".strtolower(str_replace(" ", "_", $name)).".png";
+
+    $logoDirPath = "/public/sync/casino_logo_light/".$resolution;
+    $logoFile = strtolower(str_replace(" ", "_", $name)).".png";
+    $logo = $logoDirPath.'/'.$logoFile;
+    $defaultLogo = $logoDirPath."no-logo-{$resolution}";
+    if(!file_exists($logo)){
+        $logo =$logoDirPath .'/'.$defaultLogo;
+    }
+
+    return $logo;
+
+  //  return "/public/sync/casino_logo_light/".$resolution."/".strtolower(str_replace(" ", "_", $name)).".png";
 }
 
 function getSoftwareLogo($name, $resolution) {
