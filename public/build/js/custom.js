@@ -2238,31 +2238,39 @@ var AJAX_CUR_PAGE = 1;
     function getWebName(name) {
         return name.replace(/\s/g, '-').toLowerCase();
     }
+
+
+
     function initExpandingText() {
+
         var arrayHolders = document.querySelectorAll(".js-condense"),
-            symbolWidth,symbolsCount,symbolsPerRow,rowsCount,itemText;
+            symbolWidth,symbolsCount,rowsCount,itemText;
+        var symbolsPerRow = 0;
         if (arrayHolders.length > 0) {
             for( var i=0; i<arrayHolders.length; i++ ) {
                 if (arrayHolders[i].innerText.length>0) {
                     symbolsCount = calculateSymbols( arrayHolders[i] );
-                    createToggleButton(arrayHolders[i]);
+
                     var childsHolder = arrayHolders[i].querySelector('span');
+                    console.log(arrayHolders[i]);
+                    console.log(childsHolder);
                     if(childsHolder.clientHeight > parseInt( window.getComputedStyle(arrayHolders[i] ,null).getPropertyValue("max-height") )) {
                         childs = childsHolder.children;
                         if (childs.length > 1) {
                             var flag = true;
                             for(var i = 0; i<childs.length; i++) {
-                                if (childs[i].innerText.length > symbolsCount) {
+
+                                var contentLenght =  childs[i].innerText.trim();
+                                if (contentLenght.length > symbolsCount || contentLenght.length == 0) {
                                     childs[i].classList.add('hidden');
                                     if (flag) {
                                         flag = false;
-                                        itemText = childs[i].innerText.slice(0,symbolsCount) + '...';
+                                        itemText = childs[i].innerText.substring(0,symbolsCount) + '... <span class="read_controll"></span>';
                                         createTextParagraf(itemText,childsHolder,childs[i]);
-        
                                     }
                                 }
                                 else {
-                                    if (childs[i].innerText.length < symbolsPerRow) {
+                                    if (contentLenght.length < symbolsPerRow) {
                                         symbolsCount -= symbolsPerRow;
                                     }
                                     else {
@@ -2273,36 +2281,49 @@ var AJAX_CUR_PAGE = 1;
                         }
                         else {
                             childs[0].classList.add('hidden');
-                            itemText = childs[0].innerText.slice(0,symbolsCount) + '...';
+                            itemText = childs[0].innerText.substring(0,symbolsCount) + '... <span class="read_controll"></span>';
                             createTextParagraf(itemText,childsHolder,childs[0]);
                         }
                     }
+
+                    createReadMoreButton($('span.read_controll'));
                 }
             }
         }
         function createTextParagraf(itemText, parent, beforeNode) {
-            var textParagraf = document.createElement('p');
+            var textParagraf = document.createElement('div');
             textParagraf.classList.add('cloned-text');
             textParagraf.innerHTML = itemText;
             parent.insertBefore(textParagraf, beforeNode);
             parent.parentElement.style.maxHeight = '100%';
-            initToggleButton();
-            // arrayHolders
+
         }
-        function createToggleButton(itemParent) {
+        function createReadMoreButton(itemParent) {
             var buttonToggle = document.createElement('a'),
-                buttonToggleLess = document.createElement('span'),
+             //   buttonToggleLess = document.createElement('span'),
                 buttonToggleMore = document.createElement('span');
             
-            buttonToggleLess.classList.add('less');
-            buttonToggleLess.innerHTML="Read Less";
+            //buttonToggleLess.classList.add('less');
+           // buttonToggleLess.innerHTML="Read Less";
             buttonToggleMore.classList.add('more');
             buttonToggleMore.innerHTML="Read More";
-            buttonToggle.appendChild(buttonToggleLess);
+            buttonToggleMore.addEventListener("click", txtReadMore);
+           // buttonToggle.appendChild(buttonToggleLess);
             buttonToggle.appendChild(buttonToggleMore);
             buttonToggle.classList.add('condense_control');
-            itemParent.appendChild(buttonToggle);
+            itemParent.append(buttonToggle);
+        //    initToggleButton();
         }
+
+        function createLessButton(){
+
+                var readLessElement = '<a class="condense_control read-less-btn"> <span class="less" ">' + 'Read Less' + '</span></a>';
+                $('.js-condense p').last().append(readLessElement);
+
+                $('.js-condense p').last().find('span.less').on('click', txtReadLess);
+
+        }
+
         function calculateSymbols( itemHolder ) {
             var lineHeight = parseInt( window.getComputedStyle(itemHolder.querySelector('p') ,null).getPropertyValue("line-height") ),
             parentHeight = parseInt( window.getComputedStyle(itemHolder ,null).getPropertyValue("max-height") ),
@@ -2318,21 +2339,17 @@ var AJAX_CUR_PAGE = 1;
             rowsCount = parseInt( parentHeight/lineHeight );
             return rowsCount*symbolsPerRow - 30;
         }
-        function initToggleButton() {
-            var buttonItems = document.querySelectorAll('a.condense_control');
-            if (buttonItems.length > 0) {
-                for(var i = 0; i<buttonItems.length; i++) {
-                    buttonItems[i].addEventListener('click', function(){
-                        var parentItem = this.parentElement;
-                        if(parentItem.classList.contains('opened')) {
-                            parentItem.classList.remove('opened');
-                        }
-                        else {
-                            parentItem.classList.add('opened');
-                        }
-                    });
-                }
-            }
+
+
+        function txtReadMore (){
+
+            $('.js-condense').addClass('opened');
+            createLessButton();
+        }
+
+        function txtReadLess(){
+            $('.js-condense').removeClass('opened');
+            $('.js-condense').find('.read-less-btn').remove();
         }
     }
     function initMultirow() {
