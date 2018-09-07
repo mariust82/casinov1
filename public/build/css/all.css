@@ -3143,7 +3143,7 @@ a:hover, a:active, a:visited, a:focus {
   width: 100%;
 }
 
-.subtitle p {
+.subtitle div {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -4831,7 +4831,7 @@ a:hover, a:active, a:visited, a:focus {
   color: #2171CE;
   text-decoration: none;
   margin: 4px 0 0 0;
-  display:inline-block;
+  display:inline;
   cursor: pointer;
   max-width: 72px;
   overflow: hidden;
@@ -7891,9 +7891,12 @@ a:hover, a:active, a:visited, a:focus {
 .js-condense {
   max-height: 78px;
   overflow: hidden;
+
+
 }
 .js-condense > span {
   display: block;
+  word-break: break-all;
 }
 
 @media screen and (max-width: 690px) {
