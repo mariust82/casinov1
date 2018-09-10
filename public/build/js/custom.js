@@ -2257,10 +2257,13 @@ var AJAX_CUR_PAGE = 1;
                     if(childsHolder.clientHeight > parseInt( window.getComputedStyle(arrayHolders[i] ,null).getPropertyValue("max-height") )) {
                         childs = childsHolder.children;
                         if (childs.length > 1) {
+
                             var flag = true;
+
                             for(var i = 0; i<childs.length; i++) {
 
                                 var contentLenght =  childs[i].innerText.trim();
+
                                 if (contentLenght.length > symbolsCount || contentLenght.length == 0) {
                                     childs[i].classList.add('hidden');
                                     if (flag) {
@@ -2268,6 +2271,8 @@ var AJAX_CUR_PAGE = 1;
                                         itemText = childs[i].innerText.substring(0,symbolsCount) + '... <span class="read_controll"></span>';
                                         createTextParagraf(itemText,childsHolder,childs[i]);
                                     }
+                                }else if(flag === false){
+                                    childs[i].classList.add('hidden');
                                 }
                                 else {
                                     if (contentLenght.length < symbolsPerRow) {
