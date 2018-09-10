@@ -274,7 +274,7 @@ var AJAX_CUR_PAGE = 1;
     function initToggleMenu() {
         var targetNode = document.querySelector('.header-menu__list-holder');
         if (targetNode) {
-            targetNode.addEventListener( 'click', function(e) {
+            targetNode.addEventListener( 'hover', function(e) {
                 var that = this,currentOpened,
                     currentTarget = e.target;
                 while(currentTarget != that) {
