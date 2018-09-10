@@ -670,8 +670,6 @@ var AJAX_CUR_PAGE = 1;
                         }
 
                         var  itemsNumberLoaded  = $('.holder .loaded-item').length;
-                        console.log(itemsNumberLoaded);
-                        console.log(loadTotal);
 
                         if(loadTotal <= itemsNumberLoaded){
                             _moreButton.hide();
