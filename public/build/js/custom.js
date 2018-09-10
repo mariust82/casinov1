@@ -627,13 +627,6 @@ var AJAX_CUR_PAGE = 1;
             _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
                 $('.overlay, .loader').fadeIn('fast');
 
-                var datatotal = $('.qty-items').attr('data-load-total');
-                datatotal = parseInt(datatotal);
-
-
-
-
-
                 if (BUSY_REQUEST) return;
                 BUSY_REQUEST = true;
                 _request.abort();
@@ -646,7 +639,6 @@ var AJAX_CUR_PAGE = 1;
                     success: function(data) {
                         var cont = $(data).find('.loaded-item');
 
-                        // var cont = $(data).filter('.loaded-item');
                         var loadTotal = $(data).filter('[data-load-total]').data('load-total');
 
                         if (_action == 'replace') {
@@ -678,6 +670,9 @@ var AJAX_CUR_PAGE = 1;
                         }
 
                         var  itemsNumberLoaded  = $('.holder .loaded-item').length;
+                        console.log(itemsNumberLoaded);
+                        console.log(loadTotal);
+
                         if(loadTotal <= itemsNumberLoaded){
                             _moreButton.hide();
                         }
