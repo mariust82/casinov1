@@ -17,6 +17,9 @@ require_once("application/models/caching/GamesListKey.php");
 * @pathParameter type string Name of game type
 */
 class GamesByTypeController extends BaseController {
+
+    const LIMIT = 24;
+
 	public function service() {
         $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
 
@@ -36,7 +39,8 @@ class GamesByTypeController extends BaseController {
         $object = new GamesList($game_filter);
         $results = array();
         $results["total"] = $object->getTotal();
-        $results["list"] = ($results["total"]>0?$object->getResults(GameSortCriteria::NONE, 0):array());
+        $results["list"] = ($results["total"]>0?$object->getResults(GameSortCriteria::NONE, 1, self::LIMIT):array());
+
         return $results;
     }
 

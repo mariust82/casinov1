@@ -4,15 +4,24 @@ require_once("entities/Game.php");
 class GamesList
 {
     private $filter;
-    const LIMIT = 12;
+    const LIMIT = 24;
 
     public function __construct(GameFilter $filter)
     {
         $this->filter = $filter;
+
     }
 
-    public function getResults($sortBy, $page, $limit = self::LIMIT) {
-        $output = array();
+    public function getResults($sortBy, $page, $limit = self::LIMIT, $offset='') {
+
+
+
+        if ($page > 1) {
+
+            $offset = ($page-1) *$limit ;
+        }else{
+            $offset = 0;
+        }
 
         // build query
         $query = $this->getQuery(array("t1.id", "t1.name", "t1.times_played", "t2.name AS software"));
@@ -27,10 +36,13 @@ class GamesList
                 $query .= "ORDER BY t1.priority ASC, t1.id DESC"."\n";
                 break;
         }
-        $query .= "LIMIT ".$limit." OFFSET ".($page*$limit);
+      //  $query .= "LIMIT ". $limit. " OFFSET ". $offset;
 
-        // execute query
+        $query .= !empty($limit) ?  " LIMIT ". $limit : '';
+        $query .= !empty($offset) ? " OFFSET ". $offset : '';
+        $output = array();
         $resultSet = DB($query);
+
         while($row = $resultSet->toRow()) {
             $object = new Game();
             $object->id = $row["id"];
@@ -39,7 +51,6 @@ class GamesList
             $object->software = $row["software"];
             $output[$row["id"]] = $object;
         }
-
         return $output;
     }
 
