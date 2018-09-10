@@ -10,8 +10,8 @@ class CasinosMenu
         "/casinos/best"=>"Best Casinos",
         "/compatability/mobile"=>"Mobile Casinos",
         "/casinos/new"=>"New Casinos",
-        "/casinos/recommended"=>"Recommended Casinos",
         "/casinos/stay-away"=>"Stay Away Casinos",
+        "/casinos"=>"All Casinos",
     ];
     public $soft_arr;
     public $soft_entries;

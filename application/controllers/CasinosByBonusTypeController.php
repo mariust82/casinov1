@@ -16,6 +16,7 @@ class CasinosByBonusTypeController extends CasinosListController {
         if(!$parameter) {
             throw new PathNotFoundException();
         }
+
         $parameter = str_replace("-"," ", $parameter);
         $object = new BonusTypes();
         $name = $object->validate($parameter);
@@ -30,4 +31,6 @@ class CasinosByBonusTypeController extends CasinosListController {
         // send it as filter
         return "bonus_type";
     }
+
+
 }

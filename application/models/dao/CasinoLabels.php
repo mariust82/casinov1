@@ -6,14 +6,13 @@ class CasinoLabels implements CasinoCounter, FieldValidator
 {
 
     private static $orderLabels = [
-        'Stay away',
-        'New',
         'Best',
-        'Recommended',
-        'Popular',
-        'Mobile',
         'Live Dealer',
-        'eCOGRA'
+        'Mobile',
+        'eCOGRA',
+        'Stay away',
+        'Popular',
+
     ];
 
     public function getCasinosCount() {
@@ -24,21 +23,22 @@ class CasinoLabels implements CasinoCounter, FieldValidator
         FROM casino_labels AS t1
         INNER JOIN casinos__labels AS t2 ON t1.id = t2.label_id
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
-        WHERE t3.is_open = 1 AND t1.id != 8 AND t1.id != 3
+        WHERE t3.is_open = 1 AND t1.id != 8 AND t1.id != 3 AND  t1.id != 1
         GROUP BY t1.id
         ORDER BY counter DESC 
         ")->toMap("unit","counter");
 
 
 
-        $new_casinos_nr = DB("
+        //remove NEW casino label from all casinos page
+        /*$new_casinos_nr = DB("
           SELECT DISTINCT COUNT(t1.id) AS counter
            FROM casinos AS t1 
             WHERE t1.is_open = 1 AND t1.date_established > DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
         ")->toValue();
 
         $new_casinos['New'] = $new_casinos_nr;
-        $array = array_merge($labels, $new_casinos);
+        $array = array_merge($labels, $new_casinos);*/
 
         $mobile =  DB("
         SELECT DISTINCT 
@@ -52,7 +52,7 @@ class CasinoLabels implements CasinoCounter, FieldValidator
         ORDER BY counter DESC 
         ")->toMap("unit","counter");
 
-        $array = array_merge($array, $mobile );
+        $array = array_merge($labels, $mobile );
 
         $features =  DB("
         SELECT
@@ -60,7 +60,7 @@ class CasinoLabels implements CasinoCounter, FieldValidator
         FROM certifications AS t1
         INNER JOIN casinos__certifications AS t2 ON t1.id = t2.certification_id
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
-        WHERE t3.is_open = 1 AND t1.id = 6
+        WHERE t3.is_open = 1 AND t1.id = 6 
         GROUP BY t1.id
         ORDER BY counter DESC 
         ")->toMap("unit","counter");

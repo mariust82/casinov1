@@ -3,7 +3,7 @@ require_once("AbstractSitemapController.php");
 
 class BonusTypesController extends AbstractSitemapController {
     protected function getItems() {
-        return ["Free Play", "Free Spins", "No Deposit Bonus"];
+        return ["No Deposit Bonus"];
     }
 
     protected function getUrlPattern()
