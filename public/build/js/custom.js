@@ -271,10 +271,26 @@ var AJAX_CUR_PAGE = 1;
 
         return pattern;
     }
+
+    function checkIfIsMobileDevice(){
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+
+            return true;
+        }
+
+        return false;
+    }
+
     function initToggleMenu() {
         var targetNode = document.querySelector('.header-menu__list-holder');
         if (targetNode) {
-            targetNode.addEventListener( 'click', function(e) {
+
+
+            var isMobile =  checkIfIsMobileDevice();
+
+            var eventL = isMobile ? 'click' : 'hover';
+
+            targetNode.addEventListener( eventL, function(e) {
                 var that = this,currentOpened,
                     currentTarget = e.target;
                 while(currentTarget != that) {
