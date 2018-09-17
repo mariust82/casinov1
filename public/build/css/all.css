@@ -7896,7 +7896,6 @@ a:hover, a:active, a:visited, a:focus {
 }
 .js-condense > span {
   display: block;
-  word-break: break-all;
 }
 
 @media screen and (max-width: 690px) {
