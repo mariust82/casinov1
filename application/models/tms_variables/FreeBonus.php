@@ -7,6 +7,7 @@
  */
 require_once $_SERVER['DOCUMENT_ROOT'] . "/application/models/CasinoFilter.php";
 require_once $_SERVER['DOCUMENT_ROOT'] . "/application/models/dao/CasinosList.php";
+
 class FreeBonus extends \TMS\VariablesHolder {
 
     public function getTotalFreeBonusCasinosInList(){
@@ -18,15 +19,9 @@ class FreeBonus extends \TMS\VariablesHolder {
         return $object->getTotal();
     }
 
-    public function getTotalCasinos(){
-        $freeBonusCount = DB("
-        SELECT COUNT(t1.casino_id) 
-        FROM casinos__bonuses AS t1
-        INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
-        WHERE t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins','Free Play')
-        ")->toValue();
-
-        return $freeBonusCount;
+    public function getTotalCasinos() {
+        $query = "SELECT COUNT(*) FROM `casinos__bonuses` WHERE bonus_type_id IN (3,4,5,6,11) AND minimum_deposit IN ('','0','$0','€0','£0')";
+        return DB($query)->toValue();
     }
 
 }
