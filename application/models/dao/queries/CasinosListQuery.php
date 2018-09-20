@@ -80,6 +80,8 @@ class CasinosListQuery
         }
         if($filter->getCasinoLabel()=="New") {
             $query.="t1.date_established > DATE_SUB(CURDATE(), INTERVAL 1 YEAR) AND ";
+        } elseif($filter->getCasinoLabel()=="Best") {
+            $query.="t1.rating_total/t1.rating_votes > 4 AND";
         }
         $query = substr($query,0, -4)."\n";
         if($sortBy) {
