@@ -30,13 +30,10 @@ abstract class CasinosListController extends BaseController {
 
     private function getResults() {
 
-        if ($this->response->getAttribute('selected_entity') === 'No Deposit Bonus') {
-            $filter = new CasinoFilter(['free_bonus' => true], $this->request->getAttribute('country'));
-        } else {
-            $filter = new CasinoFilter(
-                array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")),
-                $this->request->getAttribute("country"));
-        }
+
+        $filter = new CasinoFilter(
+            array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")),
+            $this->request->getAttribute("country"));
 
         $object = new CasinosList($filter);
         $results = array();

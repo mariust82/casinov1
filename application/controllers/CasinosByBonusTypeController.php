@@ -16,6 +16,9 @@ class CasinosByBonusTypeController extends CasinosListController {
         if(!$parameter) {
             throw new PathNotFoundException();
         }
+        if ($parameter === 'no-deposit-bonus') {
+            return true;
+        }
 
         $parameter = str_replace("-"," ", $parameter);
         $object = new BonusTypes();
@@ -28,6 +31,8 @@ class CasinosByBonusTypeController extends CasinosListController {
 
     protected function getFilter()
     {
+        if ($this->getSelectedEntity() === true)
+            return 'free_bonus';
         // send it as filter
         return "bonus_type";
     }
