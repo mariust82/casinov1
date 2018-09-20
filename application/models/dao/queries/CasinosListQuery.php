@@ -39,7 +39,7 @@ class CasinosListQuery
                 $condition = "t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$filter->getBonusType()."')";
             } else {
                 $condition = ($filter->getBonusType()?"t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$filter->getBonusType()."') AND ":"");
-                $condition .= ($filter->getFreeBonus()?"t4.bonus_type_id IN (5,6) AND ":"");
+                $condition .= ($filter->getFreeBonus()?"t4.bonus_type_id IN (3,4,5,6,11) AND ":"");
                 $condition = substr($condition,0,-4);
             }
             $query.="INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id AND ".$condition."\n";
@@ -104,12 +104,8 @@ class CasinosListQuery
             $query.=$order;
         }
 
-        if(!empty($limit)) {
-            $query .= " LIMIT " . $limit;
-        }
-
-        if(!empty($offset))
-            $query .= !empty($offset) ? ' OFFSET ' . $offset : '';
+        $query .= !empty($limit) ? ' LIMIT ' . $limit : '';
+        $query .= !empty($offset) ? ' OFFSET ' . $offset : '';
 
         $this->query = $query;
     }
