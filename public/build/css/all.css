@@ -3141,6 +3141,7 @@ a:hover, a:active, a:visited, a:focus {
 .subtitle {
   overflow:auto;
   width: 100%;
+  padding:0 0 2px;
 }
 
 .subtitle div {
