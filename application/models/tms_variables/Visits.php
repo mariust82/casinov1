@@ -17,7 +17,7 @@ class Visits extends \TMS\VariablesHolder {
         $casinos = new CasinosList($filter);
 
         $result = $casinos->getResults(CasinoSortCriteria::TOP_RATED,1, 5);
-        return $result[0]->clicks . " - " . $result[0]->name;
+        return $result[0]->clicks;
     }
 
     public function getNewestCasinoTotal() {
@@ -26,7 +26,7 @@ class Visits extends \TMS\VariablesHolder {
         $casinos = new CasinosList($filter);
         $result = $casinos->getResults(CasinoSortCriteria::NEWEST, 1, 1);
 
-        return $result[0]->clicks . " - " . $result[0]->name;
+        return $result[0]->clicks;
     }
 
     private function getCountry() {
