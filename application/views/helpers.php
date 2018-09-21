@@ -97,6 +97,10 @@ function get_page_type()
 {
     $position = strpos($_SERVER["REQUEST_URI"],"/",1);
     $url = ($position?substr($_SERVER["REQUEST_URI"],1, $position-1):$_SERVER["REQUEST_URI"]);
+    $page = substr($_SERVER["REQUEST_URI"], $position+1);
+    if ($page === 'no-deposit-bonus') {
+        return 'free_bonus';
+    }
     switch ($url) {
         case 'casinos':
             $piece = 'label';
