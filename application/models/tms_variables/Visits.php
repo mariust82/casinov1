@@ -20,8 +20,9 @@ class Visits extends \TMS\VariablesHolder {
         $filter = new CasinoFilter(['label' => 'best'], $country);
         $casinos = new CasinosList($filter);
 
-        $result = $casinos->getResults(CasinoSortCriteria::TOP_RATED,1, 5);
-        return $result[0]->clicks;
+        $result = $casinos->getResults(CasinoSortCriteria::TOP_RATED,1, 1);
+        $total = DB("SELECT clicks FROM casinos WHERE id = " . $result[0]->id)->toValue();
+        return $total;
     }
 
     public function getNewestCasinoTotal() {
@@ -29,8 +30,8 @@ class Visits extends \TMS\VariablesHolder {
         $filter = new CasinoFilter(['label' => 'new'], $country);
         $casinos = new CasinosList($filter);
         $result = $casinos->getResults(CasinoSortCriteria::NEWEST, 1, 1);
-
-        return $result[0]->clicks;
+        $total = DB("SELECT clicks FROM casinos WHERE id = " . $result[0]->id)->toValue();
+        return $total;
     }
 
     private function getCountry() {

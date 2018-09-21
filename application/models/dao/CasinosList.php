@@ -43,7 +43,7 @@ class CasinosList
 
         $queryGenerator = new CasinosListQuery(
             $this->filter,
-            array("status_id", "t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported", "clicks"),
+            array("status_id", "t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"),
             $sortBy,
             $limit,
             $offset
@@ -63,7 +63,6 @@ class CasinosList
             $object->date_established = $row["date_established"];
             $object->date_formatted = $this->formatDate($row["date_established"]);
             $object->status = $row["status_id"];
-            $object->clicks = $row["clicks"];
             $output[$row["id"]] = $object;
         }
         if(empty($output)) return array();
