@@ -1,5 +1,9 @@
 <?php
 
+require_once("application/models/CasinoFilter.php");
+require_once("application/models/dao/CasinosList.php");
+require_once("application/models/CasinoSortCriteria.php");
+
 class Visits extends \TMS\VariablesHolder {
     public function getNewestGameTotal() {
         $query = "SELECT times_played FROM games ORDER BY date DESC LIMIT 1";
