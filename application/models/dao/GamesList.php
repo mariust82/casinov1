@@ -14,8 +14,6 @@ class GamesList
 
     public function getResults($sortBy, $page, $limit = self::LIMIT, $offset='') {
 
-
-
         if ($page > 1) {
 
             $offset = ($page-1) *$limit ;
@@ -40,7 +38,7 @@ class GamesList
 
         $query .= !empty($limit) ?  " LIMIT ". $limit : '';
         $query .= !empty($offset) ? " OFFSET ". $offset : '';
-        $output = array();
+          $output = array();
         $resultSet = DB($query);
 
         while($row = $resultSet->toRow()) {

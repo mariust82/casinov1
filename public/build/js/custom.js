@@ -127,6 +127,8 @@ var AJAX_CUR_PAGE = 1;
             }
         }
     };
+
+
     
     var initSite = function() {
         // setTimeout(function(){
@@ -273,6 +275,16 @@ var AJAX_CUR_PAGE = 1;
     }
 
     function checkIfIsMobileDevice(){
+
+        var winsize= 0;
+        $( window ).resize(function() {
+            winsize = $(document).width()
+        });
+
+        if(winsize < 1000){
+            return true;
+        }
+
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 
             return true;
@@ -280,6 +292,8 @@ var AJAX_CUR_PAGE = 1;
 
         return false;
     }
+
+
 
     function initToggleMenu() {
         var targetNode = document.querySelector('.header-menu__list-holder');
