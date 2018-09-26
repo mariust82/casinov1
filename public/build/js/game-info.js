@@ -12,7 +12,7 @@ setTimeout(function() {
         });
 
         // Find and save the aspect ratio for iframe
-        $iframe.data("ratio", $iframe.height() / $iframe.width()).removeAttr("width").removeAttr("height");
+        $iframe.data("ratio", $iframe.height() / $iframe.width());
 
         // Resize the iframe when the window is resized
         $(window).resize(function () {
