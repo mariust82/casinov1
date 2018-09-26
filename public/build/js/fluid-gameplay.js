@@ -1,5 +1,5 @@
 (function($) {
-
+alert(1)
     var ResizeGameplay = function (iframe) {
         // Find iframe
         var $iframe = $(iframe);

@@ -2,6 +2,7 @@
     height:100%;
     font-size:0;
     background: #000;
+    text-align: center;
 }
 .player iframe {
     border:0;
