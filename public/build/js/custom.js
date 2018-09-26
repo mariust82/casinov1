@@ -842,7 +842,8 @@ var AJAX_CUR_PAGE = 1;
 
         _btnFull.on('click', function() {
             _wrapper.toggleClass('fullscreen');
-            $(window).resize(iFrameResize).resize();
+            var gpResize = ResizeGameplay("iframe");
+            $(window).resize(gpResize.iFrameResize).resize();
             return false;
         });
     }
