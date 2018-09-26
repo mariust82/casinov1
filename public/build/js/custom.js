@@ -816,6 +816,7 @@ var AJAX_CUR_PAGE = 1;
         var _btnGoFrame = $('#go-to-frame');
         var _container = $('#player-wrap');
         var _body = $('body');
+        var _wrapper = $('.player-holder');
 
         _btnGoFrame.on('click', function() {
             var _name = $(this).data('name');
@@ -840,7 +841,7 @@ var AJAX_CUR_PAGE = 1;
         });
 
         _btnFull.on('click', function() {
-            _body.toggleClass('fullscreen');
+            _wrapper.toggleClass('fullscreen');
             return false;
         });
     }
