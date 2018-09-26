@@ -1,4 +1,4 @@
-$('iframe#myId').load(function() {
+$('iframe').load(function() {
 
     var ResizeGameplay = function (iframe) {
         // Find iframe
