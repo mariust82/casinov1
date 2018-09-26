@@ -6800,18 +6800,6 @@ a:hover, a:active, a:visited, a:focus {
   overflow: hidden;
 }
 
-@media screen and (max-width: 767px) {
-  .player-holder {
-    padding-bottom: 50%;
-  }
-}
-
-@media (min-width: 480px) and (max-width: 736px) {
-  .fullscreen .player-holder {
-    padding-bottom: 100%;
-  }
-}
-
 @media screen and (max-width: 479px) {
   .player-holder {
     padding-bottom: 74%;
