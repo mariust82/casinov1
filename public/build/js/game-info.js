@@ -16,7 +16,7 @@
 
         // Resize the iframe when the window is resized
         $(window).resize(function () {
-
+            console.log($iframe.height() / $iframe.width())
             //Get the parent container's width and height
             var width = $iframe.parent().width();
             var height = $iframe.parent().outerHeight() - elHeight;
