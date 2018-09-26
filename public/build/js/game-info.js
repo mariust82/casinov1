@@ -23,11 +23,14 @@ jQuery(document).ready(function($) {
             //Adding width and height on iframe keeping proportions
             if ($iframe.data("ratio") < height / width) {
                 $iframe.width(width).height(width * $iframe.data("ratio"));
+                $iframe.parent().height(width * $iframe.data("ratio"));
             } else {
                 $iframe.width(height / $iframe.data("ratio")).height(height);
             }
         }
 
     }
+
+    ResizeGameplay("iframe");
 
 })
