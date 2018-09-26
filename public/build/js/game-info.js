@@ -1,4 +1,4 @@
-$('iframe#gameplay_iframe').load(function() {
+setTimeout(function() {
 
     var ResizeGameplay = function (iframe) {
         // Find iframe
@@ -37,4 +37,4 @@ $('iframe#gameplay_iframe').load(function() {
 
     ResizeGameplay("iframe");
 
-});
+}, 3000);
