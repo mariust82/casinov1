@@ -6794,14 +6794,6 @@ a:hover, a:active, a:visited, a:focus {
   margin: 0 0 20px;
 }
 
-.player-holder {
-  position: relative;
-  height: 0;
-  padding-bottom: 75%;
-  background: #000;
-  overflow: hidden;
-}
-
 @media screen and (max-width: 767px) {
   .player-holder {
     padding-bottom: 50%;
