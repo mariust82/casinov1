@@ -155,3 +155,129 @@
         color: #fff;
     }
 }
+
+#play-fullscreen svg {
+    display: none;
+    width: 19px;
+    height: 19px;
+}
+
+.fullscreen #play-fullscreen svg {
+    display: block;
+}
+
+.fullscreen #play-fullscreen i {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .fullscreen .player-wrap {
+
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .fullscreen .player-wrap {
+    }
+}
+
+@media (min-width: 480px) and (max-width: 736px) {
+    .fullscreen .player-wrap {
+    }
+}
+
+
+.fullscreen .player-wrap .player {
+}
+
+@media screen and (max-width: 1024px) {
+    .fullscreen .player-wrap .player {
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .fullscreen .player-wrap .player {
+    }
+}
+
+@media (min-width: 480px) and (max-width: 736px) {
+    .fullscreen .player-wrap .player {
+    }
+}
+
+.fullscreen .player-wrap .player-controls {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 200px;
+    padding: 60px 0;
+}
+
+@media screen and (max-width: 1024px) {
+    .fullscreen .player-wrap .player-controls {
+        width: 220px;
+        margin:0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .fullscreen .player-wrap .player-controls {
+        width: 100%;
+        padding:20px 20px 0;
+        position:absolute;
+        top:0;
+        left:0;
+        flex-direction:row;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+
+}
+
+@media (min-width: 480px) and (max-width: 736px) {
+    .fullscreen .player-wrap .player-controls {
+        position:static;
+        width:60px;
+        height:100%;
+        padding:20px 0;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+}
+
+.fullscreen .player-wrap .player-controls a {
+    margin: 0 0 25px;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .fullscreen .player-wrap .player-controls a {
+        margin:0;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 736px) {
+    .fullscreen .player-wrap .player-controls a {
+        width:40px;
+        height:40px;
+    }
+}
