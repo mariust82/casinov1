@@ -16,8 +16,6 @@
 
 .player {
     width: 100%;
-    position: relative;
-    margin: 0 0 20px;
 }
 
 .player-holder.playing .player-img,
@@ -116,7 +114,6 @@
 
 .player-controls {
     text-align: center;
-    margin: 0 0 20px;
     font-size: 0;
 }
 
