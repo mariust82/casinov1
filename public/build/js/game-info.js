@@ -33,5 +33,5 @@ jQuery(document).ready(function($) {
     }
 
     ResizeGameplay("iframe");
-
+    
 })
