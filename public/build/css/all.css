@@ -6794,16 +6794,6 @@ a:hover, a:active, a:visited, a:focus {
 
 .player-holder {
   position: relative;
-  height: 0;
-  padding-bottom: 75%;
-  background: #000;
-  overflow: hidden;
-}
-
-@media screen and (max-width: 479px) {
-  .player-holder {
-    padding-bottom: 74%;
-  }
 }
 
 .player-holder.playing .player-img,
@@ -6818,6 +6808,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .player iframe {
     border:0;
+    width:100%;
 }
 
 .player-overlay {
