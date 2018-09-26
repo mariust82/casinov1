@@ -842,7 +842,7 @@ var AJAX_CUR_PAGE = 1;
 
         _btnFull.on('click', function() {
             _wrapper.toggleClass('fullscreen');
-            $(window).trigger('resize');
+            $(window).resize(iFrameResize).resize();
             return false;
         });
     }

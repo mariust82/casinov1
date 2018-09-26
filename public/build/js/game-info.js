@@ -15,8 +15,7 @@ jQuery(document).ready(function($) {
         $iframe.data("ratio", $iframe.height() / $iframe.width()).removeAttr("width").removeAttr("height");
 
         // Resize the iframe when the window is resized
-        $(window).resize(function () {
-
+        function iFrameResize(){
             //Get the parent container's width and height
             var width = $iframe.parent().width();
             var height = $iframe.parent().outerHeight() - elHeight;
@@ -27,11 +26,10 @@ jQuery(document).ready(function($) {
             } else {
                 $iframe.width(height / $iframe.data("ratio")).height(height);
             }
+        }
 
-            // Resize to fix iframe on page load.
-        }).resize();
     }
 
     ResizeGameplay("iframe");
-    
+
 })
