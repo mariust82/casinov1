@@ -21,13 +21,15 @@ jQuery(document).ready(function($) {
             var width = $iframe.parent().width();
             var height = $iframe.parent().outerHeight() - elHeight;
 
+            $iframe.width(width).height(width * $iframe.data("ratio"));
+            $iframe.parent().height(width * $iframe.data("ratio"));
             //Adding width and height on iframe keeping proportions
-            if ($iframe.data("ratio") < height / width) {
-                $iframe.width(width).height(width * $iframe.data("ratio"));
-                $iframe.parent().height(width * $iframe.data("ratio"));
-            } else {
-                $iframe.width(height / $iframe.data("ratio")).height(height);
-            }
+            // if ($iframe.data("ratio") < height / width) {
+            //     $iframe.width(width).height(width * $iframe.data("ratio"));
+            //     $iframe.parent().height(width * $iframe.data("ratio"));
+            // } else {
+            //     $iframe.width(height / $iframe.data("ratio")).height(height);
+            // }
 
             // Resize to fix iframe on page load.
         }).resize();
