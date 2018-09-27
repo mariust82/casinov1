@@ -815,7 +815,7 @@ var AJAX_CUR_PAGE = 1;
         // Find iframe
         var $iframe = $(iframe);
 
-alert($iframe.find('.inner_iframe').attr("data-game"))
+alert($iframe.contents().find('.inner_iframe').contents().attr("data-game"))
         function getExtraHeight() {
             //Calculate the height of extra elements
             var $elements = $iframe.parent().children().not(iframe);
