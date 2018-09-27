@@ -834,7 +834,14 @@ var AJAX_CUR_PAGE = 1;
                 fullscreen = false;
             } else {
                 fullscreen = true;
+                setFullscreenState()
             }
+        }
+
+        function setFullscreenState(){
+            //Set iframe parent to fullscreen state
+            $iframe.parent().css({'position': 'fixed', 'top': '0', 'left': '0', 'z-index': '999999','height': '100%', 'width': '100%','background': '#000'});
+            $('body').css({'overflow': 'hidden'});
         }
 
         function resizeOnWidth(width){
