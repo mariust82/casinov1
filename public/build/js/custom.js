@@ -814,7 +814,8 @@ var AJAX_CUR_PAGE = 1;
         var fullscreen = false;
         // Find iframe
         var $iframe = $(iframe);
-alert($('[data-game]', $iframe.contents()))
+
+alert($iframe.data("game"))
         function getExtraHeight() {
             //Calculate the height of extra elements
             var $elements = $iframe.parent().children().not(iframe);
@@ -834,7 +835,8 @@ alert($('[data-game]', $iframe.contents()))
                 fullscreen = false;
             } else {
                 fullscreen = true;
-                setFullscreenState()
+                setFullscreenState();
+                $(window).trigger('resize');
             }
         }
 
@@ -916,8 +918,6 @@ alert($('[data-game]', $iframe.contents()))
 
         _btnFull.on('click', function() {
             GameplayResize.toogleFullscreen();
-            // _wrapper.toggleClass('fullscreen');
-            $(window).trigger('resize');
             return false;
         });
 
