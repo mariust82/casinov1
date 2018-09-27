@@ -847,7 +847,7 @@ var AJAX_CUR_PAGE = 1;
         function resizeOnWidth(width){
             //Adding width and height on iframe keeping proportions
             $iframe.width(width).height(width * $iframe.data("ratio"));
-            $iframe.parent().height(width * $iframe.data("ratio"));
+            //$iframe.parent().height(width * $iframe.data("ratio"));
         }
         function resizeOnWidthHeight(width, height){
             //Adding width and height on iframe keeping proportions
