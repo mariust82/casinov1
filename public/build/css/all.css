@@ -6792,10 +6792,6 @@ a:hover, a:active, a:visited, a:focus {
   width: 100%;
 }
 
-.player-holder {
-  position: relative;
-}
-
 .player-holder.playing .player-img,
 .player-holder.playing .player-overlay,
 .player-holder.playing .player-play {

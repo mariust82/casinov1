@@ -814,7 +814,7 @@ var AJAX_CUR_PAGE = 1;
         var fullscreen = false;
         // Find iframe
         var $iframe = $(iframe);
-
+alert($('[data-game]', $iframe.contents()))
         function getExtraHeight() {
             //Calculate the height of extra elements
             var $elements = $iframe.parent().children().not(iframe);
@@ -885,6 +885,7 @@ var AJAX_CUR_PAGE = 1;
         var _btnReplay = $('#play-replay');
         var _btnGoPage = $('#go-to-page');
         var _btnGoFrame = $('#go-to-frame');
+        var _gamePlayButon = $('#game_play_button');
         var _container = $('#player-wrap');
         var _body = $('body');
 
@@ -919,6 +920,16 @@ var AJAX_CUR_PAGE = 1;
             $(window).trigger('resize');
             return false;
         });
+
+        _gamePlayButon.on('click', function(){
+            GameplayResize.toogleFullscreen();
+            // _wrapper.toggleClass('fullscreen');
+            $(window).trigger('resize');
+            return false;
+        })
+
+
+
     }
 
     function initReviewForm() {
