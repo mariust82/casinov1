@@ -127,6 +127,8 @@ var AJAX_CUR_PAGE = 1;
             }
         }
     };
+
+
     
     var initSite = function() {
         // setTimeout(function(){
@@ -273,6 +275,16 @@ var AJAX_CUR_PAGE = 1;
     }
 
     function checkIfIsMobileDevice(){
+
+        var winsize= 0;
+        $( window ).resize(function() {
+            winsize = $(document).width()
+        });
+
+        if(winsize < 1000){
+            return true;
+        }
+
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 
             return true;
@@ -280,6 +292,8 @@ var AJAX_CUR_PAGE = 1;
 
         return false;
     }
+
+
 
     function initToggleMenu() {
         var targetNode = document.querySelector('.header-menu__list-holder');
@@ -795,6 +809,77 @@ var AJAX_CUR_PAGE = 1;
         } );
     }
 
+    var GameplayResize = function (iframe) {
+        //Set screen state
+        var fullscreen = false;
+        // Find iframe
+        var $iframe = $(iframe);
+
+        function getExtraHeight() {
+            //Calculate the height of extra elements
+            var $elements = $iframe.parent().children().not(iframe);
+            var elHeight = 0;
+            $elements.each(function () {
+                elHeight += $(this).height();
+            });
+            return elHeight;
+        }
+
+        // Find and save the aspect ratio for iframe based on inline width and height
+        $iframe.data("ratio", $iframe.attr('height') / $iframe.attr('width')).removeAttr("width").removeAttr("height");
+
+        //Toogle fullscreen state
+        this.toogleFullscreen = function(){
+            if(fullscreen){
+                fullscreen = false;
+            } else {
+                fullscreen = true;
+                setFullscreenState()
+            }
+        }
+
+        function setFullscreenState(){
+            //Set iframe parent to fullscreen state
+            $iframe.parent().css({'position': 'fixed', 'top': '0', 'left': '0', 'z-index': '999999','height': '100%', 'width': '100%','background': '#000'});
+            $('body').css({'overflow': 'hidden'});
+        }
+
+        function resizeOnWidth(width){
+            //Adding width and height on iframe keeping proportions
+            $iframe.width(width).height(width * $iframe.data("ratio"));
+            //$iframe.parent().height(width * $iframe.data("ratio"));
+        }
+        function resizeOnWidthHeight(width, height){
+            //Adding width and height on iframe keeping proportions
+            if ($iframe.data("ratio") < height / width) {
+                $iframe.width(width).height(width * $iframe.data("ratio"));
+            } else {
+                $iframe.width(height / $iframe.data("ratio")).height(height);
+            }
+        }
+
+        function getWidth(){
+            //Get the parent container's width without extra elements
+            return $iframe.parent().width();
+        }
+        function getHeight(){
+            //Get the parent container's height without extra elements
+            return $iframe.parent().outerHeight() - getExtraHeight();
+        }
+
+        $(window).resize(function () {
+            // Resize the iframe when the window is resized
+            if (fullscreen) {
+                resizeOnWidthHeight(getWidth(), getHeight());
+            } else {
+                resizeOnWidth(getWidth());
+            }
+
+            // Resize to fix iframe on page load.
+        }).resize();
+    }
+
+    var GameplayResize = new GameplayResize('iframe');
     function initPlayerControls() {
         var _btnFull = $('#play-fullscreen');
         var _btnReplay = $('#play-replay');
@@ -802,6 +887,9 @@ var AJAX_CUR_PAGE = 1;
         var _btnGoFrame = $('#go-to-frame');
         var _container = $('#player-wrap');
         var _body = $('body');
+
+
+        var _wrapper = $('.player-holder');
 
         _btnGoFrame.on('click', function() {
             var _name = $(this).data('name');
@@ -826,7 +914,9 @@ var AJAX_CUR_PAGE = 1;
         });
 
         _btnFull.on('click', function() {
-            _body.toggleClass('fullscreen');
+            GameplayResize.toogleFullscreen();
+            // _wrapper.toggleClass('fullscreen');
+            $(window).trigger('resize');
             return false;
         });
     }

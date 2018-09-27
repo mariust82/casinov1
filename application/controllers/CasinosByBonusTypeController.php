@@ -28,6 +28,9 @@ class CasinosByBonusTypeController extends CasinosListController {
 
     protected function getFilter()
     {
+
+        if ($this->getSelectedEntity() === 'No Deposit Bonus')
+            return 'free_bonus';
         // send it as filter
         return "bonus_type";
     }

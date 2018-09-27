@@ -38,6 +38,7 @@ class GamesList
         $query .= !empty($offset) ? " OFFSET ". $offset : '';
 
         $output = array();
+
         $resultSet = DB($query);
 
         while($row = $resultSet->toRow()) {

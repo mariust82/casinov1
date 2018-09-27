@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
     <application>
-        <version>0.7.6</version>
+        <version>0.7.7.999</version>
         <default_character_encoding>UTF-8</default_character_encoding>
         <default_page>index</default_page>
         <default_extension>html</default_extension>
@@ -26,10 +26,10 @@
             </compilations>
         </paths>
         <environments>
+            <alex>www.casinoslists.local</alex>
             <lucinda>www.casinoslists.local</lucinda>
             <dev>dev.casinoslists.com</dev>
             <live>www.casinoslists.com</live>
-            <alex>lists.local</alex>
             <amos>www.devcasinopro.adrian</amos>
             <bala>www.casinoslists.bala</bala>
         </environments>
@@ -233,6 +233,7 @@
         <lucinda>http://game.casinoslists.local</lucinda>
         <dev>https://devgame.casinoslists.com</dev>
         <live>https://game.casinoslists.com</live>
+        <alex>http://game.casinoslists.local</alex>
     </gameplay>
     <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
 </xml>
