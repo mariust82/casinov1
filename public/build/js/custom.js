@@ -1,7 +1,7 @@
 var AJAX_CUR_PAGE = 1;
-document.domain = 'casinoslists.com'
-(function($) {
 
+(function($) {
+    document.domain = 'casinoslists.com'
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
