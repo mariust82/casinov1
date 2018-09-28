@@ -815,6 +815,7 @@ var AJAX_CUR_PAGE = 1;
         var fullscreen = false;
         // Find iframe
         var $iframe = $(iframe);
+        var that = this
 
         //alert($iframe.contents().find('.inner_iframe').contents().attr("data-game"))
         //set iframe triggers
@@ -822,7 +823,8 @@ var AJAX_CUR_PAGE = 1;
             var iframePlayButton = $(this).contents().find("#game_play_button");
             $(iframePlayButton).on('click', function(){
                 var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
-                console.log(gameUrl);
+                $iframe.attr('src',gameUrl);
+                that.toogleFullscreen()
             })
 
 
