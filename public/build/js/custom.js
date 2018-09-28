@@ -818,11 +818,11 @@ var AJAX_CUR_PAGE = 1;
 
         //alert($iframe.contents().find('.inner_iframe').contents().attr("data-game"))
 
-        $("iframe").load(function(){
+        //$("iframe").load(function(){
 
             var damageMessage = $(this).contents().find("#overlay").attr('data-game-url');
 console.log(damageMessage);
-        });
+        //});
 
         function getExtraHeight() {
             //Calculate the height of extra elements
