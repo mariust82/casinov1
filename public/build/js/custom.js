@@ -1,4 +1,5 @@
 var AJAX_CUR_PAGE = 1;
+document.domain = 'casinoslists.com'
 (function($) {
 
     BUSY_REQUEST = false;
