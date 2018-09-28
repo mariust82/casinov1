@@ -815,7 +815,14 @@ var AJAX_CUR_PAGE = 1;
         // Find iframe
         var $iframe = $(iframe);
 
-alert($iframe.contents().find('.inner_iframe').contents().attr("data-game"))
+        //alert($iframe.contents().find('.inner_iframe').contents().attr("data-game"))
+
+        $("iframe").load(function(){
+
+            var damageMessage = $(this).contents().find("#game_play_body").text();
+console.log(damageMessage);
+        });
+
         function getExtraHeight() {
             //Calculate the height of extra elements
             var $elements = $iframe.parent().children().not(iframe);
