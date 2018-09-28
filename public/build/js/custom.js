@@ -820,8 +820,8 @@ var AJAX_CUR_PAGE = 1;
 
         $("iframe").load(function(){
 
-//             var damageMessage = $(this).contents().find("#game_play_body").text();
-// console.log(damageMessage);
+            var damageMessage = $(this).contents().find("#overlay").attr('data-game-url');
+console.log(damageMessage);
         });
 
         function getExtraHeight() {
