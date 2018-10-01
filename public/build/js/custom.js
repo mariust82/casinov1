@@ -832,7 +832,6 @@ var AJAX_CUR_PAGE = 1;
 
         function fullscreenPlayTrigger(){
             console.log('inside triger')
-            console.log($iframe.contents().readyState);
             var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
             //var gameUrl = $(this).contents().find("[data-game-url]");
             //if(gameUrl.length > 0){
