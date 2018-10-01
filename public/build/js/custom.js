@@ -869,6 +869,9 @@ var AJAX_CUR_PAGE = 1;
                 $(window).trigger('resize');
             }
         }
+        function toogleFullscreen(){
+            this.toogleFullscreen();
+        }
 
         function setFullscreenState(){
             //Set iframe parent to fullscreen state
