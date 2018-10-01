@@ -819,7 +819,7 @@ var AJAX_CUR_PAGE = 1;
         var that = this;
 
         //set iframe triggers only for auto-play / mobile
-        if (1 > 0) {
+        if (0 > 0) {
             // is loaded
             iFrameTrigger();
         } else {
