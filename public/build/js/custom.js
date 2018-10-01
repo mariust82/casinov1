@@ -835,7 +835,7 @@ var AJAX_CUR_PAGE = 1;
             var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
             //var gameUrl = $(this).contents().find("[data-game-url]");
             //if(gameUrl.length > 0){
-            var iframePlayButton = $(this).contents().data("#game_play_button");
+            var iframePlayButton = $(this).contents().find("#game_play_button");
             $(iframePlayButton).on('touchstart', function(){
                 $iframe.attr('src',gameUrl);
                 this.toogleFullscreen();
