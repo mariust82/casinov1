@@ -839,7 +839,7 @@ var AJAX_CUR_PAGE = 1;
                 var iframePlayButton = $(this).contents().data("#game_play_button");
                 $(iframePlayButton).on('touchstart', function(){
                     $iframe.attr('src',gameUrl);
-                    that.toogleFullscreen();
+                    this.toogleFullscreen();
                 })
             //}
         }
