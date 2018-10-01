@@ -834,6 +834,7 @@ var AJAX_CUR_PAGE = 1;
 
         setTimeout(function(){
             var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
+            console.log(gameUrl.length);
             //var gameUrl = $(this).contents().find("[data-game-url]");
             var iframePlayButton = $iframe.contents().find("#game_play_button");
             $(iframePlayButton).on(clickEvent, function(){
