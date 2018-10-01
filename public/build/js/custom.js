@@ -810,6 +810,7 @@ var AJAX_CUR_PAGE = 1;
     }
 
     var GameplayResize = function (iframe) {
+        document.domain = 'casinoslists.com'
         //Set screen state
         var fullscreen = false;
         // Find iframe
@@ -894,7 +895,6 @@ var AJAX_CUR_PAGE = 1;
 
     $iframe = $('#gameplay_iframe');
     if($iframe.length > 0){
-        document.domain = 'casinoslists.com'
         new GameplayResize($iframe);
     }
 
