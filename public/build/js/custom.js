@@ -833,10 +833,8 @@ var AJAX_CUR_PAGE = 1;
         // }
 
         setTimeout(function(){
-            console.log('inside triger')
             var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
             //var gameUrl = $(this).contents().find("[data-game-url]");
-
             var iframePlayButton = $iframe.contents().find("#game_play_button");
             $(iframePlayButton).on(clickEvent, function(){
                 $iframe.attr('src',gameUrl);
@@ -863,19 +861,21 @@ var AJAX_CUR_PAGE = 1;
 
         //Toogle fullscreen state
         this.toogleFullscreen = function(){
-            if(fullscreen){
-                fullscreen = false;
-                setFullscreenState();
-            } else {
-                fullscreen = true;
-                setFullscreenState();
-                $(window).trigger('resize');
-            }
+            $('body').toggleClass('fullscreenGameplay');
+            $(window).trigger('resize');
+            // if(fullscreen){
+            //     fullscreen = false;
+            //     setFullscreenState();
+            // } else {
+            //     fullscreen = true;
+            //     setFullscreenState();
+            //     $(window).trigger('resize');
+            // }
         }
 
         function setFullscreenState(){
             //Set iframe parent to fullscreen state
-            $('body').toggleClass('fullscreenGameplay');
+
             // $iframe.parent().css({'position': 'fixed', 'top': '0', 'left': '0', 'z-index': '999999','height': '100%', 'width': '100%','background': '#000'});
             // $('body').css({'overflow': 'hidden'});
         }
