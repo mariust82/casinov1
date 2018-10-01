@@ -819,18 +819,18 @@ var AJAX_CUR_PAGE = 1;
         var that = this;
 
         //set iframe triggers only for auto-play / mobile
-        if (0 > 0) {
-            console.log('start triger')
-            // is loaded
-            fullscreenPlayTrigger();
-        } else {
-            // is not loaded
-            $iframe.load(function(){
-                fullscreenPlayTrigger();
-            });
-        }
+        // if (0 > 0) {
+        //     console.log('start triger')
+        //     // is loaded
+        //     fullscreenPlayTrigger();
+        // } else {
+        //     // is not loaded
+        //
+        //         fullscreenPlayTrigger();
+        //
+        // }
 
-        function fullscreenPlayTrigger(){
+        $iframe.load(function(){
             console.log('inside triger')
             var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
             //var gameUrl = $(this).contents().find("[data-game-url]");
@@ -841,7 +841,7 @@ var AJAX_CUR_PAGE = 1;
                     this.toogleFullscreen();
                 })
             //}
-        }
+        });
 
         function getExtraHeight() {
             //Calculate the height of extra elements
