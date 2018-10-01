@@ -819,7 +819,17 @@ var AJAX_CUR_PAGE = 1;
         var that = this;
 
         //set iframe triggers only for auto-play / mobile
-        $iframe.load(function(){
+        if ($iframe.contents().find('body').children().length > 0) {
+            // is loaded
+            iFrameTrigger();
+        } else {
+            // is not loaded
+            $iframe.load(function(){
+                iFrameTrigger();
+            });
+        }
+
+        function iFrameTrigger(){
             var gameUrl = $(this).contents().find("[data-game-url]");
             if(gameUrl.length > 0){
                 var iframePlayButton = $(this).contents().data("#game_play_button");
@@ -828,7 +838,7 @@ var AJAX_CUR_PAGE = 1;
                     that.toogleFullscreen();
                 })
             }
-        });
+        }
 
         function getExtraHeight() {
             //Calculate the height of extra elements
