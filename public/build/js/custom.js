@@ -2,7 +2,9 @@ var AJAX_CUR_PAGE = 1;
 
 (function($) {
     //Set domain same as gameplay domain for communication between iframe - site
-    document.domain = 'casinoslists.com'
+    document.domain = 'casinoslists.com';
+    var clickEvent = ((document.ontouchstart!==null)?'click':'touchstart');
+
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
@@ -836,7 +838,7 @@ var AJAX_CUR_PAGE = 1;
             //var gameUrl = $(this).contents().find("[data-game-url]");
 
             var iframePlayButton = $iframe.contents().find("#game_play_button");
-            $(iframePlayButton).on('touchstart', function(){
+            $(iframePlayButton).on(clickEvent, function(){
                 $iframe.attr('src',gameUrl);
                 that.toogleFullscreen();
             })
