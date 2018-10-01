@@ -851,7 +851,7 @@ var AJAX_CUR_PAGE = 1;
             var $elements = $iframe.parent().children().not(iframe);
             var elHeight = 0;
             $elements.each(function () {
-                elHeight += $(this).height();
+                elHeight += $(this).outerHeight();
             });
             return elHeight;
         }
