@@ -815,11 +815,11 @@ var AJAX_CUR_PAGE = 1;
         var fullscreen = false;
         // Find iframe
         var $iframe = $(iframe);
-        var that = this
+        var that = this;
 
         //set iframe triggers only for auto-play / mobile
         $iframe.load(function(){
-            var iframePlayButton = $(this).contents().attr("data-game-url");
+            var iframePlayButton = $(this).contents().find("[data-game-url]");
             console.log(iframePlayButton);
             $(iframePlayButton).on('click', function(){
                 var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
