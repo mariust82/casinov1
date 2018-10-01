@@ -820,27 +820,12 @@ var AJAX_CUR_PAGE = 1;
         var $iframe = $(iframe);
         var that = this;
 
-        //set iframe triggers only for auto-play / mobile
-        // if (0 > 0) {
-        //     console.log('start triger')
-        //     // is loaded
-        //     fullscreenPlayTrigger();
-        // } else {
-        //     // is not loaded
-        //
-        //         fullscreenPlayTrigger();
-        //
-        // }
-
-        setTimeout(function(){
-
-        }, 1000);
         $iframe.load(function(){
             var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
             if (typeof gameUrl !== typeof undefined && gameUrl !== false) {
                 var iframePlayButton = $iframe.contents().find("#game_play_button");
                 $(iframePlayButton).on(clickEvent, function(){
-                    $iframe.attr('src',gameUrl);
+                    //$iframe.attr('src',gameUrl);
                     that.toogleFullscreen();
                 })
             }
