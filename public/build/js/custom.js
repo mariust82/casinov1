@@ -1,5 +1,6 @@
 var AJAX_CUR_PAGE = 1;
-
+//Set domain same as gameplay domain for communication between iframe - site
+document.domain = 'casinoslists.com'
 (function($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
@@ -810,8 +811,6 @@ var AJAX_CUR_PAGE = 1;
     }
 
     var GameplayResize = function (iframe) {
-        //Set domain same as gameplay domain for communication between iframe - site
-        document.domain = 'casinoslists.com'
         //Set screen state
         var fullscreen = false;
         // Find iframe
