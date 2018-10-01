@@ -869,9 +869,6 @@ var AJAX_CUR_PAGE = 1;
                 $(window).trigger('resize');
             }
         }
-        function toogleFullscreen(){
-            this.toogleFullscreen();
-        }
 
         function setFullscreenState(){
             //Set iframe parent to fullscreen state
@@ -916,7 +913,7 @@ var AJAX_CUR_PAGE = 1;
 
     $iframe = $('#gameplay_iframe');
     if($iframe.length > 0){
-        new GameplayResize($iframe);
+        var GameplayResize = new GameplayResize($iframe);
     }
 
     function initPlayerControls() {
