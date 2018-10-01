@@ -861,21 +861,19 @@ var AJAX_CUR_PAGE = 1;
 
         //Toogle fullscreen state
         this.toogleFullscreen = function(){
-            $('body').toggleClass('fullscreenGameplay');
-            $(window).trigger('resize');
-            // if(fullscreen){
-            //     fullscreen = false;
-            //     setFullscreenState();
-            // } else {
-            //     fullscreen = true;
-            //     setFullscreenState();
-            //     $(window).trigger('resize');
-            // }
+            if(fullscreen){
+                fullscreen = false;
+                setFullscreenState();
+            } else {
+                fullscreen = true;
+                setFullscreenState();
+            }
         }
 
         function setFullscreenState(){
             //Set iframe parent to fullscreen state
-
+            $('body').toggleClass('fullscreenGameplay');
+            $(window).trigger('resize');
             // $iframe.parent().css({'position': 'fixed', 'top': '0', 'left': '0', 'z-index': '999999','height': '100%', 'width': '100%','background': '#000'});
             // $('body').css({'overflow': 'hidden'});
         }
