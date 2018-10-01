@@ -6792,7 +6792,7 @@ a:hover, a:active, a:visited, a:focus {
   overflow: hidden;
 }
 
-.fullscreenGameplay .player-holder{
+.fullscreenGameplay .player{
   position: fixed;
   top: 0;
   left: 0;
