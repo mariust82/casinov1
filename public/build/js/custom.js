@@ -1,7 +1,8 @@
 var AJAX_CUR_PAGE = 1;
-//Set domain same as gameplay domain for communication between iframe - site
-document.domain = 'casinoslists.com'
+
 (function($) {
+    //Set domain same as gameplay domain for communication between iframe - site
+    document.domain = 'casinoslists.com'
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
