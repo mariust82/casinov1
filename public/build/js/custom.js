@@ -819,7 +819,7 @@ var AJAX_CUR_PAGE = 1;
         var that = this;
 
         //set iframe triggers only for auto-play / mobile
-        if ($iframe.contents().find('body').children().length > 0) {
+        if (1 > 0) {
             // is loaded
             iFrameTrigger();
         } else {
@@ -830,6 +830,7 @@ var AJAX_CUR_PAGE = 1;
         }
 
         function iFrameTrigger(){
+            console.log($iframe.contents().readyState);
             var gameUrl = $(this).contents().find("[data-game-url]");
             if(gameUrl.length > 0){
                 var iframePlayButton = $(this).contents().data("#game_play_button");
