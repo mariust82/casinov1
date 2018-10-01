@@ -960,7 +960,7 @@ var AJAX_CUR_PAGE = 1;
         _gamePlayButon.on('click', function(){
             GameplayResize.toogleFullscreen();
             // _wrapper.toggleClass('fullscreen');
-            $(window).trigger('resize');
+            //$(window).trigger('resize');
             return false;
         })
 
