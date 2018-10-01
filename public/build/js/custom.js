@@ -1,7 +1,6 @@
 var AJAX_CUR_PAGE = 1;
 
 (function($) {
-    document.domain = 'casinoslists.com'
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
@@ -817,17 +816,15 @@ var AJAX_CUR_PAGE = 1;
         var $iframe = $(iframe);
         var that = this
 
-        //alert($iframe.contents().find('.inner_iframe').contents().attr("data-game"))
-        //set iframe triggers
+        //set iframe triggers only for auto-play / mobile
         $iframe.load(function(){
-            var iframePlayButton = $(this).contents().find("#game_play_button");
+            var iframePlayButton = $(this).contents().data("game-url");
+            console.log(iframePlayButton);
             $(iframePlayButton).on('click', function(){
                 var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
                 $iframe.attr('src',gameUrl);
                 that.toogleFullscreen()
             })
-
-
         });
 
         function getExtraHeight() {
@@ -895,7 +892,12 @@ var AJAX_CUR_PAGE = 1;
         }).resize();
     }
 
-    var GameplayResize = new GameplayResize('iframe');
+    $iframe = $('#gameplay_iframe');
+    if($iframe.length > 0){
+        document.domain = 'casinoslists.com'
+        new GameplayResize($iframe);
+    }
+
     function initPlayerControls() {
         var _btnFull = $('#play-fullscreen');
         var _btnReplay = $('#play-replay');
