@@ -820,11 +820,15 @@ var AJAX_CUR_PAGE = 1;
         var $iframe = $(iframe);
         var that = this;
 
+        // Find and save the aspect ratio for iframe based on inline width and height
+        $iframe.data("ratio", $iframe.attr('height') / $iframe.attr('width')).removeAttr("width").removeAttr("height");
+
         $iframe.load(function(){
             var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
             if (typeof gameUrl !== typeof undefined && gameUrl !== false) {
                 var iframePlayButton = $iframe.contents().find("#game_play_button");
                 $(iframePlayButton).on(clickEvent, function(){
+                    alert($iframe.data("ratio"))
                     //$iframe.attr('src',gameUrl);
                     that.toogleFullscreen();
                 })
@@ -841,8 +845,7 @@ var AJAX_CUR_PAGE = 1;
             return elHeight;
         }
 
-        // Find and save the aspect ratio for iframe based on inline width and height
-        $iframe.data("ratio", $iframe.attr('height') / $iframe.attr('width')).removeAttr("width").removeAttr("height");
+
 
         //Toogle fullscreen state
         this.toogleFullscreen = function(){
