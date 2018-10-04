@@ -6807,11 +6807,9 @@ a:hover, a:active, a:visited, a:focus {
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
-}
-
-.gameplay_iframe{
+  display: table;
   width: 100%;
-  height: 100%;
+
 }
 
 .player {
@@ -6918,9 +6916,11 @@ a:hover, a:active, a:visited, a:focus {
 }*/
 
 .player-controls {
+  display: block;
   text-align: center;
-  margin: 20px 0;
+  padding: 20px 0;
   font-size: 0;
+  overflow: auto;
 }
 
 @media screen and (max-width: 690px) {
@@ -6932,17 +6932,11 @@ a:hover, a:active, a:visited, a:focus {
 .player-controls-btn {
   width: 46px;
   height: 46px;
+  line-height: 46px;
+  text-align: center;
+  display: inline-block;
   background: #E8EAF3;
   color: #60686A;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   border-radius: 50%;
   font-size: 18px;
   margin: 0 0 0 15px;
@@ -6951,6 +6945,35 @@ a:hover, a:active, a:visited, a:focus {
 .player-controls-btn:first-child {
   margin: 0;
 }
+
+.player-controls.right-player-controler{
+  display: inline-block;
+  position: absolute;
+  top:0;
+  left: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+.player-controls.right-player-controler a{
+  display: block;
+  margin: 0 15px;
+  position: absolute;
+  bottom: 20px;
+}
+.player-controls.right-player-controler a:first-child{
+  position: initial;
+}
+.player-controls.top-player-controler{
+  display: block;
+  padding: 20px;
+}
+.player-controls.top-player-controler a{
+  float:left;
+}
+.player-controls.top-player-controler a:first-child{
+  float:right;
+}
+
 @media screen and (min-width: 1023px) {
   .player-controls-btn:hover {
     background: #2171CE;

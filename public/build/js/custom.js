@@ -768,22 +768,10 @@ var AJAX_CUR_PAGE = 1;
         frame.attr('src',url);
     }
 
-    var reloadFrame = function(btnReload){
-        var _init = function(){
-            btnReload.on({
-                click: function(){
-                    _reload();
-                }
-            });
-        };
-        var _reload = function(){
-            var frame = $('#single-play');
-            var src = frame.attr('src');
-            frame.attr('src', null);
-            frame.attr('src', src);
-        };
-        
-        _init();
+    var reloadFrame = function(frame){
+        var src = frame.attr('src');
+        frame.attr('src', null);
+        frame.attr('src', src);
     };
 
     function runPlayCounter(_name) {
@@ -813,9 +801,12 @@ var AJAX_CUR_PAGE = 1;
         } );
     }
 
-    var GameplayResize = function (iframe) {
+    var GameplayResize = function (iframe, $extraEl) {
         //Set screen state
         var fullscreen = false;
+        //Check if mobile
+        var isMobile = false;
+        //Set the width where to game will be sticked to right
         // Find iframe
         var $iframe = $(iframe);
         var that = this;
@@ -823,35 +814,60 @@ var AJAX_CUR_PAGE = 1;
         // Find and save the aspect ratio for iframe based on inline width and height
         $iframe.data("ratio", $iframe.attr('height') / $iframe.attr('width')).removeAttr("width").removeAttr("height");
 
-        $iframe.load(function(){
-            var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
-            if (typeof gameUrl !== typeof undefined && gameUrl !== false) {
-                var iframePlayButton = $iframe.contents().find("#game_play_button");
-                $(iframePlayButton).on(clickEvent, function(){
-                    alert($iframe.data("ratio"))
-                    //$iframe.attr('src',gameUrl);
-                    that.toogleFullscreen();
-                })
-            }
-        });
+        function addMobileEvent(){
+            setTimeout(function(){
+                //$iframe.load(function(){s
+                var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
+                if (typeof gameUrl !== typeof undefined && gameUrl !== false) {
 
-        function getExtraHeight() {
-            //Calculate the height of extra elements
-            var $elements = $iframe.parent().children().not(iframe);
-            var elHeight = 0;
-            $elements.each(function () {
-                elHeight += $(this).outerHeight(true);
-            });
-            return elHeight;
+                    var iframePlayButton = $iframe.contents().find("#game_play_button");
+                    $(iframePlayButton).on(clickEvent, function(){
+                        $iframe.contents().find("#game_play_button").trigger('click');
+                        isMobile = true;
+                        that.toogleFullscreen();
+                    })
+                }
+                //});
+            }, 500);
+        }
+        addMobileEvent();
+
+        // function getExtraHeight() {
+        //     //Calculate the height of extra elements
+        //     var $elements = $iframe.parent().children().not(iframe);
+        //     var elHeight = 0;
+        //     $elements.each(function () {
+        //         elHeight += $(this).outerHeight(true);
+        //     });
+        //     return elHeight;
+        // }
+        function getExtraSpace(orientation){
+            if(orientation == 'width'){
+                return $extraEl.outerWidth(true);
+            } else if(orientation == 'height'){
+                return $extraEl.outerHeight(true)
+            }
         }
 
-
+        function setExtraElement(orientation){
+            if(orientation == 'width'){
+                $extraEl.removeClass('top-player-controler').addClass('right-player-controler');
+            } else if(orientation == 'height'){
+                $extraEl.removeClass('right-player-controler').addClass('top-player-controler');
+            }
+        }
 
         //Toogle fullscreen state
         this.toogleFullscreen = function(){
             if(fullscreen){
+                if(isMobile){
+                    reloadFrame($iframe);
+                    addMobileEvent();
+                }
                 fullscreen = false;
                 setFullscreenState();
+                $extraEl.removeClass('top-player-controler').removeClass('right-player-controler');
+                $iframe.css({'margin-right': '0'});
             } else {
                 fullscreen = true;
                 setFullscreenState();
@@ -861,22 +877,51 @@ var AJAX_CUR_PAGE = 1;
         function setFullscreenState(){
             //Set iframe parent to fullscreen state
             $('body').toggleClass('fullscreenGameplay');
+            onResize();
             $(window).trigger('resize');
-            // $iframe.parent().css({'position': 'fixed', 'top': '0', 'left': '0', 'z-index': '999999','height': '100%', 'width': '100%','background': '#000'});
-            // $('body').css({'overflow': 'hidden'});
         }
 
         function resizeOnWidth(width){
             //Adding width and height on iframe keeping proportions
             $iframe.width(width).height(width * $iframe.data("ratio"));
-            //$iframe.parent().height(width * $iframe.data("ratio"));
         }
+
+        //Adding width and height on iframe keeping proportions
         function resizeOnWidthHeight(width, height){
-            //Adding width and height on iframe keeping proportions
+            //width 100%
             if ($iframe.data("ratio") < height / width) {
-                $iframe.width(width).height(width * $iframe.data("ratio"));
+                setExtraElement('height');
+                var heightBasedOnWidth = width * $iframe.data("ratio");
+                //if we have extra elements, take in to account
+                if(heightBasedOnWidth + getExtraSpace('height') * 2 > height){
+                    var newHeightWithExtraEl = heightBasedOnWidth + (height - heightBasedOnWidth - getExtraSpace('height') * 2);
+                    $iframe.css({'margin-right': '0'}).width(Math.round(newHeightWithExtraEl / $iframe.data("ratio"))).height(Math.round(newHeightWithExtraEl));
+                } else {
+                    $iframe.css({'margin-right': '0'}).width(Math.round(width)).height(Math.round(heightBasedOnWidth));
+                }
+            //height 100%
             } else {
-                $iframe.width(height / $iframe.data("ratio")).height(height);
+                setExtraElement('width');
+                var widthBasedOnHeight = height / $iframe.data("ratio");
+                //if we have extra elements, take in to account
+                if(widthBasedOnHeight + getExtraSpace('width') * 2 > width){
+                    if(width < 690){
+                        var newWidthWithExtraEl = widthBasedOnHeight + (width - widthBasedOnHeight - getExtraSpace('width') * 2);
+                        $iframe.css({'margin-right': '-' + getExtraSpace('width') + 'px'}).width(Math.round(newWidthWithExtraEl)).height(Math.round(newWidthWithExtraEl * $iframe.data("ratio")));
+                    } else {
+                        var newWidthWithExtraEl = widthBasedOnHeight + (width - widthBasedOnHeight - getExtraSpace('width') * 2);
+                        $iframe.css({'margin-right': '0'}).width(Math.round(newWidthWithExtraEl)).height(Math.round(newWidthWithExtraEl * $iframe.data("ratio")));
+                    }
+
+                } else {
+                    if(width < 690){
+                        var extraSpace = width - Math.round(widthBasedOnHeight);
+                        $iframe.css({'margin-right': '-' + extraSpace + 'px'}).width(Math.round(widthBasedOnHeight)).height(Math.round(height));
+                    } else {
+                        $iframe.css({'margin-right': '0'}).width(Math.round(widthBasedOnHeight)).height(Math.round(height));
+                    }
+                }
+
             }
         }
 
@@ -886,24 +931,29 @@ var AJAX_CUR_PAGE = 1;
         }
         function getHeight(){
             //Get the parent container's height without extra elements
-            return $iframe.parent().outerHeight() - getExtraHeight();
+            return $iframe.parent().height() - getExtraHeight();
         }
 
-        $(window).resize(function () {
+        function onResize(){
             // Resize the iframe when the window is resized
             if (fullscreen) {
-                resizeOnWidthHeight(getWidth(), getHeight());
+                resizeOnWidthHeight($(window).width(), $(window).height());
             } else {
                 resizeOnWidth(getWidth());
             }
+        }
 
+        $(window).on("orientationchange, resize",function(){
+            onResize();
             // Resize to fix iframe on page load.
         }).resize();
+
     }
 
-    $iframe = $('#gameplay_iframe');
+    $iframe = '#gameplay_iframe';
+    $extraEl = $('.player-controls');
     if($iframe.length > 0){
-        var GameplayResize = new GameplayResize($iframe);
+        var GameplayResize = new GameplayResize($iframe, $extraEl);
     }
 
     function initPlayerControls() {
@@ -914,6 +964,7 @@ var AJAX_CUR_PAGE = 1;
         var _gamePlayButon = $('#game_play_button');
         var _container = $('#player-wrap');
         var _body = $('body');
+        var _iframe = $('#gameplay_iframe');
 
 
         var _wrapper = $('.player-holder');
@@ -936,7 +987,7 @@ var AJAX_CUR_PAGE = 1;
         });
 
         _btnReplay.on('click', function() {
-            reloadFrame($(this));
+            reloadFrame(_iframe);
             return false;
         });
 
