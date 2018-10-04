@@ -45,7 +45,6 @@
         <listener class="AsyncListener"/>
         <listener class="SQLDataSourceInjector"/>
         <!--<listener class="NoSQLDataSourceInjector"/>-->
-        <listener class="QueryProfilingListener"/>
         <listener class="ErrorListener"/>
         <listener class="RebrandingListener"/>
         <listener class="IPDetectionListener"/>
