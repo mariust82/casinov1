@@ -6960,7 +6960,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 .player-controls.left-player-controler span{
   display: block;
-  margin: 0 15px;
+  margin: 0 10px;
   position: absolute;
   bottom: 20px;
 }
@@ -6984,13 +6984,14 @@ a:hover, a:active, a:visited, a:focus {
   right: 0;
   height: 100%;
   box-sizing: border-box;
+  padding: 60px 90px 0 0;
 }
 .player-controls.right-player-controler span{
   display: block;
   margin: 0 15px;
 }
 .player-controls.right-player-controler span:first-child{
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 @media screen and (min-width: 1023px) {
