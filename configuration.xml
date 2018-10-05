@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
     <application>
-        <version>0.7.8.0</version>
+        <version>0.7.8.37</version>
         <default_character_encoding>UTF-8</default_character_encoding>
         <default_page>index</default_page>
         <default_extension>html</default_extension>
@@ -45,7 +45,6 @@
         <listener class="AsyncListener"/>
         <listener class="SQLDataSourceInjector"/>
         <!--<listener class="NoSQLDataSourceInjector"/>-->
-        <listener class="QueryProfilingListener"/>
         <listener class="ErrorListener"/>
         <listener class="RebrandingListener"/>
         <listener class="IPDetectionListener"/>

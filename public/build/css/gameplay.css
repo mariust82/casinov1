@@ -2,11 +2,7 @@
     font-size:0;
     text-align: center;
 }
-@media screen and (max-width: 690px) {
-    .player-holder {
 
-    }
-}
 .player-holder.fullscreen{
     position: absolute;
     top: 0;

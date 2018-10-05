@@ -6812,6 +6812,10 @@ a:hover, a:active, a:visited, a:focus {
 
 }
 
+.fullscreenGameplay .player-controls{
+
+}
+
 .player {
   width: 100%;
 }
@@ -6946,7 +6950,7 @@ a:hover, a:active, a:visited, a:focus {
   margin: 0;
 }
 
-.player-controls.right-player-controler{
+.player-controls.left-player-controler{
   display: inline-block;
   position: absolute;
   top:0;
@@ -6954,24 +6958,39 @@ a:hover, a:active, a:visited, a:focus {
   height: 100%;
   box-sizing: border-box;
 }
-.player-controls.right-player-controler a{
+.player-controls.left-player-controler span{
   display: block;
   margin: 0 15px;
   position: absolute;
   bottom: 20px;
 }
-.player-controls.right-player-controler a:first-child{
+.player-controls.left-player-controler span:first-child{
   position: initial;
 }
 .player-controls.top-player-controler{
   display: block;
   padding: 20px;
 }
-.player-controls.top-player-controler a{
+.player-controls.top-player-controler span{
+  float:right;
+}
+.player-controls.top-player-controler span:first-child{
   float:left;
 }
-.player-controls.top-player-controler a:first-child{
-  float:right;
+.player-controls.right-player-controler{
+  display: inline-block;
+  position: absolute;
+  top:0;
+  right: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+.player-controls.right-player-controler span{
+  display: block;
+  margin: 0 15px;
+}
+.player-controls.right-player-controler span:first-child{
+  margin-bottom: 20px;
 }
 
 @media screen and (min-width: 1023px) {
