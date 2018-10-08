@@ -73,7 +73,7 @@
         var ratio = $iframe.attr('height') / $iframe.attr('width');
         $iframe.removeAttr("width").removeAttr("height");
 
-        var ratioResize = new RatioResize($iframe, ratio, configuration.mobileWidth, $extraEl, setExtraElement);
+        var ratioResize = new RatioResize($iframe, ratio, configuration.desktopWidth, $extraEl, setExtraElement);
 
         function init() {
             //Attach button events

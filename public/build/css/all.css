@@ -326,6 +326,10 @@ img, figure {
   content: "\e98b";
 }
 
+.icon-shrink2:before {
+  content: "\e98d";
+}
+
 /**
  * Swiper 3.4.2
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -6957,19 +6961,36 @@ a:hover, a:active, a:visited, a:focus {
   left: 0;
   height: 100%;
   box-sizing: border-box;
+
 }
+@media screen and (min-width: 690px) and (max-width: 1200px) {
+  .player-controls.left-player-controler {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 .player-controls.left-player-controler span{
   display: block;
   margin: 0 10px;
-  position: absolute;
-  bottom: 20px;
+  margin-top: 31px
 }
 .player-controls.left-player-controler span:first-child{
   position: initial;
+  margin-top: -15px;
+}
+@media screen and (max-width: 690px) {
+  .player-controls.left-player-controler span{
+    position: absolute;
+    bottom: 20px;
+    margin-top: 0px !important;
+  }
 }
 .player-controls.top-player-controler{
   display: block;
   padding: 20px;
+
 }
 .player-controls.top-player-controler span{
   float:right;
