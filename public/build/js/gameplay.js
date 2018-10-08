@@ -108,7 +108,9 @@
                 var iframePlayButton = $iframe.contents().find(configuration.events.play);
                 $(iframePlayButton).on(clickEvent, function () {
                     iframePlayButton.trigger('click');
-                    toogleFullscreen();
+                    if(fullscreen === false){
+                        toogleFullscreen();
+                    }
                 });
             }
         }
