@@ -6961,7 +6961,9 @@ a:hover, a:active, a:visited, a:focus {
   left: 0;
   height: 100%;
   box-sizing: border-box;
-
+}
+.fullscreenGameplay .player-controls:before{
+  content: "\e98d";
 }
 @media screen and (min-width: 690px) and (max-width: 1200px) {
   .player-controls.left-player-controler {
