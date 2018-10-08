@@ -6962,7 +6962,7 @@ a:hover, a:active, a:visited, a:focus {
   height: 100%;
   box-sizing: border-box;
 }
-.fullscreenGameplay .player-controls:before{
+.fullscreenGameplay .player-controls .icon-enlarge:{
   content: "\e98d";
 }
 @media screen and (min-width: 690px) and (max-width: 1200px) {
