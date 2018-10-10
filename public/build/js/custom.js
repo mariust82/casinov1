@@ -1963,7 +1963,11 @@ var AJAX_CUR_PAGE = 1;
                         type: 'GET',
                         success: function (response) {
                             if(response.status =="ok") {
-                                _contentHolder.append(getBonusPattern(response, _name));
+                                if(_is_free) {
+                                    _contentHolder.prepend(getBonusPattern(response, _name));
+                                } else {
+                                    _contentHolder.append(getBonusPattern(response, _name));
+                                }
 
                                 _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
                                 _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
