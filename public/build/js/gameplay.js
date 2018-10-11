@@ -1,5 +1,5 @@
 'use strict';
-(function ($) {
+$(window).load(function(){
 
     var clickEvent = ((document.ontouchstart !== null) ? 'click' : 'touchstart');
 
@@ -90,7 +90,7 @@
                 toogleFullscreen();
             });
 
-            setTimeout(function () {
+            //setTimeout(function () {
                 addMobileEvent();
                 //add config function trigger
                 if(undefined !== configuration.triggerOnPlay){
@@ -98,7 +98,7 @@
                         configuration.triggerOnPlay();
                     });
                 }
-            }, 500);
+            //}, 500);
         }
 
         function addMobileEvent() {
