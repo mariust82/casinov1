@@ -90,7 +90,11 @@
                 toogleFullscreen();
             });
 
-            setTimeout(function () {
+            $iframe.load(function () {
+                addTrigger();
+            });
+
+            function addTrigger(){
                 addMobileEvent();
                 //add config function trigger
                 if(undefined !== configuration.triggerOnPlay){
@@ -98,7 +102,18 @@
                         configuration.triggerOnPlay();
                     });
                 }
-            }, 500);
+            }
+            //setTimeout(function () {
+            // $iframe.load(function () {
+            //     addMobileEvent();
+            //     //add config function trigger
+            //     if(undefined !== configuration.triggerOnPlay){
+            //         $(configuration.events.fullscreen).on('click', function () {
+            //             configuration.triggerOnPlay();
+            //         });
+            //     }
+            // });
+            //}, 500);
         }
 
         function addMobileEvent() {
