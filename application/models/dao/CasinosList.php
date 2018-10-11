@@ -31,7 +31,7 @@ class CasinosList
         $output = array();
         $label = $this->filter->getCasinoLabel();
 
-        if(!empty($label))
+        if(!empty($label) && func_num_args() < 3)
             $limit = $this->setLimitCustomLimitForLabel($label);
 
         if (!empty($offset) && $page > 1) {

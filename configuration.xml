@@ -1,210 +1,238 @@
 <?xml version="1.0"?>
 <!DOCTYPE xml>
 <xml>
-  <application>
-    <version>0.7.5</version>
-    <default_character_encoding>UTF-8</default_character_encoding>
-    <default_page>index</default_page>
-    <default_extension>html</default_extension>
-    <auto_routing>0</auto_routing>
-    <paths>
-      <controllers>application/controllers</controllers>
-      <cacheables>application/models/cacheables</cacheables>
-      <wrappers>application/wrappers</wrappers>
-      <views>application/views</views>
-      <listeners>application/listeners</listeners>
-      <dao>application/models/dao</dao>
-      <tags>application/taglib</tags>
-      <tms_variables>application/models/tms_variables</tms_variables>
-      <compilations>
-        <lucinda>/tmp/compilations_casinolists</lucinda>
-        <dev>/tmp/compilations_dev</dev>
-        <live>/tmp/compilations_live</live>
-        <alex>compilations</alex>
-        <amos>C:\xampp\htdocs\casinoslis_compilation</amos>
-      </compilations>
-    </paths>
-    <environments>
-      <lucinda>www.casinoslists.local</lucinda>
-      <dev>dev.casinoslists.com</dev>
-      <live>www.casinoslists.com</live>
-      <alex>lists.local</alex>
-      <amos>www.devcasinopro.adrian</amos>
-    </environments>
-    <templates_extension>html</templates_extension>
-  </application>
-  <formats>
-    <format extension="html" content_type="text/html" class="BypassWrapper" charset="UTF-8"/>
-    <format extension="json" content_type="application/json" class="JsonWrapper"/>
-    <format extension="xml" content_type="text/xml" class="SitemapWrapper"/>
-  </formats>
-  <listeners>
-    <listener class="EnvironmentDetector"/>
-    <listener class="AsyncListener"/>
-    <listener class="SQLDataSourceInjector"/>
-    <!--<listener class="NoSQLDataSourceInjector"/>-->
-    <listener class="QueryProfilingListener"/>
-    <listener class="ErrorListener"/>
-    <listener class="RebrandingListener"/>
-    <listener class="IPDetectionListener"/>
-    <listener class="MobileDetectionListener"/>
-    <listener class="TMSListener"/>
-    <listener class="ViewLanguageResolver"/>
-   <!-- <listener class="HttpCachingListener"/>-->
-  </listeners>
-  <errors>
-    <lucinda>
-         <reporters>
-                    <sql table="bugs"/>
-                </reporters>
-      <renderer display_errors="1">
-          <html/>
-          <json/>
-      </renderer>
-    </lucinda>
-    <dev>
-       <reporters>
-            <async/>
-        </reporters>
-      <renderer display_errors="1">
-        <html/>
-        <json/>
-      </renderer>
-    </dev>
-    <live>
-      <reporters>
-        <async/>
-      </reporters>
-      <renderer display_errors="0">
-        <html/>
-        <json/>
-      </renderer>
-    </live>
-    <alex>
-      <reporters>
-        <async/>
-      </reporters>
-      <renderer display_errors="1">
-        <html/>
-        <json/>
-      </renderer>
-    </alex>
-  </errors>
-  <routes>
-    <route url="index" controller="IndexController" view="index"/>
-    <route url="banking/(name)" controller="CasinosByBankingMethodController" view="casinos" rebrand_tables="banking_methods"/>
-    <route url="banking" controller="BankingMethodsController" view="banking-methods"/>
-    <route url="casinos/(name)" controller="CasinosByLabelController" view="casinos"/>
-    <route url="casinos" controller="CasinoLabelsController" view="casino-labels"/>
-    <route url="reviews/(name)-review" controller="CasinoInfoController" view="casino-info" rebrand_tables="casinos"/>
-    <route url="visit/(name)" controller="CasinoVisitController"/>
-    <route url="warn/(name)" controller="CasinoWarningController" view="casino-warning"/>
-    <route url="bonus-list/(name)" controller="CasinosByBonusTypeController" view="casinos" rebrand_tables="bonus_types"/>
-    <route url="bonus-list" controller="BonusesController" view="bonus-types"/>
-    <route url="countries-list/(name)" controller="CasinosByCountryController" view="casinos"/>
-    <route url="countries" controller="CountriesController" view="countries"/>
-    <route url="compatability/(name)" controller="CasinosByCompatibilityController" view="casinos"/>
-    <route url="compatability" controller="CompatibilityController" view="compatibility"/>
-    <route url="softwares/(name)" controller="CasinosBySoftwareController" view="casinos" rebrand_tables="game_manufacturers"/>
-    <route url="softwares" controller="SoftwaresController" view="softwares"/>
-    <route url="games/(type)" controller="GamesByTypeController" view="games"/>
-    <route url="games" controller="GameTypesController" view="game-types"/>
-    <route url="play/(name)" controller="GameInfoController" view="game-info" rebrand_tables="games"/>
-    <route url="play-counter" controller="GamePlayCounterController" extension="json"/>
-    <route url="features/(name)" controller="CasinosByFeatureController" view="casinos"/>
-    <route url="features" controller="FeaturesController" view="features"/>
-    <route url="privacy" controller="PrivacyController" view="privacy-policy"/>
-    <route url="terms" controller="TermsController" view="terms-and-conditions"/>
-    <route url="contact" controller="ContactController" view="contact-us"/>
-    <route url="contact/send" controller="ContactSendController" extension="json"/>
-    <route url="casinos-filter/(page)" controller="CasinosFilterController" view="casinos-list"/>
-    <route url="casinos-filter" controller="CasinosFilterController" view="casinos-list"/>
-    <route url="games-filter/(page)" controller="GamesFilterController" view="games-list"/>
-    <route url="games-filter" controller="GamesFilterController" view="games-list"/>
-    <route url="search" controller="SearchController" extension="json"/>
-    <route url="search/advanced" controller="SearchAdvancedController" view="search"/>
-    <route url="search/more-lists/(page)" controller="SearchMoreListsController" extension="json"/>
-    <route url="search/more-casinos/(page)" controller="SearchMoreCasinosController" extension="json"/>
-    <route url="search/more-games/(page)" controller="SearchMoreGamesController" extension="json"/>
-    <route url="casino/rate" controller="CasinoRateController" extension="json"/>
-    <route url="casino/review-write" controller="CasinoReviewWriteController" extension="json"/>
-    <route url="casino/review-like" controller="CasinoReviewLikeController" extension="json"/>
-    <route url="casino/more-reviews/(name)/(page)" controller="CasinoMoreReviewsController" view="reviews"/>
-    <route url="newsletter/subscribe" controller="NewsletterSubscribeController" extension="json"/>
-    <route url="casino/bonus" controller="CasinoBonusController" extension="json"/>
-    <route url="404" controller="PageNotFoundController" view="404"/>
-
-    <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" extension="xml"/>
-    <route url="sitemap_cas_bon.php" controller="sitemap/BonusTypesController" extension="xml"/>
-    <route url="sitemap_cas_cas.php" controller="sitemap/CasinoLabelsController" extension="xml"/>
-    <route url="sitemap_cas_con.php" controller="sitemap/CountriesController" extension="xml"/>
-    <route url="sitemap_cas_feat.php" controller="sitemap/FeaturesController" extension="xml"/>
-    <route url="sitemap_cas_games.php" controller="sitemap/GameTypesController" extension="xml"/>
-    <route url="sitemap_cas_os.php" controller="sitemap/CompatibilityController" extension="xml"/>
-    <route url="sitemap_cas_soft.php" controller="sitemap/SoftwaresController" extension="xml"/>
-    <route url="sitemap_lists.php" controller="sitemap/PagesController" extension="xml"/>
-    <route url="sitemap_main.php" controller="sitemap/IndexController" extension="xml"/>
-    <route url="sitemap_spec_cas.php" controller="sitemap/CasinosController" extension="xml"/>
-    <route url="sitemap_spec_games.php" controller="sitemap/GamesController" extension="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_bank_ps.php" controller="sitemap/BankingMethodsController" extension="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_bon_ps.php" controller="sitemap/BonusTypesController" extension="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_cas_ps.php" controller="sitemap/CasinoLabelsController" extension="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_con_ps.php" controller="sitemap/CountriesController" extension="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_feat_ps.php" controller="sitemap/FeaturesController" extension="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_games_ps.php" controller="sitemap/GameTypesController" extension="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_os_ps.php" controller="sitemap/CompatibilityController" extension="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_soft_ps.php" controller="sitemap/SoftwaresController" extension="xml"/>
-    <route url="sitemaps_ps/sitemap_lists_ps.php" controller="sitemap/PagesController" extension="xml"/>
-    <route url="sitemaps_ps/sitemap_main_ps.php" controller="sitemap/IndexController" extension="xml"/>
-    <route url="sitemaps_ps/sitemap_spec_cas_ps.php" controller="sitemap/CasinosController" extension="xml"/>
-    <route url="sitemaps_ps/sitemap_spec_games_ps.php" controller="sitemap/GamesController" extension="xml"/>
-  </routes>
-  <servers>
-    <sql>
-      <lucinda>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="niggers" schema="casinoslists" parent_schema="admin_casinoslists" charset="utf8"/>
-      </lucinda>
-      <dev>
-        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_dev" parent_schema="casinosl_admin_dev" charset="utf8"/>
-      </dev>
-      <live>
-        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
-      </live>
-      <alex>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
-      </alex>
-      <amos>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinoslist_dev" parent_schema="casinosl_admin" charset="utf8"/>
-      </amos>
-    </sql>
-    <nosql>
+    <application>
+        <version>0.8.2.1</version>
+        <default_character_encoding>UTF-8</default_character_encoding>
+        <default_page>index</default_page>
+        <default_extension>html</default_extension>
+        <auto_routing>0</auto_routing>
+        <paths>
+            <controllers>application/controllers</controllers>
+            <cacheables>application/models/cacheables</cacheables>
+            <wrappers>application/wrappers</wrappers>
+            <views>application/views</views>
+            <listeners>application/listeners</listeners>
+            <dao>application/models/dao</dao>
+            <tags>application/taglib</tags>
+            <tms_variables>application/models/tms_variables</tms_variables>
+            <compilations>
+                <lucinda>/tmp/compilations_casinolists</lucinda>
+                <dev>/tmp/compilations_dev</dev>
+                <live>/tmp/compilations_live</live>
+                <alex>compilations</alex>
+                <amos>C:\xampp\htdocs\casinoslis_compilation</amos>
+                <bala>C:\xampp\htdocs\compilations\casinoslists</bala>
+            </compilations>
+        </paths>
+        <environments>
+            <alex>www.casinoslists.local</alex>
+            <lucinda>www.casinoslists.local</lucinda>
+            <dev>dev.casinoslists.com</dev>
+            <live>www.casinoslists.com</live>
+            <amos>www.devcasinopro.adrian</amos>
+            <bala>www.casinoslists.bala</bala>
+        </environments>
+        <templates_extension>html</templates_extension>
+    </application>
+    <formats>
+        <format extension="html" content_type="text/html" class="BypassWrapper" charset="UTF-8"/>
+        <format extension="json" content_type="application/json" class="JsonWrapper"/>
+        <format extension="xml" content_type="text/xml" class="SitemapWrapper"/>
+    </formats>
+    <listeners>
+        <listener class="EnvironmentDetector"/>
+        <listener class="AsyncListener"/>
+        <listener class="SQLDataSourceInjector"/>
+        <!--<listener class="NoSQLDataSourceInjector"/>-->
+        <listener class="ErrorListener"/>
+        <listener class="RebrandingListener"/>
+        <listener class="IPDetectionListener"/>
+        <listener class="MobileDetectionListener"/>
+        <listener class="TMSListener"/>
+        <listener class="ViewLanguageResolver"/>
+        <!-- <listener class="HttpCachingListener"/>-->
+    </listeners>
+    <errors>
         <lucinda>
-          <server driver="redis" host="localhost"/>
+            <reporters>
+                <sql table="bugs"/>
+            </reporters>
+            <renderer display_errors="1">
+                <html/>
+                <json/>
+            </renderer>
         </lucinda>
         <dev>
-            <server driver="redis" host="localhost"/>
+            <reporters>
+                <async/>
+            </reporters>
+            <renderer display_errors="1">
+                <html/>
+                <json/>
+            </renderer>
         </dev>
         <live>
-            <server driver="redis" host="localhost"/>
+            <reporters>
+                <async/>
+            </reporters>
+            <renderer display_errors="0">
+                <html/>
+                <json/>
+            </renderer>
         </live>
-    </nosql>
-  </servers>
-  <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
-    <lucinda>api.datamother.com</lucinda>
-    <dev>devapi.datamother.com</dev>
-    <live>api.datamother.com</live>
-    <alex>api.datamother.com</alex>
-  </rest_api>
-  <geoip>
-    <lucinda>/tmp/ip2country.mmdb</lucinda>
-    <dev>/home/casinoslists/public_html/ip2country.mmdb</dev>
-    <live>/home/casinoslists/public_html/ip2country.mmdb</live>
-    <alex>/home/casinoslists/public_html/ip2country.mmdb</alex>
-  </geoip>
-  <gameplay width="960" height="720">
-    <lucinda>http://game.casinoslists.local</lucinda>
-    <dev>https://devgame.casinoslists.com</dev>
-    <live>https://game.casinoslists.com</live>
-  </gameplay>
-  <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
+        <alex>
+            <reporters>
+                <async/>
+            </reporters>
+            <renderer display_errors="1">
+                <html/>
+                <json/>
+            </renderer>
+        </alex>
+        <bala>
+            <reporters>
+                <async/>
+            </reporters>
+            <renderer display_errors="1">
+                <html/>
+                <json/>
+            </renderer>
+        </bala>
+    </errors>
+    <routes>
+        <route url="index" controller="IndexController" view="index"/>
+        <route url="banking/(name)" controller="CasinosByBankingMethodController" view="casinos"
+               rebrand_tables="banking_methods"/>
+        <route url="banking" controller="BankingMethodsController" view="banking-methods"/>
+        <route url="casinos/(name)" controller="CasinosByLabelController" view="casinos"/>
+        <route url="casinos" controller="CasinoLabelsController" view="casino-labels"/>
+        <route url="reviews/(name)-review" controller="CasinoInfoController" view="casino-info"
+               rebrand_tables="casinos"/>
+        <route url="visit/(name)" controller="CasinoVisitController"/>
+        <route url="warn/(name)" controller="CasinoWarningController" view="casino-warning"/>
+        <route url="bonus-list/(name)" controller="CasinosByBonusTypeController" view="casinos"
+               rebrand_tables="bonus_types"/>
+        <route url="bonus-list" controller="BonusesController" view="bonus-types"/>
+        <route url="countries-list/(name)" controller="CasinosByCountryController" view="casinos"/>
+        <route url="countries" controller="CountriesController" view="countries"/>
+        <route url="compatability/(name)" controller="CasinosByCompatibilityController" view="casinos"/>
+        <route url="compatability" controller="CompatibilityController" view="compatibility"/>
+        <route url="softwares/(name)" controller="CasinosBySoftwareController" view="casinos"
+               rebrand_tables="game_manufacturers"/>
+        <route url="softwares" controller="SoftwaresController" view="softwares"/>
+        <route url="games/(type)" controller="GamesByTypeController" view="games"/>
+        <route url="games" controller="GameTypesController" view="game-types"/>
+        <route url="play/(name)" controller="GameInfoController" view="game-info" rebrand_tables="games"/>
+        <route url="play-counter" controller="GamePlayCounterController" extension="json"/>
+        <route url="features/(name)" controller="CasinosByFeatureController" view="casinos"/>
+        <route url="features" controller="FeaturesController" view="features"/>
+        <route url="privacy" controller="PrivacyController" view="privacy-policy"/>
+        <route url="terms" controller="TermsController" view="terms-and-conditions"/>
+        <route url="contact" controller="ContactController" view="contact-us"/>
+        <route url="contact/send" controller="ContactSendController" extension="json"/>
+        <route url="casinos-filter/(page)" controller="CasinosFilterController" view="casinos-list"/>
+        <route url="casinos-filter" controller="CasinosFilterController" view="casinos-list"/>
+        <route url="games-filter/(page)" controller="GamesFilterController" view="games-list"/>
+        <route url="games-filter" controller="GamesFilterController" view="games-list"/>
+        <route url="search" controller="SearchController" extension="json"/>
+        <route url="search/advanced" controller="SearchAdvancedController" view="search"/>
+        <route url="search/more-lists/(page)" controller="SearchMoreListsController" extension="json"/>
+        <route url="search/more-casinos/(page)" controller="SearchMoreCasinosController" extension="json"/>
+        <route url="search/more-games/(page)" controller="SearchMoreGamesController" extension="json"/>
+        <route url="casino/rate" controller="CasinoRateController" extension="json"/>
+        <route url="casino/review-write" controller="CasinoReviewWriteController" extension="json"/>
+        <route url="casino/review-like" controller="CasinoReviewLikeController" extension="json"/>
+        <route url="casino/more-reviews/(name)/(page)" controller="CasinoMoreReviewsController" view="reviews"/>
+        <route url="newsletter/subscribe" controller="NewsletterSubscribeController" extension="json"/>
+        <route url="casino/bonus" controller="CasinoBonusController" extension="json"/>
+        <route url="404" controller="PageNotFoundController" view="404"/>
+
+        <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" extension="xml"/>
+        <route url="sitemap_cas_bon.php" controller="sitemap/BonusTypesController" extension="xml"/>
+        <route url="sitemap_cas_cas.php" controller="sitemap/CasinoLabelsController" extension="xml"/>
+        <route url="sitemap_cas_con.php" controller="sitemap/CountriesController" extension="xml"/>
+        <route url="sitemap_cas_feat.php" controller="sitemap/FeaturesController" extension="xml"/>
+        <route url="sitemap_cas_games.php" controller="sitemap/GameTypesController" extension="xml"/>
+        <route url="sitemap_cas_os.php" controller="sitemap/CompatibilityController" extension="xml"/>
+        <route url="sitemap_cas_soft.php" controller="sitemap/SoftwaresController" extension="xml"/>
+        <route url="sitemap_lists.php" controller="sitemap/PagesController" extension="xml"/>
+        <route url="sitemap_main.php" controller="sitemap/IndexController" extension="xml"/>
+        <route url="sitemap_spec_cas.php" controller="sitemap/CasinosController" extension="xml"/>
+        <route url="sitemap_spec_games.php" controller="sitemap/GamesController" extension="xml"/>
+        <route url="sitemaps_ps/sitemap_cas_bank_ps.php" controller="sitemap/BankingMethodsController" extension="xml"/>
+        <route url="sitemaps_ps/sitemap_cas_bon_ps.php" controller="sitemap/BonusTypesController" extension="xml"/>
+        <route url="sitemaps_ps/sitemap_cas_cas_ps.php" controller="sitemap/CasinoLabelsController" extension="xml"/>
+        <route url="sitemaps_ps/sitemap_cas_con_ps.php" controller="sitemap/CountriesController" extension="xml"/>
+        <route url="sitemaps_ps/sitemap_cas_feat_ps.php" controller="sitemap/FeaturesController" extension="xml"/>
+        <route url="sitemaps_ps/sitemap_cas_games_ps.php" controller="sitemap/GameTypesController" extension="xml"/>
+        <route url="sitemaps_ps/sitemap_cas_os_ps.php" controller="sitemap/CompatibilityController" extension="xml"/>
+        <route url="sitemaps_ps/sitemap_cas_soft_ps.php" controller="sitemap/SoftwaresController" extension="xml"/>
+        <route url="sitemaps_ps/sitemap_lists_ps.php" controller="sitemap/PagesController" extension="xml"/>
+        <route url="sitemaps_ps/sitemap_main_ps.php" controller="sitemap/IndexController" extension="xml"/>
+        <route url="sitemaps_ps/sitemap_spec_cas_ps.php" controller="sitemap/CasinosController" extension="xml"/>
+        <route url="sitemaps_ps/sitemap_spec_games_ps.php" controller="sitemap/GamesController" extension="xml"/>
+    </routes>
+    <servers>
+        <sql>
+            <lucinda>
+                <server driver="mysql" host="localhost" port="3306" username="root" password="niggers"
+                        schema="casinoslists" parent_schema="admin_casinoslists" charset="utf8"/>
+            </lucinda>
+            <dev>
+                <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!"
+                        schema="casinosl_dev" parent_schema="casinosl_admin_dev" charset="utf8"/>
+            </dev>
+            <live>
+                <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!"
+                        schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
+            </live>
+            <alex>
+                <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_go"
+                        parent_schema="casinosl_admin" charset="utf8"/>
+            </alex>
+            <amos>
+                <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinoslist_dev"
+                        parent_schema="casinosl_admin" charset="utf8"/>
+            </amos>
+            <bala>
+                <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinol_dev"
+                        parent_schema="casinol_admin_dev" charset="utf8"/>
+            </bala>
+        </sql>
+        <nosql>
+            <lucinda>
+                <server driver="redis" host="localhost"/>
+            </lucinda>
+            <dev>
+                <server driver="redis" host="localhost"/>
+            </dev>
+            <live>
+                <server driver="redis" host="localhost"/>
+            </live>
+            <bala>
+                <server driver="redis" host="localhost"/>
+            </bala>
+        </nosql>
+    </servers>
+    <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
+        <lucinda>api.datamother.com</lucinda>
+        <dev>devapi.datamother.com</dev>
+        <live>api.datamother.com</live>
+        <alex>api.datamother.com</alex>
+        <bala>api.datamother.com</bala>
+    </rest_api>
+    <geoip>
+        <lucinda>/tmp/ip2country.mmdb</lucinda>
+        <dev>/home/casinoslists/public_html/ip2country.mmdb</dev>
+        <live>/home/casinoslists/public_html/ip2country.mmdb</live>
+        <alex>/home/casinoslists/public_html/ip2country.mmdb</alex>
+    </geoip>
+    <gameplay width="960" height="720">
+        <lucinda>http://game.casinoslists.local</lucinda>
+        <dev>https://devgame.casinoslists.com</dev>
+        <live>https://game.casinoslists.com</live>
+        <alex>http://game.casinoslists.local</alex>
+    </gameplay>
+    <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
 </xml>

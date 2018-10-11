@@ -24,6 +24,7 @@ class GameTypes implements FieldValidator
     }
 
     public function getGamesByType() {
+
         return DB("
         SELECT
         t1.name AS unit, t2.name AS game

@@ -1,0 +1,10 @@
+set folder [lindex $argv 0];
+set username [lindex $argv 1];
+set password [lindex $argv 2];
+set branch [lindex $argv 3];
+spawn /usr/local/cpanel/3rdparty/lib/path-bin/git -C $folder -c user.email='$username@github.com' -c user.name='$username' pull origin $branch
+expect "Username for 'https://github.com':"
+send "$username\n"
+expect "Password for 'https://$username@github.com':"
+send "$password\n"
+expect eof

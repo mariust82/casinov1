@@ -30,14 +30,16 @@ abstract class CasinosListController extends BaseController {
 
     private function getResults() {
 
-            $filter = new CasinoFilter(
-                array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")),
-                $this->request->getAttribute("country"));
-            $object = new CasinosList($filter);
-            $results = array();
-            $results["total"] = $object->getTotal();
-            $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->getAttribute("sort_criteria"), 1, self::LIMIT) : array());
-            return $results;
+
+        $filter = new CasinoFilter(
+            array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")),
+            $this->request->getAttribute("country"));
+
+        $object = new CasinosList($filter);
+        $results = array();
+        $results["total"] = $object->getTotal();
+        $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->getAttribute("sort_criteria"), 1, self::LIMIT) : array());
+        return $results;
     }
 
     abstract protected function getSelectedEntity();

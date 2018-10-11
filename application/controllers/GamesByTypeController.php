@@ -19,24 +19,30 @@ require_once("application/models/caching/GamesListKey.php");
 class GamesByTypeController extends BaseController {
 
     const LIMIT = 24;
+    private $filter;
 
 	public function service() {
-        $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
 
+        $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
         $menu = new GamesMenu($this->response->getAttribute("selected_entity"));
         $this->response->setAttribute("menu_bottom", $menu->getEntries());
 
         $object = new GameManufacturers();
         $this->response->setAttribute("software", $object->getAll());
-
+        $this->setFilter();
+        $this->response->setAttribute("filter", $this->filter);
         $results = $this->getResults();
         $this->response->setAttribute("total_games", $results["total"]);
         $this->response->setAttribute("games", $results["list"]);
 	}
 
+	private function setFilter(){
+        $this->filter = new GameFilter(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")));
+    }
+
+
 	private function getResults() {
-        $game_filter = new GameFilter(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")));
-        $object = new GamesList($game_filter);
+        $object = new GamesList($this->filter);
         $results = array();
         $results["total"] = $object->getTotal();
         $results["list"] = ($results["total"]>0?$object->getResults(GameSortCriteria::NONE, 1, self::LIMIT):array());
