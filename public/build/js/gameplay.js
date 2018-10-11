@@ -235,4 +235,4 @@ $(window).load(function(){
         new GameplayResize(gameplayConfig);
     //}
 
-})(jQuery);
+});
