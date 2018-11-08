@@ -35,6 +35,7 @@ class CasinoInfo
             $output->date_established = $row["date_established"];
             $output->affiliate_program = $row["affiliate_program"];
             $output->withdrawal_minimum = $row["withdraw_minimum"];
+            $output->invision_casino_id = $row["invision_casino_id"];
             $output->status = $row["status"];
         }
         if(!$output) return;
@@ -182,4 +183,11 @@ class CasinoInfo
     public function getResult() {
         return $this->result;
     }
+
+    public  function updateCasinoForEntries($casinoId, $entryId){
+        return DB("UPDATE casinos SET invision_casino_id = $entryId  WHERE id=:id",array(":id"=>$casinoId))->getAffectedRows();
+
+    }
+
+
 }
