@@ -1,6 +1,4 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casino-info"/>
-
-
 	<std:if condition="${data.casino.status} == 'Blacklisted'">
 		<div class="container">
 			<div class="warn-box">
@@ -243,7 +241,7 @@
 						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
 					</div>
 				</div>
-                                    <comment:list-container name="${setScoreClass(${data.user_score})}" value="${normalize(setScoreClass(${data.user_score}))}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}"/>
+				<comment:list-container name="${setScoreClass(${data.user_score})}" value="${normalize(setScoreClass(${data.user_score}))}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}"/>
 			</div>
 		</div>
 	</div>

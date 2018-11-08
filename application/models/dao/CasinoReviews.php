@@ -108,4 +108,53 @@ class CasinoReviews
             ":parent"=>$review->parent,
         ))->getInsertId();
     }
+
+    //TEMP
+    public function getCasinoId($casino_name){
+
+        $casinoID = DB("SELECT invision_casino_id FROM casinos WHERE name = :casino",array(":casino"=>$casino_name))->toValue();
+        return $casinoID;
+    }
+
+    public function getReviewsFromInvision($invision_casino_id){
+
+        if(empty($invision_casino_id)){
+             [
+                 'reviews' => [],
+                 'page' => 1,
+                 'totalResults' => 0,
+                 'totalPages' => 0
+             ];
+        }
+
+        $invision = new InvisionComments();
+        $endPoints = str_replace('{#id}', $invision_casino_id,  InvisionAppEndPoints::$endpoints['entries']['get_entry_comments']['url']);
+        $invision->setEndpoint($endPoints);
+        $comments =  $invision->getAllCommentsFromCasino();
+        $comments = json_decode($comments, true);
+        $reviews = [];
+        if(!empty($comments['results'])){
+
+            foreach($comments['results'] as $comment){
+                $object = new CasinoReview();
+                $object->id = $comment["id"];
+                $object->name = $comment['author']["name"];
+                $object->email = $comment['author']["email"];
+                $object->body = $comment["content"];
+                $object->country = 'US'; //TBD
+                $object->date = $comment["date"];
+                $object->likes = 2;// TBD
+                $reviews[$comment["id"]]= $object;
+            }
+        }
+
+        $reviews = [
+            'reviews' => $reviews,
+            'page' => !empty($comments['page']) ?  $comments['page'] : 1,
+            'totalResults' => !empty($comments['totalResults']) ? $comments['totalResults'] : 0 ,
+            'totalPages' => !empty($comments['totalPages']) ? $comments['totalPages'] : 1
+        ];
+
+        return $reviews;
+    }
 }

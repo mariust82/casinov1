@@ -27,4 +27,5 @@ class Casino {
     public $is_language_accepted;
     public $is_currency_accepted;
     public $note;
+    public $invision_casino_id;
 }
