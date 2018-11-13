@@ -3,8 +3,8 @@ require_once("entities/CasinoReview.php");
 
 class CasinoReviews
 {
-    const LIMIT = 5;
-    const LIMIT_REPLIES = 3;
+    const LIMIT = 1000;
+    const LIMIT_REPLIES = 3000;
 
     public function getAllTotal($casinoID) {
         return DB("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casino_id = :casino_id AND parent_id = 0",array(":casino_id"=>$casinoID))->toValue();
@@ -20,10 +20,12 @@ class CasinoReviews
             FROM casinos__reviews AS t1
             INNER JOIN countries AS t2 ON t1.country_id = t2.id
             LEFT JOIN casinos__ratings AS t3 ON t1.casino_id = t3.casino_id AND t1.ip = t3.ip
-            WHERE t1.casino_id = :casino_id AND t1.parent_id = $parentID
+            WHERE t1.casino_id = :casino_id
             ORDER BY t1.date DESC 
             LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT)."
         ",array(":casino_id"=>$casinoID));
+
+      //  var_dump($resultSet);  die();
 
         while($row = $resultSet->toRow()) {
             $object = new CasinoReview();
@@ -85,10 +87,10 @@ class CasinoReviews
         return DB("UPDATE casinos__reviews SET likes = likes + 1 WHERE id=:id",array(":id"=>$id))->getAffectedRows();
     }
 
-    public function insert($casino, CasinoReview $review) {
+    public function insert($casinoID, CasinoReview $review) {
 
-        $casinoID = DB("SELECT id FROM casinos WHERE name = :casino",array(":casino"=>$casino))->toValue();
         if(!$casinoID) return false;
+
         return DB("
         INSERT INTO casinos__reviews
         SET 
@@ -114,5 +116,98 @@ class CasinoReviews
     }
 
 
+    public function getAllReviewsByInvisionIds(array $invisionCommentsIds = []){
 
+        if(empty($invisionCommentsIds)){
+            throw new Exception('$invisionCommentsIds shuld not be empty');
+        }
+      /*  var_dump($invisionCommentsIds);
+        die();*/
+        $idsSqlFormat = implode(', ', array_keys($invisionCommentsIds));
+
+        $q = " SELECT *
+                FROM casinos__reviews 
+                WHERE invision_review_id IN ($idsSqlFormat)
+              ";
+
+        return DB($q)->toList();
+    }
+
+    public function updateCommentsFromInviosn($invisionComments){
+
+
+        $reviews = $this->getAllReviewsByInvisionIds($invisionComments);
+
+        // group reviews by invision id
+        $reviewGrouppedById = [];
+        $casino_id = null;
+        foreach ($reviews as $review){
+            $reviewGrouppedById[$review['invision_review_id']] =$review;
+            if(empty($casino_id))
+                $casino_id = $review['casino_id'];
+        }
+
+        $newCommentsFromInvision = [];
+        $updateComments = [];
+        foreach($invisionComments as $invisionComment){
+
+            if(!empty($reviewGrouppedById[$invisionComment['id']])){
+
+                $review = $reviewGrouppedById[$invisionComment['id']];
+              //  $invisionComment['casino_id']
+
+                if($invisionComment['hidden'] != $review['hidden']){
+                    $updateComments[] = $invisionComment;
+                    continue;
+                }
+
+                if($invisionComment['content'] != $review['body']){
+                    $updateComments[] = $invisionComment;
+                    continue;
+                }
+
+            }else{
+                $newCommentsFromInvision[]  = $invisionComment;
+            }
+        }
+
+     //  var_dump($newCommentsFromInvision); die();
+        if(!empty($newCommentsFromInvision)){
+
+            //add new comments
+            foreach ($newCommentsFromInvision as $comment){
+
+                $review = new CasinoReview();
+                $review->name = $comment['author']['name'];
+                $review->email = $comment['author']['email'];
+                $review->body = $comment['content'];
+                $review->ip = $comment['author']['registrationIpAddress'];
+                $review->country = 34;
+                $review->parent = 0;
+                $review->review_invision_id = $comment['id'];
+                $review->hidden = !empty($comment['hidden']) ? 1 : 0 ;
+                $review->invision_url = $comment['url'];
+                $object = new CasinoReviews();
+                $id = $object->insert($casino_id, $review);
+            }
+        }
+        if(!empty($updateComments)){
+            //update comments
+          //  var_dump($updateComments);
+
+            foreach($updateComments as $id => $comment){
+                DB ("
+                  UPDATE casinos__reviews SET
+                  body = :body,
+                  hidden = :hidden
+                  WHERE id = :id",
+                   array(
+                       ':body' => $comment['content'],
+                       ':hidden' => !empty($comment['hidden']) ? 1 :0,
+                       ':id' => $id
+                   )
+                );
+            }
+        }
+    }
 }

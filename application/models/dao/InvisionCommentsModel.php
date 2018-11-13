@@ -11,9 +11,6 @@ class InvisionCommentsModel{
         $comments = $invision->getAllCommentsFromCasino();
         $comments = json_decode($comments, true);
 
-        var_dump($comments);
-        die();
-
-
+        return $comments;
     }
 }

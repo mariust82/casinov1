@@ -13,4 +13,6 @@ class CasinoReview {
     public $children = array();
     public $total_children = 0;
     public $review_invision_id = 0;
+    public $hidden;
+    public $invision_url = '';
 }
