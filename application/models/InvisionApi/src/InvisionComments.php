@@ -47,18 +47,5 @@ class InvisionComments extends InvisionAbstract {
 
         $response = curl_exec( $this->curl );
         return $response;
-
-
-
     }
-
-    public function deleteComment($id){
-
-    }
-
-    public function editComment($id){
-
-    }
-
-
 }

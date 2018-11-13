@@ -65,6 +65,7 @@ class Casinos implements FieldValidator
     }
 
     public function rate($name, $ip, $value) {
+
         $casinoID = DB("SELECT id FROM casinos WHERE name=:name",array(":name"=>$name))->toValue();
         if(!$casinoID) return null;
         $count = DB("SELECT COUNT(id) FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip",array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
@@ -93,5 +94,15 @@ class Casinos implements FieldValidator
 
     public function getAll() {
         return DB("SELECT name FROM casinos ORDER BY name ASC")->toColumn();
+    }
+
+    public function getCasinoData($id){
+
+        return DB("SELECT id, invision_casino_id FROM casinos WHERE id ={$id}")->toRow();
+    }
+
+    public  function updateCasinoForEntries($casinoId, $entryId){
+        return DB("UPDATE casinos SET invision_casino_id = $entryId  WHERE id=:id",array(":id"=>$casinoId))->getAffectedRows();
+
     }
 }
