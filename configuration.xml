@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
     <application>
-        <version>0.8.2.1</version>
+        <version>0.8.2.2</version>
         <default_character_encoding>UTF-8</default_character_encoding>
         <default_page>index</default_page>
         <default_extension>html</default_extension>
@@ -172,6 +172,7 @@
         <route url="sitemaps_ps/sitemap_main_ps.php" controller="sitemap/IndexController" extension="xml"/>
         <route url="sitemaps_ps/sitemap_spec_cas_ps.php" controller="sitemap/CasinosController" extension="xml"/>
         <route url="sitemaps_ps/sitemap_spec_games_ps.php" controller="sitemap/GamesController" extension="xml"/>
+
     </routes>
     <servers>
         <sql>

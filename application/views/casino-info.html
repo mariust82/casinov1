@@ -241,7 +241,8 @@
 						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
 					</div>
 				</div>
-				<comment:list-container name="${setScoreClass(${data.user_score})}" value="${normalize(setScoreClass(${data.user_score}))}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}"/>
+
+				<comment:list-container name="${setScoreClass(${data.user_score})}" value="${normalize(setScoreClass(${data.user_score}))}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" invisioncasinoid = "${data.casino.invision_casino_id}" />
 			</div>
 		</div>
 	</div>

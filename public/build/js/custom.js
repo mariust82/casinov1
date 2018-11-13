@@ -954,7 +954,9 @@ var AJAX_CUR_PAGE = 1;
                 name: name,
                 email: email,
                 body: message,
-                parent: _reviewID
+                parent: _reviewID,
+                invision_casino_id : $('.reviews-form').attr('data-invision-casino-id'),
+                casino_id : $('.reviews-form').attr('data-casino-id')
             };
 
             _sendReview(ajaxData, _this);
@@ -2182,18 +2184,12 @@ var AJAX_CUR_PAGE = 1;
                     symbolsCount = calculateSymbols( arrayHolders[i] );
 
                     var childsHolder = arrayHolders[i].querySelector('span');
-                    console.log(arrayHolders[i]);
-                    console.log(childsHolder);
                     if(childsHolder.clientHeight > parseInt( window.getComputedStyle(arrayHolders[i] ,null).getPropertyValue("max-height") )) {
                         childs = childsHolder.children;
                         if (childs.length > 1) {
-
                             var flag = true;
-
                             for(var i = 0; i<childs.length; i++) {
-
                                 var contentLenght =  childs[i].innerText.trim();
-
                                 if (contentLenght.length > symbolsCount || contentLenght.length == 0) {
                                     childs[i].classList.add('hidden');
                                     if (flag) {
