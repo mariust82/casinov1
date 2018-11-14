@@ -23,13 +23,13 @@ class CasinoReviewWriteController extends Controller
 {
     public function run()
     {
-
         $casino_id  = $_POST["casino_id"];
         $invision_casino_id  = $_POST["invision_casino_id"];
         $casino_name =  $_POST["casino"];
         $content = strip_tags($_POST["body"]);
         $author_name = strip_tags($_POST["name"]);
         $author_email =  strip_tags($_POST["email"]);
+        $user_ip =  $this->request->getAttribute("ip");
 
         if(empty($invision_casino_id)){
 
@@ -38,8 +38,8 @@ class CasinoReviewWriteController extends Controller
             $casinoInfoModel = new Casinos();
             $casinoInfoModel->updateCasinoForEntries($casino_id,$invision_casino_id);
         }else{
-          //TBD
-          //  $this->updateCasinoReviewsFromInvision($invision_casino_id);
+
+            $this->updateCasinoReviewsFromInvision($invision_casino_id);
         }
 
         //set review to set in invision
@@ -49,7 +49,7 @@ class CasinoReviewWriteController extends Controller
             'content' => $content,
             'author_name' => $author_name,
             'date' => date('Y-m-d H:i:s'),
-            'ip' =>  $this->request->getAttribute("ip")
+            'ip' => $user_ip
         ];
 
         $invisionComent = $this->addCommentToInvision($commentData);
@@ -58,15 +58,18 @@ class CasinoReviewWriteController extends Controller
         $review->name = $author_name;
         $review->email = $author_email;
         $review->body = $content;
-        $review->ip = $this->request->getAttribute("ip"  );
+        $review->ip = $user_ip;
         $review->country = $this->request->getAttribute("country")->id;
         $review->parent = (integer)$_POST["parent"];
         $review->review_invision_id = $invisionComent['id'];
+        $review->hidden = $invisionComent['hidden'];
+        $review->invision_url = $invisionComent['url'];
         $object = new CasinoReviews();
-        $id = $object->insert($casino_name, $review);
+        $id = $object->insert($casino_id, $review);
 
         if ($id) {
             $this->response->setAttribute("id", $id);
+            $this->response->setAttribute("review_invision_id", $review->review_invision_id);
         } else {
             throw new OperationFailedException("Casino not found!");
         }
@@ -85,6 +88,7 @@ class CasinoReviewWriteController extends Controller
          $inv->setEndpoint(InvisionAppEndPoints::$endpoints['entries']['add_entry']['url']);
          $result = $inv->addCasinos($entry);
          $result = json_decode($result, true);
+
          $invision_casino_id = $result['id'];
          return $invision_casino_id;
      }
@@ -99,25 +103,16 @@ class CasinoReviewWriteController extends Controller
 
     private function updateCasinoReviewsFromInvision($invision_casino_id){
 
-        ignore_user_abort(true);
         $invisionReviews =  new InvisionCommentsModel();
         $invision_comments =  $invisionReviews->getReviewsFromInvision($invision_casino_id);
 
         if(empty($invision_comments['results']))
             return;
 
-        $countComentsFromInvision = $invision_comments['totalResults'];
+        $invisionIds = $invisionReviews->groupInvsionCommentsById($invision_comments['results']);
 
-        //...
-        $invisionIds = [];
-        foreach($invision_comments['results'] as $comment){
-
-            $invisionIds[$comment['id']] = $comment;
-        }
-
-       /* var_dump($invision_comments);
-        die();*/
-
+        //get all reviews
+        $casinoReviewsOPbj = new CasinoReviews();
+        $casinoReviewsOPbj->updateCommentsFromInviosn($invisionIds);
     }
-
 }

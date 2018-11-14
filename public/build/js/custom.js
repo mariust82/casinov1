@@ -978,6 +978,7 @@ var AJAX_CUR_PAGE = 1;
                         _field_email.val('');
                         _field_message.val('').addClass('expanding');
                         _onEvents();
+                        $('.reviews-form').attr('data-invision-casino-id',data.body.review_invision_id);
                         $('.form .js-expanding-textfields').slideUp();
                     }
                     else if(data.status=="error") {
