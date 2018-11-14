@@ -3,8 +3,8 @@ require_once("entities/CasinoReview.php");
 
 class CasinoReviews
 {
-    const LIMIT = 1000;
-    const LIMIT_REPLIES = 3000;
+    const LIMIT = 100;
+    const LIMIT_REPLIES = 100;
 
     public function getAllTotal($casinoID) {
         return DB("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casino_id = :casino_id AND parent_id = 0",array(":casino_id"=>$casinoID))->toValue();
