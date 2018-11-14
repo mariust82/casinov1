@@ -89,7 +89,8 @@ class CasinoReviews
 
     public function insert($casinoID, CasinoReview $review) {
 
-        if(!$casinoID) return false;
+        if(!$casinoID)
+            return false;
 
         return DB("
         INSERT INTO casinos__reviews
@@ -101,8 +102,8 @@ class CasinoReviews
           email = :email,
           body = :body,
           parent_id = :parent,
-          invision_review_id = :invision_review_id
-          
+          invision_review_id = :invision_review_id,
+          invision_url = :invision_url
         ", array(
             ":casino"=>$casinoID,
             ":ip"=>$review->ip,
@@ -111,7 +112,8 @@ class CasinoReviews
             ":email"=>$review->email,
             ":body"=>$review->body,
             ":parent"=>$review->parent,
-            ":invision_review_id" => $review->review_invision_id
+            ":invision_review_id" => $review->review_invision_id,
+            ":invision_url" => $review->invision_url
         ))->getInsertId();
     }
 
@@ -119,10 +121,9 @@ class CasinoReviews
     public function getAllReviewsByInvisionIds(array $invisionCommentsIds = []){
 
         if(empty($invisionCommentsIds)){
-            throw new Exception('$invisionCommentsIds shuld not be empty');
+            return;
         }
-      /*  var_dump($invisionCommentsIds);
-        die();*/
+
         $idsSqlFormat = implode(', ', array_keys($invisionCommentsIds));
 
         $q = " SELECT *
@@ -135,14 +136,16 @@ class CasinoReviews
 
     public function updateCommentsFromInviosn($invisionComments){
 
-
+        //get invsion reviews from our database
         $reviews = $this->getAllReviewsByInvisionIds($invisionComments);
 
         // group reviews by invision id
         $reviewGrouppedById = [];
         $casino_id = null;
+
         foreach ($reviews as $review){
-            $reviewGrouppedById[$review['invision_review_id']] =$review;
+
+            $reviewGrouppedById[$review['invision_review_id']] = $review;
             if(empty($casino_id))
                 $casino_id = $review['casino_id'];
         }
@@ -154,15 +157,17 @@ class CasinoReviews
             if(!empty($reviewGrouppedById[$invisionComment['id']])){
 
                 $review = $reviewGrouppedById[$invisionComment['id']];
-              //  $invisionComment['casino_id']
+
+                //remove review from list
+                unset($reviewGrouppedById[$invisionComment['id']]);
 
                 if($invisionComment['hidden'] != $review['hidden']){
-                    $updateComments[] = $invisionComment;
+                    $updateComments[$review['id']] = $invisionComment;
                     continue;
                 }
 
                 if($invisionComment['content'] != $review['body']){
-                    $updateComments[] = $invisionComment;
+                    $updateComments[$review['id']] = $invisionComment;
                     continue;
                 }
 
@@ -171,15 +176,14 @@ class CasinoReviews
             }
         }
 
-     //  var_dump($newCommentsFromInvision); die();
+
         if(!empty($newCommentsFromInvision)){
 
             //add new comments
             foreach ($newCommentsFromInvision as $comment){
-
                 $review = new CasinoReview();
                 $review->name = $comment['author']['name'];
-                $review->email = $comment['author']['email'];
+                $review->email = !empty($comment['author']['email']) ? $comment['author']['email'] : 'accounts@hliscorp.com';
                 $review->body = $comment['content'];
                 $review->ip = $comment['author']['registrationIpAddress'];
                 $review->country = 34;
@@ -187,14 +191,15 @@ class CasinoReviews
                 $review->review_invision_id = $comment['id'];
                 $review->hidden = !empty($comment['hidden']) ? 1 : 0 ;
                 $review->invision_url = $comment['url'];
+
                 $object = new CasinoReviews();
                 $id = $object->insert($casino_id, $review);
             }
         }
-        if(!empty($updateComments)){
-            //update comments
-          //  var_dump($updateComments);
 
+        if(!empty($updateComments)){
+
+            //update comments
             foreach($updateComments as $id => $comment){
                 DB ("
                   UPDATE casinos__reviews SET
@@ -209,5 +214,11 @@ class CasinoReviews
                 );
             }
         }
+
+        // not working .. the deleted comments have hidden flag
+        /*if(!empty($reviewGrouppedById)){
+            $ids = implode(', ', $reviewGrouppedById);
+            DB("DELETE casinos__reviews WHERE review_invision_id IN($ids)");
+        }*/
     }
 }

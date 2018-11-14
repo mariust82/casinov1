@@ -23,7 +23,6 @@ class CasinoReviewWriteController extends Controller
 {
     public function run()
     {
-
         $casino_id  = $_POST["casino_id"];
         $invision_casino_id  = $_POST["invision_casino_id"];
         $casino_name =  $_POST["casino"];
@@ -39,7 +38,7 @@ class CasinoReviewWriteController extends Controller
             $casinoInfoModel = new Casinos();
             $casinoInfoModel->updateCasinoForEntries($casino_id,$invision_casino_id);
         }else{
-          //TBD
+
             $this->updateCasinoReviewsFromInvision($invision_casino_id);
         }
 
@@ -89,6 +88,7 @@ class CasinoReviewWriteController extends Controller
          $inv->setEndpoint(InvisionAppEndPoints::$endpoints['entries']['add_entry']['url']);
          $result = $inv->addCasinos($entry);
          $result = json_decode($result, true);
+
          $invision_casino_id = $result['id'];
          return $invision_casino_id;
      }
@@ -109,11 +109,7 @@ class CasinoReviewWriteController extends Controller
         if(empty($invision_comments['results']))
             return;
 
-        $invisionIds = [];
-        foreach($invision_comments['results'] as $comment){
-
-            $invisionIds[$comment['id']] = $comment;
-        }
+        $invisionIds = $invisionReviews->groupInvsionCommentsById($invision_comments['results']);
 
         //get all reviews
         $casinoReviewsOPbj = new CasinoReviews();
