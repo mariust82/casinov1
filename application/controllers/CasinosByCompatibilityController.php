@@ -36,4 +36,15 @@ class CasinosByCompatibilityController extends CasinosListController {
     {
         return "compatibility";
     }
+
+    protected function pageInfo(){
+        // get page info
+        $url = $this->request->getValidator()->getPage();
+        $object = new PageInfoDAO();
+        if ($this->getSelectedEntity() === 'Mobile'){
+            $url = 'compatability/mobile';
+        }
+
+        $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $this->response->getAttribute("total_casinos")));
+    }
 }

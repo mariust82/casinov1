@@ -57,6 +57,7 @@ abstract class CasinosListController extends BaseController {
     protected function pageInfo(){
         // get page info
         $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity")));
+        $total_casinos = !empty($this->response->getAttribute("total_casinos")) ? $this->response->getAttribute("total_casinos") : '';
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity"),$total_casinos ));
     }
 }

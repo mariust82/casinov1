@@ -37,4 +37,24 @@ class CasinosByFeatureController extends CasinosListController {
     {
         return "feature";
     }
+
+    protected function pageInfo(){
+
+        $selectedEntity = $this->getSelectedEntity();
+
+        // get page info
+        $url = $this->request->getValidator()->getPage();
+        $object = new PageInfoDAO();
+
+        switch ($selectedEntity){
+            case 'Live Dealer':
+                $url = 'features/live-dealer';
+            break;
+            case 'eCOGRA Casinos':
+                $url = 'features/ecogra-casinos';
+            break;
+        }
+
+        $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $this->response->getAttribute("total_casinos")));
+    }
 }
