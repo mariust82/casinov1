@@ -9,6 +9,7 @@ var AJAX_CUR_PAGE = 1;
         initSite();
         initMobileMenu();
         new SearchPanel ( $('.header') );
+        $('.not-accepted').gray();
         
         var user_rate = $('.rating-container').data('user-rate');
         if (user_rate > 0) {
