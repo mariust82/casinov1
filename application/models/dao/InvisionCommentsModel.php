@@ -2,6 +2,7 @@
 require_once 'application/models/InvisionApi/src/InvisionApi.php';
 require_once 'application/models/dao/CasinoReviews.php';
 require_once 'application/models/ReviewsInvisionSync.php';
+require_once 'application/models/dao/ReviewStatuses.php';
 
 class InvisionCommentsModel{
 
@@ -55,7 +56,7 @@ class InvisionCommentsModel{
                 $review->country = 34;
                 $review->parent = 0;
                 $review->review_invision_id = $comment['id'];
-                $review->hidden = !empty($comment['hidden']) ? 1 : 0 ;
+                $review->hidden = !empty($comment['hidden']) ? ReviewStatuses::APPROVED : ReviewStatuses::DENIED;;
                 $review->invision_url = $comment['url'];
                 $object = new CasinoReviews();
                 $id = $object->insert($casino_id, $review);

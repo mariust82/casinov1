@@ -6,6 +6,7 @@ require_once 'application/models/dao/Casinos.php';
 
 require_once 'application/models/dao/InvisionCommentsModel.php';
 require_once 'application/models/InvisionApi/src/InvisionApi.php';
+require_once 'application/models/dao/ReviewStatuses.php';
 
 /*
 * Writes a review on a casino
@@ -71,13 +72,13 @@ class CasinoReviewWriteController extends Controller
         $invisionComment = $invisionModel->addCommentToInvision($commentData);
 
         $review_invision_id = '';
-        $review_status = '';
+        $review_status =  ReviewStatuses::PENDING;
         $review_url = '';
 
         if(!empty($invisionComment)){
 
             $review_invision_id = $invisionComment['id'];
-            $review_status =  $invisionComment['hidden'];
+            $review_status =  !empty($invisionComment['hidden']) ? ReviewStatuses::APPROVED : ReviewStatuses::DENIED;
             $review_url =  $invisionComment['url'];
         }
 
@@ -89,7 +90,7 @@ class CasinoReviewWriteController extends Controller
         $review->country = $this->request->getAttribute("country")->id;
         $review->parent = (integer)$_POST["parent"];
         $review->review_invision_id = $review_invision_id;
-        $review->hidden = $review_status;
+        $review->status = $review_status;
         $review->invision_url = $review_url;
         $object = new CasinoReviews();
         $id = $object->insert($casino_id, $review);
