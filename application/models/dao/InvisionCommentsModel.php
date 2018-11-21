@@ -1,21 +1,31 @@
 <?php
-require_once 'application/models/InvisionApi/src/InvisionComments.php';
+require_once 'application/models/InvisionApi/src/InvisionApi.php';
+require_once 'application/models/dao/CasinoReviews.php';
+require_once 'application/models/ReviewsInvisionSync.php';
 
 class InvisionCommentsModel{
 
-    public function getReviewsFromInvision($invision_casino_id){
+    private $invisionApi;
 
-        $invision = new InvisionComments();
-        $endPoints = str_replace('{#id}', $invision_casino_id,  InvisionAppEndPoints::$endpoints['entries']['get_entry_comments']['url']);
-        $endPoints .= '?'.http_build_query(['page'=>1,'perPage' => 250],null,'&');
+   function __construct( InvisionApi $invisionApi)
+   {
+       $this->invisionApi = $invisionApi;
+   }
 
-        $invision->setEndpoint($endPoints);
-        $comments = $invision->getAllCommentsFromCasino();
-        $comments = json_decode($comments, true);
-        return $comments;
+    public function syncronizeReviewsWithInvision($invision_casino_id, $casino_id){
+
+        $invisionReviews =  $this->invisionApi->getCasinoReviewsFromInvision($invision_casino_id);
+
+        if(empty($invisionReviews['results']))
+            return;
+
+        $invisionIds = $this->groupInvsionCommentsById($invisionReviews['results']);
+        $this->updateCommentsFromInvision($invisionIds, $casino_id);
+
     }
 
-    public function groupInvsionCommentsById($comments){
+
+    private function groupInvsionCommentsById($comments){
 
         $invisionIds = [];
         foreach($comments as $comment){
@@ -23,5 +33,85 @@ class InvisionCommentsModel{
             $invisionIds[$comment['id']] = $comment;
         }
         return $invisionIds;
+    }
+
+    private function updateCommentsFromInvision($invisionComments, $casino_id){
+
+        //get invsion reviews from our database
+        $reviews = $this->getAllReviewsByInvisionIds($invisionComments);
+        $syncInv = new ReviewsInvisionSync($invisionComments, $reviews);
+
+        $syncData = $syncInv->getSyncsReviewsData();
+
+        if(!empty($syncData['newCommentsFromInvision'])){
+
+            //add new comments
+            foreach ($syncData['newCommentsFromInvision'] as $comment){
+                $review = new CasinoReview();
+                $review->name = $comment['author']['name'];
+                $review->email = !empty($comment['author']['email']) ? $comment['author']['email'] : 'accounts@hliscorp.com';
+                $review->body = $comment['content'];
+                 $review->ip = $comment['author']['registrationIpAddress'];
+                $review->country = 34;
+                $review->parent = 0;
+                $review->review_invision_id = $comment['id'];
+                $review->hidden = !empty($comment['hidden']) ? 1 : 0 ;
+                $review->invision_url = $comment['url'];
+                $object = new CasinoReviews();
+                $id = $object->insert($casino_id, $review);
+            }
+        }
+
+        if(!empty($syncData['updateComments'])){
+
+            //update comments
+            foreach($syncData['updateComments'] as $id => $comment){
+                DB ("
+                  UPDATE casinos__reviews SET
+                  body = :body,
+                  hidden = :hidden
+                  WHERE id = :id",
+                    array(
+                        ':body' => $comment['content'],
+                        ':hidden' => !empty($comment['hidden']) ? 1 :0,
+                        ':id' => $id
+                    )
+                );
+            }
+        }
+    }
+
+    public function addCasinoToInvision($casino_name, $blogId){
+
+        $casinoData = [
+            'blog' =>$blogId, // add to
+            'title' => $casino_name,
+            // 'author' => 'hliscorp',
+            'entry' => $casino_name
+        ];
+
+        $result = $this->invisionApi->addReviewsToInvision($casinoData);
+        return $result;
+    }
+
+    public function addCommentToInvision($commentData){
+        $result = $this->invisionApi->addReviewsToInvision($commentData);
+        return $result;
+    }
+
+    private function getAllReviewsByInvisionIds(array $invisionCommentsIds = []){
+
+        if(empty($invisionCommentsIds)){
+            return;
+        }
+
+        $idsSqlFormat = implode(', ', array_keys($invisionCommentsIds));
+
+        $q = " SELECT *
+                FROM casinos__reviews 
+                WHERE invision_review_id IN ($idsSqlFormat)
+              ";
+
+        return DB($q)->toList();
     }
 }

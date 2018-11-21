@@ -5,8 +5,6 @@ require_once("application/models/dao/CasinosMenu.php");
 require_once("BaseController.php");
 
 
-require_once 'application/models/InvisionApi/src/InvisionComments.php';
-
 /*
 * Info/review page of casino
 * 

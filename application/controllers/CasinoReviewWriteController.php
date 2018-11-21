@@ -2,11 +2,11 @@
 
 require_once("application/models/dao/CasinoReviews.php");
 require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedException.php");
-
 require_once 'application/models/dao/Casinos.php';
-require_once 'application/models/InvisionApi/src/InvisionComments.php';
-require_once 'application/models/InvisionApi/src/InvisionCasinos.php';
+
 require_once 'application/models/dao/InvisionCommentsModel.php';
+require_once 'application/models/InvisionApi/src/InvisionApi.php';
+
 /*
 * Writes a review on a casino
 * 
@@ -21,6 +21,7 @@ require_once 'application/models/dao/InvisionCommentsModel.php';
 */
 class CasinoReviewWriteController extends Controller
 {
+
     public function run()
     {
         $casino_id  = $_POST["casino_id"];
@@ -31,15 +32,30 @@ class CasinoReviewWriteController extends Controller
         $author_email =  strip_tags($_POST["email"]);
         $user_ip =  $this->request->getAttribute("ip");
 
+
+        $env = $this->application->getAttribute("environment");
+        $invsionInstanceAPI= new InvisionApi(
+            $this->application->getXML()->invision_api->$env->invision['api_key'],
+            $this->application->getXML()->invision_api->$env->invision['api_url']
+        );
+
+        $invisionModel = new InvisionCommentsModel($invsionInstanceAPI);
+
         if(empty($invision_casino_id)){
 
             //add casino to invision
-            $invision_casino_id =  $this->addCasinoToInvision($casino_name);
+            $invisionCasino =  $invisionModel->addCasinoToInvision(
+                $casino_name,
+                $this->application->getXML()->invision_api->$env->invision['blog_id']
+            );
+
+            $invision_casino_id =  !empty($invisionCasino['id']) ? $invisionCasino['id'] : '';
             $casinoInfoModel = new Casinos();
             $casinoInfoModel->updateCasinoForEntries($casino_id,$invision_casino_id);
         }else{
 
-            $this->updateCasinoReviewsFromInvision($invision_casino_id);
+
+            $invisionModel->syncronizeReviewsWithInvision($invision_casino_id, $casino_id);
         }
 
         //set review to set in invision
@@ -52,7 +68,18 @@ class CasinoReviewWriteController extends Controller
             'ip' => $user_ip
         ];
 
-        $invisionComent = $this->addCommentToInvision($commentData);
+        $invisionComment = $invisionModel->addCommentToInvision($commentData);
+
+        $review_invision_id = '';
+        $review_status = '';
+        $review_url = '';
+
+        if(!empty($invisionComment)){
+
+            $review_invision_id = $invisionComment['id'];
+            $review_status =  $invisionComment['hidden'];
+            $review_url =  $invisionComment['url'];
+        }
 
         $review = new CasinoReview();
         $review->name = $author_name;
@@ -61,58 +88,19 @@ class CasinoReviewWriteController extends Controller
         $review->ip = $user_ip;
         $review->country = $this->request->getAttribute("country")->id;
         $review->parent = (integer)$_POST["parent"];
-        $review->review_invision_id = $invisionComent['id'];
-        $review->hidden = $invisionComent['hidden'];
-        $review->invision_url = $invisionComent['url'];
+        $review->review_invision_id = $review_invision_id;
+        $review->hidden = $review_status;
+        $review->invision_url = $review_url;
         $object = new CasinoReviews();
         $id = $object->insert($casino_id, $review);
 
-        if ($id) {
-            $this->response->setAttribute("id", $id);
-            $this->response->setAttribute("review_invision_id", $review->review_invision_id);
-        } else {
+        if(empty($id)){
             throw new OperationFailedException("Casino not found!");
         }
+
+        $this->response->setAttribute("id", $id);
+        $this->response->setAttribute("review_invision_id", $review->review_invision_id);
+
     }
 
-     private function addCasinoToInvision($casino_name){
-
-         $entry = [
-             'blog' =>1, // add to
-             'title' => $casino_name,
-             // 'author' => 'hliscorp',
-             'entry' => $casino_name
-         ];
-
-         $inv = new InvisionCasinos();
-         $inv->setEndpoint(InvisionAppEndPoints::$endpoints['entries']['add_entry']['url']);
-         $result = $inv->addCasinos($entry);
-         $result = json_decode($result, true);
-
-         $invision_casino_id = $result['id'];
-         return $invision_casino_id;
-     }
-
-
-    private function addCommentToInvision($commentData){
-        $invision = new InvisionComments();
-        $invision->setEndpoint(InvisionAppEndPoints::$endpoints['entries']['comments']['add_comment']['url']);
-        $invisionComent = $invision->addComment($commentData);
-        return  json_decode($invisionComent, true);;
-    }
-
-    private function updateCasinoReviewsFromInvision($invision_casino_id){
-
-        $invisionReviews =  new InvisionCommentsModel();
-        $invision_comments =  $invisionReviews->getReviewsFromInvision($invision_casino_id);
-
-        if(empty($invision_comments['results']))
-            return;
-
-        $invisionIds = $invisionReviews->groupInvsionCommentsById($invision_comments['results']);
-
-        //get all reviews
-        $casinoReviewsOPbj = new CasinoReviews();
-        $casinoReviewsOPbj->updateCommentsFromInviosn($invisionIds);
-    }
 }
