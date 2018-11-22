@@ -25,6 +25,7 @@ class CasinoReviewWriteController extends Controller
 
     public function run()
     {
+
         $casino_id  = $_POST["casino_id"];
         $invision_casino_id  = $_POST["invision_casino_id"];
         $casino_name =  $_POST["casino"];
@@ -35,15 +36,15 @@ class CasinoReviewWriteController extends Controller
 
 
         $env = $this->application->getAttribute("environment");
-        $configInvSettings = $this->application->getXML()->invision_api->$env->invision;
+        $configInvSettings = $this->application->getXML()->invision_api->$env;
 
         if(empty($configInvSettings)){
             throw new Exception('Invision settings is not set in config');
         }
 
         $invsionInstanceAPI= new InvisionApi(
-            $configInvSettings['api_key'],
-            $configInvSettings['api_url']
+            (string)$configInvSettings['api_key'],
+            (string)$configInvSettings['api_url']
         );
 
         $invisionModel = new InvisionCommentsModel($invsionInstanceAPI);
@@ -53,11 +54,12 @@ class CasinoReviewWriteController extends Controller
             //add casino to invision
             $invisionCasino =  $invisionModel->addCasinoToInvision(
                 $casino_name,
-                $this->application->getXML()->invision_api->$env->invision['blog_id']
+                (int)$configInvSettings['blog_id']
             );
 
             $invision_casino_id =  !empty($invisionCasino['id']) ? $invisionCasino['id'] : '';
             $casinoInfoModel = new Casinos();
+
             $casinoInfoModel->updateCasinoForEntries($casino_id,$invision_casino_id);
         }else{
 
