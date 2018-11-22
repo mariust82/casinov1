@@ -9,7 +9,6 @@ var AJAX_CUR_PAGE = 1;
         initSite();
         initMobileMenu();
         new SearchPanel ( $('.header') );
-        $('.not-accepted').gray();
         
         var user_rate = $('.rating-container').data('user-rate');
         if (user_rate > 0) {
@@ -150,6 +149,7 @@ var AJAX_CUR_PAGE = 1;
         showMoreReviews();
         checkStringLength($('.list .bonus-box'), 21);
         checkStringLength($('.bonus-item .bonus-box'), 33);
+        grayscaleIE();
 
         $('.message .close').on('click', function(e) {
             $(this).parent().fadeOut();
@@ -195,6 +195,59 @@ var AJAX_CUR_PAGE = 1;
         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
     }
+
+    function grayscaleIE() {
+        if (getInternetExplorerVersion() >= 10){
+            $('.grayscale').each(function(){
+                var el = $(this);
+                el.css({"position":"absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position":"absolute","z-index":"5","opacity":"0"}).insertBefore(el).queue(function(){
+                    var el = $(this);
+                    el.parent().css({"width":this.width,"height":this.height});
+                    el.dequeue();
+                });
+                this.src = grayscaleIE10(this.src);
+            });
+            
+            function grayscaleIE10(src){
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                var imgObj = new Image();
+                imgObj.src = src;
+                canvas.width = imgObj.width;
+                canvas.height = imgObj.height; 
+                ctx.drawImage(imgObj, 0, 0); 
+                var imgPixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                for(var y = 0; y < imgPixels.height; y++){
+                    for(var x = 0; x < imgPixels.width; x++){
+                        var i = (y * 4) * imgPixels.width + x * 4;
+                        var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+                        imgPixels.data[i] = avg; 
+                        imgPixels.data[i + 1] = avg; 
+                        imgPixels.data[i + 2] = avg;
+                    }
+                }
+                ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+                return canvas.toDataURL();
+            };
+        };
+    }
+
+    function getInternetExplorerVersion(){
+        var rv = -1;
+        if (navigator.appName == 'Microsoft Internet Explorer'){
+            var ua = navigator.userAgent;
+            var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+            if (re.exec(ua) != null)
+            rv = parseFloat( RegExp.$1 );
+        }
+        else if (navigator.appName == 'Netscape'){
+            var ua = navigator.userAgent;
+            var re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+            if (re.exec(ua) != null)
+            rv = parseFloat( RegExp.$1 );
+        }
+        return rv;
+    };
 
     function getBonusPattern(data, name) {
         var _name = name;
