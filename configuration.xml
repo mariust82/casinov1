@@ -147,7 +147,6 @@
         <route url="newsletter/subscribe" controller="NewsletterSubscribeController" extension="json"/>
         <route url="casino/bonus" controller="CasinoBonusController" extension="json"/>
         <route url="404" controller="PageNotFoundController" view="404"/>
-
         <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" extension="xml"/>
         <route url="sitemap_cas_bon.php" controller="sitemap/BonusTypesController" extension="xml"/>
         <route url="sitemap_cas_cas.php" controller="sitemap/CasinoLabelsController" extension="xml"/>
@@ -172,7 +171,6 @@
         <route url="sitemaps_ps/sitemap_main_ps.php" controller="sitemap/IndexController" extension="xml"/>
         <route url="sitemaps_ps/sitemap_spec_cas_ps.php" controller="sitemap/CasinosController" extension="xml"/>
         <route url="sitemaps_ps/sitemap_spec_games_ps.php" controller="sitemap/GamesController" extension="xml"/>
-
     </routes>
     <servers>
         <sql>
@@ -236,4 +234,17 @@
         <alex>http://game.casinoslists.local</alex>
     </gameplay>
     <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
+
+    <invision_api>
+        <amos>
+            <invision blog_id = '1' api_key="e0aff7134b11f730418086ea2a5daf1b" api_url = "https://c284076.tryinvision.com/"></invision>
+        </amos>
+        <dev>
+            <invision blog_id = '1' api_key="e0aff7134b11f730418086ea2a5daf1b" api_url = "https://c284076.tryinvision.com/"></invision>
+        </dev>
+        <live>
+            <invision blog_id = '1' api_key="e0aff7134b11f730418086ea2a5daf1b" api_url = "https://c284076.tryinvision.com/"></invision>
+        </live>
+    </invision_api>
+
 </xml>
