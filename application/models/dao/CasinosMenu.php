@@ -77,6 +77,7 @@ class CasinosMenu
     }
 
     private function getSelectedEntry($country, $currentPage , $entity="") {
+
         switch($currentPage) {
             case "bonus-list/no-deposit-bonus":
                 return "/bonus-list/no-deposit-bonus";
@@ -88,7 +89,7 @@ class CasinosMenu
                 return "/casinos/new";
                 break;
             case "compatability/mobile":
-                return "compatability/mobile";
+                return "/compatability/mobile";
                 break;
             case "casinos/recommended":
                 return "/casinos/recommended";
