@@ -67,7 +67,7 @@ class CasinoReviewsModel{
         if(!empty($invisionComment)){
 
             $review_invision_id = $invisionComment['id'];
-            $review_status =  ReviewStatuses::APPROVED;  //  !empty($invisionComment['hidden']) ? ReviewStatuses::APPROVED : ReviewStatuses::DENIED;
+            $review_status =  ReviewStatuses::APPROVED;
             $review_url =  $invisionComment['url'];
         }
 
