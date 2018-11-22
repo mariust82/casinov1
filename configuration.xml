@@ -237,7 +237,7 @@
 
     <invision_api>
         <amos  blog_id = '1' api_key = "e0aff7134b11f730418086ea2a5daf1b" api_url = "https://c284076.tryinvision.com/" />
-        <dev  blog_id = '' api_key = "e0aff7134b11f730418086ea2a5daf1b" api_url = "https://c284076.tryinvision.com/" />
+        <dev  blog_id = '1' api_key = "e0aff7134b11f730418086ea2a5daf1b" api_url = "https://c284076.tryinvision.com/" />
         <live  blog_id = '2' api_key = "e0aff7134b11f730418086ea2a5daf1b" api_url = "https://c284076.tryinvision.com/" />
     </invision_api>
 
