@@ -2,18 +2,18 @@
 require_once("entities/PageInfo.php");
 class PageInfoDAO
 {
-    public function getInfoByURL($url, $entity=null) {
+    public function getInfoByURL($url, $entity=null, $casinos_number = '') {
 
         $row = DB("SELECT * FROM pages WHERE url=:url",array(":url"=>$url))->toRow();
-
         $object = new PageInfo();
-        $object->head_title = $this->feedValues($row["head_title"], $entity);
-        $object->head_description = $this->feedValues($row["head_description"], $entity);
-        $object->body_title = $this->feedValues($row["body_title"], $entity);
+        $object->head_title = $this->feedValues($row["head_title"], $entity, $casinos_number);
+        $object->head_description = $this->feedValues($row["head_description"], $entity, $casinos_number);
+        $object->body_title = $this->feedValues($row["body_title"], $entity, $casinos_number);
+
         return $object;
     }
 
-    private function feedValues($string, $entity) {
-        return str_replace(array("(name)","(year)","(month)"),array($entity, date("Y"), date("F")), $string);
+    private function feedValues($string, $entity, $casinos_number) {
+        return str_replace(array("(name)","(year)","(month)" ,"(casinosNumber)"),array($entity, date("Y"), date("F"), $casinos_number), $string);
     }
 }

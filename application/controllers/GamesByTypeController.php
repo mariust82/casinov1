@@ -72,7 +72,8 @@ class GamesByTypeController extends BaseController {
     protected function pageInfo(){
         // get page info
         $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity")));
+        $total_games = !empty($this->response->getAttribute("total_games")) ? $this->response->getAttribute("total_games") : '';
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity"), $total_games));
     }
 
 }
