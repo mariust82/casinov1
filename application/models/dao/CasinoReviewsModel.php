@@ -16,9 +16,12 @@ class CasinoReviewsModel{
     private $invision_casino_id;
     private $reviewId;
 
-    function __construct($app, $reviewData)
+    function __construct($app, $request)
     {
         $this->setInvisionApi($app);
+        $reviewData = $request->getParameters();
+        $reviewData['user_ip'] = $request->getAttribute("ip");
+        $reviewData['country'] = $request->getAttribute("country")->id;
         $this->reviewData = $reviewData;
     }
 

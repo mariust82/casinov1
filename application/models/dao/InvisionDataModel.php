@@ -62,7 +62,7 @@ class InvisionDataModel{
         }
 
         if(!empty($syncData['updateComments'])){
-         
+
             //update comments
             foreach($syncData['updateComments'] as $id => $comment){
                 DB ("
