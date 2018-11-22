@@ -98,6 +98,7 @@ class TopMenu
     public function __construct($currentPage, $specific_page = '' ,$user_country = '') {
         $this->userCountry = $user_country;
         $this->setUserCountryInMenu();
+
         $this->setEntries($currentPage, $specific_page);
     }
 
@@ -139,6 +140,7 @@ class TopMenu
 
     private function setEntries($currentPage, $specific_page = '') {
         $selectedEntry = $this->getSelectedEntry($currentPage, $specific_page);
+
         foreach(self::$entries as $title=>$entry_data) {
             $object = new MenuItem();
             $object->title = $title;
@@ -189,11 +191,13 @@ class TopMenu
             case "countries-list/(name)":
                 return "COUNTRIES";
                 break;
+
             case "compatability":
             case "compatability/(name)":
-                return "COMPATIBILITY";
+                return "CASINOS";
                 break;
-            case "banking":
+
+                case "banking":
             case "banking/(name)":
                 return "BANKING";
                 break;
