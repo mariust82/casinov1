@@ -21,6 +21,7 @@ class CasinoReviews
             INNER JOIN countries AS t2 ON t1.country_id = t2.id
             LEFT JOIN casinos__ratings AS t3 ON t1.casino_id = t3.casino_id AND t1.ip = t3.ip
             WHERE t1.casino_id = :casino_id
+            AND t1.parent_id = 0
             ORDER BY t1.date DESC 
             LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT)."
         ",array(":casino_id"=>$casinoID));
@@ -51,7 +52,6 @@ class CasinoReviews
             while($row = $resultSet->toRow()) {
                 $output[$row["parent_id"]]->total_children = $row["nr"];
             }
-
             $resultSet = DB("
                 SELECT t1.*, t2.code AS country
                 FROM casinos__reviews AS t1
