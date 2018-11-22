@@ -9,6 +9,7 @@ var AJAX_CUR_PAGE = 1;
         initSite();
         initMobileMenu();
         new SearchPanel ( $('.header') );
+        $('.not-accepted').gray();
         
         var user_rate = $('.rating-container').data('user-rate');
         if (user_rate > 0) {
@@ -2195,6 +2196,7 @@ var AJAX_CUR_PAGE = 1;
                                     childs[i].classList.add('hidden');
                                     if (flag) {
                                         flag = false;
+                                        symbolsCount +=50;
                                         itemText = childs[i].innerText.substring(0,symbolsCount) + '... <span class="read_controll"></span>';
                                         createTextParagraf(itemText,childsHolder,childs[i]);
                                     }
