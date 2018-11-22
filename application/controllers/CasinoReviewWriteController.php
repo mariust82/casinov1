@@ -35,9 +35,15 @@ class CasinoReviewWriteController extends Controller
 
 
         $env = $this->application->getAttribute("environment");
+        $configInvSettings = $this->application->getXML()->invision_api->$env->invision;
+
+        if(empty($configInvSettings)){
+            throw new Exception('Invision settings is not set in config');
+        }
+
         $invsionInstanceAPI= new InvisionApi(
-            $this->application->getXML()->invision_api->$env->invision['api_key'],
-            $this->application->getXML()->invision_api->$env->invision['api_url']
+            $configInvSettings['api_key'],
+            $configInvSettings['api_url']
         );
 
         $invisionModel = new InvisionCommentsModel($invsionInstanceAPI);
