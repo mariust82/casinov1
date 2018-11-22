@@ -18,7 +18,6 @@ class ReviewsInvisionSync{
     }
 
     private function setCommentsForUpdate($invisionComments, $dbComments){
-
         // group reviews by invision id
         $reviewGrouppedById = [];
 
@@ -31,8 +30,9 @@ class ReviewsInvisionSync{
             if(!empty($reviewGrouppedById[$invisionComment['id']])){
 
                 $review = $reviewGrouppedById[$invisionComment['id']];
+                $reviewStatus = $review['status'] != ReviewStatuses::APPROVED ? true : false;
 
-                if($invisionComment['hidden'] != $review['hidden']){
+                if($invisionComment['hidden'] != $reviewStatus){
                     $this->updateComments[$review['id']] = $invisionComment;
                     continue;
                 }
