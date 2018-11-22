@@ -56,7 +56,7 @@ class InvisionCommentsModel{
                 $review->country = 34;
                 $review->parent = 0;
                 $review->review_invision_id = $comment['id'];
-                $review->hidden = !empty($comment['hidden']) ? ReviewStatuses::APPROVED : ReviewStatuses::DENIED;;
+                $review->status = !empty($comment['hidden']) ? ReviewStatuses::APPROVED : ReviewStatuses::DENIED;;
                 $review->invision_url = $comment['url'];
                 $object = new CasinoReviews();
                 $id = $object->insert($casino_id, $review);
@@ -86,12 +86,12 @@ class InvisionCommentsModel{
 
         $casinoData = [
             'blog' =>$blogId, // add to
+            'author' => 0,
             'title' => $casino_name,
-            // 'author' => 'hliscorp',
             'entry' => $casino_name
         ];
 
-        $result = $this->invisionApi->addReviewsToInvision($casinoData);
+        $result = $this->invisionApi->addCasinosToInvision($casinoData);
         return $result;
     }
 
