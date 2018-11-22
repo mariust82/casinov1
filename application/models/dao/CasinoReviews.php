@@ -88,8 +88,6 @@ class CasinoReviews
 
     public function insert($casinoID, CasinoReview $review) {
 
-
-
         if(!$casinoID)
             return false;
 

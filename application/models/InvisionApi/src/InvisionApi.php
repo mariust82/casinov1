@@ -9,32 +9,14 @@ class InvisionApi{
         $this->api_url = $api_url;
     }
 
-    private function initCurl($endpoint){
 
-        $endpoint_url = $this->api_url. $endpoint;
-        return curl_init( $endpoint_url);
-    }
 
     public function addCasinosToInvision(array $casinoData){
 
         if(empty($casinoData)){
             throw new Exception('casinoData id empty');
         }
-
-        $curl = $this->initCurl('api/blog/entries');
-
-        curl_setopt_array(
-            $curl,
-            array(
-                CURLOPT_RETURNTRANSFER	=> TRUE,
-                CURLOPT_HTTPAUTH	=> CURLAUTH_BASIC,
-                CURLOPT_USERPWD		=> $this->api_key.':',
-                CURLOPT_POST =>true,
-                CURLOPT_POSTFIELDS => $casinoData
-            )
-        );
-
-        return $this->execute($curl);
+        return $this->execute('api/blog/entries', true, $casinoData);
     }
 
 
@@ -44,19 +26,7 @@ class InvisionApi{
             throw new Exception('commentData is empty');
         }
 
-        $curl = $this->initCurl('api/blog/comments');
-        curl_setopt_array(
-            $curl,
-            array(
-                CURLOPT_RETURNTRANSFER	=> TRUE,
-                CURLOPT_HTTPAUTH	=> CURLAUTH_BASIC,
-                CURLOPT_USERPWD		=> $this->api_key.':',
-                CURLOPT_POST =>true,
-                CURLOPT_POSTFIELDS => $commentData
-            )
-        );
-
-        return $this->execute($curl);
+        return $this->execute('api/blog/comments', true, $commentData);
     }
 
 
@@ -66,21 +36,32 @@ class InvisionApi{
             throw new Exception('CasinoId is empty');
         }
 
-        $curl = $this->initCurl('api/blog/entries/'.$casinoId.'/comments');
-
-        curl_setopt_array( $curl,
-            array(
-                CURLOPT_RETURNTRANSFER	=> TRUE,
-                CURLOPT_HTTPAUTH	=> CURLAUTH_BASIC,
-                CURLOPT_USERPWD		=> $this->api_key.':',
-            ) );
-
-        return $this->execute($curl);
-
+        return $this->execute('api/blog/entries/'.$casinoId.'/comments', false);
     }
 
 
-    private function execute($curl){
+    private function execute($endpoint, $is_post=true, $data = []){
+
+        $endpoint_url = $this->api_url. $endpoint;
+        $curl = curl_init( $endpoint_url);
+
+        $curlOption = [
+            CURLOPT_RETURNTRANSFER	=> TRUE,
+            CURLOPT_RETURNTRANSFER	=> TRUE,
+            CURLOPT_HTTPAUTH	=> CURLAUTH_BASIC,
+            CURLOPT_USERPWD		=> $this->api_key.':',
+
+        ];
+
+        if(!empty($is_post)){
+            $curlOption[CURLOPT_POST] = true;
+        }
+
+        if(!empty($data) && !empty($is_post)){
+            $curlOption[CURLOPT_POSTFIELDS] = $data;
+        }
+
+        curl_setopt_array($curl, $curlOption );
         $response = curl_exec($curl);
         return  json_decode($response, true);
     }

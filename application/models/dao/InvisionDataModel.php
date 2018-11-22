@@ -1,10 +1,8 @@
 <?php
 require_once 'application/models/InvisionApi/src/InvisionApi.php';
-require_once 'application/models/dao/CasinoReviews.php';
 require_once 'application/models/ReviewsInvisionSync.php';
-require_once 'application/models/dao/ReviewStatuses.php';
 
-class InvisionCommentsModel{
+class InvisionDataModel{
 
     private $invisionApi;
 
@@ -56,7 +54,7 @@ class InvisionCommentsModel{
                 $review->country = 34;
                 $review->parent = 0;
                 $review->review_invision_id = $comment['id'];
-                $review->status = !empty($comment['hidden']) ? ReviewStatuses::APPROVED : ReviewStatuses::DENIED;;
+                $review->status = !empty($comment['status']) ? ReviewStatuses::APPROVED : ReviewStatuses::DENIED;
                 $review->invision_url = $comment['url'];
                 $object = new CasinoReviews();
                 $id = $object->insert($casino_id, $review);
@@ -70,11 +68,11 @@ class InvisionCommentsModel{
                 DB ("
                   UPDATE casinos__reviews SET
                   body = :body,
-                  hidden = :hidden
+                  status = :status
                   WHERE id = :id",
                     array(
                         ':body' => $comment['content'],
-                        ':hidden' => !empty($comment['hidden']) ? 1 :0,
+                        ':status' => empty($comment['hidden']) ? ReviewStatuses::APPROVED : ReviewStatuses::DENIED,
                         ':id' => $id
                     )
                 );
@@ -92,6 +90,7 @@ class InvisionCommentsModel{
         ];
 
         $result = $this->invisionApi->addCasinosToInvision($casinoData);
+
         return $result;
     }
 
