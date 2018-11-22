@@ -198,7 +198,7 @@ var AJAX_CUR_PAGE = 1;
 
     function grayscaleIE() {
         if (getInternetExplorerVersion() >= 10){
-            $('.grayscale').each(function(){
+            $('.not-accepted').each(function(){
                 var el = $(this);
                 el.css({"position":"absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position":"absolute","z-index":"5","opacity":"0"}).insertBefore(el).queue(function(){
                     var el = $(this);
