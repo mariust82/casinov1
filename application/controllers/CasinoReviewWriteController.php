@@ -1,6 +1,9 @@
 <?php
+
 require_once("application/models/dao/CasinoReviews.php");
 require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedException.php");
+require_once 'application/models/dao/Casinos.php';
+require_once 'application/models/dao/CasinoReviewsModel.php';
 
 /*
 * Writes a review on a casino
@@ -14,22 +17,15 @@ require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedExc
 * @requestParameter body string Review body
 * @requestParameter parent integer 0 or id of review replied to
 */
-class CasinoReviewWriteController extends Controller {
-	public function run() {
-        $review = new CasinoReview();
-        $review->name = strip_tags($_POST["name"]);
-        $review->email = strip_tags($_POST["email"]);
-        $review->body = strip_tags($_POST["body"]);
-        $review->ip = $this->request->getAttribute("ip");
-        $review->country = $this->request->getAttribute("country")->id;
-        $review->parent = (integer) $_POST["parent"];
+class CasinoReviewWriteController extends Controller
+{
 
-        $object = new CasinoReviews();
-        $id = $object->insert($_POST["casino"], $review);
-        if($id) {
-            $this->response->setAttribute("id", $id);
-        } else {
-            throw new OperationFailedException("Casino not found!");
-        }
-	}
+    public function run()
+    {
+        $reviewModelObj = new CasinoReviewsModel($this->application, $this->request);
+        $reviewModelObj->saveReview();
+        $this->response->setAttribute("id", $reviewModelObj->getReviewId());
+        $this->response->setAttribute("review_invision_id", $reviewModelObj->getReviewInvisionId());
+    }
 }
+

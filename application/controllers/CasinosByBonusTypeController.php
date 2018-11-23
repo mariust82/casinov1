@@ -35,5 +35,16 @@ class CasinosByBonusTypeController extends CasinosListController {
         return "bonus_type";
     }
 
+    protected function pageInfo(){
+
+        // get page info
+        $url = $this->request->getValidator()->getPage();
+        $object = new PageInfoDAO();
+        if ($this->getSelectedEntity() === 'No Deposit Bonus'){
+            $url = str_replace('(name)', 'no-deposit-bonus', $url);
+        }
+
+        $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $this->response->getAttribute("total_casinos")));
+    }
 
 }

@@ -3,6 +3,8 @@ require_once("application/models/dao/CasinoInfo.php");
 require_once("application/models/dao/CasinoReviews.php");
 require_once("application/models/dao/CasinosMenu.php");
 require_once("BaseController.php");
+
+
 /*
 * Info/review page of casino
 * 
@@ -12,7 +14,9 @@ require_once("BaseController.php");
 * @pathParameter name string Name of casino
 */
 class CasinoInfoController extends BaseController {
+
 	public function service() {
+
 		$this->response->setAttribute("country", $this->request->getAttribute("country"));
 
 		// validate inputs
@@ -21,16 +25,25 @@ class CasinoInfoController extends BaseController {
 
 		// get casino info
 		$object = new CasinoInfo(str_replace("-"," ", $casinoName), $this->request->getAttribute("country")->id);
-		$info = $object->getResult();
-		if(empty($info)) throw new PathNotFoundException();
-                $this->response->setAttribute("casino", $info);
-                $this->response->setAttribute("user_score", $object->getUserVote($info->id,  $this->request->getAttribute('ip')) == FALSE?0:$object->getUserVote($info->id,  $this->request->getAttribute('ip')));
+        $info = $object->getResult();
+
+		if(empty($info)){
+		    throw new PathNotFoundException();
+        }
+
+        $this->response->setAttribute("casino", $info);
+        $this->response->setAttribute("user_score",
+            $object->getUserVote(
+            $info->id,
+            $this->request->getAttribute('ip')) == FALSE ? 0: $object->getUserVote($info->id,  $this->request->getAttribute('ip')));
 
         // get reviews
         $object = new CasinoReviews();
+
         $total = $object->getAllTotal($info->id);
+
         if($total>0) {
-            $this->response->setAttribute("total_reviews", $total);
+            $this->response->setAttribute("total_reviews",$total);
             $this->response->setAttribute("reviews", $object->getAll($info->id, 0, 0));
         } else {
             $this->response->setAttribute("total_reviews", 0);
@@ -43,4 +56,5 @@ class CasinoInfoController extends BaseController {
         $object = new PageInfoDAO();
         $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("casino")->name));
     }
+
 }
