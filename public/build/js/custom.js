@@ -2244,13 +2244,13 @@ var AJAX_CUR_PAGE = 1;
                         if (childs.length > 1) {
                             var flag = true;
                             for(var i = 0; i<childs.length; i++) {
-                                var contentLenght =  childs[i].innerText.trim();
+                                var contentLenght =  childs[i].innerHTML.trim();
                                 if (contentLenght.length > symbolsCount || contentLenght.length == 0) {
                                     childs[i].classList.add('hidden');
                                     if (flag) {
                                         flag = false;
-                                        symbolsCount +=50;
-                                        itemText = childs[i].innerText.substring(0,symbolsCount) + '... <span class="read_controll"></span>';
+                                        symbolsCount +=250;
+                                        itemText = childs[i].innerHTML.substring(0,symbolsCount) + '... <span class="read_controll"></span>';
                                         createTextParagraf(itemText,childsHolder,childs[i]);
                                     }
                                 }else if(flag === false){
