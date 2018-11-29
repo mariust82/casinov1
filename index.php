@@ -1,7 +1,10 @@
 <?php
-
-require_once("hlis/sitebase/profilers/SiteProfiler.php");
-$bm = new SiteProfiler($benchmark = false);
+$benchmark = false;
+if($benchmark) {
+    require_once("hlis/profilers/PageProfiler.php");
+    $bm = new PageProfiler();
+    $bm->start();
+}
 
 // take control of STDERR
 require_once("src/error_handling/ErrorsFrontController.php");
@@ -14,4 +17,8 @@ try {
 } catch (PathNotFoundException $e) {
     $_SERVER["REQUEST_URI"] = "/404";
     new FrontController("configuration.xml");
+}
+
+if($benchmark) {
+    $bm->end();
 }

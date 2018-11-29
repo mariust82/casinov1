@@ -1,5 +1,5 @@
 <?php
-require_once("hlis/sitebase/errors/ErrorInfoGenerator.php");
+require_once("hlis/error_handler/ErrorInfoGenerator.php");
 
 class AsyncLogger extends Logger
 {
