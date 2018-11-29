@@ -700,11 +700,16 @@ var AJAX_CUR_PAGE = 1;
                 }
 
                 // _ajaxDataParams['page'] = AJAX_CUR_PAGE;
+                if(_ajaxDataParams["label"]!=undefined && _ajaxDataParams["label"]=="Mobile") {
+                    _ajaxDataParams["compatibility"] = "mobile";
+                    delete _ajaxDataParams.label;
+                }
 
                 return _ajaxDataParams;
             }
 
             _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
+
                 $('.overlay, .loader').fadeIn('fast');
 
                 if (BUSY_REQUEST) return;

@@ -8,7 +8,7 @@ class CasinosMenu
         "/{page}"=>"{entity} Casinos",
         "/bonus-list/no-deposit-bonus"=>"No Deposit Casinos",
         "/casinos/best"=>"Best Casinos",
-        "/compatability/mobile"=>"Mobile Casinos",
+        "/casinos/mobile"=>"Mobile Casinos",
         "/casinos/new"=>"New Casinos",
         "/casinos/stay-away"=>"Stay Away Casinos",
         "/casinos"=>"All Casinos",
@@ -88,8 +88,8 @@ class CasinosMenu
             case "casinos/new":
                 return "/casinos/new";
                 break;
-            case "compatability/mobile":
-                return "/compatability/mobile";
+            case "casinos/mobile":
+                return "/casinos/mobile";
                 break;
             case "casinos/recommended":
                 return "/casinos/recommended";
