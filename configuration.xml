@@ -44,14 +44,14 @@
         <listener class="EnvironmentDetector"/>
         <listener class="AsyncListener"/>
         <listener class="SQLDataSourceInjector"/>
-        <!--<listener class="NoSQLDataSourceInjector"/>-->
+        <listener class="NoSQLDataSourceInjector"/>
         <listener class="ErrorListener"/>
         <listener class="RebrandingListener"/>
         <listener class="IPDetectionListener"/>
         <listener class="MobileDetectionListener"/>
         <listener class="TMSListener"/>
         <listener class="ViewLanguageResolver"/>
-        <!-- <listener class="HttpCachingListener"/>-->
+        <listener class="HTTPCachingListener"/>
     </listeners>
     <errors>
         <lucinda>
