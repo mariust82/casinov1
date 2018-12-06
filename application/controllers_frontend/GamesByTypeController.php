@@ -122,13 +122,13 @@ $this->response->setAttribute("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->setAttribute("selected_entity", 'Video Slots');
+$this->response->setAttribute("selected_entity", 'Baccarat');
 $this->response->setAttribute("menu_bottom", array (
   0 => 
   array (
     'title' => 'Video Slots',
     'url' => '/games/video-slots',
-    'is_active' => true,
+    'is_active' => false,
     'submenuItems' => 
     array (
     ),
@@ -218,7 +218,7 @@ $this->response->setAttribute("menu_bottom", array (
   array (
     'title' => 'Baccarat',
     'url' => '/games/baccarat',
-    'is_active' => false,
+    'is_active' => true,
     'submenuItems' => 
     array (
     ),
@@ -441,14 +441,14 @@ $this->response->setAttribute("software", array (
 ));
 $this->response->setAttribute("filter", array (
 ));
-$this->response->setAttribute("total_games", 4458);
+$this->response->setAttribute("total_games", 33);
 $this->response->setAttribute("games", array (
-  6873 => 
+  6867 => 
   array (
-    'id' => '6873',
-    'name' => 'Divine Fortune',
+    'id' => '6867',
+    'name' => 'LuckyStreak Baccarat',
     'type' => NULL,
-    'software' => 'NetEnt',
+    'software' => 'LuckyStreak',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -459,12 +459,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6872 => 
+  6490 => 
   array (
-    'id' => '6872',
-    'name' => 'UFC',
+    'id' => '6490',
+    'name' => 'Digital Gaming Solutions Baccarat',
     'type' => NULL,
-    'software' => 'Endemol Games',
+    'software' => 'Digital Gaming Solutions',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -475,12 +475,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6871 => 
+  6415 => 
   array (
-    'id' => '6871',
-    'name' => 'Hulkamania',
+    'id' => '6415',
+    'name' => 'NuWorks Baccarat',
     'type' => NULL,
-    'software' => 'Endemol Games',
+    'software' => 'NuWorks',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -491,12 +491,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6865 => 
+  6338 => 
   array (
-    'id' => '6865',
-    'name' => 'Planet of the Apes',
+    'id' => '6338',
+    'name' => 'Visionary iGaming Baccarat',
     'type' => NULL,
-    'software' => 'NetEnt',
+    'software' => 'Visionary iGaming',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -507,12 +507,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6864 => 
+  6329 => 
   array (
-    'id' => '6864',
-    'name' => 'Emoji Planet',
+    'id' => '6329',
+    'name' => 'Takisto Baccarat Pro',
     'type' => NULL,
-    'software' => 'NetEnt',
+    'software' => 'Takisto',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -523,12 +523,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6863 => 
+  6328 => 
   array (
-    'id' => '6863',
-    'name' => 'Wolf Cub',
+    'id' => '6328',
+    'name' => 'Takisto Baccarat',
     'type' => NULL,
-    'software' => 'NetEnt',
+    'software' => 'Takisto',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -539,12 +539,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6862 => 
+  6293 => 
   array (
-    'id' => '6862',
-    'name' => 'Blood Suckers II',
+    'id' => '6293',
+    'name' => '888 Software Baccarat',
     'type' => NULL,
-    'software' => 'NetEnt',
+    'software' => '888 Software',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -555,12 +555,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6861 => 
+  5257 => 
   array (
-    'id' => '6861',
-    'name' => 'Lucky Xmas',
+    'id' => '5257',
+    'name' => 'Saucify Punto Banco',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'Saucify',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -571,12 +571,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6860 => 
+  5002 => 
   array (
-    'id' => '6860',
-    'name' => 'Singles Day',
+    'id' => '5002',
+    'name' => 'Baccarat Privee',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'World Match',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -587,12 +587,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6859 => 
+  4938 => 
   array (
-    'id' => '6859',
-    'name' => 'Crazy Gems',
+    'id' => '4938',
+    'name' => 'SoftSwiss Baccarat',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'SoftSwiss',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -603,12 +603,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6858 => 
+  4896 => 
   array (
-    'id' => '6858',
-    'name' => 'Hunting Party',
+    'id' => '4896',
+    'name' => 'Skill On Net Baccarat',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'Skill On Net',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -619,12 +619,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6857 => 
+  4574 => 
   array (
-    'id' => '6857',
-    'name' => 'Kailash Mystery',
+    'id' => '4574',
+    'name' => 'Tom Horn Gaming Baccarat',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'Tom Horn Gaming',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -635,12 +635,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6856 => 
+  4434 => 
   array (
-    'id' => '6856',
-    'name' => 'Kangaliens',
+    'id' => '4434',
+    'name' => 'iSoftBet Punto Banco',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'iSoftBet',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -651,12 +651,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6855 => 
+  4265 => 
   array (
-    'id' => '6855',
-    'name' => 'Fruity Frost',
+    'id' => '4265',
+    'name' => 'VIP Multihand Baccarat',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'Games OS',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -667,12 +667,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6854 => 
+  4056 => 
   array (
-    'id' => '6854',
-    'name' => 'Thunder Zeus',
+    'id' => '4056',
+    'name' => 'Pragmatic Play Baccarat',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'Pragmatic Play',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -683,12 +683,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6852 => 
+  3546 => 
   array (
-    'id' => '6852',
-    'name' => 'Halloween Witch',
+    'id' => '3546',
+    'name' => 'Bookie Baccarat',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'Bookie',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -699,12 +699,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6851 => 
+  2868 => 
   array (
-    'id' => '6851',
-    'name' => 'Secret of Nefertiti',
+    'id' => '2868',
+    'name' => 'Baccarat Gold',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'MicroGaming',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -715,12 +715,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6850 => 
+  2699 => 
   array (
-    'id' => '6850',
-    'name' => 'Gods Temple',
+    'id' => '2699',
+    'name' => 'Betsoft Baccarat',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'BetSoft',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -731,12 +731,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6849 => 
+  2665 => 
   array (
-    'id' => '6849',
-    'name' => 'Christmas Charm',
+    'id' => '2665',
+    'name' => 'Rival Baccarat',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'Rival',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -747,12 +747,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6848 => 
+  1980 => 
   array (
-    'id' => '6848',
-    'name' => 'Happy Chinese New Year',
+    'id' => '1980',
+    'name' => '1X2Gaming Baccarat',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => '1X2 Gaming',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -763,12 +763,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6847 => 
+  1762 => 
   array (
-    'id' => '6847',
-    'name' => 'Patricks Pub',
+    'id' => '1762',
+    'name' => 'No Commission Baccarat',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'Amaya Gaming',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -779,12 +779,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6846 => 
+  1695 => 
   array (
-    'id' => '6846',
-    'name' => 'African Spirit',
+    'id' => '1695',
+    'name' => 'Amaya Gaming Baccarat',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'Amaya Gaming',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -795,12 +795,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6845 => 
+  1545 => 
   array (
-    'id' => '6845',
-    'name' => 'Hells Band',
+    'id' => '1545',
+    'name' => 'Mini Baccarat Mobile',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'Play n GO',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -811,12 +811,12 @@ $this->response->setAttribute("games", array (
     'times_played' => '0',
     'play' => NULL,
   ),
-  6844 => 
+  1473 => 
   array (
-    'id' => '6844',
-    'name' => 'Diego Fortune',
+    'id' => '1473',
+    'name' => 'Mini Baccarat',
     'type' => NULL,
-    'software' => 'Booongo',
+    'software' => 'Play n GO',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -829,13 +829,11 @@ $this->response->setAttribute("games", array (
   ),
 ));
 $this->response->setAttribute("tms", array (
-  'text_1' => '<p>games/video-slots</p>
-',
 ));
 $this->response->setAttribute("page_info", array (
-  'head_title' => 'Video Slots Games List | Play for Fun - 2018',
-  'head_description' => 'Free Video Slots Games List | Play Video Slots Demo Games for Free! Full List of Video Slots Games at CasinosLists.com - 2018',
-  'body_title' => 'Video Slots Games List December 2018',
+  'head_title' => 'Baccarat Games List | Play for Fun - 2018',
+  'head_description' => 'Free Baccarat Games List | Play Baccarat Demo Games for Free! Full List of Baccarat Games at CasinosLists.com - 2018',
+  'body_title' => 'Baccarat Games List December 2018',
 ));
 $this->response->setAttribute("version", '0.8.3.6');
 
