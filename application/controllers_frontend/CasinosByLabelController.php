@@ -1,146 +1,238 @@
 <?php
 class CasinosByLabelController extends Controller {
     public function run() {
-        $this->response->setAttribute("selected_entity", 'Live Dealer');
+        $this->response->setAttribute("country", array (
+  'id' => '34',
+  'code' => 'US',
+  'name' => 'United States',
+));
 $this->response->setAttribute("menu_top", array (
   0 => 
+  array (
+    'title' => 'NO DEPOSIT CASINOS',
+    'url' => '/bonus-list/no-deposit-bonus',
+    'is_active' => false,
+    'submenuItems' => 
+    array (
+    ),
+    'have_submenu' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'NEW CASINOS',
+    'url' => '/casinos/new',
+    'is_active' => true,
+    'submenuItems' => 
+    array (
+    ),
+    'have_submenu' => false,
+  ),
+  2 => 
   array (
     'title' => 'CASINOS',
     'url' => '/casinos',
     'is_active' => false,
+    'submenuItems' => 
+    array (
+      'Best Casinos' => '/casinos/best',
+      'Live Casinos' => '/features/live-dealer',
+      'Mobile Casinos' => '/casinos/mobile',
+      'eCOGRA Casinos' => '/features/ecogra-casinos',
+      'Stay Away Casinos' => '/casinos/stay-away',
+      'Popular Casinos' => '/casinos/popular',
+      'All Casinos' => '/casinos',
+    ),
+    'have_submenu' => true,
   ),
-  1 => 
+  3 => 
   array (
     'title' => 'SOFTWARES',
     'url' => '/softwares',
     'is_active' => false,
+    'submenuItems' => 
+    array (
+      'RTG Casinos' => '/softwares/rtg',
+      'Rival Casinos' => '/softwares/rival',
+      'NetEnt Casinos' => '/softwares/netent',
+      'Playtech Casinos' => '/softwares/playtech',
+      'MicroGaming Casinos' => '/softwares/microgaming',
+      'BetSoft Casinos' => '/softwares/betsoft',
+      'Saucify Casinos' => '/softwares/saucify',
+      'Cryptologic Casinos' => '/softwares/cryptologic',
+      'All Softwares' => '/softwares',
+    ),
+    'have_submenu' => true,
   ),
-  2 => 
-  array (
-    'title' => 'BONUSES',
-    'url' => '/bonus-list',
-    'is_active' => false,
-  ),
-  3 => 
+  4 => 
   array (
     'title' => 'COUNTRIES',
     'url' => '/countries',
     'is_active' => false,
-  ),
-  4 => 
-  array (
-    'title' => 'COMPATIBILITY',
-    'url' => '/compatability',
-    'is_active' => false,
+    'submenuItems' => 
+    array (
+      'USA Casinos' => '/countries-list/united-states',
+      'UK Casinos' => '/countries-list/united-kingdom',
+      'Australia Casinos' => '/countries-list/australia',
+      'Germany Casinos' => '/countries-list/germany',
+      'New Zealand Casinos' => '/countries-list/new-zealand',
+      'Netherlands Casinos' => '/countries-list/netherlands',
+      'Sweden Casinos' => '/countries-list/sweden',
+      'All Countries' => '/countries ',
+    ),
+    'have_submenu' => true,
   ),
   5 => 
   array (
     'title' => 'BANKING',
     'url' => '/banking',
     'is_active' => false,
+    'submenuItems' => 
+    array (
+      'Neteller Casinos' => '/banking/neteller',
+      'Skrill Moneybookers Casinos' => '/banking/skrill-moneybookers',
+      'PayPal Casinos' => '/banking/paypal',
+      'Bitcoin Wallets Casinos' => '/banking/bitcoin-wallets',
+      'EcoPayz EcoCard Casinos' => '/banking/ecopayz',
+      'Paysafe Card' => '/banking/paysafe-card',
+      'All Banking' => '/banking',
+    ),
+    'have_submenu' => true,
   ),
   6 => 
-  array (
-    'title' => 'FEATURES',
-    'url' => '/features',
-    'is_active' => true,
-  ),
-  7 => 
   array (
     'title' => 'GAMES',
     'url' => '/games',
     'is_active' => false,
+    'submenuItems' => 
+    array (
+      'Video Slots' => '/games/video-slots',
+      'Classic Slots' => '/games/classic-slots',
+      'Video Poker' => '/games/video-poker',
+      'Scratch Cards' => '/games/scratch-cards',
+      'Blackjack' => '/games/blackjack',
+      'Roulette' => '/games/roulette',
+      'Table Games' => '/games/table-games',
+      'Bingo' => '/games/bingo',
+      'Baccarat' => '/games/baccarat',
+      'Craps' => '/games/craps',
+      'Keno' => '/games/keno',
+      'Other' => '/games/other',
+      'All Games' => '/games',
+    ),
+    'have_submenu' => true,
   ),
 ));
+$this->response->setAttribute("selected_entity", 'New');
+$this->response->setAttribute("is_mobile", false);
 $this->response->setAttribute("menu_bottom", array (
   0 => 
   array (
     'title' => 'United States Casinos',
     'url' => '/countries-list/united-states',
     'is_active' => false,
+    'submenuItems' => 
+    array (
+    ),
+    'have_submenu' => false,
   ),
   1 => 
-  array (
-    'title' => 'Live Dealer Casinos',
-    'url' => '/features/live-dealer',
-    'is_active' => true,
-  ),
-  2 => 
   array (
     'title' => 'No Deposit Casinos',
     'url' => '/bonus-list/no-deposit-bonus',
     'is_active' => false,
+    'submenuItems' => 
+    array (
+    ),
+    'have_submenu' => false,
   ),
-  3 => 
+  2 => 
   array (
     'title' => 'Best Casinos',
     'url' => '/casinos/best',
     'is_active' => false,
+    'submenuItems' => 
+    array (
+    ),
+    'have_submenu' => false,
+  ),
+  3 => 
+  array (
+    'title' => 'Mobile Casinos',
+    'url' => '/casinos/mobile',
+    'is_active' => false,
+    'submenuItems' => 
+    array (
+    ),
+    'have_submenu' => false,
   ),
   4 => 
   array (
-    'title' => 'Safe Casinos',
-    'url' => '/casinos/safe',
-    'is_active' => false,
-  ),
-  5 => 
-  array (
     'title' => 'New Casinos',
     'url' => '/casinos/new',
-    'is_active' => false,
+    'is_active' => true,
+    'submenuItems' => 
+    array (
+    ),
+    'have_submenu' => false,
   ),
-  6 => 
-  array (
-    'title' => 'Recommended Casinos',
-    'url' => '/casinos/recommended',
-    'is_active' => false,
-  ),
-  7 => 
+  5 => 
   array (
     'title' => 'Stay Away Casinos',
     'url' => '/casinos/stay-away',
     'is_active' => false,
+    'submenuItems' => 
+    array (
+    ),
+    'have_submenu' => false,
+  ),
+  6 => 
+  array (
+    'title' => 'All Casinos',
+    'url' => '/casinos',
+    'is_active' => false,
+    'submenuItems' => 
+    array (
+    ),
+    'have_submenu' => false,
   ),
 ));
-$this->response->setAttribute("country", array (
-  'id' => '34',
-  'code' => 'US',
-  'name' => 'United States',
-));
-$this->response->setAttribute("total_casinos", 512);
+$this->response->setAttribute("sort_criteria", 3);
+$this->response->setAttribute("filter", 'label');
+$this->response->setAttribute("total_casinos", '2');
 $this->response->setAttribute("casinos", array (
   0 => 
   array (
-    'id' => '257',
-    'code' => 'Jackpot Capital',
-    'name' => 'Jackpot Capital',
+    'id' => '1372',
+    'name' => 'Bronze Casino',
+    'code' => 'bronze_casino',
     'rating' => 0,
     'softwares' => 
     array (
-      0 => 'RTG',
+      0 => 'NetEnt',
+      1 => 'NextGen Gaming',
+      2 => 'BetSoft',
+      3 => 'Playson',
+      4 => 'Play n GO',
+      5 => 'Booming Games',
+      6 => 'Spinomenal',
+      7 => 'MrSlotty Games',
+      8 => 'Fugaso',
+      9 => 'Booongo',
     ),
     'languages' => NULL,
     'currencies' => NULL,
     'bonus_first_deposit' => 
     array (
-      'amount' => '150% + 20 FS',
-      'min_deposit' => '$20',
+      'amount' => '200% + 50 FS',
+      'min_deposit' => '€20',
       'wagering' => '30x(D+B)',
-      'games_allowed' => 'All (FS - Ninja Star)',
-      'code' => 'BIGFREECHIPLIST300',
+      'games_allowed' => 'All (FS - Betsoft)',
+      'code' => 'No code required',
       'type' => 'First Deposit Bonus',
     ),
-    'bonus_free' => 
-    array (
-      'amount' => '$25',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'Slots,Keno & 7 Stud Poker,Pai Gow Poker',
-      'code' => 'THEBIGFREECHIPLIST',
-      'type' => 'No Deposit Bonus',
-    ),
+    'bonus_free' => NULL,
     'is_live_dealer' => NULL,
-    'date_established' => '2008-01-01',
+    'date_established' => '2018-01-02',
     'emails' => NULL,
     'phones' => NULL,
     'is_live_chat' => NULL,
@@ -153,106 +245,19 @@ $this->response->setAttribute("casinos", array (
     'withdrawal_timeframes' => NULL,
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
+    'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'invision_casino_id' => NULL,
+    'date_formatted' => 'Jan. 02, 2018',
+    'status' => '0',
   ),
   1 => 
   array (
-    'id' => '878',
-    'code' => 'Jackpot Capital',
-    'name' => 'Stake7 Casino',
-    'rating' => 0,
-    'softwares' => 
-    array (
-      0 => 'Merkur Gaming',
-      1 => 'Blueprint Gaming',
-      2 => 'Bally',
-      3 => 'Scientific Games',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '€10',
-      'wagering' => '24x(D+B)',
-      'games_allowed' => 'All',
-      'code' => 'FD100',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2013-07-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-  ),
-  2 => 
-  array (
-    'id' => '785',
-    'code' => 'Jackpot Capital',
-    'name' => 'VegasCasino.io',
-    'rating' => 0,
-    'softwares' => 
-    array (
-      0 => 'BetSoft',
-      1 => 'Quickspin',
-      2 => 'Ezugi',
-      3 => 'Play n GO',
-      4 => 'Endorphina',
-      5 => 'GameArt',
-      6 => 'Booming Games',
-      7 => 'Pragmatic Play',
-      8 => 'BetGames',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '150%',
-      'min_deposit' => '0.001 ........ .... .. . BTC.',
-      'wagering' => '35xB',
-      'games_allowed' => 'All',
-      'code' => 'WELCOME150',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2014-12-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-  ),
-  3 => 
-  array (
-    'id' => '340',
-    'code' => 'Jackpot Capital',
-    'name' => 'Exclusive Casino',
+    'id' => '1369',
+    'name' => 'UpTown Pokies Casino',
+    'code' => 'uptown_pokies_casino',
     'rating' => 0,
     'softwares' => 
     array (
@@ -263,304 +268,23 @@ $this->response->setAttribute("casinos", array (
     'bonus_first_deposit' => 
     array (
       'amount' => '250%',
-      'min_deposit' => '$/€30',
-      'wagering' => '0',
-      'games_allowed' => 'Slots & Keno',
-      'code' => 'TBFCL250',
+      'min_deposit' => '20 AU$',
+      'wagering' => '35x(D+B)',
+      'games_allowed' => 'Slots, Keno, Scratch Cards',
+      'code' => 'POKIES1',
       'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
-      'amount' => '50',
+      'amount' => '10 AU$',
       'min_deposit' => '',
-      'wagering' => '30xB',
-      'games_allowed' => 'All except Roulette,Craps & Baccarat,Sic Bo,War,Pai-Gow Poker',
-      'code' => 'TBFCL50S',
-      'type' => 'Free Spins',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2012-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-  ),
-  4 => 
-  array (
-    'id' => '1171',
-    'code' => 'Jackpot Capital',
-    'name' => '1xBit Casino',
-    'rating' => 0,
-    'softwares' => 
-    array (
-      0 => 'NetEnt',
-      1 => 'Evolution Gaming',
-      2 => 'Novomatic',
-      3 => 'Playtech',
-      4 => 'BetSoft',
-      5 => 'EGT',
-      6 => 'IGT',
-      7 => 'Aristocrat',
-      8 => 'Amatic Industries',
-      9 => 'Pragmatic Play',
-      10 => 'XPG',
-      11 => 'Ezugi',
-      12 => 'Tom Horn',
-      13 => 'Playson',
-      14 => 'Igrosoft',
-      15 => 'Play n GO',
-      16 => 'Endorphina',
-      17 => 'GameArt',
-      18 => 'MicroGaming',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '0.005 BTC',
-      'wagering' => '5xB',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2007-09-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-  ),
-  5 => 
-  array (
-    'id' => '1124',
-    'code' => 'Jackpot Capital',
-    'name' => 'Bet East Casino',
-    'rating' => 0,
-    'softwares' => 
-    array (
-      0 => 'Ezugi',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '200%',
-      'min_deposit' => '$/€/£10',
-      'wagering' => '35x(D+B)',
-      'games_allowed' => 'All except BlackJack,Roulette and Table Games',
-      'code' => '200FIRST',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2016-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-  ),
-  6 => 
-  array (
-    'id' => '1091',
-    'code' => 'Jackpot Capital',
-    'name' => 'Bitcoin Penguin Casino',
-    'rating' => 0,
-    'softwares' => 
-    array (
-      0 => 'SoftSwiss',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '0.1 BTC',
-      'wagering' => '35x(D+B)',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2014-06-17',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-  ),
-  7 => 
-  array (
-    'id' => '1065',
-    'code' => 'Jackpot Capital',
-    'name' => 'Betive Casino',
-    'rating' => 0,
-    'softwares' => 
-    array (
-      0 => 'NetEnt',
-      1 => 'NextGen Gaming',
-      2 => 'MicroGaming',
-      3 => 'iSoftBet',
-      4 => 'Evolution Gaming',
-      5 => 'Quickspin',
-      6 => 'Quickfire',
-      7 => 'ELK Studios',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '€10',
-      'wagering' => '45xB',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '20',
-      'min_deposit' => '',
-      'wagering' => '45xB',
-      'games_allowed' => 'Starbust,Aloha! Cluster Pays,Pyramid: Quest for Immortality,Attraction,Lights',
-      'code' => 'No code required',
-      'type' => 'Free Spins',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2016-07-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-  ),
-  8 => 
-  array (
-    'id' => '1064',
-    'code' => 'Jackpot Capital',
-    'name' => 'HRwager Casino',
-    'rating' => 0,
-    'softwares' => 
-    array (
-      0 => 'SoftSwiss',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '500%',
-      'min_deposit' => '$0100',
-      'wagering' => '35x(D+B)',
-      'games_allowed' => 'All except Craps,Roulette and Dice Games',
-      'code' => 'WELCOME500',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2012-12-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-  ),
-  9 => 
-  array (
-    'id' => '1039',
-    'code' => 'Jackpot Capital',
-    'name' => 'Planet Kings Casino',
-    'rating' => 0,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '333%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£33',
-      'min_deposit' => '',
-      'wagering' => '50xB',
-      'games_allowed' => 'Slots',
-      'code' => 'No code required',
+      'wagering' => '60xB',
+      'games_allowed' => 'Slots, Keno, Scratch Cards',
+      'code' => 'GDAY10',
       'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
-    'date_established' => '2016-11-01',
+    'date_established' => '2017-12-19',
     'emails' => NULL,
     'phones' => NULL,
     'is_live_chat' => NULL,
@@ -576,15 +300,24 @@ $this->response->setAttribute("casinos", array (
     'is_country_accepted' => '1',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'invision_casino_id' => NULL,
+    'date_formatted' => 'Dec. 19, 2017',
+    'status' => '0',
   ),
 ));
 $this->response->setAttribute("page_info", array (
-  'head_title' => 'Live Dealer Casinos List | Find All Live Dealer  Casinos - 2018',
-  'head_description' => 'Live Dealer Online Casinos List | Choose a Live Dealer Casino to Play at! CasinosLists.com - 2018',
-  'body_title' => 'Live Dealer List',
+  'head_title' => 'New Online Casino Sites List - 2018',
+  'head_description' => 'New  Online Casinos List | Full Information about all the New Online Casinos, CasinosLists.com is giving you only verified and updated details – 2018',
+  'body_title' => 'New Online Casinos December 2018',
 ));
+$this->response->setAttribute("version", '0.8.3.6');
+$this->response->setAttribute("tms", array (
+  'upper_text' => '<p><strong>Lorem ipsum</strong>&nbsp;is a pseudo-Latin text used in web design, typography, layout, and printing in place of English to emphasise design elements over content. It&#39;s also called placeholder (or filler) text. It&#39;s a convenient tool for mock-ups. It helps to outline the <a href="http://www.example.com">visual </a><strong>elements </strong>of a <em>document </em>or <u>presentation</u>, eg typography, font, or layout. Lorem ipsum is mostly a part of a Latin text by the classical author and philosopher Cicero. Its <strong>WO</strong>rdsandletters have been changed by addition or removal, so to deliberately render its content nonsensical; it&#39;s not genuine, correct, or comprehensible Latin anymore. While&nbsp;<strong>lorem ipsum</strong>&#39;s still resembles classical Latin, it actually has no meaning whatsoever. As Cicero&#39;s text doesn&#39;t contain the letters K, W, or Z, alien to latin, these, and others are often inserted randomly to mimic the typographic appearence of European languages, as are digraphs not to be found in the original.</p>
 
-$this->response->setAttribute("is_mobile", NULL);
+<p>In a professional context it often happens that private or corporate clients corder a publication to be made and presented with the actual content still not being ready. Think of a news blog that&#39;s filled with content hourly on the day of going live. However, reviewers tend to be distracted by comprehensible content, say, a random text copied from a newspaper or the internet. The are likely to focus on the text, disregarding the layout and its elements. Besides, random text risks to be unintendedly humorous or offensive, an unacceptable risk in corporate environments.&nbsp;<strong>Lorem ipsum</strong>&nbsp;and its many variants have been employed since the early 1960ies, and quite likely since the sixteenth century.</p>
+',
+));
 
     }
 }
