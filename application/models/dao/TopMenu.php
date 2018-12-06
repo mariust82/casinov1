@@ -77,7 +77,7 @@ class TopMenu
             "item_url" =>"/games",
             "sub_items"=>[
                 'Video Slots' => '/games/video-slots',
-                'Classic Slots' => '/games/classic-slots',
+                'Classic Slots' => '/games/slots',
                 'Video Poker' => '/games/video-poker',
                 'Scratch Cards' => '/games/scratch-cards',
                 'Blackjack' => '/games/blackjack',
