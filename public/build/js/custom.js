@@ -2254,7 +2254,11 @@ var AJAX_CUR_PAGE = 1;
                                     childs[i].classList.add('hidden');
                                     if (flag) {
                                         flag = false;
-                                        symbolsCount +=250;
+                                        if ($(window).width() <= 480) {
+                                            symbolsCount = 180;
+                                        } else {
+                                            symbolsCount += 250;
+                                        }
                                         itemText = childs[i].innerHTML.substring(0,symbolsCount) + '... <span class="read_controll"></span>';
                                         createTextParagraf(itemText,childsHolder,childs[i]);
                                     }
