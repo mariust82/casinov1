@@ -15,8 +15,9 @@ RewriteRule ^compatability$ / [R=301,L]
 RewriteRule ^compatability/mac$ / [R=301,L]
 RewriteRule ^compatability/linux$ / [R=301,L]
 RewriteRule ^compatability/flash$ / [R=301,L]
-RewriteRule ^compatability/iphone$ /compatability/mobile [R=301,L]
-RewriteRule ^compatability/android$ /compatability/mobile [R=301,L]
+RewriteRule ^compatability/iphone$ /casinos/mobile [R=301,L]
+RewriteRule ^compatability/android$ /casinos/mobile [R=301,L]
+RewriteRule ^compatability/mobile$ /casinos/mobile [R=301,L]
 RewriteRule ^features$ / [R=301,L]
 RewriteRule ^features/high-roller-casinos$ / [R=301,L]
 RewriteRule ^features/jackpot-casinos$ / [R=301,L]
@@ -26,6 +27,8 @@ Options -Indexes
 ErrorDocument 404 default
 RewriteRule ^favicon\.ico$ public/favicon.ico
 RewriteCond %{REQUEST_URI} !^/public
+RewriteCond %{REQUEST_URI} !^/synchronize.php
+RewriteCond %{REQUEST_URI} !^/sync
 RewriteCond %{REQUEST_URI} !^/BingSiteAuth.xml
 # Redirects all requests to bootstrap, except those pointing at public/ folder
 RewriteRule ^(.*)$ index.php
@@ -44,9 +47,9 @@ RewriteRule ^(.*)$ index.php
    php_flag zlib.output_compression Off
 </IfModule>
 
-<Files php.ini>
-    order allow,deny
-    deny from all
+<Files php.ini> 
+    order allow,deny 
+    deny from all 
 </Files>
 
 Options -Indexes
@@ -54,19 +57,9 @@ DirectoryIndex index.html index.htm index.php
 
 <filesMatch "\.(jpg|jpeg|png|css|js)$">
     <ifModule mod_headers.c>
-        Header set Connection keep-alive
+        Header set Connection keep-alive 
     </ifModule>
 </filesMatch>
-
-<FilesMatch "\.(html|htm|php)$">
-    FileETag None
-    <ifModule mod_headers.c>
-        Header unset ETag
-        Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-        Header set Pragma "no-cache"
-        Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
-    </ifModule>
-</FilesMatch>
 
 AddType application/vnd.ms-fontobject .eot
 AddType application/x-font-ttf .ttf
@@ -143,3 +136,10 @@ deny from all
 </IfModule>
 # END cPanel-generated php ini directives, do not edit
 
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php70” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddType application/x-httpd-ea-php70 .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
