@@ -2104,9 +2104,7 @@ var AJAX_CUR_PAGE = 1;
                                     childs[i].classList.add('hidden');
                                     if (flag) {
                                         flag = false;
-                                        if ($(window).width() <= 480) {
-                                            symbolsCount = 180;
-                                        } else {
+                                        if ($(window).width() > 480) {
                                             symbolsCount += 250;
                                         }
                                         itemText = childs[i].innerHTML.substring(0,symbolsCount) + '... <span class="read_controll"></span>';
