@@ -276,50 +276,25 @@ var AJAX_CUR_PAGE = 1;
         if (_min_deposit == ''){
             _min_deposit = 'Free';
             _success_class = 'success';
-
         };
 
-        var pattern = '\
-            <div class="tooltip-content '+_block_class+'">\
-                <div class="tooltip-templates-heading">\
-                    <div class="tooltip-templates-title">'+_name+' '+_type+'</div>\
-                    <div class="tooltip-templates-button">\
-                        <a href="/visit/'+getWebName(_name)+'" target="_blank" rel="nofollow" class="btn btn-small">VISIT CASINO</a>\
-                    </div>\
-                </div>\
-                <div class="tooltip-templates-body">\
-                    <div class="bonus-box">\
-                        <div class="bonus-box-heading">\
-                            <span>'+_amount+' '+_type+'</span>\
-                        </div>\
-                        <div class="bonus-box-body">\
-                            <div class="bonus-box-btn dashed '+_code_class+'" data-code="'+_code+'">'+_code+'</div>\
-                            <std:unset name="code_class"/>\
-                            <ul class="bonus-box-list">\
-                                <li>\
-                                    <span class="bonus-box-list-label">Wagering</span>\
-                                    <strong>'+_wagering+'</strong>\
-                                </li>\
-                                <li>\
-                                    <span class="bonus-box-list-label">Games allowed</span>\
-                                    <strong class="list-item-flex">\
-                                        <span class="list-item-trun">'+_games_allowed+'</span>\
-                                        <span class="bubble js-tooltip tooltipstered" title="'+_games_allowed+'">More</span>\
-                                    </strong>\
-                                </li>\
-                                <li>\
-                                    <span class="bonus-box-list-label">Min. deposit</span>\
-                                    <strong class="'+_success_class+'">'+_min_deposit+'</strong>\
-                                </li>\
-                            </ul>\
-                        </div>\
-                        <div class="bonus-box-circle">\
-                            <i class="'+_icon+'"></i>\
-                        </div>\
-                    </div>\
-                </div>\
-            </div>\
-        ';
+        //map data to bonus box
+        var pattern = $($('#bonus-box-tpl').html()).filter('.tooltip-content');
+            pattern.addClass(_block_class);
+            pattern.find('.tooltip-templates-title').text(_name+' '+_type);
+            pattern.find('.tooltip-templates-button a').attr('href', '/visit/'+getWebName(_name)+'');
+            pattern.find('.bonus-box-heading span').text(_amount+' '+_type);
+            pattern.find('.bonus-box-btn.dashed')
+               .addClass(_code_class)
+               .attr('data-code', _code)
+               .text(_code);
+            pattern.find('.bonus-box-wagering').text(_wagering);
+            pattern.find('.list-item-trun').text(_games_allowed);
+            pattern.find('.bubble').attr('title', _games_allowed);
+            pattern.find('.bonus-box-dep')
+               .addClass(_success_class)
+               .text(_min_deposit);
+            pattern.find('.bonus-box-circle i').addClass(_icon);
 
         return pattern;
     }
@@ -1061,153 +1036,29 @@ var AJAX_CUR_PAGE = 1;
             } else {
 
                 function getItemPattern() {
-                    var pattern;
+                    //map data to comment
+                    var pattern = $($('#comment-tpl').html()).filter('.review');
+
+                        pattern.attr('data-id', data.body.id);
+                        pattern.find('.review-flag img')
+                               .attr({
+                                'src': _imgDir,
+                                'alt': _countryCode
+                               });
+                        pattern.find('.review-name').text(name);
+                        pattern.find('.review-date').text(_getCurrDate());
+                        pattern.find('.review-text p').text(message);
+                        pattern.find('.js-vote a').attr('data-id', data.body.id);
 
                     if (_is_child) {
-                        pattern = '\
-                        <div class="review review-child '+name.toLowerCase()+'" data-id="'+data.body.id+'" data-img-dir="'+_imgDir+'">\
-                            <div class="review-wrap">\
-                                <div class="review-info">\
-                                    <div class="review-info-top">\
-                                        <div class="review-flag">\
-                                            <img src="'+_imgDir+'" alt="'+_countryCode+'" width="15" height="12">\
-                                        </div>\
-                                        <div class="review-info-body">\
-                                            <div class="review-name">'+name+'</div>\
-                                            <div class="review-date">'+_getCurrDate()+'</div>\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                                <div class="review-body">\
-                                    <div class="review-text">\
-                                        <p>'+message+'</p>\
-                                    </div>\
-                                    <div class="review-underline">\
-                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
-                                        <div class="votes js-vote">\
-                                            <a href="#" class="votes-like vote-button" data-id="'+data.body.id+'">\
-                                                <i class="icon-icon_likes"></i>\
-                                                <span class="bubble bubble-vote">0</span>\
-                                            </a>\
-                                        </div>\
-                                    </div>\
-                                    <div class="review-form">\
-                                        <div class="form">\
-                                            <div class="form-row">\
-                                                <div class="textfield-holder">\
-                                                    <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
-                                                </div>\
-                                            </div>\
-                                            <div class="hidden js-expanding-textfields">\
-                                                <div class="form-row form-multicol">\
-                                                    <div class="form-col">\
-                                                        <div class="textfield-holder error">\
-                                                            <input type="text" name="name" class="textfield" placeholder="Name">\
-                                                        </div>\
-                                                    </div>\
-                                                    <div class="form-col">\
-                                                        <div class="textfield-holder error">\
-                                                            <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
-                                                        </div>\
-                                                    </div>\
-                                                </div>\
-                                                <div class="form-row">\
-                                                    <div class="review-submit-holder">\
-                                                        <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
-                                                        <div>\
-                                                            <div class="field-error-required not-valid action-field">\
-                                                                Please fill in the required fields.\
-                                                            </div>\
-                                                            <div class="field-success success action-field">\
-                                                                Thank You!\
-                                                            </div>\
-                                                        </div>\
-                                                    </div>\
-                                                </div>\
-                                            </div>\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                        </div>\
-                        ';
+                        pattern.addClass(name.toLowerCase()+' review-child')
+                               .attr('data-img-dir', _imgDir);
+                        pattern.find('.list-rating').remove();
                     } else {
-                        pattern = '\
-                        <div class="review review-parent '+name.toLowerCase()+'" data-id="'+data.body.id+'">\
-                            <div class="review-wrap">\
-                                <div class="review-info">\
-                                    <div class="review-info-top">\
-                                        <div class="review-flag">\
-                                            <img src="'+_imgDir+'" alt="'+_countryCode+'" width="15" height="12">\
-                                        </div>\
-                                        <div class="review-info-body">\
-                                            <div class="review-name">'+name+'</div>\
-                                            <div class="review-date">'+_getCurrDate()+'</div>\
-                                        </div>\
-                                    </div>\
-                                    <div class="list-rating '+getWebName(get_rating(_rate_slider_result))+'">\
-                                        <div class="list-rating-wrap">\
-                                            <div class="list-rating-score">'+_rate_slider_result+'</div>\
-                                            <div class="list-rating-text">'+get_rating(_rate_slider_result)+'</div>\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                                <div class="review-body">\
-                                    <div class="review-text">\
-                                        <p>'+message+'</p>\
-                                    </div>\
-                                    <div class="review-underline">\
-                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
-                                        <div class="votes js-vote">\
-                                            <a href="#" class="votes-like vote-button"  data-id="'+data.body.id+'">\
-                                                <i class="icon-icon_likes"></i>\
-                                                <span class="bubble bubble-vote">0</span>\
-                                            </a>\
-                                        </div>\
-                                    </div>\
-                                    <div class="review-form">\
-                                        <div class="form">\
-                                            <div class="form-row">\
-                                                <div class="textfield-holder">\
-                                                    <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
-                                                </div>\
-                                            </div>\
-                                            <div class="hidden js-expanding-textfields">\
-                                                <div class="form-row form-multicol">\
-                                                    <div class="form-col">\
-                                                        <div class="textfield-holder error">\
-                                                            <input type="text" name="name" class="textfield" placeholder="Name">\
-                                                        </div>\
-                                                    </div>\
-                                                    <div class="form-col">\
-                                                        <div class="textfield-holder error">\
-                                                            <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
-                                                        </div>\
-                                                    </div>\
-                                                </div>\
-                                                <div class="form-row">\
-                                                    <div class="review-submit-holder">\
-                                                        <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
-                                                        <div>\
-                                                            <div class="field-error-required not-valid action-field">\
-                                                                Please fill in the required fields.\
-                                                            </div>\
-                                                            <div class="field-success success action-field">\
-                                                                Thank You!\
-                                                            </div>\
-                                                        </div>\
-                                                    </div>\
-                                                </div>\
-                                            </div>\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                        </div>\
-                        <div class="reply review">\
-                            <div class="reply-data-holder"></div>\
-                        </div>\
-                        ';
+                        pattern.addClass(name.toLowerCase()+' review-parent');
+                        pattern.find('.list-rating').addClass(getWebName(get_rating(_rate_slider_result)));
+                        pattern.find('.list-rating-score').text(_rate_slider_result);
+                        pattern.find('.list-rating-text').text(get_rating(_rate_slider_result));
                     }
 
                     return pattern;
@@ -1218,7 +1069,6 @@ var AJAX_CUR_PAGE = 1;
                 } else {
                     _reviewHolder.prepend(getItemPattern());
                 }
-
 
                 _refreshData();
             }
