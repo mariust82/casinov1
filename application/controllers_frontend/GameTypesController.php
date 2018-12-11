@@ -1,5 +1,5 @@
 <?php
-class PageNotFoundController extends Controller {
+class GameTypesController extends Controller {
     public function run() {
         $this->response->setAttribute("country", array (
   'id' => '43',
@@ -103,7 +103,7 @@ $this->response->setAttribute("menu_top", array (
   array (
     'title' => 'GAMES',
     'url' => '/games',
-    'is_active' => false,
+    'is_active' => true,
     'submenuItems' => 
     array (
       'Video Slots' => '/games/video-slots',
@@ -123,13 +123,53 @@ $this->response->setAttribute("menu_top", array (
     'have_submenu' => true,
   ),
 ));
+$this->response->setAttribute("results", array (
+  'Video Slots' => '4360',
+  'Video Poker' => '464',
+  'Classic Slots' => '421',
+  'Scratch Cards' => '281',
+  'Blackjack' => '188',
+  'Other' => '160',
+  'Roulette' => '154',
+  'Table Games' => '123',
+  'Keno' => '46',
+  'Baccarat' => '39',
+  'Bingo' => '35',
+  'Craps' => '13',
+));
 $this->response->setAttribute("page_info", array (
-  'head_title' => 'CasinosLists.com 404 Not Found',
-  'head_description' => '',
-  'body_title' => '',
+  'head_title' => 'Casino Games Categories | Slots, Blackjack, Roulette and more',
+  'head_description' => 'The complete list of online casino games types. With so many games available, we divided them into categories. Play Video Slots, Blackjack, Roulette & more',
+  'body_title' => 'Casino Games Types',
 ));
 $this->response->setAttribute("version", '0.8.3.7');
 $this->response->setAttribute("tms", array (
+  'upper_text' => '<p>Total number of games on site :&nbsp;6284</p>
+
+<p>Total number of games in the current list:&nbsp;</p>
+
+<p>Newest game on site&nbsp;&nbsp;:&nbsp;&nbsp;AmosTest2</p>
+
+<p>Newest game in the current list :&nbsp;</p>
+
+<p>Software of the newest game on site :&nbsp;1X2 Gaming</p>
+
+<p>Software of the newest game in the current list&nbsp;:&nbsp;</p>
+
+<p>Most popular game on site :&nbsp;Exotic Fruit Deluxe</p>
+
+<p>Most popular game in the current list:&nbsp;</p>
+
+<p>Software of the most popular game on site&nbsp;:&nbsp;Booming Games</p>
+
+<p>Software of the most popular game in the current list&nbsp;:&nbsp;</p>
+
+<p>games - update</p>
+
+<p><b>0</b></p>
+
+<p><strong>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</strong></p>
+',
 ));
 
     }
