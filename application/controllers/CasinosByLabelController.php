@@ -18,6 +18,9 @@ class CasinosByLabelController extends CasinosListController {
         }
         $country =  $this->request->getAttribute("country");
         $parameter = str_replace("-"," ", $parameter);
+        if($this->request->getValidator()->getPathParameter("name")=="mobile") {
+            return "Mobile";
+        }
         $object = new CasinoLabels($country);
         $name = $object->validate($parameter);
         if(!$name) {
@@ -28,7 +31,11 @@ class CasinosByLabelController extends CasinosListController {
 
     protected function getFilter()
     {
-        return "label";
+        if($this->request->getValidator()->getPathParameter("name")=="mobile") {
+            return "compatibility";
+        } else {
+            return "label";
+        }
     }
 
     protected function getSortCriteria() {
@@ -59,7 +66,11 @@ class CasinosByLabelController extends CasinosListController {
             case 'Popular':
                 $url = 'casinos/popular';
                 break;
+            case 'Mobile':
+                $url = 'casinos/mobile';
+                break;
         }
-        $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $casinoNumber));
+        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity"), $casinoNumber));
+
     }
 }

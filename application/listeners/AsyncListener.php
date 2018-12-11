@@ -1,5 +1,5 @@
 <?php
-require_once("hlis/sitebase/Async.php");
+require_once("hlis/Async.php");
 
 /**
  * Sets up information necessary for ASYNC calls to RestAPI @ DM.

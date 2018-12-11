@@ -700,11 +700,16 @@ var AJAX_CUR_PAGE = 1;
                 }
 
                 // _ajaxDataParams['page'] = AJAX_CUR_PAGE;
+                if(_ajaxDataParams["label"]!=undefined && _ajaxDataParams["label"]=="Mobile") {
+                    _ajaxDataParams["compatibility"] = "mobile";
+                    delete _ajaxDataParams.label;
+                }
 
                 return _ajaxDataParams;
             }
 
             _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
+
                 $('.overlay, .loader').fadeIn('fast');
 
                 if (BUSY_REQUEST) return;
@@ -2249,7 +2254,11 @@ var AJAX_CUR_PAGE = 1;
                                     childs[i].classList.add('hidden');
                                     if (flag) {
                                         flag = false;
-                                        symbolsCount +=250;
+                                        if ($(window).width() <= 480) {
+                                            symbolsCount = 180;
+                                        } else {
+                                            symbolsCount += 250;
+                                        }
                                         itemText = childs[i].innerHTML.substring(0,symbolsCount) + '... <span class="read_controll"></span>';
                                         createTextParagraf(itemText,childsHolder,childs[i]);
                                     }
