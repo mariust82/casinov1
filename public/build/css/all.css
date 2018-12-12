@@ -4840,6 +4840,8 @@ a:hover, a:active, a:visited, a:focus {
   cursor: pointer;
   max-width: 72px;
   overflow: hidden;
+
+  white-space:nowrap;
 }
 .condense_control .less {
   display: none;

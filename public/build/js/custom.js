@@ -2107,7 +2107,7 @@ var AJAX_CUR_PAGE = 1;
                                         if ($(window).width() > 480) {
                                             symbolsCount += 250;
                                         }
-                                        itemText = childs[i].innerHTML.substring(0,symbolsCount) + '... <span class="read_controll"></span>';
+                                        itemText = childs[i].innerHTML.substring(0,symbolsCount) + '<span class="read_controll">...</span>';
                                         createTextParagraf(itemText,childsHolder,childs[i]);
                                     }
                                 }else if(flag === false){
@@ -2125,7 +2125,7 @@ var AJAX_CUR_PAGE = 1;
                         }
                         else {
                             childs[0].classList.add('hidden');
-                            itemText = childs[0].innerText.substring(0,symbolsCount) + '... <span class="read_controll"></span>';
+                            itemText = childs[0].innerText.substring(0,symbolsCount) + '<span class="read_controll">...</span>';
                             createTextParagraf(itemText,childsHolder,childs[0]);
                         }
                     }
@@ -2150,7 +2150,7 @@ var AJAX_CUR_PAGE = 1;
             //buttonToggleLess.classList.add('less');
            // buttonToggleLess.innerHTML="Read Less";
             buttonToggleMore.classList.add('more');
-            buttonToggleMore.innerHTML="Read More";
+            buttonToggleMore.innerHTML=" Read More";
             buttonToggleMore.addEventListener("click", txtReadMore);
            // buttonToggle.appendChild(buttonToggleLess);
             buttonToggle.appendChild(buttonToggleMore);
@@ -2173,11 +2173,13 @@ var AJAX_CUR_PAGE = 1;
             parentHeight = parseInt( window.getComputedStyle(itemHolder ,null).getPropertyValue("max-height") ),
             parentWidth = parseInt( window.getComputedStyle(itemHolder ,null).getPropertyValue("width") );
             //media queries when font size is changed
+            symbolWidth = 6.7;
+            
             if (window.innerWidth < 690) {
-                symbolWidth = 5.4; //average value of letter width
+                symbolWidth = 4.5; //average value of letter width
             }
-            else {
-                symbolWidth = 6.7; //average value of letter width
+            if (window.innerWidth < 375) {
+                symbolWidth = 4.6; //average value of letter width
             }
             symbolsPerRow = Math.round( parentWidth/symbolWidth );
             rowsCount = parseInt( parentHeight/lineHeight );
