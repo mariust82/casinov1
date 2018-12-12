@@ -7958,6 +7958,12 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
+@media screen and (max-width: 480px){
+  .js-condense {
+    max-height: 90px;
+  }
+}
+
 .more-num {
   padding: 0 3px;
 }
