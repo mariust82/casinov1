@@ -92,6 +92,7 @@
         </bala>
     </errors>
     <routes>
+        <route url="bugs" controller="BugsController"/>
         <route url="index" controller="IndexController" view="index"/>
         <route url="banking/(name)" controller="CasinosByBankingMethodController" view="casinos" rebrand_tables="banking_methods"/>
         <route url="banking" controller="BankingMethodsController" view="banking-methods"/>
