@@ -18,6 +18,7 @@ class DefaultCacheable implements Cacheable
             $connection = NoSQLConnectionSingleton::getInstance();
             if($connection->contains($this->etag)) {
                 $modifiedTime = $connection->get($this->etag);
+		if(!$modifiedTime) $connection->delete($this->etag);
             } else {
                 $connection->set($this->etag, time(), 24*60*60);
             }
