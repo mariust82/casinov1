@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
     <application>
-        <version>0.8.3.6</version>
+        <version>0.8.4.0</version>
         <default_character_encoding>UTF-8</default_character_encoding>
         <default_page>index</default_page>
         <default_extension>html</default_extension>
@@ -26,8 +26,8 @@
             </compilations>
         </paths>
         <environments>
-            <alex>www.casinoslists.local</alex>
             <lucinda>www.casinoslists.local</lucinda>
+            <alex>www.casinoslists.local</alex>
             <dev>dev.casinoslists.com</dev>
             <live>www.casinoslists.com</live>
             <amos>www.devcasinopro.adrian</amos>
@@ -44,20 +44,17 @@
         <listener class="EnvironmentDetector"/>
         <listener class="AsyncListener"/>
         <listener class="SQLDataSourceInjector"/>
-        <!--<listener class="NoSQLDataSourceInjector"/>-->
+        <listener class="NoSQLDataSourceInjector"/>
         <listener class="ErrorListener"/>
         <listener class="RebrandingListener"/>
         <listener class="IPDetectionListener"/>
         <listener class="MobileDetectionListener"/>
         <listener class="TMSListener"/>
         <listener class="ViewLanguageResolver"/>
-        <!-- <listener class="HttpCachingListener"/>-->
+        <listener class="HTTPCachingListener"/>
     </listeners>
     <errors>
         <lucinda>
-            <reporters>
-                <sql table="bugs"/>
-            </reporters>
             <renderer display_errors="1">
                 <html/>
                 <json/>
@@ -82,18 +79,12 @@
             </renderer>
         </live>
         <alex>
-            <reporters>
-                <async/>
-            </reporters>
             <renderer display_errors="1">
                 <html/>
                 <json/>
             </renderer>
         </alex>
         <bala>
-            <reporters>
-                <async/>
-            </reporters>
             <renderer display_errors="1">
                 <html/>
                 <json/>
@@ -101,25 +92,20 @@
         </bala>
     </errors>
     <routes>
+        <route url="bugs" controller="BugsController"/>
         <route url="index" controller="IndexController" view="index"/>
-        <route url="banking/(name)" controller="CasinosByBankingMethodController" view="casinos"
-               rebrand_tables="banking_methods"/>
+        <route url="banking/(name)" controller="CasinosByBankingMethodController" view="casinos" rebrand_tables="banking_methods"/>
         <route url="banking" controller="BankingMethodsController" view="banking-methods"/>
         <route url="casinos/(name)" controller="CasinosByLabelController" view="casinos"/>
         <route url="casinos" controller="CasinoLabelsController" view="casino-labels"/>
-        <route url="reviews/(name)-review" controller="CasinoInfoController" view="casino-info"
-               rebrand_tables="casinos"/>
+        <route url="reviews/(name)-review" controller="CasinoInfoController" view="casino-info" rebrand_tables="casinos"/>
         <route url="visit/(name)" controller="CasinoVisitController"/>
         <route url="warn/(name)" controller="CasinoWarningController" view="casino-warning"/>
-        <route url="bonus-list/(name)" controller="CasinosByBonusTypeController" view="casinos"
-               rebrand_tables="bonus_types"/>
+        <route url="bonus-list/(name)" controller="CasinosByBonusTypeController" view="casinos" rebrand_tables="bonus_types"/>
         <route url="bonus-list" controller="BonusesController" view="bonus-types"/>
         <route url="countries-list/(name)" controller="CasinosByCountryController" view="casinos"/>
         <route url="countries" controller="CountriesController" view="countries"/>
-        <route url="compatability/(name)" controller="CasinosByCompatibilityController" view="casinos"/>
-        <route url="compatability" controller="CompatibilityController" view="compatibility"/>
-        <route url="softwares/(name)" controller="CasinosBySoftwareController" view="casinos"
-               rebrand_tables="game_manufacturers"/>
+        <route url="softwares/(name)" controller="CasinosBySoftwareController" view="casinos" rebrand_tables="game_manufacturers"/>
         <route url="softwares" controller="SoftwaresController" view="softwares"/>
         <route url="games/(type)" controller="GamesByTypeController" view="games"/>
         <route url="games" controller="GameTypesController" view="game-types"/>
@@ -175,7 +161,7 @@
     <servers>
         <sql>
             <lucinda>
-                <server driver="mysql" host="localhost" port="3306" username="root" password="niggers"
+                <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="hliscorp"
                         schema="casinoslists" parent_schema="admin_casinoslists" charset="utf8"/>
             </lucinda>
             <dev>
@@ -234,11 +220,9 @@
         <alex>http://game.casinoslists.local</alex>
     </gameplay>
     <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
-
     <invision_api>
         <amos  blog_id = '1' api_key = "e0aff7134b11f730418086ea2a5daf1b" api_url = "https://c284076.tryinvision.com/" />
         <dev  blog_id = '1' api_key = "e0aff7134b11f730418086ea2a5daf1b" api_url = "https://c284076.tryinvision.com/" />
         <live  blog_id = '2' api_key = "e0aff7134b11f730418086ea2a5daf1b" api_url = "https://c284076.tryinvision.com/" />
     </invision_api>
-
 </xml>

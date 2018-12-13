@@ -5,7 +5,7 @@
  * it return just the tms text.
  */
 
-require_once("hlis/tms_client/src/TextsManager.php");
+require_once("hlis/tms/src/TextsManager.php");
 
 class TmsWrapper{
 

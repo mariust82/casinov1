@@ -25,7 +25,7 @@ class TopMenu
             "sub_items" => [
                 "Best Casinos" => "/casinos/best",
                 "Live Casinos" => "/features/live-dealer",
-                "Mobile Casinos" => "/compatability/mobile",
+                "Mobile Casinos" => "/casinos/mobile",
                 "eCOGRA Casinos" => "/features/ecogra-casinos",
                 "Stay Away Casinos" => "/casinos/stay-away",
                 "Popular Casinos" => "/casinos/popular",
@@ -77,7 +77,7 @@ class TopMenu
             "item_url" =>"/games",
             "sub_items"=>[
                 'Video Slots' => '/games/video-slots',
-                'Classic Slots' => '/games/classic-slots',
+                'Classic Slots' => '/games/slots',
                 'Video Poker' => '/games/video-poker',
                 'Scratch Cards' => '/games/scratch-cards',
                 'Blackjack' => '/games/blackjack',
@@ -191,12 +191,6 @@ class TopMenu
             case "countries-list/(name)":
                 return "COUNTRIES";
                 break;
-
-            case "compatability":
-            case "compatability/(name)":
-                return "CASINOS";
-                break;
-
                 case "banking":
             case "banking/(name)":
                 return "BANKING";

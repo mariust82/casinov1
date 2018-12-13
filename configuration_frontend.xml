@@ -53,8 +53,6 @@
     <route url="casino/bonus" controller="CasinoBonusController" extension="json"/>
     <route url="countries-list/(name)" controller="CasinosByCountryController" view="casinos"/>
     <route url="countries" controller="CountriesController" view="countries"/>
-    <route url="compatability/(name)" controller="CasinosByCompatibilityController" view="casinos"/>
-    <route url="compatability" controller="CompatibilityController" view="compatibility"/>
     <route url="softwares/(name)" controller="CasinosBySoftwareController" view="casinos" rebrand_tables="game_manufacturers"/>
     <route url="softwares" controller="SoftwaresController" view="softwares"/>
     <route url="games/(type)" controller="GamesByTypeController" view="games"/>

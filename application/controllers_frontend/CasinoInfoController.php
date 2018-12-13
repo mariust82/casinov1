@@ -2,289 +2,237 @@
 class CasinoInfoController extends Controller {
     public function run() {
         $this->response->setAttribute("country", array (
-  'id' => '34',
-  'code' => 'US',
-  'name' => 'United States',
-));
-$this->response->setAttribute("casino", array (
-  'id' => '1334',
-  'code' => '24VIP Casino',
-  'name' => '24VIP Casino',
-  'rating' => NULL,
-  'softwares' => 
-  array (
-    0 => 'BetSoft',
-    1 => 'Rival',
-    2 => 'Vivo Gaming',
-  ),
-  'languages' => 
-  array (
-    0 => 'English',
-    1 => 'Spanish',
-    2 => 'German',
-    3 => 'Swedish',
-    4 => 'Portuguese',
-    5 => 'French',
-    6 => 'Italian',
-  ),
-  'currencies' => 
-  array (
-    0 => 'USD',
-    1 => 'EUR',
-    2 => 'GBP',
-    3 => 'AUD',
-    4 => 'ZAR',
-  ),
-  'bonus_first_deposit' => 
-  array (
-    'amount' => '100% + 240 FS',
-    'min_deposit' => '$25',
-    'wagering' => '15x(D+B)',
-    'games_allowed' => 'Slots, Keno, Bingo, Specialty games (FS - Variety of Slots)',
-    'code' => 'No code required',
-    'type' => 'First Deposit Bonus',
-  ),
-  'bonus_free' => 
-  array (
-    'amount' => '$15',
-    'min_deposit' => '',
-    'wagering' => '20xB',
-    'games_allowed' => 'Slots, Keno, Bingo, Specialty Games and Scratch Cards',
-    'code' => 'No code required',
-    'type' => 'No Deposit Bonus',
-  ),
-  'is_live_dealer' => '1',
-  'date_established' => '2017-09-01',
-  'emails' => 
-  array (
-    0 => 'support@24vipcasino.com',
-  ),
-  'phones' => 
-  array (
-    0 => 'None',
-  ),
-  'is_live_chat' => '1',
-  'licenses' => 
-  array (
-    0 => 'Curacao',
-  ),
-  'certifiers' => 
-  array (
-  ),
-  'affiliate_program' => 'Superior Share',
-  'affiliate_link' => NULL,
-  'withdrawal_minimum' => '0',
-  'withdrawal_limits' => 
-  array (
-    0 => '$/€/£/AU$/R500 per day',
-    1 => '$/€/£/AU$/R2000 per week',
-  ),
-  'withdrawal_timeframes' => 
-  array (
-    0 => 'Ewallets - 48-72 hours',
-    1 => 'Bitcoin Wallet - 48-72 hours',
-    2 => 'Credit cards - 2-7 business days',
-  ),
-  'deposit_methods' => 
-  array (
-    0 => 'Bitcoin Wallets',
-    1 => 'EcoPayz EcoCard',
-    2 => 'MasterCard',
-    3 => 'Neteller',
-    4 => 'Paysafe Card',
-    5 => 'Skrill Moneybookers',
-    6 => 'UPayCard',
-    7 => 'Visa',
-  ),
-  'withdraw_methods' => 
-  array (
-    0 => 'Bitcoin Wallets',
-    1 => 'EcoPayz EcoCard',
-    2 => 'Neteller',
-    3 => 'Skrill Moneybookers',
-    4 => 'UPayCard',
-    5 => 'Visa',
-  ),
-  'is_country_accepted' => '1',
-  'is_language_accepted' => '1',
-  'is_currency_accepted' => '1',
-  'status' => NULL,
-));
-$this->response->setAttribute("total_reviews", 100);
-$this->response->setAttribute("reviews", array (
-  0 => 
-  array (
-    'id' => '6',
-    'name' => 'Tester',
-    'email' => 'a@a.com',
-    'body' => 'I\'m testing this functionality!',
-    'likes' => '0',
-    'ip' => NULL,
-    'country' => 'UA',
-    'rating' => 7,
-    'date' => '2018-01-26 12:36:34',
-    'parent' => NULL,
-    'children' => 
-    array (
-      0 => 
-      array (
-        'id' => '7',
-        'name' => 'Tester',
-        'email' => 'a@a.com',
-        'body' => 'I\'m testing this functionality!',
-        'likes' => '0',
-        'ip' => NULL,
-        'country' => 'UA',
-        'rating' => 7,
-        'date' => '2018-01-26 12:36:34',
-        'parent' => NULL,
-        'children' => 
-        array (
-        ),
-        'total_children' => 0,
-      ),
-      1 => 
-      array (
-        'id' => '8',
-        'name' => 'SHmester',
-        'email' => 'a@a.com',
-        'body' => 'I\'m testing this functionality!',
-        'likes' => '0',
-        'ip' => NULL,
-        'country' => 'UA',
-        'rating' => 7,
-        'date' => '2018-01-26 12:36:34',
-        'parent' => NULL,
-        'children' => 
-        array (
-        ),
-        'total_children' => 0,
-      ),
-    ),
-    'total_children' => 2,
-  ),
-  1 => 
-  array (
-    'id' => '4',
-    'name' => 'Tester',
-    'email' => 'a@a.com',
-    'body' => 'I\'m testing this functionality!',
-    'likes' => '0',
-    'ip' => NULL,
-    'country' => 'UA',
-    'rating' => 7,
-    'date' => '2018-01-26 12:36:26',
-    'parent' => NULL,
-    'children' => 
-    array (
-    ),
-    'total_children' => 0,
-  ),
+  'id' => '43',
+  'code' => 'RO',
+  'name' => 'Romania',
 ));
 $this->response->setAttribute("menu_top", array (
   0 => 
   array (
+    'title' => 'NO DEPOSIT CASINOS',
+    'url' => '/bonus-list/no-deposit-bonus',
+    'is_active' => false,
+    'submenuItems' => 
+    array (
+    ),
+    'have_submenu' => false,
+  ),
+  1 => 
+  array (
+    'title' => 'NEW CASINOS',
+    'url' => '/casinos/new',
+    'is_active' => false,
+    'submenuItems' => 
+    array (
+    ),
+    'have_submenu' => false,
+  ),
+  2 => 
+  array (
     'title' => 'CASINOS',
     'url' => '/casinos',
     'is_active' => false,
+    'submenuItems' => 
+    array (
+      'Best Casinos' => '/casinos/best',
+      'Live Casinos' => '/features/live-dealer',
+      'Mobile Casinos' => '/casinos/mobile',
+      'eCOGRA Casinos' => '/features/ecogra-casinos',
+      'Stay Away Casinos' => '/casinos/stay-away',
+      'Popular Casinos' => '/casinos/popular',
+      'All Casinos' => '/casinos',
+    ),
+    'have_submenu' => true,
   ),
-  1 => 
+  3 => 
   array (
     'title' => 'SOFTWARES',
     'url' => '/softwares',
     'is_active' => false,
+    'submenuItems' => 
+    array (
+      'RTG Casinos' => '/softwares/rtg',
+      'Rival Casinos' => '/softwares/rival',
+      'NetEnt Casinos' => '/softwares/netent',
+      'Playtech Casinos' => '/softwares/playtech',
+      'MicroGaming Casinos' => '/softwares/microgaming',
+      'BetSoft Casinos' => '/softwares/betsoft',
+      'Saucify Casinos' => '/softwares/saucify',
+      'Cryptologic Casinos' => '/softwares/cryptologic',
+      'All Softwares' => '/softwares',
+    ),
+    'have_submenu' => true,
   ),
-  2 => 
-  array (
-    'title' => 'BONUSES',
-    'url' => '/bonus-list',
-    'is_active' => false,
-  ),
-  3 => 
+  4 => 
   array (
     'title' => 'COUNTRIES',
     'url' => '/countries',
     'is_active' => false,
-  ),
-  4 => 
-  array (
-    'title' => 'COMPATIBILITY',
-    'url' => '/compatability',
-    'is_active' => false,
+    'submenuItems' => 
+    array (
+      'Romania Casinos' => '/countries-list/romania',
+      'USA Casinos' => '/countries-list/united-states',
+      'UK Casinos' => '/countries-list/united-kingdom',
+      'Australia Casinos' => '/countries-list/australia',
+      'Germany Casinos' => '/countries-list/germany',
+      'New Zealand Casinos' => '/countries-list/new-zealand',
+      'Netherlands Casinos' => '/countries-list/netherlands',
+      'Sweden Casinos' => '/countries-list/sweden',
+      'All Countries' => '/countries ',
+    ),
+    'have_submenu' => true,
   ),
   5 => 
   array (
     'title' => 'BANKING',
     'url' => '/banking',
     'is_active' => false,
+    'submenuItems' => 
+    array (
+      'Neteller Casinos' => '/banking/neteller',
+      'Skrill Moneybookers Casinos' => '/banking/skrill-moneybookers',
+      'PayPal Casinos' => '/banking/paypal',
+      'Bitcoin Wallets Casinos' => '/banking/bitcoin-wallets',
+      'EcoPayz EcoCard Casinos' => '/banking/ecopayz',
+      'Paysafe Card' => '/banking/paysafe-card',
+      'All Banking' => '/banking',
+    ),
+    'have_submenu' => true,
   ),
   6 => 
-  array (
-    'title' => 'FEATURES',
-    'url' => '/features',
-    'is_active' => false,
-  ),
-  7 => 
   array (
     'title' => 'GAMES',
     'url' => '/games',
     'is_active' => false,
+    'submenuItems' => 
+    array (
+      'Video Slots' => '/games/video-slots',
+      'Classic Slots' => '/games/slots',
+      'Video Poker' => '/games/video-poker',
+      'Scratch Cards' => '/games/scratch-cards',
+      'Blackjack' => '/games/blackjack',
+      'Roulette' => '/games/roulette',
+      'Table Games' => '/games/table-games',
+      'Bingo' => '/games/bingo',
+      'Baccarat' => '/games/baccarat',
+      'Craps' => '/games/craps',
+      'Keno' => '/games/keno',
+      'Other' => '/games/other',
+      'All Games' => '/games',
+    ),
+    'have_submenu' => true,
   ),
 ));
-$this->response->setAttribute("menu_bottom", array (
-  0 => 
+$this->response->setAttribute("casino", array (
+  'id' => '1088',
+  'name' => 'Lucky Ladies Bingo',
+  'code' => 'lucky_ladies_bingo',
+  'rating' => 5,
+  'softwares' => 
   array (
-    'title' => 'United States Casinos',
-    'url' => '/countries-list/united-states',
-    'is_active' => false,
+    0 => 'MicroGaming',
+    1 => 'Eyecon',
+    2 => 'Cozy Games',
   ),
-  1 => 
+  'languages' => 
   array (
-    'title' => 'BetSoft Casinos',
-    'url' => '/softwares/betsoft',
-    'is_active' => true,
+    0 => 'English',
   ),
-  2 => 
+  'currencies' => 
   array (
-    'title' => 'No Deposit Casinos',
-    'url' => '/bonus-list/no-deposit-bonus',
-    'is_active' => false,
+    0 => 'GBP',
   ),
-  3 => 
+  'bonus_first_deposit' => 
   array (
-    'title' => 'Best Casinos',
-    'url' => '/casinos/best',
-    'is_active' => false,
+    'amount' => '500%',
+    'min_deposit' => '£10',
+    'wagering' => '10xB',
+    'games_allowed' => 'Slots',
+    'code' => 'No code required',
+    'type' => 'First Deposit Bonus',
   ),
-  4 => 
+  'bonus_free' => 
   array (
-    'title' => 'Safe Casinos',
-    'url' => '/casinos/safe',
-    'is_active' => false,
+    'amount' => '£10',
+    'min_deposit' => '',
+    'wagering' => '20xB',
+    'games_allowed' => 'Slots',
+    'code' => 'No code required',
+    'type' => 'No Deposit Bonus',
   ),
-  5 => 
+  'is_live_dealer' => '0',
+  'date_established' => '0000-00-00',
+  'emails' => 
   array (
-    'title' => 'New Casinos',
-    'url' => '/casinos/new',
-    'is_active' => false,
+    0 => 'account@livebingonetwork.co.uk',
   ),
-  6 => 
+  'phones' => 
   array (
-    'title' => 'Recommended Casinos',
-    'url' => '/casinos/recommended',
-    'is_active' => false,
+    0 => 'General: +44 0203-6081-305',
   ),
-  7 => 
+  'is_live_chat' => '1',
+  'licenses' => 
   array (
-    'title' => 'Stay Away Casinos',
-    'url' => '/casinos/stay-away',
-    'is_active' => false,
+    0 => 'Isle of Man',
   ),
+  'certifiers' => 
+  array (
+    0 => 'iTech Labs',
+    1 => 'GamCare',
+  ),
+  'affiliate_program' => 'Cozy Partners',
+  'affiliate_link' => NULL,
+  'withdrawal_minimum' => '£30',
+  'withdrawal_limits' => 
+  array (
+    0 => '£1000 per week',
+    1 => '£5000 per month',
+  ),
+  'withdrawal_timeframes' => 
+  array (
+    0 => 'Ewallets - immediate',
+    1 => 'Credit cards - 4-5 business days',
+  ),
+  'deposit_methods' => 
+  array (
+    0 => 'Boku',
+    1 => 'Maestro',
+    2 => 'MasterCard',
+    3 => 'Neteller',
+    4 => 'Paysafe Card',
+    5 => 'Skrill Moneybookers',
+    6 => 'Visa',
+    7 => 'Visa Electron',
+  ),
+  'withdraw_methods' => 
+  array (
+    0 => 'Boku',
+    1 => 'Maestro',
+    2 => 'MasterCard',
+    3 => 'Neteller',
+    4 => 'Paysafe Card',
+    5 => 'Skrill Moneybookers',
+    6 => 'Visa',
+    7 => 'Visa Electron',
+  ),
+  'is_country_accepted' => '0',
+  'is_language_accepted' => '0',
+  'is_currency_accepted' => '0',
+  'note' => NULL,
+  'invision_casino_id' => NULL,
+  'status' => NULL,
+));
+$this->response->setAttribute("user_score", 0);
+$this->response->setAttribute("total_reviews", 0);
+$this->response->setAttribute("reviews", array (
 ));
 $this->response->setAttribute("page_info", array (
-  'head_title' => 'Read 24VIP Casino Review at CasinosLists.com - 2018',
-  'head_description' => 'Full 24VIP Casino Review | Full Details About 24VIP Casino, 24VIP Casino Bonuses and Coupons, Best Reviews at CasinosLists.com - 2018',
-  'body_title' => '24VIP Casino review February 2018',
+  'head_title' => 'Lucky Ladies Bingo Review with Authentic Players Reviews & Ratings!',
+  'head_description' => ' Complete Lucky Ladies Bingo Review | Go through authentic and transparent real players reviews about Lucky Ladies Bingo and user-based Ratings at CasinosLists.com',
+  'body_title' => 'Lucky Ladies Bingo Review',
+));
+$this->response->setAttribute("version", '0.8.3.7');
+$this->response->setAttribute("tms", array (
 ));
 
     }
