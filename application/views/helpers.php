@@ -114,9 +114,6 @@ function get_page_type()
         case 'countries-list':
             $piece = 'country';
             break;
-        case 'compatability':
-            $piece = 'compatibility';
-            break;
         case 'banking':
             $piece = 'banking_method';
             break;

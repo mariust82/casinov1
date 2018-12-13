@@ -2,23 +2,22 @@
 	<div class="reviews-form review" id="reviews-form" data-img-dir="/public/build/images/flags/$[code].png" data-country="$[code]" data-invision-casino-id="$[invisioncasinoid]" data-casino-id="$[id]">
 		<comment:form name="${data.casino.name}" key="$[key]" rate="${data.casino.rating}" id="$[name]" value="$[value]" rating="true"/>
 	</div>
-	<std:if condition="$[total] > 0">
-		<div class="review-list">
-			<div id="review-data-holder">
+	<div class="review-list">
+		<div id="review-data-holder">
+			<std:if condition="$[total] > 0">
 				<std:foreach var="$[items]" value="result">
 					<comment:info class="review-parent"/>
 					<comment:reply total="${result.total_children}"/>
 				</std:foreach>
-			</div>
-
-			<std:if condition="$[total] > 5">
-				<div class="reviews-more">
-					<a href="#" class="btn-more js-more-reviews" data-type="review" data-id="0" data-total="$[total]" data-page="1">
-						Show More Reviews
-						<i class="icon-chevron-down"></i>
-					</a>
-				</div>
 			</std:if>
 		</div>
-	</std:if>
+		<std:if condition="$[total] > 5">
+			<div class="reviews-more">
+				<a href="#" class="btn-more js-more-reviews" data-type="review" data-id="0" data-total="$[total]" data-page="1">
+					Show More Reviews
+					<i class="icon-chevron-down"></i>
+				</a>
+			</div>
+		</std:if>
+	</div>
 </div>

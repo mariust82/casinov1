@@ -1,0 +1,40 @@
+<script id="comment-tpl" type="text/x-custom-template">
+    <div class="review">
+        <div class="review-wrap">
+            <div class="review-info">
+                <div class="review-info-top">
+                    <div class="review-flag">
+                        <img src="" alt="" width="15" height="12">
+                    </div>
+                    <div class="review-info-body">
+                        <div class="review-name"></div>
+                        <div class="review-date"></div>
+                    </div>
+                </div>
+                <div class="list-rating">
+                    <div class="list-rating-wrap">
+                        <div class="list-rating-score"></div>
+                        <div class="list-rating-text"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-body">
+                <div class="review-text">
+                    <p></p>
+                </div>
+                <div class="review-underline">
+                    <a href="#" class="review-replies js-reply-btn">Reply</a>
+                    <div class="votes js-vote">
+                        <a href="#" class="votes-like vote-button">
+                            <i class="icon-icon_likes"></i>
+                            <span class="bubble bubble-vote">0</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="review-form">
+                    <comment:form rating="false"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

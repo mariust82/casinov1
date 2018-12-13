@@ -1,6 +1,6 @@
 <?php
 
-require_once "hlis/sitebase/profilers/QueryProfiler.php";
+require_once "hlis/profilers/QueryProfiler.php";
 
 /**
  * Automates SQL query execution.
@@ -23,7 +23,9 @@ function DB($query, $boundParameters = array())
         }
 
         $profiler = new QueryProfiler($query);
+        $profiler->start();
         $result = $preparedStatement->execute();
+        $profiler->end();
         return $result;
     } else {
         $preparedStatement = SQLConnectionSingleton::getInstance()->createPreparedStatement();

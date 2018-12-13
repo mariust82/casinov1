@@ -1,5 +1,5 @@
 <?php
-require_once("hlis/tms_client/src/TextsManager.php");
+require_once("hlis/tms/src/TextsManager.php");
 
 class TMSListener extends ResponseListener
 {

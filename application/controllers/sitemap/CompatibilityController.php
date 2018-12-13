@@ -8,7 +8,7 @@ class CompatibilityController extends AbstractSitemapController {
 
     protected function getUrlPattern()
     {
-        return "compatability/(item)";
+        return "casinos/(item)";
     }
 
     protected function getPriority() {

@@ -1,5 +1,5 @@
 <?php
-require_once("hlis/sitebase/CasinoClick.php");
+require_once("hlis/CasinoClick.php");
 require_once "dao/Casinos.php";
 
 class SiteCasinoClick extends CasinoClick

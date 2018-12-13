@@ -4840,6 +4840,8 @@ a:hover, a:active, a:visited, a:focus {
   cursor: pointer;
   max-width: 72px;
   overflow: hidden;
+
+  white-space:nowrap;
 }
 .condense_control .less {
   display: none;
@@ -7955,6 +7957,12 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 690px) {
   .js-condense {
     max-height: 215px;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .js-condense {
+    max-height: 90px;
   }
 }
 
