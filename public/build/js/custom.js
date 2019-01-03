@@ -1899,6 +1899,7 @@ var AJAX_CUR_PAGE = 1;
                     .closest(_container)
                     .find(_mobilePop)
                     .fadeIn('fast');
+                $('body').addClass('no-scroll');
             }
 
             _btnOpen.on('click', function(e) {
@@ -1913,7 +1914,7 @@ var AJAX_CUR_PAGE = 1;
                     .fadeOut('fast')
                     .find('.mobile-popup-body')
                     .html('');
-                    
+                $('body').removeClass('no-scroll');
                 return false;
             });
         }
