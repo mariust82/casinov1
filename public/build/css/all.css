@@ -2281,7 +2281,7 @@ a:hover, a:active, a:visited, a:focus {
   background: #2171CE;
   box-shadow: 0 2px 6px rgba(14, 69, 133, 0.24);
   position: relative;
-  z-index: 6;
+  z-index: 11;
 }
 
 @media screen and (max-width: 1023px) {
