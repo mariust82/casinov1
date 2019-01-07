@@ -8,11 +8,15 @@ fieldset, img {
   border: 0;
 }
 
-.site__header_sticky{
+.site__header_sticky .header{
     position: fixed!important;
     top: 0;
     left: 0;
     z-index: 999;
+}
+
+.site__header_sticky{
+  padding-top:50px;
 }
 
 img, object, embed {
