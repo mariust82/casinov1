@@ -46,7 +46,7 @@ var AJAX_CUR_PAGE = 1;
             windowToBottom = $(window).scrollTop();
         //scroll up
         } else { 
-            if ( (windowToBottom - $(window).scrollTop()) > ($(window).height() / 2) ) {
+            if ( (windowToBottom - $(window).scrollTop()) > ($(window).height() / 3) ) {
                 $('body').addClass('site__header_sticky');
                 windowToBottom = $(window).scrollTop();
             }
