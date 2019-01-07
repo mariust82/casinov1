@@ -2010,6 +2010,7 @@ var AJAX_CUR_PAGE = 1;
         });
 
         _btnMobileClose.on('click', function(e) {
+            _input.val('').focus();
             $('body').removeClass('mobile-search-opened');
         });
 
