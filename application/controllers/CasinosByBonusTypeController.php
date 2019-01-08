@@ -47,4 +47,8 @@ class CasinosByBonusTypeController extends CasinosListController {
         $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $this->response->getAttribute("total_casinos")));
     }
 
+    protected function getSortCriteria() {
+        return CasinoSortCriteria::NEWEST;
+    }
+
 }
