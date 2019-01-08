@@ -35,4 +35,8 @@ class CasinosByCountryController extends CasinosListController {
     {
         return "country";
     }
+
+    protected function getSortCriteria() {
+        return CasinoSortCriteria::POPULARITY;
+    }
 }
