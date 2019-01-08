@@ -5344,6 +5344,12 @@ a:hover, a:active, a:visited, a:focus {
   min-width: 156px;
 }
 
+@media screen and (max-width: 767px) {
+  .casino-review .btn-middle{
+    padding: 11px 22px 12px;
+  }
+}
+
 .casino-review .list-rating {
   width: 120px;
   margin: 0;
@@ -5425,6 +5431,12 @@ a:hover, a:active, a:visited, a:focus {
 
 .btn-group .btn-bordered {
   padding: 10px 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .btn-group .btn-bordered{
+    padding: 10px 15px;
+  }
 }
 
 .btn-group-mobile {
