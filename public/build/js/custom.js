@@ -23,6 +23,18 @@ var AJAX_CUR_PAGE = 1;
         }   
         
     });
+
+    //detect when scrolling is stoped
+    $.fn.scrollEnd = function(callback, timeout) {
+      $(this).scroll(function(){
+        var $this = $(this);
+        if ($this.data('scrollTimeout')) {
+          clearTimeout($this.data('scrollTimeout'));
+        }
+        $this.data('scrollTimeout', setTimeout(callback,timeout));
+      });
+    };
+    //detect when scrolling is stopped
     
     var windowToBottom = 0;
     
@@ -30,20 +42,26 @@ var AJAX_CUR_PAGE = 1;
         
         //scroll down
         if (windowToBottom < $(window).scrollTop()) {
-            $('.header').removeClass('site__header_sticky');
+            $('body').removeClass('site__header_sticky');
             windowToBottom = $(window).scrollTop();
         //scroll up
         } else { 
             if ( (windowToBottom - $(window).scrollTop()) > ($(window).height() / 3) ) {
-                $('.header').addClass('site__header_sticky');
+                $('body').addClass('site__header_sticky');
                 windowToBottom = $(window).scrollTop();
             }
         }
         
          if ($(window).scrollTop() === 0) {
-            $('.header').removeClass('site__header_sticky');
+            $('body').removeClass('site__header_sticky');
         }
     });
+
+    $(window).scrollEnd(function(){
+        if ($(window).scrollTop() !== 0) {
+            $('body').addClass('site__header_sticky');
+        }
+    }, 1500);
 
     $(window).resize(function(event) {
         ww = $(window).width();
@@ -1905,6 +1923,7 @@ var AJAX_CUR_PAGE = 1;
                     .closest(_container)
                     .find(_mobilePop)
                     .fadeIn('fast');
+                $('body').addClass('no-scroll');
             }
 
             _btnOpen.on('click', function(e) {
@@ -1919,7 +1938,7 @@ var AJAX_CUR_PAGE = 1;
                     .fadeOut('fast')
                     .find('.mobile-popup-body')
                     .html('');
-                    
+                $('body').removeClass('no-scroll');
                 return false;
             });
         }
@@ -1996,6 +2015,7 @@ var AJAX_CUR_PAGE = 1;
         });
 
         _btnMobileClose.on('click', function(e) {
+            _input.val('').focus();
             $('body').removeClass('mobile-search-opened');
         });
 
