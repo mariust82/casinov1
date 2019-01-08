@@ -2005,6 +2005,10 @@ var AJAX_CUR_PAGE = 1;
             });
         });
 
+        _input.on('keyup focus', function() {
+            searchDropOpen(_drop);
+        });
+
         _btnClose.on('click', function(e) {
             searchDropClose(_drop);
         });
@@ -2026,12 +2030,12 @@ var AJAX_CUR_PAGE = 1;
 
     function searchDropOpen(_drop) {
         setTimeout(function(){
-            _drop.slideDown('300');
+            _drop.slideDown('50');
         }, 300);
     }
 
     function searchDropClose(_drop) {
-        _drop.slideUp('300', function() {
+        _drop.slideUp('50', function() {
             $('body').removeClass('search-opened');
         });
     }

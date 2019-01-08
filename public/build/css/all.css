@@ -2475,7 +2475,7 @@ a:hover, a:active, a:visited, a:focus {
   .search-drop {
     display: block;
     position: static;
-    height: 100%;
+    height: 100vh;
     padding: 20px 10px;
     border-radius: 0;
   }
