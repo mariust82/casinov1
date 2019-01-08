@@ -6,7 +6,7 @@
                 	<a href="/reviews/${normalize(${item.name})}-review" class="carousel-slide">
                 		<div class="carousel-slide-img">
                 			<div>
-                				<img src="${getCasinoLogo(${item.code},'124x82')}" width="85" height="56" alt="">
+                				<img src="${getCasinoLogo(${item.code},'124x82')}" width="85" height="56" alt="${item.name} Logo" title="${item.name}">
                 			</div>
 	                		<div class="carousel-slide-rating ${normalize(get_rating(${item.rating}))}">
 		                		${ceil(${item.rating})}

@@ -61,7 +61,7 @@ var AJAX_CUR_PAGE = 1;
         if ($(window).scrollTop() !== 0) {
             $('body').addClass('site__header_sticky');
         }
-    }, 1500);
+    }, 800);
 
     $(window).resize(function(event) {
         ww = $(window).width();
@@ -2031,7 +2031,7 @@ var AJAX_CUR_PAGE = 1;
     function searchDropOpen(_drop) {
         setTimeout(function(){
             _drop.slideDown('50');
-        }, 300);
+        }, 50);
     }
 
     function searchDropClose(_drop) {
