@@ -2137,7 +2137,7 @@ var AJAX_CUR_PAGE = 1;
                                     if (flag) {
                                         flag = false;
                                         if ($(window).width() > 480) {
-                                            symbolsCount += 250;
+                                            symbolsCount += 300;
                                         }
                                         itemText = childs[i].innerHTML.substring(0,symbolsCount) + '<span class="read_controll">...</span>';
                                         createTextParagraf(itemText,childsHolder,childs[i]);
