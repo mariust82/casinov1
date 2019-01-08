@@ -5232,6 +5232,16 @@ a:hover, a:active, a:visited, a:focus {
   border-radius: 2px;
 }
 
+.btn-bordered.load.loading {
+  background:none;
+  border:none;
+  -webkit-box-shadow:none;
+  -moz-box-shadow:none;
+  box-shadow:none;
+  text-indent:-9999px;
+  background: url(../images/loader.svg) no-repeat center;
+}
+
 .btn-bordered-alt {
   font-size: 11px;
 }
