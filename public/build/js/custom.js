@@ -170,10 +170,6 @@ var AJAX_CUR_PAGE = 1;
         checkStringLength($('.list .bonus-box'), 21);
         checkStringLength($('.bonus-item .bonus-box'), 33);
         grayscaleIE();
-        
-        if ($('.links-nav').length > 0) {
-            setMainMenuSubItemActive();
-        }
 
         $('.message .close').on('click', function(e) {
             $(this).parent().fadeOut();
@@ -218,27 +214,6 @@ var AJAX_CUR_PAGE = 1;
         $('.js-tooltip').tooltipster(tooltipConfig);
         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
-    }
-
-    function setMainMenuSubItemActive(){
-        var _links = $('.links-nav a');
-        var _topLinks = $('.header-menu .expand-menu');
-        var _url ='';
-
-        _links.each(function(index, el) {
-            if ($(el).hasClass('active')) {
-                _url = $(this).attr('href');
-            };
-        });
-
-        _topLinks.each(function(index, el) {
-            var _self = el;
-            $(_self).find('a').each(function(index, el) {
-                if ($(el).attr('href')==_url) {
-                    $(el).addClass('active');
-                }
-            });
-        });
     }
 
     function grayscaleIE() {
