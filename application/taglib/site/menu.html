@@ -7,7 +7,9 @@
 			<std:if condition="!empty(${result.submenuItems})">
 				<ul class="expand-menu">
 					<std:foreach var="${result.submenuItems}" value="info">
-						<li class="expand-menu__list"><a class="expand-menu__list-item" href="${info.url}">${info.title}</a></li>
+						<li class="expand-menu__list">
+							<a class="expand-menu__list-item  ${(${info.is_active}?' active ':'')}" href="${info.url}">${info.title}</a>
+						</li>
 					</std:foreach>
 				</ul>
 			</std:if>
