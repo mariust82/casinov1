@@ -21,7 +21,7 @@ $this->response->setAttribute("menu_top", array (
   array (
     'title' => 'NEW CASINOS',
     'url' => '/casinos/new',
-    'is_active' => false,
+    'is_active' => true,
     'submenuItems' => 
     array (
     ),
@@ -31,16 +31,79 @@ $this->response->setAttribute("menu_top", array (
   array (
     'title' => 'CASINOS',
     'url' => '/casinos',
-    'is_active' => true,
+    'is_active' => false,
     'submenuItems' => 
     array (
-      'Best Casinos' => '/casinos/best',
-      'Live Casinos' => '/features/live-dealer',
-      'Mobile Casinos' => '/casinos/mobile',
-      'eCOGRA Casinos' => '/features/ecogra-casinos',
-      'Stay Away Casinos' => '/casinos/stay-away',
-      'Popular Casinos' => '/casinos/popular',
-      'All Casinos' => '/casinos',
+      0 => 
+      array (
+        'title' => 'Best Casinos',
+        'url' => '/casinos/best',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      1 => 
+      array (
+        'title' => 'Live Casinos',
+        'url' => '/features/live-dealer',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      2 => 
+      array (
+        'title' => 'Mobile Casinos',
+        'url' => '/casinos/mobile',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      3 => 
+      array (
+        'title' => 'eCOGRA Casinos',
+        'url' => '/features/ecogra-casinos',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      4 => 
+      array (
+        'title' => 'Stay Away Casinos',
+        'url' => '/casinos/stay-away',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      5 => 
+      array (
+        'title' => 'Popular Casinos',
+        'url' => '/casinos/popular',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      6 => 
+      array (
+        'title' => 'All Casinos',
+        'url' => '/casinos',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
     ),
     'have_submenu' => true,
   ),
@@ -51,15 +114,96 @@ $this->response->setAttribute("menu_top", array (
     'is_active' => false,
     'submenuItems' => 
     array (
-      'RTG Casinos' => '/softwares/rtg',
-      'Rival Casinos' => '/softwares/rival',
-      'NetEnt Casinos' => '/softwares/netent',
-      'Playtech Casinos' => '/softwares/playtech',
-      'MicroGaming Casinos' => '/softwares/microgaming',
-      'BetSoft Casinos' => '/softwares/betsoft',
-      'Saucify Casinos' => '/softwares/saucify',
-      'Cryptologic Casinos' => '/softwares/cryptologic',
-      'All Softwares' => '/softwares',
+      0 => 
+      array (
+        'title' => 'RTG Casinos',
+        'url' => '/softwares/rtg',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      1 => 
+      array (
+        'title' => 'Rival Casinos',
+        'url' => '/softwares/rival',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      2 => 
+      array (
+        'title' => 'NetEnt Casinos',
+        'url' => '/softwares/netent',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      3 => 
+      array (
+        'title' => 'Playtech Casinos',
+        'url' => '/softwares/playtech',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      4 => 
+      array (
+        'title' => 'MicroGaming Casinos',
+        'url' => '/softwares/microgaming',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      5 => 
+      array (
+        'title' => 'BetSoft Casinos',
+        'url' => '/softwares/betsoft',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      6 => 
+      array (
+        'title' => 'Saucify Casinos',
+        'url' => '/softwares/saucify',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      7 => 
+      array (
+        'title' => 'Cryptologic Casinos',
+        'url' => '/softwares/cryptologic',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      8 => 
+      array (
+        'title' => 'All Softwares',
+        'url' => '/softwares',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
     ),
     'have_submenu' => true,
   ),
@@ -70,15 +214,96 @@ $this->response->setAttribute("menu_top", array (
     'is_active' => false,
     'submenuItems' => 
     array (
-      'Romania Casinos' => '/countries-list/romania',
-      'USA Casinos' => '/countries-list/united-states',
-      'UK Casinos' => '/countries-list/united-kingdom',
-      'Australia Casinos' => '/countries-list/australia',
-      'Germany Casinos' => '/countries-list/germany',
-      'New Zealand Casinos' => '/countries-list/new-zealand',
-      'Netherlands Casinos' => '/countries-list/netherlands',
-      'Sweden Casinos' => '/countries-list/sweden',
-      'All Countries' => '/countries ',
+      0 => 
+      array (
+        'title' => 'Romania Casinos',
+        'url' => '/countries-list/romania',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      1 => 
+      array (
+        'title' => 'USA Casinos',
+        'url' => '/countries-list/united-states',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      2 => 
+      array (
+        'title' => 'UK Casinos',
+        'url' => '/countries-list/united-kingdom',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      3 => 
+      array (
+        'title' => 'Australia Casinos',
+        'url' => '/countries-list/australia',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      4 => 
+      array (
+        'title' => 'Germany Casinos',
+        'url' => '/countries-list/germany',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      5 => 
+      array (
+        'title' => 'New Zealand Casinos',
+        'url' => '/countries-list/new-zealand',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      6 => 
+      array (
+        'title' => 'Netherlands Casinos',
+        'url' => '/countries-list/netherlands',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      7 => 
+      array (
+        'title' => 'Sweden Casinos',
+        'url' => '/countries-list/sweden',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      8 => 
+      array (
+        'title' => 'All Countries',
+        'url' => '/countries ',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
     ),
     'have_submenu' => true,
   ),
@@ -89,13 +314,76 @@ $this->response->setAttribute("menu_top", array (
     'is_active' => false,
     'submenuItems' => 
     array (
-      'Neteller Casinos' => '/banking/neteller',
-      'Skrill Moneybookers Casinos' => '/banking/skrill-moneybookers',
-      'PayPal Casinos' => '/banking/paypal',
-      'Bitcoin Wallets Casinos' => '/banking/bitcoin-wallets',
-      'EcoPayz EcoCard Casinos' => '/banking/ecopayz',
-      'Paysafe Card' => '/banking/paysafe-card',
-      'All Banking' => '/banking',
+      0 => 
+      array (
+        'title' => 'Neteller Casinos',
+        'url' => '/banking/neteller',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      1 => 
+      array (
+        'title' => 'Skrill Moneybookers Casinos',
+        'url' => '/banking/skrill-moneybookers',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      2 => 
+      array (
+        'title' => 'PayPal Casinos',
+        'url' => '/banking/paypal',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      3 => 
+      array (
+        'title' => 'Bitcoin Wallets Casinos',
+        'url' => '/banking/bitcoin-wallets',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      4 => 
+      array (
+        'title' => 'EcoPayz EcoCard Casinos',
+        'url' => '/banking/ecopayz',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      5 => 
+      array (
+        'title' => 'Paysafe Card',
+        'url' => '/banking/paysafe-card',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      6 => 
+      array (
+        'title' => 'All Banking',
+        'url' => '/banking',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
     ),
     'have_submenu' => true,
   ),
@@ -106,24 +394,141 @@ $this->response->setAttribute("menu_top", array (
     'is_active' => false,
     'submenuItems' => 
     array (
-      'Video Slots' => '/games/video-slots',
-      'Classic Slots' => '/games/slots',
-      'Video Poker' => '/games/video-poker',
-      'Scratch Cards' => '/games/scratch-cards',
-      'Blackjack' => '/games/blackjack',
-      'Roulette' => '/games/roulette',
-      'Table Games' => '/games/table-games',
-      'Bingo' => '/games/bingo',
-      'Baccarat' => '/games/baccarat',
-      'Craps' => '/games/craps',
-      'Keno' => '/games/keno',
-      'Other' => '/games/other',
-      'All Games' => '/games',
+      0 => 
+      array (
+        'title' => 'Video Slots',
+        'url' => '/games/video-slots',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      1 => 
+      array (
+        'title' => 'Classic Slots',
+        'url' => '/games/slots',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      2 => 
+      array (
+        'title' => 'Video Poker',
+        'url' => '/games/video-poker',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      3 => 
+      array (
+        'title' => 'Scratch Cards',
+        'url' => '/games/scratch-cards',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      4 => 
+      array (
+        'title' => 'Blackjack',
+        'url' => '/games/blackjack',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      5 => 
+      array (
+        'title' => 'Roulette',
+        'url' => '/games/roulette',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      6 => 
+      array (
+        'title' => 'Table Games',
+        'url' => '/games/table-games',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      7 => 
+      array (
+        'title' => 'Bingo',
+        'url' => '/games/bingo',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      8 => 
+      array (
+        'title' => 'Baccarat',
+        'url' => '/games/baccarat',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      9 => 
+      array (
+        'title' => 'Craps',
+        'url' => '/games/craps',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      10 => 
+      array (
+        'title' => 'Keno',
+        'url' => '/games/keno',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      11 => 
+      array (
+        'title' => 'Other',
+        'url' => '/games/other',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      12 => 
+      array (
+        'title' => 'All Games',
+        'url' => '/games',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
     ),
     'have_submenu' => true,
   ),
 ));
-$this->response->setAttribute("selected_entity", 'Stay away');
+$this->response->setAttribute("selected_entity", 'New');
 $this->response->setAttribute("is_mobile", false);
 $this->response->setAttribute("menu_bottom", array (
   0 => 
@@ -170,7 +575,7 @@ $this->response->setAttribute("menu_bottom", array (
   array (
     'title' => 'New Casinos',
     'url' => '/casinos/new',
-    'is_active' => false,
+    'is_active' => true,
     'submenuItems' => 
     array (
     ),
@@ -180,7 +585,7 @@ $this->response->setAttribute("menu_bottom", array (
   array (
     'title' => 'Stay Away Casinos',
     'url' => '/casinos/stay-away',
-    'is_active' => true,
+    'is_active' => false,
     'submenuItems' => 
     array (
     ),
@@ -197,16 +602,106 @@ $this->response->setAttribute("menu_bottom", array (
     'have_submenu' => false,
   ),
 ));
-$this->response->setAttribute("sort_criteria", 1);
+$this->response->setAttribute("sort_criteria", 3);
 $this->response->setAttribute("filter", 'label');
-$this->response->setAttribute("total_casinos", '42');
+$this->response->setAttribute("total_casinos", '8');
 $this->response->setAttribute("casinos", array (
   0 => 
   array (
-    'id' => '1249',
-    'name' => 'Latest Casino',
-    'code' => 'latest_casino',
-    'rating' => 1,
+    'id' => '1354',
+    'name' => 'Dantest2',
+    'code' => 'dantest2',
+    'rating' => 10,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+    ),
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '69',
+      'min_deposit' => '10',
+      'wagering' => '20xb',
+      'games_allowed' => 'all',
+      'code' => '11233655',
+      'type' => 'First Deposit Bonus',
+    ),
+    'bonus_free' => NULL,
+    'is_live_dealer' => NULL,
+    'date_established' => '2018-10-23',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'invision_casino_id' => NULL,
+    'date_formatted' => 'Oct. 23, 2018',
+    'status' => '0',
+  ),
+  1 => 
+  array (
+    'id' => '1350',
+    'name' => '123 Bingo test Updown Test test 234',
+    'code' => '12345',
+    'rating' => 10,
+    'softwares' => 
+    array (
+      0 => 'NYX Interactive',
+      1 => '021 test',
+      2 => 'Evolution Gaming',
+    ),
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100',
+      'min_deposit' => '10',
+      'wagering' => '10',
+      'games_allowed' => 'Starburst',
+      'code' => 'Vasile GTM',
+      'type' => 'First Deposit Bonus',
+    ),
+    'bonus_free' => NULL,
+    'is_live_dealer' => NULL,
+    'date_established' => '2018-09-12',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'invision_casino_id' => NULL,
+    'date_formatted' => 'Sep. 12, 2018',
+    'status' => '2',
+  ),
+  2 => 
+  array (
+    'id' => '1349',
+    'name' => 'Test casino 123',
+    'code' => '12341234',
+    'rating' => 2,
     'softwares' => 
     array (
       0 => '021 test',
@@ -215,16 +710,16 @@ $this->response->setAttribute("casinos", array (
     'currencies' => NULL,
     'bonus_first_deposit' => 
     array (
-      'amount' => '1',
-      'min_deposit' => '1',
-      'wagering' => '1',
-      'games_allowed' => '1',
-      'code' => '1',
+      'amount' => '150',
+      'min_deposit' => '10',
+      'wagering' => '4xb',
+      'games_allowed' => 'all',
+      'code' => 'dragos-test',
       'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
-    'date_established' => '2017-10-01',
+    'date_established' => '2018-08-13',
     'emails' => NULL,
     'phones' => NULL,
     'is_live_chat' => NULL,
@@ -242,137 +737,45 @@ $this->response->setAttribute("casinos", array (
     'is_currency_accepted' => NULL,
     'note' => NULL,
     'invision_casino_id' => NULL,
-    'date_formatted' => 'Oct. 01, 2017',
-    'status' => '1',
-  ),
-  1 => 
-  array (
-    'id' => '1193',
-    'name' => 'Mars Casino',
-    'code' => 'mars_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'MicroGaming',
-      1 => 'iSoftBet',
-      2 => 'Amatic Industries',
-      3 => 'SoftSwiss',
-      4 => 'Ezugi',
-      5 => 'NetEnt',
-      6 => 'BetSoft',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100% + 50 FS',
-      'min_deposit' => '$/€/£20',
-      'wagering' => '40xB',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2017-02-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Feb. 01, 2017',
-    'status' => '1',
-  ),
-  2 => 
-  array (
-    'id' => '1029',
-    'name' => '5Dimes Casino',
-    'code' => 'dimes5_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-      1 => 'BetSoft',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '50%',
-      'min_deposit' => '$50',
-      'wagering' => '1xB',
-      'games_allowed' => 'All except Roulette,Craps & Baccarat and Progressive Slots',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '1998-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 1998',
-    'status' => '1',
+    'date_formatted' => 'Aug. 13, 2018',
+    'status' => '0',
   ),
   3 => 
   array (
-    'id' => '988',
-    'name' => 'OG Palace Casino',
-    'code' => 'og_palace_casino',
-    'rating' => 6,
+    'id' => '1347',
+    'name' => 'randomer casino',
+    'code' => 'randomer_casino',
+    'rating' => 10,
     'softwares' => 
     array (
-      0 => 'Rival',
-      1 => 'BetSoft',
+      0 => '21GNET',
+      1 => '888 Software',
+      2 => '2By2 Gaming',
+      3 => '1X2 Gaming',
+      4 => 'Aberrant',
     ),
     'languages' => NULL,
     'currencies' => NULL,
     'bonus_first_deposit' => 
     array (
-      'amount' => '150%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'All except Progressives,Gameset,Doubleup',
-      'code' => 'No code required',
+      'amount' => '',
+      'min_deposit' => '0',
+      'wagering' => '0',
+      'games_allowed' => 'adg',
+      'code' => 'ad',
       'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => 
     array (
-      'amount' => '33',
+      'amount' => '0000000',
       'min_deposit' => '',
-      'wagering' => '35xB',
-      'games_allowed' => 'Windy Farm Slot',
-      'code' => 'No code required',
-      'type' => 'Free Spins',
+      'wagering' => '0',
+      'games_allowed' => '0',
+      'code' => '0agfaeg',
+      'type' => 'No Deposit Bonus',
     ),
     'is_live_dealer' => NULL,
-    'date_established' => '2010-01-01',
+    'date_established' => '2018-07-26',
     'emails' => NULL,
     'phones' => NULL,
     'is_live_chat' => NULL,
@@ -385,43 +788,39 @@ $this->response->setAttribute("casinos", array (
     'withdrawal_timeframes' => NULL,
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
+    'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
     'note' => NULL,
     'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2010',
-    'status' => '1',
+    'date_formatted' => 'Jul. 26, 2018',
+    'status' => '0',
   ),
   4 => 
   array (
-    'id' => '978',
-    'name' => 'M88 Casino',
-    'code' => 'm88_casino',
-    'rating' => 5,
+    'id' => '1335',
+    'name' => 'TestAM',
+    'code' => 'asd',
+    'rating' => 6,
     'softwares' => 
     array (
-      0 => 'MicroGaming',
-      1 => 'Pragmatic Play',
-      2 => 'Quickfire',
-      3 => 'Games OS',
-      4 => 'Playtech',
-      5 => 'Opus Gaming',
+      0 => '21GNET',
+      1 => '021 test',
     ),
     'languages' => NULL,
     'currencies' => NULL,
     'bonus_first_deposit' => 
     array (
-      'amount' => '208%',
-      'min_deposit' => '$/€10',
-      'wagering' => '20x(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'SUPTS2016',
+      'amount' => '1',
+      'min_deposit' => '2',
+      'wagering' => '3',
+      'games_allowed' => '4',
+      'code' => '5',
       'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
-    'date_established' => '2007-02-01',
+    'date_established' => '2018-05-29',
     'emails' => NULL,
     'phones' => NULL,
     'is_live_chat' => NULL,
@@ -434,46 +833,42 @@ $this->response->setAttribute("casinos", array (
     'withdrawal_timeframes' => NULL,
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
+    'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
     'note' => NULL,
     'invision_casino_id' => NULL,
-    'date_formatted' => 'Feb. 01, 2007',
-    'status' => '1',
+    'date_formatted' => 'May. 29, 2018',
+    'status' => '0',
   ),
   5 => 
   array (
-    'id' => '962',
-    'name' => 'Gibson Casino',
-    'code' => 'gibson_casino',
-    'rating' => 6,
+    'id' => '1334',
+    'name' => 'random casino',
+    'code' => 'random_casino',
+    'rating' => 10,
     'softwares' => 
     array (
-      0 => 'Rival',
+      0 => 'AlteaGaming',
+      1 => 'BetOnSoft',
+      2 => 'Bookie',
+      3 => 'Bally',
+      4 => '2By2 Gaming',
     ),
     'languages' => NULL,
     'currencies' => NULL,
     'bonus_first_deposit' => 
     array (
-      'amount' => '400%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '35x(D+B)',
-      'games_allowed' => 'Roulette,Craps,All except Baccarat,DoubleUp,RedDog,Sicbo & Slot Progressive.',
-      'code' => 'No code required',
+      'amount' => '20',
+      'min_deposit' => '5',
+      'wagering' => '10',
+      'games_allowed' => 'all',
+      'code' => 'test i test',
       'type' => 'First Deposit Bonus',
     ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£25',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
+    'bonus_free' => NULL,
     'is_live_dealer' => NULL,
-    'date_established' => '2014-07-01',
+    'date_established' => '2018-05-22',
     'emails' => NULL,
     'phones' => NULL,
     'is_live_chat' => NULL,
@@ -486,1780 +881,41 @@ $this->response->setAttribute("casinos", array (
     'withdrawal_timeframes' => NULL,
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
+    'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
     'note' => NULL,
     'invision_casino_id' => NULL,
-    'date_formatted' => 'Jul. 01, 2014',
-    'status' => '1',
+    'date_formatted' => 'May. 22, 2018',
+    'status' => '0',
   ),
   6 => 
   array (
-    'id' => '830',
-    'name' => 'Diamond Reels Casino',
-    'code' => 'diamond_reels_casino',
-    'rating' => 9,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '225%',
-      'min_deposit' => '$25',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'All',
-      'code' => 'DRBFC225',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '50',
-      'min_deposit' => '',
-      'wagering' => '30xB',
-      'games_allowed' => 'Slots',
-      'code' => 'DRACH50',
-      'type' => 'Free Spins',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2015-09-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Sep. 01, 2015',
-    'status' => '1',
-  ),
-  7 => 
-  array (
-    'id' => '755',
-    'name' => 'Vegas2Web Casino',
-    'code' => 'vegas2web_casino',
-    'rating' => 7,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-      1 => 'Vivo Gaming',
-      2 => 'Saucify',
-      3 => 'BetSoft',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '150% + 25 FS',
-      'min_deposit' => '$/€25',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€20',
-      'min_deposit' => '',
-      'wagering' => '40xB',
-      'games_allowed' => 'Slots',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2010-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2010',
-    'status' => '1',
-  ),
-  8 => 
-  array (
-    'id' => '698',
-    'name' => '7Bit Casino',
-    'code' => 'bit7_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'NetEnt',
-      1 => 'Amatic Industries',
-      2 => 'SoftSwiss',
-      3 => 'Endorphina',
-      4 => 'Ezugi',
-      5 => 'BetSoft',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '125% + 175 FS',
-      'min_deposit' => '$/€20',
-      'wagering' => '20xB',
-      'games_allowed' => 'All',
-      'code' => 'WINTBFCL',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '10',
-      'min_deposit' => '',
-      'wagering' => '40xB',
-      'games_allowed' => 'Dr. Jekyll & Mr. Hyde,Treasure Room,Event Horizon,The True Sheriff,Mr. Vegas,A Night in Paris JP,Aft',
-      'code' => '7BitTBFCL',
-      'type' => 'Free Spins',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2014-11-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Nov. 01, 2014',
-    'status' => '1',
-  ),
-  9 => 
-  array (
-    'id' => '593',
-    'name' => 'Sahara Sands Casino',
-    'code' => 'sahara_sands_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '300% + 100 FS',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'All,Except Baccarat,Roulette,Craps,Keno,Double Up & Progressive Games',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£7',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'All,Except Baccarat,Roulette,Craps,Keno,Double Up & Progressive Games',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2014-07-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jul. 01, 2014',
-    'status' => '1',
-  ),
-  10 => 
-  array (
-    'id' => '592',
-    'name' => 'Ricardos Casino',
-    'code' => 'ricardos_casino',
-    'rating' => 7,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '400% + 100 FS',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '35x(D+B)',
-      'games_allowed' => 'All,Except Baccarat,Roulette,Craps,Keno,Double Up & Progressive Games',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£7',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'All,Except Baccarat,Roulette,Craps,Keno,Double Up & Progressive Games',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2014-07-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jul. 01, 2014',
-    'status' => '1',
-  ),
-  11 => 
-  array (
-    'id' => '591',
-    'name' => 'LaRomere Casino',
-    'code' => 'laromere_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-      1 => 'BetSoft',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '200%',
-      'min_deposit' => '$/€25',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'Slots (5 x Win)',
-      'code' => '1STCASINOSLISTS',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '40',
-      'min_deposit' => '',
-      'wagering' => '30xB',
-      'games_allowed' => 'Slots (5 x Win)',
-      'code' => 'FREECASINOSLISTS',
-      'type' => 'Free Spins',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2012-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2012',
-    'status' => '1',
-  ),
-  12 => 
-  array (
-    'id' => '449',
-    'name' => 'CasinoVal',
-    'code' => 'casinoval',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'Amuzi Gaming',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '400%',
-      'min_deposit' => '$/€20',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'All',
-      'code' => '001',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€50',
-      'min_deposit' => '',
-      'wagering' => '40xB',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2010-08-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Aug. 01, 2010',
-    'status' => '1',
-  ),
-  13 => 
-  array (
-    'id' => '389',
-    'name' => 'Crazy Spins Casino',
-    'code' => 'crazy_spins_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'MicroGaming',
-      1 => 'BetSoft',
-      2 => 'Play n GO',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '200%',
-      'min_deposit' => '$/€/£10',
-      'wagering' => '50x(D+B)',
-      'games_allowed' => 'All except jackpot & live casino',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '25',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'Slots',
-      'code' => 'No code required',
-      'type' => 'Free Spins',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2013-05-08',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'May. 08, 2013',
-    'status' => '1',
-  ),
-  14 => 
-  array (
-    'id' => '382',
-    'name' => 'Lake Palace Casino',
-    'code' => 'lake_palace_casino',
-    'rating' => 5,
-    'softwares' => 
-    array (
-      0 => 'Saucify',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '110%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '40xB',
-      'games_allowed' => 'All except Roulette & Three Card Poker,Baccarat',
-      'code' => 'LPNW1',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2001-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2001',
-    'status' => '1',
-  ),
-  15 => 
-  array (
-    'id' => '380',
-    'name' => 'Jupiter Club Casino',
-    'code' => 'jupiter_club_casino',
-    'rating' => 5,
-    'softwares' => 
-    array (
-      0 => 'Saucify',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '40xB',
-      'games_allowed' => 'All except Roulette & Three Card Poker,Baccarat',
-      'code' => '1JCC100P',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2001-04-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Apr. 01, 2001',
-    'status' => '1',
-  ),
-  16 => 
-  array (
-    'id' => '356',
-    'name' => 'Cash o Lot Casino',
-    'code' => 'cash_o_lot_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '25x(D+B)',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£50',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2013-09-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Sep. 01, 2013',
-    'status' => '1',
-  ),
-  17 => 
-  array (
-    'id' => '330',
-    'name' => 'Platinum Reels Casino',
-    'code' => 'platinum_reels_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'Saucify',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '200%',
-      'min_deposit' => '$/€/£20',
-      'wagering' => '40xB',
-      'games_allowed' => 'All',
-      'code' => 'CASINOSLISTS200',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '60',
-      'min_deposit' => '',
-      'wagering' => '40xB',
-      'games_allowed' => 'Reels of Rock',
-      'code' => 'CASINOSLISTS60',
-      'type' => 'Free Spins',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2011-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2011',
-    'status' => '1',
-  ),
-  18 => 
-  array (
-    'id' => '322',
-    'name' => 'Roadhouse Reels',
-    'code' => 'roadhouse_reels',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'Saucify',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '110%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '40xB',
-      'games_allowed' => 'All except Roulette & Tri Card Poker,Baccarat',
-      'code' => 'RHWB1',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2001-04-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Apr. 01, 2001',
-    'status' => '1',
-  ),
-  19 => 
-  array (
-    'id' => '318',
-    'name' => 'Vanguards Casino',
-    'code' => 'vanguards_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '20x(D+B)',
-      'games_allowed' => 'All except Roulette,Craps & Baccarat,DoubleUp,RedDog,Sicbo,Slot Progressive',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£20',
-      'min_deposit' => '',
-      'wagering' => '50xB',
-      'games_allowed' => 'All except  Baccarat,Craps,DoubleUp,RedDog,Roulette,Sicbo,Slot Progressive',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2010-06-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jun. 01, 2010',
-    'status' => '1',
-  ),
-  20 => 
-  array (
-    'id' => '317',
-    'name' => 'Slot Powers Casino',
-    'code' => 'slot_powers_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '25x(D+B)',
-      'games_allowed' => 'All except Keno,Craps & Baccarat,Caribstud,DoubleUp,Letitride,PaiGow,RedDog,Slot Progressive,ThreeCa',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£10',
-      'min_deposit' => '',
-      'wagering' => '25xB',
-      'games_allowed' => 'All games except Baccarat,Craps,DoubleUp,RedDog,Roulette,SicBo,Slot Progressive',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2008-04-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Apr. 01, 2008',
-    'status' => '1',
-  ),
-  21 => 
-  array (
-    'id' => '288',
-    'name' => 'Bella Vegas Casino',
-    'code' => 'bella_vegas_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'Saucify',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '40xB',
-      'games_allowed' => 'All except Roulette & Three Card Poker,Baccarat',
-      'code' => '1BVO100P',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2001-04-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Apr. 01, 2001',
-    'status' => '1',
-  ),
-  22 => 
-  array (
-    'id' => '287',
-    'name' => 'Mansion88 Casino',
-    'code' => 'mansion88_casino',
-    'rating' => 9,
-    'softwares' => 
-    array (
-      0 => 'Playtech',
-      1 => 'Opus Gaming',
-      2 => 'Quickfire',
-      3 => 'Games OS',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '208%',
-      'min_deposit' => '$/€10',
-      'wagering' => '20x(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '0000-00-00',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Nov. 00, 0000',
-    'status' => '1',
-  ),
-  23 => 
-  array (
-    'id' => '272',
-    'name' => 'Heavy Chips Casino',
-    'code' => 'heavy_chips_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'Playtech',
-      1 => 'Games OS',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100% + $80',
-      'min_deposit' => '$/€/£20',
-      'wagering' => '40x(D+B)',
-      'games_allowed' => 'GamesOS',
-      'code' => '80LUCKYPALACE',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£25',
-      'min_deposit' => '',
-      'wagering' => '99xB',
-      'games_allowed' => 'GamesOS ',
-      'code' => 'PALACEBONUS25',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2013-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2013',
-    'status' => '1',
-  ),
-  24 => 
-  array (
-    'id' => '250',
-    'name' => 'Grand Wild Casino',
-    'code' => 'grand_wild_casino',
-    'rating' => 6,
-    'softwares' => 
-    array (
-      0 => 'NetEnt',
-      1 => 'iSoftBet',
-      2 => 'Playtech',
-      3 => 'Games OS',
-      4 => 'BetConstruct',
-      5 => 'MicroGaming',
-      6 => 'Playson',
-      7 => 'Pragmatic Play',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '300% + 200 FS',
-      'min_deposit' => '$/€/£20',
-      'wagering' => '30xB',
-      'games_allowed' => 'Slots in Casino 2 Tab (FS - Gonzo\'s Quest,Dead or Alive)',
-      'code' => 'GDWDOA',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '30',
-      'min_deposit' => '',
-      'wagering' => '50xB',
-      'games_allowed' => 'Alien',
-      'code' => 'LIST30ALI',
-      'type' => 'Free Spins',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2013-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2013',
-    'status' => '1',
-  ),
-  25 => 
-  array (
-    'id' => '233',
-    'name' => 'Casino Royal Club',
-    'code' => 'casino_royal_club',
-    'rating' => 5,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '40x(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£471',
-      'min_deposit' => '',
-      'wagering' => '40xB',
-      'games_allowed' => '',
-      'code' => 'No code required',
-      'type' => 'Free Play',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2011-02-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Feb. 01, 2011',
-    'status' => '1',
-  ),
-  26 => 
-  array (
-    'id' => '107',
-    'name' => 'Slots Inferno',
-    'code' => 'slots_inferno',
-    'rating' => 5,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '$980',
-      'min_deposit' => '$20',
-      'wagering' => '120x(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'WIN1000',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$100',
-      'min_deposit' => '',
-      'wagering' => '25xB',
-      'games_allowed' => 'Slots',
-      'code' => 'CASINOSLISTS100',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2011-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2011',
-    'status' => '1',
-  ),
-  27 => 
-  array (
-    'id' => '85',
-    'name' => 'Big Dollar Casino',
-    'code' => 'bet_big_dollar',
-    'rating' => 7,
-    'softwares' => 
-    array (
-      0 => 'Saucify',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '$/€/£20',
-      'wagering' => '40xB',
-      'games_allowed' => 'All',
-      'code' => '1BDC100P',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£15',
-      'min_deposit' => '',
-      'wagering' => '45xB',
-      'games_allowed' => 'All',
-      'code' => 'NSB15',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2006-05-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'May. 01, 2006',
-    'status' => '1',
-  ),
-  28 => 
-  array (
-    'id' => '84',
-    'name' => 'Villa Fortuna Casino',
-    'code' => 'bet_villa_fortuna',
-    'rating' => 5,
-    'softwares' => 
-    array (
-      0 => 'Saucify',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '$/€/£20',
-      'wagering' => '40xB',
-      'games_allowed' => 'All',
-      'code' => 'VFPW1',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£20',
-      'min_deposit' => '',
-      'wagering' => '45xB',
-      'games_allowed' => 'All',
-      'code' => 'MFC20V',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2008-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2008',
-    'status' => '1',
-  ),
-  29 => 
-  array (
-    'id' => '64',
-    'name' => '99 Slot Machines',
-    'code' => 'slot_machines',
-    'rating' => 5,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '$980',
-      'min_deposit' => '$20',
-      'wagering' => '120(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'WIN1000',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$100',
-      'min_deposit' => '',
-      'wagering' => '25xB',
-      'games_allowed' => 'Slots',
-      'code' => 'CASINOSLISTSNDB',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2012-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2012',
-    'status' => '1',
-  ),
-  30 => 
-  array (
-    'id' => '63',
-    'name' => 'Slot Nuts Casino',
-    'code' => 'slot_nuts',
-    'rating' => 5,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '$980',
-      'min_deposit' => '$20',
-      'wagering' => '120(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'WIN1000',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$100',
-      'min_deposit' => '',
-      'wagering' => '25xB',
-      'games_allowed' => 'Slots',
-      'code' => 'CASINOSLISTSNDB',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2010-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2010',
-    'status' => '1',
-  ),
-  31 => 
-  array (
-    'id' => '62',
-    'name' => 'Plenty Jackpots',
-    'code' => 'plenty_jackpots',
-    'rating' => 4,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '$980',
-      'min_deposit' => '$20',
-      'wagering' => '120x(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'WIN1000',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$100',
-      'min_deposit' => '',
-      'wagering' => '25xB',
-      'games_allowed' => 'Slots',
-      'code' => 'CASINOSLISTS100',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2012-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2012',
-    'status' => '1',
-  ),
-  32 => 
-  array (
-    'id' => '61',
-    'name' => 'Mighty Slots',
-    'code' => 'mighty_slots',
-    'rating' => 5,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '$980',
-      'min_deposit' => '$20',
-      'wagering' => '120(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'WIN1000',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$100',
-      'min_deposit' => '',
-      'wagering' => '25xB',
-      'games_allowed' => 'Slots',
-      'code' => 'CASINOSLISTS100',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2007-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2007',
-    'status' => '1',
-  ),
-  33 => 
-  array (
-    'id' => '60',
-    'name' => 'Real Vegas Online',
-    'code' => 'real_vegas_online',
-    'rating' => 5,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '$980',
-      'min_deposit' => '$20',
-      'wagering' => '120(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'WIN1000',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$100',
-      'min_deposit' => '',
-      'wagering' => '25xB',
-      'games_allowed' => 'Slots',
-      'code' => 'CASINOSLISTSNDB',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2007-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2007',
-    'status' => '1',
-  ),
-  34 => 
-  array (
-    'id' => '50',
-    'name' => 'BetCave Casino',
-    'code' => 'betcave_casino',
-    'rating' => 4,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '200%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '25x(D+B)',
-      'games_allowed' => 'All except Roulette,Craps & Baccarat,DoubleUp,RedDog,SicBo,Slot Progressive',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£50',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'All except Roulette,Craps & Baccarat,DoubleUp,RedDog,SicBo,Slot Progressive',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2003-09-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Sep. 01, 2003',
-    'status' => '1',
-  ),
-  35 => 
-  array (
-    'id' => '44',
-    'name' => 'Casino Lust',
-    'code' => 'casino_lust',
-    'rating' => 9,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '200%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '25x(D+B)',
-      'games_allowed' => 'All except Roulette,Craps & Baccarat,DoubleUp,Slot Progressive,SicBo,RedDog',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£25',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'All except Roulette,Craps & Baccarat,DoubleUp,Slot Progressive,SicBo,RedDog',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2015-11-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Nov. 01, 2015',
-    'status' => '1',
-  ),
-  36 => 
-  array (
-    'id' => '42',
-    'name' => 'Vegas AMPED Casino',
-    'code' => 'vegas_amped_casino',
-    'rating' => 4,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '400%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '35x(D+B)',
-      'games_allowed' => 'All except Roulette,Craps & Baccarat,DoubleUp,RedDog,SicBo,Slot Progressive',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£25',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'All except Roulette,Craps & Baccarat,DoubleUp,RedDog,SicBo,Slot Progressive',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2001-08-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Aug. 01, 2001',
-    'status' => '1',
-  ),
-  37 => 
-  array (
-    'id' => '37',
-    'name' => 'Go Fish Casino',
-    'code' => 'go_fish_casino',
-    'rating' => 4,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '300%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'All except Roulette,Craps & Baccarat,DoubleUp,Slot Progressive,RedDog,SicBo',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£10',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'All except Roulette,Craps & Baccarat,DoubleUp,Slot Progressive,RedDog,SicBo',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2005-05-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'May. 01, 2005',
-    'status' => '1',
-  ),
-  38 => 
-  array (
-    'id' => '29',
-    'name' => 'Tropica Casino',
-    'code' => 'tropica_casino',
-    'rating' => 7,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '200%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '25x(D+B)',
-      'games_allowed' => 'All except Keno,Roulette,Craps & Baccarat,Double Up,Red Dog,Sicbo,Progressive Games',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£50',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-    ),
-    'is_live_dealer' => NULL,
-    'date_established' => '2009-09-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Sep. 01, 2009',
-    'status' => '1',
-  ),
-  39 => 
-  array (
-    'id' => '26',
-    'name' => 'Scrummy Casino',
-    'code' => 'scrummy_casino',
-    'rating' => 7,
-    'softwares' => 
-    array (
-      0 => 'Cozy Games',
-    ),
-    'languages' => NULL,
-    'currencies' => NULL,
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100%',
-      'min_deposit' => '$/€/£10',
-      'wagering' => '30xB',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-    ),
-    'bonus_free' => NULL,
-    'is_live_dealer' => NULL,
-    'date_established' => '2012-12-12',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'withdrawal_minimum' => NULL,
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'is_currency_accepted' => NULL,
-    'note' => NULL,
-    'invision_casino_id' => NULL,
-    'date_formatted' => 'Dec. 12, 2012',
-    'status' => '1',
-  ),
-  40 => 
-  array (
-    'id' => '1465',
-    'name' => 'Mako Casino',
-    'code' => 'mako_casino',
+    'id' => '1331',
+    'name' => 'Unicorn Casino',
+    'code' => '777',
     'rating' => 1,
     'softwares' => 
     array (
-      0 => 'NetEnt',
+      0 => '021 test',
+      1 => '21GNET',
+      2 => '1test233',
+      3 => '1X2 Gaming',
     ),
     'languages' => NULL,
     'currencies' => NULL,
     'bonus_first_deposit' => 
     array (
-      'amount' => '100%',
-      'min_deposit' => '€10',
-      'wagering' => '50xB',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
+      'amount' => '100',
+      'min_deposit' => '50',
+      'wagering' => '20',
+      'games_allowed' => 'Keno',
+      'code' => '4444',
       'type' => 'First Deposit Bonus',
     ),
     'bonus_free' => NULL,
     'is_live_dealer' => NULL,
-    'date_established' => '2016-01-01',
+    'date_established' => '2018-02-08',
     'emails' => NULL,
     'phones' => NULL,
     'is_live_chat' => NULL,
@@ -2277,45 +933,35 @@ $this->response->setAttribute("casinos", array (
     'is_currency_accepted' => NULL,
     'note' => NULL,
     'invision_casino_id' => NULL,
-    'date_formatted' => 'Jan. 01, 2016',
-    'status' => '1',
+    'date_formatted' => 'Feb. 08, 2018',
+    'status' => '0',
   ),
-  41 => 
+  7 => 
   array (
-    'id' => '35',
-    'name' => 'Casino Cash Palace',
-    'code' => 'casino_cash_palace',
-    'rating' => 5,
+    'id' => '1332',
+    'name' => 'The Coolest Casino',
+    'code' => '234',
+    'rating' => 9,
     'softwares' => 
     array (
-      0 => 'MicroGaming',
-      1 => 'Genesis Gaming',
-      2 => 'Rabcat',
-      3 => 'Quickfire',
-      4 => 'Endorphina',
+      0 => 'Betgames TV',
+      1 => 'Saucify',
+      2 => 'BetGames',
     ),
     'languages' => NULL,
     'currencies' => NULL,
     'bonus_first_deposit' => 
     array (
-      'amount' => '150%',
-      'min_deposit' => '$/€10',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'CASINOLISTS150',
+      'amount' => '20',
+      'min_deposit' => '10',
+      'wagering' => '20xB',
+      'games_allowed' => 'Bingo',
+      'code' => 'testytest',
       'type' => 'First Deposit Bonus',
     ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€20',
-      'min_deposit' => '',
-      'wagering' => '40xB',
-      'games_allowed' => 'Endorphina Slots',
-      'code' => 'CASINOLISTS20',
-      'type' => 'No Deposit Bonus',
-    ),
+    'bonus_free' => NULL,
     'is_live_dealer' => NULL,
-    'date_established' => '2014-06-01',
+    'date_established' => '2018-02-08',
     'emails' => NULL,
     'phones' => NULL,
     'is_live_chat' => NULL,
@@ -2328,28 +974,56 @@ $this->response->setAttribute("casinos", array (
     'withdrawal_timeframes' => NULL,
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
+    'is_country_accepted' => '0',
     'is_language_accepted' => NULL,
     'is_currency_accepted' => NULL,
     'note' => NULL,
     'invision_casino_id' => NULL,
-    'date_formatted' => 'Jun. 01, 2014',
-    'status' => '1',
+    'date_formatted' => 'Feb. 08, 2018',
+    'status' => '3',
   ),
 ));
 $this->response->setAttribute("page_info", array (
-  'head_title' => 'New Online Casinos! | 42 Newest Casinos for December 2018',
-  'head_description' => 'Stay away Online Casinos for December 2018 | Check out the newest casino releases from the last 12 months. Newly-launched Online Casino Sites & Bonuses!',
-  'body_title' => 'Stay away Online Casinos December 2018',
+  'head_title' => 'New Online Casinos! | 8 Newest Casinos for January 2019',
+  'head_description' => 'New Online Casinos for January 2019 | Check out the newest casino releases from the last 12 months. Newly-launched Online Casino Sites & Bonuses!',
+  'body_title' => 'New Online Casinos January 2019',
 ));
-$this->response->setAttribute("version", '0.8.3.7');
+$this->response->setAttribute("version", '0.8.4.6');
 $this->response->setAttribute("tms", array (
-  'upper_text' => '<p>Based in Malta, Pragmatic Play is one of the newest software developers out there, but it made a name for itself becoming fairly creative when it comes to online gaming. Their games are diverse in terms of available features, and include both mobile and live dealer platforms to offer a variety of gaming options for online casinos worldwide. CasinoFreak.com has listed 42 Pragmatic Play casinos, 28 of which are available for Romania. The newest Pragmatic Play casino is <a href="/visit/latest-casino">Latest Casino</a>, offering a 1 first deposit bonus.</p>
+  'upper_text' => '<p>Total number of games on site :&nbsp;6285</p>
 
-<p>Apart from a remarkable selection of slots, they offer additional games like blackjack or roulette. Choose from the 62 Pragmatic Play games on offer, sort them by their popularity or ranking and give them a try. Check out the reviews for each casino and claim your favourite no deposit bonus by accessing the &ldquo;Free Bonus&rdquo; button. Visit the official Pragmatic Play website to read more about your favourite software.</p>
+<p>Total number of games in the current list:&nbsp;</p>
 
-<p>As of today - December 11, 2018<br />
-The Most Popular Pragmatic Play Casino is Extra Vegas Casino. As part of its welcome package players get a 200% deposit bonus. 3,474 Real Casino Players have visited this casino since it was added to CasinoFreak.com.</p>
+<p>Newest game on site&nbsp;&nbsp;:&nbsp;&nbsp;liviu 1</p>
+
+<p>Newest game in the current list :&nbsp;</p>
+
+<p>Software of the newest game on site :&nbsp;021 test</p>
+
+<p>Software of the newest game in the current list&nbsp;:&nbsp;</p>
+
+<p>Most popular game on site :&nbsp;Exotic Fruit Deluxe</p>
+
+<p>Most popular game in the current list:&nbsp;</p>
+
+<p>Software of the most popular game on site&nbsp;:&nbsp;Booming Games</p>
+
+<p>Software of the most popular game in the current list&nbsp;:&nbsp;</p>
+
+<p><u><b>Visits</b></u></p>
+
+<ol>
+	<li>newest game:&nbsp;<span class="dyna-var" id="foo">0</span></li>
+	<li><span class="dyna-var">best game:&nbsp;&nbsp;<span class="dyna-var" id="foo">59</span></span></li>
+	<li><span class="dyna-var"><span class="dyna-var">newest casino:&nbsp;<span class="dyna-var" id="foo">14</span></span></span></li>
+	<li><span class="dyna-var"><span class="dyna-var"><span class="dyna-var">best casino:&nbsp;<span class="dyna-var" id="foo">39</span></span></span></span></li>
+</ol>
+
+<p>Lorem Ipsum&nbsp;este pur ÅŸi simplu o machetÄƒ pentru text a industriei tipografice. Lorem Ipsum a fost macheta standard a industriei &icirc;ncÄƒ din secolul al XVI-lea, c&acirc;nd un tipograf anonim a luat o planÅŸetÄƒ de litere ÅŸi le-a amestecat pentru a crea o carte demonstrativÄƒ pentru literele respective. Nu doar cÄƒ a supravieÅ£uit timp de cinci secole, dar ÅŸi a facut saltul &icirc;n tipografia electronicÄƒ practic neschimbatÄƒ. A fost popularizatÄƒ &icirc;n anii &#39;60 odatÄƒ cu ieÅŸirea colilor Letraset care conÅ£ineau pasaje Lorem Ipsum, iar mai recent, prin programele de publicare pentru calculator, ca Aldus PageMaker care includeau versiuni de Lorem Ipsum.</p>
+
+<p><img height="165" src="https://dev.casinoslists.com/upload/tms/dsa.png" width="188" /></p>
+
+<p><span class="dyna-var" id="foo">1 Tan</span></p>
 ',
 ));
 
