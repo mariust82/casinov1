@@ -9,7 +9,7 @@
 		<std:foreach var="$[items]" key="key" value="result">
 			<div class="category ${img_class}">
                             <std:if condition="${key} == 'Mobile'">
-                                <a href="/${normalize(${key})}">
+                                <a href="/casinos/${normalize(${key})}">
 					<std:if condition="$[image]">
 						<site:logo name="${key}" type="$[type]" alt="${key}"/>
 					</std:if>
