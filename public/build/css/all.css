@@ -2547,12 +2547,6 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
-@media screen and (max-width: 1023px) {
-  .header-menu li {
-    border-top: 1px solid #3382E0;
-  }
-}
-
 .header-menu__item {
   padding: 33px 15px 23px;
   font-size: 12px;
