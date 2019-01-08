@@ -5431,11 +5431,12 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  font-size:12px;
 }
 
 @media screen and (max-width: 767px) {
   .btn-group a {
-    font-size:12px;
+    font-size:11px;
   }
 }
 

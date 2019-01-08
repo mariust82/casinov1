@@ -150,7 +150,11 @@ class TopMenu
             if(!empty($entry_data["sub_items"])){
                 $object->have_submenu = true;
                 foreach($entry_data["sub_items"] as $subItemTitle => $subItemUrl){
-                    $object->submenuItems[$subItemTitle] = $subItemUrl;
+                    $si = new MenuItem();
+                    $si->title = $subItemTitle;
+                    $si->url = $subItemUrl;
+                    $si->is_active = ($subItemTitle==$selectedEntry?true:false);
+                    $object->submenuItems[] = $si;
                 }
             }
             $this->pages[] = $object;
