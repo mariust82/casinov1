@@ -2004,8 +2004,10 @@ var AJAX_CUR_PAGE = 1;
             });
         });
 
-        _input.on('keydown', function() {
-            searchDropOpen(_drop);
+        _input.on('keydown', function(e) {
+            if (e.keyCode != 13) {
+                searchDropOpen(_drop);
+            }
         });
 
         _btnClose.on('click', function(e) {
