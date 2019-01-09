@@ -138,7 +138,7 @@ $this->response->setAttribute("menu_top", array (
       array (
         'title' => 'NetEnt Casinos',
         'url' => '/softwares/netent',
-        'is_active' => false,
+        'is_active' => true,
         'submenuItems' => 
         array (
         ),
