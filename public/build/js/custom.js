@@ -2004,7 +2004,7 @@ var AJAX_CUR_PAGE = 1;
             });
         });
 
-        _input.on('keyup focus', function() {
+        _input.on('keydown', function() {
             searchDropOpen(_drop);
         });
 
