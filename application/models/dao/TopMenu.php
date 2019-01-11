@@ -153,7 +153,7 @@ class TopMenu
                     $si = new MenuItem();
                     $si->title = $subItemTitle;
                     $si->url = $subItemUrl;
-                    $si->is_active = ($subItemTitle==$selectedEntry?true:false);
+                    $si->is_active = ("/".$specific_page==$subItemUrl?true:false);
                     $object->submenuItems[] = $si;
                 }
             }
