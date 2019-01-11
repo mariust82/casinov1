@@ -159,7 +159,6 @@ class TopMenu
             }
             $this->pages[] = $object;
         }
-        var_dump($this->pages);die();
     }
 
     private function getSelectedEntry($currentPage, $specificPage = '') {
