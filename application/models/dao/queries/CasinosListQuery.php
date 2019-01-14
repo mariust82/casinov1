@@ -32,18 +32,31 @@ class CasinosListQuery
         if($filter->getBankingMethod()) {
             $query.="INNER JOIN casinos__deposit_methods AS t3 ON t1.id = t3.casino_id AND t3.banking_method_id = (SELECT id FROM banking_methods WHERE name='".$filter->getBankingMethod()."')"."\n";
         }
-        if($filter->getBonusType() || $filter->getFreeBonus()) {
+
+        if($filter->getBonusType() || $filter->getFreeBonus() || !empty($filter->getBonusTypes())) {
+
             $condition = "";
-            if($filter->getBonusType() && in_array(strtolower($filter->getBonusType()),array("free spins","no deposit bonus"))) {
-                // free bonus is no longer relevant
-                $condition = "t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$filter->getBonusType()."')";
-            } else {
-                $condition = ($filter->getBonusType()?"t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$filter->getBonusType()."') AND ":"");
-                $condition .= ($filter->getFreeBonus()?"t4.bonus_type_id IN (3,4,5,6,11) AND ":"");
-                $condition = substr($condition,0,-4);
+
+            if(!empty($filter->getBonusTypes())){
+              //  var_dump(implode('","',$filter->getBonusTypes()));die();
+                $bonus_types = '"'. implode('","',$filter->getBonusTypes()) . '"';
+                //var_dump($bonus_types);die();
+                $condition = "t4.bonus_type_id IN(SELECT id FROM bonus_types WHERE name IN({$bonus_types}))";
+
+            }else{
+                if($filter->getBonusType() && in_array(strtolower($filter->getBonusType()),array("free spins","no deposit bonus"))) {
+                    // free bonus is no longer relevant
+
+                    $condition = "t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$filter->getBonusType()."')";
+                } else {
+                    $condition = ($filter->getBonusType()?"t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$filter->getBonusType()."') AND ":"");
+                    $condition .= ($filter->getFreeBonus()?"t4.bonus_type_id IN (3,4,5,6,11) AND ":"");
+                    $condition = substr($condition,0,-4);
+                }
             }
             $query.="INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id AND ".$condition."\n";
         }
+
         if($filter->getCasinoLabel()) {
             if ($filter->getCasinoLabel() == "Stay away") {
                 $filter->setPromoted(FALSE);
