@@ -98,7 +98,7 @@ class CasinosListQuery
                     break;
                 default:
                     $order .= " ORDER BY t1.priority DESC, t1.id DESC"."\n";
-                 //   $filter->setPromoted(TRUE);
+                    $filter->setPromoted(TRUE);
                     break;
             }
             $query.=$order;
