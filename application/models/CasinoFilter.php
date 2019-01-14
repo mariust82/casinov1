@@ -30,8 +30,9 @@ class CasinoFilter
     private $play_version;
     private $high_roller = false;
     private $certification;
+    private $bonus_types = [];
 
-    public function __construct($requestParameters, Country $detectedCountry) {
+    public function     __construct($requestParameters, Country $detectedCountry) {
         $this->detectedCountry = $detectedCountry;
         if (isset($requestParameters['country'])) {
                 $countries = new Countries();
@@ -90,6 +91,11 @@ class CasinoFilter
         if($this->operating_system && $this->operating_system=="iphone") {
             $this->operating_system = "iOS";
         }
+
+        if(!empty($requestParameters['bonus_types'])){
+            $this->bonus_types = $requestParameters['bonus_types'];
+        }
+      //  var_dump($requestParameters);
         // end hardcodings
     }
 
@@ -129,7 +135,7 @@ class CasinoFilter
         return $this->language_id;
     }
 
-    public function setLanguageID() {
+    public function setLanguageID($data) {
         $this->language_id = $data;
     }
 
@@ -235,5 +241,13 @@ class CasinoFilter
 
     public function setGame($data) {
         $this->game = $data;
+    }
+
+    public function setBonusTypes($bonus_types){
+        $this->bonus_types = $bonus_types;
+    }
+
+    public function getBonusTypes(){
+        return $this->bonus_types;
     }
 }
