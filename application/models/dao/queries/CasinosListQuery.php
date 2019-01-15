@@ -104,10 +104,10 @@ class CasinosListQuery
                     $order .= " , average_rating DESC, t1.priority DESC, t1.id DESC"."\n";
                     break;
                 case CasinoSortCriteria::POPULARITY:
-                    $order .= " , t1.status_id ASC,  t1.clicks DESC, t1.id DESC"."\n";
+                    $order .= " ,   t1.clicks DESC, t1.id DESC"."\n";
                     break;
                 default:
-                    $order .= " ORDER BY t1.status_id ASC, t1.priority DESC, t1.id DESC"."\n";
+                    $order .= " , t1.priority DESC, t1.id DESC"."\n";
                     $filter->setPromoted(TRUE);
                     break;
             }
