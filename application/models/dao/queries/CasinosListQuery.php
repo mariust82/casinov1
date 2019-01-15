@@ -38,11 +38,8 @@ class CasinosListQuery
             $condition = "";
 
             if(!empty($filter->getBonusTypes())){
-              //  var_dump(implode('","',$filter->getBonusTypes()));die();
                 $bonus_types = '"'. implode('","',$filter->getBonusTypes()) . '"';
-                //var_dump($bonus_types);die();
                 $condition = "t4.bonus_type_id IN(SELECT id FROM bonus_types WHERE name IN({$bonus_types}))";
-
             }else{
                 if($filter->getBonusType() && in_array(strtolower($filter->getBonusType()),array("free spins","no deposit bonus"))) {
                     // free bonus is no longer relevant
@@ -98,22 +95,23 @@ class CasinosListQuery
         }
         $query = substr($query,0, -4)."\n";
         if($sortBy) {
-            $order = "";
+            $order = "ORDER BY t1.status_id";
             switch($sortBy) {
                 case CasinoSortCriteria::NEWEST:
-                    $order .= " ORDER BY t1.date_established DESC, t1.priority DESC"."\n";
+                    $order .= " , t1.date_established DESC, t1.priority DESC"."\n";
                     break;
                 case CasinoSortCriteria::TOP_RATED:
-                    $order .= " ORDER BY average_rating DESC, t1.priority DESC, t1.id DESC"."\n";
+                    $order .= " , average_rating DESC, t1.priority DESC, t1.id DESC"."\n";
                     break;
                 case CasinoSortCriteria::POPULARITY:
-                    $order .= " ORDER BY t1.clicks DESC, t1.id DESC"."\n";
+                    $order .= " , t1.status_id ASC,  t1.clicks DESC, t1.id DESC"."\n";
                     break;
                 default:
-                    $order .= " ORDER BY t1.priority DESC, t1.id DESC"."\n";
+                    $order .= " ORDER BY t1.status_id ASC, t1.priority DESC, t1.id DESC"."\n";
                     $filter->setPromoted(TRUE);
                     break;
             }
+
             $query.=$order;
         }
 
