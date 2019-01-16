@@ -25,7 +25,7 @@ class IndexController extends BaseController {
         $this->response->setAttribute("country_casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, 5));
         $this->response->setAttribute("new_casinos", $this->getCasinos([],CasinoSortCriteria::NEWEST, 5));
         $this->response->setAttribute("no_deposit_casinos", $this->getCasinos(
-            array("bonus_types"=>["No Deposit Bonus", 'Free Spins', 'Free Play', 'Free Chip', 'Bonus Spins']), CasinoSortCriteria::NEWEST, 5));
+            array("bonus_type"=>"no deposit bonus"), CasinoSortCriteria::NEWEST, 5));
         $this->response->setAttribute("new_games", $this->getGames(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")),GameSortCriteria::NEWEST, 6));
 	}
 
