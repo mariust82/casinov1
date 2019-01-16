@@ -95,7 +95,15 @@ class CasinosListQuery
         }
         $query = substr($query,0, -4)."\n";
         if($sortBy) {
-            $order = "ORDER BY t1.status_id";
+            $order = "
+                ORDER BY 
+                CASE
+                 WHEN t1.status_id = 0  THEN 1
+                 WHEN t1.status_id = 3  THEN 2
+                 WHEN t1.status_id = 2  THEN 3
+                 WHEN t1.status_id = 1  THEN 4
+                 END ASC
+                ";
             switch($sortBy) {
                 case CasinoSortCriteria::NEWEST:
                     $order .= " , t1.date_established DESC, t1.priority DESC"."\n";

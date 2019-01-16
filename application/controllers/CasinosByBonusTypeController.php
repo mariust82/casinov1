@@ -13,17 +13,8 @@ class CasinosByBonusTypeController extends CasinosListController {
     protected function getSelectedEntity()
     {
         $parameter = $this->request->getValidator()->getPathParameter("name");
-        if(!$parameter) {
-            throw new PathNotFoundException();
-        }
-
         $parameter = str_replace("-"," ", $parameter);
-        $object = new BonusTypes();
-        $name = $object->validate($parameter);
-        if(!$name) {
-            throw new PathNotFoundException();
-        }
-        return $name;
+        return $parameter;
     }
 
     protected function getFilter()
