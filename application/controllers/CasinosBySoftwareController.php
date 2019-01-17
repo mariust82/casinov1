@@ -13,15 +13,8 @@ class CasinosBySoftwareController extends CasinosListController {
     protected function getSelectedEntity()
     {
         $parameter = $this->request->getValidator()->getPathParameter("name");
-        if(!$parameter) {
-            throw new PathNotFoundException();
-        }
-        $parameter = str_replace("-"," ", $parameter);
-        $object = new GameManufacturers();
-        $name = $object->validate($parameter);
-        if(!$name) {
-            throw new PathNotFoundException();
-        }
+        $name = str_replace("-"," ", $parameter);
+
         return $name;
     }
 

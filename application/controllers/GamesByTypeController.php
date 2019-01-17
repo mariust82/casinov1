@@ -56,16 +56,9 @@ class GamesByTypeController extends BaseController {
     }
 
 	private function getSelectedEntity(){
+
         $parameter = $this->request->getValidator()->getPathParameter("type");
-        if(!$parameter) {
-            throw new PathNotFoundException();
-        }
-        $parameter = strtolower(str_replace("-"," ", $parameter));
-        $object = new GameTypes();
-        $name = $object->validate($parameter);
-        if(!$name) {
-            throw new PathNotFoundException();
-        }
+        $name = strtolower(str_replace("-"," ", $parameter));
         return $name;
     }
 

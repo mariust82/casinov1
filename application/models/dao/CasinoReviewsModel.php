@@ -42,13 +42,14 @@ class CasinoReviewsModel{
         if(empty($this->reviewData['invision_casino_id'])){
 
             $invisionCasinoModel = new InvisionCasinoModel($this->invisionApi);
-           $this->invision_casino_id = $invisionCasinoModel->saveCasino( $this->reviewData['casino_id'] , $this->reviewData['casino'], $this->blogId);
+            $this->invision_casino_id = $invisionCasinoModel->saveCasino( $this->reviewData['casino_id'] , $this->reviewData['casino'], $this->blogId);
         }else{
 
             $this->invision_casino_id = $this->reviewData['invision_casino_id'];
             $invisionReviewsModel->syncronizeWithInvision( $this->invision_casino_id ,$this->reviewData['casino_id'] );
 
         }
+
 
         $commentData = [
             'entry' => $this->invision_casino_id,

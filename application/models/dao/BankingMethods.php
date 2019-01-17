@@ -17,9 +17,6 @@ class BankingMethods implements CasinoCounter, FieldValidator
         ")->toMap("unit","counter");
     }
 
-    public function validate($name) {
-        return DB("SELECT name FROM banking_methods WHERE name=:name",array(":name"=>$name))->toValue();
-    }
 
     public function getAll() {
         return DB("

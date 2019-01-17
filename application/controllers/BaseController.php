@@ -17,8 +17,6 @@ abstract class BaseController extends Controller {
         $this->pageInfo();
 
         $this->response->setAttribute("version", $this->application->getVersion());
-//        var_dump($this->response->toArray());
-//        die();
     }
 
     abstract protected function service();

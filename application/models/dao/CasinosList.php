@@ -50,7 +50,6 @@ class CasinosList
         );
         $query = $queryGenerator->getQuery();
 
-
         // execute query
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {

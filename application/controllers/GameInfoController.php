@@ -27,7 +27,7 @@ class GameInfoController extends BaseController {
         $object = new GameTypes();
         $this->response->setAttribute("game_types", array_keys($object->getGamesCount()));
 
-	    $object = new GameInfo(str_replace("-"," ", $this->request->getValidator()->getPathParameter("name")));
+	    $object = new GameInfo($this->request->getAttribute('validation_results')->get('name'));
         $result = $object->getResult();
         if(!$result) throw new PathNotFoundException();
 		$this->response->setAttribute("game", $result);

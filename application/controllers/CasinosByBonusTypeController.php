@@ -17,6 +17,8 @@ class CasinosByBonusTypeController extends CasinosListController {
         return $parameter;
     }
 
+
+
     protected function getFilter()
     {
 

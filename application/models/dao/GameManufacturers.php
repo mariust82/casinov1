@@ -2,7 +2,7 @@
 require_once("CasinoCounter.php");
 require_once("FieldValidator.php");
 
-class GameManufacturers implements CasinoCounter, FieldValidator
+class GameManufacturers implements CasinoCounter
 {
     public function getCasinosCount() {
         return DB("
@@ -26,10 +26,6 @@ class GameManufacturers implements CasinoCounter, FieldValidator
         WHERE t3.is_open = 1
         ORDER BY t1.name ASC 
         ")->toColumn();
-    }
-
-    public function validate($name) {
-        return DB("SELECT name FROM game_manufacturers WHERE name=:name",array(":name"=>$name))->toValue();
     }
 
     public function getSoftwareByType() {

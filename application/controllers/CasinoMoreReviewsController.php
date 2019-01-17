@@ -16,8 +16,7 @@ class CasinoMoreReviewsController extends Controller {
 	public function run() {
 	    // get casino ID
         $object = new Casinos();
-        $casinoID = $object->getID(str_replace("-", " ", $this->request->getValidator()->getPathParameter("name")));
-        if(!$casinoID) throw new PathNotFoundException();
+        $casinoID = $this->request->getAttribute('validation_results')->get('name');
 
         // get reviews
         $object = new CasinoReviews();
