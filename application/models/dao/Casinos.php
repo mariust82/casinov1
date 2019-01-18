@@ -26,7 +26,7 @@ class Casinos implements FieldValidator
             LEFT JOIN casinos__game_manufacturers AS t3 ON t1.id = t3.casino_id AND t3.is_primary = 1
             LEFT JOIN game_manufacturers AS t4 ON t3.game_manufacturer_id = t4.id
             LEFT JOIN casinos__notes AS t5 ON t1.id = t5.casino_id AND t5.language_id = 1
-            WHERE t1.name = :name  
+            WHERE t1.id = :id  
         ", array(":id"=>$id))->toRow();
         if(empty($row)) return;
 

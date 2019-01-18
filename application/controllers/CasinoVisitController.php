@@ -11,9 +11,7 @@ require_once("application/models/SiteCasinoClick.php");
 */
 class CasinoVisitController extends Controller {
 	public function run() {
-        $casino_name = $this->request->getValidator()->getPathParameter('name');
-        if(!$casino_name) throw new PathNotFoundException();
-
-        new SiteCasinoClick(str_replace("-"," ", $casino_name));
+      //  $casino_name = $this->request->getValidator()->getPathParameter('name');
+        new SiteCasinoClick(str_replace("-"," ", $this->request->getAttribute('validation_results')->get('name')));
 	}
 }
