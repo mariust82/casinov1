@@ -24,7 +24,7 @@ class GamesByTypeController extends BaseController {
 
 	public function service() {
 
-        $this->response->setAttribute("selected_entity", ucfirst($this->getSelectedEntity()));
+        $this->response->setAttribute("selected_entity", ucwords($this->getSelectedEntity()));
         $menu = new GamesMenu($this->response->getAttribute("selected_entity"));
         $this->response->setAttribute("menu_bottom", $menu->getEntries());
 

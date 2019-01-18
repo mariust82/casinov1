@@ -52,7 +52,7 @@
         <listener class="TMSListener"/>
         <listener class="ViewLanguageResolver"/>
         <listener class="ParametersValidatorListener"/>
-        <listener class="HTTPCachingListener"/>
+        <!--<listener class="HTTPCachingListener"/>-->
     </listeners>
     <errors>
         <lucinda>
