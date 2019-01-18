@@ -107,7 +107,9 @@
         <route url="reviews/(name)-review" controller="CasinoInfoController" view="casino-info" rebrand_tables="casinos">
             <parameter name="name" validator="CasinoNameValidator"/>
         </route>
-        <route url="visit/(name)" controller="CasinoVisitController"/>
+        <route url="visit/(name)" controller="CasinoVisitController">
+            <parameter name="name" validator="CasinoNameValidator"/>
+        </route>
         <route url="warn/(name)" controller="CasinoWarningController" view="casino-warning">
             <parameter name="name" validator="CasinoNameValidator"/>
         </route>
