@@ -2115,78 +2115,55 @@ var AJAX_CUR_PAGE = 1;
 
     function initExpandingText() {
 
-        function strip(html) {
-            var tmp = document.createElement("DIV");
-            tmp.innerHTML = html;
-            return tmp.textContent || tmp.innerText || "";
-        }
+        var arrayHolders = document.querySelectorAll(".js-condense"),
+            symbolWidth,symbolsCount,rowsCount,itemText;
+        var symbolsPerRow = 0;
+        if (arrayHolders.length > 0) {
+            for( var i=0; i<arrayHolders.length; i++ ) {
+                if (arrayHolders[i].innerText.length>0) {
+                    symbolsCount = calculateSymbols( arrayHolders[i] );
 
-        $('.js-condense').each(function(){
-
-
-          //  var arrayHolders = document.querySelectorAll($(this).html()),
-             var   symbolWidth,symbolsCount,rowsCount,itemText;
-            var symbolsPerRow = 0;
-            var arrayHolders = $(this).children(); //document.querySelectorAll($(this).html()),
-//\console.log(arrayHolders);
-//return;
-
-            var itemText = '11';
-            if (arrayHolders.length > 0) {
-                for( var i=0; i<arrayHolders.length; i++ ) {
-                    if (arrayHolders[i].innerText.length>0) {
-
-                        symbolsCount = calculateSymbols( arrayHolders[i] );
-
-                        var childsHolder = arrayHolders[i].querySelector('span');
-                        console.log(childsHolder)
-                        if(childsHolder.clientHeight > parseInt( window.getComputedStyle(arrayHolders[i] ,null).getPropertyValue("max-height") )) {
-                            childs = childsHolder.children;
-                            if (childs.length > 1) {
-                                var flag = true;
-                                for(var i = 0; i<childs.length; i++) {
-                                    var contentLenght =  childs[i].innerHTML.trim();
-
-                                    if (contentLenght.length > symbolsCount || contentLenght.length == 0) {
-                                        childs[i].classList.add('hidden');
-                                        if (flag) {
-                                            flag = false;
-                                            if ($(window).width() > 480) {
-                                                symbolsCount += 250;
-                                            }
-                                            itemText = strip(childs[i].innerHTML.substring(0,symbolsCount)) + 'zzzz<span class="read_controll">...</span>';
-
-                                            createTextParagraf(itemText,childsHolder,childs[i]);
+                    var childsHolder = arrayHolders[i].querySelector('span');
+                    if(childsHolder.clientHeight > parseInt( window.getComputedStyle(arrayHolders[i] ,null).getPropertyValue("max-height") )) {
+                        childs = childsHolder.children;
+                        if (childs.length > 1) {
+                            var flag = true;
+                            for(var i = 0; i<childs.length; i++) {
+                                var contentLenght =  childs[i].innerHTML.trim();
+                                if (contentLenght.length > symbolsCount || contentLenght.length == 0) {
+                                    childs[i].classList.add('hidden');
+                                    if (flag) {
+                                        flag = false;
+                                        if ($(window).width() > 480) {
+                                            symbolsCount += 250;
                                         }
-                                    }else if(flag === false){
-                                        childs[i].classList.add('hidden');
+                                        itemText = childs[i].innerHTML.substring(0,symbolsCount) + '<span class="read_controll">...</span>';
+                                        createTextParagraf(itemText,childsHolder,childs[i]);
+                                    }
+                                }else if(flag === false){
+                                    childs[i].classList.add('hidden');
+                                }
+                                else {
+                                    if (contentLenght.length < symbolsPerRow) {
+                                        symbolsCount -= symbolsPerRow;
                                     }
                                     else {
-                                        if (contentLenght.length < symbolsPerRow) {
-                                            symbolsCount -= symbolsPerRow;
-                                        }
-                                        else {
-                                            symbolsCount -= childs[i].innerText.length;
-                                        }
+                                        symbolsCount -= childs[i].innerText.length;
                                     }
                                 }
                             }
-                            else {
-                                childs[0].classList.add('hidden');
-                                itemText = strip(childs[0].innerText.substring(0,symbolsCount)) + 'aaaaaa<span class="read_controll">...</span>';
-                                createTextParagraf(itemText,childsHolder,childs[0]);
-
-                            }
                         }
-
-                        createReadMoreButton($('span.read_controll'));
+                        else {
+                            childs[0].classList.add('hidden');
+                            itemText = childs[0].innerText.substring(0,symbolsCount) + '<span class="read_controll">...</span>';
+                            createTextParagraf(itemText,childsHolder,childs[0]);
+                        }
                     }
+
+                    createReadMoreButton($('span.read_controll'));
                 }
-
-
             }
-
-        });
+        }
         function createTextParagraf(itemText, parent, beforeNode) {
             var textParagraf = document.createElement('div');
             textParagraf.classList.add('cloned-text');
