@@ -68,7 +68,7 @@ class TopMenu
                 'Skrill Moneybookers Casinos' => '/banking/skrill-moneybookers',
                 'PayPal Casinos' => '/banking/paypal',
                 'Bitcoin Wallets Casinos' => '/banking/bitcoin-wallets',
-                'EcoPayz EcoCard Casinos' => '/banking/ecopayz',
+                'EcoPayz EcoCard Casinos' => '/banking/ecopayz-ecocard',
                 'Paysafe Card' => '/banking/paysafe-card',
                 'All Banking' => '/banking'
             ],
