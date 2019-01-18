@@ -2,7 +2,7 @@
 require_once("CasinoCounter.php");
 require_once("FieldValidator.php");
 
-class BankingMethods implements CasinoCounter, FieldValidator
+class BankingMethods implements CasinoCounter
 {
     public function getCasinosCount() {
         return DB("

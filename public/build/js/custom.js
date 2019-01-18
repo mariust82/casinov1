@@ -2131,8 +2131,11 @@ var AJAX_CUR_PAGE = 1;
                     symbolsCount = calculateSymbols( arrayHolders[i] );
 
                     var childsHolder = arrayHolders[i].querySelector('span');
-                    if(childsHolder.clientHeight > parseInt( window.getComputedStyle(arrayHolders[i] ,null).getPropertyValue("max-height") )) {
+                    console.log(childsHolder.clientHeight);
+                    //parseInt( window.getComputedStyle(arrayHolders[i] ,null).getPropertyValue("max-height") )
+                    if(childsHolder.clientHeight > 10) {
                         childs = childsHolder.children;
+
                         if (childs.length > 1) {
                             var flag = true;
                             for(var i = 0; i<childs.length; i++) {
@@ -2140,6 +2143,7 @@ var AJAX_CUR_PAGE = 1;
 
                                 if (contentLenght.length > symbolsCount || contentLenght.length == 0) {
                                     childs[i].classList.add('hidden');
+                                    console.log(contentLenght);
                                     if (flag) {
                                         flag = false;
                                         if ($(window).width() > 480) {
