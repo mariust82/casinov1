@@ -43,13 +43,13 @@ class CasinosList
 
         $queryGenerator = new CasinosListQuery(
             $this->filter,
-            array("status_id", "t1.id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"),
+            array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"),
             $sortBy,
             $limit,
-            $offset
+            $offset,
+            true
         );
         $query = $queryGenerator->getQuery();
-
         // execute query
         $resultSet = DB($query);
         while($row = $resultSet->toRow()) {
@@ -113,8 +113,9 @@ class CasinosList
 
     public function getTotal() {
         // build query
-        $queryGenerator = new CasinosListQuery($this->filter, array("COUNT(t1.id) AS nr"));
+        $queryGenerator = new CasinosListQuery($this->filter, array("COUNT(t1.id) AS nr"), null, 0 , '', false);
         $query = $queryGenerator->getQuery();
+
         return  DB($query)->toValue();
     }
 }

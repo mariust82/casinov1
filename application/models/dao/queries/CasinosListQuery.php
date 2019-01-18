@@ -3,13 +3,13 @@ class CasinosListQuery
 {
     private $query;
 
-    public function __construct(CasinoFilter $filter, $columns, $sortBy=null, $limit= 0 , $offset='')
+    public function __construct(CasinoFilter $filter, $columns, $sortBy=null, $limit= 0 , $offset='' , $groupById = false)
     {
-        $this->setQuery($filter, $columns, $sortBy, $limit , $offset);
+        $this->setQuery($filter, $columns, $sortBy, $limit , $offset, $groupById);
 
     }
 
-    private function setQuery(CasinoFilter $filter, $columns, $sortBy,  $limit= 0 , $offset) {
+    private function setQuery(CasinoFilter $filter, $columns, $sortBy,  $limit= 0 , $offset, $groupById = false) {
         $query = "
         SELECT DISTINCT
             ".implode(",", $columns)."
@@ -94,16 +94,21 @@ class CasinosListQuery
             $query.="t1.rating_total/t1.rating_votes > 4 AND";
         }
         $query = substr($query,0, -4)."\n";
+
+        if($groupById)
+            $query .= ' GROUP BY t1.id';
+
         if($sortBy) {
             $order = "
                 ORDER BY 
-                CASE
+               CASE 
                  WHEN t1.status_id = 0  THEN 1
                  WHEN t1.status_id = 3  THEN 2
                  WHEN t1.status_id = 2  THEN 3
                  WHEN t1.status_id = 1  THEN 4
                  END ASC
                 ";
+           // $order = '';
             switch($sortBy) {
                 case CasinoSortCriteria::NEWEST:
                     $order .= " , t1.date_established DESC, t1.priority DESC"."\n";
@@ -123,9 +128,10 @@ class CasinosListQuery
             $query.=$order;
         }
 
+
         $query .= !empty($limit) ? ' LIMIT ' . $limit : '';
         $query .= !empty($offset) ? ' OFFSET ' . $offset : '';
-
+//echo $query . '<br><br><br>';
         $this->query = $query;
     }
 
