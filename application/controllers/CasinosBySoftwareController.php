@@ -14,7 +14,6 @@ class CasinosBySoftwareController extends CasinosListController {
     {
         $parameter = $this->request->getValidator()->getPathParameter("name");
         $name = str_replace("-"," ", $parameter);
-
         return $name;
     }
 

@@ -12,7 +12,7 @@ abstract class CasinosListController extends BaseController {
 
 
 	public function service() {
-        $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
+        $this->response->setAttribute("selected_entity", ucfirst($this->getSelectedEntity()));
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
 
         $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $this->response->getAttribute("selected_entity"), $this->request->getURI()->getPage());
