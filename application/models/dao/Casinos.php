@@ -17,6 +17,10 @@ class Casinos implements FieldValidator
         return DB("SELECT id FROM casinos WHERE name=:name",array(":name"=>$name))->toValue();
     }
 
+    public function getName($id) {
+        return DB("SELECT name FROM casinos WHERE id=:id",array(":id"=>$id))->toValue();
+    }
+
     public function getBasicInfo($id) {
 
         $row = DB("

@@ -1,18 +1,19 @@
 <?php
-require_once("hlis/CasinoClick.php");
+require_once("hlis/sitebase/CasinoClick.php");
 require_once "dao/Casinos.php";
 
 class SiteCasinoClick extends CasinoClick
 {
     private $info;
 
-    protected function getCasinoStatus($name)
+    protected function getCasinoStatus($id)
     {
         $object = new Casinos();
-        $this->info = $object->getBasicInfo($name);
+        $this->info = $object->getBasicInfo($id);
         if (!$this->info) {
             throw new PathNotFoundException();
         }
+
         $object->click($this->info->id);
         if ($this->info->status || $this->info->is_open == 0) {
             return CasinoStatus::UNACTIVE;
@@ -20,8 +21,10 @@ class SiteCasinoClick extends CasinoClick
         return CasinoStatus::ACTIVE;
     }
 
-    protected function getWarningPage($name = "")
+    protected function getWarningPage($id = "")
     {
+        $casino = new Casinos();
+        $name = $casino->getName($id);
         return '/warn/'. str_replace(" ","-", $name);
     }
 

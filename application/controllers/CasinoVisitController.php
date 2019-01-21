@@ -11,7 +11,8 @@ require_once("application/models/SiteCasinoClick.php");
 */
 class CasinoVisitController extends Controller {
 	public function run() {
-      //  $casino_name = $this->request->getValidator()->getPathParameter('name');
-        new SiteCasinoClick(str_replace("-"," ", $this->request->getAttribute('validation_results')->get('name')));
+     //   $casino_name = $this->request->getValidator()->getPathParameter('name');
+       $casino_id =  $this->request->getAttribute('validation_results')->get('name');
+        new SiteCasinoClick($casino_id);
 	}
 }
