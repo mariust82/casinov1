@@ -89,12 +89,10 @@ class CasinosListQuery
         }
         $query = substr($query,0, -4)."\n";
 
-      /*  if($groupById)
-            $query .= ' GROUP BY t1.id';*/
 
         if($sortBy) {
             $order = "
-                ORDER BY  t1.id DESC, 
+                ORDER BY  
                CASE 
                  WHEN t1.status_id = 0  THEN 1
                  WHEN t1.status_id = 3  THEN 2
@@ -102,10 +100,10 @@ class CasinosListQuery
                  WHEN t1.status_id = 1  THEN 4
                  END ASC
                 ";
-           // $order = '';
+
             switch($sortBy) {
                 case CasinoSortCriteria::NEWEST:
-                    $order .= "  , t1.date_established DESC, t1.priority DESC,  ,t1.id DESC ";
+                    $order .= " , t1.date_established DESC, t1.priority DESC, t1.id DESC";
                     break;
                 case CasinoSortCriteria::TOP_RATED:
                     $order .= " , average_rating DESC, t1.priority DESC, t1.id DESC ";
@@ -122,10 +120,8 @@ class CasinosListQuery
             $query.=$order;
         }
 
-
         $query .= !empty($limit) ? ' LIMIT ' . $limit : '';
         $query .= !empty($offset) ? ' OFFSET ' . $offset : '';
-echo $query . '<br><br><br>';
         $this->query = $query;
     }
 

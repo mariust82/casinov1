@@ -29,9 +29,6 @@ class IndexController extends BaseController {
             array("bonus_type"=>"no deposit bonus"), CasinoSortCriteria::NEWEST, 5));
         $this->response->setAttribute("new_games", $this->getGames(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")),GameSortCriteria::NEWEST, 6));
 
-        $tms = new TmsWrapper($this->application,$this->request, $this->response);
-        $tmsText = $tms->getText();
-        $this->response->setAttribute("tms", $tmsText);
 	}
 
 	private function  getCasinos($filter, $sortBy, $limit) {

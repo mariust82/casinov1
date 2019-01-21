@@ -14,7 +14,7 @@ class CasinosByBonusTypeController extends CasinosListController {
     {
         $parameter = $this->request->getValidator()->getPathParameter("name");
         $parameter = str_replace("-"," ", $parameter);
-        return $parameter;
+        return ucwords($parameter);
     }
 
 

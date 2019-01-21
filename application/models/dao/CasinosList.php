@@ -34,12 +34,6 @@ class CasinosList
         if(!empty($label) && func_num_args() < 3)
             $limit = $this->setLimitCustomLimitForLabel($label);
 
-        if (!empty($offset) && $page > 1) {
-
-            $offset = ($page-1) *$limit ;
-        }else{
-            $offset = 0;
-        }
 
         $queryGenerator = new CasinosListQuery(
             $this->filter,
