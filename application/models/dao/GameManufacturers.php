@@ -34,4 +34,8 @@ class GameManufacturers implements CasinoCounter
         FROM game_manufacturers
         ")->toMap("unit", "unit");
     }
+
+    public function getGameManufactures($id){
+        return DB("SELECT name FROM game_manufacturers WHERE id=:id",array(":id"=>$id))->toValue();
+    }
 }
