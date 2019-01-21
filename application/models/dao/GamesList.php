@@ -24,7 +24,7 @@ class GamesList
         $query = $this->getQuery(array("t1.id", "t1.name", "t1.times_played", "t2.name AS software"));
         switch($sortBy) {
             case GameSortCriteria::NEWEST:
-                $query .= "ORDER BY t1.id DESC"."\n";
+                $query .= "ORDER BY  t1.date_launched DESC ,t1.id DESC"."\n";
                 break;
             case GameSortCriteria::MOST_PLAYED:
                 $query .= "ORDER BY t1.times_played DESC, t1.priority ASC, t1.id DESC"."\n";
