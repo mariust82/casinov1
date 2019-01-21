@@ -10,6 +10,7 @@ require_once("application/models/dao/PageInfoDAO.php");
 require_once("application/controllers/BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
 require_once("application/models/caching/GamesListKey.php");
+require_once ('application/Tms/TmsWrapper.php');
 
 /*
 * Homepage
@@ -27,6 +28,10 @@ class IndexController extends BaseController {
         $this->response->setAttribute("no_deposit_casinos", $this->getCasinos(
             array("bonus_type"=>"no deposit bonus"), CasinoSortCriteria::NEWEST, 5));
         $this->response->setAttribute("new_games", $this->getGames(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")),GameSortCriteria::NEWEST, 6));
+
+        $tms = new TmsWrapper($this->application,$this->request, $this->response);
+        $tmsText = $tms->getText();
+        $this->response->setAttribute("tms", $tmsText);
 	}
 
 	private function  getCasinos($filter, $sortBy, $limit) {
