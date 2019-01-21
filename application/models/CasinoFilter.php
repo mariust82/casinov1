@@ -48,7 +48,7 @@ class CasinoFilter
         $strings = array("banking_method", "label", "bonus_type", "country", "software", "game");
         foreach($strings as $item) {
             $this->$item =  (!empty($requestParameters[$item])?preg_replace("/[^a-zA-Z0-9\ \.\@\-\(\)]/","", $requestParameters[$item]):"");
-            
+
         }
         
 
@@ -92,9 +92,9 @@ class CasinoFilter
             $this->operating_system = "iOS";
         }
 
-        if(!empty($requestParameters['bonus_types'])){
-            $this->bonus_types = $requestParameters['bonus_types'];
-        }
+      /*  if(!empty($requestParameters['bonus_types'])){
+            $this->bonus_types = $requestParameters['bonus_types'];*/
+    //    }
       //  var_dump($requestParameters);
         // end hardcodings
     }
@@ -243,11 +243,5 @@ class CasinoFilter
         $this->game = $data;
     }
 
-    public function setBonusTypes($bonus_types){
-        $this->bonus_types = $bonus_types;
-    }
 
-    public function getBonusTypes(){
-        return $this->bonus_types;
-    }
 }

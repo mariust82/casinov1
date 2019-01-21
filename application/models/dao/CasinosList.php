@@ -46,8 +46,8 @@ class CasinosList
             array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported"),
             $sortBy,
             $limit,
-            $offset,
-            true
+            $offset
+
         );
         $query = $queryGenerator->getQuery();
         // execute query

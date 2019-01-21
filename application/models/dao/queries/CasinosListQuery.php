@@ -3,13 +3,13 @@ class CasinosListQuery
 {
     private $query;
 
-    public function __construct(CasinoFilter $filter, $columns, $sortBy=null, $limit= 0 , $offset='' , $groupById = false)
+    public function __construct(CasinoFilter $filter, $columns, $sortBy=null, $limit= 0 , $offset='')
     {
-        $this->setQuery($filter, $columns, $sortBy, $limit , $offset, $groupById);
+        $this->setQuery($filter, $columns, $sortBy, $limit , $offset);
 
     }
 
-    private function setQuery(CasinoFilter $filter, $columns, $sortBy,  $limit= 0 , $offset, $groupById = false) {
+    private function setQuery(CasinoFilter $filter, $columns, $sortBy,  $limit= 0 , $offset) {
         $query = "
         SELECT DISTINCT
             ".implode(",", $columns)."
@@ -33,23 +33,17 @@ class CasinosListQuery
             $query.="INNER JOIN casinos__deposit_methods AS t3 ON t1.id = t3.casino_id AND t3.banking_method_id = (SELECT id FROM banking_methods WHERE name='".$filter->getBankingMethod()."')"."\n";
         }
 
-        if($filter->getBonusType() || $filter->getFreeBonus() || !empty($filter->getBonusTypes())) {
+        if($filter->getBonusType() || $filter->getFreeBonus()) {
 
             $condition = "";
 
-            if(!empty($filter->getBonusTypes())){
-                $bonus_types = '"'. implode('","',$filter->getBonusTypes()) . '"';
-                $condition = "t4.bonus_type_id IN(SELECT id FROM bonus_types WHERE name IN({$bonus_types}))";
-            }else{
-                if($filter->getBonusType() && in_array(strtolower($filter->getBonusType()),array("free spins","no deposit bonus"))) {
-                    // free bonus is no longer relevant
-
-                    $condition = "t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$filter->getBonusType()."')";
-                } else {
-                    $condition = ($filter->getBonusType()?"t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$filter->getBonusType()."') AND ":"");
-                    $condition .= ($filter->getFreeBonus()?"t4.bonus_type_id IN (3,4,5,6,11) AND ":"");
-                    $condition = substr($condition,0,-4);
-                }
+            if($filter->getBonusType() && in_array(strtolower($filter->getBonusType()),array("free spins","no deposit bonus"))) {
+                // free bonus is no longer relevant
+                $condition = "t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$filter->getBonusType()."')";
+            } else {
+                $condition = ($filter->getBonusType()?"t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$filter->getBonusType()."') AND ":"");
+                $condition .= ($filter->getFreeBonus()?"t4.bonus_type_id IN (3,4,5,6,11) AND ":"");
+                $condition = substr($condition,0,-4);
             }
             $query.="INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id AND ".$condition."\n";
         }
@@ -95,12 +89,12 @@ class CasinosListQuery
         }
         $query = substr($query,0, -4)."\n";
 
-        if($groupById)
-            $query .= ' GROUP BY t1.id';
+      /*  if($groupById)
+            $query .= ' GROUP BY t1.id';*/
 
         if($sortBy) {
             $order = "
-                ORDER BY 
+                ORDER BY  t1.id DESC, 
                CASE 
                  WHEN t1.status_id = 0  THEN 1
                  WHEN t1.status_id = 3  THEN 2
@@ -111,13 +105,13 @@ class CasinosListQuery
            // $order = '';
             switch($sortBy) {
                 case CasinoSortCriteria::NEWEST:
-                    $order .= " , t1.date_established DESC, t1.priority DESC"."\n";
+                    $order .= "  , t1.date_established DESC, t1.priority DESC,  ,t1.id DESC ";
                     break;
                 case CasinoSortCriteria::TOP_RATED:
-                    $order .= " , average_rating DESC, t1.priority DESC, t1.id DESC"."\n";
+                    $order .= " , average_rating DESC, t1.priority DESC, t1.id DESC ";
                     break;
                 case CasinoSortCriteria::POPULARITY:
-                    $order .= " ,   t1.clicks DESC, t1.id DESC"."\n";
+                    $order .= " ,  t1.clicks DESC, t1.id DESC"."\n";
                     break;
                 default:
                     $order .= " , t1.priority DESC, t1.id DESC"."\n";
@@ -131,7 +125,7 @@ class CasinosListQuery
 
         $query .= !empty($limit) ? ' LIMIT ' . $limit : '';
         $query .= !empty($offset) ? ' OFFSET ' . $offset : '';
-//echo $query . '<br><br><br>';
+echo $query . '<br><br><br>';
         $this->query = $query;
     }
 
