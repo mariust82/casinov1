@@ -1,7 +1,7 @@
 <?php
 require_once("FieldValidator.php");
 
-class GameTypes implements FieldValidator
+class GameTypes
 {
     public function getGamesCount() {
         return DB("
@@ -34,7 +34,4 @@ class GameTypes implements FieldValidator
         ")->toMap("unit","game");
     }
 
-    public function validate($name) {
-        return DB("SELECT name FROM game_types WHERE name=:name",array(":name"=>$name))->toValue();
-    }
 }

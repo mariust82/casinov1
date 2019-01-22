@@ -10,21 +10,17 @@ require_once("CasinosListController.php");
 * @pathParameter name string Name of country
 */
 class CasinosByCountryController extends CasinosListController {
+
     protected function getSelectedEntity()
     {
+        // TBD ...
         $parameter = $this->request->getValidator()->getPathParameter("name");
-        if(!$parameter) {
-            throw new PathNotFoundException();
-        }
-        if(!in_array($parameter,array("guinea-bissau","timor-leste"))) {
-            $parameter = str_replace("-"," ", $parameter);
-        }
+        $name = str_replace("-"," ", $parameter);
+
         $object = new Countries();
-        $name = $object->validate($parameter);
-        if(!$name) {
-            throw new PathNotFoundException();
-        }
-        $result = $object->getCountryDetails($name);
+        $country_id =  $this->request->getAttribute('validation_results')->get('name');
+
+        $result = $object->getCountryInfo($country_id);
         $this->response->setAttribute("currency",$result[0]['code']);
         $this->response->setAttribute("language",$result[0]['name']);
 
@@ -34,5 +30,9 @@ class CasinosByCountryController extends CasinosListController {
     protected function getFilter()
     {
         return "country";
+    }
+
+    protected function getSortCriteria() {
+        return CasinoSortCriteria::POPULARITY;
     }
 }

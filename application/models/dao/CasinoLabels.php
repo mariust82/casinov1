@@ -2,7 +2,7 @@
 require_once("CasinoCounter.php");
 require_once("FieldValidator.php");
 
-class CasinoLabels implements CasinoCounter, FieldValidator
+class CasinoLabels implements CasinoCounter
 {
 
     private static $orderLabels = [
@@ -71,9 +71,9 @@ class CasinoLabels implements CasinoCounter, FieldValidator
         return $orderLabels;
     }
 
-    public function validate($name) {
+    /*public function validate($name) {
         return DB("SELECT name FROM casino_labels WHERE name=:name",array(":name"=>$name))->toValue();
-    }
+    }*/
 
     private function orderLabels(array $labels){
 

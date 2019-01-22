@@ -10,6 +10,7 @@ require_once("application/models/dao/PageInfoDAO.php");
 require_once("application/controllers/BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
 require_once("application/models/caching/GamesListKey.php");
+require_once ('application/Tms/TmsWrapper.php');
 
 /*
 * Homepage
@@ -21,11 +22,13 @@ require_once("application/models/caching/GamesListKey.php");
 class IndexController extends BaseController {
 	public function service() {
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
-        $this->response->setAttribute("best_casinos", $this->getCasinos(array("promoted"=>1,"label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
-        $this->response->setAttribute("country_casinos", $this->getCasinos(array("country_accepted"=>1, "promoted"=>1), CasinoSortCriteria::POPULARITY, 5));
-        $this->response->setAttribute("new_casinos", $this->getCasinos(array("country_accepted"=>1, "promoted"=>1), CasinoSortCriteria::NEWEST, 5));
-        $this->response->setAttribute("no_deposit_casinos", $this->getCasinos(array("country_accepted"=>1, "promoted"=>1,"bonus_type"=>"No Deposit Bonus"), CasinoSortCriteria::NEWEST, 5));
+        $this->response->setAttribute("best_casinos", $this->getCasinos(array("label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
+        $this->response->setAttribute("country_casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, 5));
+        $this->response->setAttribute("new_casinos", $this->getCasinos([],CasinoSortCriteria::NEWEST, 5));
+        $this->response->setAttribute("no_deposit_casinos", $this->getCasinos(
+            array("bonus_type"=>"no deposit bonus"), CasinoSortCriteria::NEWEST, 5));
         $this->response->setAttribute("new_games", $this->getGames(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")),GameSortCriteria::NEWEST, 6));
+
 	}
 
 	private function  getCasinos($filter, $sortBy, $limit) {

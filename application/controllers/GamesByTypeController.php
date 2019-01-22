@@ -24,7 +24,7 @@ class GamesByTypeController extends BaseController {
 
 	public function service() {
 
-        $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
+        $this->response->setAttribute("selected_entity", ucwords($this->getSelectedEntity()));
         $menu = new GamesMenu($this->response->getAttribute("selected_entity"));
         $this->response->setAttribute("menu_bottom", $menu->getEntries());
 
@@ -56,16 +56,9 @@ class GamesByTypeController extends BaseController {
     }
 
 	private function getSelectedEntity(){
+
         $parameter = $this->request->getValidator()->getPathParameter("type");
-        if(!$parameter) {
-            throw new PathNotFoundException();
-        }
-        $parameter = strtolower(str_replace("-"," ", $parameter));
-        $object = new GameTypes();
-        $name = $object->validate($parameter);
-        if(!$name) {
-            throw new PathNotFoundException();
-        }
+        $name = strtolower(str_replace("-"," ", $parameter));
         return $name;
     }
 

@@ -13,18 +13,11 @@ class CasinosByBonusTypeController extends CasinosListController {
     protected function getSelectedEntity()
     {
         $parameter = $this->request->getValidator()->getPathParameter("name");
-        if(!$parameter) {
-            throw new PathNotFoundException();
-        }
-
         $parameter = str_replace("-"," ", $parameter);
-        $object = new BonusTypes();
-        $name = $object->validate($parameter);
-        if(!$name) {
-            throw new PathNotFoundException();
-        }
-        return $name;
+        return ucwords($parameter);
     }
+
+
 
     protected function getFilter()
     {
@@ -45,6 +38,10 @@ class CasinosByBonusTypeController extends CasinosListController {
         }
 
         $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $this->response->getAttribute("total_casinos")));
+    }
+
+    protected function getSortCriteria() {
+        return CasinoSortCriteria::NEWEST;
     }
 
 }

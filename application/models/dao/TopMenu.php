@@ -68,7 +68,7 @@ class TopMenu
                 'Skrill Moneybookers Casinos' => '/banking/skrill-moneybookers',
                 'PayPal Casinos' => '/banking/paypal',
                 'Bitcoin Wallets Casinos' => '/banking/bitcoin-wallets',
-                'EcoPayz EcoCard Casinos' => '/banking/ecopayz',
+                'EcoPayz EcoCard Casinos' => '/banking/ecopayz-ecocard',
                 'Paysafe Card' => '/banking/paysafe-card',
                 'All Banking' => '/banking'
             ],
@@ -150,7 +150,11 @@ class TopMenu
             if(!empty($entry_data["sub_items"])){
                 $object->have_submenu = true;
                 foreach($entry_data["sub_items"] as $subItemTitle => $subItemUrl){
-                    $object->submenuItems[$subItemTitle] = $subItemUrl;
+                    $si = new MenuItem();
+                    $si->title = $subItemTitle;
+                    $si->url = $subItemUrl;
+                    $si->is_active = ("/".$specific_page==$subItemUrl?true:false);
+                    $object->submenuItems[] = $si;
                 }
             }
             $this->pages[] = $object;

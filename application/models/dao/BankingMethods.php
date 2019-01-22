@@ -2,7 +2,7 @@
 require_once("CasinoCounter.php");
 require_once("FieldValidator.php");
 
-class BankingMethods implements CasinoCounter, FieldValidator
+class BankingMethods implements CasinoCounter
 {
     public function getCasinosCount() {
         return DB("
@@ -17,9 +17,6 @@ class BankingMethods implements CasinoCounter, FieldValidator
         ")->toMap("unit","counter");
     }
 
-    public function validate($name) {
-        return DB("SELECT name FROM banking_methods WHERE name=:name",array(":name"=>$name))->toValue();
-    }
 
     public function getAll() {
         return DB("

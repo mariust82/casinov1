@@ -13,7 +13,7 @@ require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedExc
 class GamePlayCounterController extends Controller {
 	public function run() {
 		$object = new Games();
-		$success = $object->incrementTimesPlayed($_POST["name"]);
+		$success = $object->incrementTimesPlayed($this->request->getAttribute('validation_results')->get('name'));
 		if(!$success) throw new OperationFailedException("Game not found!");
 	}
 }

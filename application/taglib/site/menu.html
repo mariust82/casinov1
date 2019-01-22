@@ -6,8 +6,10 @@
 		<li class="expand-holder "><span class="header-menu__item ${(${result.is_active}?' active ':'')}">${result.title}<i class="icon-chevron-down"></i></span>
 			<std:if condition="!empty(${result.submenuItems})">
 				<ul class="expand-menu">
-					<std:foreach var="${result.submenuItems}" key="submenuTitle" value="submenuItemUrl">
-						<li class="expand-menu__list"><a class="expand-menu__list-item" href="${submenuItemUrl}">${submenuTitle}</a></li>
+					<std:foreach var="${result.submenuItems}" value="info">
+						<li class="expand-menu__list">
+							<a class="expand-menu__list-item  ${(${info.is_active}?' active ':'')}" href="${info.url}">${info.title}</a>
+						</li>
 					</std:foreach>
 				</ul>
 			</std:if>
