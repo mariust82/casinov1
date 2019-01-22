@@ -22,10 +22,8 @@ class GamesFilterController extends Controller
         $page = (integer)$this->request->getValidator()->getPathParameter("page");
         $sortBy = isset($_GET["sort"]) ? $_GET["sort"] : GameSortCriteria::NONE;
 
-        if (empty($page)) {
-            $page = 1;
-        }
-        $offset = ($page-1) * self::LIMIT;
+
+        $offset = $page * self::LIMIT;
         $object = new GamesList(new GameFilter($_GET));
         $total = $object->getTotal();
         $this->response->setAttribute("total_games", $total);
