@@ -64,7 +64,7 @@ class Countries implements CasinoCounter
 
     public function getCountryInfo($id) {
         return DB("
-            SELECT t1.code, t2.name from countries AS t3 
+            SELECT t1.code, t2.name, t3.name as c_name from countries AS t3 
               INNER JOIN countries__languages AS t4 ON (t3.id = t4.country_id)
               INNER JOIN currencies AS t1 ON (t1.id = t3.currency_id)
               INNER JOIN languages AS t2 ON (t2.id = t4.language_id) 
