@@ -2118,6 +2118,13 @@ var AJAX_CUR_PAGE = 1;
         var arrayHolders = document.querySelectorAll(".js-condense"),
             symbolWidth,symbolsCount,rowsCount,itemText;
         var symbolsPerRow = 0;
+
+        function strip(html) {
+           var tmp = document.createElement("DIV");
+           tmp.innerHTML = html;
+           return tmp.textContent || tmp.innerText || "";
+        }
+
         if (arrayHolders.length > 0) {
             for( var i=0; i<arrayHolders.length; i++ ) {
                 if (arrayHolders[i].innerText.length>0) {
@@ -2137,7 +2144,7 @@ var AJAX_CUR_PAGE = 1;
                                         if ($(window).width() > 480) {
                                             symbolsCount += 250;
                                         }
-                                        itemText = childs[i].innerHTML.substring(0,symbolsCount) + '<span class="read_controll">...</span>';
+                                        itemText = strip(childs[i].innerHTML.substring(0,symbolsCount)) + '<span class="read_controll">...</span>';
                                         createTextParagraf(itemText,childsHolder,childs[i]);
                                     }
                                 }else if(flag === false){
@@ -2155,7 +2162,7 @@ var AJAX_CUR_PAGE = 1;
                         }
                         else {
                             childs[0].classList.add('hidden');
-                            itemText = childs[0].innerText.substring(0,symbolsCount) + '<span class="read_controll">...</span>';
+                            itemText = strip(childs[0].innerText.substring(0,symbolsCount)) + '<span class="read_controll">...</span>';
                             createTextParagraf(itemText,childsHolder,childs[0]);
                         }
                     }
