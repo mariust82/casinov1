@@ -8,8 +8,8 @@
 
 class Games
 {
-    public function incrementTimesPlayed($name) {
-        return DB("UPDATE games SET times_played = times_played + 1 WHERE name=:name",array(":name"=>$name))->getAffectedRows();
+    public function incrementTimesPlayed($id) {
+        return DB("UPDATE games SET times_played = times_played + 1 WHERE id=:id",array(":id"=>$id))->getAffectedRows();
     }
 
     public function getAll() {

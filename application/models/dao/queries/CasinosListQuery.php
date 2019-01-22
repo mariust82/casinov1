@@ -32,8 +32,11 @@ class CasinosListQuery
         if($filter->getBankingMethod()) {
             $query.="INNER JOIN casinos__deposit_methods AS t3 ON t1.id = t3.casino_id AND t3.banking_method_id = (SELECT id FROM banking_methods WHERE name='".$filter->getBankingMethod()."')"."\n";
         }
+
         if($filter->getBonusType() || $filter->getFreeBonus()) {
+
             $condition = "";
+
             if($filter->getBonusType() && in_array(strtolower($filter->getBonusType()),array("free spins","no deposit bonus"))) {
                 // free bonus is no longer relevant
                 $condition = "t4.bonus_type_id = (SELECT id FROM bonus_types WHERE name='".$filter->getBonusType()."')";
@@ -44,6 +47,7 @@ class CasinosListQuery
             }
             $query.="INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id AND ".$condition."\n";
         }
+
         if($filter->getCasinoLabel()) {
             if ($filter->getCasinoLabel() == "Stay away") {
                 $filter->setPromoted(FALSE);
@@ -84,29 +88,40 @@ class CasinosListQuery
             $query.="t1.rating_total/t1.rating_votes > 4 AND";
         }
         $query = substr($query,0, -4)."\n";
+
+
         if($sortBy) {
-            $order = "";
+            $order = "
+                ORDER BY  
+               CASE 
+                 WHEN t1.status_id = 0  THEN 1
+                 WHEN t1.status_id = 3  THEN 2
+                 WHEN t1.status_id = 2  THEN 3
+                 WHEN t1.status_id = 1  THEN 4
+                 END ASC
+                ";
+
             switch($sortBy) {
                 case CasinoSortCriteria::NEWEST:
-                    $order .= " ORDER BY t1.date_established DESC, t1.priority DESC"."\n";
+                    $order .= " , t1.date_established DESC, t1.priority DESC, t1.id DESC";
                     break;
                 case CasinoSortCriteria::TOP_RATED:
-                    $order .= " ORDER BY average_rating DESC, t1.priority DESC, t1.id DESC"."\n";
+                    $order .= " , average_rating DESC, t1.priority DESC, t1.id DESC ";
                     break;
                 case CasinoSortCriteria::POPULARITY:
-                    $order .= " ORDER BY t1.clicks DESC, t1.id DESC"."\n";
+                    $order .= " ,  t1.clicks DESC, t1.id DESC"."\n";
                     break;
                 default:
-                    $order .= " ORDER BY t1.priority DESC, t1.id DESC"."\n";
+                    $order .= " , t1.priority DESC, t1.id DESC"."\n";
                     $filter->setPromoted(TRUE);
                     break;
             }
+
             $query.=$order;
         }
 
         $query .= !empty($limit) ? ' LIMIT ' . $limit : '';
         $query .= !empty($offset) ? ' OFFSET ' . $offset : '';
-
         $this->query = $query;
     }
 

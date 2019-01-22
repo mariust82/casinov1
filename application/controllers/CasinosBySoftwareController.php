@@ -12,16 +12,9 @@ require_once("CasinosListController.php");
 class CasinosBySoftwareController extends CasinosListController {
     protected function getSelectedEntity()
     {
-        $parameter = $this->request->getValidator()->getPathParameter("name");
-        if(!$parameter) {
-            throw new PathNotFoundException();
-        }
-        $parameter = str_replace("-"," ", $parameter);
-        $object = new GameManufacturers();
-        $name = $object->validate($parameter);
-        if(!$name) {
-            throw new PathNotFoundException();
-        }
+        $id = $this->request->getAttribute('validation_results')->get('name');
+        $gm = new GameManufacturers();
+        $name = $gm->getGameManufactures($id);
         return $name;
     }
 

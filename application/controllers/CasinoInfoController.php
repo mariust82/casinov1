@@ -19,12 +19,8 @@ class CasinoInfoController extends BaseController {
 
 		$this->response->setAttribute("country", $this->request->getAttribute("country"));
 
-		// validate inputs
-		$casinoName = $this->request->getValidator()->getPathParameter("name");
-		if(!$casinoName) throw new PathNotFoundException();
-
 		// get casino info
-		$object = new CasinoInfo(str_replace("-"," ", $casinoName), $this->request->getAttribute("country")->id);
+		$object = new CasinoInfo($this->request->getAttribute('validation_results')->get('name'), $this->request->getAttribute("country")->id);
         $info = $object->getResult();
 
 		if(empty($info)){

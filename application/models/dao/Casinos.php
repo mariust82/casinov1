@@ -17,7 +17,11 @@ class Casinos implements FieldValidator
         return DB("SELECT id FROM casinos WHERE name=:name",array(":name"=>$name))->toValue();
     }
 
-    public function getBasicInfo($name) {
+    public function getName($id) {
+        return DB("SELECT name FROM casinos WHERE id=:id",array(":id"=>$id))->toValue();
+    }
+
+    public function getBasicInfo($id) {
 
         $row = DB("
             SELECT t1.id, t1.name, t1.code, t2.name AS status, t1.affiliate_link, t1.is_open, t4.name AS software, t5.note
@@ -26,8 +30,8 @@ class Casinos implements FieldValidator
             LEFT JOIN casinos__game_manufacturers AS t3 ON t1.id = t3.casino_id AND t3.is_primary = 1
             LEFT JOIN game_manufacturers AS t4 ON t3.game_manufacturer_id = t4.id
             LEFT JOIN casinos__notes AS t5 ON t1.id = t5.casino_id AND t5.language_id = 1
-            WHERE t1.name = :name  
-        ", array(":name"=>$name))->toRow();
+            WHERE t1.id = :id  
+        ", array(":id"=>$id))->toRow();
         if(empty($row)) return;
 
         $object = new Casino();
@@ -64,9 +68,8 @@ class Casinos implements FieldValidator
         }
     }
 
-    public function rate($name, $ip, $value) {
+    public function rate($casinoID, $ip, $value) {
 
-        $casinoID = DB("SELECT id FROM casinos WHERE name=:name",array(":name"=>$name))->toValue();
         if(!$casinoID) return null;
         $count = DB("SELECT COUNT(id) FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip",array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
         if ($count == 0) {
@@ -102,6 +105,7 @@ class Casinos implements FieldValidator
     }
 
     public  function updateCasinoForEntries($casinoId, $entryId){
+
         return DB("UPDATE casinos SET invision_casino_id = $entryId  WHERE id=:id",array(":id"=>$casinoId))->getAffectedRows();
 
     }

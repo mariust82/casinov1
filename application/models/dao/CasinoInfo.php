@@ -6,15 +6,15 @@ class CasinoInfo
 {
     private $result;
 
-    public function __construct($name, $countryId) {
-        $this->setResult($name, $countryId);
+    public function __construct($id, $countryId) {
+        $this->setResult($id, $countryId);
     }
     
     public function getUserVote($casinoID,$ip) {
         return DB("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = $casinoID", array(":ip"=>$ip))->toValue();
     }
 
-    private function setResult($name, $countryId) {
+    private function setResult($id, $countryId) {
 
         $resultSet = DB("
         SELECT t1.*, IF(t3.id IS NOT NULL, 1, 0) AS is_live_dealer, t4.name AS status, (t1.rating_total/t1.rating_votes) AS average_rating, t2.name AS affiliate_program
@@ -22,7 +22,7 @@ class CasinoInfo
         LEFT JOIN affiliate_programs AS t2 ON t1.affiliate_program_id = t2.id
         LEFT JOIN casinos__play_versions AS t3 ON t1.id = t3.casino_id AND t3.play_version_id = 2
         LEFT JOIN casino_statuses AS t4 ON t1.status_id = t4.id
-        WHERE t1.name=:name",array(":name"=>$name));
+        WHERE t1.id=:id",array(":id"=>$id));
         $output = null;
         while($row = $resultSet->toRow()) {
             $output = new Casino();

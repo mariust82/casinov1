@@ -13,7 +13,6 @@ var AJAX_CUR_PAGE = 1;
         var user_rate = $('.rating-container').data('user-rate');
         if (user_rate > 0) {
             $('.br-widget').children().each(function() {
-                console.dir($(this).data('rating-value'));
                 $(this).unbind("mouseenter mouseleave mouseover");
                if (parseInt($(this).data('rating-value')) <= parseInt(user_rate)) {
                    $(this).addClass('br-active');
@@ -23,6 +22,18 @@ var AJAX_CUR_PAGE = 1;
         }   
         
     });
+
+    //detect when scrolling is stoped
+    $.fn.scrollEnd = function(callback, timeout) {
+      $(this).scroll(function(){
+        var $this = $(this);
+        if ($this.data('scrollTimeout')) {
+          clearTimeout($this.data('scrollTimeout'));
+        }
+        $this.data('scrollTimeout', setTimeout(callback,timeout));
+      });
+    };
+    //detect when scrolling is stopped
     
     var windowToBottom = 0;
     
@@ -30,20 +41,28 @@ var AJAX_CUR_PAGE = 1;
         
         //scroll down
         if (windowToBottom < $(window).scrollTop()) {
-            $('.header').removeClass('site__header_sticky');
+            $('body').removeClass('site__header_sticky');
             windowToBottom = $(window).scrollTop();
         //scroll up
         } else { 
             if ( (windowToBottom - $(window).scrollTop()) > ($(window).height() / 3) ) {
-                $('.header').addClass('site__header_sticky');
+                $('body').addClass('site__header_sticky');
                 windowToBottom = $(window).scrollTop();
             }
         }
         
          if ($(window).scrollTop() === 0) {
-            $('.header').removeClass('site__header_sticky');
+            $('body').removeClass('site__header_sticky');
         }
     });
+
+    if ($(window).width() < 768) {
+        $(window).scrollEnd(function(){
+            if ($(window).scrollTop() !== 0) {
+                $('body').addClass('site__header_sticky');
+            }
+        }, 800);
+    }
 
     $(window).resize(function(event) {
         ww = $(window).width();
@@ -685,7 +704,11 @@ var AJAX_CUR_PAGE = 1;
 
             _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
 
-                $('.overlay, .loader').fadeIn('fast');
+                if (_action == 'add') {
+                    _moreButton.addClass('loading');
+                } else {
+                    $('.overlay, .loader').fadeIn('fast');
+                }
 
                 if (BUSY_REQUEST) return;
                 BUSY_REQUEST = true;
@@ -721,8 +744,10 @@ var AJAX_CUR_PAGE = 1;
                                 _emptyContent.hide();
                             }
                         } else {
-
-                            _targetAddContainer.append(cont);
+                            setTimeout(function(){
+                                _targetAddContainer.append(cont);
+                                _moreButton.removeClass('loading');
+                            }, 1000)
 
                             /*if( _ajaxDataParams['total_items_loaded'] >= datatotal){
                                 return false;
@@ -1544,6 +1569,7 @@ var AJAX_CUR_PAGE = 1;
             },
 
             _ajaxRequestAdvanced = function() {
+                window.scrollTo(0, 0);
                 var _response_container = $('#site-content');
                 if (BUSY_REQUEST) return;
                 BUSY_REQUEST = true;
@@ -1598,7 +1624,6 @@ var AJAX_CUR_PAGE = 1;
                     dataType: 'json',
                     type: 'GET',
                     success: function(data) {
-                        console.dir(data);
                         _hideLoading();
                         _loadData(data);
                     },
@@ -1641,7 +1666,6 @@ var AJAX_CUR_PAGE = 1;
 
             _loadMoreData = function(data, container, type) {
                 var items = data.body.results;
-                console.dir(items);
                 var link;
                 if (type === 'lists') {
                     for (var i =0;i<items.length;i++) {
@@ -1672,7 +1696,6 @@ var AJAX_CUR_PAGE = 1;
 
             _loadData = function(data) {
                 var lists = data.body.lists;
-                console.dir(lists);
                 var casinos = data.body.casinos;
                 var pages = data.body.games;
                 
@@ -1899,6 +1922,7 @@ var AJAX_CUR_PAGE = 1;
                     .closest(_container)
                     .find(_mobilePop)
                     .fadeIn('fast');
+                $('body').addClass('no-scroll');
             }
 
             _btnOpen.on('click', function(e) {
@@ -1913,7 +1937,7 @@ var AJAX_CUR_PAGE = 1;
                     .fadeOut('fast')
                     .find('.mobile-popup-body')
                     .html('');
-                    
+                $('body').removeClass('no-scroll');
                 return false;
             });
         }
@@ -1980,6 +2004,12 @@ var AJAX_CUR_PAGE = 1;
             });
         });
 
+        _input.on('keydown', function(e) {
+            if (e.keyCode != 13) {
+                searchDropOpen(_drop);
+            }
+        });
+
         _btnClose.on('click', function(e) {
             searchDropClose(_drop);
         });
@@ -1990,6 +2020,7 @@ var AJAX_CUR_PAGE = 1;
         });
 
         _btnMobileClose.on('click', function(e) {
+            _input.val('').focus();
             $('body').removeClass('mobile-search-opened');
         });
 
@@ -2000,14 +2031,13 @@ var AJAX_CUR_PAGE = 1;
 
     function searchDropOpen(_drop) {
         setTimeout(function(){
-            _drop.slideDown('300');
-        }, 300);
+            _drop.show();
+        }, 50);
     }
 
     function searchDropClose(_drop) {
-        _drop.slideUp('300', function() {
-            $('body').removeClass('search-opened');
-        });
+        _drop.hide();
+        $('body').removeClass('search-opened');
     }
 
     function initCustomSelect() {
@@ -2143,10 +2173,11 @@ var AJAX_CUR_PAGE = 1;
 
         }
         function createReadMoreButton(itemParent) {
+
             var buttonToggle = document.createElement('a'),
              //   buttonToggleLess = document.createElement('span'),
                 buttonToggleMore = document.createElement('span');
-            
+
             //buttonToggleLess.classList.add('less');
            // buttonToggleLess.innerHTML="Read Less";
             buttonToggleMore.classList.add('more');

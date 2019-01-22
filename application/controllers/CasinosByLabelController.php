@@ -12,20 +12,11 @@ require_once("CasinosListController.php");
 class CasinosByLabelController extends CasinosListController {
     protected function getSelectedEntity()
     {
+
         $parameter = $this->request->getValidator()->getPathParameter("name");
-        if(!$parameter) {
-            throw new PathNotFoundException();
-        }
-        $country =  $this->request->getAttribute("country");
-        $parameter = str_replace("-"," ", $parameter);
-        if($this->request->getValidator()->getPathParameter("name")=="mobile") {
-            return "Mobile";
-        }
-        $object = new CasinoLabels($country);
-        $name = $object->validate($parameter);
-        if(!$name) {
-            throw new PathNotFoundException();
-        }
+        $name = str_replace("-"," ", $parameter);
+
+        $name =  $name == 'mobile' ? "Mobile" : $name ;
         return $name;
     }
 

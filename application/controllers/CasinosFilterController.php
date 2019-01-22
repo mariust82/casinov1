@@ -29,21 +29,21 @@ class CasinosFilterController extends Controller {
 	    $this->response->setAttribute("country", $this->request->getAttribute("country"));
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
         $sortCriteria = $this->getSortCriteria();
-		$page = (integer) $this->request->getValidator()->getPathParameter("page");
+
+  		$page = (integer) $this->request->getValidator()->getPathParameter("page");
         $object = new CasinosList(new CasinoFilter($_GET, $this->request->getAttribute("country")));
 
         $total = $object->getTotal();
 
-        if(empty($page))
-            $page = 1;
+        $offset = $page * self::LIMIT;
 
-        $offset = ($page-1) * self::LIMIT;
         $this->response->setAttribute("total_casinos", $total);
+
         $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page,self::LIMIT,$offset));
 	}
 
 	private function getSortCriteria() {
-	    if($this->request->getParameter("sort")==CasinoSortCriteria::NONE && $this->request->getParameter("label")=="New") {
+	    if($this->request->getParameter("sort")==CasinoSortCriteria::NONE || $this->request->getParameter("label")=="New") {
             return CasinoSortCriteria::NEWEST;
         } else {
             return $_GET["sort"];

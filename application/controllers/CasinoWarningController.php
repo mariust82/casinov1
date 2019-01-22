@@ -19,7 +19,7 @@ class CasinoWarningController extends BaseController {
 
 	    // set casino info
 		$casinos = new Casinos();
-        $result = $casinos->getBasicInfo($this->getSelectedEntity());
+        $result = $casinos->getBasicInfo($this->request->getAttribute('validation_results')->get('name'));
 		if(!$result) throw new PathNotFoundException();
 		$this->response->setAttribute("casino", $result);
 
