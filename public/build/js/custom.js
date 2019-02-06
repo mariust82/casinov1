@@ -743,10 +743,12 @@ var AJAX_CUR_PAGE = 1;
                                 _loaderHolder.show();
                                 _emptyContent.hide();
                             }
+                            refresh();
                         } else {
                             setTimeout(function(){
                                 _targetAddContainer.append(cont);
                                 _moreButton.removeClass('loading');
+                                refresh();
                             }, 1000)
 
                             /*if( _ajaxDataParams['total_items_loaded'] >= datatotal){
@@ -770,10 +772,13 @@ var AJAX_CUR_PAGE = 1;
                         // changeNumSize();
                         _construct();
 
-                        $('.js-tooltip').tooltipster(tooltipConfig);
-                        $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-                        $('.js-tooltip-content').tooltipster(contentTooltipConfig);
-                        initMoboleBonusesPop(ww);
+                        function refresh() {
+                            $('.js-tooltip').tooltipster(tooltipConfig);
+                            $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                            $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+                            initMoboleBonusesPop(ww);
+                        }
+
 
                         checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
                     },
