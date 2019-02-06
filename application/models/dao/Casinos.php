@@ -21,6 +21,10 @@ class Casinos implements FieldValidator
         return DB("SELECT name FROM casinos WHERE id=:id",array(":id"=>$id))->toValue();
     }
 
+    public function getTermsLink($id) {
+        return DB("SELECT tc_link FROM casinos WHERE id=:id",[":id"=>$id])->toValue();
+    }
+
     public function getBasicInfo($id) {
 
         $row = DB("
