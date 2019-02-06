@@ -18,6 +18,7 @@ class Casino {
 	public $certifiers;
 	public $affiliate_program;
     public $affiliate_link;
+    public $tc_link;
 	public $withdrawal_minimum;
 	public $withdrawal_limits;
 	public $withdrawal_timeframes;
