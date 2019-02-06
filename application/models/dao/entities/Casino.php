@@ -28,4 +28,5 @@ class Casino {
     public $is_currency_accepted;
     public $note;
     public $invision_casino_id;
+    public $is_tc_link;
 }

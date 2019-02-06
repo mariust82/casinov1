@@ -67,7 +67,7 @@ class CasinoFilter
                 case "Live Dealer":
                     $this->play_version = $feature;
                     break;
-                case "eCOGRA Casinos":
+                case "ECOGRA Casinos":
                     $this->certification = "ecogra";
                     break;
                 default:

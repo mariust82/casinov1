@@ -31,12 +31,17 @@
                                                             </std:if>
 							</div>
 						</div>
-						<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
-							${result.name}
-							<std:if condition="'$[type]' == 'ESTABLISHED' && ${result.date_established} != '0000-00-00' && ${data.is_mobile}">
-								<div class="list-small-text">${result.date_formatted}</div>
+						<div class="list-title-holder">
+							<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
+								${result.name}
+								<std:if condition="'$[type]' == 'ESTABLISHED' && ${result.date_established} != '0000-00-00' && ${data.is_mobile}">
+									<div class="list-small-text">${result.date_formatted}</div>
+								</std:if>
+							</a>
+							<std:if condition="${result.is_tc_link}">
+								<a href="/link/${normalize(${result.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
 							</std:if>
-						</a>
+						</div>
 					</div>
 				</div>
 				<div class="list-item-cell">

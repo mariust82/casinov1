@@ -3550,6 +3550,33 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
+.list-title-holder{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.additional-link{
+  color:#878CA4;
+  font-size:12px;
+  line-height:20px;
+  margin:2px 0 0 0;
+}
+
+@media screen and (max-width: 767px) {
+  .additional-link{
+    font-size:11px;
+  }
+}
+
+.additional-link:hover{
+  color:#2171CE;
+}
+
 .list-flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5227,6 +5254,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .btn-bordered.load.loading {
+  padding:15px 30px;
   background:none;
   border:none;
   -webkit-box-shadow:none;
@@ -5331,11 +5359,22 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .casino-review-heading .btn-group-mobile a {
-  width: 49%;
+  width: 48%;
   min-width: 0;
+}
+
+.casino-review-heading .btn-group-mobile .additional-link {
+  width: 100%;
+  margin: 2px 0 0 0;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  padding: 0 15% 0 0;
 }
 
 .casino-review .btn-bordered,
