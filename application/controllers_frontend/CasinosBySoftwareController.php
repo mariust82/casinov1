@@ -697,7 +697,7 @@ $this->response->setAttribute("casinos", array (
     'is_currency_accepted' => NULL,
     'note' => NULL,
     'invision_casino_id' => NULL,
-    'is_tc_link' => '0',
+    'is_tc_link' => '1',
     'date_formatted' => 'Dec. 01, 2017',
     'status' => '0',
   ),
