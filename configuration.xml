@@ -110,6 +110,9 @@
         <route url="visit/(name)" controller="CasinoVisitController">
             <parameter name="name" validator="CasinoNameValidator"/>
         </route>
+        <route url="link/(name)-terms" controller="CasinoTermsVisitController">
+            <parameter name="name" validator="CasinoNameValidator"/>
+        </route>
         <route url="warn/(name)" controller="CasinoWarningController" view="casino-warning">
             <parameter name="name" validator="CasinoNameValidator"/>
         </route>
@@ -152,7 +155,6 @@
         <route url="privacy" controller="PrivacyController" view="privacy-policy"/>
         <route url="terms" controller="TermsController" view="terms-and-conditions"/>
         <route url="contact" controller="ContactController" view="contact-us"/>
-
         <route url="contact/send" controller="ContactSendController" method="POST" extension="json">
             <parameter name="name" validator="StringValidator"/>
             <parameter name="email" validator="EmailValidator"/>
