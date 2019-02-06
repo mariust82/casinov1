@@ -1,5 +1,5 @@
 <?php
-require_once("application/models/dao/Games.php");
+require_once("application/models/GamePlayCounterUpdate.php");
 require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedException.php");
 
 /*
@@ -12,8 +12,9 @@ require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedExc
 */
 class GamePlayCounterController extends Controller {
 	public function run() {
-		$object = new Games();
-		$success = $object->incrementTimesPlayed($this->request->getAttribute('validation_results')->get('name'));
-		if(!$success) throw new OperationFailedException("Game not found!");
+	    new GamePlayCounterUpdate(
+	        $this->request->getSession(),
+            $this->request->getAttribute('validation_results')->get('name')
+            );
 	}
 }
