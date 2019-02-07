@@ -99,7 +99,6 @@ $(window).load(function(){
                 //add config function trigger
                 if(undefined !== configuration.triggerOnPlay){
                     $(configuration.events.fullscreen).on('click', function () {
-			alert("X");
                         configuration.triggerOnPlay();
                     });
                 }
