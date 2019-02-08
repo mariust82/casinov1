@@ -595,7 +595,10 @@ var AJAX_CUR_PAGE = 1;
             _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
             _moreButton,
             _resetButton,
-            _itemsPerPage = 25,
+            _itemsPerPage = $('.list-item').length,
+            _totalItems = $('.qty-items').data('load-total'),
+            _clicks = Math.floor(_totalItems/_itemsPerPage);
+            _currentClick = 0,
             _request = new XMLHttpRequest();
 
             if (typeof _paramName == 'undefined') {
@@ -679,8 +682,6 @@ var AJAX_CUR_PAGE = 1;
                 if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
                     _ajaxDataParams['software'] = _selectFilter.val().join();
 
-                    _itemsPerPage = 12;
-
                     if (_action == 'reset') {
                         _ajaxDataParams['software'] = '';
 
@@ -688,12 +689,11 @@ var AJAX_CUR_PAGE = 1;
                 }
 
                 if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 1;
-                AJAX_CUR_PAGE++;
+                
                 if (_action != 'add' || _action == 'reset') {
                     AJAX_CUR_PAGE = 0;
                 }
 
-                // _ajaxDataParams['page'] = AJAX_CUR_PAGE;
                 if(_ajaxDataParams["label"]!=undefined && _ajaxDataParams["label"]=="Mobile") {
                     _ajaxDataParams["compatibility"] = "mobile";
                     delete _ajaxDataParams.label;
@@ -721,20 +721,13 @@ var AJAX_CUR_PAGE = 1;
                     type: 'GET',
                     success: function(data) {
                         var cont = $(data).find('.loaded-item');
-
                         var loadTotal = $(data).filter('[data-load-total]').data('load-total');
 
                         if (_action == 'replace') {
                             _targetContainer.html(data);
                             _targetAddContainer.html('');
 
-                            $('.qty-items span').text(loadTotal);
-
-                            if (loadTotal > 0) {
-                                $('[data-total]').data('total', loadTotal);
-                            }
-
-                            if (cont.length == 0) {
+                            if (cont.length == 0 ) {
                                 _moreButton.hide();
                                 _loaderHolder.hide();
                                 _emptyContent.show();
@@ -743,33 +736,28 @@ var AJAX_CUR_PAGE = 1;
                                 _loaderHolder.show();
                                 _emptyContent.hide();
                             }
+
+                            if (loadTotal <= cont.length) {
+                                _moreButton.hide();
+                            }
                             refresh();
+                            AJAX_CUR_PAGE = 1;
+                            _currentClick = 0;
                         } else {
+                            AJAX_CUR_PAGE++;
+                            _currentClick++;
+                            
                             setTimeout(function(){
                                 _targetAddContainer.append(cont);
                                 _moreButton.removeClass('loading');
                                 refresh();
+
+                                if(_currentClick >= _clicks){
+                                    _moreButton.hide();
+                                }
                             }, 1000)
-
-                            /*if( _ajaxDataParams['total_items_loaded'] >= datatotal){
-                                return false;
-                            }*/
                         }
 
-                        var  itemsNumberLoaded  = $('.holder .loaded-item').length;
-
-                        if(loadTotal <= itemsNumberLoaded){
-                            _moreButton.hide();
-                        }
-
-
-
-                       /* if (AJAX_CUR_PAGE >= Math.floor($('.data-add-container').data('total') / _itemsPerPage)) {
-                            _moreButton.hide();
-                        }*/
-
-                        // initRateSlider();
-                        // changeNumSize();
                         _construct();
 
                         function refresh() {
@@ -778,7 +766,6 @@ var AJAX_CUR_PAGE = 1;
                             $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                             initMoboleBonusesPop(ww);
                         }
-
 
                         checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
                     },
