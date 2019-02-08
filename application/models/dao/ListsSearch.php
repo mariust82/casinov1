@@ -107,7 +107,31 @@ class ListsSearch {
         ORDER BY counter DESC
         ");
         $labels = $this->loop($res,"casinos/(name)");
-        
+
+        $res =  DB("
+        SELECT
+        t1.name AS unit, count(*) as counter
+        FROM play_versions AS t1
+        INNER JOIN casinos__play_versions AS t2 ON t1.id = t2.play_version_id
+        INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
+        WHERE t3.is_open = 1 AND t1.id = 2 AND t1.name LIKE '%".$this->value."%'
+        GROUP BY t1.id
+        ORDER BY counter DESC 
+        ");
+        $liveDealer = $this->loop($res,"features/(name)");
+
+        $res =  DB("
+        SELECT
+        t1.name AS unit, count(*) as counter
+        FROM play_versions AS t1
+        INNER JOIN casinos__play_versions AS t2 ON t1.id = t2.play_version_id
+        INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
+        WHERE t3.is_open = 1 AND t1.id = 4 AND t1.name LIKE '%".$this->value."%'
+        GROUP BY t1.id
+        ORDER BY counter DESC 
+        ");
+        $mobile = $this->loop($res,"casinos/(name)");
+
         $res =  DB("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -120,7 +144,7 @@ class ListsSearch {
         ");
         $features = $this->loop($res,"features/(name)");
 
-        return array_merge($labels, $features);
+        return array_merge($labels, $liveDealer, $mobile, $features);
     }
     
     private function loop($res,$url) {
