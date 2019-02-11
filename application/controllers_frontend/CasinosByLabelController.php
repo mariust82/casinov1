@@ -519,7 +519,7 @@ $this->response->setAttribute("menu_top", array (
   ),
 ));
 $this->response->setAttribute("selected_entity", 'Mobile');
-$this->response->setAttribute("is_mobile", false);
+$this->response->setAttribute("is_mobile", true);
 $this->response->setAttribute("menu_bottom", array (
   0 => 
   array (

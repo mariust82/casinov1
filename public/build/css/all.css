@@ -7752,8 +7752,12 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 @media screen and (max-width: 690px) {
-  .js-tooltip-content {
+  /*.js-tooltip-content {
     pointer-events: none;
+  }*/
+
+  .btn-round + .btn-round{
+    margin:5px 0 0 0;
   }
 }
 
