@@ -62,6 +62,18 @@ var AJAX_CUR_PAGE = 1;
                 $('body').addClass('site__header_sticky');
             }
         }, 800);
+
+        if (/\/reviews\//.test(window.location.href) && $('.btn-group-mobile .btn-middle').length > 0) {
+            var appended = false;
+            var position = $(window).height() / 2 + $(window).scrollTop();
+            $(window).on('scroll', function() {
+                if ($(window).scrollTop() > position && appended === false) {
+                    $('body').append('<a rel="nofollow" target="_blank" class="btn-play-now" href="' + $('.btn-group-mobile .btn-middle').attr('href') + '">Play Now</a>');
+                    $('body').addClass('play-now-appended');
+                    appended = true;
+                }
+            });
+        }
     }
 
     $(window).resize(function(event) {

@@ -7752,11 +7752,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 @media screen and (max-width: 690px) {
-  /*.js-tooltip-content {
-    pointer-events: none;
-  }*/
-
-  .btn-round + .btn-round{
+  .btn-round-holder + .btn-round-holder{
     margin:5px 0 0 0;
   }
 }
@@ -8238,4 +8234,26 @@ img.grayscale {
 }
 .no-scroll{
   overflow:hidden;
+}
+.btn-play-now{
+  position:fixed;
+  z-index:10;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:46px;
+  color:#fff;
+  background:#2171CE;
+  text-transform:uppercase;
+  font-size:11px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding:10px 20px;
 }

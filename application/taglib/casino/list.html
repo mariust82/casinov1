@@ -68,12 +68,16 @@
 				<std:if condition="${data.is_mobile}">
 					<div class="list-item-cell js-mobile-pop-open">
 						<std:if condition="${result.bonus_free.amount}">
-							<span class="btn-round" data-name="${result.name}" data-is-free="1">
-								${result.bonus_free.amount} ${getAbbreviation(${result.bonus_free.type})}
-							</span>
+							<div class="btn-round-holder">
+								<span class="btn-round" data-name="${result.name}" data-is-free="1">
+									${result.bonus_free.amount} ${getAbbreviation(${result.bonus_free.type})}
+								</span>
+							</div>
 						</std:if>
 						<std:if condition="${result.bonus_first_deposit.amount}">
-							<span class="btn-round" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
+							<div class="btn-round-holder">
+								<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
+							</div>
 						</std:if>
 					</div>
 					<div class="list-item-cell">
