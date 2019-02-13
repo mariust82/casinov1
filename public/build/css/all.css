@@ -4017,12 +4017,6 @@ a:hover, a:active, a:visited, a:focus {
   margin:0 5px 0 0;
 }
 
-@media screen and (max-width: 375px) {
-  .block-short-games .game:nth-child(1), .block-short-games .game:nth-child(2), .block-short-games .game:nth-child(3) {
-    display: none;
-  }
-}
-
 @media screen and (max-width: 1023px) {
   .game-played-label{
     display:none;
