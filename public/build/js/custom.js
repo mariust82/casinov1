@@ -312,6 +312,7 @@ var AJAX_CUR_PAGE = 1;
         //map data to bonus box
         var pattern = $($('#bonus-box-tpl').html()).filter('.tooltip-content');
             pattern.addClass(_block_class);
+            pattern.find('.mobile-popup-title').text(_name+' '+_type);
             pattern.find('.tooltip-templates-title').text(_name+' '+_type);
             pattern.find('.tooltip-templates-button a').attr('href', '/visit/'+getWebName(_name)+'');
             pattern.find('.bonus-box-heading span').text(_amount+' '+_type);
@@ -1882,7 +1883,7 @@ var AJAX_CUR_PAGE = 1;
         if (_ww <= 690) {
 
             function cloneContent(_this) {
-                var _contentHolder = _this.closest(_container).find('.mobile-popup-body');
+                var _contentHolder = _this.closest(_container).find('.mobile-popup');
                 var _items = _this.closest(_container).find('.js-tooltip-content');
                 var _name = _this.data('name');
                 var _is_free = _this.data('is-free');
@@ -1899,11 +1900,7 @@ var AJAX_CUR_PAGE = 1;
                     type: 'GET',
                     success: function (response) {
                         if(response.status =="ok") {
-                            if(_is_free) {
-                                _contentHolder.prepend(getBonusPattern(response, _name));
-                            } else {
-                                _contentHolder.append(getBonusPattern(response, _name));
-                            }
+                            _contentHolder.append(getBonusPattern(response, _name));
 
                             _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
                             _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
