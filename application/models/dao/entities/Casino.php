@@ -18,6 +18,7 @@ class Casino {
 	public $certifiers;
 	public $affiliate_program;
     public $affiliate_link;
+    public $tc_link;
 	public $withdrawal_minimum;
 	public $withdrawal_limits;
 	public $withdrawal_timeframes;
@@ -28,4 +29,5 @@ class Casino {
     public $is_currency_accepted;
     public $note;
     public $invision_casino_id;
+    public $is_tc_link;
 }

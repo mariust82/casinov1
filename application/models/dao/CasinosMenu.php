@@ -64,7 +64,7 @@ class CasinosMenu
                     $finalUrl = str_replace("{country}", $this->generatePathParameter($country), $finalUrl);
                 } else if($url=="/{page}") {
                     // hardcoding: CASLI-316
-                    $entity = ($entity=="eCOGRA Casinos"?"eCOGRA":$entity);
+                    $entity = ($entity=="ECOGRA Casinos"?"eCOGRA":$entity);
                     $finalTitle = str_replace("{entity}", $entity, $finalTitle);
                     $finalUrl = "/".$currentPage;
                 }

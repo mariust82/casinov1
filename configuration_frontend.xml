@@ -47,6 +47,7 @@
     <route url="casinos" controller="CasinoLabelsController" view="casino-labels"/>
     <route url="reviews/(name)-review" controller="CasinoInfoController" view="casino-info" rebrand_tables="casinos"/>
     <route url="visit/(name)" controller="CasinoVisitController"/>
+    <route url="link/(name)-terms" controller="CasinoTermsVisitController"/>
     <route url="warn/(name)" controller="CasinoWarningController" view="casino-warning"/>
     <route url="bonus-list/(name)" controller="CasinosByBonusTypeController" view="casinos" rebrand_tables="bonus_types"/>
     <route url="bonus-list" controller="BonusesController" view="bonus-types"/>

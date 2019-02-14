@@ -17,7 +17,7 @@ class CasinoInfo
     private function setResult($id, $countryId) {
 
         $resultSet = DB("
-        SELECT t1.*, IF(t3.id IS NOT NULL, 1, 0) AS is_live_dealer, t4.name AS status, (t1.rating_total/t1.rating_votes) AS average_rating, t2.name AS affiliate_program
+        SELECT t1.*, IF(t3.id IS NOT NULL, 1, 0) AS is_live_dealer, t4.name AS status, (t1.rating_total/t1.rating_votes) AS average_rating, t2.name AS affiliate_program, IF(t1.tc_link<>'',1,0) AS is_tc_link
         FROM casinos AS t1
         LEFT JOIN affiliate_programs AS t2 ON t1.affiliate_program_id = t2.id
         LEFT JOIN casinos__play_versions AS t3 ON t1.id = t3.casino_id AND t3.play_version_id = 2
@@ -37,6 +37,7 @@ class CasinoInfo
             $output->withdrawal_minimum = $row["withdraw_minimum"];
             $output->invision_casino_id = $row["invision_casino_id"];
             $output->status = $row["status"];
+            $output->is_tc_link = $row["is_tc_link"];
         }
         if(!$output) return;
 

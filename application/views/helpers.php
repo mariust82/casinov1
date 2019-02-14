@@ -43,7 +43,7 @@ function getSoftwareLogo($name, $resolution) {
 }
 
 function getGameLogo($name, $resolution) {
-    return "/public/sync/game_ss/".$resolution."/".str_replace(" ", "_", $name)."_ss.jpg";
+    return "public/sync/game_ss/".$resolution."/".str_replace(" ", "_", $name)."_ss.jpg";
 }
 
 function getGameTypeLogo($name, $resolution) {

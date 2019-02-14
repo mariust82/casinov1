@@ -1,11 +1,4 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of ListsSearch
  *
@@ -23,19 +16,17 @@ class ListsSearch {
         if ($this->value == "") {
             return $this->setData($this->getSoftwares());
         }
-        $caisnos = $this->getCasinos();
+        $casinos = $this->getCasinos();
         $softwares = $this->getSoftwares();
         $bonuses = $this->getBonuses();
         $countries = $this->getCountries();
         $banking = $this->getBanking();
         $games = $this->getGames();
-        $results = array_merge($caisnos,array_merge($softwares,array_merge($bonuses,array_merge($countries,array_merge($games,$banking)))));
-        return $this->setData($results);
+        return $this->setData(array_merge($casinos,$softwares,$bonuses, $countries, $banking, $games));
     }
     
     public function setData($arr) {
         for ($i = 0;$i<count($arr);$i++) {
-
             $row = DB("SELECT * FROM pages WHERE url=:url",array(":url"=>$arr[$i]['url']))->toRow();
             $arr[$i]['url'] = str_replace('(name)', strtolower(str_replace(' ', '-', $arr[$i]['name'])), $arr[$i]['url']);
             $arr[$i]['title'] = str_replace("(year)",date('Y'),str_replace("(month)",date('F'),str_replace("(name)", $arr[$i]['name'], $row['body_title'])));
@@ -107,20 +98,31 @@ class ListsSearch {
         ORDER BY counter DESC
         ");
         $labels = $this->loop($res,"casinos/(name)");
-        
+
         $res =  DB("
         SELECT
         t1.name AS unit, count(*) as counter
         FROM play_versions AS t1
         INNER JOIN casinos__play_versions AS t2 ON t1.id = t2.play_version_id
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
-        WHERE t3.is_open = 1 AND (t1.id = 4 OR t1.id = 2) AND t1.name LIKE '%".$this->value."%'
+        WHERE t3.is_open = 1 AND t1.id = 2 AND t1.name LIKE '%".$this->value."%'
         GROUP BY t1.id
         ORDER BY counter DESC 
         ");
-        $mobile = $this->loop($res,"compatability/(name)");
-        $array = array_merge($labels,$mobile);
-        
+        $liveDealer = $this->loop($res,"features/(name)");
+
+        $res =  DB("
+        SELECT
+        t1.name AS unit, count(*) as counter
+        FROM play_versions AS t1
+        INNER JOIN casinos__play_versions AS t2 ON t1.id = t2.play_version_id
+        INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
+        WHERE t3.is_open = 1 AND t1.id = 4 AND t1.name LIKE '%".$this->value."%'
+        GROUP BY t1.id
+        ORDER BY counter DESC 
+        ");
+        $mobile = $this->loop($res,"casinos/(name)");
+
         $res =  DB("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -132,7 +134,8 @@ class ListsSearch {
         ORDER BY counter DESC 
         ");
         $features = $this->loop($res,"features/(name)");
-        return array_merge($array,$features);
+
+        return array_merge($labels, $liveDealer, $mobile, $features);
     }
     
     private function loop($res,$url) {

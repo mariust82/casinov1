@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
     <application>
-        <version>0.8.6.4</version>        
+        <version>0.8.6.28</version>        
         <default_character_encoding>UTF-8</default_character_encoding>
         <default_page>index</default_page>
         <default_extension>html</default_extension>
@@ -110,6 +110,9 @@
         <route url="visit/(name)" controller="CasinoVisitController">
             <parameter name="name" validator="CasinoNameValidator"/>
         </route>
+        <route url="link/(name)-terms" controller="CasinoTermsVisitController">
+            <parameter name="name" validator="CasinoNameValidator"/>
+        </route>
         <route url="warn/(name)" controller="CasinoWarningController" view="casino-warning">
             <parameter name="name" validator="CasinoNameValidator"/>
         </route>
@@ -152,7 +155,6 @@
         <route url="privacy" controller="PrivacyController" view="privacy-policy"/>
         <route url="terms" controller="TermsController" view="terms-and-conditions"/>
         <route url="contact" controller="ContactController" view="contact-us"/>
-
         <route url="contact/send" controller="ContactSendController" method="POST" extension="json">
             <parameter name="name" validator="StringValidator"/>
             <parameter name="email" validator="EmailValidator"/>
