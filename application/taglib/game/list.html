@@ -4,7 +4,9 @@
 			<div class="game loaded-item">
 				<a href="/play/${normalize(${result.name})}" class="game-holder">
 					<span class="game-img">
-						<img src="${getGameLogo(${result.name},'300x220')}" alt="${result.name}" width="300" height="220">
+						<std:set name="imgSrc" value="getGameLogo(${result.name},'300x220')"/>
+						<std:set name="noImgSrc" value="public/build/images/games/default_game_ss.png"/>
+						<img src="/${(is_file(${imgSrc}))?${imgSrc}:${noImgSrc}}" alt="${result.name}" width="300" height="220">
 					</span>
 					<span class="game-desc">
 						<span class="game-title">${result.name}</span>
@@ -13,7 +15,7 @@
 								<span class="game-play">
 									<i class="icon-play"></i>
 								</span>
-								Times played: ${result.times_played}
+								<span class="game-played-label">Times played:</span> ${result.times_played}
 							</span>
 							<span class="game-soft">${result.software}</span>
 						</span>

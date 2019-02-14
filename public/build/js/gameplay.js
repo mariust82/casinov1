@@ -74,6 +74,7 @@ $(window).load(function(){
         $iframe.removeAttr("width").removeAttr("height");
 
         var ratioResize = new RatioResize($iframe, ratio, configuration.desktopWidth, $extraEl, setExtraElement);
+        var iframePlayButton = $iframe.contents().find(configuration.events.play);
 
         function init() {
             //Attach button events
@@ -81,7 +82,6 @@ $(window).load(function(){
         }
 
         function setEvents() {
-
             $(configuration.events.reload).on('click', function () {
                 reloadFrame();
             });
@@ -90,7 +90,11 @@ $(window).load(function(){
                 toogleFullscreen();
             });
 
-            //setTimeout(function () {
+            $(iframePlayButton).on(clickEvent, function () {
+                if(undefined !== configuration.triggerOnPlay){
+                    configuration.triggerOnPlay();
+                }
+            });
                 addMobileEvent();
                 //add config function trigger
                 if(undefined !== configuration.triggerOnPlay){
@@ -98,14 +102,12 @@ $(window).load(function(){
                         configuration.triggerOnPlay();
                     });
                 }
-            //}, 500);
         }
 
         function addMobileEvent() {
             var gameUrl = $iframe.contents().find("#overlay").attr('data-game-url');
             if (typeof gameUrl !== typeof undefined && gameUrl !== false) {
                 isMobile = true;
-                var iframePlayButton = $iframe.contents().find(configuration.events.play);
                 $(iframePlayButton).on(clickEvent, function () {
                     iframePlayButton.trigger('click');
                     if(fullscreen === false){
@@ -202,32 +204,30 @@ $(window).load(function(){
             fullscreen: '#play-fullscreen',
             play: '#game_play_button'
         },
-        triggerOnPlay: function runPlayCounter() {
-            console.log('custom function')
-            // _request = new XMLHttpRequest;
-            //
-            // if (BUSY_REQUEST) return;
-            // BUSY_REQUEST = true;
-            // _request.abort();
-            //
-            // _request = $.ajax({
-            //     url: '/play-counter',
-            //     data: {
-            //         name: _name
-            //     },
-            //     dataType: 'json',
-            //     type: 'post',
-            //     success: function (data) {
-            //     },
-            //     error: function (XMLHttpRequest) {
-            //         if (XMLHttpRequest.statusText != "abort") {
-            //             console.log('err');
-            //         }
-            //     },
-            //     complete: function () {
-            //         BUSY_REQUEST = false;
-            //     }
-            // });
+        triggerOnPlay: function() {
+	     var gameName = window.location.href.substring(window.location.href.lastIndexOf("/")+1);
+             var request = new XMLHttpRequest;
+             if (BUSY_REQUEST) return;
+             BUSY_REQUEST = true;
+             request.abort();
+             request = $.ajax({
+                 url: '/play-counter',
+                 data: {
+                     name: gameName
+                 },
+                 dataType: 'json',
+                 type: 'post',
+                 success: function (data) {
+                 },
+                 error: function (XMLHttpRequest) {
+                     if (XMLHttpRequest.statusText != "abort") {
+                         console.log('err');
+                     }
+                 },
+                 complete: function () {
+                     BUSY_REQUEST = false;
+                 }
+            });
         }
     };
 

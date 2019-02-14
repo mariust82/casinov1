@@ -62,6 +62,18 @@ var AJAX_CUR_PAGE = 1;
                 $('body').addClass('site__header_sticky');
             }
         }, 800);
+
+        if (/\/reviews\//.test(window.location.href) && $('.btn-group-mobile .btn-middle').length > 0) {
+            var appended = false;
+            var position = $(window).height() / 2 + $(window).scrollTop();
+            $(window).on('scroll', function() {
+                if ($(window).scrollTop() > position && appended === false) {
+                    $('body').append('<a rel="nofollow" target="_blank" class="btn-play-now" href="' + $('.btn-group-mobile .btn-middle').attr('href') + '">Play Now</a>');
+                    $('body').addClass('play-now-appended');
+                    appended = true;
+                }
+            });
+        }
     }
 
     $(window).resize(function(event) {
@@ -595,7 +607,10 @@ var AJAX_CUR_PAGE = 1;
             _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
             _moreButton,
             _resetButton,
-            _itemsPerPage = 25,
+            _itemsPerPage = $('.list-item').length,
+            _totalItems = $('.qty-items').data('load-total'),
+            _clicks = Math.floor(_totalItems/_itemsPerPage);
+            _currentClick = 0,
             _request = new XMLHttpRequest();
 
             if (typeof _paramName == 'undefined') {
@@ -679,8 +694,6 @@ var AJAX_CUR_PAGE = 1;
                 if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
                     _ajaxDataParams['software'] = _selectFilter.val().join();
 
-                    _itemsPerPage = 12;
-
                     if (_action == 'reset') {
                         _ajaxDataParams['software'] = '';
 
@@ -688,12 +701,11 @@ var AJAX_CUR_PAGE = 1;
                 }
 
                 if( typeof AJAX_CUR_PAGE == "undefined" ) AJAX_CUR_PAGE = 1;
-                AJAX_CUR_PAGE++;
+                
                 if (_action != 'add' || _action == 'reset') {
                     AJAX_CUR_PAGE = 0;
                 }
 
-                // _ajaxDataParams['page'] = AJAX_CUR_PAGE;
                 if(_ajaxDataParams["label"]!=undefined && _ajaxDataParams["label"]=="Mobile") {
                     _ajaxDataParams["compatibility"] = "mobile";
                     delete _ajaxDataParams.label;
@@ -721,20 +733,13 @@ var AJAX_CUR_PAGE = 1;
                     type: 'GET',
                     success: function(data) {
                         var cont = $(data).find('.loaded-item');
-
                         var loadTotal = $(data).filter('[data-load-total]').data('load-total');
 
                         if (_action == 'replace') {
                             _targetContainer.html(data);
                             _targetAddContainer.html('');
 
-                            $('.qty-items span').text(loadTotal);
-
-                            if (loadTotal > 0) {
-                                $('[data-total]').data('total', loadTotal);
-                            }
-
-                            if (cont.length == 0) {
+                            if (cont.length == 0 ) {
                                 _moreButton.hide();
                                 _loaderHolder.hide();
                                 _emptyContent.show();
@@ -743,37 +748,36 @@ var AJAX_CUR_PAGE = 1;
                                 _loaderHolder.show();
                                 _emptyContent.hide();
                             }
+
+                            if (loadTotal <= cont.length) {
+                                _moreButton.hide();
+                            }
+                            refresh();
+                            AJAX_CUR_PAGE = 1;
+                            _currentClick = 0;
                         } else {
+                            AJAX_CUR_PAGE++;
+                            _currentClick++;
+                            
                             setTimeout(function(){
                                 _targetAddContainer.append(cont);
                                 _moreButton.removeClass('loading');
+                                refresh();
+
+                                if(_currentClick >= _clicks){
+                                    _moreButton.hide();
+                                }
                             }, 1000)
-
-                            /*if( _ajaxDataParams['total_items_loaded'] >= datatotal){
-                                return false;
-                            }*/
                         }
 
-                        var  itemsNumberLoaded  = $('.holder .loaded-item').length;
-
-                        if(loadTotal <= itemsNumberLoaded){
-                            _moreButton.hide();
-                        }
-
-
-
-                       /* if (AJAX_CUR_PAGE >= Math.floor($('.data-add-container').data('total') / _itemsPerPage)) {
-                            _moreButton.hide();
-                        }*/
-
-                        // initRateSlider();
-                        // changeNumSize();
                         _construct();
 
-                        $('.js-tooltip').tooltipster(tooltipConfig);
-                        $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-                        $('.js-tooltip-content').tooltipster(contentTooltipConfig);
-                        initMoboleBonusesPop(ww);
+                        function refresh() {
+                            $('.js-tooltip').tooltipster(tooltipConfig);
+                            $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                            $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+                            initMoboleBonusesPop(ww);
+                        }
 
                         checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
                     },
@@ -1879,39 +1883,40 @@ var AJAX_CUR_PAGE = 1;
 
             function cloneContent(_this) {
                 var _contentHolder = _this.closest(_container).find('.mobile-popup-body');
+                var _heading = _this.closest(_container).find('.mobile-popup-title');
                 var _items = _this.closest(_container).find('.js-tooltip-content');
+                var _name = _this.data('name');
+                var _is_free = _this.data('is-free');
+                var _request = new XMLHttpRequest();
 
-                _items.each(function(index, el) {
-
-                    var _name = $(el).data('name');
-                    var _is_free = $(el).data('is-free');
-                    var _request = new XMLHttpRequest();
-
-                    _request.abort();
-                    _request = $.ajax( {
-                        url: "/casino/bonus",
-                        data: {
-                            casino: _name,
-                            is_free: _is_free,
-                        },
-                        dataType: 'json',
-                        type: 'GET',
-                        success: function (response) {
-                            if(response.status =="ok") {
-                                if(_is_free) {
-                                    _contentHolder.prepend(getBonusPattern(response, _name));
-                                } else {
-                                    _contentHolder.append(getBonusPattern(response, _name));
-                                }
-
-                                _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
-                                _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-                                checkStringLength($('.bonus-box'), 21);
-                                copyToClipboard();
-                                $('.overlay, .loader').fadeOut('fast');
+                _request.abort();
+                _request = $.ajax( {
+                    url: "/casino/bonus",
+                    data: {
+                        casino: _name,
+                        is_free: _is_free,
+                    },
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (response) {
+                        if(response.status =="ok") {
+                            $bonus = getBonusPattern(response, _name);
+                            
+                            if(_is_free) {
+                                _contentHolder.prepend($bonus);
+                            } else {
+                                _contentHolder.append($bonus);
                             }
+
+                            _heading.text($bonus.find('.tooltip-templates-title').text());
+
+                            _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
+                            _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                            checkStringLength($('.bonus-box'), 21);
+                            copyToClipboard();
+                            $('.overlay, .loader').fadeOut('fast');
                         }
-                    });
+                    }
                 });
                 
                 showPop(_this);
@@ -1925,7 +1930,7 @@ var AJAX_CUR_PAGE = 1;
                 $('html, body').addClass('no-scroll');
             }
 
-            _btnOpen.on('click', function(e) {
+            _btnOpen.on('click', '.btn-round', function(e) {
                 $('.overlay, .loader').fadeIn('fast');
                 cloneContent($(this));
                 return false;
