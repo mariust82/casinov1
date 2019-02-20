@@ -11,7 +11,7 @@ class CasinosSearch
         return DB("
             SELECT name
             FROM casinos
-            WHERE name LIKE :name
+            WHERE name LIKE :name AND is_open=1
             ORDER BY date_established DESC, name ASC
             LIMIT ".$limit." OFFSET ".$offset,
             array(":name"=>"%".$this->value."%"))->toColumn();
@@ -20,7 +20,9 @@ class CasinosSearch
     public function getTotal() {
         // build query
         return (integer) DB("
-            SELECT COUNT(id) AS nr FROM casinos WHERE name LIKE :name",
+            SELECT COUNT(id) AS nr 
+            FROM casinos 
+            WHERE name LIKE :name AND is_open=1",
             array(":name"=>"%".$this->value."%"))->toValue();
     }
 }
