@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "462149ef074272be327cdf2e0930abea",
+    "content-hash": "c5fa9ce0a8becf1b1498e61727020e8f",
     "packages": [
         {
             "name": "lucinda/errors",
@@ -46,16 +46,16 @@
         },
         {
             "name": "lucinda/errors-mvc",
-            "version": "v1.0.8",
+            "version": "v1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/errors-api.git",
-                "reference": "403ee62118aadd1b8f6191f9f19aec0f878c5304"
+                "reference": "0279aede9b91db74da7b9aaec910ea2efca01ccf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/errors-api/zipball/403ee62118aadd1b8f6191f9f19aec0f878c5304",
-                "reference": "403ee62118aadd1b8f6191f9f19aec0f878c5304",
+                "url": "https://api.github.com/repos/aherne/errors-api/zipball/0279aede9b91db74da7b9aaec910ea2efca01ccf",
+                "reference": "0279aede9b91db74da7b9aaec910ea2efca01ccf",
                 "shasum": ""
             },
             "type": "library",
@@ -71,12 +71,14 @@
                 }
             ],
             "description": "MVC API for STDERR flow in PHP applications",
+            "homepage": "http://www.lucinda-framework.com/stderr-mvc",
             "keywords": [
                 "errors",
+                "handling",
                 "mvc",
                 "stderr"
             ],
-            "time": "2018-10-09T04:10:52+00:00"
+            "time": "2019-02-21T08:09:51+00:00"
         },
         {
             "name": "lucinda/framework-engine",
@@ -320,16 +322,16 @@
         },
         {
             "name": "lucinda/oauth2-client",
-            "version": "v1.6.0",
+            "version": "v1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/oauth2client.git",
-                "reference": "2dd815cd2e2a2db02c02e0663ee2bd4ffc89d0e2"
+                "reference": "6d5d58172f58ee885dc7aaf6d00653d26370c230"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/oauth2client/zipball/2dd815cd2e2a2db02c02e0663ee2bd4ffc89d0e2",
-                "reference": "2dd815cd2e2a2db02c02e0663ee2bd4ffc89d0e2",
+                "url": "https://api.github.com/repos/aherne/oauth2client/zipball/6d5d58172f58ee885dc7aaf6d00653d26370c230",
+                "reference": "6d5d58172f58ee885dc7aaf6d00653d26370c230",
                 "shasum": ""
             },
             "type": "library",
@@ -350,7 +352,77 @@
                 "client",
                 "oauth2"
             ],
-            "time": "2018-01-27T14:14:34+00:00"
+            "time": "2019-01-16T08:12:30+00:00"
+        },
+        {
+            "name": "lucinda/queries",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/php-sql-statements-api.git",
+                "reference": "354bc02a024a55785ae1c3f7f6efe87489258bfc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/php-sql-statements-api/zipball/354bc02a024a55785ae1c3f7f6efe87489258bfc",
+                "reference": "354bc02a024a55785ae1c3f7f6efe87489258bfc",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generates SQL statements programmatically based on SQL standards or their vendor-specific derivation",
+            "homepage": "https://github.com/aherne/php-sql-statements-api",
+            "keywords": [
+                "generation",
+                "query",
+                "sql"
+            ],
+            "time": "2019-02-18T14:57:08+00:00"
+        },
+        {
+            "name": "lucinda/request-validator",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/php-request-validator.git",
+                "reference": "0dc499a197dfd989d3ef71e237f0ba9ed7900624"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/php-request-validator/zipball/0dc499a197dfd989d3ef71e237f0ba9ed7900624",
+                "reference": "0dc499a197dfd989d3ef71e237f0ba9ed7900624",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Encapsulates path/request parameters validation",
+            "homepage": "https://github.com/aherne/php-parameter-validator",
+            "keywords": [
+                "path parameters",
+                "request parameters",
+                "validation"
+            ],
+            "time": "2019-02-09T07:24:23+00:00"
         },
         {
             "name": "lucinda/security",

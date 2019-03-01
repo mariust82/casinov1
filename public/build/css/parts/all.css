@@ -154,8 +154,8 @@ img, figure {
 
 @font-face {
   font-family: 'icomoon';
-  src: url("../fonts/icomoon.eot?stten7");
-  src: url("../fonts/icomoon.eot?stten7#iefix") format("embedded-opentype"), url("../fonts/icomoon.ttf?stten7") format("truetype"), url("../fonts/icomoon.woff?stten7") format("woff"), url("../fonts/icomoon.svg?stten7#icomoon") format("svg");
+  src: url("../../fonts/icomoon.eot?stten7");
+  src: url("../../fonts/icomoon.eot?stten7#iefix") format("embedded-opentype"), url("../../fonts/icomoon.ttf?stten7") format("truetype"), url("../../fonts/icomoon.woff?stten7") format("woff"), url("../../fonts/icomoon.svg?stten7#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -2814,13 +2814,13 @@ a:hover, a:active, a:visited, a:focus {
   padding-bottom: 320px;
   position: relative;
   overflow: hidden;
-  background: url(../images/text-header/home-img.jpg) no-repeat 50% 0;
+  background: url(../../images/text-header/home-img.jpg) no-repeat 50% 0;
 }
 
 @media screen and (max-width: 690px) {
   .promo-img {
     padding-bottom: 200px;
-    background: url(../images/text-header/home-img-mobile.jpg) no-repeat 50% 0;
+    background: url(../../images/text-header/home-img-mobile.jpg) no-repeat 50% 0;
     background-size: 100%;
   }
 }
@@ -5279,7 +5279,7 @@ a:hover, a:active, a:visited, a:focus {
   -ms-transition:none;
   -o-transition:none;
   transition:none;
-  background: url(../images/loader.svg) no-repeat center;
+  background: url(../../images/loader.svg) no-repeat center;
 }
 
 .btn-bordered-alt {
