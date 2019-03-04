@@ -24,6 +24,7 @@
         "lucinda/view-language": "~1.0",
         "lucinda/internationalization": "~1.0",
         "lucinda/framework-engine": "~1.0",
+        "lucinda/queries": "~1.0",
         "lucinda/request-validator": "~1.0"
     },
     "require-dev": {
@@ -38,6 +39,7 @@
         "lucinda/view-language": "~1.0",
         "lucinda/internationalization": "~1.0",
         "lucinda/framework-engine": "~1.0",
+        "lucinda/queries": "~1.0",
         "lucinda/request-validator": "~1.0"
     }
 }

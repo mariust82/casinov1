@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE xml>
+<xml>
+    <js source="public/build/js/parts" destination="public/build/js/compilations">
+        <file name="bundle">
+            <file name="jquery"/>
+            <file name="jquery-bar"/>
+            <file name="jquery-debounce"/>
+            <file name="jquery-select2"/>
+            <file name="swiper"/>
+            <file name="tooltipster"/>
+        </file>
+        <file name="main">
+            <file name="custom"/>
+            <file name="gameplay"/>
+        </file>
+    </js>
+    <css source="public/build/css/parts" destination="public/build/css/compilations">
+    </css>
+</xml>
