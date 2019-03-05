@@ -17,6 +17,8 @@ abstract class BaseController extends Controller {
         $this->pageInfo();
 
         $this->response->setAttribute("version", $this->application->getVersion());
+
+        $this->response->setAttribute("use_bundle", (in_array($this->application->getAttribute("environment"), ["dev","live"])?true:false));
     }
 
     abstract protected function service();
