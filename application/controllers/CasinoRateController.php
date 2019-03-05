@@ -14,14 +14,21 @@ require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedExc
 */
 class CasinoRateController extends Controller {
 	public function run() {
-        $object = new Casinos();
-        $success = $object->rate(
-            $this->request->getAttribute('validation_results')->get('name'),
-            $this->request->getAttribute("ip"),
-            $this->request->getAttribute('validation_results')->get('value')
-        );
 
-        $this->response->setAttribute("success", $success);
-        if(!$success) throw new OperationFailedException($success===null?"Casino not found!":"Casino already rated!");
+        $casinoID = $this->request->getAttribute('validation_results')->get('name');
+        $object = new Casinos();
+        $test = $object->getCountryAccepted($casinoID, $this->request->getAttribute("country")->id);
+        if($test)
+        {
+            $success = $object->rate(
+                $this->request->getAttribute('validation_results')->get('name'),
+                $this->request->getAttribute("ip"),
+                $this->request->getAttribute('validation_results')->get('value')
+            );
+
+            $this->response->setAttribute("success", $success);
+            if(!$success) throw new OperationFailedException($success===null?"Casino not found!":"Casino already rated!");
+        }
+
 	}
 }

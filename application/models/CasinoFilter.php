@@ -32,7 +32,7 @@ class CasinoFilter
     private $certification;
     private $bonus_types = [];
 
-    public function     __construct($requestParameters, Country $detectedCountry) {
+    public function __construct($requestParameters, Country $detectedCountry) {
         $this->detectedCountry = $detectedCountry;
         if (isset($requestParameters['country'])) {
                 $countries = new Countries();
@@ -242,6 +242,5 @@ class CasinoFilter
     public function setGame($data) {
         $this->game = $data;
     }
-
 
 }

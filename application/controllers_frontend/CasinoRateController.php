@@ -1,5 +1,6 @@
 <?php
 class CasinoRateController extends Controller {
-    public function run(){
+    public function run()
+    {
     }
 }
