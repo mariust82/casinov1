@@ -1,5 +1,5 @@
 <?php
 class CasinoReviewLikeController extends Controller {
-    public function run() {
+    public function run(){
     }
 }
