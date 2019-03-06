@@ -1,5 +1,4 @@
 <?php
-echo 'a';
 $benchmark = false;
 if($benchmark) {
     require_once("hlis/profilers/PageProfiler.php");
