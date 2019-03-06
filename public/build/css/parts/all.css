@@ -3754,7 +3754,6 @@ a:hover, a:active, a:visited, a:focus {
   display: inline-block;
   cursor: pointer;
   transition: background .3s;
-  white-space:nowrap;
 }
 
 @media screen and (max-width: 690px) {
