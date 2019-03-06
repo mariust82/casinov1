@@ -1377,6 +1377,7 @@ var AJAX_CUR_PAGE = 1;
                                 // location.href = '/search/advanced?value='+_searchInput.val();
                                 // _searchInput.val('');
                                 _ajaxRequestAdvanced();
+                                _searchInput.blur();
                             }
                             _resetPages();
                         } else {
