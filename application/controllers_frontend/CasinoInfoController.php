@@ -631,6 +631,7 @@ $this->response->setAttribute("casino", array (
   'note' => NULL,
   'invision_casino_id' => NULL,
   'status' => NULL,
+  'is_tc_link' => '1',
 ));
 $this->response->setAttribute("user_score", '10');
 $this->response->setAttribute("total_reviews", 0);

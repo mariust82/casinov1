@@ -19,24 +19,29 @@
 						</div>
 						<div class="list-rating ${normalize(get_rating(${result.rating}))}">
 							<div class="list-rating-wrap">
-                                                            <std:if condition="${result.rating} == 0">
-                                                                <div class="list-rating-score">-</div>
-																<div class=" list-rating-score list-rating-score-mobile">|</div>
-                                                                <div class="list-rating-text">${get_rating(${result.rating})}</div>
-                                                            <std:else>
-                                                                <div class="list-rating-score">
-									${ceil(${result.rating})}
-								</div>
-								<div class="list-rating-text">${get_rating(${result.rating})}</div>
-                                                            </std:if>
+								<std:if condition="${result.rating} == 0">
+									<div class="list-rating-score">-</div>
+									<div class=" list-rating-score list-rating-score-mobile">|</div>
+									<div class="list-rating-text">${get_rating(${result.rating})}</div>
+								<std:else>
+									<div class="list-rating-score">
+										${ceil(${result.rating})}
+									</div>
+									<div class="list-rating-text">${get_rating(${result.rating})}</div>
+								</std:if>
 							</div>
 						</div>
-						<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
-							${result.name}
-							<std:if condition="'$[type]' == 'ESTABLISHED' && ${result.date_established} != '0000-00-00' && ${data.is_mobile}">
-								<div class="list-small-text">${result.date_formatted}</div>
+						<div class="list-title-holder">
+							<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
+								${result.name}
+								<std:if condition="'$[type]' == 'ESTABLISHED' && ${result.date_established} != '0000-00-00' && ${data.is_mobile}">
+									<div class="list-small-text">${result.date_formatted}</div>
+								</std:if>
+							</a>
+							<std:if condition="${result.is_tc_link}">
+								<a href="/link/${normalize(${result.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
 							</std:if>
-						</a>
+						</div>
 					</div>
 				</div>
 				<div class="list-item-cell">
@@ -63,16 +68,21 @@
 				<std:if condition="${data.is_mobile}">
 					<div class="list-item-cell js-mobile-pop-open">
 						<std:if condition="${result.bonus_free.amount}">
-							<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1">
-								${result.bonus_free.amount} ${getAbbreviation(${result.bonus_free.type})}
-							</span>
-						<std:else>
-							<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
+							<div class="btn-round-holder">
+								<span class="btn-round" data-name="${result.name}" data-is-free="1">
+									${result.bonus_free.amount} ${getAbbreviation(${result.bonus_free.type})}
+								</span>
+							</div>
+						</std:if>
+						<std:if condition="${result.bonus_first_deposit.amount}">
+							<div class="btn-round-holder">
+								<span class="btn-round" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
+							</div>
 						</std:if>
 					</div>
 					<div class="list-item-cell">
 						<std:if condition="${result.bonus_free.amount}">
-							<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
+							<span class="btn-round" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
 						</std:if>
 					</div>
 				<std:else>
@@ -112,7 +122,7 @@
 						</a>
 						<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="button">VISIT CASINO</a>
 					</div>
-					<div class="mobile-popup-title">${result.name} Welcome Package</div>
+					<div class="mobile-popup-title"></div>
 					<div class="mobile-popup-body"></div>
 				</div>
 			</div>

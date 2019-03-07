@@ -24,6 +24,7 @@ class IndexController extends BaseController {
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
         $this->response->setAttribute("best_casinos", $this->getCasinos(array("label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
         $this->response->setAttribute("country_casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, 5));
+        $this->response->setAttribute("casinos_per_country", $this->countCasinosByCountry(array("country_accepted"=>1)));
         $this->response->setAttribute("new_casinos", $this->getCasinos([],CasinoSortCriteria::NEWEST, 5));
         $this->response->setAttribute("no_deposit_casinos", $this->getCasinos(
             array("bonus_type"=>"no deposit bonus"), CasinoSortCriteria::NEWEST, 5));
@@ -39,6 +40,18 @@ class IndexController extends BaseController {
             unset($filter["country_accepted"]);
             $object = new CasinosList(new CasinoFilter($filter, $this->request->getAttribute("country")));
             $results = $object->getResults($sortBy, 0,$limit);
+        }
+
+        return $results;
+    }
+
+    private function countCasinosByCountry($filter)
+    {
+        $object = new CasinosList(new CasinoFilter($filter, $this->request->getAttribute("country")));
+        $results = $object->getTotal();
+        if(empty($results))
+        {
+            $results = 0;
         }
         return $results;
     }

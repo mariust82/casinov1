@@ -29,6 +29,9 @@
                         <std:else>
                             <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
                         </std:if>
+                        <std:if condition="${data.casino.is_tc_link}">
+	                    	<a href="/link/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
+                        </std:if>
 					</div>
 				</div>
 				<div class="casino-review-heading-right">
@@ -52,6 +55,9 @@
 				<div class="btn-group btn-group-mobile">
 					<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
 					<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
+					<std:if condition="${data.casino.is_tc_link}">
+						<a href="/link/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
+					</std:if>
 				</div>
 
 				<div class="casino-review-country casino-review-mobile">

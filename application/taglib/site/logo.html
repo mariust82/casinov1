@@ -1,6 +1,6 @@
 <std:if condition="'$[type]' == 'game'">
     <span class="category-img">
-        <img src="${getGameLogo($[name],'136x100')}" alt="$[alt]" width="136" height="100">
+        <img src="/${getGameLogo($[name],'136x100')}" alt="$[alt]" width="136" height="100">
     </span>
 <std:elseif condition="'$[type]' == 'software'">
     <span class="software-img">

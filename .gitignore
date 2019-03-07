@@ -8,3 +8,6 @@ hlis
 index.php
 .htaccess
 robots.txt
+node_modules
+/public/package.json
+/public/gulpfile.js

@@ -30,7 +30,6 @@ abstract class CasinosListController extends BaseController {
 
     private function getResults() {
 
-
         $filter = new CasinoFilter(
             array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")),
             $this->request->getAttribute("country"));
