@@ -8036,25 +8036,19 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .js-condense {
-  max-height: 78px;
   overflow: hidden;
-
-
 }
 .js-condense > span {
   display: block;
 }
 
-@media screen and (max-width: 690px) {
-  .js-condense {
-    max-height: 215px;
-  }
+.js-condense_readmore_button{
+  color:#2171CE;
+  cursor:pointer;
 }
 
-@media screen and (max-width: 480px){
-  .js-condense {
-    max-height: 90px;
-  }
+.js-condense_readmore_ellipsis{
+  position:relative;
 }
 
 .more-num {
