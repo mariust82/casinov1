@@ -1661,7 +1661,7 @@ var AJAX_CUR_PAGE = 1;
 
             getItemPattern = function(itemData) {
                 var pattern = '<li>\
-                    <a class="search-results-label" href='+itemData.link+'"/">\
+                    <a class="search-results-label" href="/'+itemData.link.replace("/games/","")+'">\
                         '+itemData.name+'\
                     </a>\
                 </li>';
