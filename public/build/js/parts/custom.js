@@ -1303,6 +1303,7 @@ var AJAX_CUR_PAGE = 1;
                     },
                     dataType: 'json',
                     type: 'post',
+
                     success: function (data) {
                         if (data.body['success'] == "Casino already rated!") {
                             $(".icon-icon_available").toggleClass("icon-icon_unavailable");
@@ -1312,7 +1313,16 @@ var AJAX_CUR_PAGE = 1;
                         $('.rating-container').next('.action-field').show();
                     },
                     error: function ( XMLHttpRequest ) {
-                        if ( XMLHttpRequest.statusText != "abort" ) {
+                        if(XMLHttpRequest.statusText == "Internal server error")
+                        {
+                            var error_message = XMLHttpRequest.responseJSON.body;
+                            $(".icon-icon_available").toggleClass("icon-icon_unavailable");
+                            $(".icon-icon_unavailable").removeClass("icon-icon_available");
+                            $('.thanx').html(error_message);
+                        //    console.log(error_message);
+                        }
+                        else if ( XMLHttpRequest.statusText != "abort" )
+                        {
                             console.log( 'err' );
                         }
                     },

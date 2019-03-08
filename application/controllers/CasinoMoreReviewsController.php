@@ -15,6 +15,7 @@ require_once("application/models/dao/Casinos.php");
 class CasinoMoreReviewsController extends Controller {
 	public function run() {
 	    // get casino ID
+
         $object = new Casinos();
         $casinoID = $this->request->getAttribute('validation_results')->get('name');
 

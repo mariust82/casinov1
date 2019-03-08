@@ -72,7 +72,7 @@ class Casinos implements FieldValidator
         }
     }
 
-    public function getCountryAccepted($casinoID, $countryID)
+    public function isCountryAccepted($casinoID, $countryID)
     {
         return DB("select casino_id from casinos__countries_allowed where casino_id=:casino_id and country_id=:country_id", [
             ":casino_id"=>$casinoID,
@@ -100,7 +100,6 @@ class Casinos implements FieldValidator
         } else {
             return "Casino already rated!";
         }
-        
     }
 
     public function click($id) {
