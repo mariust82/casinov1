@@ -1387,6 +1387,7 @@ var AJAX_CUR_PAGE = 1;
                                 // location.href = '/search/advanced?value='+_searchInput.val();
                                 // _searchInput.val('');
                                 _ajaxRequestAdvanced();
+                                _searchInput.blur();
                             }
                             _resetPages();
                         } else {
@@ -1670,7 +1671,7 @@ var AJAX_CUR_PAGE = 1;
 
             getItemPattern = function(itemData) {
                 var pattern = '<li>\
-                    <a class="search-results-label" href='+itemData.link+'"/">\
+                    <a class="search-results-label" href="/'+itemData.link.replace("/games/","")+'">\
                         '+itemData.name+'\
                     </a>\
                 </li>';
@@ -2126,130 +2127,88 @@ var AJAX_CUR_PAGE = 1;
         return name.replace(/\s/g, '-').toLowerCase();
     }
 
-
-
     function initExpandingText() {
 
-        var arrayHolders = document.querySelectorAll(".js-condense"),
-            symbolWidth,symbolsCount,rowsCount,itemText;
-        var symbolsPerRow = 0;
+        $.fn.moreLines = function (options) {
 
-        function strip(html) {
-           var tmp = document.createElement("DIV");
-           tmp.innerHTML = html;
-           return tmp.textContent || tmp.innerText || "";
-        }
+        "use strict";
 
-        if (arrayHolders.length > 0) {
-            for( var i=0; i<arrayHolders.length; i++ ) {
-                if (arrayHolders[i].innerText.length>0) {
-                    symbolsCount = calculateSymbols( arrayHolders[i] );
+            this.each(function(){
 
-                    var childsHolder = arrayHolders[i].querySelector('span');
-                    if(childsHolder.clientHeight > parseInt( window.getComputedStyle(arrayHolders[i] ,null).getPropertyValue("max-height") )) {
-                        childs = childsHolder.children;
-                        if (childs.length > 1) {
-                            var flag = true;
-                            for(var i = 0; i<childs.length; i++) {
-                                var contentLenght =  childs[i].innerHTML.trim();
-                                if (contentLenght.length > symbolsCount || contentLenght.length == 0) {
-                                    childs[i].classList.add('hidden');
-                                    if (flag) {
-                                        flag = false;
-                                        if ($(window).width() > 480) {
-                                            symbolsCount += 200;
-                                        }
-                                        itemText = strip(childs[i].innerHTML.substring(0,symbolsCount)) + '<span class="read_controll">...</span>';
-                                        createTextParagraf(itemText,childsHolder,childs[i]);
-                                    }
-                                }else if(flag === false){
-                                    childs[i].classList.add('hidden');
-                                }
-                                else {
-                                    if (contentLenght.length < symbolsPerRow) {
-                                        symbolsCount -= symbolsPerRow;
-                                    }
-                                    else {
-                                        symbolsCount -= childs[i].innerText.length;
-                                    }
-                                }
+                var element = $(this), 
+                    textelement = element.find("p"),
+                    baseclass = "b-morelines_",
+                    basejsclass = "js-morelines_",
+                    currentclass = "section",
+                    singleline = parseFloat(element.css("line-height")),
+                    auto = 1,
+                    fullheight = element.innerHeight(),
+                    settings = $.extend({
+                        linecount: auto,
+                        baseclass: baseclass,
+                        basejsclass: basejsclass,
+                        classspecific: currentclass,
+                        buttontxtmore: "more lines",
+                        buttontxtless: "less lines",
+                        animationspeed: auto
+                    }, options ),
+                    
+                    ellipsisclass = settings.baseclass+settings.classspecific+"_ellipsis",
+                    buttonclass = settings.baseclass+settings.classspecific+"_button",
+                    wrapcss = settings.baseclass+settings.classspecific+"_wrapper",
+                    wrapjs = settings.basejsclass+settings.classspecific+"_wrapper",
+                    wrapper = $("<div>").addClass(wrapcss+ ' ' +wrapjs).css({'max-width': element.css('width')}),
+                    linescount = singleline * settings.linecount;
+
+                element.wrap(wrapper);
+
+                if (element.parent().not(wrapjs)) {
+
+                    if (fullheight > linescount) {
+
+                    element.addClass(ellipsisclass).css({'min-height': linescount, 'max-height': linescount, 'overflow': 'hidden'});
+
+                    var moreLinesButton = $("<div>", {
+                        "class": buttonclass,
+                        click: function() {
+
+                            element.toggleClass(ellipsisclass);
+                            $(this).toggleClass(buttonclass+'_active');
+
+                            if (element.css('max-height') !== 'none') {
+                                element.css({'height': linescount, 'max-height': ''}).animate({height:fullheight}, settings.animationspeed, function () {
+                                    moreLinesButton.html(settings.buttontxtless);
+                                });
+
+                            } else {
+                                element.animate({height:linescount}, settings.animationspeed, function () {
+                                    moreLinesButton.html(settings.buttontxtmore);
+                                    element.css('max-height', linescount);
+                                });
                             }
-                        }
-                        else {
-                            childs[0].classList.add('hidden');
-                            itemText = strip(childs[0].innerText.substring(0,symbolsCount)) + '<span class="read_controll">...</span>';
-                            createTextParagraf(itemText,childsHolder,childs[0]);
-                        }
+                        },
+
+                        html: settings.buttontxtmore
+                    });
+
+                    element.after(moreLinesButton);
+
                     }
-
-                    createReadMoreButton($('span.read_controll'));
                 }
-            }
-        }
-        function createTextParagraf(itemText, parent, beforeNode) {
-            var textParagraf = document.createElement('div');
-            textParagraf.classList.add('cloned-text');
-            textParagraf.innerHTML = itemText;
-            parent.insertBefore(textParagraf, beforeNode);
-            parent.parentElement.style.maxHeight = '100%';
+            });
 
-        }
-        function createReadMoreButton(itemParent) {
+            return this;
+        };
 
-            var buttonToggle = document.createElement('a'),
-             //   buttonToggleLess = document.createElement('span'),
-                buttonToggleMore = document.createElement('span');
-
-            //buttonToggleLess.classList.add('less');
-           // buttonToggleLess.innerHTML="Read Less";
-            buttonToggleMore.classList.add('more');
-            buttonToggleMore.innerHTML=" Read More";
-            buttonToggleMore.addEventListener("click", txtReadMore);
-           // buttonToggle.appendChild(buttonToggleLess);
-            buttonToggle.appendChild(buttonToggleMore);
-            buttonToggle.classList.add('condense_control');
-            itemParent.append(buttonToggle);
-        //    initToggleButton();
-        }
-
-        function createLessButton(){
-
-                var readLessElement = '<a class="condense_control read-less-btn"> <span class="less" ">' + 'Read Less' + '</span></a>';
-                $('.js-condense p').last().append(readLessElement);
-
-                $('.js-condense p').last().find('span.less').on('click', txtReadLess);
-
-        }
-
-        function calculateSymbols( itemHolder ) {
-            var lineHeight = parseInt( window.getComputedStyle(itemHolder.querySelector('p') ,null).getPropertyValue("line-height") ),
-            parentHeight = parseInt( window.getComputedStyle(itemHolder ,null).getPropertyValue("max-height") ),
-            parentWidth = parseInt( window.getComputedStyle(itemHolder ,null).getPropertyValue("width") );
-            //media queries when font size is changed
-            symbolWidth = 6.7;
-            
-            if (window.innerWidth < 690) {
-                symbolWidth = 4.5; //average value of letter width
-            }
-            if (window.innerWidth < 375) {
-                symbolWidth = 4.6; //average value of letter width
-            }
-            symbolsPerRow = Math.round( parentWidth/symbolWidth );
-            rowsCount = parseInt( parentHeight/lineHeight );
-            return rowsCount*symbolsPerRow - 30;
-        }
-
-
-        function txtReadMore (){
-
-            $('.js-condense').addClass('opened');
-            createLessButton();
-        }
-
-        function txtReadLess(){
-            $('.js-condense').removeClass('opened');
-            $('.js-condense').find('.read-less-btn').remove();
-        }
+        $('.js-condense').moreLines({
+          linecount: 3, 
+          baseclass: 'js-condense',
+          basejsclass: 'js-condense',
+          classspecific: '_readmore',
+          buttontxtmore: "Read More",
+          buttontxtless: "Read Less",
+          animationspeed: 250 
+        });
     }
     function initMultirow() {
         var multirowContainer = $('.js-multirow');
