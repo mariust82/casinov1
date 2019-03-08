@@ -18,10 +18,13 @@ class CasinoInfoController extends BaseController {
 	public function service() {
 
 		$this->response->setAttribute("country", $this->request->getAttribute("country"));
-
 		// get casino info
 		$object = new CasinoInfo($this->request->getAttribute('validation_results')->get('name'), $this->request->getAttribute("country")->id);
         $info = $object->getResult();
+
+        $casinoID = $this->request->getAttribute("validation_results")->get('name');
+        $countryID = $this->request->getAttribute("country")->id;
+        $this->response->setAttribute("can_review",$object->isCountryAccepted($casinoID,$countryID));
 
 		if(empty($info)){
 		    throw new PathNotFoundException();

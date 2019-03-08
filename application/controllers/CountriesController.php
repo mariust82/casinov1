@@ -20,7 +20,6 @@ class CountriesController extends CasinosCounterController {
             unset($counts[$this->request->getAttribute("country")->name]);
             $counts = $userCountry + $counts;
         }
-
         return $counts;
     }
 

@@ -190,5 +190,13 @@ class CasinoInfo
 
     }
 
+    public function isCountryAccepted($casinoID, $countryID)
+    {
+        return DB("select casino_id from casinos__countries_allowed where casino_id=:casino_id and country_id=:country_id", [
+            ":casino_id"=>$casinoID,
+            ":country_id"=>$countryID
+        ])->toValue();
+    }
+
 
 }

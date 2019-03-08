@@ -5,7 +5,6 @@ require_once("application/models/dao/PageInfoDAO.php");
 
 abstract class BaseController extends Controller {
     public function run() {
-
         $specificPage = $this->request->getURI()->getPage();
         $country = $this->request->getAttribute("country");
         $this->response->setAttribute("country", $country);

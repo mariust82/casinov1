@@ -13,8 +13,6 @@ class CasinosByCountryController extends CasinosListController {
 
     protected function getSelectedEntity()
     {
-
-
         $object = new Countries();
         $country_id =  $this->request->getAttribute('validation_results')->get('name');
 
