@@ -9,18 +9,27 @@ var AJAX_CUR_PAGE = 1;
         initSite();
         initMobileMenu();
         new SearchPanel ( $('.header') );
-        
+
         var user_rate = $('.rating-container').data('user-rate');
-        if (user_rate > 0) {
-            $('.br-widget').children().each(function() {
-                $(this).unbind("mouseenter mouseleave mouseover");
-               if (parseInt($(this).data('rating-value')) <= parseInt(user_rate)) {
-                   $(this).addClass('br-active');
-               }
-            });
-            $('.br-widget').unbind("mouseenter mouseleave mouseover");
-        }   
-        
+
+        console.log($('.box img.not-accepted').length);
+
+        if($('.box img.not-accepted').length){
+            $('.br-widget a').unbind("mouseenter mouseleave mouseover click");
+        }else {
+
+
+            if (user_rate > 0) {
+                $('.br-widget').children().each(function () {
+                    $(this).unbind("mouseenter mouseleave mouseover");
+                    if (parseInt($(this).data('rating-value')) <= parseInt(user_rate)) {
+                        $(this).addClass('br-active');
+                    }
+                });
+                $('.br-widget').unbind("mouseenter mouseleave mouseover");
+            }
+        }
+
     });
 
     //detect when scrolling is stoped
@@ -2070,36 +2079,37 @@ var AJAX_CUR_PAGE = 1;
     function initBarRating() {
         var container = $('.rating-container');
         var defRating = container.data('casino-rating');
-
         var ratingParams = {
             showSelectedRating: false,
-            onSelect: function(value, text, event) {
-                if (typeof event != 'undefined') {
-                    var _this = $(event.currentTarget);
-                    var _classes = 'terrible poor good very-good excellent';
 
-                    _this
-                        .closest(container)
-                        .find('.rating-current-text')
-                        .text(text)
-                        .removeClass(_classes)
-                        .addClass(getWebName(text));
-                    _this
-                        .closest(container)
-                        .find('.rating-current-value span')
-                        .text(value );
 
-                    _this
-                        .closest(container)
-                        .find('.rating-current')
-                        .attr('data-rating-current', value);
+                onSelect: function(value, text, event) {
+                    if (typeof event != 'undefined') {
+                        var _this = $(event.currentTarget);
+                        var _classes = 'terrible poor good very-good excellent';
 
-                    new Score ({
-                        value: value,
-                        name: container.data('casino-name')
-                    });
+                        _this
+                            .closest(container)
+                            .find('.rating-current-text')
+                            .text(text)
+                            .removeClass(_classes)
+                            .addClass(getWebName(text));
+                        _this
+                            .closest(container)
+                            .find('.rating-current-value span')
+                            .text(value );
+
+                        _this
+                            .closest(container)
+                            .find('.rating-current')
+                            .attr('data-rating-current', value);
+
+                        new Score ({
+                            value: value,
+                            name: container.data('casino-name')
+                        });
+                    }
                 }
-            }
         };
 
         // if (defRating > 0) {
