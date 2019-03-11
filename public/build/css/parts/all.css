@@ -6632,6 +6632,10 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .warn-box.warning {
+  border: 2px solid #DB2424;
+}
+
+.warn-box.note{
   border: 2px solid #2171ce;
 }
 
