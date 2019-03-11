@@ -34,7 +34,6 @@ class CasinoInfoController extends BaseController {
 
         // get reviews
         $object = new CasinoReviews();
-
         $total = $object->getAllTotal($info->id);
 
         if($total>0) {
