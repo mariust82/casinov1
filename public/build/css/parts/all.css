@@ -6632,7 +6632,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .warn-box.warning {
-  border: 2px solid #DB2424;
+  border: 2px solid #2171ce;
 }
 
 .warn-box.warning .warn-box-title {

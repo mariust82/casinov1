@@ -6,15 +6,19 @@
 				<div class="warn-box-body">${data.casino.name} ${(containsCasino(${data.casino.name})?'':'Casino')} has been warned and added to our illegitimate casinos Blacklist. This is due to the fact that they lost contact and got complaints from players that had trouble to cash out. All of our attempts to contact this casino were not fulfilled. We strongly advise that players will play at other casinos.</div>
 			</div>
 		</div>
-	</std:if>
-
-	<std:if condition="${data.casino.status} == 'Warning'">
+	<std:elseif condition="${data.casino.status} == 'Warning'">
 		<div class="container">
 			<div class="warn-box warning">
 				<div class="warn-box-title">WARNING</div>
 				<div class="warn-box-body">${data.casino.name} ${(containsCasino(${data.casino.name})?'':'Casino')} does not have a collaborative agreement with www.casinoslists.com, and therefore we can not monitor the casino’s actions and reliability in order to provide the necessary support for our players. We strongly recommend that players avoid playing at this casino and choose another casino to play at.</div>
 			</div>
 		</div>
+	<std:elseif condition="${data.casino.note}">
+			<div class="container">
+				<div class="warn-box warning">
+					<div class="warn-box-body">${data.casino.note}</div>
+				</div>
+			</div>
 	</std:if>
 
 	<div class="casino-review">
