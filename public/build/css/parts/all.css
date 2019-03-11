@@ -6637,6 +6637,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .warn-box.note{
   border: 2px solid #2171ce;
+
 }
 
 .warn-box.warning .warn-box-title {
