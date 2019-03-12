@@ -1435,9 +1435,9 @@ var AJAX_CUR_PAGE = 1;
                 $('.js-search-drop').show();
                 $('body').removeClass('advanced-search-opened');
 
+                _searchInput.blur();
                 setTimeout(function(){
                     initSite();
-                    _searchInput.blur();
                 }, 1000);
             },
 
