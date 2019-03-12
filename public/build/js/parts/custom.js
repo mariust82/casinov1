@@ -1437,6 +1437,7 @@ var AJAX_CUR_PAGE = 1;
 
                 setTimeout(function(){
                     initSite();
+                    _searchInput.blur();
                 }, 1000);
             },
 
