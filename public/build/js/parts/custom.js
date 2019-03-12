@@ -1353,6 +1353,7 @@ var AJAX_CUR_PAGE = 1;
             _imgDir = _searchContainer.data('img-dir'),
             _loadNewContent = true,
             _loadMoreContent = false,
+            _is_content_detached = false,
 
             _showMoreNum = 5,
             _fromCasinos = 1,
@@ -1600,7 +1601,10 @@ var AJAX_CUR_PAGE = 1;
                     type: 'GET',
                     success: function(data) {
                         $('body').addClass('advanced-search-opened');
-                        contentBeforeSearch = $('#site-content .main, #site-content .promo').detach();
+                        if (!_is_content_detached) {
+                            contentBeforeSearch = $('#site-content .main, #site-content .promo').detach();
+                        }
+                        _is_content_detached = true;
                         _response_container.html(data);
                         _hidePopup();
                         _initMoreButtons();
