@@ -19,7 +19,6 @@ require_once ("BaseController.php");
 */
 class GameInfoController extends BaseController {
 	public function service() {
-
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
 
 	    $info = $this->application->getXML()->gameplay;

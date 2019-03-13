@@ -19,7 +19,6 @@ require_once 'application/models/dao/CasinoReviewsModel.php';
 */
 class CasinoReviewWriteController extends Controller
 {
-
     public function run()
     {
         $reviewModelObj = new CasinoReviewsModel($this->application, $this->request);

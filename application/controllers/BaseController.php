@@ -5,7 +5,6 @@ require_once("application/models/dao/PageInfoDAO.php");
 
 abstract class BaseController extends Controller {
     public function run() {
-
         $specificPage = $this->request->getURI()->getPage();
         $country = $this->request->getAttribute("country");
         $this->response->setAttribute("country", $country);
@@ -17,6 +16,8 @@ abstract class BaseController extends Controller {
         $this->pageInfo();
 
         $this->response->setAttribute("version", $this->application->getVersion());
+
+        $this->response->setAttribute("use_bundle", (in_array($this->application->getAttribute("environment"), ["dev","live"])?true:false));
     }
 
     abstract protected function service();

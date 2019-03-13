@@ -26,7 +26,6 @@ abstract class CasinosListController extends BaseController {
         $results = $this->getResults();
         $this->response->setAttribute("total_casinos", $results["total"]);
         $this->response->setAttribute("casinos", $results["list"]);
-//        var_dump($this->response->toArray());die();
     }
 
     private function getResults() {
