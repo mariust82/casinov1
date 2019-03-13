@@ -1965,21 +1965,70 @@ var AJAX_CUR_PAGE = 1;
         }
     }
 
-    function copyToClipboard() {
-        var btn = $('.js-copy-to-clip');
+    //remove HTML tags from text
+    function strip(html) {
+       var tmp = document.createElement("DIV");
+       tmp.innerHTML = html;
+       return tmp.textContent || tmp.innerText || "";
+    }
 
-        btn.on('click', function(e) {
-            initAction(this);
+    function copyToClipboard() {
+        window.Clipboard = (function(window, document, navigator) {
+            var textArea,
+                copy;
+
+            function isOS() {
+                return navigator.userAgent.match(/ipad|iphone/i);
+            }
+
+            function createTextArea(text, self) {
+                textArea = document.createElement('textArea');
+                if (isOS()) {
+                    textArea.setAttribute('readonly', 'readonly');
+                }
+                textArea.value = text;
+                self.parent().append(textArea);
+
+                console.log(text);
+            }
+
+            function selectText() {
+                var range,
+                    selection;
+
+                if (isOS()) {
+                    range = document.createRange();
+                    range.selectNodeContents(textArea);
+                    selection = window.getSelection();
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                    textArea.setSelectionRange(0, 999999);
+                } else {
+                    textArea.select();
+                }
+            }
+
+            function copyToClipboard(self) {
+                document.execCommand('copy');
+                self.parent().find(textArea).remove();
+            }
+
+            copy = function(text, self) {
+                var strippedText = strip(text);
+                createTextArea(strippedText, self);
+                selectText();
+                copyToClipboard(self);
+            };
+
+            return {
+                copy: copy
+            };
+        })(window, document, navigator);
+
+        $('.js-copy-to-clip').on('click touch', function(e) {
+            Clipboard.copy($(this).data('code'), $(this));
             e.preventDefault();
         });
-
-        function initAction(element) {
-            var $temp = $('<input readonly>');
-            $('body').append($temp);
-            $temp.val($(element).data('code')).select();
-            document.execCommand('copy');
-            $temp.remove();
-        }
     }
 
     function initMobileMenu() {
