@@ -2543,7 +2543,7 @@ a:hover, a:active, a:visited, a:focus {
   .header-menu__list-holder {
     display: block;
     overflow: auto;
-    height: 100%;
+    height: calc(100vh - 50px);
   }
 }
 
@@ -7670,7 +7670,7 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 690px) {
   .search-list {
     overflow: auto;
-    height: 78%;
+    height: calc(100vh - 120px);
   }
 }
 
