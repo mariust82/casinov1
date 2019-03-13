@@ -72,8 +72,16 @@ class Casinos implements FieldValidator
         }
     }
 
-    public function rate($casinoID, $ip, $value) {
+    public function isCountryAccepted($casinoID, $countryID)
+    {
+        return DB("select casino_id from casinos__countries_allowed where casino_id=:casino_id and country_id=:country_id", [
+            ":casino_id"=>$casinoID,
+            ":country_id"=>$countryID
+        ])->toValue();
+    }
 
+    public function rate($casinoID, $ip, $value)
+    {
         if(!$casinoID) return null;
         $count = DB("SELECT COUNT(id) FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip",array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
         if ($count == 0) {
@@ -92,7 +100,6 @@ class Casinos implements FieldValidator
         } else {
             return "Casino already rated!";
         }
-        
     }
 
     public function click($id) {

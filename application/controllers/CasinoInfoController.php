@@ -18,7 +18,6 @@ class CasinoInfoController extends BaseController {
 	public function service() {
 
 		$this->response->setAttribute("country", $this->request->getAttribute("country"));
-
 		// get casino info
 		$object = new CasinoInfo($this->request->getAttribute('validation_results')->get('name'), $this->request->getAttribute("country")->id);
         $info = $object->getResult();
@@ -35,7 +34,6 @@ class CasinoInfoController extends BaseController {
 
         // get reviews
         $object = new CasinoReviews();
-
         $total = $object->getAllTotal($info->id);
 
         if($total>0) {

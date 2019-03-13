@@ -36,5 +36,6 @@ class IPDetectionListener extends RequestListener
         // detects and saves ip
         $ip = IPDetection::getInstance()->getIP();
         $this->request->setAttribute('ip', ($ip != null) ? $ip : '127.0.0.1');
+
     }
 }

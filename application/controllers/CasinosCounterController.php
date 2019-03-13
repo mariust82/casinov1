@@ -31,4 +31,6 @@ abstract class CasinosCounterController extends BaseController {
         $object = new PageInfoDAO();
         $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
+
+
 }
