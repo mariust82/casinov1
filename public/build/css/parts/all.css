@@ -2505,8 +2505,9 @@ a:hover, a:active, a:visited, a:focus {
 
 .header-menu {
   width: 100%;
-  transition: width 0.3s ease-out;
+  transition: all 0.3s ease-out;
   margin: 0 0 0 45px;
+  white-space:nowrap;
 }
 
 @media screen and (max-width: 1023px) {
@@ -2708,12 +2709,13 @@ a:hover, a:active, a:visited, a:focus {
 
 .search-opened .header-menu {
   overflow: hidden;
+  opacity:0;
+  transition: all 0.3s ease-in;
 }
 
 @media screen and (min-width: 1024px) {
   .search-opened .header-menu {
     width: 0;
-    transition: width 0.3s ease-in;
   }
   
   .header-menu__item{
@@ -2724,7 +2726,7 @@ a:hover, a:active, a:visited, a:focus {
 .search-opened .header-search {
   width: 100%;
   border-bottom: 1px solid #fff;
-  transition: width 0.2s ease-in;
+  transition: width 0.3s ease-in;
   overflow: visible;
   padding: 10px 0 5px;
 }

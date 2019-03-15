@@ -11,3 +11,4 @@ robots.txt
 node_modules
 /public/package.json
 /public/gulpfile.js
+/npm-debug.log
