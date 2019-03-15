@@ -18,7 +18,7 @@ class ListsSearch {
         $countries = $this->getCountries();
         $banking = $this->getBanking();
         $games = $this->getGames();
-        $results = array_merge($caisnos,array_merge($softwares,array_merge($bonuses,array_merge($countries,array_merge($games,$banking)))));
+        $results = array_merge($caisnos, $softwares, $bonuses, $countries, $games, $banking);
         return $this->setData($results);
     }
     
@@ -153,6 +153,7 @@ class ListsSearch {
         $arr = array();
         $i = 0;
         while($row = $res->toRow()) {
+            if(!$row['unit']) continue;
             $arr[$i]['name'] = $row['unit'];
             $arr[$i]['count'] = $row['counter'];
             $arr[$i]['url'] = $url;
