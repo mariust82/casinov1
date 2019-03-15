@@ -3315,6 +3315,13 @@ a:hover, a:active, a:visited, a:focus {
 .list-item-cell {
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  -webkit-user-select: none;    
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color:transparent;
+  outline-style:none;
 }
 
 .list-item-cell:nth-child(1) {
