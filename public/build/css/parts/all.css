@@ -2505,8 +2505,9 @@ a:hover, a:active, a:visited, a:focus {
 
 .header-menu {
   width: 100%;
-  transition: width 0.3s ease-out;
+  transition: all 0.3s ease-out;
   margin: 0 0 0 45px;
+  white-space:nowrap;
 }
 
 @media screen and (max-width: 1023px) {
@@ -2543,7 +2544,7 @@ a:hover, a:active, a:visited, a:focus {
   .header-menu__list-holder {
     display: block;
     overflow: auto;
-    height: 100%;
+    height: calc(100vh - 50px);
   }
 }
 
@@ -2708,12 +2709,13 @@ a:hover, a:active, a:visited, a:focus {
 
 .search-opened .header-menu {
   overflow: hidden;
+  opacity:0;
+  transition: all 0.3s ease-in;
 }
 
 @media screen and (min-width: 1024px) {
   .search-opened .header-menu {
     width: 0;
-    transition: width 0.3s ease-in;
   }
   
   .header-menu__item{
@@ -2724,7 +2726,7 @@ a:hover, a:active, a:visited, a:focus {
 .search-opened .header-search {
   width: 100%;
   border-bottom: 1px solid #fff;
-  transition: width 0.2s ease-in;
+  transition: width 0.3s ease-in;
   overflow: visible;
   padding: 10px 0 5px;
 }
@@ -3313,6 +3315,13 @@ a:hover, a:active, a:visited, a:focus {
 .list-item-cell {
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  -webkit-user-select: none;    
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color:transparent;
+  outline-style:none;
 }
 
 .list-item-cell:nth-child(1) {
@@ -7670,7 +7679,7 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 690px) {
   .search-list {
     overflow: auto;
-    height: 78%;
+    height: calc(100vh - 120px);
   }
 }
 

@@ -21,7 +21,7 @@ class CasinoInfo
         FROM casinos AS t1
         LEFT JOIN affiliate_programs AS t2 ON t1.affiliate_program_id = t2.id
         LEFT JOIN casinos__play_versions AS t3 ON t1.id = t3.casino_id AND t3.play_version_id = 2
-        LEFT JOIN casinos__notes AS t5 ON t1.id = t5.casino_id 
+        LEFT JOIN casinos__notes AS t5 ON t1.id = t5.casino_id AND t5.language_id = 1
         LEFT JOIN casino_statuses AS t4 ON t1.status_id = t4.id
         WHERE t1.id=:id",array(":id"=>$id));
         $output = null;
