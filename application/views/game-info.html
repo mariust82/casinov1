@@ -16,7 +16,11 @@
 			</div>
 			<div id="player-wrap" class="player-wrap">
 				<div class="player">
-                    <link rel="stylesheet" type="text/css" href="/public/build/css/compilations/gameplay.css?ver=${data.version}" media="all">
+					<std:if condition="${data.use_bundle}">
+						<link rel="stylesheet" type="text/css" href="/public/build/css/compilations/gameplay.css?ver=${data.version}" media="all">
+						<std:else/>
+						<link rel="stylesheet" type="text/css" href="/public/build/css/parts/gameplay.css?ver=${data.version}" media="all">
+					</std:if>
 					<div class="player-holder">
 						<iframe id="gameplay_iframe" src="${data.game_player.url}?game=${data.game.name}" width="${data.game_player.width}" height="${data.game_player.height}"></iframe>
 					</div>
