@@ -13,7 +13,11 @@ class CasinosListsIntegrityChecker extends SiteIntegrityChecker {
         "index"  => "index",
         "banking/(name)" => "banking/neteller",
         "banking" => "banking",
-        "casinos/(name)" => "casinos/best",
+        "casinos/best" => "casinos/best",
+        "casinos/popular" => "casinos/popular",
+        "casinos/mobile" => "casinos/mobile",
+        "casinos/new" => "casinos/new",
+        "casinos/stay-away" => "casinos/stay-away",
         "casinos" => "casinos",
         "reviews/(name)-review" => "reviews/blighty-bingo-review",
         "warn/(name)" => "warn/Vegas2Web-Casino",
@@ -49,6 +53,11 @@ class CasinosListsIntegrityChecker extends SiteIntegrityChecker {
         foreach($this->pages as $name=>$url) {
             $object = new Hlis\Testing\HttpLinksValidator("https://".$domainName."/".$url);
             $this->showLine("Hlis\Testing\HttpLinksValidator", $name, $object->getResult());
+        }
+
+        foreach($this->pages as $name=>$url) {
+            $object = new Hlis\Testing\SeoValidator("https://".$domainName."/".$url);
+            $this->showLine("Hlis\Testing\SeoValidator", $name, $object->getResult());
         }
     }
 }
