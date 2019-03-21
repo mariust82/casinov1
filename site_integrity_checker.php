@@ -55,6 +55,8 @@ class CasinosListsIntegrityChecker extends SiteIntegrityChecker {
             $this->showLine("Hlis\Testing\HttpLinksValidator", $name, $object->getResult());
         }
 
+
+
         foreach($this->pages as $name=>$url) {
             $object = new Hlis\Testing\SeoValidator("https://".$domainName."/".$url);
             $this->showLine("Hlis\Testing\SeoValidator", $name, $object->getResult());
