@@ -2102,13 +2102,15 @@ var AJAX_CUR_PAGE = 1;
 
     function searchDropOpen(_drop) {
         setTimeout(function(){
-            _drop.show();
-        }, 50);
+            _drop.slideDown('fast');
+        }, 300);
     }
 
     function searchDropClose(_drop) {
-        _drop.hide();
-        $('body').removeClass('search-opened');
+        _drop.slideUp('fast');
+        setTimeout(function(){
+            $('body').removeClass('search-opened');
+        }, 300);
     }
 
     function initCustomSelect() {
