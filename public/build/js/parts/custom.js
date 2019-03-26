@@ -2070,6 +2070,7 @@ var AJAX_CUR_PAGE = 1;
                     && $(e.target).closest(_input).length==0
                     && $(e.target).closest(_btnMobileOpen).length==0 
                     && $(e.target).closest(_btnOpen).length==0){
+                    _input.val("");
                     searchDropClose(_drop);
                 }
             });
