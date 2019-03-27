@@ -12,10 +12,7 @@ function SQL($query, $boundParameters = array())
 {
     $preparedStatement = SQLConnectionSingleton::getInstance()->createPreparedStatement();
     $preparedStatement->prepare($query);
-    foreach ($boundParameters as $strParameter => $mixValue) {
-        $preparedStatement->bind($strParameter, $mixValue);
-    }
-    return $preparedStatement->execute();
+    return $preparedStatement->execute($boundParameters);
 }
 
 /**
