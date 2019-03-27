@@ -11,7 +11,7 @@ class GamesMenu
     }
 
     private function setEntries($selectedEntry) {
-        $types = DB("
+        $types = SQL("
         SELECT
         t1.name AS unit, count(*) as counter
         FROM game_types AS t1

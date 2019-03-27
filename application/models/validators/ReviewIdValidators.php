@@ -7,7 +7,7 @@ class ReviewIdValidators  extends \Lucinda\RequestValidator\ParameterValidator
         if(empty($value))
             return null;
 
-        $id =  DB("SELECT id FROM casinos__reviews WHERE id=:id",array(":id"=>$value))->toValue();
+        $id =  SQL("SELECT id FROM casinos__reviews WHERE id=:id",array(":id"=>$value))->toValue();
         return !empty($id) ? $id : null;
     }
 }

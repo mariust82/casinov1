@@ -5,7 +5,7 @@ require_once("FieldValidator.php");
 class GameManufacturers implements CasinoCounter
 {
     public function getCasinosCount() {
-        return DB("
+        return SQL("
         SELECT
         t1.name AS unit, count(*) as counter
         FROM game_manufacturers AS t1
@@ -18,7 +18,7 @@ class GameManufacturers implements CasinoCounter
     }
 
     public function getAll() {
-        return DB("
+        return SQL("
         SELECT DISTINCT t1.name
         FROM game_manufacturers AS t1
         INNER JOIN casinos__game_manufacturers AS t2 ON t1.id = t2.game_manufacturer_id
@@ -29,13 +29,13 @@ class GameManufacturers implements CasinoCounter
     }
 
     public function getSoftwareByType() {
-        return DB("
+        return SQL("
         SELECT name AS unit
         FROM game_manufacturers
         ")->toMap("unit", "unit");
     }
 
     public function getGameManufactures($id){
-        return DB("SELECT name FROM game_manufacturers WHERE id=:id",array(":id"=>$id))->toValue();
+        return SQL("SELECT name FROM game_manufacturers WHERE id=:id",array(":id"=>$id))->toValue();
     }
 }

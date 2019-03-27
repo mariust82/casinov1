@@ -11,7 +11,7 @@ class CasinoLabelValidator extends \Lucinda\RequestValidator\ParameterValidator
             return 'Mobile';
 
         $v =  str_replace("-"," ", $value);
-        $id = DB("SELECT id FROM casino_labels WHERE name=:name",array(":name"=>$v))->toValue();
+        $id = SQL("SELECT id FROM casino_labels WHERE name=:name",array(":name"=>$v))->toValue();
 
         return !empty($id) ? $id : null;
     }

@@ -23,7 +23,7 @@ class GamePlayCounterUpdate
     }
 
     private function setGamesPlayed(Session $session, $currentGameID, $games_played) {
-        DB("UPDATE games SET times_played = times_played + 1 WHERE id=:id",array(":id"=>$currentGameID));
+        SQL("UPDATE games SET times_played = times_played + 1 WHERE id=:id",array(":id"=>$currentGameID));
         $games_played[$currentGameID] = $currentGameID;
         $session->set("games_played", $games_played);
     }

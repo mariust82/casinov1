@@ -8,7 +8,7 @@ class CasinosSearch
     }
 
     public function getResults($limit, $offset) {
-        return DB("
+        return SQL("
             SELECT name
             FROM casinos
             WHERE name LIKE :name AND is_open=1
@@ -19,7 +19,7 @@ class CasinosSearch
 
     public function getTotal() {
         // build query
-        return (integer) DB("
+        return (integer) SQL("
             SELECT COUNT(id) AS nr 
             FROM casinos 
             WHERE name LIKE :name AND is_open=1",

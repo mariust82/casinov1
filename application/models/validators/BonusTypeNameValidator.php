@@ -11,7 +11,7 @@ class BonusTypeNameValidator extends \Lucinda\RequestValidator\ParameterValidato
 
         $v = str_replace("-"," ", $value);
 
-        $id = DB("SELECT id FROM bonus_types WHERE name=:name",array(":name"=>$v))->toValue();
+        $id = SQL("SELECT id FROM bonus_types WHERE name=:name",array(":name"=>$v))->toValue();
         return !empty($id) ? $id : null;
 
     }

@@ -112,6 +112,6 @@ class InvisionDataModel{
                 WHERE invision_review_id IN ($idsSqlFormat)
               ";
 
-        return DB($q)->toList();
+        return SQL($q)->toList();
     }
 }

@@ -9,7 +9,7 @@ class GameTypeValidator extends \Lucinda\RequestValidator\ParameterValidator
             return null;
 
         $value = strtolower(str_replace("-"," ", $value));
-        $id =  DB("SELECT id FROM game_types WHERE name=:name",array(":name"=>$value))->toValue();
+        $id =  SQL("SELECT id FROM game_types WHERE name=:name",array(":name"=>$value))->toValue();
         return !empty($id) ? $id : null;
     }
 }
