@@ -15,7 +15,7 @@ class SiteCasinoClick extends CasinoClick
         }
 
         $object->click($this->info->id);
-        if ($this->info->status || $this->info->is_open == 0) {
+        if (in_array($this->info->status, ["Warning","Blacklisted"]) || $this->info->is_open == 0) {
             return CasinoStatus::UNACTIVE;
         }
         return CasinoStatus::ACTIVE;
