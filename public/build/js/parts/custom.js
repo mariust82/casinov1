@@ -1891,12 +1891,11 @@ var AJAX_CUR_PAGE = 1;
     function initMoboleBonusesPop(_ww) {
         var _container = $('.list-item');
         var _mobilePop = $('.js-mobile-pop');
-        var _btnOpen = $('.js-mobile-pop-open');
+        var _btnOpen = $('.btn-round');
         var _btnClose = $('.js-mobile-pop-close');
 
-        _btnOpen.off('click');
-
         if (_ww <= 690) {
+            _btnOpen.off('click');
 
             function cloneContent(_this) {
                 var _contentHolder = _this.closest(_container).find('.mobile-popup-body');
@@ -1947,7 +1946,7 @@ var AJAX_CUR_PAGE = 1;
                 $('html, body').addClass('no-scroll');
             }
 
-            _btnOpen.on('click', '.btn-round', function(e) {
+            _btnOpen.on('click', function(e) {
                 $('.overlay, .loader').fadeIn('fast');
                 cloneContent($(this));
                 return false;
@@ -1988,8 +1987,6 @@ var AJAX_CUR_PAGE = 1;
                 }
                 textArea.value = text;
                 self.parent().append(textArea);
-
-                console.log(text);
             }
 
             function selectText() {
