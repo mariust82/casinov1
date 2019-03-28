@@ -34,6 +34,10 @@
             <mark>www.casinoslists.mark</mark>
             <dev>dev.casinoslists.com</dev>
             <live>www.casinoslists.com</live>
+            <lucinda>/var/www/html/casinoslists</lucinda>
+            <dev>/home/casinoslists/public_html/dev/site</dev>
+            <live>/home/casinoslists/public_html/live/site</live>
+            <alex>C:\xampp\htdocs\casinoslists</alex>
         </environments>
         <templates_extension>html</templates_extension>
     </application>
@@ -322,10 +326,27 @@
     <geoip>
         <lucinda>/tmp/ip2country.mmdb</lucinda>
         <alex>/home/casinoslists/public_html/ip2country.mmdb</alex>
-        <mark>???</mark>
         <dev>/home/casinoslists/public_html/ip2country.mmdb</dev>
         <live>/home/casinoslists/public_html/ip2country.mmdb</live>
     </geoip>
+    <images path="public/sync">
+        <image type="casino_logo_light">
+            <format width="124" height="82"/>
+        </image>
+        <image type="game_ss">
+            <format width="136" height="100"/>
+            <format width="300" height="220"/>
+            <format width="960" height="720"/>
+        </image>
+        <image type="software_logo_light">
+            <format width="80" height="53"/>
+        </image>
+    </images>
+    <hosts>
+        <lucinda>www.casinoslists.local</lucinda>
+        <dev>dev.casinoslists.com</dev>
+        <live>www.casinoslists.com</live>
+    </hosts>
     <gameplay width="960" height="720">
         <lucinda>http://game.casinoslists.local</lucinda>
         <alex>http://game.casinoslists.local</alex>
