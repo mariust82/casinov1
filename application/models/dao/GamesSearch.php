@@ -8,7 +8,7 @@ class GamesSearch
     }
 
     public function getResults($limit, $offset) {
-        return DB("
+        return SQL("
             SELECT name
             FROM games
             WHERE name LIKE :name
@@ -19,7 +19,7 @@ class GamesSearch
 
     public function getTotal() {
         // build query
-        return (integer) DB("
+        return (integer) SQL("
             SELECT COUNT(id) AS nr FROM games WHERE name LIKE :name",
             array(":name"=>"%".$this->value."%"))->toValue();
     }

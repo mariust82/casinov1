@@ -9,7 +9,7 @@ class ParentReviewValidator  extends \Lucinda\RequestValidator\ParameterValidato
             return true;
         }
 
-        $id = DB("SELECT id FROM casinos__reviews WHERE id=:id", array(":id" => $value))->toValue();
+        $id = SQL("SELECT id FROM casinos__reviews WHERE id=:id", array(":id" => $value))->toValue();
         return !empty($id) ? $id : null;
 
     }

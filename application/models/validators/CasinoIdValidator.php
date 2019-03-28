@@ -10,7 +10,7 @@ class CasinoIdValidator extends \Lucinda\RequestValidator\ParameterValidator
             return null;
         }
 
-        $id = DB("SELECT id FROM casinos WHERE id=:id", array(":id" => $value))->toValue();
+        $id = SQL("SELECT id FROM casinos WHERE id=:id", array(":id" => $value))->toValue();
         return !empty($id) ? $id : null;
     }
 }

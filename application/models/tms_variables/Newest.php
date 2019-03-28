@@ -23,7 +23,7 @@ class Newest extends \TMS\VariablesHolder {
     }
 
     public function getNewestCasinoInTheSite(){
-        $casinoName = DB("
+        $casinoName = SQL("
           SELECT name FROM casinos
           WHERE is_open = 1
           AND date_established > DATE_SUB(CURDATE(), INTERVAL 1 YEAR)

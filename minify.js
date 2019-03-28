@@ -10,6 +10,7 @@ if(!fs.existsSync("resources.xml")) {
 	console.error("ERROR: XML file not set");
 	return;
 }
+
 fs.readFile("resources.xml", function(error, data) {
 	parser.parseString(data, function(err, result) {
 		var types = ["js","css"];
@@ -22,6 +23,8 @@ fs.readFile("resources.xml", function(error, data) {
                 return;
             }
             var destinationFolder = result.xml[type][0].$.destination;
+
+            // minify
             if (!fs.existsSync(destinationFolder)) {
                 console.error("ERROR: folder " + destinationFolder + " not found!");
                 return;
@@ -34,27 +37,6 @@ fs.readFile("resources.xml", function(error, data) {
                 gulp.src(sourceFolder+'/*.css')
                     .pipe(minifyCss())
                     .pipe(gulp.dest(destinationFolder+'/'))
-            }
-            var files = result.xml[type][0].file;
-            for (var k in files) {
-                var fileName = destinationFolder+"/"+files[k].$.name+"."+type;
-                // compile contents
-                var contents = "";
-                var components = files[k].file;
-                if(components.length==0) {
-                    console.error("ERROR: no dependencies found for "+fileName);
-                    return;
-                }
-                for(var j in components) {
-                    var dependencyFile = destinationFolder+"/"+components[j].$.name+"."+type;
-                    if(!fs.existsSync(dependencyFile)) {
-                        console.error("ERROR: file " + dependencyFile + " not found");
-                        return;
-                    }
-                    contents += fs.readFileSync(dependencyFile)+"\n";
-                }
-                fs.writeFileSync(fileName, contents);
-                console.log("Updated: "+fileName);
             }
 		}
 		console.log("COMPLETE!");

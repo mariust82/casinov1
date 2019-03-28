@@ -11,7 +11,7 @@ class CasinoNameValidator extends \Lucinda\RequestValidator\ParameterValidator
 
         $v = str_replace("-", " ", $value);
 
-        $id = DB("SELECT id FROM casinos WHERE name=:name", array(":name" => $v))->toValue();
+        $id = SQL("SELECT id FROM casinos WHERE name=:name", array(":name" => $v))->toValue();
         return !empty($id) ? $id : null;
 
     }

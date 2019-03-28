@@ -22,7 +22,7 @@ class TopRated extends \TMS\VariablesHolder {
     }
 
     public function getTopRatedCasinoInTheSite(){
-        $casinoName = DB("
+        $casinoName = SQL("
           SELECT name, (rating_total/rating_votes) AS average_rating FROM casinos
           WHERE is_open = 1
           AND date_established > DATE_SUB(CURDATE(), INTERVAL 1 YEAR)

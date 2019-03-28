@@ -11,12 +11,12 @@ class CasinoInfo
     }
     
     public function getUserVote($casinoID,$ip) {
-        return DB("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = $casinoID", array(":ip"=>$ip))->toValue();
+        return SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = $casinoID", array(":ip"=>$ip))->toValue();
     }
 
     private function setResult($id, $countryId) {
 
-        $resultSet = DB("
+        $resultSet = SQL("
         SELECT t1.*, IF(t3.id IS NOT NULL, 1, 0) AS is_live_dealer, t4.name AS status, (t1.rating_total/t1.rating_votes) AS average_rating, t2.name AS affiliate_program, IF(t1.tc_link<>'',1,0) AS is_tc_link, t5.note AS note
         FROM casinos AS t1
         LEFT JOIN affiliate_programs AS t2 ON t1.affiliate_program_id = t2.id
@@ -68,7 +68,7 @@ class CasinoInfo
     }
    
     private function getPrimaryCurrencies($id) {
-        return DB("
+        return SQL("
                 SELECT
                 t2.symbol
                 FROM casinos__currencies AS t1
@@ -97,11 +97,11 @@ class CasinoInfo
         if ($order != '') {
             $query .= " ORDER BY ".$order;
         }
-        return DB($query)->toColumn();
+        return SQL($query)->toColumn();
     }
 
     private function getBankingMethodData($entity, $id) {
-        return DB("
+        return SQL("
             SELECT
             t2.name
             FROM casinos__".$entity." AS t1
@@ -112,7 +112,7 @@ class CasinoInfo
 
     private function getWithdrawLimits($id, $currencies) {
         $output = array();
-        $resultSet = DB("SELECT * FROM casinos__withdraw_maximums WHERE casino_id = ".$id);
+        $resultSet = SQL("SELECT * FROM casinos__withdraw_maximums WHERE casino_id = ".$id);
         while($row = $resultSet->toRow()) {
             if(!$row["unit"]) {
                 $output[] = "none";
@@ -126,7 +126,7 @@ class CasinoInfo
 
     private function getWithdrawTimeframes($id) {
         $output = array();
-        $resultSet = DB("
+        $resultSet = SQL("
         SELECT t1.start, t1.end, t1.unit, t2.name 
         FROM casinos__withdraw_timeframes AS t1
         LEFT JOIN banking_method_types AS t2 ON t1.banking_method_type_id = t2.id
@@ -148,7 +148,7 @@ class CasinoInfo
     }
 
     private function getBonus($id, $bonusTypes) {
-        $row = DB("
+        $row = SQL("
         SELECT t1.*, t2.name FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
         WHERE t1.casino_id = ".$id." AND t2.name IN ('".implode("','", $bonusTypes)."')")->toRow();
@@ -164,7 +164,7 @@ class CasinoInfo
     }
 
     private function appendCountryInfo(Casino $casino, $countryID) {
-        $row = DB("
+        $row = SQL("
         SELECT
           IF(t3.id IS NOT NULL,1,0) AS currency_supported,
           IF(t4.id IS NOT NULL,1,0) AS country_supported,
@@ -188,13 +188,13 @@ class CasinoInfo
     }
 
     public  function updateCasinoForEntries($casinoId, $entryId){
-        return DB("UPDATE casinos SET invision_casino_id = $entryId  WHERE id=:id",array(":id"=>$casinoId))->getAffectedRows();
+        return SQL("UPDATE casinos SET invision_casino_id = $entryId  WHERE id=:id",array(":id"=>$casinoId))->getAffectedRows();
 
     }
 
     public function isCountryAccepted($casinoID, $countryID)
     {
-        return DB("select casino_id from casinos__countries_allowed where casino_id=:casino_id and country_id=:country_id", [
+        return SQL("select casino_id from casinos__countries_allowed where casino_id=:casino_id and country_id=:country_id", [
             ":casino_id"=>$casinoID,
             ":country_id"=>$countryID
         ])->toValue();

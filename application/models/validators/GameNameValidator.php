@@ -7,7 +7,7 @@ class  GameNameValidator extends \Lucinda\RequestValidator\ParameterValidator
         if(empty($value))
             return null;
         $value = str_replace("-"," ", $value);
-        $id =  DB("SELECT id FROM games WHERE name=:name",array(":name"=>$value))->toValue();
+        $id =  SQL("SELECT id FROM games WHERE name=:name",array(":name"=>$value))->toValue();
         return !empty($id) ? $id : null;
     }
 }

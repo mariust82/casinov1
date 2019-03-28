@@ -9,10 +9,10 @@
 class Games
 {
     public function incrementTimesPlayed($id) {
-        return DB("UPDATE games SET times_played = times_played + 1 WHERE id=:id",array(":id"=>$id))->getAffectedRows();
+        return SQL("UPDATE games SET times_played = times_played + 1 WHERE id=:id",array(":id"=>$id))->getAffectedRows();
     }
 
     public function getAll() {
-        return DB("SELECT name FROM games ORDER BY name ASC")->toColumn();
+        return SQL("SELECT name FROM games ORDER BY name ASC")->toColumn();
     }
 }

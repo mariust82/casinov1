@@ -12,7 +12,7 @@ class  CountryNameValidator extends \Lucinda\RequestValidator\ParameterValidator
             $value = str_replace("-", " ", $value);
         }
 
-        $id =  DB("SELECT id FROM countries WHERE name=:name",array(":name"=>$value))->toValue();
+        $id =  SQL("SELECT id FROM countries WHERE name=:name",array(":name"=>$value))->toValue();
 
         return !empty($id) ? $id : null;
 

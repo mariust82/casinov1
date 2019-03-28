@@ -2319,7 +2319,7 @@ a:hover, a:active, a:visited, a:focus {
   overflow: hidden;
   padding: 10px 18px 5px 0;
   width: 21px;
-  transition: width 0.3s ease-out;
+  transition: width 0.3s linear;
   position: relative;
 }
 
@@ -2505,8 +2505,9 @@ a:hover, a:active, a:visited, a:focus {
 
 .header-menu {
   width: 100%;
-  transition: width 0.3s ease-out;
+  transition: width .3s linear;
   margin: 0 0 0 45px;
+  white-space:nowrap;
 }
 
 @media screen and (max-width: 1023px) {
@@ -2537,6 +2538,8 @@ a:hover, a:active, a:visited, a:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  opacity:1;
+  transition: opacity .3s linear .3s;
 }
 
 @media screen and (max-width: 1023px) {
@@ -2708,12 +2711,13 @@ a:hover, a:active, a:visited, a:focus {
 
 .search-opened .header-menu {
   overflow: hidden;
+  opacity:0;
+  transition: all .3s linear;
 }
 
 @media screen and (min-width: 1024px) {
   .search-opened .header-menu {
     width: 0;
-    transition: width 0.3s ease-in;
   }
   
   .header-menu__item{
@@ -2724,9 +2728,14 @@ a:hover, a:active, a:visited, a:focus {
 .search-opened .header-search {
   width: 100%;
   border-bottom: 1px solid #fff;
-  transition: width 0.2s ease-in;
+  transition: width 0.3s linear;
   overflow: visible;
   padding: 10px 0 5px;
+}
+
+.search-opened .header-menu__list-holder {
+  opacity:0;
+  transition: opacity .3s linear .3s;
 }
 
 @media screen and (max-width: 1023px) {
@@ -3313,6 +3322,13 @@ a:hover, a:active, a:visited, a:focus {
 .list-item-cell {
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  -webkit-user-select: none;    
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color:transparent;
+  outline-style:none;
 }
 
 .list-item-cell:nth-child(1) {

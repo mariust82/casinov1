@@ -18,14 +18,14 @@ class ListsSearch {
         $countries = $this->getCountries();
         $banking = $this->getBanking();
         $games = $this->getGames();
-        $results = array_merge($caisnos,array_merge($softwares,array_merge($bonuses,array_merge($countries,array_merge($games,$banking)))));
+        $results = array_merge($caisnos, $softwares, $bonuses, $countries, $games, $banking);
         return $this->setData($results);
     }
     
     public function setData($arr) {
         for ($i = 0;$i<count($arr);$i++) {
 
-            $row = DB("SELECT * FROM pages WHERE url=:url",array(":url"=>$arr[$i]['url']))->toRow();
+            $row = SQL("SELECT * FROM pages WHERE url=:url",array(":url"=>$arr[$i]['url']))->toRow();
             $arr[$i]['url'] = str_replace('(name)', strtolower(str_replace(' ', '-', $arr[$i]['name'])), $arr[$i]['url']);
             $arr[$i]['title'] = str_replace("(year)",date('Y'),str_replace("(month)",date('F'),str_replace("(name)", $arr[$i]['name'], $row['body_title'])));
         }
@@ -49,7 +49,7 @@ class ListsSearch {
             $select->groupBy(['t1.id']);
             $select->orderBy()->add('t1.id',Lucinda\Query\OrderByOperator::DESC);
             $query = $select->toString();
-            $res = DB($query);
+            $res = SQL($query);
         } else {
 
             $select = new Lucinda\Query\Select("game_manufacturers", "t1");
@@ -66,7 +66,7 @@ class ListsSearch {
             $select->groupBy(['t1.id']);
             $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
             $query = $select->toString();
-            $res = DB($query, [':search_value' => $this->value]);
+            $res = SQL($query, [':search_value' => $this->value]);
         }
         
 
@@ -94,7 +94,7 @@ class ListsSearch {
         $where->setIn('t1.name', ['"Free Play"', '"Free Spins"', '"No Deposit Bonus"']);
         $where->set('t3.is_open', 1);
         $where->setLike('t1.name', ':search_value');
-        $res = DB($select->toString(),[':search_value' => $this->value ]);
+        $res = SQL($select->toString(),[':search_value' => $this->value ]);
         $output = $this->loop($res, "bonus-list/(name)");
         return $output;
     }
@@ -111,7 +111,7 @@ class ListsSearch {
         $where->setLike('t1.name', ':search_value');
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
-        $res = DB($select->toString(), [':search_value' => $this->value ]);
+        $res = SQL($select->toString(), [':search_value' => $this->value ]);
 
         $labels = $this->loop($res,"casinos/(name)");
 
@@ -128,7 +128,7 @@ class ListsSearch {
         $where->setLike('t1.name', ':search_value');
         $play_versions_query->groupBy(['t1.id']);
         $play_versions_query->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
-        $res = DB($play_versions_query->toString(), [':search_value' => $this->value ]);
+        $res = SQL($play_versions_query->toString(), [':search_value' => $this->value ]);
 
         $mobile = $this->loop($res,"compatability/(name)");
 
@@ -143,7 +143,7 @@ class ListsSearch {
         $where->setLike('t1.name', ':search_value');
         $certifications->groupBy(['t1.id']);
         $certifications->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
-        $res = DB($certifications->toString(), [':search_value' => $this->value]);
+        $res = SQL($certifications->toString(), [':search_value' => $this->value]);
 
         $features = $this->loop($res,"features/(name)");
         return array_merge($array,$features);
@@ -153,6 +153,7 @@ class ListsSearch {
         $arr = array();
         $i = 0;
         while($row = $res->toRow()) {
+            if(!$row['unit']) continue;
             $arr[$i]['name'] = $row['unit'];
             $arr[$i]['count'] = $row['counter'];
             $arr[$i]['url'] = $url;
@@ -174,7 +175,7 @@ class ListsSearch {
         $where->setLike('t1.name', ':search_value');
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
-        $res = DB($select->toString(), [':search_value' => $this->value]);
+        $res = SQL($select->toString(), [':search_value' => $this->value]);
         $output = $this->loop($res,"countries-list/(name)");
         return $output;
     }
@@ -191,7 +192,7 @@ class ListsSearch {
         $where->setLike('t1.name', ':search_value');
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
-        $res = DB($select->toString(), [':search_value' => $this->value]);
+        $res = SQL($select->toString(), [':search_value' => $this->value]);
         $output = $this->loop($res,"banking/(name)");
         return $output;
     }
@@ -205,7 +206,7 @@ class ListsSearch {
         $where->setLike('t1.name', ':search_value');
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
-        $res = DB($select->toString(), [':search_value' => $this->value]);
+        $res = SQL($select->toString(), [':search_value' => $this->value]);
         $output = $this->loop($res,"games/(type)");
         return $output;
     }

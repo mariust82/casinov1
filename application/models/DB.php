@@ -1,38 +1,39 @@
 <?php
-
-require_once "hlis/profilers/QueryProfiler.php";
-
 /**
  * Automates SQL query execution.
  *
+ * @param string $query SQL query to execute
  * @param array $boundParameters List of bound keys and their values.
  * @return SQLStatementResults Encapsulating query results.
- * @throws SQLQueryException If SQL query fails.
- * @throws SQLException
+ * @throws SQLStatementException If SQL query fails.
+ * @throws SQLConnectionException If SQL server connection fails
  */
-function DB($query, $boundParameters = array())
+function SQL($query, $boundParameters = array())
 {
-    $benchmark = false;
+    $preparedStatement = SQLConnectionSingleton::getInstance()->createPreparedStatement();
+    $preparedStatement->prepare($query);
+    return $preparedStatement->execute($boundParameters);
+}
 
-    if ($benchmark) {
-        $preparedStatement = SQLConnectionSingleton::getInstance()->createPreparedStatement();
-        $preparedStatement->prepare(str_replace("SELECT", "SELECT SQL_NO_CACHE", $query));
-
-        foreach ($boundParameters as $strParameter => $mixValue) {
-            $preparedStatement->bind($strParameter, $mixValue);
-        }
-
-        $profiler = new QueryProfiler($query);
-        $profiler->start();
-        $result = $preparedStatement->execute();
-        $profiler->end();
-        return $result;
+/**
+ * Leverages query execution to NoSQL cache.
+ *
+ * @param string $query SQL query to execute
+ * @param array $boundParameters List of bound keys and their values to prepare query with.
+ * @param callable $callback Logic to process resultSet retrieved after query execution
+ * @param integer $expirationTime Time by which cache key expires (default: 1 hour)
+ * @return mixed Result stored by cache originating from processed resultSet
+ * @throws SQLStatementException If SQL query fails.
+ * @throws SQLConnectionException If SQL server connection fails
+ */
+function NoSQL($query, $boundParameters, $callback, $expirationTime = 3600) {
+    $key = $_SERVER["SERVER_NAME"]."__".md5($query.json_encode($boundParameters));
+    $connection = NoSQLConnectionSingleton::getInstance();
+    if($connection->contains($key)) {
+        return unserialize($connection->get($key));
     } else {
-        $preparedStatement = SQLConnectionSingleton::getInstance()->createPreparedStatement();
-        $preparedStatement->prepare($query);
-        foreach ($boundParameters as $strParameter => $mixValue) {
-            $preparedStatement->bind($strParameter, $mixValue);
-        }
-        return $preparedStatement->execute();
+        $value = $callback(SQL($query, $boundParameters));
+        $connection->set($key, serialize($value), $expirationTime);
+        return $value;
     }
 }

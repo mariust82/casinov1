@@ -14,7 +14,7 @@ class InvisionCasinoIdValidator extends \Lucinda\RequestValidator\ParameterValid
             return true;
         }
 
-        $id = DB("SELECT id FROM casinos__reviews WHERE invision_review_id=:invision_review_id", array(":invision_review_id" => $value))->toValue();
+        $id = SQL("SELECT id FROM casinos__reviews WHERE invision_review_id=:invision_review_id", array(":invision_review_id" => $value))->toValue();
         return !empty($id) ? $id : null;
 
     }

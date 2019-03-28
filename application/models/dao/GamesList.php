@@ -33,7 +33,7 @@ class GamesList
         $query .= !empty($offset) ? " OFFSET ". $offset : '';
         $output = array();
 
-        $resultSet = DB($query);
+        $resultSet = SQL($query);
 
         while($row = $resultSet->toRow()) {
             $object = new Game();
@@ -49,7 +49,7 @@ class GamesList
     public function getTotal() {
         // build query
         $query = $this->getQuery(array("COUNT(t1.id) AS nr"));
-        return (integer) DB($query)->toValue();
+        return (integer) SQL($query)->toValue();
     }
 
     private function getQuery($columns) {

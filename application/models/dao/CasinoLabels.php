@@ -17,7 +17,7 @@ class CasinoLabels implements CasinoCounter
 
     public function getCasinosCount() {
 
-        $labels =  DB("
+        $labels =  SQL("
         SELECT
         t1.name AS unit, count(*) as counter
         FROM casino_labels AS t1
@@ -31,7 +31,7 @@ class CasinoLabels implements CasinoCounter
 
 
         //remove NEW casino label from all casinos page
-        /*$new_casinos_nr = DB("
+        /*$new_casinos_nr = SQL("
           SELECT DISTINCT COUNT(t1.id) AS counter
            FROM casinos AS t1 
             WHERE t1.is_open = 1 AND t1.date_established > DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
@@ -40,7 +40,7 @@ class CasinoLabels implements CasinoCounter
         $new_casinos['New'] = $new_casinos_nr;
         $array = array_merge($labels, $new_casinos);*/
 
-        $mobile =  DB("
+        $mobile =  SQL("
         SELECT DISTINCT 
         t1.name AS unit, count(*) as counter
        
@@ -54,7 +54,7 @@ class CasinoLabels implements CasinoCounter
 
         $array = array_merge($labels, $mobile );
 
-        $features =  DB("
+        $features =  SQL("
         SELECT
         t1.name AS unit, count(*) as counter
         FROM certifications AS t1
@@ -72,7 +72,7 @@ class CasinoLabels implements CasinoCounter
     }
 
     /*public function validate($name) {
-        return DB("SELECT name FROM casino_labels WHERE name=:name",array(":name"=>$name))->toValue();
+        return SQL("SELECT name FROM casino_labels WHERE name=:name",array(":name"=>$name))->toValue();
     }*/
 
     private function orderLabels(array $labels){

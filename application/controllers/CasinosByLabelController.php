@@ -46,22 +46,20 @@ class CasinosByLabelController extends CasinosListController {
         $object = new PageInfoDAO();
         $selectedEntity = $this->getSelectedEntity();
         $casinoNumber =  !empty($this->response->getAttribute("total_casinos")) ? $this->response->getAttribute("total_casinos") : '';
-
         switch ($selectedEntity){
-            case 'Best':
+            case 'best':
                 $url = 'casinos/best';
                 break;
-            case 'Stay away':
+            case 'stay away':
                 $url = 'casinos/stay-away';
                 break;
-            case 'Popular':
+            case 'popular':
                 $url = 'casinos/popular';
                 break;
             case 'Mobile':
-                $url = 'casinos/mobile';
+                $url = 'compatability/mobile';  // casinos/mobile
                 break;
         }
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity"), $casinoNumber));
-
+        $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $casinoNumber));
     }
 }
