@@ -24,11 +24,11 @@ class SearchAdvancedController extends Controller {
         $this->response->setAttribute("total_lists", count($result));
         
         $casinos = new CasinosSearch($_GET["value"]);
-        $this->response->setAttribute("casinos", $casinos->getResults(self::LIMIT,0));
+        $this->response->setAttribute("casinos", $casinos->getResults($this->limit,0));
         $this->response->setAttribute("total_casinos", $casinos->getTotal());
 
         $games = new GamesSearch($_GET["value"]);
-        $this->response->setAttribute("games", $games->getResults(self::LIMIT,0));
+        $this->response->setAttribute("games", $games->getResults($this->limit,0));
         $this->response->setAttribute("total_games", $games->getTotal());
 	}
 }

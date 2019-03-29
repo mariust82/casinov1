@@ -8,11 +8,12 @@ require_once("application/models/caching/CasinosListKey.php");
 
 abstract class CasinosListController extends BaseController {
 
-    const LIMIT = 100;
+    protected $limit = 100;
 
 
 	public function service() {
         $this->response->setAttribute("selected_entity", ucwords($this->getSelectedEntity()));
+
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
 
         $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $this->response->getAttribute("selected_entity"), $this->request->getURI()->getPage());
@@ -26,9 +27,6 @@ abstract class CasinosListController extends BaseController {
         $results = $this->getResults();
         $this->response->setAttribute("total_casinos", $results["total"]);
         $this->response->setAttribute("casinos", $results["list"]);
-
-       // var_dump($this->response->getAttribute('casinos'));
-        //   die();
     }
 
     private function getResults() {
@@ -37,12 +35,15 @@ abstract class CasinosListController extends BaseController {
             array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")),
             $this->request->getAttribute("country"));
 
+      /*  // if label is best casino then we want casinos that are accepted
+        if($filter->getCasinoLabel() == 'Best')
+            $filter->setCountryAccepted('true');*/
+
         $object = new CasinosList($filter);
         $results = array();
         $results["total"] = $object->getTotal();
-        $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->getAttribute("sort_criteria"), 1, self::LIMIT) : array());
-        //var_dump($results["list"]);
-       // die();
+        $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->getAttribute("sort_criteria"), 1, $this->limit) : array());
+
         return $results;
     }
 

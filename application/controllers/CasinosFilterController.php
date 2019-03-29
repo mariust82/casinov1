@@ -23,7 +23,7 @@ require_once("application/models/dao/CasinosList.php");
 */
 class CasinosFilterController extends Controller {
 
-    const LIMIT = 100;
+    protected $limit = 100;
 
 	public function run() {
 	    $this->response->setAttribute("country", $this->request->getAttribute("country"));
@@ -35,11 +35,11 @@ class CasinosFilterController extends Controller {
 
         $total = $object->getTotal();
 
-        $offset = $page * self::LIMIT;
+        $offset = $page * $this->limit;
 
         $this->response->setAttribute("total_casinos", $total);
 
-        $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page,self::LIMIT,$offset));
+        $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page,$this->limit,$offset));
 	}
 
 	private function getSortCriteria() {

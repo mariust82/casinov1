@@ -18,10 +18,10 @@ class SearchController extends Controller {
 	    $casinos = new CasinosSearch($this->request->getParameter("value"));
         $result = array_slice($lists->getResults(), 0, 3);
         $this->response->setAttribute("lists", $result);
-	    $this->response->setAttribute("casinos", $casinos->getResults(self::LIMIT,0));
+	    $this->response->setAttribute("casinos", $casinos->getResults($this->limit,0));
             
 
         $games = new GamesSearch($this->request->getParameter("value"));
-        $this->response->setAttribute("games", $games->getResults(self::LIMIT,0));
+        $this->response->setAttribute("games", $games->getResults($this->limit,0));
 	}
 }
