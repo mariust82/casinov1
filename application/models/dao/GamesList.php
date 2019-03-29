@@ -41,6 +41,8 @@ class GamesList
             $object->name = $row["name"];
             $object->times_played = $row["times_played"];
             $object->software = $row["software"];
+            $object->logo_big = "public/sync/game_ss/300x220/".str_replace(" ", "_", $row["name"])."_ss.jpg";
+            $object->logo_small = "public/sync/game_ss/136x100/".str_replace(" ", "_", $row["name"])."_ss.jpg";
             $output[$row["id"]] = $object;
         }
         return $output;

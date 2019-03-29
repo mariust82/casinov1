@@ -25,7 +25,7 @@ function containsCasino($name)
 {
     return strpos($name, 'Casino');
 }
-
+/*
 function getCasinoLogo($name, $resolution) {
 
     $logoDirPath = "/public/sync/casino_logo_light/".$resolution;
@@ -38,10 +38,7 @@ function getCasinoLogo($name, $resolution) {
     return $logo;
 }
 
-function getSoftwareLogo($name, $resolution) {
-    return "/public/sync/software_logo_light/".$resolution."/".strtolower(str_replace(" ", "_", $name)).".png";
-}
-
+!!!!!!!!!!!!!!!!
 function getGameLogo($name, $resolution) {
     return "public/sync/game_ss/".$resolution."/".str_replace(" ", "_", $name)."_ss.jpg";
 }
@@ -49,6 +46,16 @@ function getGameLogo($name, $resolution) {
 function getGameTypeLogo($name, $resolution) {
     return "/public/sync/game_type_logo/".$resolution."/".strtolower(str_replace(" ", "_", $name)).".jpg";
 }
+
+
+function getSoftwareLogo($name, $resolution) {
+    return "/public/sync/software_logo_light/".$resolution."/".strtolower(str_replace(" ", "_", $name)).".png";
+}
+
+*/
+
+
+
 
 function normalize($name)
 {
@@ -128,3 +135,9 @@ function format_filter_date($date, $format = 'd.m.Y')
 {
     return date($format, strtotime($date));
 }
+
+/*function Tests($name)
+{
+    var_dump($name);
+    die();
+}*/

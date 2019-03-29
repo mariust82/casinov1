@@ -58,6 +58,8 @@ class CasinosList
             $object->date_formatted = $this->formatDate($row["date_established"]);
             $object->status = $row["status_id"];
             $object->is_tc_link = $row["is_tc_link"];
+            $object->logo_big = $this->getCasinoLogo($object->code = $row["code"],"124x82"); //  $object->logo_big = "/public/sync/casino_logo_light/124x82/".strtolower(str_replace(" ", "_", $object->code)).".png";
+            $object->logo_small = $this->getCasinoLogo($object->code = $row["code"],"85x56");//   $object->logo_small = "/public/sync/casino_logo_light/85x56/".strtolower(str_replace(" ", "_", $object->code)).".png";
             $output[$row["id"]] = $object;
         }
         if(empty($output)) return array();
@@ -113,4 +115,17 @@ class CasinosList
 
         return  SQL($query)->toValue();
     }
+
+    private function getCasinoLogo($name, $resolution) {
+
+        $logoDirPath = "/public/sync/casino_logo_light/".$resolution;
+        $logoFile = strtolower(str_replace(" ", "_", $name)).".png";
+        $logo = $logoDirPath.'/'.$logoFile;
+
+        if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$logo)){
+            $logo =$logoDirPath."/no-logo-{$resolution}.png";
+        }
+        return $logo;
+    }
+
 }

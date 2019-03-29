@@ -26,6 +26,9 @@ abstract class CasinosListController extends BaseController {
         $results = $this->getResults();
         $this->response->setAttribute("total_casinos", $results["total"]);
         $this->response->setAttribute("casinos", $results["list"]);
+
+       // var_dump($this->response->getAttribute('casinos'));
+        //   die();
     }
 
     private function getResults() {
@@ -38,6 +41,8 @@ abstract class CasinosListController extends BaseController {
         $results = array();
         $results["total"] = $object->getTotal();
         $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->getAttribute("sort_criteria"), 1, self::LIMIT) : array());
+        //var_dump($results["list"]);
+       // die();
         return $results;
     }
 

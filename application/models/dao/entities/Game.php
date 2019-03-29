@@ -11,4 +11,6 @@ class Game {
 	public $overview;
 	public $times_played;
 	public $play;
+    public $logo_big;
+    public $logo_small;
 }

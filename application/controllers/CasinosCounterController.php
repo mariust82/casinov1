@@ -13,6 +13,7 @@ abstract class CasinosCounterController extends BaseController {
         $tms = new TmsWrapper($this->application,$this->request, $this->response);
         $tmsText = $tms->getText();
         $this->response->setAttribute("tms", $tmsText);
+        $this->response->setAttribute('software_logo_small',$this->getSoftwareLogo($this->response->getAttribute('results')));
     }
 
     protected function getResults(CasinoCounter $object) {
@@ -32,5 +33,14 @@ abstract class CasinosCounterController extends BaseController {
         $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
 
+   private function getSoftwareLogo($logo_name){
 
+        $logo = array();
+        $index =0;
+        foreach ($logo_name as $key => $value)
+        {
+            $logo[$index++] = "/public/sync/software_logo_light/80x53/".strtolower(str_replace(" ", "_", $key)).".png";
+        }
+        return $logo;
+    }
 }

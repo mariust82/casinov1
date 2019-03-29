@@ -29,7 +29,6 @@ class IndexController extends BaseController {
         $this->response->setAttribute("no_deposit_casinos", $this->getCasinos(
             array("bonus_type"=>"no deposit bonus"), CasinoSortCriteria::NEWEST, 5));
         $this->response->setAttribute("new_games", $this->getGames(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")),GameSortCriteria::NEWEST, 6));
-
 	}
 
 	private function  getCasinos($filter, $sortBy, $limit) {

@@ -6,6 +6,7 @@
 </std:if>
 <div class="categories">
 	<div class="categories-list ${img_class}">
+		<std:set name="index" value="0"/>
 		<std:foreach var="$[items]" key="key" value="result">
 			<div class="category ${img_class}">
                             <std:if condition="${key} == 'Mobile'">
@@ -47,7 +48,7 @@
 						<site:logo name="${key}" type="$[type]" alt="${key}"/>
 					</std:if>
 					<span class="category-body">
-						<span class="category-title">${key}
+						<span class="category-title">
 							<std:if condition="'$[type]' == 'software'">Casinos</std:if>
 						</span>
 						<span class="category-qty">${result}</span>
@@ -56,6 +57,7 @@
                                     </a>
                             </std:if>
 			</div>
+			<std:set name="index" value="${index} + 1"/>
 		</std:foreach>
 	</div>
 </div>

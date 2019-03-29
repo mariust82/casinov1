@@ -30,4 +30,6 @@ class Casino {
     public $note;
     public $invision_casino_id;
     public $is_tc_link;
+    public $logo_big;
+    public $logo_small;
 }

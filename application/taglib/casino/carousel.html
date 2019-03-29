@@ -1,12 +1,13 @@
 <div class="container">
     <div class="swiper-container" id="main-carousel">
         <div class="swiper-wrapper">
+			<std:set name="index" value="0"/>
         	<std:foreach var="$[items]" value="item">
                 <div class="swiper-slide">
                 	<a href="/reviews/${normalize(${item.name})}-review" class="carousel-slide">
                 		<div class="carousel-slide-img">
                 			<div>
-                				<img src="${getCasinoLogo(${item.code},'85x56')}" width="85" height="56" alt="${item.name} Logo" title="${item.name}">
+                				<img src="${data.best_casinos.${index}.logo_small}" width="85" height="56" alt="${item.name} Logo" title="${item.name}">
                 			</div>
 	                		<div class="carousel-slide-rating ${normalize(get_rating(${item.rating}))}">
 		                		${ceil(${item.rating})}
@@ -17,6 +18,7 @@
                 		</div>
                 	</a>
                 </div>
+				<std:set name="index" value="${index} + 1"/>
             </std:foreach>
         </div>
     </div>
