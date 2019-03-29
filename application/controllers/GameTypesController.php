@@ -33,7 +33,7 @@ class GameTypesController extends BaseController {
 	    $index = 0;
 	    foreach ($results as $key => $value)
         {
-            $logos[$index++] = "/public/sync/game_type_logo/136x100/".str_replace(" ", "_", strtolower($key))."_ss.jpg";
+            $logos[$index++] = "/public/sync/game_type_logo/136x100/".str_replace(" ", "_", strtolower($key)).".jpg";
         }
 	    return $logos;
     }
