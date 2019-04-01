@@ -3542,6 +3542,32 @@ a:hover, a:active, a:visited, a:focus {
   margin: 0 9px 0 0;
 }
 
+.new-casino
+{
+  width: 34px;
+  height: 35px;
+  position: absolute;
+  margin-right: 20px;
+  z-index: 2;
+}
+
+.new-casino-text
+{
+  color: white;
+  font-size: 11px;
+  text-align: -moz-left;
+  font-stretch: condensed;
+  font-weight: bold;
+  font-family: "Open Sans";
+  text-align: center;
+  position: relative;
+  -ms-transform: rotateZ(315deg); /* IE 9 */
+  -webkit-transform: rotateZ(315deg); /* Safari 3-8 */
+  transform: rotateZ(315deg);
+  background-color: #4AB802;
+  z-index: 3;
+}
+
 @media screen and (max-width: 690px) {
   .list-flag {
     margin: 0 3px 0 0;

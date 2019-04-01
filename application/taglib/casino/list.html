@@ -13,6 +13,11 @@
 		<std:foreach var="$[data]" value="result">
 			<div class="list-item loaded-item">
 				<div class="list-item-cell">
+					<std:if condition="${result.new} == true">
+						<div class="new-casino">
+							<div class="new-casino-text"> New </div>
+						</div>
+					</std:if>
 					<div class="list-flex">
 						<div class="list-flag">
 							<img class="${normalize(get_country_status(${result.is_country_accepted}))}" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
@@ -43,6 +48,7 @@
 							</std:if>
 						</div>
 					</div>
+
 				</div>
 				<div class="list-item-cell">
 					<div class="multirow">
