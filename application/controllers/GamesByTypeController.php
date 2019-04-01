@@ -50,7 +50,7 @@ class GamesByTypeController extends BaseController {
         $object = new GamesList($this->filter);
         $results = array();
         $results["total"] = $object->getTotal();
-        $results["list"] = ($results["total"]>0?$object->getResults(GameSortCriteria::NONE, 1, $this->limit):array());
+        $results["list"] = ($results["total"]>0?$object->getResults(GameSortCriteria::NONE, 1, self::LIMIT):array());
 
         return $results;
     }
