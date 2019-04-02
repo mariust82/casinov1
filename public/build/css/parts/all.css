@@ -3282,6 +3282,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .list-item {
+  position:relative;
   color: #7A878A;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3292,7 +3293,7 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 11px 0;
+  padding: 10px 0 10px 10px;
   border-bottom: 1px solid #E8EAF3;
 }
 
@@ -3544,11 +3545,16 @@ a:hover, a:active, a:visited, a:focus {
 
 .new-casino
 {
+  top: 1px;
+  left: 0;
   width: 34px;
   height: 35px;
   position: absolute;
   margin-right: 20px;
   z-index: 2;
+  -ms-transform: rotateZ(315deg);
+  -webkit-transform: rotateZ(315deg);
+  transform: rotateZ(315deg);
 }
 
 .new-casino-text
@@ -3558,14 +3564,23 @@ a:hover, a:active, a:visited, a:focus {
   text-align: -moz-left;
   font-stretch: condensed;
   font-weight: bold;
-  font-family: "Open Sans";
+  font-family:"Open Sans Condensed";
   text-align: center;
   position: relative;
-  -ms-transform: rotateZ(315deg); /* IE 9 */
-  -webkit-transform: rotateZ(315deg); /* Safari 3-8 */
-  transform: rotateZ(315deg);
-  background-color: #4AB802;
   z-index: 3;
+  text-transform:uppercase;
+}
+
+.new-casino:after{
+  position: absolute;
+  top: 0px;
+  left: -8px;
+  content: '';
+  border-bottom: 16px solid #4AB802;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  height: 0;
+  width: 19px;
 }
 
 @media screen and (max-width: 690px) {
