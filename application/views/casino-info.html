@@ -3,14 +3,14 @@
 		<div class="container">
 			<div class="warn-box">
 				<div class="warn-box-title">BLACKLISTED</div>
-				<div class="warn-box-body">${data.casino.name} ${(containsCasino(${data.casino.name})?'':'Casino')} has been warned and added to our illegitimate casinos Blacklist. This is due to the fact that they lost contact and got complaints from players that had trouble to cash out. All of our attempts to contact this casino were not fulfilled. We strongly advise that players will play at other casinos.</div>
+				<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} has been warned and added to our illegitimate casinos Blacklist. This is due to the fact that they lost contact and got complaints from players that had trouble to cash out. All of our attempts to contact this casino were not fulfilled. We strongly advise that players will play at other casinos.</div>
 			</div>
 		</div>
 	<std:elseif condition="${data.casino.status} == 'Warning'">
 		<div class="container">
 			<div class="warn-box warning">
 				<div class="warn-box-title">WARNING</div>
-				<div class="warn-box-body">${data.casino.name} ${(containsCasino(${data.casino.name})?'':'Casino')} does not have a collaborative agreement with www.casinoslists.com, and therefore we can not monitor the casino’s actions and reliability in order to provide the necessary support for our players. We strongly recommend that players avoid playing at this casino and choose another casino to play at.</div>
+				<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} does not have a collaborative agreement with www.casinoslists.com, and therefore we can not monitor the casino’s actions and reliability in order to provide the necessary support for our players. We strongly recommend that players avoid playing at this casino and choose another casino to play at.</div>
 			</div>
 		</div>
 	<std:elseif condition="${data.casino.note}">
@@ -42,15 +42,14 @@
 					<div class="casino-review-heading-img">
 						<img src="${data.casino.logo_big}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
 					</div>
-
-					<div class="list-rating ${normalize(get_rating(${data.casino.rating}))}">
+					<div class="list-rating ${normalize(${data.casino.score_class})}">
 						<div class="list-rating-wrap">
                                                     <std:if condition="${data.casino.rating} == 0">
                                                         <div class="list-rating-score">-</div>
 							<div class="list-rating-text">No score</div>
                                                     <std:else>
                                                         <div class="list-rating-score">${ceil(${data.casino.rating})}</div>
-							<div class="list-rating-text">${get_rating(${data.casino.rating})}</div>
+							<div class="list-rating-text">${data.casino.score_class}</div>
                                                     </std:if>
 						</div>
 					</div>
@@ -63,11 +62,10 @@
 						<a href="/link/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
 					</std:if>
 				</div>
-
 				<div class="casino-review-country casino-review-mobile">
-					<img class="${normalize(get_country_status(${data.casino.is_country_accepted}))}" src="/public/build/images/flags/${data.country.code}.png" alt="" width="20" height="14">
-					${data.country.name} 
-					${get_country_status(${data.casino.is_country_accepted})}
+					<img class="${data.country_status}" src="/public/build/images/flags/${data.country.code}.png" alt="" width="20" height="14">
+					${data.country.name}
+					${data.country_status}
 				</div>
 			</div>
 		</div>
@@ -82,9 +80,13 @@
 						<div class="def-list-item">
 							<div class="def-list-key">Country</div>
 							<div class="def-list-val">
-								<img class="${normalize(get_country_status(${data.casino.is_country_accepted}))}" src="/public/build/images/flags/${data.country.code}.png" alt="" width="15" height="12">
-								${data.country.name} 
-								${get_country_status(${data.casino.is_country_accepted})}
+								<img class="${data.country_status}" src="/public/build/images/flags/${data.country.code}.png" alt="" width="15" height="12">
+								${data.country.name}
+								<std:if condition="${data.casino.is_country_accepted} == 1">
+									accepted
+									<std:else>
+										not accepted
+								</std:if>
 							</div>
 						</div>
 						<std:if condition="count(${data.casino.languages}) > 0">
@@ -243,6 +245,7 @@
 	</div>
 
 	<div class="section">
+
 		<div class="container">
 			<div class="box box-alt">
 				<div class="title title-middle">
@@ -251,8 +254,7 @@
 						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
 					</div>
 				</div>
-
-				<comment:list-container name="${setScoreClass(${data.user_score})}" value="${normalize(setScoreClass(${data.user_score}))}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" invisioncasinoid = "${data.casino.invision_casino_id}" />
+				<comment:list-container name="${data.user_score_class}" value="${normalize(${data.user_score_class})}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" invisioncasinoid = "${data.casino.invision_casino_id}" />
 			</div>
 		</div>
 	</div>

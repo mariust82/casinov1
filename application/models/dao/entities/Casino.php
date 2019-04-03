@@ -33,4 +33,6 @@ class Casino {
     public $logo_big;
     public $logo_small;
     public $new;
+    public $score_class;
+    public $all_softwares;
 }

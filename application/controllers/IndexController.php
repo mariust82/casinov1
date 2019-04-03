@@ -39,8 +39,8 @@ class IndexController extends BaseController {
             unset($filter["country_accepted"]);
             $object = new CasinosList(new CasinoFilter($filter, $this->request->getAttribute("country")));
             $results = $object->getResults($sortBy, 0,$limit);
-        }
 
+        }
         return $results;
     }
 
@@ -67,4 +67,6 @@ class IndexController extends BaseController {
         $object = new PageInfoDAO();
         $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
+
 }
+

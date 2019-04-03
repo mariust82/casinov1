@@ -27,6 +27,8 @@ abstract class CasinosListController extends BaseController {
         $results = $this->getResults();
         $this->response->setAttribute("total_casinos", $results["total"]);
         $this->response->setAttribute("casinos", $results["list"]);
+        $this->response->setAttribute("page_type",$this->get_page_type());
+        $this->response->setAttribute('bonus_free_type',$this->getAbbreviation($this->response->getAttribute('casinos')));
     }
 
     private function getResults() {
@@ -43,6 +45,7 @@ abstract class CasinosListController extends BaseController {
         $results = array();
         $results["total"] = $object->getTotal();
         $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->getAttribute("sort_criteria"), 1, $this->limit) : array());
+
 
         return $results;
     }
@@ -64,5 +67,56 @@ abstract class CasinosListController extends BaseController {
         $object = new PageInfoDAO();
         $total_casinos = !empty($this->response->getAttribute("total_casinos")) ? $this->response->getAttribute("total_casinos") : '';
         $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity"),$total_casinos ));
+    }
+
+    private function get_page_type()
+    {
+        $position = strpos($_SERVER["REQUEST_URI"],"/",1);
+        $url = ($position?substr($_SERVER["REQUEST_URI"],1, $position-1):$_SERVER["REQUEST_URI"]);
+        $page = substr($_SERVER["REQUEST_URI"], $position+1);
+        if ($page === 'no-deposit-bonus') {
+            return 'free_bonus';
+        }
+        switch ($url) {
+            case 'casinos':
+                $piece = 'label';
+                break;
+            case 'softwares':
+                $piece = 'software';
+                break;
+            case 'bonus-list':
+                $piece = 'bonus_type';
+                break;
+            case 'countries-list':
+                $piece = 'country';
+                break;
+            case 'banking':
+                $piece = 'banking_method';
+                break;
+            case 'features':
+                $piece = 'feature';
+                break;
+        }
+        return $piece;
+    }
+
+    private function getAbbreviation($casinos)
+    {
+        $abbr = array();
+        $index = 0;
+        foreach ($casinos as $casino) {
+
+            $abbr[$index] = null;
+            if($casino->bonus_free) {
+                $name = $casino->bonus_free->type;
+
+                $words = explode(" ", $name);
+                foreach ($words as $word) {
+                    $abbr[$index] .= $word[0];
+                }
+            }
+            $index++;
+        }
+        return $abbr;
     }
 }

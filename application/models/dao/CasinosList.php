@@ -61,7 +61,7 @@ class CasinosList
             $object->logo_big = $this->getCasinoLogo($object->code = $row["code"],"124x82"); //  $object->logo_big = "/public/sync/casino_logo_light/124x82/".strtolower(str_replace(" ", "_", $object->code)).".png";
             $object->logo_small = $this->getCasinoLogo($object->code = $row["code"],"85x56");//   $object->logo_small = "/public/sync/casino_logo_light/85x56/".strtolower(str_replace(" ", "_", $object->code)).".png";
             $object->new = $this->isCasinoNew($row["date_established"]);
-
+            $object->score_class = $this->getScoreClass($object->rating);
             $output[$row["id"]] = $object;
         }
         if(empty($output)) return array();
@@ -97,10 +97,20 @@ class CasinosList
             $bonus->type = $row["name"];
             if($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins" || $row["name"]=="Free Play" || $row["name"]=="Bonus Spins") {
                 $output[$row["casino_id"]]->bonus_free = $bonus;
+                $output[$row["casino_id"]]->bonus_free->bonus_type_Abbreviation = $this->getAbbreviation($output[$row["casino_id"]]->bonus_free->type);
+
             } else {
                 $output[$row["casino_id"]]->bonus_first_deposit = $bonus;
+              //  $output[$row["casino_id"]]->bonus_first_deposit =  $this->getAbbreviation($output[$row["casino_id"]]->bonus_first_deposit->type);
             }
         }
+
+        foreach ($output as $arg)
+        {
+            if(sizeof($arg->softwares)>1)
+              $arg->all_softwares = $this->get_string($arg->softwares);
+        }
+
         return array_values($output);
     }
     
@@ -138,6 +148,39 @@ class CasinosList
             return true;
         else
             return false;
+    }
+
+    private function getScoreClass($score){
+        if($score == 0) {
+            return 'No score';
+        } elseif($score >= 1 && $score <= 4.99) {
+            return  'Poor';
+        } elseif($score >= 5 && $score <= 7.99) {
+            return  'Good';
+        } elseif($score >= 8 && $score <= 10) {
+            return 'Excellent';
+        }
+    }
+
+    private function getAbbreviation($name)
+    {
+        $words = explode(" ", $name);
+        $abbr = "";
+
+        foreach ($words as $word) {
+            $abbr .= $word[0];
+        }
+        return $abbr;
+    }
+
+    private function get_string($name)
+    {
+        foreach ($name as $key => $item){
+            if ($key != 0) {
+                $items[$key] = $item;
+            }
+        }
+        return implode(", ", $items);
     }
 
 

@@ -42,6 +42,7 @@ class CasinoInfo
             $output->logo_big = $this->getCasinoLogo($output->code = $row["code"],"124x82");
             $output->logo_small = $this->getCasinoLogo($output->code = $row["code"],"85x56");
             $output->note = $row["note"];
+            $output->score_class = $this->getScoreClass($output->rating); // score class for casino rating
         }
         if(!$output) return;
 
@@ -63,6 +64,7 @@ class CasinoInfo
         $output->withdrawal_timeframes = $this->getWithdrawTimeframes($output->id);
         $output->bonus_first_deposit = $this->getBonus($output->id,  array("First Deposit Bonus"));
         $output->bonus_free = $this->getBonus($output->id, array("Free Spins","No Deposit Bonus","Free Play","Bonus Spins"));
+       // $output->bonus_type_Abbreviation = $this->getAbbreviation($output->bonus_free);
 
         $this->appendCountryInfo($output, $countryId);
 
@@ -212,5 +214,38 @@ class CasinoInfo
             $logo =$logoDirPath."/no-logo-{$resolution}.png";
         }
         return $logo;
+    }
+
+    public function getScoreClass($score){
+        if($score == 0) {
+            return 'No score';
+        } elseif($score >= 1 && $score <= 4.99) {
+            return  'Poor';
+        } elseif($score >= 5 && $score <= 7.99) {
+            return  'Good';
+        } elseif($score >= 8 && $score <= 10) {
+            return 'Excellent';
+        }
+    }
+
+    private function getAbbreviation($casinos)
+    {
+
+        $abbr = array();
+        $index = 0;
+        foreach ($casinos as $casino) {
+
+            $abbr[$index] = null;
+            if($casino->bonus_free) {
+                $name = $casino->bonus_free->type;
+
+                $words = explode(" ", $name);
+                foreach ($words as $word) {
+                    $abbr[$index] .= $word[0];
+                }
+            }
+            $index++;
+        }
+        return $abbr;
     }
 }

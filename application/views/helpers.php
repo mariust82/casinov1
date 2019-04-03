@@ -1,13 +1,20 @@
 <?php
-function getAbbreviation($name)
-{
-    $words = explode(" ", $name);
-    $abbr = "";
 
-    foreach ($words as $word) {
-      $abbr .= $word[0];
+/*
+
+function containsCasino($name)
+{
+    return strpos($name, 'Casino');
+}
+
+function get_string($name)
+{
+    foreach ($name as $key => $item) {
+        if ($key != 0) {
+            $items[$key] = $item;
+        }
     }
-    return $abbr;
+    return implode(", ", $items);
 }
 
 function setScoreClass($score) {
@@ -18,14 +25,20 @@ function setScoreClass($score) {
     } elseif ($score >= 8 && $score <= 10) {
         return "Excellent";
     }
-            
 }
 
-function containsCasino($name)
+function getAbbreviation($name)
 {
-    return strpos($name, 'Casino');
+    $words = explode(" ", $name);
+    $abbr = "";
+
+    foreach ($words as $word) {
+        $abbr .= $word[0];
+    }
+    return $abbr;
 }
-/*
+
+
 function getCasinoLogo($name, $resolution) {
 
     $logoDirPath = "/public/sync/casino_logo_light/".$resolution;
@@ -50,54 +63,6 @@ function getGameTypeLogo($name, $resolution) {
 
 function getSoftwareLogo($name, $resolution) {
     return "/public/sync/software_logo_light/".$resolution."/".strtolower(str_replace(" ", "_", $name)).".png";
-}
-
-*/
-
-
-
-
-function normalize($name)
-{
-    $str = str_replace(" ", "-", $name);
-    $str = str_replace("#", "-", $str);
-    return strtolower($str);
-}
-
-function get_string($name)
-{
-    foreach ($name as $key => $item) {
-        if ($key != 0) {
-            $items[$key] = $item;
-        }
-    }
-    return implode(", ", $items);
-}
-
-function get_rating($name)
-{
-    if($name == 0) {
-        $string = 'No score';
-    } elseif($name >= 1 && $name <= 4.99) {
-        $string = 'Poor';
-    } elseif($name >= 5 && $name <= 7.99) {
-        $string = 'Good';
-    } elseif($name >= 8 && $name <= 10) {
-        $string = 'Excellent';
-    }
-
-    return $string;
-}
-
-function get_country_status($name)
-{
-    if ($name) {
-        $string = 'accepted';
-    } else {
-        $string = 'not accepted';
-    }
-
-    return $string;
 }
 
 function get_page_type()
@@ -131,13 +96,49 @@ function get_page_type()
     return $piece;
 }
 
+function get_country_status($name)
+{
+    if ($name) {
+        $string = 'accepted';
+    } else {
+        $string = 'not accepted';
+    }
+
+    return $string;
+}
+
+*/
+
+function normalize($name)
+{
+    $str = str_replace(" ", "-", $name);
+    $str = str_replace("#", "-", $str);
+    return strtolower($str);
+}
+
+function get_rating($name)
+{
+    if($name == 0) {
+        $string = 'No score';
+    } elseif($name >= 1 && $name <= 4.99) {
+        $string = 'Poor';
+    } elseif($name >= 5 && $name <= 7.99) {
+        $string = 'Good';
+    } elseif($name >= 8 && $name <= 10) {
+        $string = 'Excellent';
+    }
+
+    return $string;
+}
+
+
 function format_filter_date($date, $format = 'd.m.Y')
 {
     return date($format, strtotime($date));
 }
 
-/*function Tests($name)
+function Tests($name)
 {
     var_dump($name);
     die();
-}*/
+}

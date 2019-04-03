@@ -19,7 +19,7 @@
 
 			<div class="data-container-holder">
 				<div class="holder">
-					<div class="data-container" data-type="${get_page_type()}" data-type-value="${data.selected_entity}">
+					<div class="data-container" data-type="${data.page_type}" data-type-value="${data.selected_entity}">
 						<div class="qty-items" data-load-total="${data.total_casinos}">${data.total_casinos} results</div>
 						<std:if condition="${data.selected_entity} == 'New'">
 							<casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>

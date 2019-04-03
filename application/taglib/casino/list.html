@@ -20,19 +20,24 @@
 					</std:if>
 					<div class="list-flex">
 						<div class="list-flag">
-							<img class="${normalize(get_country_status(${result.is_country_accepted}))}" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
+							<std:if condition="${result.is_country_accepted} == 1">
+								<img class="accepted" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
+								<std:else>
+									<img class="not-accepted" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
+							</std:if>
 						</div>
-						<div class="list-rating ${normalize(get_rating(${result.rating}))}">
+						<div class="list-rating ${normalize($[data][${i}]['score_class'])}">
 							<div class="list-rating-wrap">
+								<std:set name="score_class" value="$[data][${i}]['score_class']"/>
 								<std:if condition="${result.rating} == 0">
 									<div class="list-rating-score">-</div>
 									<div class=" list-rating-score list-rating-score-mobile">|</div>
-									<div class="list-rating-text">${get_rating(${result.rating})}</div>
+									<div class="list-rating-text">${score_class}</div>
 								<std:else>
 									<div class="list-rating-score">
 										${ceil(${result.rating})}
 									</div>
-									<div class="list-rating-text">${get_rating(${result.rating})}</div>
+									<div class="list-rating-text">${score_class}</div>
 								</std:if>
 							</div>
 						</div>
@@ -58,12 +63,12 @@
 									<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
 								</std:if>
 							<std:else>
-								<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}"> 
-									${result.softwares.0} 
+								<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
+									${result.softwares.0}
 								</a>
 								<std:set name="extra" value="count(${result.softwares})-1"/>
 								<std:if condition="${extra} > 0">
-									<span class="bubble bubble-long js-tooltip software_tooltip" title="${get_string(${result.softwares})}">
+									<span class="bubble bubble-long js-tooltip software_tooltip" title="${result.all_softwares}">
 										+${extra}
 									</span>
 								</std:if>
@@ -76,7 +81,7 @@
 						<std:if condition="${result.bonus_free.amount}">
 							<div class="btn-round-holder">
 								<span class="btn-round" data-name="${result.name}" data-is-free="1">
-									${result.bonus_free.amount} ${getAbbreviation(${result.bonus_free.type})}
+									${result.bonus_free.amount} ${data.bonus_free_type.${i}}
 								</span>
 							</div>
 						</std:if>
@@ -97,8 +102,9 @@
 					</div>
 					<div class="list-item-cell">
 						<std:if condition="${result.bonus_free}">
+
 							<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1">
-								${result.bonus_free.amount} ${getAbbreviation(${result.bonus_free.type})}
+								${result.bonus_free.amount} ${result.bonus_free.bonus_type_Abbreviation}
 							</span>
 						</std:if>
 					</div>
