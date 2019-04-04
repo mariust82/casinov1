@@ -35,4 +35,5 @@ class Casino {
     public $new;
     public $score_class;
     public $all_softwares;
+    public $deposit_minimum;
 }

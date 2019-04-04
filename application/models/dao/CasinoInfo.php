@@ -17,7 +17,13 @@ class CasinoInfo
     private function setResult($id, $countryId) {
 
         $resultSet = SQL("
-        SELECT t1.*, IF(t3.id IS NOT NULL, 1, 0) AS is_live_dealer, t4.name AS status, (t1.rating_total/t1.rating_votes) AS average_rating, t2.name AS affiliate_program, IF(t1.tc_link<>'',1,0) AS is_tc_link, t5.note AS note
+        SELECT t1.*,
+         IF(t3.id IS NOT NULL, 1, 0) AS is_live_dealer,
+         t4.name AS status, 
+         (t1.rating_total/t1.rating_votes) AS average_rating,
+          t2.name AS affiliate_program,
+          IF(t1.tc_link<>'',1,0) AS is_tc_link,
+          t5.note AS note
         FROM casinos AS t1
         LEFT JOIN affiliate_programs AS t2 ON t1.affiliate_program_id = t2.id
         LEFT JOIN casinos__play_versions AS t3 ON t1.id = t3.casino_id AND t3.play_version_id = 2
@@ -43,6 +49,8 @@ class CasinoInfo
             $output->logo_small = $this->getCasinoLogo($output->code = $row["code"],"85x56");
             $output->note = $row["note"];
             $output->score_class = $this->getScoreClass($output->rating); // score class for casino rating
+            $output->deposit_minimum = $row["deposit_minimum"];
+
         }
         if(!$output) return;
 
@@ -247,5 +255,9 @@ class CasinoInfo
             $index++;
         }
         return $abbr;
+    }
+
+    public function getGameTypes(){
+
     }
 }
