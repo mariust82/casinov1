@@ -17,6 +17,6 @@ class SearchMoreCasinosController extends Controller {
 	    $page = (integer) $this->request->getValidator()->getPathParameter("page");
 
         $object = new CasinosSearch($_GET["value"]);
-        $this->response->setAttribute("results", $object->getResults($this->limit,$this->limit*$page));
+        $this->response->setAttribute("results", $object->getResults(self::LIMIT,self::LIMIT*$page));
 	}
 }
