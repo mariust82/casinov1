@@ -11,10 +11,10 @@
 				</div>
 			</div>
 			<std:if condition="'$[class]' != 'review-child'">
-				<div class="list-rating ${normalize(${data.user_score_class})}">
+				<div class="list-rating ${normalize(get_rating(${result.rating}))}">
 					<div class="list-rating-wrap">
 						<div class="list-rating-score">${ceil(${result.rating})}</div>
-						<div class="list-rating-text">${data.user_score_class}</div>
+						<div class="list-rating-text">${get_rating(${result.rating})}</div>
 					</div>
 				</div>
 			</std:if>
