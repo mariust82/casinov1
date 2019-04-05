@@ -5581,7 +5581,17 @@ a:hover, a:active, a:visited, a:focus {
 .section:last-child {
   margin: 0;
 }
-
+.section-sidebar{
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width:239px;
+  margin:0 0 0 31px;
+}
+.section-content{
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
 .twocolumn {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -8304,4 +8314,8 @@ img.grayscale {
   -ms-flex-pack: center;
   justify-content: center;
   padding:10px 20px;
+}
+
+.flex-reverse{
+  flex-direction:row-reverse;
 }

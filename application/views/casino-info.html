@@ -331,4 +331,94 @@
 		</div>
 	</div>
 
+
+	<div class="section" style="display:none;">
+		<div class="container">
+			<div class="box box-alt2">
+				<div class="title title-middle">Banking</div>
+				<div class="twocolumn flex-reverse">
+					<div class="section-sidebar">
+						<div class="def-column">
+							<div class="def-column-item">
+								<div class="def-column-key">Minimum deposit</div>
+								<div class="def-column-val">${data.casino.deposit_minimum}</div>
+							</div>
+							<div class="def-column-item">
+								<div class="def-column-key">Minimum withdrawal</div>
+								<div class="def-column-val">${data.casino.withdrawal_minimum}</div>
+							</div>
+
+							<std:if condition="count(${data.casino.withdrawal_limits}) > 0">
+								<div class="def-column-item">
+									<div class="def-column-key">Withdrawal limits</div>
+									<div class="def-column-val">
+										<std:foreach var="${data.casino.withdrawal_limits}" key ="key" value="result">
+											<p>${result}</p>
+										</std:foreach>
+									</div>
+								</div>
+							</std:if>
+
+							<std:if condition="count(${data.casino.withdrawal_timeframes}) > 0">
+								<div class="def-column-item">
+									<div class="def-column-key">Withdrawal pending time</div>
+									<div class="def-column-val">
+										<std:foreach var="${data.casino.withdrawal_timeframes}" key ="key" value="result">
+											<p>${result}</p>
+										</std:foreach>
+									</div>
+								</div>
+							</std:if>
+						</div>
+					</div>
+					<div class="section-content">
+						<table class="table table-banking">
+							<tr>
+								<th>Method</th>
+								<th style="text-align:center;">Deposit</th>
+								<th style="text-align:center;">Withdrawal</th>
+							</tr>
+							<std:foreach var="${data.casino.banking_methods}" value="method">
+							<tr>
+								<td >
+									<div class="table-flex">
+										<!--Banking link-->
+										<img class="payment-logo" src="/public/build/images/banking_method_light/60x40/${normalize(${method.name})}.png" width="60" height="40" alt="">
+										<div class="table-desctop-visible">${get_banking_link(${data.payment_methods}, ${method.name})}</div>
+									</div>
+								</td>
+								<td style="text-align:center;">
+									<div class="table-mobile-visible">Deposit</div>
+									<std:if condition="${method.can_deposit}">
+									<i class="icon-icon_available"></i>
+									<std:else>
+									<i class="icon-icon_unavailable"></i>
+									</std:if>
+								</td>
+								<td style="text-align:center;">
+									<div class="table-mobile-visible">Withdrawal</div>
+									<std:if condition="${method.can_withdraw}">
+									<i class="icon-icon_available"></i>
+									<std:else>
+									<i class="icon-icon_unavailable"></i>
+									</std:if>
+								</td>
+							</tr>
+							</std:foreach>
+						</table>
+					</div>
+				</div>
+
+				<std:if condition="!empty($_GET['debug'])">
+				    <div class="json">
+				        <div>
+				            <strong style="color: red; font-size:20px;">Casino {data.casino}:</strong>
+				        </div>
+				        <pre>${json_encode(${data.casino}, JSON_PRETTY_PRINT)}</pre>
+				    </div>
+				</std:if>
+			</div>
+		</div>
+	</div>
+
 <site:bottom menu="${data.menu_top}"/>
