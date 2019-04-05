@@ -259,6 +259,7 @@
 		</div>
 	</div>
 
+	<!-- old version -->
 	<div class="section">
 		<div class="container">
 			<div class="box box-alt2">
@@ -331,8 +332,8 @@
 		</div>
 	</div>
 
-
-	<div class="section" style="display:none;">
+	<!-- new version -->
+	<div class="section">
 		<div class="container">
 			<div class="box box-alt2">
 				<div class="title title-middle">Banking</div>
@@ -375,48 +376,54 @@
 						<table class="table table-banking">
 							<tr>
 								<th>Method</th>
-								<th style="text-align:center;">Deposit</th>
-								<th style="text-align:center;">Withdrawal</th>
+								<th align="center">Deposit</th>
+								<th align="center">Withdrawal</th>
 							</tr>
-							<std:foreach var="${data.casino.banking_methods}" value="method">
 							<tr>
 								<td >
 									<div class="table-flex">
-										<!--Banking link-->
-										<img class="payment-logo" src="/public/build/images/banking_method_light/60x40/${normalize(${method.name})}.png" width="60" height="40" alt="">
-										<div class="table-desctop-visible">${get_banking_link(${data.payment_methods}, ${method.name})}</div>
+										<img class="payment-logo" src="/public/build/images/payment-methods-logos/giropay.png" width="60" height="40" alt="">
+										<div class="table-desctop-visible">Giropay</div>
 									</div>
 								</td>
-								<td style="text-align:center;">
-									<div class="table-mobile-visible">Deposit</div>
-									<std:if condition="${method.can_deposit}">
-									<i class="icon-icon_available"></i>
-									<std:else>
+								<td align="center" ="text-align:center;">
 									<i class="icon-icon_unavailable"></i>
-									</std:if>
 								</td>
-								<td style="text-align:center;">
-									<div class="table-mobile-visible">Withdrawal</div>
-									<std:if condition="${method.can_withdraw}">
+								<td align="center" ="text-align:center;">
 									<i class="icon-icon_available"></i>
-									<std:else>
-									<i class="icon-icon_unavailable"></i>
-									</std:if>
 								</td>
 							</tr>
-							</std:foreach>
+							<tr>
+								<td >
+									<div class="table-flex">
+										<img class="payment-logo" src="/public/build/images/payment-methods-logos/maestro.png" width="60" height="40" alt="">
+										<div class="table-desctop-visible">Maestro</div>
+									</div>
+								</td>
+								<td align="center" ="text-align:center;">
+									<i class="icon-icon_unavailable"></i>
+								</td>
+								<td align="center" ="text-align:center;">
+									<i class="icon-icon_available"></i>
+								</td>
+							</tr>
+							<tr>
+								<td >
+									<div class="table-flex">
+										<img class="payment-logo" src="/public/build/images/payment-methods-logos/visa.png" width="60" height="40" alt="">
+										<div class="table-desctop-visible">Visa</div>
+									</div>
+								</td>
+								<td align="center" ="text-align:center;">
+									<i class="icon-icon_unavailable"></i>
+								</td>
+								<td align="center" ="text-align:center;">
+									<i class="icon-icon_available"></i>
+								</td>
+							</tr>
 						</table>
 					</div>
 				</div>
-
-				<std:if condition="!empty($_GET['debug'])">
-				    <div class="json">
-				        <div>
-				            <strong style="color: red; font-size:20px;">Casino {data.casino}:</strong>
-				        </div>
-				        <pre>${json_encode(${data.casino}, JSON_PRETTY_PRINT)}</pre>
-				    </div>
-				</std:if>
 			</div>
 		</div>
 	</div>
