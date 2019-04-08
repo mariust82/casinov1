@@ -26,9 +26,9 @@
 									<img class="not-accepted" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
 							</std:if>
 						</div>
-						<std:set name="score_class" value="$[data][${i}]['score_class']"/>
-						<div class="list-rating ${normalize(${score_class})}">
+						<div class="list-rating ${normalize($[data][${i}]['score_class'])}">
 							<div class="list-rating-wrap">
+								<std:set name="score_class" value="$[data][${i}]['score_class']"/>
 								<std:if condition="${result.rating} == 0">
 									<div class="list-rating-score">-</div>
 									<div class=" list-rating-score list-rating-score-mobile">|</div>
