@@ -3682,7 +3682,7 @@ a:hover, a:active, a:visited, a:focus {
   text-align: center;
 }
 .list-rating.no-score .list-rating-score{
-  background: #cecece;
+  background: #A8AEC8;
 }
 .list-rating.very-good .list-rating-wrap {
   border: 1px solid #96CB00;
@@ -3714,6 +3714,13 @@ a:hover, a:active, a:visited, a:focus {
 
 .list-rating.no-score .list-rating-wrap {
   border: 1px solid gray;
+}
+
+@media screen and (max-width: 1023px) {
+  .list-rating.no-score .list-rating-wrap {
+    background: #A8AEC8;
+    color: #fff;
+  }
 }
 
 .list-rating.terrible .list-rating-score {
