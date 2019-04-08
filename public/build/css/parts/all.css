@@ -3477,7 +3477,7 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 1023px) {
   .list-item .list-rating-score {
     background: none;
-    color: #cecece;
+    color: #fff;
     width: 30px;
     padding: 1px 0;
     font-weight: 600;
@@ -3494,34 +3494,36 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 @media screen and (max-width: 1023px) {
+  .list-item .list-rating.excellent .list-rating-score {
+    background: #5DC916;
+  }
+}
+
+@media screen and (max-width: 1023px) {
   .list-item .list-rating.very-good .list-rating-score {
-    background: none;
-    color: #96CB00;
+    background: #96CB00;
   }
 }
 
 @media screen and (max-width: 1023px) {
   .list-item .list-rating.good .list-rating-score {
-    background: none;
-    color: #E9CA00;
+    background: #E9CA00;
   }
 }
 
 @media screen and (max-width: 1023px) {
   .list-item .list-rating.poor .list-rating-score {
-    background: none;
-    color: #F17D0A;
+    background: #F17D0A;
   }
 }
 
 @media screen and (max-width: 1023px) {
   .list-item .list-rating.terrible .list-rating-score {
-    background: none;
-    color: #DB2424;
+    background: #DB2424;
   }
 
   .list-rating.no-score .list-rating-wrap .list-rating-text {
-    color:#cecece;
+    background: #cecece;
   }
 }
 
