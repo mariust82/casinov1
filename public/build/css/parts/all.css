@@ -3130,11 +3130,13 @@ a:hover, a:active, a:visited, a:focus {
 
 .title-middle {
   font-size: 18px;
+  margin: 0 0 30px;
 }
 
 @media screen and (max-width: 690px) {
   .title-middle {
     font-size: 16px;
+    margin: 0 0 20px;
   }
 }
 
@@ -5586,6 +5588,14 @@ a:hover, a:active, a:visited, a:focus {
   flex-shrink: 0;
   width:239px;
   margin:0 0 0 31px;
+  padding: 25px 0 0 0;
+}
+@media screen and (max-width: 767px) {
+  .section-sidebar{
+    width:100%;
+    margin:0 0 25px;
+    padding: 0;
+  }
 }
 .section-content{
   -webkit-box-flex: 1;
@@ -5715,11 +5725,11 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .icon-icon_unavailable {
-  color: #DB2424;
+  color: #E93E3E;
 }
 
 .icon-icon_available {
-  color: #96CB00;
+  color: #6EBC20;
 }
 
 .wrapletters {
@@ -6610,8 +6620,14 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .def-column-item {
-  margin: 17px 0 0 0;
+  margin: 40px 0 0 0;
   line-height: 1.9;
+}
+
+@media screen and (max-width: 767px) {
+  .def-column-item {
+    margin: 15px 0 0 0;
+  }
 }
 
 .def-column-item:first-child {
@@ -6619,7 +6635,17 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .def-column-key {
-  color: #878CA4;
+  color: #465156;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 12px;
+  margin: 0 0 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .def-column-key {
+    margin: 0 0 5px;
+  }
 }
 
 .def-column-val {
@@ -8318,4 +8344,58 @@ img.grayscale {
 
 .flex-reverse{
   flex-direction:row-reverse;
+}
+
+@media screen and (max-width: 767px) {
+  .flex-reverse{
+    display: block;
+  }
+}
+
+.table-banking{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-flex{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.table-flex .payment-logo{
+  margin: 0 15px 0 0;
+}
+
+.table-banking th{
+  text-transform: uppercase;
+  font-size: 11px;
+  padding: 0 0 15px;
+  font-weight: 600;
+}
+
+.table-banking th:nth-child(2),
+.table-banking th:nth-child(3){
+  text-align: center;
+}
+
+.table-banking tr{
+  border-top: 1px solid #E8EAF3;
+}
+
+.table-banking tr:first-child{
+  border-top: none;
+}
+
+.table-banking td{
+  padding: 10px 0;
+}
+
+@media screen and (max-width: 767px) {
+  .table-desctop-visible{
+    display: none;
+  }
 }
