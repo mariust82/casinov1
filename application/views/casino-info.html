@@ -138,6 +138,22 @@
 						</std:if>
 
 						<div class="def-list-item">
+							<div class="def-list-key">Game Type</div>
+							<div class="def-list-val">
+								<std:if condition="!empty(${data.casino.casino_game_types})">
+									<std:foreach var="${data.casino.casino_game_types}" key ="key" value="value">
+										<std:if condition="${value} == end(${data.casino.casino_game_types})">
+											<span>${value}</span>
+											<std:else>
+												<span>${value}</span>&nbsp;,
+										</std:if>
+									</std:foreach>
+								</std:if>
+							</div>
+						</div>
+
+
+						<div class="def-list-item">
 							<div class="def-list-key">Live dealer</div>
 							<div class="def-list-val">
 								<std:if condition="${data.casino.is_live_dealer}">Yes<std:else>No</std:if>
