@@ -70,6 +70,7 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
             $this->setWithdrawMaximums($casinoID, $item["withdraw_maximums"]);
             $this->setWithdrawMethods($casinoID, $item["withdraw_methods"]);
             $this->setWithdrawTimeframes($casinoID, $item["withdraw_timeframes"]);
+            $this->setGameTypes($casinoID, $item["game_types"]);
             if($item["date"]>$maxDate) $maxDate = $item["date"];
         }
         return $maxDate;
