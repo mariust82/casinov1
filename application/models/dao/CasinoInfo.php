@@ -66,16 +66,16 @@ class CasinoInfo
         $output->phones = $this->getDerivedData("phones", "", $output->id);
         $output->licenses = $this->getDerivedData("licenses", "license_id", $output->id);
         $output->certifiers = $this->getDerivedData("certifications", "certification_id", $output->id);
-        $output->deposit_methods = $this->getBankingMethodData("deposit_methods", $output->id);
-        $output->withdraw_methods = $this->getBankingMethodData("withdraw_methods", $output->id);
         $output->withdrawal_limits = $this->getWithdrawLimits($output->id, $primaryCurrencies);
         $output->withdrawal_timeframes = $this->getWithdrawTimeframes($output->id);
         $output->bonus_first_deposit = $this->getBonus($output->id,  array("First Deposit Bonus"));
         $output->bonus_free = $this->getBonus($output->id, array("Free Spins","No Deposit Bonus","Free Play","Bonus Spins"));
        // $output->bonus_type_Abbreviation = $this->getAbbreviation($output->bonus_free);
-
+       // $output->welcome_package = $this->getWelcomePackage($output->id);
+        $output->casino_deposit_methods =  $this->getCasinoDepositMethods($output->id);
         $this->appendCountryInfo($output, $countryId);
 
+       $this->getCasinoDepositMethods($output->id);
         $this->result = $output;
     }
    
@@ -257,7 +257,35 @@ class CasinoInfo
         return $abbr;
     }
 
+  /*  public function getWelcomePackage($casino_id){
+
+        $q = "
+                 SELECT
+            t1.*
+            FROM casinos__bonuses AS t1
+            WHERE t1.casino_id = ".$casino_id."
+        ";
+
+        $data = SQL($q)->toList();
+        return $data;
+    }*/
+
     public function getGameTypes(){
 
+    }
+
+    public function getCasinoDepositMethods($casino_id){
+
+        $deposit_methods =  $this->getBankingMethodData("deposit_methods",$casino_id);
+        $withdraw_methods =   $this->getBankingMethodData("withdraw_methods",$casino_id);
+        $casino_deposit_methods = array_merge($deposit_methods, $withdraw_methods);
+
+        $casino_deposit_methods_data = [];
+        foreach ($casino_deposit_methods as $key => $value){
+            $casino_deposit_methods_data[$value]['deposit_methods'] = in_array($value, $deposit_methods);
+            $casino_deposit_methods_data[$value]['withdraw_methods'] = in_array($value, $withdraw_methods);
+            $casino_deposit_methods_data[$value]['logo'] = '/public/build/images/payment-methods-logos/'.strtolower (str_replace(' ', '_', $value)).'.png';
+        }
+        return $casino_deposit_methods_data;
     }
 }

@@ -36,4 +36,6 @@ class Casino {
     public $score_class;
     public $all_softwares;
     public $deposit_minimum;
+    public $welcome_package;
+    public $casino_deposit_methods;
 }
