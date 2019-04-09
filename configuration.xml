@@ -351,6 +351,9 @@
         <image type="software_logo_light">
             <format width="80" height="53"/>
         </image>
+        <image type="banking_method_light">
+            <format width="68" height="39"/>
+        </image>
     </images>
     <hosts>
         <lucinda>www.casinoslists.local</lucinda>
