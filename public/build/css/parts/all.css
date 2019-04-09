@@ -3369,6 +3369,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .list-item-cell:nth-child(3) {
   width: 17%;
+  padding:0 10px 0 0;
 }
 
 @media screen and (max-width: 690px) {
