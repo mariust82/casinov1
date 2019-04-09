@@ -143,9 +143,9 @@
 								<std:if condition="!empty(${data.casino.casino_game_types})">
 									<std:foreach var="${data.casino.casino_game_types}" key ="key" value="value">
 										<std:if condition="${value} == end(${data.casino.casino_game_types})">
-											<span>${value.name}</span>
+											${value.name}
 											<std:else>
-											<span>${value.name}</span>&nbsp;,&nbsp; 
+											${value.name}&nbsp;,&nbsp;
 										</std:if>
 									</std:foreach>
 								</std:if>
