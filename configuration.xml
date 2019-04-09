@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
     <application>
-        <version>0.8.6.53</version>
+        <version>0.8.7.00</version>
         <default_character_encoding>UTF-8</default_character_encoding>
         <default_page>index</default_page>
         <default_extension>html</default_extension>
@@ -79,6 +79,12 @@
                 <json/>
             </renderer>
         </bala>
+        <amos>
+            <renderer display_errors="1">
+                <html/>
+                <json/>
+            </renderer>
+        </amos>
         <mark>
             <renderer display_errors="1">
                 <html/>
@@ -313,6 +319,9 @@
             <live>
                 <server driver="redis" host="localhost"/>
             </live>
+            <amos>
+                <server driver="redis" host="localhost"/>
+            </amos>
         </nosql>
     </servers>
     <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
