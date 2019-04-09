@@ -281,35 +281,34 @@
 	<div class="container">
 		<div class="box box-alt2">
 			<div class="title title-middle">Full Welcome Package</div>
-				<div class="section-content">
-					<table class="table table-package">
+			<div class="section-content">
+				<table class="table table-package">
+					<tr>
+						<th>Valid On</th>
+						<th>Bonus</th>
+						<th>Min Deposit</th>
+						<th>Wagering</th>
+						<th>Games</th>
+						<th>Bonus Code</th>
+					</tr>
+					<std:foreach var="${data.casino.welcome_package}" key ="key" value="welcome_package_data">
 						<tr>
-							<th>Valid On</th>
-							<th>Bonus</th>
-							<th>Min Deposit</th>
-							<th>Wagering</th>
-							<th>Games</th>
-							<th>Bonus Code</th>
-						</tr>
-						<std:foreach var="${data.casino.welcome_package}" key ="key" value="welcome_package_data">
-							<tr>
-								<td>${welcome_package_data.availability}</td>
-								<td>${welcome_package_data.amount}</td>
-								<td>${welcome_package_data.minimum_deposit}</td>
-								<td>${welcome_package_data.wagering}</td>
-								<td>${welcome_package_data.games}</td>
-								<td>
-									<std:set name="code_class" value=""/>
-									<std:if condition="${welcome_package_data.codes} != 'No code required'">
-									    <std:set name="code_class" value="js-copy-to-clip js-copy-tooltip"/>
-									</std:if>
+							<td>${welcome_package_data.availability}</td>
+							<td>${welcome_package_data.amount}</td>
+							<td>${welcome_package_data.minimum_deposit}</td>
+							<td>${welcome_package_data.wagering}</td>
+							<td>${welcome_package_data.games}</td>
+							<td>
+								<std:set name="code_class" value=""/>
+								<std:if condition="${welcome_package_data.codes} != 'No code required'">
+								    <std:set name="code_class" value="js-copy-to-clip js-copy-tooltip"/>
+								</std:if>
 
-									<div class="dashed ${code_class}" data-code="${welcome_package_data.codes}">${welcome_package_data.codes}</div>
-								</td>
-							</tr>
-						</std:foreach>
-					</table>
-				</div>
+								<div class="dashed ${code_class}" data-code="${welcome_package_data.codes}">${welcome_package_data.codes}</div>
+							</td>
+						</tr>
+					</std:foreach>
+				</table>
 			</div>
 		</div>
 	</div>
