@@ -1480,7 +1480,7 @@ var AJAX_CUR_PAGE = 1;
                     'click',
                     function() {
                         _ajaxMore('/search/more-lists/'+_fromLists, $('.search-title span').text(), $('#all-lists-container'), 'lists');
-                        _loadMoreContent = true;
+                        // _loadMoreContent = true;
                         
                         if (_fromLists >= _clicksLists) {
                             _searchMoreLists.fadeOut();
@@ -1502,7 +1502,7 @@ var AJAX_CUR_PAGE = 1;
                     'click',
                     function() {
                         _ajaxMore('/search/more-casinos/'+_fromCasinos, $('.search-title span').text(), $('#all-casinos-container'), 'casinos');
-                        _loadMoreContent = true;
+                        // _loadMoreContent = true;
                         
                         if (_fromCasinos >= _clicksCasinos) {
                             _searchMoreCasinos.fadeOut();
@@ -1524,7 +1524,7 @@ var AJAX_CUR_PAGE = 1;
                     'click',
                     function() {
                         _ajaxMore('/search/more-games/'+_fromPages, $('.search-title span').text(), $('#all-games-container'), 'games');
-                        _loadMoreContent = true;
+                        // _loadMoreContent = true;
                         
                         if (_fromPages >= _clicksPages) {
                             _searchMorePages.fadeOut();
@@ -1818,8 +1818,10 @@ var AJAX_CUR_PAGE = 1;
 
                         _searchPagesContainer.append(_item);
                     }
+                    if (_searchInput.val() != '') {
+                        _illumination();
+                    }
                 }
-                _illumination();
             },
 
             _resetPages = function() {
