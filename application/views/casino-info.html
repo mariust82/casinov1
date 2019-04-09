@@ -124,15 +124,15 @@
 						<std:if condition="count(${data.casino.softwares}) > 0">
 							<div class="def-list-item">
 								<div class="def-list-key">Software</div>
-                                                                <div class="tooltipster-content">
-                                                                    <std:foreach var="${data.casino.softwares}" key ="key" value="value">
-                                                                        <std:if condition="${value} == end(${data.casino.softwares})">
-                                                                            <a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>
-                                                                        <std:else>    
-                                                                            <a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>&nbsp;,
-                                                                        </std:if>
-                                                                        
-                                                                    </std:foreach>
+									<div class="tooltipster-content">
+									<std:foreach var="${data.casino.softwares}" key ="key" value="value">
+										<std:if condition="${value} == end(${data.casino.softwares})">
+											<a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>
+										<std:else>
+											<a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>&nbsp;,
+										</std:if>
+
+									</std:foreach>
 								</div>
 							</div>
 						</std:if>
@@ -225,7 +225,7 @@
 				<div class="box">
 					<div class="title title-small">Welcome package</div>
 					<div class="bonus-holder">
-						<std:if condition="!is_null(${data.casino.bonus_free})">
+						<std:if condition="!empty(${data.casino.bonus_free})">
 							<div class="bonus-item">
 								<div class="bonus-box bonus-free">
 									<box:bonus data="data.casino" modifier="bonus_free" heading="0" title="Free Deposit Bonus" icon="icon-icon_bonuses"/>
@@ -260,77 +260,7 @@
 	</div>
 
 	<!-- old version -->
-	<div class="section">
-		<div class="container">
-			<div class="box box-alt2">
-				<div class="title title-middle">Banking</div>
-				<div class="def-column">
-					<div class="def-column-item">
-						<div class="def-column-key">Minimum deposit</div>
-						<div class="def-column-val">${data.casino.deposit_minimum}</div>
-					</div>
-					<div class="def-column-item">
-						<div class="def-column-key">Minimum withdrawal</div>
-						<div class="def-column-val">${data.casino.withdrawal_minimum}</div>
-					</div>
 
-					<std:if condition="count(${data.casino.withdrawal_limits}) > 0">
-						<div class="def-column-item">
-							<div class="def-column-key">Withdrawal limits</div>
-							<div class="def-column-val">
-								<std:foreach var="${data.casino.withdrawal_limits}" key ="key" value="result">
-									<p>${result}</p>
-								</std:foreach>
-							</div>
-						</div>
-					</std:if>
-
-					<std:if condition="count(${data.casino.withdrawal_timeframes}) > 0">
-						<div class="def-column-item">
-							<div class="def-column-key">Withdrawal pending time</div>
-							<div class="def-column-val">
-								<std:foreach var="${data.casino.withdrawal_timeframes}" key ="key" value="result">
-									<p>${result}</p>
-								</std:foreach>
-							</div>
-						</div>
-					</std:if>
-
-					<std:if condition="count(${data.casino.deposit_methods}) > 0">
-						<div class="def-column-item">
-							<div class="def-column-key">Deposit methods</div>
-							<div class="def-column-val">
-								<p>
-									<std:set name="numItems" value="count(${data.casino.deposit_methods})"/>
-									<std:set name="i" value="0"/>
-									<std:foreach var="${data.casino.deposit_methods}" key ="key" value="result">
-                                                                            <a class="soft_link" href="/banking/${normalize(${result})}"> ${result} </a>
-									      <std:set name="i" value="${i}+1"/>
-									      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
-									</std:foreach>
-								</p>
-							</div>
-						</div>
-					</std:if>
-
-					<std:if condition="count(${data.casino.withdraw_methods}) > 0">
-						<div class="def-column-item">
-							<div class="def-column-key">Withdrawal methods</div>
-							<div class="def-column-val">
-								<std:set name="numItems" value="count(${data.casino.withdraw_methods})"/>
-								<std:set name="i" value="0"/>
-								<std:foreach var="${data.casino.withdraw_methods}" key ="key" value="result">
-								      <a class="soft_link" href="/banking/${normalize(${result})}"> ${result} </a>
-								      <std:set name="i" value="${i}+1"/>
-								      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
-								</std:foreach>
-							</div>
-						</div>
-					</std:if>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- new version -->
 	<div class="section">
@@ -379,48 +309,31 @@
 								<th>Deposit</th>
 								<th>Withdrawal</th>
 							</tr>
+
+							<std:foreach var="${data.casino.casino_deposit_methods}" key ="dep_method" value="dep_method_data">
 							<tr>
 								<td >
 									<div class="table-flex">
-										<img class="payment-logo" src="/public/build/images/payment-methods-logos/giropay.png" width="60" height="40" alt="">
-										<div class="table-desctop-visible">Giropay</div>
+										<img class="payment-logo" src="${dep_method_data.logo}" width="60" height="40" alt="">
+										<div class="table-desctop-visible">${dep_method}</div>
 									</div>
 								</td>
 								<td align="center">
-									<i class="icon-icon_unavailable"></i>
+									<std:if condition="empty(${dep_method_data.deposit_methods})">
+										<i class="icon-icon_unavailable"></i>
+										<std:else>
+											<i class="icon-icon_available"></i>
+									</std:if>
 								</td>
 								<td align="center">
-									<i class="icon-icon_available"></i>
+									<std:if condition="empty(${dep_method_data.withdraw_methods})">
+										<i class="icon-icon_unavailable"></i>
+										<std:else>
+											<i class="icon-icon_available"></i>
+									</std:if>
 								</td>
 							</tr>
-							<tr>
-								<td >
-									<div class="table-flex">
-										<img class="payment-logo" src="/public/build/images/payment-methods-logos/maestro.png" width="60" height="40" alt="">
-										<div class="table-desctop-visible">Maestro</div>
-									</div>
-								</td>
-								<td align="center">
-									<i class="icon-icon_unavailable"></i>
-								</td>
-								<td align="center">
-									<i class="icon-icon_available"></i>
-								</td>
-							</tr>
-							<tr>
-								<td >
-									<div class="table-flex">
-										<img class="payment-logo" src="/public/build/images/payment-methods-logos/visa.png" width="60" height="40" alt="">
-										<div class="table-desctop-visible">Visa</div>
-									</div>
-								</td>
-								<td align="center">
-									<i class="icon-icon_unavailable"></i>
-								</td>
-								<td align="center">
-									<i class="icon-icon_available"></i>
-								</td>
-							</tr>
+							</std:foreach>
 						</table>
 					</div>
 				</div>
