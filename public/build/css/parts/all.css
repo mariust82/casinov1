@@ -5796,6 +5796,10 @@ a:hover, a:active, a:visited, a:focus {
   margin: 0;
 }
 
+.review .form .action-field {
+  margin: 13px 0 0 0;
+}
+
 @media screen and (max-width: 690px) {
   .review .form .action-field {
     margin: 0 0 10px;
