@@ -71,7 +71,8 @@ class CasinoInfo
         $output->bonus_first_deposit = $this->getBonus($output->id,  array("First Deposit Bonus"));
         $output->bonus_free = $this->getBonus($output->id, array("Free Spins","No Deposit Bonus","Free Play","Bonus Spins"));
        // $output->bonus_type_Abbreviation = $this->getAbbreviation($output->bonus_free);
-       // $output->welcome_package = $this->getWelcomePackage($output->id);
+        $output->welcome_package = $this->getWelcomePackage($output->id);
+
         $output->casino_deposit_methods =  $this->getCasinoDepositMethods($output->id);
         $output->casino_game_types = $this->getGameTypes($output->id);
         $this->appendCountryInfo($output, $countryId);
@@ -258,7 +259,7 @@ class CasinoInfo
         return $abbr;
     }
 
-    /*public function getWelcomePackage($casino_id){
+    public function getWelcomePackage($casino_id){
 
         $q = "
                  SELECT
@@ -269,7 +270,7 @@ class CasinoInfo
 
         $data = SQL($q)->toList();
         return $data;
-    }*/
+    }
 
     public function getGameTypes($casinoId){
 
