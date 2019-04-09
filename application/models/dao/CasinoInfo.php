@@ -73,6 +73,7 @@ class CasinoInfo
        // $output->bonus_type_Abbreviation = $this->getAbbreviation($output->bonus_free);
        // $output->welcome_package = $this->getWelcomePackage($output->id);
         $output->casino_deposit_methods =  $this->getCasinoDepositMethods($output->id);
+        $output->casino_game_types = $this->getGameTypes($output->id);
         $this->appendCountryInfo($output, $countryId);
 
        $this->getCasinoDepositMethods($output->id);
@@ -257,7 +258,7 @@ class CasinoInfo
         return $abbr;
     }
 
-  /*  public function getWelcomePackage($casino_id){
+    /*public function getWelcomePackage($casino_id){
 
         $q = "
                  SELECT
@@ -270,8 +271,16 @@ class CasinoInfo
         return $data;
     }*/
 
-    public function getGameTypes(){
+    public function getGameTypes($casinoId){
 
+        $q =" SELECT
+            t2.name
+            FROM casinos__game_types AS t1
+            INNER JOIN game_types AS t2 ON t1.	game_type_id = t2.id
+            WHERE t1.casino_id =  $casinoId";
+
+        $data = SQL($q)->toList();
+        return $data;
     }
 
     public function getCasinoDepositMethods($casino_id){
