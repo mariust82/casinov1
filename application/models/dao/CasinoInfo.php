@@ -272,7 +272,7 @@ class CasinoInfo
 
         $w_packages = SQL($q)->toList();
         $is_valid = false;
-        if(!empty($wp))
+        if(!empty($w_packages))
         {
             foreach ($w_packages as  $wp_data){
                 //should be at least one welcome package
