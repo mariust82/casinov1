@@ -49,15 +49,14 @@ class CasinoInfo
             $output->logo_small = $this->getCasinoLogo($output->code = $row["code"],"85x56");
             $output->note = $row["note"];
             $output->score_class = $this->getScoreClass($output->rating); // score class for casino rating
-
+            $output->deposit_minimum = $row["deposit_minimum"];
         }
         if(!$output) return;
 
         // detect primary currencies & append to withdrawal minimum
         $primaryCurrencies = implode("/", $this->getPrimaryCurrencies($output->id));
         if($output->withdrawal_minimum) $output->withdrawal_minimum = $primaryCurrencies.$output->withdrawal_minimum;
-
-        $output->deposit_minimum = !empty($row["deposit_minimum"]) ? $primaryCurrencies.$row["deposit_minimum"] : '';
+        $output->deposit_minimum = !empty( $output->deposit_minimum) ? $primaryCurrencies.$output->deposit_minimum : '';
 
         // append softwares
         $output->softwares = $this->getDerivedData("game_manufacturers", "game_manufacturer_id", $output->id,"name","is_primary DESC,t1.id DESC");
