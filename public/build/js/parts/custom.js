@@ -190,6 +190,7 @@ var AJAX_CUR_PAGE = 1;
         checkStringLength($('.list .bonus-box'), 21);
         checkStringLength($('.bonus-item .bonus-box'), 33);
         grayscaleIE();
+        initTableOpen();
 
         $('.message .close').on('click', function(e) {
             $(this).parent().fadeOut();
@@ -234,6 +235,14 @@ var AJAX_CUR_PAGE = 1;
         $('.js-tooltip').tooltipster(tooltipConfig);
         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+    }
+
+    function initTableOpen() {
+        $('.table').on('click', '.js-table-package-opener', function(e) {
+            $(this).closest('tr').toggleClass('active');
+            // $(this).closest('tr').find('td:last-child, td:nth-child(5)').show();
+            e.preventDefault();
+        });
     }
 
     function grayscaleIE() {
