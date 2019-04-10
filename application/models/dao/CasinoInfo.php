@@ -265,7 +265,7 @@ class CasinoInfo
                  SELECT
             t1.*
             FROM casinos__bonuses AS t1
-            WHERE t1.casino_id = ".$casino_id."
+            WHERE t1.bonus_type_id = 8 AND t1.casino_id = ".$casino_id."
         ";
 
         $data = SQL($q)->toList();
