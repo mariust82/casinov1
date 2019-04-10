@@ -8462,6 +8462,7 @@ img.grayscale {
 @media screen and (max-width: 767px) {
   .table-package th,
   .table-package td{
+    position:relative;
     width:10% !important;
     -webkit-box-flex: 1;
     -ms-flex-positive: 1;
@@ -8511,13 +8512,22 @@ img.grayscale {
   padding:0 0 15px;
 }
 
+.table-package-opener{
+  display:none;
+}
+
 @media screen and (max-width: 767px) {
   .table-package th{
     padding:0 0 10px;
   }
 
-  .table-mobile-visible{
+  .table-package-opener{
     display:block;
+    font-size:7px;
+    position:absolute;
+    top:50%;
+    right:0;
+    margin:-4px 0 0 0;
   }
 }
 
