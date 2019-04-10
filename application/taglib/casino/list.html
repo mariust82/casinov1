@@ -1,9 +1,15 @@
 <std:set name="bonus" value="Free"/>
 
 <div class="list">
+
 	<div class="list-heading list-item">
 		<div class="list-item-cell list-heading-title">CASINO</div>
-		<div class="list-item-cell list-heading-title">$[type]</div>
+		<std:if condition="${data.filter} == 'banking_method'">
+				<div class="list-item-cell list-heading-title">DEPOSIT</div>
+				<div class="list-item-cell list-heading-title">WITHDRAW</div>
+			<std:else>
+				<div class="list-item-cell list-heading-title">$[type]</div>
+		</std:if>
 		<div class="list-item-cell list-heading-title"><span>FIRST DEPOSIT</span> BONUS</div>
 		<div class="list-item-cell list-heading-title">${bonus} BONUS</div>
 		<div class="list-item-cell list-heading-title">&nbsp;</div>
@@ -53,29 +59,36 @@
 							</std:if>
 						</div>
 					</div>
-
 				</div>
-				<div class="list-item-cell">
-					<div class="multirow">
-						<div class="list-item-flex">
-							<std:if condition="'$[type]' == 'ESTABLISHED'">
-								<std:if condition="${result.date_established} != '0000-00-00'">
-									<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
+
+				<std:if condition="${data.filter} != 'banking_method'">
+					<div class="list-item-cell">
+						<div class="multirow">
+							<div class="list-item-flex">
+								<std:if condition="'$[type]' == 'ESTABLISHED'">
+									<std:if condition="${result.date_established} != '0000-00-00'">
+										<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
+									</std:if>
+									<std:else>
+										<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
+											${result.softwares.0}
+										</a>
+										<std:set name="extra" value="count(${result.softwares})-1"/>
+										<std:if condition="${extra} > 0">
+                                        <span class="bubble bubble-long js-tooltip software_tooltip" title="${result.all_softwares}">
+                                            +${extra}
+                                        </span>
+										</std:if>
 								</std:if>
-							<std:else>
-								<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
-									${result.softwares.0}
-								</a>
-								<std:set name="extra" value="count(${result.softwares})-1"/>
-								<std:if condition="${extra} > 0">
-									<span class="bubble bubble-long js-tooltip software_tooltip" title="${result.all_softwares}">
-										+${extra}
-									</span>
-								</std:if>
-							</std:if>
+							</div>
 						</div>
 					</div>
-				</div>
+					<std:else>
+						<div class="list-item-cell"></div>
+						<div class="list-item-cell"></div>
+				</std:if>
+
+
 				<std:if condition="${data.is_mobile}">
 					<div class="list-item-cell js-mobile-pop-open">
 						<std:if condition="${result.bonus_free.amount}">

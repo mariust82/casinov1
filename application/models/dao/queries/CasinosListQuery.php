@@ -2,6 +2,7 @@
 
 require_once("vendor/lucinda/queries/plugins/MySQL/MySQLSelect.php");
 
+use Lucinda\Query\MySQLComparisonOperator;
 use Lucinda\Query\MySQLCondition;
 use Lucinda\Query\MySQLSelect;
 use Lucinda\Query\Select;
@@ -18,6 +19,7 @@ class CasinosListQuery
 
     private function setQuery(CasinoFilter $filter, $columns, $sortBy,  $limit= 0 , $offset) {
         $query = new Lucinda\Query\MySQLSelect("casinos","t1");
+        $columns = $this->addSpecialColumns($columns,$filter);
         $this->setFields($query,$columns);
         $this->setSelect($query,$filter);
         $this->setWhere($query->where(),$filter);
@@ -64,10 +66,16 @@ class CasinosListQuery
         }
         if($filter->getBankingMethod()) {
             //    $query.="INNER JOIN casinos__deposit_methods AS t3 ON t1.id = t3.casino_id AND t3.banking_method_id = (SELECT id FROM banking_methods WHERE name='".$filter->getBankingMethod()."')"."\n";
-            $sub_query = new Lucinda\Query\MySQLSelect("banking_methods");
+        /*    $sub_query = new Lucinda\Query\MySQLSelect("banking_methods");
             $sub_query->fields(["id"]);
             $sub_query->where(["name" => "'" . $filter->getBankingMethod() . "'"]);
-            $query->joinInner("casinos__deposit_methods","t3")->on(["t1.id" => "t3.casino_id","t3.banking_method_id" => "(". $sub_query->toString() .")"]);
+            $query->joinInner("casinos__deposit_methods","t3")->on(["t1.id" => "t3.casino_id","t3.banking_method_id" => "(". $sub_query->toString() .")"]);*/
+            $banking_method_id = $this->getBankingNameMethod($filter->getBankingMethod());
+            $query->joinLeft("casinos__deposit_methods","t3")->on(["t1.id" => "t3.casino_id","t3.banking_method_id" => $banking_method_id ]);
+            $query->joinLeft("casinos__withdraw_methods","t4")->on(["t1.id" => "t4.casino_id","t4.banking_method_id" => $banking_method_id]);
+
+            //$query->joinLeft("banking_methods","t5")->on(["t3.banking_method_id" => "t5.id","t4.banking_method_id" => "t5.id"]);
+
         }
         if($filter->getBonusType() || $filter->getFreeBonus()) {
             // $query.="INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id AND ".$condition->toString()."\n";
@@ -178,6 +186,13 @@ class CasinosListQuery
             $where->set("t1.rating_total/t1.rating_votes",7,Lucinda\Query\ComparisonOperator::GREATER);
             $where->set("t1.status_id",0);
         }
+        if($filter->getBankingMethod())
+        {
+            $group = new Lucinda\Query\Condition(array(), Lucinda\Query\LogicalOperator::_OR_);
+            $group->set('t3.id', null,MySQLComparisonOperator::IS_NOT_NULL);
+            $group->set('t4.id', null,MySQLComparisonOperator::IS_NOT_NULL);
+            $where->setGroup($group);
+        }
         //  $query = substr($query->toString(),0, -4)."\n";
     }
 
@@ -228,5 +243,29 @@ class CasinosListQuery
 
     public function getQuery() {
         return $this->query;
+    }
+
+    private function addSpecialColumns($columns , CasinoFilter $filter)
+    {
+        if($filter->getBankingMethod()){
+
+            if(sizeof($columns) > 1) {
+                $columns[0] = "Distinct(t1.id)";
+                $columns[sizeof($columns)] = "t3.id AS has_dm";
+                $columns[sizeof($columns)] = "t4.id AS has_wm";
+            }
+            else
+                $columns[0] = "Count(Distinct t1.id)";
+        }
+
+        return $columns;
+    }
+
+    private function getBankingNameMethod($name)
+    {
+        $query = "Select id from banking_methods  where name = '" . $name. "'";
+        $result = SQL($query);
+        $row = $result->toRow();
+        return $row['id'];
     }
 }

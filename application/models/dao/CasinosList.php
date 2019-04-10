@@ -45,8 +45,10 @@ class CasinosList
         );
         $query = $queryGenerator->getQuery();
 
+
         // execute query
         $resultSet = SQL($query);
+
         while($row = $resultSet->toRow()) {
             $object = new Casino();
             $object->id = $row["id"];
@@ -62,6 +64,11 @@ class CasinosList
             $object->logo_small = $this->getCasinoLogo($object->code = $row["code"],"85x56");//   $object->logo_small = "/public/sync/casino_logo_light/85x56/".strtolower(str_replace(" ", "_", $object->code)).".png";
             $object->new = $this->isCasinoNew($row["date_established"]);
             $object->score_class = $this->getScoreClass($object->rating);
+            if($this->filter->getBankingMethod())
+            {
+                $object->deposit_methods = $row["has_dm"];
+                $object->withdraw_methods = $row["has_wm"];
+            }
             $output[$row["id"]] = $object;
         }
         if(empty($output)) return array();
@@ -182,7 +189,5 @@ class CasinosList
         }
         return implode(", ", $items);
     }
-
-
 
 }
