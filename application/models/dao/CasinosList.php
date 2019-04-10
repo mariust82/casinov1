@@ -46,6 +46,7 @@ class CasinosList
         $query = $queryGenerator->getQuery();
 
 
+
         // execute query
         $resultSet = SQL($query);
 

@@ -19,8 +19,7 @@ class CasinosListQuery
 
     private function setQuery(CasinoFilter $filter, $columns, $sortBy,  $limit= 0 , $offset) {
         $query = new Lucinda\Query\MySQLSelect("casinos","t1");
-        $columns = $this->addSpecialColumns($columns,$filter);
-        $this->setFields($query,$columns);
+        $this->setFields($query,$columns, $filter);
         $this->setSelect($query,$filter);
         $this->setWhere($query->where(),$filter);
         $this->setOrderBy($query->orderBy(),$filter,$sortBy);
@@ -32,16 +31,24 @@ class CasinosListQuery
         $this->query = $query->toString();
     }
 
-    private function setFields(Lucinda\Query\MySQLSelect $query, $columns)
+    private function setFields(Lucinda\Query\MySQLSelect $query, $columns, CasinoFilter $filter)
     {
+
         //  $query->distinct();
         //$query->fields($columns);
-        $query->fields($columns)->add('(CASE
+        $fields = $query->fields($columns);
+        $fields->add('(CASE
                  WHEN t1.status_id = 0  THEN 1
                  WHEN t1.status_id = 3  THEN 2
                  WHEN t1.status_id = 2  THEN 3
                  WHEN t1.status_id = 1  THEN 4
                  END)', 'complex_case' );
+        if($filter->getBankingMethod()){
+            if(sizeof($columns) > 1) {
+                $fields->add("t3.id", "has_dm");
+                $fields->add("t4.id", "has_wm");
+            }
+        }
     }
 
     private function setSelect(Lucinda\Query\MySQLSelect $query, CasinoFilter $filter)
@@ -243,22 +250,6 @@ class CasinosListQuery
 
     public function getQuery() {
         return $this->query;
-    }
-
-    private function addSpecialColumns($columns , CasinoFilter $filter)
-    {
-        if($filter->getBankingMethod()){
-
-            if(sizeof($columns) > 1) {
-                $columns[0] = "Distinct(t1.id)";
-                $columns[sizeof($columns)] = "t3.id AS has_dm";
-                $columns[sizeof($columns)] = "t4.id AS has_wm";
-            }
-            else
-                $columns[0] = "Count(Distinct t1.id)";
-        }
-
-        return $columns;
     }
 
     private function getBankingNameMethod($name)
