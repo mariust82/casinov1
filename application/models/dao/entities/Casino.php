@@ -38,4 +38,5 @@ class Casino {
     public $deposit_minimum;
     public $welcome_package;
     public $casino_deposit_methods;
+    public $casino_game_types;
 }

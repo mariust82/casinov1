@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
     <application>
-        <version>0.8.7.00</version>
+        <version>0.8.7.02</version>
         <default_character_encoding>UTF-8</default_character_encoding>
         <default_page>index</default_page>
         <default_extension>html</default_extension>
@@ -350,6 +350,9 @@
         </image>
         <image type="software_logo_light">
             <format width="80" height="53"/>
+        </image>
+        <image type="banking_method_light">
+            <format width="68" height="39"/>
         </image>
     </images>
     <hosts>

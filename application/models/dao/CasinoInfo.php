@@ -49,7 +49,6 @@ class CasinoInfo
             $output->logo_small = $this->getCasinoLogo($output->code = $row["code"],"85x56");
             $output->note = $row["note"];
             $output->score_class = $this->getScoreClass($output->rating); // score class for casino rating
-            $output->deposit_minimum = $row["deposit_minimum"];
 
         }
         if(!$output) return;
@@ -57,6 +56,8 @@ class CasinoInfo
         // detect primary currencies & append to withdrawal minimum
         $primaryCurrencies = implode("/", $this->getPrimaryCurrencies($output->id));
         if($output->withdrawal_minimum) $output->withdrawal_minimum = $primaryCurrencies.$output->withdrawal_minimum;
+
+        $output->deposit_minimum = !empty($row["deposit_minimum"]) ? $primaryCurrencies.$row["deposit_minimum"] : '';
 
         // append softwares
         $output->softwares = $this->getDerivedData("game_manufacturers", "game_manufacturer_id", $output->id,"name","is_primary DESC,t1.id DESC");
@@ -71,8 +72,10 @@ class CasinoInfo
         $output->bonus_first_deposit = $this->getBonus($output->id,  array("First Deposit Bonus"));
         $output->bonus_free = $this->getBonus($output->id, array("Free Spins","No Deposit Bonus","Free Play","Bonus Spins"));
        // $output->bonus_type_Abbreviation = $this->getAbbreviation($output->bonus_free);
-       // $output->welcome_package = $this->getWelcomePackage($output->id);
+        $output->welcome_package = $this->getWelcomePackage($output->id);
+
         $output->casino_deposit_methods =  $this->getCasinoDepositMethods($output->id);
+        $output->casino_game_types = $this->getGameTypes($output->id);
         $this->appendCountryInfo($output, $countryId);
 
        $this->getCasinoDepositMethods($output->id);
@@ -257,7 +260,7 @@ class CasinoInfo
         return $abbr;
     }
 
-  /*  public function getWelcomePackage($casino_id){
+    public function getWelcomePackage($casino_id){
 
         $q = "
                  SELECT
@@ -268,10 +271,18 @@ class CasinoInfo
 
         $data = SQL($q)->toList();
         return $data;
-    }*/
+    }
 
-    public function getGameTypes(){
+    public function getGameTypes($casinoId){
 
+        $q =" SELECT
+            t2.name
+            FROM casinos__game_types AS t1
+            INNER JOIN game_types AS t2 ON t1.	game_type_id = t2.id
+            WHERE t1.casino_id =  $casinoId";
+
+        $data = SQL($q)->toList();
+        return $data;
     }
 
     public function getCasinoDepositMethods($casino_id){
@@ -284,7 +295,7 @@ class CasinoInfo
         foreach ($casino_deposit_methods as $key => $value){
             $casino_deposit_methods_data[$value]['deposit_methods'] = in_array($value, $deposit_methods);
             $casino_deposit_methods_data[$value]['withdraw_methods'] = in_array($value, $withdraw_methods);
-            $casino_deposit_methods_data[$value]['logo'] = '/public/build/images/payment-methods-logos/'.strtolower (str_replace(' ', '_', $value)).'.png';
+            $casino_deposit_methods_data[$value]['logo'] = '/public/sync/banking_method_light/68x39/'.strtolower (str_replace(' ', '_', $value)).'.png';
         }
         return $casino_deposit_methods_data;
     }
