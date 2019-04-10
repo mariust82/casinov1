@@ -6,6 +6,8 @@ class CasinoInfo
 {
     private $result;
 
+    private $WpBonusTypes = [6,8,2];
+
     public function __construct($id, $countryId) {
         $this->setResult($id, $countryId);
     }
@@ -265,11 +267,23 @@ class CasinoInfo
                  SELECT
             t1.*
             FROM casinos__bonuses AS t1
-            WHERE t1.bonus_type_id = 8 AND t1.casino_id = ".$casino_id."
+            WHERE t1.bonus_type_id IN (" . (implode(",", $this->WpBonusTypes)) .") AND t1.casino_id = ".$casino_id."
         ";
 
-        $data = SQL($q)->toList();
-        return $data;
+        $w_packages = SQL($q)->toList();
+        $is_valid = false;
+        if(!empty($wp))
+        {
+            foreach ($w_packages as  $wp_data){
+                //should be at least one welcome package
+                if($wp_data['bonus_type_id'] == 8){
+                    $is_valid = true;
+                    break;
+                }
+            }
+        }
+
+        return $is_valid ? $w_packages : [];
     }
 
     public function getGameTypes($casinoId){
