@@ -62,17 +62,18 @@ class ListsSearch {
             $select->joinInner('casinos', 't3')->on(['t2.casino_id' => 't3.id']);
             $where =  $select->where();
             $where->set('t3.is_open', 1);
-            $where->setLike('t1.name', ':search_value');
+            $where->setLike('t1.name', "'%".$this->value."%'");
             $select->groupBy(['t1.id']);
             $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
             $query = $select->toString();
-            $res = SQL($query, [':search_value' => $this->value]);
+            $res = SQL($query);
         }
-        
 
+       // var_dump( $res);die();
         $output = array();
         $i = 0;
         while($row = $res->toRow()) {
+
             $output[$i]['name'] = $row['unit'];
             $output[$i]['count'] = $row['counter'];
             $output[$i]['url'] = "softwares/(name)";
@@ -125,10 +126,10 @@ class ListsSearch {
         $group->set('t1.id', 4);
         $group->set('t1.id', 2);
         $where->setGroup($group);
-        $where->setLike('t1.name', ':search_value');
+        $where->setLike('t1.name', "'%".$this->value."%'");
         $play_versions_query->groupBy(['t1.id']);
         $play_versions_query->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
-        $res = SQL($play_versions_query->toString(), [':search_value' => $this->value ]);
+        $res = SQL($play_versions_query->toString());
 
         $mobile = $this->loop($res,"compatability/(name)");
 
@@ -140,12 +141,13 @@ class ListsSearch {
         $where =  $certifications->where();
         $where->set('t3.is_open', 1);
         $where->set('t1.id', 6);
-        $where->setLike('t1.name', ':search_value');
+        $where->setLike('t1.name', "'%".$this->value."%'");
         $certifications->groupBy(['t1.id']);
         $certifications->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
-        $res = SQL($certifications->toString(), [':search_value' => $this->value]);
+        $res = SQL($certifications->toString());
 
         $features = $this->loop($res,"features/(name)");
+        //echo $select->toString();
         return array_merge($array,$features);
     }
     
@@ -171,11 +173,10 @@ class ListsSearch {
         $select->joinInner('casinos', 't3')->on(['t2.casino_id' => 't3.id']);
         $where =  $select->where();
         $where->set('t3.is_open', 1);
-
-        $where->setLike('t1.name', ':search_value');
+        $where->setLike('t1.name', "'%".$this->value."%'");
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
-        $res = SQL($select->toString(), [':search_value' => $this->value]);
+        $res = SQL($select->toString());
         $output = $this->loop($res,"countries-list/(name)");
         return $output;
     }
@@ -189,10 +190,10 @@ class ListsSearch {
         $select->joinInner('casinos', 't3')->on(['t2.casino_id' => 't3.id']);
         $where =  $select->where();
         $where->set('t3.is_open', 1);
-        $where->setLike('t1.name', ':search_value');
+        $where->setLike('t1.name', "'%".$this->value."%'");
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
-        $res = SQL($select->toString(), [':search_value' => $this->value]);
+        $res = SQL($select->toString());
         $output = $this->loop($res,"banking/(name)");
         return $output;
     }
@@ -203,10 +204,10 @@ class ListsSearch {
         $select->fields(['t1.name AS unit', 'count(t1.id) as counter']);
         $select->joinInner('games', 't2')->on(['t1.id' => 't2.game_type_id']);
         $where =  $select->where();
-        $where->setLike('t1.name', ':search_value');
+        $where->setLike('t1.name', "'%".$this->value."%'");
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
-        $res = SQL($select->toString(), [':search_value' => $this->value]);
+        $res = SQL($select->toString());
         $output = $this->loop($res,"games/(type)");
         return $output;
     }
