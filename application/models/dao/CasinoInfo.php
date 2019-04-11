@@ -7,8 +7,6 @@ class CasinoInfo
 {
     private $result;
 
-    private $WpBonusTypes = [6,8,2];
-
     public function __construct($id, $countryId) {
         $this->setResult($id, $countryId);
     }
@@ -266,13 +264,14 @@ class CasinoInfo
 
         $q = "
                  SELECT
-            t1.*
-            FROM casinos__bonuses AS t1
-            WHERE t1.bonus_type_id IN (" . (implode(",", $this->WpBonusTypes)) .") AND t1.casino_id = ".$casino_id."
+            t1.*, t2.name as bonus_type_name
+            FROM casinos__bonuses AS t1 INNER JOIN
+            bonus_types as t2 ON t1.bonus_type_id = t2.id
+            WHERE t2.name IN ('First Deposit Bonus','No Deposit Bonus' ,'Welcome Package') AND t1.casino_id = ".$casino_id."
              ORDER BY  CASE
-                     WHEN t1.bonus_type_id = 6  THEN 1
-                     WHEN t1.bonus_type_id = 2  THEN 2
-                     WHEN t1.bonus_type_id = 8  THEN 3
+                     WHEN t2.name  = 'No Deposit Bonus'  THEN 1
+                     WHEN t2.name = 'First Deposit Bonus'  THEN 2
+                     WHEN t2.name = 'Welcome Package' THEN 3
                      END ASC
         ";
 
@@ -291,17 +290,17 @@ class CasinoInfo
                 $full_welcome_package->games = $wp_data['games'];
                 $full_welcome_package->bonus_codes = $wp_data['codes'];
 
-                switch ($wp_data['bonus_type_id']){
-                    case 2:
+                switch ($wp_data['bonus_type_name']){
+                    case 'First Deposit Bonus':
                         $full_welcome_package->valid_on  = '1st Deposit';
                     break;
 
-                    case 6:
+                    case 'No Deposit Bonus':
                         $full_welcome_package->valid_on  = 'On sign-up';
                         $full_welcome_package->min_deposit = 'Free';
                     break;
 
-                    case 8: // just validate for display. We need to have at least welcome pagage, to display the others
+                    case 'Welcome Package':
                         $is_valid = true;
                         break;
                 }
