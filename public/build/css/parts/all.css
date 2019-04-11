@@ -8564,3 +8564,6 @@ img.grayscale {
 .table-package tr.active td:nth-last-child(2){
   display:block;
 }
+.table-package .table-package_free_bonus{
+  color: #5DC916;
+}
