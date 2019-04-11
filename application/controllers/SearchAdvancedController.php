@@ -20,6 +20,7 @@ class SearchAdvancedController extends Controller {
         $lists = new ListsSearch($this->request->getAttribute('validation_results')->get('value'));
 
         $result = $lists->getResults();
+        $result = $this->fixListsGamesBug($result);
         $this->response->setAttribute("index",count($result) > 5 ? 5:  count($result));
         $this->response->setAttribute("lists",$result);
         $this->response->setAttribute("total_lists", count($result));
@@ -31,4 +32,31 @@ class SearchAdvancedController extends Controller {
         $this->response->setAttribute("games", $games->getResults(self::LIMIT,0));
         $this->response->setAttribute("total_games", $games->getTotal());
 	}
+
+	private function fixListsGamesBug($lists)
+    {
+       /* foreach($lists as $arg)
+        {
+            if($arg['url'] == "games/(type)")
+            {
+                $arg['url'] = str_replace("(type)",$this->normalizeTitleName($arg['name']),$arg['url']);
+                var_dump($arg['url']);
+            }
+        }*/
+       for ($i=0;$i<count($lists);$i++)
+       {
+           if($lists[$i]['url'] == "games/(type)")
+           {
+               $lists[$i]['url'] = str_replace("(type)",$this->normalizeTitleName($lists[$i]['name']),$lists[$i]['url']);
+           }
+       }
+        return $lists;
+    }
+
+    private function normalizeTitleName($name)
+    {
+        $str = str_replace(" ", "-", $name);
+        $str = str_replace("#", "-", $str);
+        return strtolower($str);
+    }
 }
