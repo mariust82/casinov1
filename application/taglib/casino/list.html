@@ -5,13 +5,13 @@
 	<div class="list-heading list-item">
 		<div class="list-item-cell list-item-casino list-heading-title">CASINO</div>
 		<std:if condition="${data.filter} == 'banking_method'">
-			<div class="list-item-cell list-item-banking-dep list-heading-title">DEPOSIT</div>
-			<div class="list-item-cell list-item-banking-wit list-heading-title">WITHDRAW</div>
+			<div class="list-item-cell list-heading-title list-item-banking-dep">DEPOSIT</div>
+			<div class="list-item-cell list-heading-title list-item-banking-wit">WITHDRAW</div>
 		<std:else>
-			<div class="list-item-cell list-item-type list-heading-title">$[type]</div>
+			<div class="list-item-cell list-heading-title list-item-type">$[type]</div>
 		</std:if>
-		<div class="list-item-cell list-item-fd-bonus list-heading-title"><span>FIRST DEPOSIT</span> BONUS</div>
-		<div class="list-item-cell list-item-alt-bonus list-heading-title">${bonus} BONUS</div>
+		<div class="list-item-cell list-heading-title list-item-fd-bonus"><span>FIRST DEPOSIT</span> BONUS</div>
+		<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
 		<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
 	</div>
 	<div class="list-body">
