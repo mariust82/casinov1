@@ -3365,6 +3365,12 @@ a:hover, a:active, a:visited, a:focus {
   padding:0 10px 0 0;
 }
 
+@media screen and (max-width: 1023px) {
+  .list-item-cell.list-item-fd-bonus {
+    width: 19%;
+  }
+}
+
 @media screen and (max-width: 690px) {
   .list-item-cell.list-item-fd-bonus {
     width: 37%;
@@ -3385,12 +3391,28 @@ a:hover, a:active, a:visited, a:focus {
   width: 10.5%;
 }
 
+.list-item-banking-dep,
+.list-item-banking-wit{
+  text-align:center;
+}
+
+.list-item-banking-dep i,
+.list-item-banking-wit i{
+  font-size:10px;
+}
+
 .list-item-banking-dep{
-  width:10%;
+  width:6%;
 }
 
 .list-item-banking-wit{
-  width:10%;
+  width:15%;
+}
+
+@media screen and (max-width: 690px) {
+  .list-item-banking-wit+.list-item-fd-bonus{
+    display:none;
+  }
 }
 
 .list-item-cell-buttons .list-flex {
