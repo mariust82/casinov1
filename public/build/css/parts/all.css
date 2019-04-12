@@ -3401,8 +3401,21 @@ a:hover, a:active, a:visited, a:focus {
   font-size:10px;
 }
 
+@media screen and (max-width: 690px) {
+  .list-item-banking-dep i,
+  .list-item-banking-wit i{
+    font-size:12px;
+  }
+}
+
 .list-item-banking-dep{
   width:6%;
+}
+
+@media screen and (max-width: 690px) {
+  .list-item-banking-dep{
+    width:22%;
+  }
 }
 
 .list-item-banking-wit{
