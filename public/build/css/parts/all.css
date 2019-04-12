@@ -3325,13 +3325,6 @@ a:hover, a:active, a:visited, a:focus {
 .list-item-cell {
   -ms-flex-negative: 0;
       flex-shrink: 0;
-/*  -webkit-user-select: none;    
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  -webkit-tap-highlight-color:transparent;
-  outline-style:none;*/
 }
 
 .list-item-cell:nth-child(1) {
@@ -3388,19 +3381,21 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
-.list-item-cell:nth-child(5) {
+.list-item-cell-buttons {
   width: 10.5%;
 }
 
-.list-item-cell:nth-child(5) .list-flex {
+.list-item-cell-buttons .list-flex {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
 
-.list-item-cell:nth-child(5) .btn-circle {
+.list-item-cell-buttons .btn-circle {
   display: none;
 }
+
+.list-item-cell
 
 .btn-err{
   width:58px;
@@ -3429,13 +3424,13 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 @media screen and (max-width: 690px) {
-  .list-item-cell:nth-child(5) {
+  .list-item-cell-buttons {
     width: 10%;
   }
-  .list-item-cell:nth-child(5) .btn-small {
+  .list-item-cell-buttons .btn-small {
     display: none;
   }
-  .list-item-cell:nth-child(5) .btn-circle {
+  .list-item-cell-buttons .btn-circle {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

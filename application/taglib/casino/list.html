@@ -5,10 +5,10 @@
 	<div class="list-heading list-item">
 		<div class="list-item-cell list-heading-title">CASINO</div>
 		<std:if condition="${data.filter} == 'banking_method'">
-				<div class="list-item-cell list-heading-title">DEPOSIT</div>
-				<div class="list-item-cell list-heading-title">WITHDRAW</div>
-			<std:else>
-				<div class="list-item-cell list-heading-title">$[type]</div>
+			<div class="list-item-cell list-heading-title list-item-cell-10">DEPOSIT</div>
+			<div class="list-item-cell list-heading-title list-item-cell-10">WITHDRAW</div>
+		<std:else>
+			<div class="list-item-cell list-heading-title">$[type]</div>
 		</std:if>
 		<div class="list-item-cell list-heading-title"><span>FIRST DEPOSIT</span> BONUS</div>
 		<div class="list-item-cell list-heading-title">${bonus} BONUS</div>
@@ -83,11 +83,14 @@
 							</div>
 						</div>
 					</div>
-					<std:else>
-						<div class="list-item-cell">${(${result.deposit_methods}?1:0)}</div>
-						<div class="list-item-cell">${(${result.withdraw_methods}?1:0)}</div>
+				<std:else>
+					<div class="list-item-cell centered">
+						<i class="icon-icon_${(${result.deposit_methods}?'available':'unavailable')}"></i>
+					</div>
+					<div class="list-item-cell centered">
+						<i class="icon-icon_${(${result.withdraw_methods}?'available':'unavailable')}"></i>
+					</div>
 				</std:if>
-
 
 				<std:if condition="${data.is_mobile}">
 					<div class="list-item-cell js-mobile-pop-open">
@@ -122,7 +125,7 @@
 						</std:if>
 					</div>
 				</std:if>
-				<div class="list-item-cell">
+				<div class="list-item-cell list-item-cell-buttons">
 					<div class="list-flex">
 						<std:if condition="${result.status}==1">
 							<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-blk btn-err">
