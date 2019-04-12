@@ -3,22 +3,22 @@
 <div class="list">
 
 	<div class="list-heading list-item">
-		<div class="list-item-cell list-heading-title">CASINO</div>
+		<div class="list-item-cell list-item-casino list-heading-title">CASINO</div>
 		<std:if condition="${data.filter} == 'banking_method'">
-			<div class="list-item-cell list-heading-title list-item-cell-10">DEPOSIT</div>
-			<div class="list-item-cell list-heading-title list-item-cell-10">WITHDRAW</div>
+			<div class="list-item-cell list-item-banking-dep list-heading-title">DEPOSIT</div>
+			<div class="list-item-cell list-item-banking-wit">WITHDRAW</div>
 		<std:else>
-			<div class="list-item-cell list-heading-title">$[type]</div>
+			<div class="list-item-cell list-item-type list-heading-title">$[type]</div>
 		</std:if>
-		<div class="list-item-cell list-heading-title"><span>FIRST DEPOSIT</span> BONUS</div>
-		<div class="list-item-cell list-heading-title">${bonus} BONUS</div>
+		<div class="list-item-cell list-item-fd-bonus list-heading-title"><span>FIRST DEPOSIT</span> BONUS</div>
+		<div class="list-item-cell list-item-alt-bonus list-heading-title">${bonus} BONUS</div>
 		<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
 	</div>
 	<div class="list-body">
 		<std:set name="i" value="0"/>
 		<std:foreach var="$[data]" value="result">
 			<div class="list-item loaded-item">
-				<div class="list-item-cell">
+				<div class="list-item-cell list-item-casino">
 					<std:if condition="${result.new} == true">
 						<div class="new-casino">
 							<div class="new-casino-text"> New </div>
@@ -62,7 +62,7 @@
 				</div>
 
 				<std:if condition="${data.filter} != 'banking_method'">
-					<div class="list-item-cell">
+					<div class="list-item-cell list-item-type">
 						<div class="multirow">
 							<div class="list-item-flex">
 								<std:if condition="'$[type]' == 'ESTABLISHED'">
@@ -84,16 +84,16 @@
 						</div>
 					</div>
 				<std:else>
-					<div class="list-item-cell centered">
+					<div class="list-item-cell list-item-banking-dep">
 						<i class="icon-icon_${(${result.deposit_methods}?'available':'unavailable')}"></i>
 					</div>
-					<div class="list-item-cell centered">
+					<div class="list-item-cell list-item-banking-wit">
 						<i class="icon-icon_${(${result.withdraw_methods}?'available':'unavailable')}"></i>
 					</div>
 				</std:if>
 
 				<std:if condition="${data.is_mobile}">
-					<div class="list-item-cell js-mobile-pop-open">
+					<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
 						<std:if condition="${result.bonus_free.amount}">
 							<div class="btn-round-holder">
 								<span class="btn-round" data-name="${result.name}" data-is-free="1">
@@ -107,16 +107,16 @@
 							</div>
 						</std:if>
 					</div>
-					<div class="list-item-cell">
+					<div class="list-item-cell list-item-alt-bonus">
 						<std:if condition="${result.bonus_free.amount}">
 							<span class="btn-round" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
 						</std:if>
 					</div>
 				<std:else>
-					<div class="list-item-cell js-mobile-pop-open">
+					<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
 						<span class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
 					</div>
-					<div class="list-item-cell">
+					<div class="list-item-cell list-item-alt-bonus">
 						<std:if condition="${result.bonus_free}">
 
 							<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1">

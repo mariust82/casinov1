@@ -3327,62 +3327,70 @@ a:hover, a:active, a:visited, a:focus {
       flex-shrink: 0;
 }
 
-.list-item-cell:nth-child(1) {
+.list-item-cell.list-item-casino {
   width: 35.5%;
   padding: 0 5px 0 0;
 }
 
 @media screen and (max-width: 1023px) {
-  .list-item-cell:nth-child(1) {
+  .list-item-cell.list-item-casino {
     width: 32%;
   }
 }
 
 @media screen and (max-width: 690px) {
-  .list-item-cell:nth-child(1) {
+  .list-item-cell.list-item-casino {
     width: 53%;
   }
 }
 
-.list-item-cell:nth-child(2) {
+.list-item-cell.list-item-type {
   width: 25%;
 }
 
 @media screen and (max-width: 1023px) {
-  .list-item-cell:nth-child(2) {
+  .list-item-cell.list-item-type {
     width: 23%;
   }
 }
 
 @media screen and (max-width: 690px) {
-  .list-item-cell:nth-child(2) {
+  .list-item-cell.list-item-type {
     display: none;
   }
 }
 
-.list-item-cell:nth-child(3) {
+.list-item-cell.list-item-fd-bonus {
   width: 17%;
   padding:0 10px 0 0;
 }
 
 @media screen and (max-width: 690px) {
-  .list-item-cell:nth-child(3) {
+  .list-item-cell.list-item-fd-bonus {
     width: 37%;
   }
 }
 
-.list-item-cell:nth-child(4) {
+.list-item-cell.list-item-alt-bonus {
   width: 12%;
 }
 
 @media screen and (max-width: 690px) {
-  .list-item-cell:nth-child(4) {
+  .list-item-cell.list-item-alt-bonus {
     display: none;
   }
 }
 
 .list-item-cell-buttons {
   width: 10.5%;
+}
+
+.list-item-banking-dep{
+  width:10%;
+}
+
+.list-item-banking-wit{
+  width:10%;
 }
 
 .list-item-cell-buttons .list-flex {
@@ -3394,8 +3402,6 @@ a:hover, a:active, a:visited, a:focus {
 .list-item-cell-buttons .btn-circle {
   display: none;
 }
-
-.list-item-cell
 
 .btn-err{
   width:58px;
