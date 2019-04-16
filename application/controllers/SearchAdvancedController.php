@@ -35,14 +35,6 @@ class SearchAdvancedController extends Controller {
 
 	private function fixListsGamesBug($lists)
     {
-       /* foreach($lists as $arg)
-        {
-            if($arg['url'] == "games/(type)")
-            {
-                $arg['url'] = str_replace("(type)",$this->normalizeTitleName($arg['name']),$arg['url']);
-                var_dump($arg['url']);
-            }
-        }*/
        for ($i=0;$i<count($lists);$i++)
        {
            if($lists[$i]['url'] == "games/(type)")
