@@ -601,7 +601,7 @@ $this->response->setAttribute("casinos", array (
     'id' => '985',
     'name' => 'Bitstarz Casino',
     'code' => 'bitstarz_casino',
-    'rating' => 10,
+    'rating' => 1,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -658,7 +658,7 @@ $this->response->setAttribute("casinos", array (
     'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
     'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
     'new' => false,
-    'score_class' => 'Excellent',
+    'score_class' => 'Terrible',
     'all_softwares' => 'iSoftBet, BetSoft, Ezugi, Endorphina, SoftSwiss, Amatic Industries',
     'deposit_minimum' => NULL,
     'welcome_package' => NULL,
@@ -672,7 +672,7 @@ $this->response->setAttribute("casinos", array (
     'id' => '806',
     'name' => 'BoyleSports Casino',
     'code' => 'boylecasino',
-    'rating' => 10,
+    'rating' => 2,
     'softwares' => 
     array (
       0 => 'Playtech',
@@ -714,7 +714,7 @@ $this->response->setAttribute("casinos", array (
     'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
     'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
     'new' => false,
-    'score_class' => 'Excellent',
+    'score_class' => 'Terrible',
     'all_softwares' => NULL,
     'deposit_minimum' => NULL,
     'welcome_package' => NULL,
@@ -728,7 +728,7 @@ $this->response->setAttribute("casinos", array (
     'id' => '719',
     'name' => 'CasinoWilds',
     'code' => 'bling_city_casino',
-    'rating' => 10,
+    'rating' => 3,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -800,7 +800,7 @@ $this->response->setAttribute("casinos", array (
     'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
     'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
     'new' => false,
-    'score_class' => 'Excellent',
+    'score_class' => 'Poor',
     'all_softwares' => 'NextGen Gaming, Oryx Gaming, World Match, MicroGaming, Cryptologic, iSoftBet, BetSoft, Wazdan, Evolution Gaming, OMI Gaming, 1X2 Gaming, Ezugi, iGaming2Go, Multislot, Edict eGaming, Playson, Play n GO, Endorphina, ELK Studios, Habanero, GameArt, Pariplay, Amatic Industries, Genii, Booming Games, Pragmatic Play, EGT, Zeus Services, Spigo, Join Games',
     'deposit_minimum' => NULL,
     'welcome_package' => NULL,
@@ -814,7 +814,7 @@ $this->response->setAttribute("casinos", array (
     'id' => '114',
     'name' => 'Play Casino Games',
     'code' => 'play_casino_games',
-    'rating' => 10,
+    'rating' => 4,
     'softwares' => 
     array (
       0 => 'MicroGaming',
@@ -875,7 +875,7 @@ $this->response->setAttribute("casinos", array (
     'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
     'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
     'new' => false,
-    'score_class' => 'Excellent',
+    'score_class' => 'Poor',
     'all_softwares' => 'NYX Interactive, NextGen Gaming, NetEnt, Thunderkick, Quickspin, 1X2 Gaming, 2By2 Gaming, ELK Studios, Genesis Gaming, Big Time Gaming, Rabcat, Blueprint Gaming, Lightning Box Games, Scientific Games, Gamevy, Chance Interactive, Core Gaming, Iron Dog Studio, Betdigital',
     'deposit_minimum' => NULL,
     'welcome_package' => NULL,
@@ -889,7 +889,7 @@ $this->response->setAttribute("casinos", array (
     'id' => '170',
     'name' => 'Oshi Casino',
     'code' => 'oshi_casino',
-    'rating' => 10,
+    'rating' => 5,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -942,7 +942,7 @@ $this->response->setAttribute("casinos", array (
     'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
     'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
     'new' => false,
-    'score_class' => 'Excellent',
+    'score_class' => 'Good',
     'all_softwares' => 'iSoftBet, BetSoft, Ezugi, Endorphina, SoftSwiss, Habanero, Belatra Games, Amatic Industries, Booming Games, Pragmatic Play, MrSlotty Games',
     'deposit_minimum' => NULL,
     'welcome_package' => NULL,
@@ -956,7 +956,7 @@ $this->response->setAttribute("casinos", array (
     'id' => '1005',
     'name' => 'Vulkan Platinum Casino',
     'code' => 'vulkan_platinum_casino',
-    'rating' => 10,
+    'rating' => 6,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -1002,7 +1002,7 @@ $this->response->setAttribute("casinos", array (
     'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
     'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
     'new' => false,
-    'score_class' => 'Excellent',
+    'score_class' => 'Good',
     'all_softwares' => 'Novomatic, Igrosoft, Evoplay, Playsoft',
     'deposit_minimum' => NULL,
     'welcome_package' => NULL,
@@ -1016,7 +1016,7 @@ $this->response->setAttribute("casinos", array (
     'id' => '1195',
     'name' => 'Smashing Casino',
     'code' => 'smashing_casino',
-    'rating' => 10,
+    'rating' => 7,
     'softwares' => 
     array (
       0 => 'BetSoft',
@@ -1072,7 +1072,7 @@ $this->response->setAttribute("casinos", array (
     'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
     'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
     'new' => false,
-    'score_class' => 'Excellent',
+    'score_class' => 'Very good',
     'all_softwares' => 'GameScale, Playson, GameArt, Booming Games, Spinomenal',
     'deposit_minimum' => NULL,
     'welcome_package' => NULL,
@@ -1086,7 +1086,7 @@ $this->response->setAttribute("casinos", array (
     'id' => '1189',
     'name' => 'Hera Casino',
     'code' => 'hera_casino',
-    'rating' => 9,
+    'rating' => 8,
     'softwares' => 
     array (
       0 => 'RTG',
@@ -1139,7 +1139,7 @@ $this->response->setAttribute("casinos", array (
     'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
     'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
     'new' => false,
-    'score_class' => 'Excellent',
+    'score_class' => 'Very good',
     'all_softwares' => 'Yggdrasil Gaming, Pragmatic Play',
     'deposit_minimum' => NULL,
     'welcome_package' => NULL,
@@ -1219,7 +1219,7 @@ $this->response->setAttribute("casinos", array (
     'id' => '1022',
     'name' => 'Mummies Bingo',
     'code' => 'mummies_bingo',
-    'rating' => 9,
+    'rating' => 10,
     'softwares' => 
     array (
       0 => 'Cozy Games',
@@ -1284,7 +1284,7 @@ $this->response->setAttribute("casinos", array (
     'id' => '1020',
     'name' => 'Wild Slots Casino',
     'code' => 'wild_slots_casino',
-    'rating' => 9,
+    'rating' => 0,
     'softwares' => 
     array (
       0 => 'NetEnt',
@@ -1339,7 +1339,7 @@ $this->response->setAttribute("casinos", array (
     'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
     'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
     'new' => false,
-    'score_class' => 'Excellent',
+    'score_class' => 'No score',
     'all_softwares' => 'NYX Interactive, NextGen Gaming, MicroGaming, Cryptologic, BetSoft, IGT, Aristocrat, Leander Games, Thunderkick, Evolution Gaming, Quickspin, Play n GO, ELK Studios',
     'deposit_minimum' => NULL,
     'welcome_package' => NULL,

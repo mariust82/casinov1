@@ -7,15 +7,19 @@ function normalize($name)
     return strtolower($str);
 }
 
-function get_rating($name)
+function get_rating($score)
 {
-    if($name == 0) {
+    if($score == 0) {
         $string = 'No score';
-    } elseif($name >= 1 && $name <= 4.99) {
+    } elseif($score >= 1 && $score <= 2.99) {
+        $string = 'Terrible';
+    } elseif($score >= 3 && $score <= 4.99) {
         $string = 'Poor';
-    } elseif($name >= 5 && $name <= 7.99) {
+    } elseif($score >= 5 && $score <= 6.99) {
         $string = 'Good';
-    } elseif($name >= 8 && $name <= 10) {
+    } elseif($score >= 7 && $score <= 8.99) {
+        $string = 'Very good';
+    } elseif($score >= 9 && $score <= 10) {
         $string = 'Excellent';
     }
 
