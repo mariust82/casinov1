@@ -31,6 +31,7 @@ class CasinosFilterController extends Controller {
         $sortCriteria = $this->getSortCriteria();
 
   		$page = (integer) $this->request->getValidator()->getPathParameter("page");
+
         $object = new CasinosList(new CasinoFilter($_GET, $this->request->getAttribute("country")));
 
         $total = $object->getTotal();
@@ -40,6 +41,12 @@ class CasinosFilterController extends Controller {
         $this->response->setAttribute("total_casinos", $total);
 
         $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page,$this->limit,$offset));
+
+        if($object->getFilter()->getBankingMethod())  // only if there is a banking method (when this controller is active) we know that the page type is banking_method
+            $this->response->setAttribute('page_type','banking_method');
+        else
+            $this->response->setAttribute('page_type','not_banking_method');
+
 	}
 
 	private function getSortCriteria() {
