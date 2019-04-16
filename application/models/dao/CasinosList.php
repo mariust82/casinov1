@@ -191,4 +191,9 @@ class CasinosList
         return implode(", ", $items);
     }
 
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
 }

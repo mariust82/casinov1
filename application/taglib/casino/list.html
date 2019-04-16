@@ -4,7 +4,7 @@
 
 	<div class="list-heading list-item">
 		<div class="list-item-cell list-item-casino list-heading-title">CASINO</div>
-		<std:if condition="${data.filter} == 'banking_method'">
+		<std:if condition="${data.page_type} == 'banking_method'">
 			<div class="list-item-cell list-heading-title list-item-banking-dep">DEPOSIT</div>
 			<div class="list-item-cell list-heading-title list-item-banking-wit">WITHDRAW</div>
 		<std:else>
@@ -61,7 +61,7 @@
 					</div>
 				</div>
 
-				<std:if condition="${data.filter} != 'banking_method'">
+				<std:if condition="${data.page_type} != 'banking_method'">
 					<div class="list-item-cell list-item-type">
 						<div class="multirow">
 							<div class="list-item-flex">
