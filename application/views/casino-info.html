@@ -42,14 +42,15 @@
 					<div class="casino-review-heading-img">
 						<img src="${data.casino.logo_big}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
 					</div>
-					<div class="list-rating ${normalize(${data.casino.score_class})}">
+					<std:set name="score_class" value="get_rating(${data.casino.rating})"/>
+					<div class="list-rating ${normalize(${score_class})}">
 						<div class="list-rating-wrap">
                                                     <std:if condition="${data.casino.rating} == 0">
                                                         <div class="list-rating-score">-</div>
 							<div class="list-rating-text">No score</div>
                                                     <std:else>
                                                         <div class="list-rating-score">${ceil(${data.casino.rating})}</div>
-							<div class="list-rating-text">${data.casino.score_class}</div>
+							<div class="list-rating-text">${score_class} </div>
                                                     </std:if>
 						</div>
 					</div>
