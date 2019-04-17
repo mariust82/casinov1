@@ -336,8 +336,8 @@
     <geoip>
         <lucinda>/tmp/ip2country.mmdb</lucinda>
         <alex>/home/casinoslists/public_html/ip2country.mmdb</alex>
-        <dev>/home/casinoslists/public_html/ip2country.mmdb</dev>
-        <live>/home/casinoslists/public_html/ip2country.mmdb</live>
+        <dev>/home/casinoslists/public_html/dev/ip2country.mmdb</dev>
+        <live>/home/casinoslists/public_html/live/ip2country.mmdb</live>
     </geoip>
     <images path="public/sync">
         <image type="casino_logo_light">
