@@ -8605,17 +8605,28 @@ img.grayscale {
   }
 
   .table-package-opener{
-    display:block;
-    font-size:7px;
-    position:absolute;
-    top:50%;
-    right:0;
-    margin:-4px 0 0 0;
-    -webkit-transition:transform .3s;
-    -moz-transition:transform .3s;
-    -ms-transition:transform .3s;
-    -o-transition:transform .3s;
-    transition:transform .3s;
+    display: block;
+    font-size: 7px;
+    position: absolute;
+    top: 50%;
+    right: -4px;
+    margin: -11px 0 0 0;
+    -webkit-transition: transform .3s;
+    -moz-transition: transform .3s;
+    -ms-transition: transform .3s;
+    -o-transition: transform .3s;
+    transition: transform .3s;
+    width: 20px;
+    height: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
 
   .table-package tr.active .table-package-opener{
