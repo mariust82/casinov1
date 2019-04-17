@@ -3,6 +3,7 @@
 <xml>
     <application>
         <version>0.8.7.25</version>
+
         <default_character_encoding>UTF-8</default_character_encoding>
         <default_page>index</default_page>
         <default_extension>html</default_extension>

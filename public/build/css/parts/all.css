@@ -3790,7 +3790,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .list-rating.no-score .list-rating-wrap {
-  border: 1px solid gray;
+  border: 1px solid #A8AEC8;
 }
 
 @media screen and (max-width: 1023px) {
@@ -8403,9 +8403,6 @@ img.grayscale {
    line-height: 26px;
 }
 
-.list-rating.no-score .list-rating-wrap{
-  border: 1px solid #cecece;
-}
 .no-scroll{
   overflow:hidden;
 }
