@@ -238,7 +238,7 @@ var AJAX_CUR_PAGE = 1;
     }
 
     function initTableOpen() {
-        $('.table').on('click', '.js-table-package-opener', function(e) {
+        $('.js-table-package-opener').on('click', function(e) {
             $(this).closest('tr').toggleClass('active');
             // $(this).closest('tr').find('td:last-child, td:nth-child(5)').show();
             e.preventDefault();
