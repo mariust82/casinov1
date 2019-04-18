@@ -1,10 +1,4 @@
 <?php
-$benchmark = false;
-if($benchmark) {
-    require_once("hlis/profilers/PageProfiler.php");
-    $bm = new PageProfiler();
-    $bm->start();
-}
 
 // take control of STDERR
 require_once("src/error_handling/ErrorsFrontController.php");
@@ -17,8 +11,5 @@ try {
 } catch (PathNotFoundException $e) {
     $_SERVER["REQUEST_URI"] = "/404";
     new FrontController("configuration.xml");
-}
+}catch (OperationFailedException $e){}
 
-if($benchmark) {
-    $bm->end();
-}
