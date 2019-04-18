@@ -374,11 +374,10 @@ var AJAX_CUR_PAGE = 1;
         if (targetNode) {
 
 
-            var isMobile =  checkIfIsMobileDevice();
+           // var isMobile =  checkIfIsMobileDevice();
 
-            var eventL = isMobile ? 'click' : 'hover';
+            targetNode.addEventListener( 'hover', function(e) {
 
-            targetNode.addEventListener( eventL, function(e) {
                 var that = this,currentOpened,
                     currentTarget = e.target;
                 while(currentTarget != that) {
