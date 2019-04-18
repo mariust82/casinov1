@@ -1372,7 +1372,9 @@ var AJAX_CUR_PAGE = 1;
             loadDelay = 0,
             // scrollingBlock = $('.js-scrolling'),
             _request = new XMLHttpRequest();
-            window.contentBeforeSearch;
+        window.contentBeforeSearch;
+        var nr_requests; // nr requests sent
+        var nr_requests_completed; // nr requests completed
 
         var _onEvent = function() {
 
@@ -1386,6 +1388,8 @@ var AJAX_CUR_PAGE = 1;
 
                 _searchInput.on({
                     'focus': function() {
+                        nr_requests = 0;
+                        nr_requests_completed = 0;
                         _ajaxRequestPopup('/search');
                         _resetPages();
                     },
@@ -1404,6 +1408,8 @@ var AJAX_CUR_PAGE = 1;
                         } else {
                             var searchPopup = _obj.find('#search__popup');
                             searchPopup.addClass('load');
+                            nr_requests++;
+                            // console.log("Nr_request = "+nr_requests);
                             _ajaxRequestPopup('/search');
                             _resetPages();
                         }
@@ -1476,7 +1482,7 @@ var AJAX_CUR_PAGE = 1;
                 if (_remainderLists < _showMoreNum && _clicksLists == 1) {
                     _searchMoreListsNumHolder.text(_remainderLists);
                 }
-                
+
                 if (_remainderCasinos < _showMoreNum && _clicksCasinos == 1) {
                     _searchMoreCasinosNumHolder.text(_remainderCasinos);
                 }
@@ -1490,7 +1496,7 @@ var AJAX_CUR_PAGE = 1;
                     function() {
                         _ajaxMore('/search/more-lists/'+_fromLists, $('.search-title span').text(), $('#all-lists-container'), 'lists');
                         // _loadMoreContent = true;
-                        
+
                         if (_fromLists >= _clicksLists) {
                             _searchMoreLists.fadeOut();
                         } else {
@@ -1506,13 +1512,13 @@ var AJAX_CUR_PAGE = 1;
                         return false;
                     }
                 );
-                
+
                 _searchMoreCasinos.on(
                     'click',
                     function() {
                         _ajaxMore('/search/more-casinos/'+_fromCasinos, $('.search-title span').text(), $('#all-casinos-container'), 'casinos');
                         // _loadMoreContent = true;
-                        
+
                         if (_fromCasinos >= _clicksCasinos) {
                             _searchMoreCasinos.fadeOut();
                         } else {
@@ -1534,7 +1540,7 @@ var AJAX_CUR_PAGE = 1;
                     function() {
                         _ajaxMore('/search/more-games/'+_fromPages, $('.search-title span').text(), $('#all-games-container'), 'games');
                         // _loadMoreContent = true;
-                        
+
                         if (_fromPages >= _clicksPages) {
                             _searchMorePages.fadeOut();
                         } else {
@@ -1642,7 +1648,11 @@ var AJAX_CUR_PAGE = 1;
             },
 
             _ajaxRequestPopup = function(target, page) {
-                if (BUSY_REQUEST) return;
+                if (BUSY_REQUEST && (nr_requests_completed == nr_requests)) // if nr request completed = nr request sent
+                {
+                    //  console.log("\n\n END \n\n");
+                    return;
+                }
                 BUSY_REQUEST = true;
                 _request.abort();
                 _request = $.ajax({
@@ -1654,8 +1664,10 @@ var AJAX_CUR_PAGE = 1;
                     dataType: 'json',
                     type: 'GET',
                     success: function(data) {
+                        // console.log("request succes " + _searchInput.val());
                         _hideLoading();
                         _loadData(data);
+
                     },
                     error: function(XMLHttpRequest) {
                         if (XMLHttpRequest.statusText != "abort") {
@@ -1664,8 +1676,10 @@ var AJAX_CUR_PAGE = 1;
                             _showEmptyMessage();
                         }
                     },
-                    complete: function() {
+                    complete: function(data) {
+                        // console.log('request complete');
                         _hideLoading();
+                        nr_requests_completed++;
                         BUSY_REQUEST = false;
                     }
                 });
@@ -1725,10 +1739,11 @@ var AJAX_CUR_PAGE = 1;
             },
 
             _loadData = function(data) {
+
                 var lists = data.body.lists;
                 var casinos = data.body.casinos;
                 var pages = data.body.games;
-                
+
                 if (!_loadMoreContent) {
                     _clearSearchBody();
                 }
@@ -1737,7 +1752,7 @@ var AJAX_CUR_PAGE = 1;
                     _showEmptyMessage();
                 } else {
                     _hideEmptyMessage();
-                    
+
                     if (!$.isEmptyObject(lists)) {
                         _searchListsContainer
                             .parent()
@@ -1758,7 +1773,7 @@ var AJAX_CUR_PAGE = 1;
                             .next()
                             .addClass('single');
                     }
-                    
+
                     if (!$.isEmptyObject(casinos)) {
                         _searchCasinosContainer
                             .parent()
