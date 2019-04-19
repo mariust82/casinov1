@@ -8,6 +8,7 @@ var AJAX_CUR_PAGE = 1;
         initToggleMenu();
         initSite();
         initMobileMenu();
+        menuHoverAction();
         new SearchPanel ( $('.header') );
 
         var user_rate = $('.rating-container').data('user-rate');
@@ -31,6 +32,13 @@ var AJAX_CUR_PAGE = 1;
         }
 
     });
+
+
+    function menuHoverAction(){
+        $('.header-menu__list-holder .expand-holder').on('mouseout', function (e) {
+                $('.expand-holder').removeClass('opened');
+        })
+    }
 
     //detect when scrolling is stoped
     $.fn.scrollEnd = function(callback, timeout) {
