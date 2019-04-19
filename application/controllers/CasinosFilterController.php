@@ -51,7 +51,12 @@ class CasinosFilterController extends Controller {
 
 	private function getSortCriteria() {
 	    if($this->request->getParameter("sort")==CasinoSortCriteria::NONE || $this->request->getParameter("label")=="New") {
-            return CasinoSortCriteria::NEWEST;
+	        $sort_criteria = $this->request->getParameter("sort");
+            if($sort_criteria == 1 || $sort_criteria == 3)
+                return  CasinoSortCriteria::NEWEST;
+            else
+                return CasinoSortCriteria::TOP_RATED;
+
         } else {
             return $_GET["sort"];
         }
