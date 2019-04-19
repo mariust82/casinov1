@@ -42,7 +42,7 @@ class CasinosListQuery
         if($filter->getBankingMethod()){
             if(sizeof($columns) > 1) {
                 $fields->add("t3.id", "has_dm");
-                $fields->add("t4.id", "has_wm");
+                $fields->add("t14.id", "has_wm");
             }
         }
     }
@@ -66,7 +66,7 @@ class CasinosListQuery
         if($filter->getBankingMethod()) {
             $banking_method_id = $this->getBankingNameMethod($filter->getBankingMethod());
             $query->joinLeft("casinos__deposit_methods","t3")->on(["t1.id" => "t3.casino_id","t3.banking_method_id" => $banking_method_id ]);
-            $query->joinLeft("casinos__withdraw_methods","t4")->on(["t1.id" => "t4.casino_id","t4.banking_method_id" => $banking_method_id]);
+            $query->joinLeft("casinos__withdraw_methods","t14")->on(["t1.id" => "t14.casino_id","t14.banking_method_id" => $banking_method_id]);
         }
         if($filter->getBonusType() || $filter->getFreeBonus()) {
             $condition =  $query->joinInner("casinos__bonuses", "t4")->on();
@@ -164,7 +164,7 @@ class CasinosListQuery
         {
             $group = new Lucinda\Query\Condition(array(), Lucinda\Query\LogicalOperator::_OR_);
             $group->set('t3.id', null,MySQLComparisonOperator::IS_NOT_NULL);
-            $group->set('t4.id', null,MySQLComparisonOperator::IS_NOT_NULL);
+            $group->set('t14.id', null,MySQLComparisonOperator::IS_NOT_NULL);
             $where->setGroup($group);
         }
     }
