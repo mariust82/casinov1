@@ -23,11 +23,11 @@ class GamesFilterController extends Controller
         $sortBy = isset($_GET["sort"]) ? $_GET["sort"] : GameSortCriteria::NONE;
 
 
-        $offset = $page * $this->limit;
+        $offset = $page * self::LIMIT;
         $object = new GamesList(new GameFilter($_GET));
         $total = $object->getTotal();
         $this->response->setAttribute("total_games", $total);
-        $results = $object->getResults($sortBy, $page, $this->limit ,$offset);
+        $results = $object->getResults($sortBy, $page, self::LIMIT ,$offset);
         $this->response->setAttribute("games", $results, $page);
 
     }
