@@ -31,6 +31,7 @@
             <lucinda>www.casinoslists.local</lucinda>
             <alex>www.casinoslists.local</alex>
             <amos>www.devcasinopro.adrian</amos>
+            <amos>C:\projects\casinoslists</amos>
             <bala>www.casinoslists.bala</bala>
             <mark>www.casinoslists.mark</mark>
             <dev>dev.casinoslists.com</dev>
@@ -186,6 +187,7 @@
             <parameter name="country" required="0" validator="CountryNameValidator"/>
             <parameter name="free_bonus" required="0" validator="StringValidator"/>
             <parameter name="feature" required="0" validator="StringValidator"/>
+            <parameter name="country_accepted" required="0" validator="BooleanValidator"/>
         </route>
         <route url="casinos-filter" controller="CasinosFilterController" view="casinos-list"/>
         <route url="games-filter/(page)" controller="GamesFilterController" view="games-list">
@@ -368,6 +370,8 @@
         <dev>https://devgame.casinoslists.com</dev>
         <live>https://game.casinoslists.com</live>
     </gameplay>
+
+
     <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
     <invision_api>
         <amos  blog_id = '1' api_key = "e0aff7134b11f730418086ea2a5daf1b" api_url = "https://c284076.tryinvision.com/" />
