@@ -28,6 +28,7 @@ class CasinosFilterController extends Controller
 
     public function run()
     {
+
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
         $this->response->setAttribute('is_mobile', $this->request->getAttribute("is_mobile"));
         $sortCriteria = $this->getSortCriteria();
@@ -55,6 +56,10 @@ class CasinosFilterController extends Controller
     private function getSortCriteria()
     {
         $short_criteria = $this->request->getAttribute('validation_results')->get('sort');
+        if(empty($short_criteria)){
+            return CasinoSortCriteria::NONE;
+        }
+
         if ($short_criteria == CasinoSortCriteria::NONE && $this->request->getParameter("label") == "New") {
             return CasinoSortCriteria::NEWEST;
         }else if($short_criteria == CasinoSortCriteria::NONE && !empty($this->request->getAttribute('validation_results')->get('country'))){
