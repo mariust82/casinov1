@@ -182,7 +182,7 @@
         </route>
 
         <route url="casinos-filter/(page)" controller="CasinosFilterController" view="casinos-list">
-            <parameter name="sort" validator="IntegerValidator"/>
+            <parameter name="sort"   required="0" validator="IntegerValidator"/>
             <parameter name="label" required="0" validator="StringValidator"/>
             <parameter name="country" required="0" validator="CountryNameValidator"/>
             <parameter name="free_bonus" required="0" validator="StringValidator"/>
@@ -191,7 +191,7 @@
         </route>
         <route url="casinos-filter" controller="CasinosFilterController" view="casinos-list"/>
         <route url="games-filter/(page)" controller="GamesFilterController" view="games-list">
-            <parameter name="sort" validator="IntegerValidator"/>
+            <parameter name="sort"   required="0" validator="IntegerValidator"/>
             <parameter name="game_type" required="0" validator="GameTypeValidator"/>
             <parameter name="software" required="0" validator="SoftwareNameValidator"/>
         </route>
