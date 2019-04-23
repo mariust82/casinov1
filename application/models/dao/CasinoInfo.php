@@ -267,8 +267,9 @@ class CasinoInfo
             t1.*, t2.name as bonus_type_name
             FROM casinos__bonuses AS t1 INNER JOIN
             bonus_types as t2 ON t1.bonus_type_id = t2.id
-            WHERE t2.name IN ('First Deposit Bonus','No Deposit Bonus' ,'Welcome Package') AND t1.casino_id = ".$casino_id."
+            WHERE t2.name IN ('First Deposit Bonus','No Deposit Bonus' ,'Welcome Package' , 'Free Spins') AND t1.casino_id = ".$casino_id."
              ORDER BY  CASE
+                    WHEN t2.name  = 'Free Spins'  THEN 0
                      WHEN t2.name  = 'No Deposit Bonus'  THEN 1
                      WHEN t2.name = 'First Deposit Bonus'  THEN 2
                      WHEN t2.name = 'Welcome Package' THEN 3
@@ -296,6 +297,7 @@ class CasinoInfo
                     break;
 
                     case 'No Deposit Bonus':
+                    case 'Free Spins':
                         $full_welcome_package->valid_on  = 'On sign-up';
                         $full_welcome_package->min_deposit = 'Free';
                     break;
