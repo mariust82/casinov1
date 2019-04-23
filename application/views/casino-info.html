@@ -111,12 +111,14 @@
 								<div class="def-list-key">Currencies</div>
 								<div class="def-list-val">
 
-									<std:set name="numItems" value="count(${data.casino.currencies})"/>
-									<std:set name="i" value="0"/>
 									<std:foreach var="${data.casino.currencies}" key ="key" value="result">
-									      ${result}
-									      <std:set name="i" value="${i}+1"/>
-									      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
+
+										<std:if condition="${result} == end(${data.casino.currencies})">
+											${result}
+											<std:else>
+												${result},&nbsp;
+										</std:if>
+
 									</std:foreach>
 								</div>
 							</div>
@@ -130,7 +132,7 @@
 										<std:if condition="${value} == end(${data.casino.softwares})">
 											<a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>
 										<std:else>
-											<a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>&nbsp;,
+											<a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>,
 										</std:if>
 
 									</std:foreach>
@@ -138,20 +140,21 @@
 							</div>
 						</std:if>
 
+						<std:if condition="!empty(${data.casino.casino_game_types})">
 						<div class="def-list-item">
-							<div class="def-list-key">Game Type</div>
+							<div class="def-list-key">Game Types</div>
 							<div class="def-list-val">
-								<std:if condition="!empty(${data.casino.casino_game_types})">
+
 									<std:foreach var="${data.casino.casino_game_types}" key ="key" value="value">
 										<std:if condition="${value} == end(${data.casino.casino_game_types})">
 											${value.name}
 											<std:else>
-											${value.name}&nbsp;,&nbsp;
+											${value.name},&nbsp;
 										</std:if>
 									</std:foreach>
-								</std:if>
 							</div>
 						</div>
+						</std:if>
 
 
 						<div class="def-list-item">
