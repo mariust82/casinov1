@@ -635,6 +635,7 @@ var AJAX_CUR_PAGE = 1;
             _moreButton,
             _resetButton,
             _itemsPerPage = $('.list-item').length,
+            _defaultButton = $('#default'),
             _totalItems = $('.qty-items').data('load-total'),
             _clicks = Math.floor(_totalItems/_itemsPerPage);
             _currentClick = 0,
@@ -645,6 +646,7 @@ var AJAX_CUR_PAGE = 1;
             }
 
             _url = _obj.data('url');
+            _defaultButton.prop('checked', true);
 
         var _onEvent = function() {
                 _moreButton = $('.js-more-items');
