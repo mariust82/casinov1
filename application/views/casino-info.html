@@ -94,13 +94,12 @@
 							<div class="def-list-item">
 								<div class="def-list-key">Languages</div>
 								<div class="def-list-val">
-
-									<std:set name="numItems" value="count(${data.casino.languages})"/>
-									<std:set name="i" value="0"/>
 									<std:foreach var="${data.casino.languages}" key ="key" value="result">
+										<std:if condition="${result} == end(${data.casino.languages})">
 									      ${result}
-									      <std:set name="i" value="${i}+1"/>
-									      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
+										<std:else>
+											${result},&nbsp;
+										</std:if>
 									</std:foreach>
 								</div>
 							</div>
@@ -118,7 +117,6 @@
 											<std:else>
 												${result},&nbsp;
 										</std:if>
-
 									</std:foreach>
 								</div>
 							</div>
