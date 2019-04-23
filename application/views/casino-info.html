@@ -206,12 +206,12 @@
 							<div class="def-list-item">
 								<div class="def-list-key">Jurisdiction (license)</div>
 								<div class="def-list-val">
-									<std:set name="numItems" value="count(${data.casino.licenses})"/>
-									<std:set name="i" value="0"/>
 									<std:foreach var="${data.casino.licenses}" key ="key" value="result">
-									      ${result}
-									      <std:set name="i" value="${i}+1"/>
-									      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
+										<std:if condition="${result} == end(${data.casino.licenses})">
+											${result}
+										<std:else>
+											${result},&nbsp;
+										</std:if>
 									</std:foreach>
 								</div>
 							</div>
@@ -221,12 +221,12 @@
 							<div class="def-list-item">
 								<div class="def-list-key">Certified by</div>
 								<div class="def-list-val">
-									<std:set name="numItems" value="count(${data.casino.certifiers})"/>
-									<std:set name="i" value="0"/>
 									<std:foreach var="${data.casino.certifiers}" key ="key" value="result">
-									      ${result}
-									      <std:set name="i" value="${i}+1"/>
-									      <std:if condition="${i}+1 <= ${numItems}">, </std:if>
+										<std:if condition="${result} == end(${data.casino.certifiers})">
+											${result}
+										<std:else>
+											${result},&nbsp;
+										</std:if>
 									</std:foreach>
 								</div>
 							</div>
