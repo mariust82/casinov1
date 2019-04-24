@@ -56,8 +56,8 @@ class CasinoInfo
 
         // detect primary currencies & append to withdrawal minimum
         $primaryCurrencies = implode("/", $this->getPrimaryCurrencies($output->id));
-        if($output->withdrawal_minimum) $output->withdrawal_minimum = $primaryCurrencies.$output->withdrawal_minimum;
-        $output->deposit_minimum = !empty( $output->deposit_minimum) ? $primaryCurrencies.$output->deposit_minimum : '';
+        $output->withdrawal_minimum = !empty($output->withdrawal_minimum) ? $primaryCurrencies.$output->withdrawal_minimum : 0;
+        $output->deposit_minimum = !empty( $output->deposit_minimum) ? $primaryCurrencies.$output->deposit_minimum : 0;
 
         // append softwares
         $output->softwares = $this->getDerivedData("game_manufacturers", "game_manufacturer_id", $output->id,"name","is_primary DESC,t1.id DESC");
