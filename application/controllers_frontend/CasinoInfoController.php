@@ -2,9 +2,9 @@
 class CasinoInfoController extends Controller {
     public function run() {
         $this->response->setAttribute("country", array (
-  'id' => '43',
-  'code' => 'RO',
-  'name' => 'Romania',
+  'id' => '34',
+  'code' => 'US',
+  'name' => 'United States',
 ));
 $this->response->setAttribute("menu_top", array (
   0 => 
@@ -216,16 +216,6 @@ $this->response->setAttribute("menu_top", array (
     array (
       0 => 
       array (
-        'title' => 'Romania Casinos',
-        'url' => '/countries-list/romania',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      1 => 
-      array (
         'title' => 'USA Casinos',
         'url' => '/countries-list/united-states',
         'is_active' => false,
@@ -234,7 +224,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      2 => 
+      1 => 
       array (
         'title' => 'UK Casinos',
         'url' => '/countries-list/united-kingdom',
@@ -244,7 +234,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      3 => 
+      2 => 
       array (
         'title' => 'Australia Casinos',
         'url' => '/countries-list/australia',
@@ -254,7 +244,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
+      3 => 
       array (
         'title' => 'Germany Casinos',
         'url' => '/countries-list/germany',
@@ -264,7 +254,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      5 => 
+      4 => 
       array (
         'title' => 'New Zealand Casinos',
         'url' => '/countries-list/new-zealand',
@@ -274,7 +264,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      6 => 
+      5 => 
       array (
         'title' => 'Netherlands Casinos',
         'url' => '/countries-list/netherlands',
@@ -284,7 +274,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      7 => 
+      6 => 
       array (
         'title' => 'Sweden Casinos',
         'url' => '/countries-list/sweden',
@@ -294,7 +284,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      8 => 
+      7 => 
       array (
         'title' => 'All Countries',
         'url' => '/countries ',
@@ -357,7 +347,7 @@ $this->response->setAttribute("menu_top", array (
       4 => 
       array (
         'title' => 'EcoPayz EcoCard Casinos',
-        'url' => '/banking/ecopayz',
+        'url' => '/banking/ecopayz-ecocard',
         'is_active' => false,
         'submenuItems' => 
         array (
@@ -529,25 +519,13 @@ $this->response->setAttribute("menu_top", array (
   ),
 ));
 $this->response->setAttribute("casino", array (
-  'id' => '1129',
-  'name' => 'Blighty Bingo',
-  'code' => 'blighty_bingo',
-  'rating' => 10,
+  'id' => '332',
+  'name' => 'African Palace Casino',
+  'code' => 'african_palace_casino',
+  'rating' => 5,
   'softwares' => 
   array (
-    0 => 'NetEnt',
-    1 => 'Thunderkick',
-    2 => 'Pariplay',
-    3 => 'NYX Interactive',
-    4 => 'NextGen Gaming',
-    5 => 'IGT',
-    6 => 'GTS',
-    7 => 'GGP',
-    8 => 'Eyecon',
-    9 => 'Evolution Gaming',
-    10 => 'Dragonfish',
-    11 => 'Bally',
-    12 => 'Amaya Gaming',
+    0 => 'Playtech',
   ),
   'languages' => 
   array (
@@ -555,94 +533,224 @@ $this->response->setAttribute("casino", array (
   ),
   'currencies' => 
   array (
-    0 => 'EUR',
-    1 => 'GBP',
-    2 => 'CAD',
+    0 => 'USD',
+    1 => 'EUR',
+    2 => 'AUD',
+    3 => 'CAD',
+    4 => 'NZD',
+    5 => 'INR',
   ),
   'bonus_first_deposit' => 
   array (
-    'amount' => '700% + 10 FS',
-    'min_deposit' => '€/£10',
-    'wagering' => '0',
-    'games_allowed' => 'All',
-    'code' => 'BLIGHTY',
+    'amount' => '200%',
+    'min_deposit' => '$/€/£25',
+    'wagering' => '40x(D+B)',
+    'games_allowed' => 'All except Video Poker,Progressive Games and Red Dog',
+    'code' => 'No code required',
     'type' => 'First Deposit Bonus',
+    'bonus_type_Abbreviation' => NULL,
   ),
   'bonus_free' => NULL,
-  'is_live_dealer' => '1',
-  'date_established' => '2017-01-17',
+  'is_live_dealer' => '0',
+  'date_established' => '2013-01-01',
   'emails' => 
   array (
-    0 => 'help@bingosupport.org',
+    0 => 'support@africanpalacecasino.com',
+    1 => 'vip@africanpalacecasino.com',
+    2 => 'techsupport@africanpalacecasino.com',
+    3 => 'cashier@africanpalacecasino.com',
+    4 => 'security@africanpalacecasino.com',
+    5 => 'info@africanpalacecasino.com',
+    6 => 'marketing@africanpalacecasino.com',
+    7 => 'manager@africanpalacecasino.com',
+    8 => 'pitboss@africanpalacecasino.com',
   ),
   'phones' => 
   array (
-    0 => 'UK: +44 800-901-2510',
+    0 => 'General: +44-203-139-9035',
+    1 => 'Australia: +61 180-082-4591',
+    2 => 'Canada: +1 855-582-4591',
+    3 => 'New Zealand: +64 080-044-6155',
   ),
-  'is_live_chat' => '0',
+  'is_live_chat' => '1',
   'licenses' => 
   array (
-    0 => 'UK',
-    1 => 'Gibraltar',
+    0 => 'Curacao',
   ),
   'certifiers' => 
   array (
-    0 => 'eCOGRA',
-    1 => 'GamCare',
   ),
-  'affiliate_program' => 'Tau Affiliates',
+  'affiliate_program' => 'Commission365',
   'affiliate_link' => NULL,
-  'withdrawal_minimum' => '€/£/CA$35',
+  'tc_link' => NULL,
+  'withdrawal_minimum' => '$/€/AU$25',
   'withdrawal_limits' => 
   array (
-    0 => '€/£/CA$1000 per day',
-    1 => '€/£/CA$2000 per week',
+    0 => '$/€/AU$25000 per month',
   ),
   'withdrawal_timeframes' => 
   array (
-    0 => 'Ewallets - up to 3 business days',
-    1 => 'Wire Transfer - 4-5 business days',
-    2 => 'Credit cards - 6-7 business days',
+    0 => 'Ewallets - 1-2 business days',
+    1 => 'Wire Transfer - 2-3 business days',
+    2 => 'Credit cards - 4-5 business days',
   ),
-  'deposit_methods' => 
-  array (
-    0 => 'EntroPay',
-    1 => 'Maestro',
-    2 => 'MasterCard',
-    3 => 'Neteller',
-    4 => 'PayPal',
-    5 => 'Paysafe Card',
-    6 => 'Visa',
-    7 => 'Visa Electron',
-    8 => 'Wire Transfer',
-  ),
-  'withdraw_methods' => 
-  array (
-    0 => 'Maestro',
-    1 => 'MasterCard',
-    2 => 'Neteller',
-    3 => 'Visa',
-    4 => 'Visa Electron',
-    5 => 'Wire Transfer',
-  ),
-  'is_country_accepted' => '1',
-  'is_language_accepted' => '0',
-  'is_currency_accepted' => '0',
+  'deposit_methods' => NULL,
+  'withdraw_methods' => NULL,
+  'is_country_accepted' => '0',
+  'is_language_accepted' => '1',
+  'is_currency_accepted' => '1',
   'note' => NULL,
-  'invision_casino_id' => NULL,
+  'invision_casino_id' => '0',
+  'is_tc_link' => '0',
+  'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
+  'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
+  'new' => NULL,
+  'score_class' => 'Good',
+  'all_softwares' => NULL,
+  'deposit_minimum' => '',
+  'welcome_package' => 
+  array (
+    0 => 
+    array (
+      'id' => '364891',
+      'casino_id' => '332',
+      'bonus_type_id' => '2',
+      'codes' => 'No code required',
+      'amount' => '200%',
+      'wagering' => '40x(D+B)',
+      'availability' => '',
+      'minimum_deposit' => '$/€/£25',
+      'games' => 'All except Video Poker,Progressive Games and Red Dog',
+      'is_exclusive' => '0',
+    ),
+    1 => 
+    array (
+      'id' => '364892',
+      'casino_id' => '332',
+      'bonus_type_id' => '8',
+      'codes' => 'No code required',
+      'amount' => '50%',
+      'wagering' => '40x(D+B)',
+      'availability' => '2nd Deposit',
+      'minimum_deposit' => '$/€50',
+      'games' => 'All except Video Poker,Progressive Games and Red Dog',
+      'is_exclusive' => '0',
+    ),
+    2 => 
+    array (
+      'id' => '364893',
+      'casino_id' => '332',
+      'bonus_type_id' => '8',
+      'codes' => 'No code required',
+      'amount' => '75%',
+      'wagering' => '40x(D+B)',
+      'availability' => '3rd Deposit',
+      'minimum_deposit' => '$/€50',
+      'games' => 'All except Video Poker,Progressive Games and Red Dog',
+      'is_exclusive' => '0',
+    ),
+    3 => 
+    array (
+      'id' => '364894',
+      'casino_id' => '332',
+      'bonus_type_id' => '8',
+      'codes' => 'No code required',
+      'amount' => '100%',
+      'wagering' => '40x(D+B)',
+      'availability' => '4th Deposit',
+      'minimum_deposit' => '$/€50',
+      'games' => 'All except Video Poker,Progressive Games and Red Dog',
+      'is_exclusive' => '0',
+    ),
+  ),
+  'casino_deposit_methods' => 
+  array (
+    'EcoPayz' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => false,
+      'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+    ),
+    'EntroPay' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => false,
+      'logo' => '/public/sync/banking_method_light/68x39/entropay.png',
+    ),
+    'MasterCard' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => false,
+      'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+    ),
+    'Neteller' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => true,
+      'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+    ),
+    'POLi' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => false,
+      'logo' => '/public/sync/banking_method_light/68x39/poli.png',
+    ),
+    'Paysafe Card' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => false,
+      'logo' => '/public/sync/banking_method_light/68x39/paysafe_card.png',
+    ),
+    'Skrill Moneybookers' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => true,
+      'logo' => '/public/sync/banking_method_light/68x39/skrill_moneybookers.png',
+    ),
+    'UseMyServices' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => false,
+      'logo' => '/public/sync/banking_method_light/68x39/usemyservices.png',
+    ),
+    'Visa' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => false,
+      'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+    ),
+    'Wire Transfer' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => false,
+      'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+    ),
+    'Wirecard' => 
+    array (
+      'deposit_methods' => false,
+      'withdraw_methods' => true,
+      'logo' => '/public/sync/banking_method_light/68x39/wirecard.png',
+    ),
+  ),
+  'casino_game_types' => 
+  array (
+  ),
   'status' => NULL,
-  'is_tc_link' => '1',
 ));
-$this->response->setAttribute("user_score", '10');
+$this->response->setAttribute("user_score", 0);
+$this->response->setAttribute("user_score_class", 'No score');
 $this->response->setAttribute("total_reviews", 0);
 $this->response->setAttribute("reviews", array (
 ));
+$this->response->setAttribute("country_status", 'not-accepted');
+$this->response->setAttribute("add_text", 15);
 $this->response->setAttribute("page_info", array (
-  'head_title' => 'Blighty Bingo Review with Authentic Players Reviews & Ratings!',
-  'head_description' => ' Complete Blighty Bingo Review | Go through authentic and transparent real players reviews about Blighty Bingo and user-based Ratings at CasinosLists.com',
-  'body_title' => 'Blighty Bingo Review',
+  'head_title' => 'Read African Palace Casino Review at CasinosLists.com - 2019',
+  'head_description' => 'Full African Palace Casino Review | Full Details About African Palace Casino, African Palace Casino Bonuses and Coupons, Best Reviews at CasinosLists.com - 2019',
+  'body_title' => 'African Palace Casino review April 2019',
 ));
-$this->response->setAttribute("version", '0.8.4.6');
+$this->response->setAttribute("version", '0.8.7.02');
+$this->response->setAttribute("use_bundle", false);
 $this->response->setAttribute("tms", array (
 ));
 

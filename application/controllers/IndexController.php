@@ -29,7 +29,8 @@ class IndexController extends BaseController {
         $this->response->setAttribute("no_deposit_casinos", $this->getCasinos(
             array("bonus_type"=>"no deposit bonus"), CasinoSortCriteria::NEWEST, 5));
         $this->response->setAttribute("new_games", $this->getGames(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")),GameSortCriteria::NEWEST, 6));
-
+        $this->response->setAttribute("filter",null);
+        $this->response->setAttribute("page_type","index");
 	}
 
 	private function  getCasinos($filter, $sortBy, $limit) {
@@ -40,8 +41,8 @@ class IndexController extends BaseController {
             unset($filter["country_accepted"]);
             $object = new CasinosList(new CasinoFilter($filter, $this->request->getAttribute("country")));
             $results = $object->getResults($sortBy, 0,$limit);
-        }
 
+        }
         return $results;
     }
 
@@ -68,4 +69,6 @@ class IndexController extends BaseController {
         $object = new PageInfoDAO();
         $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
+
 }
+

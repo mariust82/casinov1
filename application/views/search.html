@@ -15,12 +15,12 @@
 				</div>
 				<ul id="all-lists-container">
 					<std:for start="0" end="${data.index} - 1" value="i">
-						<li><a href="${data.lists.${i}.url}">${data.lists.${i}.title}</a></li>
+						<li><a href="/${data.lists.${i}.url}">${data.lists.${i}.title}</a></li>
 					</std:for>
 				</ul>
 				<std:if condition="${data.total_lists} > 5">
 					<div class="search-list-more">
-                                            <a href="#" id="js-search-more-lists">Show&nbsp;<span class="more-lists" data-total-casinos="${data.total_lists}">5</span>&nbsp;more <i class="icon-chevron-down"></i></a>
+						<a href="#" id="js-search-more-lists">Show&nbsp;<span class="more-lists" data-total-casinos="${data.total_lists}">5</span>&nbsp;more <i class="icon-chevron-down"></i></a>
 					</div>
 				</std:if>
 			</div>

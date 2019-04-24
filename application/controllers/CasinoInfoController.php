@@ -31,6 +31,7 @@ class CasinoInfoController extends BaseController {
             $object->getUserVote(
             $info->id,
             $this->request->getAttribute('ip')) == FALSE ? 0: $object->getUserVote($info->id,  $this->request->getAttribute('ip')));
+        $this->response->setAttribute('user_score_class',$object->getScoreClass($this->response->getAttribute('user_score')));
 
         // get reviews
         $object = new CasinoReviews();
@@ -43,12 +44,31 @@ class CasinoInfoController extends BaseController {
             $this->response->setAttribute("total_reviews", 0);
             $this->response->setAttribute("reviews", array());
         }
+        $this->response->setAttribute('country_status',$this->get_country_status($this->response->getAttribute('casino')->is_country_accepted));
+        $this->response->setAttribute('add_text',$this->containsCasino($this->response->getAttribute('casino')->name));
+     //   var_dump($this->response->getAttribute('BOOM'));die();
 	}
 
 	protected function pageInfo(){
         // get page info
         $object = new PageInfoDAO();
         $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("casino")->name));
+    }
+
+    private function get_country_status($name)
+    {
+        if ($name) {
+            $string = 'accepted';
+        } else {
+            $string = 'not-accepted';
+        }
+
+        return $string;
+    }
+
+    private function containsCasino($name)
+    {
+        return strpos($name, 'Casino');
     }
 
 }

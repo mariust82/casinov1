@@ -21,32 +21,52 @@ require_once("application/models/dao/CasinosList.php");
 * @requestParameter play_version string Value of current play version, if  current page is "Features"
 * @requestParameter sort string Value can be "default", "top rated" or "newest"
 */
-class CasinosFilterController extends Controller {
+class CasinosFilterController extends Controller
+{
 
-    const LIMIT = 100;
+    protected $limit = 100;
 
-	public function run() {
-	    $this->response->setAttribute("country", $this->request->getAttribute("country"));
-        $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
+    public function run()
+    {
+
+        $this->response->setAttribute("country", $this->request->getAttribute("country"));
+        $this->response->setAttribute('is_mobile', $this->request->getAttribute("is_mobile"));
         $sortCriteria = $this->getSortCriteria();
 
-  		$page = (integer) $this->request->getValidator()->getPathParameter("page");
+        $page = (integer)$this->request->getValidator()->getPathParameter("page");
+
         $object = new CasinosList(new CasinoFilter($_GET, $this->request->getAttribute("country")));
 
         $total = $object->getTotal();
 
-        $offset = $page * self::LIMIT;
+        $offset = $page * $this->limit;
 
         $this->response->setAttribute("total_casinos", $total);
+        $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset));
 
-        $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page,self::LIMIT,$offset));
-	}
-
-	private function getSortCriteria() {
-	    if($this->request->getParameter("sort")==CasinoSortCriteria::NONE || $this->request->getParameter("label")=="New") {
-            return CasinoSortCriteria::NEWEST;
+        if ($object->getFilter()->getBankingMethod())  // only if there is a banking method (when this controller is active) we know that the page type is banking_method
+        {
+            $this->response->setAttribute('page_type', 'banking_method');
         } else {
-            return $_GET["sort"];
+            $this->response->setAttribute('page_type', 'not_banking_method');
+        }
+
+    }
+
+    private function getSortCriteria()
+    {
+        $short_criteria = $this->request->getAttribute('validation_results')->get('sort');
+        if(empty($short_criteria)){
+            return CasinoSortCriteria::NONE;
+        }
+
+        if ($short_criteria == CasinoSortCriteria::NONE && $this->request->getParameter("label") == "New") {
+            return CasinoSortCriteria::NEWEST;
+        }else if($short_criteria == CasinoSortCriteria::NONE && !empty($this->request->getAttribute('validation_results')->get('country'))){
+                return CasinoSortCriteria::POPULARITY;
+
+        } else {
+            return $this->request->getAttribute('validation_results')->get('sort');
         }
     }
 }

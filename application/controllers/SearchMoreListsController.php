@@ -16,6 +16,6 @@ class SearchMoreListsController extends Controller {
 	public function run() {
 	    $page = (integer) $this->request->getValidator()->getPathParameter("page");            
             $object = new ListsSearch($_GET["value"]);
-            $this->response->setAttribute("results", array_slice($object->getResults(), self::LIMIT*$page, self::LIMIT));
+            $this->response->setAttribute("results", array_slice($object->getResults(), self::LIMIT *$page, self::LIMIT));
 	}
 }

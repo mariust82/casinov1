@@ -17,6 +17,6 @@ class SearchMoreGamesController extends Controller {
         $page = (integer) $this->request->getValidator()->getPathParameter("page");
 
         $object = new GamesSearch($_GET["value"]);
-        $this->response->setAttribute("results", $object->getResults(self::LIMIT,self::LIMIT*$page));
+        $this->response->setAttribute("results", $object->getResults(self::LIMIT,self::LIMIT *$page));
 	}
 }

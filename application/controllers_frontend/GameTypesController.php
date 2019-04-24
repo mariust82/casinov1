@@ -1,5 +1,5 @@
 <?php
-class CasinoLabelsController extends Controller {
+class GameTypesController extends Controller {
     public function run() {
         $this->response->setAttribute("country", array (
   'id' => '34',
@@ -31,7 +31,7 @@ $this->response->setAttribute("menu_top", array (
   array (
     'title' => 'CASINOS',
     'url' => '/casinos',
-    'is_active' => true,
+    'is_active' => false,
     'submenuItems' => 
     array (
       0 => 
@@ -98,7 +98,7 @@ $this->response->setAttribute("menu_top", array (
       array (
         'title' => 'All Casinos',
         'url' => '/casinos',
-        'is_active' => true,
+        'is_active' => false,
         'submenuItems' => 
         array (
         ),
@@ -381,7 +381,7 @@ $this->response->setAttribute("menu_top", array (
   array (
     'title' => 'GAMES',
     'url' => '/games',
-    'is_active' => false,
+    'is_active' => true,
     'submenuItems' => 
     array (
       0 => 
@@ -508,7 +508,7 @@ $this->response->setAttribute("menu_top", array (
       array (
         'title' => 'All Games',
         'url' => '/games',
-        'is_active' => false,
+        'is_active' => true,
         'submenuItems' => 
         array (
         ),
@@ -519,43 +519,48 @@ $this->response->setAttribute("menu_top", array (
   ),
 ));
 $this->response->setAttribute("results", array (
-  'Best' => '89',
-  'Live Dealer' => '459',
-  'Mobile' => '895',
-  'eCOGRA' => '136',
-  'Stay away' => '42',
-  'Popular' => '15',
+  'Video Slots' => '4360',
+  'Video Poker' => '464',
+  'Classic Slots' => '421',
+  'Scratch Cards' => '281',
+  'Blackjack' => '188',
+  'Other' => '160',
+  'Roulette' => '154',
+  'Table Games' => '122',
+  'Keno' => '46',
+  'Baccarat' => '38',
+  'Bingo' => '35',
+  'Craps' => '13',
 ));
-$this->response->setAttribute("tms", array (
-  'upper_text' => '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-
-<p><span class="dyna-var" id="foo"> new NDB in list</span></p>
-
-<p><span class="dyna-var" id="foo">0000000&nbsp;</span>new NDB in site</p>
-
-<p><span class="dyna-var"><span class="dyna-var" id="foo"> best NDB in list<br />
-<span class="dyna-var" id="foo">$/€25best NDB in site</span></span></span></p>
-
-<p><span class="dyna-var"><span class="dyna-var"><span class="dyna-var"><span class="dyna-var" id="foo"> games in list</span></span></span></span></p>
-
-<p><span class="dyna-var"><span class="dyna-var"><span class="dyna-var"><span class="dyna-var"><span class="dyna-var" id="foo">6282 games in site</span></span></span></span></span></p>
-',
-));
-$this->response->setAttribute("software_logo_small", array (
-  0 => '/public/sync/software_logo_light/80x53/best.png',
-  1 => '/public/sync/software_logo_light/80x53/live_dealer.png',
-  2 => '/public/sync/software_logo_light/80x53/mobile.png',
-  3 => '/public/sync/software_logo_light/80x53/ecogra.png',
-  4 => '/public/sync/software_logo_light/80x53/stay_away.png',
-  5 => '/public/sync/software_logo_light/80x53/popular.png',
+$this->response->setAttribute("logos", array (
+  0 => '/public/sync/game_type_logo/136x100/video_slots.jpg',
+  1 => '/public/sync/game_type_logo/136x100/video_poker.jpg',
+  2 => '/public/sync/game_type_logo/136x100/classic_slots.jpg',
+  3 => '/public/sync/game_type_logo/136x100/scratch_cards.jpg',
+  4 => '/public/sync/game_type_logo/136x100/blackjack.jpg',
+  5 => '/public/sync/game_type_logo/136x100/other.jpg',
+  6 => '/public/sync/game_type_logo/136x100/roulette.jpg',
+  7 => '/public/sync/game_type_logo/136x100/table_games.jpg',
+  8 => '/public/sync/game_type_logo/136x100/keno.jpg',
+  9 => '/public/sync/game_type_logo/136x100/baccarat.jpg',
+  10 => '/public/sync/game_type_logo/136x100/bingo.jpg',
+  11 => '/public/sync/game_type_logo/136x100/craps.jpg',
 ));
 $this->response->setAttribute("page_info", array (
-  'head_title' => 'Online Casinos Lists at CasinosLists.com - 2019',
-  'head_description' => 'Online Casinos Lists | Check out the Best, Safest, Newest and even most Popular Online Casinos lists! All at CasinosLists.com - 2019',
-  'body_title' => 'Online Casinos For Real Money',
+  'head_title' => 'Online Casino Games List - 2019',
+  'head_description' => 'Free Online Casino Games List | Play Online Casino Demo Games, Video Slots List, Blackjack List, Video Poker List, Roulette Games List and More! - 2019',
+  'body_title' => 'Online Casino Games List',
 ));
 $this->response->setAttribute("version", '0.8.7.02');
 $this->response->setAttribute("use_bundle", false);
+$this->response->setAttribute("tms", array (
+  'upper_text' => '<p>games - update</p>
+
+<p><b>0</b></p>
+
+<p><strong>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</strong></p>
+',
+));
 
     }
 }

@@ -47,7 +47,8 @@ class Casinos implements FieldValidator
         $object->softwares = $row["software"];
         $object->is_open = $row["is_open"];
         $object->note = str_replace("www.thebigfreechiplist.com", "www.casinoslists.com", $row["note"]);
-
+        $object->logo_big = $this->getCasinoLogo($object->code = $row["code"],"124x82");
+        $object->logo_small = $this->getCasinoLogo($object->code = $row["code"],"85x56");
         return $object;
     }
 
@@ -119,5 +120,16 @@ class Casinos implements FieldValidator
 
         return SQL("UPDATE casinos SET invision_casino_id = $entryId  WHERE id=:id",array(":id"=>$casinoId))->getAffectedRows();
 
+    }
+    private function getCasinoLogo($name, $resolution) {
+
+        $logoDirPath = "/public/sync/casino_logo_light/".$resolution;
+        $logoFile = strtolower(str_replace(" ", "_", $name)).".png";
+        $logo = $logoDirPath.'/'.$logoFile;
+
+        if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$logo)){
+            $logo =$logoDirPath."/no-logo-{$resolution}.png";
+        }
+        return $logo;
     }
 }

@@ -6,4 +6,5 @@ class CasinoBonus {
 	public $games_allowed;
 	public $code;
     public $type;
+    public $bonus_type_Abbreviation;
 }

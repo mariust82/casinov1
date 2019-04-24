@@ -30,4 +30,13 @@ class Casino {
     public $note;
     public $invision_casino_id;
     public $is_tc_link;
+    public $logo_big;
+    public $logo_small;
+    public $new;
+    public $score_class;
+    public $all_softwares;
+    public $deposit_minimum;
+    public $welcome_package;
+    public $casino_deposit_methods;
+    public $casino_game_types;
 }

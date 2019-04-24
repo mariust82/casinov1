@@ -15,20 +15,40 @@ class SearchAdvancedController extends Controller {
     const LIMIT = 5;
 
 	public function run() {
-        $this->response->setAttribute("value", $_GET["value"]);
-        
-        $lists = new ListsSearch($_GET["value"]);
+        $this->response->setAttribute("value",  $this->request->getAttribute('validation_results')->get('value'));
+
+        $lists = new ListsSearch($this->request->getAttribute('validation_results')->get('value'));
+
         $result = $lists->getResults();
+        $result = $this->fixListsGamesBug($result);
         $this->response->setAttribute("index",count($result) > 5 ? 5:  count($result));
         $this->response->setAttribute("lists",$result);
         $this->response->setAttribute("total_lists", count($result));
-        
-        $casinos = new CasinosSearch($_GET["value"]);
+
+        $casinos = new CasinosSearch($this->request->getAttribute('validation_results')->get('value'));
         $this->response->setAttribute("casinos", $casinos->getResults(self::LIMIT,0));
         $this->response->setAttribute("total_casinos", $casinos->getTotal());
-
-        $games = new GamesSearch($_GET["value"]);
+        $games = new GamesSearch($this->request->getAttribute('validation_results')->get('value'));
         $this->response->setAttribute("games", $games->getResults(self::LIMIT,0));
         $this->response->setAttribute("total_games", $games->getTotal());
 	}
+
+	private function fixListsGamesBug($lists)
+    {
+       for ($i=0;$i<count($lists);$i++)
+       {
+           if($lists[$i]['url'] == "games/(type)")
+           {
+               $lists[$i]['url'] = str_replace("(type)",$this->normalizeTitleName($lists[$i]['name']),$lists[$i]['url']);
+           }
+       }
+        return $lists;
+    }
+
+    private function normalizeTitleName($name)
+    {
+        $str = str_replace(" ", "-", $name);
+        $str = str_replace("#", "-", $str);
+        return strtolower($str);
+    }
 }
