@@ -297,9 +297,14 @@ class CasinoInfo
                     break;
 
                     case 'No Deposit Bonus':
+                        $full_welcome_package->valid_on  = 'On sign-up';
+                        $full_welcome_package->min_deposit = 'Free';
+                        break;
                     case 'Free Spins':
                         $full_welcome_package->valid_on  = 'On sign-up';
                         $full_welcome_package->min_deposit = 'Free';
+                        if(strpos($full_welcome_package->min_deposit, 'FS') === false)
+                            $full_welcome_package->min_deposit = $full_welcome_package->min_deposit .' FS';
                     break;
 
                     case 'Welcome Package':
