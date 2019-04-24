@@ -303,8 +303,8 @@ class CasinoInfo
                     case 'Free Spins':
                         $full_welcome_package->valid_on  = 'On sign-up';
                         $full_welcome_package->min_deposit = 'Free';
-                        if(strpos($full_welcome_package->min_deposit, 'FS') === false)
-                            $full_welcome_package->min_deposit = $full_welcome_package->min_deposit .' FS';
+                        if(strpos($full_welcome_package->bonus, 'FS') === false)
+                            $full_welcome_package->bonus = $full_welcome_package->bonus .' FS';
                     break;
 
                     case 'Welcome Package':
