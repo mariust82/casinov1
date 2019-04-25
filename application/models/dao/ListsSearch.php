@@ -9,6 +9,7 @@ class ListsSearch {
     }
     
     public function getResults() {
+
         if ($this->value == "") {
             return $this->setData($this->getSoftwares());
         }
@@ -26,7 +27,10 @@ class ListsSearch {
         for ($i = 0;$i<count($arr);$i++) {
 
             $row = SQL("SELECT * FROM pages WHERE url=:url",array(":url"=>$arr[$i]['url']))->toRow();
-            $arr[$i]['url'] = str_replace('(name)', strtolower(str_replace(' ', '-', $arr[$i]['name'])), $arr[$i]['url']);
+            if($arr[$i]['url'] != 'games/(type)')
+                $arr[$i]['url'] = str_replace('(name)', strtolower(str_replace(' ', '-', $arr[$i]['name'])), $arr[$i]['url']);
+            else
+                $arr[$i]['url'] = str_replace('(type)', strtolower(str_replace(' ', '-', $arr[$i]['name'])), $arr[$i]['url']);
             $arr[$i]['title'] = str_replace("(year)",date('Y'),str_replace("(month)",date('F'),str_replace("(name)", $arr[$i]['name'], $row['body_title'])));
         }
         return $arr;
@@ -69,7 +73,6 @@ class ListsSearch {
             $res = SQL($query);
         }
 
-       // var_dump( $res);die();
         $output = array();
         $i = 0;
         while($row = $res->toRow()) {
@@ -147,7 +150,6 @@ class ListsSearch {
         $res = SQL($certifications->toString());
 
         $features = $this->loop($res,"features/(name)");
-        //echo $select->toString();
         return array_merge($array,$features);
     }
     
