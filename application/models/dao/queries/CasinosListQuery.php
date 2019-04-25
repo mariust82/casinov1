@@ -157,7 +157,7 @@ class CasinosListQuery
         }
         elseif($filter->getCasinoLabel()=="Best")
         {
-            $where->set("t1.rating_total/t1.rating_votes",8,Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
+            $where->set("t1.rating_total/t1.rating_votes",7,Lucinda\Query\ComparisonOperator::GREATER);
             $where->set("t1.status_id",0);
         }
         if($filter->getBankingMethod())
