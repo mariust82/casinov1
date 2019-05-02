@@ -52,8 +52,6 @@ class CasinosList
         );
         $query = $queryGenerator->getQuery();
 
-
-
         // execute query
         $resultSet = SQL($query);
 
@@ -62,7 +60,7 @@ class CasinosList
             $object->id = $row["id"];
             $object->name = $row["name"];
             $object->code = $row["code"];
-            $object->rating = ceil($row["average_rating"]);
+            $object->rating = round($row["average_rating"]);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
             $object->date_formatted = $this->formatDate($row["date_established"]);
@@ -139,6 +137,7 @@ class CasinosList
         // build query
         $queryGenerator = new CasinosListQuery($this->filter, array("COUNT(t1.id) AS nr"), null, 0 , '', false);
         $query = $queryGenerator->getQuery();
+        return 12;
 
         return  SQL($query)->toValue();
     }
