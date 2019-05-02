@@ -25,6 +25,9 @@ class BestCasinoLabel
         $this->filter->sort_by[0] = 'score desc';
         $this->filter->sort_by[1] = 'priority desc';
         $this->filter->sort_by[2] = 'id desc';
+        $this->resetAllBestCasinos();
+        $this->populateCasinoLabel();
+        die("End");
     }
 
     // the main query that select the casino that should be 'Best'
