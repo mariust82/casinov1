@@ -7,8 +7,6 @@ class CasinosList
 {
     const LIMIT = 100;
     const BEST_CASINO_LIMIT = 50;
-    const MIN_TOTAL_REVIEW = 1;
-    const MIN_BEST_VALUE = 8;
     private $filter;
 
     public function __construct(CasinoFilter $filter)
@@ -52,6 +50,8 @@ class CasinosList
 
         );
         $query = $queryGenerator->getQuery();
+
+        //die($query);
 
         // execute query
         $resultSet = SQL($query);
