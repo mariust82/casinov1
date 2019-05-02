@@ -97,7 +97,7 @@ class CasinosListQuery
             if ($filter->getCasinoLabel() == "Stay away") {
                 $filter->setPromoted(FALSE);
             }
-            if ($filter->getCasinoLabel() != "New") {
+            if ($filter->getCasinoLabel() != "New" && $filter->getCasinoLabel()!='Best') {
                 $sub_query = new Lucinda\Query\MySQLSelect("casino_labels");
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name"=> "'". $filter->getCasinoLabel() . "'"]);
