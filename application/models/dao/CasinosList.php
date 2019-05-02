@@ -7,6 +7,8 @@ class CasinosList
 {
     const LIMIT = 100;
     const BEST_CASINO_LIMIT = 50;
+    const MIN_TOTAL_REVIEW = 1;
+    const MIN_BEST_VALUE = 8;
     private $filter;
 
     public function __construct(CasinoFilter $filter)
@@ -34,7 +36,12 @@ class CasinosList
         if(!empty($label) && func_num_args() < 3)
             $limit = $this->setLimitCustomLimitForLabel($label);
 
-
+        if($label=='Best')
+        {
+            $sortBy = CasinoSortCriteria::TOP_RATED;
+            $limit = self::BEST_CASINO_LIMIT;
+            $offset = 0;
+        }
         $queryGenerator = new CasinosListQuery(
             $this->filter,
             array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link"),
