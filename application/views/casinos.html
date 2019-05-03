@@ -23,8 +23,10 @@
 						<div class="qty-items" data-load-total="${data.total_casinos}">${data.total_casinos} results</div>
 						<std:if condition="${data.selected_entity} == 'New'">
 							<casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
-						<std:else>
-							<casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
+						<std:elseif condition="${data.selected_entity} == 'Low Wagering'">
+								<casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
+							<std:else>
+								<casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
 						</std:if>
 					</div>
 					<div class="data-add-container" data-total="${data.total_casinos}"></div>
