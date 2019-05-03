@@ -31,6 +31,7 @@ class IndexController extends BaseController {
         $this->response->setAttribute("new_games", $this->getGames(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")),GameSortCriteria::NEWEST, 6));
         $this->response->setAttribute("filter",null);
         $this->response->setAttribute("page_type","index");
+        $this->response->setAttribute("selected_entity","index");
 	}
 
 	private function  getCasinos($filter, $sortBy, $limit) {
