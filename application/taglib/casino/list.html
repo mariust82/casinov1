@@ -1,7 +1,6 @@
 <std:set name="bonus" value="Free"/>
 
 <div class="list">
-
 	<div class="list-heading list-item">
 		<div class="list-item-cell list-item-casino list-heading-title">CASINO</div>
 		<std:if condition="${data.page_type} == 'banking_method'">
@@ -10,8 +9,12 @@
 		<std:else>
 			<div class="list-item-cell list-heading-title list-item-type">$[type]</div>
 		</std:if>
-		<div class="list-item-cell list-heading-title list-item-fd-bonus"><span>FIRST DEPOSIT</span> BONUS</div>
-		<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
+		<std:if condition="${data.selected_entity}=='Low Wagering'">
+				<div class="list-item-cell list-heading-title list-item-wagering">WAGERING</div>
+			<std:else>
+				<div class="list-item-cell list-heading-title list-item-fd-bonus"><span>FIRST DEPOSIT</span> BONUS</div>
+				<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
+		</std:if>
 		<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
 	</div>
 	<div class="list-body">

@@ -9,6 +9,7 @@ class CasinosMenu
         "/bonus-list/no-deposit-bonus"=>"No Deposit Casinos",
         "/casinos/best"=>"Best Casinos",
         "/casinos/mobile"=>"Mobile Casinos",
+        "/casinos/low-wagering" => "Low Wagering",
         "/casinos/new"=>"New Casinos",
         "/casinos/stay-away"=>"Stay Away Casinos",
         "/casinos"=>"All Casinos",
@@ -93,6 +94,9 @@ class CasinosMenu
             case "casinos/mobile":
                 return "/casinos/mobile";
                 break;
+            case "casinos/low-wagering":
+                return "/casinos/low-wagering";
+                break;
             case "casinos/recommended":
                 return "/casinos/recommended";
                 break;
@@ -108,7 +112,6 @@ class CasinosMenu
             default:
                 return "/{page}";
                 break;
-
         }
     }
 

@@ -28,6 +28,7 @@ class CasinosList
 
     public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "") {
 
+
         $output = array();
         $label = $this->filter->getCasinoLabel();
 
@@ -51,7 +52,6 @@ class CasinosList
         );
         $query = $queryGenerator->getQuery();
 
-        //die($query);
 
         // execute query
         $resultSet = SQL($query);

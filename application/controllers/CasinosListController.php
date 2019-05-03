@@ -12,6 +12,7 @@ abstract class CasinosListController extends BaseController {
 
 
 	public function service() {
+
         $this->response->setAttribute("selected_entity", ucwords($this->getSelectedEntity()));
 
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
@@ -45,7 +46,6 @@ abstract class CasinosListController extends BaseController {
         $results = array();
         $results["total"] = $object->getTotal();
         $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->getAttribute("sort_criteria"), 1, $this->limit) : array());
-
 
         return $results;
     }
