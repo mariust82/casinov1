@@ -59,6 +59,9 @@ class CasinosByLabelController extends CasinosListController {
             case 'Mobile':
                 $url = 'compatability/mobile';  // casinos/mobile
                 break;
+            case 'low wagering':
+                $url = 'casinos/low-wagering';
+                break;
         }
         $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $casinoNumber));
     }

@@ -13,6 +13,7 @@ abstract class CasinosListController extends BaseController {
 
 	public function service() {
 
+
         $this->response->setAttribute("selected_entity", ucwords($this->getSelectedEntity()));
 
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
