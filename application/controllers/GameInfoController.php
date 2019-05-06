@@ -41,6 +41,7 @@ class GameInfoController extends BaseController {
 
         $menuBottom = new GamesMenu($result->type);
         $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
+	$this->response->setAttribute("page_type", "game_info");
     }
 
     private function getPlayerInfo() {
