@@ -34,15 +34,15 @@ class CasinosFilterController extends Controller
         $sortCriteria = $this->getSortCriteria();
 
         $page = (integer)$this->request->getValidator()->getPathParameter("page");
-
-        $object = new CasinosList(new CasinoFilter($_GET, $this->request->getAttribute("country")));
+        $filter = new CasinoFilter($_GET, $this->request->getAttribute("country"));
+        $object = new CasinosList($filter);
 
         $total = $object->getTotal();
 
         $offset = $page * $this->limit;
 
         $this->response->setAttribute("total_casinos", $total);
-        $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset));
+        $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset,true));
 
         if ($object->getFilter()->getBankingMethod())  // only if there is a banking method (when this controller is active) we know that the page type is banking_method
         {
@@ -55,14 +55,14 @@ class CasinosFilterController extends Controller
 
     private function getSortCriteria()
     {
-        $short_criteria = $this->request->getAttribute('validation_results')->get('sort');
-        if(empty($short_criteria)){
+        $sort_criteria = $this->request->getAttribute('validation_results')->get('sort');
+        if(empty($sort_criteria)){
             return CasinoSortCriteria::NONE;
         }
 
-        if ($short_criteria == CasinoSortCriteria::NONE && $this->request->getParameter("label") == "New") {
+        if ($sort_criteria == CasinoSortCriteria::NONE && $this->request->getParameter("label") == "New") {
             return CasinoSortCriteria::NEWEST;
-        }else if($short_criteria == CasinoSortCriteria::NONE && !empty($this->request->getAttribute('validation_results')->get('country'))){
+        }else if($sort_criteria == CasinoSortCriteria::NONE && !empty($this->request->getAttribute('validation_results')->get('country'))){
                 return CasinoSortCriteria::POPULARITY;
 
         } else {
