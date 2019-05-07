@@ -97,7 +97,11 @@ class CasinosListQuery
             if ($filter->getCasinoLabel() == "Stay away") {
                 $filter->setPromoted(FALSE);
             }
-            if ($filter->getCasinoLabel() != "New") {
+            if ($filter->getCasinoLabel() == 'Low Wagering')
+            {
+                $query->joinInner("casinos__bonuses","t11")->on(["t1.id" => "t11.casino_id" ]);
+            }
+            else if($filter->getCasinoLabel() != "New") {
                 $sub_query = new Lucinda\Query\MySQLSelect("casino_labels");
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name"=> "'". $filter->getCasinoLabel() . "'"]);
@@ -144,7 +148,7 @@ class CasinosListQuery
 
     private function setWhere(Lucinda\Query\Condition $where, CasinoFilter $filter)
     {
-         $where->set("t1.is_open" ,1);
+        $where->set("t1.is_open" ,1);
 
         if($filter->getHighRoller()) {
             $where->set("t1.is_high_roller",1);
@@ -167,11 +171,17 @@ class CasinosListQuery
             $group->set('t14.id', null,MySQLComparisonOperator::IS_NOT_NULL);
             $where->setGroup($group);
         }
+        if($filter->getCasinoLabel()=="Low Wagering")
+        {
+            $where->set("t1.status_id",1,MySQLComparisonOperator::DIFFERS);
+           // $where->set("t11.bonus_type_id",8);
+            $where->setIn("t11.bonus_type_id",[3,4,5,6]);
+            $where->set('CAST(t11.wagering as UNSIGNED)',"'26'",MySQLComparisonOperator::LESSER);
+        }
     }
 
     private function setOrderBy(Lucinda\Query\OrderBy $orderBy,CasinoFilter $filter, $sortBy)
     {
-
         if($sortBy)
         {
             $orderBy->add('complex_case', 'ASC' );
@@ -189,6 +199,11 @@ class CasinosListQuery
                     break;
                 case CasinoSortCriteria::POPULARITY:
                     $orderBy->add("t1.clicks" , "DESC");
+                    $orderBy->add("t1.id" , "DESC");
+                    break;
+                case CasinoSortCriteria::WAGERING:
+                    $orderBy->add("CAST(t11.wagering as UNSIGNED)","DESC");
+                    $orderBy->add("t1.priority" , "DESC");
                     $orderBy->add("t1.id" , "DESC");
                     break;
                 default:

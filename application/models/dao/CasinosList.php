@@ -30,6 +30,7 @@ class CasinosList
 
 
         $output = array();
+        $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
         $label = $this->filter->getCasinoLabel();
 
         if(!empty($label) && func_num_args() < 3)
@@ -42,9 +43,15 @@ class CasinosList
             $offset = 0;
         }
 
+        if(($label=='Low Wagering')&&($sortBy == 1))
+        {
+              $sortBy = CasinoSortCriteria::WAGERING;
+             // $fields[sizeof($fields)] = 't11.wagering';
+        }
+
         $queryGenerator = new CasinosListQuery(
             $this->filter,
-            array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link"),
+            $fields,
             $sortBy,
             $limit,
             $offset
@@ -76,6 +83,11 @@ class CasinosList
                 $object->deposit_methods = $row["has_dm"];
                 $object->withdraw_methods = $row["has_wm"];
             }
+            if($label=='Low Wagering')
+            {
+                $object->welcome_package = true;
+             //   $object->wagering = $row['wagering'];
+            }
             $output[$row["id"]] = $object;
         }
         if(empty($output)) return array();
@@ -88,14 +100,14 @@ class CasinosList
         WHERE t1.casino_id IN (".implode(",", array_keys($output)).") ORDER BY t1.is_primary DESC;
         ";
         $list = NoSQL($query, [], function($resultSet) {
-           return $resultSet->toList();
+            return $resultSet->toList();
         });
         foreach($list as $row) {
             $output[$row["casino_id"]]->softwares[] = $row["name"];
         }
         // append bonuses
         $query = "
-        SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.minimum_deposit, t1.games, t2.name 
+        SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.minimum_deposit, t1.games, t2.name , t1.bonus_type_id
         FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
         WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins','Free Play')
@@ -115,19 +127,19 @@ class CasinosList
 
             } else {
                 $output[$row["casino_id"]]->bonus_first_deposit = $bonus;
-              //  $output[$row["casino_id"]]->bonus_first_deposit =  $this->getAbbreviation($output[$row["casino_id"]]->bonus_first_deposit->type);
+                //  $output[$row["casino_id"]]->bonus_first_deposit =  $this->getAbbreviation($output[$row["casino_id"]]->bonus_first_deposit->type);
             }
         }
 
         foreach ($output as $arg)
         {
             if(sizeof($arg->softwares)>1)
-              $arg->all_softwares = $this->get_string($arg->softwares);
+                $arg->all_softwares = $this->get_string($arg->softwares);
         }
 
         return array_values($output);
     }
-    
+
     public function formatDate($date) {
         $date_arr = explode('-', $date);
         $month_name = date('M', strtotime($date));
