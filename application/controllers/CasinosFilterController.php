@@ -41,16 +41,11 @@ class CasinosFilterController extends Controller
 
         $offset = $page * $this->limit;
 
+        $this->response->setAttribute("filter",$filter->getCasinoLabel());
         $this->response->setAttribute("total_casinos", $total);
         $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset,true));
-
-        if ($object->getFilter()->getBankingMethod())  // only if there is a banking method (when this controller is active) we know that the page type is banking_method
-        {
-            $this->response->setAttribute('page_type', 'banking_method');
-        } else {
-            $this->response->setAttribute('page_type', 'not_banking_method');
-        }
-
+        $this->response->setAttribute('page_type',$this->getPageType($filter));
+        $this->response->setAttribute('selected_entity','');
     }
 
     private function getSortCriteria()
@@ -67,6 +62,21 @@ class CasinosFilterController extends Controller
 
         } else {
             return $this->request->getAttribute('validation_results')->get('sort');
+        }
+    }
+
+    private function getPageType(CasinoFilter $filter)
+    {
+        if($filter->getBankingMethod())
+        {
+            return 'banking_method';
+        }
+        else
+        {
+            if($filter->getCasinoLabel() == 'Low Wagering')
+                return 'low_wagering';
+            else
+                return 'not_banking_method';
         }
     }
 }
