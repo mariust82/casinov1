@@ -67,12 +67,7 @@
 				</div>
 
 				<std:if condition="${data.page_type} != 'banking_method'">
-					<std:if condition="(${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')">
-						<div class="list-item-cell list-item-type">
-							${result.bonus_free.amount}
-							<std:if condition="${result.bonus_free.bonus_type_Abbreviation} != 'NDB'"> ${result.bonus_free.bonus_type_Abbreviation} </std:if>
-						</div>
-					<std:else>
+					<std:if condition="!((${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering'))">
 						<div class="list-item-cell list-item-type">
 							<div class="multirow">
 								<div class="list-item-flex">
@@ -107,10 +102,10 @@
 				<std:if condition="${data.is_mobile}">
 					<std:if condition="(${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')">
 						<div class="btn-round-holder">
-							${result.bonus_free.amount}
+							<span class="btn-round" data-name="${result.name}" data-is-free="1"> ${result.bonus_free.amount}
 							<std:if condition="${result.bonus_free.bonus_type_Abbreviation} != 'NDB'">
 								${result.bonus_free.bonus_type_Abbreviation}
-							</std:if>
+							</std:if> </span>
 						</div>
 						<div class="btn-round-holder">
 							${result.bonus_free.wagering}
@@ -131,7 +126,11 @@
 					</std:if>
 				<std:else>
 					<std:if condition="(${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')">
-						<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
+						<div class="list-item-cell list-item-type">
+							<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1"> ${result.bonus_free.amount}
+							<std:if condition="${result.bonus_free.bonus_type_Abbreviation} != 'NDB'"> ${result.bonus_free.bonus_type_Abbreviation} </std:if> </span>
+						</div>
+						<div class="btn-round-holder">
 							${result.bonus_free.wagering}
 						</div>
 					<std:else>
