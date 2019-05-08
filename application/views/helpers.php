@@ -32,9 +32,8 @@ function format_filter_date($date, $format = 'd.m.Y')
     return date($format, strtotime($date));
 }
 
-/*
 function Tests($name)
 {
     var_dump($name);
-    die();
-}*/
+    //die();
+}
