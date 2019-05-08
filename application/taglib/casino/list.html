@@ -2,15 +2,22 @@
 <div class="list">
 	<div class="list-heading list-item">
 		<div class="list-item-cell list-item-casino list-heading-title">CASINO</div>
-		<std:if condition="${data.page_type} == 'banking_method'">
-			<div class="list-item-cell list-heading-title list-item-banking-dep">DEPOSIT</div>
-			<div class="list-item-cell list-heading-title list-item-banking-wit">WITHDRAWAL</div>
+
+		<std:if condition="(${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')">
+			<div class="list-item-cell list-heading-title">BONUS FOR NEW PLAYERS</div>
+			<div class="list-item-cell list-heading-title">WAGERING</div>
+			<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
 			<std:else>
-				<div class="list-item-cell list-heading-title list-item-type">$[type]</div>
+				<std:if condition="${data.page_type} == 'banking_method'">
+					<div class="list-item-cell list-heading-title list-item-banking-dep">DEPOSIT</div>
+					<div class="list-item-cell list-heading-title list-item-banking-wit">WITHDRAWAL</div>
+					<std:else>
+						<div class="list-item-cell list-heading-title list-item-type">$[type]</div>
+				</std:if>
+				<div class="list-item-cell list-heading-title list-item-fd-bonus"><span>FIRST DEPOSIT</span> BONUS</div>
+				<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
+				<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
 		</std:if>
-		<div class="list-item-cell list-heading-title list-item-fd-bonus"><span>FIRST DEPOSIT</span> BONUS</div>
-		<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
-		<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
 	</div>
 	<div class="list-body">
 		<std:set name="i" value="0"/>
@@ -60,38 +67,55 @@
 				</div>
 
 				<std:if condition="${data.page_type} != 'banking_method'">
-					<div class="list-item-cell list-item-type">
-						<div class="multirow">
-							<div class="list-item-flex">
-								<std:if condition="'$[type]' == 'ESTABLISHED'">
-									<std:if condition="${result.date_established} != '0000-00-00'">
-										<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
-									</std:if>
-									<std:else>
-										<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
-											${result.softwares.0}
-										</a>
-										<std:set name="extra" value="count(${result.softwares})-1"/>
-										<std:if condition="${extra} > 0">
-                                        <span class="bubble bubble-long js-tooltip software_tooltip" title="${result.all_softwares}">
-                                            +${extra}
-                                        </span>
+					<std:if condition="(${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')">
+						<div class="list-item-cell list-item-type">
+							${result.bonus_free.amount}
+							<std:if condition="${result.bonus_free.bonus_type_Abbreviation} != 'NDB'"> ${result.bonus_free.bonus_type_Abbreviation} </std:if>
+						</div>
+					<std:else>
+						<div class="list-item-cell list-item-type">
+							<div class="multirow">
+								<div class="list-item-flex">
+									<std:if condition="'$[type]' == 'ESTABLISHED'">
+										<std:if condition="${result.date_established} != '0000-00-00'">
+											<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
 										</std:if>
-								</std:if>
+										<std:else>
+											<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
+												${result.softwares.0}
+											</a>
+											<std:set name="extra" value="count(${result.softwares})-1"/>
+											<std:if condition="${extra} > 0">
+											<span class="bubble bubble-long js-tooltip software_tooltip" title="${result.all_softwares}">
+												+${extra}
+											</span>
+											</std:if>
+									</std:if>
+								</div>
 							</div>
 						</div>
+					</std:if>
+				<std:else>
+					<div class="list-item-cell list-item-banking-dep">
+						<i class="icon-icon_${(${result.deposit_methods}?'available':'unavailable')}"></i>
 					</div>
-					<std:else>
-						<div class="list-item-cell list-item-banking-dep">
-							<i class="icon-icon_${(${result.deposit_methods}?'available':'unavailable')}"></i>
-						</div>
-						<div class="list-item-cell list-item-banking-wit">
-							<i class="icon-icon_${(${result.withdraw_methods}?'available':'unavailable')}"></i>
-						</div>
+					<div class="list-item-cell list-item-banking-wit">
+						<i class="icon-icon_${(${result.withdraw_methods}?'available':'unavailable')}"></i>
+					</div>
 				</std:if>
 
 				<std:if condition="${data.is_mobile}">
-					<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
+					<std:if condition="(${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')">
+						<div class="btn-round-holder">
+							${result.bonus_free.amount}
+							<std:if condition="${result.bonus_free.bonus_type_Abbreviation} != 'NDB'">
+								${result.bonus_free.bonus_type_Abbreviation}
+							</std:if>
+						</div>
+						<div class="btn-round-holder">
+							${result.bonus_free.wagering}
+						</div>
+					<std:else>
 						<std:if condition="${result.bonus_free.amount}">
 							<div class="btn-round-holder">
 								<span class="btn-round" data-name="${result.name}" data-is-free="1">
@@ -104,12 +128,12 @@
 								<span class="btn-round" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
 							</div>
 						</std:if>
-					</div>
-					<div class="list-item-cell list-item-alt-bonus">
-						<std:if condition="${result.bonus_free.amount}">
-							<span class="btn-round" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
-						</std:if>
-					</div>
+					</std:if>
+				<std:else>
+					<std:if condition="(${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')">
+						<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
+							${result.bonus_free.wagering}
+						</div>
 					<std:else>
 						<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
 							<span class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
@@ -122,6 +146,7 @@
 							</span>
 							</std:if>
 						</div>
+					</std:if>
 				</std:if>
 				<div class="list-item-cell list-item-cell-buttons">
 					<div class="list-flex">
