@@ -46,7 +46,6 @@ class CasinosList
         if(($label=='Low Wagering')&&($sortBy == 1))
         {
               $sortBy = CasinoSortCriteria::WAGERING;
-             // $fields[sizeof($fields)] = 't11.wagering';
         }
 
         $queryGenerator = new CasinosListQuery(

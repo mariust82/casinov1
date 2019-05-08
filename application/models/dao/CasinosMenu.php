@@ -9,7 +9,7 @@ class CasinosMenu
         "/bonus-list/no-deposit-bonus"=>"No Deposit Casinos",
         "/casinos/best"=>"Best Casinos",
         "/casinos/mobile"=>"Mobile Casinos",
-        "/casinos/low-wagering" => "Low Wagering",
+        "/casinos/low-wagering" => "Low Wagering Casinos",
         "/casinos/new"=>"New Casinos",
         "/casinos/stay-away"=>"Stay Away Casinos",
         "/casinos"=>"All Casinos",
