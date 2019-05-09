@@ -20,9 +20,10 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
         }
 
         if($info["is_open"]) {
-            // add best ( WHERE is_open=1 AND `score`>7.3 )
-            $rand = rand(0,9);
-            if($rand == 0 && !$info["status"]) {
+
+            // add best ( WHERE is_open=1 AND `score`>=8 )
+            $exist = DB::execute("SELECT id FROM casinos WHERE is_open = 1 AND status_id = 0 AND (rating_total/rating_votes) >= 8 AND id = ".$casinoID)->toValue();
+            if($exist && !$info["status"]) {
                 DB::execute("INSERT IGNORE INTO casinos__labels SET casino_id=:casino_id, label_id=:label_id",array(
                     ":casino_id"=>$casinoID,
                     ":label_id"=>7
@@ -31,7 +32,7 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
 
             // deletes the casino if it has the label best but it's status_id is not 0
             if($info["status"]['id'] != 0 ){
-                DB::execute("Delete from casinos__labels where casino_id=:casino_id and label_id=:label_id",array(
+                DB::execute("DELETE FROM casinos__labels WHERE casino_id=:casino_id AND label_id=:label_id",array(
                     ":casino_id"=>$casinoID,
                     ":label_id"=>7
                 ));

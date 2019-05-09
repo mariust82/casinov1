@@ -1,6 +1,7 @@
 <?php
 
 require_once("vendor/lucinda/queries/plugins/MySQL/MySQLSelect.php");
+require_once("application/models/dao/BestCasinoLabel.php");
 
 use Lucinda\Query\MySQLComparisonOperator;
 use Lucinda\Query\MySQLCondition;
@@ -101,7 +102,7 @@ class CasinosListQuery
             {
                 $query->joinInner("casinos__bonuses","t11")->on(["t1.id" => "t11.casino_id" ]);
             }
-            else if($filter->getCasinoLabel() != "New") {
+            else if(($filter->getCasinoLabel() != "New")&&($filter->getCasinoLabel() != "Best")) {
                 $sub_query = new Lucinda\Query\MySQLSelect("casino_labels");
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name"=> "'". $filter->getCasinoLabel() . "'"]);
@@ -161,8 +162,9 @@ class CasinosListQuery
         }
         elseif($filter->getCasinoLabel()=="Best")
         {
-            $where->set("t1.rating_total/t1.rating_votes",8,Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
-            $where->set("t1.status_id",0);
+            $obj = new BestCasinoLabel();
+            $where->set("t1.status_id", $obj->getBestCriteria());
+           // $where->set("t1.rating_total/t1.rating_votes", 8, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
         }
         if($filter->getBankingMethod())
         {

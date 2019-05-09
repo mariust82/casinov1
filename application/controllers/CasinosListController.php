@@ -27,6 +27,7 @@ abstract class CasinosListController extends BaseController {
         $this->response->setAttribute("filter", $this->getFilter());
 
         $results = $this->getResults();
+        //$this->setSpecificFilter();
         $this->response->setAttribute("total_casinos", $results["total"]);
         $this->response->setAttribute("casinos", $results["list"]);
         $this->response->setAttribute("page_type",$this->get_page_type());
@@ -38,10 +39,6 @@ abstract class CasinosListController extends BaseController {
         $filter = new CasinoFilter(
             array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")),
             $this->request->getAttribute("country"));
-
-      /*  // if label is best casino then we want casinos that are accepted
-        if($filter->getCasinoLabel() == 'Best')
-            $filter->setCountryAccepted('true');*/
 
         $object = new CasinosList($filter);
         $results = array();
@@ -119,5 +116,13 @@ abstract class CasinosListController extends BaseController {
             $index++;
         }
         return $abbr;
+    }
+
+    private function setSpecificFilter()
+    {
+        if($this->getFilter()=="label")
+            $this->response->setAttribute("filter",$this->response->getAttribute('selected_entity'));
+        else
+            $this->response->setAttribute("filter", $this->getFilter());
     }
 }

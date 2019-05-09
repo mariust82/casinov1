@@ -28,7 +28,6 @@ class CasinosList
 
     public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "") {
 
-
         $output = array();
         $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
         $label = $this->filter->getCasinoLabel();
@@ -57,7 +56,6 @@ class CasinosList
 
         );
         $query = $queryGenerator->getQuery();
-
 
         // execute query
         $resultSet = SQL($query);
