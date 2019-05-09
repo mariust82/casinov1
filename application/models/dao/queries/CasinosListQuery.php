@@ -202,7 +202,7 @@ class CasinosListQuery
                     $orderBy->add("t1.id" , "DESC");
                     break;
                 case CasinoSortCriteria::WAGERING:
-                    $orderBy->add("CAST(t11.wagering as UNSIGNED)","DESC");
+                    $orderBy->add("CAST(t11.wagering as UNSIGNED)","ASC");
                     $orderBy->add("t1.priority" , "DESC");
                     $orderBy->add("t1.id" , "DESC");
                     break;
