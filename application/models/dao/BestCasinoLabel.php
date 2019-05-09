@@ -27,21 +27,22 @@ class BestCasinoLabel
         $this->filter->sort_by[2] = 'id desc';
     }
 
-    // the main query that select the casino that should be 'Best'
-    private function getMainQuery()
+    /*private function getMainQuery()
     {
         $order_by = implode(' , ',$this->filter->sort_by);
 
-        $query = "Select id,name,is_open,status_id,priority,rating_total,rating_votes,(rating_total/rating_votes) as score 
-        from casinos where is_open = ".$this->filter->is_open." and status_id = ".$this->filter->status_id." and (rating_total/rating_votes) >= ".$this->filter->min_score." order by " . $order_by . " limit " . self::BEST_CASINO_LIMIT ;
+        $query = "SELECT id
+        FROM casinos WHERE is_open = ".$this->filter->is_open." AND status_id = ".$this->filter->status_id." AND (rating_total/rating_votes) >= ".$this->filter->min_score. " 
+        ORDER BY " . $order_by . " 
+        LIMIT " . self::BEST_CASINO_LIMIT ;
 
         return $query;
-    }
+    }*/
 
     // return all the casinos that have the label 'Best'
     public function getAllBestCasinos()
     {
-        $query = "SELECT casino_id,label_id FROM casinos__labels where label_id = 7";
+        $query = "SELECT casino_id,label_id FROM casinos__labels WHERE label_id = 7";
 
         $output = array();
 
@@ -56,61 +57,9 @@ class BestCasinoLabel
         return $output;
     }
 
-    // removes all casinos with the label id = 7 ('Best')
-    public function resetAllBestCasinos()
+    public function getBestCriteria()
     {
-        $query = "Delete from casinos__labels where label_id = 7";
-        SQL($query);
+        $sub_query = $this->filter->status_id ." AND (t1.rating_total/t1.rating_votes) >= ".$this->filter->min_score ;
+        return $sub_query;
     }
-
-    public function populateCasinoLabel()
-    {
-        $result = SQL($this->getMainQuery());
-       // $output= array();
-
-        while($row = $result->toRow()){
-            $query = "INSERT INTO casinos__labels (casino_id, label_id) VALUES(" . $row['id']  . ",7)";
-            SQL($query);
-           // $output[sizeof($output)] = $row['id'];
-        }
-
-    }
-
-    //checks if modified casino is best and in table
-    public function checkCasino($casinoID){
-
-        $result = SQL($this->getMainQuery());
-        $output= array();
-
-        $isBest = false;
-        $inTable = false;
-
-        //check casino is best
-        while($row = $result->toRow()){
-            if($row['id']== $casinoID) {
-                $isBest = true;
-                break;
-            }
-        }
-
-        $query = "SELECT casino_id FROM casinos__labels where label_id = 7";
-        $result = SQL($query);
-
-        //check casino is in table
-        while($row = $result->toRow()){
-            if($row['id']== $casinoID) {
-                $inTable = true;
-                break;
-            }
-        }
-
-        // if true then update table
-        if($isBest!=$inTable)
-        {
-            $this->resetAllBestCasinos();
-            $this->populateCasinoLabel();
-        }
-    }
-
-
 }
