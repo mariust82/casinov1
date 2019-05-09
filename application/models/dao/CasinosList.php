@@ -116,6 +116,8 @@ class CasinosList
             $bonus = new CasinoBonus();
             $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS","",$row["amount"])):$row["amount"]);
             $bonus->min_deposit = $row["minimum_deposit"];
+            if($row["wagering"] == '')
+                $row["wagering"] = 0;
             $bonus->wagering = $row["wagering"];
             $bonus->games_allowed = $row["games"];
             $bonus->code = $row["codes"];
