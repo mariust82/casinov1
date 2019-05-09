@@ -29,6 +29,14 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
                 ));
             }
 
+            // deletes the casino if it has the label best but it's status_id is not 0
+            if($info["status"]['id'] != 0 ){
+                DB::execute("Delete from casinos__labels where casino_id=:casino_id and label_id=:label_id",array(
+                    ":casino_id"=>$casinoID,
+                    ":label_id"=>7
+                ));
+            }
+
             // add safe ( WHERE is_open=1 AND (`wd_cred`+`casino_fairness`)/2>7.3 )
             $rand = rand(0,9);
             if($rand == 0 && !$info["status"]) {
