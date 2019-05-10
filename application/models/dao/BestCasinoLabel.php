@@ -9,10 +9,10 @@ require_once("entities/Casino.php");
 require_once("queries/CasinosListQuery.php");
 require_once("entities/BestLabel.php");
 require_once("entities/BestLabelFilter.php");
+require_once("CasinosList.php");
 
 class BestCasinoLabel
 {
-    const BEST_CASINO_LIMIT = 50;
     private $filter;
 
     public function __construct()
