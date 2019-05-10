@@ -147,10 +147,14 @@ class CasinosList
 
     public function getTotal() {
         // build query
-        $queryGenerator = new CasinosListQuery($this->filter, array("COUNT(t1.id) AS nr"), null, 0 , '', false);
-        $query = $queryGenerator->getQuery();
-
-        return  SQL($query)->toValue();
+        if($this->filter->getCasinoLabel() != 'Best')
+        {
+            $queryGenerator = new CasinosListQuery($this->filter, array("COUNT(t1.id) AS nr"), null , 0  , '', false);
+            $query = $queryGenerator->getQuery();
+            return  SQL($query)->toValue();
+        }
+        else
+            return self::BEST_CASINO_LIMIT;
     }
 
     private function getCasinoLogo($name, $resolution) {
@@ -211,6 +215,11 @@ class CasinosList
     public function getFilter()
     {
         return $this->filter;
+    }
+
+    public function getBestLimit()
+    {
+        return self::BEST_CASINO_LIMIT;
     }
 
 }

@@ -2,7 +2,6 @@
 require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once("FieldValidator.php");
-require_once("BestCasinoLabel.php");
 
 class Casinos implements FieldValidator
 {
