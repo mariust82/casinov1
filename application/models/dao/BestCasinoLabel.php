@@ -9,7 +9,6 @@ require_once("entities/Casino.php");
 require_once("queries/CasinosListQuery.php");
 require_once("entities/BestLabel.php");
 require_once("entities/BestLabelFilter.php");
-require_once("CasinosList.php");
 
 class BestCasinoLabel
 {
