@@ -24,10 +24,7 @@ class CasinosListQuery
         $this->setSelect($query,$filter);
         $this->setWhere($query->where(),$filter);
         $this->setOrderBy($query->orderBy(),$filter,$sortBy);
-        if(!empty($limit))
-        {
-            $query->limit($limit,$offset);
-        }
+        $this->setLimit($query,$filter,$limit,$offset);
         $this->query = $query->toString();
     }
 
@@ -102,7 +99,7 @@ class CasinosListQuery
             {
                 $query->joinInner("casinos__bonuses","t11")->on(["t1.id" => "t11.casino_id" ]);
             }
-            else if(($filter->getCasinoLabel() != "New")&&($filter->getCasinoLabel() != "Best")) {
+            else if(($filter->getCasinoLabel() != "New")) {
                 $sub_query = new Lucinda\Query\MySQLSelect("casino_labels");
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name"=> "'". $filter->getCasinoLabel() . "'"]);
@@ -227,5 +224,18 @@ class CasinosListQuery
         $result = SQL($query);
         $row = $result->toRow();
         return $row['id'];
+    }
+
+    private function setLimit(Lucinda\Query\MySQLSelect $query, CasinoFilter $filter, $limit , $offset)
+    {
+        if(!empty($limit))
+        {
+            if($filter->getCasinoLabel() == 'Best')
+            {
+                $obj = new BestCasinoLabel();
+                $limit = $obj->getBestLimit();
+            }
+            $query->limit($limit,$offset);
+        }
     }
 }

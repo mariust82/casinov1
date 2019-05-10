@@ -10,24 +10,18 @@ abstract class CasinosListController extends BaseController {
 
     protected $limit = 100;
 
-
 	public function service() {
 
-
         $this->response->setAttribute("selected_entity", ucwords($this->getSelectedEntity()));
-
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
 
         $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $this->response->getAttribute("selected_entity"), $this->request->getURI()->getPage());
         $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
-
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
-
         $this->response->setAttribute("sort_criteria", $this->getSortCriteria());
         $this->response->setAttribute("filter", $this->getFilter());
 
         $results = $this->getResults();
-        //$this->setSpecificFilter();
         $this->response->setAttribute("total_casinos", $results["total"]);
         $this->response->setAttribute("casinos", $results["list"]);
         $this->response->setAttribute("page_type",$this->get_page_type());
@@ -116,13 +110,5 @@ abstract class CasinosListController extends BaseController {
             $index++;
         }
         return $abbr;
-    }
-
-    private function setSpecificFilter()
-    {
-        if($this->getFilter()=="label")
-            $this->response->setAttribute("filter",$this->response->getAttribute('selected_entity'));
-        else
-            $this->response->setAttribute("filter", $this->getFilter());
     }
 }
