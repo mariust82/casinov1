@@ -6,7 +6,7 @@ require_once("queries/CasinosListQuery.php");
 class CasinosList
 {
     const LIMIT = 100;
-    const BEST_CASINO_LIMIT = 50;
+   // const BEST_CASINO_LIMIT = 50;
     private $filter;
 
     public function __construct(CasinoFilter $filter)
@@ -14,17 +14,10 @@ class CasinosList
         $this->filter = $filter;
     }
 
-    private function setLimitCustomLimitForLabel($label){
-
+   /* private function setLimitCustomLimitForLabel($label){
         $limit = self::LIMIT;
-
-        if($label == 'Best')
-        {
-            $limit = self::BEST_CASINO_LIMIT;
-        }
-
         return $limit;
-    }
+    }*/
 
     public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "") {
 
@@ -32,18 +25,10 @@ class CasinosList
         $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
         $label = $this->filter->getCasinoLabel();
 
-        if(!empty($label) && func_num_args() < 3)
-            $limit = $this->setLimitCustomLimitForLabel($label);
+       /* if(!empty($label) && func_num_args() < 3)
+            $limit = $this->setLimitCustomLimitForLabel($label);*/
 
-        if($label=='Best')
-        {
-            $sortBy = CasinoSortCriteria::TOP_RATED;
-            $limit = self::BEST_CASINO_LIMIT;
-            $offset = 0;
-        }
-
-        if(($label=='Low Wagering')&&($sortBy == 1))
-        {
+        if(($label=='Low Wagering')&&($sortBy == 1)) {
               $sortBy = CasinoSortCriteria::WAGERING;
         }
 
@@ -149,15 +134,8 @@ class CasinosList
         // build query
         $queryGenerator = new CasinosListQuery($this->filter, array("COUNT(t1.id) AS nr"), null , 0  , '', false);
         $query = $queryGenerator->getQuery();
-        $nr =  SQL($query)->toValue();
-        if($this->filter->getCasinoLabel() != 'Best')
-            return  $nr;
-        else {
-            if($nr >= self::BEST_CASINO_LIMIT)
-                return self::BEST_CASINO_LIMIT;
-            else
-                return $nr;
-        }
+
+        return SQL($query)->toValue();
     }
 
     private function getCasinoLogo($name, $resolution) {
@@ -219,10 +197,4 @@ class CasinosList
     {
         return $this->filter;
     }
-
-    public function getBestLimit()
-    {
-        return self::BEST_CASINO_LIMIT;
-    }
-
 }

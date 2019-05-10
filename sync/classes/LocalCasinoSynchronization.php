@@ -5,9 +5,18 @@
  * Date: 18.01.2018
  * Time: 11:14
  */
+require_once("application/models/dao/BestCasinoLabel.php");
 
 class LocalCasinoSynchronization extends NewCasinoSynchronization
 {
+    public function __construct($xmlFile = "configuration.xml", $usePackagist = false)
+    {
+        parent::__construct($xmlFile, $usePackagist);
+        $object = new BestCasinoLabel();
+        $object->resetBestLabel();
+        $object->populateBestLabel();
+    }
+
     protected function setLabels($casinoID, $info) {
 
         DB::execute("DELETE FROM casinos__labels WHERE casino_id = ".$casinoID);
@@ -20,23 +29,6 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
         }
 
         if($info["is_open"]) {
-
-            // add best ( WHERE is_open=1 AND `score`>=8 )
-            $exist = DB::execute("SELECT id FROM casinos WHERE is_open = 1 AND status_id = 0 AND (rating_total/rating_votes) >= 8 AND id = ".$casinoID)->toValue();
-            if($exist && !$info["status"]) {
-                DB::execute("INSERT IGNORE INTO casinos__labels SET casino_id=:casino_id, label_id=:label_id",array(
-                    ":casino_id"=>$casinoID,
-                    ":label_id"=>7
-                ));
-            }
-
-            // deletes the casino if it has the label best but it's status_id is not 0
-            if($info["status"]['id'] != 0 ){
-                DB::execute("DELETE FROM casinos__labels WHERE casino_id=:casino_id AND label_id=:label_id",array(
-                    ":casino_id"=>$casinoID,
-                    ":label_id"=>7
-                ));
-            }
 
             // add safe ( WHERE is_open=1 AND (`wd_cred`+`casino_fairness`)/2>7.3 )
             $rand = rand(0,9);
