@@ -85,8 +85,6 @@ class BestCasinoLabel
     // checks if the rated casino should be inserted or deleted from Best
     public function checkRatedCasino($casino_id)
     {
-        $score = SQL("SELECT (rating_total/rating_votes) as score FROM casinos WHERE id = ". $casino_id)->toRow();
-
         $is_best = $this->searchIfBest($this->getAllBestCasinos(),$casino_id);
         $in_table = $this->searchIfBest($this->getAllBestLabels(),$casino_id);
 
