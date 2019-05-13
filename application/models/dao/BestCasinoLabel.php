@@ -65,12 +65,6 @@ class BestCasinoLabel
         return $output;
     }
 
-    public function getBestCriteria()
-    {
-        $sub_query = $this->filter->status_id ." AND (t1.rating_total/t1.rating_votes) >= ".$this->filter->min_score ;
-        return $sub_query;
-    }
-
     // populates casinos__label with the Best Casinos
     public function populateBestLabel()
     {
