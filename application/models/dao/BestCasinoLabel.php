@@ -6,7 +6,6 @@
  * Time: 1:22 PM
  */
 require_once("entities/Casino.php");
-require_once("queries/CasinosListQuery.php");
 require_once("entities/BestLabel.php");
 require_once("entities/BestLabelFilter.php");
 
