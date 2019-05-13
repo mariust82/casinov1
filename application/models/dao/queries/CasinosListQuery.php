@@ -146,26 +146,23 @@ class CasinosListQuery
 
     private function setWhere(Lucinda\Query\Condition $where, CasinoFilter $filter)
     {
-        $where->set("t1.is_open" ,1);
-
         if($filter->getHighRoller()) {
+            $where->set("t1.is_open" ,1);
             $where->set("t1.is_high_roller",1);
         }
         if($filter->getPromoted()) {
+            $where->set("t1.is_open" ,1);
             $where->set("t1.status_id",0);
         }
 
         switch($filter->getCasinoLabel())
         {
             case 'New':
+                $where->set("t1.is_open" ,1);
                 $where->set("t1.date_established","DATE_SUB(CURDATE(), INTERVAL 1 YEAR )",Lucinda\Query\ComparisonOperator::GREATER);
                 break;
-            case 'Best':
-                $obj = new BestCasinoLabel();
-                $where->set("t1.status_id", $obj->getBestCriteria());
-                // $where->set("t1.rating_total/t1.rating_votes", 8, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
-                break;
             case 'Low Wagering':
+                $where->set("t1.is_open" ,1);
                 $where->set("t1.status_id",1,MySQLComparisonOperator::DIFFERS);
                 // $where->set("t11.bonus_type_id",8);
                 $where->setIn("t11.bonus_type_id",[3,4,5,6]);
@@ -175,6 +172,7 @@ class CasinosListQuery
 
         if($filter->getBankingMethod())
         {
+            $where->set("t1.is_open" ,1);
             $group = new Lucinda\Query\Condition(array(), Lucinda\Query\LogicalOperator::_OR_);
             $group->set('t3.id', null,MySQLComparisonOperator::IS_NOT_NULL);
             $group->set('t14.id', null,MySQLComparisonOperator::IS_NOT_NULL);

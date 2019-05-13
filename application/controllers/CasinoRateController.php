@@ -1,5 +1,6 @@
 <?php
 require_once("application/models/dao/Casinos.php");
+require_once("application/models/dao/BestCasinoLabel.php");
 require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedException.php");
 
 /*
@@ -23,7 +24,11 @@ class CasinoRateController extends Controller {
                 $this->request->getAttribute('validation_results')->get('value')
             );
            $this->response->setAttribute("success", $success);
-            if(!$success) throw new OperationFailedException("Casino already rated!");
+           if($success) {
+               $object = new BestCasinoLabel();
+               $object->checkRatedCasino($casinoID);
+           }
+           if(!$success) throw new OperationFailedException("Casino already rated!");
         }else { // if country is not accepted by casino, here, the exception is throed.
             throw new OperationFailedException("Your country is not supported!");
         }
