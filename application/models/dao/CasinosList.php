@@ -28,10 +28,6 @@ class CasinosList
        /* if(!empty($label) && func_num_args() < 3)
             $limit = $this->setLimitCustomLimitForLabel($label);*/
 
-        if(($label=='Low Wagering')&&($sortBy == 1)) {
-              $sortBy = CasinoSortCriteria::WAGERING;
-        }
-
         $queryGenerator = new CasinosListQuery(
             $this->filter,
             $fields,

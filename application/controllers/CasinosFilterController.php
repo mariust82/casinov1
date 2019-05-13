@@ -51,16 +51,20 @@ class CasinosFilterController extends Controller
     private function getSortCriteria()
     {
         $sort_criteria = $this->request->getAttribute('validation_results')->get('sort');
-        if(empty($sort_criteria)){
+        if(empty($sort_criteria)|| $sort_criteria==null){
             return CasinoSortCriteria::NONE;
         }
 
-        if ($sort_criteria == CasinoSortCriteria::NONE && $this->request->getParameter("label") == "New") {
-            return CasinoSortCriteria::NEWEST;
-        }else if($sort_criteria == CasinoSortCriteria::NONE && !empty($this->request->getAttribute('validation_results')->get('country'))){
+        if($sort_criteria == CasinoSortCriteria::NONE){
+            if($this->request->getParameter("label") == "New")
+                return CasinoSortCriteria::NEWEST;
+            else if($this->request->getParameter("label") == "Low Wagering")
+                return CasinoSortCriteria::WAGERING;
+            else if(!empty($this->request->getAttribute('validation_results')->get('country')))
                 return CasinoSortCriteria::POPULARITY;
-
-        } else {
+            return CasinoSortCriteria::NONE;
+        }
+        else{
             return $this->request->getAttribute('validation_results')->get('sort');
         }
     }

@@ -30,12 +30,16 @@ class CasinosByLabelController extends CasinosListController {
     }
 
     protected function getSortCriteria() {
-        if($this->response->getAttribute("selected_entity")=="New") {
-            return CasinoSortCriteria::NEWEST;
-        } elseif($this->response->getAttribute("selected_entity")=="Best") {
-            return CasinoSortCriteria::TOP_RATED;
-        } else {
-            return CasinoSortCriteria::NONE;
+
+        switch($this->response->getAttribute("selected_entity")){
+            case 'New':
+                return CasinoSortCriteria::NEWEST;
+            case 'Best':
+                return CasinoSortCriteria::TOP_RATED;
+            case 'Low Wagering':
+                return CasinoSortCriteria::WAGERING;
+            default:
+                return CasinoSortCriteria::NONE;
         }
     }
 

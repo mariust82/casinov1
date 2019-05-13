@@ -154,28 +154,31 @@ class CasinosListQuery
         if($filter->getPromoted()) {
             $where->set("t1.status_id",0);
         }
-        if($filter->getCasinoLabel()=="New") {
-            $where->set("t1.date_established","DATE_SUB(CURDATE(), INTERVAL 1 YEAR )",Lucinda\Query\ComparisonOperator::GREATER);
-        }
-        elseif($filter->getCasinoLabel()=="Best")
+
+        switch($filter->getCasinoLabel())
         {
-            $obj = new BestCasinoLabel();
-            $where->set("t1.status_id", $obj->getBestCriteria());
-           // $where->set("t1.rating_total/t1.rating_votes", 8, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
+            case 'New':
+                $where->set("t1.date_established","DATE_SUB(CURDATE(), INTERVAL 1 YEAR )",Lucinda\Query\ComparisonOperator::GREATER);
+                break;
+            case 'Best':
+                $obj = new BestCasinoLabel();
+                $where->set("t1.status_id", $obj->getBestCriteria());
+                // $where->set("t1.rating_total/t1.rating_votes", 8, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
+                break;
+            case 'Low Wagering':
+                $where->set("t1.status_id",1,MySQLComparisonOperator::DIFFERS);
+                // $where->set("t11.bonus_type_id",8);
+                $where->setIn("t11.bonus_type_id",[3,4,5,6]);
+                $where->set('CAST(t11.wagering as UNSIGNED)',"'26'",MySQLComparisonOperator::LESSER);
+                break;
         }
+
         if($filter->getBankingMethod())
         {
             $group = new Lucinda\Query\Condition(array(), Lucinda\Query\LogicalOperator::_OR_);
             $group->set('t3.id', null,MySQLComparisonOperator::IS_NOT_NULL);
             $group->set('t14.id', null,MySQLComparisonOperator::IS_NOT_NULL);
             $where->setGroup($group);
-        }
-        if($filter->getCasinoLabel()=="Low Wagering")
-        {
-            $where->set("t1.status_id",1,MySQLComparisonOperator::DIFFERS);
-           // $where->set("t11.bonus_type_id",8);
-            $where->setIn("t11.bonus_type_id",[3,4,5,6]);
-            $where->set('CAST(t11.wagering as UNSIGNED)',"'26'",MySQLComparisonOperator::LESSER);
         }
     }
 
