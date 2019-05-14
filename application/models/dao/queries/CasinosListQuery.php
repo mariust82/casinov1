@@ -95,11 +95,7 @@ class CasinosListQuery
             if ($filter->getCasinoLabel() == "Stay away") {
                 $filter->setPromoted(FALSE);
             }
-            if ($filter->getCasinoLabel() == 'Low Wagering')
-            {
-                $query->joinInner("casinos__bonuses","t11")->on(["t1.id" => "t11.casino_id" ]);
-            }
-            else if(($filter->getCasinoLabel() != "New")) {
+            if(($filter->getCasinoLabel() != "New")) {
                 $sub_query = new Lucinda\Query\MySQLSelect("casino_labels");
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name"=> "'". $filter->getCasinoLabel() . "'"]);
@@ -161,13 +157,6 @@ class CasinosListQuery
                 $where->set("t1.is_open" ,1);
                 $where->set("t1.date_established","DATE_SUB(CURDATE(), INTERVAL 1 YEAR )",Lucinda\Query\ComparisonOperator::GREATER);
                 break;
-            case 'Low Wagering':
-                $where->set("t1.is_open" ,1);
-                $where->set("t1.status_id",1,MySQLComparisonOperator::DIFFERS);
-                // $where->set("t11.bonus_type_id",8);
-                $where->setIn("t11.bonus_type_id",[3,4,5,6]);
-                $where->set('CAST(t11.wagering as UNSIGNED)',"'26'",MySQLComparisonOperator::LESSER);
-                break;
         }
 
         if($filter->getBankingMethod())
@@ -184,7 +173,7 @@ class CasinosListQuery
     {
         if($sortBy)
         {
-            $orderBy->add('complex_case', 'ASC' );
+           $orderBy->add('complex_case', 'ASC' );
 
             switch($sortBy) {
                 case CasinoSortCriteria::NEWEST:
@@ -202,9 +191,7 @@ class CasinosListQuery
                     $orderBy->add("t1.id" , "DESC");
                     break;
                 case CasinoSortCriteria::WAGERING:
-                    $orderBy->add("CAST(t11.wagering as UNSIGNED)","ASC");
-                    $orderBy->add("t1.priority" , "DESC");
-                    $orderBy->add("t1.id" , "DESC");
+                    $orderBy->add("t5.id" , "ASC");
                     break;
                 default:
                     $orderBy->add("t1.priority" , "DESC");

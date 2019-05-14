@@ -46,8 +46,8 @@ abstract class CasinosListController extends BaseController {
 
 	abstract protected function getFilter();
 
-	protected function getSortCriteria() {
-	    return CasinoSortCriteria::NONE;
+    protected function getSortCriteria(){
+        return CasinoSortCriteria::NONE;
     }
 
 	protected function generatePathParameter($name) {
