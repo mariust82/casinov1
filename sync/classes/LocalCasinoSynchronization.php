@@ -6,6 +6,7 @@
  * Time: 11:14
  */
 require_once("../application/models/dao/BestCasinoLabel.php");
+require_once("../application/models/dao/LowWageringCasinoLabel.php");
 
 class LocalCasinoSynchronization extends NewCasinoSynchronization
 {
@@ -15,6 +16,10 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
         $object = new BestCasinoLabel(true);
         $object->resetBestLabelFromSync();
         $object->populateBestLabel();
+
+        $object = new LowWageringCasinoLabel();
+        $object->resetLowWageringLabel();
+        $object->populateLowWageringLabel();
     }
 
     protected function setLabels($casinoID, $info) {
