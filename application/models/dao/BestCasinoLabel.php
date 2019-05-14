@@ -12,9 +12,10 @@ require_once("entities/BestLabelFilter.php");
 class BestCasinoLabel
 {
     private $filter;
+    private $from_sync;
     const BEST_CASINO_LIMIT = 50;
 
-    public function __construct()
+    public function __construct($sync = false)
     {
         $this->filter = new BestLabelFilter();
         $this->filter->min_score = 8;
@@ -24,10 +25,10 @@ class BestCasinoLabel
         $this->filter->sort_by[0] = 'score desc';
         $this->filter->sort_by[1] = 'priority desc';
         $this->filter->sort_by[2] = 'id desc';
+        $this->from_sync = $sync;
     }
 
-    // Return a sorted(by score ASC) array of best casinos
-    private function getAllBestCasinos()
+    private function getAllBestCasinosQuery()
     {
         $order_by = implode(' , ',$this->filter->sort_by);
 
@@ -36,7 +37,17 @@ class BestCasinoLabel
         ORDER BY " . $order_by . " 
         LIMIT " . self::BEST_CASINO_LIMIT ;
 
-        $results = SQL($query);
+        return $query;
+    }
+
+    // Return a sorted(by score ASC) array of best casinos
+    private function getAllBestCasinos()
+    {
+        if(!$this->from_sync) {
+            $results = SQL($this->getAllBestCasinosQuery());
+        }
+        else
+            $results = DB::execute($this->getAllBestCasinosQuery());
         $output = array();
         while($row = $results->toRow())
         {
@@ -52,8 +63,8 @@ class BestCasinoLabel
     private function getAllBestLabels()
     {
         $query = "SELECT casino_id,label_id FROM casinos__labels WHERE label_id = 7";
-        $output = array();
         $result = SQL($query);
+        $output = array();
 
         while($row = $result->toRow()){
             $best_casino_lists = new BestLabel();
@@ -71,7 +82,10 @@ class BestCasinoLabel
 
         foreach ($results as $arg)
         {
-            SQL("INSERT INTO casinos__labels (casino_id,label_id) VALUE (" . $arg->casino_id . ",7)");
+            if(!$this->from_sync)
+                SQL("INSERT INTO casinos__labels (casino_id,label_id) VALUE (" . $arg->casino_id . ",7)");
+            else
+                DB::execute("INSERT INTO casinos__labels (casino_id,label_id) VALUE (" . $arg->casino_id . ",7)");
         }
     }
 
@@ -79,6 +93,11 @@ class BestCasinoLabel
     public function resetBestLabel()
     {
         SQL("DELETE FROM casinos__labels WHERE label_id = 7");
+    }
+
+    public function resetBestLabelFromSync()
+    {
+        DB::execute("DELETE FROM casinos__labels WHERE label_id = 7");
     }
 
     // checks if the rated casino should be inserted or deleted from Best

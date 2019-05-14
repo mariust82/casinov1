@@ -12,8 +12,8 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
     public function __construct($xmlFile = "configuration.xml", $usePackagist = false)
     {
         parent::__construct($xmlFile, $usePackagist);
-        $object = new BestCasinoLabel();
-        $object->resetBestLabel();
+        $object = new BestCasinoLabel(true);
+        $object->resetBestLabelFromSync();
         $object->populateBestLabel();
     }
 
