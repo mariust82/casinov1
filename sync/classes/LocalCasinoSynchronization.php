@@ -5,8 +5,8 @@
  * Date: 18.01.2018
  * Time: 11:14
  */
-require_once("../application/models/dao/BestCasinoLabel.php");
-require_once("../application/models/dao/LowWageringCasinoLabel.php");
+require_once(dirname(__DIR__)."/application/models/dao/BestCasinoLabel.php");
+require_once(dirname(__DIR__)."/application/models/dao/LowWageringCasinoLabel.php");
 
 class LocalCasinoSynchronization extends NewCasinoSynchronization
 {
