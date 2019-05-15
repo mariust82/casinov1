@@ -258,7 +258,11 @@ img, figure {
   content: "\e906";
 }
 
-.icon-icon_available:before {
+.icon-icon_available:before{
+  content: "\e907";
+}
+
+.icon-icon_available2:before {
   content: "\e907";
 }
 
@@ -5816,6 +5820,10 @@ a:hover, a:active, a:visited, a:focus {
 
 .icon-icon_available {
   color: #6EBC20;
+}
+
+.icon-icon_available2 {
+  color: #6ebc20;
 }
 
 .wrapletters {
