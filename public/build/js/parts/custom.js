@@ -2170,6 +2170,7 @@ var AJAX_CUR_PAGE = 1;
     function initBarRating() {
         var container = $('.rating-container');
         var defRating = container.data('casino-rating');
+        var current = [];
         var ratingParams = {
             showSelectedRating: false,
 
@@ -2179,22 +2180,25 @@ var AJAX_CUR_PAGE = 1;
                         var _this = $(event.currentTarget);
                         var _classes = 'terrible poor good very-good excellent';
 
+                        if (value || text) {
+                            current[0] = value;
+                            current[1] = text;
+                        }
+
                         _this
                             .closest(container)
                             .find('.rating-current-text')
-                            .text(text)
+                            .text(current[1])
                             .removeClass(_classes)
-                            .addClass(getWebName(text));
+                            .attr("class","rating-current-text "+getWebName(current[1]));
                         _this
                             .closest(container)
                             .find('.rating-current-value span')
-                            .text(value );
-
+                            .text(current[0]);
                         _this
                             .closest(container)
                             .find('.rating-current')
-                            .attr('data-rating-current', value);
-
+                            .attr('data-rating-current', current[0]);
                         new Score ({
                             value: value,
                             name: container.data('casino-name')
