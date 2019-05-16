@@ -315,11 +315,11 @@
 									<td><strong class="table-mobile-visible">Games:</strong> ${welcome_package_data.games}</td>
 									<td>
 										<std:set name="code_class" value=""/>
-										<std:if condition="${welcome_package_data.codes} != 'No code required'">
+										<std:if condition="${welcome_package_data.bonus_codes} != 'No code required'">
 											<std:set name="code_class" value="js-copy-to-clip js-copy-tooltip"/>
 										</std:if>
 
-										<div class="dashed ${code_class}" data-code="${welcome_package_data.codes}">${welcome_package_data.codes}</div>
+										<div class="dashed ${code_class}" data-code="${welcome_package_data.bonus_codes}">${welcome_package_data.bonus_codes}</div>
 									</td>
 								</tr>
 							</std:foreach>
