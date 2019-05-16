@@ -30,12 +30,14 @@
 					<i class="icon-icon_available"></i>
 					<span class="thanx">Thank you for rating $[name]!</span>
 				</div>
-				<div class="info-message">
-					<div class="info-message-icon">
-						<i class="icon-icon_info"></i>
+				<std:if condition="!${data.casino.is_country_accepted}">
+					<div class="info-message">
+						<div class="info-message-icon">
+							<i class="icon-icon_info"></i>
+						</div>
+						<div class="info-message-body">This casino does not accept your country, therefore you cannot rate or add a review.</div>
 					</div>
-					<div class="info-message-body">This casino does not accept your country, therefore you cannot rate or add a review.</div>
-				</div>
+				</std:if>
 			</div>
 			<label class="form-label">ADD REVIEW</label>
 		</std:if>

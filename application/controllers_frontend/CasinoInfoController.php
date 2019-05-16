@@ -596,7 +596,7 @@ $this->response->setAttribute("casino", array (
   ),
   'deposit_methods' => NULL,
   'withdraw_methods' => NULL,
-  'is_country_accepted' => '0',
+  'is_country_accepted' => '1',
   'is_language_accepted' => '1',
   'is_currency_accepted' => '1',
   'note' => NULL,
@@ -746,7 +746,7 @@ $this->response->setAttribute("user_score_class", 'No score');
 $this->response->setAttribute("total_reviews", 0);
 $this->response->setAttribute("reviews", array (
 ));
-$this->response->setAttribute("country_status", 'not-accepted');
+$this->response->setAttribute("country_status", 'accepted');
 $this->response->setAttribute("add_text", 15);
 $this->response->setAttribute("page_info", array (
   'head_title' => 'Read African Palace Casino Review at CasinosLists.com - 2019',
