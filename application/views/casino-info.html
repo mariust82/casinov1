@@ -262,12 +262,11 @@
 		</div>
 	</div>
 
-	<div class="section">
-
+	<div class="section ${data.country_status}">
 		<div class="container">
 			<div class="box box-alt">
 				<div class="title title-middle">
-					Reviews
+					${(${data.total_reviews} == 0)?'Be the first to write a review':'Reviews'}
 					<div class="reviews-num">
 						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
 					</div>
@@ -316,11 +315,11 @@
 									<td><strong class="table-mobile-visible">Games:</strong> ${welcome_package_data.games}</td>
 									<td>
 										<std:set name="code_class" value=""/>
-										<std:if condition="${welcome_package_data.bonus_codes} != 'No code required'">
+										<std:if condition="${welcome_package_data.codes} != 'No code required'">
 											<std:set name="code_class" value="js-copy-to-clip js-copy-tooltip"/>
 										</std:if>
 
-										<div class="dashed ${code_class}" data-code="${welcome_package_data.bonus_codes}">${welcome_package_data.bonus_codes}</div>
+										<div class="dashed ${code_class}" data-code="${welcome_package_data.codes}">${welcome_package_data.codes}</div>
 									</td>
 								</tr>
 							</std:foreach>

@@ -844,10 +844,14 @@ var AJAX_CUR_PAGE = 1;
         var field = $('.expanding');
         var hiddenBlocks = $('.js-expanding-textfields');
 
-        field.on('focus', function() {
-            $(this).removeClass('expanding');
-            $(this).closest('.form').find(hiddenBlocks).slideDown();
-        });
+        if ($('.box img.not-accepted').length) {
+            field.unbind("mouseenter mouseleave mouseover click focus");
+        } else {
+            field.on('focus', function() {
+                $(this).removeClass('expanding');
+                $(this).closest('.form').find(hiddenBlocks).slideDown();
+            });
+        }
     }
 
     var Vote = function(obj) {
