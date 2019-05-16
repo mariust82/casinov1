@@ -6306,6 +6306,12 @@ a:hover, a:active, a:visited, a:focus {
   margin:0 0 0 10px;
 }
 
+@media screen and (max-width: 690px) {
+  #reviews-form .review-submit-holder .errors-scope{
+    margin:10px 0 0 0;
+  }
+}
+
 #reviews-form .review-submit-holder .errors-scope .action-field{
   margin:0;
 }
