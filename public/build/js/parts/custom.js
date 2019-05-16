@@ -15,19 +15,19 @@ var AJAX_CUR_PAGE = 1;
 
         console.log($('.box img.not-accepted').length);
 
-        if($('.box img.not-accepted').length){
+        if($('.box img.not-accepted').length ){
             $('.br-widget a').unbind("mouseenter mouseleave mouseover click");
         }else {
 
 
             if (user_rate > 0) {
                 $('.br-widget').children().each(function () {
-                    $(this).unbind("mouseenter mouseleave mouseover");
+                    $(this).unbind("mouseenter mouseleave mouseover click");
                     if (parseInt($(this).data('rating-value')) <= parseInt(user_rate)) {
                         $(this).addClass('br-active');
                     }
                 });
-                $('.br-widget').unbind("mouseenter mouseleave mouseover");
+                $('.br-widget').unbind("mouseenter mouseleave mouseover click");
             }
         }
 
@@ -2170,35 +2170,37 @@ var AJAX_CUR_PAGE = 1;
     function initBarRating() {
         var container = $('.rating-container');
         var defRating = container.data('casino-rating');
-        var current = [];
+        var user_rate= container.attr('data-user-rate');
         var ratingParams = {
             showSelectedRating: false,
-
 
                 onSelect: function(value, text, event) {
                     if (typeof event != 'undefined') {
                         var _this = $(event.currentTarget);
                         var _classes = 'terrible poor good very-good excellent';
 
-                        if (value || text) {
-                            current[0] = value;
-                            current[1] = text;
-                        }
+                        $('.br-widget').children().each(function () {
+                            $(this).unbind("mouseenter mouseleave mouseover click");
+                            if (parseInt($(this).data('rating-value')) <= parseInt(user_rate)) {
+                                $(this).addClass('br-active');
+                            }
+                        });
+                        $('.br-widget').unbind("mouseenter mouseleave mouseover click");
 
                         _this
                             .closest(container)
                             .find('.rating-current-text')
-                            .text(current[1])
+                            .text(text)
                             .removeClass(_classes)
-                            .attr("class","rating-current-text "+getWebName(current[1]));
+                            .attr("class","rating-current-text "+getWebName(text));
                         _this
                             .closest(container)
                             .find('.rating-current-value span')
-                            .text(current[0]);
+                            .text(value);
                         _this
                             .closest(container)
                             .find('.rating-current')
-                            .attr('data-rating-current', current[0]);
+                            .attr('data-rating-current', value);
                         new Score ({
                             value: value,
                             name: container.data('casino-name')
