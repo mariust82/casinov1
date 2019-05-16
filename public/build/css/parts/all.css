@@ -6302,6 +6302,14 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
+#reviews-form .review-submit-holder .errors-scope{
+  margin:0 0 0 10px;
+}
+
+#reviews-form .review-submit-holder .errors-scope .action-field{
+  margin:0;
+}
+
 .review-rating {
   display: -webkit-box;
   display: -ms-flexbox;
