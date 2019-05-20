@@ -102,13 +102,14 @@
 
 				<std:if condition="${data.is_mobile}">
 					<std:if condition="(${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')">
-						<div class="btn-round-holder">
+						<div class="btn-round-holder list-item-cell-bfnp">
 							<span class="btn-round" data-name="${result.name}" data-is-free="1"> ${result.bonus_free.amount}
-							<std:if condition="${result.bonus_free.bonus_type_Abbreviation} != 'NDB'">
-								${result.bonus_free.bonus_type_Abbreviation}
-							</std:if> </span>
+								<std:if condition="${result.bonus_free.bonus_type_Abbreviation} != 'NDB'">
+									${result.bonus_free.bonus_type_Abbreviation}
+								</std:if> 
+							</span>
 						</div>
-						<div class="btn-round-holder">
+						<div class="btn-round-holder list-item-cell-wagering">
 							${result.bonus_free.wagering}
 						</div>
 					<std:else>

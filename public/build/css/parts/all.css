@@ -3382,12 +3382,12 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
-.list-item-cell.list-item-cell-bfnp{
+.list-item-cell-bfnp{
   width:33%;
 }
 
 @media screen and (max-width: 690px) {
-  .list-item-cell.list-item-cell-bfnp{
+  .list-item-cell-bfnp{
     width:26%;
   }
 
@@ -3396,18 +3396,18 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
-.list-item-cell.list-item-cell-wagering{
+.list-item-cell-wagering{
   width:21%;
 }
 
 @media screen and (max-width: 1023px) {
-  .list-item-cell.list-item-cell-wagering {
+  .list-item-cell-wagering {
     width: 25%;
   }
 }
 
 @media screen and (max-width: 690px) {
-  .list-item-cell.list-item-cell-wagering {
+  .list-item-cell-wagering {
     width: 14%;
   }
 }
