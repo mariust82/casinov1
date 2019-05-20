@@ -3403,12 +3403,14 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 1023px) {
   .list-item-cell-wagering {
     width: 25%;
+
   }
 }
 
 @media screen and (max-width: 690px) {
   .list-item-cell-wagering {
     width: 14%;
+    margin:0 !important;
   }
 }
 
@@ -3494,7 +3496,7 @@ a:hover, a:active, a:visited, a:focus {
   .list-item-banking-wit{
     width:16%;
   }
-  
+
   .list-item-banking-wit+.list-item-fd-bonus{
     display:none;
   }
@@ -3960,6 +3962,7 @@ a:hover, a:active, a:visited, a:focus {
   .btn-round {
     font-size: 12px;
     padding: 5px 8px;
+    max-width:95%;
   }
 }
 .btn {
@@ -8040,6 +8043,8 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 690px) {
   .btn-round-holder + .btn-round-holder{
     margin:5px 0 0 0;
+    -ms-word-break:break-word;
+    word-break:break-word;
   }
 }
 
