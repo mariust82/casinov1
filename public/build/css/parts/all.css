@@ -258,7 +258,11 @@ img, figure {
   content: "\e906";
 }
 
-.icon-icon_available:before {
+.icon-icon_available:before{
+  content: "\e907";
+}
+
+.icon-icon_available2:before {
   content: "\e907";
 }
 
@@ -1934,6 +1938,18 @@ corresponds to the arrow we want to display */
   transition: opacity .3s;
 }
 
+.not-accepted .textfield::-webkit-input-placeholder {
+  color: #d4d7e3;
+}
+
+.not-accepted .textfield::-moz-placeholder {
+  color: #d4d7e3;
+}
+
+.not-accepted .textfield:-ms-input-placeholder {
+  color: #d4d7e3;
+}
+
 .textfield:focus::-webkit-input-placeholder {
   opacity: 0;
 }
@@ -3292,9 +3308,12 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
+  /*-webkit-box-pack: justify;
       -ms-flex-pack: justify;
-          justify-content: space-between;
+          justify-content: space-between;*/
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
   padding: 10px 0 10px 10px;
   border-bottom: 1px solid #E8EAF3;
 }
@@ -3306,6 +3325,9 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 @media screen and (max-width: 690px) {
+  .list-item .list-rating {
+    display:none;
+  }
   .list-item {
     margin-left:-10px;
     margin-right:-10px;
@@ -3349,7 +3371,7 @@ a:hover, a:active, a:visited, a:focus {
 
 @media screen and (max-width: 690px) {
   .list-item-cell.list-item-casino {
-    width: 53%;
+    width: 50%;
   }
 }
 
@@ -3360,6 +3382,38 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 690px) {
   .list-heading .list-item-cell.list-item-casino{
     text-indent:0;
+  }
+}
+
+.list-item-cell-bfnp{
+  width:33%;
+}
+
+@media screen and (max-width: 690px) {
+  .list-item-cell-bfnp{
+    width:26%;
+  }
+
+  .list-heading-title.list-item-cell-bfnp span {
+    display:none;
+  }
+}
+
+.list-item-cell-wagering{
+  width:21%;
+}
+
+@media screen and (max-width: 1023px) {
+  .list-item-cell-wagering {
+    width: 25%;
+
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .list-item-cell-wagering {
+    width: 14%;
+    margin:0 !important;
   }
 }
 
@@ -3386,7 +3440,7 @@ a:hover, a:active, a:visited, a:focus {
 
 @media screen and (max-width: 1023px) {
   .list-item-cell.list-item-fd-bonus {
-    width: 19%;
+    width: 21%;
   }
 }
 
@@ -3397,7 +3451,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .list-item-cell.list-item-alt-bonus {
-  width: 12%;
+  width: 14%;
 }
 
 @media screen and (max-width: 690px) {
@@ -3428,7 +3482,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .list-item-banking-dep{
-  width:6%;
+  width:8%;
 }
 
 @media screen and (max-width: 690px) {
@@ -3438,10 +3492,14 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .list-item-banking-wit{
-  width:15%;
+  width:14.5%;
 }
 
 @media screen and (max-width: 690px) {
+  .list-item-banking-wit{
+    width:16%;
+  }
+
   .list-item-banking-wit+.list-item-fd-bonus{
     display:none;
   }
@@ -3666,7 +3724,7 @@ a:hover, a:active, a:visited, a:focus {
   }
 
   .list-flag {
-    margin: 0 3px 0 0;
+    margin: 0 8px 0 0;
   }
 }
 
@@ -3696,6 +3754,8 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  -ms-word-break:break-word;
+  word-break:break-word;
 }
 
 .additional-link{
@@ -3905,6 +3965,7 @@ a:hover, a:active, a:visited, a:focus {
   .btn-round {
     font-size: 12px;
     padding: 5px 8px;
+    max-width:95%;
   }
 }
 .btn {
@@ -4406,6 +4467,10 @@ a:hover, a:active, a:visited, a:focus {
   line-height: 1.45;
   font-size: 13px;
   resize: none;
+}
+
+.section.not-accepted .textfield{
+  border:1px solid #f6f7fa;
 }
 
 .textfield.expanding {
@@ -5818,6 +5883,10 @@ a:hover, a:active, a:visited, a:focus {
   color: #6EBC20;
 }
 
+.icon-icon_available2 {
+  color: #6ebc20;
+}
+
 .wrapletters {
   word-break: break-all;
 }
@@ -6278,6 +6347,20 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
+#reviews-form .review-submit-holder .errors-scope{
+  margin:0 0 0 10px;
+}
+
+@media screen and (max-width: 690px) {
+  #reviews-form .review-submit-holder .errors-scope{
+    margin:10px 0 0 0;
+  }
+}
+
+#reviews-form .review-submit-holder .errors-scope .action-field{
+  margin:0;
+}
+
 .review-rating {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6328,6 +6411,9 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 @media screen and (max-width: 690px) {
+  #reviews {
+    margin: 0;
+  }
   .reviews-form .review-info {
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -6384,6 +6470,9 @@ a:hover, a:active, a:visited, a:focus {
   font-weight: 600;
   display: block;
   margin: 0 0 23px;
+}
+.section.not-accepted .form-label{
+  color:#bec2c4;
 }
 
 .form-col {
@@ -6470,6 +6559,17 @@ a:hover, a:active, a:visited, a:focus {
   margin: 0 20px 0 0;
 }
 
+@media screen and (max-width: 690px) {
+  .rating-container {
+    width: 100%;
+    margin: 0;
+  }
+
+  .not-accepted .rating-container{
+    order:2;
+  }
+}
+
 .rating-container.not-valid .br-widget a {
   background: #DB2424;
 }
@@ -6488,6 +6588,10 @@ a:hover, a:active, a:visited, a:focus {
   border-radius: 50%;
 }
 
+.section.not-accepted .rating-container .br-widget a{
+  color:#f1f2f7;
+}
+
 .rating-container .br-widget a:first-child {
   margin: 0;
 }
@@ -6498,9 +6602,18 @@ a:hover, a:active, a:visited, a:focus {
 
 .rating-current {
   font-size: 12px;
+  color:#465156;
 }
 
-.rating-current-text {
+.section.not-accepted .rating-current{
+  color:#d7d9da;
+}
+
+.section.not-accepted .rating-current-text{
+  display:none;
+}
+
+.rating-current-text.excellent {
   color: #5DC916;
 }
 
@@ -6518,14 +6631,6 @@ a:hover, a:active, a:visited, a:focus {
 
 .rating-current-text.terrible {
   color: #DB2424;
-}
-
-.rating-current-text.no-score {
-  color: gray;
-}
-
-.rating-current-value {
-  color: #465156;
 }
 
 .flex {
@@ -6551,7 +6656,10 @@ a:hover, a:active, a:visited, a:focus {
 
 @media screen and (max-width: 690px) {
   .flex-left {
-    display: block;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
   }
 }
 
@@ -6654,6 +6762,10 @@ a:hover, a:active, a:visited, a:focus {
   font-size: 13px;
   color: #60686A;
   font-weight: 400;
+}
+
+.section.not-accepted .reviews-num{
+  display:none;
 }
 
 .btn-more {
@@ -7934,6 +8046,8 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 690px) {
   .btn-round-holder + .btn-round-holder{
     margin:5px 0 0 0;
+    -ms-word-break:break-word;
+    word-break:break-word;
   }
 }
 
@@ -8247,6 +8361,10 @@ img.grayscale {
   filter: url("data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg'&gt;&lt;filter id='grayscale'&gt;&lt;feColorMatrix type='matrix' values='0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0'/&gt;&lt;/filter&gt;&lt;/svg&gt;#grayscale");
   filter: gray;
   -webkit-filter: grayscale(100%);
+}
+
+.section.not-accepted{
+  pointer-events:none;
 }
 
 [type="checkbox"]:not(:checked),
@@ -8650,4 +8768,76 @@ img.grayscale {
 }
 .table-package .table-package_free_bonus{
   color: #5DC916;
+}
+.inactive{
+  pointer-events:none;
+}
+.info-message{
+  font-size:14px;
+  font-weight:bold;
+  background:#F8F8F8;
+  color:#60686A;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding:25px 70px 25px 20px;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  border-radius:2px;
+}
+
+@media screen and (max-width: 768px) {
+  .info-message{
+    padding:25px 20px;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .info-message{
+    padding:20px 15px;
+  }
+}
+
+.form-row .info-message{
+  margin:0 0 0 40px;
+}
+
+@media screen and (max-width: 768px) {
+  .form-row .info-message{
+    margin:0;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  .not-accepted .form-row .info-message{
+    order:1;
+    margin:0 0 20px;
+  }
+}
+
+.info-message-icon{
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width:30px;
+  margin:0 20px 0 0;
+  font-size:30px;
+  color:#2171CE;
+}
+
+@media screen and (max-width: 690px) {
+  .info-message-icon{
+    width:20px;
+    font-size:20px;
+    margin:0 15px 0 0;
+  }
+}
+
+.info-message-body{
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
     <application>
-        <version>0.8.8.36</version>
+        <version>0.8.8.383</version>
 
         <default_character_encoding>UTF-8</default_character_encoding>
         <default_page>index</default_page>
@@ -34,6 +34,7 @@
             <amos>C:\projects\casinoslists</amos>
             <bala>www.casinoslists.bala</bala>
             <mark>www.casinoslists.mark</mark>
+            <mark>C:\wamp64\www\casinoslists</mark>
             <dev>dev.casinoslists.com</dev>
             <live>www.casinoslists.com</live>
             <lucinda>/var/www/html/casinoslists</lucinda>
@@ -338,6 +339,7 @@
     <geoip>
         <lucinda>/tmp/ip2country.mmdb</lucinda>
         <alex>/home/casinoslists/public_html/ip2country.mmdb</alex>
+        <mark>/home/casinoslists/public_html/ip2country.mmdb</mark>
         <dev>/home/casinoslists/public_html/dev/ip2country.mmdb</dev>
         <live>/home/casinoslists/public_html/live/ip2country.mmdb</live>
     </geoip>

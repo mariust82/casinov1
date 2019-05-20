@@ -10,18 +10,14 @@ abstract class CasinosListController extends BaseController {
 
     protected $limit = 100;
 
-
 	public function service() {
 
         $this->response->setAttribute("selected_entity", ucwords($this->getSelectedEntity()));
-
         $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
 
         $menuBottom = new CasinosMenu($this->request->getAttribute("country")->name, $this->response->getAttribute("selected_entity"), $this->request->getURI()->getPage());
         $this->response->setAttribute("menu_bottom", $menuBottom->getEntries());
-
         $this->response->setAttribute("country", $this->request->getAttribute("country"));
-
         $this->response->setAttribute("sort_criteria", $this->getSortCriteria());
         $this->response->setAttribute("filter", $this->getFilter());
 
@@ -38,10 +34,6 @@ abstract class CasinosListController extends BaseController {
             array($this->response->getAttribute("filter") => $this->response->getAttribute("selected_entity")),
             $this->request->getAttribute("country"));
 
-      /*  // if label is best casino then we want casinos that are accepted
-        if($filter->getCasinoLabel() == 'Best')
-            $filter->setCountryAccepted('true');*/
-
         $object = new CasinosList($filter);
         $results = array();
         $results["total"] = $object->getTotal();
@@ -54,8 +46,8 @@ abstract class CasinosListController extends BaseController {
 
 	abstract protected function getFilter();
 
-	protected function getSortCriteria() {
-	    return CasinoSortCriteria::NONE;
+    protected function getSortCriteria(){
+        return CasinoSortCriteria::NONE;
     }
 
 	protected function generatePathParameter($name) {

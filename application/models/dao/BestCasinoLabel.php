@@ -6,16 +6,16 @@
  * Time: 1:22 PM
  */
 require_once("entities/Casino.php");
-require_once("queries/CasinosListQuery.php");
 require_once("entities/BestLabel.php");
 require_once("entities/BestLabelFilter.php");
 
 class BestCasinoLabel
 {
-    const BEST_CASINO_LIMIT = 50;
     private $filter;
+    private $from_sync;
+    const BEST_CASINO_LIMIT = 50;
 
-    public function __construct()
+    public function __construct($sync = false)
     {
         $this->filter = new BestLabelFilter();
         $this->filter->min_score = 8;
@@ -25,92 +25,109 @@ class BestCasinoLabel
         $this->filter->sort_by[0] = 'score desc';
         $this->filter->sort_by[1] = 'priority desc';
         $this->filter->sort_by[2] = 'id desc';
+        $this->from_sync = $sync;
     }
 
-    // the main query that select the casino that should be 'Best'
-    private function getMainQuery()
+    private function getAllBestCasinosQuery()
     {
         $order_by = implode(' , ',$this->filter->sort_by);
 
-        $query = "Select id,name,is_open,status_id,priority,rating_total,rating_votes,(rating_total/rating_votes) as score 
-        from casinos where is_open = ".$this->filter->is_open." and status_id = ".$this->filter->status_id." and (rating_total/rating_votes) >= ".$this->filter->min_score." order by " . $order_by . " limit " . self::BEST_CASINO_LIMIT ;
+        $query = "SELECT id , (rating_total/rating_votes) as score
+        FROM casinos WHERE is_open = ".$this->filter->is_open." AND status_id = ".$this->filter->status_id." AND (rating_total/rating_votes) >= ".$this->filter->min_score. " 
+        ORDER BY " . $order_by . " 
+        LIMIT " . self::BEST_CASINO_LIMIT ;
 
         return $query;
     }
 
-    // return all the casinos that have the label 'Best'
-    public function getAllBestCasinos()
+    // Return a sorted(by score ASC) array of best casinos
+    private function getAllBestCasinos()
     {
-        $query = "SELECT casino_id,label_id FROM casinos__labels where label_id = 7";
-
+        if(!$this->from_sync) {
+            $results = SQL($this->getAllBestCasinosQuery());
+        }
+        else
+            $results = DB::execute($this->getAllBestCasinosQuery());
         $output = array();
-
-        $result = SQL($query);
-
-        while($row = $result->toRow()){
-            $bestCasinoLists = new BestLabel();
-            $bestCasinoLists->casino_id = $row['casino_id'] ;
-            $output[sizeof($output)] = $bestCasinoLists;
+        while($row = $results->toRow())
+        {
+            $best_casino_lists = new BestLabel();
+            $best_casino_lists->casino_id = $row['id'] ;
+            $output[sizeof($output)] = $best_casino_lists;
         }
 
         return $output;
     }
 
-    // removes all casinos with the label id = 7 ('Best')
-    public function resetAllBestCasinos()
+    // return an array of all the casinos that have the label 'Best'
+    private function getAllBestLabels()
     {
-        $query = "Delete from casinos__labels where label_id = 7";
-        SQL($query);
-    }
-
-    public function populateCasinoLabel()
-    {
-        $result = SQL($this->getMainQuery());
-       // $output= array();
-
-        while($row = $result->toRow()){
-            $query = "INSERT INTO casinos__labels (casino_id, label_id) VALUES(" . $row['id']  . ",7)";
-            SQL($query);
-           // $output[sizeof($output)] = $row['id'];
-        }
-
-    }
-
-    //checks if modified casino is best and in table
-    public function checkCasino($casinoID){
-
-        $result = SQL($this->getMainQuery());
-        $output= array();
-
-        $isBest = false;
-        $inTable = false;
-
-        //check casino is best
-        while($row = $result->toRow()){
-            if($row['id']== $casinoID) {
-                $isBest = true;
-                break;
-            }
-        }
-
-        $query = "SELECT casino_id FROM casinos__labels where label_id = 7";
+        $query = "SELECT casino_id,label_id FROM casinos__labels WHERE label_id = 7";
         $result = SQL($query);
+        $output = array();
 
-        //check casino is in table
         while($row = $result->toRow()){
-            if($row['id']== $casinoID) {
-                $inTable = true;
-                break;
-            }
+            $best_casino_lists = new BestLabel();
+            $best_casino_lists->casino_id = $row['casino_id'] ;
+            $output[sizeof($output)] = $best_casino_lists;
         }
 
-        // if true then update table
-        if($isBest!=$inTable)
+        return $output;
+    }
+
+    // populates casinos__label with the Best Casinos
+    public function populateBestLabel()
+    {
+        $results = $this->getAllBestCasinos();
+
+        foreach ($results as $arg)
         {
-            $this->resetAllBestCasinos();
-            $this->populateCasinoLabel();
+            if(!$this->from_sync)
+                SQL("INSERT INTO casinos__labels (casino_id,label_id) VALUE (" . $arg->casino_id . ",7)");
+            else
+                DB::execute("INSERT INTO casinos__labels (casino_id,label_id) VALUE (" . $arg->casino_id . ",7)");
         }
     }
 
+    // deletes all Best Casinos from casinos__label
+    public function resetBestLabel()
+    {
+        SQL("DELETE FROM casinos__labels WHERE label_id = 7");
+    }
 
+    public function resetBestLabelFromSync()
+    {
+        DB::execute("DELETE FROM casinos__labels WHERE label_id = 7");
+    }
+
+    // checks if the rated casino should be inserted or deleted from Best
+    public function checkRatedCasino($casino_id)
+    {
+        $is_best = $this->searchIfBest($this->getAllBestCasinos(),$casino_id);
+        $in_table = $this->searchIfBest($this->getAllBestLabels(),$casino_id);
+
+        if($is_best!=$in_table)
+        {
+            $this->resetBestLabel();
+            $this->populateBestLabel();
+        }
+    }
+
+    private function searchIfBest($best_casinos,$id)
+    {
+        $found = false;
+        foreach ($best_casinos as $arg)
+        {
+            if($id == $arg->casino_id){
+                $found = true;
+                break;
+            }
+        }
+        return $found;
+    }
+
+    public function getBestLimit()
+    {
+        return self::BEST_CASINO_LIMIT;
+    }
 }

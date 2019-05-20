@@ -34,39 +34,53 @@ class CasinosFilterController extends Controller
         $sortCriteria = $this->getSortCriteria();
 
         $page = (integer)$this->request->getValidator()->getPathParameter("page");
-
-        $object = new CasinosList(new CasinoFilter($_GET, $this->request->getAttribute("country")));
+        $filter = new CasinoFilter($_GET, $this->request->getAttribute("country"));
+        $object = new CasinosList($filter);
 
         $total = $object->getTotal();
 
         $offset = $page * $this->limit;
 
+        $this->response->setAttribute("filter",$filter->getCasinoLabel());
         $this->response->setAttribute("total_casinos", $total);
-        $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset));
-
-        if ($object->getFilter()->getBankingMethod())  // only if there is a banking method (when this controller is active) we know that the page type is banking_method
-        {
-            $this->response->setAttribute('page_type', 'banking_method');
-        } else {
-            $this->response->setAttribute('page_type', 'not_banking_method');
-        }
-
+        $this->response->setAttribute("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset,true));
+        $this->response->setAttribute('page_type',$this->getPageType($filter));
+        $this->response->setAttribute('selected_entity','');
     }
 
     private function getSortCriteria()
     {
-        $short_criteria = $this->request->getAttribute('validation_results')->get('sort');
-        if(empty($short_criteria)){
+        $sort_criteria = $this->request->getAttribute('validation_results')->get('sort');
+        if(empty($sort_criteria)|| $sort_criteria==null){
             return CasinoSortCriteria::NONE;
         }
 
-        if ($short_criteria == CasinoSortCriteria::NONE && $this->request->getParameter("label") == "New") {
-            return CasinoSortCriteria::NEWEST;
-        }else if($short_criteria == CasinoSortCriteria::NONE && !empty($this->request->getAttribute('validation_results')->get('country'))){
+        if($sort_criteria == CasinoSortCriteria::NONE){
+            if($this->request->getParameter("label") == "New")
+                return CasinoSortCriteria::NEWEST;
+            else if($this->request->getParameter("label") == "Low Wagering")
+                return CasinoSortCriteria::WAGERING;
+            else if(!empty($this->request->getAttribute('validation_results')->get('country')))
                 return CasinoSortCriteria::POPULARITY;
-
-        } else {
+            return CasinoSortCriteria::NONE;
+        }
+        else{
             return $this->request->getAttribute('validation_results')->get('sort');
+        }
+    }
+
+    private function getPageType(CasinoFilter $filter)
+    {
+        if($filter->getBankingMethod())
+        {
+            return 'banking_method';
+        }
+        else
+        {
+            if($filter->getCasinoLabel() == 'Low Wagering')
+                return 'low_wagering';
+            else
+                return 'not_banking_method';
         }
     }
 }

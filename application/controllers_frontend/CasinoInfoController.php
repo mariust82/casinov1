@@ -596,7 +596,7 @@ $this->response->setAttribute("casino", array (
   ),
   'deposit_methods' => NULL,
   'withdraw_methods' => NULL,
-  'is_country_accepted' => '0',
+  'is_country_accepted' => '1',
   'is_language_accepted' => '1',
   'is_currency_accepted' => '1',
   'note' => NULL,
@@ -615,52 +615,56 @@ $this->response->setAttribute("casino", array (
       'id' => '364891',
       'casino_id' => '332',
       'bonus_type_id' => '2',
-      'codes' => 'No code required',
-      'amount' => '200%',
+      'bonus_codes' => 'No code required',
+      'bonus' => '200%',
       'wagering' => '40x(D+B)',
       'availability' => '',
-      'minimum_deposit' => '$/€/£25',
+      'min_deposit' => '$/€/£25',
       'games' => 'All except Video Poker,Progressive Games and Red Dog',
       'is_exclusive' => '0',
+      'valid_on' => '1st Deposit',
     ),
     1 => 
     array (
       'id' => '364892',
       'casino_id' => '332',
       'bonus_type_id' => '8',
-      'codes' => 'No code required',
-      'amount' => '50%',
+      'bonus_codes' => 'No code required',
+      'bonus' => '50%',
       'wagering' => '40x(D+B)',
       'availability' => '2nd Deposit',
-      'minimum_deposit' => '$/€50',
+      'min_deposit' => '$/€50',
       'games' => 'All except Video Poker,Progressive Games and Red Dog',
       'is_exclusive' => '0',
+      'valid_on' => '1st Deposit',
     ),
     2 => 
     array (
       'id' => '364893',
       'casino_id' => '332',
       'bonus_type_id' => '8',
-      'codes' => 'No code required',
-      'amount' => '75%',
+      'bonus_codes' => 'No code required',
+      'bonus' => '75%',
       'wagering' => '40x(D+B)',
       'availability' => '3rd Deposit',
-      'minimum_deposit' => '$/€50',
+      'min_deposit' => '$/€50',
       'games' => 'All except Video Poker,Progressive Games and Red Dog',
       'is_exclusive' => '0',
+      'valid_on' => '1st Deposit',
     ),
     3 => 
     array (
       'id' => '364894',
       'casino_id' => '332',
       'bonus_type_id' => '8',
-      'codes' => 'No code required',
-      'amount' => '100%',
+      'bonus_codes' => 'No code required',
+      'bonus' => '100%',
       'wagering' => '40x(D+B)',
       'availability' => '4th Deposit',
-      'minimum_deposit' => '$/€50',
+      'min_deposit' => '$/€50',
       'games' => 'All except Video Poker,Progressive Games and Red Dog',
       'is_exclusive' => '0',
+      'valid_on' => '1st Deposit',
     ),
   ),
   'casino_deposit_methods' => 
@@ -742,7 +746,7 @@ $this->response->setAttribute("user_score_class", 'No score');
 $this->response->setAttribute("total_reviews", 0);
 $this->response->setAttribute("reviews", array (
 ));
-$this->response->setAttribute("country_status", 'not-accepted');
+$this->response->setAttribute("country_status", 'accepted');
 $this->response->setAttribute("add_text", 15);
 $this->response->setAttribute("page_info", array (
   'head_title' => 'Read African Palace Casino Review at CasinosLists.com - 2019',

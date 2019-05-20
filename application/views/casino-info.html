@@ -262,12 +262,11 @@
 		</div>
 	</div>
 
-	<div class="section">
-
+	<div class="section ${data.country_status}">
 		<div class="container">
 			<div class="box box-alt">
 				<div class="title title-middle">
-					Reviews
+					${(${data.total_reviews} == 0)?'Be the first to write a review':'Reviews'}
 					<div class="reviews-num">
 						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
 					</div>
@@ -391,14 +390,14 @@
 									<std:if condition="empty(${dep_method_data.deposit_methods})">
 										<i class="icon-icon_unavailable"></i>
 										<std:else>
-											<i class="icon-icon_available"></i>
+											<i class="icon-icon_available2"></i>
 									</std:if>
 								</td>
 								<td align="center">
 									<std:if condition="empty(${dep_method_data.withdraw_methods})">
 										<i class="icon-icon_unavailable"></i>
 										<std:else>
-											<i class="icon-icon_available"></i>
+											<i class="icon-icon_available2"></i>
 									</std:if>
 								</td>
 							</tr>

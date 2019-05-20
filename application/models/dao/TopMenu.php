@@ -26,7 +26,7 @@ class TopMenu
                 "Best Casinos" => "/casinos/best",
                 "Live Casinos" => "/features/live-dealer",
                 "Mobile Casinos" => "/casinos/mobile",
-                "Low Wagering" => "/casinos/low-wagering",
+                "Low Wagering Casinos" => "/casinos/low-wagering",
                 "eCOGRA Casinos" => "/features/ecogra-casinos",
                 "Stay Away Casinos" => "/casinos/stay-away",
                 "Popular Casinos" => "/casinos/popular",

@@ -2,7 +2,6 @@
 require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once("FieldValidator.php");
-require_once("BestCasinoLabel.php");
 
 class Casinos implements FieldValidator
 {
@@ -97,10 +96,6 @@ class Casinos implements FieldValidator
             if($affectedRows>0) {
                 SQL("UPDATE casinos SET rating_total=rating_total+:value, rating_votes=rating_votes+1 WHERE id=:casino",
                   array(":casino"=>$casinoID, ":value"=>$value));
-                if($value>=8) {
-                    $obj = new BestCasinoLabel();
-                    $obj->checkCasino($casinoID);
-                }
             }
             return $affectedRows;
         } else {
