@@ -3745,6 +3745,8 @@ a:hover, a:active, a:visited, a:focus {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+  -ms-word-break:break-word;
+  word-break:break-word;
 }
 
 .additional-link{
