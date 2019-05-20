@@ -113,18 +113,20 @@
 							${result.bonus_free.wagering}
 						</div>
 					<std:else>
-						<std:if condition="${result.bonus_free.amount}">
-							<div class="btn-round-holder">
-								<span class="btn-round" data-name="${result.name}" data-is-free="1">
-									${result.bonus_free.amount} ${result.bonus_free.bonus_type_Abbreviation}
-								</span>
-							</div>
-						</std:if>
-						<std:if condition="${result.bonus_first_deposit.amount}">
-							<div class="btn-round-holder">
-								<span class="btn-round" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
-							</div>
-						</std:if>
+						<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
+							<std:if condition="${result.bonus_free.amount}">
+								<div class="btn-round-holder">
+									<span class="btn-round" data-name="${result.name}" data-is-free="1">
+										${result.bonus_free.amount} ${result.bonus_free.bonus_type_Abbreviation}
+									</span>
+								</div>
+							</std:if>
+							<std:if condition="${result.bonus_first_deposit.amount}">
+								<div class="btn-round-holder">
+									<span class="btn-round" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
+								</div>
+							</std:if>
+						</div>
 					</std:if>
 				<std:else>
 					<std:if condition="(${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')">
