@@ -4,19 +4,19 @@
 		<div class="list-item-cell list-item-casino list-heading-title">CASINO</div>
 
 		<std:if condition="(${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')">
-			<div class="list-item-cell list-heading-title">BONUS FOR NEW PLAYERS</div>
-			<div class="list-item-cell list-heading-title">WAGERING</div>
+			<div class="list-item-cell list-heading-title list-item-cell-bfnp">BONUS <span>FOR NEW PLAYERS</span></div>
+			<div class="list-item-cell list-heading-title list-item-cell-wagering">WAGERING</div>
 			<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
+		<std:else>
+			<std:if condition="${data.page_type} == 'banking_method'">
+				<div class="list-item-cell list-heading-title list-item-banking-dep">DEPOSIT</div>
+				<div class="list-item-cell list-heading-title list-item-banking-wit">WITHDRAWAL</div>
 			<std:else>
-				<std:if condition="${data.page_type} == 'banking_method'">
-					<div class="list-item-cell list-heading-title list-item-banking-dep">DEPOSIT</div>
-					<div class="list-item-cell list-heading-title list-item-banking-wit">WITHDRAWAL</div>
-					<std:else>
-						<div class="list-item-cell list-heading-title list-item-type">$[type]</div>
-				</std:if>
-				<div class="list-item-cell list-heading-title list-item-fd-bonus"><span>FIRST DEPOSIT</span> BONUS</div>
-				<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
-				<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
+				<div class="list-item-cell list-heading-title list-item-type">$[type]</div>
+			</std:if>
+			<div class="list-item-cell list-heading-title list-item-fd-bonus"><span>FIRST DEPOSIT</span> BONUS</div>
+			<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
+			<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
 		</std:if>
 	</div>
 	<div class="list-body">
@@ -33,8 +33,8 @@
 						<div class="list-flag">
 							<std:if condition="${result.is_country_accepted} == 1">
 								<img class="accepted" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
-								<std:else>
-									<img class="not-accepted" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
+							<std:else>
+								<img class="not-accepted" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
 							</std:if>
 						</div>
 						<std:set name="score_class" value="get_rating(${result.rating})"/>
@@ -44,11 +44,11 @@
 									<div class="list-rating-score">-</div>
 									<div class=" list-rating-score list-rating-score-mobile">|</div>
 									<div class="list-rating-text">${score_class}</div>
-									<std:else>
-										<div class="list-rating-score">
-											${ceil(${result.rating})}
-										</div>
-										<div class="list-rating-text">${score_class}</div>
+								<std:else>
+									<div class="list-rating-score">
+										${ceil(${result.rating})}
+									</div>
+									<div class="list-rating-text">${score_class}</div>
 								</std:if>
 							</div>
 						</div>
@@ -75,16 +75,17 @@
 										<std:if condition="${result.date_established} != '0000-00-00'">
 											<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
 										</std:if>
-										<std:else>
-											<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
-												${result.softwares.0}
-											</a>
-											<std:set name="extra" value="count(${result.softwares})-1"/>
-											<std:if condition="${extra} > 0">
+									<std:else>
+										<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
+											${result.softwares.0}
+										</a>
+
+										<std:set name="extra" value="count(${result.softwares})-1"/>
+										<std:if condition="${extra} > 0">
 											<span class="bubble bubble-long js-tooltip software_tooltip" title="${result.all_softwares}">
 												+${extra}
 											</span>
-											</std:if>
+										</std:if>
 									</std:if>
 								</div>
 							</div>
@@ -126,11 +127,11 @@
 					</std:if>
 				<std:else>
 					<std:if condition="(${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')">
-						<div class="list-item-cell list-item-type">
+						<div class="list-item-cell list-item-cell-bfnp">
 							<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1"> ${result.bonus_free.amount}
 							<std:if condition="${result.bonus_free.bonus_type_Abbreviation} != 'NDB'"> ${result.bonus_free.bonus_type_Abbreviation} </std:if> </span>
 						</div>
-						<div class="btn-round-holder">
+						<div class="list-item-cell list-item-cell-wagering">
 							${result.bonus_free.wagering}
 						</div>
 					<std:else>
@@ -139,10 +140,9 @@
 						</div>
 						<div class="list-item-cell list-item-alt-bonus">
 							<std:if condition="${result.bonus_free}">
-
-							<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1">
-								${result.bonus_free.amount} ${result.bonus_free.bonus_type_Abbreviation}
-							</span>
+								<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1">
+									${result.bonus_free.amount} ${result.bonus_free.bonus_type_Abbreviation}
+								</span>
 							</std:if>
 						</div>
 					</std:if>
@@ -153,15 +153,15 @@
 							<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-blk btn-err">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><defs><style>.a{fill:#fff;}</style></defs><path class="a" d="M10,2a8,8,0,1,0,8,8,8,8,0,0,0-8-8m4,8.8H6V9.2h8Z" transform="translate(-2 -2)"/></svg>
 							</a>
-							<std:elseif condition="${result.status}==2">
-								<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-wrn btn-err">
-									<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><defs><style>.a{fill:#fff;}</style></defs><path class="a" d="M10.8,10.8H9.2V6h1.6m0,8H9.2V12.4h1.6M10,2a8,8,0,1,0,8,8,8,8,0,0,0-8-8Z" transform="translate(-2 -2)"/></svg>
-								</a>
-								<std:else>
-									<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow">
-										<span class="btn btn-small">Visit</span>
-										<span class="btn btn-circle"><i class="icon-chevron-right"></i></span>
-									</a>
+						<std:elseif condition="${result.status}==2">
+							<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-wrn btn-err">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><defs><style>.a{fill:#fff;}</style></defs><path class="a" d="M10.8,10.8H9.2V6h1.6m0,8H9.2V12.4h1.6M10,2a8,8,0,1,0,8,8,8,8,0,0,0-8-8Z" transform="translate(-2 -2)"/></svg>
+							</a>
+						<std:else>
+							<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow">
+								<span class="btn btn-small">Visit</span>
+								<span class="btn btn-circle"><i class="icon-chevron-right"></i></span>
+							</a>
 						</std:if>
 					</div>
 				</div>

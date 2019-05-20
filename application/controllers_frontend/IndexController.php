@@ -2276,6 +2276,8 @@ $this->response->setAttribute("new_games", array (
   ),
 ));
 $this->response->setAttribute("filter", NULL);
+$this->response->setAttribute("page_type", "label");
+$this->response->setAttribute("selected_entity", "Low Wagering");
 $this->response->setAttribute("page_info", array (
   'head_title' => 'Online Casino Lists & Bonuses! CasinosLists.com - 2019',
   'head_description' => 'Detailed Online Casino Lists | Casino Bonuses Lists, Casino Softwares Lists, Casino Games Lists, Mobile Casinos Lists and More at CasinosLists.com – 2019',
