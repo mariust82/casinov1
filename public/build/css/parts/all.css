@@ -3487,10 +3487,14 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .list-item-banking-wit{
-  width:17%;
+  width:14.5%;
 }
 
 @media screen and (max-width: 690px) {
+  .list-item-banking-wit{
+    width:16%;
+  }
+  
   .list-item-banking-wit+.list-item-fd-bonus{
     display:none;
   }
