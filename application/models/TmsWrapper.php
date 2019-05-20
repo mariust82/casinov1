@@ -8,7 +8,7 @@ class TmsWrapper{
     private $response;
 
 
-    public function __construct($application, $request, $response)
+    public function __construct(Application $application, Request $request, Response $response)
     {
         $this->application = $application;
         $this->request = $request;
