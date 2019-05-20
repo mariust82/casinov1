@@ -1,10 +1,4 @@
 <?php
-
-/**
- * a wrapper class for TMS, to keep implementation in one place
- * it return just the tms text.
- */
-
 require_once("hlis/tms/src/TextsManager.php");
 
 class TmsWrapper{

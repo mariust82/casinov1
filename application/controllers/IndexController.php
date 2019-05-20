@@ -10,7 +10,7 @@ require_once("application/models/dao/PageInfoDAO.php");
 require_once("application/controllers/BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
 require_once("application/models/caching/GamesListKey.php");
-require_once ('application/Tms/TmsWrapper.php');
+require_once ('application/models/TmsWrapper.php');
 
 /*
 * Homepage

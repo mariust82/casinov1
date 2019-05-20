@@ -7,7 +7,7 @@ require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/GamesMenu.php");
 require_once("BaseController.php");
 require_once("application/models/caching/GamesListKey.php");
-require_once ('application/Tms/TmsWrapper.php');
+require_once ('application/models/TmsWrapper.php');
 
 /*
 * Games list by game type.

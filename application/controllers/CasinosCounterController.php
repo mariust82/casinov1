@@ -1,7 +1,7 @@
 <?php
 require_once("BaseController.php");
 require_once("application/models/caching/CasinosCounterKey.php");
-require_once ('application/Tms/TmsWrapper.php');
+require_once ('application/models/TmsWrapper.php');
 /**
  * Controller
  */
