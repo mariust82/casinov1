@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Liviu
- * Date: 14-May-19
- * Time: 12:05 PM
- */
-
-class LowWageringLabelFilter
+class LowWageringLabelFilter extends Entity
 {
     public $is_open;
     public $status_id;

@@ -8,27 +8,21 @@ class TmsWrapper{
     private $response;
 
 
-    public function __construct(Application $application, Request $request, Response $response)
+    public function __construct(Lucinda\MVC\STDOUT\Application $application, Lucinda\MVC\STDOUT\Request $request, Lucinda\MVC\STDOUT\Response $response)
     {
         $this->application = $application;
         $this->request = $request;
         $this->response  = $response;
-
-        return $this->getText();
-    }
-
-    private function getXML(){
-        return $this->application->getXML();
     }
 
     private function getParentSchema(){
 
-        return $this->application->getAttribute("parent_schema");
+        return $this->application->attributes()->get("parent_schema");
     }
 
     private function getVariablesFolder(){
 
-        return $this->getXML()->application->paths->tms_variables;
+        return $this->application->getTag("application")->paths->tms_variables;
     }
 
 
@@ -41,8 +35,7 @@ class TmsWrapper{
                 "response"=>$this->response
             ),
             $this->getParentSchema());
-
-        return $tms;
+        return $tms->getTexts();
     }
 
 }

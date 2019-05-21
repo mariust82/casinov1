@@ -3,7 +3,7 @@
 		<div class="filter-label">Filter by:</div>
 		<div class="filter-check">
 			<div class="filter-check-item">
-                             <std:if condition="$[key] == 'true'">
+                             <:if test="$[key] == 'true'">
 				<div class="check">
 					<input type="checkbox" name="currency_accepted" id="accepted">
 					<label for="accepted"></label>
@@ -14,7 +14,7 @@
 					<label for="lang"></label>
 				</div>
                                 <label class="filter-check-label" for="lang">$[code]</label>
-                            <std:else>
+                            <:else>
                                 <div class="check">
 					<input type="checkbox" name="country_accepted" id="accepted">
 					<label for="accepted"></label>
@@ -23,7 +23,7 @@
 					<img src="/public/build/images/flags/$[code].png" width="20" height="14" alt="$[code]">
 				</div>
 				<label class="filter-check-label" for="accepted">$[name] accepted</label>
-                            </std:if>
+                            </:if>
 				
 			</div>
 			<div class="filter-check-item">
@@ -35,11 +35,11 @@
 			</div>
 		</div>
 	</div>
-	<std:if condition="${data.selected_entity} != 'Best'">
+	<:if test="${data.selected_entity} != 'Best'">
 	<div class="filter-sort">
 		<div class="filter-label">Sort by:</div>
 		<div class="filter-sort-buttons">
-                    <std:if condition="$[id] == 'Best'">
+                    <:if test="$[id] == 'Best'">
                         <input type="radio" name="sort" value="1" id="default">
 			<label for="default" class="first">
 				Default
@@ -52,7 +52,7 @@
 			<label for="newest">
 				Newest
 			</label>
-                    <std:elseif condition="$[id] == 'New'">
+                    <:elseif test="$[id] == 'New'">
                         <input type="radio" name="sort" value="1" id="default">
 			<label for="default" class="first">
 				Default
@@ -65,7 +65,7 @@
 			<label for="newest">
 				Newest
 			</label>
-                        <std:else>
+                        <:else>
                             <input checked type="radio" name="sort" value="1" id="default">
 			<label for="default" class="first">
 				Default
@@ -78,9 +78,9 @@
 			<label for="newest">
 				Newest
 			</label>
-                    </std:if>
+                    </:if>
 
 		</div>
 	</div>
-	</std:if>
+	</:if>
 </div>

@@ -1,85 +1,22 @@
 <?php
-require_once("vendor/lucinda/sql-data-access/loader.php");
-require_once("application/models/DB.php");
+require_once("vendor/lucinda/framework-engine/src/datasource_detection/SQLDataSourceBinder.php");
+        require_once("application/models/DB.php");
 
 /**
- * Reads xml for sql database servers credentials based on detected environment, creates datasource objects on these then injects datasource
- * objects into classes that insure a single connection is (re)used for a single database server in the duration of a request through:
- * - singletons: if we're using no more than one sql server in application. In this case, a connection instance will be retrieved by:
- * 	SQLConnectionSingleton::getInstance() : this returns (or creates, if it doesn't exist) an SQLConnection object for the single SQL server we're using
- * - singleton factories: if we're using more than one sql server in application. In this case, a connection instance will be retrieved by:
- * 	SQLConnectionFactory::getInstance(serverName) : this returns (or creates, if it doesn't exist) an SQLConnection object for the SQL server identified by serverName
- *
- *  The XML to define the single sql database server used by application:
- *  <database>
- *  	<sql>
- *  		<{ENVIRONMENT_NAME}>
- *  			<server driver="..." host="..." port="..." .../>
- *  		</{ENVIRONMENT_NAME}>
- *  		...{MORE ENVIRONMENTS}...
- *  	</sql>
- *  	...
- *  </database>
- *
- *  The XML to define multiple sql database servers used by application:
- *  <database>
- *  	<sql>
- *  		<{ENVIRONMENT_NAME}>
- *  			<server name="..." driver="..." host="..." port="..." .../>
- *  			...{MORE <server> TAGS}...
- *  		</{ENVIRONMENT_NAME}>
- *  		...{MORE ENVIRONMENTS}...
- *  	</sql>
- *  </database>
+ * Binds STDOUT MVC with SQL Data Access API and contents of 'sql' subtag of 'servers' tag @ configuration.xml
+ * in order to be able to operate with a sql database (via PDO). 
+ * Sets up and injects a Lucinda\SQL\DataSource object that will be used automatically when querying database via
+ * Lucinda\SQL\ConnectionSingleton or Lucinda\SQL\ConnectionFactory.
  */
-class SQLDataSourceInjector extends RequestListener {
-	public function run() {
-		$environment = $this->application->getAttribute("environment");
-		
-		// detect & inject sql data sources
-		$xml = $this->application->getXML()->servers->sql->$environment;
-		if(!empty($xml)) {
-			$this->injectDataSources($xml);
-		}
-	}
-	
-	/**
-	 * Creates SQLDataSource entries based on XML info and injects them into SQLConnectionFactory/SQLConnectionSingleton
-	 *
-	 * @param SimpleXMLElement $xml Content of database.{ENVIRONMENT_NAME}.sql XML tag.
-	 * @throws ServletException If tags syntax is invalid.
-	 */
-	private function injectDataSources(SimpleXMLElement $xml) {
-		if(!$xml->server) throw new ServletException("Server not set for environment!");
-		$xml = (array) $xml;
-		if(is_array($xml["server"])) {
-			foreach($xml["server"] as $element) {
-				if(!isset($element["name"])) throw new ServletException("Attribute 'name' not set for <server> tag!");
-				SQLConnectionFactory::setDataSource((string) $element["name"], $this->createDataSource($element));
-			}
-		} else {
-			SQLConnectionSingleton::setDataSource($this->createDataSource($xml["server"]));
-		}
-	}
-	
-	/**
-	 * Creates and returns a SQLDataSource object based on XML info.
-	 *
-	 * @param SimpleXMLElement $databaseInfo
-	 * @return SQLDataSource
-	 */
-	private function createDataSource(SimpleXMLElement $databaseInfo) {
-	    $this->application->setAttribute("parent_schema", (string) $databaseInfo["parent_schema"]);
+class SQLDataSourceInjector extends \Lucinda\MVC\STDOUT\ApplicationListener {
+    /**
+     * {@inheritDoc}
+     * @see \Lucinda\MVC\STDOUT\Runnable::run()
+     */
+    public function run() {
+        new Lucinda\Framework\SQLDataSourceBinder($this->application->getTag("servers")->sql, ENVIRONMENT);
 
-		$dataSource = new SQLDataSource();
-		$dataSource->setDriverName((string) $databaseInfo["driver"]);
-		$dataSource->setDriverOptions((array) $databaseInfo["options"]);
-		$dataSource->setHost((string) $databaseInfo["host"]);
-		$dataSource->setPort((string) $databaseInfo["port"]);
-		$dataSource->setUserName((string) $databaseInfo["username"]);
-		$dataSource->setPassword((string) $databaseInfo["password"]);
-		$dataSource->setSchema((string) $databaseInfo["schema"]);
-		$dataSource->setCharset((string) $databaseInfo["charset"]);
-		return $dataSource;
+        $parentSchema = (string) $this->application->getTag("servers")->sql->{ENVIRONMENT}->server["parent_schema"];
+        $this->application->attributes()->set("parent_schema", $parentSchema);
 	}
 }

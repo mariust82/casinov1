@@ -16,11 +16,11 @@
 			</div>
 			<div id="player-wrap" class="player-wrap">
 				<div class="player">
-					<std:if condition="${data.use_bundle}">
+					<:if test="${data.use_bundle}">
 						<link rel="stylesheet" type="text/css" href="/public/build/css/compilations/gameplay.css?ver=${data.version}" media="all">
-						<std:else/>
+						<:else/>
 						<link rel="stylesheet" type="text/css" href="/public/build/css/parts/gameplay.css?ver=${data.version}" media="all">
-					</std:if>
+					</:if>
 					<div class="player-holder">
 						<iframe id="gameplay_iframe" src="${data.game_player.url}?game=${data.game.name}" width="${data.game_player.width}" height="${data.game_player.height}"></iframe>
 					</div>
@@ -34,11 +34,11 @@
 						<div style="clear: both; height: 1px;width: 1px;"></div>
 					</div>
 
-					<std:if condition="${data.use_bundle}">
+					<:if test="${data.use_bundle}">
 						<script src="/public/build/js/compilations/gameplay.js?ver=${data.version}"></script>
-					<std:else/>
+					<:else/>
 						<script src="/public/build/js/parts/gameplay.js?ver=${data.version}"></script>
-					</std:if>
+					</:if>
 				</div>
 			</div>
 			<div class="game-info">
@@ -59,32 +59,32 @@
 					<div class="game-info-cell">
 						<div class="game-info-title">TECHNOLOGY</div>
 						<div class="game-info-val">
-							<std:set name="numItems" value="count(${data.game.technologies})"/>
-							<std:set name="i" value="0"/>
-							<std:foreach var="${data.game.technologies}" value="result">
+							<:set var="numItems" val="count(${data.game.technologies})"/>
+							<:set var="i" val="0"/>
+							<:foreach var="${data.game.technologies}" val="result">
 							      ${result}
-							      <std:set name="i" value="${i}+1"/>
-							      <std:if condition="${i}+1 < ${numItems}">, </std:if>
-							</std:foreach>
+							      <:set var="i" val="${i}+1"/>
+							      <:if test="${i}+1 < ${numItems}">, </:if>
+							</:foreach>
 						</div>
 					</div>
 					<div class="game-info-cell">
 						<div class="game-info-sign">
-							<std:if condition="${data.game.is_mobile}">
+							<:if test="${data.game.is_mobile}">
 								<i class="icon-icon_available"></i>
-							<std:else>
+							<:else>
 								<i class="icon-icon_unavailable"></i>
-							</std:if>
+							</:if>
 						</div>
 						<div class="game-info-title">MOBILE</div>
 					</div>
 					<div class="game-info-cell">
 						<div class="game-info-sign">
-							<std:if condition="${data.game.is_3d}">
+							<:if test="${data.game.is_3d}">
 								<i class="icon-icon_available"></i>
-							<std:else>
+							<:else>
 								<i class="icon-icon_unavailable"></i>
-							</std:if>
+							</:if>
 						</div>
 						<div class="game-info-title">3D ANIMATION</div>
 					</div>
@@ -93,16 +93,16 @@
 		</div>
 	</div>
 
-	<std:if condition="${data.game.overview}">
+	<:if test="${data.game.overview}">
 		<div class="block game-description">
 			<div class="container">
 				<h3 class="title title-small">Game overview</h3>
 				<p>${data.game.overview}</p>
 			</div>
 		</div>
-	</std:if>
+	</:if>
 
-	<std:if condition="count(${data.recommended_casinos})>0">
+	<:if test="count(${data.recommended_casinos})>0">
 		<div class="block related">
 			<div class="container">
 				<div class="headeing">
@@ -111,9 +111,9 @@
 				<casino:list type="SOFTWARE" id="1" data="${data.recommended_casinos}"/>
 			</div>
 		</div>
-	</std:if>
+	</:if>
 
-	<std:if condition="count(${data.recommended_games})>0">
+	<:if test="count(${data.recommended_games})>0">
 		<div class="block related">
 			<div class="container">
 				<div class="headeing">
@@ -122,5 +122,5 @@
 				<game:list data="${data.recommended_games}"/>
 			</div>
 		</div>
-	</std:if>
+	</:if>
 <site:bottom menu="${data.menu_top}"/>

@@ -31,7 +31,7 @@ class CasinosByLabelController extends CasinosListController {
 
     protected function getSortCriteria() {
 
-        switch($this->response->getAttribute("selected_entity")){
+        switch($this->response->attributes()->get("selected_entity")){
             case 'New':
                 return CasinoSortCriteria::NEWEST;
             case 'Best':
@@ -49,7 +49,7 @@ class CasinosByLabelController extends CasinosListController {
         $url = $this->request->getValidator()->getPage();
         $object = new PageInfoDAO();
         $selectedEntity = $this->getSelectedEntity();
-        $casinoNumber =  !empty($this->response->getAttribute("total_casinos")) ? $this->response->getAttribute("total_casinos") : '';
+        $casinoNumber =  !empty($this->response->attributes()->get("total_casinos")) ? $this->response->attributes()->get("total_casinos") : '';
         switch ($selectedEntity){
             case 'best':
                 $url = 'casinos/best';
@@ -67,6 +67,6 @@ class CasinosByLabelController extends CasinosListController {
                 $url = 'casinos/low-wagering';
                 break;
         }
-        $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $casinoNumber));
+        $this->response->attributes()->set("page_info", $object->getInfoByURL($url, $this->response->attributes()->get("selected_entity"), $casinoNumber));
     }
 }

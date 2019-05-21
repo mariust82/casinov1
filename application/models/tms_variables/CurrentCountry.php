@@ -10,9 +10,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/application/models/dao/CasinosList.ph
 class CurrentCountry extends \TMS\VariablesHolder {
 
     public function getTotalCasinosAccepted() {
-        $filterParams[$this->parameters["response"]->getAttribute("filter")] = $this->parameters["response"]->getAttribute("selected_entity");
+        $filterParams[$this->parameters["response"]->attributes()->get("filter")] = $this->parameters["response"]->attributes()->get("selected_entity");
         $filterParams["country_accepted"] = 1;
-        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->getAttribute("country"));
+        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->attributes()->get("country"));
         $object = new CasinosList($filter);
 
         return $object->getTotal();

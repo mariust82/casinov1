@@ -6,7 +6,7 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getNumberOfGamesInTheCurrentList(){
 
-        $totalGames = !empty($this->parameters["response"]->getAttribute("total_games")) ? $this->parameters["response"]->getAttribute("total_games") : '';
+        $totalGames = !empty($this->parameters["response"]->attributes()->get("total_games")) ? $this->parameters["response"]->attributes()->get("total_games") : '';
         return $totalGames;
     }
 
@@ -32,8 +32,8 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getNewestGameInCurrentList(){
 
-       $selected_entity =  $this->parameters["response"]->getAttribute("selected_entity");
-       $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : null;
+       $selected_entity =  $this->parameters["response"]->attributes()->get("selected_entity");
+       $filterPage = !empty($this->parameters["response"]->attributes()->get("filter")) ? $this->parameters["response"]->attributes()->get("filter") : null;
 
        if(
            empty($selected_entity)||
@@ -63,8 +63,8 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getMostPopularGameInCurrentList(){
 
-        $selected_entity =  $this->parameters["response"]->getAttribute("selected_entity");
-        $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : null;
+        $selected_entity =  $this->parameters["response"]->attributes()->get("selected_entity");
+        $filterPage = !empty($this->parameters["response"]->attributes()->get("filter")) ? $this->parameters["response"]->attributes()->get("filter") : null;
         if(
             empty($selected_entity)||
             empty($filterPage) ||
@@ -95,8 +95,8 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getSoftwareOfNewestGameInCurrentList(){
 
-        $selected_entity =  $this->parameters["response"]->getAttribute("selected_entity");
-        $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : null;
+        $selected_entity =  $this->parameters["response"]->attributes()->get("selected_entity");
+        $filterPage = !empty($this->parameters["response"]->attributes()->get("filter")) ? $this->parameters["response"]->attributes()->get("filter") : null;
 
         if(
             empty($selected_entity)||
@@ -127,8 +127,8 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getSoftwareOfTheMostPopularGameInCurentList(){
 
-        $selected_entity =  $this->parameters["response"]->getAttribute("selected_entity");
-        $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : null;
+        $selected_entity =  $this->parameters["response"]->attributes()->get("selected_entity");
+        $filterPage = !empty($this->parameters["response"]->attributes()->get("filter")) ? $this->parameters["response"]->attributes()->get("filter") : null;
 
         if(
             empty($selected_entity)||

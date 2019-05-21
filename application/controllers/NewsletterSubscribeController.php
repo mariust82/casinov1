@@ -2,7 +2,7 @@
 require_once("application/models/mailing/MailMessage.php");
 require_once("application/models/dao/Subscriptions.php");
 
-class NewsletterSubscribeController extends Controller
+class NewsletterSubscribeController extends Lucinda\MVC\STDOUT\Controller
 {
     const SUBJECT = "User wants to be added to newsletter";
     const MESSAGE = "Please add me to newsletter";
@@ -23,6 +23,6 @@ class NewsletterSubscribeController extends Controller
 
     private function saveSubscription() {
         $object = new Subscriptions();
-        $object->save($_POST["email"], $this->request->getAttribute("ip"), $this->request->getAttribute("country"));
+        $object->save($_POST["email"], $this->request->attributes()->get("ip"), $this->request->attributes()->get("country"));
     }
 }

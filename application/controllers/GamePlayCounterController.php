@@ -10,11 +10,11 @@ require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedExc
 * @source 
 * @requestParameter name Name of game to be played.
 */
-class GamePlayCounterController extends Controller {
+class GamePlayCounterController extends Lucinda\MVC\STDOUT\Controller {
 	public function run() {
 	    new GamePlayCounterUpdate(
 	        $this->request->getSession(),
-            $this->request->getAttribute('validation_results')->get('name')
+            $this->request->attributes()->get('validation_results')->get('name')
             );
 	}
 }

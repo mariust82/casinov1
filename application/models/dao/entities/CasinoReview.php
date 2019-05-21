@@ -1,5 +1,5 @@
 <?php
-class CasinoReview {
+class CasinoReview extends Entity {
 	public $id;
 	public $name;
 	public $email;

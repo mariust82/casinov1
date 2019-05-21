@@ -10,12 +10,12 @@ require_once("application/models/dao/ListsSearch.php");
 * @pathParameter page integer Results page for searched casinos
 * @requestParameter value string Value of searched string
 */
-class SearchMoreListsController extends Controller {
+class SearchMoreListsController extends Lucinda\MVC\STDOUT\Controller {
     const LIMIT = 5;
 
 	public function run() {
 	    $page = (integer) $this->request->getValidator()->getPathParameter("page");            
             $object = new ListsSearch($_GET["value"]);
-            $this->response->setAttribute("results", array_slice($object->getResults(), self::LIMIT *$page, self::LIMIT));
+            $this->response->attributes()->set("results", array_slice($object->getResults(), self::LIMIT *$page, self::LIMIT));
 	}
 }

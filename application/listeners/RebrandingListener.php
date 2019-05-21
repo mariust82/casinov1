@@ -9,10 +9,10 @@ require_once("application/models/dao/Rebranding.php");
  * If one or more path parameters point to rebranded entities, a HTTP 301 redirection takes place, otherwise execution
  * continues.
  */
-class RebrandingListener extends RequestListener {
+class RebrandingListener extends Lucinda\MVC\STDOUT\RequestListener {
     public function run() {
         if(empty($this->request->getValidator()->getPathParameters())) return;
-        $routes = (array) $this->application->getXML()->routes;
+        $routes = (array) $this->application->getTag("routes");
         foreach($routes["route"] as $route) {
             if($route["url"]==$this->request->getValidator()->getPage()) {
                 if(!empty($route["rebrand_tables"])) {

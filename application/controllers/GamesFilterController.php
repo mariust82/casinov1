@@ -13,7 +13,7 @@ require_once("application/models/GameSortCriteria.php");
 * @requestParameter filter_by string Name of game manufacturer (software)
 * @requestParameter sort string Value can be "default", "top rated" or "newest"
 */
-class GamesFilterController extends Controller
+class GamesFilterController extends Lucinda\MVC\STDOUT\Controller
 {
     const LIMIT = 24;
     public function run()
@@ -26,9 +26,9 @@ class GamesFilterController extends Controller
         $offset = $page * self::LIMIT;
         $object = new GamesList(new GameFilter($_GET));
         $total = $object->getTotal();
-        $this->response->setAttribute("total_games", $total);
+        $this->response->attributes()->set("total_games", $total);
         $results = $object->getResults($sortBy, $page, self::LIMIT ,$offset);
-        $this->response->setAttribute("games", $results, $page);
+        $this->response->attributes()->set("games", $results, $page);
 
     }
 }

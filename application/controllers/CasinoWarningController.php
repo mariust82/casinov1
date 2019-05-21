@@ -15,18 +15,18 @@ require_once("BaseController.php");
 */
 class CasinoWarningController extends BaseController {
 	public function service() {
-        $this->response->setAttribute("country", $this->request->getAttribute("country"));
+        $this->response->attributes()->set("country", $this->request->attributes()->get("country"));
 
 	    // set casino info
 		$casinos = new Casinos();
-        $result = $casinos->getBasicInfo($this->request->getAttribute('validation_results')->get('name'));
-		if(!$result) throw new PathNotFoundException();
-		$this->response->setAttribute("casino", $result);
+        $result = $casinos->getBasicInfo($this->request->attributes()->get('validation_results')->get('name'));
+		if(!$result) throw new Lucinda\MVC\STDOUT\PathNotFoundException();
+		$this->response->attributes()->set("casino", $result);
 
 		// get recommended casinos
-        $object = new CasinosList(new CasinoFilter(array("software"=>$result->softwares, "country_accepted"=>true,"promoted"=>true), $this->request->getAttribute("country")));
-        $this->response->setAttribute("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
-        $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
+        $object = new CasinosList(new CasinoFilter(array("software"=>$result->softwares, "country_accepted"=>true,"promoted"=>true), $this->request->attributes()->get("country")));
+        $this->response->attributes()->set("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
+        $this->response->attributes()->set('is_mobile',$this->request->attributes()->get("is_mobile"));
 
     }
 
@@ -37,6 +37,6 @@ class CasinoWarningController extends BaseController {
     protected function pageInfo(){
         // get page info
         $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("casino")->name));
+        $this->response->attributes()->set("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes()->get("casino")->name));
     }
 }

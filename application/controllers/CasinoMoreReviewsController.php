@@ -12,14 +12,14 @@ require_once("application/models/dao/Casinos.php");
 * @pathParameter page integer Results page for reviews
 * @requestParameter id integer 0 or ID or review replied to (when show more replies)
 */
-class CasinoMoreReviewsController extends Controller {
+class CasinoMoreReviewsController extends Lucinda\MVC\STDOUT\Controller {
 	public function run() {
 	    // get casino ID
         $object = new Casinos();
-        $casinoID = $this->request->getAttribute('validation_results')->get('name');
+        $casinoID = $this->request->attributes()->get('validation_results')->get('name');
 
         // get reviews
         $object = new CasinoReviews();
-        $this->response->setAttribute("reviews", $object->getAll($casinoID, (integer) $this->request->getValidator()->getPathParameter("page"), (integer) $this->request->getAttribute("id")));
+        $this->response->attributes()->set("reviews", $object->getAll($casinoID, (integer) $this->request->getValidator()->getPathParameter("page"), (integer) $this->request->attributes()->get("id")));
 	}
 }

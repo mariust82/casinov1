@@ -1,15 +1,14 @@
 <?php
+// performs environment detection
+$environment = getenv("ENVIRONMENT");
+if(!$environment) die("Value of environment variable 'ENVIRONMENT' could not be detected!");
+define("ENVIRONMENT", $environment);
 
-// take control of STDERR
-require_once("src/error_handling/ErrorsFrontController.php");
-new ErrorsFrontController();
+// takes control of STDERR
+require_once("vendor/lucinda/errors-mvc/src/FrontController.php");
+require_once("application/models/EmergencyHandler.php");
+new Lucinda\MVC\STDERR\FrontController("stderr.xml", ENVIRONMENT, __DIR__, new EmergencyHandler());
 
-// take control of STDOUT
+// takes control of STDOUT
 require_once("vendor/lucinda/mvc/loader.php");
-try {
-    new FrontController("configuration.xml");
-} catch (PathNotFoundException $e) {
-    $_SERVER["REQUEST_URI"] = "/404";
-    new FrontController("configuration.xml");
-}catch (OperationFailedException $e){}
-
+new Lucinda\MVC\STDOUT\FrontController("stdout.xml");

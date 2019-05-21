@@ -15,9 +15,9 @@ class CountriesController extends CasinosCounterController {
 
         $counts = $object->getCasinosCount();
         // start hardcoding: Make user country be first in list
-        if(array_key_exists($this->request->getAttribute("country")->name, $counts)){
-            $userCountry = array($this->request->getAttribute("country")->name => $counts[$this->request->getAttribute("country")->name]);
-            unset($counts[$this->request->getAttribute("country")->name]);
+        if(array_key_exists($this->request->attributes()->get("country")->name, $counts)){
+            $userCountry = array($this->request->attributes()->get("country")->name => $counts[$this->request->attributes()->get("country")->name]);
+            unset($counts[$this->request->attributes()->get("country")->name]);
             $counts = $userCountry + $counts;
         }
         return $counts;

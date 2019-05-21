@@ -3,16 +3,16 @@ require_once("BaseController.php");
 require_once("application/models/caching/CasinosCounterKey.php");
 require_once ('application/models/TmsWrapper.php');
 /**
- * Controller
+ * Lucinda\MVC\STDOUT\Controller
  */
 abstract class CasinosCounterController extends BaseController {
     public function service() {
 
         $object = $this->getCounter();
-        $this->response->setAttribute("results", $this->getResults($object));
+        $this->response->attributes()->set("results", $this->getResults($object));
         $tms = new TmsWrapper($this->application,$this->request, $this->response);
         $tmsText = $tms->getText();
-        $this->response->setAttribute("tms", $tmsText);
+        $this->response->attributes()->set("tms", $tmsText);
     }
 
     protected function getResults(CasinoCounter $object) {
@@ -29,7 +29,7 @@ abstract class CasinosCounterController extends BaseController {
 
     protected function pageInfo(){
         $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
+        $this->response->attributes()->set("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
 
 }

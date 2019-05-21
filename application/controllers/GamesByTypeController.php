@@ -24,25 +24,25 @@ class GamesByTypeController extends BaseController {
 
 	public function service() {
 
-        $this->response->setAttribute("selected_entity", ucwords($this->getSelectedEntity()));
-        $menu = new GamesMenu($this->response->getAttribute("selected_entity"));
-        $this->response->setAttribute("menu_bottom", $menu->getEntries());
+        $this->response->attributes()->set("selected_entity", ucwords($this->getSelectedEntity()));
+        $menu = new GamesMenu($this->response->attributes()->get("selected_entity"));
+        $this->response->attributes()->set("menu_bottom", $menu->getEntries());
 
         $object = new GameManufacturers();
-        $this->response->setAttribute("software", $object->getAll());
+        $this->response->attributes()->set("software", $object->getAll());
         $this->setFilter();
-        $this->response->setAttribute("filter", $this->filter);
+        $this->response->attributes()->set("filter", $this->filter);
         $results = $this->getResults();
-        $this->response->setAttribute("total_games", $results["total"]);
-        $this->response->setAttribute("games", $results["list"]);
+        $this->response->attributes()->set("total_games", $results["total"]);
+        $this->response->attributes()->set("games", $results["list"]);
         $tms = new TmsWrapper($this->application,$this->request, $this->response);
 
         $tmsText = $tms->getText();
-        $this->response->setAttribute("tms", $tmsText);
+        $this->response->attributes()->set("tms", $tmsText);
 	}
 
 	private function setFilter(){
-        $this->filter = new GameFilter(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")));
+        $this->filter = new GameFilter(array("game_type"=>$this->response->attributes()->get("selected_entity"), "is_mobile"=>$this->request->attributes()->get("is_mobile")));
     }
 
 
@@ -65,8 +65,8 @@ class GamesByTypeController extends BaseController {
     protected function pageInfo(){
         // get page info
         $object = new PageInfoDAO();
-        $total_games = !empty($this->response->getAttribute("total_games")) ? $this->response->getAttribute("total_games") : '';
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity"), $total_games));
+        $total_games = !empty($this->response->attributes()->get("total_games")) ? $this->response->attributes()->get("total_games") : '';
+        $this->response->attributes()->set("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes()->get("selected_entity"), $total_games));
     }
 
 }

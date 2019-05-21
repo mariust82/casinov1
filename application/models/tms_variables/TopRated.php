@@ -10,8 +10,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/application/models/dao/CasinosList.ph
 class TopRated extends \TMS\VariablesHolder {
 
     public function getTopRatedCasinoInTheList(){
-        $filterParams[$this->parameters["response"]->getAttribute("filter")] = $this->parameters["response"]->getAttribute("selected_entity");
-        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->getAttribute("country"));
+        $filterParams[$this->parameters["response"]->attributes()->get("filter")] = $this->parameters["response"]->attributes()->get("selected_entity");
+        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->attributes()->get("country"));
         $object = new CasinosList($filter);
 
         $casino = $object->getResults(CasinoSortCriteria::TOP_RATED, 0, 1)[0];

@@ -3,11 +3,11 @@
     <div class="swiper-container" id="links-nav">
         <span class="links-left"></span>
         <div class="swiper-wrapper">
-          <std:foreach var="$[items]" key ="key" value="result">
+          <:foreach var="$[items]" key ="key" val="result">
               <div class="swiper-slide">
                   <a class="${(${result.is_active}?'active':'')}" href="${result.url}">${result.title}</a>
               </div>
-          </std:foreach>
+          </:foreach>
         </div>
         <span class="links-right"></span>
     </div>

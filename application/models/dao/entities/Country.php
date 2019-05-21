@@ -1,5 +1,5 @@
 <?php
-class Country
+class Country extends Entity
 {
     public $id;
     public $code;

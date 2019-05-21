@@ -1,6 +1,6 @@
 <div class="form">
 	<div class="form-row">
-		<std:if condition="$[rating]">
+		<:if test="$[rating]">
 			<div class="flex-left">
 				<div class="rating-container" data-casino-name="$[name]" data-casino-rating="${ceil($[rate])}" data-user-rate="${ceil($[key])}">
 					<label class="form-label">
@@ -30,17 +30,17 @@
 					<i class="icon-icon_available"></i>
 					<span class="thanx">Thank you for rating $[name]!</span>
 				</div>
-				<std:if condition="!${data.casino.is_country_accepted}">
+				<:if test="!${data.casino.is_country_accepted}">
 					<div class="info-message">
 						<div class="info-message-icon">
 							<i class="icon-icon_info"></i>
 						</div>
 						<div class="info-message-body">This casino does not accept your country, therefore you cannot rate or add a review.</div>
 					</div>
-				</std:if>
+				</:if>
 			</div>
 			<label class="form-label">ADD REVIEW</label>
-		</std:if>
+		</:if>
 
 		<div class="textfield-holder">
 			<textarea name="body" rows="5" class="expanding textfield" placeholder="Write your review..."></textarea>

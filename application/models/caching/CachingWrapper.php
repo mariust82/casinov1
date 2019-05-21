@@ -7,7 +7,7 @@ class CachingWrapper
     private $response;
     private $bypass = false;
 
-    public function __construct(Request $request, Response $response) {
+    public function __construct(Lucinda\MVC\STDOUT\Request $request, Lucinda\MVC\STDOUT\Response $response) {
         $this->request = $request;
         $this->response = $response;
 
@@ -62,7 +62,7 @@ class CachingWrapper
             $cacheResponse->setLastModified($cacheable->getTime());
         }
 	$cacheResponse->setPublic(); // hack against session usage
-        return $cacheResponse->getHeaders();
+        return $cacheResponse->headers()->toArray();
     }
 
 }

@@ -19,16 +19,16 @@ class CasinoReviewsModel{
     function __construct($app, $request)
     {
         $this->setInvisionApi($app);
-        $reviewData = $request->getParameters();
-        $reviewData['user_ip'] = $request->getAttribute("ip");
-        $reviewData['country'] = $request->getAttribute("country")->id;
+        $reviewData = $request->parameters()->toArray();
+        $reviewData['user_ip'] = $request->attributes()->get("ip");
+        $reviewData['country'] = $request->attributes()->get("country")->id;
         $this->reviewData = $reviewData;
     }
 
     private function setInvisionApi($app){
 
-        $env = $app->getAttribute("environment");
-        $configInvSettings = $app->getXML()->invision_api->$env;
+        $env = $app->attributes()->get("environment");
+        $configInvSettings = $app->getTag("invision_api")->$env;
         $apiKey =  (string)$configInvSettings['api_key'];
         $apiUrl = (string)$configInvSettings['api_url'];
         $this->blogId = (int)$configInvSettings['blog_id'];

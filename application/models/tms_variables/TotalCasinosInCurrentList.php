@@ -9,7 +9,7 @@
 class TotalCasinosInCurrentList extends \TMS\VariablesHolder {
 
     public function getTotal() {
-        return $this->parameters["response"]->getAttribute("total_casinos");
+        return $this->parameters["response"]->attributes()->get("total_casinos");
     }
 
 }

@@ -14,15 +14,15 @@ class CasinosByCountryController extends CasinosListController {
     protected function getSelectedEntity()
     {
         $object = new Countries();
-        $country_id =  $this->request->getAttribute('validation_results')->get('name');
+        $country_id =  $this->request->attributes()->get('validation_results')->get('name');
 
         $result = $object->getCountryInfo($country_id);
         $code = !empty($result[0]['code']) ? $result[0]['code'] : '';
         $language = !empty($result[0]['name']) ? $result[0]['name'] : '';
         $name =  !empty($result[0]['c_name']) ? $result[0]['c_name'] : '';
 
-        $this->response->setAttribute("currency",$code);
-        $this->response->setAttribute("language",$language);
+        $this->response->attributes()->set("currency",$code);
+        $this->response->attributes()->set("language",$language);
 
         return $name;
     }

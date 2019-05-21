@@ -12,7 +12,7 @@ require_once("BaseController.php");
 */
 class CompatibilityController extends BaseController {
 	public function service(){
-        $this->response->setAttribute("results", $this->getResults());
+        $this->response->attributes()->set("results", $this->getResults());
     }
 
     private function getResults() {
@@ -27,6 +27,6 @@ class CompatibilityController extends BaseController {
 
     protected function pageInfo(){
         $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
+        $this->response->attributes()->set("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
 }

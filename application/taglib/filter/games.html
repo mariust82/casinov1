@@ -5,9 +5,9 @@
 			<div class="filter-label">Filter by:</div>
 			<div class="filter-select-holder">
 				<select class="select js-filter" name="soft">
-					<std:foreach var="$[software]" value="result">
+					<:foreach var="$[software]" val="result">
 						<option value="${result}">${result}</option>
-					</std:foreach>
+					</:foreach>
 				</select>
 			</div>
 		</div>

@@ -1,10 +1,10 @@
-<std:set name="page" value="casinos-list"/>
+<:set var="page" val="casinos-list"/>
 
 <div class="aj-content" data-load-total="${data.total_casinos}">
 	<div class="qty-items"  data-load-total="${data.total_casinos}">${data.total_casinos} results</div>
-	<std:if condition="isset($_GET['label']) && $_GET['label'] == 'New'">
+	<:if test="isset($_GET['label']) && $_GET['label'] == 'New'">
 		<casino:list type="ESTABLISHED" id="${data.casinos.0.id}" data="${data.casinos}"/>
-	<std:else>
+	<:else>
 		<casino:list type="SOFTWARE" id="${data.casinos.0.id}" data="${data.casinos}"/>
-	</std:if>
+	</:if>
 </div>

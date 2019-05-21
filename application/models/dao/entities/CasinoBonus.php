@@ -1,5 +1,5 @@
 <?php
-class CasinoBonus {
+class CasinoBonus extends Entity {
 	public $amount;
 	public $min_deposit;
 	public $wagering;

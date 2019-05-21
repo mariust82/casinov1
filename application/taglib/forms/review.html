@@ -1,6 +1,6 @@
 <div class="form">
 	<div class="form-row">
-		<std:if condition="$[rating]">
+		<:if test="$[rating]">
 			<div class="flex-left">
 				<div class="rating-container" data-casino-name="${data.casino.name}" data-casino-rating="${ceil(${data.casino.rating})}">
 					<label class="form-label">
@@ -32,7 +32,7 @@
 				</div>
 			</div>
 			<label class="form-label">ADD REVIEW</label>
-		</std:if>
+		</:if>
 
 		<div class="textfield-holder">
 			<textarea name="body" rows="5" class="expanding textfield" placeholder="Write your review..."></textarea>

@@ -37,7 +37,7 @@ class CasinosByBonusTypeController extends CasinosListController {
             $url = str_replace('(name)', 'no-deposit-bonus', $url);
         }
 
-        $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $this->response->getAttribute("total_casinos")));
+        $this->response->attributes()->set("page_info", $object->getInfoByURL($url, $this->response->attributes()->get("selected_entity"), $this->response->attributes()->get("total_casinos")));
     }
 
     protected function getSortCriteria() {

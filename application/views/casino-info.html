@@ -1,25 +1,25 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casino-info"/>
-	<std:if condition="${data.casino.status} == 'Blacklisted'">
+	<:if test="${data.casino.status} == 'Blacklisted'">
 		<div class="container">
 			<div class="warn-box">
 				<div class="warn-box-title">BLACKLISTED</div>
 				<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} has been warned and added to our illegitimate casinos Blacklist. This is due to the fact that they lost contact and got complaints from players that had trouble to cash out. All of our attempts to contact this casino were not fulfilled. We strongly advise that players will play at other casinos.</div>
 			</div>
 		</div>
-	<std:elseif condition="${data.casino.status} == 'Warning'">
+	<:elseif test="${data.casino.status} == 'Warning'">
 		<div class="container">
 			<div class="warn-box warning">
 				<div class="warn-box-title">WARNING</div>
 				<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} does not have a collaborative agreement with www.casinoslists.com, and therefore we can not monitor the casino’s actions and reliability in order to provide the necessary support for our players. We strongly recommend that players avoid playing at this casino and choose another casino to play at.</div>
 			</div>
 		</div>
-	<std:elseif condition="${data.casino.note}">
+	<:elseif test="${data.casino.note}">
 			<div class="container">
 				<div class="warn-box note">
 					<div class="warn-box-body">${data.casino.note}</div>
 				</div>
 			</div>
-	</std:if>
+	</:if>
 
 	<div class="casino-review">
 		<div class="container">
@@ -28,30 +28,30 @@
 					<h1 class="casino-review-title">${data.page_info.body_title}</h1>
 					<div class="btn-group">
 						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
-                        <std:if condition="${data.casino.status} == 'Blacklisted' || ${data.casino.status} == 'Warning'">
+                        <:if test="${data.casino.status} == 'Blacklisted' || ${data.casino.status} == 'Warning'">
                             <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" rel="nofollow">PLAY NOW</a>
-                        <std:else>
+                        <:else>
                             <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
-                        </std:if>
-                        <std:if condition="${data.casino.is_tc_link}">
+                        </:if>
+                        <:if test="${data.casino.is_tc_link}">
 	                    	<a href="/link/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
-                        </std:if>
+                        </:if>
 					</div>
 				</div>
 				<div class="casino-review-heading-right">
 					<div class="casino-review-heading-img">
 						<img src="${data.casino.logo_big}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
 					</div>
-					<std:set name="score_class" value="get_rating(${data.casino.rating})"/>
+					<:set var="score_class" val="get_rating(${data.casino.rating})"/>
 					<div class="list-rating ${normalize(${score_class})}">
 						<div class="list-rating-wrap">
-                                                    <std:if condition="${data.casino.rating} == 0">
+                                                    <:if test="${data.casino.rating} == 0">
                                                         <div class="list-rating-score">-</div>
 							<div class="list-rating-text">No score</div>
-                                                    <std:else>
+                                                    <:else>
                                                         <div class="list-rating-score">${ceil(${data.casino.rating})}</div>
 							<div class="list-rating-text">${score_class} </div>
-                                                    </std:if>
+                                                    </:if>
 						</div>
 					</div>
 				</div>
@@ -59,9 +59,9 @@
 				<div class="btn-group btn-group-mobile">
 					<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
 					<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
-					<std:if condition="${data.casino.is_tc_link}">
+					<:if test="${data.casino.is_tc_link}">
 						<a href="/link/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
-					</std:if>
+					</:if>
 				</div>
 				<div class="casino-review-country casino-review-mobile">
 					<img class="${data.country_status}" src="/public/build/images/flags/${data.country.code}.png" alt="" width="20" height="14">
@@ -83,173 +83,173 @@
 							<div class="def-list-val">
 								<img class="${data.country_status}" src="/public/build/images/flags/${data.country.code}.png" alt="" width="15" height="12">
 								${data.country.name}
-								<std:if condition="${data.casino.is_country_accepted} == 1">
+								<:if test="${data.casino.is_country_accepted} == 1">
 									accepted
-									<std:else>
+									<:else>
 										not accepted
-								</std:if>
+								</:if>
 							</div>
 						</div>
-						<std:if condition="count(${data.casino.languages}) > 0">
+						<:if test="count(${data.casino.languages}) > 0">
 							<div class="def-list-item">
 								<div class="def-list-key">Languages</div>
 								<div class="def-list-val">
-									<std:foreach var="${data.casino.languages}" key ="key" value="result">
-										<std:if condition="${result} == end(${data.casino.languages})">
+									<:foreach var="${data.casino.languages}" key ="key" val="result">
+										<:if test="${result} == end(${data.casino.languages})">
 									      ${result}
-										<std:else>
+										<:else>
 											${result},&nbsp;
-										</std:if>
-									</std:foreach>
+										</:if>
+									</:foreach>
 								</div>
 							</div>
-						</std:if>
+						</:if>
 
-						<std:if condition="count(${data.casino.currencies}) > 0">
+						<:if test="count(${data.casino.currencies}) > 0">
 							<div class="def-list-item">
 								<div class="def-list-key">Currencies</div>
 								<div class="def-list-val">
 
-									<std:foreach var="${data.casino.currencies}" key ="key" value="result">
+									<:foreach var="${data.casino.currencies}" key ="key" val="result">
 
-										<std:if condition="${result} == end(${data.casino.currencies})">
+										<:if test="${result} == end(${data.casino.currencies})">
 											${result}
-											<std:else>
+											<:else>
 												${result},&nbsp;
-										</std:if>
-									</std:foreach>
+										</:if>
+									</:foreach>
 								</div>
 							</div>
-						</std:if>
+						</:if>
 
-						<std:if condition="count(${data.casino.softwares}) > 0">
+						<:if test="count(${data.casino.softwares}) > 0">
 							<div class="def-list-item">
 								<div class="def-list-key">Software</div>
 									<div class="tooltipster-content">
-									<std:foreach var="${data.casino.softwares}" key ="key" value="value">
-										<std:if condition="${value} == end(${data.casino.softwares})">
+									<:foreach var="${data.casino.softwares}" key ="key" val="value">
+										<:if test="${value} == end(${data.casino.softwares})">
 											<a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>
-										<std:else>
+										<:else>
 											<a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>,
-										</std:if>
+										</:if>
 
-									</std:foreach>
+									</:foreach>
 								</div>
 							</div>
-						</std:if>
+						</:if>
 
-						<std:if condition="!empty(${data.casino.casino_game_types})">
+						<:if test="!empty(${data.casino.casino_game_types})">
 						<div class="def-list-item">
 							<div class="def-list-key">Game types</div>
 							<div class="def-list-val">
 
-									<std:foreach var="${data.casino.casino_game_types}" key ="key" value="value">
-										<std:if condition="${value} == end(${data.casino.casino_game_types})">
+									<:foreach var="${data.casino.casino_game_types}" key ="key" val="value">
+										<:if test="${value} == end(${data.casino.casino_game_types})">
 											${value.name}
-											<std:else>
+											<:else>
 											${value.name},&nbsp;
-										</std:if>
-									</std:foreach>
+										</:if>
+									</:foreach>
 							</div>
 						</div>
-						</std:if>
+						</:if>
 
 
 						<div class="def-list-item">
 							<div class="def-list-key">Live dealer</div>
 							<div class="def-list-val">
-								<std:if condition="${data.casino.is_live_dealer}">Yes<std:else>No</std:if>
+								<:if test="${data.casino.is_live_dealer}">Yes<:else>No</:if>
 							</div>
 						</div>
 
-						<std:if condition="${data.casino.date_established} != '0000-00-00'">
+						<:if test="${data.casino.date_established} != '0000-00-00'">
 							<div class="def-list-item">
 								<div class="def-list-key">Established</div>
 								<div class="def-list-val">
 									${date("M d, Y",  strtotime(${data.casino.date_established}))}
 								</div>
 							</div>
-						</std:if>
+						</:if>
 
-						<std:if condition="count(${data.casino.emails}) > 0">
+						<:if test="count(${data.casino.emails}) > 0">
 							<div class="def-list-item">
 								<div class="def-list-key">Email</div>
 								<div class="def-list-val">
 									<span class="wrapletters">
-										<std:foreach var="${data.casino.emails}" key ="key" value="result">
+										<:foreach var="${data.casino.emails}" key ="key" val="result">
 											${result} <br>
-										</std:foreach>
+										</:foreach>
 									</span>
 								</div>
 							</div>
-						</std:if>
+						</:if>
 
-						<std:if condition="count(${data.casino.phones}) > 0">
+						<:if test="count(${data.casino.phones}) > 0">
 							<div class="def-list-item">
 								<div class="def-list-key">Phone</div>
 								<div class="def-list-val">
-									<std:foreach var="${data.casino.phones}" key ="key" value="result">
+									<:foreach var="${data.casino.phones}" key ="key" val="result">
 									      ${result} <br>
-									</std:foreach>
+									</:foreach>
 								</div>
 							</div>
-						</std:if>
+						</:if>
 
 						<div class="def-list-item">
 							<div class="def-list-key">Live chat</div>
 							<div class="def-list-val">
-								<std:if condition="${data.casino.is_live_chat}">Yes<std:else>No</std:if>
+								<:if test="${data.casino.is_live_chat}">Yes<:else>No</:if>
 							</div>
 						</div>
 
-						<std:if condition="count(${data.casino.licenses}) > 0">
+						<:if test="count(${data.casino.licenses}) > 0">
 							<div class="def-list-item">
 								<div class="def-list-key">Jurisdiction (license)</div>
 								<div class="def-list-val">
-									<std:foreach var="${data.casino.licenses}" key ="key" value="result">
-										<std:if condition="${result} == end(${data.casino.licenses})">
+									<:foreach var="${data.casino.licenses}" key ="key" val="result">
+										<:if test="${result} == end(${data.casino.licenses})">
 											${result}
-										<std:else>
+										<:else>
 											${result},&nbsp;
-										</std:if>
-									</std:foreach>
+										</:if>
+									</:foreach>
 								</div>
 							</div>
-						</std:if>
+						</:if>
 
-						<std:if condition="count(${data.casino.certifiers}) > 0">
+						<:if test="count(${data.casino.certifiers}) > 0">
 							<div class="def-list-item">
 								<div class="def-list-key">Certified by</div>
 								<div class="def-list-val">
-									<std:foreach var="${data.casino.certifiers}" key ="key" value="result">
-										<std:if condition="${result} == end(${data.casino.certifiers})">
+									<:foreach var="${data.casino.certifiers}" key ="key" val="result">
+										<:if test="${result} == end(${data.casino.certifiers})">
 											${result}
-										<std:else>
+										<:else>
 											${result},&nbsp;
-										</std:if>
-									</std:foreach>
+										</:if>
+									</:foreach>
 								</div>
 							</div>
-						</std:if>
+						</:if>
 
-						<std:if condition="${data.casino.affiliate_program} != ''">
+						<:if test="${data.casino.affiliate_program} != ''">
 							<div class="def-list-item">
 								<div class="def-list-key">Affiliate program</div>
 								<div class="def-list-val">${data.casino.affiliate_program}</div>
 							</div>
-						</std:if>
+						</:if>
 					</div>
 				</div>
 				<div class="box">
 					<div class="title title-small">Welcome package</div>
 					<div class="bonus-holder">
-						<std:if condition="!empty(${data.casino.bonus_free})">
+						<:if test="!empty(${data.casino.bonus_free})">
 							<div class="bonus-item">
 								<div class="bonus-box bonus-free">
 									<box:bonus data="data.casino" modifier="bonus_free" heading="0" title="Free Deposit Bonus" icon="icon-icon_bonuses"/>
 								</div>
 							</div>
-						</std:if>
+						</:if>
 
 						<div class="bonus-item">
 							<div class="bonus-box bonus-first">
@@ -279,7 +279,7 @@
 <!-- Full Welcome Package -->
 
 
-	<std:if condition="!empty(${data.casino.welcome_package})">
+	<:if test="!empty(${data.casino.welcome_package})">
 		<div class="section">
 			<div class="container">
 				<div class="box box-alt2">
@@ -294,16 +294,16 @@
 								<th>Games</th>
 								<th>Bonus Code</th>
 							</tr>
-							<std:foreach var="${data.casino.welcome_package}" key ="key" value="welcome_package_data">
+							<:foreach var="${data.casino.welcome_package}" key ="key" val="welcome_package_data">
 								<tr>
 									<td>${welcome_package_data.valid_on}</td>
 									<td>${welcome_package_data.bonus}</td>
 									<td>
-										<std:if condition="${welcome_package_data.min_deposit} == 'Free'">
+										<:if test="${welcome_package_data.min_deposit} == 'Free'">
 											<span class="table-package_free_bonus">${welcome_package_data.min_deposit}</span>
-										<std:else>
+										<:else>
 											${welcome_package_data.min_deposit}
-										</std:if>
+										</:if>
 
 									</td>
 									<td>
@@ -314,21 +314,21 @@
 									</td>
 									<td><strong class="table-mobile-visible">Games:</strong> ${welcome_package_data.games}</td>
 									<td>
-										<std:set name="code_class" value=""/>
-										<std:if condition="${welcome_package_data.bonus_codes} != 'No code required'">
-											<std:set name="code_class" value="js-copy-to-clip js-copy-tooltip"/>
-										</std:if>
+										<:set var="code_class" val=""/>
+										<:if test="${welcome_package_data.bonus_codes} != 'No code required'">
+											<:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
+										</:if>
 
 										<div class="dashed ${code_class}" data-code="${welcome_package_data.bonus_codes}">${welcome_package_data.bonus_codes}</div>
 									</td>
 								</tr>
-							</std:foreach>
+							</:foreach>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-	</std:if>
+	</:if>
 <!-- Full Welcome Package END -->
 
 	<div class="section">
@@ -347,27 +347,27 @@
 								<div class="def-column-val">${data.casino.withdrawal_minimum}</div>
 							</div>
 
-							<std:if condition="count(${data.casino.withdrawal_limits}) > 0">
+							<:if test="count(${data.casino.withdrawal_limits}) > 0">
 								<div class="def-column-item">
 									<div class="def-column-key">Withdrawal limits</div>
 									<div class="def-column-val">
-										<std:foreach var="${data.casino.withdrawal_limits}" key ="key" value="result">
+										<:foreach var="${data.casino.withdrawal_limits}" key ="key" val="result">
 											<p>${result}</p>
-										</std:foreach>
+										</:foreach>
 									</div>
 								</div>
-							</std:if>
+							</:if>
 
-							<std:if condition="count(${data.casino.withdrawal_timeframes}) > 0">
+							<:if test="count(${data.casino.withdrawal_timeframes}) > 0">
 								<div class="def-column-item">
 									<div class="def-column-key">Withdrawal pending time</div>
 									<div class="def-column-val">
-										<std:foreach var="${data.casino.withdrawal_timeframes}" key ="key" value="result">
+										<:foreach var="${data.casino.withdrawal_timeframes}" key ="key" val="result">
 											<p>${result}</p>
-										</std:foreach>
+										</:foreach>
 									</div>
 								</div>
-							</std:if>
+							</:if>
 						</div>
 					</div>
 					<div class="section-content">
@@ -378,7 +378,7 @@
 								<th>Withdrawal</th>
 							</tr>
 
-							<std:foreach var="${data.casino.casino_deposit_methods}" key ="dep_method" value="dep_method_data">
+							<:foreach var="${data.casino.casino_deposit_methods}" key ="dep_method" val="dep_method_data">
 							<tr>
 								<td >
 									<div class="table-flex">
@@ -387,21 +387,21 @@
 									</div>
 								</td>
 								<td align="center">
-									<std:if condition="empty(${dep_method_data.deposit_methods})">
+									<:if test="empty(${dep_method_data.deposit_methods})">
 										<i class="icon-icon_unavailable"></i>
-										<std:else>
+										<:else>
 											<i class="icon-icon_available2"></i>
-									</std:if>
+									</:if>
 								</td>
 								<td align="center">
-									<std:if condition="empty(${dep_method_data.withdraw_methods})">
+									<:if test="empty(${dep_method_data.withdraw_methods})">
 										<i class="icon-icon_unavailable"></i>
-										<std:else>
+										<:else>
 											<i class="icon-icon_available2"></i>
-									</std:if>
+									</:if>
 								</td>
 							</tr>
-							</std:foreach>
+							</:foreach>
 						</table>
 					</div>
 				</div>

@@ -17,14 +17,14 @@ require_once 'application/models/dao/CasinoReviewsModel.php';
 * @requestParameter body string Review body
 * @requestParameter parent integer 0 or id of review replied to
 */
-class CasinoReviewWriteController extends Controller
+class CasinoReviewWriteController extends Lucinda\MVC\STDOUT\Controller
 {
     public function run()
     {
         $reviewModelObj = new CasinoReviewsModel($this->application, $this->request);
         $reviewModelObj->saveReview();
-        $this->response->setAttribute("id", $reviewModelObj->getReviewId());
-        $this->response->setAttribute("review_invision_id", $reviewModelObj->getReviewInvisionId());
+        $this->response->attributes()->set("id", $reviewModelObj->getReviewId());
+        $this->response->attributes()->set("review_invision_id", $reviewModelObj->getReviewInvisionId());
     }
 }
 

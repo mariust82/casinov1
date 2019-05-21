@@ -13,17 +13,17 @@ require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedExc
 * @requestParameter name Name of casino to be rated.
 * @requestParameter value integer Value of rating (1-10)
 */
-class CasinoRateController extends Controller {
+class CasinoRateController extends Lucinda\MVC\STDOUT\Controller {
 	public function run() {
-        $casinoID = $this->request->getAttribute('validation_results')->get('name');
+        $casinoID = $this->request->attributes()->get('validation_results')->get('name');
         $object = new Casinos();
-       if($object->isCountryAccepted($casinoID, $this->request->getAttribute("country")->id))  {
+       if($object->isCountryAccepted($casinoID, $this->request->attributes()->get("country")->id))  {
             $success = $object->rate(
-                $this->request->getAttribute('validation_results')->get('name'),
-                $this->request->getAttribute("ip"),
-                $this->request->getAttribute('validation_results')->get('value')
+                $this->request->attributes()->get('validation_results')->get('name'),
+                $this->request->attributes()->get("ip"),
+                $this->request->attributes()->get('validation_results')->get('value')
             );
-           $this->response->setAttribute("success", $success);
+           $this->response->attributes()->set("success", $success);
            if($success) {
                $object = new BestCasinoLabel();
                $object->checkRatedCasino($casinoID);

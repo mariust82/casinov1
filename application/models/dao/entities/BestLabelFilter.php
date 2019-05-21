@@ -1,12 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Liviu
- * Date: 02-May-19
- * Time: 2:24 PM
- */
-
-class BestLabelFilter
+class BestLabelFilter extends Entity
 {
     public $min_vote;
     public $min_score;

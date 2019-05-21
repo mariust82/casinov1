@@ -21,26 +21,26 @@ require_once ('application/models/TmsWrapper.php');
 */
 class IndexController extends BaseController {
 	public function service() {
-        $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
-        $this->response->setAttribute("best_casinos", $this->getCasinos(array("label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
-        $this->response->setAttribute("country_casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, 5));
-        $this->response->setAttribute("casinos_per_country", $this->countCasinosByCountry(array("country_accepted"=>1)));
-        $this->response->setAttribute("new_casinos", $this->getCasinos([],CasinoSortCriteria::NEWEST, 5));
-        $this->response->setAttribute("no_deposit_casinos", $this->getCasinos(
+        $this->response->attributes()->set('is_mobile',$this->request->attributes()->get("is_mobile"));
+        $this->response->attributes()->set("best_casinos", $this->getCasinos(array("label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
+        $this->response->attributes()->set("country_casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, 5));
+        $this->response->attributes()->set("casinos_per_country", $this->countCasinosByCountry(array("country_accepted"=>1)));
+        $this->response->attributes()->set("new_casinos", $this->getCasinos([],CasinoSortCriteria::NEWEST, 5));
+        $this->response->attributes()->set("no_deposit_casinos", $this->getCasinos(
             array("bonus_type"=>"no deposit bonus"), CasinoSortCriteria::NEWEST, 5));
-        $this->response->setAttribute("new_games", $this->getGames(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")),GameSortCriteria::NEWEST, 6));
-        $this->response->setAttribute("filter",null);
-        $this->response->setAttribute("page_type","index");
-        $this->response->setAttribute("selected_entity","index");
+        $this->response->attributes()->set("new_games", $this->getGames(array("game_type"=>$this->response->attributes()->get("selected_entity"), "is_mobile"=>$this->request->attributes()->get("is_mobile")),GameSortCriteria::NEWEST, 6));
+        $this->response->attributes()->set("filter",null);
+        $this->response->attributes()->set("page_type","index");
+        $this->response->attributes()->set("selected_entity","index");
 	}
 
 	private function  getCasinos($filter, $sortBy, $limit) {
 
-        $object = new CasinosList(new CasinoFilter($filter, $this->request->getAttribute("country")));
+        $object = new CasinosList(new CasinoFilter($filter, $this->request->attributes()->get("country")));
         $results = $object->getResults($sortBy, 0,$limit);
         if(empty($results)) {
             unset($filter["country_accepted"]);
-            $object = new CasinosList(new CasinoFilter($filter, $this->request->getAttribute("country")));
+            $object = new CasinosList(new CasinoFilter($filter, $this->request->attributes()->get("country")));
             $results = $object->getResults($sortBy, 0,$limit);
 
         }
@@ -49,7 +49,7 @@ class IndexController extends BaseController {
 
     private function countCasinosByCountry($filter)
     {
-        $object = new CasinosList(new CasinoFilter($filter, $this->request->getAttribute("country")));
+        $object = new CasinosList(new CasinoFilter($filter, $this->request->attributes()->get("country")));
         $results = $object->getTotal();
         if(empty($results))
         {
@@ -68,7 +68,7 @@ class IndexController extends BaseController {
 
     protected function pageInfo(){
         $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
+        $this->response->attributes()->set("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
 
 }

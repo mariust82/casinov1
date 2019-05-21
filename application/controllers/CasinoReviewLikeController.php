@@ -10,13 +10,13 @@ require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedExc
 * @source 
 * @requestParameter id integer ID of liked review
 */
-class CasinoReviewLikeController extends Controller {
+class CasinoReviewLikeController extends Lucinda\MVC\STDOUT\Controller {
 	public function run() {
 
         $object = new CasinoReviews();
         if(!$object->incrementLikes(
-            $this->request->getAttribute('validation_results')->get('id'),
-            $this->request->getAttribute("ip"))
+            $this->request->attributes()->get('validation_results')->get('id'),
+            $this->request->attributes()->get("ip"))
         ) {
             throw new OperationFailedException("Review already liked!");
         }

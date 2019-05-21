@@ -15,7 +15,7 @@ class ReviewsModel{
         $review->email = $this->reviewData['email'];
         $review->body = $this->reviewData['body'];
         $review->ip = $this->reviewData['user_ip'];
-        $review->country = $this->reviewData['country'];// $this->request->getAttribute("country")->id;
+        $review->country = $this->reviewData['country'];// $this->request->attributes()->get("country")->id;
         $review->parent = $this->reviewData["parent"];
         $review->review_invision_id = $this->reviewData['review_invision_id'];
         $review->status = $this->reviewData['review_status'];
