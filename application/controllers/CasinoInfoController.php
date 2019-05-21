@@ -26,7 +26,7 @@ class CasinoInfoController extends BaseController {
 		    throw new Lucinda\MVC\STDOUT\PathNotFoundException();
         }
 
-        $this->response->attributes()->set("casino", $info);
+        $this->response->attributes()->set("casino", (array) $info);
         $this->response->attributes()->set("user_score",
             $object->getUserVote(
             $info->id,
@@ -44,15 +44,15 @@ class CasinoInfoController extends BaseController {
             $this->response->attributes()->set("total_reviews", 0);
             $this->response->attributes()->set("reviews", array());
         }
-        $this->response->attributes()->set('country_status',$this->get_country_status($this->response->attributes()->get('casino')->is_country_accepted));
-        $this->response->attributes()->set('add_text',$this->containsCasino($this->response->attributes()->get('casino')->name));
+        $this->response->attributes()->set('country_status',$this->get_country_status($info->is_country_accepted));
+        $this->response->attributes()->set('add_text',$this->containsCasino($info->name));
      //   var_dump($this->response->attributes()->get('BOOM'));die();
 	}
 
 	protected function pageInfo(){
         // get page info
         $object = new PageInfoDAO();
-        $this->response->attributes()->set("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes()->get("casino")->name));
+        $this->response->attributes()->set("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes()->get("casino")["name"]));
     }
 
     private function get_country_status($name)
