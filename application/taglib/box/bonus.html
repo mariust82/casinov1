@@ -18,7 +18,7 @@
 			<span>${$[data].$[modifier].amount} ${bonus_type}</span>
 		</div>
 		<div class="bonus-box-body">
-			<:set var="code_class" val=" "/>
+			<:set var="code_class" val=""/>
 			<:if test="${$[data].$[modifier].code} != 'No code required'">
 			    <:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
 			</:if>
