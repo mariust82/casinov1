@@ -26,13 +26,15 @@
                             </:if>
 				
 			</div>
-			<div class="filter-check-item">
-				<div class="check">
-					<input type="checkbox" name="free_bonus" id="free">
-					<label for="free"></label>
+			<:if test="!((${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering'))">
+				<div class="filter-check-item">
+					<div class="check">
+						<input type="checkbox" name="free_bonus" id="free">
+						<label for="free"></label>
+					</div>
+					<label class="filter-check-label" for="free">Free bonus</label>
 				</div>
-				<label class="filter-check-label" for="free">Free bonus</label>
-			</div>
+			</:if>
 		</div>
 	</div>
 	<:if test="${data.selected_entity} != 'Best'">
