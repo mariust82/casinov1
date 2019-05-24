@@ -48,7 +48,7 @@
     <renderer name="json" content_type="application/json" class="JsonRenderer" charset="UTF-8"/>
   </renderers>
   <exceptions error_type="LOGICAL" controller="ErrorsController">
-    <exception class="Lucinda\MVC\STDOUT\PathNotFoundException" http_status="404 Not Found" error_type="CLIENT" view="404"/>
+    <exception class="Lucinda\MVC\STDOUT\PathNotFoundException" controller="PageNotFoundController" http_status="404 Not Found" error_type="CLIENT" view="404"/>
     <exception class="Lucinda\MVC\STDOUT\MethodNotAllowedException" http_status="405 Method Not Allowed" error_type="CLIENT" view="405"/>
     <exception class="Lucinda\Framework\SecurityPacket" controller="SecurityPacketController" error_type="NONE"/>
     <exception class="Lucinda\WebSecurity\SessionHijackException" http_status="400 Bad Request" error_type="CLIENT" view="400"/>
