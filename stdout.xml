@@ -25,7 +25,6 @@
     <listener class="RebrandingListener"/>
     <listener class="IPDetectionListener"/>
     <listener class="MobileDetectionListener"/>
-    <listener class="TMSListener"/>
     <listener class="ValidationListener"/>
     <listener class="HttpCachingListener"/>
   </listeners>

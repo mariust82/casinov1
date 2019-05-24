@@ -17,9 +17,24 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller {
         $this->response->attributes()->set("version", $this->application->getVersion());
 
         $this->response->attributes()->set("use_bundle", (in_array(ENVIRONMENT, ["dev","live"])?true:false));
+
+        $this->response->attributes()->set("tms", $this->getTMSVariables());
     }
 
     abstract protected function service();
 
     abstract protected function pageInfo();
+
+    protected function getTMSVariables() {
+        // gets variables path
+        $xml = $this->application->getTag("application");
+        $variables_folder = (string) $xml->paths->tms_variables;
+
+        // gets parent schema
+        $parent_schema = $this->application->attributes()->get("parent_schema");
+
+        // gets texts
+        $tms = new \TMS\TextsManager($variables_folder, array("request"=>$this->request, "response"=>$this->response), $parent_schema);
+        return $tms->getTexts();
+    }
 }
