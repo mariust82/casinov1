@@ -1,6 +1,7 @@
 <?php
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
+require_once("hlis/tms/src/TextsManager.php");
 
 abstract class BaseController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
