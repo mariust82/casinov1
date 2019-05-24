@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<xml>
+  <application version="0.8.8.384" default_content_type="text/html" templates_extension="html">
+    <paths>
+      <compilations>compilations</compilations>
+      <controllers>application/controllers_frontend</controllers>
+      <reporters>application/reporters</reporters>
+      <renderers>application/renderers</renderers>
+      <views>application/views</views>
+      <tags>application/taglib</tags>
+    </paths>
+    <display_errors>
+      <frontend>1</frontend>
+    </display_errors>
+  </application>
+  <reporters>
+    <frontend>
+      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
+    </frontend>
+  </reporters>
+  <renderers>
+    <renderer name="html" content_type="text/html" class="ViewLanguageRenderer" charset="UTF-8"/>
+    <renderer name="json" content_type="application/json" class="JsonRenderer" charset="UTF-8"/>
+  </renderers>
+  <exceptions error_type="LOGICAL" controller="ErrorsController">
+    <exception class="Lucinda\MVC\STDOUT\PathNotFoundException" controller="PageNotFoundController" http_status="404 Not Found" error_type="CLIENT" view="404"/>
+    <exception class="Lucinda\MVC\STDOUT\MethodNotAllowedException" http_status="405 Method Not Allowed" error_type="CLIENT" view="405"/>
+    <exception class="Lucinda\Framework\SecurityPacket" controller="SecurityPacketController" error_type="NONE"/>
+    <exception class="Lucinda\WebSecurity\SessionHijackException" http_status="400 Bad Request" error_type="CLIENT" view="400"/>
+    <exception class="Lucinda\WebSecurity\EncryptionException" http_status="400 Bad Request" error_type="CLIENT" view="400"/>
+    <exception class="Lucinda\WebSecurity\TokenException" http_status="400 Bad Request" error_type="CLIENT" view="400"/>
+    <exception class="Lucinda\MVC\STDOUT\FileUploadException" http_status="400 Bad Request" error_type="SERVER" view="400"/>
+    <exception class="Lucinda\SQL\ConnectionException" error_type="SERVER" controller="ErrorsController"/>
+    <exception class="Lucinda\NoSQL\ConnectionException" error_type="SERVER" controller="ErrorsController"/>
+    <exception class="Lucinda\NoSQL\OperationFailedException" error_type="SERVER" controller="ErrorsController"/>
+    <exception class="OAuth2\ServerException" error_type="SERVER" controller="ErrorsController"/>
+    <exception class="Lucinda\NoSQL\KeyNotFoundException" error_type="SYNTAX" controller="ErrorsController"/>
+    <exception class="Lucinda\SQL\StatementException" error_type="SYNTAX" controller="ErrorsController"/>
+    <exception class="Lucinda\MVC\STDERR\PHPException" error_type="SYNTAX" controller="ErrorsController"/>
+    <exception class="Lucinda\Templating\ViewException" error_type="SYNTAX" controller="ErrorsController"/>
+  </exceptions>
+</xml>

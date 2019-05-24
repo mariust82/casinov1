@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<xml>
+  <application version="0.8.8.383" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
+    <paths>
+      <controllers>application/controllers_frontend</controllers>
+      <cacheables>application/models/cacheables</cacheables>
+      <views>application/views</views>
+      <listeners>application/listeners</listeners>
+      <tags>application/taglib</tags>
+      <tms_variables>application/models/tms_variables</tms_variables>
+      <compilations>compilations</compilations>
+      <resolvers>application/resolvers</resolvers>
+    </paths>
+  </application>
+  <formats>
+    <format name="html" content_type="text/html" class="ViewLanguageResolver" charset="UTF-8"/>
+    <format name="json" content_type="application/json" class="JsonResolver" charset="UTF-8"/>
+  </formats>
+  <listeners>
+    <listener class="ErrorListener"/>
+    <listener class="MobileDetectionListener"/>
+  </listeners>
+  <routes validators_path="application/models/validators">
+    <route url="bugs" controller="BugsController"/>
+    <route url="index" controller="IndexController" view="index"/>
+    <route url="banking/(name)" controller="CasinosByBankingMethodController" view="casinos" rebrand_tables="banking_methods">
+      <parameter name="name" validator="BanckingMethodNameValidator"/>
+    </route>
+    <route url="banking" controller="BankingMethodsController" view="banking-methods"/>
+    <route url="casinos/(name)" controller="CasinosByLabelController" view="casinos">
+      <parameter name="name" validator="CasinoLabelValidator"/>
+    </route>
+    <route url="casinos" controller="CasinoLabelsController" view="casino-labels"/>
+    <route url="reviews/(name)-review" controller="CasinoInfoController" view="casino-info" rebrand_tables="casinos">
+      <parameter name="name" validator="CasinoNameValidator"/>
+    </route>
+    <route url="visit/(name)" controller="CasinoVisitController">
+      <parameter name="name" validator="CasinoNameValidator"/>
+    </route>
+    <route url="link/(name)-terms" controller="CasinoTermsVisitController">
+      <parameter name="name" validator="CasinoNameValidator"/>
+    </route>
+    <route url="warn/(name)" controller="CasinoWarningController" view="casino-warning">
+      <parameter name="name" validator="CasinoNameValidator"/>
+    </route>
+    <route url="bonus-list/(name)" controller="CasinosByBonusTypeController" view="casinos" rebrand_tables="bonus_types">
+      <parameter name="name" validator="BonusTypeNameValidator"/>
+    </route>
+    <route url="bonus-list" controller="BonusesController" view="bonus-types"/>
+    <route url="countries-list/(name)" controller="CasinosByCountryController" view="casinos">
+      <parameter name="name" validator="CountryNameValidator"/>
+    </route>
+    <route url="countries" controller="CountriesController" view="countries"/>
+    <route url="softwares/(name)" controller="CasinosBySoftwareController" view="casinos" rebrand_tables="game_manufacturers">
+      <parameter name="name" validator="SoftwareNameValidator"/>
+    </route>
+    <route url="softwares" controller="SoftwaresController" view="softwares"/>
+    <route url="games/(type)" controller="GamesByTypeController" view="games">
+      <parameter name="type" validator="GameTypeValidator"/>
+    </route>
+    <route url="games" controller="GameTypesController" view="game-types"/>
+    <route url="play/(name)" controller="GameInfoController" view="game-info" rebrand_tables="games">
+      <parameter name="name" validator="GameNameValidator"/>
+    </route>
+    <route url="play-counter" controller="GamePlayCounterController" format="json">
+      <parameter name="name" validator="GameNameValidator"/>
+    </route>
+    <route url="features/(name)" controller="CasinosByFeatureController" view="casinos">
+      <parameter name="name" validator="CasinoNameFeatureValidator"/>
+    </route>
+    <route url="features" controller="FeaturesController" view="features"/>
+    <route url="privacy" controller="PrivacyController" view="privacy-policy"/>
+    <route url="terms" controller="TermsController" view="terms-and-conditions"/>
+    <route url="contact" controller="ContactController" view="contact-us"/>
+    <route url="contact/send" controller="ContactSendController" method="POST" format="json">
+      <parameter name="name" validator="StringValidator"/>
+      <parameter name="email" validator="EmailValidator"/>
+      <parameter name="message" validator="StringValidator"/>
+    </route>
+    <route url="casinos-filter/(page)" controller="CasinosFilterController" view="casinos-list">
+      <parameter name="sort" required="0" validator="IntegerValidator"/>
+      <parameter name="label" required="0" validator="StringValidator"/>
+      <parameter name="country" required="0" validator="CountryNameValidator"/>
+      <parameter name="free_bonus" required="0" validator="StringValidator"/>
+      <parameter name="feature" required="0" validator="StringValidator"/>
+      <parameter name="country_accepted" required="0" validator="BooleanValidator"/>
+    </route>
+    <route url="casinos-filter" controller="CasinosFilterController" view="casinos-list"/>
+    <route url="games-filter/(page)" controller="GamesFilterController" view="games-list">
+      <parameter name="sort" required="0" validator="IntegerValidator"/>
+      <parameter name="game_type" required="0" validator="GameTypeValidator"/>
+      <parameter name="software" required="0" validator="SoftwareNameValidator"/>
+    </route>
+    <route url="games-filter" controller="GamesFilterController" view="games-list"/>
+    <route url="search" controller="SearchController" format="json">
+      <parameter name="value" validator="StringValidator"/>
+    </route>
+    <route url="search/advanced" controller="SearchAdvancedController" view="search">
+      <parameter name="value" validator="StringValidator"/>
+    </route>
+    <route url="search/more-lists/(page)" controller="SearchMoreListsController" format="json">
+      <parameter name="value" validator="StringValidator"/>
+      <parameter name="page" validator="IntegerValidator"/>
+    </route>
+    <route url="search/more-casinos/(page)" controller="SearchMoreCasinosController" format="json">
+      <parameter name="value" validator="StringValidator"/>
+      <parameter name="page" validator="IntegerValidator"/>
+    </route>
+    <route url="search/more-games/(page)" controller="SearchMoreGamesController" format="json">
+      <parameter name="value" validator="StringValidator"/>
+      <parameter name="page" validator="IntegerValidator"/>
+    </route>
+    <route url="casino/rate" controller="CasinoRateController" format="json">
+      <parameter name="name" validator="CasinoNameValidator"/>
+      <parameter name="value" validator="IntegerValidator"/>
+    </route>
+    <route url="casino/review-write" controller="CasinoReviewWriteController" method="POST" format="json">
+      <parameter name="casino" validator="CasinoNameValidator"/>
+      <parameter name="casino_id" validator="CasinoIdValidator"/>
+      <parameter name="name" validator="StringValidator"/>
+      <parameter name="email" validator="EmailValidator"/>
+      <parameter name="body" validator="StringValidator"/>
+      <parameter name="parent" validator="ParentReviewValidator"/>
+      <parameter name="invision_casino_id" validator="InvisionCasinoIdValidator"/>
+    </route>
+    <route url="casino/review-like" controller="CasinoReviewLikeController" method="POST" format="json">
+      <parameter name="id" validator="ReviewIdValidators"/>
+    </route>
+    <route url="casino/more-reviews/(name)/(page)" controller="CasinoMoreReviewsController" view="reviews">
+      <parameter name="name" validator="CasinoNameValidator"/>
+    </route>
+    <route url="newsletter/subscribe" controller="NewsletterSubscribeController" format="json">
+      <parameter name="email" validator="EmailValidator"/>
+    </route>
+    <route url="casino/bonus" controller="CasinoBonusController" format="json">
+      <parameter name="casino" validator="CasinoNameValidator"/>
+    </route>
+    <route url="404" controller="PageNotFoundController" view="404"/>
+    <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" format="xml"/>
+    <route url="sitemap_cas_bon.php" controller="sitemap/BonusTypesController" format="xml"/>
+    <route url="sitemap_cas_cas.php" controller="sitemap/CasinoLabelsController" format="xml"/>
+    <route url="sitemap_cas_con.php" controller="sitemap/CountriesController" format="xml"/>
+    <route url="sitemap_cas_feat.php" controller="sitemap/FeaturesController" format="xml"/>
+    <route url="sitemap_cas_games.php" controller="sitemap/GameTypesController" format="xml"/>
+    <route url="sitemap_cas_os.php" controller="sitemap/CompatibilityController" format="xml"/>
+    <route url="sitemap_cas_soft.php" controller="sitemap/SoftwaresController" format="xml"/>
+    <route url="sitemap_lists.php" controller="sitemap/PagesController" format="xml"/>
+    <route url="sitemap_main.php" controller="sitemap/IndexController" format="xml"/>
+    <route url="sitemap_spec_cas.php" controller="sitemap/CasinosController" format="xml"/>
+    <route url="sitemap_spec_games.php" controller="sitemap/GamesController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_cas_bank_ps.php" controller="sitemap/BankingMethodsController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_cas_bon_ps.php" controller="sitemap/BonusTypesController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_cas_cas_ps.php" controller="sitemap/CasinoLabelsController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_cas_con_ps.php" controller="sitemap/CountriesController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_cas_feat_ps.php" controller="sitemap/FeaturesController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_cas_games_ps.php" controller="sitemap/GameTypesController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_cas_os_ps.php" controller="sitemap/CompatibilityController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_cas_soft_ps.php" controller="sitemap/SoftwaresController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_lists_ps.php" controller="sitemap/PagesController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_main_ps.php" controller="sitemap/IndexController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_spec_cas_ps.php" controller="sitemap/CasinosController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_spec_games_ps.php" controller="sitemap/GamesController" format="xml"/>
+  </routes>
+  <http_caching class="DateCacheableDriver" drivers_path="application/models/cacheables"/>
+  <images path="public/sync">
+    <image type="casino_logo_light">
+      <format width="124" height="82"/>
+      <format width="85" height="56"/>
+    </image>
+    <image type="game_ss">
+      <format width="136" height="100"/>
+      <format width="300" height="220"/>
+      <format width="960" height="720"/>
+    </image>
+    <image type="software_logo_light">
+      <format width="80" height="53"/>
+    </image>
+    <image type="banking_method_light">
+      <format width="68" height="39"/>
+    </image>
+  </images>
+  <hosts>
+    <frontend>www.casinoslists.local</frontend>
+  </hosts>
+  <gameplay width="960" height="720">
+    <frontend>http://game.casinoslists.local</frontend>
+  </gameplay>
+</xml>
