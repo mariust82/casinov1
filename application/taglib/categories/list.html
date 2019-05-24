@@ -12,7 +12,7 @@
                             <:if test="${key} == 'Mobile'">
                                 <a href="/casinos/${normalize(${key})}">
 					<:if test="$[image]">
-						<site:logo name="${key}" type="$[type]" alt="${key}"/>
+						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>
 					</:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>
@@ -23,7 +23,7 @@
                                 <:elseif test="${key} == 'eCOGRA'">
                                     <a href="/features/${normalize(${key})}-casinos">
 					<:if test="$[image]">
-						<site:logo name="${key}" type="$[type]" alt="${key}"/>
+						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>
 					</:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>
@@ -34,7 +34,7 @@
                                 <:elseif test="${key} == 'Live Dealer'">
                                     <a href="/features/${normalize(${key})}">
 					<:if test="$[image]">
-						<site:logo name="${key}" type="$[type]" alt="${key}"/>
+						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>
 					</:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>
@@ -45,7 +45,7 @@
                                 <:else>
                                     <a href="$[url]/${normalize(${key})}">
 					<:if test="$[image]">
-						<site:logo name="${key}" type="$[type]" alt="${key}"/>
+						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>
 					</:if>
 					<span class="category-body">
 						<span class="category-title">${key}
