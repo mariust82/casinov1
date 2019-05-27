@@ -1059,6 +1059,8 @@ var AJAX_CUR_PAGE = 1;
         },
 
        _sendReview = function(ajaxData, _this){
+            if(BUSY_REQUEST) return;
+            BUSY_REQUEST = true;
             _request.abort();
             _request = $.ajax( {
                 url: "/casino/review-write",
@@ -1087,6 +1089,9 @@ var AJAX_CUR_PAGE = 1;
                     _errors_found = $.parseJSON(jqXHR.responseJSON.body);
                     console.error("Could not send message!");
                     _contact_error.html(_errors_found.join('<br />')).show();
+                },
+                complete: function(){
+                    BUSY_REQUEST = false;
                 }
             });
         },
