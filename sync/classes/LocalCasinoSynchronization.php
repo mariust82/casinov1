@@ -5,6 +5,7 @@
  * Date: 18.01.2018
  * Time: 11:14
  */
+require_once(dirname(__DIR__,2)."/application/models/dao/entities/Entity.php");
 require_once(dirname(__DIR__,2)."/application/models/dao/BestCasinoLabel.php");
 require_once(dirname(__DIR__,2)."/application/models/dao/LowWageringCasinoLabel.php");
 
