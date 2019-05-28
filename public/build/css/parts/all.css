@@ -3418,13 +3418,7 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 .list-item-cell.list-item-type {
-  width: 25%;
-}
-
-@media screen and (max-width: 1023px) {
-  .list-item-cell.list-item-type {
-    width: 23%;
-  }
+  width: 23%;
 }
 
 @media screen and (max-width: 690px) {
