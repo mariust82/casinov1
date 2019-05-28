@@ -14,7 +14,7 @@
 					<span>${data.total_lists} Results</span>
 				</div>
 				<ul id="all-lists-container">
-					<:for start="0" end="${data.index} - 1" val="i">
+					<:for start="0" end="${data.index} - 1" var="i">
 						<li><a href="/${data.lists.${i}.url}">${data.lists.${i}.title}</a></li>
 					</:for>
 				</ul>
