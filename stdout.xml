@@ -12,6 +12,21 @@
       <compilations>compilations</compilations>
       <resolvers>application/resolvers</resolvers>
     </paths>
+
+        <environments>
+            <lucinda>www.casinoslists.local</lucinda>
+            <alex>www.casinoslists.local</alex>
+            <amos>www.devcasinopro.adrian</amos>
+            <amos>C:\projects\casinoslists</amos>
+            <bala>www.casinoslists.bala</bala>
+            <mark>www.casinoslists.mark</mark>
+            <dev>dev.casinoslists.com</dev>
+            <live>www.casinoslists.com</live>
+            <lucinda>/var/www/html/casinoslists</lucinda>
+            <dev>/home/casinoslists/public_html/dev/site</dev>
+            <live>/home/casinoslists/public_html/live/site</live>
+            <alex>C:\xampp\htdocs\casinoslists</alex>
+	</environments>
   </application>
   <formats>
     <format name="html" content_type="text/html" class="ViewLanguageResolver" charset="UTF-8"/>
