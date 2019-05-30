@@ -28,6 +28,7 @@ class CasinoWarningController extends BaseController {
         $this->response->attributes()->set("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
         $this->response->attributes()->set('is_mobile',$this->request->attributes()->get("is_mobile"));
 
+        $this->response->attributes()->set("page_type", "warning");
     }
 
     private function getSelectedEntity() {
