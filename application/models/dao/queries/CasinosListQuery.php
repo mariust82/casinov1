@@ -142,26 +142,24 @@ class CasinosListQuery
 
     private function setWhere(Lucinda\Query\Condition $where, CasinoFilter $filter)
     {
+        $where->set("t1.is_open" ,1);
+
         if($filter->getHighRoller()) {
-            $where->set("t1.is_open" ,1);
             $where->set("t1.is_high_roller",1);
         }
         if($filter->getPromoted()) {
-            $where->set("t1.is_open" ,1);
             $where->set("t1.status_id",0);
         }
 
         switch($filter->getCasinoLabel())
         {
             case 'New':
-                $where->set("t1.is_open" ,1);
                 $where->set("t1.date_established","DATE_SUB(CURDATE(), INTERVAL 1 YEAR )",Lucinda\Query\ComparisonOperator::GREATER);
                 break;
         }
 
         if($filter->getBankingMethod())
         {
-            $where->set("t1.is_open" ,1);
             $group = new Lucinda\Query\Condition(array(), Lucinda\Query\LogicalOperator::_OR_);
             $group->set('t3.id', null,MySQLComparisonOperator::IS_NOT_NULL);
             $group->set('t14.id', null,MySQLComparisonOperator::IS_NOT_NULL);
