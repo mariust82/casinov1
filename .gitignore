@@ -13,3 +13,5 @@ node_modules
 /public/gulpfile.js
 /npm-debug.log
 compilations
+*.log
+*.lock
