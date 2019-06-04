@@ -218,11 +218,6 @@ class CasinosListQuery
     {
         if(!empty($limit))
         {
-            if($filter->getCasinoLabel() == 'Best')
-            {
-                $obj = new BestCasinoLabel();
-                $limit = $obj->getBestLimit();
-            }
             $query->limit($limit,$offset);
         }
     }
