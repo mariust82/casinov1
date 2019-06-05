@@ -12,7 +12,7 @@ abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
         $items = $this->getItems();
         $pages = array();
         foreach($items as $name) {
-            $pages[] = $protocol."://".$this->request->getServer()->getName()."/".strtolower(str_replace(" ", "-", str_replace("(item)", $name, $urlPattern)));
+            $pages[] = $protocol."://".$this->request->getServer()->getName()."/".strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars($name), $urlPattern)));
         }
         return $pages;
     }
