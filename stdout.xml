@@ -31,6 +31,7 @@
   <formats>
     <format name="html" content_type="text/html" class="ViewLanguageResolver" charset="UTF-8"/>
     <format name="json" content_type="application/json" class="JsonResolver" charset="UTF-8"/>
+    <format name="xml" content_type="text/xml" class="SitemapResolver" charset="UTF-8"/>
   </formats>
   <listeners>
     <listener class="AsyncListener"/>
