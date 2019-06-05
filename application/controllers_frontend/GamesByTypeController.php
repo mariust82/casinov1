@@ -1,12 +1,12 @@
 <?php
 class GamesByTypeController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,8 +538,8 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("selected_entity", 'Video Slots');
-$this->response->attributes()->set("menu_bottom", array (
+$this->response->attributes("selected_entity", 'Video Slots');
+$this->response->attributes("menu_bottom", array (
   0 => 
   array (
     'title' => 'Video Slots',
@@ -661,7 +661,7 @@ $this->response->attributes()->set("menu_bottom", array (
     'have_submenu' => false,
   ),
 ));
-$this->response->attributes()->set("software", array (
+$this->response->attributes("software", array (
   0 => '021 test',
   1 => '1test233',
   2 => '1X2 Gaming',
@@ -861,10 +861,10 @@ $this->response->attributes()->set("software", array (
   196 => 'Zeus Services',
   197 => 'Zukido',
 ));
-$this->response->attributes()->set("filter", array (
+$this->response->attributes("filter", array (
 ));
-$this->response->attributes()->set("total_games", 4360);
-$this->response->attributes()->set("games", array (
+$this->response->attributes("total_games", 4360);
+$this->response->attributes("games", array (
   7268 => 
   array (
     'id' => '7268',
@@ -1298,7 +1298,7 @@ $this->response->attributes()->set("games", array (
     'logo_small' => 'public/sync/game_ss/136x100/Hansel_And_Gretel_ss.jpg',
   ),
 ));
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("tms", array (
   'upper_text' => '<p><b>Total number of games on site :&nbsp;6286</b></p>
 
 <p><b>Total number of games in the current list:&nbsp;4360</b></p>
@@ -1320,13 +1320,13 @@ $this->response->attributes()->set("tms", array (
 <p><b>Software of the most popular game in the current list&nbsp;:&nbsp;Booming Games</b></p>
 ',
 ));
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("page_info", array (
   'head_title' => ' Play Video Slots Games for Free | Full List at CasinosLists.com',
   'head_description' => 'Play 4360 Video Slots Games for free at CasinosLists.com | Catch up with all Video Slots games releases from major online casino software developers.',
   'body_title' => 'Free Online Video Slots Games',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
 
     }
 }

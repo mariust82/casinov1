@@ -14,7 +14,7 @@ class GamePlayCounterController extends Lucinda\MVC\STDOUT\Controller {
 	public function run() {
 	    new GamePlayCounterUpdate(
 	        $this->request->getSession(),
-            $this->request->attributes()->get('validation_results')->get('name')
+            $this->request->attributes('validation_results')->get('name')
             );
 	}
 }

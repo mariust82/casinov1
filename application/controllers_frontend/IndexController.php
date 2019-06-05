@@ -1,12 +1,12 @@
 <?php
 class IndexController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,8 +538,8 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("is_mobile", false);
-$this->response->attributes()->set("best_casinos", array (
+$this->response->attributes("is_mobile", false);
+$this->response->attributes("best_casinos", array (
   0 => 
   array (
     'id' => '1416',
@@ -3860,7 +3860,7 @@ $this->response->attributes()->set("best_casinos", array (
     'status' => '0',
   ),
 ));
-$this->response->attributes()->set("country_casinos", array (
+$this->response->attributes("country_casinos", array (
   0 => 
   array (
     'id' => '900',
@@ -4203,8 +4203,8 @@ $this->response->attributes()->set("country_casinos", array (
     'status' => '0',
   ),
 ));
-$this->response->attributes()->set("casinos_per_country", '687');
-$this->response->attributes()->set("new_casinos", array (
+$this->response->attributes("casinos_per_country", '687');
+$this->response->attributes("new_casinos", array (
   0 => 
   array (
     'id' => '1416',
@@ -4498,7 +4498,7 @@ $this->response->attributes()->set("new_casinos", array (
     'status' => '0',
   ),
 ));
-$this->response->attributes()->set("no_deposit_casinos", array (
+$this->response->attributes("no_deposit_casinos", array (
   0 => 
   array (
     'id' => '1406',
@@ -4832,7 +4832,7 @@ $this->response->attributes()->set("no_deposit_casinos", array (
     'status' => '0',
   ),
 ));
-$this->response->attributes()->set("new_games", array (
+$this->response->attributes("new_games", array (
   2285 => 
   array (
     'id' => '2285',
@@ -4942,17 +4942,17 @@ $this->response->attributes()->set("new_games", array (
     'logo_small' => 'public/sync/game_ss/136x100/Devils_Heat_ss.jpg',
   ),
 ));
-$this->response->attributes()->set("filter", NULL);
-$this->response->attributes()->set("page_type", 'index');
-$this->response->attributes()->set("selected_entity", 'index');
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("filter", NULL);
+$this->response->attributes("page_type", 'index');
+$this->response->attributes("selected_entity", 'index');
+$this->response->attributes("page_info", array (
   'head_title' => 'Complete Online Casino Lists & Bonuses - CasinosLists.com',
   'head_description' => 'Updated Online Casino Lists for May 2019 | Find Online Casino Bonuses, Software Lists, Mobile Casinos and Authentic Reviews Made by Real Players',
   'body_title' => ' Welcome to CASINOSLISTS.COM',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
+$this->response->attributes("tms", array (
 ));
 
     }

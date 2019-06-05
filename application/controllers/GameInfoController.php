@@ -19,30 +19,30 @@ require_once ("BaseController.php");
 */
 class GameInfoController extends BaseController {
 	public function service() {
-        $this->response->attributes()->set("country", $this->request->attributes()->get("country"));
+        $this->response->attributes("country", $this->request->attributes("country"));
 
 	    $info = $this->application->getTag("gameplay");
 
         $object = new GameTypes();
-        $this->response->attributes()->set("game_types", array_keys($object->getGamesCount()));
+        $this->response->attributes("game_types", array_keys($object->getGamesCount()));
 
-	    $object = new GameInfo($this->request->attributes()->get('validation_results')->get('name'));
+	    $object = new GameInfo($this->request->attributes('validation_results')->get('name'));
         $result = $object->getResult();
         if(!$result) throw new Lucinda\MVC\STDOUT\PathNotFoundException();
-		$this->response->attributes()->set("game", $result);
+		$this->response->attributes("game", $result);
 
-        $this->response->attributes()->set("game_player", $this->getPlayerInfo());
+        $this->response->attributes("game_player", $this->getPlayerInfo());
 
-        $object = new CasinosList(new CasinoFilter(array("software"=>$result->software, "country_accepted"=>true), $this->request->attributes()->get("country")));
-        $this->response->attributes()->set("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
-        $this->response->attributes()->set('is_mobile',$this->request->attributes()->get("is_mobile"));
+        $object = new CasinosList(new CasinoFilter(array("software"=>$result->software, "country_accepted"=>true), $this->request->attributes("country")));
+        $this->response->attributes("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
+        $this->response->attributes('is_mobile',$this->request->attributes("is_mobile"));
         $object = new GamesList(new GameFilter(array("game_type"=>$result->type)));
-        $this->response->attributes()->set("recommended_games", $object->getResults(GameSortCriteria::NONE, 0, 6));
+        $this->response->attributes("recommended_games", $object->getResults(GameSortCriteria::NONE, 0, 6));
 
         $menuBottom = new GamesMenu($result->type);
-        $this->response->attributes()->set("menu_bottom", $menuBottom->getEntries());
+        $this->response->attributes("menu_bottom", $menuBottom->getEntries());
 
-        $this->response->attributes()->set("page_type", "game_info");
+        $this->response->attributes("page_type", "game_info");
     }
 
     private function getPlayerInfo() {
@@ -56,6 +56,6 @@ class GameInfoController extends BaseController {
 
     protected function pageInfo(){
         $object = new PageInfoDAO();
-        $this->response->attributes()->set("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes()->get("game")->name));
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("game")->name));
     }
 }

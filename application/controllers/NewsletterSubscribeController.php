@@ -23,6 +23,6 @@ class NewsletterSubscribeController extends Lucinda\MVC\STDOUT\Controller
 
     private function saveSubscription() {
         $object = new Subscriptions();
-        $object->save($_POST["email"], $this->request->attributes()->get("ip"), $this->request->attributes()->get("country"));
+        $object->save($_POST["email"], $this->request->attributes("ip"), $this->request->attributes("country"));
     }
 }

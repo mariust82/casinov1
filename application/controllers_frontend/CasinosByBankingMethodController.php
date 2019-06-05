@@ -1,12 +1,12 @@
 <?php
 class CasinosByBankingMethodController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,9 +538,9 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("selected_entity", 'Neteller');
-$this->response->attributes()->set("is_mobile", false);
-$this->response->attributes()->set("menu_bottom", array (
+$this->response->attributes("selected_entity", 'Neteller');
+$this->response->attributes("is_mobile", false);
+$this->response->attributes("menu_bottom", array (
   0 => 
   array (
     'title' => 'Romania Casinos',
@@ -632,10 +632,10 @@ $this->response->attributes()->set("menu_bottom", array (
     'have_submenu' => false,
   ),
 ));
-$this->response->attributes()->set("sort_criteria", 1);
-$this->response->attributes()->set("filter", 'banking_method');
-$this->response->attributes()->set("total_casinos", '906');
-$this->response->attributes()->set("casinos", array (
+$this->response->attributes("sort_criteria", 1);
+$this->response->attributes("filter", 'banking_method');
+$this->response->attributes("total_casinos", '906');
+$this->response->attributes("casinos", array (
   0 => 
   array (
     'id' => '1406',
@@ -7356,8 +7356,8 @@ $this->response->attributes()->set("casinos", array (
     'status' => '0',
   ),
 ));
-$this->response->attributes()->set("page_type", 'banking_method');
-$this->response->attributes()->set("bonus_free_type", array (
+$this->response->attributes("page_type", 'banking_method');
+$this->response->attributes("bonus_free_type", array (
   0 => 'NDB',
   1 => NULL,
   2 => NULL,
@@ -7459,14 +7459,14 @@ $this->response->attributes()->set("bonus_free_type", array (
   98 => 'NDB',
   99 => 'NDB',
 ));
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("page_info", array (
   'head_title' => 'Neteller Casinos | Online Casinos that accept Deposits by Neteller',
   'head_description' => 'Online Casinos accepting Neteller - Full details about Neteller | Check which casino allow deposits & withdrawals for Neteller',
   'body_title' => 'Neteller Accepted Online Casinos ',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
+$this->response->attributes("tms", array (
   'upper_text' => '<p>0</p>
 
 <p>77</p>

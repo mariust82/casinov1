@@ -31,11 +31,11 @@ class IPDetectionListener extends Lucinda\MVC\STDOUT\RequestListener
             $country->name = $countryDetected->name;
         }
         $country->id = $countries->getIDByCode($country->code);
-        $this->request->attributes()->set('country', $country);
+        $this->request->attributes('country', $country);
 
         // detects and saves ip
         $ip = IPDetection::getInstance()->getIP();
-        $this->request->attributes()->set('ip', ($ip != null) ? $ip : '127.0.0.1');
+        $this->request->attributes('ip', ($ip != null) ? $ip : '127.0.0.1');
 
     }
 }

@@ -4,7 +4,7 @@ require_once("application/models/dao/Casinos.php");
 class CasinoTermsVisitController extends Lucinda\MVC\STDOUT\Controller
 {
     public function run() {
-        $casino_id =  $this->request->attributes()->get('validation_results')->get('name');
+        $casino_id =  $this->request->attributes('validation_results')->get('name');
         // get link
         $casino = new Casinos();
         $termsLink = $casino->getTermsLink($casino_id);

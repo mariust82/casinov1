@@ -18,12 +18,12 @@ class CachingWrapper
     private function display($responseCode, $headers) {
         if($responseCode==200) {
             foreach($headers as $name=>$value) {
-                $this->response->headers()->set($name, $value);
+                $this->response->headers($name, $value);
             }
         } else {
             $this->response->setStatus($responseCode);
             foreach($headers as $name=>$value) {
-                $this->response->headers()->set($name, $value);
+                $this->response->headers($name, $value);
             }
             $this->response->getOutputStream()->clear();
         }
@@ -62,7 +62,7 @@ class CachingWrapper
             $cacheResponse->setLastModified($cacheable->getTime());
         }
 	$cacheResponse->setPublic(); // hack against session usage
-        return $cacheResponse->headers()->toArray();
+        return $cacheResponse->headers();
     }
 
 }

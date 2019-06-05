@@ -17,7 +17,7 @@ class ErrorsController extends \Lucinda\MVC\STDERR\Controller {
      * Sets response status to HTTP status code 500
      */
     private function setResponseStatus() {
-        $this->response->setHttpStatus("500 Internal Server Error");
+        $this->response->setStatus(500);
     }
 
     /**
@@ -30,7 +30,7 @@ class ErrorsController extends \Lucinda\MVC\STDERR\Controller {
         $displayErrors = $this->application->getDisplayErrors();
 
         // gets content type
-        $contentType = $this->response->getHeader("Content-Type");
+        $contentType = $this->response->headers("Content-Type");
 
         // sets view
         if(strpos($contentType, "text/html")===0) {
@@ -40,14 +40,14 @@ class ErrorsController extends \Lucinda\MVC\STDERR\Controller {
                 require_once($this->application->getViewsPath()."/debug.php");
                 $output = ob_get_contents();
                 ob_end_clean();
-                $this->response->setBody($output);
+                $this->response->getOutputStream()->write($output);
             } else {
                 $this->response->setView($this->application->getViewsPath()."/500");
             }
-        } else if(strpos($contentType, "application/json")===0) {
-            $this->response->setAttribute("message", $displayErrors?$this->request->getException()->getMessage():"");
-            $this->response->setAttribute("file", $displayErrors?$this->request->getException()->getFile():"");
-            $this->response->setAttribute("line", $displayErrors?$this->request->getException()->getLine():"");
+        } else if(strpos($contentType, "application/json")==0) {
+            $this->response->attributes("message", $displayErrors?$this->request->getException()->getMessage():"");
+            $this->response->attributes("file", $displayErrors?$this->request->getException()->getFile():"");
+            $this->response->attributes("line", $displayErrors?$this->request->getException()->getLine():"");
         } else {
             throw new Exception("Unsupported content type!");
         }

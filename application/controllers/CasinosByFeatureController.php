@@ -15,7 +15,7 @@ require_once("CasinosListController.php");
 class CasinosByFeatureController extends CasinosListController {
     protected function getSelectedEntity()
     {
-        return $this->request->attributes()->get('validation_results')->get('name');
+        return $this->request->attributes('validation_results')->get('name');
     }
 
     protected function getFilter()
@@ -40,6 +40,6 @@ class CasinosByFeatureController extends CasinosListController {
             break;
         }
 
-        $this->response->attributes()->set("page_info", $object->getInfoByURL($url, $this->response->attributes()->get("selected_entity"), $this->response->attributes()->get("total_casinos")));
+        $this->response->attributes("page_info", $object->getInfoByURL($url, $this->response->attributes("selected_entity"), $this->response->attributes("total_casinos")));
     }
 }

@@ -1,12 +1,12 @@
 <?php
 class CasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,9 +538,9 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("selected_entity", 'RTG');
-$this->response->attributes()->set("is_mobile", false);
-$this->response->attributes()->set("menu_bottom", array (
+$this->response->attributes("selected_entity", 'RTG');
+$this->response->attributes("is_mobile", false);
+$this->response->attributes("menu_bottom", array (
   0 => 
   array (
     'title' => 'All Softwares',
@@ -652,10 +652,10 @@ $this->response->attributes()->set("menu_bottom", array (
     'have_submenu' => false,
   ),
 ));
-$this->response->attributes()->set("sort_criteria", 1);
-$this->response->attributes()->set("filter", 'software');
-$this->response->attributes()->set("total_casinos", '106');
-$this->response->attributes()->set("casinos", array (
+$this->response->attributes("sort_criteria", 1);
+$this->response->attributes("filter", 'software');
+$this->response->attributes("total_casinos", '106');
+$this->response->attributes("casinos", array (
   0 => 
   array (
     'id' => '1416',
@@ -6976,8 +6976,8 @@ $this->response->attributes()->set("casinos", array (
     'status' => '1',
   ),
 ));
-$this->response->attributes()->set("page_type", 'software');
-$this->response->attributes()->set("bonus_free_type", array (
+$this->response->attributes("page_type", 'software');
+$this->response->attributes("bonus_free_type", array (
   0 => NULL,
   1 => NULL,
   2 => NULL,
@@ -7079,14 +7079,14 @@ $this->response->attributes()->set("bonus_free_type", array (
   98 => 'NDB',
   99 => NULL,
 ));
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("page_info", array (
   'head_title' => 'RTG Casinos | Full list of RTG Online Casinos!',
   'head_description' => 'Check out the 106 RTG Online Casinos on the iGaming market. Take advantage of  RTG No Deposit Bonuses that allow you to keep what you win.',
   'body_title' => 'RTG Casinos List',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
+$this->response->attributes("tms", array (
   'upper_text' => '<p>newestInTheSite ::&nbsp;&nbsp;$41</p>
 
 <p>newest in current list_________ $/€40</p>

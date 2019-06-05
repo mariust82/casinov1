@@ -14,14 +14,14 @@ require_once("application/models/dao/ListsSearch.php");
 class SearchController extends Lucinda\MVC\STDOUT\Controller {
     const LIMIT = 3;
 	public function run() {
-        $lists = new ListsSearch($this->request->parameters()->get("value"));
-	    $casinos = new CasinosSearch($this->request->parameters()->get("value"));
+        $lists = new ListsSearch($this->request->parameters("value"));
+	    $casinos = new CasinosSearch($this->request->parameters("value"));
         $result = array_slice($lists->getResults(), 0, 3);
-        $this->response->attributes()->set("lists", $result);
-	    $this->response->attributes()->set("casinos", $casinos->getResults(self::LIMIT,0));
+        $this->response->attributes("lists", $result);
+	    $this->response->attributes("casinos", $casinos->getResults(self::LIMIT,0));
             
 
-        $games = new GamesSearch($this->request->parameters()->get("value"));
-        $this->response->attributes()->set("games", $games->getResults(self::LIMIT,0));
+        $games = new GamesSearch($this->request->parameters("value"));
+        $this->response->attributes("games", $games->getResults(self::LIMIT,0));
 	}
 }

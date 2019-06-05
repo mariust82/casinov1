@@ -1,12 +1,12 @@
 <?php
 class GameInfoController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,7 +538,7 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("game_types", array (
+$this->response->attributes("game_types", array (
   0 => 'Video Slots',
   1 => 'Video Poker',
   2 => 'Slots',
@@ -552,7 +552,7 @@ $this->response->attributes()->set("game_types", array (
   10 => 'Bingo',
   11 => 'Craps',
 ));
-$this->response->attributes()->set("game", array (
+$this->response->attributes("game", array (
   'id' => '7268',
   'name' => 'Exotic Fruit Deluxe',
   'type' => 'Video Slots',
@@ -570,12 +570,12 @@ $this->response->attributes()->set("game", array (
   'logo_big' => NULL,
   'logo_small' => NULL,
 ));
-$this->response->attributes()->set("game_player", array (
+$this->response->attributes("game_player", array (
   'url' => 'https://devgame.casinoslists.com',
   'width' => '960',
   'height' => '720',
 ));
-$this->response->attributes()->set("recommended_casinos", array (
+$this->response->attributes("recommended_casinos", array (
   0 => 
   array (
     'id' => '1350',
@@ -929,8 +929,8 @@ $this->response->attributes()->set("recommended_casinos", array (
     'status' => '0',
   ),
 ));
-$this->response->attributes()->set("is_mobile", false);
-$this->response->attributes()->set("recommended_games", array (
+$this->response->attributes("is_mobile", false);
+$this->response->attributes("recommended_games", array (
   7268 => 
   array (
     'id' => '7268',
@@ -1040,7 +1040,7 @@ $this->response->attributes()->set("recommended_games", array (
     'logo_small' => 'public/sync/game_ss/136x100/White_Knight_ss.jpg',
   ),
 ));
-$this->response->attributes()->set("menu_bottom", array (
+$this->response->attributes("menu_bottom", array (
   0 => 
   array (
     'title' => 'Video Slots',
@@ -1162,15 +1162,15 @@ $this->response->attributes()->set("menu_bottom", array (
     'have_submenu' => false,
   ),
 ));
-$this->response->attributes()->set("page_type", 'game_info');
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("page_type", 'game_info');
+$this->response->attributes("page_info", array (
   'head_title' => 'Play Exotic Fruit Deluxe for Fun at CasinosLists.com',
   'head_description' => 'Free Play Exotic Fruit Deluxe | Exotic Fruit Deluxe Demo Game, No Registration Required, Play the Game Exotic Fruit Deluxe at CasinosLists.com - 2019',
   'body_title' => 'Exotic Fruit Deluxe',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
+$this->response->attributes("tms", array (
 ));
 
     }

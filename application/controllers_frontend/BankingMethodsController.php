@@ -1,12 +1,12 @@
 <?php
 class BankingMethodsController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,7 +538,7 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("results", array (
+$this->response->attributes("results", array (
   'Visa' => '1017',
   'MasterCard' => '979',
   'Neteller' => '896',
@@ -660,19 +660,19 @@ $this->response->attributes()->set("results", array (
   'MyMonedero' => '1',
   'BT Landlines' => '1',
 ));
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("tms", array (
   'upper_text' => '<p>Banking -&nbsp; update</p>
 
 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
 ',
 ));
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("page_info", array (
   'head_title' => 'Full List of Online Casinos Payment Methods - CasinosLists.com',
   'head_description' => ' Online Casino Banking Methods | We\'ve summed all the accepted payment methods for online casinos, including Credit Cards, eWallets, Crypto and more.',
   'body_title' => 'Online Casino Banking Methods',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
 
     }
 }

@@ -1,12 +1,12 @@
 <?php
 class CasinosByBonusTypeController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,9 +538,9 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("selected_entity", 'No Deposit Bonus');
-$this->response->attributes()->set("is_mobile", false);
-$this->response->attributes()->set("menu_bottom", array (
+$this->response->attributes("selected_entity", 'No Deposit Bonus');
+$this->response->attributes("is_mobile", false);
+$this->response->attributes("menu_bottom", array (
   0 => 
   array (
     'title' => 'Romania Casinos',
@@ -622,10 +622,10 @@ $this->response->attributes()->set("menu_bottom", array (
     'have_submenu' => false,
   ),
 ));
-$this->response->attributes()->set("sort_criteria", 3);
-$this->response->attributes()->set("filter", 'free_bonus');
-$this->response->attributes()->set("total_casinos", '651');
-$this->response->attributes()->set("casinos", array (
+$this->response->attributes("sort_criteria", 3);
+$this->response->attributes("filter", 'free_bonus');
+$this->response->attributes("total_casinos", '651');
+$this->response->attributes("casinos", array (
   0 => 
   array (
     'id' => '1406',
@@ -7684,8 +7684,8 @@ $this->response->attributes()->set("casinos", array (
     'status' => '0',
   ),
 ));
-$this->response->attributes()->set("page_type", 'free_bonus');
-$this->response->attributes()->set("bonus_free_type", array (
+$this->response->attributes("page_type", 'free_bonus');
+$this->response->attributes("bonus_free_type", array (
   0 => 'NDB',
   1 => 'FS',
   2 => 'NDB',
@@ -7787,14 +7787,14 @@ $this->response->attributes()->set("bonus_free_type", array (
   98 => 'FS',
   99 => 'FS',
 ));
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("page_info", array (
   'head_title' => ' No Deposit Bonus & Free Spins Online Casinos - Keep your winnings!',
   'head_description' => ' Full List of No Deposit Casinos | Take on 651 Free Spins, Free Play & No Deposit Bonuses on Sign up allowing you to keep what you win with no deposit required!',
   'body_title' => 'No Deposit & Free Spins Casinos - Keep what you win!',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
+$this->response->attributes("tms", array (
   'upper_text' => '<p>getTotalFreeBonusCasinosInList -&nbsp;651<br />
 getTotalCasinos&nbsp;-&nbsp;651</p>
 

@@ -12,7 +12,7 @@ require_once("CasinosListController.php");
 class CasinosBySoftwareController extends CasinosListController {
     protected function getSelectedEntity()
     {
-        $id = $this->request->attributes()->get('validation_results')->get('name');
+        $id = $this->request->attributes('validation_results')->get('name');
         $gm = new GameManufacturers();
         $name = $gm->getGameManufactures($id);
         return $name;

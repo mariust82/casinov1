@@ -17,7 +17,7 @@ class TmsWrapper{
 
     private function getParentSchema(){
 
-        return $this->application->attributes()->get("parent_schema");
+        return $this->application->attributes("parent_schema");
     }
 
     private function getVariablesFolder(){

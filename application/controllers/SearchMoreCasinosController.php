@@ -14,9 +14,9 @@ class SearchMoreCasinosController extends Lucinda\MVC\STDOUT\Controller {
     const LIMIT = 5;
 
 	public function run() {
-	    $page = (integer) $this->request->getValidator()->getPathParameter("page");
+	    $page = (integer) $this->request->getValidator()->parameters("page");
 
         $object = new CasinosSearch($_GET["value"]);
-        $this->response->attributes()->set("results", $object->getResults(self::LIMIT,self::LIMIT*$page));
+        $this->response->attributes("results", $object->getResults(self::LIMIT,self::LIMIT*$page));
 	}
 }

@@ -1,12 +1,12 @@
 <?php
 class GameTypesController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,7 +538,7 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("results", array (
+$this->response->attributes("results", array (
   'Video Slots' => '4360',
   'Video Poker' => '464',
   'Slots' => '421',
@@ -552,7 +552,7 @@ $this->response->attributes()->set("results", array (
   'Bingo' => '36',
   'Craps' => '13',
 ));
-$this->response->attributes()->set("logos", array (
+$this->response->attributes("logos", array (
   0 => '/public/sync/game_type_logo/136x100/video_slots.jpg',
   1 => '/public/sync/game_type_logo/136x100/video_poker.jpg',
   2 => '/public/sync/game_type_logo/136x100/slots.jpg',
@@ -566,14 +566,14 @@ $this->response->attributes()->set("logos", array (
   10 => '/public/sync/game_type_logo/136x100/bingo.jpg',
   11 => '/public/sync/game_type_logo/136x100/craps.jpg',
 ));
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("page_info", array (
   'head_title' => 'Casino Games Categories | Slots, Blackjack, Roulette and more',
   'head_description' => 'The complete list of online casino games types. With so many games available, we divided them into categories. Play Video Slots, Blackjack, Roulette & more',
   'body_title' => 'Casino Games Types',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
+$this->response->attributes("tms", array (
   'upper_text' => '<p>Total number of games on site :&nbsp;6286</p>
 
 <p>Total number of games in the current list:&nbsp;</p>

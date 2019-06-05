@@ -1,12 +1,12 @@
 <?php
 class SoftwaresController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,7 +538,7 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("results", array (
+$this->response->attributes("results", array (
   'RTG' => '89',
   'Rival' => '82',
   'NetEnt' => '567',
@@ -738,7 +738,7 @@ $this->response->attributes()->set("results", array (
   'Habanero Systemss' => '1',
   'Spielo G2' => '1',
 ));
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("tms", array (
   'upper_text' => '<p>test&nbsp;</p>
 
 <p>&nbsp;</p>
@@ -748,14 +748,14 @@ $this->response->attributes()->set("tms", array (
 <p>&nbsp;</p>
 ',
 ));
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("page_info", array (
   'head_title' => 'Online Casinos by Software Developers | Full List at CasinosLists.com',
   'head_description' => 'All Online Casino Software Developers | We\'ve listed all gaming software providers, including top providers, such as NetEnt, Microgaming, RTG and others.',
   'body_title' => 'Online Casinos Software Providers',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
-$this->response->attributes()->set("software_logo_small", array (
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
+$this->response->attributes("software_logo_small", array (
   0 => '/public/sync/software_logo_light/80x53/rtg.png',
   1 => '/public/sync/software_logo_light/80x53/rival.png',
   2 => '/public/sync/software_logo_light/80x53/netent.png',

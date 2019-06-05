@@ -1,15 +1,15 @@
 <?php
 class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("is_mobile", false);
-$this->response->attributes()->set("filter", '');
-$this->response->attributes()->set("total_casinos", '651');
-$this->response->attributes()->set("casinos", array (
+$this->response->attributes("is_mobile", false);
+$this->response->attributes("filter", '');
+$this->response->attributes("total_casinos", '651');
+$this->response->attributes("casinos", array (
   0 => 
   array (
     'id' => '139',
@@ -7033,8 +7033,8 @@ $this->response->attributes()->set("casinos", array (
     'status' => '0',
   ),
 ));
-$this->response->attributes()->set("page_type", 'not_banking_method');
-$this->response->attributes()->set("selected_entity", '');
+$this->response->attributes("page_type", 'not_banking_method');
+$this->response->attributes("selected_entity", '');
 
     }
 }

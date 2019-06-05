@@ -1,12 +1,12 @@
 <?php
 class CasinoLabelsController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,7 +538,7 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("results", array (
+$this->response->attributes("results", array (
   'Best' => '50',
   'Live Dealer' => '474',
   'Mobile' => '913',
@@ -547,7 +547,7 @@ $this->response->attributes()->set("results", array (
   'Stay away' => '43',
   'Popular' => '19',
 ));
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("tms", array (
   'upper_text' => '<p>How to choose an online casino? What are the most important criteria you should consider before embarking on the gambling arena? And who else better than us to guide you through this strategic choice? We at CasinosLists.com reveal what counts in a decision that it should not have anything to chance! Games library, bonuses, license - all points that we check for each of the casinos presented in our listing. It may be tempting to choose the first casino you see in the search engine, but it can be a serious mistake, that&rsquo;s why you need to know exactly what you are looking for at an online casino. We are up to date with all the <a href="https://www.casinoslists.com/casinos/new">New Online Casinos</a> out there, so you can be tuned in with all the new bonuses and promotions.</p>
 
 <p>&nbsp;</p>
@@ -559,13 +559,13 @@ $this->response->attributes()->set("tms", array (
 <p>Our <a href="https://www.casinoslists.com/features/live-dealer">Live Dealer Casinos</a> and <a href="https://www.casinoslists.com/casinos/popular">Popular Casinos</a> lists will offer you a preview of the most popular options in the online gaming market. Players participate in the action through video streaming and often place their bets via their mobile devices. You should check CasinosLists&rsquo; <a href="https://www.casinoslists.com/casinos/mobile">Mobile Casinos</a> page to find out which online gambling sites are compatible with your operating system. Softwares like RTG or Microgaming even allow gamblers to chat with each other or chat with the dealer via the Live Chat feature. There are plenty of options, so don&rsquo;t hold back and give them a try! Good luck!</p>
 ',
 ));
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("page_info", array (
   'head_title' => ' Online Casinos Categories - CasinosLists.com',
   'head_description' => 'Complete List of Online Casinos Categories | Check out various types of Online Gaming Sites including Best Casinos, Live Casinos or Mobile-Friendly platforms',
   'body_title' => 'Online Casinos Categories',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
 
     }
 }

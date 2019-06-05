@@ -23,8 +23,8 @@ class CasinoReviewWriteController extends Lucinda\MVC\STDOUT\Controller
     {
         $reviewModelObj = new CasinoReviewsModel($this->application, $this->request);
         $reviewModelObj->saveReview();
-        $this->response->attributes()->set("id", $reviewModelObj->getReviewId());
-        $this->response->attributes()->set("review_invision_id", $reviewModelObj->getReviewInvisionId());
+        $this->response->attributes("id", $reviewModelObj->getReviewId());
+        $this->response->attributes("review_invision_id", $reviewModelObj->getReviewInvisionId());
     }
 }
 

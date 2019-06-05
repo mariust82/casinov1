@@ -1,12 +1,12 @@
 <?php
 class CasinosByLabelController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,9 +538,9 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("selected_entity", 'Low Wagering');
-$this->response->attributes()->set("is_mobile", false);
-$this->response->attributes()->set("menu_bottom", array (
+$this->response->attributes("selected_entity", 'Low Wagering');
+$this->response->attributes("is_mobile", false);
+$this->response->attributes("menu_bottom", array (
   0 => 
   array (
     'title' => 'Romania Casinos',
@@ -622,10 +622,10 @@ $this->response->attributes()->set("menu_bottom", array (
     'have_submenu' => false,
   ),
 ));
-$this->response->attributes()->set("sort_criteria", 5);
-$this->response->attributes()->set("filter", 'label');
-$this->response->attributes()->set("total_casinos", '138');
-$this->response->attributes()->set("casinos", array (
+$this->response->attributes("sort_criteria", 5);
+$this->response->attributes("filter", 'label');
+$this->response->attributes("total_casinos", '138');
+$this->response->attributes("casinos", array (
   0 => 
   array (
     'id' => '1234',
@@ -7510,8 +7510,8 @@ $this->response->attributes()->set("casinos", array (
     'status' => '2',
   ),
 ));
-$this->response->attributes()->set("page_type", 'label');
-$this->response->attributes()->set("bonus_free_type", array (
+$this->response->attributes("page_type", 'label');
+$this->response->attributes("bonus_free_type", array (
   0 => 'NDB',
   1 => 'NDB',
   2 => 'NDB',
@@ -7613,14 +7613,14 @@ $this->response->attributes()->set("bonus_free_type", array (
   98 => 'NDB',
   99 => 'NDB',
 ));
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("page_info", array (
   'head_title' => 'Low Wagering Online Casinos | No Deposit Bonuses without Playthrough!',
   'head_description' => 'Low Wagering Casinos 2019 | Full List of No Deposit Bonuses and Free Spins Offers with No Playthrough & Low Wagering Requirements at CasinosLists.com',
   'body_title' => 'Low Wagering Casino Bonuses (Low Playthrough & No Wagering Requirements Free Bonuses)',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
+$this->response->attributes("tms", array (
 ));
 
     }

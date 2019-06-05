@@ -1,12 +1,12 @@
 <?php
 class CasinosByCountryController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,11 +538,11 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("currency", 'RON');
-$this->response->attributes()->set("language", 'Romanian');
-$this->response->attributes()->set("selected_entity", 'Romania');
-$this->response->attributes()->set("is_mobile", false);
-$this->response->attributes()->set("menu_bottom", array (
+$this->response->attributes("currency", 'RON');
+$this->response->attributes("language", 'Romanian');
+$this->response->attributes("selected_entity", 'Romania');
+$this->response->attributes("is_mobile", false);
+$this->response->attributes("menu_bottom", array (
   0 => 
   array (
     'title' => 'Romania Casinos',
@@ -624,10 +624,10 @@ $this->response->attributes()->set("menu_bottom", array (
     'have_submenu' => false,
   ),
 ));
-$this->response->attributes()->set("sort_criteria", 4);
-$this->response->attributes()->set("filter", 'country');
-$this->response->attributes()->set("total_casinos", '687');
-$this->response->attributes()->set("casinos", array (
+$this->response->attributes("sort_criteria", 4);
+$this->response->attributes("filter", 'country');
+$this->response->attributes("total_casinos", '687');
+$this->response->attributes("casinos", array (
   0 => 
   array (
     'id' => '900',
@@ -7304,8 +7304,8 @@ $this->response->attributes()->set("casinos", array (
     'status' => '0',
   ),
 ));
-$this->response->attributes()->set("page_type", 'country');
-$this->response->attributes()->set("bonus_free_type", array (
+$this->response->attributes("page_type", 'country');
+$this->response->attributes("bonus_free_type", array (
   0 => 'NDB',
   1 => NULL,
   2 => 'FS',
@@ -7407,14 +7407,14 @@ $this->response->attributes()->set("bonus_free_type", array (
   98 => NULL,
   99 => 'FS',
 ));
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("page_info", array (
   'head_title' => ' Online Casinos Available for Players from Romania',
   'head_description' => ' Romania Online Casinos | We\'ve Summarized all Online Casinos Available for Players from Romania, Play in your Language and Currency',
   'body_title' => ' Online Casinos for Players in Romania',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
+$this->response->attributes("tms", array (
 ));
 
     }

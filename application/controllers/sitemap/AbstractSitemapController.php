@@ -2,8 +2,8 @@
 abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
 {
     public function run() {
-        $this->response->attributes()->set("pages", $this->getPages());
-        $this->response->attributes()->set("priority", $this->getPriority());
+        $this->response->attributes("pages", $this->getPages());
+        $this->response->attributes("priority", $this->getPriority());
     }
 
     private function getPages() {

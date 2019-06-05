@@ -38,6 +38,6 @@ class Visits extends \TMS\VariablesHolder {
     }
 
     private function getCountry() {
-        return $this->parameters['response']->attributes()->get('country');
+        return $this->parameters['response']->attributes('country');
     }
 }

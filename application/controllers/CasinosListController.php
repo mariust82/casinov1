@@ -12,32 +12,32 @@ abstract class CasinosListController extends BaseController {
 
 	public function service() {
 
-        $this->response->attributes()->set("selected_entity", ucwords($this->getSelectedEntity()));
-        $this->response->attributes()->set('is_mobile',$this->request->attributes()->get("is_mobile"));
+        $this->response->attributes("selected_entity", ucwords($this->getSelectedEntity()));
+        $this->response->attributes('is_mobile',$this->request->attributes("is_mobile"));
 
-        $menuBottom = new CasinosMenu($this->request->attributes()->get("country")->name, $this->response->attributes()->get("selected_entity"), $this->request->getURI()->getPage());
-        $this->response->attributes()->set("menu_bottom", $menuBottom->getEntries());
-        $this->response->attributes()->set("country", $this->request->attributes()->get("country"));
-        $this->response->attributes()->set("sort_criteria", $this->getSortCriteria());
-        $this->response->attributes()->set("filter", $this->getFilter());
+        $menuBottom = new CasinosMenu($this->request->attributes("country")->name, $this->response->attributes("selected_entity"), $this->request->getURI()->getPage());
+        $this->response->attributes("menu_bottom", $menuBottom->getEntries());
+        $this->response->attributes("country", $this->request->attributes("country"));
+        $this->response->attributes("sort_criteria", $this->getSortCriteria());
+        $this->response->attributes("filter", $this->getFilter());
 
         $results = $this->getResults();
-        $this->response->attributes()->set("total_casinos", $results["total"]);
-        $this->response->attributes()->set("casinos", $results["list"]);
-        $this->response->attributes()->set("page_type",$this->get_page_type());
-        $this->response->attributes()->set('bonus_free_type',$this->getAbbreviation($this->response->attributes()->get('casinos')));
+        $this->response->attributes("total_casinos", $results["total"]);
+        $this->response->attributes("casinos", $results["list"]);
+        $this->response->attributes("page_type",$this->get_page_type());
+        $this->response->attributes('bonus_free_type',$this->getAbbreviation($this->response->attributes('casinos')));
     }
 
     private function getResults() {
 
         $filter = new CasinoFilter(
-            array($this->response->attributes()->get("filter") => $this->response->attributes()->get("selected_entity")),
-            $this->request->attributes()->get("country"));
+            array($this->response->attributes("filter") => $this->response->attributes("selected_entity")),
+            $this->request->attributes("country"));
 
         $object = new CasinosList($filter);
         $results = array();
         $results["total"] = $object->getTotal();
-        $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->attributes()->get("sort_criteria"), 1, $this->limit) : array());
+        $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->attributes("sort_criteria"), 1, $this->limit) : array());
 
         return $results;
     }
@@ -57,8 +57,8 @@ abstract class CasinosListController extends BaseController {
     protected function pageInfo(){
         // get page info
         $object = new PageInfoDAO();
-        $total_casinos = !empty($this->response->attributes()->get("total_casinos")) ? $this->response->attributes()->get("total_casinos") : '';
-        $this->response->attributes()->set("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes()->get("selected_entity"),$total_casinos ));
+        $total_casinos = !empty($this->response->attributes("total_casinos")) ? $this->response->attributes("total_casinos") : '';
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("selected_entity"),$total_casinos ));
     }
 
     private function get_page_type()

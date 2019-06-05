@@ -17,42 +17,42 @@ class CasinoInfoController extends BaseController {
 
 	public function service() {
 
-		$this->response->attributes()->set("country", $this->request->attributes()->get("country"));
+		$this->response->attributes("country", $this->request->attributes("country"));
 		// get casino info
-		$object = new CasinoInfo($this->request->attributes()->get('validation_results')->get('name'), $this->request->attributes()->get("country")->id);
+		$object = new CasinoInfo($this->request->attributes('validation_results')->get('name'), $this->request->attributes("country")->id);
         $info = $object->getResult();
 
 		if(empty($info)){
 		    throw new Lucinda\MVC\STDOUT\PathNotFoundException();
         }
 
-        $this->response->attributes()->set("casino", (array) $info);
-        $this->response->attributes()->set("user_score",
+        $this->response->attributes("casino", (array) $info);
+        $this->response->attributes("user_score",
             $object->getUserVote(
             $info->id,
-            $this->request->attributes()->get('ip')) == FALSE ? 0: $object->getUserVote($info->id,  $this->request->attributes()->get('ip')));
-        $this->response->attributes()->set('user_score_class',$object->getScoreClass($this->response->attributes()->get('user_score')));
+            $this->request->attributes('ip')) == FALSE ? 0: $object->getUserVote($info->id,  $this->request->attributes('ip')));
+        $this->response->attributes('user_score_class',$object->getScoreClass($this->response->attributes('user_score')));
 
         // get reviews
         $object = new CasinoReviews();
         $total = $object->getAllTotal($info->id);
 
         if($total>0) {
-            $this->response->attributes()->set("total_reviews",$total);
-            $this->response->attributes()->set("reviews", $object->getAll($info->id, 0, 0));
+            $this->response->attributes("total_reviews",$total);
+            $this->response->attributes("reviews", $object->getAll($info->id, 0, 0));
         } else {
-            $this->response->attributes()->set("total_reviews", 0);
-            $this->response->attributes()->set("reviews", array());
+            $this->response->attributes("total_reviews", 0);
+            $this->response->attributes("reviews", array());
         }
-        $this->response->attributes()->set('country_status',$this->get_country_status($info->is_country_accepted));
-        $this->response->attributes()->set('add_text',$this->containsCasino($info->name));
-     //   var_dump($this->response->attributes()->get('BOOM'));die();
+        $this->response->attributes('country_status',$this->get_country_status($info->is_country_accepted));
+        $this->response->attributes('add_text',$this->containsCasino($info->name));
+     //   var_dump($this->response->attributes('BOOM'));die();
 	}
 
 	protected function pageInfo(){
         // get page info
         $object = new PageInfoDAO();
-        $this->response->attributes()->set("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes()->get("casino")["name"]));
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("casino")["name"]));
     }
 
     private function get_country_status($name)

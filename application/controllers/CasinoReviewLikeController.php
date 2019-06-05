@@ -15,8 +15,8 @@ class CasinoReviewLikeController extends Lucinda\MVC\STDOUT\Controller {
 
         $object = new CasinoReviews();
         if(!$object->incrementLikes(
-            $this->request->attributes()->get('validation_results')->get('id'),
-            $this->request->attributes()->get("ip"))
+            $this->request->attributes('validation_results')->get('id'),
+            $this->request->attributes("ip"))
         ) {
             throw new OperationFailedException("Review already liked!");
         }

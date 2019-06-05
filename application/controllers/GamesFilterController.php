@@ -19,16 +19,16 @@ class GamesFilterController extends Lucinda\MVC\STDOUT\Controller
     public function run()
     {
 
-        $page = (integer)$this->request->getValidator()->getPathParameter("page");
+        $page = (integer)$this->request->getValidator()->parameters("page");
         $sortBy = isset($_GET["sort"]) ? $_GET["sort"] : GameSortCriteria::NONE;
 
 
         $offset = $page * self::LIMIT;
         $object = new GamesList(new GameFilter($_GET));
         $total = $object->getTotal();
-        $this->response->attributes()->set("total_games", $total);
+        $this->response->attributes("total_games", $total);
         $results = $object->getResults($sortBy, $page, self::LIMIT ,$offset);
-        $this->response->attributes()->set("games", $results, $page);
+        $this->response->attributes("games", $results, $page);
 
     }
 }

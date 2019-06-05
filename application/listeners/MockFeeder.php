@@ -13,13 +13,13 @@ class MockFeeder extends Lucinda\MVC\STDOUT\ResponseListener
         $remoteController = $frontendProjectLocation."/application/controllers_frontend/".$controllerName.".php";
 
         // compose response attributes
-        $attributes = json_decode(json_encode($response->attributes()->toArray()), true);
+        $attributes = json_decode(json_encode($response->attributes()), true);
         $addition = '<?php
 class '.$controllerName.' extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
         ';
         foreach($attributes as $key=>$value) {
-            $addition .= '$this->response->attributes()->set("'.$key.'", '.var_export($value,true).');'."\n";
+            $addition .= '$this->response->attributes("'.$key.'", '.var_export($value,true).');'."\n";
         }
         $addition.='
     }

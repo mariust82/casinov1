@@ -11,9 +11,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/application/models/dao/CasinosList.ph
 class FreeBonus extends \TMS\VariablesHolder {
 
     public function getTotalFreeBonusCasinosInList(){
-        $filterParams[$this->parameters["response"]->attributes()->get("filter")] = $this->parameters["response"]->attributes()->get("selected_entity");
+        $filterParams[$this->parameters["response"]->attributes("filter")] = $this->parameters["response"]->attributes("selected_entity");
         $filterParams["free_bonus"] = 1;
-        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->attributes()->get("country"));
+        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->attributes("country"));
         $object = new CasinosList($filter);
 
         return $object->getTotal();

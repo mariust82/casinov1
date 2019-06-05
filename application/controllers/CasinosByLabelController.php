@@ -13,7 +13,7 @@ class CasinosByLabelController extends CasinosListController {
     protected function getSelectedEntity()
     {
 
-        $parameter = $this->request->getValidator()->getPathParameter("name");
+        $parameter = $this->request->getValidator()->parameters("name");
         $name = str_replace("-"," ", $parameter);
 
         $name =  $name == 'mobile' ? "Mobile" : $name ;
@@ -22,7 +22,7 @@ class CasinosByLabelController extends CasinosListController {
 
     protected function getFilter()
     {
-        if($this->request->getValidator()->getPathParameter("name")=="mobile") {
+        if($this->request->getValidator()->parameters("name")=="mobile") {
             return "compatibility";
         } else {
             return "label";
@@ -31,7 +31,7 @@ class CasinosByLabelController extends CasinosListController {
 
     protected function getSortCriteria() {
 
-        switch($this->response->attributes()->get("selected_entity")){
+        switch($this->response->attributes("selected_entity")){
             case 'New':
                 return CasinoSortCriteria::NEWEST;
             case 'Best':
@@ -49,7 +49,7 @@ class CasinosByLabelController extends CasinosListController {
         $url = $this->request->getValidator()->getPage();
         $object = new PageInfoDAO();
         $selectedEntity = $this->getSelectedEntity();
-        $casinoNumber =  !empty($this->response->attributes()->get("total_casinos")) ? $this->response->attributes()->get("total_casinos") : '';
+        $casinoNumber =  !empty($this->response->attributes("total_casinos")) ? $this->response->attributes("total_casinos") : '';
         switch ($selectedEntity){
             case 'best':
                 $url = 'casinos/best';
@@ -67,6 +67,6 @@ class CasinosByLabelController extends CasinosListController {
                 $url = 'casinos/low-wagering';
                 break;
         }
-        $this->response->attributes()->set("page_info", $object->getInfoByURL($url, $this->response->attributes()->get("selected_entity"), $casinoNumber));
+        $this->response->attributes("page_info", $object->getInfoByURL($url, $this->response->attributes("selected_entity"), $casinoNumber));
     }
 }

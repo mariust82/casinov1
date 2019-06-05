@@ -9,10 +9,10 @@ abstract class CasinosCounterController extends BaseController {
     public function service() {
 
         $object = $this->getCounter();
-        $this->response->attributes()->set("results", $this->getResults($object));
+        $this->response->attributes("results", $this->getResults($object));
         $tms = new TmsWrapper($this->application,$this->request, $this->response);
         $tmsText = $tms->getText();
-        $this->response->attributes()->set("tms", $tmsText);
+        $this->response->attributes("tms", $tmsText);
     }
 
     protected function getResults(CasinoCounter $object) {
@@ -29,7 +29,7 @@ abstract class CasinosCounterController extends BaseController {
 
     protected function pageInfo(){
         $object = new PageInfoDAO();
-        $this->response->attributes()->set("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
 
 }

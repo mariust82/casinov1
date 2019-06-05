@@ -29,43 +29,43 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
     public function run()
     {
 
-        $this->response->attributes()->set("country", $this->request->attributes()->get("country"));
-        $this->response->attributes()->set('is_mobile', $this->request->attributes()->get("is_mobile"));
+        $this->response->attributes("country", $this->request->attributes("country"));
+        $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $sortCriteria = $this->getSortCriteria();
 
-        $page = (integer)$this->request->getValidator()->getPathParameter("page");
-        $filter = new CasinoFilter($_GET, $this->request->attributes()->get("country"));
+        $page = (integer)$this->request->getValidator()->parameters("page");
+        $filter = new CasinoFilter($_GET, $this->request->attributes("country"));
         $object = new CasinosList($filter);
 
         $total = $object->getTotal();
 
         $offset = $page * $this->limit;
 
-        $this->response->attributes()->set("filter",$filter->getCasinoLabel());
-        $this->response->attributes()->set("total_casinos", $total);
-        $this->response->attributes()->set("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset,true));
-        $this->response->attributes()->set('page_type',$this->getPageType($filter));
-        $this->response->attributes()->set('selected_entity','');
+        $this->response->attributes("filter",$filter->getCasinoLabel());
+        $this->response->attributes("total_casinos", $total);
+        $this->response->attributes("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset,true));
+        $this->response->attributes('page_type',$this->getPageType($filter));
+        $this->response->attributes('selected_entity','');
     }
 
     private function getSortCriteria()
     {
-        $sort_criteria = $this->request->attributes()->get('validation_results')->get('sort');
+        $sort_criteria = $this->request->attributes('validation_results')->get('sort');
         if(empty($sort_criteria)|| $sort_criteria==null){
             return CasinoSortCriteria::NONE;
         }
 
         if($sort_criteria == CasinoSortCriteria::NONE){
-            if($this->request->parameters()->get("label") == "New")
+            if($this->request->parameters("label") == "New")
                 return CasinoSortCriteria::NEWEST;
-            else if($this->request->parameters()->get("label") == "Low Wagering")
+            else if($this->request->parameters("label") == "Low Wagering")
                 return CasinoSortCriteria::WAGERING;
-            else if(!empty($this->request->attributes()->get('validation_results')->get('country')))
+            else if(!empty($this->request->attributes('validation_results')->get('country')))
                 return CasinoSortCriteria::POPULARITY;
             return CasinoSortCriteria::NONE;
         }
         else{
-            return $this->request->attributes()->get('validation_results')->get('sort');
+            return $this->request->attributes('validation_results')->get('sort');
         }
     }
 

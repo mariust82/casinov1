@@ -5,7 +5,7 @@ class DefaultCacheable implements Cacheable
 
     public function __construct(Lucinda\MVC\STDOUT\Request $request, Lucinda\MVC\STDOUT\Response $response) {
         if(strpos($request->getValidator()->getPage(), "search")===0) return;
-        $this->etag = sha1(json_encode($response->headers()->toArray())."#".$response->getOutputStream()->get());
+        $this->etag = sha1(json_encode($response->headers())."#".$response->getOutputStream()->get());
     }
 
     public function getEtag() {

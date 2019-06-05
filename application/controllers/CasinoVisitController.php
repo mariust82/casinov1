@@ -11,8 +11,8 @@ require_once("application/models/SiteCasinoClick.php");
 */
 class CasinoVisitController extends Lucinda\MVC\STDOUT\Controller {
 	public function run() {
-     //   $casino_name = $this->request->getValidator()->getPathParameter('name');
-       $casino_id =  $this->request->attributes()->get('validation_results')->get('name');
+     //   $casino_name = $this->request->getValidator()->parameters('name');
+       $casino_id =  $this->request->attributes('validation_results')->get('name');
         new SiteCasinoClick($casino_id);
 	}
 }

@@ -17,6 +17,6 @@ class SQLDataSourceInjector extends \Lucinda\MVC\STDOUT\ApplicationListener {
         new Lucinda\Framework\SQLDataSourceBinder($this->application->getTag("servers")->sql, ENVIRONMENT);
 
         $parentSchema = (string) $this->application->getTag("servers")->sql->{ENVIRONMENT}->server["parent_schema"];
-        $this->application->attributes()->set("parent_schema", $parentSchema);
+        $this->application->attributes("parent_schema", $parentSchema);
 	}
 }

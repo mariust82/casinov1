@@ -1,12 +1,12 @@
 <?php
 class CasinoInfoController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->attributes()->set("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes()->set("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -538,7 +538,7 @@ $this->response->attributes()->set("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes()->set("casino", array (
+$this->response->attributes("casino", array (
   'id' => '61',
   'name' => 'Mighty Slots',
   'code' => 'mighty_slots',
@@ -716,21 +716,21 @@ $this->response->attributes()->set("casino", array (
   ),
   'status' => 'Blacklisted',
 ));
-$this->response->attributes()->set("user_score", '10');
-$this->response->attributes()->set("user_score_class", 'Excellent');
-$this->response->attributes()->set("total_reviews", 0);
-$this->response->attributes()->set("reviews", array (
+$this->response->attributes("user_score", '10');
+$this->response->attributes("user_score_class", 'Excellent');
+$this->response->attributes("total_reviews", 0);
+$this->response->attributes("reviews", array (
 ));
-$this->response->attributes()->set("country_status", 'accepted');
-$this->response->attributes()->set("add_text", false);
-$this->response->attributes()->set("page_info", array (
+$this->response->attributes("country_status", 'accepted');
+$this->response->attributes("add_text", false);
+$this->response->attributes("page_info", array (
   'head_title' => 'Mighty Slots Review with Authentic Players Reviews & Ratings!',
   'head_description' => ' Complete Mighty Slots Review | Go through authentic and transparent real players reviews about Mighty Slots and user-based Ratings at CasinosLists.com',
   'body_title' => 'Mighty Slots Review',
 ));
-$this->response->attributes()->set("version", '0.8.8.383');
-$this->response->attributes()->set("use_bundle", true);
-$this->response->attributes()->set("tms", array (
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
+$this->response->attributes("tms", array (
 ));
 
     }

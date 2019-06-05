@@ -15,22 +15,22 @@ class SearchAdvancedController extends Lucinda\MVC\STDOUT\Controller {
     const LIMIT = 5;
 
 	public function run() {
-        $this->response->attributes()->set("value",  $this->request->attributes()->get('validation_results')->get('value'));
+        $this->response->attributes("value",  $this->request->attributes('validation_results')->get('value'));
 
-        $lists = new ListsSearch($this->request->attributes()->get('validation_results')->get('value'));
+        $lists = new ListsSearch($this->request->attributes('validation_results')->get('value'));
 
         $result = $lists->getResults();
         $result = $this->fixListsGamesBug($result);
-        $this->response->attributes()->set("index",count($result) > 5 ? 5:  count($result));
-        $this->response->attributes()->set("lists",$result);
-        $this->response->attributes()->set("total_lists", count($result));
+        $this->response->attributes("index",count($result) > 5 ? 5:  count($result));
+        $this->response->attributes("lists",$result);
+        $this->response->attributes("total_lists", count($result));
 
-        $casinos = new CasinosSearch($this->request->attributes()->get('validation_results')->get('value'));
-        $this->response->attributes()->set("casinos", $casinos->getResults(self::LIMIT,0));
-        $this->response->attributes()->set("total_casinos", $casinos->getTotal());
-        $games = new GamesSearch($this->request->attributes()->get('validation_results')->get('value'));
-        $this->response->attributes()->set("games", $games->getResults(self::LIMIT,0));
-        $this->response->attributes()->set("total_games", $games->getTotal());
+        $casinos = new CasinosSearch($this->request->attributes('validation_results')->get('value'));
+        $this->response->attributes("casinos", $casinos->getResults(self::LIMIT,0));
+        $this->response->attributes("total_casinos", $casinos->getTotal());
+        $games = new GamesSearch($this->request->attributes('validation_results')->get('value'));
+        $this->response->attributes("games", $games->getResults(self::LIMIT,0));
+        $this->response->attributes("total_games", $games->getTotal());
 	}
 
 	private function fixListsGamesBug($lists)
