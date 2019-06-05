@@ -1,5 +1,5 @@
 <?php
-class PageInfo
+class PageInfo extends Entity
 {
     public $head_title;
     public $head_description;

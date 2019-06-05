@@ -1,12 +1,12 @@
 <?php
-class GamesByTypeController extends Controller {
+class GamesByTypeController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->setAttribute("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->setAttribute("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -66,6 +66,16 @@ $this->response->setAttribute("menu_top", array (
       ),
       3 => 
       array (
+        'title' => 'Low Wagering Casinos',
+        'url' => '/casinos/low-wagering',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      4 => 
+      array (
         'title' => 'eCOGRA Casinos',
         'url' => '/features/ecogra-casinos',
         'is_active' => false,
@@ -74,7 +84,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
+      5 => 
       array (
         'title' => 'Stay Away Casinos',
         'url' => '/casinos/stay-away',
@@ -84,7 +94,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      5 => 
+      6 => 
       array (
         'title' => 'Popular Casinos',
         'url' => '/casinos/popular',
@@ -94,7 +104,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      6 => 
+      7 => 
       array (
         'title' => 'All Casinos',
         'url' => '/casinos',
@@ -357,7 +367,7 @@ $this->response->setAttribute("menu_top", array (
       4 => 
       array (
         'title' => 'EcoPayz EcoCard Casinos',
-        'url' => '/banking/ecopayz',
+        'url' => '/banking/ecopayz-ecocard',
         'is_active' => false,
         'submenuItems' => 
         array (
@@ -398,7 +408,7 @@ $this->response->setAttribute("menu_top", array (
       array (
         'title' => 'Video Slots',
         'url' => '/games/video-slots',
-        'is_active' => false,
+        'is_active' => true,
         'submenuItems' => 
         array (
         ),
@@ -528,13 +538,13 @@ $this->response->setAttribute("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->setAttribute("selected_entity", 'Video Poker');
-$this->response->setAttribute("menu_bottom", array (
+$this->response->attributes("selected_entity", 'Video Slots');
+$this->response->attributes("menu_bottom", array (
   0 => 
   array (
     'title' => 'Video Slots',
     'url' => '/games/video-slots',
-    'is_active' => false,
+    'is_active' => true,
     'submenuItems' => 
     array (
     ),
@@ -544,7 +554,7 @@ $this->response->setAttribute("menu_bottom", array (
   array (
     'title' => 'Video Poker',
     'url' => '/games/video-poker',
-    'is_active' => true,
+    'is_active' => false,
     'submenuItems' => 
     array (
     ),
@@ -651,7 +661,7 @@ $this->response->setAttribute("menu_bottom", array (
     'have_submenu' => false,
   ),
 ));
-$this->response->setAttribute("software", array (
+$this->response->attributes("software", array (
   0 => '021 test',
   1 => '1test233',
   2 => '1X2 Gaming',
@@ -712,151 +722,315 @@ $this->response->setAttribute("software", array (
   57 => 'Ezugi',
   58 => 'Felt Gaming',
   59 => 'Fremantle',
-  60 => 'GameArt',
-  61 => 'Games OS',
-  62 => 'Games Warehouse',
-  63 => 'GameScale',
-  64 => 'Gamesys',
-  65 => 'Gamevy',
-  66 => 'Gaminator',
-  67 => 'GAMING1',
-  68 => 'GAN',
-  69 => 'GDI',
-  70 => 'Geco Gaming',
-  71 => 'Genesis Gaming',
-  72 => 'Genii',
-  73 => 'GGL live',
-  74 => 'GGP',
-  75 => 'Global Gaming Labs',
-  76 => 'GloboTech',
-  77 => 'GreenTube',
-  78 => 'GTS',
-  79 => 'Habanero',
-  80 => 'Habanero Systems',
-  81 => 'Habanero Systemss',
-  82 => 'High 5 Games',
-  83 => 'Holland Power Gaming',
-  84 => 'Hybrino',
-  85 => 'iGaming2Go',
-  86 => 'Igrosoft',
-  87 => 'IGT',
-  88 => 'Incredible Technologies',
-  89 => 'Infinity Gaming Solutions',
-  90 => 'Ingenuity Gaming',
-  91 => 'Instant Win Gaming',
-  92 => 'Inteplay',
-  93 => 'Intervision Gaming',
-  94 => 'Intouch Games',
-  95 => 'Iron Dog Studio',
-  96 => 'iSoftBet',
-  97 => 'Jadestone',
-  98 => 'Join Games',
-  99 => 'JPM Interactive',
-  100 => 'Kiron Interactive',
-  101 => 'Leander Games',
-  102 => 'Lightning Box Games',
-  103 => 'LIONLINE',
-  104 => 'Mazooma Interactive',
-  105 => 'MediaLive',
-  106 => 'Mega Jack',
-  107 => 'Megadice',
-  108 => 'Merkur Gaming',
-  109 => 'MGA',
-  110 => 'MicroGaming',
-  111 => 'MrSlotty Games',
-  112 => 'Multicommerce Game Studio',
-  113 => 'Multislot',
-  114 => 'Nektan',
-  115 => 'NeoGames',
-  116 => 'NetEnt',
-  117 => 'NetoPlay',
-  118 => 'NextGen Gaming',
-  119 => 'Novomatic',
-  120 => 'NuWorks',
-  121 => 'NYX Interactive',
-  122 => 'Octopus Gaming',
-  123 => 'Odobo Gaming',
-  124 => 'Omega Gaming',
-  125 => 'OMI Gaming',
-  126 => 'Ongame',
-  127 => 'OpenBet',
-  128 => 'Opus Gaming',
-  129 => 'Oryx Gaming',
-  130 => 'Pariplay',
-  131 => 'Parlay',
-  132 => 'Patagonia Entertainment',
-  133 => 'Play n GO',
-  134 => 'PlayPearls',
-  135 => 'Playsoft',
-  136 => 'Playson',
-  137 => 'Playtech',
-  138 => 'PopCap',
-  139 => 'Portomaso Gaming',
-  140 => 'Pragmatic Play',
-  141 => 'Pragmatic Play1',
-  142 => 'ProgressPlay',
-  143 => 'Push Gaming',
-  144 => 'Quickfire',
-  145 => 'Quickspin',
-  146 => 'R Franco',
-  147 => 'Rabcat',
-  148 => 'RCT Gaming',
-  149 => 'Realistic Games',
-  150 => 'Relax Gaming',
-  151 => 'Rival',
-  152 => 'RTG',
-  153 => 'Saber Interactive',
-  154 => 'Saucify',
-  155 => 'SBTech',
-  156 => 'Scientific Games',
-  157 => 'Side City Studios',
-  158 => 'Skill On Net',
-  159 => 'Skillzz Gaming',
-  160 => 'Slotland Entertainment',
-  161 => 'Soft Magic Dice',
-  162 => 'SoftSwiss',
-  163 => 'Spielo G2',
-  164 => 'Spigo',
-  165 => 'Spin3',
-  166 => 'Spinomenal',
-  167 => 'TAIN',
-  168 => 'Takisto',
-  169 => 'Thunderkick',
-  170 => 'Tom Horn',
-  171 => 'Tom Horn Gaming',
-  172 => 'UC8 Slots',
-  173 => 'Unicum',
-  174 => 'Viaden',
-  175 => 'Virtue Fusion',
-  176 => 'Visionary iGaming',
-  177 => 'VistaGaming',
-  178 => 'Vivo Gaming',
-  179 => 'Wagermill',
-  180 => 'WagerWorks',
-  181 => 'Wazdan',
-  182 => 'WGS',
-  183 => 'White Hat Gaming',
-  184 => 'Williams Interactive',
-  185 => 'Win Interactive',
-  186 => 'Wirex',
-  187 => 'WMS',
-  188 => 'WMS Gaming',
-  189 => 'World Match',
-  190 => 'Xatronic Software',
-  191 => 'xGames',
-  192 => 'XPG',
-  193 => 'Yggdrasil Gaming',
-  194 => 'Zeus Services',
-  195 => 'Zukido',
+  60 => 'Fugaso',
+  61 => 'GameArt',
+  62 => 'Games OS',
+  63 => 'Games Warehouse',
+  64 => 'GameScale',
+  65 => 'Gamesys',
+  66 => 'Gamevy',
+  67 => 'Gaminator',
+  68 => 'GAMING1',
+  69 => 'GAN',
+  70 => 'GDI',
+  71 => 'Geco Gaming',
+  72 => 'Genesis Gaming',
+  73 => 'Genii',
+  74 => 'GGL live',
+  75 => 'GGP',
+  76 => 'Global Gaming Labs',
+  77 => 'GloboTech',
+  78 => 'GreenTube',
+  79 => 'GTS',
+  80 => 'Habanero',
+  81 => 'Habanero Systems',
+  82 => 'Habanero Systemss',
+  83 => 'High 5 Games',
+  84 => 'Holland Power Gaming',
+  85 => 'Hybrino',
+  86 => 'iGaming2Go',
+  87 => 'Igrosoft',
+  88 => 'IGT',
+  89 => 'Incredible Technologies',
+  90 => 'Infinity Gaming Solutions',
+  91 => 'Ingenuity Gaming',
+  92 => 'Inspired',
+  93 => 'Instant Win Gaming',
+  94 => 'Inteplay',
+  95 => 'Intervision Gaming',
+  96 => 'Intouch Games',
+  97 => 'Iron Dog Studio',
+  98 => 'iSoftBet',
+  99 => 'Jadestone',
+  100 => 'Join Games',
+  101 => 'JPM Interactive',
+  102 => 'Kiron Interactive',
+  103 => 'Leander Games',
+  104 => 'Lightning Box Games',
+  105 => 'LIONLINE',
+  106 => 'Mazooma Interactive',
+  107 => 'MediaLive',
+  108 => 'Mega Jack',
+  109 => 'Megadice',
+  110 => 'Merkur Gaming',
+  111 => 'MGA',
+  112 => 'MicroGaming',
+  113 => 'MrSlotty Games',
+  114 => 'Multicommerce Game Studio',
+  115 => 'Multislot',
+  116 => 'Nektan',
+  117 => 'NeoGames',
+  118 => 'NetEnt',
+  119 => 'NetoPlay',
+  120 => 'NextGen Gaming',
+  121 => 'Novomatic',
+  122 => 'NuWorks',
+  123 => 'NYX Interactive',
+  124 => 'Octopus Gaming',
+  125 => 'Odobo Gaming',
+  126 => 'Omega Gaming',
+  127 => 'OMI Gaming',
+  128 => 'Ongame',
+  129 => 'OpenBet',
+  130 => 'Opus Gaming',
+  131 => 'Oryx Gaming',
+  132 => 'Pariplay',
+  133 => 'Parlay',
+  134 => 'Patagonia Entertainment',
+  135 => 'Play n GO',
+  136 => 'PlayPearls',
+  137 => 'Playsoft',
+  138 => 'Playson',
+  139 => 'Playtech',
+  140 => 'PopCap',
+  141 => 'Portomaso Gaming',
+  142 => 'Pragmatic Play',
+  143 => 'Pragmatic Play1',
+  144 => 'ProgressPlay',
+  145 => 'Push Gaming',
+  146 => 'Quickfire',
+  147 => 'Quickspin',
+  148 => 'R Franco',
+  149 => 'Rabcat',
+  150 => 'RCT Gaming',
+  151 => 'Realistic Games',
+  152 => 'Relax Gaming',
+  153 => 'Rival',
+  154 => 'RTG',
+  155 => 'Saber Interactive',
+  156 => 'Saucify',
+  157 => 'SBTech',
+  158 => 'Scientific Games',
+  159 => 'Side City Studios',
+  160 => 'Skill On Net',
+  161 => 'Skillzz Gaming',
+  162 => 'Slotland Entertainment',
+  163 => 'Soft Magic Dice',
+  164 => 'SoftSwiss',
+  165 => 'Spielo G2',
+  166 => 'Spigo',
+  167 => 'Spin3',
+  168 => 'Spinomenal',
+  169 => 'TAIN',
+  170 => 'Takisto',
+  171 => 'Thunderkick',
+  172 => 'Tom Horn',
+  173 => 'Tom Horn Gaming',
+  174 => 'UC8 Slots',
+  175 => 'Unicum',
+  176 => 'Viaden',
+  177 => 'Virtue Fusion',
+  178 => 'Visionary iGaming',
+  179 => 'VistaGaming',
+  180 => 'Vivo Gaming',
+  181 => 'Wagermill',
+  182 => 'WagerWorks',
+  183 => 'Wazdan',
+  184 => 'WGS',
+  185 => 'White Hat Gaming',
+  186 => 'Williams Interactive',
+  187 => 'Win Interactive',
+  188 => 'Wirex',
+  189 => 'WMS',
+  190 => 'WMS Gaming',
+  191 => 'World Match',
+  192 => 'Xatronic Software',
+  193 => 'xGames',
+  194 => 'XPG',
+  195 => 'Yggdrasil Gaming',
+  196 => 'Zeus Services',
+  197 => 'Zukido',
 ));
-$this->response->setAttribute("filter", array (
+$this->response->attributes("filter", array (
 ));
-$this->response->setAttribute("total_games", 464);
-$this->response->setAttribute("games", array (
-  7242 => 
+$this->response->attributes("total_games", 4360);
+$this->response->attributes("games", array (
+  7268 => 
   array (
-    'id' => '7242',
-    'name' => 'Hi Lo Poker',
+    'id' => '7268',
+    'name' => 'Exotic Fruit Deluxe',
+    'type' => NULL,
+    'software' => 'Booming Games',
+    'release_date' => NULL,
+    'technologies' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'is_3d' => NULL,
+    'overview' => NULL,
+    'times_played' => '77',
+    'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Exotic_Fruit_Deluxe_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Exotic_Fruit_Deluxe_ss.jpg',
+  ),
+  7085 => 
+  array (
+    'id' => '7085',
+    'name' => 'World Match Xcalibur',
+    'type' => NULL,
+    'software' => 'World Match',
+    'release_date' => NULL,
+    'technologies' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'is_3d' => NULL,
+    'overview' => NULL,
+    'times_played' => '0',
+    'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/World_Match_Xcalibur_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/World_Match_Xcalibur_ss.jpg',
+  ),
+  1468 => 
+  array (
+    'id' => '1468',
+    'name' => 'Foxin Wins Again',
+    'type' => NULL,
+    'software' => 'NextGen Gaming',
+    'release_date' => NULL,
+    'technologies' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'is_3d' => NULL,
+    'overview' => NULL,
+    'times_played' => '0',
+    'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Foxin_Wins_Again_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Foxin_Wins_Again_ss.jpg',
+  ),
+  7263 => 
+  array (
+    'id' => '7263',
+    'name' => 'Goddess of the Amazon',
+    'type' => NULL,
+    'software' => 'Inspired',
+    'release_date' => NULL,
+    'technologies' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'is_3d' => NULL,
+    'overview' => NULL,
+    'times_played' => '0',
+    'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Goddess_of_the_Amazon_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Goddess_of_the_Amazon_ss.jpg',
+  ),
+  7262 => 
+  array (
+    'id' => '7262',
+    'name' => 'Inspired Centurion',
+    'type' => NULL,
+    'software' => 'Inspired',
+    'release_date' => NULL,
+    'technologies' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'is_3d' => NULL,
+    'overview' => NULL,
+    'times_played' => '0',
+    'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Inspired_Centurion_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Inspired_Centurion_ss.jpg',
+  ),
+  7261 => 
+  array (
+    'id' => '7261',
+    'name' => 'White Knight',
+    'type' => NULL,
+    'software' => 'Inspired',
+    'release_date' => NULL,
+    'technologies' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'is_3d' => NULL,
+    'overview' => NULL,
+    'times_played' => '0',
+    'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/White_Knight_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/White_Knight_ss.jpg',
+  ),
+  7260 => 
+  array (
+    'id' => '7260',
+    'name' => 'Inspired Monster Cash',
+    'type' => NULL,
+    'software' => 'Inspired',
+    'release_date' => NULL,
+    'technologies' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'is_3d' => NULL,
+    'overview' => NULL,
+    'times_played' => '0',
+    'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Inspired_Monster_Cash_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Inspired_Monster_Cash_ss.jpg',
+  ),
+  7259 => 
+  array (
+    'id' => '7259',
+    'name' => 'Inspired Diamond Goddess',
+    'type' => NULL,
+    'software' => 'Inspired',
+    'release_date' => NULL,
+    'technologies' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'is_3d' => NULL,
+    'overview' => NULL,
+    'times_played' => '0',
+    'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Inspired_Diamond_Goddess_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Inspired_Diamond_Goddess_ss.jpg',
+  ),
+  7258 => 
+  array (
+    'id' => '7258',
+    'name' => 'Inspired Treasure Island',
+    'type' => NULL,
+    'software' => 'Inspired',
+    'release_date' => NULL,
+    'technologies' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'is_3d' => NULL,
+    'overview' => NULL,
+    'times_played' => '0',
+    'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Inspired_Treasure_Island_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Inspired_Treasure_Island_ss.jpg',
+  ),
+  7257 => 
+  array (
+    'id' => '7257',
+    'name' => 'Which Witch',
     'type' => NULL,
     'software' => 'Intouch Games',
     'release_date' => NULL,
@@ -868,13 +1042,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Which_Witch_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Which_Witch_ss.jpg',
   ),
-  7122 => 
+  7256 => 
   array (
-    'id' => '7122',
-    'name' => 'Digital Gaming Solutions Jacks or Better',
+    'id' => '7256',
+    'name' => 'Viking Storm',
     'type' => NULL,
-    'software' => 'Digital Gaming Solutions',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -884,13 +1060,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Viking_Storm_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Viking_Storm_ss.jpg',
   ),
-  7121 => 
+  7255 => 
   array (
-    'id' => '7121',
-    'name' => 'Digital Gaming Solutions Deuces Wild',
+    'id' => '7255',
+    'name' => 'Vegas Vegas',
     'type' => NULL,
-    'software' => 'Digital Gaming Solutions',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -900,13 +1078,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Vegas_Vegas_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Vegas_Vegas_ss.jpg',
   ),
-  7117 => 
+  7254 => 
   array (
-    'id' => '7117',
-    'name' => 'Digital Gaming Solutions Aces and Eights',
+    'id' => '7254',
+    'name' => 'Sweet King',
     'type' => NULL,
-    'software' => 'Digital Gaming Solutions',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -916,13 +1096,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Sweet_King_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Sweet_King_ss.jpg',
   ),
-  7116 => 
+  7253 => 
   array (
-    'id' => '7116',
-    'name' => 'Digital Gaming Solutions 3 Card Poker',
+    'id' => '7253',
+    'name' => 'Space Katz',
     'type' => NULL,
-    'software' => 'Digital Gaming Solutions',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -932,13 +1114,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Space_Katz_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Space_Katz_ss.jpg',
   ),
-  7083 => 
+  7252 => 
   array (
-    'id' => '7083',
-    'name' => 'SoftSwiss Jacks Or Better Multihand',
+    'id' => '7252',
+    'name' => 'Sherlock Murdered To Death',
     'type' => NULL,
-    'software' => 'SoftSwiss',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -948,13 +1132,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Sherlock_Murdered_To_Death_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Sherlock_Murdered_To_Death_ss.jpg',
   ),
-  7049 => 
+  7251 => 
   array (
-    'id' => '7049',
-    'name' => 'Deuces Wild',
+    'id' => '7251',
+    'name' => 'Robins Reels',
     'type' => NULL,
-    'software' => 'VistaGaming',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -964,13 +1150,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Robins_Reels_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Robins_Reels_ss.jpg',
   ),
-  7048 => 
+  7250 => 
   array (
-    'id' => '7048',
-    'name' => 'Bonus Deluxe',
+    'id' => '7250',
+    'name' => 'Quest For Fire',
     'type' => NULL,
-    'software' => 'VistaGaming',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -980,13 +1168,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Quest_For_Fire_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Quest_For_Fire_ss.jpg',
   ),
-  7047 => 
+  7249 => 
   array (
-    'id' => '7047',
-    'name' => 'Double Joker Poker',
+    'id' => '7249',
+    'name' => 'Pirates Treasure',
     'type' => NULL,
-    'software' => 'VistaGaming',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -996,13 +1186,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Pirates_Treasure_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Pirates_Treasure_ss.jpg',
   ),
-  7046 => 
+  7248 => 
   array (
-    'id' => '7046',
-    'name' => 'Jacks or Better',
+    'id' => '7248',
+    'name' => 'Mucho Money',
     'type' => NULL,
-    'software' => 'VistaGaming',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -1012,13 +1204,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Mucho_Money_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Mucho_Money_ss.jpg',
   ),
-  7045 => 
+  7247 => 
   array (
-    'id' => '7045',
-    'name' => 'Tens or Better',
+    'id' => '7247',
+    'name' => 'Intouch Games Monte Carlo',
     'type' => NULL,
-    'software' => 'VistaGaming',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -1028,13 +1222,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Intouch_Games_Monte_Carlo_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Intouch_Games_Monte_Carlo_ss.jpg',
   ),
-  7044 => 
+  7246 => 
   array (
-    'id' => '7044',
-    'name' => 'Bonus Poker One Hand',
+    'id' => '7246',
+    'name' => 'Intouch Games Snakes and Ladders',
     'type' => NULL,
-    'software' => 'VistaGaming',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -1044,13 +1240,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Intouch_Games_Snakes_and_Ladders_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Intouch_Games_Snakes_and_Ladders_ss.jpg',
   ),
-  7029 => 
+  7244 => 
   array (
-    'id' => '7029',
-    'name' => 'VistaGaming Jacks or Better Saloon',
+    'id' => '7244',
+    'name' => 'Mammoth Money',
     'type' => NULL,
-    'software' => 'VistaGaming',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -1060,13 +1258,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Mammoth_Money_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Mammoth_Money_ss.jpg',
   ),
-  6925 => 
+  7243 => 
   array (
-    'id' => '6925',
-    'name' => 'Takisto Jacks or Better',
+    'id' => '7243',
+    'name' => 'Little Red Riding Reels',
     'type' => NULL,
-    'software' => 'Takisto',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -1076,13 +1276,15 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Little_Red_Riding_Reels_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Little_Red_Riding_Reels_ss.jpg',
   ),
-  6922 => 
+  7241 => 
   array (
-    'id' => '6922',
-    'name' => 'Takisto Double Bonus Poker',
+    'id' => '7241',
+    'name' => 'Hansel And Gretel',
     'type' => NULL,
-    'software' => 'Takisto',
+    'software' => 'Intouch Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -1092,160 +1294,39 @@ $this->response->setAttribute("games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
-  ),
-  6917 => 
-  array (
-    'id' => '6917',
-    'name' => 'Takisto All American',
-    'type' => NULL,
-    'software' => 'Takisto',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
-    ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
-    'times_played' => '0',
-    'play' => NULL,
-  ),
-  6916 => 
-  array (
-    'id' => '6916',
-    'name' => 'Takisto Tens or Better',
-    'type' => NULL,
-    'software' => 'Takisto',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
-    ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
-    'times_played' => '0',
-    'play' => NULL,
-  ),
-  6914 => 
-  array (
-    'id' => '6914',
-    'name' => 'Takisto Deuces Wild',
-    'type' => NULL,
-    'software' => 'Takisto',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
-    ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
-    'times_played' => '0',
-    'play' => NULL,
-  ),
-  6913 => 
-  array (
-    'id' => '6913',
-    'name' => 'Takisto Joker Poker Kings',
-    'type' => NULL,
-    'software' => 'Takisto',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
-    ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
-    'times_played' => '0',
-    'play' => NULL,
-  ),
-  6911 => 
-  array (
-    'id' => '6911',
-    'name' => 'Takisto Double Joker Poker',
-    'type' => NULL,
-    'software' => 'Takisto',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
-    ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
-    'times_played' => '0',
-    'play' => NULL,
-  ),
-  6910 => 
-  array (
-    'id' => '6910',
-    'name' => 'Takisto Bonus Poker',
-    'type' => NULL,
-    'software' => 'Takisto',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
-    ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
-    'times_played' => '0',
-    'play' => NULL,
-  ),
-  6907 => 
-  array (
-    'id' => '6907',
-    'name' => 'Takisto Aces and Faces',
-    'type' => NULL,
-    'software' => 'Takisto',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
-    ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
-    'times_played' => '0',
-    'play' => NULL,
-  ),
-  6901 => 
-  array (
-    'id' => '6901',
-    'name' => 'Jacks or better 4 Play Power Poker',
-    'type' => NULL,
-    'software' => 'MicroGaming',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
-    ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
-    'times_played' => '0',
-    'play' => NULL,
-  ),
-  6684 => 
-  array (
-    'id' => '6684',
-    'name' => 'NeoGames Joker Poker',
-    'type' => NULL,
-    'software' => 'NeoGames',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
-    ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
-    'times_played' => '0',
-    'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Hansel_And_Gretel_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Hansel_And_Gretel_ss.jpg',
   ),
 ));
-$this->response->setAttribute("tms", array (
+$this->response->attributes("tms", array (
+  'upper_text' => '<p><b>Total number of games on site :&nbsp;6286</b></p>
+
+<p><b>Total number of games in the current list:&nbsp;4360</b></p>
+
+<p><b>Newest game on site&nbsp;&nbsp;:&nbsp;&nbsp;test alex</b></p>
+
+<p><b>Newest game in the current list :&nbsp;Cash Bandits</b></p>
+
+<p><b>Software of the newest game on site :&nbsp;021 test</b></p>
+
+<p><b>Software of the newest game in the current list&nbsp;:&nbsp;RTG</b></p>
+
+<p><b>Most popular game on site :&nbsp;Exotic Fruit Deluxe</b></p>
+
+<p><b>Most popular game in the current list:&nbsp;Exotic Fruit Deluxe</b></p>
+
+<p><b>Software of the most popular game on site&nbsp;:&nbsp;Booming Games</b></p>
+
+<p><b>Software of the most popular game in the current list&nbsp;:&nbsp;Booming Games</b></p>
+',
 ));
-$this->response->setAttribute("page_info", array (
-  'head_title' => ' Play Video Poker Games for Free | Full List at CasinosLists.com',
-  'head_description' => 'Play 464 Video Poker Games for free at CasinosLists.com | Catch up with all Video Poker games releases from major online casino software developers.',
-  'body_title' => 'Free Online Video Poker Games',
+$this->response->attributes("page_info", array (
+  'head_title' => ' Play Video Slots Games for Free | Full List at CasinosLists.com',
+  'head_description' => 'Play 4360 Video Slots Games for free at CasinosLists.com | Catch up with all Video Slots games releases from major online casino software developers.',
+  'body_title' => 'Free Online Video Slots Games',
 ));
-$this->response->setAttribute("version", '0.8.4.6');
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
 
     }
 }

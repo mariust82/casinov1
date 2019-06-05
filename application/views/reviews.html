@@ -1,8 +1,8 @@
-<std:foreach var="${data.reviews}" value="result">
-	<std:if condition="isset($_GET['type']) && $_GET['type'] == 'review'">
+<:foreach var="${data.reviews}" val="result">
+	<:if test="isset($_GET['type']) && $_GET['type'] == 'review'">
 		<comment:info class="review-parent"/>
-	<std:else>
+	<:else>
 		<comment:info class="review-child"/>
-	</std:if>
+	</:if>
 	<comment:reply total="${result.total_children}"/>
-</std:foreach>
+</:foreach>

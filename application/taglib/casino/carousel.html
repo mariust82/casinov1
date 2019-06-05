@@ -1,8 +1,8 @@
 <div class="container">
     <div class="swiper-container" id="main-carousel">
         <div class="swiper-wrapper">
-			<std:set name="index" value="0"/>
-        	<std:foreach var="$[items]" value="item">
+			<:set var="index" val="0"/>
+        	<:foreach var="$[items]" val="item">
                 <div class="swiper-slide">
                 	<a href="/reviews/${normalize(${item.name})}-review" class="carousel-slide">
                 		<div class="carousel-slide-img">
@@ -18,8 +18,8 @@
                 		</div>
                 	</a>
                 </div>
-				<std:set name="index" value="${index} + 1"/>
-            </std:foreach>
+				<:set var="index" val="${index} + 1"/>
+            </:foreach>
         </div>
     </div>
     <div class="carousel-next">

@@ -9,10 +9,10 @@ class CasinoLabels implements CasinoCounter
         'Best',
         'Live Dealer',
         'Mobile',
+        'Low Wagering',
         'eCOGRA',
         'Stay away',
         'Popular',
-
     ];
 
     public function getCasinosCount() {

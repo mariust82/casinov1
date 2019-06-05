@@ -1,5 +1,5 @@
 <?php
-class MenuItem
+class MenuItem extends Entity
 {
     public $title;
     public $url;

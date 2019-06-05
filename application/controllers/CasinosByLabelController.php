@@ -13,7 +13,7 @@ class CasinosByLabelController extends CasinosListController {
     protected function getSelectedEntity()
     {
 
-        $parameter = $this->request->getValidator()->getPathParameter("name");
+        $parameter = $this->request->getValidator()->parameters("name");
         $name = str_replace("-"," ", $parameter);
 
         $name =  $name == 'mobile' ? "Mobile" : $name ;
@@ -22,7 +22,7 @@ class CasinosByLabelController extends CasinosListController {
 
     protected function getFilter()
     {
-        if($this->request->getValidator()->getPathParameter("name")=="mobile") {
+        if($this->request->getValidator()->parameters("name")=="mobile") {
             return "compatibility";
         } else {
             return "label";
@@ -30,12 +30,16 @@ class CasinosByLabelController extends CasinosListController {
     }
 
     protected function getSortCriteria() {
-        if($this->response->getAttribute("selected_entity")=="New") {
-            return CasinoSortCriteria::NEWEST;
-        } elseif($this->response->getAttribute("selected_entity")=="Best") {
-            return CasinoSortCriteria::TOP_RATED;
-        } else {
-            return CasinoSortCriteria::NONE;
+
+        switch($this->response->attributes("selected_entity")){
+            case 'New':
+                return CasinoSortCriteria::NEWEST;
+            case 'Best':
+                return CasinoSortCriteria::TOP_RATED;
+            case 'Low Wagering':
+                return CasinoSortCriteria::WAGERING;
+            default:
+                return CasinoSortCriteria::NONE;
         }
     }
 
@@ -45,7 +49,7 @@ class CasinosByLabelController extends CasinosListController {
         $url = $this->request->getValidator()->getPage();
         $object = new PageInfoDAO();
         $selectedEntity = $this->getSelectedEntity();
-        $casinoNumber =  !empty($this->response->getAttribute("total_casinos")) ? $this->response->getAttribute("total_casinos") : '';
+        $casinoNumber =  !empty($this->response->attributes("total_casinos")) ? $this->response->attributes("total_casinos") : '';
         switch ($selectedEntity){
             case 'best':
                 $url = 'casinos/best';
@@ -59,7 +63,10 @@ class CasinosByLabelController extends CasinosListController {
             case 'Mobile':
                 $url = 'compatability/mobile';  // casinos/mobile
                 break;
+            case 'low wagering':
+                $url = 'casinos/low-wagering';
+                break;
         }
-        $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $casinoNumber));
+        $this->response->attributes("page_info", $object->getInfoByURL($url, $this->response->attributes("selected_entity"), $casinoNumber));
     }
 }

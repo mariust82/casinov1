@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<xml>
+  <application version="0.8.8.385" default_content_type="text/html" templates_extension="html">
+    <paths>
+      <compilations>compilations</compilations>
+      <controllers>application/controllers</controllers>
+      <reporters>application/reporters</reporters>
+      <renderers>application/renderers</renderers>
+      <views>application/views</views>
+      <tags>application/taglib</tags>
+    </paths>
+    <display_errors>
+      <lucinda>1</lucinda>
+      <alex>1</alex>
+      <bala>1</bala>
+      <amos>1</amos>
+      <mark>1</mark>
+      <dev>0</dev>
+      <live>0</live>
+    </display_errors>
+  </application>
+  <reporters>
+    <lucinda>
+      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
+    </lucinda>
+    <alex>
+      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
+    </alex>
+    <bala>
+      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
+    </bala>
+    <amos>
+      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
+    </amos>
+    <mark>
+      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
+    </mark>
+    <dev>
+      <reporter class="AsyncReporter" auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH" host="devapi.datamother.com"/>
+    </dev>
+    <live>
+      <reporter class="AsyncReporter" auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH" host="api.datamother.com"/>
+    </live>
+  </reporters>
+  <renderers>
+    <renderer name="html" content_type="text/html" class="ViewLanguageRenderer" charset="UTF-8"/>
+    <renderer name="json" content_type="application/json" class="JsonRenderer" charset="UTF-8"/>
+  </renderers>
+  <exceptions error_type="LOGICAL" controller="ErrorsController">
+    <exception class="Lucinda\MVC\STDOUT\PathNotFoundException" controller="PageNotFoundController" http_status="404" error_type="CLIENT" view="404"/>
+    <exception class="Lucinda\MVC\STDOUT\MethodNotAllowedException" http_status="405" error_type="CLIENT" view="405"/>
+    <exception class="Lucinda\Framework\SecurityPacket" controller="SecurityPacketController" error_type="NONE"/>
+    <exception class="Lucinda\WebSecurity\SessionHijackException" http_status="400" error_type="CLIENT" view="400"/>
+    <exception class="Lucinda\WebSecurity\EncryptionException" http_status="400" error_type="CLIENT" view="400"/>
+    <exception class="Lucinda\WebSecurity\TokenException" http_status="400" error_type="CLIENT" view="400"/>
+    <exception class="Lucinda\MVC\STDOUT\FileUploadException" http_status="400" error_type="SERVER" view="400"/>
+    <exception class="Lucinda\SQL\ConnectionException" error_type="SERVER" controller="ErrorsController"/>
+    <exception class="Lucinda\NoSQL\ConnectionException" error_type="SERVER" controller="ErrorsController"/>
+    <exception class="Lucinda\NoSQL\OperationFailedException" error_type="SERVER" controller="ErrorsController"/>
+    <exception class="OAuth2\ServerException" error_type="SERVER" controller="ErrorsController"/>
+    <exception class="Lucinda\NoSQL\KeyNotFoundException" error_type="SYNTAX" controller="ErrorsController"/>
+    <exception class="Lucinda\SQL\StatementException" error_type="SYNTAX" controller="ErrorsController"/>
+    <exception class="Lucinda\MVC\STDERR\PHPException" error_type="SYNTAX" controller="ErrorsController"/>
+    <exception class="Lucinda\Templating\ViewException" error_type="SYNTAX" controller="ErrorsController"/>
+  </exceptions>
+</xml>

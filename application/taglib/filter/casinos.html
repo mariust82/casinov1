@@ -2,85 +2,97 @@
 	<div class="filter-filter">
 		<div class="filter-label">Filter by:</div>
 		<div class="filter-check">
-			<div class="filter-check-item">
-                             <std:if condition="$[key] == 'true'">
-				<div class="check">
-					<input type="checkbox" name="currency_accepted" id="accepted">
-					<label for="accepted"></label>
+			<:if test="$[key] == 'true'">
+				<div class="filter-check-item">
+					<div class="check">
+						<input type="checkbox" name="currency_accepted" id="accepted">
+						<label for="accepted"></label>
+					</div>
+	                <label class="filter-check-label" for="accepted">Accept $[name]&nbsp;</label>
+                </div> 
+
+                <div class="filter-check-item">
+	                <div class="check">
+						<input type="checkbox" name="lang_accepted" id="lang">
+						<label for="lang"></label>
+					</div>
+	                <label class="filter-check-label" for="lang">$[code]</label>
+                </div> 
+			<:else>
+				<div class="filter-check-item">
+	                <div class="check">
+						<input type="checkbox" name="country_accepted" id="accepted">
+						<label for="accepted"></label>
+					</div>
+	                <div class="img-flag">
+						<img src="/public/build/images/flags/$[code].png" width="20" height="14" alt="$[code]">
+					</div>
+					<label class="filter-check-label" for="accepted">$[name] accepted</label>
+				</div> 
+			</:if>
+
+			<:if test="!((${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering'))">
+				<div class="filter-check-item">
+					<div class="check">
+						<input type="checkbox" name="free_bonus" id="free">
+						<label for="free"></label>
+					</div>
+					<label class="filter-check-label" for="free">Free bonus</label>
 				</div>
-                                 <label class="filter-check-label" for="accepted">Accept $[name]&nbsp;</label>
-                                <div class="check">
-					<input type="checkbox" name="lang_accepted" id="lang">
-					<label for="lang"></label>
-				</div>
-                                <label class="filter-check-label" for="lang">$[code]</label>
-                            <std:else>
-                                <div class="check">
-					<input type="checkbox" name="country_accepted" id="accepted">
-					<label for="accepted"></label>
-				</div>
-                                <div class="img-flag">
-					<img src="/public/build/images/flags/$[code].png" width="20" height="14" alt="$[code]">
-				</div>
-				<label class="filter-check-label" for="accepted">$[name] accepted</label>
-                            </std:if>
-				
-			</div>
-			<div class="filter-check-item">
-				<div class="check">
-					<input type="checkbox" name="free_bonus" id="free">
-					<label for="free"></label>
-				</div>
-				<label class="filter-check-label" for="free">Free bonus</label>
-			</div>
+			</:if>
 		</div>
 	</div>
-	<std:if condition="${data.selected_entity} != 'Best'">
+	<:if test="${data.selected_entity} != 'Best'">
 	<div class="filter-sort">
 		<div class="filter-label">Sort by:</div>
 		<div class="filter-sort-buttons">
-                    <std:if condition="$[id] == 'Best'">
-                        <input type="radio" name="sort" value="1" id="default">
-			<label for="default" class="first">
-				Default
-			</label>
-			<input checked type="radio" name="sort" value="2" id="top-rated">
-			<label for="top-rated">
-				Top rated
-			</label>
-			<input type="radio" name="sort" value="3" id="newest">
-			<label for="newest">
-				Newest
-			</label>
-                    <std:elseif condition="$[id] == 'New'">
-                        <input type="radio" name="sort" value="1" id="default">
-			<label for="default" class="first">
-				Default
-			</label>
-			<input type="radio" name="sort" value="2" id="top-rated">
-			<label for="top-rated">
-				Top rated
-			</label>
-			<input checked type="radio" name="sort" value="3" id="newest">
-			<label for="newest">
-				Newest
-			</label>
-                        <std:else>
-                            <input checked type="radio" name="sort" value="1" id="default">
-			<label for="default" class="first">
-				Default
-			</label>
-			<input type="radio" name="sort" value="2" id="top-rated">
-			<label for="top-rated">
-				Top rated
-			</label>
-			<input type="radio" name="sort" value="3" id="newest">
-			<label for="newest">
-				Newest
-			</label>
-                    </std:if>
+            <:if test="$[id] == 'Best'">
+	            <input type="radio" name="sort" value="1" id="default">
+				<label for="default" class="first">
+					Default
+				</label>
 
+				<input checked type="radio" name="sort" value="2" id="top-rated">
+				<label for="top-rated">
+					Top rated
+				</label>
+
+				<input type="radio" name="sort" value="3" id="newest">
+				<label for="newest">
+					Newest
+				</label>
+            <:elseif test="$[id] == 'New'">
+	            <input type="radio" name="sort" value="1" id="default">
+				<label for="default" class="first">
+					Default
+				</label>
+
+				<input type="radio" name="sort" value="2" id="top-rated">
+				<label for="top-rated">
+					Top rated
+				</label>
+
+				<input checked type="radio" name="sort" value="3" id="newest">
+				<label for="newest">
+					Newest
+				</label>
+            <:else>
+	            <input checked type="radio" name="sort" value="1" id="default">
+				<label for="default" class="first">
+					Default
+				</label>
+
+				<input type="radio" name="sort" value="2" id="top-rated">
+				<label for="top-rated">
+					Top rated
+				</label>
+
+				<input type="radio" name="sort" value="3" id="newest">
+				<label for="newest">
+					Newest
+				</label>
+            </:if>
 		</div>
 	</div>
-	</std:if>
+	</:if>
 </div>

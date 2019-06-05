@@ -9,7 +9,7 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
 
     private function getCountry(){
 
-        $country =  !empty( $this->parameters["response"]->getAttribute("country")) ?  $this->parameters["response"]->getAttribute("country") : '';
+        $country =  !empty( $this->parameters["response"]->attributes("country")) ?  $this->parameters["response"]->attributes("country") : '';
         return $country;
 
     }
@@ -17,14 +17,14 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
     public function newestInCurentList(){
 
         $filterParams = [];
-        $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : null;
+        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
         $country = $this->getCountry();
 
         if(empty($filterPage)){
             return '';
         }
 
-        $filterParams[$filterPage] = $this->parameters["response"]->getAttribute("selected_entity");
+        $filterParams[$filterPage] = $this->parameters["response"]->attributes("selected_entity");
         $filterParams['bonus_type']  = $this->bonus_type;
 
         $newestNoDepInTheList = new NoDepositBonusData($country);
@@ -55,13 +55,13 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
 
         $filterParams = [];
         $country = $this->getCountry();
-        $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : '';
+        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : '';
 
         if(empty($filterPage)){
             return '';
         }
 
-        $filterParams[$filterPage] = $this->parameters["response"]->getAttribute("selected_entity");
+        $filterParams[$filterPage] = $this->parameters["response"]->attributes("selected_entity");
         $filterParams['bonus_type']  = $this->bonus_type;
 
         $newestNoDepInTheList = new NoDepositBonusData($country);

@@ -1,12 +1,12 @@
 <?php
-class CasinoLabelsController extends Controller {
+class CasinoLabelsController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->setAttribute("country", array (
-  'id' => '34',
-  'code' => 'US',
-  'name' => 'United States',
+        $this->response->attributes("country", array (
+  'id' => '43',
+  'code' => 'RO',
+  'name' => 'Romania',
 ));
-$this->response->setAttribute("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -66,6 +66,16 @@ $this->response->setAttribute("menu_top", array (
       ),
       3 => 
       array (
+        'title' => 'Low Wagering Casinos',
+        'url' => '/casinos/low-wagering',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      4 => 
+      array (
         'title' => 'eCOGRA Casinos',
         'url' => '/features/ecogra-casinos',
         'is_active' => false,
@@ -74,7 +84,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
+      5 => 
       array (
         'title' => 'Stay Away Casinos',
         'url' => '/casinos/stay-away',
@@ -84,7 +94,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      5 => 
+      6 => 
       array (
         'title' => 'Popular Casinos',
         'url' => '/casinos/popular',
@@ -94,7 +104,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      6 => 
+      7 => 
       array (
         'title' => 'All Casinos',
         'url' => '/casinos',
@@ -216,6 +226,16 @@ $this->response->setAttribute("menu_top", array (
     array (
       0 => 
       array (
+        'title' => 'Romania Casinos',
+        'url' => '/countries-list/romania',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      1 => 
+      array (
         'title' => 'USA Casinos',
         'url' => '/countries-list/united-states',
         'is_active' => false,
@@ -224,7 +244,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      1 => 
+      2 => 
       array (
         'title' => 'UK Casinos',
         'url' => '/countries-list/united-kingdom',
@@ -234,7 +254,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      2 => 
+      3 => 
       array (
         'title' => 'Australia Casinos',
         'url' => '/countries-list/australia',
@@ -244,7 +264,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      3 => 
+      4 => 
       array (
         'title' => 'Germany Casinos',
         'url' => '/countries-list/germany',
@@ -254,7 +274,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
+      5 => 
       array (
         'title' => 'New Zealand Casinos',
         'url' => '/countries-list/new-zealand',
@@ -264,7 +284,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      5 => 
+      6 => 
       array (
         'title' => 'Netherlands Casinos',
         'url' => '/countries-list/netherlands',
@@ -274,7 +294,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      6 => 
+      7 => 
       array (
         'title' => 'Sweden Casinos',
         'url' => '/countries-list/sweden',
@@ -284,7 +304,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      7 => 
+      8 => 
       array (
         'title' => 'All Countries',
         'url' => '/countries ',
@@ -518,44 +538,34 @@ $this->response->setAttribute("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->setAttribute("results", array (
-  'Best' => '89',
-  'Live Dealer' => '459',
-  'Mobile' => '895',
-  'eCOGRA' => '136',
-  'Stay away' => '42',
-  'Popular' => '15',
+$this->response->attributes("results", array (
+  'Best' => '50',
+  'Live Dealer' => '474',
+  'Mobile' => '913',
+  'Low Wagering' => '138',
+  'eCOGRA' => '140',
+  'Stay away' => '43',
+  'Popular' => '19',
 ));
-$this->response->setAttribute("tms", array (
-  'upper_text' => '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+$this->response->attributes("tms", array (
+  'upper_text' => '<p>How to choose an online casino? What are the most important criteria you should consider before embarking on the gambling arena? And who else better than us to guide you through this strategic choice? We at CasinosLists.com reveal what counts in a decision that it should not have anything to chance! Games library, bonuses, license - all points that we check for each of the casinos presented in our listing. It may be tempting to choose the first casino you see in the search engine, but it can be a serious mistake, that&rsquo;s why you need to know exactly what you are looking for at an online casino. We are up to date with all the <a href="https://www.casinoslists.com/casinos/new">New Online Casinos</a> out there, so you can be tuned in with all the new bonuses and promotions.</p>
 
-<p><span class="dyna-var" id="foo"> new NDB in list</span></p>
+<p>&nbsp;</p>
 
-<p><span class="dyna-var" id="foo">0000000&nbsp;</span>new NDB in site</p>
+<p>Of all these casinos, which one will be your favourite? To find that out...test them all. Sign up, make a deposit if required, test the demos and enjoy the bonuses: it&#39;s the best way to make an informed choice. Scroll away through our list of <a href="https://www.casinoslists.com/casinos/best">Best Online Casinos</a>, read the reviews and comments and decide upon the online casino that meets your expectations. The second step is to play only at <a href="https://www.casinoslists.com/features/ecogra-casinos">eCOGRA Online Casinos</a>, an institution aimed at regulating and ensuring online gambling operators. Its goal is to control players in the online gaming market and protect users. Online gaming operators with eCOGRA approval stamp must adhere to strict standards of behavior. On the opposite, you should avoid casinos that were blacklisted for one reason or another. In this regard, CasinosLists.com will help you do so by providing you with the <a href="https://www.casinoslists.com/casinos/stay-away">Stay Away Online Casinos</a>.</p>
 
-<p><span class="dyna-var"><span class="dyna-var" id="foo"> best NDB in list<br />
-<span class="dyna-var" id="foo">$/€25best NDB in site</span></span></span></p>
+<p>&nbsp;</p>
 
-<p><span class="dyna-var"><span class="dyna-var"><span class="dyna-var"><span class="dyna-var" id="foo"> games in list</span></span></span></span></p>
-
-<p><span class="dyna-var"><span class="dyna-var"><span class="dyna-var"><span class="dyna-var"><span class="dyna-var" id="foo">6282 games in site</span></span></span></span></span></p>
+<p>Our <a href="https://www.casinoslists.com/features/live-dealer">Live Dealer Casinos</a> and <a href="https://www.casinoslists.com/casinos/popular">Popular Casinos</a> lists will offer you a preview of the most popular options in the online gaming market. Players participate in the action through video streaming and often place their bets via their mobile devices. You should check CasinosLists&rsquo; <a href="https://www.casinoslists.com/casinos/mobile">Mobile Casinos</a> page to find out which online gambling sites are compatible with your operating system. Softwares like RTG or Microgaming even allow gamblers to chat with each other or chat with the dealer via the Live Chat feature. There are plenty of options, so don&rsquo;t hold back and give them a try! Good luck!</p>
 ',
 ));
-$this->response->setAttribute("software_logo_small", array (
-  0 => '/public/sync/software_logo_light/80x53/best.png',
-  1 => '/public/sync/software_logo_light/80x53/live_dealer.png',
-  2 => '/public/sync/software_logo_light/80x53/mobile.png',
-  3 => '/public/sync/software_logo_light/80x53/ecogra.png',
-  4 => '/public/sync/software_logo_light/80x53/stay_away.png',
-  5 => '/public/sync/software_logo_light/80x53/popular.png',
+$this->response->attributes("page_info", array (
+  'head_title' => ' Online Casinos Categories - CasinosLists.com',
+  'head_description' => 'Complete List of Online Casinos Categories | Check out various types of Online Gaming Sites including Best Casinos, Live Casinos or Mobile-Friendly platforms',
+  'body_title' => 'Online Casinos Categories',
 ));
-$this->response->setAttribute("page_info", array (
-  'head_title' => 'Online Casinos Lists at CasinosLists.com - 2019',
-  'head_description' => 'Online Casinos Lists | Check out the Best, Safest, Newest and even most Popular Online Casinos lists! All at CasinosLists.com - 2019',
-  'body_title' => 'Online Casinos For Real Money',
-));
-$this->response->setAttribute("version", '0.8.7.02');
-$this->response->setAttribute("use_bundle", false);
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
 
     }
 }

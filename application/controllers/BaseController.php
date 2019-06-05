@@ -1,26 +1,41 @@
 <?php
-
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
+require_once("hlis/tms/src/TextsManager.php");
 
-abstract class BaseController extends Controller {
+abstract class BaseController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
         $specificPage = $this->request->getURI()->getPage();
-        $country = $this->request->getAttribute("country");
-        $this->response->setAttribute("country", $country);
+        $country = $this->request->attributes("country");
+        $this->response->attributes("country", $country);
         $menu = new TopMenu($this->request->getValidator()->getPage(),$specificPage, $country);
-        $this->response->setAttribute("menu_top", $menu->getEntries());
+        $this->response->attributes("menu_top", $menu->getEntries());
 
         $this->service();
 
         $this->pageInfo();
 
-        $this->response->setAttribute("version", $this->application->getVersion());
+        $this->response->attributes("version", $this->application->getVersion());
 
-        $this->response->setAttribute("use_bundle", (in_array($this->application->getAttribute("environment"), ["dev","live"])?true:false));
+        $this->response->attributes("use_bundle", (in_array(ENVIRONMENT, ["dev","live"])?true:false));
+
+        $this->response->attributes("tms", $this->getTMSVariables());
     }
 
     abstract protected function service();
 
     abstract protected function pageInfo();
+
+    protected function getTMSVariables() {
+        // gets variables path
+        $xml = $this->application->getTag("application");
+        $variables_folder = (string) $xml->paths->tms_variables;
+
+        // gets parent schema
+        $parent_schema = $this->application->attributes("parent_schema");
+
+        // gets texts
+        $tms = new \TMS\TextsManager($variables_folder, array("request"=>$this->request, "response"=>$this->response), $parent_schema);
+        return $tms->getTexts();
+    }
 }

@@ -1,12 +1,12 @@
 <?php
-class GameTypesController extends Controller {
+class GameTypesController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->setAttribute("country", array (
-  'id' => '34',
-  'code' => 'US',
-  'name' => 'United States',
+        $this->response->attributes("country", array (
+  'id' => '43',
+  'code' => 'RO',
+  'name' => 'Romania',
 ));
-$this->response->setAttribute("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -66,6 +66,16 @@ $this->response->setAttribute("menu_top", array (
       ),
       3 => 
       array (
+        'title' => 'Low Wagering Casinos',
+        'url' => '/casinos/low-wagering',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      4 => 
+      array (
         'title' => 'eCOGRA Casinos',
         'url' => '/features/ecogra-casinos',
         'is_active' => false,
@@ -74,7 +84,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
+      5 => 
       array (
         'title' => 'Stay Away Casinos',
         'url' => '/casinos/stay-away',
@@ -84,7 +94,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      5 => 
+      6 => 
       array (
         'title' => 'Popular Casinos',
         'url' => '/casinos/popular',
@@ -94,7 +104,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      6 => 
+      7 => 
       array (
         'title' => 'All Casinos',
         'url' => '/casinos',
@@ -216,6 +226,16 @@ $this->response->setAttribute("menu_top", array (
     array (
       0 => 
       array (
+        'title' => 'Romania Casinos',
+        'url' => '/countries-list/romania',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      1 => 
+      array (
         'title' => 'USA Casinos',
         'url' => '/countries-list/united-states',
         'is_active' => false,
@@ -224,7 +244,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      1 => 
+      2 => 
       array (
         'title' => 'UK Casinos',
         'url' => '/countries-list/united-kingdom',
@@ -234,7 +254,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      2 => 
+      3 => 
       array (
         'title' => 'Australia Casinos',
         'url' => '/countries-list/australia',
@@ -244,7 +264,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      3 => 
+      4 => 
       array (
         'title' => 'Germany Casinos',
         'url' => '/countries-list/germany',
@@ -254,7 +274,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
+      5 => 
       array (
         'title' => 'New Zealand Casinos',
         'url' => '/countries-list/new-zealand',
@@ -264,7 +284,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      5 => 
+      6 => 
       array (
         'title' => 'Netherlands Casinos',
         'url' => '/countries-list/netherlands',
@@ -274,7 +294,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      6 => 
+      7 => 
       array (
         'title' => 'Sweden Casinos',
         'url' => '/countries-list/sweden',
@@ -284,7 +304,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      7 => 
+      8 => 
       array (
         'title' => 'All Countries',
         'url' => '/countries ',
@@ -518,24 +538,24 @@ $this->response->setAttribute("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->setAttribute("results", array (
+$this->response->attributes("results", array (
   'Video Slots' => '4360',
   'Video Poker' => '464',
-  'Classic Slots' => '421',
+  'Slots' => '421',
   'Scratch Cards' => '281',
   'Blackjack' => '188',
   'Other' => '160',
   'Roulette' => '154',
-  'Table Games' => '122',
+  'Table Games' => '123',
   'Keno' => '46',
-  'Baccarat' => '38',
-  'Bingo' => '35',
+  'Baccarat' => '40',
+  'Bingo' => '36',
   'Craps' => '13',
 ));
-$this->response->setAttribute("logos", array (
+$this->response->attributes("logos", array (
   0 => '/public/sync/game_type_logo/136x100/video_slots.jpg',
   1 => '/public/sync/game_type_logo/136x100/video_poker.jpg',
-  2 => '/public/sync/game_type_logo/136x100/classic_slots.jpg',
+  2 => '/public/sync/game_type_logo/136x100/slots.jpg',
   3 => '/public/sync/game_type_logo/136x100/scratch_cards.jpg',
   4 => '/public/sync/game_type_logo/136x100/blackjack.jpg',
   5 => '/public/sync/game_type_logo/136x100/other.jpg',
@@ -546,15 +566,35 @@ $this->response->setAttribute("logos", array (
   10 => '/public/sync/game_type_logo/136x100/bingo.jpg',
   11 => '/public/sync/game_type_logo/136x100/craps.jpg',
 ));
-$this->response->setAttribute("page_info", array (
-  'head_title' => 'Online Casino Games List - 2019',
-  'head_description' => 'Free Online Casino Games List | Play Online Casino Demo Games, Video Slots List, Blackjack List, Video Poker List, Roulette Games List and More! - 2019',
-  'body_title' => 'Online Casino Games List',
+$this->response->attributes("page_info", array (
+  'head_title' => 'Casino Games Categories | Slots, Blackjack, Roulette and more',
+  'head_description' => 'The complete list of online casino games types. With so many games available, we divided them into categories. Play Video Slots, Blackjack, Roulette & more',
+  'body_title' => 'Casino Games Types',
 ));
-$this->response->setAttribute("version", '0.8.7.02');
-$this->response->setAttribute("use_bundle", false);
-$this->response->setAttribute("tms", array (
-  'upper_text' => '<p>games - update</p>
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
+$this->response->attributes("tms", array (
+  'upper_text' => '<p>Total number of games on site :&nbsp;6286</p>
+
+<p>Total number of games in the current list:&nbsp;</p>
+
+<p>Newest game on site&nbsp;&nbsp;:&nbsp;&nbsp;test alex</p>
+
+<p>Newest game in the current list :&nbsp;</p>
+
+<p>Software of the newest game on site :&nbsp;021 test</p>
+
+<p>Software of the newest game in the current list&nbsp;:&nbsp;</p>
+
+<p>Most popular game on site :&nbsp;Exotic Fruit Deluxe</p>
+
+<p>Most popular game in the current list:&nbsp;</p>
+
+<p>Software of the most popular game on site&nbsp;:&nbsp;Booming Games</p>
+
+<p>Software of the most popular game in the current list&nbsp;:&nbsp;</p>
+
+<p>games - update</p>
 
 <p><b>0</b></p>
 

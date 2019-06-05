@@ -1,12 +1,12 @@
 <?php
-class GameInfoController extends Controller {
+class GameInfoController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
-        $this->response->setAttribute("country", array (
+        $this->response->attributes("country", array (
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->setAttribute("menu_top", array (
+$this->response->attributes("menu_top", array (
   0 => 
   array (
     'title' => 'NO DEPOSIT CASINOS',
@@ -66,6 +66,16 @@ $this->response->setAttribute("menu_top", array (
       ),
       3 => 
       array (
+        'title' => 'Low Wagering Casinos',
+        'url' => '/casinos/low-wagering',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      4 => 
+      array (
         'title' => 'eCOGRA Casinos',
         'url' => '/features/ecogra-casinos',
         'is_active' => false,
@@ -74,7 +84,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
+      5 => 
       array (
         'title' => 'Stay Away Casinos',
         'url' => '/casinos/stay-away',
@@ -84,7 +94,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      5 => 
+      6 => 
       array (
         'title' => 'Popular Casinos',
         'url' => '/casinos/popular',
@@ -94,7 +104,7 @@ $this->response->setAttribute("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      6 => 
+      7 => 
       array (
         'title' => 'All Casinos',
         'url' => '/casinos',
@@ -357,7 +367,7 @@ $this->response->setAttribute("menu_top", array (
       4 => 
       array (
         'title' => 'EcoPayz EcoCard Casinos',
-        'url' => '/banking/ecopayz',
+        'url' => '/banking/ecopayz-ecocard',
         'is_active' => false,
         'submenuItems' => 
         array (
@@ -528,7 +538,7 @@ $this->response->setAttribute("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->setAttribute("game_types", array (
+$this->response->attributes("game_types", array (
   0 => 'Video Slots',
   1 => 'Video Poker',
   2 => 'Slots',
@@ -542,12 +552,12 @@ $this->response->setAttribute("game_types", array (
   10 => 'Bingo',
   11 => 'Craps',
 ));
-$this->response->setAttribute("game", array (
-  'id' => '7242',
-  'name' => 'Hi Lo Poker',
-  'type' => 'Video Poker',
-  'software' => 'Intouch Games',
-  'release_date' => NULL,
+$this->response->attributes("game", array (
+  'id' => '7268',
+  'name' => 'Exotic Fruit Deluxe',
+  'type' => 'Video Slots',
+  'software' => 'Booming Games',
+  'release_date' => '2018-11-03',
   'technologies' => 
   array (
     0 => 'HTML5',
@@ -555,24 +565,378 @@ $this->response->setAttribute("game", array (
   'is_mobile' => true,
   'is_3d' => NULL,
   'overview' => NULL,
-  'times_played' => '0',
+  'times_played' => '77',
   'play' => NULL,
+  'logo_big' => NULL,
+  'logo_small' => NULL,
 ));
-$this->response->setAttribute("game_player", array (
+$this->response->attributes("game_player", array (
   'url' => 'https://devgame.casinoslists.com',
   'width' => '960',
   'height' => '720',
 ));
-$this->response->setAttribute("recommended_casinos", array (
+$this->response->attributes("recommended_casinos", array (
+  0 => 
+  array (
+    'id' => '1350',
+    'name' => '123 Bingo Updown Test',
+    'code' => '12345',
+    'rating' => 6,
+    'softwares' => 
+    array (
+      0 => 'Booming Games',
+      1 => '021 test',
+      2 => '1X2 Gaming',
+      3 => 'Evolution Gaming',
+      4 => 'NYX Interactive',
+    ),
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100',
+      'min_deposit' => '10',
+      'wagering' => '10',
+      'games_allowed' => 'Starburst',
+      'code' => 'Vasile GTM',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'is_live_dealer' => NULL,
+    'date_established' => '2018-09-12',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'invision_casino_id' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
+    'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
+    'new' => true,
+    'score_class' => 'Good',
+    'all_softwares' => '021 test, 1X2 Gaming, Evolution Gaming, NYX Interactive',
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => NULL,
+    'casino_game_types' => NULL,
+    'date_formatted' => 'Sep. 12, 2018',
+    'status' => '0',
+  ),
+  1 => 
+  array (
+    'id' => '1252',
+    'name' => 'Foo Bar',
+    'code' => 'foo_bar',
+    'rating' => 7,
+    'softwares' => 
+    array (
+      0 => '021 test',
+      1 => 'MicroGaming',
+      2 => 'iSoftBet',
+      3 => 'BetSoft',
+      4 => 'Evolution Gaming',
+      5 => 'Tom Horn Gaming',
+      6 => 'Pragmatic Play',
+      7 => 'Booming Games',
+      8 => 'XPG',
+      9 => 'Amatic Industries',
+      10 => 'GameArt',
+      11 => 'Endorphina',
+      12 => 'Playson',
+    ),
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '1',
+      'min_deposit' => '1',
+      'wagering' => '1',
+      'games_allowed' => '1',
+      'code' => '1',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'is_live_dealer' => NULL,
+    'date_established' => '2017-10-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'invision_casino_id' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
+    'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
+    'new' => false,
+    'score_class' => 'Good',
+    'all_softwares' => 'MicroGaming, iSoftBet, BetSoft, Evolution Gaming, Tom Horn Gaming, Pragmatic Play, Booming Games, XPG, Amatic Industries, GameArt, Endorphina, Playson',
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => NULL,
+    'casino_game_types' => NULL,
+    'date_formatted' => 'Oct. 01, 2017',
+    'status' => '0',
+  ),
+  2 => 
+  array (
+    'id' => '1226',
+    'name' => 'Vikingheim Casino',
+    'code' => 'vikingheim_casino',
+    'rating' => 8,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'Hybrino',
+      2 => 'Spigo',
+      3 => 'MrSlotty Games',
+      4 => 'BetGames',
+      5 => 'EGT',
+      6 => 'Booming Games',
+      7 => 'XPG',
+      8 => 'Genii',
+      9 => 'Pariplay',
+      10 => 'Habanero',
+      11 => 'Endorphina',
+      12 => 'Play n GO',
+      13 => 'Vivo Gaming',
+      14 => '1X2 Gaming',
+      15 => 'OMI Gaming',
+      16 => 'Evolution Gaming',
+      17 => 'BetSoft',
+      18 => 'MicroGaming',
+      19 => 'World Match',
+      20 => 'Visionary iGaming',
+    ),
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100% + 50 FS',
+      'min_deposit' => '$20',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'All ( FS - Viking\'s Plunder )',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'is_live_dealer' => NULL,
+    'date_established' => '2017-06-29',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'invision_casino_id' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => '/public/sync/casino_logo_light/124x82/vikingheim_casino.png',
+    'logo_small' => '/public/sync/casino_logo_light/85x56/vikingheim_casino.png',
+    'new' => false,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'Hybrino, Spigo, MrSlotty Games, BetGames, EGT, Booming Games, XPG, Genii, Pariplay, Habanero, Endorphina, Play n GO, Vivo Gaming, 1X2 Gaming, OMI Gaming, Evolution Gaming, BetSoft, MicroGaming, World Match, Visionary iGaming',
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => NULL,
+    'casino_game_types' => NULL,
+    'date_formatted' => 'Jun. 29, 2017',
+    'status' => '0',
+  ),
+  3 => 
+  array (
+    'id' => '1195',
+    'name' => 'Smashing Casino',
+    'code' => 'smashing_casino',
+    'rating' => 9,
+    'softwares' => 
+    array (
+      0 => 'BetSoft',
+      1 => 'GameScale',
+      2 => 'Playson',
+      3 => 'Spinomenal',
+      4 => 'Booming Games',
+      5 => 'GameArt',
+    ),
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '300% + 50 FS',
+      'min_deposit' => '€/£20',
+      'wagering' => '33x(D+B)',
+      'games_allowed' => 'All Betsoft Games',
+      'code' => 'SMASH50',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '€5',
+      'min_deposit' => '',
+      'wagering' => '99xB',
+      'games_allowed' => 'Betsoft Slots',
+      'code' => 'No code required',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => 'NDB',
+    ),
+    'is_live_dealer' => NULL,
+    'date_established' => '2017-06-05',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'invision_casino_id' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => '/public/sync/casino_logo_light/124x82/smashing_casino.png',
+    'logo_small' => '/public/sync/casino_logo_light/85x56/smashing_casino.png',
+    'new' => false,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'GameScale, Playson, Spinomenal, Booming Games, GameArt',
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => NULL,
+    'casino_game_types' => NULL,
+    'date_formatted' => 'Jun. 05, 2017',
+    'status' => '0',
+  ),
+  4 => 
+  array (
+    'id' => '1173',
+    'name' => 'Casino Superlines',
+    'code' => 'casino_superlines',
+    'rating' => 5,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'NextGen Gaming',
+      2 => 'Air Dice',
+      3 => 'Spinomenal',
+      4 => 'Lightning Box Games',
+      5 => 'Booming Games',
+      6 => 'GameArt',
+      7 => 'ELK Studios',
+      8 => 'Playson',
+      9 => '1X2 Gaming',
+      10 => 'GameScale',
+      11 => 'Leander Games',
+      12 => 'Nektan',
+      13 => 'BetSoft',
+    ),
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '400%',
+      'min_deposit' => '€20',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'All',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '€10',
+      'min_deposit' => '',
+      'wagering' => '60xB',
+      'games_allowed' => 'Slots & Scratch Cards',
+      'code' => 'CASINOSLISTS10',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => 'NDB',
+    ),
+    'is_live_dealer' => NULL,
+    'date_established' => '2017-04-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'invision_casino_id' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => '/public/sync/casino_logo_light/124x82/casino_superlines.png',
+    'logo_small' => '/public/sync/casino_logo_light/85x56/casino_superlines.png',
+    'new' => false,
+    'score_class' => 'Good',
+    'all_softwares' => 'NextGen Gaming, Air Dice, Spinomenal, Lightning Box Games, Booming Games, GameArt, ELK Studios, Playson, 1X2 Gaming, GameScale, Leander Games, Nektan, BetSoft',
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => NULL,
+    'casino_game_types' => NULL,
+    'date_formatted' => 'Apr. 01, 2017',
+    'status' => '0',
+  ),
 ));
-$this->response->setAttribute("is_mobile", false);
-$this->response->setAttribute("recommended_games", array (
-  7242 => 
+$this->response->attributes("is_mobile", false);
+$this->response->attributes("recommended_games", array (
+  7268 => 
   array (
-    'id' => '7242',
-    'name' => 'Hi Lo Poker',
+    'id' => '7268',
+    'name' => 'Exotic Fruit Deluxe',
     'type' => NULL,
-    'software' => 'Intouch Games',
+    'software' => 'Booming Games',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -580,15 +944,17 @@ $this->response->setAttribute("recommended_games", array (
     'is_mobile' => NULL,
     'is_3d' => NULL,
     'overview' => NULL,
-    'times_played' => '0',
+    'times_played' => '77',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Exotic_Fruit_Deluxe_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Exotic_Fruit_Deluxe_ss.jpg',
   ),
-  7122 => 
+  7085 => 
   array (
-    'id' => '7122',
-    'name' => 'Digital Gaming Solutions Jacks or Better',
+    'id' => '7085',
+    'name' => 'World Match Xcalibur',
     'type' => NULL,
-    'software' => 'Digital Gaming Solutions',
+    'software' => 'World Match',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -598,13 +964,15 @@ $this->response->setAttribute("recommended_games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/World_Match_Xcalibur_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/World_Match_Xcalibur_ss.jpg',
   ),
-  7121 => 
+  1468 => 
   array (
-    'id' => '7121',
-    'name' => 'Digital Gaming Solutions Deuces Wild',
+    'id' => '1468',
+    'name' => 'Foxin Wins Again',
     'type' => NULL,
-    'software' => 'Digital Gaming Solutions',
+    'software' => 'NextGen Gaming',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -614,13 +982,15 @@ $this->response->setAttribute("recommended_games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Foxin_Wins_Again_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Foxin_Wins_Again_ss.jpg',
   ),
-  7117 => 
+  7263 => 
   array (
-    'id' => '7117',
-    'name' => 'Digital Gaming Solutions Aces and Eights',
+    'id' => '7263',
+    'name' => 'Goddess of the Amazon',
     'type' => NULL,
-    'software' => 'Digital Gaming Solutions',
+    'software' => 'Inspired',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -630,13 +1000,15 @@ $this->response->setAttribute("recommended_games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Goddess_of_the_Amazon_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Goddess_of_the_Amazon_ss.jpg',
   ),
-  7116 => 
+  7262 => 
   array (
-    'id' => '7116',
-    'name' => 'Digital Gaming Solutions 3 Card Poker',
+    'id' => '7262',
+    'name' => 'Inspired Centurion',
     'type' => NULL,
-    'software' => 'Digital Gaming Solutions',
+    'software' => 'Inspired',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -646,13 +1018,15 @@ $this->response->setAttribute("recommended_games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/Inspired_Centurion_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/Inspired_Centurion_ss.jpg',
   ),
-  7083 => 
+  7261 => 
   array (
-    'id' => '7083',
-    'name' => 'SoftSwiss Jacks Or Better Multihand',
+    'id' => '7261',
+    'name' => 'White Knight',
     'type' => NULL,
-    'software' => 'SoftSwiss',
+    'software' => 'Inspired',
     'release_date' => NULL,
     'technologies' => 
     array (
@@ -662,14 +1036,16 @@ $this->response->setAttribute("recommended_games", array (
     'overview' => NULL,
     'times_played' => '0',
     'play' => NULL,
+    'logo_big' => 'public/sync/game_ss/300x220/White_Knight_ss.jpg',
+    'logo_small' => 'public/sync/game_ss/136x100/White_Knight_ss.jpg',
   ),
 ));
-$this->response->setAttribute("menu_bottom", array (
+$this->response->attributes("menu_bottom", array (
   0 => 
   array (
     'title' => 'Video Slots',
     'url' => '/games/video-slots',
-    'is_active' => false,
+    'is_active' => true,
     'submenuItems' => 
     array (
     ),
@@ -679,7 +1055,7 @@ $this->response->setAttribute("menu_bottom", array (
   array (
     'title' => 'Video Poker',
     'url' => '/games/video-poker',
-    'is_active' => true,
+    'is_active' => false,
     'submenuItems' => 
     array (
     ),
@@ -786,13 +1162,15 @@ $this->response->setAttribute("menu_bottom", array (
     'have_submenu' => false,
   ),
 ));
-$this->response->setAttribute("page_info", array (
-  'head_title' => 'Play Hi Lo Poker for Fun at CasinosLists.com',
-  'head_description' => 'Free Play Hi Lo Poker | Hi Lo Poker Demo Game, No Registration Required, Play the Game Hi Lo Poker at CasinosLists.com - 2019',
-  'body_title' => 'Hi Lo Poker',
+$this->response->attributes("page_type", 'game_info');
+$this->response->attributes("page_info", array (
+  'head_title' => 'Play Exotic Fruit Deluxe for Fun at CasinosLists.com',
+  'head_description' => 'Free Play Exotic Fruit Deluxe | Exotic Fruit Deluxe Demo Game, No Registration Required, Play the Game Exotic Fruit Deluxe at CasinosLists.com - 2019',
+  'body_title' => 'Exotic Fruit Deluxe',
 ));
-$this->response->setAttribute("version", '0.8.4.6');
-$this->response->setAttribute("tms", array (
+$this->response->attributes("version", '0.8.8.383');
+$this->response->attributes("use_bundle", true);
+$this->response->attributes("tms", array (
 ));
 
     }

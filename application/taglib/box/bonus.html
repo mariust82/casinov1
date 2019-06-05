@@ -1,30 +1,30 @@
-<std:set name="bonus_type" value="${$[data].$[modifier].type}"/>
+<:set var="bonus_type" val="${$[data].$[modifier].type}"/>
 
-<std:if condition="${bonus_type} == 'Free Play'">
-	<std:set name="bonus_type" value="Free Bonus"/>
-</std:if>
+<:if test="${bonus_type} == 'Free Play'">
+	<:set var="bonus_type" val="Free Bonus"/>
+</:if>
 
-<std:if condition="$[heading]">
+<:if test="$[heading]">
 	<div class="tooltip-templates-heading">
 		<div class="tooltip-templates-title">${$[data].name} $[title]</div>
 		<div class="tooltip-templates-button">
 			<a href="/visit/${normalize(${$[data].name})}" target="_blank" rel="nofollow" class="btn btn-small">VISIT CASINO</a>
 		</div>
 	</div>
-</std:if>
+</:if>
 <div class="tooltip-templates-body">
 	<div class="bonus-box">
 		<div class="bonus-box-heading">
 			<span>${$[data].$[modifier].amount} ${bonus_type}</span>
 		</div>
 		<div class="bonus-box-body">
-			<std:set name="code_class" value=""/>
-			<std:if condition="${$[data].$[modifier].code} != 'No code required'">
-			    <std:set name="code_class" value="js-copy-to-clip js-copy-tooltip"/>
-			</std:if>
+			<:set var="code_class" val=""/>
+			<:if test="${$[data].$[modifier].code} != 'No code required'">
+			    <:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
+			</:if>
 
 			<div class="bonus-box-btn dashed ${code_class}" data-code="${$[data].$[modifier].code}">${$[data].$[modifier].code}</div>
-			<std:unset name="code_class"/>
+			<:unset var="code_class"/>
 
 			<ul class="bonus-box-list">
 				<li> 
@@ -40,11 +40,11 @@
 				</li>
 				<li>
 					<span class="bonus-box-list-label">Min. deposit</span>
-					<std:if condition="${$[data].$[modifier].min_deposit} != ''">
+					<:if test="${$[data].$[modifier].min_deposit} != ''">
 						<strong>${$[data].$[modifier].min_deposit}</strong>
-					<std:else>
+					<:else>
 						<strong class="success">Free</strong>
-					</std:if>
+					</:if>
 				</li>
 			</ul>
 		</div>

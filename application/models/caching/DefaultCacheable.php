@@ -3,9 +3,9 @@ class DefaultCacheable implements Cacheable
 {
     private $etag;
 
-    public function __construct(Request $request, Response $response) {
+    public function __construct(Lucinda\MVC\STDOUT\Request $request, Lucinda\MVC\STDOUT\Response $response) {
         if(strpos($request->getValidator()->getPage(), "search")===0) return;
-        $this->etag = sha1(json_encode($response->headers()->toArray())."#".$response->getOutputStream()->get());
+        $this->etag = sha1(json_encode($response->headers())."#".$response->getOutputStream()->get());
     }
 
     public function getEtag() {
@@ -15,7 +15,7 @@ class DefaultCacheable implements Cacheable
     public function getTime() {
         $modifiedTime = "";
         if($this->etag) {
-            $connection = NoSQLConnectionSingleton::getInstance();
+            $connection = Lucinda\NoSQL\ConnectionSingleton::getInstance();
             if($connection->contains($this->etag)) {
                 $modifiedTime = $connection->get($this->etag);
 		if(!$modifiedTime) $connection->delete($this->etag);

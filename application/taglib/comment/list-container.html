@@ -4,20 +4,20 @@
 	</div>
 	<div class="review-list">
 		<div id="review-data-holder">
-			<std:if condition="$[total] > 0">
-				<std:foreach var="$[items]" value="result">
+			<:if test="$[total] > 0">
+				<:foreach var="$[items]" val="result">
 					<comment:info class="review-parent"/>
 					<comment:reply total="${result.total_children}"/>
-				</std:foreach>
-			</std:if>
+				</:foreach>
+			</:if>
 		</div>
-		<std:if condition="$[total] > 5">
+		<:if test="$[total] > 5">
 			<div class="reviews-more">
 				<a href="#" class="btn-more js-more-reviews" data-type="review" data-id="0" data-total="$[total]" data-page="1">
 					Show More Reviews
 					<i class="icon-chevron-down"></i>
 				</a>
 			</div>
-		</std:if>
+		</:if>
 	</div>
 </div>

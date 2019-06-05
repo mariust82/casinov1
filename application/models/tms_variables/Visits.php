@@ -21,7 +21,10 @@ class Visits extends \TMS\VariablesHolder {
         $casinos = new CasinosList($filter);
 
         $result = $casinos->getResults(CasinoSortCriteria::TOP_RATED,1, 1);
-        $total = SQL("SELECT clicks FROM casinos WHERE id = " . $result[0]->id)->toValue();
+        $total = 0 ;
+        if(isset( $result[0])){
+            $total = SQL("SELECT clicks FROM casinos WHERE id = " . $result[0]->id)->toValue();
+        }
         return $total;
     }
 
@@ -35,6 +38,6 @@ class Visits extends \TMS\VariablesHolder {
     }
 
     private function getCountry() {
-        return $this->parameters['response']->getAttribute('country');
+        return $this->parameters['response']->attributes('country');
     }
 }

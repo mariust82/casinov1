@@ -1,63 +1,63 @@
-<std:set name="img_class" value=""/>
-<std:if condition="'$[type]' == 'game_type'">
-	<std:set name="img_class" value="category-is-img"/>
-<std:elseif condition="'$[type]' == 'software'">
-	<std:set name="img_class" value="category-is-img-software"/>
-</std:if>
+<:set var="img_class" val=""/>
+<:if test="'$[type]' == 'game_type'">
+	<:set var="img_class" val="category-is-img"/>
+<:elseif test="'$[type]' == 'software'">
+	<:set var="img_class" val="category-is-img-software"/>
+</:if>
 <div class="categories">
 	<div class="categories-list ${img_class}">
-		<std:set name="index" value="0"/>
-		<std:foreach var="$[items]" key="key" value="result">
+		<:set var="index" val="0"/>
+		<:foreach var="$[items]" key="key" val="result">
 			<div class="category ${img_class}">
-                            <std:if condition="${key} == 'Mobile'">
+                            <:if test="${key} == 'Mobile'">
                                 <a href="/casinos/${normalize(${key})}">
-					<std:if condition="$[image]">
-						<site:logo name="${key}" type="$[type]" alt="${key}"/>
-					</std:if>
+					<:if test="$[image]">
+						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>
+					</:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>
 						<span class="category-qty">${result}</span>
 					</span>
 					<i class="icon-chevron-right"></i>
 				</a>
-                                <std:elseif condition="${key} == 'eCOGRA'">
+                                <:elseif test="${key} == 'eCOGRA'">
                                     <a href="/features/${normalize(${key})}-casinos">
-					<std:if condition="$[image]">
-						<site:logo name="${key}" type="$[type]" alt="${key}"/>
-					</std:if>
+					<:if test="$[image]">
+						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>
+					</:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>
 						<span class="category-qty">${result}</span>
 					</span>
 					<i class="icon-chevron-right"></i>
                                     </a>
-                                <std:elseif condition="${key} == 'Live Dealer'">
+                                <:elseif test="${key} == 'Live Dealer'">
                                     <a href="/features/${normalize(${key})}">
-					<std:if condition="$[image]">
-						<site:logo name="${key}" type="$[type]" alt="${key}"/>
-					</std:if>
+					<:if test="$[image]">
+						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>
+					</:if>
 					<span class="category-body">
 						<span class="category-title">${key}</span>
 						<span class="category-qty">${result}</span>
 					</span>
 					<i class="icon-chevron-right"></i>
                                     </a>
-                                <std:else>
+                                <:else>
                                     <a href="$[url]/${normalize(${key})}">
-					<std:if condition="$[image]">
-						<site:logo name="${key}" type="$[type]" alt="${key}"/>
-					</std:if>
+					<:if test="$[image]">
+						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>
+					</:if>
 					<span class="category-body">
 						<span class="category-title">${key}
-							<std:if condition="'$[type]' == 'software'">Casinos</std:if>
+							<:if test="'$[type]' == 'software'">Casinos</:if>
 						</span>
 						<span class="category-qty">${result}</span>
 					</span>
 					<i class="icon-chevron-right"></i>
                                     </a>
-                            </std:if>
+                            </:if>
 			</div>
-			<std:set name="index" value="${index} + 1"/>
-		</std:foreach>
+			<:set var="index" val="${index} + 1"/>
+		</:foreach>
 	</div>
 </div>

@@ -19,7 +19,7 @@
 		</div>
 	</div>
 
-    <std:if condition="count(${data.recommended_casinos}) > 0">
+    <:if test="count(${data.recommended_casinos}) > 0">
         <div class="related">
             <div class="container">
                 <div class="headeing">
@@ -28,5 +28,5 @@
                 <casino:list type="SOFTWARE" id="1" data="${data.recommended_casinos}"/>
             </div>
         </div>
-    </std:if>
+    </:if>
 <site:bottom menu="${data.menu_top}"/>

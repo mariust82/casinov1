@@ -1,6 +1,7 @@
 <?php
 
 require_once("vendor/lucinda/queries/plugins/MySQL/MySQLSelect.php");
+require_once("application/models/dao/BestCasinoLabel.php");
 
 use Lucinda\Query\MySQLComparisonOperator;
 use Lucinda\Query\MySQLCondition;
@@ -23,10 +24,7 @@ class CasinosListQuery
         $this->setSelect($query,$filter);
         $this->setWhere($query->where(),$filter);
         $this->setOrderBy($query->orderBy(),$filter,$sortBy);
-        if(!empty($limit))
-        {
-            $query->limit($limit,$offset);
-        }
+        $this->setLimit($query,$filter,$limit,$offset);
         $this->query = $query->toString();
     }
 
@@ -97,7 +95,7 @@ class CasinosListQuery
             if ($filter->getCasinoLabel() == "Stay away") {
                 $filter->setPromoted(FALSE);
             }
-            if ($filter->getCasinoLabel() != "New") {
+            if(($filter->getCasinoLabel() != "New")) {
                 $sub_query = new Lucinda\Query\MySQLSelect("casino_labels");
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name"=> "'". $filter->getCasinoLabel() . "'"]);
@@ -144,7 +142,7 @@ class CasinosListQuery
 
     private function setWhere(Lucinda\Query\Condition $where, CasinoFilter $filter)
     {
-         $where->set("t1.is_open" ,1);
+        $where->set("t1.is_open" ,1);
 
         if($filter->getHighRoller()) {
             $where->set("t1.is_high_roller",1);
@@ -152,14 +150,14 @@ class CasinosListQuery
         if($filter->getPromoted()) {
             $where->set("t1.status_id",0);
         }
-        if($filter->getCasinoLabel()=="New") {
-            $where->set("t1.date_established","DATE_SUB(CURDATE(), INTERVAL 1 YEAR )",Lucinda\Query\ComparisonOperator::GREATER);
-        }
-        elseif($filter->getCasinoLabel()=="Best")
+
+        switch($filter->getCasinoLabel())
         {
-            $where->set("t1.rating_total/t1.rating_votes",7,Lucinda\Query\ComparisonOperator::GREATER);
-            $where->set("t1.status_id",0);
+            case 'New':
+                $where->set("t1.date_established","DATE_SUB(CURDATE(), INTERVAL 1 YEAR )",Lucinda\Query\ComparisonOperator::GREATER);
+                break;
         }
+
         if($filter->getBankingMethod())
         {
             $group = new Lucinda\Query\Condition(array(), Lucinda\Query\LogicalOperator::_OR_);
@@ -171,27 +169,31 @@ class CasinosListQuery
 
     private function setOrderBy(Lucinda\Query\OrderBy $orderBy,CasinoFilter $filter, $sortBy)
     {
-
         if($sortBy)
         {
-            $orderBy->add('complex_case', 'ASC' );
-
             switch($sortBy) {
                 case CasinoSortCriteria::NEWEST:
+                    $orderBy->add('complex_case', 'ASC' );
                     $orderBy->add("t1.date_established" , "DESC");
                     $orderBy->add("t1.priority" , "DESC");
                     $orderBy->add("t1.id" , "DESC");
                     break;
                 case CasinoSortCriteria::TOP_RATED:
+                    $orderBy->add('complex_case', 'ASC' );
                     $orderBy->add("average_rating" , "DESC");
                     $orderBy->add("t1.priority" , "DESC");
                     $orderBy->add("t1.id" , "DESC");
                     break;
                 case CasinoSortCriteria::POPULARITY:
+                    $orderBy->add('complex_case', 'ASC' );
                     $orderBy->add("t1.clicks" , "DESC");
                     $orderBy->add("t1.id" , "DESC");
                     break;
+                case CasinoSortCriteria::WAGERING:
+                    $orderBy->add("t5.id" , "ASC");
+                    break;
                 default:
+                    $orderBy->add('complex_case', 'ASC' );
                     $orderBy->add("t1.priority" , "DESC");
                     $orderBy->add("t1.id" , "DESC");
                     $filter->setPromoted(TRUE);
@@ -210,5 +212,13 @@ class CasinosListQuery
         $result = SQL($query);
         $row = $result->toRow();
         return $row['id'];
+    }
+
+    private function setLimit(Lucinda\Query\MySQLSelect $query, CasinoFilter $filter, $limit , $offset)
+    {
+        if(!empty($limit))
+        {
+            $query->limit($limit,$offset);
+        }
     }
 }

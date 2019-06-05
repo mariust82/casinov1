@@ -11,7 +11,7 @@ class SiteCasinoClick extends CasinoClick
         $object = new Casinos();
         $this->info = $object->getBasicInfo($id);
         if (!$this->info) {
-            throw new PathNotFoundException();
+            throw new Lucinda\MVC\STDOUT\PathNotFoundException();
         }
 
         $object->click($this->info->id);

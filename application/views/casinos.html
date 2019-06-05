@@ -11,21 +11,23 @@
 				</div>
 			</div>
 
-			<std:if condition="isset(${data.currency})">
+			<:if test="isset(${data.currency})">
 				<filter:casinos id="${data.selected_entity}" name="${data.currency}" code="${data.language}" key="true"/>
-			<std:else>
+			<:else>
 				<filter:casinos id="${data.selected_entity}" name="${data.country.name}" code="${data.country.code}"  key="false"/>
-			</std:if>
+			</:if>
 
 			<div class="data-container-holder">
 				<div class="holder">
 					<div class="data-container" data-type="${data.page_type}" data-type-value="${data.selected_entity}">
 						<div class="qty-items" data-load-total="${data.total_casinos}">${data.total_casinos} results</div>
-						<std:if condition="${data.selected_entity} == 'New'">
+						<:if test="${data.selected_entity} == 'New'">
 							<casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
-						<std:else>
+						<:elseif test="${data.selected_entity} == 'Low Wagering'">
+							<casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
+						<:else>
 							<casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
-						</std:if>
+						</:if>
 					</div>
 					<div class="data-add-container" data-total="${data.total_casinos}"></div>
 				</div>
@@ -33,14 +35,14 @@
 			</div>
 
 
-			<std:if condition="${data.selected_entity} != 'Best'">
-				<std:if condition="${data.total_casinos} > count(${data.casinos})">
+			<:if test="${data.selected_entity} != 'Best'">
+				<:if test="${data.total_casinos} > count(${data.casinos})">
 					<div class="btn-holder">
 						<a href="#" class="btn-bordered load js-more-items">
 							LOAD MORE CASINOS</a>
 					</div>
-				</std:if>
-			</std:if>
+				</:if>
+			</:if>
 		</div>
 	</div>
 <site:bottom menu="${data.menu_top}"/>

@@ -1,13 +1,13 @@
 <?php
 class GamePlayCounterUpdate
 {
-    public function __construct(Session $session, $currentGameID)
+    public function __construct(\Lucinda\MVC\STDOUT\Session $session, $currentGameID)
     {
         $games_played = $this->getGamesPlayed($session, $currentGameID);
         $this->setGamesPlayed($session, $currentGameID, $games_played);
     }
 
-    private function getGamesPlayed(Session $session, $currentGameID)
+    private function getGamesPlayed(\Lucinda\MVC\STDOUT\Session $session, $currentGameID)
     {
         $games_played = [];
         if(!$session->isStarted()) {
@@ -22,7 +22,7 @@ class GamePlayCounterUpdate
         return $games_played;
     }
 
-    private function setGamesPlayed(Session $session, $currentGameID, $games_played) {
+    private function setGamesPlayed(\Lucinda\MVC\STDOUT\Session $session, $currentGameID, $games_played) {
         SQL("UPDATE games SET times_played = times_played + 1 WHERE id=:id",array(":id"=>$currentGameID));
         $games_played[$currentGameID] = $currentGameID;
         $session->set("games_played", $games_played);

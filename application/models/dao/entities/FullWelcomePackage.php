@@ -1,6 +1,6 @@
 <?php
-class FullWelcomePackage{
-
+class FullWelcomePackage extends Entity
+{
     public $valid_on;
     public $bonus;
     public $min_deposit;

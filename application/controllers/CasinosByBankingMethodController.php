@@ -14,7 +14,7 @@ class CasinosByBankingMethodController extends CasinosListController {
 
     protected function getSelectedEntity()
     {
-        $parameter = $this->request->getValidator()->getPathParameter("name");
+        $parameter = $this->request->getValidator()->parameters("name");
         $name = str_replace("-"," ", $parameter);
 
         return $name;
