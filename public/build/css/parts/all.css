@@ -8841,3 +8841,16 @@ img.grayscale {
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
+
+.no_welcome_bonuses{
+  font-size: 14px;
+  color: #465156;
+  font-family: "Open Sans, Regular";
+  text-align: left;
+}
+
+@media screen and (max-width: 690px) {
+  .no_welcome_bonuses{
+      font-size: 13px;
+  }
+}
