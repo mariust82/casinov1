@@ -31,7 +31,7 @@ var AJAX_CUR_PAGE = 1;
 
         var user_rate = $('.rating-container').data('user-rate');
 
-        console.log($('.box img.not-accepted').length);
+        //console.log($('.box img.not-accepted').length);
 
         if($('.box img.not-accepted').length ){
             $('.br-widget a').unbind("mouseenter mouseleave mouseover click");
@@ -2302,7 +2302,7 @@ var AJAX_CUR_PAGE = 1;
                             $(this).toggleClass(buttonclass+'_active');
 
                             if (element.css('max-height') !== 'none') {
-                                element.css({'height': linescount, 'max-height': ''}).animate({height:fullheight}, settings.animationspeed, function () {
+                                element.css({'height': linescount, 'max-height': ''}).animate({height:'100%'}, settings.animationspeed, function () {
                                     moreLinesButton.html(settings.buttontxtless);
                                 });
 
