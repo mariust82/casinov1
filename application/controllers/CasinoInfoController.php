@@ -46,6 +46,7 @@ class CasinoInfoController extends BaseController {
         }
         $this->response->attributes('country_status',$this->get_country_status($info->is_country_accepted));
         $this->response->attributes('add_text',$this->containsCasino($info->name));
+        $this->response->attributes('first_deposit_amount',strtolower($this->response->attributes("casino")['bonus_first_deposit']->amount));
 	}
 
 	protected function pageInfo(){
