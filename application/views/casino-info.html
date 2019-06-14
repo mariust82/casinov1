@@ -285,7 +285,7 @@
 			<div class="container">
 				<div class="box box-alt2">
 					<div class="title title-middle">Full Welcome Package</div>
-					<:if test="!empty(${data.casino.welcome_package})">
+					<:if test="${data.first_deposit_amount} != 'none'">
 						<div class="section-content">
 							<table class="table table-package">
 								<tr>
@@ -296,39 +296,61 @@
 									<th>Games</th>
 									<th>Bonus Code</th>
 								</tr>
-								<:foreach var="${data.casino.welcome_package}" key ="key" val="welcome_package_data">
+								<:if test="empty(${data.casino.welcome_package})">
 									<tr>
-										<td>${welcome_package_data.valid_on}</td>
-										<td>${welcome_package_data.bonus}</td>
+										<td>1st Deposit</td>
+										<td>${data.casino.bonus_first_deposit.amount}</td>
+										<td>${data.casino.bonus_first_deposit.min_deposit}</td>
 										<td>
-											<:if test="${welcome_package_data.min_deposit} == 'Free'">
-												<span class="table-package_free_bonus">${welcome_package_data.min_deposit}</span>
-											<:else>
-												${welcome_package_data.min_deposit}
-											</:if>
-
-										</td>
-										<td>
-											${welcome_package_data.wagering}
+											${data.casino.bonus_first_deposit.wagering}
 											<a href="#" class="table-package-opener js-table-package-opener">
 												<i class="icon-chevron-down"></i>
 											</a>
 										</td>
-										<td><strong class="table-mobile-visible">Games:</strong> ${welcome_package_data.games}</td>
+										<td><strong class="table-mobile-visible">Games:</strong> ${data.casino.bonus_first_deposit.games_allowed}</td>
 										<td>
 											<:set var="code_class" val=""/>
-											<:if test="${welcome_package_data.bonus_codes} != 'No code required'">
+											<:if test="${data.casino.bonus_first_deposit.code} != 'No code required'">
 												<:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
 											</:if>
 
-											<div class="dashed ${code_class}" data-code="${welcome_package_data.bonus_codes}">${welcome_package_data.bonus_codes}</div>
+											<div class="dashed ${code_class}" data-code="${data.casino.bonus_first_deposit.code}">${data.casino.bonus_first_deposit.code}</div>
 										</td>
 									</tr>
-								</:foreach>
+								<:else>
+									<:foreach var="${data.casino.welcome_package}" key ="key" val="welcome_package_data">
+										<tr>
+											<td>${welcome_package_data.valid_on}</td>
+											<td>${welcome_package_data.bonus}</td>
+											<td>
+												<:if test="${welcome_package_data.min_deposit} == 'Free'">
+													<span class="table-package_free_bonus">${welcome_package_data.min_deposit}</span>
+													<:else>
+														${welcome_package_data.min_deposit}
+												</:if>
+											</td>
+											<td>
+												${welcome_package_data.wagering}
+												<a href="#" class="table-package-opener js-table-package-opener">
+													<i class="icon-chevron-down"></i>
+												</a>
+											</td>
+											<td><strong class="table-mobile-visible">Games:</strong> ${welcome_package_data.games}</td>
+											<td>
+												<:set var="code_class" val=""/>
+												<:if test="${welcome_package_data.bonus_codes} != 'No code required'">
+													<:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
+												</:if>
+
+												<div class="dashed ${code_class}" data-code="${welcome_package_data.bonus_codes}">${welcome_package_data.bonus_codes}</div>
+											</td>
+										</tr>
+									</:foreach>
+								</:if>
 							</table>
 						</div>
-						<:else>
-							<p class="no_welcome_bonuses"> No welcome bonuses</p>
+					<:else>
+						<p class="no_welcome_bonuses"> No welcome bonuses</p>
 					</:if>
 				</div>
 			</div>
