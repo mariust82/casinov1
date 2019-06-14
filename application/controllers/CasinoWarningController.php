@@ -26,7 +26,6 @@ class CasinoWarningController extends BaseController {
         $result = $casinos->getBasicInfo($this->request->attributes('validation_results')->get('name'));
 		if(!$result) throw new Lucinda\MVC\STDOUT\PathNotFoundException();
 
-
 		$this->response->attributes("casino", $result);
 
 		// get recommended casinos
@@ -34,11 +33,6 @@ class CasinoWarningController extends BaseController {
         $this->response->attributes("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
         $this->response->attributes('is_mobile',$this->request->attributes("is_mobile"));
         $this->response->attributes("page_type", "warning");
-
-
-     //   var_dump($this->request->getValidator()->parameters());die();
-     //   var_dump(strtolower($this->request->getValidator()->parameters('name')));die();
-
     }
 
     private function getSelectedEntity() {
