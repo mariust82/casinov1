@@ -3326,7 +3326,7 @@ a:hover, a:active, a:visited, a:focus {
 
 @media screen and (max-width: 690px) {
   .list-item .list-rating {
-    display:none;
+   /* display:none;*/
   }
   .list-item {
     margin-left:-10px;
