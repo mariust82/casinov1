@@ -828,7 +828,7 @@ var AJAX_CUR_PAGE = 1;
                             _targetContainer.html(data);
                             _targetAddContainer.html('');
 
-                            if (cont.length == 0 ) {
+                            if (cont.length < 100 ) {
                                 _moreButton.hide();
                                 _loaderHolder.hide();
                                 _emptyContent.show();
@@ -838,9 +838,9 @@ var AJAX_CUR_PAGE = 1;
                                 _emptyContent.hide();
                             }
 
-                            if (loadTotal <= cont.length) {
+                           /* if (loadTotal <= cont.length) {
                                 _moreButton.hide();
-                            }
+                            }*/
                             refresh();
                             AJAX_CUR_PAGE = 1;
                             _currentClick = 0;
@@ -853,7 +853,7 @@ var AJAX_CUR_PAGE = 1;
                                 _moreButton.removeClass('loading');
                                 refresh();
 
-                                if(_currentClick >= _clicks){
+                                  if (cont.length < 100 ){
                                     _moreButton.hide();
                                 }
                             }, 1000)
