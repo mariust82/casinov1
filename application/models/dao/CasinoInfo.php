@@ -170,12 +170,14 @@ class CasinoInfo
         $row = SQL($query)->toRow();
         if(empty($row)) return;
         $object = new CasinoBonus();
-        $object->amount = $row["amount"];
-        $object->min_deposit = $row["minimum_deposit"];
-        $object->wagering = $row["wagering"];
-        $object->games_allowed = $row["games"];
-        $object->code = $row["codes"];
-        $object->type = $row["name"];
+        if(strtolower($row['amount']) != 'none' && strlen($row['amount'])>0){
+            $object->amount = $row["amount"];
+            $object->min_deposit = $row["minimum_deposit"];
+            $object->wagering = $row["wagering"];
+            $object->games_allowed = $row["games"];
+            $object->code = $row["codes"];
+            $object->type = $row["name"];
+        }
         return $object;
     }
 
@@ -295,6 +297,8 @@ class CasinoInfo
                 switch ($wp_data['bonus_type_name']){
                     case 'First Deposit Bonus':
                         $full_welcome_package->valid_on  = '1st Deposit';
+                        if(strtolower($full_welcome_package->bonus) == 'none' || strlen($full_welcome_package->bonus)==0)
+                            $is_valid = false;
                     break;
 
                     case 'No Deposit Bonus':
@@ -309,7 +313,7 @@ class CasinoInfo
                     break;
 
                     case 'Welcome Package':
-                        $is_valid = true;
+                      //  $is_valid = true;
                         break;
                 }
 
