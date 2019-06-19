@@ -70,9 +70,10 @@ class CasinoInfo
         $output->withdrawal_limits = $this->getWithdrawLimits($output->id, $primaryCurrencies);
         $output->withdrawal_timeframes = $this->getWithdrawTimeframes($output->id);
         $output->bonus_first_deposit = $this->getBonus($output->id,  array("First Deposit Bonus"));
-        $output->bonus_free = $this->getBonus($output->id, array("Free Spins","No Deposit Bonus","Free Play","Bonus Spins"));
+        $output->bonus_free = !empty($output->bonus_first_deposit) ? $this->getBonus($output->id, array("Free Spins","No Deposit Bonus","Free Play","Bonus Spins")) : null ;
        // $output->bonus_type_Abbreviation = $this->getAbbreviation($output->bonus_free);
-        $output->welcome_package = $this->getWelcomePackage($output->id);
+
+        $output->welcome_package = !empty($output->bonus_first_deposit) ? $this->getWelcomePackage($output->id) : [];
 
         $output->casino_deposit_methods =  $this->getCasinoDepositMethods($output->id);
         $output->casino_game_types = $this->getGameTypes($output->id);
@@ -169,15 +170,18 @@ class CasinoInfo
         WHERE t1.casino_id = ".$id." AND t2.name IN ('".implode("','", $bonusTypes)."')";
         $row = SQL($query)->toRow();
         if(empty($row)) return;
+
+        if(strtolower($row['amount']) == 'none' || strlen($row['amount'])==0)
+            return null;
+
         $object = new CasinoBonus();
-        if(strtolower($row['amount']) != 'none' && strlen($row['amount'])>0){
-            $object->amount = $row["amount"];
-            $object->min_deposit = $row["minimum_deposit"];
-            $object->wagering = $row["wagering"];
-            $object->games_allowed = $row["games"];
-            $object->code = $row["codes"];
-            $object->type = $row["name"];
-        }
+        $object->amount = $row["amount"];
+        $object->min_deposit = $row["minimum_deposit"];
+        $object->wagering = $row["wagering"];
+        $object->games_allowed = $row["games"];
+        $object->code = $row["codes"];
+        $object->type = $row["name"];
+
         return $object;
     }
 
@@ -279,48 +283,41 @@ class CasinoInfo
                      END ASC
         ";
         $w_packages = SQL($q)->toList();
-        $is_valid = false;
+
+        if(empty($w_packages)) return [];
+
         $w_packages_data = [];
-        if(!empty($w_packages))
-        {
-            $is_valid = true;
-            foreach ($w_packages as  $wp_data){
+        foreach ($w_packages as  $wp_data){
+            $full_welcome_package = new FullWelcomePackage();
+            $full_welcome_package->valid_on =$wp_data['availability'];
+            $full_welcome_package->bonus = $wp_data['amount'];
+            $full_welcome_package->min_deposit = $wp_data['minimum_deposit'];
+            $full_welcome_package->wagering = $wp_data['wagering'];
+            $full_welcome_package->games = $wp_data['games'];
+            $full_welcome_package->bonus_codes = $wp_data['codes'];
 
-                $full_welcome_package = new FullWelcomePackage();
-                $full_welcome_package->valid_on =$wp_data['availability'];
-                $full_welcome_package->bonus = $wp_data['amount'];
-                $full_welcome_package->min_deposit = $wp_data['minimum_deposit'];
-                $full_welcome_package->wagering = $wp_data['wagering'];
-                $full_welcome_package->games = $wp_data['games'];
-                $full_welcome_package->bonus_codes = $wp_data['codes'];
+            switch ($wp_data['bonus_type_name']){
+                case 'First Deposit Bonus':
+                    $full_welcome_package->valid_on  = '1st Deposit';
+                    if(strtolower($full_welcome_package->bonus) == 'none' || strlen($full_welcome_package->bonus)==0)
+                        return [];
+                break;
 
-                switch ($wp_data['bonus_type_name']){
-                    case 'First Deposit Bonus':
-                        $full_welcome_package->valid_on  = '1st Deposit';
-                        if(strtolower($full_welcome_package->bonus) == 'none' || strlen($full_welcome_package->bonus)==0)
-                            $is_valid = false;
+                case 'No Deposit Bonus':
+                    $full_welcome_package->valid_on  = 'On sign-up';
+                    $full_welcome_package->min_deposit = 'Free';
                     break;
-
-                    case 'No Deposit Bonus':
-                        $full_welcome_package->valid_on  = 'On sign-up';
-                        $full_welcome_package->min_deposit = 'Free';
-                        break;
-                    case 'Free Spins':
-                        $full_welcome_package->valid_on  = 'On sign-up';
-                        $full_welcome_package->min_deposit = 'Free';
-                        if(strpos($full_welcome_package->bonus, 'FS') === false)
-                            $full_welcome_package->bonus = $full_welcome_package->bonus .' FS';
-                    break;
-
-                    case 'Welcome Package':
-                      //  $is_valid = true;
-                        break;
-                }
-
-                $w_packages_data[] = $full_welcome_package;
+                case 'Free Spins':
+                    $full_welcome_package->valid_on  = 'On sign-up';
+                    $full_welcome_package->min_deposit = 'Free';
+                    if(strpos($full_welcome_package->bonus, 'FS') === false)
+                        $full_welcome_package->bonus = $full_welcome_package->bonus .' FS';
+                break;
             }
+
+            $w_packages_data[] = $full_welcome_package;
         }
-         return $is_valid ? $w_packages_data : [];
+         return  $w_packages_data;
     }
 
     public function getGameTypes($casinoId){
