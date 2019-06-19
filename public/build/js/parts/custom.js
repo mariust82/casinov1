@@ -805,6 +805,7 @@ var AJAX_CUR_PAGE = 1;
 
             _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
 
+            console.log("BOOm");
                 if (_action == 'add') {
                     _moreButton.addClass('loading');
                 } else {
@@ -829,9 +830,15 @@ var AJAX_CUR_PAGE = 1;
                             _targetAddContainer.html('');
 
                             if (cont.length < 100 ) {
+                                if(cont.length>0) {
+                                    _loaderHolder.show();
+                                    _emptyContent.hide();
+                                }else{
+
+                                    _loaderHolder.hide();
+                                    _emptyContent.show();
+                                }
                                 _moreButton.hide();
-                                _loaderHolder.hide();
-                                _emptyContent.show();
                             } else {
                                 _moreButton.show();
                                 _loaderHolder.show();
