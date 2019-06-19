@@ -814,6 +814,7 @@ var AJAX_CUR_PAGE = 1;
                 if (BUSY_REQUEST) return;
                 BUSY_REQUEST = true;
                 _request.abort();
+                var limit_items = (_url == '/games-filter/') ? 24 : 100;
 
                 _request = $.ajax({
                     url: _url+AJAX_CUR_PAGE,
@@ -828,7 +829,7 @@ var AJAX_CUR_PAGE = 1;
                             _targetContainer.html(data);
                             _targetAddContainer.html('');
 
-                            if (cont.length < 100 ) {
+                            if (cont.length < limit_items ) {
                                 if(cont.length>0) {
                                     _loaderHolder.show();
                                     _emptyContent.hide();
@@ -858,7 +859,7 @@ var AJAX_CUR_PAGE = 1;
                                 _moreButton.removeClass('loading');
                                 refresh();
 
-                                  if (cont.length < 100 ){
+                                  if (cont.length < limit_items ){
                                     _moreButton.hide();
                                 }
                             }, 1000)
