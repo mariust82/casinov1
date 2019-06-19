@@ -242,7 +242,7 @@
 				</div>
 				<div class="box">
 					<div class="title title-small">Welcome package</div>
-					<:if test="${data.first_deposit_amount} != 'none' ||  ${data.first_deposit_amount} == ''">
+					<:if test="!empty(${data.casino.bonus_free})">
 						<div class="bonus-holder">
 							<:if test="!empty(${data.casino.bonus_free})">
 								<div class="bonus-item">
@@ -285,7 +285,7 @@
 			<div class="container">
 				<div class="box box-alt2">
 					<div class="title title-middle">Full Welcome Package</div>
-					<:if test="${data.first_deposit_amount} != 'none'">
+					<:if test="!empty(${data.casino.welcome_package})">
 						<div class="section-content">
 							<table class="table table-package">
 								<tr>
@@ -296,85 +296,34 @@
 									<th>Games</th>
 									<th>Bonus Code</th>
 								</tr>
-								<:if test="empty(${data.casino.welcome_package})">
+								<:foreach var="${data.casino.welcome_package}" key ="key" val="welcome_package_data">
 									<tr>
-										<td>1st Deposit</td>
-										<td>${data.casino.bonus_first_deposit.amount}</td>
-										<td>${data.casino.bonus_first_deposit.min_deposit}</td>
+										<td>${welcome_package_data.valid_on}</td>
+										<td>${welcome_package_data.bonus}</td>
 										<td>
-											${data.casino.bonus_first_deposit.wagering}
+											<:if test="${welcome_package_data.min_deposit} == 'Free'">
+												<span class="table-package_free_bonus">${welcome_package_data.min_deposit}</span>
+												<:else>
+													${welcome_package_data.min_deposit}
+											</:if>
+										</td>
+										<td>
+											${welcome_package_data.wagering}
 											<a href="#" class="table-package-opener js-table-package-opener">
 												<i class="icon-chevron-down"></i>
 											</a>
 										</td>
-										<td><strong class="table-mobile-visible">Games:</strong> ${data.casino.bonus_first_deposit.games_allowed}</td>
+										<td><strong class="table-mobile-visible">Games:</strong> ${welcome_package_data.games}</td>
 										<td>
 											<:set var="code_class" val=""/>
-											<:if test="${data.casino.bonus_first_deposit.code} != 'No code required'">
+											<:if test="${welcome_package_data.bonus_codes} != 'No code required'">
 												<:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
 											</:if>
 
-											<div class="dashed ${code_class}" data-code="${data.casino.bonus_first_deposit.code}">${data.casino.bonus_first_deposit.code}</div>
+											<div class="dashed ${code_class}" data-code="${welcome_package_data.bonus_codes}">${welcome_package_data.bonus_codes}</div>
 										</td>
 									</tr>
-                                    <:if test="!empty(${data.casino.bonus_free})">
-                                        <tr>
-                                            <td>${data.casino.bonus_free.type}</td>
-                                            <td>${data.casino.bonus_free.amount}</td>
-                                            <td>
-                                                <:if test="${data.casino.bonus_free.min_deposit} == ''">
-                                                    0
-                                                <:else>
-                                                    ${data.casino.bonus_free.min_deposit}
-                                                </:if>
-                                            </td>
-                                            <td>
-                                                ${data.casino.bonus_free.wagering}
-                                                <a href="#" class="table-package-opener js-table-package-opener">
-                                                    <i class="icon-chevron-down"></i>
-                                                </a>
-                                            </td>
-                                            <td><strong class="table-mobile-visible">Games:</strong> ${data.casino.bonus_free.games_allowed}</td>
-                                            <td>
-                                                <:set var="code_class" val=""/>
-                                                <:if test="${data.casino.bonus_free.code} != 'No code required'">
-                                                    <:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
-                                                </:if>
-
-                                                <div class="dashed ${code_class}" data-code="${data.casino.bonus_free.code}">${data.casino.bonus_free.code}</div>
-                                            </td>
-                                        </tr>
-                                    </:if>
-								<:else>
-									<:foreach var="${data.casino.welcome_package}" key ="key" val="welcome_package_data">
-										<tr>
-											<td>${welcome_package_data.valid_on}</td>
-											<td>${welcome_package_data.bonus}</td>
-											<td>
-												<:if test="${welcome_package_data.min_deposit} == 'Free'">
-													<span class="table-package_free_bonus">${welcome_package_data.min_deposit}</span>
-													<:else>
-														${welcome_package_data.min_deposit}
-												</:if>
-											</td>
-											<td>
-												${welcome_package_data.wagering}
-												<a href="#" class="table-package-opener js-table-package-opener">
-													<i class="icon-chevron-down"></i>
-												</a>
-											</td>
-											<td><strong class="table-mobile-visible">Games:</strong> ${welcome_package_data.games}</td>
-											<td>
-												<:set var="code_class" val=""/>
-												<:if test="${welcome_package_data.bonus_codes} != 'No code required'">
-													<:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
-												</:if>
-
-												<div class="dashed ${code_class}" data-code="${welcome_package_data.bonus_codes}">${welcome_package_data.bonus_codes}</div>
-											</td>
-										</tr>
-									</:foreach>
-								</:if>
+								</:foreach>
 							</table>
 						</div>
 					<:else>

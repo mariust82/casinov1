@@ -163,10 +163,11 @@ class CasinoInfo
     }
 
     private function getBonus($id, $bonusTypes) {
-        $row = SQL("
+        $query = "
         SELECT t1.*, t2.name FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
-        WHERE t1.casino_id = ".$id." AND t2.name IN ('".implode("','", $bonusTypes)."')")->toRow();
+        WHERE t1.casino_id = ".$id." AND t2.name IN ('".implode("','", $bonusTypes)."')";
+        $row = SQL($query)->toRow();
         if(empty($row)) return;
         $object = new CasinoBonus();
         $object->amount = $row["amount"];
@@ -275,12 +276,12 @@ class CasinoInfo
                      WHEN t2.name = 'Welcome Package' THEN 3
                      END ASC
         ";
-
         $w_packages = SQL($q)->toList();
         $is_valid = false;
         $w_packages_data = [];
         if(!empty($w_packages))
         {
+            $is_valid = true;
             foreach ($w_packages as  $wp_data){
 
                 $full_welcome_package = new FullWelcomePackage();
@@ -315,7 +316,7 @@ class CasinoInfo
                 $w_packages_data[] = $full_welcome_package;
             }
         }
-        return $is_valid ? $w_packages_data : [];
+         return $is_valid ? $w_packages_data : [];
     }
 
     public function getGameTypes($casinoId){
