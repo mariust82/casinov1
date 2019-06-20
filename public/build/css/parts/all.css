@@ -3611,7 +3611,9 @@ a:hover, a:active, a:visited, a:focus {
     font-size: 10px;
     padding: 0;
     width: 22px;
-    line-height: 1.2;
+    height:15px;
+    line-height: 15px;
+    border-radius:2px;
   }
 }
 
@@ -3880,6 +3882,12 @@ a:hover, a:active, a:visited, a:focus {
 
 .list-rating.terrible .list-rating-score {
   background: #DB2424;
+}
+
+@media screen and (max-width: 690px) {
+  .list-rating-wrap {
+    border:none !important;
+  }
 }
 
 
