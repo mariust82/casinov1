@@ -3325,11 +3325,6 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 @media screen and (max-width: 850px) {
-    
-  .list-item .list-flag {
-      margin-left: -5px;
-  }
-  
   .list-item {
     margin-left:-10px;
     margin-right:-10px;
@@ -3377,7 +3372,11 @@ a:hover, a:active, a:visited, a:focus {
 
 @media screen and (max-width: 690px) {
   .list-item-cell.list-item-casino {
-    width: 50%;
+    width: 54%;
+  }
+
+  .low_wagering_list .list-item-cell.list-item-casino {
+    width: 47%;
   }
 }
 
@@ -3550,6 +3549,9 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 690px) {
   .list-item-cell-buttons {
     width: 10%;
+  }
+  .low_wagering_list .list-item-cell-buttons{
+    width: 13%;
   }
   .list-item-cell-buttons .btn-small {
     display: none;
@@ -3799,6 +3801,12 @@ a:hover, a:active, a:visited, a:focus {
   width: 80px;
 }
 
+@media screen and (max-width: 690px) {
+  .list-rating {
+    margin: 0 8px 0 0;
+  }
+}
+
 .list-rating-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3976,6 +3984,9 @@ a:hover, a:active, a:visited, a:focus {
     font-size: 12px;
     padding: 5px 8px;
     max-width:95%;
+  }
+  .low_wagering_list .btn-round{
+    max-width:90%;
   }
 }
 .btn {
