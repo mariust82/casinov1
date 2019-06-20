@@ -19,7 +19,8 @@
 
 			<div class="data-container-holder">
 				<div class="holder">
-					<div class="data-container" data-type="${data.page_type}" data-type-value="${data.selected_entity}">
+				    <:set var="low_wagering_class" val="(${data.selected_entity} == 'Low Wagering' ? 'low_wagering_list' : ''  )"/>
+					<div class="data-container ${low_wagering_class}" data-type="${data.page_type}" data-type-value="${data.selected_entity}">
 						<div class="qty-items" data-load-total="${data.total_casinos}">${data.total_casinos} results</div>
 						<:if test="${data.selected_entity} == 'New'">
 							<casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
@@ -29,7 +30,7 @@
 							<casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
 						</:if>
 					</div>
-					<div class="data-add-container" data-total="${data.total_casinos}"></div>
+					<div class="data-add-container ${low_wagering_class}" data-total="${data.total_casinos}"></div>
 				</div>
 				<filter:reset/>
 			</div>
