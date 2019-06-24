@@ -25,7 +25,7 @@ class SiteCasinoClick extends CasinoClick
     {
         $casino = new Casinos();
         $name = $casino->getName($id);
-        return '/warn/'. str_replace(" ","-", $name);
+        return '/warn/'. str_replace(" ","-", strtolower($name));
     }
 
     protected function getAffiliateLinkByBonus($bonusID)
