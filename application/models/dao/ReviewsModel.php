@@ -11,9 +11,9 @@ class ReviewsModel{
     public function saveComment(){
 
         $review = new CasinoReview();
-        $review->name = $this->reviewData['name'];
+        $review->name = htmlspecialchars($this->reviewData['name']);
         $review->email = $this->reviewData['email'];
-        $review->body = $this->reviewData['body'];
+        $review->body = htmlspecialchars($this->reviewData['body']);
         $review->ip = $this->reviewData['user_ip'];
         $review->country = $this->reviewData['country'];// $this->request->attributes("country")->id;
         $review->parent = $this->reviewData["parent"];

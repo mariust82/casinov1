@@ -4,6 +4,55 @@ var AJAX_CUR_PAGE = 1;
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
+   /* window.onload = function(e)
+    {
+        var divs = document.getElementsByClassName("tms_iframe");
+        for(var i=0; i<divs.length; i++)
+        {
+            var old_obj = divs[i];
+            var iframe = document.createElement("iframe");
+            iframe.setAttribute('class',old_obj.getAttribute('class'));
+            iframe.setAttribute('src',old_obj.getAttribute('data-src'));
+            iframe.setAttribute('width',old_obj.getAttribute('data-width'));
+            iframe.setAttribute('height',old_obj.getAttribute('data-height'));
+            iframe.setAttribute('frameborder',old_obj.getAttribute('data-frameborder'));
+            iframe.setAttribute('allow',old_obj.getAttribute('data-allow'));
+            iframe.setAttribute('allowfullscreen','');
+            old_obj.replaceWith(iframe);
+        }
+    };*/
+
+    var fullScreenIframe = function() {
+
+        'use strict';
+        var tmsWrapper = document.getElementsByClassName('show-text-visible');
+        if (tmsWrapper !== null) {
+            var i;
+            for (i = 0; i < tmsWrapper.length; i++) {
+                var iframe = tmsWrapper[i].getElementsByTagName('iframe');
+                if (iframe.length > 0) {
+                    var j;
+                    for (j = 0; j < iframe.length; j++) {
+                        responsiveIframe(iframe[j]);
+                    }
+                }
+            }
+        }
+
+        function responsiveIframe(iframe) {
+            var width = iframe.getAttribute('width');
+            var height = iframe.getAttribute('height');
+            var aspectRatio = height / width;
+
+            iframe.style.width = '100%';
+
+            window.addEventListener("resize", function () {
+                iframe.style.height = iframe.clientWidth * aspectRatio + 'px';
+            });
+            window.dispatchEvent(new Event('resize'));
+        }
+    };
+
     $(document).ready(function() {
         initToggleMenu();
         initSite();
@@ -13,7 +62,7 @@ var AJAX_CUR_PAGE = 1;
 
         var user_rate = $('.rating-container').data('user-rate');
 
-        console.log($('.box img.not-accepted').length);
+        //console.log($('.box img.not-accepted').length);
 
         if($('.box img.not-accepted').length ){
             $('.br-widget a').unbind("mouseenter mouseleave mouseover click");
@@ -30,6 +79,17 @@ var AJAX_CUR_PAGE = 1;
                 $('.br-widget').unbind("mouseenter mouseleave mouseover click");
             }
         }
+
+        setTimeout(function() {
+            $(".tms_iframe").map(function () {
+                var iframe = document.createElement("iframe");
+                $.each(this.attributes, function () {
+                    iframe.setAttribute(this.name.replace("data-", ""), this.value);
+                });
+                this.after(iframe);
+            });
+            fullScreenIframe();
+        }, 300);
 
     });
 
@@ -754,6 +814,7 @@ var AJAX_CUR_PAGE = 1;
                 if (BUSY_REQUEST) return;
                 BUSY_REQUEST = true;
                 _request.abort();
+                var limit_items = (_url == '/games-filter/') ? 24 : 100;
 
                 _request = $.ajax({
                     url: _url+AJAX_CUR_PAGE,
@@ -768,19 +829,24 @@ var AJAX_CUR_PAGE = 1;
                             _targetContainer.html(data);
                             _targetAddContainer.html('');
 
-                            if (cont.length == 0 ) {
+                            if (cont.length < limit_items ) {
+                                if(cont.length>0) {
+                                    _loaderHolder.show();
+                                    _emptyContent.hide();
+                                }else{
+                                    _loaderHolder.hide();
+                                    _emptyContent.show();
+                                }
                                 _moreButton.hide();
-                                _loaderHolder.hide();
-                                _emptyContent.show();
                             } else {
                                 _moreButton.show();
                                 _loaderHolder.show();
                                 _emptyContent.hide();
                             }
 
-                            if (loadTotal <= cont.length) {
+                           /* if (loadTotal <= cont.length) {
                                 _moreButton.hide();
-                            }
+                            }*/
                             refresh();
                             AJAX_CUR_PAGE = 1;
                             _currentClick = 0;
@@ -793,7 +859,7 @@ var AJAX_CUR_PAGE = 1;
                                 _moreButton.removeClass('loading');
                                 refresh();
 
-                                if(_currentClick >= _clicks){
+                                  if (cont.length < limit_items ){
                                     _moreButton.hide();
                                 }
                             }, 1000)
@@ -2284,7 +2350,7 @@ var AJAX_CUR_PAGE = 1;
                             $(this).toggleClass(buttonclass+'_active');
 
                             if (element.css('max-height') !== 'none') {
-                                element.css({'height': linescount, 'max-height': ''}).animate({height:fullheight}, settings.animationspeed, function () {
+                                element.css({'height': linescount, 'max-height': ''}).animate({height:'100%'}, settings.animationspeed, function () {
                                     moreLinesButton.html(settings.buttontxtless);
                                 });
 

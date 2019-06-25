@@ -3324,16 +3324,17 @@ a:hover, a:active, a:visited, a:focus {
   }
 }
 
-@media screen and (max-width: 690px) {
-  .list-item .list-rating {
-    display:none;
-  }
+@media screen and (max-width: 850px) {
   .list-item {
     margin-left:-10px;
     margin-right:-10px;
     padding:10px;
     width:auto;
   }
+  
+.low_wagering_list .list-item .list-rating{
+    display:none;
+    }
 }
 
 .list-item-trun {
@@ -3371,7 +3372,11 @@ a:hover, a:active, a:visited, a:focus {
 
 @media screen and (max-width: 690px) {
   .list-item-cell.list-item-casino {
-    width: 50%;
+    width: 54%;
+  }
+
+  .low_wagering_list .list-item-cell.list-item-casino {
+    width: 47%;
   }
 }
 
@@ -3545,6 +3550,9 @@ a:hover, a:active, a:visited, a:focus {
   .list-item-cell-buttons {
     width: 10%;
   }
+  .low_wagering_list .list-item-cell-buttons{
+    width: 13%;
+  }
   .list-item-cell-buttons .btn-small {
     display: none;
   }
@@ -3603,7 +3611,9 @@ a:hover, a:active, a:visited, a:focus {
     font-size: 10px;
     padding: 0;
     width: 22px;
-    line-height: 1.2;
+    height:15px;
+    line-height: 15px;
+    border-radius:2px;
   }
 }
 
@@ -3724,7 +3734,11 @@ a:hover, a:active, a:visited, a:focus {
   }
 
   .list-flag {
-    margin: 0 8px 0 0;
+    margin: 0 3px 0 0;
+  }
+  .list-rating {
+     margin: 0 8px 0 0;
+      
   }
 }
 
@@ -3787,6 +3801,12 @@ a:hover, a:active, a:visited, a:focus {
 .list-rating {
   margin: 0 10px 0 0;
   width: 80px;
+}
+
+@media screen and (max-width: 690px) {
+  .list-rating {
+    margin: 0 8px 0 0;
+  }
 }
 
 .list-rating-wrap {
@@ -3862,6 +3882,12 @@ a:hover, a:active, a:visited, a:focus {
 
 .list-rating.terrible .list-rating-score {
   background: #DB2424;
+}
+
+@media screen and (max-width: 690px) {
+  .list-rating-wrap {
+    border:none !important;
+  }
 }
 
 
@@ -3966,6 +3992,9 @@ a:hover, a:active, a:visited, a:focus {
     font-size: 12px;
     padding: 5px 8px;
     max-width:95%;
+  }
+  .low_wagering_list .btn-round{
+    max-width:90%;
   }
 }
 .btn {
@@ -8840,4 +8869,17 @@ img.grayscale {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+}
+
+.no_welcome_bonuses{
+  font-size: 14px;
+  color: #465156;
+  font-family: "Open Sans";
+  text-align: left;
+}
+
+@media screen and (max-width: 690px) {
+  .no_welcome_bonuses{
+      font-size: 13px;
+  }
 }
