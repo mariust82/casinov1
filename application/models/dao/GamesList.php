@@ -50,8 +50,9 @@ class GamesList
 
     public function getTotal() {
         // build query
-        $query = $this->getQuery(array("COUNT(t1.id) AS nr"));
-        return (integer) SQL($query)->toValue();
+        $query = $this->getQuery(["COUNT(t1.id) AS nr"]);
+        $result =SQL($query)->toValue();
+        return $result;
     }
 
     private function getQuery($columns) {
