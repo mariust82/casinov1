@@ -16,7 +16,7 @@ class Newest extends \TMS\VariablesHolder {
 
         $results = $object->getResults(CasinoSortCriteria::NEWEST, 0, 1);
         if($results){
-            $casino = $results[0];
+            $casino = reset($results);
             $casinoCode = strtolower(str_replace(" ","-", $casino->name));
             return '<a href="/visit/'.$casinoCode.'">'.$casino->name.'</a>';
         }
