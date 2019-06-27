@@ -101,6 +101,7 @@ button, input, optgroup, select, textarea {
 
 html {
   font-family: sans-serif;
+  font-display: swap;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -154,6 +155,7 @@ img, figure {
 
 @font-face {
   font-family: 'icomoon';
+  font-display: swap;
   src: url("../../fonts/icomoon.eot?stten7");
   src: url("../../fonts/icomoon.eot?stten7#iefix") format("embedded-opentype"), url("../../fonts/icomoon.ttf?stten7") format("truetype"), url("../../fonts/icomoon.woff?stten7") format("woff"), url("../../fonts/icomoon.svg?stten7#icomoon") format("svg");
   font-weight: normal;
@@ -163,6 +165,7 @@ img, figure {
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
+  font-display: swap;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -2193,6 +2196,7 @@ html {
 
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-display: swap;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.4;
@@ -3702,6 +3706,7 @@ a:hover, a:active, a:visited, a:focus {
   font-stretch: condensed;
   font-weight: bold;
   font-family:"Open Sans Condensed";
+  font-display: swap;
   text-align: center;
   position: relative;
   z-index: 3;
@@ -3712,6 +3717,7 @@ a:hover, a:active, a:visited, a:focus {
   .new-casino-text {
     font-size: 9px;
     font-family:"Open Sans";
+    font-display: swap;
   }
 }
 
@@ -5966,6 +5972,7 @@ a:hover, a:active, a:visited, a:focus {
 .review {
   width: 100%;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-display: swap;
   color: #646464;
 }
 
@@ -6034,6 +6041,7 @@ a:hover, a:active, a:visited, a:focus {
 .review.admin .review-flag:before {
   content: '\e923';
   font-family: 'icomoon' !important;
+  font-display: swap;
   color: #2171CE;
   font-size: 12px;
   display: inline-block;
@@ -6554,6 +6562,7 @@ a:hover, a:active, a:visited, a:focus {
           align-items: baseline;
   overflow: hidden;
   font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-display: swap;
   display: none;
 }
 
@@ -7050,6 +7059,7 @@ a:hover, a:active, a:visited, a:focus {
   transition: transform .3s;
   transition: transform .3s, -webkit-transform .3s;
   font-family: 'icomoon' !important;
+  font-display: swap;
   content: "\e901";
   font-size: 5px;
   color: #60686A;
@@ -7183,6 +7193,7 @@ a:hover, a:active, a:visited, a:focus {
 
 .select2-container--default .select2-results__option[aria-selected=true] .wrap:after {
   font-family: 'icomoon';
+  font-display: swap;
   content: '\e907';
   position: absolute;
   top: 10px;
@@ -8436,6 +8447,7 @@ img.grayscale {
 [type="checkbox"]:not(:checked) + label:after,
 [type="checkbox"]:checked + label:after {
   font-family: 'icomoon' !important;
+  font-display: swap;
   content: '\e907';
   position: absolute;
   top: 50%;
@@ -8883,6 +8895,7 @@ img.grayscale {
   font-size: 14px;
   color: #465156;
   font-family: "Open Sans";
+  font-display: swap;
   text-align: left;
 }
 
