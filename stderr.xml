@@ -63,5 +63,6 @@
     <exception class="Lucinda\SQL\StatementException" error_type="SYNTAX" controller="ErrorsController"/>
     <exception class="Lucinda\MVC\STDERR\PHPException" error_type="SYNTAX" controller="ErrorsController"/>
     <exception class="Lucinda\Templating\ViewException" error_type="SYNTAX" controller="ErrorsController"/>
+    <exception class="OperationFailedException" http_status="400" error_type="CLIENT" view="400"/>
   </exceptions>
 </xml>

@@ -1,6 +1,6 @@
 <?php
 require_once("application/models/GamePlayCounterUpdate.php");
-require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedException.php");
+require_once("application/models/OperationFailedException.php");
 
 /*
 * Increments play count of a game
