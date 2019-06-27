@@ -140,7 +140,9 @@
 						</div>
 					<:else>
 						<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
-							<span class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
+							<:if test="${result.bonus_first_deposit.amount}">
+								<span class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
+							</:if>
 						</div>
 						<div class="list-item-cell list-item-alt-bonus">
 							<:if test="${result.bonus_free}">
