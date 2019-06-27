@@ -23,6 +23,8 @@
 	<div class="list-body">
 		<:set var="i" val="0"/>
 		<:foreach var="$[data]" val="result">
+			<:set var="fdb_amount" val="${result.bonus_first_deposit.amount}"/>
+
 			<div class="list-item loaded-item">
 				<div class="list-item-cell list-item-casino">
 					<:if test="${result.new} == true && ${data.selected_entity} != 'New'">
@@ -122,9 +124,9 @@
 									</span>
 								</div>
 							</:if>
-							<:if test="!empty(${result.bonus_first_deposit.amount}) && ${result.bonus_first_deposit.amount} !== 'NONE' && ${result.bonus_first_deposit.amount} !== 'None'">
+							<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
 								<div class="btn-round-holder">
-									<span class="btn-round" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
+									<span class="btn-round" data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
 								</div>
 							</:if>
 						</div>
@@ -140,8 +142,8 @@
 						</div>
 					<:else>
 						<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
-							<:if test="!empty(${result.bonus_first_deposit.amount}) && ${result.bonus_first_deposit.amount} !== 'NONE' && ${result.bonus_first_deposit.amount} !== 'None'">
-								<span class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</span>
+							<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
+								<span class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
 							</:if>
 						</div>
 						<div class="list-item-cell list-item-alt-bonus">
