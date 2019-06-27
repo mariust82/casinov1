@@ -117,21 +117,21 @@
     </route>
     <route url="games-filter" controller="GamesFilterController" view="games-list"/>
     <route url="search" controller="SearchController" format="json">
-      <parameter name="value" validator="StringValidator"/>
+      <parameter name="value" validator="SearchValidator"/>
     </route>
     <route url="search/advanced" controller="SearchAdvancedController" view="search">
-      <parameter name="value" validator="StringValidator"/>
+      <parameter name="value" validator="SearchValidator"/>
     </route>
     <route url="search/more-lists/(page)" controller="SearchMoreListsController" format="json">
-      <parameter name="value" validator="StringValidator"/>
+      <parameter name="value" validator="SearchValidator"/>
       <parameter name="page" validator="IntegerValidator"/>
     </route>
     <route url="search/more-casinos/(page)" controller="SearchMoreCasinosController" format="json">
-      <parameter name="value" validator="StringValidator"/>
+      <parameter name="value" validator="SearchValidator"/>
       <parameter name="page" validator="IntegerValidator"/>
     </route>
     <route url="search/more-games/(page)" controller="SearchMoreGamesController" format="json">
-      <parameter name="value" validator="StringValidator"/>
+      <parameter name="value" validator="SearchValidator"/>
       <parameter name="page" validator="IntegerValidator"/>
     </route>
     <route url="casino/rate" controller="CasinoRateController" format="json">
