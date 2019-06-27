@@ -828,6 +828,8 @@ var AJAX_CUR_PAGE = 1;
                         if (_action == 'replace') {
                             _targetContainer.html(data);
                             _targetAddContainer.html('');
+                            $('.qty-items').attr('data-load-total',loadTotal);
+                            $('.qty-items-quantity').text(loadTotal);
 
                             if (cont.length < limit_items ) {
                                 if(cont.length>0) {
