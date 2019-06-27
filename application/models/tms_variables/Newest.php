@@ -14,8 +14,9 @@ class Newest extends \TMS\VariablesHolder {
         $filter = new CasinoFilter($filterParams, $this->parameters["response"]->attributes("country"));
         $object = new CasinosList($filter);
 
-        $casino = $object->getResults(CasinoSortCriteria::NEWEST, 0, 1)[0];
-        if($casino){
+        $results = $object->getResults(CasinoSortCriteria::NEWEST, 0, 1);
+        if($results){
+            $casino = $results[0];
             $casinoCode = strtolower(str_replace(" ","-", $casino->name));
             return '<a href="/visit/'.$casinoCode.'">'.$casino->name.'</a>';
         }
