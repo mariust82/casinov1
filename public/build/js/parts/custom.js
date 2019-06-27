@@ -1536,7 +1536,6 @@ var AJAX_CUR_PAGE = 1;
                 $('#site-content').html('').append(contentBeforeSearch);
                 $('.js-search-drop').show();
                 $('body').removeClass('advanced-search-opened');
-
                 _searchInput.blur();
                 setTimeout(function(){
                     initSite();
@@ -2201,7 +2200,7 @@ var AJAX_CUR_PAGE = 1;
         });
 
         _btnMobileClose.on('click', function(e) {
-            _input.val('').focus();
+            _input.val('').blur();
             $('body').removeClass('mobile-search-opened');
         });
 
