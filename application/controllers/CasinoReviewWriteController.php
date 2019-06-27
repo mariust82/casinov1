@@ -1,9 +1,9 @@
 <?php
 
 require_once("application/models/dao/CasinoReviews.php");
-require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedException.php");
 require_once 'application/models/dao/Casinos.php';
 require_once 'application/models/dao/CasinoReviewsModel.php';
+require_once("application/models/OperationFailedException.php");
 
 /*
 * Writes a review on a casino

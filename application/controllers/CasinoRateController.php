@@ -1,7 +1,7 @@
 <?php
 require_once("application/models/dao/Casinos.php");
 require_once("application/models/dao/BestCasinoLabel.php");
-require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedException.php");
+require_once("application/models/OperationFailedException.php");
 
 /*
 * Rates a casino.
