@@ -46,6 +46,7 @@ class CasinoInfoController extends BaseController {
         }
         $this->response->attributes('country_status',$this->get_country_status($info->is_country_accepted));
         $this->response->attributes('add_text',$this->containsCasino($info->name));
+         $this->response->attributes('country_status_text',$object->getCountryStatusText($this->response->attributes('country_status')));
 	}
 
 	protected function pageInfo(){
