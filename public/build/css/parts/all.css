@@ -4211,9 +4211,6 @@ a:hover, a:active, a:visited, a:focus {
 }
 
 @media screen and (max-width: 690px) {
-  .list-rating-wrap {
-    border:none !important;
-  }
 }
 
 
