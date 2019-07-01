@@ -4,24 +4,6 @@ var AJAX_CUR_PAGE = 1;
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
-   /* window.onload = function(e)
-    {
-        var divs = document.getElementsByClassName("tms_iframe");
-        for(var i=0; i<divs.length; i++)
-        {
-            var old_obj = divs[i];
-            var iframe = document.createElement("iframe");
-            iframe.setAttribute('class',old_obj.getAttribute('class'));
-            iframe.setAttribute('src',old_obj.getAttribute('data-src'));
-            iframe.setAttribute('width',old_obj.getAttribute('data-width'));
-            iframe.setAttribute('height',old_obj.getAttribute('data-height'));
-            iframe.setAttribute('frameborder',old_obj.getAttribute('data-frameborder'));
-            iframe.setAttribute('allow',old_obj.getAttribute('data-allow'));
-            iframe.setAttribute('allowfullscreen','');
-            old_obj.replaceWith(iframe);
-        }
-    };*/
-
     var fullScreenIframe = function() {
 
         'use strict';
