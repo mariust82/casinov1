@@ -9,11 +9,11 @@
             <file name="jquery-select2"/>
             <file name="swiper"/>
             <file name="tooltipster"/>
+        </file>
+        <file name="main">
             <file name="custom"/>
             <file name="gameplay"/>
         </file>
-
-<!--<file name="main"></file>-->
     </js>
     <css source="public/build/css/parts" destination="public/build/css/compilations">
     </css>
