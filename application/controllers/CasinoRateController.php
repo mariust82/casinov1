@@ -1,7 +1,7 @@
 <?php
 require_once("application/models/dao/Casinos.php");
 require_once("application/models/dao/BestCasinoLabel.php");
-require_once("application/models/OperationFailedException.php");
+require_once("application/models/UserOperationFailedException.php");
 
 /*
 * Rates a casino.
@@ -28,9 +28,9 @@ class CasinoRateController extends Lucinda\MVC\STDOUT\Controller {
                $object = new BestCasinoLabel();
                $object->checkRatedCasino($casinoID);
            }
-           if(!$success) throw new OperationFailedException("Casino already rated!");
+           if(!$success) throw new UserOperationFailedException("Casino already rated!");
         }else { // if country is not accepted by casino, here, the exception is throed.
-            throw new OperationFailedException("Your country is not supported!");
+            throw new UserOperationFailedException("Your country is not supported!");
         }
 	}
 }
