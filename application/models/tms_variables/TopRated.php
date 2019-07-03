@@ -17,7 +17,7 @@ class TopRated extends \TMS\VariablesHolder {
         $casino = $object->getResults(CasinoSortCriteria::TOP_RATED, 0, 1)[0];
         if($casino){
             $casinoCode = strtolower(str_replace(" ","-", $casino->name));
-            return '<a href="/visit/'.$casinoCode.'">'.$casino->name.'</a>';
+            return '<a href="/reviews/'.$casinoCode.'-review">'.$casino->name.'</a>';
         }
     }
 
@@ -30,7 +30,7 @@ class TopRated extends \TMS\VariablesHolder {
         ")->toValue();
         if($casinoName) {
             $casinoCode = strtolower(str_replace(" ", "-", $casinoName));
-            return '<a href="/visit/' . $casinoCode . '">' . $casinoName . '</a>';
+            return '<a href="/reviews/'.$casinoCode.'-review">' . $casinoName . '</a>';
         }
     }
 
