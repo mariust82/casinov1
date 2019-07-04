@@ -16,7 +16,7 @@ class GamePlayCounterUpdate
         if($session->contains("games_played")) {
             $games_played = $session->get("games_played");
             if(isset($games_played[$currentGameID])) {
-                throw new OperationFailedException("Game already played!");
+                throw new UserOperationFailedException("Game already played!");
             }
         }
         return $games_played;

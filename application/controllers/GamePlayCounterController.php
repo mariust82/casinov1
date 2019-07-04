@@ -1,6 +1,6 @@
 <?php
 require_once("application/models/GamePlayCounterUpdate.php");
-require_once("application/models/OperationFailedException.php");
+require_once("application/models/UserOperationFailedException.php");
 
 /*
 * Increments play count of a game

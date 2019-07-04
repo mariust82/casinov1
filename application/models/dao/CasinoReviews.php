@@ -122,7 +122,11 @@ class CasinoReviews
 
     }
 
+    public function getCountryStatusText($status){
 
+       $status_text = str_replace("-"," ",$status);
+       return $status_text;
+    }
 
 
 
