@@ -1795,14 +1795,6 @@ corresponds to the arrow we want to display */
   font-weight: bold;
 }
 
-.select2-container--default .select2-selection--single .select2-selection__placeholder {
-  color: #999;
-}
-
-.select2-container--default .select2-selection--single:hover .select2-selection__placeholder {
-  color: #fff;
-}
-
 .select2-container--default .select2-selection--single .select2-selection__arrow {
   height: 26px;
   position: absolute;
