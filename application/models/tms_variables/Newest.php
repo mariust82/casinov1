@@ -18,7 +18,7 @@ class Newest extends \TMS\VariablesHolder {
         if($results){
             $casino = reset($results);
             $casinoCode = strtolower(str_replace(" ","-", $casino->name));
-            return '<a href="/visit/'.$casinoCode.'">'.$casino->name.'</a>';
+            return '<a href="/reviews/'.$casinoCode.'-review">'.$casino->name.'</a>';
         }
 
     }
