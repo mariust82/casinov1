@@ -12,6 +12,7 @@ class CasinosMenu
         "/casinos/low-wagering" => "Low Wagering Casinos",
         "/casinos/new"=>"New Casinos",
         "/casinos/stay-away"=>"Stay Away Casinos",
+        "/casinos/no-account-casinos" => "No Account Casinos",
         "/casinos"=>"All Casinos",
     ];
     public $soft_arr;
@@ -109,6 +110,9 @@ class CasinosMenu
             case "countries-list/".$this->generatePathParameter($country):
                 return "/countries-list/{country}";
                 break;
+            case "casinos/no-account-casinos":
+                 return "/casinos/no-account-casinos";
+                 break;
             default:
                 return "/{page}";
                 break;
