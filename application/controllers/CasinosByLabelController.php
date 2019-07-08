@@ -51,22 +51,13 @@ class CasinosByLabelController extends CasinosListController {
         $selectedEntity = $this->getSelectedEntity();
         $casinoNumber =  !empty($this->response->attributes("total_casinos")) ? $this->response->attributes("total_casinos") : '';
         switch ($selectedEntity){
-            case 'best':
-                $url = 'casinos/best';
-                break;
-            case 'stay away':
-                $url = 'casinos/stay-away';
-                break;
-            case 'popular':
-                $url = 'casinos/popular';
-                break;
             case 'Mobile':
                 $url = 'compatability/mobile';  // casinos/mobile
                 break;
-            case 'low wagering':
-                $url = 'casinos/low-wagering';
-                break;
+            default:
+                $url = 'casinos/'.str_replace(" ","-",$selectedEntity);
         }
+
         $this->response->attributes("page_info", $object->getInfoByURL($url, $this->response->attributes("selected_entity"), $casinoNumber));
     }
 }

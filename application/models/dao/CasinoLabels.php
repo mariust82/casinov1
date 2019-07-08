@@ -13,6 +13,7 @@ class CasinoLabels implements CasinoCounter
         'eCOGRA',
         'Stay away',
         'Popular',
+        'No Account Casinos',
     ];
 
     public function getCasinosCount() {
