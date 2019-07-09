@@ -192,6 +192,11 @@ class CasinosListQuery
                 case CasinoSortCriteria::WAGERING:
                     $orderBy->add("t5.id" , "ASC");
                     break;
+                case CasinoSortCriteria::NO_ACCOUNT:
+                    $orderBy->add("t1.priority" , "DESC");
+                    $orderBy->add("t1.date_established" , "DESC");
+                    $orderBy->add("t1.id" , "DESC");
+                    break;
                 default:
                     $orderBy->add('complex_case', 'ASC' );
                     $orderBy->add("t1.priority" , "DESC");
