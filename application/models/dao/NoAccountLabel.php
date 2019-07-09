@@ -11,7 +11,6 @@ require_once("entities/NoAccountLabelFilter.php");
 class NoAccountLabel
 {
     private $filter;
-    private $from_sync;
     const NO_ACCOUNT_LIMIT = 100;
 
     public function __construct()
@@ -24,12 +23,8 @@ class NoAccountLabel
         $this->filter->label_id = 11;
     }
 
-    public function resetNoAccountLabel(){
-        SQL("DELETE FROM casinos__labels WHERE label_id = 11");
-    }
-
     public function resetNoAccountLabelFromSync(){
-        DB::execute("DELETE FROM casinos__labels WHERE label_id = 11");
+        DB::execute("DELETE FROM casinos__labels WHERE label_id = ".$this->filter->label_id);
     }
 
     public function getMainQuery(){
@@ -46,15 +41,10 @@ class NoAccountLabel
         $results = DB::execute($this->getMainQuery());
         $id = [];
 
-        while($row = $results->toRow()){
-            $id[sizeof($id)] = $row['id'];
+        while($row = $results->toValue()){
+            $id[sizeof($id)] = $row;
         }
-
         return $id;
-    }
-
-    public function insertALabel($casinoID){
-        DB::execute("INSERT IGNORE INTO casinos__labels (casino_id,label_id) VALUE (" . $casinoID . ",".$this->filter->label_id.")");
     }
 
     public function populateNoAccountLabel(){
@@ -62,9 +52,6 @@ class NoAccountLabel
         $results = $this->getAllNoAccountCasinos();
 
         foreach ($results as $casino)
-            DB::execute("INSERT IGNORE INTO casinos__labels (casino_id,label_id) VALUE (" . $casino->id . ",".$this->filter->label_id.")");
-
+            DB::execute("INSERT IGNORE INTO casinos__labels (casino_id,label_id) VALUE (" . (int)$casino . "," .$this->filter->label_id .")");
     }
-
-
 }

@@ -15,6 +15,7 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
     public function __construct($xmlFile = "configuration.xml", $usePackagist = false)
     {
         parent::__construct($xmlFile, $usePackagist);
+
         $object = new NoAccountLabel();
         $object->resetNoAccountLabelFromSync();
         $object->populateNoAccountLabel();
@@ -31,11 +32,6 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
     protected function setLabels($casinoID, $info) {
         DB::execute("DELETE FROM casinos__labels WHERE casino_id = ".$casinoID);
 
-        if($info['no_registration'] == '1'){
-            echo "Casino ID:" . $casinoID;
-            $object = new NoAccountLabel();
-            $object->insertALabel($casinoID);
-        }
         foreach($info["labels"] as $line) {
             if($line["id"]>3) continue;
             DB::execute("INSERT IGNORE INTO casinos__labels SET casino_id=:casino_id, label_id=:label_id",array(
@@ -89,8 +85,19 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
             $this->setWithdrawMethods($casinoID, $item["withdraw_methods"]);
             $this->setWithdrawTimeframes($casinoID, $item["withdraw_timeframes"]);
             $this->setGameTypes($casinoID, $item["game_types"]);
+            $this->setRegistrationCasino($casinoID, $item["no_registration"]);
             if($item["date"]>$maxDate) $maxDate = $item["date"];
         }
         return $maxDate;
+    }
+
+    private function setRegistrationCasino($casinoID, $registration){
+
+        if(empty((int)$registration))
+            return;
+
+        // update casino
+        $query = "UPDATE casinos SET no_registration = 1 WHERE id = " . $casinoID;
+        DB::execute($query);
     }
 }
