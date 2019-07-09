@@ -93,8 +93,11 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
 
     private function setRegistrationCasino($casinoID, $registration){
 
-        if(empty((int)$registration))
+        if(empty((int)$registration)) {
+            $query = "UPDATE casinos SET no_registration = 0 WHERE id = " . $casinoID;
+            DB::execute($query);
             return;
+        }
 
         // update casino
         $query = "UPDATE casinos SET no_registration = 1 WHERE id = " . $casinoID;
