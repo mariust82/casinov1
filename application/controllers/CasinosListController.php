@@ -18,8 +18,8 @@ abstract class CasinosListController extends BaseController {
         $menuBottom = new CasinosMenu($this->request->attributes("country")->name, $this->response->attributes("selected_entity"), $this->request->getURI()->getPage());
         $this->response->attributes("menu_bottom", $menuBottom->getEntries());
         $this->response->attributes("country", $this->request->attributes("country"));
-        $this->response->attributes("sort_criteria", $this->getSortCriteria());
         $this->response->attributes("filter", $this->getFilter());
+        $this->response->attributes("sort_criteria", $this->getSortCriteria());
 
         $results = $this->getResults();
         $this->response->attributes("total_casinos", $results["total"]);
