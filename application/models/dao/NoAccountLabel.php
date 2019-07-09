@@ -20,7 +20,7 @@ class NoAccountLabel
         $this->filter->is_open = 1;
         $this->filter->no_registration = 1;
         $this->filter->sort_by[0] = 'priority DESC';
-        $this->filter->sort_by[1] = 'date_established DEC';
+        $this->filter->sort_by[1] = 'date_established DESC';
         $this->filter->label_id = 11;
     }
 
@@ -53,12 +53,16 @@ class NoAccountLabel
         return $id;
     }
 
+    public function insertALabel($casinoID){
+        DB::execute("INSERT IGNORE INTO casinos__labels (casino_id,label_id) VALUE (" . $casinoID . ",".$this->filter->label_id.")");
+    }
+
     public function populateNoAccountLabel(){
 
         $results = $this->getAllNoAccountCasinos();
 
         foreach ($results as $casino)
-            DB::execute("INSERT INTO casinos__labels (casino_id,label_id) VALUE (" . $casino->id . ",".$this->filter->label_id.")");
+            DB::execute("INSERT IGNORE INTO casinos__labels (casino_id,label_id) VALUE (" . $casino->id . ",".$this->filter->label_id.")");
 
     }
 

@@ -29,8 +29,13 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
     }
 
     protected function setLabels($casinoID, $info) {
-
         DB::execute("DELETE FROM casinos__labels WHERE casino_id = ".$casinoID);
+
+        if($info['no_registration'] == '1'){
+            echo "Casino ID:" . $casinoID;
+            $object = new NoAccountLabel();
+            $object->insertALabel($casinoID);
+        }
         foreach($info["labels"] as $line) {
             if($line["id"]>3) continue;
             DB::execute("INSERT IGNORE INTO casinos__labels SET casino_id=:casino_id, label_id=:label_id",array(
