@@ -8,12 +8,17 @@
 require_once(dirname(__DIR__,2)."/application/models/dao/entities/Entity.php");
 require_once(dirname(__DIR__,2)."/application/models/dao/BestCasinoLabel.php");
 require_once(dirname(__DIR__,2)."/application/models/dao/LowWageringCasinoLabel.php");
+require_once(dirname(__DIR__,2)."/application/models/dao/NoAccountLabel.php");
 
 class LocalCasinoSynchronization extends NewCasinoSynchronization
 {
     public function __construct($xmlFile = "configuration.xml", $usePackagist = false)
     {
         parent::__construct($xmlFile, $usePackagist);
+        $object = new NoAccountLabel();
+        $object->resetNoAccountLabelFromSync();
+        $object->populateNoAccountLabel();
+
         $object = new BestCasinoLabel(true);
         $object->resetBestLabelFromSync();
         $object->populateBestLabel();
