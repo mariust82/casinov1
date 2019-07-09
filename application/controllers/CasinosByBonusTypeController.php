@@ -41,7 +41,7 @@ class CasinosByBonusTypeController extends CasinosListController {
     }
 
     protected function getSortCriteria() {
-        return CasinoSortCriteria::NEWEST;
+        return CasinoSortCriteria::NONE;
     }
 
 }
