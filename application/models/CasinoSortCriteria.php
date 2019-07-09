@@ -6,4 +6,5 @@ class CasinoSortCriteria
     const NEWEST = 3;
     const POPULARITY = 4;
     const WAGERING = 5;
+    const NO_ACCOUNT = 6;
 }
