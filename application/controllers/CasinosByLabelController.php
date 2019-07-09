@@ -38,8 +38,13 @@ class CasinosByLabelController extends CasinosListController {
                 return CasinoSortCriteria::TOP_RATED;
             case 'Low Wagering':
                 return CasinoSortCriteria::WAGERING;
+            case 'No Account Casinos':
+                return CasinoSortCriteria::NO_ACCOUNT;
             default:
-                return CasinoSortCriteria::NONE;
+                if($this->response->attributes("filter") == 'country')
+                    return CasinoSortCriteria::POPULARITY;
+                else
+                    return CasinoSortCriteria::NONE;
         }
     }
 
