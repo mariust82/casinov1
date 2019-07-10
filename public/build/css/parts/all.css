@@ -2951,7 +2951,7 @@ a:hover, a:active, a:visited, a:focus {
   }
   .opened .expand-menu {
     max-height: 999px;
-    padding:0 0 50px;
+    padding:0 0 80px;
   }
 }
 
