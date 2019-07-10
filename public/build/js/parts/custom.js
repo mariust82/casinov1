@@ -78,7 +78,7 @@ var AJAX_CUR_PAGE = 1;
 
     function menuHoverAction(){
         $('.header-menu__list-holder .expand-holder').on('mouseout', function (e) {
-                $('.expand-holder').removeClass('opened');
+            $('.expand-holder').removeClass('opened');
         })
     }
 
@@ -437,11 +437,15 @@ var AJAX_CUR_PAGE = 1;
                         currentOpened = document.querySelector('.expand-holder.opened');
                         if (currentOpened == currentTarget) {
                             var toggleSection = currentOpened.querySelector(".expand-menu");
-                            currentOpened.classList.remove('opened');
+                            if (e.target.className !== 'expand-menu') {
+                                currentOpened.classList.remove('opened');
+                            }
                         }
                         else {
                             if(currentOpened) {
-                                currentOpened.classList.remove('opened');
+                                if (e.target.className !== 'expand-menu') {
+                                    currentOpened.classList.remove('opened');
+                                }
                                 setTimeout(function(){
                                     currentTarget.classList.add('opened');
                                 }, 400);
