@@ -8314,7 +8314,7 @@ a:hover, a:active, a:visited, a:focus {
 @media screen and (max-width: 690px) {
   .search-list {
     overflow: auto;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 195px);
   }
 }
 
