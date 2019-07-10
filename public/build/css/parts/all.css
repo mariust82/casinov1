@@ -2880,7 +2880,7 @@ a:hover, a:active, a:visited, a:focus {
   .header-menu__list-holder {
     display: block;
     overflow: auto;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 50px);
   }
 }
 
@@ -2951,6 +2951,7 @@ a:hover, a:active, a:visited, a:focus {
   }
   .opened .expand-menu {
     max-height: 999px;
+    padding:0 0 50px;
   }
 }
 
