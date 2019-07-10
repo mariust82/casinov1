@@ -77,9 +77,11 @@ var AJAX_CUR_PAGE = 1;
 
 
     function menuHoverAction(){
-        $('.header-menu__list-holder .expand-holder').on('mouseout', function (e) {
-            $('.expand-holder').removeClass('opened');
-        })
+        if (!checkIfIsMobileDevice()) {
+            $('.header-menu__list-holder .expand-holder').on('mouseout', function (e) {
+                $('.expand-holder').removeClass('opened');
+            })
+        }
     }
 
     //detect when scrolling is stoped
