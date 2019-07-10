@@ -2132,19 +2132,45 @@ var AJAX_CUR_PAGE = 1;
     function initMobileMenu() {
         var btn = $('#js-mobile-menu-opener, #js-mobile-menu-close');
         var menu =  $('.header-menu');
+        var position = null;
+        var _window = $('html, body');
 
         btn.on('click',  function(e) {
             $('body').toggleClass('menu-opened');
             btn.toggleClass('active');
 
+            if (checkIfIsMobileDevice()) {
+                position = $(window).scrollTop();
+                if (_window.hasClass('no-scroll')) {
+                    _window.addClass('no-scroll');
+                } else {
+                    _window.removeClass('no-scroll');
+                    goToPosition(position);
+                }
+
+            }
+
             $(document).on('click touchstart',function(e) {
                 if ($(e.target).closest(menu).length==0 && $(e.target).closest(btn).length==0){
                     $("body").removeClass('menu-opened');
+                    if (checkIfIsMobileDevice()) {
+                        unlockScreen();
+                        
+                        goToPosition(position);
+                    }
                     btn.removeClass('active');
                 }
             });
             e.preventDefault();
+
+            
         });
+    }
+
+    function goToPosition(_position) {
+        $('html, body').animate({
+            scrollTop: _position
+        }, 5);
     }
 
     function initSearch() {
@@ -2156,6 +2182,7 @@ var AJAX_CUR_PAGE = 1;
         var _btnMobileClear = $('.js-mobile-search-clear');
         var _drop = $('.js-search-drop');
         var _input = $('.header-search-input input');
+        var _position = null;
 
         _btnOpen.on('click', function(e) {
             $('body').addClass('search-opened');
@@ -2185,18 +2212,31 @@ var AJAX_CUR_PAGE = 1;
         });
 
         _btnMobileOpen.on('click', function(e) {
+            _position = $(window).scrollTop();
             $('body').addClass('mobile-search-opened');
+            lockScreen();
             _input.focus();
         });
 
         _btnMobileClose.on('click', function(e) {
             _input.val('').blur();
             $('body').removeClass('mobile-search-opened');
+            unlockScreen();
+
+            goToPosition(_position);
         });
 
         _btnMobileClear.on('click', function() {
             _input.val('').focus();
         });
+    }
+
+    function lockScreen() {
+        $('html, body').addClass('no-scroll');
+    }
+
+    function unlockScreen() {
+        $('html, body').removeClass('no-scroll');
     }
 
     function searchDropOpen(_drop) {
