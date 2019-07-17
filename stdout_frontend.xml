@@ -133,7 +133,7 @@
     <route url="newsletter/subscribe" controller="NewsletterSubscribeController" format="json">
       <parameter name="email" validator="EmailValidator"/>
     </route>
-    <route url="casino/bonus" controller="CasinoBonusController" format="json">
+    <route url="casino/bonus" controller="CasinoBonusController" view="bonus-popup">
       <parameter name="casino" validator="CasinoNameValidator"/>
     </route>
     <route url="404" controller="PageNotFoundController" view="404"/>
