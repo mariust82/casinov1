@@ -138,7 +138,7 @@
       <parameter name="name" validator="CasinoNameValidator"/>
       <parameter name="value" validator="IntegerValidator"/>
     </route>
-    <route url="casino/review-write" controller="CasinoReviewWriteController" method="POST" format="json">
+    <route url="casino/review-write" controller="CasinoReviewWriteController" method="POST" view="review-write">
       <parameter name="casino" validator="CasinoNameValidator"/>
       <parameter name="casino_id" validator="CasinoIdValidator"/>
       <parameter name="name" validator="StringValidator"/>
