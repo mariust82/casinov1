@@ -201,10 +201,10 @@ var AJAX_CUR_PAGE = 1;
                         casino: _name,
                         is_free: _is_free,
                     },
-                    dataType: 'json',
+                    dataType: 'html',
                     type: 'GET',
                     success: function (response) {
-                        if(response.status =="ok") {
+                        // if(response.status =="ok") {
                             instance.content(getBonusPattern(response, _name));
                             setTimeout(function(){
                                 $('.js-tooltip').tooltipster(tooltipConfig);
@@ -212,7 +212,7 @@ var AJAX_CUR_PAGE = 1;
                                 copyToClipboard();
                                 checkStringLength($('.bonus-box'), 15);
                             }, 50)
-                        }
+                        // }
                         $origin.data('loaded', true);
                     }
                 });
@@ -351,53 +351,53 @@ var AJAX_CUR_PAGE = 1;
     };
 
     function getBonusPattern(data, name) {
-        var _name = name;
-        var _amount = data.body.bonus.amount;
-        var _code = data.body.bonus.code;
-        var _games_allowed = data.body.bonus.games_allowed;
-        var _min_deposit = data.body.bonus.min_deposit;
-        var _type = data.body.bonus.type;
-        var _wagering = data.body.bonus.wagering;
-        var _block_class = 'bonus-free';
-        var _icon = 'icon-icon_bonuses';
-        var _code_class = '';
-        var _success_class = '';
+        // var _name = name;
+        // var _amount = data.body.bonus.amount;
+        // var _code = data.body.bonus.code;
+        // var _games_allowed = data.body.bonus.games_allowed;
+        // var _min_deposit = data.body.bonus.min_deposit;
+        // var _type = data.body.bonus.type;
+        // var _wagering = data.body.bonus.wagering;
+        // var _block_class = 'bonus-free';
+        // var _icon = 'icon-icon_bonuses';
+        // var _code_class = '';
+        // var _success_class = '';
 
-        if (_type == 'First Deposit Bonus') {
-            _block_class = 'bonus-first';
-            _icon = 'icon-free-bonus-icon';
-        };
+        // if (_type == 'First Deposit Bonus') {
+        //     _block_class = 'bonus-first';
+        //     _icon = 'icon-free-bonus-icon';
+        // };
 
-        if (_type == 'Free Play') {
-            _type = "Free Bonus";
-        };
+        // if (_type == 'Free Play') {
+        //     _type = "Free Bonus";
+        // };
 
-        if (_code != 'No code required') _code_class = 'js-copy-to-clip js-copy-tooltip';
+        // if (_code != 'No code required') _code_class = 'js-copy-to-clip js-copy-tooltip';
 
-        if (_min_deposit == ''){
-            _min_deposit = 'Free';
-            _success_class = 'success';
-        };
+        // if (_min_deposit == ''){
+        //     _min_deposit = 'Free';
+        //     _success_class = 'success';
+        // };
 
-        //map data to bonus box
-        var pattern = $($('#bonus-box-tpl').html()).filter('.tooltip-content');
-            pattern.addClass(_block_class);
-            pattern.find('.tooltip-templates-title').text(_name+' '+_type);
-            pattern.find('.tooltip-templates-button a').attr('href', '/visit/'+getWebName(_name)+'');
-            pattern.find('.bonus-box-heading span').text(_amount+' '+_type);
-            pattern.find('.bonus-box-btn.dashed')
-               .addClass(_code_class)
-               .attr('data-code', _code)
-               .text(_code);
-            pattern.find('.bonus-box-wagering').text(_wagering);
-            pattern.find('.list-item-trun').text(_games_allowed);
-            pattern.find('.bubble').attr('title', _games_allowed);
-            pattern.find('.bonus-box-dep')
-               .addClass(_success_class)
-               .text(_min_deposit);
-            pattern.find('.bonus-box-circle i').addClass(_icon);
+        // //map data to bonus box
+        // var pattern = $($('#bonus-box-tpl').html()).filter('.tooltip-content');
+        //     pattern.addClass(_block_class);
+        //     pattern.find('.tooltip-templates-title').text(_name+' '+_type);
+        //     pattern.find('.tooltip-templates-button a').attr('href', '/visit/'+getWebName(_name)+'');
+        //     pattern.find('.bonus-box-heading span').text(_amount+' '+_type);
+        //     pattern.find('.bonus-box-btn.dashed')
+        //        .addClass(_code_class)
+        //        .attr('data-code', _code)
+        //        .text(_code);
+        //     pattern.find('.bonus-box-wagering').text(_wagering);
+        //     pattern.find('.list-item-trun').text(_games_allowed);
+        //     pattern.find('.bubble').attr('title', _games_allowed);
+        //     pattern.find('.bonus-box-dep')
+        //        .addClass(_success_class)
+        //        .text(_min_deposit);
+        //     pattern.find('.bonus-box-circle i').addClass(_icon);
 
-        return pattern;
+        return data;
     }
 
     function checkIfIsMobileDevice(){
