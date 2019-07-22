@@ -19,7 +19,6 @@ class CasinoInfo
 
         $resultSet = SQL("
         SELECT t1.*,
-         IF(t3.id IS NOT NULL, 1, 0) AS is_live_dealer,
          t4.name AS status, 
          (t1.rating_total/t1.rating_votes) AS average_rating,
           t2.name AS affiliate_program,
@@ -38,8 +37,8 @@ class CasinoInfo
             $output->name = $row["name"];
             $output->code = $row["code"];
             $output->rating = ceil($row["average_rating"]);
-            $output->is_live_dealer = $row["is_live_dealer"];
-            $output->is_live_chat = $row["is_live_chat"];
+            $output->is_live_dealer = $this->getAllLiveGameTypes($row["id"]);
+            $output->is_live_chat =  $row["is_live_chat"];
             $output->date_established = $row["date_established"];
             $output->affiliate_program = $row["affiliate_program"];
             $output->withdrawal_minimum = $row["withdraw_minimum"];
@@ -81,6 +80,18 @@ class CasinoInfo
 
        $this->getCasinoDepositMethods($output->id);
         $this->result = $output;
+    }
+
+    private function getAllLiveGameTypes($id){
+        $query = "SELECT t1.name FROM game_types AS t1
+        INNER JOIN casinos__game_types AS t2 ON t1.id = t2.game_type_id
+        WHERE t2.is_live = 1 AND t2.casino_id = ".$id;
+
+        $results = SQL($query)->toColumn();
+        if(empty($results))
+            return null;
+        else
+            return $results;
     }
    
     private function getPrimaryCurrencies($id) {
