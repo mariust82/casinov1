@@ -1070,25 +1070,17 @@ var AJAX_CUR_PAGE = 1;
             _request = $.ajax( {
                 url: "/casino/review-write",
                 data: ajaxData,
-                dataType: 'json',
+                dataType: 'html',
                 timeout: 20000,
                 type: 'POST',
                 success: function ( data ) {
-                    if(data.status =="ok") {
-                        _loadData(data, _this);
-                        // _send_btn.prop('disabled', true);
-                        _field_name.val('');
-                        _field_email.val('');
-                        _field_message.val('').addClass('expanding');
-                        _onEvents();
-                        $('.reviews-form').attr('data-invision-casino-id',data.body.review_invision_id);
-                        $('.form .js-expanding-textfields').slideUp();
-                    }
-                    else if(data.status=="error") {
-                        console.error(data.body);
-                        _errors_found = $.parseJSON(jqXHR.responseJSON.body);
-                        _contact_error.html(_errors_found.join('<br />')).show();
-                    }
+                    _loadData(data, _this);
+                    _field_name.val('');
+                    _field_email.val('');
+                    _field_message.val('').addClass('expanding');
+                    _onEvents();
+                    // $('.reviews-form').attr('data-invision-casino-id',data.body.review_invision_id);
+                    $('.form .js-expanding-textfields').slideUp();
                 },
                 error: function ( jqXHR ) {
                     _errors_found = $.parseJSON(jqXHR.responseJSON.body);
@@ -1102,48 +1094,9 @@ var AJAX_CUR_PAGE = 1;
         },
 
         _loadData = function(data, _this) {
-
-            if ($.isEmptyObject(data)) {
-                _showEmptyMessage();
-            } else {
-
-                function getItemPattern() {
-                    //map data to comment
-                    var pattern = $($('#comment-tpl').html()).filter('.review');
-
-                        pattern.attr('data-id', data.body.id);
-                        pattern.find('.review-flag img')
-                               .attr({
-                                'src': _imgDir,
-                                'alt': _countryCode
-                               });
-                        pattern.find('.review-name').text(name);
-                        pattern.find('.review-date').text(_getCurrDate());
-                        pattern.find('.review-text p').text(message);
-                        pattern.find('.js-vote a').attr('data-id', data.body.id);
-
-                    if (_is_child) {
-                        pattern.addClass(name.toLowerCase()+' review-child')
-                               .attr('data-img-dir', _imgDir);
-                        pattern.find('.list-rating').remove();
-                    } else {
-                        pattern.addClass(name.toLowerCase()+' review-parent');
-                        pattern.find('.list-rating').addClass(getWebName(get_rating(_rate_slider_result)));
-                        pattern.find('.list-rating-score').text(_rate_slider_result);
-                        pattern.find('.list-rating-text').text(get_rating(_rate_slider_result));
-                    }
-
-                    return pattern;
-                }
-
-                if (_is_child_of_child) {
-                    $(getItemPattern()).insertAfter(_this)
-                } else {
-                    _reviewHolder.prepend(getItemPattern());
-                }
-
+            $('#review-data-holder').load(location.href + ' #review-data-holder', function() {
                 _refreshData();
-            }
+            }, 500);
         },
 
         _refreshData = function(){

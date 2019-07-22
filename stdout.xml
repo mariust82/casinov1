@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
 <xml>
-  <application version="0.8.8.81" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
+  <application version="0.8.8.82" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
     <paths>
       <controllers>application/controllers</controllers>
       <cacheables>application/models/cacheables</cacheables>
@@ -138,7 +138,7 @@
       <parameter name="name" validator="CasinoNameValidator"/>
       <parameter name="value" validator="IntegerValidator"/>
     </route>
-    <route url="casino/review-write" controller="CasinoReviewWriteController" method="POST" view="review-write">
+    <route url="casino/review-write" controller="CasinoReviewWriteController" method="POST" format="json">
       <parameter name="casino" validator="CasinoNameValidator"/>
       <parameter name="casino_id" validator="CasinoIdValidator"/>
       <parameter name="name" validator="StringValidator"/>
