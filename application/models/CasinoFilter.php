@@ -31,6 +31,7 @@ class CasinoFilter
     private $high_roller = false;
     private $certification;
     private $bonus_types = [];
+    private $play_version_type;
 
     public function __construct($requestParameters, Country $detectedCountry) {
         $this->detectedCountry = $detectedCountry;
@@ -71,7 +72,9 @@ class CasinoFilter
                     $this->certification = "ecogra";
                     break;
                 default:
-                    $this->country = "AAA"; // force empty result
+                    $this->play_version = "Live Dealer";
+                    $this->play_version_type = $requestParameters["feature"];
+                    $this->country = ""; // force empty result
                     break;
             }
         }
@@ -91,6 +94,13 @@ class CasinoFilter
         if($this->operating_system && $this->operating_system=="iphone") {
             $this->operating_system = "iOS";
         }
+
+        if(!empty($requestParameters["live_dealer"])){
+            $this->play_version = 'Live Dealer';
+            $this->play_version_type = $requestParameters["live_dealer"];
+        }
+
+
 
       /*  if(!empty($requestParameters['bonus_types'])){
             $this->bonus_types = $requestParameters['bonus_types'];*/
@@ -241,6 +251,14 @@ class CasinoFilter
 
     public function setGame($data) {
         $this->game = $data;
+    }
+
+    public function getPlayVersionType(){
+        return $this->play_version_type;
+    }
+
+    public function setPlayVersionType($data){
+        $this->play_version_type = $data;
     }
 
 }

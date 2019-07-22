@@ -159,6 +159,9 @@
     <route url="casino/bonus" controller="CasinoBonusController" view="bonus-popup">
       <parameter name="casino" validator="CasinoNameValidator"/>
     </route>
+    <route url="live-dealer/(TYPE)" controller="CasinoLiveDealerController" view="casinos">
+      <parameter name="TYPE" validator="LiveDealerValidator"/>
+    </route>
     <route url="404" controller="PageNotFoundController" view="404"/>
     <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" format="xml"/>
     <route url="sitemap_cas_bon.php" controller="sitemap/BonusTypesController" format="xml"/>

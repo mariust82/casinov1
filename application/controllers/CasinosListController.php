@@ -88,6 +88,8 @@ abstract class CasinosListController extends BaseController {
             case 'features':
                 $piece = 'feature';
                 break;
+            case  'live-dealer':
+                $piece = 'live_dealer';
         }
         return $piece;
     }
