@@ -21,7 +21,7 @@
 		</div>
 		<div class="review-body">
 			<div class="review-text">
-				<p>${strip_tags(${result.body})}</p>
+				<p>${html_entity_decode(${result.body})}</p>
 			</div>
 			<div class="review-underline">
 				<a href="#" class="review-replies js-reply-btn">Reply <span>${result.total_children}</span></a>
