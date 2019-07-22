@@ -19,7 +19,6 @@
   </formats>
   <listeners>
     <listener class="ErrorListener"/>
-    <listener class="MobileDetectionListener"/>
   </listeners>
   <routes validators_path="application/models/validators">
     <route url="bugs" controller="BugsController"/>
@@ -162,28 +161,4 @@
     <route url="sitemaps_ps/sitemap_spec_cas_ps.php" controller="sitemap/CasinosController" format="xml"/>
     <route url="sitemaps_ps/sitemap_spec_games_ps.php" controller="sitemap/GamesController" format="xml"/>
   </routes>
-  <http_caching class="DateCacheableDriver" drivers_path="application/models/cacheables"/>
-  <images path="public/sync">
-    <image type="casino_logo_light">
-      <format width="124" height="82"/>
-      <format width="85" height="56"/>
-    </image>
-    <image type="game_ss">
-      <format width="136" height="100"/>
-      <format width="300" height="220"/>
-      <format width="960" height="720"/>
-    </image>
-    <image type="software_logo_light">
-      <format width="80" height="53"/>
-    </image>
-    <image type="banking_method_light">
-      <format width="68" height="39"/>
-    </image>
-  </images>
-  <hosts>
-    <frontend>www.casinoslists.local</frontend>
-  </hosts>
-  <gameplay width="960" height="720">
-    <frontend>http://game.casinoslists.local</frontend>
-  </gameplay>
 </xml>
