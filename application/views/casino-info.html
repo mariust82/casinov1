@@ -158,7 +158,12 @@
 						<div class="def-list-item">
 							<div class="def-list-key">Live dealer</div>
 							<div class="def-list-val">
-								<:if test="${data.casino.is_live_dealer}">Yes<:else>No</:if>
+								<:if test="${data.casino.is_live_dealer}">
+									<:foreach var="${data.casino.is_live_dealer}" val="type">
+										<a href="/live-dealer/${type}">${type} </a>
+									</:foreach>
+									<:else>No
+								</:if>
 							</div>
 						</div>
 

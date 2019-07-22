@@ -21,7 +21,7 @@ class TopMenu
         ],
 
         "LIVE"=>[
-            "item_url" => "/live-dealer",
+            "item_url" => "/features/live-dealer",
             "sub_items" => [
                 "Live Roulette Casinos" => "/live-dealer/roulette",
                 "Live Blackjack Casinos" => "/live-dealer/blackjack",
