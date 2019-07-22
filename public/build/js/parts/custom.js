@@ -1070,7 +1070,7 @@ var AJAX_CUR_PAGE = 1;
             _request = $.ajax( {
                 url: "/casino/review-write",
                 data: ajaxData,
-                dataType: 'html',
+                dataType: 'json',
                 timeout: 20000,
                 type: 'POST',
                 success: function ( data ) {
