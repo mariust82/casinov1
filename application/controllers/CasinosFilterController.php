@@ -28,7 +28,6 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
 
     public function run()
     {
-
         $this->response->attributes("country", $this->request->attributes("country"));
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $sortCriteria = $this->getSortCriteria();

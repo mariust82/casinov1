@@ -20,11 +20,21 @@ class TopMenu
             ]
         ],
 
+        "LIVE"=>[
+            "item_url" => "/live-dealer",
+            "sub_items" => [
+                "Live Roulette Casinos" => "/live-dealer/roulette",
+                "Live Blackjack Casinos" => "/live-dealer/blackjack",
+                "Live Baccarat Casinos" => "/live-dealer/baccarat",
+                "Live Craps Casinos" => "/live-dealer/craps",
+                "Live Dealer Casinos" => "/features/live-dealer"
+            ]
+        ],
+
         "CASINOS"=>[
            "item_url" => "/casinos",
             "sub_items" => [
                 "Best Casinos" => "/casinos/best",
-                "Live Casinos" => "/features/live-dealer",
                 "Mobile Casinos" => "/casinos/mobile",
                 "Low Wagering Casinos" => "/casinos/low-wagering",
                 "eCOGRA Casinos" => "/features/ecogra-casinos",
