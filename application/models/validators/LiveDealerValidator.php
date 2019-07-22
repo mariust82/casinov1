@@ -20,7 +20,7 @@ class LiveDealerValidator extends \Lucinda\RequestValidator\ParameterValidator
             case 'roulette':
                 return 'Roulette';
             case 'blackjack':
-                return 'Blacljack';
+                return 'Blackjack';
             case 'baccarat':
                 return 'Baccarat';
             case 'craps':
