@@ -187,6 +187,7 @@
     <route url="sitemaps_ps/sitemap_main_ps.php" controller="sitemap/IndexController" format="xml"/>
     <route url="sitemaps_ps/sitemap_spec_cas_ps.php" controller="sitemap/CasinosController" format="xml"/>
     <route url="sitemaps_ps/sitemap_spec_games_ps.php" controller="sitemap/GamesController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_cas_live_dealer.php" controller="sitemap/LiveDealerController" format="xml"/>
   </routes>
   <http_caching class="DateCacheableDriver" drivers_path="application/models/cacheables"/>
   <servers>

@@ -2,6 +2,7 @@
 require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once 'entities/FullWelcomePackage.php';
+require_once("application/models/AvailableDealersInSite.php");
 
 class CasinoInfo
 {
@@ -100,7 +101,8 @@ class CasinoInfo
         if (empty($data))
             return null;
 
-        $in_site = ["Roulette","Blackjack","Baccarat","Craps"];
+        $dealers = new AvailableDealersInSite();
+        $in_site = $dealers->getItems();
         $available = [];
 
         foreach ($data as $type) {
