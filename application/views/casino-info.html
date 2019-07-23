@@ -162,15 +162,15 @@
 									<:foreach var="${data.casino.is_live_dealer}" key="key" val="type">
 										<:if test="${type} != end(${data.casino.is_live_dealer})">
 											<:if test ="${data.casino.is_available_in_site.${key}}">
-												<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${type})}">Live ${type},&nbsp; </a>
+												<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${type})}">Live ${type},</a>
 												<:else>
-													<div class="def-list-val">Live ${type},&nbsp;</div>
+													Live ${type},&nbsp;
 											</:if>
 										<:else>
 											<:if test ="${data.casino.is_available_in_site.${key}}">
 												<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${type})}">Live ${type}</a>
 												<:else>
-													<div class="def-list-val">Live ${type},&nbsp;</div>
+													Live ${type}&nbsp;
 											</:if>
 										</:if>
 									</:foreach>
