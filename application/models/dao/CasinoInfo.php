@@ -38,6 +38,7 @@ class CasinoInfo
             $output->code = $row["code"];
             $output->rating = ceil($row["average_rating"]);
             $output->is_live_dealer = $this->getAllLiveGameTypes($row["id"]);
+            $output->is_available_in_site = $this->getIsAvailableInSite($output->is_live_dealer);
             $output->is_live_chat =  $row["is_live_chat"];
             $output->date_established = $row["date_established"];
             $output->affiliate_program = $row["affiliate_program"];
@@ -92,6 +93,30 @@ class CasinoInfo
             return null;
         else
             return $results;
+    }
+
+    private function getIsAvailableInSite($data)
+    {
+        if (empty($data))
+            return null;
+
+        $in_site = ["Roulette","Blackjack","Baccarat","Craps"];
+        $available = [];
+
+        foreach ($data as $type) {
+            $found = false;
+            $index = 0;
+            while(!$found && $index<sizeof($in_site)){
+                if($type == $in_site[$index]) {
+                    $found = true;
+                }else{
+                    $index++;
+                }
+            }
+            $available[sizeof($available)] = $found;
+        }
+
+        return $available;
     }
    
     private function getPrimaryCurrencies($id) {
