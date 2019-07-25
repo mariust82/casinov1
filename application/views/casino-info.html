@@ -158,20 +158,20 @@
 						<div class="def-list-item">
 							<div class="def-list-key">Live dealer</div>
 							<div class="tooltipster-content">
-								<:if test="${data.casino.is_live_dealer}">
-									<:foreach var="${data.casino.is_live_dealer}" key="key" val="available">
-										<:if test="${key} != end(${data.casino.is_live_dealer)">
-											<:if test ="${data.casino.is_available_in_site.${available}} == true">
+								<:if test="${data.casino.live_dealers}">
+									<:foreach var="${data.casino.is_available_in_site}" key="key" val="available">
+										<:if test="${key} != end(${data.casino.live_dealers})">
+											<:if test ="${available} == true">
 												<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${key})}">Live ${key},</a>
 												<:else>
 													Live ${key},&nbsp;
 											</:if>
-										<:else>
-											<:if test ="${data.casino.is_available_in_site.${available}} == true}">
-												<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${key})}">Live ${key}</a>
-												<:else>
-													Live ${key}&nbsp;
-											</:if>
+											<:else>
+												<:if test ="${available} == true">
+													<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${key})}">Live ${key}</a>
+													<:else>
+														Live ${key}&nbsp;
+												</:if>
 										</:if>
 									</:foreach>
 									<:else>No
