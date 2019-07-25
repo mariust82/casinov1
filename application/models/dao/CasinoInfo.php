@@ -2,7 +2,6 @@
 require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once 'entities/FullWelcomePackage.php';
-require_once("application/models/AvailableDealersInSite.php");
 
 class CasinoInfo
 {
@@ -38,8 +37,8 @@ class CasinoInfo
             $output->name = $row["name"];
             $output->code = $row["code"];
             $output->rating = ceil($row["average_rating"]);
-            $output->is_live_dealer = $this->getAllLiveGameTypes($row["id"]);
-            $output->is_available_in_site = $this->getIsAvailableInSite($output->is_live_dealer);
+            $output->live_dealers = $this->getAllLiveGameTypes($row["id"]);
+            $output->is_available_in_site = $this->getIsAvailableInSite($output->live_dealers);
             $output->is_live_chat =  $row["is_live_chat"];
             $output->date_established = $row["date_established"];
             $output->affiliate_program = $row["affiliate_program"];
@@ -101,21 +100,11 @@ class CasinoInfo
         if (empty($data))
             return null;
 
-        $dealers = new AvailableDealersInSite();
-        $in_site = $dealers->getItems();
+        $in_site = ["Roulette","Blackjack","Baccarat","Craps"];
         $available = [];
 
         foreach ($data as $type) {
-            $found = false;
-            $index = 0;
-            while(!$found && $index<sizeof($in_site)){
-                if($type == $in_site[$index]) {
-                    $found = true;
-                }else{
-                    $index++;
-                }
-            }
-            $available[] = $found;
+            $available[$type] = in_array($type,$in_site);
         }
 
         return $available;

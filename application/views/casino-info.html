@@ -159,18 +159,18 @@
 							<div class="def-list-key">Live dealer</div>
 							<div class="tooltipster-content">
 								<:if test="${data.casino.is_live_dealer}">
-									<:foreach var="${data.casino.is_live_dealer}" key="key" val="type">
-										<:if test="${type} != end(${data.casino.is_live_dealer})">
-											<:if test ="${data.casino.is_available_in_site.${key}}">
-												<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${type})}">Live ${type},</a>
+									<:foreach var="${data.casino.is_live_dealer}" key="key" val="available">
+										<:if test="${key} != end(${data.casino.is_live_dealer)">
+											<:if test ="${data.casino.is_available_in_site.${available}} == true">
+												<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${key})}">Live ${key},</a>
 												<:else>
-													Live ${type},&nbsp;
+													Live ${key},&nbsp;
 											</:if>
 										<:else>
-											<:if test ="${data.casino.is_available_in_site.${key}}">
-												<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${type})}">Live ${type}</a>
+											<:if test ="${data.casino.is_available_in_site.${available}} == true}">
+												<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${key})}">Live ${key}</a>
 												<:else>
-													Live ${type}&nbsp;
+													Live ${key}&nbsp;
 											</:if>
 										</:if>
 									</:foreach>
