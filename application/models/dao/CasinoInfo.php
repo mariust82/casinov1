@@ -115,7 +115,7 @@ class CasinoInfo
                     $index++;
                 }
             }
-            $available[sizeof($available)] = $found;
+            $available[] = $found;
         }
 
         return $available;
