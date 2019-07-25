@@ -35,14 +35,9 @@ class LiveDealerController extends AbstractSitemapController{
         return "0.8";
     }
 
-    private function getProtocol() {
-        $page = $this->request->getURI()->getPage();
-        return (strpos($page, "sitemaps_ps/")===0?"https":"http");
-    }
-
     private function  AddPages($pages){
 
-        $protocol = $this->getProtocol();
+        $protocol = $this->request->getProtocol();
         $special_case = new AvailableDealersInSite();
         $items = $special_case->getSpecialCase();
         foreach ($items as $item)
