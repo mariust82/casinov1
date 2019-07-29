@@ -351,9 +351,10 @@ var AJAX_CUR_PAGE = 1;
 
     function checkIfIsMobileDevice(){
 
-        var winsize= 0;
+        var winsize = $(window).width();
+
         $( window ).resize(function() {
-            winsize = $(document).width()
+            winsize = $(window).width();
         });
 
         if(winsize < 1000){
@@ -361,7 +362,6 @@ var AJAX_CUR_PAGE = 1;
         }
 
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-
             return true;
         }
 
