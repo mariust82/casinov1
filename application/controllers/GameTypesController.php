@@ -12,7 +12,8 @@ require_once("application/models/caching/GamesCounterKey.php");
 */
 class GameTypesController extends BaseController {
 	protected function service() {
-        $this->response->setAttribute("results", $this->getResults());
+        $this->response->attributes("results", $this->getResults());
+        $this->response->attributes('logos',$this->getAllGameLogoSmall($this->response->attributes('results')));
 	}
 
 	private function getResults() {
@@ -23,6 +24,17 @@ class GameTypesController extends BaseController {
 
     protected function pageInfo(){
         $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
+    }
+
+    private function getAllGameLogoSmall($results) {
+
+	    $logos = array();
+	    $index = 0;
+	    foreach ($results as $key => $value)
+        {
+            $logos[$index++] = "/public/sync/game_type_logo/136x100/".str_replace(" ", "_", strtolower($key)).".jpg";
+        }
+	    return $logos;
     }
 }

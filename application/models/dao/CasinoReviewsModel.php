@@ -19,16 +19,16 @@ class CasinoReviewsModel{
     function __construct($app, $request)
     {
         $this->setInvisionApi($app);
-        $reviewData = $request->getParameters();
-        $reviewData['user_ip'] = $request->getAttribute("ip");
-        $reviewData['country'] = $request->getAttribute("country")->id;
+        $reviewData = $request->parameters();
+        $reviewData['user_ip'] = $request->attributes("ip");
+        $reviewData['country'] = $request->attributes("country")->id;
         $this->reviewData = $reviewData;
     }
 
     private function setInvisionApi($app){
 
-        $env = $app->getAttribute("environment");
-        $configInvSettings = $app->getXML()->invision_api->$env;
+        $env = $app->attributes("environment");
+        $configInvSettings = $app->getTag("invision_api")->$env;
         $apiKey =  (string)$configInvSettings['api_key'];
         $apiUrl = (string)$configInvSettings['api_url'];
         $this->blogId = (int)$configInvSettings['blog_id'];
@@ -42,13 +42,14 @@ class CasinoReviewsModel{
         if(empty($this->reviewData['invision_casino_id'])){
 
             $invisionCasinoModel = new InvisionCasinoModel($this->invisionApi);
-           $this->invision_casino_id = $invisionCasinoModel->saveCasino( $this->reviewData['casino_id'] , $this->reviewData['casino'], $this->blogId);
+            $this->invision_casino_id = $invisionCasinoModel->saveCasino( $this->reviewData['casino_id'] , $this->reviewData['casino'], $this->blogId);
         }else{
 
             $this->invision_casino_id = $this->reviewData['invision_casino_id'];
             $invisionReviewsModel->syncronizeWithInvision( $this->invision_casino_id ,$this->reviewData['casino_id'] );
 
         }
+
 
         $commentData = [
             'entry' => $this->invision_casino_id,

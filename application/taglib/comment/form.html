@@ -1,6 +1,6 @@
 <div class="form">
 	<div class="form-row">
-		<std:if condition="$[rating]">
+		<:if test="$[rating]">
 			<div class="flex-left">
 				<div class="rating-container" data-casino-name="$[name]" data-casino-rating="${ceil($[rate])}" data-user-rate="${ceil($[key])}">
 					<label class="form-label">
@@ -14,25 +14,33 @@
 					</label>
 					<select class="rating-bar" autocomplete="off">
 						<option value=""></option>
-						<option value="1">Poor</option>
-						<option value="2">Poor</option>
+						<option value="1">Terrible</option>
+						<option value="2">Terrible</option>
 						<option value="3">Poor</option>
 						<option value="4">Poor</option>
 						<option value="5">Good</option>
 						<option value="6">Good</option>
-						<option value="7">Good</option>
-						<option value="8">Excellent</option>
+						<option value="7">Very good</option>
+						<option value="8">Very good</option>
 						<option value="9">Excellent</option>
 						<option value="10">Excellent</option>
 					</select>
 				</div>
 				<div class="action-field">
 					<i class="icon-icon_available"></i>
-                                        <span class="thanx">Thank you for rating $[name]!</span>
+					<span class="thanx">Thank you for rating $[name]!</span>
 				</div>
+				<:if test="!${data.casino.is_country_accepted}">
+					<div class="info-message">
+						<div class="info-message-icon">
+							<i class="icon-icon_info"></i>
+						</div>
+						<div class="info-message-body">This casino does not accept your country, therefore you cannot rate or add a review.</div>
+					</div>
+				</:if>
 			</div>
 			<label class="form-label">ADD REVIEW</label>
-		</std:if>
+		</:if>
 
 		<div class="textfield-holder">
 			<textarea name="body" rows="5" class="expanding textfield" placeholder="Write your review..."></textarea>
@@ -54,7 +62,7 @@
 		<div class="form-row">
 			<div class="review-submit-holder">
 				<input class="btn" type="submit" name="submit" value="ADD REVIEW">
-				<div>
+				<div class="errors-scope">
 				    <div class="field-error-required not-valid action-field">
 				        Please fill in the required fields.
 				    </div>

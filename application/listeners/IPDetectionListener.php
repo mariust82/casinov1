@@ -11,13 +11,13 @@ require_once("application/models/dao/entities/Country.php");
  * - ip: detected client IP, validated for proxy headers, too
  * - country: detected Country entity
  */
-class IPDetectionListener extends RequestListener
+class IPDetectionListener extends Lucinda\MVC\STDOUT\RequestListener
 {
     public function run()
     {
         // sets MMDB file location
-        $env = $this->application->getAttribute("environment");
-        CountryDetection::$DB_FILE = (string)$this->application->getXML()->geoip->$env;
+        $env = ENVIRONMENT;
+        CountryDetection::$DB_FILE = (string)$this->application->getTag("geoip")->$env;
 
         // detects and saves country
         $countryDetected = CountryDetection::getInstance()->getCountry();
@@ -31,10 +31,11 @@ class IPDetectionListener extends RequestListener
             $country->name = $countryDetected->name;
         }
         $country->id = $countries->getIDByCode($country->code);
-        $this->request->setAttribute('country', $country);
+        $this->request->attributes('country', $country);
 
         // detects and saves ip
         $ip = IPDetection::getInstance()->getIP();
-        $this->request->setAttribute('ip', ($ip != null) ? $ip : '127.0.0.1');
+        $this->request->attributes('ip', ($ip != null) ? $ip : '127.0.0.1');
+
     }
 }

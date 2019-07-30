@@ -1,7 +1,7 @@
 <?php
 require_once("application/models/mailing/MailMessage.php");
 
-class ContactSendController extends Controller
+class ContactSendController extends Lucinda\MVC\STDOUT\Controller
 {
     const SUBJECT = "New message from ";
     const EMAIL = "support@casinoslists.com";

@@ -10,20 +10,21 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/application/models/dao/CasinosList.ph
 class Newest extends \TMS\VariablesHolder {
 
     public function getNewestCasinoInTheList(){
-        $filterParams[$this->parameters["response"]->getAttribute("filter")] = $this->parameters["response"]->getAttribute("selected_entity");
-        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->getAttribute("country"));
+        $filterParams[$this->parameters["response"]->attributes("filter")] = $this->parameters["response"]->attributes("selected_entity");
+        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->attributes("country"));
         $object = new CasinosList($filter);
 
-        $casino = $object->getResults(CasinoSortCriteria::NEWEST, 0, 1)[0];
-        if($casino){
+        $results = $object->getResults(CasinoSortCriteria::NEWEST, 0, 1);
+        if($results){
+            $casino = reset($results);
             $casinoCode = strtolower(str_replace(" ","-", $casino->name));
-            return '<a href="/visit/'.$casinoCode.'">'.$casino->name.'</a>';
+            return '<a href="/reviews/'.$casinoCode.'-review">'.$casino->name.'</a>';
         }
 
     }
 
     public function getNewestCasinoInTheSite(){
-        $casinoName = DB("
+        $casinoName = SQL("
           SELECT name FROM casinos
           WHERE is_open = 1
           AND date_established > DATE_SUB(CURDATE(), INTERVAL 1 YEAR)

@@ -9,11 +9,10 @@ require_once("application/models/SiteCasinoClick.php");
 * @source 
 * @pathParameter name string Name of casino
 */
-class CasinoVisitController extends Controller {
+class CasinoVisitController extends Lucinda\MVC\STDOUT\Controller {
 	public function run() {
-        $casino_name = $this->request->getValidator()->getPathParameter('name');
-        if(!$casino_name) throw new PathNotFoundException();
-
-        new SiteCasinoClick(str_replace("-"," ", $casino_name));
+     //   $casino_name = $this->request->getValidator()->parameters('name');
+       $casino_id =  $this->request->attributes('validation_results')->get('name');
+        new SiteCasinoClick($casino_id);
 	}
 }

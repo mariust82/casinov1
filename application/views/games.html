@@ -23,11 +23,11 @@
 				<filter:reset/>
 			</div>
 
-			<std:if condition="${data.total_games} > count(${data.games})">
+			<:if test="${data.total_games} > count(${data.games})">
 				<div class="btn-holder">
 					<a href="#" class="btn-bordered load js-more-items">LOAD MORE GAMES</a>
 				</div>
-			</std:if>
+			</:if>
 
 		</div>
 	</div>

@@ -1,9 +1,9 @@
 <?php
-abstract class AbstractSitemapController extends Controller
+abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
 {
     public function run() {
-        $this->response->setAttribute("pages", $this->getPages());
-        $this->response->setAttribute("priority", $this->getPriority());
+        $this->response->attributes("pages", $this->getPages());
+        $this->response->attributes("priority", $this->getPriority());
     }
 
     private function getPages() {
@@ -12,7 +12,7 @@ abstract class AbstractSitemapController extends Controller
         $items = $this->getItems();
         $pages = array();
         foreach($items as $name) {
-            $pages[] = $protocol."://".$this->request->getServer()->getName()."/".strtolower(str_replace(" ", "-", str_replace("(item)", $name, $urlPattern)));
+            $pages[] = $protocol."://".$this->request->getServer()->getName()."/".strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars($name), $urlPattern)));
         }
         return $pages;
     }

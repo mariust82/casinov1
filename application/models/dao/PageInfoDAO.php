@@ -3,7 +3,8 @@ require_once("entities/PageInfo.php");
 class PageInfoDAO
 {
     public function getInfoByURL($url, $entity=null, $casinos_number = '') {
-        $row = DB("SELECT * FROM pages WHERE url=:url",array(":url"=>$url))->toRow();
+
+        $row = SQL("SELECT * FROM pages WHERE url=:url",array(":url"=>$url))->toRow();
         $object = new PageInfo();
         $object->head_title = $this->feedValues($row["head_title"], $entity, $casinos_number);
         $object->head_description = $this->feedValues($row["head_description"], $entity, $casinos_number);

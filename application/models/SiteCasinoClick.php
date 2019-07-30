@@ -6,23 +6,26 @@ class SiteCasinoClick extends CasinoClick
 {
     private $info;
 
-    protected function getCasinoStatus($name)
+    protected function getCasinoStatus($id)
     {
         $object = new Casinos();
-        $this->info = $object->getBasicInfo($name);
+        $this->info = $object->getBasicInfo($id);
         if (!$this->info) {
-            throw new PathNotFoundException();
+            throw new Lucinda\MVC\STDOUT\PathNotFoundException();
         }
+
         $object->click($this->info->id);
-        if ($this->info->status || $this->info->is_open == 0) {
+        if (in_array($this->info->status, ["Warning","Blacklisted"]) || $this->info->is_open == 0) {
             return CasinoStatus::UNACTIVE;
         }
         return CasinoStatus::ACTIVE;
     }
 
-    protected function getWarningPage($name = "")
+    protected function getWarningPage($id = "")
     {
-        return '/warn/'. str_replace(" ","-", $name);
+        $casino = new Casinos();
+        $name = $casino->getName($id);
+        return '/warn/'. str_replace(" ","-", strtolower($name));
     }
 
     protected function getAffiliateLinkByBonus($bonusID)

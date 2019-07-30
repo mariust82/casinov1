@@ -9,8 +9,8 @@
 class FirstDepositBonus extends \TMS\VariablesHolder {
 
     public function getBestInList(){
-        $filterParams[$this->parameters["response"]->getAttribute("filter")] = $this->parameters["response"]->getAttribute("selected_entity");
-        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->getAttribute("country"));
+        $filterParams[$this->parameters["response"]->attributes("filter")] = $this->parameters["response"]->attributes("selected_entity");
+        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->attributes("country"));
         $object = new CasinosList($filter);
 
         $casino = $object->getResults(CasinoSortCriteria::TOP_RATED, 0, 1);
@@ -20,8 +20,8 @@ class FirstDepositBonus extends \TMS\VariablesHolder {
     }
 
     public function getPopularInList(){
-        $filterParams[$this->parameters["response"]->getAttribute("filter")] = $this->parameters["response"]->getAttribute("selected_entity");
-        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->getAttribute("country"));
+        $filterParams[$this->parameters["response"]->attributes("filter")] = $this->parameters["response"]->attributes("selected_entity");
+        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->attributes("country"));
         $object = new CasinosList($filter);
 
         $casino = $object->getResults(CasinoSortCriteria::POPULARITY, 0, 1);
@@ -30,8 +30,8 @@ class FirstDepositBonus extends \TMS\VariablesHolder {
         }
     }
     public function getNewestInList(){
-        $filterParams[$this->parameters["response"]->getAttribute("filter")] = $this->parameters["response"]->getAttribute("selected_entity");
-        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->getAttribute("country"));
+        $filterParams[$this->parameters["response"]->attributes("filter")] = $this->parameters["response"]->attributes("selected_entity");
+        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->attributes("country"));
         $object = new CasinosList($filter);
 
         $casino = $object->getResults(CasinoSortCriteria::NEWEST, 0, 1);

@@ -1,25 +1,25 @@
 <?php
-class MockFeeder extends ResponseListener
+class MockFeeder extends Lucinda\MVC\STDOUT\ResponseListener
 {
     public function run() {
-        $objControllerLocator = new ControllerLocator($this->application, $this->request->getValidator()->getPage());
+        $objControllerLocator = new Lucinda\MVC\STDOUT\ControllerLocator($this->application, $this->request->getValidator()->getPage());
         $strClassName  = $objControllerLocator->getClassName();
         if($strClassName) {
             $this->development2frontend(dirname(dirname(__DIR__)), $strClassName, $this->response);
         }
     }
 
-    private function development2frontend($frontendProjectLocation, $controllerName, Response $response) {
+    private function development2frontend($frontendProjectLocation, $controllerName, Lucinda\MVC\STDOUT\Response $response) {
         $remoteController = $frontendProjectLocation."/application/controllers_frontend/".$controllerName.".php";
 
         // compose response attributes
-        $attributes = json_decode(json_encode($response->toArray()), true);
+        $attributes = json_decode(json_encode($response->attributes()), true);
         $addition = '<?php
-class '.$controllerName.' extends Controller {
+class '.$controllerName.' extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
         ';
         foreach($attributes as $key=>$value) {
-            $addition .= '$this->response->setAttribute("'.$key.'", '.var_export($value,true).');'."\n";
+            $addition .= '$this->response->attributes("'.$key.'", '.var_export($value,true).');'."\n";
         }
         $addition.='
     }

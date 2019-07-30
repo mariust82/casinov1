@@ -30,6 +30,8 @@ class CasinoFilter
     private $play_version;
     private $high_roller = false;
     private $certification;
+    private $bonus_types = [];
+    private $play_version_type;
 
     public function __construct($requestParameters, Country $detectedCountry) {
         $this->detectedCountry = $detectedCountry;
@@ -47,7 +49,7 @@ class CasinoFilter
         $strings = array("banking_method", "label", "bonus_type", "country", "software", "game");
         foreach($strings as $item) {
             $this->$item =  (!empty($requestParameters[$item])?preg_replace("/[^a-zA-Z0-9\ \.\@\-\(\)]/","", $requestParameters[$item]):"");
-            
+
         }
         
 
@@ -66,11 +68,13 @@ class CasinoFilter
                 case "Live Dealer":
                     $this->play_version = $feature;
                     break;
-                case "eCOGRA Casinos":
+                case "ECOGRA Casinos":
                     $this->certification = "ecogra";
                     break;
                 default:
-                    $this->country = "AAA"; // force empty result
+                    $this->play_version = "Live Dealer";
+                    $this->play_version_type = $requestParameters["feature"];
+                    $this->country = ""; // force empty result
                     break;
             }
         }
@@ -90,6 +94,18 @@ class CasinoFilter
         if($this->operating_system && $this->operating_system=="iphone") {
             $this->operating_system = "iOS";
         }
+
+        if(!empty($requestParameters["live_dealer"])){
+            $this->play_version = 'Live Dealer';
+            $this->play_version_type = $requestParameters["live_dealer"];
+        }
+
+
+
+      /*  if(!empty($requestParameters['bonus_types'])){
+            $this->bonus_types = $requestParameters['bonus_types'];*/
+    //    }
+      //  var_dump($requestParameters);
         // end hardcodings
     }
 
@@ -129,7 +145,7 @@ class CasinoFilter
         return $this->language_id;
     }
 
-    public function setLanguageID() {
+    public function setLanguageID($data) {
         $this->language_id = $data;
     }
 
@@ -236,4 +252,13 @@ class CasinoFilter
     public function setGame($data) {
         $this->game = $data;
     }
+
+    public function getPlayVersionType(){
+        return $this->play_version_type;
+    }
+
+    public function setPlayVersionType($data){
+        $this->play_version_type = $data;
+    }
+
 }

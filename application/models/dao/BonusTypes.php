@@ -2,10 +2,10 @@
 require_once("CasinoCounter.php");
 require_once("FieldValidator.php");
 
-class BonusTypes implements CasinoCounter, FieldValidator
+class BonusTypes implements CasinoCounter
 {
     public function getCasinosCount() {
-        return DB("
+        return SQL("
         SELECT
         t1.name AS unit, count(*) as counter
         FROM bonus_types AS t1
@@ -17,7 +17,7 @@ class BonusTypes implements CasinoCounter, FieldValidator
         ")->toMap("unit","counter");
     }
 
-    public function validate($name) {
-        return DB("SELECT name FROM bonus_types WHERE name=:name",array(":name"=>$name))->toValue();
-    }
+  /*  public function validate($name) {
+        return SQL("SELECT name FROM bonus_types WHERE name=:name",array(":name"=>$name))->toValue();
+    }*/
 }

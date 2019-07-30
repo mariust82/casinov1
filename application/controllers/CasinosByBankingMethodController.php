@@ -11,18 +11,12 @@ require_once("CasinosListController.php");
 * @pathParameter name string Name of banking method
 */
 class CasinosByBankingMethodController extends CasinosListController {
+
     protected function getSelectedEntity()
     {
-        $parameter = $this->request->getValidator()->getPathParameter("name");
-        if(!$parameter) {
-            throw new PathNotFoundException();
-        }
-        $parameter = str_replace("-"," ", $parameter);
-        $object = new BankingMethods();
-        $name = $object->validate($parameter);
-        if(!$name) {
-            throw new PathNotFoundException();
-        }
+        $parameter = $this->request->getValidator()->parameters("name");
+        $name = str_replace("-"," ", $parameter);
+
         return $name;
     }
 

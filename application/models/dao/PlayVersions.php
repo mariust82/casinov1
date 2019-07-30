@@ -5,7 +5,7 @@ require_once("FieldValidator.php");
 class PlayVersions implements CasinoCounter
 {
     public function getCasinosCount() {
-        return DB("
+        return SQL("
         SELECT
         t1.name AS unit, count(*) as counter
         FROM play_versions AS t1
@@ -18,7 +18,7 @@ class PlayVersions implements CasinoCounter
     }
 
     public function getNumberOfCasinos($playVersionName) {
-        return DB("
+        return SQL("
         SELECT
         count(*) as counter
         FROM play_versions AS t1
@@ -30,6 +30,6 @@ class PlayVersions implements CasinoCounter
 
     public function validate($name)
     {
-        return DB("SELECT name FROM play_versions WHERE name=:name",array(":name"=>$name))->toValue();
+        return SQL("SELECT name FROM play_versions WHERE name=:name",array(":name"=>$name))->toValue();
     }
 }

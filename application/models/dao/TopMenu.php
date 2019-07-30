@@ -20,15 +20,27 @@ class TopMenu
             ]
         ],
 
+        "LIVE"=>[
+            "item_url" => "/features/live-dealer",
+            "sub_items" => [
+                "Live Roulette Casinos" => "/live-dealer/roulette",
+                "Live Blackjack Casinos" => "/live-dealer/blackjack",
+                "Live Baccarat Casinos" => "/live-dealer/baccarat",
+                "Live Craps Casinos" => "/live-dealer/craps",
+                "Live Dealer Casinos" => "/features/live-dealer"
+            ]
+        ],
+
         "CASINOS"=>[
            "item_url" => "/casinos",
             "sub_items" => [
                 "Best Casinos" => "/casinos/best",
-                "Live Casinos" => "/features/live-dealer",
                 "Mobile Casinos" => "/casinos/mobile",
+                "Low Wagering Casinos" => "/casinos/low-wagering",
                 "eCOGRA Casinos" => "/features/ecogra-casinos",
                 "Stay Away Casinos" => "/casinos/stay-away",
                 "Popular Casinos" => "/casinos/popular",
+                "No Account Casinos" => "/casinos/no-account-casinos",
                 "All Casinos" => "/casinos"
             ]
         ],
@@ -68,7 +80,7 @@ class TopMenu
                 'Skrill Moneybookers Casinos' => '/banking/skrill-moneybookers',
                 'PayPal Casinos' => '/banking/paypal',
                 'Bitcoin Wallets Casinos' => '/banking/bitcoin-wallets',
-                'EcoPayz EcoCard Casinos' => '/banking/ecopayz',
+                'EcoPayz EcoCard Casinos' => '/banking/ecopayz-ecocard',
                 'Paysafe Card' => '/banking/paysafe-card',
                 'All Banking' => '/banking'
             ],
@@ -139,6 +151,7 @@ class TopMenu
     }
 
     private function setEntries($currentPage, $specific_page = '') {
+
         $selectedEntry = $this->getSelectedEntry($currentPage, $specific_page);
 
         foreach(self::$entries as $title=>$entry_data) {
@@ -150,7 +163,11 @@ class TopMenu
             if(!empty($entry_data["sub_items"])){
                 $object->have_submenu = true;
                 foreach($entry_data["sub_items"] as $subItemTitle => $subItemUrl){
-                    $object->submenuItems[$subItemTitle] = $subItemUrl;
+                    $si = new MenuItem();
+                    $si->title = $subItemTitle;
+                    $si->url = $subItemUrl;
+                    $si->is_active = ("/".$specific_page==$subItemUrl?true:false);
+                    $object->submenuItems[] = $si;
                 }
             }
             $this->pages[] = $object;

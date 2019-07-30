@@ -7,12 +7,12 @@ require_once("application/models/CasinoSortCriteria.php");
 class Visits extends \TMS\VariablesHolder {
     public function getNewestGameTotal() {
         $query = "SELECT times_played FROM games ORDER BY date DESC LIMIT 1";
-        return DB($query)->toValue();
+        return SQL($query)->toValue();
     }
 
     public function getBestGameTotal() {
         $query = "SELECT times_played FROM games ORDER BY times_played DESC LIMIT 1";
-        return DB($query)->toValue();
+        return SQL($query)->toValue();
     }
 
     public function getBestCasinoTotal() {
@@ -21,7 +21,10 @@ class Visits extends \TMS\VariablesHolder {
         $casinos = new CasinosList($filter);
 
         $result = $casinos->getResults(CasinoSortCriteria::TOP_RATED,1, 1);
-        $total = DB("SELECT clicks FROM casinos WHERE id = " . $result[0]->id)->toValue();
+        $total = 0 ;
+        if(isset( $result[0])){
+            $total = SQL("SELECT clicks FROM casinos WHERE id = " . $result[0]->id)->toValue();
+        }
         return $total;
     }
 
@@ -30,11 +33,11 @@ class Visits extends \TMS\VariablesHolder {
         $filter = new CasinoFilter(['label' => 'new'], $country);
         $casinos = new CasinosList($filter);
         $result = $casinos->getResults(CasinoSortCriteria::NEWEST, 1, 1);
-        $total = DB("SELECT clicks FROM casinos WHERE id = " . $result[0]->id)->toValue();
+        $total = SQL("SELECT clicks FROM casinos WHERE id = " . $result[0]->id)->toValue();
         return $total;
     }
 
     private function getCountry() {
-        return $this->parameters['response']->getAttribute('country');
+        return $this->parameters['response']->attributes('country');
     }
 }

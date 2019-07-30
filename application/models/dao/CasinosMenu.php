@@ -9,8 +9,10 @@ class CasinosMenu
         "/bonus-list/no-deposit-bonus"=>"No Deposit Casinos",
         "/casinos/best"=>"Best Casinos",
         "/casinos/mobile"=>"Mobile Casinos",
+        "/casinos/low-wagering" => "Low Wagering Casinos",
         "/casinos/new"=>"New Casinos",
         "/casinos/stay-away"=>"Stay Away Casinos",
+        "/casinos/no-account-casinos" => "No Account Casinos",
         "/casinos"=>"All Casinos",
     ];
     public $soft_arr;
@@ -64,7 +66,7 @@ class CasinosMenu
                     $finalUrl = str_replace("{country}", $this->generatePathParameter($country), $finalUrl);
                 } else if($url=="/{page}") {
                     // hardcoding: CASLI-316
-                    $entity = ($entity=="eCOGRA Casinos"?"eCOGRA":$entity);
+                    $entity = ($entity=="ECOGRA Casinos"?"eCOGRA":$entity);
                     $finalTitle = str_replace("{entity}", $entity, $finalTitle);
                     $finalUrl = "/".$currentPage;
                 }
@@ -93,6 +95,9 @@ class CasinosMenu
             case "casinos/mobile":
                 return "/casinos/mobile";
                 break;
+            case "casinos/low-wagering":
+                return "/casinos/low-wagering";
+                break;
             case "casinos/recommended":
                 return "/casinos/recommended";
                 break;
@@ -105,10 +110,12 @@ class CasinosMenu
             case "countries-list/".$this->generatePathParameter($country):
                 return "/countries-list/{country}";
                 break;
+            case "casinos/no-account-casinos":
+                 return "/casinos/no-account-casinos";
+                 break;
             default:
                 return "/{page}";
                 break;
-
         }
     }
 

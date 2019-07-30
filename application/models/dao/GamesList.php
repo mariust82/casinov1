@@ -14,17 +14,12 @@ class GamesList
 
     public function getResults($sortBy, $page, $limit = self::LIMIT, $offset='') {
 
-        if ($page > 1) {
-            $offset = ($page-1) *$limit ;
-        }else{
-            $offset = 0;
-        }
 
         // build query
         $query = $this->getQuery(array("t1.id", "t1.name", "t1.times_played", "t2.name AS software"));
         switch($sortBy) {
             case GameSortCriteria::NEWEST:
-                $query .= "ORDER BY t1.id DESC"."\n";
+                $query .= "ORDER BY  t1.date_launched DESC ,t1.id DESC"."\n";
                 break;
             case GameSortCriteria::MOST_PLAYED:
                 $query .= "ORDER BY t1.times_played DESC, t1.priority ASC, t1.id DESC"."\n";
@@ -36,10 +31,9 @@ class GamesList
 
         $query .= !empty($limit) ?  " LIMIT ". $limit : '';
         $query .= !empty($offset) ? " OFFSET ". $offset : '';
-
         $output = array();
 
-        $resultSet = DB($query);
+        $resultSet = SQL($query);
 
         while($row = $resultSet->toRow()) {
             $object = new Game();
@@ -47,6 +41,8 @@ class GamesList
             $object->name = $row["name"];
             $object->times_played = $row["times_played"];
             $object->software = $row["software"];
+            $object->logo_big = "public/sync/game_ss/300x220/".str_replace(" ", "_", $row["name"])."_ss.jpg";
+            $object->logo_small = "public/sync/game_ss/136x100/".str_replace(" ", "_", $row["name"])."_ss.jpg";
             $output[$row["id"]] = $object;
         }
         return $output;
@@ -54,8 +50,9 @@ class GamesList
 
     public function getTotal() {
         // build query
-        $query = $this->getQuery(array("COUNT(t1.id) AS nr"));
-        return (integer) DB($query)->toValue();
+        $query = $this->getQuery(["COUNT(t1.id) AS nr"]);
+        $result =SQL($query)->toValue();
+        return $result;
     }
 
     private function getQuery($columns) {

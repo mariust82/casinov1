@@ -15,30 +15,35 @@ require_once("BaseController.php");
 */
 class CasinoWarningController extends BaseController {
 	public function service() {
-        $this->response->setAttribute("country", $this->request->getAttribute("country"));
+
+       if($this->request->getValidator()->parameters('name')!= strtolower($this->request->getValidator()->parameters('name'))){
+           header(strtolower("Location:".$this->request->getValidator()->parameters('name')),true,301);
+       }
+        $this->response->attributes("country", $this->request->attributes("country"));
 
 	    // set casino info
 		$casinos = new Casinos();
-        $result = $casinos->getBasicInfo($this->getSelectedEntity());
-		if(!$result) throw new PathNotFoundException();
-		$this->response->setAttribute("casino", $result);
+        $result = $casinos->getBasicInfo($this->request->attributes('validation_results')->get('name'));
+		if(!$result) throw new Lucinda\MVC\STDOUT\PathNotFoundException();
+
+		$this->response->attributes("casino", $result);
 
 		// get recommended casinos
-        $object = new CasinosList(new CasinoFilter(array("software"=>$result->softwares, "country_accepted"=>true,"promoted"=>true), $this->request->getAttribute("country")));
-        $this->response->setAttribute("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
+        $object = new CasinosList(new CasinoFilter(array("software"=>$result->softwares, "country_accepted"=>true,"promoted"=>true), $this->request->attributes("country")));
+        $this->response->attributes("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
+        $this->response->attributes('is_mobile',$this->request->attributes("is_mobile"));
+        $this->response->attributes("page_type", "warning");
+        $this->response->attributes("selected_entity", "warning");
 
-
-
-        $this->response->setAttribute('is_mobile',$this->request->getAttribute("is_mobile"));
     }
 
     private function getSelectedEntity() {
-        return str_replace("-"," ", $this->request->getValidator()->getPathParameter("name"));
+        return str_replace("-"," ", $this->request->getValidator()->parameters("name"));
     }
 
     protected function pageInfo(){
         // get page info
         $object = new PageInfoDAO();
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("casino")->name));
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("casino")->name));
     }
 }

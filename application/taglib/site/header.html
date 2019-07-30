@@ -8,14 +8,18 @@
     <title>$[title]</title>
     <meta name="description" content="$[description]">
     <link rel="icon" type="image/png" href="/public/favicon.ico?ver=0.0.1"/>
-    <link rel="stylesheet" type="text/css" href="/public/build/css/all.css?ver=${data.version}" media="all">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <script src="/public/build/js/assets.js?ver=${data.version}"></script>
+    <:if test="${data.use_bundle}">
+        <link rel="stylesheet" type="text/css" href="/public/build/css/compilations/all.css?ver=${data.version}" media="all">
+        <script src="/public/build/js/compilations/bundle.js?ver=${data.version}"></script>
+    <:else/>
+        <link rel="stylesheet" type="text/css" href="/public/build/css/parts/all.css?ver=${data.version}" media="all">
+        <script src="/public/build/js/compilations/bundle.js?ver=${data.version}"></script>
+    </:if>
 </head>
 <body>
 
-    <std:if condition="!empty($_GET['debug'])">
+    <:if test="!empty($_GET['debug'])">
         <div>
             <pre>${var_dump(${data}); die()}</pre>
         </div>
-    </std:if>
+    </:if>

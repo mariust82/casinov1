@@ -1,10 +1,12 @@
 <div class="games">
 	<div class="games-list">
-		<std:foreach var="$[data]" value="result">
+		<:foreach var="$[data]" val="result">
 			<div class="game loaded-item">
 				<a href="/play/${normalize(${result.name})}" class="game-holder">
 					<span class="game-img">
-						<img src="${getGameLogo(${result.name},'300x220')}" alt="${result.name}" width="300" height="220">
+						<:set var="imgSrc" val="${result.logo_big}"/>
+						<:set var="noImgSrc" val="public/build/images/games/default_game_ss.png"/>
+						<img src="/${(is_file(${imgSrc}))?${imgSrc}:${noImgSrc}}" alt="${result.name}" width="300" height="220">
 					</span>
 					<span class="game-desc">
 						<span class="game-title">${result.name}</span>
@@ -13,13 +15,13 @@
 								<span class="game-play">
 									<i class="icon-play"></i>
 								</span>
-								Times played: ${result.times_played}
+								<span class="game-played-label">Times played:</span> ${result.times_played}
 							</span>
 							<span class="game-soft">${result.software}</span>
 						</span>
 					</span>
 				</a>
 			</div>
-		</std:foreach>
+		</:foreach>
 	</div>
 </div>

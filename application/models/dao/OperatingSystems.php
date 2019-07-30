@@ -5,7 +5,7 @@ require_once("FieldValidator.php");
 class OperatingSystems implements CasinoCounter, FieldValidator
 {
     public function getCasinosCount() {
-        return DB("
+        return SQL("
         SELECT
         t1.name AS unit, count(*) as counter
         FROM operating_systems AS t1
@@ -18,6 +18,6 @@ class OperatingSystems implements CasinoCounter, FieldValidator
     }
 
     public function validate($name) {
-        return DB("SELECT name FROM operating_systems WHERE name=:name",array(":name"=>$name))->toValue();
+        return SQL("SELECT name FROM operating_systems WHERE name=:name",array(":name"=>$name))->toValue();
     }
 }

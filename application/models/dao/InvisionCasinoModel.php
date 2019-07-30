@@ -18,7 +18,10 @@ class InvisionCasinoModel {
 
         $invisionCasino = $this->invisionModel->addCasinoToInvision($casino_name, $blogId);
         $invision_casino_id =  !empty($invisionCasino['id']) ? $invisionCasino['id'] : '';
-        $this->updateCasinoForInvision($casino_id, $invision_casino_id);
+
+        if(!empty($invision_casino_id))
+            $this->updateCasinoForInvision($casino_id, $invision_casino_id);
+
         return $invision_casino_id;
     }
 

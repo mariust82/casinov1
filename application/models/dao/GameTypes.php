@@ -1,10 +1,10 @@
 <?php
 require_once("FieldValidator.php");
 
-class GameTypes implements FieldValidator
+class GameTypes
 {
     public function getGamesCount() {
-        return DB("
+        return SQL("
         SELECT
         t1.name AS unit, count(*) as counter
         FROM game_types AS t1
@@ -15,7 +15,7 @@ class GameTypes implements FieldValidator
     }
 
     public function getAll() {
-        return DB("
+        return SQL("
         SELECT DISTINCT t1.name
         FROM game_types AS t1
         INNER JOIN games AS t2 ON t1.id = t2.game_type_id
@@ -25,7 +25,7 @@ class GameTypes implements FieldValidator
 
     public function getGamesByType() {
 
-        return DB("
+        return SQL("
         SELECT
         t1.name AS unit, t2.name AS game
         FROM game_types AS t1
@@ -34,7 +34,4 @@ class GameTypes implements FieldValidator
         ")->toMap("unit","game");
     }
 
-    public function validate($name) {
-        return DB("SELECT name FROM game_types WHERE name=:name",array(":name"=>$name))->toValue();
-    }
 }

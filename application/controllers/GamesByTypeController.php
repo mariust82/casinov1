@@ -7,7 +7,7 @@ require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/GamesMenu.php");
 require_once("BaseController.php");
 require_once("application/models/caching/GamesListKey.php");
-require_once ('application/Tms/TmsWrapper.php');
+require_once ('application/models/TmsWrapper.php');
 
 /*
 * Games list by game type.
@@ -24,25 +24,25 @@ class GamesByTypeController extends BaseController {
 
 	public function service() {
 
-        $this->response->setAttribute("selected_entity", $this->getSelectedEntity());
-        $menu = new GamesMenu($this->response->getAttribute("selected_entity"));
-        $this->response->setAttribute("menu_bottom", $menu->getEntries());
+        $this->response->attributes("selected_entity", ucwords($this->getSelectedEntity()));
+        $menu = new GamesMenu($this->response->attributes("selected_entity"));
+        $this->response->attributes("menu_bottom", $menu->getEntries());
 
         $object = new GameManufacturers();
-        $this->response->setAttribute("software", $object->getAll());
+        $this->response->attributes("software", $object->getAll());
         $this->setFilter();
-        $this->response->setAttribute("filter", $this->filter);
+        $this->response->attributes("filter", $this->filter);
         $results = $this->getResults();
-        $this->response->setAttribute("total_games", $results["total"]);
-        $this->response->setAttribute("games", $results["list"]);
+        $this->response->attributes("total_games", $results["total"]);
+        $this->response->attributes("games", $results["list"]);
         $tms = new TmsWrapper($this->application,$this->request, $this->response);
 
         $tmsText = $tms->getText();
-        $this->response->setAttribute("tms", $tmsText);
+        $this->response->attributes("tms", $tmsText);
 	}
 
 	private function setFilter(){
-        $this->filter = new GameFilter(array("game_type"=>$this->response->getAttribute("selected_entity"), "is_mobile"=>$this->request->getAttribute("is_mobile")));
+        $this->filter = new GameFilter(array("game_type"=>$this->response->attributes("selected_entity"), "is_mobile"=>$this->request->attributes("is_mobile")));
     }
 
 
@@ -56,24 +56,17 @@ class GamesByTypeController extends BaseController {
     }
 
 	private function getSelectedEntity(){
-        $parameter = $this->request->getValidator()->getPathParameter("type");
-        if(!$parameter) {
-            throw new PathNotFoundException();
-        }
-        $parameter = strtolower(str_replace("-"," ", $parameter));
-        $object = new GameTypes();
-        $name = $object->validate($parameter);
-        if(!$name) {
-            throw new PathNotFoundException();
-        }
+
+        $parameter = $this->request->getValidator()->parameters("type");
+        $name = strtolower(str_replace("-"," ", $parameter));
         return $name;
     }
 
     protected function pageInfo(){
         // get page info
         $object = new PageInfoDAO();
-        $total_games = !empty($this->response->getAttribute("total_games")) ? $this->response->getAttribute("total_games") : '';
-        $this->response->setAttribute("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->getAttribute("selected_entity"), $total_games));
+        $total_games = !empty($this->response->attributes("total_games")) ? $this->response->attributes("total_games") : '';
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("selected_entity"), $total_games));
     }
 
 }

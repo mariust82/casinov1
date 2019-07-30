@@ -1,5 +1,6 @@
 <?php
-class Game {
+class Game extends Entity
+{
 	public $id;
 	public $name;
 	public $type;
@@ -11,4 +12,6 @@ class Game {
 	public $overview;
 	public $times_played;
 	public $play;
+    public $logo_big;
+    public $logo_small;
 }

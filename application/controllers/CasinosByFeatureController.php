@@ -13,28 +13,19 @@ require_once("CasinosListController.php");
 * @pathParameter version string Name of play version
 */
 class CasinosByFeatureController extends CasinosListController {
-    protected function getSelectedEntity()
-    {
-        $parameter = $this->request->getValidator()->getPathParameter("name");
-        if(!$parameter) {
-            throw new PathNotFoundException();
-        }
-        $parameter = strtolower(str_replace("-"," ", $parameter));
-        switch($parameter) {
-            case "live dealer":
-                return "Live Dealer";
-                break;
-            case "ecogra casinos":
-                return "eCOGRA Casinos";
-                break;
-            default:
-                throw new PathNotFoundException();
-                break;
+    protected function getSelectedEntity(){
+        $page = $this->request->attributes('validation_results')->get('name');
+        $this->setLimitExceptions($page);
+        return $page;
+    }
+
+    private function setLimitExceptions($pageType){
+        if($pageType == 'Live Dealer'){
+            $this->limit = 30;
         }
     }
 
-    protected function getFilter()
-    {
+    protected function getFilter(){
         return "feature";
     }
 
@@ -55,6 +46,6 @@ class CasinosByFeatureController extends CasinosListController {
             break;
         }
 
-        $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $this->response->getAttribute("total_casinos")));
+        $this->response->attributes("page_info", $object->getInfoByURL($url, $this->response->attributes("selected_entity"), $this->response->attributes("total_casinos")));
     }
 }

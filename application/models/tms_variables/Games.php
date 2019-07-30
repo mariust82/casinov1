@@ -6,13 +6,13 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getNumberOfGamesInTheCurrentList(){
 
-        $totalGames = !empty($this->parameters["response"]->getAttribute("total_games")) ? $this->parameters["response"]->getAttribute("total_games") : '';
+        $totalGames = !empty($this->parameters["response"]->attributes("total_games")) ? $this->parameters["response"]->attributes("total_games") : '';
         return $totalGames;
     }
 
     public function getNumberOfGamesInSite(){
 
-        $casinoCount = DB("
+        $casinoCount = SQL("
           SELECT COUNT(id) FROM games  
         ")->toValue();
 
@@ -21,7 +21,7 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getNewestGameInSite(){
 
-       $game =   DB("
+       $game =   SQL("
             SELECT t1.name
             FROM games AS t1
             ORDER BY t1.id DESC LIMIT 1
@@ -32,8 +32,8 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getNewestGameInCurrentList(){
 
-       $selected_entity =  $this->parameters["response"]->getAttribute("selected_entity");
-       $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : null;
+       $selected_entity =  $this->parameters["response"]->attributes("selected_entity");
+       $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
 
        if(
            empty($selected_entity)||
@@ -52,7 +52,7 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getMostPopularGameInSite(){
 
-        $game =   DB("
+        $game =   SQL("
             SELECT t1.name
             FROM games AS t1
             ORDER BY t1.times_played DESC LIMIT 1
@@ -63,8 +63,8 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getMostPopularGameInCurrentList(){
 
-        $selected_entity =  $this->parameters["response"]->getAttribute("selected_entity");
-        $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : null;
+        $selected_entity =  $this->parameters["response"]->attributes("selected_entity");
+        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
         if(
             empty($selected_entity)||
             empty($filterPage) ||
@@ -82,7 +82,7 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getSoftwareOfNewestGameInSite(){
 
-        $game_manufacturers =   DB("
+        $game_manufacturers =   SQL("
             SELECT t2.name
             FROM games AS t1
             INNER JOIN game_manufacturers AS t2 ON
@@ -95,8 +95,8 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getSoftwareOfNewestGameInCurrentList(){
 
-        $selected_entity =  $this->parameters["response"]->getAttribute("selected_entity");
-        $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : null;
+        $selected_entity =  $this->parameters["response"]->attributes("selected_entity");
+        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
 
         if(
             empty($selected_entity)||
@@ -114,7 +114,7 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getSoftwareOfTheMostPopularGameInSite(){
 
-        $game_manufacturers =   DB("
+        $game_manufacturers =   SQL("
             SELECT t2.name
             FROM games AS t1
             INNER JOIN game_manufacturers AS t2 ON
@@ -127,8 +127,8 @@ class  Games extends  \TMS\VariablesHolder {
 
     public function getSoftwareOfTheMostPopularGameInCurentList(){
 
-        $selected_entity =  $this->parameters["response"]->getAttribute("selected_entity");
-        $filterPage = !empty($this->parameters["response"]->getAttribute("filter")) ? $this->parameters["response"]->getAttribute("filter") : null;
+        $selected_entity =  $this->parameters["response"]->attributes("selected_entity");
+        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
 
         if(
             empty($selected_entity)||

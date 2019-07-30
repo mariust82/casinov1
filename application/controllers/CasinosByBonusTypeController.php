@@ -12,19 +12,12 @@ require_once("CasinosListController.php");
 class CasinosByBonusTypeController extends CasinosListController {
     protected function getSelectedEntity()
     {
-        $parameter = $this->request->getValidator()->getPathParameter("name");
-        if(!$parameter) {
-            throw new PathNotFoundException();
-        }
-
+        $parameter = $this->request->getValidator()->parameters("name");
         $parameter = str_replace("-"," ", $parameter);
-        $object = new BonusTypes();
-        $name = $object->validate($parameter);
-        if(!$name) {
-            throw new PathNotFoundException();
-        }
-        return $name;
+        return ucwords($parameter);
     }
+
+
 
     protected function getFilter()
     {
@@ -44,7 +37,11 @@ class CasinosByBonusTypeController extends CasinosListController {
             $url = str_replace('(name)', 'no-deposit-bonus', $url);
         }
 
-        $this->response->setAttribute("page_info", $object->getInfoByURL($url, $this->response->getAttribute("selected_entity"), $this->response->getAttribute("total_casinos")));
+        $this->response->attributes("page_info", $object->getInfoByURL($url, $this->response->attributes("selected_entity"), $this->response->attributes("total_casinos")));
+    }
+
+    protected function getSortCriteria() {
+        return CasinoSortCriteria::NONE;
     }
 
 }

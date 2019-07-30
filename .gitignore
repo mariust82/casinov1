@@ -8,5 +8,10 @@ hlis
 index.php
 .htaccess
 robots.txt
-/node_modules
+node_modules
+/public/package.json
+/public/gulpfile.js
 /npm-debug.log
+compilations
+*.log
+*.lock

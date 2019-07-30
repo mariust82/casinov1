@@ -8,7 +8,7 @@ class CasinoReviews
     const LIMIT_REPLIES = 100;
 
     public function getAllTotal($casinoID) {
-        return DB("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casino_id = :casino_id AND parent_id = 0",array(":casino_id"=>$casinoID))->toValue();
+        return SQL("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casino_id = :casino_id AND parent_id = 0",array(":casino_id"=>$casinoID))->toValue();
     }
 
     public function getAll($casinoID, $page, $parentID = 0) {
@@ -16,7 +16,7 @@ class CasinoReviews
         $output = array();
 
         // get main reviews
-        $resultSet = DB("
+        $resultSet = SQL("
             SELECT t1.*, t2.code AS country, t3.value AS rating
             FROM casinos__reviews AS t1
             INNER JOIN countries AS t2 ON t1.country_id = t2.id
@@ -45,7 +45,7 @@ class CasinoReviews
 
         // get answers to main reviews
         if($parentID==0) {
-            $resultSet = DB("
+            $resultSet = SQL("
                 SELECT count(id) AS nr, parent_id 
                 FROM casinos__reviews 
                 WHERE parent_id IN (".implode(",", array_keys($output)).")
@@ -54,7 +54,7 @@ class CasinoReviews
             while($row = $resultSet->toRow()) {
                 $output[$row["parent_id"]]->total_children = $row["nr"];
             }
-            $resultSet = DB("
+            $resultSet = SQL("
                 SELECT t1.*, t2.code AS country
                 FROM casinos__reviews AS t1
                 INNER JOIN countries AS t2 ON t1.country_id = t2.id
@@ -80,13 +80,13 @@ class CasinoReviews
     }
 
     public function incrementLikes($id, $ip) {
-        $reviewID = DB("SELECT id FROM casinos__reviews_likes WHERE review_id = :review_id AND ip = :ip",array(":review_id"=>$id, ":ip"=>$ip))->toValue();
+        $reviewID = SQL("SELECT id FROM casinos__reviews_likes WHERE review_id = :review_id AND ip = :ip",array(":review_id"=>$id, ":ip"=>$ip))->toValue();
         if($reviewID) {
             return 0;
         } else {
-            DB("INSERT INTO casinos__reviews_likes SET review_id = :review_id, ip = :ip",array(":review_id"=>$id, ":ip"=>$ip));
+            SQL("INSERT INTO casinos__reviews_likes SET review_id = :review_id, ip = :ip",array(":review_id"=>$id, ":ip"=>$ip));
         }
-        return DB("UPDATE casinos__reviews SET likes = likes + 1 WHERE id=:id",array(":id"=>$id))->getAffectedRows();
+        return SQL("UPDATE casinos__reviews SET likes = likes + 1 WHERE id=:id",array(":id"=>$id))->getAffectedRows();
     }
 
     public function insert($casinoID, CasinoReview $review) {
@@ -94,7 +94,7 @@ class CasinoReviews
         if(!$casinoID)
             return false;
 
-        return DB("
+        return SQL("
         INSERT INTO casinos__reviews
         SET 
           casino_id = :casino,
@@ -122,7 +122,11 @@ class CasinoReviews
 
     }
 
+    public function getCountryStatusText($status){
 
+       $status_text = str_replace("-"," ",$status);
+       return $status_text;
+    }
 
 
 

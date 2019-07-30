@@ -1,6 +1,6 @@
 <?php
 require_once("application/models/dao/CasinoReviews.php");
-require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedException.php");
+require_once("application/models/UserOperationFailedException.php");
 
 /*
 * Increments like on a casino review.
@@ -10,11 +10,15 @@ require_once("vendor/lucinda/nosql-data-access/src/exceptions/OperationFailedExc
 * @source 
 * @requestParameter id integer ID of liked review
 */
-class CasinoReviewLikeController extends Controller {
+class CasinoReviewLikeController extends Lucinda\MVC\STDOUT\Controller {
 	public function run() {
+
         $object = new CasinoReviews();
-        if(!$object->incrementLikes($_POST["id"], $this->request->getAttribute("ip"))) {
-            throw new OperationFailedException("Review already liked!");
+        if(!$object->incrementLikes(
+            $this->request->attributes('validation_results')->get('id'),
+            $this->request->attributes("ip"))
+        ) {
+            throw new UserOperationFailedException("Review already liked!");
         }
 	}
 }

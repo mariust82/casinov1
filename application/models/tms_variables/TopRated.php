@@ -10,19 +10,19 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/application/models/dao/CasinosList.ph
 class TopRated extends \TMS\VariablesHolder {
 
     public function getTopRatedCasinoInTheList(){
-        $filterParams[$this->parameters["response"]->getAttribute("filter")] = $this->parameters["response"]->getAttribute("selected_entity");
-        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->getAttribute("country"));
+        $filterParams[$this->parameters["response"]->attributes("filter")] = $this->parameters["response"]->attributes("selected_entity");
+        $filter = new CasinoFilter($filterParams, $this->parameters["response"]->attributes("country"));
         $object = new CasinosList($filter);
 
         $casino = $object->getResults(CasinoSortCriteria::TOP_RATED, 0, 1)[0];
         if($casino){
             $casinoCode = strtolower(str_replace(" ","-", $casino->name));
-            return '<a href="/visit/'.$casinoCode.'">'.$casino->name.'</a>';
+            return '<a href="/reviews/'.$casinoCode.'-review">'.$casino->name.'</a>';
         }
     }
 
     public function getTopRatedCasinoInTheSite(){
-        $casinoName = DB("
+        $casinoName = SQL("
           SELECT name, (rating_total/rating_votes) AS average_rating FROM casinos
           WHERE is_open = 1
           AND date_established > DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
@@ -30,7 +30,7 @@ class TopRated extends \TMS\VariablesHolder {
         ")->toValue();
         if($casinoName) {
             $casinoCode = strtolower(str_replace(" ", "-", $casinoName));
-            return '<a href="/visit/' . $casinoCode . '">' . $casinoName . '</a>';
+            return '<a href="/reviews/'.$casinoCode.'-review">' . $casinoName . '</a>';
         }
     }
 

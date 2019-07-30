@@ -1,5 +1,6 @@
 <?php
-class GamePlay {
+class GamePlay extends Entity
+{
     public $width;
     public $height;
     public $screenshot;

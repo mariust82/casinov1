@@ -1,4 +1,4 @@
-<std:set name="page" value="search"/>
+<:set var="page" val="search"/>
 
 <div class="container">
 	<div class="search">
@@ -14,15 +14,15 @@
 					<span>${data.total_lists} Results</span>
 				</div>
 				<ul id="all-lists-container">
-					<std:for start="0" end="${data.index} - 1" value="i">
-						<li><a href="${data.lists.${i}.url}">${data.lists.${i}.title}</a></li>
-					</std:for>
+					<:for start="0" end="${data.index} - 1" var="i">
+						<li><a href="/${data.lists.${i}.url}">${data.lists.${i}.title}</a></li>
+					</:for>
 				</ul>
-				<std:if condition="${data.total_lists} > 5">
+				<:if test="${data.total_lists} > 5">
 					<div class="search-list-more">
-                                            <a href="#" id="js-search-more-lists">Show&nbsp;<span class="more-lists" data-total-casinos="${data.total_lists}">5</span>&nbsp;more <i class="icon-chevron-down"></i></a>
+						<a href="#" id="js-search-more-lists">Show&nbsp;<span class="more-lists" data-total-casinos="${data.total_lists}">5</span>&nbsp;more <i class="icon-chevron-down"></i></a>
 					</div>
-				</std:if>
+				</:if>
 			</div>
                         <div class="search-list-block">
 				<div class="search-list-heading">
@@ -30,15 +30,15 @@
 					<span>${data.total_casinos} Results</span>
 				</div>
 				<ul id="all-casinos-container">
-					<std:foreach var="${data.casinos}" key="key" value="result">
+					<:foreach var="${data.casinos}" key="key" val="result">
 						<li><a href="/reviews/${normalize(${result})}-review">${result}</a></li>
-					</std:foreach>
+					</:foreach>
 				</ul>
-				<std:if condition="${data.total_casinos} > 4">
+				<:if test="${data.total_casinos} > 4">
 					<div class="search-list-more">
 						<a href="#" id="js-search-more-casinos">Show <span class="more-num" data-total-casinos="${data.total_casinos}">5</span> more <i class="icon-chevron-down"></i></a>
 					</div>
-				</std:if>
+				</:if>
 			</div>
 			<div class="search-list-block">
 				<div class="search-list-heading">
@@ -46,15 +46,15 @@
 					<span>${data.total_games} Results <i class=""></i></span>
 				</div>
 				<ul id="all-games-container">
-					<std:foreach var="${data.games}" key="key" value="result">
+					<:foreach var="${data.games}" key="key" val="result">
 						<li><a href="/play/${normalize(${result})}">${result}</a></li>
-					</std:foreach>
+					</:foreach>
 				</ul>
-				<std:if condition="${data.total_games} > 4">
+				<:if test="${data.total_games} > 4">
 					<div class="search-list-more">
 						<a href="#" id="js-search-more-pages">Show <span class="more-num" data-total-games="${data.total_games}">5</span> more <i class="icon-chevron-down"></i></a>
 					</div>
-				</std:if>
+				</:if>
 			</div>
 		</nav>
 	</div>

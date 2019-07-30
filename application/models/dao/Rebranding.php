@@ -28,7 +28,7 @@ class Rebranding {
 		$i=0;
 		foreach($pathParameters as $oldValue) {
 		    if(empty($tables[$i])) continue;
-			$newValue = DB("
+			$newValue = SQL("
 			SELECT new FROM rebranding__aliases AS t1
 			INNER JOIN rebranding__tables AS t2 ON t1.table_id=t2.id
 			WHERE t2.name=:table_name AND t1.old=:old_value

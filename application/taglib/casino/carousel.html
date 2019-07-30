@@ -1,14 +1,15 @@
 <div class="container">
     <div class="swiper-container" id="main-carousel">
         <div class="swiper-wrapper">
-        	<std:foreach var="$[items]" value="item">
+			<:set var="index" val="0"/>
+        	<:foreach var="$[items]" val="item">
                 <div class="swiper-slide">
                 	<a href="/reviews/${normalize(${item.name})}-review" class="carousel-slide">
                 		<div class="carousel-slide-img">
                 			<div>
-                				<img src="${getCasinoLogo(${item.code},'124x82')}" width="85" height="56" alt="">
+                				<img src="${data.best_casinos.${index}.logo_small}" width="85" height="56" alt="${item.name} Logo" title="${item.name}">
                 			</div>
-	                		<div class="carousel-slide-rating ${normalize(get_rating(${item.rating}))}">
+							<div class="carousel-slide-rating ${normalize($[items][$index]['score_class'])}">
 		                		${ceil(${item.rating})}
 		                	</div>
                 		</div>
@@ -17,7 +18,8 @@
                 		</div>
                 	</a>
                 </div>
-            </std:foreach>
+				<:set var="index" val="${index} + 1"/>
+            </:foreach>
         </div>
     </div>
     <div class="carousel-next">
