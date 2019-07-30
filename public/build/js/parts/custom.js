@@ -2055,6 +2055,8 @@ var AJAX_CUR_PAGE = 1;
                     goToPosition(position);
                 }
 
+                $('.expand-menu__list-item.active ').closest('.expand-holder').addClass('opened');
+
             }
 
             $(document).on('click touchstart',function(e) {
