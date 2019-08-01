@@ -192,45 +192,47 @@ $(function () {
     }
 
     var gameplayConfig = {
-        domain: 'casinoslists.com',
-        iframe: '#gameplay_iframe',
-        extraElements: '.player-controls',
+        domain: 'casinofreak.com',
+        iframe: '#iframe-game-play',
+        extraElements: '#gameplay-section-head-controls',
         mobileWidth: 690,
-        desktopWidth: 1200,
+        tabletWidth: 1200,
         events: {
-            reload: '#play-replay',
-            fullscreen: '#play-fullscreen',
+            reload: '#gameplay-section-refresh',
+            fullscreen: '#gameplay-section-popup',
             play: '#game_play_button'
         },
-        triggerOnPlay: function() {
-	     var gameName = window.location.href.substring(window.location.href.lastIndexOf("/")+1);
-             var request = new XMLHttpRequest;
-             if (BUSY_REQUEST) return;
-             BUSY_REQUEST = true;
-             request.abort();
-             request = $.ajax({
-                 url: '/play-counter',
-                 data: {
-                     name: gameName
-                 },
-                 dataType: 'json',
-                 type: 'post',
-                 success: function (data) {
-                 },
-                 error: function (XMLHttpRequest) {
-                     if (XMLHttpRequest.statusText != "abort") {
-                         console.log('err');
-                     }
-                 },
-                 complete: function () {
-                     BUSY_REQUEST = false;
-                 }
-            });
+        triggerOnPlay: function runPlayCounter() {
+            console.log('custom function')
+            // _request = new XMLHttpRequest;
+            //
+            // if (BUSY_REQUEST) return;
+            // BUSY_REQUEST = true;
+            // _request.abort();
+            //
+            // _request = $.ajax({
+            //     url: '/play-counter',
+            //     data: {
+            //         name: _name
+            //     },
+            //     dataType: 'json',
+            //     type: 'post',
+            //     success: function (data) {
+            //     },
+            //     error: function (XMLHttpRequest) {
+            //         if (XMLHttpRequest.statusText != "abort") {
+            //             console.log('err');
+            //         }
+            //     },
+            //     complete: function () {
+            //         BUSY_REQUEST = false;
+            //     }
+            // });
         }
     };
 
     //if ($iframe.length > 0) {
-        new GameplayResize(gameplayConfig);
+    new GameplayResize(gameplayConfig);
     //}
 
 });
