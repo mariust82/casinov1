@@ -2387,6 +2387,7 @@ var AJAX_CUR_PAGE = 1;
         var linksSwiperParams = {
             slidesPerView: 'auto',
             spaceBetween: 30,
+            freeMode: true,
             // virtualTranslate: false,
             allowTouchMove:false,
             slidesOffsetAfter:-220,
@@ -2413,10 +2414,26 @@ var AJAX_CUR_PAGE = 1;
             }
         }
 
-        var swiperLinks = new Swiper('.links-casinos #links-nav', linksSwiperParams);
 
-        linksSwiperParams['slidesOffsetAfter'] = -330; //for games links slider
-        var swiperLinks2 = new Swiper('.links-games #links-nav', linksSwiperParams);
+        if ($('#links-nav').length) {
+            var swiperLinks = new Swiper('.links-casinos #links-nav', linksSwiperParams);
+
+            linksSwiperParams['slidesOffsetAfter'] = -330; //for games links slider
+            var swiperLinks2 = new Swiper('.links-games #links-nav', linksSwiperParams);
+
+            var swiperLinksIndx = $("#links-nav .active").parent().index() - 1;
+            var halfScreen = $(window).width() / 2 - 50;
+            var swiperLinksOffset = -$("#links-nav .active").parent().position().left + halfScreen;
+
+            if (checkIfIsMobileDevice()) {
+                if ($('.links-casinos #links-nav').length) swiperLinks.setTranslate(swiperLinksOffset);
+                if ($('.links-games #links-nav').length) swiperLinks2.setTranslate(swiperLinksOffset);
+            } else {
+                if ($('.links-casinos #links-nav').length) swiperLinks.slideTo(swiperLinksIndx, 300);
+                if ($('.links-games #links-nav').length) swiperLinks2.slideTo(swiperLinksIndx, 300);
+            }
+
+        }
 
         if ($(window).width() > 1024) {
             $('.links-casinos .links-nav a').on('mouseenter', function(e) {
