@@ -8,7 +8,7 @@ class CasinoReviews
     const LIMIT_REPLIES = 100;
 
     public function getAllTotal($casinoID) {
-        return SQL("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casino_id = :casino_id AND parent_id = 0",array(":casino_id"=>$casinoID))->toValue();
+        return SQL("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casino_id = :casino_id AND parent_id = 0 AND status = ".ReviewStatuses::APPROVED,array(":casino_id"=>$casinoID))->toValue();
     }
 
     public function getAll($casinoID, $page, $parentID = 0) {
