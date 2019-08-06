@@ -60,7 +60,7 @@ class CasinoReviews
                 INNER JOIN countries AS t2 ON t1.country_id = t2.id
                 WHERE t1.parent_id IN (".implode(",", array_keys($output)).") AND  
                  t1.status = ".ReviewStatuses::APPROVED."
-                ORDER BY t1.date DESC
+                ORDER BY t1.date ASC
                 LIMIT ".self::LIMIT_REPLIES."
             ");
             while($row = $resultSet->toRow()) {
