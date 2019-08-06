@@ -1083,9 +1083,10 @@ var AJAX_CUR_PAGE = 1;
                     $('.form .js-expanding-textfields').slideUp();
                 },
                 error: function ( jqXHR ) {
-                    _errors_found = $.parseJSON(jqXHR.responseJSON.body);
+                    _errors_found = $.parseJSON(jqXHR.responseText);
                     console.error("Could not send message!");
-                    _contact_error.html(_errors_found.join('<br />')).show();
+                    console.log(_errors_found.body.message);
+                    //_contact_error.html(_errors_found.join('<br />')).show();
                 },
                 complete: function(){
                     BUSY_REQUEST = false;
