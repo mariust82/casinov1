@@ -4,8 +4,8 @@ require_once 'application/models/dao/ReviewStatuses.php';
 
 class CasinoReviews
 {
-    const LIMIT = 100;
-    const LIMIT_REPLIES = 100;
+    const LIMIT = 5;
+    const LIMIT_REPLIES = 5;
 
     public function getAllTotal($casinoID) {
         return SQL("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casino_id = :casino_id AND parent_id = 0 AND ( status = ".ReviewStatuses::APPROVED . " OR status = " .ReviewStatuses::NONE . ")" ,array(":casino_id"=>$casinoID))->toValue();
