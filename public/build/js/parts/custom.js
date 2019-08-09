@@ -1196,12 +1196,15 @@ var AJAX_CUR_PAGE = 1;
         var _holderMoreChild = $('.reply-data-holder');
         var _name = $('.rating-container').data('casino-name');
         var _request = new XMLHttpRequest;
-        var currentReplyId
 
         _btn.on('click',  function() {
             _addReviews($(this), $(this).data('type'));
             return false;
         });
+
+        if($(".not-accepted").length) {
+            _btn.css("pointer-events", "auto");
+        }
 
         var _addReviews = function(_this, _type){
 
@@ -1220,14 +1223,14 @@ var AJAX_CUR_PAGE = 1;
                 success: function (data) {
                     if (_type == 'review') {
                         _holderParent.append(data);
-                        if (_this.data('page') >= _this.data('total') / 5) {
+                        if (_this.data('page') >= (_this.data('total') / 5) -1 ) {
                             _this.hide();
                         }
                     } else if (_type == 'reply') {
-                        _this.closest('.reply').find(_holderMoreChild).append(data);
+                        _this.closest('.reply').find(_holderMoreChild[_holderMoreChild.length - 1]).append(data);
                     }
 
-                    if (_this.data('page') >= _this.data('total') / 5) {
+                    if (_this.data('page') >= (_this.data('total') / 5) -1 ) {
                         _this.hide();
                     }
 

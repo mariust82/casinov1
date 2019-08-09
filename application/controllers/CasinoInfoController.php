@@ -36,6 +36,8 @@ class CasinoInfoController extends BaseController {
         // get reviews
         $object = new CasinoReviews();
         $total = $object->getAllTotal($info->id);
+        $this->response->attributes("reviews_limit",$object::LIMIT);
+        $this->response->attributes("replies_limit",$object::LIMIT_REPLIES);
 
         if($total>0) {
             $this->response->attributes("total_reviews",$total);
