@@ -25,7 +25,7 @@ class CasinoReviews
             AND t1.parent_id = 0
             AND t1.status = ".ReviewStatuses::APPROVED."
             ORDER BY t1.date DESC 
-            LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT).";
+            LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT)."";
         $resultSet = SQL("
             SELECT t1.*, t2.code AS country, t3.value AS rating
             FROM casinos__reviews AS t1
