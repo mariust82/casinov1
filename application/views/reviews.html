@@ -1,3 +1,4 @@
+<div class="shay">${print_r(${data.reviews})}</div>
 <:foreach var="${data.reviews}" val="result">
 	<:if test="isset($_GET['type']) && $_GET['type'] == 'review'">
 		<comment:info class="review-parent"/>
