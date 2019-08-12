@@ -33,6 +33,7 @@ class CasinoReviews
                 ORDER BY t1.date ASC
                 LIMIT ".self::LIMIT_REPLIES." OFFSET ".($page*self::LIMIT_REPLIES)."
             ");
+            echo 'shay';
             while($row = $resultSet->toRow()) {
                 $object = new CasinoReview();
                 $object->id = $row["id"];
@@ -45,6 +46,7 @@ class CasinoReviews
                 $object->parent_id = (integer) $row['parent_id'];
                 $output[$row["parent_id"]]->children[] = $object;
             }
+            echo 'dadon';
             return array_values($output);
     }
 
