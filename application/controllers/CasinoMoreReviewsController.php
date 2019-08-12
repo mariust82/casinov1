@@ -20,7 +20,6 @@ class CasinoMoreReviewsController extends Lucinda\MVC\STDOUT\Controller {
 
         // get reviews
         $object = new CasinoReviews();
-        var_dump($this->request->parameters("id"));
         $this->response->attributes("reviews", $object->getAll($casinoID, (integer) $this->request->getValidator()->parameters("page"), (integer) $this->request->parameters("id")));
 	}
 }
