@@ -12,8 +12,7 @@ class CasinoReviews
     }
 
     public function getAll($casinoID, $page, $parentID = 0) {
-        var_dump($casinoID);
-        var_dump($page);
+
         $output = array();
 
         // get main reviews
@@ -26,7 +25,7 @@ class CasinoReviews
             AND t1.parent_id = 0
             AND t1.status = ".ReviewStatuses::APPROVED."
             ORDER BY t1.date DESC 
-            LIMIT ".self::LIMIT." OFFSET ".(($page-1)*self::LIMIT)."
+            LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT)."
         ",array(":casino_id"=>$casinoID));
 
         while($row = $resultSet->toRow()) {
