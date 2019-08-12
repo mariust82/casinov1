@@ -112,7 +112,7 @@ class CasinoReviews
                 $output[$row["parent_id"]]->children[] = $object;
             }
         }
-        var_dump(array_values($output));
+//        var_dump(array_values($output));
         return array_values($output);
     }
 
