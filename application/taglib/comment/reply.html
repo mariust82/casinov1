@@ -8,9 +8,9 @@
 			</:foreach>
 		</:if>
 	</div>
-	<:if test="${self_total} > 5">
+	<:if test="${self_total} > ${data.replies_limit}">
 		<div class="review-more">
-			<a href="#" class="btn-more js-more-reviews" data-type="reply" data-id="${result.id}" data-total="${self_total}" data-page="1">
+			<a href="#" id="reply-more-reviews" class="btn-more js-more-reviews" data-type="reply" data-id="${result.id}" data-total="${self_total}" data-page="1">
 				SHOW MORE REPLIES
 				<i class="icon-chevron-down"></i>
 			</a>

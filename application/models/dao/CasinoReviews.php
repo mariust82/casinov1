@@ -8,7 +8,7 @@ class CasinoReviews
     const LIMIT_REPLIES = 100;
 
     public function getAllTotal($casinoID) {
-        return SQL("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casino_id = :casino_id AND parent_id = 0 AND ( status = ".ReviewStatuses::APPROVED . " OR status = " .ReviewStatuses::NONE . ")" ,array(":casino_id"=>$casinoID))->toValue();
+        return SQL("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casino_id = :casino_id AND parent_id = 0 AND status = ".ReviewStatuses::APPROVED,array(":casino_id"=>$casinoID))->toValue();
     }
 
     public function getAll($casinoID, $page, $parentID = 0) {
@@ -23,7 +23,7 @@ class CasinoReviews
             LEFT JOIN casinos__ratings AS t3 ON t1.casino_id = t3.casino_id AND t1.ip = t3.ip
             WHERE t1.casino_id = :casino_id
             AND t1.parent_id = 0
-            AND (t1.status = ".ReviewStatuses::APPROVED." OR t1.status = ".ReviewStatuses::NONE.")
+            AND t1.status = ".ReviewStatuses::APPROVED."
             ORDER BY t1.date DESC 
             LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT)."
         ",array(":casino_id"=>$casinoID));
@@ -59,7 +59,7 @@ class CasinoReviews
                 FROM casinos__reviews AS t1
                 INNER JOIN countries AS t2 ON t1.country_id = t2.id
                 WHERE t1.parent_id IN (".implode(",", array_keys($output)).") AND  
-                 (t1.status = ".ReviewStatuses::APPROVED." OR t1.status = ".ReviewStatuses::NONE.")
+                t1.status = ".ReviewStatuses::APPROVED."
                 ORDER BY t1.date ASC
                 LIMIT ".self::LIMIT_REPLIES."
             ");
