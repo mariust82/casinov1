@@ -1227,6 +1227,7 @@ var AJAX_CUR_PAGE = 1;
                             _this.hide();
                         }
                     } else if (_type == 'reply') {
+                        console.log(_holderMoreChild[_holderMoreChild.length - 1]);
                         _this.closest('.reply').find(_holderMoreChild[_holderMoreChild.length - 1]).append(data);
                     }
 
