@@ -12,10 +12,20 @@ class CasinoReviews
     }
 
     public function getAll($casinoID, $page, $parentID = 0) {
-
+        
         $output = array();
 
         // get main reviews
+        echo "
+            SELECT t1.*, t2.code AS country, t3.value AS rating
+            FROM casinos__reviews AS t1
+            INNER JOIN countries AS t2 ON t1.country_id = t2.id
+            LEFT JOIN casinos__ratings AS t3 ON t1.casino_id = t3.casino_id AND t1.ip = t3.ip
+            WHERE t1.casino_id = :casino_id
+            AND t1.parent_id = 0
+            AND t1.status = ".ReviewStatuses::APPROVED."
+            ORDER BY t1.date DESC 
+            LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT).";
         $resultSet = SQL("
             SELECT t1.*, t2.code AS country, t3.value AS rating
             FROM casinos__reviews AS t1
@@ -25,7 +35,7 @@ class CasinoReviews
             AND t1.parent_id = 0
             AND t1.status = ".ReviewStatuses::APPROVED."
             ORDER BY t1.date DESC 
-            LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT)."
+            LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT - self::LIMIT)."
         ",array(":casino_id"=>$casinoID));
 
         while($row = $resultSet->toRow()) {
