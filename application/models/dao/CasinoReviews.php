@@ -17,7 +17,7 @@ class CasinoReviews
               $resultSet = SQL("
                 SELECT count(id) AS nr, parent_id 
                 FROM casinos__reviews 
-                WHERE parent_id IN = {$parentID}
+                WHERE parent_id = {$parentID}
                 GROUP BY parent_id
                 ");
             while($row = $resultSet->toRow()) {
