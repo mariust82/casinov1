@@ -12,21 +12,8 @@ class CasinoReviews
     }
     
     public function getMoreReplies($page,$parentID) {
-        echo 'test1';
              $output = array();
-        echo 'test2';     
-              $resultSet = SQL("
-                SELECT count(id) AS nr, parent_id 
-                FROM casinos__reviews 
-                WHERE parent_id = {$parentID}
-                GROUP BY parent_id
-                ");
-                echo 'test3';
-            while($row = $resultSet->toRow()) {
-                $output[$row["parent_id"]] = new CasinoReview();
-                $output[$row["parent_id"]]->total_children = $row["nr"];
-            }
-            echo 'test4';
+    
             $resultSet = SQL("
                 SELECT t1.*, t2.code AS country
                 FROM casinos__reviews AS t1
@@ -36,7 +23,6 @@ class CasinoReviews
                 ORDER BY t1.date ASC
                 LIMIT ".self::LIMIT_REPLIES." OFFSET ".($page*self::LIMIT_REPLIES)."
             ");
-            echo 'shay';
             while($row = $resultSet->toRow()) {
                 $object = new CasinoReview();
                 $object->id = $row["id"];
@@ -47,9 +33,9 @@ class CasinoReviews
                 $object->date = $row["date"];
                 $object->likes = $row["likes"];
                 $object->parent_id = (integer) $row['parent_id'];
-                $output[$row["parent_id"]]->children[] = $object;
+                $output[$row["parent_id"]] = $object;
             }
-            echo 'dadon';
+            var_dump( array_values($output));
             return array_values($output);
     }
 
