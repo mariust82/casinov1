@@ -35,7 +35,6 @@ class CasinoReviews
                 $object->parent_id = (integer) $row['parent_id'];
                 $output[$row["parent_id"]] = $object;
             }
-            var_dump( array_values($output));
             return array_values($output);
     }
 
