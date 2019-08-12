@@ -23,6 +23,7 @@ class CasinoReviews
                 ");
                 echo 'test3';
             while($row = $resultSet->toRow()) {
+                $output[$row["parent_id"]] = new CasinoReview();
                 $output[$row["parent_id"]]->total_children = $row["nr"];
             }
             echo 'test4';
