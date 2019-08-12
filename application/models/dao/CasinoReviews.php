@@ -45,6 +45,7 @@ class CasinoReviews
 
         // get answers to main reviews
         if($parentID==0) {
+            echo 'shay';
             $resultSet = SQL("
                 SELECT count(id) AS nr, parent_id 
                 FROM casinos__reviews 
@@ -75,6 +76,7 @@ class CasinoReviews
                 $output[$row["parent_id"]]->children[] = $object;
             }
         } else {
+            echo 'dadon';
             $resultSet = SQL("
                 SELECT count(id) AS nr, parent_id 
                 FROM casinos__reviews 
@@ -84,6 +86,16 @@ class CasinoReviews
             while($row = $resultSet->toRow()) {
                 $output[$row["parent_id"]]->total_children = $row["nr"];
             }
+            var_dump(implode(",", array_keys($output)));
+            echo"
+                SELECT t1.*, t2.code AS country
+                FROM casinos__reviews AS t1
+                INNER JOIN countries AS t2 ON t1.country_id = t2.id
+                WHERE t1.parent_id = {$parentID} AND  
+                t1.status = ".ReviewStatuses::APPROVED."
+                ORDER BY t1.date ASC
+                LIMIT ".self::LIMIT_REPLIES." OFFSET ".($page*self::LIMIT)."
+            ";
             $resultSet = SQL("
                 SELECT t1.*, t2.code AS country
                 FROM casinos__reviews AS t1
