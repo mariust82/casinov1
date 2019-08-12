@@ -22,6 +22,7 @@ class CasinoReviews
                 GROUP BY parent_id
                 ");
                 echo 'test3';
+                var_dump( $resultSet->toRow());
             while($row = $resultSet->toRow()) {
                 $output[$row["parent_id"]]->total_children = $row["nr"];
             }
