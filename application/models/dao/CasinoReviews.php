@@ -12,18 +12,20 @@ class CasinoReviews
     }
     
     public function getMoreReplies($page,$parentID) {
+        echo 'test1';
              $output = array();
-             
+        echo 'test2';     
               $resultSet = SQL("
                 SELECT count(id) AS nr, parent_id 
                 FROM casinos__reviews 
                 WHERE parent_id = {$parentID}
                 GROUP BY parent_id
                 ");
+                echo 'test3';
             while($row = $resultSet->toRow()) {
                 $output[$row["parent_id"]]->total_children = $row["nr"];
             }
-            
+            echo 'test4';
             $resultSet = SQL("
                 SELECT t1.*, t2.code AS country
                 FROM casinos__reviews AS t1
