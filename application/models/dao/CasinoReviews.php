@@ -12,6 +12,8 @@ class CasinoReviews
     }
     
     public function getMoreReplies($page,$parentID) {
+        var_dump($page);
+        var_dump($parentID);
              $output = array();
              
               $resultSet = SQL("
@@ -23,6 +25,7 @@ class CasinoReviews
             while($row = $resultSet->toRow()) {
                 $output[$row["parent_id"]]->total_children = $row["nr"];
             }
+            var_dump($output);
             
             $resultSet = SQL("
                 SELECT t1.*, t2.code AS country
@@ -45,6 +48,7 @@ class CasinoReviews
                 $object->parent_id = (integer) $row['parent_id'];
                 $output[$row["parent_id"]]->children[] = $object;
             }
+            var_dump($output);
             return array_values($output);
     }
 
