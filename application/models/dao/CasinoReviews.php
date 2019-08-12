@@ -73,6 +73,7 @@ class CasinoReviews
                 $object->country = $row["country"];
                 $object->date = $row["date"];
                 $object->likes = $row["likes"];
+                $object->parent_id = (integer) $row['parent_id'];
                 $output[$row["parent_id"]]->children[] = $object;
             }
         } else {
