@@ -1,7 +1,8 @@
 <?php
 class CasinoReview extends Entity {
 	public $id;
-	public $name;
+        public $parent_id;
+        public $name;
 	public $email;
 	public $body;
 	public $likes;
