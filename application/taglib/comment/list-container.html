@@ -9,13 +9,13 @@
 					<:for start="0" end="${data.reviews_limit}-1" var="i">
 						<:set var="result" val="$[items][${i}]"/>
 						<comment:info class="review-parent"/>
-						<comment:reply total="${result.total_children}"/>
+						<comment:reply total="${result.total_children}" id="${result.id}"/>
 					</:for>
 				<:else>
 					<:for start="0" end="$[total]-1" var="i">
 						<:set var="result" val="$[items][${i}]"/>
 						<comment:info class="review-parent"/>
-						<comment:reply total="${result.total_children}"/>
+						<comment:reply total="${result.total_children}" id="${result.id}"/>
 					</:for>
 				</:if>
 			</:if>
