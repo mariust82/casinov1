@@ -60,7 +60,7 @@ class CasinoReviews
             LEFT JOIN casinos__ratings AS t3 ON t1.casino_id = t3.casino_id AND t1.ip = t3.ip
             WHERE t1.casino_id = :casino_id
             AND t1.parent_id = 0
-            AND (t1.status = ".ReviewStatuses::APPROVED." OR t1.status = ".ReviewStatuses::NONE.")
+            AND (t1.status = ".ReviewStatuses::APPROVED." OR t1.status = ".ReviewStatuses::DENIED.")
             ORDER BY t1.date DESC 
             LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT)."
         ",array(":casino_id"=>$casinoID));
