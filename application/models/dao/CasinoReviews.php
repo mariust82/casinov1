@@ -12,9 +12,9 @@ class CasinoReviews
     }
 
     public function getAll($casinoID, $page, $parentID = 0) {
-//        var_dump($casinoID);
-//        var_dump($page);
-//        var_dump($parentID);
+        var_dump($casinoID);
+        var_dump($page);
+        var_dump($parentID);
 
         $output = array();
 
