@@ -15,10 +15,7 @@ class CasinoReviews
 
         $output = array();
 
-        // get answers to main reviews
-        if($parentID==0) {
-            
-                    // get main reviews
+        // get main reviews
         $resultSet = SQL("
             SELECT t1.*, t2.code AS country, t3.value AS rating
             FROM casinos__reviews AS t1
@@ -46,7 +43,9 @@ class CasinoReviews
 
         }
         if(empty($output)) return $output;
-            
+
+        // get answers to main reviews
+        if($parentID==0) {
             $resultSet = SQL("
                 SELECT count(id) AS nr, parent_id 
                 FROM casinos__reviews 
@@ -110,7 +109,6 @@ class CasinoReviews
                 $output[$row["parent_id"]]->children[] = $object;
             }
         }
-        var_dump(array_values($output));
         return array_values($output);
     }
 
