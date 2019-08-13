@@ -81,17 +81,17 @@ class CasinoReviews
                 ");
             while($row = $resultSet->toRow()) {
                 $output[$row["parent_id"]]->total_children = $row["nr"];
-            }
-            $resultSet = SQL("
+                
+                $res = SQL("
                 SELECT t1.*, t2.code AS country
                 FROM casinos__reviews AS t1
                 INNER JOIN countries AS t2 ON t1.country_id = t2.id
-                WHERE t1.parent_id IN (".implode(",", array_keys($output)).") AND  
+                WHERE t1.parent_id = ".$row["parent_id"]." AND  
                 t1.status = ".ReviewStatuses::APPROVED."
                 ORDER BY t1.date ASC
                 LIMIT ".self::LIMIT_REPLIES."
             ");
-            while($row = $resultSet->toRow()) {
+            while($row = $res->toRow()) {
                 $object = new CasinoReview();
                 $object->id = $row["id"];
                 $object->name = $row["name"];
@@ -104,7 +104,8 @@ class CasinoReviews
                 $output[$row["parent_id"]]->children[] = $object;
             }
         }
-
+            
+        }
         return array_values($output);
     }
 
