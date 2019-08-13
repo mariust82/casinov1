@@ -1240,6 +1240,8 @@ var AJAX_CUR_PAGE = 1;
                     _this.data('page', ++_page);
 
                     _refreshData();
+                    
+                    showMoreReviews();
                 },
                 error: function ( XMLHttpRequest ) {
                     if ( XMLHttpRequest.statusText != "abort" ) {
