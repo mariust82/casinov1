@@ -1227,8 +1227,9 @@ var AJAX_CUR_PAGE = 1;
                             _this.hide();
                         }
                     } else if (_type == 'reply') {
-                        console.log(_holderMoreChild[_holderMoreChild.length - 1]);
-                        _this.closest('.reply').find(_holderMoreChild[_holderMoreChild.length - 1]).append(data);
+                        var reply_holder = _this.parent().parent().children()[0];
+                       // _this.closest('.reply').find(_holderMoreChild[_holderMoreChild.length - 1]).append(data);
+                        reply_holder.append(data);
                     }
 
                     if (_this.data('page') >= (_this.data('total') / 5) -1 ) {
