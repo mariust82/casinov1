@@ -1222,6 +1222,10 @@ var AJAX_CUR_PAGE = 1;
                 },
                 type: 'GET',
                 success: function (data) {
+                    var initial_show_more_replayes = $("#reply-more-reviews");
+                    var current_show_more_replayes;
+                    console.log("initial nr of show more replayes = " + initial_show_more_replayes.length);
+
                     if (_type == 'review') {
                         _holderParent.append(data);
                         if (_this.data('page') >= (_this.data('total') / 5) -1 ) {
@@ -1233,11 +1237,10 @@ var AJAX_CUR_PAGE = 1;
 
                     if (_this.data('page') >= (_this.data('total') / 5) -1 ) {
                         _this.hide();
-                    }else {
-                        if (_type == 'reply'){
-                            console.log("code should be added here!");
-                        }
                     }
+
+                    current_show_more_replayes = $("#reply-more-reviews");
+                    console.log("current nr of show more replayes = " + current_show_more_replayes.length);
 
                     var _page = _this.data('page');
 
