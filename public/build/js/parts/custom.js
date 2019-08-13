@@ -1233,6 +1233,10 @@ var AJAX_CUR_PAGE = 1;
 
                     if (_this.data('page') >= (_this.data('total') / 5) -1 ) {
                         _this.hide();
+                    }else {
+                        if (_type == 'reply'){
+                            console.log("code should be added here!");
+                        }
                     }
 
                     var _page = _this.data('page');
