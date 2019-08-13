@@ -1229,10 +1229,6 @@ var AJAX_CUR_PAGE = 1;
                             _this.hide();
                         }
                     } else if (_type == 'reply') {
-                        var reply_holder = _this.parent().parent().children()[0];
-                        console.log(reply_holder);
-                       // _this.closest('.reply').find(_holderMoreChild[_holderMoreChild.length - 1]).append(data);
-                      //  reply_holder.append(data);
                         _this.closest('.reply').find(_holderMoreChild).append(data);
                     }
 
