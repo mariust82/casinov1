@@ -1198,6 +1198,7 @@ var AJAX_CUR_PAGE = 1;
         var _request = new XMLHttpRequest;
         console.dir('arrive here?');
         _btn.on('click',  function() {
+            console.log("Clicked");
             _addReviews($(this), $(this).data('type'));
             return false;
         });
