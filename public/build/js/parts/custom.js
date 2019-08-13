@@ -1222,6 +1222,7 @@ var AJAX_CUR_PAGE = 1;
                 },
                 type: 'GET',
                 success: function (data) {
+
                     if (_type == 'review') {
                         _holderParent.append(data);
                         if (_this.data('page') >= (_this.data('total') / 5) -1 ) {
