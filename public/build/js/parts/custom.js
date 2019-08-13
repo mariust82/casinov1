@@ -1196,7 +1196,7 @@ var AJAX_CUR_PAGE = 1;
         var _holderMoreChild = $('.reply-data-holder');
         var _name = $('.rating-container').data('casino-name');
         var _request = new XMLHttpRequest;
-
+        console.dir('arrive here?');
         _btn.on('click',  function() {
             _addReviews($(this), $(this).data('type'));
             return false;
@@ -1207,11 +1207,11 @@ var AJAX_CUR_PAGE = 1;
         }
 
         var _addReviews = function(_this, _type){
-
+            console.dir('and here?');
             if(BUSY_REQUEST) return;
             BUSY_REQUEST = true;
             _request.abort();
-
+            console.dir('what about here?');
             _request = $.ajax( {
                 url: '/casino/more-reviews/'+getWebName(_name)+'/'+_this.data('page'),
                 dataType: 'HTML',
@@ -1252,6 +1252,7 @@ var AJAX_CUR_PAGE = 1;
         },
 
         _refreshData = function(){
+            console.dir('here?');
             // initReplies();
             initReviewForm();
             initTexfieldsLabels();
