@@ -33,7 +33,7 @@ class CasinoReviews
                 $object->date = $row["date"];
                 $object->likes = $row["likes"];
                 $object->parent_id = (integer) $row['parent_id'];
-                $output[$row["parent_id"]] = $object;
+                $output[] = $object;
             }
             var_dump(array_values($output));
             return array_values($output);
