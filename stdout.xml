@@ -145,7 +145,6 @@
       <parameter name="email" validator="EmailValidator"/>
       <parameter name="body" validator="StringValidator"/>
       <parameter name="parent" validator="ParentReviewValidator"/>
-      <parameter name="invision_casino_id" validator="InvisionCasinoIdValidator"/>
     </route>
     <route url="casino/review-like" controller="CasinoReviewLikeController" method="POST" format="json">
       <parameter name="id" validator="ReviewIdValidators"/>
