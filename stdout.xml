@@ -12,7 +12,6 @@
       <compilations>compilations</compilations>
       <resolvers>application/resolvers</resolvers>
     </paths>
-
         <environments>
             <lucinda>www.casinoslists.local</lucinda>
             <alex>www.casinoslists.local</alex>
@@ -145,6 +144,7 @@
       <parameter name="email" validator="EmailValidator"/>
       <parameter name="body" validator="StringValidator"/>
       <parameter name="parent" validator="ParentReviewValidator"/>
+      <parameter name="invision_casino_id" validator="InvisionCasinoIdValidator"/>
     </route>
     <route url="casino/review-like" controller="CasinoReviewLikeController" method="POST" format="json">
       <parameter name="id" validator="ReviewIdValidators"/>
