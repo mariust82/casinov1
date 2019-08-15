@@ -78,6 +78,10 @@ class GamesList
         if($this->filter->getGameType()) {
             $query.="t3.name='".$this->filter->getGameType()."' AND ";
         }
+        
+        if ($this->filter->getCurrentgame()) {
+            $query.="t1.name != {$this->filter->getCurrentgame()}";
+        }
         return substr($query,0,-4);
     }
 }
