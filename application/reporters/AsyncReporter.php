@@ -30,6 +30,6 @@ class AsyncReporter implements \Lucinda\MVC\STDERR\ErrorReporter
         if(in_array($request->getRoute()->getErrorType(), array(\Lucinda\MVC\STDERR\ErrorType::NONE, \Lucinda\MVC\STDERR\ErrorType::CLIENT))) return;
 
         $eig = new ErrorInfoGenerator($request->getException());
-        Async::send("errors", array("data"=>serialize($eig->getInfo())));
+        Async::send("errors", array("data"=>urlencode(json_encode($eig->getInfo()))));
     }
 }
