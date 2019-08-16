@@ -1196,7 +1196,6 @@ var AJAX_CUR_PAGE = 1;
         var _holderMoreChild = $('.reply-data-holder');
         var _name = $('.rating-container').data('casino-name');
         var _request = new XMLHttpRequest;
-        console.dir('arrive here?');
         _btn.on('click',  function() {
             console.log("Clicked");
             _addReviews($(this), $(this).data('type'));
@@ -1208,11 +1207,9 @@ var AJAX_CUR_PAGE = 1;
         }
 
         var _addReviews = function(_this, _type){
-            console.dir('and here?');
             if(BUSY_REQUEST) return;
             BUSY_REQUEST = true;
             _request.abort();
-            console.dir('what about here?');
             _request = $.ajax( {
                 url: '/casino/more-reviews/'+getWebName(_name)+'/'+_this.data('page'),
                 dataType: 'HTML',
@@ -1222,9 +1219,6 @@ var AJAX_CUR_PAGE = 1;
                 },
                 type: 'GET',
                 success: function (data) {
-                    var initial_show_more_replayes = $("#reply-more-reviews");
-                    var current_show_more_replayes;
-                    console.log("initial nr of show more replayes = " + initial_show_more_replayes.length);
 
                     if (_type == 'review') {
                         _holderParent.append(data);
@@ -1239,14 +1233,13 @@ var AJAX_CUR_PAGE = 1;
                         _this.hide();
                     }
 
-                    current_show_more_replayes = $("#reply-more-reviews");
-                    console.log("current nr of show more replayes = " + current_show_more_replayes.length);
-
                     var _page = _this.data('page');
 
                     _this.data('page', ++_page);
 
                     _refreshData();
+                    
+                    showMoreReviews();
                 },
                 error: function ( XMLHttpRequest ) {
                     if ( XMLHttpRequest.statusText != "abort" ) {
@@ -1260,7 +1253,6 @@ var AJAX_CUR_PAGE = 1;
         },
 
         _refreshData = function(){
-            console.dir('here?');
             // initReplies();
             initReviewForm();
             initTexfieldsLabels();
