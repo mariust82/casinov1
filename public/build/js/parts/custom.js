@@ -1056,7 +1056,6 @@ var AJAX_CUR_PAGE = 1;
                 email: email,
                 body: message,
                 parent: _reviewID,
-                invision_casino_id : $('.reviews-form').attr('data-invision-casino-id'),
                 casino_id : $('.reviews-form').attr('data-casino-id')
             };
 
@@ -1079,7 +1078,6 @@ var AJAX_CUR_PAGE = 1;
                     _field_email.val('');
                     _field_message.val('').addClass('expanding');
                     _onEvents();
-                    // $('.reviews-form').attr('data-invision-casino-id',data.body.review_invision_id);
                     $('.form .js-expanding-textfields').slideUp();
                 },
                 error: function ( jqXHR ) {
