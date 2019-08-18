@@ -113,14 +113,9 @@ class Casinos implements FieldValidator
 
     public function getCasinoData($id){
 
-        return SQL("SELECT id, invision_casino_id FROM casinos WHERE id ={$id}")->toRow();
+        return SQL("SELECT id FROM casinos WHERE id ={$id}")->toRow();
     }
 
-    public  function updateCasinoForEntries($casinoId, $entryId){
-
-        return SQL("UPDATE casinos SET invision_casino_id = $entryId  WHERE id=:id",array(":id"=>$casinoId))->getAffectedRows();
-
-    }
     private function getCasinoLogo($name, $resolution) {
 
         $logoDirPath = "/public/sync/casino_logo_light/".$resolution;

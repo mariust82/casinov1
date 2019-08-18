@@ -134,8 +134,6 @@ class CasinoReviews
           email = :email,
           body = :body,
           parent_id = :parent,
-          invision_review_id = :invision_review_id,
-          invision_url = :invision_url,
           status = :status
         ", array(
             ":casino"=>$casinoID,
@@ -145,8 +143,6 @@ class CasinoReviews
             ":email"=>$review->email,
             ":body"=>$review->body,
             ":parent"=>$review->parent,
-            ":invision_review_id" => $review->review_invision_id,
-            ":invision_url" => $review->invision_url,
             ":status" => $review->status
         ))->getInsertId();
 

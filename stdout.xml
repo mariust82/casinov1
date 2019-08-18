@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
 <xml>
-  <application version="0.8.8.8941" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
+  <application version="0.8.8.8942" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
     <paths>
       <controllers>application/controllers</controllers>
       <cacheables>application/models/cacheables</cacheables>
@@ -144,7 +144,6 @@
       <parameter name="email" validator="EmailValidator"/>
       <parameter name="body" validator="StringValidator"/>
       <parameter name="parent" validator="ParentReviewValidator"/>
-      <parameter name="invision_casino_id" validator="InvisionCasinoIdValidator"/>
     </route>
     <route url="casino/review-like" controller="CasinoReviewLikeController" method="POST" format="json">
       <parameter name="id" validator="ReviewIdValidators"/>
@@ -279,10 +278,4 @@
     <live>https://game.casinoslists.com</live>
   </gameplay>
   <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
-  <invision_api>
-    <amos blog_id="1" api_key="e0aff7134b11f730418086ea2a5daf1b" api_url="https://c284076.tryinvision.com/"/>
-    <mark blog_id="1" api_key="e0aff7134b11f730418086ea2a5daf1b" api_url="https://c284076.tryinvision.com/"/>
-    <dev blog_id="1" api_key="e0aff7134b11f730418086ea2a5daf1b" api_url="https://c284076.tryinvision.com/"/>
-    <live blog_id="2" api_key="e0aff7134b11f730418086ea2a5daf1b" api_url="https://c284076.tryinvision.com/"/>
-  </invision_api>
 </xml>

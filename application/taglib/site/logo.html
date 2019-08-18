@@ -1,13 +1,13 @@
 <:if test="'$[type]' == 'game'">
     <span class="category-img">
-        <img src="${data.software_logo_small.$[index]}" alt="$[alt]" width="136" height="100">
+        <img src="${data.software_logo_small.$[index]}" alt="$[alt] Logo" width="136" height="100">
     </span>
 <:elseif test="'$[type]' == 'software'">
     <span class="software-img">
-        <img src="${data.software_logo_small.$[index]}" alt="$[alt]" width="80" height="53">
+        <img src="${data.software_logo_small.$[index]}" alt="$[alt] Logo" width="80" height="53">
     </span>
 <:elseif test="'$[type]' == 'game_type'">
     <span class="category-img">
-        <img src="${data.logos.$[index]}" alt="$[alt]" width="136" height="100">
+        <img src="${data.logos.$[index]}" alt="$[alt] Logo" width="136" height="100">
     </span>
 </:if>
