@@ -20,6 +20,8 @@ class GamesMenu
         ORDER BY counter DESC 
         ")->toColumn();
         foreach($types as $name) {
+            $name = $name == "Slots" ? "Classic Slots" : $name;
+            $selectedEntry = $selectedEntry == "Slots" ? "Classic Slots" : $selectedEntry;
             $object = new MenuItem();
             $object->title = $name;
             $object->url = "/games/".$this->generatePathParameter($name);
