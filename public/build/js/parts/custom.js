@@ -1056,7 +1056,6 @@ var AJAX_CUR_PAGE = 1;
                 email: email,
                 body: message,
                 parent: _reviewID,
-                invision_casino_id : $('.reviews-form').attr('data-invision-casino-id'),
                 casino_id : $('.reviews-form').attr('data-casino-id')
             };
 
@@ -1079,13 +1078,13 @@ var AJAX_CUR_PAGE = 1;
                     _field_email.val('');
                     _field_message.val('').addClass('expanding');
                     _onEvents();
-                    // $('.reviews-form').attr('data-invision-casino-id',data.body.review_invision_id);
                     $('.form .js-expanding-textfields').slideUp();
                 },
                 error: function ( jqXHR ) {
-                    _errors_found = $.parseJSON(jqXHR.responseJSON.body);
+                    _errors_found = $.parseJSON(jqXHR.responseText);
                     console.error("Could not send message!");
-                    _contact_error.html(_errors_found.join('<br />')).show();
+                    console.log(_errors_found.body.message);
+                    //_contact_error.html(_errors_found.join('<br />')).show();
                 },
                 complete: function(){
                     BUSY_REQUEST = false;
@@ -1195,19 +1194,20 @@ var AJAX_CUR_PAGE = 1;
         var _holderMoreChild = $('.reply-data-holder');
         var _name = $('.rating-container').data('casino-name');
         var _request = new XMLHttpRequest;
-        var currentReplyId
-
         _btn.on('click',  function() {
+            console.log("Clicked");
             _addReviews($(this), $(this).data('type'));
             return false;
         });
 
-        var _addReviews = function(_this, _type){
+        if($(".not-accepted").length) {
+            _btn.css("pointer-events", "auto");
+        }
 
+        var _addReviews = function(_this, _type){
             if(BUSY_REQUEST) return;
             BUSY_REQUEST = true;
             _request.abort();
-
             _request = $.ajax( {
                 url: '/casino/more-reviews/'+getWebName(_name)+'/'+_this.data('page'),
                 dataType: 'HTML',
@@ -1217,16 +1217,17 @@ var AJAX_CUR_PAGE = 1;
                 },
                 type: 'GET',
                 success: function (data) {
+
                     if (_type == 'review') {
                         _holderParent.append(data);
-                        if (_this.data('page') >= _this.data('total') / 5) {
+                        if (_this.data('page') >= (_this.data('total') / 5) -1 ) {
                             _this.hide();
                         }
                     } else if (_type == 'reply') {
                         _this.closest('.reply').find(_holderMoreChild).append(data);
                     }
 
-                    if (_this.data('page') >= _this.data('total') / 5) {
+                    if (_this.data('page') >= (_this.data('total') / 5) -1 ) {
                         _this.hide();
                     }
 
@@ -1235,6 +1236,8 @@ var AJAX_CUR_PAGE = 1;
                     _this.data('page', ++_page);
 
                     _refreshData();
+                    
+                    showMoreReviews();
                 },
                 error: function ( XMLHttpRequest ) {
                     if ( XMLHttpRequest.statusText != "abort" ) {

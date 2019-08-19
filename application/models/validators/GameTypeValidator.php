@@ -5,6 +5,9 @@ class GameTypeValidator extends \Lucinda\RequestValidator\ParameterValidator
 
     public function validate($value)
     {
+        if ($value == 'classic-slots') {
+            $value = 'slots';
+        }
         if(empty($value))
             return null;
 

@@ -32,7 +32,7 @@ class GamesList
         $query .= !empty($limit) ?  " LIMIT ". $limit : '';
         $query .= !empty($offset) ? " OFFSET ". $offset : '';
         $output = array();
-
+       
         $resultSet = SQL($query);
 
         while($row = $resultSet->toRow()) {
@@ -56,12 +56,12 @@ class GamesList
     }
 
     private function getQuery($columns) {
-        $sub_join = "";
         $sub_where = "";
-        
+        $sub_join = " INNER JOIN games__features AS t4 ON t1.id = t4.game_id INNER JOIN game_play__matches AS t6 ON t1.id = t6.game_id INNER JOIN game_play__patterns AS t5 ON t5.id = t6.pattern_id AND t5.type_id != 4";
         if($this->filter->isMobile()) {
-            $sub_join = " INNER JOIN games__features AS t4 ON t1.id = t4.game_id ";
             $sub_where = "t4.feature_id = 7 AND ";
+        } else {
+            $sub_where = "t4.feature_id = 8 AND ";
         }
         
         $query = "
@@ -71,12 +71,16 @@ class GamesList
         INNER JOIN game_manufacturers AS t2 ON t1.game_manufacturer_id = t2.id
         INNER JOIN game_types AS t3 ON t1.game_type_id = t3.id
         ".$sub_join."
-        WHERE 1 AND ".$sub_where."";
+        WHERE 1 AND t1.is_open = 1 AND t2.is_open = 1 AND ".$sub_where."";
         if($this->filter->getSoftwares()) {
             $query.="t2.name IN ('".implode("','", $this->filter->getSoftwares())."') AND ";
         }
         if($this->filter->getGameType()) {
             $query.="t3.name='".$this->filter->getGameType()."' AND ";
+        }
+        
+        if ($this->filter->getCurrentgame()) {
+            $query.="t1.name != {$this->filter->getCurrentgame()}";
         }
         return substr($query,0,-4);
     }

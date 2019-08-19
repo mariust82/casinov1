@@ -43,7 +43,6 @@ class CasinoInfo
             $output->date_established = $row["date_established"];
             $output->affiliate_program = $row["affiliate_program"];
             $output->withdrawal_minimum = $row["withdraw_minimum"];
-            $output->invision_casino_id = $row["invision_casino_id"];
             $output->status = $row["status"];
             $output->is_tc_link = $row["is_tc_link"];
             $output->logo_big = $this->getCasinoLogo($output->code = $row["code"],"124x82");
@@ -234,11 +233,6 @@ class CasinoInfo
 
     public function getResult() {
         return $this->result;
-    }
-
-    public  function updateCasinoForEntries($casinoId, $entryId){
-        return SQL("UPDATE casinos SET invision_casino_id = $entryId  WHERE id=:id",array(":id"=>$casinoId))->getAffectedRows();
-
     }
 
     public function isCountryAccepted($casinoID, $countryID)
