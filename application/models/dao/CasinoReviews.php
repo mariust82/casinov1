@@ -8,7 +8,7 @@ class CasinoReviews
     const LIMIT_REPLIES = 5;
 
     public function getAllTotal($casinoID) {
-        return SQL("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casinos__reviews.status != 3 AND casino_id = :casino_id AND parent_id = 0 AND status = " ,array(":casino_id"=>$casinoID))->toValue();
+        return SQL("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casinos__reviews.status != 3 AND casino_id = :casino_id AND parent_id = 0" ,array(":casino_id"=>$casinoID))->toValue();
     }
     
     public function getMoreReplies($page,$parentID) {
@@ -19,6 +19,7 @@ class CasinoReviews
                 FROM casinos__reviews AS t1
                 INNER JOIN countries AS t2 ON t1.country_id = t2.id
                 WHERE t1.status != 3 AND t1.parent_id = ".$parentID." AND  
+
                 ORDER BY t1.date ASC
                 LIMIT ".self::LIMIT_REPLIES." OFFSET ".($page*self::LIMIT_REPLIES)."
             ");
