@@ -32,7 +32,7 @@ class Newest extends \TMS\VariablesHolder {
         ")->toValue();
         if($casinoName) {
             $casinoCode = strtolower(str_replace(" ", "-", $casinoName));
-            return '<a href="/visit/' . $casinoCode . '">' . $casinoName . '</a>';
+            return '<a href="/reviews/'.$casinoCode.'-review">' . $casinoName . '</a>';
         }
     }
 
