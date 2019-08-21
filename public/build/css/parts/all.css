@@ -8313,8 +8313,13 @@ a:hover, a:active, a:visited, a:focus {
 
 @media screen and (max-width: 690px) {
   .search-list {
+    -webkit-overflow-scrolling: touch;
     overflow: auto;
-    height: calc(100vh - 195px);
+    height: calc(100vh - 210px);
+  }
+
+  .search-list::-webkit-scrollbar { 
+    width: 3px !important;
   }
 }
 
