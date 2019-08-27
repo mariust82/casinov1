@@ -3,7 +3,7 @@ require_once("AbstractSitemapController.php");
 
 class FeaturesController extends AbstractSitemapController {
     protected function getItems() {
-        return ["Live Dealer", "Ecogra Casinos"];
+        return ["Ecogra Casinos"];
     }
 
     protected function getUrlPattern()

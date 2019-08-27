@@ -36,7 +36,7 @@ class GameInfoController extends BaseController {
         $object = new CasinosList(new CasinoFilter(array("software"=>$result->software, "country_accepted"=>true), $this->request->attributes("country")));
         $this->response->attributes("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
         $this->response->attributes('is_mobile',$this->request->attributes("is_mobile"));
-        $object = new GamesList(new GameFilter(array("game_type"=>$result->type)));
+        $object = new GamesList(new GameFilter(array("not_current"=>$this->request->attributes('validation_results')->get('name'),"game_type"=>$result->type)));
         $this->response->attributes("recommended_games", $object->getResults(GameSortCriteria::NONE, 0, 6));
 
         $menuBottom = new GamesMenu($result->type);

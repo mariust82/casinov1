@@ -121,10 +121,16 @@ class CasinosListQuery
             $query->joinInner("casinos__operating_systems","t8")->on(["t1.id" => "t8.casino_id" , "t8.casino_id" => "(" . $sub_query->toString()  . ")" ]);
         }
         if($filter->getPlayVersion()) {
-            $sub_query = new Lucinda\Query\MySQLSelect("play_versions");
-            $sub_query->fields(["id"]);
-            $sub_query->where(["name" => "'" . $filter->getPlayVersion() . "'"]);
-            $query->joinInner("casinos__play_versions","t9")->on(["t1.id" => "t9.casino_id" , "t9.play_version_id" => "(" . $sub_query->toString()  . ")" ]);
+
+            if(!empty($filter->getPlayVersionType())){
+                $query->joinInner("casinos__game_types","t11")->on(["t11.casino_id" => "t1.id"]);
+                $query->joinInner("game_types","t12")->on(["t12.id" => "t11.game_type_id"]);
+            }else{
+                $sub_query = new Lucinda\Query\MySQLSelect("play_versions");
+                $sub_query->fields(["id"]);
+                $sub_query->where(["name" => "'" . $filter->getPlayVersion() . "'"]);
+                $query->joinInner("casinos__play_versions","t9")->on(["t1.id" => "t9.casino_id" , "t9.play_version_id" => "(" . $sub_query->toString()  . ")" ]);
+            }
         }
         if($filter->getSoftware()) {
             $sub_query = new Lucinda\Query\MySQLSelect("game_manufacturers");
@@ -165,6 +171,11 @@ class CasinosListQuery
             $group->set('t14.id', null,MySQLComparisonOperator::IS_NOT_NULL);
             $where->setGroup($group);
         }
+
+        if(!empty($filter->getPlayVersionType())){
+            $where->set("t11.is_live",1);
+            $where->set("t12.name","'".$filter->getPlayVersionType()."'");
+        }
     }
 
     private function setOrderBy(Lucinda\Query\OrderBy $orderBy,CasinoFilter $filter, $sortBy)
@@ -191,6 +202,11 @@ class CasinosListQuery
                     break;
                 case CasinoSortCriteria::WAGERING:
                     $orderBy->add("t5.id" , "ASC");
+                    break;
+                case CasinoSortCriteria::NO_ACCOUNT:
+                    $orderBy->add("t1.priority" , "DESC");
+                    $orderBy->add("t1.date_established" , "DESC");
+                    $orderBy->add("t1.id" , "DESC");
                     break;
                 default:
                     $orderBy->add('complex_case', 'ASC' );

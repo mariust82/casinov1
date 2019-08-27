@@ -9,7 +9,7 @@ class Casino extends Entity {
 	public $currencies;
 	public $bonus_first_deposit;
 	public $bonus_free;
-	public $is_live_dealer;
+	public $live_dealers;
 	public $date_established;
 	public $emails;
 	public $phones;
@@ -28,7 +28,6 @@ class Casino extends Entity {
     public $is_language_accepted;
     public $is_currency_accepted;
     public $note;
-    public $invision_casino_id;
     public $is_tc_link;
     public $logo_big;
     public $logo_small;

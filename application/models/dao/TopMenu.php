@@ -20,16 +20,27 @@ class TopMenu
             ]
         ],
 
+        "LIVE"=>[
+            "item_url" => "/features/live-dealer",
+            "sub_items" => [
+                "Live Roulette Casinos" => "/live-dealer/roulette",
+                "Live Blackjack Casinos" => "/live-dealer/blackjack",
+                "Live Baccarat Casinos" => "/live-dealer/baccarat",
+                "Live Craps Casinos" => "/live-dealer/craps",
+                "Live Dealer Casinos" => "/features/live-dealer"
+            ]
+        ],
+
         "CASINOS"=>[
            "item_url" => "/casinos",
             "sub_items" => [
                 "Best Casinos" => "/casinos/best",
-                "Live Casinos" => "/features/live-dealer",
                 "Mobile Casinos" => "/casinos/mobile",
                 "Low Wagering Casinos" => "/casinos/low-wagering",
                 "eCOGRA Casinos" => "/features/ecogra-casinos",
                 "Stay Away Casinos" => "/casinos/stay-away",
                 "Popular Casinos" => "/casinos/popular",
+                "No Account Casinos" => "/casinos/no-account-casinos",
                 "All Casinos" => "/casinos"
             ]
         ],
@@ -78,7 +89,7 @@ class TopMenu
             "item_url" =>"/games",
             "sub_items"=>[
                 'Video Slots' => '/games/video-slots',
-                'Classic Slots' => '/games/slots',
+                'Classic Slots' => '/games/classic-slots',
                 'Video Poker' => '/games/video-poker',
                 'Scratch Cards' => '/games/scratch-cards',
                 'Blackjack' => '/games/blackjack',

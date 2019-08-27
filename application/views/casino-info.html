@@ -157,8 +157,25 @@
 
 						<div class="def-list-item">
 							<div class="def-list-key">Live dealer</div>
-							<div class="def-list-val">
-								<:if test="${data.casino.is_live_dealer}">Yes<:else>No</:if>
+							<div class="tooltipster-content">
+								<:if test="${data.casino.live_dealers}">
+									<:foreach var="${data.casino.is_available_in_site}" key="key" val="available">
+										<:if test="${key} != end(${data.casino.live_dealers})">
+											<:if test ="${available} == true">
+												<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${key})}">Live ${key},</a>
+												<:else>
+													Live ${key},&nbsp;
+											</:if>
+											<:else>
+												<:if test ="${available} == true">
+													<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${key})}">Live ${key}</a>
+													<:else>
+														Live ${key}&nbsp;
+												</:if>
+										</:if>
+									</:foreach>
+									<:else>No
+								</:if>
 							</div>
 						</div>
 
@@ -274,7 +291,7 @@
 						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
 					</div>
 				</div>
-				<comment:list-container name="${data.user_score_class}" value="${normalize(${data.user_score_class})}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" invisioncasinoid = "${data.casino.invision_casino_id}" />
+				<comment:list-container name="${data.user_score_class}" value="${normalize(${data.user_score_class})}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" />
 			</div>
 		</div>
 	</div>

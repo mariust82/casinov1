@@ -13,13 +13,19 @@ require_once("CasinosListController.php");
 * @pathParameter version string Name of play version
 */
 class CasinosByFeatureController extends CasinosListController {
-    protected function getSelectedEntity()
-    {
-        return $this->request->attributes('validation_results')->get('name');
+    protected function getSelectedEntity(){
+        $page = $this->request->attributes('validation_results')->get('name');
+        $this->setLimitExceptions($page);
+        return $page;
     }
 
-    protected function getFilter()
-    {
+    private function setLimitExceptions($pageType){
+        if($pageType == 'Live Dealer'){
+            $this->limit = 30;
+        }
+    }
+
+    protected function getFilter(){
         return "feature";
     }
 

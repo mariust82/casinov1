@@ -10,6 +10,7 @@ class CasinoBonusController extends Lucinda\MVC\STDOUT\Controller {
   'type' => 'First Deposit Bonus',
   'bonus_type_Abbreviation' => NULL,
 ));
+        $this->response->attributes("name", "Amigo Slots Casino");
 
     }
 }

@@ -77,9 +77,11 @@ var AJAX_CUR_PAGE = 1;
 
 
     function menuHoverAction(){
-        $('.header-menu__list-holder .expand-holder').on('mouseout', function (e) {
+        if (!checkIfIsMobileDevice()) {
+            $('.header-menu__list-holder .expand-holder').on('mouseout', function (e) {
                 $('.expand-holder').removeClass('opened');
-        })
+            })
+        }
     }
 
     //detect when scrolling is stoped
@@ -199,18 +201,17 @@ var AJAX_CUR_PAGE = 1;
                         casino: _name,
                         is_free: _is_free,
                     },
-                    dataType: 'json',
+                    dataType: 'html',
                     type: 'GET',
                     success: function (response) {
-                        if(response.status =="ok") {
-                            instance.content(getBonusPattern(response, _name));
-                            setTimeout(function(){
-                                $('.js-tooltip').tooltipster(tooltipConfig);
-                                $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-                                copyToClipboard();
-                                checkStringLength($('.bonus-box'), 15);
-                            }, 50)
-                        }
+                        instance.content(response);
+                        setTimeout(function(){
+                            $('.js-tooltip').tooltipster(tooltipConfig);
+                            $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                            copyToClipboard();
+                            checkStringLength($('.bonus-box'), 15);
+                        }, 50)
+
                         $origin.data('loaded', true);
                     }
                 });
@@ -348,61 +349,12 @@ var AJAX_CUR_PAGE = 1;
         return rv;
     };
 
-    function getBonusPattern(data, name) {
-        var _name = name;
-        var _amount = data.body.bonus.amount;
-        var _code = data.body.bonus.code;
-        var _games_allowed = data.body.bonus.games_allowed;
-        var _min_deposit = data.body.bonus.min_deposit;
-        var _type = data.body.bonus.type;
-        var _wagering = data.body.bonus.wagering;
-        var _block_class = 'bonus-free';
-        var _icon = 'icon-icon_bonuses';
-        var _code_class = '';
-        var _success_class = '';
-
-        if (_type == 'First Deposit Bonus') {
-            _block_class = 'bonus-first';
-            _icon = 'icon-free-bonus-icon';
-        };
-
-        if (_type == 'Free Play') {
-            _type = "Free Bonus";
-        };
-
-        if (_code != 'No code required') _code_class = 'js-copy-to-clip js-copy-tooltip';
-
-        if (_min_deposit == ''){
-            _min_deposit = 'Free';
-            _success_class = 'success';
-        };
-
-        //map data to bonus box
-        var pattern = $($('#bonus-box-tpl').html()).filter('.tooltip-content');
-            pattern.addClass(_block_class);
-            pattern.find('.tooltip-templates-title').text(_name+' '+_type);
-            pattern.find('.tooltip-templates-button a').attr('href', '/visit/'+getWebName(_name)+'');
-            pattern.find('.bonus-box-heading span').text(_amount+' '+_type);
-            pattern.find('.bonus-box-btn.dashed')
-               .addClass(_code_class)
-               .attr('data-code', _code)
-               .text(_code);
-            pattern.find('.bonus-box-wagering').text(_wagering);
-            pattern.find('.list-item-trun').text(_games_allowed);
-            pattern.find('.bubble').attr('title', _games_allowed);
-            pattern.find('.bonus-box-dep')
-               .addClass(_success_class)
-               .text(_min_deposit);
-            pattern.find('.bonus-box-circle i').addClass(_icon);
-
-        return pattern;
-    }
-
     function checkIfIsMobileDevice(){
 
-        var winsize= 0;
+        var winsize = $(window).width();
+
         $( window ).resize(function() {
-            winsize = $(document).width()
+            winsize = $(window).width();
         });
 
         if(winsize < 1000){
@@ -410,7 +362,6 @@ var AJAX_CUR_PAGE = 1;
         }
 
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-
             return true;
         }
 
@@ -437,11 +388,15 @@ var AJAX_CUR_PAGE = 1;
                         currentOpened = document.querySelector('.expand-holder.opened');
                         if (currentOpened == currentTarget) {
                             var toggleSection = currentOpened.querySelector(".expand-menu");
-                            currentOpened.classList.remove('opened');
+                            if (e.target.className !== 'expand-menu') {
+                                currentOpened.classList.remove('opened');
+                            }
                         }
                         else {
                             if(currentOpened) {
-                                currentOpened.classList.remove('opened');
+                                if (e.target.className !== 'expand-menu') {
+                                    currentOpened.classList.remove('opened');
+                                }
                                 setTimeout(function(){
                                     currentTarget.classList.add('opened');
                                 }, 400);
@@ -1101,7 +1056,6 @@ var AJAX_CUR_PAGE = 1;
                 email: email,
                 body: message,
                 parent: _reviewID,
-                invision_casino_id : $('.reviews-form').attr('data-invision-casino-id'),
                 casino_id : $('.reviews-form').attr('data-casino-id')
             };
 
@@ -1119,26 +1073,18 @@ var AJAX_CUR_PAGE = 1;
                 timeout: 20000,
                 type: 'POST',
                 success: function ( data ) {
-                    if(data.status =="ok") {
-                        _loadData(data, _this);
-                        // _send_btn.prop('disabled', true);
-                        _field_name.val('');
-                        _field_email.val('');
-                        _field_message.val('').addClass('expanding');
-                        _onEvents();
-                        $('.reviews-form').attr('data-invision-casino-id',data.body.review_invision_id);
-                        $('.form .js-expanding-textfields').slideUp();
-                    }
-                    else if(data.status=="error") {
-                        console.error(data.body);
-                        _errors_found = $.parseJSON(jqXHR.responseJSON.body);
-                        _contact_error.html(_errors_found.join('<br />')).show();
-                    }
+                    _loadData(data, _this);
+                    _field_name.val('');
+                    _field_email.val('');
+                    _field_message.val('').addClass('expanding');
+                    _onEvents();
+                    $('.form .js-expanding-textfields').slideUp();
                 },
                 error: function ( jqXHR ) {
-                    _errors_found = $.parseJSON(jqXHR.responseJSON.body);
+                    _errors_found = $.parseJSON(jqXHR.responseText);
                     console.error("Could not send message!");
-                    _contact_error.html(_errors_found.join('<br />')).show();
+                    console.log(_errors_found.body.message);
+                    //_contact_error.html(_errors_found.join('<br />')).show();
                 },
                 complete: function(){
                     BUSY_REQUEST = false;
@@ -1147,48 +1093,9 @@ var AJAX_CUR_PAGE = 1;
         },
 
         _loadData = function(data, _this) {
-
-            if ($.isEmptyObject(data)) {
-                _showEmptyMessage();
-            } else {
-
-                function getItemPattern() {
-                    //map data to comment
-                    var pattern = $($('#comment-tpl').html()).filter('.review');
-
-                        pattern.attr('data-id', data.body.id);
-                        pattern.find('.review-flag img')
-                               .attr({
-                                'src': _imgDir,
-                                'alt': _countryCode
-                               });
-                        pattern.find('.review-name').text(name);
-                        pattern.find('.review-date').text(_getCurrDate());
-                        pattern.find('.review-text p').text(message);
-                        pattern.find('.js-vote a').attr('data-id', data.body.id);
-
-                    if (_is_child) {
-                        pattern.addClass(name.toLowerCase()+' review-child')
-                               .attr('data-img-dir', _imgDir);
-                        pattern.find('.list-rating').remove();
-                    } else {
-                        pattern.addClass(name.toLowerCase()+' review-parent');
-                        pattern.find('.list-rating').addClass(getWebName(get_rating(_rate_slider_result)));
-                        pattern.find('.list-rating-score').text(_rate_slider_result);
-                        pattern.find('.list-rating-text').text(get_rating(_rate_slider_result));
-                    }
-
-                    return pattern;
-                }
-
-                if (_is_child_of_child) {
-                    $(getItemPattern()).insertAfter(_this)
-                } else {
-                    _reviewHolder.prepend(getItemPattern());
-                }
-
+            $('#review-data-holder').load(location.href + ' #review-data-holder', function() {
                 _refreshData();
-            }
+            }, 500);
         },
 
         _refreshData = function(){
@@ -1287,19 +1194,20 @@ var AJAX_CUR_PAGE = 1;
         var _holderMoreChild = $('.reply-data-holder');
         var _name = $('.rating-container').data('casino-name');
         var _request = new XMLHttpRequest;
-        var currentReplyId
-
         _btn.on('click',  function() {
+            console.log("Clicked");
             _addReviews($(this), $(this).data('type'));
             return false;
         });
 
-        var _addReviews = function(_this, _type){
+        if($(".not-accepted").length) {
+            _btn.css("pointer-events", "auto");
+        }
 
+        var _addReviews = function(_this, _type){
             if(BUSY_REQUEST) return;
             BUSY_REQUEST = true;
             _request.abort();
-
             _request = $.ajax( {
                 url: '/casino/more-reviews/'+getWebName(_name)+'/'+_this.data('page'),
                 dataType: 'HTML',
@@ -1309,16 +1217,17 @@ var AJAX_CUR_PAGE = 1;
                 },
                 type: 'GET',
                 success: function (data) {
+
                     if (_type == 'review') {
                         _holderParent.append(data);
-                        if (_this.data('page') >= _this.data('total') / 5) {
+                        if (_this.data('page') >= (_this.data('total') / 5) -1 ) {
                             _this.hide();
                         }
                     } else if (_type == 'reply') {
                         _this.closest('.reply').find(_holderMoreChild).append(data);
                     }
 
-                    if (_this.data('page') >= _this.data('total') / 5) {
+                    if (_this.data('page') >= (_this.data('total') / 5) -1 ) {
                         _this.hide();
                     }
 
@@ -1327,6 +1236,8 @@ var AJAX_CUR_PAGE = 1;
                     _this.data('page', ++_page);
 
                     _refreshData();
+                    
+                    showMoreReviews();
                 },
                 error: function ( XMLHttpRequest ) {
                     if ( XMLHttpRequest.statusText != "abort" ) {
@@ -1988,6 +1899,7 @@ var AJAX_CUR_PAGE = 1;
         var _mobilePop = $('.js-mobile-pop');
         var _btnOpen = $('.btn-round');
         var _btnClose = $('.js-mobile-pop-close');
+        var _position = null;
 
         if (_ww <= 690) {
             _btnOpen.off('click');
@@ -2007,26 +1919,24 @@ var AJAX_CUR_PAGE = 1;
                         casino: _name,
                         is_free: _is_free,
                     },
-                    dataType: 'json',
+                    dataType: 'html',
                     type: 'GET',
                     success: function (response) {
-                        if(response.status =="ok") {
-                            $bonus = getBonusPattern(response, _name);
-                            
-                            if(_is_free) {
-                                _contentHolder.prepend($bonus);
-                            } else {
-                                _contentHolder.append($bonus);
-                            }
-
-                            _heading.text($bonus.find('.tooltip-templates-title').text());
-
-                            _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
-                            _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-                            checkStringLength($('.bonus-box'), 21);
-                            copyToClipboard();
-                            $('.overlay, .loader').fadeOut('fast');
+                        $bonus = response;
+                        
+                        if(_is_free) {
+                            _contentHolder.prepend($bonus);
+                        } else {
+                            _contentHolder.append($bonus);
                         }
+
+                        _heading.text($($bonus).find('.tooltip-templates-title').text());
+
+                        _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
+                        _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                        checkStringLength($('.bonus-box'), 21);
+                        copyToClipboard();
+                        $('.overlay, .loader').fadeOut('fast');
                     }
                 });
                 
@@ -2042,6 +1952,7 @@ var AJAX_CUR_PAGE = 1;
             }
 
             _btnOpen.on('click', function(e) {
+                _position = $('html, body').scrollTop();
                 $('.overlay, .loader').fadeIn('fast');
                 cloneContent($(this));
                 return false;
@@ -2054,6 +1965,11 @@ var AJAX_CUR_PAGE = 1;
                     .find('.mobile-popup-body')
                     .html('');
                 $('html, body').removeClass('no-scroll');
+                $('.overlay, .loader').fadeOut('fast');
+
+                $('html, body').animate({
+                    scrollTop: _position
+                }, 10);
                 return false;
             });
         }
@@ -2126,19 +2042,45 @@ var AJAX_CUR_PAGE = 1;
     function initMobileMenu() {
         var btn = $('#js-mobile-menu-opener, #js-mobile-menu-close');
         var menu =  $('.header-menu');
+        var position = null;
+        var _window = $('html, body');
 
         btn.on('click',  function(e) {
             $('body').toggleClass('menu-opened');
             btn.toggleClass('active');
 
+            if (checkIfIsMobileDevice()) {
+                position = $(window).scrollTop();
+                if (_window.hasClass('no-scroll')) {
+                    _window.addClass('no-scroll');
+                } else {
+                    _window.removeClass('no-scroll');
+                    goToPosition(position);
+                }
+
+            }
+
             $(document).on('click touchstart',function(e) {
                 if ($(e.target).closest(menu).length==0 && $(e.target).closest(btn).length==0){
                     $("body").removeClass('menu-opened');
+                    if (checkIfIsMobileDevice()) {
+                        unlockScreen();
+                        
+                        goToPosition(position);
+                    }
                     btn.removeClass('active');
                 }
             });
             e.preventDefault();
+
+            
         });
+    }
+
+    function goToPosition(_position) {
+        $('html, body').animate({
+            scrollTop: _position
+        }, 5);
     }
 
     function initSearch() {
@@ -2150,6 +2092,7 @@ var AJAX_CUR_PAGE = 1;
         var _btnMobileClear = $('.js-mobile-search-clear');
         var _drop = $('.js-search-drop');
         var _input = $('.header-search-input input');
+        var _position = null;
 
         _btnOpen.on('click', function(e) {
             $('body').addClass('search-opened');
@@ -2179,18 +2122,31 @@ var AJAX_CUR_PAGE = 1;
         });
 
         _btnMobileOpen.on('click', function(e) {
+            _position = $(window).scrollTop();
             $('body').addClass('mobile-search-opened');
+            lockScreen();
             _input.focus();
         });
 
         _btnMobileClose.on('click', function(e) {
             _input.val('').blur();
             $('body').removeClass('mobile-search-opened');
+            unlockScreen();
+
+            goToPosition(_position);
         });
 
         _btnMobileClear.on('click', function() {
             _input.val('').focus();
         });
+    }
+
+    function lockScreen() {
+        $('html, body').addClass('no-scroll');
+    }
+
+    function unlockScreen() {
+        $('html, body').removeClass('no-scroll');
     }
 
     function searchDropOpen(_drop) {
