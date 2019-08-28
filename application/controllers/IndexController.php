@@ -2,15 +2,13 @@
 require_once("application/models/CasinoFilter.php");
 require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
-require_once("application/models/GameFilter.php");
-require_once("application/models/GameSortCriteria.php");
-require_once("application/models/dao/GamesList.php");
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
 require_once("application/controllers/BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
+require_once("application/models/orm/GamesFeaturedList.php");
 require_once("application/models/caching/GamesListKey.php");
-require_once ('application/models/TmsWrapper.php');
+require_once('application/models/TmsWrapper.php');
 
 /*
 * Homepage
@@ -28,7 +26,7 @@ class IndexController extends BaseController {
         $this->response->attributes("new_casinos", $this->getCasinos([],CasinoSortCriteria::NEWEST, 5));
         $this->response->attributes("no_deposit_casinos", $this->getCasinos(
             array("bonus_type"=>"no deposit bonus"), CasinoSortCriteria::NEWEST, 5));
-        $this->response->attributes("new_games", $this->getGames(array("game_type"=>$this->response->attributes("selected_entity"), "is_mobile"=>$this->request->attributes("is_mobile")),GameSortCriteria::NEWEST, 6));
+        $this->response->attributes("new_games", $this->getGames());
         $this->response->attributes("filter",null);
         $this->response->attributes("page_type","index");
         $this->response->attributes("selected_entity","index");
@@ -58,12 +56,9 @@ class IndexController extends BaseController {
         return $results;
     }
 
-    private function getGames($filter, $sortBy, $limit) {
-
-        $game_filter = new GameFilter($filter);
-        $object = new GamesList($game_filter);
-        $results = $object->getResults($sortBy, 0,$limit);
-        return $results;
+    private function getGames() {
+	    $driver = new \CasinosLists\GamesFeaturedList($this->request->attributes("is_mobile"));
+	    return $driver->getResults();
     }
 
     protected function pageInfo(){

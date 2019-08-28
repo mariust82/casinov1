@@ -1,13 +1,12 @@
 <?php
 require_once("application/models/dao/GameTypes.php");
 require_once("application/models/dao/GameManufacturers.php");
-require_once("application/models/dao/GamesList.php");
-require_once("application/models/GameFilter.php");
 require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/GamesMenu.php");
 require_once("BaseController.php");
 require_once("application/models/caching/GamesListKey.php");
 require_once ('application/models/TmsWrapper.php');
+require_once("application/models/orm/GamesByType.php");
 
 /*
 * Games list by game type.
@@ -18,41 +17,35 @@ require_once ('application/models/TmsWrapper.php');
 * @pathParameter type string Name of game type
 */
 class GamesByTypeController extends BaseController {
-
-    const LIMIT = 24;
-    private $filter;
-
 	public function service() {
-
         $this->response->attributes("selected_entity", ucwords($this->getSelectedEntity()));
+
         $menu = new GamesMenu($this->response->attributes("selected_entity"));
         $this->response->attributes("menu_bottom", $menu->getEntries());
 
         $object = new GameManufacturers();
         $this->response->attributes("software", $object->getAll());
-        $this->setFilter();
-        $this->response->attributes("filter", $this->filter);
+
         $results = $this->getResults();
         $this->response->attributes("total_games", $results["total"]);
         $this->response->attributes("games", $results["list"]);
+
         $tms = new TmsWrapper($this->application,$this->request, $this->response);
+        $this->response->attributes("tms", $tms->getText());
 
-        $tmsText = $tms->getText();
-        $this->response->attributes("tms", $tmsText);
+        $this->response->attributes("filter", array("game_type"=>$this->response->attributes("selected_entity")));
 	}
-
-	private function setFilter(){
-        $this->filter = new GameFilter(array("game_type"=>$this->response->attributes("selected_entity"), "is_mobile"=>$this->request->attributes("is_mobile")));
-    }
 
 
 	private function getResults() {
-        $object = new GamesList($this->filter);
-        $results = array();
-        $results["total"] = $object->getTotal();
-        $results["list"] = ($results["total"]>0?$object->getResults(GameSortCriteria::NONE, 1, self::LIMIT):array());
-
-        return $results;
+	    $driver = new \CasinosLists\GamesByType(
+            $this->request->attributes("validation_results")->get("type"),
+            [],
+            $this->request->attributes("is_mobile"),
+            GameSortCriteria::NONE,
+            0
+        );
+	    return $driver->getResults();
     }
 
 	private function getSelectedEntity(){
