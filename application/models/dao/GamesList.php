@@ -32,7 +32,6 @@ class GamesList
         $query .= !empty($limit) ?  " LIMIT ". $limit : '';
         $query .= !empty($offset) ? " OFFSET ". $offset : '';
         $output = array();
-       
         $resultSet = SQL($query);
 
         while($row = $resultSet->toRow()) {

@@ -1,6 +1,4 @@
 <?php
-require_once("application/models/dao/GameInfo.php");
-require_once("application/models/dao/GamesList.php");
 require_once("application/models/dao/CasinosList.php");
 require_once("application/models/CasinoFilter.php");
 require_once("application/models/CasinoSortCriteria.php");
@@ -9,6 +7,8 @@ require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/GameTypes.php");
 require_once("application/models/dao/GamesMenu.php");
 require_once ("BaseController.php");
+require_once("application/models/orm/GameInfo.php");
+require_once("application/models/orm/GamesRecommended.php");
 /*
 * Game info by game name.
 * 
@@ -21,28 +21,28 @@ class GameInfoController extends BaseController {
 	public function service() {
         $this->response->attributes("country", $this->request->attributes("country"));
 
-	    $info = $this->application->getTag("gameplay");
-
         $object = new GameTypes();
         $this->response->attributes("game_types", array_keys($object->getGamesCount()));
 
-	    $object = new GameInfo($this->request->attributes('validation_results')->get('name'));
-        $result = $object->getResult();
-        if(!$result) throw new Lucinda\MVC\STDOUT\PathNotFoundException();
+	    $object = new \CasinosLists\GameInfo($this->request->attributes('validation_results')->get('name'));
+        $result = $object->getResults();
 		$this->response->attributes("game", $result);
 
         $this->response->attributes("game_player", $this->getPlayerInfo());
 
-        $object = new CasinosList(new CasinoFilter(array("software"=>$result->software, "country_accepted"=>true), $this->request->attributes("country")));
+        $object = new CasinosList(new CasinoFilter(array("software"=>$result->manufacturer, "country_accepted"=>true), $this->request->attributes("country")));
         $this->response->attributes("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0,5));
+
         $this->response->attributes('is_mobile',$this->request->attributes("is_mobile"));
-        $object = new GamesList(new GameFilter(array("not_current"=>$this->request->attributes('validation_results')->get('name'),"game_type"=>$result->type)));
-        $this->response->attributes("recommended_games", $object->getResults(GameSortCriteria::NONE, 0, 6));
+
+        $gfl = new \CasinosLists\GamesRecommended($this->request->attributes('validation_results')->get('name'), $result->type, $this->request->attributes("is_mobile"));
+        $this->response->attributes("recommended_games", $gfl->getResults());
 
         $menuBottom = new GamesMenu($result->type);
         $this->response->attributes("menu_bottom", $menuBottom->getEntries());
 
         $this->response->attributes("page_type", "game_info");
+
         $this->response->attributes("selected_entity", "SOFTWARE");
     }
 
