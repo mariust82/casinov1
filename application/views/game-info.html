@@ -50,22 +50,22 @@
 					</div>
 					<div class="game-info-cell">
 						<div class="game-info-title">SOFTWARE</div>
-						<div class="game-info-val">${data.game.software}</div>
+						<div class="game-info-val">${data.game.manufacturer}</div>
 					</div>
 					<div class="game-info-cell">
 						<div class="game-info-title">RELEASE DATE</div>
-						<div class="game-info-val">${date("M d, Y",  strtotime(${data.game.release_date}))}</div>
+						<div class="game-info-val">${data.game.date_launched}</div>
 					</div>
 					<div class="game-info-cell">
 						<div class="game-info-title">TECHNOLOGY</div>
 						<div class="game-info-val">
-							<:set var="numItems" val="count(${data.game.technologies})"/>
-							<:set var="i" val="0"/>
-							<:foreach var="${data.game.technologies}" val="result">
-							      ${result}
-							      <:set var="i" val="${i}+1"/>
-							      <:if test="${i}+1 < ${numItems}">, </:if>
-							</:foreach>
+							<:if test="${data.game.is_flash} && ${data.game.is_html5}">
+								Flash, HTML5
+							<:elseif test="${data.game.is_flash}">
+								Flash
+							<:else>
+								HTML5
+							</:if>
 						</div>
 					</div>
 					<div class="game-info-cell">
@@ -80,7 +80,7 @@
 					</div>
 					<div class="game-info-cell">
 						<div class="game-info-sign">
-							<:if test="${data.game.is_3d}">
+							<:if test="${data.game.is_3d_animation}">
 								<i class="icon-icon_available"></i>
 							<:else>
 								<i class="icon-icon_unavailable"></i>
@@ -92,15 +92,6 @@
 			</div>
 		</div>
 	</div>
-
-	<:if test="${data.game.overview}">
-		<div class="block game-description">
-			<div class="container">
-				<h3 class="title title-small">Game overview</h3>
-				<p>${data.game.overview}</p>
-			</div>
-		</div>
-	</:if>
 
 	<:if test="count(${data.recommended_casinos})>0">
 		<div class="block related">

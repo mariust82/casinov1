@@ -1,7 +1,6 @@
 <?php
-require_once("application/models/dao/GamesList.php");
-require_once("application/models/GameFilter.php");
 require_once("application/models/GameSortCriteria.php");
+require_once("application/models/orm/GamesByType.php");
 
 /*
 * Filters games according to selections
@@ -18,17 +17,17 @@ class GamesFilterController extends Lucinda\MVC\STDOUT\Controller
     const LIMIT = 24;
     public function run()
     {
+        $validationResults = $this->request->attributes("validation_results");
 
-        $page = (integer)$this->request->getValidator()->parameters("page");
-        $sortBy = isset($_GET["sort"]) ? $_GET["sort"] : GameSortCriteria::NONE;
-
-
-        $offset = $page * self::LIMIT;
-        $object = new GamesList(new GameFilter($_GET));
-        $total = $object->getTotal();
-        $this->response->attributes("total_games", $total);
-        $results = $object->getResults($sortBy, $page, self::LIMIT ,$offset);
-        $this->response->attributes("games", $results, $page);
-
+        $driver = new \CasinosLists\GamesByType(
+            $validationResults->get("game_type"),
+            $validationResults->get("software"),
+            $this->request->attributes("is_mobile"),
+            $validationResults->get("sort")?$validationResults->get("sort"):GameSortCriteria::NONE,
+            $this->request->getValidator()->parameters("page")+1
+        );
+        $results = $driver->getResults();
+        $this->response->attributes("total_games", $results["total"]);
+        $this->response->attributes("games", $results["list"]);
     }
 }
