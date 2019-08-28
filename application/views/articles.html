@@ -1,0 +1,37 @@
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="index"/>
+               <div class="block">
+                  <div class="container">
+                     <div class="headeing">
+                        <h1 class="title">Blog</h1>
+                        <div class="subtitle">
+                           <div class="js-condense">
+                              <span>${(isset(${data.tms.upper_text})?${data.tms.upper_text}:"")}</span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="cards-list">
+                         <:foreach var="${data.results}" val="article">
+                            <div class="wrap-card">
+                               <a href="/blog/${normalize(${article.title})}" class="card">
+                                  <div class="card-img">
+                                     <img src="${data.uploadsFolders.${article.id}}" width="288" height="205" alt="${article.title}">
+                                  </div>
+                                  <div class="card-footer">
+                                     <div class="card-title">${article.title}</div>
+                                     <div class="card-description">${substr(${article.description},0,100)}</div>
+                                     <ul class="info-list">
+                                        <li class="item">${format_filter_date(${article.date_added},'M d, Y')}</li>
+                                        <li class="item">${article.min_read} min read</li>
+                                        <li class="item">${article.rating.likes} liked</li>
+                                     </ul>
+                                  </div>
+                               </a>
+                            </div>
+                       </:foreach>
+                     </div>
+                     <div class="btn-holder">
+                        <a href="#" class="btn-bordered load js-more-items">Load More</a>
+                     </div>
+                  </div>
+               </div>
+    <site:bottom menu="${data.menu_top}"/>
