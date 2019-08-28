@@ -1,0 +1,23 @@
+<:foreach var="$[data]" val="article">
+	<!--Article link-->
+	<a href="/blog/${normalize(${article.title})}" class="article swiper-slide">
+		<div class="article-holder">
+			<span class="article-img">
+				<img src="${data.uploadsFolders.${article.id}}" width="288" height="205" alt="${article.title}">
+			</span>
+			<div class="article-info">
+				<div class="article-info-body">
+					<h3 class="article-title">${article.title}</h3>
+					<span class="article-text">${substr(${article.tms_content_value.tms_value},0,100)}</span>
+				</div>
+				<ul class="article-stats">
+					<li>${format_filter_date(${article.date_added},'M d, Y')}</li>
+					<li class="article-stats-delimeter">·</li>
+					<li>${article.min_read} min read</li>
+					<li class="article-stats-delimeter">·</li>
+					<li>${article.rating.likes} liked</li>
+				</ul>
+			</div>
+		</div>
+	</a>
+</:foreach>
