@@ -99,7 +99,6 @@ class Articles
         $query .= "
             ORDER BY a.id DESC
             LIMIT $offset, $limit";
-        echo $query;
         $resultSet = SQL($query, $query_vars);
         $foundRows = (int)SQL('SELECT FOUND_ROWS()')->toValue();
         $results = [];
