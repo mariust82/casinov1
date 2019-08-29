@@ -6,7 +6,7 @@
 					<span class="game-img">
 						<:set var="imgSrc" val="${result.logo}"/>
 						<:set var="noImgSrc" val="public/build/images/games/default_game_ss.png"/>
-						<img src="/${(is_file(${imgSrc}))?${imgSrc}:${noImgSrc}}" alt="${result.name}" width="300" height="220">
+						<img src=${imgSrc} onerror="this.src='/${noImgSrc}';" alt="${result.name}" width="300" height="220">
 					</span>
 					<span class="game-desc">
 						<span class="game-title">${result.name}</span>
