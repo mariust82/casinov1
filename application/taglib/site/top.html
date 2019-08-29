@@ -79,6 +79,9 @@
 	<div id="site-content">
 		<:if test="'$[page]' == 'index'">
 			<site:welcome/>
+                        <div class="main">
+                <:elseif test="'$[page]' == 'blog-single'">
+                        <div class="main single-blog">
 		</:if>
 
-		<div class="main">
+		
