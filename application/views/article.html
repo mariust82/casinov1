@@ -1,4 +1,4 @@
-<site:top>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="blog">
     <!-- Article Heading -->
     <div class="article-heading">
         <!-- Image -->
@@ -68,4 +68,4 @@
             <a href="/blog" class="btn-bordered load js-more-items">SEE ALL BLOG POSTS</a>
         </div>
     </div>
-    <site:bottom>
+    <site:bottom menu="${data.menu_top}"/>

@@ -8,7 +8,7 @@
 			<div class="article-info">
 				<div class="article-info-body">
 					<h3 class="article-title">${article.title}</h3>
-					<span class="article-text">${substr(${article.tms_content_value.tms_value},0,100)}</span>
+					<span class="article-text">${substr(${article.description},0,100)}</span>
 				</div>
 				<ul class="article-stats">
 					<li>${format_filter_date(${article.date_added},'M d, Y')}</li>
