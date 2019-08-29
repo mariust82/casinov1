@@ -162,7 +162,7 @@
     <route url="live-dealer/(TYPE)" controller="CasinoLiveDealerController" view="casinos">
       <parameter name="TYPE" validator="LiveDealerValidator"/>
     </route>
-     <route url="blog/(name)" controller="ArticleController" view="article">
+     <route url="(category)/(name)" controller="ArticleController" view="article">
       <parameter name="name" validator="ArticleValidator"/>
     </route>
     <route url="blog" controller="ArticlesController" view="articles"/>
