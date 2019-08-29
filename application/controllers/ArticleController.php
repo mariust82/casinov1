@@ -19,6 +19,7 @@ class ArticleController extends BaseController
     {
         $articles_ctrl = new Articles($this->application->attributes('parent_schema'));
         $article_name = $this->request->getValidator()->parameters('name');
+        var_dump($article_name);
         $article = $articles_ctrl->getInfoByName($article_name);
         $tmsArticles = $articles_ctrl->getInfoByRoute($this->denormalize($article_name));
         $tmsArticle = array_shift($tmsArticles);
