@@ -15,6 +15,8 @@
         <environments>
             <lucinda>www.casinoslists.local</lucinda>
             <alex>www.casinoslists.local</alex>
+			<bogdan>www.casinoslists.bogdan</bogdan>
+			<bogdan>C:\wamp64\www\casinoslist</bogdan>
             <amos>www.devcasinopro.adrian</amos>
             <amos>C:\projects\casinoslists</amos>
             <bala>www.casinoslists.bala</bala>
@@ -211,6 +213,9 @@
       <live>
         <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
       </live>
+	  <bogdan>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_dev" parent_schema="casinosl_admin_dev" charset="utf8"/>
+      </bogdan>
     </sql>
     <nosql>
       <lucinda>
@@ -231,6 +236,9 @@
       <amos>
         <server driver="redis" host="localhost"/>
       </amos>
+	  <bogdan>
+        <server driver="redis" host="localhost"/>
+      </bogdan>
     </nosql>
   </servers>
   <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
@@ -238,12 +246,14 @@
     <alex>api.datamother.com</alex>
     <bala>api.datamother.com</bala>
     <mark>api.datamother.com</mark>
+    <bogdan>api.datamother.com</bogdan>
     <dev>devapi.datamother.com</dev>
     <live>api.datamother.com</live>
   </rest_api>
   <geoip>
     <lucinda>/tmp/ip2country.mmdb</lucinda>
     <alex>/home/casinoslists/public_html/ip2country.mmdb</alex>
+    <bogdan>C:\wamp64\www\casinoslist\ip2country.mmdb</bogdan>
     <mark>/home/casinoslists/public_html/ip2country.mmdb</mark>
     <dev>/home/casinoslists/public_html/dev/ip2country.mmdb</dev>
     <live>/home/casinoslists/public_html/live/ip2country.mmdb</live>
@@ -268,6 +278,7 @@
   <hosts>
     <lucinda>www.casinoslists.local</lucinda>
     <dev>dev.casinoslists.com</dev>
+    <bogdan>dev.casinoslists.com</bogdan>
     <live>www.casinoslists.com</live>
   </hosts>
   <gameplay width="960" height="720">
