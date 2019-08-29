@@ -13,6 +13,7 @@
     <display_errors>
       <lucinda>1</lucinda>
       <alex>1</alex>
+      <bogdan>1</bogdan>
       <bala>1</bala>
       <amos>1</amos>
       <mark>1</mark>
@@ -27,6 +28,9 @@
     <alex>
       <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
     </alex>
+	<bogdan>
+      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
+    </bogdan>
     <bala>
       <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
     </bala>
