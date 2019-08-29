@@ -1,4 +1,4 @@
-<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casinos">
+<site:top>
     <!-- Article Heading -->
     <div class="article-heading">
         <!-- Image -->
@@ -33,41 +33,39 @@
             <:if test="!empty(${data.tms_article.content})">
               ${h2_to_tile( ${data.tms_article.content})}
                 </:if>
+            <div class="vote-block">
+                <h3 class="vote-block-title">Did you like this article?</h3>
+                <div class="vote-block-holder js-vote">
+                    <a href="#" class="vote-button vote-block-item like" data-type="article" data-success="1"
+                       data-id="${data.article.id}">
+                        <div class="vote-block-num">${data.article.rating.likes}</div>
+                        <i class="icon-icon_likes"></i>
+                    </a>
+                    <a href="#" class="vote-button vote-block-item dislike" data-type="article" data-success="0"
+                       data-id="${data.article.id}">
+                        <div class="vote-block-num">${data.article.rating.dislikes}</div>
+                        <i class="icon-icon_dislikes"></i>
+                    </a>
+                </div>
+                <div class="success action-field">
+                    <i class="icon-icon_available"></i>
+                    Thank you for vote.
+                </div>
+                <div class="success action-field">
+                    You already voted.
+                </div>
+            </div> 
         </div>
     </div>
 
-    <div class="container">
-        <div class="vote-block">
-            <h3 class="vote-block-title">Did you like this article?</h3>
-            <div class="vote-block-holder js-vote">
-                <a href="#" class="vote-button vote-block-item like" data-type="article" data-success="1"
-                   data-id="${data.article.id}">
-                    <div class="vote-block-num">${data.article.rating.likes}</div>
-                    <i class="icon-icon_likes"></i>
-                </a>
-                <a href="#" class="vote-button vote-block-item dislike" data-type="article" data-success="0"
-                   data-id="${data.article.id}">
-                    <div class="vote-block-num">${data.article.rating.dislikes}</div>
-                    <i class="icon-icon_dislikes"></i>
-                </a>
-            </div>
-            <div class="success action-field">
-                <i class="icon-icon_available"></i>
-                Thank you for vote.
-            </div>
-            <div class="success action-field">
-                You already voted.
-            </div>
-        </div>
-    </div>
     <!--Related articles-->
     <div class="container js-articles">
-        <h2 class="text-title"><span>Related articles</span></h2>
-        <div class="articles-list">
+        <h2 class="title-name"><span>Related articles</span></h2>
+        <div class="cards-list">
             <box:article data="${data.related}"/>
         </div>
-        <div class="button-holder centered">
-            <a href="/blog" class="link">SEE ALL BLOG POSTS</a>
+        <div class="btn-holder">
+            <a href="/blog" class="btn-bordered load js-more-items">SEE ALL BLOG POSTS</a>
         </div>
     </div>
     <site:bottom>
