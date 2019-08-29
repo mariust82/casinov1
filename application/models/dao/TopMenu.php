@@ -106,8 +106,8 @@ class TopMenu
         "BLOG"=>[
             "item_url" =>"/blog",
             "sub_items"=>[
-                'News' => '#',
-                'Guides' => '#',
+                'News' => '/blog/news',
+                'Guides' => '/blog/guides',
                 'All Blog Articles' => '/blog',
             ],
         ],
