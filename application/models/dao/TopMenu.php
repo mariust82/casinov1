@@ -103,6 +103,14 @@ class TopMenu
                 'All Games' => '/games'
             ],
         ],
+        "BLOG"=>[
+            "item_url" =>"/blog",
+            "sub_items"=>[
+                'News' => '#',
+                'Guides' => '#',
+                'All Blog Articles' => '/blog',
+            ],
+        ],
 
     ];
     private $pages = array();
