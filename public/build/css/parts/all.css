@@ -112,6 +112,11 @@ button {
   overflow: visible;
 }
 
+.title-name, .vote-block-title{
+    color: #465156;
+    font: 700 18px/1.4 'Open Sans';
+}
+
 .single-blog{
     padding: 0 !important;
 }
