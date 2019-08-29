@@ -6,34 +6,6 @@ h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
   padding: 0;
 }
 
-.text-title span {
-    display: inline-block;
-    padding: 0 25px;
-    background: #fff;
-    position: relative;
-    z-index: 2;
-}
-
-.article-heading-title, .casino-mobile-rate .rate-score, .dashed-button-text, .jackpots-rating, .jackpots-title, .text-title {
-    text-align: center;
-}
-
-.text-title {
-    position: relative;
-    font-size: 32px;
-    color: #434343;
-    margin: 0 0 30px;
-}
-
-.text-title:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    border-top: 1px solid #DCDCDC;
-}
-
 fieldset,
 img {
   border: 0;
@@ -141,7 +113,7 @@ button {
 }
 
 .single-blog{
-    padding: 0!important;
+    padding: 0 !important;
 }
 
 button,
