@@ -19,7 +19,6 @@ class ArticleController extends BaseController
     {
         $articles_ctrl = new Articles($this->application->attributes('parent_schema'));
         $article_name = $this->request->getValidator()->parameters('name');
-        var_dump($article_name);
         $article = $articles_ctrl->getInfoByName($article_name);
         $tmsArticles = $articles_ctrl->getInfoByRoute($this->denormalize($article_name));
         $tmsArticle = array_shift($tmsArticles);
@@ -39,7 +38,7 @@ class ArticleController extends BaseController
         $related_articles = $articles_ctrl->getList(['id_not_in' => [$article->id]], 0, 3);
         foreach($related_articles['results'] as $item) {
             $uploadsFolders[$item->id] = "/upload". $articles_ctrl->getUploadsFolder($item, 'live');
-            $uploadsFolders[$item->id] .= "/" . str_replace(" ", "_", $item->title). "_thumbnail.jpg?".strtotime("now");;
+            $uploadsFolders[$item->id] .= "/" . str_replace(" ", "_", $item->title). "_thumbnail.jpg?".strtotime("now");
         }
 
         $this->response->attributes("article", $article);
@@ -63,7 +62,7 @@ class ArticleController extends BaseController
          // get page info
         $object = new PageInfoDAO();
         $total_casinos = !empty($this->response->attributes("total_casinos")) ? $this->response->attributes("total_casinos") : '';
-        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("selected_entity"), $total_casinos));
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->request->getValidator()->parameters('name'), $total_casinos));
     }
 
 }
