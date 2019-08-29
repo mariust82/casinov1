@@ -165,6 +165,7 @@
      <route url="(category)/(name)" controller="ArticleController" view="article">
       <parameter name="name" validator="ArticleValidator"/>
     </route>
+    <route url="load-more/(category)" controller="ArticlesLoadMoreController" format="json"/>
     <route url="blog" controller="ArticlesController" view="articles"/>
     <route url="blog/rate" controller="ArticleRateController" format="json">
       <parameter name="is_like" validator="LikeValueValidator"/>
