@@ -1,5 +1,5 @@
 <?php
-require_once "PageController.php";
+require_once "BaseController.php";
 require_once "application/models/dao/Articles.php";
 require_once "application/models/dao/Drafts.php";
 
@@ -12,22 +12,10 @@ require_once "application/models/dao/Drafts.php";
 * @pathParameter name string article name
 */
 
-class ArticleController extends PageController
+class ArticleController extends BaseController
 {
 
-    protected $page_info = [
-        'head' => [
-            'title' => ':website_name - :article_name',
-            'description' => 'Main page description :website_name'
-        ],
-        'body' => [
-            'title' => '',
-            'subtitle' => '',
-            'description' => '',
-        ]
-    ];
-
-    public function run()
+    protected function service()
     {
         $articles_ctrl = new Articles($this->application->attributes('parent_schema'));
         $article_name = $this->request->getValidator()->parameters('name');
@@ -61,8 +49,7 @@ class ArticleController extends PageController
         $this->response->attributes('title_image_desktop', $titleImageDesktop);
         $this->response->attributes('title_image_mobile', $titleImageMobile);
         $this->website_info['article_name'] = $article->title;
-
-        parent::run();
+        
     }
 
     private function denormalize($text)
@@ -70,4 +57,12 @@ class ArticleController extends PageController
         $ret = preg_replace('/[- #]/', ' ', $text);
         return $ret;
     }
+
+    protected function pageInfo() {
+         // get page info
+        $object = new PageInfoDAO();
+        $total_casinos = !empty($this->response->attributes("total_casinos")) ? $this->response->attributes("total_casinos") : '';
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("selected_entity"), $total_casinos));
+    }
+
 }

@@ -26,6 +26,17 @@ function get_rating($score)
     return $string;
 }
 
+function h2_to_tile($text)
+{
+    $p = preg_replace("/(-{3})(.*)(-{3})/", "<h2 class=\"text-title\"><span>$2</span></h2>", $text);
+    return $p;
+}
+
+function datef($date)
+{
+    return date('M d, Y', strtotime($date));
+}
+
 
 function format_filter_date($date, $format = 'd.m.Y')
 {
