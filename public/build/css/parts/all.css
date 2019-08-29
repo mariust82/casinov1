@@ -11,6 +11,13 @@ img {
   border: 0;
 }
 
+.article-heading {
+    height: 274px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 40px;
+}
+
 .site__header_sticky .header {
   position: fixed!important;
   top: 0;
@@ -103,6 +110,10 @@ svg:not(:root) {
 
 button {
   overflow: visible;
+}
+
+.single-blog{
+    padding: 0!important;
 }
 
 button,
