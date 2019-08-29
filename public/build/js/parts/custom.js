@@ -4,8 +4,21 @@ var AJAX_CUR_PAGE = 1;
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
-    var fullScreenIframe = function() {
+    function tmsIframe() {
+        if($(".tms_iframe").length) {
+            $(".tms_iframe").each(function() {
+                var iframe = document.createElement("iframe");
+                $.each(this.attributes, function() {
+                    if(this.name == "class") return;
+                    iframe.setAttribute(this.name.replace("data-",""), this.value);
+                });
+                $(this).append(iframe);
+            });
+            new fullScreenIframe();
+        }
+    }
 
+    var fullScreenIframe = function() {
         'use strict';
         var tmsWrapper = document.getElementsByClassName('show-text-visible');
         if (tmsWrapper !== null) {
@@ -40,6 +53,7 @@ var AJAX_CUR_PAGE = 1;
         initSite();
         initMobileMenu();
         menuHoverAction();
+        tmsIframe();
         new SearchPanel ( $('.header') );
 
         var user_rate = $('.rating-container').data('user-rate');
