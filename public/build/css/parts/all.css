@@ -3808,6 +3808,15 @@ a:focus {
   width: 100%;
 }
 
+.text-title:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #DCDCDC;
+}
+
 .button {
   font-size: 11px;
   text-transform: uppercase;
