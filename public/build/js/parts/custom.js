@@ -1,53 +1,10 @@
 var AJAX_CUR_PAGE = 1;
 
-function tmsIframe() {
-    if($(".tms_iframe").length) {
-        $(".tms_iframe").each(function() {
-            var iframe = document.createElement("iframe");
-            $.each(this.attributes, function() {
-                if(this.name == "class") return;
-                iframe.setAttribute(this.name.replace("data-",""), this.value);
-            });
-            $(this).append(iframe);
-        });
-        new fullScreenIframe();
-    }
-}
 
-var fullScreenIframe = function() {
-    'use strict';
-    var tmsWrapper = document.getElementsByClassName('show-text-visible');
-    if (tmsWrapper !== null) {
-        var i;
-        for (i = 0; i < tmsWrapper.length; i++) {
-            var iframe = tmsWrapper[i].getElementsByTagName('iframe');
-            if (iframe.length > 0) {
-                var j;
-                for (j = 0; j < iframe.length; j++) {
-                    responsiveIframe(iframe[j]);
-                }
-            }
-        }
-    }
-
-    function responsiveIframe(iframe) {
-        var width = iframe.getAttribute('width');
-        var height = iframe.getAttribute('height');
-        var aspectRatio = height / width;
-
-        iframe.style.width = '100%';
-
-        window.addEventListener("resize", function () {
-            iframe.style.height = iframe.clientWidth * aspectRatio + 'px';
-        });
-        window.dispatchEvent(new Event('resize'));
-    }
-};
 
 (function($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
-
 
 
     $(document).ready(function() {
@@ -56,20 +13,61 @@ var fullScreenIframe = function() {
         initMobileMenu();
         menuHoverAction();
 
+        function tmsIframe() {
+            if($(".tms_iframe").length) {
+                $(".tms_iframe").each(function() {
+                    var iframe = document.createElement("iframe");
+                    $.each(this.attributes, function() {
+                        if(this.name == "class") return;
+                        iframe.setAttribute(this.name.replace("data-",""), this.value);
+                    });
+                    $(this).append(iframe);
+                });
+                new fullScreenIframe();
+            }
+        }
 
+        var fullScreenIframe = function() {
+            'use strict';
+            var tmsWrapper = document.getElementsByClassName('show-text-visible');
+            if (tmsWrapper !== null) {
+                var i;
+                for (i = 0; i < tmsWrapper.length; i++) {
+                    var iframe = tmsWrapper[i].getElementsByTagName('iframe');
+                    if (iframe.length > 0) {
+                        var j;
+                        for (j = 0; j < iframe.length; j++) {
+                            responsiveIframe(iframe[j]);
+                        }
+                    }
+                }
+            }
+
+            function responsiveIframe(iframe) {
+                var width = iframe.getAttribute('width');
+                var height = iframe.getAttribute('height');
+                var aspectRatio = height / width;
+
+                iframe.style.width = '100%';
+
+                window.addEventListener("resize", function () {
+                    iframe.style.height = iframe.clientWidth * aspectRatio + 'px';
+                });
+                window.dispatchEvent(new Event('resize'));
+            }
+        };
 
 //Load defer for pages on that you can see the footer on first load
         var footerHeight = 260;
         if($(window).scrollTop() + $(window).height() > $(document).height() - footerHeight) {
-            tmsIframeChange();
+               tmsIframe();
         } else {
             var deferEvent;
             if($(window).width() < 768)
                 deferEvent = 'touchstart';
             else
                 deferEvent = 'mousemove';
-
-            $(window).one(deferEvent, tmsIframeChange);
+            $(window).one(deferEvent, tmsIframe);
         }
 
         $(window).trigger('scroll');
