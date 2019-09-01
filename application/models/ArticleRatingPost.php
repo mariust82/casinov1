@@ -80,9 +80,10 @@ class ArticleRatingPost extends UserPost
                     $this->setError($this->post_error_msg);
                     return false;
                 }
+            } else {
+                $this->setError("You already voted with this IP on this article!");
+                return FALSE;
             }
-            $this->setError("You already voted with this IP on this article!");
-            return FALSE;
         }
         return false;
     }
