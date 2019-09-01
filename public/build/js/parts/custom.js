@@ -945,14 +945,10 @@ var fullScreenIframe = function() {
 
                              _this.closest(_obj).next('.action-field.success').show();
                         } else if(_target === '/blog/rate') {
-                            var _holderLikes = $(_this).find('.bubble-like');
-                            var _oldLikes = _holderLikes.text();
-                            _holderLikes.text(++_oldLikes);
-                            
-                            var _holderDisLikes = $(_this).find('.bubble-dislike');
-                            var _oldDisLikes = _holderDisLikes.text();
-                            _holderDisLikes.text(++_oldDisLikes);
-                             _this.closest(_obj).next('.action-field.success').show();
+                            $(_this.parent().parent()).find('.votes-like .vote-block-num, .like .vote-block-num').text(data.body.likes);
+                            $(_this.parent().parent()).find('.votes-dislike .vote-block-num, .dislike .vote-block-num').text(data.body.dislikes);
+
+                            _this.closest(_obj).next('.action-field.success').show();
                         }
                         //_this.parent().addClass('disabled');
                     },
@@ -960,9 +956,7 @@ var fullScreenIframe = function() {
                         var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
                         if ( XMLHttpRequest.statusText != "abort" ) {
                             console.log( 'err' );
-                             _this.closest(_obj).next('.action-field').css('color','#e93e3e');
-                             _this.closest(_obj).next('.action-field').html(msg);
-                             _this.closest(_obj).next('.action-field').show();
+                             __this.closest(_obj).next('.action-field.not-valid').show();
                         }
                     },
                     complete: function(){
