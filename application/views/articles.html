@@ -12,7 +12,7 @@
          <div class="cards-list">
              <:foreach var="${data.results}" val="article">
                 <div class="wrap-card">
-                   <a href="/blog/${normalize(${article.title})}" class="card">
+                   <a href="/${article.type}/${normalize(${article.title})}" class="card">
                       <div class="card-img">
                          <img src="${data.uploadsFolders.${article.id}}" width="288" height="205" alt="${article.title}">
                       </div>
