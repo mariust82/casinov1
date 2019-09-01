@@ -78,7 +78,7 @@ class Articles
         return $results[0];
     }
 
-    public function getList($filters = [], $offset = 0, $limit = 20)
+    public function getList($filters = [], $offset = 0, $limit = 9)
     {
         $output = ['results' => [], 'total' => 0];
         //DB('SET NAMES UTF8');

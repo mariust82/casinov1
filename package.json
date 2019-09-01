@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "xml2js": "^0.4.19",
     "yuicompressor": "^2.4.8"
   },
