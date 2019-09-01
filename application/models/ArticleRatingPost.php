@@ -82,7 +82,7 @@ class ArticleRatingPost extends UserPost
                 }
             } else {
                 $this->setError("You already voted with this IP on this article!");
-                return FALSE;
+                return false;
             }
         }
         return false;
