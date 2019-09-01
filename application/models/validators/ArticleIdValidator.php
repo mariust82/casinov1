@@ -14,7 +14,6 @@ class ArticleIdValidator extends Lucinda\RequestValidator\ParameterValidator{
             FROM `articles`
             WHERE articles.id=:id
             LIMIT 0, 1", [":id" => $id])->toValue();
-
         return ($results? $results:null);
 
     }
