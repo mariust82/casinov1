@@ -917,7 +917,9 @@ var fullScreenIframe = function() {
 
             _getTarget = function(_arg) {
                 var _target = '/casino/review-like';
-
+                if (_arg === 'article') {
+                    _target = '/blog/rate';
+                }
                 return _target;
             },
 
