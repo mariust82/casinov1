@@ -934,20 +934,35 @@ var fullScreenIframe = function() {
                     dataType: 'json',
                     type: 'post',
                     success: function (data) {
+                        var error = data.body.message;
                         //console.log(data.body.likes);
                         //var currentVotes = _this.find('.vote-block-num');
                         //currentVotes.text(parseInt(currentVotes.text())+1);
-                        var _holderLikes = $(_this).find('.bubble-vote');
-                        var _oldLikes = _holderLikes.text();
-                        _holderLikes.text(++_oldLikes);
+                        if (_target === '/casino/review-like') {
+                            var _holderLikes = $(_this).find('.bubble-vote');
+                            var _oldLikes = _holderLikes.text();
+                            _holderLikes.text(++_oldLikes);
 
-                        // _this.closest(_obj).next('.action-field.success').show();
+                             _this.closest(_obj).next('.action-field.success').show();
+                        } else if(_target === '/blog/rate') {
+                            var _holderLikes = $(_this).find('.bubble-like');
+                            var _oldLikes = _holderLikes.text();
+                            _holderLikes.text(++_oldLikes);
+                            
+                            var _holderDisLikes = $(_this).find('.bubble-dislike');
+                            var _oldDisLikes = _holderDisLikes.text();
+                            _holderDisLikes.text(++_oldDisLikes);
+                             _this.closest(_obj).next('.action-field.success').show();
+                        }
                         //_this.parent().addClass('disabled');
                     },
                     error: function ( XMLHttpRequest ) {
+                        var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
                         if ( XMLHttpRequest.statusText != "abort" ) {
                             console.log( 'err' );
-                            // _this.closest(_obj).next('.action-field.not-valid').show();
+                             _this.closest(_obj).next('.action-field').css('color','#e93e3e');
+                             _this.closest(_obj).next('.action-field').html(msg);
+                             _this.closest(_obj).next('.action-field').show();
                         }
                     },
                     complete: function(){
