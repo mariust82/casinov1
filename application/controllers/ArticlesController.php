@@ -13,7 +13,7 @@ require_once "application/models/dao/Articles.php";
 
 class ArticlesController extends BaseController {
 
-    const LIMIT = 100;
+    const LIMIT = 9;
 
     protected function pageInfo() {
         // get page info

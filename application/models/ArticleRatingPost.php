@@ -7,7 +7,7 @@ class ArticleRatingPost extends UserPost
     protected $db_table = 'articles__ratings';
     protected $post_error_msg = 'Rating was not saved! Please try again!';
     protected $parameters = [
-        'article_id' => ['default' => 0, 'check' => ['articleExists' => 'Article not found!']],
+        'id' => ['default' => 0, 'check' => ['articleExists' => 'Article not found!']],
         'ip' => [
             'default' => 0,
             'check' => [
@@ -30,7 +30,7 @@ class ArticleRatingPost extends UserPost
     {
         $value = $this->getParamValue($parameter);
         $query = "SELECT COUNT(*) FROM `" . $this->db_table . "` WHERE `ip`=:ip AND article_id=:article_id";
-        $query_vars = [":ip" => $value, ":article_id" => $this->filled_parameters['article_id']];
+        $query_vars = [":ip" => $value, ":article_id" => $this->filled_parameters['id']];
         if (!empty($settings['time_limit']) && !!$settings['time_limit']) {
             $time_limit = $settings['time_limit'];
             $query .= " AND `date`>=:date ";
@@ -55,13 +55,16 @@ class ArticleRatingPost extends UserPost
     public function post()
     {
         if ($this->canPost()) {
-            $rating_exists = SQL("SELECT `id` FROM `" . $this->db_table . "` WHERE ip=:ip AND article_id=:article_id", [':ip' => $this->filled_parameters['ip'], ':article_id' => $this->filled_parameters['article_id']])->toValue();
-            if (!!$rating_exists)
+            $rating_exists = SQL("SELECT `id` FROM `" . $this->db_table . "` WHERE ip=:ip AND article_id=:article_id", [':ip' => $this->filled_parameters['ip'], ':article_id' => $this->filled_parameters['id']])->toValue();
+            if ($rating_exists)
                 $query = "UPDATE`" . $this->db_table . "` SET ";
             else
                 $query = "INSERT INTO `" . $this->db_table . "` SET ";
             $query_vars = [];
             foreach ($this->filled_parameters as $parameter => $value) {
+                if ($parameter == 'id') {
+                    $parameter = 'article_id';
+                }
                 $query .= "`" . $parameter . "`=:value_of_$parameter, ";
                 $query_vars[":value_of_$parameter"] = $value;
             }

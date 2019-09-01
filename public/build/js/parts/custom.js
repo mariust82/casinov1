@@ -909,7 +909,7 @@ var fullScreenIframe = function() {
             },
 
             _getData = function(_target, _id, _success){
-                var _ret = {id:_id};
+                var _ret = {id:_id,is_like:_success};
                 // if (_target == 'review') _ret.review_id = _id;
                 // else _ret.article_id = _id;
                 return _ret;

@@ -169,7 +169,7 @@
     <route url="blog" controller="ArticlesController" view="articles"/>
     <route url="blog/rate" controller="ArticleRateController" format="json">
       <parameter name="is_like" validator="LikeValueValidator"/>
-      <parameter name="article_id" validator="ArticleIdValidator"/>
+      <parameter name="id" validator="ArticleIdValidator"/>
     </route>
     <route url="articles/(page)" controller="ArticlesByPageController" view="articles-by-page">
       <parameter name="page" validator="PositiveNumberValidator"/>

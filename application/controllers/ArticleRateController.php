@@ -21,7 +21,9 @@ class ArticleRateController extends Lucinda\MVC\STDOUT\Controller
             throw new UserPostException(json_encode($rating_ctrl->getErrors()));
         }
         $ctrl = new Articles($this->application->attributes('parent_schema'));
-        $item = $ctrl->getItemFromId($_POST['article_id']);
+         
+        $item = $ctrl->getItemFromId($_POST['id']);
+     
         $this->response->attributes('likes', $item->rating->likes);
         $this->response->attributes('dislikes', $item->rating->dislikes);
     }
