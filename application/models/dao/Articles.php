@@ -84,8 +84,8 @@ class Articles
         //DB('SET NAMES UTF8');
         $query_vars = [];
         $query = "
-            SELECT SQL_CALC_FOUND_ROWS a.*, a.likes as `rating.likes`, a.dislikes as `rating.dislikes`, tcnt.value
-            FROM articles a LEFT JOIN {$this->parentSchema}.tms__content tcnt
+            SELECT SQL_CALC_FOUND_ROWS a.*, a.likes as `rating.likes`, a.dislikes as `rating.dislikes`, tcnt.value, at.value AS type
+            FROM articles a JOIN article__types at ON a.type_id = at.id LEFT JOIN {$this->parentSchema}.tms__content tcnt
             ON a.route_id=tcnt.route_id
             WHERE 1=1 
             ";
@@ -95,6 +95,11 @@ class Articles
         if (isset($filters['id'])) {
             $query .= "\nAND a.id=:id";
             $query_vars[':id'] = (int)$filters['id'];
+        }
+        if (isset($filters['type'])) {
+            $type_id = $this->getArticleTypeId($filters['type']);
+            $query .= "\nAND a.type_id=:id";
+            $query_vars[':id'] = (int)$type_id;
         }
         $query .= "
             ORDER BY a.id DESC
@@ -108,6 +113,7 @@ class Articles
             $rating->likes = $row['likes'];
             $rating->dislikes = $row['dislikes'];
             $article->id = $row['id'];
+            $article->type = $row['type'];
             $article->title = $row['title'];
             $article->date_added = $row['date_added'];
             $article->min_read = $row['min_read'];
@@ -118,6 +124,10 @@ class Articles
         $output['results'] = $results;
         $output['total'] = $foundRows;
         return $output;
+    }
+    
+    private function getArticleTypeId($type) {
+        return SQL("SELECT id FROM article__types WHERE `value` = :id",[':id'=>$type])->toValue();
     }
 
     public function getItemFromId($id = 0)
