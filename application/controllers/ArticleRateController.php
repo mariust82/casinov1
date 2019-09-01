@@ -18,6 +18,7 @@ class ArticleRateController extends Lucinda\MVC\STDOUT\Controller
     {
         $rating_ctrl = new ArticleRatingPost();
         if (!$rating_ctrl->post()) {
+            var_dump($rating_ctrl->getErrors());
             throw new UserPostException(json_encode($rating_ctrl->getErrors()));
         }
         $ctrl = new Articles($this->application->attributes('parent_schema'));
