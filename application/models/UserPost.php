@@ -204,6 +204,10 @@ class UserPost
 
 class UserPostException extends Exception
 {
+    public function __construct($message, $code, $previous) {
+        parent::__construct($message, $code, $previous);
+    }
+    
 }
 
 class Warning extends Exception
