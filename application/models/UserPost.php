@@ -204,10 +204,6 @@ class UserPost
 
 class UserPostException extends Exception
 {
-    public function __construct($message) {
-        throw new Exception($message);
-    }
-    
 }
 
 class Warning extends Exception
