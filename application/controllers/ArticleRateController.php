@@ -17,7 +17,7 @@ class ArticleRateController extends Lucinda\MVC\STDOUT\Controller
     public function run()
     {
         $rating_ctrl = new ArticleRatingPost();
-        
+        $rating_ctrl->post();
         $ctrl = new Articles($this->application->attributes('parent_schema'));
          
         $item = $ctrl->getItemFromId($_POST['id']);
