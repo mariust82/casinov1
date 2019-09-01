@@ -19,6 +19,7 @@ class ArticleController extends BaseController
     {
         $articles_ctrl = new Articles($this->application->attributes('parent_schema'));
         $article_name = $this->request->getValidator()->parameters('name');
+        $category = $this->request->getValidator()->parameters('category');
         $article = $articles_ctrl->getInfoByName($article_name);
         $tmsArticles = $articles_ctrl->getInfoByRoute($this->denormalize($article_name));
         $tmsArticle = array_shift($tmsArticles);
@@ -35,7 +36,7 @@ class ArticleController extends BaseController
             $titleImageMobile = null;
         }
 
-        $related_articles = $articles_ctrl->getList(['id_not_in' => [$article->id]], 0, 3);
+        $related_articles = $articles_ctrl->getList(['id_not_in' => [$article->id],'type'=> $category], 0, 3);
         foreach($related_articles['results'] as $item) {
             $uploadsFolders[$item->id] = "/upload". $articles_ctrl->getUploadsFolder($item, 'live');
             $uploadsFolders[$item->id] .= "/" . str_replace(" ", "_", $item->title). "_thumbnail.jpg?".strtotime("now");
