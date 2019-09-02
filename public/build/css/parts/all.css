@@ -9219,18 +9219,16 @@ img.grayscale {
   border: 2px solid #0d7ac7;
 }*/
 
-.subtitle ol {
+.subtitle ol,
+.subtitle ul {
   list-style: decimal;
-  padding: 0 40px;
+  padding: 0 0 0 17px;
   margin: 10px 0;
   line-height: 26px;
 }
 
 .subtitle ul {
   list-style: disc;
-  padding: 0 40px;
-  margin: 10px 0;
-  line-height: 26px;
 }
 
 .no-scroll {
@@ -9267,6 +9265,10 @@ html.no-scroll {
   -ms-flex-pack: center;
   justify-content: center;
   padding: 10px 20px;
+}
+
+.mobile-search-opened .btn-play-now{
+  display:none;
 }
 
 .flex-reverse {
