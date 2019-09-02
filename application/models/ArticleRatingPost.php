@@ -58,7 +58,7 @@ class ArticleRatingPost extends UserPost
         }
     }
 
-    private function post()
+    protected function post()
     {
         if ($this->canPost()) {
             $rating_exists = SQL("SELECT `id` FROM `" . $this->db_table . "` WHERE ip=:ip AND article_id=:article_id", [':ip' => $this->filled_parameters['ip'], ':article_id' => $this->filled_parameters['id']])->toValue();
