@@ -98,7 +98,7 @@ class Articles
             $query_vars[':id3'] = (int)$type_id;
             $where->set("a.type_id", ":id3");
         }
-        $select->orderBy("a.id",Lucinda\Query\OrderByOperator::DESC);
+        $select->orderBy()->add("a.id",Lucinda\Query\OrderByOperator::DESC);
         $select->limit($limit, $offset);
 //        $query .= "
 //            ORDER BY a.id DESC
