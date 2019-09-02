@@ -178,7 +178,7 @@ class UserPost
         if (isset($this->parameters['ip'])) $this->filled_parameters['ip'] = is_null($ip = IPDetection::getInstance()->getIP()) ? '127.0.0.1' : $ip;
     }
 
-    public function post()
+    protected function post()
     {
         if ($this->canPost()) {
             $query = "INSERT INTO `" . $this->db_table . "` SET ";

@@ -13,7 +13,7 @@
  */
 class ArticleCategoryValidator {
      public function validate($value) {
-         $arr = ['news','guides'];
+         $arr = ['news','guides','blog'];
          return in_array($value, $arr) ? TRUE : NULL;
      }
 }
