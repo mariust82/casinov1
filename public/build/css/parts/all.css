@@ -9269,6 +9269,10 @@ html.no-scroll {
   padding: 10px 20px;
 }
 
+.mobile-search-opened .btn-play-now{
+  display:none;
+}
+
 .flex-reverse {
   flex-direction: row-reverse;
 }
