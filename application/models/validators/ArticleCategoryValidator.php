@@ -14,6 +14,6 @@
 class ArticleCategoryValidator {
      public function validate($value) {
          $arr = ['news','guides','blog'];
-         return in_array($value, $arr) ? TRUE : NULL;
+         return in_array($value, $arr) ? $value : NULL;
      }
 }
