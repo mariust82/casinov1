@@ -15,17 +15,6 @@ class Articles
     {
         $this->parentSchema = $parentSchema;
     }
-    
-    public function getUploadsFolders($items)
-    {
-        $uploadsFolders = [];
-        foreach ($items['results'] as $item) {
-            $uploadsFolders[$item->id] = "/upload" . $this->getUploadsFolder($item, 'live');
-            $uploadsFolders[$item->id] .= "/" . str_replace(" ", "_", $item->title) . "_thumbnail.jpg?" . strtotime("now");
-        }
-        
-        return $uploadsFolders;
-    }
 
     public function getInfoByRoute($route)
     {

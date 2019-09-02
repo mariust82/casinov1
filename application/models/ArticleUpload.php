@@ -1,5 +1,5 @@
 <?php
-
+require_once 'ArticlesModel.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,30 +11,55 @@
  *
  * @author matan
  */
-class ArticleUpload
+class ArticleUpload extends ArticlesModel
 {
-    private $uploadsFolder;
     private $article;
     private $titleImageThumbnail = null;
     private $titleImageDesktop = null;
     private $titleImageMobile = null;
-    
-    public function __construct($uploadsFolder, $article)
+    private $object;
+    private $operationType;
+    public function __construct($items,$article,$object,$operationType)
     {
-        $this->uploadsFolder = $uploadsFolder;
+        parent::__construct($items);
         $this->article = $article;
+        $this->object = $object;
+        $this->operationType = $operationType;
         $this->setUploadPath();
     }
 
     private function setUploadPath()
     {
-        if ($this->uploadsFolder) {
-            $this->titleImageThumbnail = '/upload' . $this->uploadsFolder . '/' . str_replace(" ", "_", $this->article->title). "_thumbnail.jpg?".strtotime("now");
-            ;
-            $this->titleImageDesktop = '/upload' . $this->uploadsFolder . '/' . str_replace(" ", "_", $this->article->title). "_image_desktop.jpg?".strtotime("now");
-            ;
-            $this->titleImageMobile = '/upload' . $this->uploadsFolder . '/' . str_replace(" ", "_", $this->article->title). "_image_mobile.jpg?".strtotime("now");
-            ;
+        $folder = $this->getUploadsFolder();
+        if ($folder) {
+            $this->titleImageThumbnail = '/upload' . $folder . '/' . str_replace(" ", "_", $this->article->title). "_thumbnail.jpg?".strtotime("now");
+            $this->titleImageDesktop = '/upload' . $folder . '/' . str_replace(" ", "_", $this->article->title). "_image_desktop.jpg?".strtotime("now");
+            $this->titleImageMobile = '/upload' . $folder . '/' . str_replace(" ", "_", $this->article->title). "_image_mobile.jpg?".strtotime("now");
+        }
+    }
+    
+    private function getUploadsFolder()
+    {
+        if (empty($this->object)) {
+            return null;
+        }
+
+        switch ($this->operationType) {
+            case'draft':
+                if (!$this->object) {
+                    return '/blogs/drafts/tmp';
+                }
+                return '/blogs/drafts/' . $this->object->id;
+                break;
+            case 'publish':
+                if (!$this->object) {
+                    return '/blogs/drafts/tmp';
+                }
+                return '/blogs/published/' . $this->object->payload->id;
+                break;
+            case 'live':
+                return '/blogs/published/' . $this->object->id;
+                break;
         }
     }
     

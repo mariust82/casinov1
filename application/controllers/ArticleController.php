@@ -24,22 +24,17 @@ class ArticleController extends BaseController
         $article = $articles_ctrl->getInfoByName($article_name);
         $tmsArticles = $articles_ctrl->getInfoByRoute($this->denormalize($article_name));
         $tmsArticle = array_shift($tmsArticles);
-        $uploadsFolder = $articles_ctrl->getUploadsFolder($tmsArticle, 'live');
-        $upload = new ArticleUpload($uploadsFolder, $article);
-        $upload->getTitleImageThumbnail();
-        $upload->getTitleImageDesktop();
-        $upload->getTitleImageMobile();
-        $titleImageThumbnail = $upload->getTitleImageThumbnail();
-        $titleImageDesktop = $upload->getTitleImageDesktop();
-        $titleImageMobile = $upload->getTitleImageMobile();
         $related_articles = $articles_ctrl->getList(['id_not_in' => [$article->id],'type'=> $category], 0, 3);
+        $upload = new ArticleUpload($related_articles,$article,$tmsArticle,'live');
+        
+        
         $this->response->attributes("article", $article);
         $this->response->attributes("tms_article", $tmsArticle);
         $this->response->attributes("related", $related_articles['results']);
-        $this->response->attributes("uploadsFolders", $articles_ctrl->getUploadsFolders($related_articles));
-        $this->response->attributes('title_image_thumbnail', $titleImageThumbnail);
-        $this->response->attributes('title_image_desktop', $titleImageDesktop);
-        $this->response->attributes('title_image_mobile', $titleImageMobile);
+        $this->response->attributes("uploadsFolders", $upload->getUploadsFolders());
+        $this->response->attributes('title_image_thumbnail', $upload->getTitleImageThumbnail());
+        $this->response->attributes('title_image_desktop', $upload->getTitleImageDesktop());
+        $this->response->attributes('title_image_mobile', $upload->getTitleImageMobile());
         $this->website_info['article_name'] = $article->title;
     }
 

@@ -2,6 +2,7 @@
 
 require_once "BaseController.php";
 require_once "application/models/dao/Articles.php";
+require_once "application/models/ArticlesModel.php";
 
 /*
  * Articles listing
@@ -37,10 +38,10 @@ class ArticlesController extends BaseController
         $this->init();
         $articles_ctrl = new Articles($this->application->attributes('parent_schema'));
         $items = $articles_ctrl->getList($this->filter, $this->offset, self::LIMIT);
-
+        $upload = new ArticlesModel($items);
         $this->response->attributes("results", $items['results']);
         $this->response->attributes("category", $this->category);
         $this->response->attributes("total", $items['total']);
-        $this->response->attributes("uploadsFolders", $articles_ctrl->getUploadsFolders($items));
+        $this->response->attributes("uploadsFolders", $upload->getUploadsFolders());
     }
 }

@@ -25,8 +25,8 @@
       <mihai>/var/www/html/mihai/casinoslists</mihai>
       <bogdan>www.casinoslists.bogdan</bogdan>
       <bogdan>/var/www/html/bogdan/casinoslists</bogdan>
-      <shay>???</shay>
-      <shay>???</shay>
+      <shay>www.casinoslists.mark</shay>
+      <shay>C:\xampp\htdocs\casinoslists</shay>
 	</environments>
   </application>
   <formats>
@@ -231,7 +231,7 @@
         <server driver="mysql" host="localhost" port="3306" username="gtm" password="hliscorp" schema="bogdan__casinoslists_main" parent_schema="bogdan__casinoslists_admin" charset="utf8"/>
       </bogdan>
       <shay>
-        <server driver="mysql" host="localhost" port="3306" username="gtm" password="hliscorp" schema="???" parent_schema="???" charset="utf8"/>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_dev" parent_schema="casinosl_admin_dev" charset="utf8"/>
       </shay>
     </sql>
     <nosql>
@@ -265,7 +265,7 @@
     <bebi>api.datamother.com</bebi>
     <mihai>api.datamother.com</mihai>
     <bogdan>api.datamother.com</bogdan>
-    <shay>???</shay>
+    <shay>api.datamother.com</shay>
   </rest_api>
   <geoip>
     <dev>/home/casinoslists/public_html/dev/ip2country.mmdb</dev>
@@ -274,7 +274,7 @@
     <bebi>/var/www/html/ip2country.mmdb</bebi>
     <mihai>/var/www/html/ip2country.mmdb</mihai>
     <bogdan>/var/www/html/ip2country.mmdb</bogdan>
-    <shay>???</shay>
+    <shay>C:\xampp\htdocs\ip2country.mmdb</shay>
   </geoip>
   <images path="public/sync">
     <image type="casino_logo_light">
@@ -300,7 +300,7 @@
     <bebi>www.casinoslists.bebi</bebi>
     <mihai>www.casinoslists.mihai</mihai>
     <bogdan>www.casinoslists.bogdan</bogdan>
-    <shay>???</shay>
+    <shay>www.casinoslists.mark</shay>
   </hosts>
   <gameplay width="960" height="720">
     <dev>https://devgame.casinoslists.com</dev>
@@ -309,7 +309,7 @@
     <bebi>http://game.casinoslists.bebi</bebi>
     <mihai>http://game.casinoslists.mihai</mihai>
     <bogdan>http://game.casinoslists.bogdan</bogdan>
-    <shay>???</shay>
+    <shay>http://game.casinoslists.mark</shay>
   </gameplay>
   <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
 </xml>
