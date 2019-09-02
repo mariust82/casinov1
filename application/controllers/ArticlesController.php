@@ -15,6 +15,8 @@ class ArticlesController extends BaseController {
 
     const LIMIT = 9;
     protected $filter;
+    protected $category;
+    protected $offset;
     protected function pageInfo() {
         // get page info
         $object = new PageInfoDAO();
@@ -24,20 +26,19 @@ class ArticlesController extends BaseController {
     
      protected function init() {
          $this->filter = [];
+         $this->category = "blog";
+         $this->offset = 0;
     }
 
     protected function service() {
         $this->init();
         $articles_ctrl = new Articles($this->application->attributes('parent_schema'));
-        $items = $articles_ctrl->getList($this->filter,0, self::LIMIT);
-        foreach ($items['results'] as $item) {
-            $uploadsFolders[$item->id] = "/upload" . $articles_ctrl->getUploadsFolder($item, 'live');
-            $uploadsFolders[$item->id] .= "/" . str_replace(" ", "_", $item->title) . "_thumbnail.jpg?" . strtotime("now");
-        }
+        $items = $articles_ctrl->getList($this->filter,$this->offset, self::LIMIT);
 
         $this->response->attributes("results", $items['results']);
+        $this->response->attributes("category", $this->category);
         $this->response->attributes("total", $items['total']);
-        $this->response->attributes("uploadsFolders", $uploadsFolders);
+        $this->response->attributes("uploadsFolders", $articles_ctrl->getUploadsFolders($items));
     }
 
 }

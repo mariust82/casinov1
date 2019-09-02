@@ -56,6 +56,39 @@ var fullScreenIframe = function() {
         menuHoverAction();
 
 
+    $('.load-more').click(function(){
+        var _request = new XMLHttpRequest();
+        var category = $(this).data('category');
+        _request = $.ajax( {
+        url: '/load-more/'+category+'/'+AJAX_CUR_PAGE,
+        data:{
+            page:AJAX_CUR_PAGE,
+            category: category
+        },
+        dataType: 'html',
+        type: 'post',
+        success: function (data) {
+            AJAX_CUR_PAGE++;
+            console.dir(data);
+             console.dir(data);
+            $('.cards-list').append(data);
+//            if($(this).data('total') === $('.cards-list').children().length) {
+//                $(this).hide();
+//            }
+        },
+        error: function ( XMLHttpRequest ) {
+            var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+            if ( XMLHttpRequest.statusText != "abort" ) {
+                console.log( 'err' );
+                 __this.closest(_obj).next('.action-field.not-valid').show();
+            }
+        },
+        complete: function(){
+            BUSY_REQUEST = false;
+        }
+    } );
+    });
+
 //Load defer for pages on that you can see the footer on first load
         var footerHeight = 260;
         if($(window).scrollTop() + $(window).height() > $(document).height() - footerHeight) {
@@ -103,7 +136,6 @@ var fullScreenIframe = function() {
         }, 300);
 
     });
-
 
     function menuHoverAction(){
         if (!checkIfIsMobileDevice()) {
@@ -770,7 +802,7 @@ var fullScreenIframe = function() {
             }
 
             _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
-
+                console.dir('test');
                 if (_action == 'add') {
                     _moreButton.addClass('loading');
                 } else {

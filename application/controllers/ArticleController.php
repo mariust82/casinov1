@@ -2,6 +2,8 @@
 require_once "BaseController.php";
 require_once "application/models/dao/Articles.php";
 require_once "application/models/dao/Drafts.php";
+require_once "application/models/ArticleUpload.php";
+
 
 /*
 * Single article page
@@ -23,29 +25,19 @@ class ArticleController extends BaseController
         $article = $articles_ctrl->getInfoByName($article_name);
         $tmsArticles = $articles_ctrl->getInfoByRoute($this->denormalize($article_name));
         $tmsArticle = array_shift($tmsArticles);
-        // TODO: add the uploads folder to the configuration.xml
         $uploadsFolder = $articles_ctrl->getUploadsFolder($tmsArticle, 'live');
-
-        if ($uploadsFolder) {
-            $titleImageThumbnail = '/upload' . $uploadsFolder . '/' . str_replace(" ", "_", $article->title). "_thumbnail.jpg?".strtotime("now");;
-            $titleImageDesktop = '/upload' . $uploadsFolder . '/' . str_replace(" ", "_", $article->title). "_image_desktop.jpg?".strtotime("now");;
-            $titleImageMobile = '/upload' . $uploadsFolder . '/' . str_replace(" ", "_", $article->title). "_image_mobile.jpg?".strtotime("now");;
-        } else {
-            $titleImageThumbnail = null;
-            $titleImageDesktop = null;
-            $titleImageMobile = null;
-        }
-
+        $upload = new ArticleUpload($uploadsFolder, $article);
+        $upload->getTitleImageThumbnail();
+        $upload->getTitleImageDesktop();
+        $upload->getTitleImageMobile();
+        $titleImageThumbnail = $upload->getTitleImageThumbnail();
+        $titleImageDesktop = $upload->getTitleImageDesktop();
+        $titleImageMobile = $upload->getTitleImageMobile();
         $related_articles = $articles_ctrl->getList(['id_not_in' => [$article->id],'type'=> $category], 0, 3);
-        foreach($related_articles['results'] as $item) {
-            $uploadsFolders[$item->id] = "/upload". $articles_ctrl->getUploadsFolder($item, 'live');
-            $uploadsFolders[$item->id] .= "/" . str_replace(" ", "_", $item->title). "_thumbnail.jpg?".strtotime("now");
-        }
-
         $this->response->attributes("article", $article);
         $this->response->attributes("tms_article", $tmsArticle);
         $this->response->attributes("related", $related_articles['results']);
-        $this->response->attributes("uploadsFolders", $uploadsFolders);
+        $this->response->attributes("uploadsFolders", $articles_ctrl->getUploadsFolders($related_articles));
         $this->response->attributes('title_image_thumbnail', $titleImageThumbnail);
         $this->response->attributes('title_image_desktop', $titleImageDesktop);
         $this->response->attributes('title_image_mobile', $titleImageMobile);

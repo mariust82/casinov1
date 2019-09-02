@@ -132,7 +132,7 @@ class UserPost
     /**
      * @return array
      */
-    public function getErrors()
+    protected function getErrors()
     {
         return $this->errors;
     }
