@@ -59,6 +59,7 @@ var fullScreenIframe = function() {
     $('.load-more').click(function(){
         var _request = new XMLHttpRequest();
         var category = $(this).data('category');
+        var self = $(this);
         _request = $.ajax( {
         url: '/load-more/'+category+'/'+AJAX_CUR_PAGE,
         data:{
@@ -72,9 +73,9 @@ var fullScreenIframe = function() {
             console.dir(data);
              console.dir(data);
             $('.cards-list').append(data);
-//            if($(this).data('total') === $('.cards-list').children().length) {
-//                $(this).hide();
-//            }
+            if($(self).data('total') === $('.cards-list').children().length) {
+                $(self).hide();
+            }
         },
         error: function ( XMLHttpRequest ) {
             var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
