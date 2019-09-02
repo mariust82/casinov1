@@ -12,33 +12,33 @@
  * @author matan
  */
 class ArticlesModel {
-    private $items;
-    
+    protected $items;
+    protected $uploadFodler;
     public function __construct($items) {
         $this->items = $items;
     }
     
-    protected function getUploadsFolder()
+    protected function getUploadsFolder($object, $operationType)
     {
-        if (empty($this->object)) {
+        if (empty($object)) {
             return null;
         }
 
-        switch ($this->operationType) {
+        switch ($operationType) {
             case'draft':
-                if (!$this->object) {
+                if (!$object) {
                     return '/blogs/drafts/tmp';
                 }
-                return '/blogs/drafts/' . $this->object->id;
+                return '/blogs/drafts/' . $object->id;
                 break;
             case 'publish':
-                if (!$this->object) {
+                if (!$object) {
                     return '/blogs/drafts/tmp';
                 }
-                return '/blogs/published/' . $this->object->payload->id;
+                return '/blogs/published/' . $object->payload->id;
                 break;
             case 'live':
-                return '/blogs/published/' . $this->object->id;
+                return '/blogs/published/' . $object->id;
                 break;
         }
     }
@@ -46,8 +46,10 @@ class ArticlesModel {
     public function getUploadsFolders()
     {
         $uploadsFolders = [];
+        
         foreach ($this->items['results'] as $item) {
-            $uploadsFolders[$item->id] = "/upload" . $this->getUploadsFolder($item, 'live');
+            $this->uploadFodler = $this->getUploadsFolder($item, 'live');
+            $uploadsFolders[$item->id] = "/upload" . $this->uploadFodler;
             $uploadsFolders[$item->id] .= "/" . str_replace(" ", "_", $item->title) . "_thumbnail.jpg?" . strtotime("now");
         }
         
