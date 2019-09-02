@@ -72,39 +72,21 @@ class Articles
         $select->joinInner("article__types","at")->on(["a.type_id"=>"at.id"]);
         $select->joinLeft("{$this->parentSchema}.tms__content","tcnt")->on(["a.route_id"=>"tcnt.route_id"]);
         $where =  $select->where();
-//        $select->where()->setLike("name", ":name");
-//        $query = $select->toString();
-//        $this->parameters[":name"] = "%".$this->value."%";
-//        return SQL($query, $this->getParameters())->toValue();
-//        $query = "
-//            SELECT SQL_CALC_FOUND_ROWS a.*, a.likes as `rating.likes`, a.dislikes as `rating.dislikes`, tcnt.value, at.value AS type
-//            FROM articles a JOIN article__types at ON a.type_id = at.id LEFT JOIN {$this->parentSchema}.tms__content tcnt
-//            ON a.route_id=tcnt.route_id
-//            WHERE 1=1 
-//            ";
         if (!empty($filters['id_not_in'])) {
-//            $query .= " AND a.id NOT IN (" . implode(',', $filters['id_not_in']) . ") ";
             $where->setIn("a.id", ":id1", FALSE);
             $query_vars[':id1'] = $filters['id_not_in'];
         }
         if (isset($filters['id'])) {
-//            $query .= "\nAND a.id=:id";
             $query_vars[':id2'] = (int)$filters['id'];
             $where->set("a.id", ":id2");
         }
         if (isset($filters['type'])) {
             $type_id = $this->getArticleTypeId($filters['type']);
-//            $query .= "\nAND a.type_id=:tid";
             $query_vars[':id3'] = (int)$type_id;
             $where->set("a.type_id", ":id3");
         }
         $select->orderBy()->add("a.id",Lucinda\Query\OrderByOperator::DESC);
         $select->limit($limit, $offset);
-//        $query .= "
-//            ORDER BY a.id DESC
-//            LIMIT $offset, $limit";
-        echo $select->toString();
-        die();
         $resultSet = SQL($select->toString(), $query_vars);
         $foundRows = (int)SQL('SELECT FOUND_ROWS()')->toValue();
         $results = [];
