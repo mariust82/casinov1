@@ -38,6 +38,31 @@ class ArticleUpload extends ArticlesModel
         }
     }
     
+        public function getUploadsFolder($object, $operationType)
+    {
+        if (empty($object)) {
+            return null;
+        }
+
+        switch ($operationType) {
+            case'draft':
+                if (!$object) {
+                    return '/blogs/drafts/tmp';
+                }
+                return '/blogs/drafts/' . $object->id;
+                break;
+            case 'publish':
+                if (!$object) {
+                    return '/blogs/drafts/tmp';
+                }
+                return '/blogs/published/' . $object->payload->id;
+                break;
+            case 'live':
+                return '/blogs/published/' . $object->id;
+                break;
+        }
+    }
+    
     private function getUploadsFolder()
     {
         if (empty($this->object)) {
