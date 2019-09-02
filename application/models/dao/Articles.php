@@ -3,6 +3,7 @@ require_once("entities/Article.php");
 require_once("entities/Rating.php");
 require_once("entities/TmsContentValue.php");
 require_once("application/models/ResultSetWrapper.php");
+require_once("vendor/lucinda/queries/src/Select.php");
 
 class Articles
 {
