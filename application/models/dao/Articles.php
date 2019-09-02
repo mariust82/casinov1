@@ -68,7 +68,7 @@ class Articles
         //DB('SET NAMES UTF8');
         $query_vars = [];
         $select = new Lucinda\Query\Select("articles","a");
-        $select->fields()->add("SQL_CALC_FOUND_ROWS")->add("a.*")->add("a.likes","rating.likes")->add("a.dislikes","rating.dislikes")->add("tcnt.value")->add("at.value","type");
+        $select->fields()->add("SQL_CALC_FOUND_ROWS")->add("a.*")->add("a.likes","`rating.likes`")->add("a.dislikes","`rating.dislikes`")->add("tcnt.value")->add("at.value","type");
         $select->joinInner("article__types","at")->on(["a.type_id"=>"at.id"]);
         $select->joinLeft("{$this->parentSchema}.tms__content","tcnt")->on(["a.route_id"=>"tcnt.route_id"]);
         $where =  $select->where();
