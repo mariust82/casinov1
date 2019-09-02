@@ -56,6 +56,40 @@ var fullScreenIframe = function() {
         menuHoverAction();
 
 
+    $('.load-more').click(function(){
+        var _request = new XMLHttpRequest();
+        var category = $(this).data('category');
+        var self = $(this);
+        _request = $.ajax( {
+        url: '/load-more/'+category+'/'+AJAX_CUR_PAGE,
+        data:{
+            page:AJAX_CUR_PAGE,
+            category: category
+        },
+        dataType: 'html',
+        type: 'post',
+        success: function (data) {
+            AJAX_CUR_PAGE++;
+            console.dir(data);
+             console.dir(data);
+            $('.cards-list').append(data);
+            if($(self).data('total') === $('.cards-list').children().length) {
+                $(self).hide();
+            }
+        },
+        error: function ( XMLHttpRequest ) {
+            var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+            if ( XMLHttpRequest.statusText != "abort" ) {
+                console.log( 'err' );
+                 __this.closest(_obj).next('.action-field.not-valid').show();
+            }
+        },
+        complete: function(){
+            BUSY_REQUEST = false;
+        }
+    } );
+    });
+
 //Load defer for pages on that you can see the footer on first load
         var footerHeight = 260;
         if($(window).scrollTop() + $(window).height() > $(document).height() - footerHeight) {
@@ -103,7 +137,6 @@ var fullScreenIframe = function() {
         }, 300);
 
     });
-
 
     function menuHoverAction(){
         if (!checkIfIsMobileDevice()) {
@@ -770,7 +803,7 @@ var fullScreenIframe = function() {
             }
 
             _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
-
+                console.dir('test');
                 if (_action == 'add') {
                     _moreButton.addClass('loading');
                 } else {
@@ -909,7 +942,7 @@ var fullScreenIframe = function() {
             },
 
             _getData = function(_target, _id, _success){
-                var _ret = {id:_id};
+                var _ret = {id:_id,is_like:_success};
                 // if (_target == 'review') _ret.review_id = _id;
                 // else _ret.article_id = _id;
                 return _ret;
@@ -917,7 +950,9 @@ var fullScreenIframe = function() {
 
             _getTarget = function(_arg) {
                 var _target = '/casino/review-like';
-
+                if (_arg === 'article') {
+                    _target = '/blog/rate';
+                }
                 return _target;
             },
 
@@ -932,20 +967,29 @@ var fullScreenIframe = function() {
                     dataType: 'json',
                     type: 'post',
                     success: function (data) {
+                        var error = data.body.message;
                         //console.log(data.body.likes);
                         //var currentVotes = _this.find('.vote-block-num');
                         //currentVotes.text(parseInt(currentVotes.text())+1);
-                        var _holderLikes = $(_this).find('.bubble-vote');
-                        var _oldLikes = _holderLikes.text();
-                        _holderLikes.text(++_oldLikes);
+                        if (_target === '/casino/review-like') {
+                            var _holderLikes = $(_this).find('.bubble-vote');
+                            var _oldLikes = _holderLikes.text();
+                            _holderLikes.text(++_oldLikes);
 
-                        // _this.closest(_obj).next('.action-field.success').show();
+                             _this.closest(_obj).next('.action-field.success').show();
+                        } else if(_target === '/blog/rate') {
+                            $(_this.parent().parent()).find('.votes-like .vote-block-num, .like .vote-block-num').text(data.body.likes);
+                            $(_this.parent().parent()).find('.votes-dislike .vote-block-num, .dislike .vote-block-num').text(data.body.dislikes);
+
+                            _this.closest(_obj).next('.action-field.success').show();
+                        }
                         //_this.parent().addClass('disabled');
                     },
                     error: function ( XMLHttpRequest ) {
+                        var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
                         if ( XMLHttpRequest.statusText != "abort" ) {
                             console.log( 'err' );
-                            // _this.closest(_obj).next('.action-field.not-valid').show();
+                             __this.closest(_obj).next('.action-field.not-valid').show();
                         }
                     },
                     complete: function(){

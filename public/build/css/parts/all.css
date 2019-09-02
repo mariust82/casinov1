@@ -6,9 +6,21 @@ h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
   padding: 0;
 }
 
+.center{
+    text-align: center;
+    padding-top: 10px;
+}
+
 fieldset,
 img {
   border: 0;
+}
+
+.article-heading {
+    height: 274px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 40px;
 }
 
 .site__header_sticky .header {
@@ -103,6 +115,15 @@ svg:not(:root) {
 
 button {
   overflow: visible;
+}
+
+.title-name, .vote-block-title{
+    color: #465156;
+    font: 700 18px/1.4 'Open Sans';
+}
+
+.single-blog{
+    padding: 0 !important;
 }
 
 button,

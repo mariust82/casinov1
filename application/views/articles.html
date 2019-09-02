@@ -1,8 +1,8 @@
-<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="index"/>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="blog"/>
    <div class="block">
       <div class="container">
          <div class="headeing">
-            <h1 class="title">Blog</h1>
+            <h1 class="title">${data.page_info.body_title}</h1>
             <div class="subtitle">
                <div class="js-condense">
                   <span>${(isset(${data.tms.upper_text})?${data.tms.upper_text}:"")}</span>
@@ -12,7 +12,7 @@
          <div class="cards-list">
              <:foreach var="${data.results}" val="article">
                 <div class="wrap-card">
-                   <a href="/blog/${normalize(${article.title})}" class="card">
+                   <a href="/${article.type}/${normalize(${article.title})}" class="card">
                       <div class="card-img">
                          <img src="${data.uploadsFolders.${article.id}}" width="288" height="205" alt="${article.title}">
                       </div>
@@ -29,9 +29,11 @@
                 </div>
            </:foreach>
          </div>
-         <div class="btn-holder">
-            <a href="#" class="btn-bordered load js-more-items">Load More</a>
-         </div>
+          <:if test="${data.total} > 9">
+                <div class="btn-holder">
+                    <a class="btn-bordered load js-more-items load-more" data-category="${data.category}" data-total="${data.total}">Load More</a>
+                 </div>
+          </:if>
       </div>
    </div>
 <site:bottom menu="${data.menu_top}"/>

@@ -1,7 +1,9 @@
 <?php
-require_once "PageController.php";
+require_once "BaseController.php";
 require_once "application/models/dao/Articles.php";
 require_once "application/models/dao/Drafts.php";
+require_once "application/models/ArticleUpload.php";
+
 
 /*
 * Single article page
@@ -12,57 +14,35 @@ require_once "application/models/dao/Drafts.php";
 * @pathParameter name string article name
 */
 
-class ArticleController extends PageController
+class ArticleController extends BaseController
 {
 
-    protected $page_info = [
-        'head' => [
-            'title' => ':website_name - :article_name',
-            'description' => 'Main page description :website_name'
-        ],
-        'body' => [
-            'title' => '',
-            'subtitle' => '',
-            'description' => '',
-        ]
-    ];
-
-    public function run()
+    protected function service()
     {
         $articles_ctrl = new Articles($this->application->attributes('parent_schema'));
         $article_name = $this->request->getValidator()->parameters('name');
+        $category = $this->request->getValidator()->parameters('category');
         $article = $articles_ctrl->getInfoByName($article_name);
         $tmsArticles = $articles_ctrl->getInfoByRoute($this->denormalize($article_name));
         $tmsArticle = array_shift($tmsArticles);
-        // TODO: add the uploads folder to the configuration.xml
         $uploadsFolder = $articles_ctrl->getUploadsFolder($tmsArticle, 'live');
-
-        if ($uploadsFolder) {
-            $titleImageThumbnail = '/upload' . $uploadsFolder . '/' . str_replace(" ", "_", $article->title). "_thumbnail.jpg?".strtotime("now");;
-            $titleImageDesktop = '/upload' . $uploadsFolder . '/' . str_replace(" ", "_", $article->title). "_image_desktop.jpg?".strtotime("now");;
-            $titleImageMobile = '/upload' . $uploadsFolder . '/' . str_replace(" ", "_", $article->title). "_image_mobile.jpg?".strtotime("now");;
-        } else {
-            $titleImageThumbnail = null;
-            $titleImageDesktop = null;
-            $titleImageMobile = null;
-        }
-
-        $related_articles = $articles_ctrl->getList(['id_not_in' => [$article->id]], 0, 3);
-        foreach($related_articles['results'] as $item) {
-            $uploadsFolders[$item->id] = "/upload". $articles_ctrl->getUploadsFolder($item, 'live');
-            $uploadsFolders[$item->id] .= "/" . str_replace(" ", "_", $item->title). "_thumbnail.jpg?".strtotime("now");;
-        }
-
+        $upload = new ArticleUpload($uploadsFolder, $article);
+        $upload->getTitleImageThumbnail();
+        $upload->getTitleImageDesktop();
+        $upload->getTitleImageMobile();
+        $titleImageThumbnail = $upload->getTitleImageThumbnail();
+        $titleImageDesktop = $upload->getTitleImageDesktop();
+        $titleImageMobile = $upload->getTitleImageMobile();
+        $related_articles = $articles_ctrl->getList(['id_not_in' => [$article->id],'type'=> $category], 0, 3);
         $this->response->attributes("article", $article);
         $this->response->attributes("tms_article", $tmsArticle);
         $this->response->attributes("related", $related_articles['results']);
-        $this->response->attributes("uploadsFolders", $uploadsFolders);
+        $this->response->attributes("uploadsFolders", $articles_ctrl->getUploadsFolders($related_articles));
         $this->response->attributes('title_image_thumbnail', $titleImageThumbnail);
         $this->response->attributes('title_image_desktop', $titleImageDesktop);
         $this->response->attributes('title_image_mobile', $titleImageMobile);
         $this->website_info['article_name'] = $article->title;
-
-        parent::run();
+        
     }
 
     private function denormalize($text)
@@ -70,4 +50,12 @@ class ArticleController extends PageController
         $ret = preg_replace('/[- #]/', ' ', $text);
         return $ret;
     }
+
+    protected function pageInfo() {
+         // get page info
+        $object = new PageInfoDAO();
+        $total_casinos = !empty($this->response->attributes("total_casinos")) ? $this->response->attributes("total_casinos") : '';
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), str_replace('-', ' ', $this->request->getValidator()->parameters('name')), $total_casinos));
+    }
+
 }

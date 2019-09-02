@@ -1,4 +1,4 @@
-<site:top>
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="blog-single">
     <!-- Article Heading -->
     <div class="article-heading">
         <!-- Image -->
@@ -38,16 +38,16 @@
                 <div class="vote-block-holder js-vote">
                     <a href="#" class="vote-button vote-block-item like" data-type="article" data-success="1"
                        data-id="${data.article.id}">
-                        <div class="vote-block-num">${data.article.rating.likes}</div>
+                        <div class="vote-block-num bubble-like">${data.article.rating.likes}</div>
                         <i class="icon-icon_likes"></i>
                     </a>
                     <a href="#" class="vote-button vote-block-item dislike" data-type="article" data-success="0"
                        data-id="${data.article.id}">
-                        <div class="vote-block-num">${data.article.rating.dislikes}</div>
+                        <div class="vote-block-num bubble-dislike">${data.article.rating.dislikes}</div>
                         <i class="icon-icon_dislikes"></i>
                     </a>
                 </div>
-                <div class="success action-field">
+                <div class="success action-field center">
                     <i class="icon-icon_available"></i>
                     Thank you for vote.
                 </div>
@@ -65,7 +65,7 @@
             <box:article data="${data.related}"/>
         </div>
         <div class="btn-holder">
-            <a href="/blog" class="btn-bordered load js-more-items">SEE ALL BLOG POSTS</a>
+            <a href="/blog" class="btn-bordered load js-more-items">SEE ALL ARTICLES</a>
         </div>
     </div>
-    <site:bottom>
+    <site:bottom menu="${data.menu_top}"/>

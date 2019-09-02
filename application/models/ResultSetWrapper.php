@@ -37,7 +37,6 @@ class ResultSetWrapper
             }
             $output[] = $entity;
         }
-        var_dump($output);
         return $output;
     }
 }

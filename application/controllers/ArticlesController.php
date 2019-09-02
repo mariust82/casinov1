@@ -13,33 +13,32 @@ require_once "application/models/dao/Articles.php";
 
 class ArticlesController extends BaseController {
 
-    const LIMIT = 100;
-
+    const LIMIT = 9;
+    protected $filter;
+    protected $category;
+    protected $offset;
     protected function pageInfo() {
         // get page info
         $object = new PageInfoDAO();
         $total_casinos = !empty($this->response->attributes("total_casinos")) ? $this->response->attributes("total_casinos") : '';
         $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("selected_entity"), $total_casinos));
     }
-
-    private function getOffset() {
-        $offset = 0;
-        if (!empty($_GET['page']))
-            $offset = ((int) $_GET['page'] - 1) * $this::LIMIT;
-        return $offset;
+    
+     protected function init() {
+         $this->filter = [];
+         $this->category = "blog";
+         $this->offset = 0;
     }
 
     protected function service() {
+        $this->init();
         $articles_ctrl = new Articles($this->application->attributes('parent_schema'));
-        $items = $articles_ctrl->getList([], $this->getOffset(), self::LIMIT);
-        foreach ($items['results'] as $item) {
-            $uploadsFolders[$item->id] = "/upload" . $articles_ctrl->getUploadsFolder($item, 'live');
-            $uploadsFolders[$item->id] .= "/" . str_replace(" ", "_", $item->title) . "_thumbnail.jpg?" . strtotime("now");
-        }
+        $items = $articles_ctrl->getList($this->filter,$this->offset, self::LIMIT);
 
         $this->response->attributes("results", $items['results']);
+        $this->response->attributes("category", $this->category);
         $this->response->attributes("total", $items['total']);
-        $this->response->attributes("uploadsFolders", $uploadsFolders);
+        $this->response->attributes("uploadsFolders", $articles_ctrl->getUploadsFolders($items));
     }
 
 }
