@@ -74,7 +74,7 @@ class Articles
         $where =  $select->where();
         if (!empty($filters['id_not_in'])) {
             $where->setIn("a.id", ":id1", FALSE);
-            $query_vars[':id1'] = $filters['id_not_in'];
+            $query_vars[':id1'] = $filters['id_not_in'][0];
         }
         if (isset($filters['id'])) {
             $query_vars[':id2'] = (int)$filters['id'];
@@ -88,7 +88,6 @@ class Articles
         $select->orderBy()->add("a.id",Lucinda\Query\OrderByOperator::DESC);
         $select->limit($limit, $offset);
         echo $select->toString();
-        var_dump($query_vars);
         $resultSet = SQL($select->toString(), $query_vars);
         $foundRows = (int)SQL('SELECT FOUND_ROWS()')->toValue();
         $results = [];
