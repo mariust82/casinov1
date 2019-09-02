@@ -11,35 +11,16 @@
       <tags>application/taglib</tags>
     </paths>
     <display_errors>
-      <lucinda>1</lucinda>
-      <alex>1</alex>
-      <bogdan>1</bogdan>
-      <bala>1</bala>
-      <amos>1</amos>
-      <mark>1</mark>
       <dev>0</dev>
       <live>0</live>
+      <lucian>1</lucian>
+      <bebi>1</bebi>
+      <mihai>1</mihai>
+      <bogdan>1</bogdan>
+      <shay>1</shay>
     </display_errors>
   </application>
   <reporters>
-    <lucinda>
-      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
-    </lucinda>
-    <alex>
-      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
-    </alex>
-	<bogdan>
-      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
-    </bogdan>
-    <bala>
-      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
-    </bala>
-    <amos>
-      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
-    </amos>
-    <mark>
-      <reporter class="FileReporter" path="errors" format="%d %f %l %m"/>
-    </mark>
     <dev>
       <reporter class="AsyncReporter" auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH" host="devapi.datamother.com"/>
     </dev>

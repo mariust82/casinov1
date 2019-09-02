@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
 <xml>
-  <application version="0.8.8.8968" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
+  <application version="0.8.8.8947" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
     <paths>
       <controllers>application/controllers</controllers>
       <cacheables>application/models/cacheables</cacheables>
@@ -12,21 +12,21 @@
       <compilations>compilations</compilations>
       <resolvers>application/resolvers</resolvers>
     </paths>
-        <environments>
-            <lucinda>www.casinoslists.local</lucinda>
-            <alex>www.casinoslists.local</alex>
-			<bogdan>www.casinoslists.bogdan</bogdan>
-			<bogdan>C:\wamp64\www\casinoslist</bogdan>
-            <amos>www.devcasinopro.adrian</amos>
-            <amos>C:\projects\casinoslists</amos>
-            <bala>www.casinoslists.bala</bala>
-            <mark>www.casinoslists.mark</mark>
-            <dev>dev.casinoslists.com</dev>
-            <live>www.casinoslists.com</live>
-            <lucinda>/var/www/html/casinoslists</lucinda>
-            <dev>/home/casinoslists/public_html/dev/site</dev>
-            <live>/home/casinoslists/public_html/live/site</live>
-            <alex>C:\xampp\htdocs\casinoslists</alex>
+    <environments>
+      <dev>dev.casinoslists.com</dev>
+      <dev>/home/casinoslists/public_html/dev/site</dev>
+      <live>www.casinoslists.com</live>
+      <live>/home/casinoslists/public_html/live/site</live>
+      <lucian>www.casinoslists.lucian</lucian>
+      <lucian>/var/www/html/lucian/casinoslists</lucian>
+      <bebi>www.casinoslists.bebi</bebi>
+      <bebi>/var/www/html/bebi/casinoslists</bebi>
+      <mihai>www.casinoslists.mihai</mihai>
+      <mihai>/var/www/html/mihai/casinoslists</mihai>
+      <bogdan>www.casinoslists.bogdan</bogdan>
+      <bogdan>/var/www/html/bogdan/casinoslists</bogdan>
+      <shay>???</shay>
+      <shay>???</shay>
 	</environments>
   </application>
   <formats>
@@ -162,26 +162,6 @@
     <route url="live-dealer/(TYPE)" controller="CasinoLiveDealerController" view="casinos">
       <parameter name="TYPE" validator="LiveDealerValidator"/>
     </route>
-    <route url="blog/(category)" controller="ArticlesByTypeController" view="articles">
-        <parameter name="category" validator="ArticleCategoryValidator"/>
-    </route>
-     <route url="(category)/(name)" controller="ArticleController" view="article">
-      <parameter name="category" validator="ArticleCategoryValidator"/>
-      <parameter name="name" validator="ArticleValidator"/>
-    </route>
-    <route url="load-more/(category)/(page)" controller="ArticlesLoadMoreController" view="article-item">
-        <parameter name="category" validator="ArticleCategoryValidator"/>
-        <parameter name="page" validator="IntegerValidator"/>
-    </route>
-    <route url="blog" controller="ArticlesController" view="articles"/>
-    
-    <route url="blog/rate" controller="ArticleRateController" format="json">
-      <parameter name="is_like" validator="LikeValueValidator"/>
-      <parameter name="id" validator="ArticleIdValidator"/>
-    </route>
-    <route url="articles/(page)" controller="ArticlesByPageController" view="articles-by-page">
-      <parameter name="page" validator="PositiveNumberValidator"/>
-    </route>
     <route url="404" controller="PageNotFoundController" view="404"/>
     <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" format="xml"/>
     <route url="sitemap_cas_bon.php" controller="sitemap/BonusTypesController" format="xml"/>
@@ -212,71 +192,69 @@
   <http_caching class="DateCacheableDriver" drivers_path="application/models/cacheables"/>
   <servers>
     <sql>
-      <lucinda>
-        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="hliscorp" schema="casinoslists" parent_schema="admin_casinoslists" charset="utf8"/>
-      </lucinda>
-      <alex>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
-      </alex>
-      <amos>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinoslist_dev" parent_schema="casinosl_admin" charset="utf8"/>
-      </amos>
-      <bala>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinol_dev" parent_schema="casinol_admin_dev" charset="utf8"/>
-      </bala>
-      <mark>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_dev" parent_schema="casinosl_admin_dev" charset="utf8"/>
-      </mark>
       <dev>
         <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_dev" parent_schema="casinosl_admin_dev" charset="utf8"/>
       </dev>
       <live>
         <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
       </live>
-	  <bogdan>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinosl_dev" parent_schema="casinosl_admin_dev" charset="utf8"/>
+      <lucian>
+        <server driver="mysql" host="localhost" port="3306" username="gtm" password="hliscorp" schema="lucian__casinoslists_main" parent_schema="lucian__casinoslists_admin" charset="utf8"/>
+      </lucian>
+      <bebi>
+        <server driver="mysql" host="localhost" port="3306" username="gtm" password="hliscorp" schema="bebi__casinoslists_main" parent_schema="bebi__casinoslists_admin" charset="utf8"/>
+      </bebi>
+      <mihai>
+        <server driver="mysql" host="localhost" port="3306" username="gtm" password="hliscorp" schema="mihai__casinoslists_main" parent_schema="mihai__casinoslists_admin" charset="utf8"/>
+      </mihai>
+      <bogdan>
+        <server driver="mysql" host="localhost" port="3306" username="gtm" password="hliscorp" schema="bogdan__casinoslists_main" parent_schema="bogdan__casinoslists_admin" charset="utf8"/>
       </bogdan>
+      <shay>
+        <server driver="mysql" host="localhost" port="3306" username="gtm" password="hliscorp" schema="???" parent_schema="???" charset="utf8"/>
+      </shay>
     </sql>
     <nosql>
-      <lucinda>
-        <server driver="redis" host="localhost"/>
-      </lucinda>
-      <bala>
-        <server driver="redis" host="localhost"/>
-      </bala>
-      <mark>
-        <server driver="redis" host="localhost"/>
-      </mark>
       <dev>
         <server driver="redis" host="localhost"/>
       </dev>
       <live>
         <server driver="redis" host="localhost"/>
       </live>
-      <amos>
+      <lucian>
         <server driver="redis" host="localhost"/>
-      </amos>
-	  <bogdan>
+      </lucian>
+      <bebi>
+        <server driver="redis" host="localhost"/>
+      </bebi>
+      <mihai>
+        <server driver="redis" host="localhost"/>
+      </mihai>
+      <bogdan>
         <server driver="redis" host="localhost"/>
       </bogdan>
+      <shay>
+        <server driver="redis" host="localhost"/>
+      </shay>
     </nosql>
   </servers>
   <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
-    <lucinda>api.datamother.com</lucinda>
-    <alex>api.datamother.com</alex>
-    <bala>api.datamother.com</bala>
-    <mark>api.datamother.com</mark>
-    <bogdan>api.datamother.com</bogdan>
     <dev>devapi.datamother.com</dev>
     <live>api.datamother.com</live>
+    <lucian>api.datamother.com</lucian>
+    <bebi>api.datamother.com</bebi>
+    <mihai>api.datamother.com</mihai>
+    <bogdan>api.datamother.com</bogdan>
+    <shay>???</shay>
   </rest_api>
   <geoip>
-    <lucinda>/tmp/ip2country.mmdb</lucinda>
-    <alex>/home/casinoslists/public_html/ip2country.mmdb</alex>
-    <bogdan>C:\wamp64\www\casinoslist\ip2country.mmdb</bogdan>
-    <mark>/home/casinoslists/public_html/ip2country.mmdb</mark>
     <dev>/home/casinoslists/public_html/dev/ip2country.mmdb</dev>
     <live>/home/casinoslists/public_html/live/ip2country.mmdb</live>
+    <lucian>/var/www/html/ip2country.mmdb</lucian>
+    <bebi>/var/www/html/ip2country.mmdb</bebi>
+    <mihai>/var/www/html/ip2country.mmdb</mihai>
+    <bogdan>/var/www/html/ip2country.mmdb</bogdan>
+    <shay>???</shay>
   </geoip>
   <images path="public/sync">
     <image type="casino_logo_light">
@@ -296,17 +274,22 @@
     </image>
   </images>
   <hosts>
-    <lucinda>www.casinoslists.local</lucinda>
     <dev>dev.casinoslists.com</dev>
-    <bogdan>dev.casinoslists.com</bogdan>
     <live>www.casinoslists.com</live>
+    <lucian>www.casinoslists.lucian</lucian>
+    <bebi>www.casinoslists.bebi</bebi>
+    <mihai>www.casinoslists.mihai</mihai>
+    <bogdan>www.casinoslists.bogdan</bogdan>
+    <shay>???</shay>
   </hosts>
   <gameplay width="960" height="720">
-    <lucinda>http://game.casinoslists.local</lucinda>
-    <alex>http://game.casinoslists.local</alex>
-    <mark>http://game.casinoslists.local</mark>
     <dev>https://devgame.casinoslists.com</dev>
     <live>https://game.casinoslists.com</live>
+    <lucian>http://game.casinoslists.lucian</lucian>
+    <bebi>http://game.casinoslists.bebi</bebi>
+    <mihai>http://game.casinoslists.mihai</mihai>
+    <bogdan>http://game.casinoslists.bogdan</bogdan>
+    <shay>???</shay>
   </gameplay>
   <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
 </xml>
