@@ -33,13 +33,13 @@ class TmsOperation implements OperationsInterface
     private $contents;
     private $routes;
 
-    function __construct()
+    public function __construct()
     {
         $this->contents = new Contents();
         $this->routes = new Routes();
     }
 
-    function execute()
+    public function execute()
     {
         $routePatterns = new RoutePatterns();
         $routes = new Routes();
@@ -50,7 +50,9 @@ class TmsOperation implements OperationsInterface
 
         $routePatternInfo = $routePatterns->getInfo($route);
 
-        if (empty($routePatternInfo->positions)) throw new Exception('No route pattern positions found.');
+        if (empty($routePatternInfo->positions)) {
+            throw new Exception('No route pattern positions found.');
+        }
 
         $routeInfo = $routes->getInfo($route);
 
@@ -70,12 +72,12 @@ class TmsOperation implements OperationsInterface
         }
     }
 
-    function addObject(SavableInterface $savableObject)
+    public function addObject(SavableInterface $savableObject)
     {
         $this->savableObject = $savableObject;
     }
 
-    function getObject()
+    public function getObject()
     {
         return $this->savableObject;
     }
@@ -104,7 +106,9 @@ class TmsOperation implements OperationsInterface
     private function getContent($routeId)
     {
         $content = $this->contents->getAll($routeId);
-        if ($content) $content = array_shift($content);
+        if ($content) {
+            $content = array_shift($content);
+        }
 
         return $content;
     }

@@ -1,8 +1,10 @@
 <?php
 require_once("AbstractSitemapController.php");
 
-class CompatibilityController extends AbstractSitemapController {
-    protected function getItems() {
+class CompatibilityController extends AbstractSitemapController
+{
+    protected function getItems()
+    {
         return ["Mobile"];
     }
 
@@ -11,7 +13,8 @@ class CompatibilityController extends AbstractSitemapController {
         return "casinos/(item)";
     }
 
-    protected function getPriority() {
+    protected function getPriority()
+    {
         return "0.9";
     }
 }

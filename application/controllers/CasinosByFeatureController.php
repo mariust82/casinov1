@@ -6,38 +6,42 @@ require_once("CasinosListController.php");
 
 /*
 * Casinos list by play versions.
-* 
+*
 * @requestMethod GET
 * @responseFormat HTML
-* @source 
+* @source
 * @pathParameter version string Name of play version
 */
-class CasinosByFeatureController extends CasinosListController {
-    protected function getSelectedEntity(){
+class CasinosByFeatureController extends CasinosListController
+{
+    protected function getSelectedEntity()
+    {
         $page = $this->request->attributes('validation_results')->get('name');
         $this->setLimitExceptions($page);
         return $page;
     }
 
-    private function setLimitExceptions($pageType){
-        if($pageType == 'Live Dealer'){
+    private function setLimitExceptions($pageType)
+    {
+        if ($pageType == 'Live Dealer') {
             $this->limit = 30;
         }
     }
 
-    protected function getFilter(){
+    protected function getFilter()
+    {
         return "feature";
     }
 
-    protected function pageInfo(){
-
+    protected function pageInfo()
+    {
         $selectedEntity = $this->getSelectedEntity();
 
         // get page info
         $url = $this->request->getValidator()->getPage();
         $object = new PageInfoDAO();
 
-        switch ($selectedEntity){
+        switch ($selectedEntity) {
             case 'Live Dealer':
                 $url = 'features/live-dealer';
             break;

@@ -3,26 +3,33 @@ class CasinosSearch
 {
     private $value;
 
-    public function __construct($value) {
+    public function __construct($value)
+    {
         $this->value = $value;
     }
 
-    public function getResults($limit, $offset) {
-        return SQL("
+    public function getResults($limit, $offset)
+    {
+        return SQL(
+            "
             SELECT name
             FROM casinos
             WHERE name LIKE :name AND is_open=1
             ORDER BY date_established DESC, name ASC
             LIMIT ".$limit." OFFSET ".$offset,
-            array(":name"=>"%".$this->value."%"))->toColumn();
+            array(":name"=>"%".$this->value."%")
+        )->toColumn();
     }
 
-    public function getTotal() {
+    public function getTotal()
+    {
         // build query
-        return (integer) SQL("
+        return (integer) SQL(
+            "
             SELECT COUNT(id) AS nr 
             FROM casinos 
             WHERE name LIKE :name AND is_open=1",
-            array(":name"=>"%".$this->value."%"))->toValue();
+            array(":name"=>"%".$this->value."%")
+        )->toValue();
     }
 }

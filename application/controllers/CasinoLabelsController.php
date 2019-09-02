@@ -4,13 +4,15 @@ require_once("CasinosCounterController.php");
 
 /*
 * Casino labels list by number of casinos.
-* 
+*
 * @requestMethod GET
 * @responseFormat HTML
-* @source 
+* @source
 */
-class CasinoLabelsController extends CasinosCounterController {
-    protected function getCounter(){
+class CasinoLabelsController extends CasinosCounterController
+{
+    protected function getCounter()
+    {
         return new CasinoLabels();
     }
 }

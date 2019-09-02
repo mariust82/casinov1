@@ -20,9 +20,11 @@ class DraftOperation implements OperationsInterface
      */
     protected $savableObject;
 
-    function execute()
+    public function execute()
     {
-        if (!$this->savableObject) throw new Exception('Invalid savable object.');
+        if (!$this->savableObject) {
+            throw new Exception('Invalid savable object.');
+        }
 
         if ($this->savableObject->id) {
             // existing, update
@@ -36,40 +38,42 @@ class DraftOperation implements OperationsInterface
         return $insertId;
     }
 
-    function addObject(SavableInterface $savableObject)
+    public function addObject(SavableInterface $savableObject)
     {
         $this->savableObject = $savableObject;
     }
 
     private function createNewDraft(AbstractSavableObject $savableObject)
     {
-        $insertId = DB("
+        $insertId = DB(
+            "
             INSERT INTO drafts set user_id = :user_id, panel_id = :panel_id, entity_id = :entity_id, 
             entity_name = :entity_name, payload = :payload, date_modified = :date_modified",
-
             array(':user_id' => $savableObject->user_id, ':panel_id' => $savableObject->panel_id,
                 ':entity_id' => $savableObject->entity_id, ':entity_name' => $savableObject->entity_name,
-                ':payload' => serialize($savableObject->payload), ':date_modified' => date('Y-m-d H:i:s')))->getInsertId();
+                ':payload' => serialize($savableObject->payload), ':date_modified' => date('Y-m-d H:i:s'))
+        )->getInsertId();
 
         return $insertId;
     }
 
     private function updateDraft(AbstractSavableObject $savableObject)
     {
-        $affectedRows = DB("
+        $affectedRows = DB(
+            "
             UPDATE drafts set user_id = :user_id, panel_id = :panel_id, entity_id = :entity_id, 
             entity_name = :entity_name, payload = :payload, date_modified = :date_modified
             WHERE id = :id",
-
             array(':user_id' => $savableObject->user_id, ':panel_id' => $savableObject->panel_id,
                 ':entity_id' => $savableObject->entity_id, ':entity_name' => $savableObject->entity_name,
                 ':payload' => serialize($savableObject->payload), ':date_modified' => $savableObject->date_modified,
-                ':id' => $savableObject->id))->getAffectedRows();
+                ':id' => $savableObject->id)
+        )->getAffectedRows();
 
         return $affectedRows;
     }
 
-    function getObject()
+    public function getObject()
     {
         return $this->savableObject;
     }

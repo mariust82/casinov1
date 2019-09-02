@@ -19,7 +19,7 @@ class PayloadPopulatorFactory
      * @return PopulatorInterface
      * @throws Exception
      */
-    function create($type, Lucinda\MVC\STDOUT\Request $request)
+    public function create($type, Lucinda\MVC\STDOUT\Request $request)
     {
         $requiredFile = "application/models/operations/populators/$type" . "Populator.php";
         $namespace = "gtm\\operations\\";

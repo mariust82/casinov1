@@ -18,7 +18,8 @@ class CasinosMenu
     public $soft_arr;
     public $soft_entries;
     
-    public function setSoftwareEntries($entity) {
+    public function setSoftwareEntries($entity)
+    {
         $this->soft_entries['/softwares'] = "All Softwares";
         if (!in_array($entity, $this->soft_arr)) {
             $this->soft_entries['/softwares/'.strtolower(str_replace(' ', '-', $entity))] = $entity.' Casinos';
@@ -34,17 +35,19 @@ class CasinosMenu
     
     private $pages = array();
 
-    public function __construct($country, $entity, $currentPage) {
+    public function __construct($country, $entity, $currentPage)
+    {
         $this->soft_arr = array("RTG","Rival","NetEnt","Playtech","MicroGaming","BetSoft","Saucify","Cryptologic","IGT","NYX Interactive");
         $this->setSoftwareEntries($entity);
         $this->setEntries($country, $entity, $currentPage);
     }
 
-    private function setEntries($country, $entity, $currentPage) {
+    private function setEntries($country, $entity, $currentPage)
+    {
         $selectedEntry = $this->getSelectedEntry($country, $currentPage, $entity);
-        if (strpos($selectedEntry, "/softwares/") !== FALSE) {
-            foreach($this->soft_entries as $url=>$title) {
-                if (strpos($title, $entity) !== FALSE) {
+        if (strpos($selectedEntry, "/softwares/") !== false) {
+            foreach ($this->soft_entries as $url=>$title) {
+                if (strpos($title, $entity) !== false) {
                     unset($this->soft_entries['/softwares/'.strtolower(str_replace(' ', '-', $entity))]);
                 }
                 
@@ -55,16 +58,17 @@ class CasinosMenu
                 $this->pages[] = $object;
             }
         } else {
-        
-            foreach(self::ENTRIES as $url=>$title) {
-                if($selectedEntry != "/{page}" && $url == "/{page}") continue;
+            foreach (self::ENTRIES as $url=>$title) {
+                if ($selectedEntry != "/{page}" && $url == "/{page}") {
+                    continue;
+                }
 
                 $finalTitle = $title;
                 $finalUrl = $url;
-                if($url=="/countries-list/{country}") {
+                if ($url=="/countries-list/{country}") {
                     $finalTitle = str_replace("{country}", $country, $finalTitle);
                     $finalUrl = str_replace("{country}", $this->generatePathParameter($country), $finalUrl);
-                } else if($url=="/{page}") {
+                } elseif ($url=="/{page}") {
                     // hardcoding: CASLI-316
                     $entity = ($entity=="ECOGRA Casinos"?"eCOGRA":$entity);
                     $finalTitle = str_replace("{entity}", $entity, $finalTitle);
@@ -80,9 +84,9 @@ class CasinosMenu
         }
     }
 
-    private function getSelectedEntry($country, $currentPage , $entity="") {
-
-        switch($currentPage) {
+    private function getSelectedEntry($country, $currentPage, $entity="")
+    {
+        switch ($currentPage) {
             case "bonus-list/no-deposit-bonus":
                 return "/bonus-list/no-deposit-bonus";
                 break;
@@ -119,11 +123,13 @@ class CasinosMenu
         }
     }
 
-    public function getEntries() {
+    public function getEntries()
+    {
         return $this->pages;
     }
 
-    private function generatePathParameter($name) {
+    private function generatePathParameter($name)
+    {
         return strtolower(str_replace(" ", "-", $name));
     }
 }

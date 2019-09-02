@@ -5,32 +5,36 @@ require_once("application/models/UserOperationFailedException.php");
 
 /*
 * Rates a casino.
-* 
+*
 * @requestMethod POST
 * @responseFormat JSON
-* @source 
+* @source
 * @pathParameter name string Name of casino
 * @requestParameter name Name of casino to be rated.
 * @requestParameter value integer Value of rating (1-10)
 */
-class CasinoRateController extends Lucinda\MVC\STDOUT\Controller {
-	public function run() {
+class CasinoRateController extends Lucinda\MVC\STDOUT\Controller
+{
+    public function run()
+    {
         $casinoID = $this->request->attributes('validation_results')->get('name');
         $object = new Casinos();
-       if($object->isCountryAccepted($casinoID, $this->request->attributes("country")->id))  {
+        if ($object->isCountryAccepted($casinoID, $this->request->attributes("country")->id)) {
             $success = $object->rate(
                 $this->request->attributes('validation_results')->get('name'),
                 $this->request->attributes("ip"),
                 $this->request->attributes('validation_results')->get('value')
             );
-           $this->response->attributes("success", $success);
-           if($success) {
-               $object = new BestCasinoLabel();
-               $object->checkRatedCasino($casinoID);
-           }
-           if(!$success) throw new UserOperationFailedException("Casino already rated!");
-        }else { // if country is not accepted by casino, here, the exception is throed.
+            $this->response->attributes("success", $success);
+            if ($success) {
+                $object = new BestCasinoLabel();
+                $object->checkRatedCasino($casinoID);
+            }
+            if (!$success) {
+                throw new UserOperationFailedException("Casino already rated!");
+            }
+        } else { // if country is not accepted by casino, here, the exception is throed.
             throw new UserOperationFailedException("Your country is not supported!");
         }
-	}
+    }
 }

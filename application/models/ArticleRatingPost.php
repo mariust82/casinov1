@@ -37,9 +37,14 @@ class ArticleRatingPost extends UserPost
             $query_vars[":date"] = strtotime("now -$time_limit seconds");
         }
         $found = SQL($query, $query_vars)->toValue();
-        if (!empty($settings['max']) && !!$settings['max']) $allowed = $found < $settings['max'];
-        else $allowed = !$found;
-        if (!$allowed) $this->setError($this->getDefaultErrorMsg($settings, "IP not allowed to post in this section!"));
+        if (!empty($settings['max']) && !!$settings['max']) {
+            $allowed = $found < $settings['max'];
+        } else {
+            $allowed = !$found;
+        }
+        if (!$allowed) {
+            $this->setError($this->getDefaultErrorMsg($settings, "IP not allowed to post in this section!"));
+        }
         return $allowed;
     }
 
@@ -52,7 +57,8 @@ class ArticleRatingPost extends UserPost
         return $exists;
     }
     
-    public function checkIfPost() {
+    public function checkIfPost()
+    {
         if (!$this->post()) {
             throw new UserPostException(json_encode($this->getErrors()));
         }
@@ -62,10 +68,11 @@ class ArticleRatingPost extends UserPost
     {
         if ($this->canPost()) {
             $rating_exists = SQL("SELECT `id` FROM `" . $this->db_table . "` WHERE ip=:ip AND article_id=:article_id", [':ip' => $this->filled_parameters['ip'], ':article_id' => $this->filled_parameters['id']])->toValue();
-            if ($rating_exists)
+            if ($rating_exists) {
                 $query = "UPDATE`" . $this->db_table . "` SET ";
-            else
+            } else {
                 $query = "INSERT INTO `" . $this->db_table . "` SET ";
+            }
             $query_vars = [];
             foreach ($this->filled_parameters as $parameter => $value) {
                 if ($parameter == 'id') {

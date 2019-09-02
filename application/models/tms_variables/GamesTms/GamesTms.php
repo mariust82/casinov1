@@ -6,16 +6,16 @@ require_once 'application/models/GameSortCriteria.php';
 
 
 
-class  GamesTms implements GamesTmsInterface {
-
+class GamesTms implements GamesTmsInterface
+{
     private $filter;
 
-    public  function __construct(GameFilter $filter)
+    public function __construct(GameFilter $filter)
     {
         $this->filter = $filter;
     }
 
-    public function getData($sortCriteria, $page=1, $limit =1 )
+    public function getData($sortCriteria, $page=1, $limit =1)
     {
         $object = new GamesList($this->filter);
         $result =  $object->getResults($sortCriteria, $page, $limit);

@@ -11,6 +11,7 @@
  *
  * @author matan
  */
-class GamesDao {
+class GamesDao
+{
     //put your code here
 }

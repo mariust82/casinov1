@@ -6,8 +6,8 @@
  * Time: 6:05 PM
  */
 
-class ArticleIdValidator extends Lucinda\RequestValidator\ParameterValidator{
-
+class ArticleIdValidator extends Lucinda\RequestValidator\ParameterValidator
+{
     public function validate($id)
     {
         $results = SQL("SELECT id
@@ -15,6 +15,5 @@ class ArticleIdValidator extends Lucinda\RequestValidator\ParameterValidator{
             WHERE articles.id=:id
             LIMIT 0, 1", [":id" => $id])->toValue();
         return ($results? $results:null);
-
     }
 }

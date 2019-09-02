@@ -1,12 +1,12 @@
 <?php
 namespace CasinosLists;
 
-require_once(dirname(__DIR__,3)."/hlis/orm/src/dao/GameListDAO.php");
+require_once(dirname(__DIR__, 3)."/hlis/orm/src/dao/GameListDAO.php");
 require_once("drivers/GameFields.php");
 require_once("drivers/GameSort.php");
 require_once("drivers/GameLineProcessor.php");
 require_once("drivers/GamesRecommendedQuery.php");
-require_once(dirname(__DIR__,3)."/vendor/lucinda/queries/src/Select.php");
+require_once(dirname(__DIR__, 3)."/vendor/lucinda/queries/src/Select.php");
 
 class GamesRecommended
 {
@@ -21,7 +21,8 @@ class GamesRecommended
         $this->setResults($fields, $condition, $orderBy);
     }
 
-    private function getFields() {
+    private function getFields()
+    {
         $gmf = new \Hlis\GameManufacturerFields();
         $gmf->setName();
 
@@ -34,7 +35,8 @@ class GamesRecommended
         return $fields;
     }
 
-    private function getCondition($excludedGameID, $gameType, $isMobile) {
+    private function getCondition($excludedGameID, $gameType, $isMobile)
+    {
         $statement = \Lucinda\SQL\ConnectionSingleton::getInstance()->createStatement();
 
         $gmc = new \Hlis\GameManufacturerCondition();
@@ -47,21 +49,26 @@ class GamesRecommended
         $condition->setIsOpen();
         $condition->setManufacturer($gmc);
         $condition->setType($gtc);
-        if($isMobile) $condition->setIsMobile();
-        else $condition->setIsDesktop();
+        if ($isMobile) {
+            $condition->setIsMobile();
+        } else {
+            $condition->setIsDesktop();
+        }
         $condition->setId($excludedGameID);
 
         return $condition;
     }
 
-    private function getOrderBy() {
+    private function getOrderBy()
+    {
         $orderBy = new \Hlis\GameSort();
         $orderBy->setDateLaunched(false);
         $orderBy->setId(false);
         return $orderBy;
     }
 
-    private function setResults(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $orderBy) {
+    private function setResults(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $orderBy)
+    {
         $gld  = new \Hlis\GameListDAO(
             new \CasinosLists\GamesRecommendedQuery($fields, $condition, $orderBy, 0, self::LIMIT),
             new \CasinosLists\GameLineProcessor()
@@ -69,7 +76,8 @@ class GamesRecommended
         $this->results = $gld->getResults();
     }
 
-    public function getResults() {
+    public function getResults()
+    {
         return $this->results;
     }
 }

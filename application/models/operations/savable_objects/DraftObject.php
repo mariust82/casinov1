@@ -23,19 +23,23 @@ class DraftObject extends AbstractSavableObject implements SavableInterface
         $this->id = $id;
     }
 
-    function getPropertiesMap()
+    public function getPropertiesMap()
     {
         // TODO: Implement getPropertiesMap() method.
     }
 
-    function setAttribute($name, $value)
+    public function setAttribute($name, $value)
     {
-        if (property_exists($this, $name)) $this->$name = $value;
+        if (property_exists($this, $name)) {
+            $this->$name = $value;
+        }
     }
 
-    function getAttribute($name)
+    public function getAttribute($name)
     {
-        if (!property_exists($this, $name)) return null;
+        if (!property_exists($this, $name)) {
+            return null;
+        }
         return $this->$name;
     }
 }

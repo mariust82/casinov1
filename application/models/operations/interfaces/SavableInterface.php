@@ -10,11 +10,11 @@ namespace gtm\operations;
 
 interface SavableInterface
 {
-    function __construct($id);
+    public function __construct($id);
 
-    function getPropertiesMap();
+    public function getPropertiesMap();
 
-    function setAttribute($name, $value);
+    public function setAttribute($name, $value);
 
-    function getAttribute($name);
+    public function getAttribute($name);
 }

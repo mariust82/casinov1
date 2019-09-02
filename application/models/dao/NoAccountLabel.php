@@ -23,12 +23,14 @@ class NoAccountLabel
         $this->filter->label_id = 11;
     }
 
-    public function resetNoAccountLabelFromSync(){
+    public function resetNoAccountLabelFromSync()
+    {
         DB::execute("DELETE FROM casinos__labels WHERE label_id = ".$this->filter->label_id);
     }
 
-    public function getMainQuery(){
-        $order_by = implode(",",$this->filter->sort_by);
+    public function getMainQuery()
+    {
+        $order_by = implode(",", $this->filter->sort_by);
 
         $query="SELECT id FROM casinos WHERE no_registration = ". $this->filter->is_open ."  AND no_registration = " . $this->filter->no_registration . "
          ORDER BY ". $order_by ." LIMIT  ". self::NO_ACCOUNT_LIMIT ;
@@ -36,22 +38,23 @@ class NoAccountLabel
         return $query;
     }
 
-    private function getAllNoAccountCasinos(){
-
+    private function getAllNoAccountCasinos()
+    {
         $results = DB::execute($this->getMainQuery());
         $id = [];
 
-        while($row = $results->toValue()){
+        while ($row = $results->toValue()) {
             $id[sizeof($id)] = $row;
         }
         return $id;
     }
 
-    public function populateNoAccountLabel(){
-
+    public function populateNoAccountLabel()
+    {
         $results = $this->getAllNoAccountCasinos();
 
-        foreach ($results as $casino)
+        foreach ($results as $casino) {
             DB::execute("INSERT IGNORE INTO casinos__labels (casino_id,label_id) VALUE (" . (int)$casino . "," .$this->filter->label_id .")");
+        }
     }
 }

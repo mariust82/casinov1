@@ -20,7 +20,7 @@ class ModelPageInfo extends ArrayPageInfo implements InterfaceInfo, IPageInfo
 
     protected $routes = [];
 
-    function __construct(\Lucinda\MVC\STDOUT\Application $application, \Lucinda\MVC\STDOUT\Request $request)
+    public function __construct(\Lucinda\MVC\STDOUT\Application $application, \Lucinda\MVC\STDOUT\Request $request)
     {
         parent::__construct();
 
@@ -29,7 +29,7 @@ class ModelPageInfo extends ArrayPageInfo implements InterfaceInfo, IPageInfo
         $this->init();
     }
 
-    function getInfo()
+    public function getInfo()
     {
         $info = parent::getInfo();
         $info['hinfo'] = $this->getHInfo();
@@ -38,7 +38,6 @@ class ModelPageInfo extends ArrayPageInfo implements InterfaceInfo, IPageInfo
 
     private function init()
     {
-
         $this->routes = array(
             array(
                 'url' => 'index',
@@ -136,7 +135,6 @@ class ModelPageInfo extends ArrayPageInfo implements InterfaceInfo, IPageInfo
         $this->getBody()->setAttribute("title", $this->getAttribute('view_title'));
         $this->getBody()->setAttribute("subtitle", $this->getAttribute('view_subtitle'));
         $this->getBody()->setAttribute("description", $this->getAttribute('page_description'));
-
     }
 
     private function getAttribute($attribute_name)

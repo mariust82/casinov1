@@ -1,26 +1,28 @@
 <?php
 namespace CasinosLists;
 
-require_once(dirname(__DIR__,3)."/hlis/orm/src/dao/GameListDAO.php");
-require_once(dirname(__DIR__,3)."/hlis/orm/src/dao/GameListTotalDAO.php");
+require_once(dirname(__DIR__, 3)."/hlis/orm/src/dao/GameListDAO.php");
+require_once(dirname(__DIR__, 3)."/hlis/orm/src/dao/GameListTotalDAO.php");
 require_once("drivers/GameFields.php");
 require_once("drivers/GameSort.php");
 require_once("drivers/GameLineProcessor.php");
-require_once(dirname(__DIR__,3)."/vendor/lucinda/queries/src/Select.php");
+require_once(dirname(__DIR__, 3)."/vendor/lucinda/queries/src/Select.php");
 
 class GamesByType
 {
     const LIMIT = 24;
     private $results = ["total"=>0, "list"=>[]];
 
-    public function __construct($gameType, $gameManufacturers=[], $isMobile, $sortBy, $page) {
+    public function __construct($gameType, $gameManufacturers=[], $isMobile, $sortBy, $page)
+    {
         $fields = $this->getFields();
         $condition = $this->getCondition($gameType, $gameManufacturers, $isMobile);
         $orderBy = $this->getOrderBy($sortBy);
         $this->setResults($fields, $condition, $orderBy, $page);
     }
 
-    private function getFields() {
+    private function getFields()
+    {
         $gmf = new \Hlis\GameManufacturerFields();
         $gmf->setName();
 
@@ -32,10 +34,11 @@ class GamesByType
         return $fields;
     }
 
-    private function getCondition($gameType, $gameManufacturers=[], $isMobile) {
+    private function getCondition($gameType, $gameManufacturers=[], $isMobile)
+    {
         $gmc = new \Hlis\GameManufacturerCondition();
         $gmc->setIsOpen();
-        if($gameManufacturers) {
+        if ($gameManufacturers) {
             $gmc->setId($gameManufacturers);
         }
 
@@ -44,19 +47,23 @@ class GamesByType
 
         $condition = new \Hlis\GameCondition();
         $condition->setIsOpen();
-        if($gameManufacturers) {
+        if ($gameManufacturers) {
             $condition->setManufacturer($gmc);
         }
         $condition->setType($gtc);
-        if($isMobile) $condition->setIsMobile();
-        else $condition->setIsDesktop();
+        if ($isMobile) {
+            $condition->setIsMobile();
+        } else {
+            $condition->setIsDesktop();
+        }
 
         return $condition;
     }
 
-    private function getOrderBy($sortBy) {
+    private function getOrderBy($sortBy)
+    {
         $orderBy = new \CasinosLists\GameSort();
-        switch($sortBy) {
+        switch ($sortBy) {
             case \GameSortCriteria::NEWEST:
                 $orderBy->setDateLaunched(false);
                 $orderBy->setId(false);
@@ -74,10 +81,13 @@ class GamesByType
         return $orderBy;
     }
 
-    private function setResults(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $orderBy, $page) {
+    private function setResults(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $orderBy, $page)
+    {
         $glt = new \Hlis\GameListTotalDAO(new \Hlis\GameListTotalQuery($condition));
         $this->results["total"] = $glt->getResults();
-        if(!$this->results["total"]) return;
+        if (!$this->results["total"]) {
+            return;
+        }
 
         $gld = new \Hlis\GameListDAO(
             new \Hlis\GameListRangeQuery($fields, $condition, $orderBy, $page*self::LIMIT, self::LIMIT),
@@ -86,7 +96,8 @@ class GamesByType
         $this->results["list"] = $gld->getResults();
     }
 
-    public function getResults() {
+    public function getResults()
+    {
         return $this->results;
     }
 }

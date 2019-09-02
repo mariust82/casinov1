@@ -3,7 +3,8 @@ require_once("FieldValidator.php");
 
 class Certifications implements FieldValidator
 {
-    public function getNumberOfCasinos($certification) {
+    public function getNumberOfCasinos($certification)
+    {
         return SQL("
         SELECT
         count(*) as counter
@@ -14,7 +15,8 @@ class Certifications implements FieldValidator
         ", array(":name"=>$certification))->toValue();
     }
 
-    public function validate($name) {
-        return SQL("SELECT name FROM certifications WHERE name=:name",array(":name"=>$name))->toValue();
+    public function validate($name)
+    {
+        return SQL("SELECT name FROM certifications WHERE name=:name", array(":name"=>$name))->toValue();
     }
 }

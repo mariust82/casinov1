@@ -16,7 +16,7 @@ class PendingPopulator implements PopulatorInterface
      */
     private $request;
 
-    function populate(SavableInterface &$savableObject)
+    public function populate(SavableInterface &$savableObject)
     {
         $savableObject->attributes('id', $this->request->parameters('id'));
         $savableObject->attributes('saver_user_id', $this->request->parameters('user_id'));

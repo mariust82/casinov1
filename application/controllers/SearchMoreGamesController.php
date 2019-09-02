@@ -3,20 +3,22 @@ require_once("application/models/dao/GamesSearch.php");
 
 /*
 * Searches for games after show 5 more @ advanced search is clicked
-* 
+*
 * @requestMethod GET
 * @responseFormat JSON
-* @source 
+* @source
 * @pathParameter page integer Results page for searched games
 * @requestParameter value string Value of searched string
 */
-class SearchMoreGamesController extends Lucinda\MVC\STDOUT\Controller {
+class SearchMoreGamesController extends Lucinda\MVC\STDOUT\Controller
+{
     const LIMIT = 5;
 
-	public function run() {
+    public function run()
+    {
         $page = (integer) $this->request->getValidator()->parameters("page");
 
         $object = new GamesSearch($_GET["value"]);
-        $this->response->attributes("results", $object->getResults(self::LIMIT,self::LIMIT *$page));
-	}
+        $this->response->attributes("results", $object->getResults(self::LIMIT, self::LIMIT *$page));
+    }
 }

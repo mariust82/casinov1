@@ -11,8 +11,10 @@ require_once "ArticlesController.php";
  *
  * @author matan
  */
-class ArticlesLoadMoreController extends ArticlesController {
-    protected function init() {
+class ArticlesLoadMoreController extends ArticlesController
+{
+    protected function init()
+    {
         $this->category = $this->request->attributes('validation_results')->get('category');
         $this->offset = ((int) $this->request->attributes('validation_results')->get('page')) * self::LIMIT;
         $this->filter = $this->category == 'blog' ? [] : ['type'=> $this->category];

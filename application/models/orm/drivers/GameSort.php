@@ -3,7 +3,8 @@ namespace CasinosLists;
 
 class GameSort extends \Hlis\GameSort
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->fields = new Game();
     }
 

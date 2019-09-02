@@ -4,13 +4,15 @@ require_once("CasinosCounterController.php");
 
 /*
 * Banking methods list by number of casinos.
-* 
+*
 * @requestMethod GET
 * @responseFormat HTML
-* @source 
+* @source
 */
-class BankingMethodsController extends CasinosCounterController {
-    protected function getCounter(){
+class BankingMethodsController extends CasinosCounterController
+{
+    protected function getCounter()
+    {
         return new BankingMethods();
     }
 }

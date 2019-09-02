@@ -18,23 +18,23 @@ class JsonPageInfo implements IPageInfo, InterfaceInfo
      */
     protected $body = null;
 
-    function __construct()
+    public function __construct()
     {
         $this->head = new Head();
         $this->body = new Body();
     }
 
-    function getHead()
+    public function getHead()
     {
         return $this->head;
     }
 
-    function getBody()
+    public function getBody()
     {
         return $this->head;
     }
 
-    function getInfo()
+    public function getInfo()
     {
         return json_encode([
             'head' => [

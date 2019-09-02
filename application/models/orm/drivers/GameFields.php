@@ -5,11 +5,13 @@ require_once("Game.php");
 
 class GameFields extends \Hlis\GameFields
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->fields = new Game();
     }
 
-    public function setTimesPlayed() {
+    public function setTimesPlayed()
+    {
         $this->fields->times_played = true;
     }
 }

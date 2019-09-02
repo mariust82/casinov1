@@ -36,6 +36,5 @@ class IPDetectionListener extends Lucinda\MVC\STDOUT\RequestListener
         // detects and saves ip
         $ip = IPDetection::getInstance()->getIP();
         $this->request->attributes('ip', ($ip != null) ? $ip : '127.0.0.1');
-
     }
 }

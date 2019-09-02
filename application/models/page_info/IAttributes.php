@@ -8,7 +8,7 @@
 
 interface IAtributes
 {
-    function getAttribute($attribute);
+    public function getAttribute($attribute);
 
-    function setAttribute($attribute, $value);
+    public function setAttribute($attribute, $value);
 }

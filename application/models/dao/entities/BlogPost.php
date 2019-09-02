@@ -12,24 +12,33 @@ require_once 'application/models/operations/interfaces/SavableInterface.php';
  */
 class BlogPost extends Entity implements SavableInterface
 {
-    public $id, $name, $readingTime, $content, $titleImageDesktop, $titleImageMobile, $thumbnail, $postDate, $routeId, $draftId;
+    public $id;
+    public $name;
+    public $readingTime;
+    public $content;
+    public $titleImageDesktop;
+    public $titleImageMobile;
+    public $thumbnail;
+    public $postDate;
+    public $routeId;
+    public $draftId;
 
     public function __construct($id)
     {
         $this->id = $id;
     }
 
-    function getPropertiesMap()
+    public function getPropertiesMap()
     {
         // TODO: Implement getPropertiesMap() method.
     }
 
-    function setAttribute($name, $value)
+    public function setAttribute($name, $value)
     {
         $this->$name = $value;
     }
 
-    function getAttribute($name)
+    public function getAttribute($name)
     {
         // TODO: Implement getAttribute() method.
         return $this->$name;

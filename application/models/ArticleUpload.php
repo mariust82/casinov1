@@ -11,38 +11,45 @@
  *
  * @author matan
  */
-class ArticleUpload {
-    
+class ArticleUpload
+{
     private $uploadsFolder;
     private $article;
     private $titleImageThumbnail = null;
     private $titleImageDesktop = null;
     private $titleImageMobile = null;
     
-    public function __construct($uploadsFolder,$article) {
+    public function __construct($uploadsFolder, $article)
+    {
         $this->uploadsFolder = $uploadsFolder;
         $this->article = $article;
         $this->setUploadPath();
     }
 
-    private function setUploadPath() {
-         if ($this->uploadsFolder) {
-             $this->titleImageThumbnail = '/upload' . $this->uploadsFolder . '/' . str_replace(" ", "_", $this->article->title). "_thumbnail.jpg?".strtotime("now");;
-             $this->titleImageDesktop = '/upload' . $this->uploadsFolder . '/' . str_replace(" ", "_", $this->article->title). "_image_desktop.jpg?".strtotime("now");;
-             $this->titleImageMobile = '/upload' . $this->uploadsFolder . '/' . str_replace(" ", "_", $this->article->title). "_image_mobile.jpg?".strtotime("now");;
+    private function setUploadPath()
+    {
+        if ($this->uploadsFolder) {
+            $this->titleImageThumbnail = '/upload' . $this->uploadsFolder . '/' . str_replace(" ", "_", $this->article->title). "_thumbnail.jpg?".strtotime("now");
+            ;
+            $this->titleImageDesktop = '/upload' . $this->uploadsFolder . '/' . str_replace(" ", "_", $this->article->title). "_image_desktop.jpg?".strtotime("now");
+            ;
+            $this->titleImageMobile = '/upload' . $this->uploadsFolder . '/' . str_replace(" ", "_", $this->article->title). "_image_mobile.jpg?".strtotime("now");
+            ;
         }
     }
     
-    public function getTitleImageThumbnail() {
+    public function getTitleImageThumbnail()
+    {
         return $this->titleImageThumbnail;
     }
     
-    public function getTitleImageDesktop() {
+    public function getTitleImageDesktop()
+    {
         return $this->titleImageDesktop;
     }
     
-    public function getTitleImageMobile() {
+    public function getTitleImageMobile()
+    {
         return $this->titleImageMobile;
     }
-    
 }

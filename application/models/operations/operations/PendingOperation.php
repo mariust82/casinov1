@@ -16,9 +16,11 @@ class PendingOperation implements OperationsInterface
      */
     protected $savableObject;
 
-    function execute()
+    public function execute()
     {
-        if (!$this->savableObject) throw new Exception('Invalid savable object.');
+        if (!$this->savableObject) {
+            throw new Exception('Invalid savable object.');
+        }
 
         if ($this->savableObject->id) {
             // update
@@ -29,7 +31,7 @@ class PendingOperation implements OperationsInterface
         }
     }
 
-    function addObject(SavableInterface $savableObject)
+    public function addObject(SavableInterface $savableObject)
     {
         // TODO: Implement addObject() method.
         $this->savableObject = $savableObject;
@@ -37,34 +39,36 @@ class PendingOperation implements OperationsInterface
 
     private function createNewPendingObject(AbstractPendingSavableObject $savableObject)
     {
-        $insertId = DB("
+        $insertId = DB(
+            "
             INSERT INTO dashboard SET saver_user_id = :saver_user_id, current_user_id = :current_user_id, element_id = :element_id,
             panel_id = :panel_id, status_id = :status_id, payload = :payload, date_added = :date_added,
             date_completed = :date_completed, date_modified = :date_modified, draft_id = :draft_id",
-
             array(':saver_user_id' => $savableObject->saver_user_id, ':current_user_id' => $savableObject->current_user_id,
                 ':element_id' => $savableObject->element_id, ':panel_id' => $savableObject->panel_id,
                 ':status_id' => $savableObject->status_id, ':payload' => $savableObject->payload,
                 ':date_added' => $savableObject->date_added, ':date_completed' => $savableObject->date_completed,
                 ':date_modified' => $savableObject->date_modified, ':draft_id' => $savableObject->draft_id
-            ))->getInsertId();
+            )
+        )->getInsertId();
 
         return $insertId;
     }
 
     private function updatePendingObject(AbstractPendingSavableObject $savableObject)
     {
-        $affectedRows = DB("
+        $affectedRows = DB(
+            "
             UPDATE dashboard SET saver_user_id = :saver_user_id, current_user_id = :current_user_id, element_id = :element_id,
             panel_id = :panel_id, status_id = :status_id, payload = :payload, date_added = :date_added,
             date_completed = :date_completed, date_modified = :date_modified, draft_id = :draft_id WHERE id = :id",
-
             array(':id' => $savableObject->id, ':saver_user_id' => $savableObject->saver_user_id, ':current_user_id' => $savableObject->current_user_id,
                 ':element_id' => $savableObject->element_id, ':panel_id' => $savableObject->panel_id,
                 ':status_id' => $savableObject->status_id, ':payload' => $savableObject->payload,
                 ':date_added' => $savableObject->date_added, ':date_completed' => $savableObject->date_completed,
                 ':date_modified' => $savableObject->date_modified, ':draft_id' => $savableObject->draft_id
-            ))->getInsertId();
+            )
+        )->getInsertId();
 
         return $affectedRows;
     }

@@ -11,6 +11,7 @@
  *
  * @author matan
  */
-class BonusesDao {
+class BonusesDao
+{
     //put your code here
 }

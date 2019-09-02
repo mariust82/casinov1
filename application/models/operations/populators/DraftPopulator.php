@@ -24,7 +24,7 @@ class DraftPopulator implements PopulatorInterface
      */
     private $payloadPopulatorFactory;
 
-    function populate(SavableInterface &$savableObject)
+    public function populate(SavableInterface &$savableObject)
     {
         // TODO: continue to add the attributes you know this object has.
         $savableObject->attributes('id', $this->request->parameters('draft_id'));

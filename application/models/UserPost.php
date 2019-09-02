@@ -31,9 +31,14 @@ class UserPost
             $query_vars[":date"] = strtotime("now -$time_limit seconds");
         }
         $found = SQL($query, $query_vars)->toValue();
-        if (!empty($settings['max']) && !!$settings['max']) $allowed = $found < $settings['max'];
-        else $allowed = !$found;
-        if (!$allowed) $this->setError($this->getDefaultErrorMsg($settings, "IP not allowed to post in this section!"));
+        if (!empty($settings['max']) && !!$settings['max']) {
+            $allowed = $found < $settings['max'];
+        } else {
+            $allowed = !$found;
+        }
+        if (!$allowed) {
+            $this->setError($this->getDefaultErrorMsg($settings, "IP not allowed to post in this section!"));
+        }
         return $allowed;
     }
 
@@ -51,14 +56,22 @@ class UserPost
     {
         $allowed = true;
         $value = $this->getParamValue($parameter);
-        if (!empty($settings['min']) && strlen((string)$value) < (int)$settings['min']) $allowed = false;
-        if (!empty($settings['max']) && strlen((string)$value) > (int)$settings['max']) $allowed = false;
+        if (!empty($settings['min']) && strlen((string)$value) < (int)$settings['min']) {
+            $allowed = false;
+        }
+        if (!empty($settings['max']) && strlen((string)$value) > (int)$settings['max']) {
+            $allowed = false;
+        }
         if (!$allowed) {
             $error_msg = !empty($error = $settings['error_msg']) ? $settings['error_msg'] : false;
             if (!$error_msg) {
-                if (!empty($settings['min']) && !empty($settings['max'])) $error_msg = "$parameter must have between " . $settings['min'] . " and " . $settings['max'] . " characters!";
-                elseif (!empty($settings['min'])) $error_msg = "$parameter must have at least " . $settings['min'] . " characters!";
-                elseif (!empty($settings['max'])) $error_msg = "$parameter must have a maximum of " . $settings['max'] . " characters!";
+                if (!empty($settings['min']) && !empty($settings['max'])) {
+                    $error_msg = "$parameter must have between " . $settings['min'] . " and " . $settings['max'] . " characters!";
+                } elseif (!empty($settings['min'])) {
+                    $error_msg = "$parameter must have at least " . $settings['min'] . " characters!";
+                } elseif (!empty($settings['max'])) {
+                    $error_msg = "$parameter must have a maximum of " . $settings['max'] . " characters!";
+                }
             }
             $this->setError($error_msg);
         }
@@ -74,7 +87,9 @@ class UserPost
     final private function checkValidEmail($parameter, $settings)
     {
         $valid = filter_var($this->getParamValue($parameter), FILTER_VALIDATE_EMAIL);
-        if (!$valid) $this->setError($this->getDefaultErrorMsg($settings, "$parameter is not a valid email!"));
+        if (!$valid) {
+            $this->setError($this->getDefaultErrorMsg($settings, "$parameter is not a valid email!"));
+        }
 
         return $valid;
     }
@@ -86,7 +101,9 @@ class UserPost
      */
     final private function checkParentDbRowExists($parameter, $settings)
     {
-        if ($this->getParamValue($parameter) == 0) return true;
+        if ($this->getParamValue($parameter) == 0) {
+            return true;
+        }
         $exists = !!(SQL("SELECT id FROM `" . $this->db_table . "` WHERE id=:parent_id", [":parent_id" => $this->getParamValue($parameter)])->toValue());
         if (!$exists) {
             $this->setError($this->getDefaultErrorMsg($settings, "Parent item does not exists!"));
@@ -116,8 +133,11 @@ class UserPost
     protected function getDefaultErrorMsg($settings, $default)
     {
         $error_msg = (string)$default;
-        if (is_string($settings)) $error_msg = $settings;
-        elseif (!empty($settings['error_msg'])) $error_msg = $settings['error_msg'];
+        if (is_string($settings)) {
+            $error_msg = $settings;
+        } elseif (!empty($settings['error_msg'])) {
+            $error_msg = $settings['error_msg'];
+        }
         return $error_msg;
     }
 
@@ -144,7 +164,9 @@ class UserPost
             if (is_array($settings) && !empty($settings['check'])) {
                 foreach ($settings['check'] as $check => $check_settings) {
                     if (method_exists($this, $function_name = 'check' . ucfirst($check))) {
-                        if (!$this->$function_name($parameter, $check_settings)) $can_post = false;
+                        if (!$this->$function_name($parameter, $check_settings)) {
+                            $can_post = false;
+                        }
                     }
                 }
             }
@@ -154,8 +176,12 @@ class UserPost
 
     public function getParamValue($parameter = false)
     {
-        if (!$parameter) return null;
-        if (!empty($this->filled_parameters[$parameter])) return $this->filled_parameters[$parameter];
+        if (!$parameter) {
+            return null;
+        }
+        if (!empty($this->filled_parameters[$parameter])) {
+            return $this->filled_parameters[$parameter];
+        }
         return null;
     }
 
@@ -175,7 +201,9 @@ class UserPost
     public function __construct()
     {
         $this->fillParameters();
-        if (isset($this->parameters['ip'])) $this->filled_parameters['ip'] = is_null($ip = IPDetection::getInstance()->getIP()) ? '127.0.0.1' : $ip;
+        if (isset($this->parameters['ip'])) {
+            $this->filled_parameters['ip'] = is_null($ip = IPDetection::getInstance()->getIP()) ? '127.0.0.1' : $ip;
+        }
     }
 
     protected function post()
@@ -199,7 +227,6 @@ class UserPost
         }
         return false;
     }
-
 }
 
 class UserPostException extends Exception
@@ -208,5 +235,4 @@ class UserPostException extends Exception
 
 class Warning extends Exception
 {
-
 }

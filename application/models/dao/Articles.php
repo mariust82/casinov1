@@ -11,12 +11,13 @@ class Articles
 
     private $parentSchema;
 
-    function __construct($parentSchema)
+    public function __construct($parentSchema)
     {
         $this->parentSchema = $parentSchema;
     }
     
-    public function getUploadsFolders($items) {
+    public function getUploadsFolders($items)
+    {
         $uploadsFolders = [];
         foreach ($items['results'] as $item) {
             $uploadsFolders[$item->id] = "/upload" . $this->getUploadsFolder($item, 'live');
@@ -30,7 +31,8 @@ class Articles
     {
         $blogPosts = array();
 
-        $results = SQL("
+        $results = SQL(
+            "
             SELECT a.*, tcnt.value as `tms_value`
             FROM articles a LEFT JOIN {$this->parentSchema}.tms__content tcnt
             ON a.route_id=tcnt.route_id
@@ -55,18 +57,23 @@ class Articles
         return $blogPosts;
     }
 
-    function getUploadsFolder($object, $operationType)
+    public function getUploadsFolder($object, $operationType)
     {
-
-        if (empty($object)) return null;
+        if (empty($object)) {
+            return null;
+        }
 
         switch ($operationType) {
             case'draft':
-                if (!$object) return '/blogs/drafts/tmp';
+                if (!$object) {
+                    return '/blogs/drafts/tmp';
+                }
                 return '/blogs/drafts/' . $object->id;
                 break;
             case 'publish':
-                if (!$object) return '/blogs/drafts/tmp';
+                if (!$object) {
+                    return '/blogs/drafts/tmp';
+                }
                 return '/blogs/published/' . $object->payload->id;
                 break;
             case 'live':
@@ -84,7 +91,9 @@ class Articles
         WHERE articles.`title`=:name LIMIT 1
         ", [':name' => $name]);
         $results = ResultSetWrapper::from($results)->toList(new Article(), ['rating' => new Rating()]);
-        if (!$results) throw new Lucinda\MVC\STDOUT\PathNotFoundException();
+        if (!$results) {
+            throw new Lucinda\MVC\STDOUT\PathNotFoundException();
+        }
         return $results[0];
     }
 
@@ -136,8 +145,9 @@ class Articles
         return $output;
     }
     
-    private function getArticleTypeId($type) {
-        return SQL("SELECT id FROM article__types WHERE `value` = :id",[':id'=>$type])->toValue();
+    private function getArticleTypeId($type)
+    {
+        return SQL("SELECT id FROM article__types WHERE `value` = :id", [':id'=>$type])->toValue();
     }
 
     public function getItemFromId($id = 0)
@@ -161,5 +171,4 @@ class Articles
             SET
             articles.dislikes=dislikes.nr");
     }
-
 }

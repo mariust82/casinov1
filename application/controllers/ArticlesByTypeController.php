@@ -12,14 +12,17 @@ require_once("application/models/dao/entities/PageInfo.php");
  *
  * @author matan
  */
-class ArticlesByTypeController extends ArticlesController {
-    protected function init() {
+class ArticlesByTypeController extends ArticlesController
+{
+    protected function init()
+    {
         $this->category = $this->request->getValidator()->parameters('category');
         $this->offset = 0;
         $this->filter = ['type'=> $this->category];
     }
     
-    protected function pageInfo() {
+    protected function pageInfo()
+    {
         $object = new PageInfo();
         switch ($this->category) {
             case 'news':

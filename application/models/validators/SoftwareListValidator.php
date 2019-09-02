@@ -10,10 +10,10 @@ class SoftwareListValidator extends \Lucinda\RequestValidator\ParameterValidator
 {
     public function validate($value)
     {
-        $softwares = explode(",",$value);
+        $softwares = explode(",", $value);
 
         $statement = \Lucinda\SQL\ConnectionSingleton::getInstance()->createStatement();
-        foreach($softwares as $i=>$name) {
+        foreach ($softwares as $i=>$name) {
             $softwares[$i] = $statement->quote($name);
         }
 

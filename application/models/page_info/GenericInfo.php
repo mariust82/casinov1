@@ -16,7 +16,7 @@ class GenericInfo
      */
     protected $info = null;
 
-    function __construct(InterfaceInfo $info)
+    public function __construct(InterfaceInfo $info)
     {
         $this->info = $info;
     }
@@ -24,7 +24,7 @@ class GenericInfo
     /**
      * @return mixed
      */
-    function getInfo()
+    public function getInfo()
     {
         return $this->info->getInfo();
     }

@@ -8,5 +8,5 @@
 
 interface InterfaceInfo
 {
-    function getInfo();
+    public function getInfo();
 }

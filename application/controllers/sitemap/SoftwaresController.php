@@ -2,7 +2,8 @@
 require_once("AbstractSitemapController.php");
 require_once("application/models/dao/GameManufacturers.php");
 
-class SoftwaresController extends AbstractSitemapController {
+class SoftwaresController extends AbstractSitemapController
+{
     protected function getItems()
     {
         $bm = new GameManufacturers();

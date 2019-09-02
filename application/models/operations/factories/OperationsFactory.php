@@ -10,7 +10,7 @@ namespace gtm\operations;
 
 class OperationsFactory
 {
-    function create($operationType)
+    public function create($operationType)
     {
         $operation = null;
 

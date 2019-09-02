@@ -5,28 +5,33 @@ require_once("FieldValidator.php");
 
 class Casinos implements FieldValidator
 {
-    public function getHighRollerNumber() {
+    public function getHighRollerNumber()
+    {
         return (integer) SQL("SELECT count(*) AS nr FROM casinos WHERE is_high_roller=1")->toValue();
     }
 
-    public function validate($name) {
-        return SQL("SELECT name FROM casinos WHERE name=:name",array(":name"=>$name))->toValue();
+    public function validate($name)
+    {
+        return SQL("SELECT name FROM casinos WHERE name=:name", array(":name"=>$name))->toValue();
     }
 
-    public function getID($name) {
-        return SQL("SELECT id FROM casinos WHERE name=:name",array(":name"=>$name))->toValue();
+    public function getID($name)
+    {
+        return SQL("SELECT id FROM casinos WHERE name=:name", array(":name"=>$name))->toValue();
     }
 
-    public function getName($id) {
-        return SQL("SELECT name FROM casinos WHERE id=:id",array(":id"=>$id))->toValue();
+    public function getName($id)
+    {
+        return SQL("SELECT name FROM casinos WHERE id=:id", array(":id"=>$id))->toValue();
     }
 
-    public function getTermsLink($id) {
-        return SQL("SELECT tc_link FROM casinos WHERE id=:id",[":id"=>$id])->toValue();
+    public function getTermsLink($id)
+    {
+        return SQL("SELECT tc_link FROM casinos WHERE id=:id", [":id"=>$id])->toValue();
     }
 
-    public function getBasicInfo($id) {
-
+    public function getBasicInfo($id)
+    {
         $row = SQL("
             SELECT t1.id, t1.name, t1.code, t2.name AS status, t1.affiliate_link, t1.is_open, t4.name AS software, t5.note
             FROM casinos AS t1
@@ -36,7 +41,9 @@ class Casinos implements FieldValidator
             LEFT JOIN casinos__notes AS t5 ON t1.id = t5.casino_id AND t5.language_id = 1
             WHERE t1.id = :id  
         ", array(":id"=>$id))->toRow();
-        if(empty($row)) return;
+        if (empty($row)) {
+            return;
+        }
 
         $object = new Casino();
         $object->id = $row["id"];
@@ -47,13 +54,13 @@ class Casinos implements FieldValidator
         $object->softwares = $row["software"];
         $object->is_open = $row["is_open"];
         $object->note = str_replace("www.thebigfreechiplist.com", "www.casinoslists.com", $row["note"]);
-        $object->logo_big = $this->getCasinoLogo($object->code = $row["code"],"124x82");
-        $object->logo_small = $this->getCasinoLogo($object->code = $row["code"],"85x56");
+        $object->logo_big = $this->getCasinoLogo($object->code = $row["code"], "124x82");
+        $object->logo_small = $this->getCasinoLogo($object->code = $row["code"], "85x56");
         return $object;
     }
 
-    public function getBonus($casinoID, $isFree) {
-
+    public function getBonus($casinoID, $isFree)
+    {
         $query = "
         SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.minimum_deposit, t1.games, t2.name 
         FROM casinos__bonuses AS t1
@@ -61,9 +68,9 @@ class Casinos implements FieldValidator
         WHERE t1.casino_id = $casinoID AND t2.name IN (".($isFree?"'No Deposit Bonus','Free Spins','Free Play'":"'First Deposit Bonus'").")
         ";
         $resultSet = SQL($query);
-        while($row = $resultSet->toRow()) {
+        while ($row = $resultSet->toRow()) {
             $bonus = new CasinoBonus();
-            $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS","",$row["amount"])):$row["amount"]);
+            $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
             $bonus->min_deposit = $row["minimum_deposit"];
             $bonus->wagering = $row["wagering"];
             $bonus->games_allowed = $row["games"];
@@ -83,8 +90,10 @@ class Casinos implements FieldValidator
 
     public function rate($casinoID, $ip, $value)
     {
-        if(!$casinoID) return null;
-        $count = SQL("SELECT COUNT(id) FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip",array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
+        if (!$casinoID) {
+            return null;
+        }
+        $count = SQL("SELECT COUNT(id) FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip", array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
         if ($count == 0) {
             $affectedRows = SQL("
               INSERT INTO casinos__ratings SET 
@@ -93,9 +102,11 @@ class Casinos implements FieldValidator
                 value = :value
                 ON DUPLICATE KEY UPDATE value = :value
               ", array(":casino"=>$casinoID, ":ip"=>$ip, ":value"=>$value))->getAffectedRows();
-            if($affectedRows>0) {
-                SQL("UPDATE casinos SET rating_total=rating_total+:value, rating_votes=rating_votes+1 WHERE id=:casino",
-                  array(":casino"=>$casinoID, ":value"=>$value));
+            if ($affectedRows>0) {
+                SQL(
+                    "UPDATE casinos SET rating_total=rating_total+:value, rating_votes=rating_votes+1 WHERE id=:casino",
+                    array(":casino"=>$casinoID, ":value"=>$value)
+                );
             }
             return $affectedRows;
         } else {
@@ -103,26 +114,28 @@ class Casinos implements FieldValidator
         }
     }
 
-    public function click($id) {
-        SQL("UPDATE casinos SET clicks = clicks+1 WHERE id=:id",array(":id"=>$id));
+    public function click($id)
+    {
+        SQL("UPDATE casinos SET clicks = clicks+1 WHERE id=:id", array(":id"=>$id));
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         return SQL("SELECT name FROM casinos ORDER BY name ASC")->toColumn();
     }
 
-    public function getCasinoData($id){
-
+    public function getCasinoData($id)
+    {
         return SQL("SELECT id FROM casinos WHERE id ={$id}")->toRow();
     }
 
-    private function getCasinoLogo($name, $resolution) {
-
+    private function getCasinoLogo($name, $resolution)
+    {
         $logoDirPath = "/public/sync/casino_logo_light/".$resolution;
         $logoFile = strtolower(str_replace(" ", "_", $name)).".png";
         $logo = $logoDirPath.'/'.$logoFile;
 
-        if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$logo)){
+        if (!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$logo)) {
             $logo =$logoDirPath."/no-logo-{$resolution}.png";
         }
         return $logo;

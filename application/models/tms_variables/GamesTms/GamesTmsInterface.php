@@ -1,7 +1,6 @@
 <?php
 
-interface GamesTmsInterface{
-
+interface GamesTmsInterface
+{
     public function getData($sortCriteria);
-
 }

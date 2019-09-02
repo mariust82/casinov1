@@ -3,24 +3,23 @@
 require_once 'application/models/tms_variables/NoDepositBonusTms/NoDepositBonusData.php';
 
 
-class  NoDepositBonus extends \TMS\VariablesHolder {
-
+class NoDepositBonus extends \TMS\VariablesHolder
+{
     private $bonus_type = 'No Deposit Bonus';
 
-    private function getCountry(){
-
-        $country =  !empty( $this->parameters["response"]->attributes("country")) ?  $this->parameters["response"]->attributes("country") : '';
+    private function getCountry()
+    {
+        $country =  !empty($this->parameters["response"]->attributes("country")) ?  $this->parameters["response"]->attributes("country") : '';
         return $country;
-
     }
 
-    public function newestInCurentList(){
-
+    public function newestInCurentList()
+    {
         $filterParams = [];
         $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
         $country = $this->getCountry();
 
-        if(empty($filterPage)){
+        if (empty($filterPage)) {
             return '';
         }
 
@@ -30,14 +29,14 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
         $newestNoDepInTheList = new NoDepositBonusData($country);
         $newestNoDepInTheList->setFilter($filterParams);
 
-         $casino =  $newestNoDepInTheList->getData(CasinoSortCriteria::NEWEST);
-         $bonus_type_value = !empty($casino[0]->bonus_free->amount) ? $casino[0]->bonus_free->amount : '';
+        $casino =  $newestNoDepInTheList->getData(CasinoSortCriteria::NEWEST);
+        $bonus_type_value = !empty($casino[0]->bonus_free->amount) ? $casino[0]->bonus_free->amount : '';
 
         return $bonus_type_value ;
     }
 
-    public function newestInTheSite(){
-
+    public function newestInTheSite()
+    {
         $filterParams = [];
         $country = $this->getCountry();
         $filterParams['bonus_type'] = $this->bonus_type;
@@ -47,17 +46,16 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
 
         $bonus_type_value = !empty($casino[0]->bonus_free->amount) ?  $casino[0]->bonus_free->amount : '';
         return  $bonus_type_value;
-
     }
 
 
-    public function bestInCurrentList(){
-
+    public function bestInCurrentList()
+    {
         $filterParams = [];
         $country = $this->getCountry();
         $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : '';
 
-        if(empty($filterPage)){
+        if (empty($filterPage)) {
             return '';
         }
 
@@ -70,11 +68,10 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
         $casino =  $newestNoDepInTheList->getData(CasinoSortCriteria::TOP_RATED);
         $bonus_type_value = !empty($casino[0]->bonus_free->amount) ?  $casino[0]->bonus_free->amount : '';
         return $bonus_type_value;
-
     }
 
-    public function bestInSite(){
-
+    public function bestInSite()
+    {
         $filterParams = [];
 
         $country = $this->getCountry();
@@ -85,9 +82,5 @@ class  NoDepositBonus extends \TMS\VariablesHolder {
         $bonus_type_value = !empty($casino[0]->bonus_free->amount) ?  $casino[0]->bonus_free->amount : '';
 
         return  $bonus_type_value;
-
     }
-
-
-
 }

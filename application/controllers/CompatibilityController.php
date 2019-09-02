@@ -5,17 +5,20 @@ require_once("BaseController.php");
 
 /*
 * Operating system and play version list by number of casinos.
-* 
+*
 * @requestMethod GET
 * @responseFormat HTML
-* @source 
+* @source
 */
-class CompatibilityController extends BaseController {
-	public function service(){
+class CompatibilityController extends BaseController
+{
+    public function service()
+    {
         $this->response->attributes("results", $this->getResults());
     }
 
-    private function getResults() {
+    private function getResults()
+    {
         $object = new OperatingSystems();
         $tmp1 = $object->getCasinosCount();
         $tmp1["iPhone"]=$tmp1["iOS"];
@@ -25,7 +28,8 @@ class CompatibilityController extends BaseController {
         return array_merge($tmp1, $tmp2);
     }
 
-    protected function pageInfo(){
+    protected function pageInfo()
+    {
         $object = new PageInfoDAO();
         $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }

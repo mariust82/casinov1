@@ -4,7 +4,8 @@ require_once("FieldValidator.php");
 
 class BonusTypes implements CasinoCounter
 {
-    public function getCasinosCount() {
+    public function getCasinosCount()
+    {
         return SQL("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -14,10 +15,10 @@ class BonusTypes implements CasinoCounter
         WHERE t1.name IN ('Free Play', 'Free Spins', 'No Deposit Bonus') AND t3.is_open = 1
         GROUP BY t1.id
         ORDER BY counter DESC 
-        ")->toMap("unit","counter");
+        ")->toMap("unit", "counter");
     }
 
-  /*  public function validate($name) {
-        return SQL("SELECT name FROM bonus_types WHERE name=:name",array(":name"=>$name))->toValue();
-    }*/
+    /*  public function validate($name) {
+          return SQL("SELECT name FROM bonus_types WHERE name=:name",array(":name"=>$name))->toValue();
+      }*/
 }

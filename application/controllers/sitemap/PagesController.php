@@ -1,8 +1,10 @@
 <?php
 require_once("AbstractSitemapController.php");
 
-class PagesController extends AbstractSitemapController {
-    protected function getItems() {
+class PagesController extends AbstractSitemapController
+{
+    protected function getItems()
+    {
         return ["Casinos","Softwares","Countries","Banking","Games"];
     }
 
@@ -11,7 +13,8 @@ class PagesController extends AbstractSitemapController {
         return "(item)";
     }
 
-    protected function getPriority() {
+    protected function getPriority()
+    {
         return "0.6";
     }
 }
