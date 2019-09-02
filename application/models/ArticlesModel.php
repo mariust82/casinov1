@@ -18,6 +18,31 @@ class ArticlesModel {
         $this->items = $items;
     }
     
+    protected function getUploadsFolder()
+    {
+        if (empty($this->object)) {
+            return null;
+        }
+
+        switch ($this->operationType) {
+            case'draft':
+                if (!$this->object) {
+                    return '/blogs/drafts/tmp';
+                }
+                return '/blogs/drafts/' . $this->object->id;
+                break;
+            case 'publish':
+                if (!$this->object) {
+                    return '/blogs/drafts/tmp';
+                }
+                return '/blogs/published/' . $this->object->payload->id;
+                break;
+            case 'live':
+                return '/blogs/published/' . $this->object->id;
+                break;
+        }
+    }
+    
     public function getUploadsFolders()
     {
         $uploadsFolders = [];

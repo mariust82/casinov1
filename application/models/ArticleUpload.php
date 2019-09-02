@@ -63,31 +63,6 @@ class ArticleUpload extends ArticlesModel
         }
     }
     
-    private function getUploadsFolder()
-    {
-        if (empty($this->object)) {
-            return null;
-        }
-
-        switch ($this->operationType) {
-            case'draft':
-                if (!$this->object) {
-                    return '/blogs/drafts/tmp';
-                }
-                return '/blogs/drafts/' . $this->object->id;
-                break;
-            case 'publish':
-                if (!$this->object) {
-                    return '/blogs/drafts/tmp';
-                }
-                return '/blogs/published/' . $this->object->payload->id;
-                break;
-            case 'live':
-                return '/blogs/published/' . $this->object->id;
-                break;
-        }
-    }
-    
     public function getTitleImageThumbnail()
     {
         return $this->titleImageThumbnail;
