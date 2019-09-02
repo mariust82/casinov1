@@ -51,8 +51,14 @@ class ArticleRatingPost extends UserPost
         }
         return $exists;
     }
+    
+    public function checkIfPost() {
+        if (!$this->post()) {
+            throw new UserPostException(json_encode($this->getErrors()));
+        }
+    }
 
-    public function post()
+    private function post()
     {
         if ($this->canPost()) {
             $rating_exists = SQL("SELECT `id` FROM `" . $this->db_table . "` WHERE ip=:ip AND article_id=:article_id", [':ip' => $this->filled_parameters['ip'], ':article_id' => $this->filled_parameters['id']])->toValue();

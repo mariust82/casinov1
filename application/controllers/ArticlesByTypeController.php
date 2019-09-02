@@ -13,7 +13,8 @@ require_once "ArticlesController.php";
  */
 class ArticlesByTypeController extends ArticlesController {
     protected function init() {
-        $category = $this->request->getValidator()->parameters('category');
-        $this->filter = ['type'=> $category];
+        $this->category = $this->request->getValidator()->parameters('category');
+        $this->offset = 0;
+        $this->filter = ['type'=> $this->category];
     }
 }
