@@ -87,7 +87,7 @@ class Articles
         }
         
         if (isset($filters['name'])) {
-            $query_vars[':id4'] = $filters['name'];
+            $query_vars[':id4'] = str_replace('-', ' ', $filters['name']);
             $where->set("a.`title`", ":id4");
         }
         $select->orderBy()->add("a.id",Lucinda\Query\OrderByOperator::DESC);
