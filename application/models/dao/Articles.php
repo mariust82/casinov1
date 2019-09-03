@@ -52,8 +52,9 @@ class Articles
         //DB('SET NAMES UTF8');
         $name = preg_replace('/[^\da-z]/i', ' ', urldecode($name)); //allow only alphanumeric, case insensitive and -
         $resultSet = SQL("
-        SELECT articles.* FROM articles
-        WHERE articles.`title`=:name LIMIT 1
+        SELECT a.*,at.value AS type FROM articles a
+        JOIN article__types at ON (a.type_id = at.id)
+        WHERE a.`title`=:name LIMIT 1
         ", [':name' => $name]);
         while ($row = $resultSet->toRow()) {
             $article = new Article();
