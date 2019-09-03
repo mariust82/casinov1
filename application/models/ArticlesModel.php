@@ -52,7 +52,7 @@ class ArticlesModel {
             $uploadsFolders[$item->id] = "/upload" . $this->uploadFodler;
             $uploadsFolders[$item->id] .= "/" . str_replace(" ", "_", $item->title) . "_thumbnail.jpg?" . strtotime("now");
         }
-        
+        var_dump($uploadsFolders);
         return $uploadsFolders;
     }
     
