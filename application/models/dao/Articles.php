@@ -113,6 +113,7 @@ class Articles
         }
         $output['results'] = $results;
         $output['total'] = $foundRows;
+        var_dump($output);
         return $output;
     }
     
