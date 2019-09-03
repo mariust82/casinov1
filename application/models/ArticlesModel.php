@@ -20,6 +20,7 @@ class ArticlesModel {
     
     protected function getUploadsFolder($object, $operationType)
     {
+        var_dump($object);
         if (empty($object)) {
             return null;
         }
