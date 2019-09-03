@@ -13,18 +13,12 @@ require_once 'ArticlesModel.php';
  */
 class ArticleUpload extends ArticlesModel
 {
-    private $article;
     private $titleImageThumbnail = null;
     private $titleImageDesktop = null;
     private $titleImageMobile = null;
-    private $object;
-    private $operationType;
-    public function __construct($items,$article,$object,$operationType)
+    public function __construct($items)
     {
         parent::__construct($items);
-        $this->article = $article;
-        $this->object = $object;
-        $this->operationType = $operationType;
         $this->setUploadPath();
     }
 
@@ -33,9 +27,9 @@ class ArticleUpload extends ArticlesModel
         $this->getUploadsFolders();
         $folder = $this->uploadFodler;
         if ($folder) {
-            $this->titleImageThumbnail = '/upload' . $folder . '/' . str_replace(" ", "_", $this->article->title). "_thumbnail.jpg?".strtotime("now");
-            $this->titleImageDesktop = '/upload' . $folder . '/' . str_replace(" ", "_", $this->article->title). "_image_desktop.jpg?".strtotime("now");
-            $this->titleImageMobile = '/upload' . $folder . '/' . str_replace(" ", "_", $this->article->title). "_image_mobile.jpg?".strtotime("now");
+            $this->titleImageThumbnail = '/upload' . $folder . '/' . str_replace(" ", "_", $this->items->title). "_thumbnail.jpg?".strtotime("now");
+            $this->titleImageDesktop = '/upload' . $folder . '/' . str_replace(" ", "_", $this->items->title). "_image_desktop.jpg?".strtotime("now");
+            $this->titleImageMobile = '/upload' . $folder . '/' . str_replace(" ", "_", $this->items->title). "_image_mobile.jpg?".strtotime("now");
         }
     }
     
