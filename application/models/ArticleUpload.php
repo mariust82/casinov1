@@ -26,10 +26,11 @@ class ArticleUpload extends ArticlesModel
     {
         $this->getUploadsFolders();
         $folder = $this->uploadFodler;
+        $object = $this->items['results'][0];
         if ($folder) {
-            $this->titleImageThumbnail = '/upload' . $folder . '/' . str_replace(" ", "_", $this->items->title). "_thumbnail.jpg?".strtotime("now");
-            $this->titleImageDesktop = '/upload' . $folder . '/' . str_replace(" ", "_", $this->items->title). "_image_desktop.jpg?".strtotime("now");
-            $this->titleImageMobile = '/upload' . $folder . '/' . str_replace(" ", "_", $this->items->title). "_image_mobile.jpg?".strtotime("now");
+            $this->titleImageThumbnail = '/upload' . $folder . '/' . str_replace(" ", "_", $object->title). "_thumbnail.jpg?".strtotime("now");
+            $this->titleImageDesktop = '/upload' . $folder . '/' . str_replace(" ", "_", $object->title). "_image_desktop.jpg?".strtotime("now");
+            $this->titleImageMobile = '/upload' . $folder . '/' . str_replace(" ", "_", $object->title). "_image_mobile.jpg?".strtotime("now");
         }
     }
     
