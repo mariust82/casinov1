@@ -51,15 +51,29 @@ class Articles
     {
         //DB('SET NAMES UTF8');
         $name = preg_replace('/[^\da-z]/i', ' ', urldecode($name)); //allow only alphanumeric, case insensitive and -
-        $results = SQL("
+        $resultSet = SQL("
         SELECT articles.* FROM articles
         WHERE articles.`title`=:name LIMIT 1
         ", [':name' => $name]);
-        $results = ResultSetWrapper::from($results)->toList(new Article(), ['rating' => new Rating()]);
-        if (!$results) {
+        while ($row = $resultSet->toRow()) {
+            $article = new Article();
+            $rating = new Rating();
+            $rating->likes = $row['likes'];
+            $rating->dislikes = $row['dislikes'];
+            $article->id = $row['id'];
+            $article->type = $row['type'];
+            $article->title = $row['title'];
+            $article->date_added = $row['date_added'];
+            $article->min_read = $row['min_read'];
+            $article->description = $row['value'];
+            $article->rating = $rating;
+            $results[] = $article;
+        }
+        $output['results'] = $results;
+        if (!$output) {
             throw new Lucinda\MVC\STDOUT\PathNotFoundException();
         }
-        return $results[0];
+        return $output;
     }
 
     public function getList($filters = [], $offset = 0, $limit = 9)
