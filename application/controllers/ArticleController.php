@@ -22,6 +22,7 @@ class ArticleController extends BaseController
         $article_name = $this->request->getValidator()->parameters('name');
         $category = $this->request->getValidator()->parameters('category');
         $article = $articles_ctrl->getList(['name'=>$article_name],0,1);
+        var_dump($article);
         $tmsArticles = $articles_ctrl->getInfoByRoute($this->denormalize($article_name));
         $tmsArticle = array_shift($tmsArticles);
         $related_articles = $articles_ctrl->getList(['id_not_in' => [$article->id],'type'=> $category], 0, 3);

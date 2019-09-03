@@ -92,6 +92,7 @@ class Articles
         }
         $select->orderBy()->add("a.id",Lucinda\Query\OrderByOperator::DESC);
         $select->limit($limit, $offset);
+        echo $select->toString();
         $resultSet = SQL($select->toString(), $query_vars);
         $foundRows = (int)SQL('SELECT FOUND_ROWS()')->toValue();
         $results = [];
