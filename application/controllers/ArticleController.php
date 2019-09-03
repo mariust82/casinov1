@@ -26,12 +26,13 @@ class ArticleController extends BaseController
         $tmsArticles = $articles_ctrl->getInfoByRoute($this->denormalize($article_name));
         $tmsArticle = array_shift($tmsArticles);
         $related_articles = $articles_ctrl->getList(['id_not_in' => [$article->id],'type'=> $category], 0, 3);
+        var_dump($related_articles);
         $upload = new ArticleUpload($results);
         
         
         $this->response->attributes("article", $article);
         $this->response->attributes("tms_article", $tmsArticle);
-        $this->response->attributes("related", $related_articles['results']);
+        $this->response->attributes("related", $related_articles);
         $this->response->attributes("uploadsFolders", $upload->getUploadsFolders());
         $this->response->attributes('title_image_thumbnail', $upload->getTitleImageThumbnail());
         $this->response->attributes('title_image_desktop', $upload->getTitleImageDesktop());
