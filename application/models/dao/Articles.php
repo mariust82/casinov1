@@ -51,30 +51,15 @@ class Articles
     {
         //DB('SET NAMES UTF8');
         $name = preg_replace('/[^\da-z]/i', ' ', urldecode($name)); //allow only alphanumeric, case insensitive and -
-        $resultSet = SQL("
-        SELECT a.*,at.value AS type FROM articles a
-        JOIN article__types at ON (a.type_id = at.id)
-        WHERE a.`title`=:name LIMIT 1
+        $results = SQL("
+        SELECT articles.* FROM articles
+        WHERE articles.`title`=:name LIMIT 1
         ", [':name' => $name]);
-        while ($row = $resultSet->toRow()) {
-            $article = new Article();
-            $rating = new Rating();
-            $rating->likes = $row['likes'];
-            $rating->dislikes = $row['dislikes'];
-            $article->id = $row['id'];
-            $article->type = $row['type'];
-            $article->title = $row['title'];
-            $article->date_added = $row['date_added'];
-            $article->min_read = $row['min_read'];
-            $article->description = $row['value'];
-            $article->rating = $rating;
-            $results[] = $article;
-        }
-        $output['results'] = $results;
-        if (!$output) {
+        $results = ResultSetWrapper::from($results)->toList(new Article(), ['rating' => new Rating()]);
+        if (!$results) {
             throw new Lucinda\MVC\STDOUT\PathNotFoundException();
         }
-        return $output;
+        return $results[0];
     }
 
     public function getList($filters = [], $offset = 0, $limit = 9)
@@ -99,6 +84,11 @@ class Articles
             $type_id = $this->getArticleTypeId($filters['type']);
             $query_vars[':id3'] = (int)$type_id;
             $where->set("a.type_id", ":id3");
+        }
+        
+        if (isset($filters['name'])) {
+            $query_vars[':id4'] = $filters['name'];
+            $where->set("a.`title`", ":id4");
         }
         $select->orderBy()->add("a.id",Lucinda\Query\OrderByOperator::DESC);
         $select->limit($limit, $offset);
