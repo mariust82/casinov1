@@ -20,6 +20,7 @@ class ArticleController extends BaseController
     {
         $articles_ctrl = new Articles($this->application->attributes('parent_schema'));
         $article_name = $this->request->getValidator()->parameters('name');
+        var_dump($article_name);
         $category = $this->request->getValidator()->parameters('category');
         $article = $articles_ctrl->getList(['name'=>$article_name],0,1);
         var_dump($article);
