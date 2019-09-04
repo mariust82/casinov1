@@ -18,13 +18,13 @@ class ArticleUpload extends ArticlesModel
     private $titleImageMobile = null;
     public function __construct($items)
     {
-        parent::__construct($items);
         $this->setUploadPath();
+        $this->items = $items;
     }
 
     private function setUploadPath()
     {
-        $this->getUploadsFolders();
+        $this->getUploadsFolders($this->items);
         $folder = $this->uploadFodler;
         $object = $this->items['results'][0];
         if ($folder) {

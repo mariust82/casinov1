@@ -12,12 +12,8 @@
  * @author matan
  */
 class ArticlesModel {
-    protected $items;
     protected $uploadFodler;
-    public function __construct($items) {
-        $this->items = $items;
-    }
-    
+   
     protected function getUploadsFolder($object, $operationType)
     {
         if (empty($object)) {
@@ -43,11 +39,11 @@ class ArticlesModel {
         }
     }
     
-    public function getUploadsFolders()
+    public function getUploadsFolders($items)
     {
         $uploadsFolders = [];
         
-        foreach ($this->items['results'] as $item) {
+        foreach ($items['results'] as $item) {
             $this->uploadFodler = $this->getUploadsFolder($item, 'live');
             $uploadsFolders[$item->id] = "/upload" . $this->uploadFodler;
             $uploadsFolders[$item->id] .= "/" . str_replace(" ", "_", $item->title) . "_thumbnail.jpg?" . strtotime("now");
