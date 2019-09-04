@@ -26,7 +26,7 @@ class ArticleController extends BaseController
         $tmsArticles = $articles_ctrl->getInfoByRoute($this->denormalize($article_name));
         $tmsArticle = array_shift($tmsArticles);
         $related_articles = $articles_ctrl->getList(['id_not_in' => [$article->id],'type'=> $category], 0, 3);
-        $upload = new ArticleUpload($article);
+        $upload = new ArticleUpload($results);
         
         
         $this->response->attributes("article", $article);
