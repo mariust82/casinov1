@@ -126,10 +126,7 @@ class CasinosListQuery
                 $sub_query->where(["name" => "'" . $filter->getPlayVersion() . "'"]);
                 $query->joinInner("casinos__play_versions", "t9")->on(["t1.id" => "t9.casino_id" , "t9.play_version_id" => "(" . $sub_query->toString()  . ")" ]);
                 if ($filter->getPlayVersion() == "Live Dealer") {
-                    $query->joinInner("casinos__game_manufacturers","t10")->on(["t1.id"=>"t10.casino_id"]);
-                    $query->joinInner("game_manufacturers","t11")->on(["t10.game_manufacturer_id"=>"t11.id"]);
-                    $query->joinInner("games","t12")->on(["t11.id"=>"t12.game_manufacturer_id"]);
-                    $query->joinInner("games__features","t13")->on(["t13.game_id"=>"t12.id"])->set("t13.feature_id", 13);
+                    
                     $query->joinInner("casinos__game_types", "t14")->on(["t14.casino_id" => "t1.id"]);
                     $query->joinInner("game_types", "t15")->on(["t15.id" => "t14.game_type_id"]);
                 }
