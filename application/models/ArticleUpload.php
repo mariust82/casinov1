@@ -26,8 +26,9 @@ class ArticleUpload extends ArticlesModel
 
     private function setUploadPath()
     {
-        $folder =  $this->getUploadsFolder($this->items, 'live');
         $object = $this->items['results'][0];
+        $folder =  $this->getUploadsFolder($object, 'live');
+        
         if ($folder) {
             $this->titleImageThumbnail = '/upload' . $folder . '/' . str_replace(" ", "_", $object->title). "_thumbnail.jpg?".strtotime("now");
             $this->titleImageDesktop = '/upload' . $folder . '/' . str_replace(" ", "_", $object->title). "_image_desktop.jpg?".strtotime("now");
