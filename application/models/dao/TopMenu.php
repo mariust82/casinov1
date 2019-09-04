@@ -118,8 +118,6 @@ class TopMenu
     {
         $this->userCountry = $user_country;
         $this->setUserCountryInMenu();
-        var_dump($currentPage);
-        var_dump($specific_page);
         $this->setEntries($currentPage, $specific_page);
     }
 
@@ -166,6 +164,8 @@ class TopMenu
             $object = new MenuItem();
             $object->title = $title;
             $object->url = $entry_data['item_url'];
+            var_dump($title);
+            var_dump($selectedEntry);
             $object->is_active = ($title==$selectedEntry?true:false);
 
             if (!empty($entry_data["sub_items"])) {
