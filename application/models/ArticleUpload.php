@@ -26,7 +26,6 @@ class ArticleUpload extends ArticlesModel
     private function setUploadPath()
     {
         $object = $this->items['results'][0];
-        var_dump($object);
         $folder =  $this->getUploadsFolder($object, 'live');
         
         if ($folder) {
