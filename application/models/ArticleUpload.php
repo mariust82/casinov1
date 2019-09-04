@@ -20,13 +20,13 @@ class ArticleUpload extends ArticlesModel
     public function __construct($items)
     {
         $this->items = $items;
-        $this->getUploadsFolders($items);
         $this->setUploadPath();
     }
 
     private function setUploadPath()
     {
         $object = $this->items['results'][0];
+        var_dump($object);
         $folder =  $this->getUploadsFolder($object, 'live');
         
         if ($folder) {
