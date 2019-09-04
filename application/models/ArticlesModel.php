@@ -41,7 +41,6 @@ class ArticlesModel {
     
     public function getUploadsFolders($items)
     {
-        var_dump($items);
         $uploadsFolders = [];
         foreach ($items['results'] as $item) {
             $this->uploadFodler = $this->getUploadsFolder($item, 'live');

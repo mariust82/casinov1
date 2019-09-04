@@ -32,7 +32,6 @@ class ArticleController extends BaseController
         $this->response->attributes("article", $article);
         $this->response->attributes("tms_article", $tmsArticle);
         $this->response->attributes("related", $related_articles['results']);
-        var_dump($upload->getUploadsFolders($results));
         $this->response->attributes("uploadsFolders", $upload->getUploadsFolders($results));
         $this->response->attributes("relateduploadsFolders", $upload->getUploadsFolders($related_articles));
         $this->response->attributes('title_image_thumbnail', $upload->getTitleImageThumbnail());
