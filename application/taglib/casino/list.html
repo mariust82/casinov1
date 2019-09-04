@@ -108,7 +108,7 @@
 						<div class="btn-round-holder list-item-cell-bfnp">
 							<span class="btn-round" data-name="${result.name}" data-is-free="1"> ${result.bonus_free.amount}
 								<:if test="${result.bonus_free.bonus_type_Abbreviation} != 'NDB'">
-									${result.bonus_free.bonus_type_Abbreviation}
+									 <abbr title="${result.bonus_free.type}">${result.bonus_free.bonus_type_Abbreviation}
 								</:if> 
 							</span>
 						</div>
@@ -120,7 +120,8 @@
 							<:if test="${result.bonus_free.amount}">
 								<div class="btn-round-holder">
 									<span class="btn-round" data-name="${result.name}" data-is-free="1">
-										${result.bonus_free.amount} ${result.bonus_free.bonus_type_Abbreviation}
+										${result.bonus_free.amount}
+										<abbr title="${result.bonus_free.type}"> ${result.bonus_free.bonus_type_Abbreviation}
 									</span>
 								</div>
 							</:if>
@@ -135,7 +136,10 @@
 					<:if test="${is_low_wagering}">
 						<div class="list-item-cell list-item-cell-bfnp">
 							<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1"> ${result.bonus_free.amount}
-							<:if test="${result.bonus_free.bonus_type_Abbreviation} != 'NDB'"> ${result.bonus_free.bonus_type_Abbreviation} </:if> </span>
+							<:if test="${result.bonus_free.bonus_type_Abbreviation} != 'NDB'">
+								<abbr title="${result.bonus_free.type}">${result.bonus_free.bonus_type_Abbreviation}
+							</:if>
+							</span>
 						</div>
 						<div class="list-item-cell list-item-cell-wagering">
 							${result.bonus_free.wagering}
@@ -149,7 +153,7 @@
 						<div class="list-item-cell list-item-alt-bonus">
 							<:if test="${result.bonus_free}">
 								<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1">
-									${result.bonus_free.amount} ${result.bonus_free.bonus_type_Abbreviation}
+									${result.bonus_free.amount}  <abbr title="${result.bonus_free.type}">${result.bonus_free.bonus_type_Abbreviation}</abbr>
 								</span>
 							</:if>
 						</div>
