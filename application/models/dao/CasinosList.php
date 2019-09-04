@@ -118,6 +118,7 @@ class CasinosList
         // build query
         $queryGenerator = new CasinosListQuery($this->filter, array("COUNT(t1.id) AS nr"), null, 0, '', false);
         $query = $queryGenerator->getQuery();
+        echo $query;
         return SQL($query)->toValue();
     }
 
