@@ -54,7 +54,7 @@ class CasinosList
         if (empty($output)) {
             return array();
         }
-        var_dump(array_values($output));
+
         // append softwares
         $query = "
         SELECT t1.casino_id, t2.name 
