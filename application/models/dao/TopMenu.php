@@ -118,7 +118,8 @@ class TopMenu
     {
         $this->userCountry = $user_country;
         $this->setUserCountryInMenu();
-
+        var_dump($currentPage);
+        var_dump($specific_page);
         $this->setEntries($currentPage, $specific_page);
     }
 
