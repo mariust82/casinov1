@@ -118,6 +118,7 @@ class TopMenu
     {
         $this->userCountry = $user_country;
         $this->setUserCountryInMenu();
+
         $this->setEntries($currentPage, $specific_page);
     }
 
@@ -172,14 +173,13 @@ class TopMenu
                     $si = new MenuItem();
                     $si->title = $subItemTitle;
                     $si->url = $subItemUrl;
-                    var_dump("/".$specific_page);
-                    var_dump($subItemUrl);
                     $si->is_active = ("/".$specific_page==$subItemUrl?true:false);
                     $object->submenuItems[] = $si;
                 }
             }
             $this->pages[] = $object;
         }
+        var_dump($this->pages);
     }
 
     private function getSelectedEntry($currentPage, $specificPage = '')
