@@ -11,16 +11,23 @@ require_once 'ArticlesModel.php';
  *
  * @author matan
  */
-class ArticleUpload extends ArticlesModel
+class SingleArticle extends ArticlesModel
 {
     private $titleImageThumbnail = null;
     private $titleImageDesktop = null;
     private $titleImageMobile = null;
     private $items;
+    
     public function __construct($items)
     {
         $this->items = $items;
         $this->setUploadPath();
+    }
+    
+    public function denormalize($text)
+    {
+        $ret = preg_replace('/[- #]/', ' ', $text);
+        return $ret;
     }
 
     private function setUploadPath()

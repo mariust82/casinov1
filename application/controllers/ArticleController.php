@@ -2,7 +2,7 @@
 require_once "BaseController.php";
 require_once "application/models/dao/Articles.php";
 require_once "application/models/dao/Drafts.php";
-require_once "application/models/ArticleUpload.php";
+require_once "application/models/SingleArticle.php";
 
 
 /*
@@ -18,32 +18,23 @@ class ArticleController extends BaseController
 {
     protected function service()
     {
-        $articles_ctrl = new Articles($this->application->attributes('parent_schema'));
+        $articles = new Articles($this->application->attributes('parent_schema'));
         $article_name = $this->request->getValidator()->parameters('name');
         $category = $this->request->getValidator()->parameters('category');
-        $results = $articles_ctrl->getList(['name'=>$article_name],0,1);
+        $results = $articles->getList(['name'=>$article_name],0,1);
         $article = $results["results"][0];
-        $tmsArticles = $articles_ctrl->getInfoByRoute($this->denormalize($article_name));
-        $tmsArticle = array_shift($tmsArticles);
-        $related_articles = $articles_ctrl->getList(['id_not_in' => [$article->id],'type'=> $category], 0, 3);
-        $upload = new ArticleUpload($results);
-        
+        $related_articles = $articles->getList(['id_not_in' => [$article->id],'type'=> $category], 0, 3);
+        $singleArticle = new SingleArticle($results);
         
         $this->response->attributes("article", $article);
-        $this->response->attributes("tms_article", $tmsArticle);
+        $this->response->attributes("tms_article", $articles->getInfoByRoute($singleArticle->denormalize($article_name)));
         $this->response->attributes("related", $related_articles['results']);
-        $this->response->attributes("uploadsFolders", $upload->getUploadsFolders($results));
-        $this->response->attributes("relateduploadsFolders", $upload->getUploadsFolders($related_articles));
-        $this->response->attributes('title_image_thumbnail', $upload->getTitleImageThumbnail());
-        $this->response->attributes('title_image_desktop', $upload->getTitleImageDesktop());
-        $this->response->attributes('title_image_mobile', $upload->getTitleImageMobile());
+        $this->response->attributes("uploadsFolders", $singleArticle->getUploadsFolders($results));
+        $this->response->attributes("relateduploadsFolders", $singleArticle->getUploadsFolders($related_articles));
+        $this->response->attributes('title_image_thumbnail', $singleArticle->getTitleImageThumbnail());
+        $this->response->attributes('title_image_desktop', $singleArticle->getTitleImageDesktop());
+        $this->response->attributes('title_image_mobile', $singleArticle->getTitleImageMobile());
         $this->website_info['article_name'] = $article->title;
-    }
-
-    private function denormalize($text)
-    {
-        $ret = preg_replace('/[- #]/', ' ', $text);
-        return $ret;
     }
 
     protected function pageInfo()

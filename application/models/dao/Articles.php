@@ -44,7 +44,7 @@ class Articles
             $blogPosts[] = $blogPost;
         }
 
-        return $blogPosts;
+        return array_shift($blogPosts);
     }
 
     public function getInfoByName($name = '')
