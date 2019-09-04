@@ -27,7 +27,6 @@ class CasinosListQuery
         $this->setOrderBy($query->orderBy(), $filter, $sortBy);
         $this->setLimit($query, $filter, $limit, $offset);
         $this->query = $query->toString();
-        echo $this->query;
     }
 
     private function setFields(Lucinda\Query\MySQLSelect $query, $columns, CasinoFilter $filter)
