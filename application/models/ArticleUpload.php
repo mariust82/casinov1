@@ -17,21 +17,21 @@ class ArticleUpload extends ArticlesModel
     private $titleImageDesktop = null;
     private $titleImageMobile = null;
     private $items;
-    private $folder;
     public function __construct($items)
     {
         $this->items = $items;
-        $this->folder = $this->getUploadsFolders($items);
+        $this->getUploadsFolders($items);
         $this->setUploadPath();
     }
 
     private function setUploadPath()
     {
+        $folder = $this->uploadFodler;
         $object = $this->items['results'][0];
-        if ($this->folder) {
-            $this->titleImageThumbnail = '/upload' . $this->folder . '/' . str_replace(" ", "_", $object->title). "_thumbnail.jpg?".strtotime("now");
-            $this->titleImageDesktop = '/upload' . $this->folder . '/' . str_replace(" ", "_", $object->title). "_image_desktop.jpg?".strtotime("now");
-            $this->titleImageMobile = '/upload' . $this->folder . '/' . str_replace(" ", "_", $object->title). "_image_mobile.jpg?".strtotime("now");
+        if ($folder) {
+            $this->titleImageThumbnail = '/upload' . $folder . '/' . str_replace(" ", "_", $object->title). "_thumbnail.jpg?".strtotime("now");
+            $this->titleImageDesktop = '/upload' . $folder . '/' . str_replace(" ", "_", $object->title). "_image_desktop.jpg?".strtotime("now");
+            $this->titleImageMobile = '/upload' . $folder . '/' . str_replace(" ", "_", $object->title). "_image_mobile.jpg?".strtotime("now");
         }
     }
     
