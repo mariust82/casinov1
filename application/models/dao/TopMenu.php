@@ -164,8 +164,6 @@ class TopMenu
             $object = new MenuItem();
             $object->title = $title;
             $object->url = $entry_data['item_url'];
-            var_dump($title);
-            var_dump($selectedEntry);
             $object->is_active = ($title==$selectedEntry?true:false);
 
             if (!empty($entry_data["sub_items"])) {
@@ -174,6 +172,8 @@ class TopMenu
                     $si = new MenuItem();
                     $si->title = $subItemTitle;
                     $si->url = $subItemUrl;
+                    var_dump(""/".$specific_page");
+                    var_dump($subItemUrl);
                     $si->is_active = ("/".$specific_page==$subItemUrl?true:false);
                     $object->submenuItems[] = $si;
                 }
