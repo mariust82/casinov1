@@ -79,6 +79,7 @@ class CasinosList
         while ($row = $resultSet->toRow()) {
             $bonus = new CasinoBonus();
             $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
+            $bonus->amount = $this->checkForAbbr($bonus->amount);
             $bonus->min_deposit = $row["minimum_deposit"];
             if ($row["wagering"] == '') {
                 $row["wagering"] = 0;
@@ -182,4 +183,21 @@ class CasinosList
     {
         return $this->filter;
     }
+
+    private function checkForAbbr($amount) {
+        if (strpos($amount, 'FS') !== false) {
+            return str_replace("FS",'<abbr title="Free Spins"> FS',$amount);
+        }
+        if (strpos($amount, 'NDB') !== false) {
+            return str_replace("NDB",'<abbr title="No Deposit Bonus"> NDB',$amount);
+        }
+        if (strpos($amount, 'CB') !== false) {
+            return str_replace("CB",'<abbr title="Cashback "> CB',$amount);
+         }
+        if (strpos($amount, 'FDB') !== false) {
+            return str_replace("FDB",'<abbr title="First Deposit Bonus"> FDB',$amount);
+        }
+        return $amount;
+    }
+
 }
