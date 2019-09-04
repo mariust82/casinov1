@@ -28,7 +28,7 @@ class CasinosList
         $query = $queryGenerator->getQuery();
 
         // execute query
-        $resultSet = SQL($query);
+        $resultSet = SQL($query)->toList();
         var_dump($resultSet);
         while ($row = $resultSet->toRow()) {
             $object = new Casino();
