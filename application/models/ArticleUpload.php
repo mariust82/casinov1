@@ -16,8 +16,10 @@ class ArticleUpload extends ArticlesModel
     private $titleImageThumbnail = null;
     private $titleImageDesktop = null;
     private $titleImageMobile = null;
+    private $items;
     public function __construct($items)
     {
+        $this->items = $items;
         $this->getUploadsFolders($items);
         $this->setUploadPath();
     }
