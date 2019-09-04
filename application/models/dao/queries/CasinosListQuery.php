@@ -130,6 +130,8 @@ class CasinosListQuery
                     $query->joinInner("game_manufacturers","t11")->on(["t10.game_manufacturer_id"=>"t11.id"]);
                     $query->joinInner("games","t12")->on(["t11.id"=>"t12.game_manufacturer_id"]);
                     $query->joinInner("games__features","t13")->on(["t13.game_id"=>"t12.id"])->set("t13.feature_id", 13);
+                    $query->joinInner("casinos__game_types", "t14")->on(["t14.casino_id" => "t1.id"]);
+                    $query->joinInner("game_types", "t15")->on(["t15.id" => "t14.game_type_id"]);
                 }
             }
         }
