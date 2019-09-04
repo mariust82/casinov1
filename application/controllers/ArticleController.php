@@ -32,7 +32,8 @@ class ArticleController extends BaseController
         $this->response->attributes("article", $article);
         $this->response->attributes("tms_article", $tmsArticle);
         $this->response->attributes("related", $related_articles['results']);
-        $this->response->attributes("uploadsFolders", $upload->getUploadsFolders($related_articles));
+        $this->response->attributes("uploadsFolders", $upload->getUploadsFolders($results));
+        $this->response->attributes("relateduploadsFolders", $upload->getUploadsFolders($related_articles));
         $this->response->attributes('title_image_thumbnail', $upload->getTitleImageThumbnail());
         $this->response->attributes('title_image_desktop', $upload->getTitleImageDesktop());
         $this->response->attributes('title_image_mobile', $upload->getTitleImageMobile());
