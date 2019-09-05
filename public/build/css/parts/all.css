@@ -3789,7 +3789,6 @@ a:focus {
   max-width: 770px;
 }
 
-
 /* .js-condense span p:last-child{display:inline;} */
 
 .subtitle a {
@@ -4218,7 +4217,6 @@ a:focus {
     width: 22px;
     height: 15px;
     line-height: 15px;
-    border-radius: 2px;
   }
 }
 
@@ -4247,9 +4245,6 @@ a:focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .list-item .list-rating.terrible .list-rating-score {
-    background: #DB2424;
-  }
   .list-rating.no-score .list-rating-wrap .list-rating-text {
     background: #cecece;
   }
@@ -7992,7 +7987,6 @@ a:focus {
   }
 }
 
-
 /*.player .play-demo {
   border: none;
 }*/
@@ -9157,67 +9151,6 @@ img.grayscale {
   position: absolute;
   left: -9999px;
 }
-
-
-/*
-[type="radio"]:not(:checked) + label,
-[type="radio"]:checked + label {
-  position: relative;
-  padding-left: 1.95em;
-  cursor: pointer;
-  line-height: 19px;
-  display: block;
-}
-
-[type="radio"]:not(:checked) + label:before,
-[type="radio"]:checked + label:before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0;
-  width: 15px; 
-  height: 15px;
-  background: #fff;
-  border-radius: 5px;
-  border:2px solid #dee1e9;
-  border-radius:50%;
-}
-[type="radio"]:not(:checked) + label:after,
-[type="radio"]:checked + label:after {
-  content: '•';
-  position: absolute;
-  top: 50%;
-  left: 4px;
-  margin: -2px 0 0 0;
-  font-size: 35px;
-  line-height: 0.2;
-  color: #2c7ac7;
-  transition: all .2s;
-}
-
-[type="radio"]:not(:checked) + label:after {
-  opacity: 0;
-  transform: scale(0);
-}
-[type="radio"]:checked + label:after {
-  opacity: 1;
-  transform: scale(1);
-}
-[type="radio"]:disabled:not(:checked) + label:before,
-[type="radio"]:disabled:checked + label:before {
-  box-shadow: none;
-  border-color: #bbb;
-  background-color: #ddd;
-}
-[type="radio"]:disabled:checked + label:after {
-  color: #999;
-}
-[type="radio"]:disabled + label {
-  color: #aaa;
-}
-[type="radio"]:checked:focus + label:before,
-[type="radio"]:not(:checked):focus + label:before {
-  border: 2px solid #0d7ac7;
-}*/
 
 .subtitle ol,
 .subtitle ul {
