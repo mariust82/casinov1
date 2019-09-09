@@ -54,7 +54,7 @@ class CasinosList
         if (empty($output)) {
             return array();
         }
-        var_dump($output);
+
         // append softwares
         $query = "
         SELECT t1.casino_id, t2.name 
@@ -68,7 +68,6 @@ class CasinosList
         foreach ($list as $row) {
             $output[$row["casino_id"]]->softwares[] = $row["name"];
         }
-        var_dump($output);
         // append bonuses
         $query = "
         SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.minimum_deposit, t1.games, t2.name , t1.bonus_type_id
@@ -97,12 +96,13 @@ class CasinosList
                 //  $output[$row["casino_id"]]->bonus_first_deposit =  $this->getAbbreviation($output[$row["casino_id"]]->bonus_first_deposit->type);
             }
         }
-        var_dump($output);
+
         foreach ($output as $arg) {
             if (sizeof($arg->softwares)>1) {
                 $arg->all_softwares = $this->get_string($arg->softwares);
             }
         }
+
         return array_values($output);
     }
 
