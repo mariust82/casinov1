@@ -29,7 +29,7 @@ class CasinosList
 
         // execute query
         $resultSet = SQL($query);
-
+        var_dump($resultSet->toList());
         while ($row = $resultSet->toRow()) {
             $object = new Casino();
             $object->id = $row["id"];
