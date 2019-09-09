@@ -50,10 +50,6 @@ class CasinosList
             }
             $output[$row["id"]] = $object;
         }
-        var_dump($output);
-        if (empty($output)) {
-            return array();
-        }
 
         // append softwares
         $query = "
