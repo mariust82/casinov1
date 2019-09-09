@@ -50,7 +50,8 @@ class CasinosList
             }
             $output[$row["id"]] = $object;
         }
-
+        var_dump($output);
+        die();
         // append softwares
         $query = "
         SELECT t1.casino_id, t2.name 
