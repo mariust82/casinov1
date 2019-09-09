@@ -28,8 +28,9 @@ class CasinosList
         $query = $queryGenerator->getQuery();
 
         // execute query
-        $res = SQL($query);
-        while ($row = $res->toRow()) {
+        $resultSet = SQL($query);
+        while ($row = $resultSet->toRow()) {
+            echo 'shay';
             $object = new Casino();
             $object->id = $row["id"];
             $object->name = $row["name"];
@@ -53,7 +54,7 @@ class CasinosList
         if (empty($output)) {
             return array();
         }
-        var_dump($output);
+
         // append softwares
         $query = "
         SELECT t1.casino_id, t2.name 
