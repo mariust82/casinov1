@@ -125,10 +125,11 @@ class CasinosListQuery
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name" => "'" . $filter->getPlayVersion() . "'"]);
                 $query->joinInner("casinos__play_versions", "t9")->on(["t1.id" => "t9.casino_id" , "t9.play_version_id" => "(" . $sub_query->toString()  . ")" ]);
-//                if ($filter->getPlayVersion() == "Live Dealer") {
-//                    $query->joinInner("casinos__game_types", "t14")->on(["t14.casino_id" => "t1.id"])->set("t14.is_live", 1);
-//                    $query->joinInner("game_types", "t15")->on(["t15.id" => "t14.game_type_id"]);
-//                }
+                if ($filter->getPlayVersion() == "Live Dealer") {
+                    $query->joinInner("casinos__game_types", "t14")->on(["t14.casino_id" => "t1.id"])->set("t14.is_live", 1);
+                    $query->joinInner("game_types", "t15")->on(["t15.id" => "t14.game_type_id"]);
+                    $query->groupBy(['t1.id']);
+                }
             }
         }
         if ($filter->getSoftware()) {
