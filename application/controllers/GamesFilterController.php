@@ -24,7 +24,7 @@ class GamesFilterController extends Lucinda\MVC\STDOUT\Controller
             $validationResults->get("software"),
             $this->request->attributes("is_mobile"),
             $validationResults->get("sort")?$validationResults->get("sort"):GameSortCriteria::NONE,
-            $this->request->getValidator()->parameters("page")+1
+            $this->request->getValidator()->parameters("page")
         );
         $results = $driver->getResults();
         $this->response->attributes("total_games", $results["total"]);
