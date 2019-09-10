@@ -102,7 +102,6 @@ class CasinosList
                 $arg->all_softwares = $this->get_string($arg->softwares);
             }
         }
-        var_dump($output);
         return array_values($output);
     }
 
