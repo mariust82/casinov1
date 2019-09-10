@@ -172,9 +172,10 @@ class TopMenu
                     $si = new MenuItem();
                     $si->title = $subItemTitle;
                     $si->url = $subItemUrl;
-                    var_dump($specific_page);
-                    var_dump($subItemUrl);
                     $si->is_active = ("/".$specific_page==$subItemUrl?true:false);
+                    if ($specific_page == "blog") {
+                        var_dump($subItemUrl);
+                    }
                     $object->submenuItems[] = $si;
                 }
             }
