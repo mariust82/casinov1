@@ -109,8 +109,7 @@ class TopMenu
                 'Guides' => '/blog/guides',
                 'All Blog Articles' => '/blog',
             ],
-        ],
-
+        ]
     ];
     private $pages = array();
 
