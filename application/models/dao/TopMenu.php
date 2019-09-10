@@ -234,6 +234,10 @@ class TopMenu
             case "play/(name)":
                 return "GAMES";
                 break;
+            case "blog":
+            case "blog/(category)":
+                return "BLOG";
+                break;
             default:
                 return "";
                 break;
