@@ -166,6 +166,7 @@ class TopMenu
             $object->title = $title;
             $object->url = $entry_data['item_url'];
             echo $title;
+            echo '--';
             echo $selectedEntry;
             $object->is_active = ($title==$selectedEntry?true:false);
 
