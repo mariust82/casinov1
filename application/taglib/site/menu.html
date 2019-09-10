@@ -1,11 +1,10 @@
 <:foreach var="$[items]" val="result">
 
 	<:if test="!${result.have_submenu}">
-        <:if test="${result.title == 'All Blog Articles'">
         <div class="shay"></div>
-        </:if>
 		<li><a  class=" header-menu__item ${(${result.is_active}?' active ':'')} ${(${result.have_submenu}?' expand-holder ':'')}" href="${result.url}">${result.title}</a></li>
 	<:else>
+        <div class="dadon"></div>
 		<li class="expand-holder "><span class="header-menu__item ${(${result.is_active}?' active ':'')}">${result.title}<i class="icon-chevron-down"></i></span>
 			<:if test="!empty(${result.submenuItems})">
 				<ul class="expand-menu">
