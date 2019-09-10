@@ -55,6 +55,9 @@ class CasinosMenu
                 $object->title = $title;
                 $object->url = $url;
                 $object->is_active = ($url==$selectedEntry?true:false);
+                if ($title == "BLOG") {
+                    var_dump($object);
+                }
                 $this->pages[] = $object;
             }
         } else {
