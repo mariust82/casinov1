@@ -235,6 +235,7 @@ class TopMenu
                 break;
             case "blog":
             case "blog/(category)":
+            case "(category)/(name)":
                 return "BLOG";
                 break;
             default:
