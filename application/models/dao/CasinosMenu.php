@@ -82,7 +82,6 @@ class CasinosMenu
                 $this->pages[] = $object;
             }
         }
-        var_dump($this->pages);
     }
 
     private function getSelectedEntry($country, $currentPage, $entity="")
