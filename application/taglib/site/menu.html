@@ -4,7 +4,7 @@
         <div class="shay"></div>
 		<li><a  class=" header-menu__item ${(${result.is_active}?' active ':'')} ${(${result.have_submenu}?' expand-holder ':'')}" href="${result.url}">${result.title}</a></li>
 	<:else>
-        <div class="dadon">${result.is_active}</div>
+        <div class="dadon">${print_r(${result.is_active})}</div>
 		<li class="expand-holder "><span class="header-menu__item ${(${result.is_active}?' active ':'')}">${result.title}<i class="icon-chevron-down"></i></span>
 			<:if test="!empty(${result.submenuItems})">
 				<ul class="expand-menu">
