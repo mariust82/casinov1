@@ -173,7 +173,7 @@ class TopMenu
                     $si->title = $subItemTitle;
                     $si->url = $subItemUrl;
                     $si->is_active = ("/".$specific_page==$subItemUrl?true:false);
-                    if ($subItemUrl == "blog") {
+                    if ($subItemUrl == "/blog") {
                         var_dump($subItemUrl);
                         var_dump($si->is_active);
                         var_dump($si);
