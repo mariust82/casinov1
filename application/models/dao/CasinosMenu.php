@@ -55,12 +55,6 @@ class CasinosMenu
                 $object->title = $title;
                 $object->url = $url;
                 $object->is_active = ($url==$selectedEntry?true:false);
-                var_dump($title);
-                var_dump($url);
-                var_dump($selectedEntry);
-                if ($title == "BLOG") {
-                    var_dump($object);
-                }
                 $this->pages[] = $object;
             }
         } else {
@@ -88,6 +82,7 @@ class CasinosMenu
                 $this->pages[] = $object;
             }
         }
+        var_dump($this->pages);
     }
 
     private function getSelectedEntry($country, $currentPage, $entity="")
