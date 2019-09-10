@@ -12,6 +12,7 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes("country", $country);
         $menu = new TopMenu($this->request->getValidator()->getPage(), $specificPage, $country);
         $this->response->attributes("menu_top", $menu->getEntries());
+        var_dump($this->response->attributes("menu_top"));
         $this->service();
 
         $this->pageInfo();
