@@ -114,9 +114,13 @@ class CasinosList
     public function getTotal()
     {
         // build query
-        $queryGenerator = new CasinosListQuery($this->filter, array("COUNT(t1.id) AS nr"), null, 0, '', false);
+         if ($this->filter->getPlayVersion() == "Live Dealer") {
+            $fields = "COUNT(DISTINCT t1.id) AS nr"; 
+         } else {
+            $fields = "COUNT(t1.id) AS nr";
+         }
+        $queryGenerator = new CasinosListQuery($this->filter, array($fields), null, 0, '', false);
         $query = $queryGenerator->getQuery();
-        echo $query;
         return SQL($query)->toValue();
     }
 
