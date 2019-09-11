@@ -119,7 +119,7 @@ class Articles
     
     private function getArticleTypeId($type)
     {
-        return SQL("SELECT id FROM article__types WHERE is_draft = 0 AND  `value` = :id", [':id'=>$type])->toValue();
+        return SQL("SELECT id FROM article__types WHERE `value` = :id", [':id'=>$type])->toValue();
     }
 
     public function getItemFromId($id = 0)
