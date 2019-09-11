@@ -36,9 +36,17 @@ class SingleArticle extends ArticlesModel
         $folder =  $this->getUploadsFolder($object, 'live');
         
         if ($folder) {
-            $this->titleImageThumbnail = '/upload' . $folder . '/' . str_replace(" ", "_", $object->title). "_thumbnail.jpg?".strtotime("now");
-            $this->titleImageDesktop = '/upload' . $folder . '/' . str_replace(" ", "_", $object->title). "_image_desktop.jpg?".strtotime("now");
-            $this->titleImageMobile = '/upload' . $folder . '/' . str_replace(" ", "_", $object->title). "_image_mobile.jpg?".strtotime("now");
+            
+            $exp_thumbnail = explode('/', $object->thumbnail);
+            $exp_titleImageDesktop = explode('/', $object->thumbnail);
+            $exp_titleImageMobile = explode('/', $object->thumbnail);
+            $thumbnail = end($exp_thumbnail);
+            $titleImageDesktop = end($exp_titleImageDesktop);
+            $titleImageMobile = end($exp_titleImageMobile);
+            
+            $this->titleImageThumbnail = '/upload' . $folder . '/' . str_replace(" ", "_", $thumbnail). "?".strtotime("now");
+            $this->titleImageDesktop = '/upload' . $folder . '/' . str_replace(" ", "_", $titleImageDesktop). "?".strtotime("now");
+            $this->titleImageMobile = '/upload' . $folder . '/' . str_replace(" ", "_", $titleImageMobile). "?".strtotime("now");
         }
     }
     
