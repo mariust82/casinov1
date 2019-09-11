@@ -87,8 +87,6 @@ class ArticleRatingPost extends UserPost
                 $query_vars[':id'] = $rating_exists;
             }
             try {
-                echo $query;
-                var_dump($query_vars);
                 $item = SQL($query, $query_vars);
                 $item_id = !!$rating_exists ? $rating_exists : $item->getInsertId();
                 Articles::updateLikes();
