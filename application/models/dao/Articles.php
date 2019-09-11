@@ -36,9 +36,9 @@ class Articles
             $blogPost->name = $row['title'];
             $blogPost->readingTime = $row['min_read'];
             $blogPost->content = $row['tms_value'];
-            $blogPost->titleImageDesktop = "";
-            $blogPost->titleImageMobile = "";
-            $blogPost->thumbnail = "";
+            $blogPost->titleImageDesktop = $row['titleImageDesktop'];
+            $blogPost->titleImageMobile = $row['titleImageMobile'];
+            $blogPost->thumbnail = $row['thumbnail'];
             $blogPost->postDate = $row['date_added'];
             $blogPost->routeId = $row['route_id'];
             $blogPosts[] = $blogPost;
@@ -105,6 +105,9 @@ class Articles
             $article->title = $row['title'];
             $article->date_added = $row['date_added'];
             $article->min_read = $row['min_read'];
+            $article->titleImageDesktop = $row['titleImageDesktop'];
+            $article->titleImageMobile = $row['titleImageMobile'];
+            $article->thumbnail = $row['thumbnail'];
             $article->description = $row['value'];
             $article->rating = $rating;
             $results[] = $article;

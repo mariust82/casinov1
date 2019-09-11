@@ -9,4 +9,7 @@ class Article extends Entity
     public $date_added;
     public $min_read;
     public $rating;
+    public $titleImageDesktop;
+    public $titleImageMobile;
+    public $thumbnail;
 }
