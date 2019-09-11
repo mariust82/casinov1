@@ -45,7 +45,9 @@ class ArticlesModel {
         foreach ($items['results'] as $item) {
             $this->uploadFodler = $this->getUploadsFolder($item, 'live');
             $uploadsFolders[$item->id] = "/upload" . $this->uploadFodler;
-            $uploadsFolders[$item->id] .= "/" . end(explode('/', $item->thumbnail)) . "?" . strtotime("now");
+            $img = end(explode('/', $item->thumbnail));
+            var_dump($img);
+            $uploadsFolders[$item->id] .= "/" .  . "?" . strtotime("now");
         }
         return $uploadsFolders;
     }
