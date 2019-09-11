@@ -165,8 +165,6 @@ class UserPost
                 foreach ($settings['check'] as $check => $check_settings) {
                     if (method_exists($this, $function_name = 'check' . ucfirst($check))) {
                         if (!$this->$function_name($parameter, $check_settings)) {
-                            echo $function_name;
-                            die();
                             $can_post = false;
                         }
                     }

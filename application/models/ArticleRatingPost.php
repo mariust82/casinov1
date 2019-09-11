@@ -67,6 +67,8 @@ class ArticleRatingPost extends UserPost
     protected function post()
     {
         if ($this->canPost()) {
+            echo 'shay';
+            die();
             $rating_exists = SQL("SELECT `id` FROM `" . $this->db_table . "` WHERE ip=:ip AND article_id=:article_id", [':ip' => $this->filled_parameters['ip'], ':article_id' => $this->filled_parameters['id']])->toValue();
             if ($rating_exists) {
                 $query = "UPDATE`" . $this->db_table . "` SET ";
