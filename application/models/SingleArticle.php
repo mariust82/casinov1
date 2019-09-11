@@ -38,8 +38,8 @@ class SingleArticle extends ArticlesModel
         if ($folder) {
             
             $exp_thumbnail = explode('/', $object->thumbnail);
-            $exp_titleImageDesktop = explode('/', $object->thumbnail);
-            $exp_titleImageMobile = explode('/', $object->thumbnail);
+            $exp_titleImageDesktop = explode('/', $object->titleImageDesktop);
+            $exp_titleImageMobile = explode('/', $object->titleImageMobile);
             $thumbnail = end($exp_thumbnail);
             $titleImageDesktop = end($exp_titleImageDesktop);
             $titleImageMobile = end($exp_titleImageMobile);
