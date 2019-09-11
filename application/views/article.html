@@ -59,6 +59,7 @@
     </div>
 
     <!--Related articles-->
+    <:if test="count(${data.related}) > 0">
     <div class="container js-articles">
         <h2 class="title-name"><span>Related articles</span></h2>
         <div class="cards-list">
@@ -68,4 +69,5 @@
             <a href="/blog" class="btn-bordered load js-more-items">SEE ALL ARTICLES</a>
         </div>
     </div>
+    </:if>
     <site:bottom menu="${data.menu_top}"/>
