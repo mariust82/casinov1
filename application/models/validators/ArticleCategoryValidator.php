@@ -15,6 +15,7 @@ class ArticleCategoryValidator
 {
     public function validate($value)
     {
+        var_dump($value);
         $arr = ['news','guides','blog'];
         return in_array($value, $arr) ? $value : null;
     }
