@@ -25,7 +25,7 @@ class Articles
             "
             SELECT a.*
             FROM articles a 
-            WHERE is_draft = 0 AND a.title LIKE :title;",
+            WHERE is_draft = 0 AND deleted = 0 AND a.title LIKE :title;",
             array(':title' => "%$route%")
         );
 
@@ -52,7 +52,7 @@ class Articles
         $name = preg_replace('/[^\da-z]/i', ' ', urldecode($name)); //allow only alphanumeric, case insensitive and -
         $results = SQL("
         SELECT articles.* FROM articles
-        WHERE is_draft = 0 AND articles.`title`=:name LIMIT 1
+        WHERE is_draft = 0 AND deleted = 0 AND articles.`title`=:name LIMIT 1
         ", [':name' => $name]);
         $results = ResultSetWrapper::from($results)->toList(new Article(), ['rating' => new Rating()]);
         if (!$results) {
@@ -71,6 +71,7 @@ class Articles
         $select->joinInner("article__types","at")->on(["a.type_id"=>"at.id"]);
         
         $where =  $select->where();
+        $where->set("a.deleted", 0);
         $where->set("a.is_draft", 0);
         if (!empty($filters['id_not_in'])) {
             $where->setIn("a.id", ":id1", FALSE);
