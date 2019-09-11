@@ -166,6 +166,7 @@ class UserPost
                     if (method_exists($this, $function_name = 'check' . ucfirst($check))) {
                         if (!$this->$function_name($parameter, $check_settings)) {
                             echo $function_name;
+                            die();
                             $can_post = false;
                         }
                     }
