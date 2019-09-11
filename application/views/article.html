@@ -33,7 +33,8 @@
             <:if test="!empty(${data.tms_article.content})">
               ${h2_to_tile( ${data.tms_article.content})}
                 </:if>
-            <div class="vote-block">
+        </div>
+                    <div class="vote-block">
                 <h3 class="vote-block-title">Did you like this article?</h3>
                 <div class="vote-block-holder js-vote">
                     <a href="#" class="vote-button vote-block-item like" data-type="article" data-success="1"
@@ -55,7 +56,6 @@
                     You already voted.
                 </div>
             </div> 
-        </div>
     </div>
 
     <!--Related articles-->
