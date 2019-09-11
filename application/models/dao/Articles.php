@@ -23,9 +23,8 @@ class Articles
 
         $results = SQL(
             "
-            SELECT a.*, tcnt.value as `tms_value`
-            FROM articles a LEFT JOIN {$this->parentSchema}.tms__content tcnt
-            ON a.route_id=tcnt.route_id
+            SELECT a.*
+            FROM articles a 
             WHERE a.title LIKE :title;",
             array(':title' => "%$route%")
         );
@@ -35,7 +34,7 @@ class Articles
             $blogPost->id = $row['id'];
             $blogPost->name = $row['title'];
             $blogPost->readingTime = $row['min_read'];
-            $blogPost->content = $row['tms_value'];
+            $blogPost->content = $row['content'];
             $blogPost->titleImageDesktop = $row['titleImageDesktop'];
             $blogPost->titleImageMobile = $row['titleImageMobile'];
             $blogPost->thumbnail = $row['thumbnail'];
@@ -68,9 +67,9 @@ class Articles
         //DB('SET NAMES UTF8');
         $query_vars = [];
         $select = new Lucinda\Query\Select("articles","a");
-        $select->fields()->add("SQL_CALC_FOUND_ROWS a.*")->add("a.likes","`rating.likes`")->add("a.dislikes","`rating.dislikes`")->add("tcnt.value")->add("at.value","type");
+        $select->fields()->add("SQL_CALC_FOUND_ROWS a.*")->add("a.likes","`rating.likes`")->add("a.dislikes","`rating.dislikes`")->add("a.content")->add("at.value","type");
         $select->joinInner("article__types","at")->on(["a.type_id"=>"at.id"]);
-        $select->joinLeft("{$this->parentSchema}.tms__content","tcnt")->on(["a.route_id"=>"tcnt.route_id"]);
+        
         $where =  $select->where();
         if (!empty($filters['id_not_in'])) {
             $where->setIn("a.id", ":id1", FALSE);
@@ -108,7 +107,7 @@ class Articles
             $article->titleImageDesktop = $row['titleImageDesktop'];
             $article->titleImageMobile = $row['titleImageMobile'];
             $article->thumbnail = $row['thumbnail'];
-            $article->description = $row['value'];
+            $article->description = $row['content'];
             $article->rating = $rating;
             $results[] = $article;
         }
