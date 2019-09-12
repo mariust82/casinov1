@@ -1,6 +1,8 @@
 .player-holder {
     font-size:0;
     text-align: center;
+    position: relative;
+    padding-bottom: 75%;
 }
 
 .player-holder.fullscreen{
