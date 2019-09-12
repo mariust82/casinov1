@@ -25,37 +25,6 @@ class ArticleRatingPost extends UserPost
         ],
         'is_like' => 1
     ];
-
-    final protected function checkIpCanBeUsedForArticle($parameter, $settings = [])
-    {
-        $value = $this->getParamValue($parameter);
-        $query = "SELECT COUNT(*) FROM `" . $this->db_table . "` WHERE `ip`=:ip AND article_id=:article_id";
-        $query_vars = [":ip" => $value, ":article_id" => $this->filled_parameters['id']];
-        if (!empty($settings['time_limit']) && !!$settings['time_limit']) {
-            $time_limit = $settings['time_limit'];
-            $query .= " AND `date`>=:date ";
-            $query_vars[":date"] = strtotime("now -$time_limit seconds");
-        }
-        $found = SQL($query, $query_vars)->toValue();
-        if (!empty($settings['max']) && !!$settings['max']) {
-            $allowed = $found < $settings['max'];
-        } else {
-            $allowed = !$found;
-        }
-        if (!$allowed) {
-            $this->setError($this->getDefaultErrorMsg($settings, "IP not allowed to post in this section!"));
-        }
-        return $allowed;
-    }
-
-    final protected function checkArticleExists($parameter, $settings)
-    {
-        $exists = !!(SQL("SELECT id FROM `" . Articles::DB_TABLE . "` WHERE id=:id", [":id" => $this->getParamValue($parameter)])->toValue());
-        if (!$exists) {
-            $this->setError($this->getDefaultErrorMsg($settings, "Article does not exists!"));
-        }
-        return $exists;
-    }
     
     public function checkIfPost()
     {
@@ -67,27 +36,10 @@ class ArticleRatingPost extends UserPost
     protected function post()
     {
         if ($this->canPost()) {
-            $rating_exists = SQL("SELECT `id` FROM `" . $this->db_table . "` WHERE ip=:ip AND article_id=:article_id", [':ip' => $this->filled_parameters['ip'], ':article_id' => $this->filled_parameters['id']])->toValue();
-            if ($rating_exists) {
-                $query = "UPDATE`" . $this->db_table . "` SET ";
-            } else {
-                $query = "INSERT INTO `" . $this->db_table . "` SET ";
-            }
-            $query_vars = [];
-            foreach ($this->filled_parameters as $parameter => $value) {
-                if ($parameter == 'id') {
-                    $parameter = 'article_id';
-                }
-                $query .= "`" . $parameter . "`=:value_of_$parameter, ";
-                $query_vars[":value_of_$parameter"] = $value;
-            }
-            $query = substr($query, 0, strlen($query) - 2);
-            if (!empty($rating_exists)) {
-                $query .= " WHERE `id`=:id ";
-                $query_vars[':id'] = $rating_exists;
-            }
             try {
-                $item = SQL($query, $query_vars);
+                $dao = new ArticleRatingPostDao($this->db_table, $this->filled_parameters);
+                $rating_exists = $dao->checkIfexistquery();
+                $item = $dao->getPostQuery($rating_exists);
                 $item_id = !!$rating_exists ? $rating_exists : $item->getInsertId();
                 Articles::updateLikes();
                 return $item_id;
