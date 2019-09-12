@@ -1,6 +1,7 @@
 <?php
 require_once "UserPost.php";
 require_once "application/models/dao/Articles.php";
+require_once "application/models/dao/ArticleRatingPostDao.php";
 
 class ArticleRatingPost extends UserPost
 {
