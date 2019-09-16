@@ -22,7 +22,7 @@
 						<link rel="stylesheet" type="text/css" href="/public/build/css/parts/gameplay.css?ver=${data.version}" media="all">
 					</:if>
 					<div class="player-holder">
-						<iframe id="gameplay_iframe" src="${data.game_player.url}?game=${data.game.name}" width="${data.game_player.width}" height="${data.game_player.height}"></iframe>
+						<iframe id="gameplay_iframe" src="${data.game_player.url}?game=${strtolower(str_replace(' ', '-', ${data.game.name}))}" width="${data.game_player.width}" height="${data.game_player.height}"></iframe>
 					</div>
 					<div class="player-controls">
 						<span class="player-controls-btn" id="play-replay" >
