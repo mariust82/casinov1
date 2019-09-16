@@ -9159,7 +9159,7 @@ img.grayscale {
 .subtitle ol,
 .subtitle ul {
   list-style: decimal;
-  padding: 0 0 0 17px;
+  padding: 0 0 0 16px;
   margin: 10px 0;
   line-height: 26px;
 }
