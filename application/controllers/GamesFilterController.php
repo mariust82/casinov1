@@ -18,7 +18,6 @@ class GamesFilterController extends Lucinda\MVC\STDOUT\Controller
     public function run()
     {
         $validationResults = $this->request->attributes("validation_results");
-
         $driver = new \CasinosLists\GamesByType(
             $validationResults->get("game_type"),
             $validationResults->get("software"),

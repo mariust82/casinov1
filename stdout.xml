@@ -114,7 +114,7 @@
     <route url="games-filter/(page)" controller="GamesFilterController" view="games-list">
       <parameter name="sort" required="0" validator="IntegerValidator"/>
       <parameter name="game_type" required="0" validator="GameTypeValidator"/>
-      <parameter name="software" required="0" validator="SoftwareNameValidator"/>
+      <parameter name="software" required="0" validator="SoftwareListValidator"/>
     </route>
     <route url="games-filter" controller="GamesFilterController" view="games-list"/>
     <route url="search" controller="SearchController" format="json">
