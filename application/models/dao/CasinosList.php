@@ -104,11 +104,13 @@ class CasinosList
         return array_values($output);
     }
 
-    public function formatDate($date)
+    private function formatDate($date)
     {
-        $date_arr = explode('-', $date);
-        $month_name = date('M', strtotime($date));
-        return $month_name.'. '.$date_arr[2].', '.$date_arr[0];
+        if ($date != NULL) {
+            $date_arr = explode('-', $date);
+            $month_name = date('M', strtotime($date));
+            return $month_name.'. '.$date_arr[2].', '.$date_arr[0];
+        } return "None";
     }
 
     public function getTotal()
