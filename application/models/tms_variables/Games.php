@@ -42,7 +42,7 @@ class Games extends \TMS\VariablesHolder
 //       ) {
 //            return '';
 //        }
-        var_dump($this->parameters["request"]->attributes("validation_results")->get('game_type'));
+        var_dump($this->parameters["request"]->attributes("validation_results")->get('type'));
         die();
         $gamesTms = new GamesTms();
         $result = $gamesTms->getData(GameSortCriteria::NEWEST, 1, 1);
