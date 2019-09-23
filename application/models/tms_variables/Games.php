@@ -32,10 +32,7 @@ class Games extends \TMS\VariablesHolder
 
     public function getNewestGameInCurrentList()
     {
-        $selected_entity =  $this->parameters["response"]->attributes("selected_entity");
-        $validationResults = $this->parameters["request"]->attributes("validation_results");
-        
-        $is_mobile = $this->parameters["request"]->attributes("is_mobile");
+//        $selected_entity =  $this->parameters["response"]->attributes("selected_entity");
 //        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
 
 //        if (
@@ -45,7 +42,8 @@ class Games extends \TMS\VariablesHolder
 //       ) {
 //            return '';
 //        }
-
+        var_dump($this->parameters["request"]->attributes("validation_results"));
+        die();
         $gamesTms = new GamesTms();
         $result = $gamesTms->getData(GameSortCriteria::NEWEST, 1, 1);
         $name = !empty($result[key($result)]->name) ? $result[key($result)]->name : '';
