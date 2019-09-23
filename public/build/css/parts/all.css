@@ -6099,7 +6099,7 @@ a:focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .btn-holder {
+  .mobile.btn-holder {
     margin: 20px 0 0 0;
   }
 }
