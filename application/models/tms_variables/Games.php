@@ -33,17 +33,17 @@ class Games extends \TMS\VariablesHolder
     public function getNewestGameInCurrentList()
     {
         $selected_entity =  $this->parameters["response"]->attributes("selected_entity");
-        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
+//        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
 
-        if (
-           empty($selected_entity)||
-           empty($filterPage) ||
-           !$filterPage instanceof GameFilter
-       ) {
-            return '';
-        }
+//        if (
+//           empty($selected_entity)||
+//           empty($filterPage) ||
+//           !$filterPage instanceof GameFilter
+//       ) {
+//            return '';
+//        }
 
-        $gamesTms = new GamesTms($filterPage);
+        $gamesTms = new GamesTms();
         $result = $gamesTms->getData(GameSortCriteria::NEWEST, 1, 1);
         $name = !empty($result[key($result)]->name) ? $result[key($result)]->name : '';
 
