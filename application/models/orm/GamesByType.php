@@ -13,12 +13,12 @@ class GamesByType
     const LIMIT = 24;
     private $results = ["total"=>0, "list"=>[]];
 
-    public function __construct($gameType, $gameManufacturers=[], $isMobile, $sortBy, $page)
+    public function __construct($gameType, $gameManufacturers=[], $isMobile, $sortBy, $page,$limit=  self::LIMIT)
     {
         $fields = $this->getFields();
         $condition = $this->getCondition($gameType, $gameManufacturers, $isMobile);
         $orderBy = $this->getOrderBy($sortBy);
-        $this->setResults($fields, $condition, $orderBy, $page);
+        $this->setResults($fields, $condition, $orderBy, $page,$limit);
     }
 
     private function getFields()
@@ -81,7 +81,7 @@ class GamesByType
         return $orderBy;
     }
 
-    private function setResults(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $orderBy, $page)
+    private function setResults(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $orderBy, $page,$limit=self::LIMIT)
     {
         $glt = new \Hlis\GameListTotalDAO(new \Hlis\GameListTotalQuery($condition));
         $this->results["total"] = $glt->getResults();
@@ -90,7 +90,7 @@ class GamesByType
         }
 
         $gld = new \Hlis\GameListDAO(
-            new \Hlis\GameListRangeQuery($fields, $condition, $orderBy, $page*self::LIMIT, self::LIMIT),
+            new \Hlis\GameListRangeQuery($fields, $condition, $orderBy, $page*$limit, $limit),
             new \CasinosLists\GameLineProcessor()
         );
         $this->results["list"] = $gld->getResults();
