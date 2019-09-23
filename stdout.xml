@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
 <xml>
-  <application version="0.8.8.8979" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
+  <application version="0.8.8.8981" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
     <paths>
       <controllers>application/controllers</controllers>
       <cacheables>application/models/cacheables</cacheables>
@@ -114,7 +114,7 @@
     <route url="games-filter/(page)" controller="GamesFilterController" view="games-list">
       <parameter name="sort" required="0" validator="IntegerValidator"/>
       <parameter name="game_type" required="0" validator="GameTypeValidator"/>
-      <parameter name="software" required="0" validator="SoftwareNameValidator"/>
+      <parameter name="software" required="0" validator="SoftwareListValidator"/>
     </route>
     <route url="games-filter" controller="GamesFilterController" view="games-list"/>
     <route url="search" controller="SearchController" format="json">
