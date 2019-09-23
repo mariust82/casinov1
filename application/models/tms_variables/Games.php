@@ -32,20 +32,9 @@ class Games extends \TMS\VariablesHolder
 
     public function getNewestGameInCurrentList()
     {
-//        $selected_entity =  $this->parameters["response"]->attributes("selected_entity");
-//        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
-
-//        if (
-//           empty($selected_entity)||
-//           empty($filterPage) ||
-//           !$filterPage instanceof GameFilter
-//       ) {
-//            return '';
-//        }
         $gamesTms = new GamesTms($this->parameters["request"]);
         $result = $gamesTms->getData(GameSortCriteria::NEWEST, 1, 1);
         $name = !empty($result['list'][0]->name) ? $result['list'][0]->name : '';
-
         return $name;
     }
 
@@ -62,21 +51,11 @@ class Games extends \TMS\VariablesHolder
 
     public function getMostPopularGameInCurrentList()
     {
-        $selected_entity =  $this->parameters["response"]->attributes("selected_entity");
-        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
-        if (
-            empty($selected_entity)||
-            empty($filterPage) ||
-            !$filterPage instanceof GameFilter
-        ) {
-            return '';
-        }
-
-        $gamesTms = new GamesTms($filterPage);
+        $gamesTms = new GamesTms($this->parameters["request"]);
         $result = $gamesTms->getData(GameSortCriteria::MOST_PLAYED, 1, 1);
-        $name = !empty($result[key($result)]->name) ? $result[key($result)]->name : '';
-
+        $name = !empty($result['list'][0]->name) ? $result['list'][0]->name : '';
         return $name;
+        
     }
 
     public function getSoftwareOfNewestGameInSite()
@@ -94,20 +73,9 @@ class Games extends \TMS\VariablesHolder
 
     public function getSoftwareOfNewestGameInCurrentList()
     {
-        $selected_entity =  $this->parameters["response"]->attributes("selected_entity");
-        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
-
-        if (
-            empty($selected_entity)||
-            empty($filterPage) ||
-            !$filterPage instanceof GameFilter
-        ) {
-            return '';
-        }
-
-        $gamesTms = new GamesTms($filterPage);
+        $gamesTms = new GamesTms($this->parameters["request"]);
         $result = $gamesTms->getData(GameSortCriteria::NEWEST, 1, 1);
-        $name = !empty($result[key($result)]->software) ? $result[key($result)]->software : '';
+        $name = !empty($result['list'][0]->manufacturer) ? $result['list'][0]->manufacturer : '';
         return $name;
     }
 
@@ -126,21 +94,9 @@ class Games extends \TMS\VariablesHolder
 
     public function getSoftwareOfTheMostPopularGameInCurentList()
     {
-        $selected_entity =  $this->parameters["response"]->attributes("selected_entity");
-        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
-
-        if (
-            empty($selected_entity)||
-            empty($filterPage) ||
-            !$filterPage instanceof GameFilter
-        ) {
-            return '';
-        }
-
-        $gamesTms = new GamesTms($filterPage);
+        $gamesTms = new GamesTms($this->parameters["request"]);
         $result = $gamesTms->getData(GameSortCriteria::MOST_PLAYED, 1, 1);
-        $name = !empty($result[key($result)]->software) ? $result[key($result)]->software : '';
-
+        $name = !empty($result['list'][0]->manufacturer) ? $result['list'][0]->manufacturer : '';
         return $name;
     }
 }
