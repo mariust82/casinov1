@@ -18,8 +18,6 @@ class GamesTms implements GamesTmsInterface
     public function getData($sortCriteria, $page=1, $limit =1)
     {   
             $validationResults = $this->request->attributes("validation_results");
-            var_dump($validationResults);
-            die();
             $driver = new \CasinosLists\GamesByType(
             $validationResults->get("game_type"),
             $validationResults->get("software"),
