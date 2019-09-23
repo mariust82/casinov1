@@ -44,8 +44,7 @@ class Games extends \TMS\VariablesHolder
 //        }
         $gamesTms = new GamesTms($this->parameters["request"]);
         $result = $gamesTms->getData(GameSortCriteria::NEWEST, 1, 1);
-        var_dump($result);
-        $name = !empty($result['list']->name) ? $result['list']->name : '';
+        $name = !empty($result['list'][0]->name) ? $result['list'][0]->name : '';
 
         return $name;
     }
