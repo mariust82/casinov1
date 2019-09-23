@@ -22,7 +22,7 @@ class GamesTms implements GamesTmsInterface
             [],
             $this->request->attributes("is_mobile"),
             $sortCriteria?$sortCriteria:GameSortCriteria::NONE,
-            $page+1,
+            $page,
             $limit
         );
         $result = $driver->getResults();
