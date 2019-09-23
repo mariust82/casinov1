@@ -34,9 +34,9 @@ class Games extends \TMS\VariablesHolder
     {
         $selected_entity =  $this->parameters["response"]->attributes("selected_entity");
         $validationResults = $this->parameters["request"]->attributes("validation_results");
+        
         $is_mobile = $this->parameters["request"]->attributes("is_mobile");
-        var_dump($validationResults);
-        var_dump($is_mobile);
+        var_dump($this->request->getValidator()->parameters());
         die();
 //        $filterPage = !empty($this->parameters["response"]->attributes("filter")) ? $this->parameters["response"]->attributes("filter") : null;
 
