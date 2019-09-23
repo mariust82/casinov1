@@ -88,9 +88,9 @@ class GamesByType
         if (!$this->results["total"]) {
             return;
         }
-
+        $offset = $limit == 1 ? 0 : $page*$limit;
         $gld = new \Hlis\GameListDAO(
-            new \Hlis\GameListRangeQuery($fields, $condition, $orderBy, $page*$limit, $limit),
+            new \Hlis\GameListRangeQuery($fields, $condition, $orderBy, $offset, $limit),
             new \CasinosLists\GameLineProcessor()
         );
         $this->results["list"] = $gld->getResults();
