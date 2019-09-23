@@ -9,19 +9,17 @@ require_once 'application/models/GameSortCriteria.php';
 class GamesTms implements GamesTmsInterface
 {
     private $filter;
-
-    public function __construct()
+    public function __construct($validationResults)
     {
-//        $this->filter = $filter;
+        $this->filter = $validationResults;
     }
 
     public function getData($sortCriteria, $page=1, $limit =1)
     {   
-            $validationResults = $this->request->attributes("validation_results");
             $driver = new \CasinosLists\GamesByType(
-            $validationResults->get("game_type"),
-            $validationResults->get("software"),
-            $this->request->attributes("is_mobile"),
+            $this->filter->attributes("validation_results")->get("type"),
+            [],
+            $this->filter->attributes("is_mobile"),
             $sortCriteria?$sortCriteria:GameSortCriteria::NONE,
             $page+1,
             $limit
