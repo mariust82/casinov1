@@ -109,7 +109,7 @@ class TopMenu
                 'Guides' => '/blog/guides',
                 'All Blog Articles' => '/blog',
             ],
-        ],
+        ]
 
     ];
     private $pages = array();
@@ -179,6 +179,7 @@ class TopMenu
             }
             $this->pages[] = $object;
         }
+//        var_dump($this->pages);
     }
 
     private function getSelectedEntry($currentPage, $specificPage = '')
@@ -231,6 +232,11 @@ class TopMenu
             case "games/(type)":
             case "play/(name)":
                 return "GAMES";
+                break;
+            case "blog":
+            case "blog/(category)":
+            case "(category)/(name)":
+                return "BLOG";
                 break;
             default:
                 return "";

@@ -23,10 +23,9 @@ class Articles
 
         $results = SQL(
             "
-            SELECT a.*, tcnt.value as `tms_value`
-            FROM articles a LEFT JOIN {$this->parentSchema}.tms__content tcnt
-            ON a.route_id=tcnt.route_id
-            WHERE a.title LIKE :title;",
+            SELECT a.*
+            FROM articles a 
+            WHERE is_draft = 0 AND deleted = 0 AND a.title LIKE :title;",
             array(':title' => "%$route%")
         );
 
@@ -35,16 +34,16 @@ class Articles
             $blogPost->id = $row['id'];
             $blogPost->name = $row['title'];
             $blogPost->readingTime = $row['min_read'];
-            $blogPost->content = $row['tms_value'];
-            $blogPost->titleImageDesktop = "";
-            $blogPost->titleImageMobile = "";
-            $blogPost->thumbnail = "";
+            $blogPost->content = $row['content'];
+            $blogPost->titleImageDesktop = $row['titleImageDesktop'];
+            $blogPost->titleImageMobile = $row['titleImageMobile'];
+            $blogPost->thumbnail = $row['thumbnail'];
             $blogPost->postDate = $row['date_added'];
             $blogPost->routeId = $row['route_id'];
             $blogPosts[] = $blogPost;
         }
 
-        return $blogPosts;
+        return array_shift($blogPosts);
     }
 
     public function getInfoByName($name = '')
@@ -53,7 +52,7 @@ class Articles
         $name = preg_replace('/[^\da-z]/i', ' ', urldecode($name)); //allow only alphanumeric, case insensitive and -
         $results = SQL("
         SELECT articles.* FROM articles
-        WHERE articles.`title`=:name LIMIT 1
+        WHERE is_draft = 0 AND deleted = 0 AND articles.`title`=:name LIMIT 1
         ", [':name' => $name]);
         $results = ResultSetWrapper::from($results)->toList(new Article(), ['rating' => new Rating()]);
         if (!$results) {
@@ -68,10 +67,12 @@ class Articles
         //DB('SET NAMES UTF8');
         $query_vars = [];
         $select = new Lucinda\Query\Select("articles","a");
-        $select->fields()->add("SQL_CALC_FOUND_ROWS a.*")->add("a.likes","`rating.likes`")->add("a.dislikes","`rating.dislikes`")->add("tcnt.value")->add("at.value","type");
+        $select->fields()->add("SQL_CALC_FOUND_ROWS a.*")->add("a.likes","`rating.likes`")->add("a.dislikes","`rating.dislikes`")->add("a.content")->add("at.value","type");
         $select->joinInner("article__types","at")->on(["a.type_id"=>"at.id"]);
-        $select->joinLeft("{$this->parentSchema}.tms__content","tcnt")->on(["a.route_id"=>"tcnt.route_id"]);
+        
         $where =  $select->where();
+        $where->set("a.deleted", 0);
+        $where->set("a.is_draft", 0);
         if (!empty($filters['id_not_in'])) {
             $where->setIn("a.id", ":id1", FALSE);
             $query_vars[':id1'] = $filters['id_not_in'][0];
@@ -105,7 +106,10 @@ class Articles
             $article->title = $row['title'];
             $article->date_added = $row['date_added'];
             $article->min_read = $row['min_read'];
-            $article->description = $row['value'];
+            $article->titleImageDesktop = $row['titleImageDesktop'];
+            $article->titleImageMobile = $row['titleImageMobile'];
+            $article->thumbnail = $row['thumbnail'];
+            $article->description = $row['content'];
             $article->rating = $rating;
             $results[] = $article;
         }

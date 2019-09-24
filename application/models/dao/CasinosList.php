@@ -26,7 +26,6 @@ class CasinosList
             $offset
         );
         $query = $queryGenerator->getQuery();
-
         // execute query
         $resultSet = SQL($query);
 
@@ -102,21 +101,27 @@ class CasinosList
                 $arg->all_softwares = $this->get_string($arg->softwares);
             }
         }
-
         return array_values($output);
     }
 
-    public function formatDate($date)
+    private function formatDate($date)
     {
-        $date_arr = explode('-', $date);
-        $month_name = date('M', strtotime($date));
-        return $month_name.'. '.$date_arr[2].', '.$date_arr[0];
+        if ($date != NULL) {
+            $date_arr = explode('-', $date);
+            $month_name = date('M', strtotime($date));
+            return $month_name.'. '.$date_arr[2].', '.$date_arr[0];
+        } return "None";
     }
 
     public function getTotal()
     {
         // build query
-        $queryGenerator = new CasinosListQuery($this->filter, array("COUNT(t1.id) AS nr"), null, 0, '', false);
+         if ($this->filter->getPlayVersion() == "Live Dealer") {
+            $fields = "COUNT(DISTINCT t1.id) AS nr"; 
+         } else {
+            $fields = "COUNT(t1.id) AS nr";
+         }
+        $queryGenerator = new CasinosListQuery($this->filter, array($fields), null, 0, '', false);
         $query = $queryGenerator->getQuery();
         return SQL($query)->toValue();
     }

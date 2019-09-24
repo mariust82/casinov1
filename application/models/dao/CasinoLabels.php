@@ -28,8 +28,6 @@ class CasinoLabels implements CasinoCounter
         ORDER BY counter DESC 
         ")->toMap("unit", "counter");
 
-
-
         //remove NEW casino label from all casinos page
         /*$new_casinos_nr = SQL("
           SELECT DISTINCT COUNT(t1.id) AS counter
@@ -47,13 +45,29 @@ class CasinoLabels implements CasinoCounter
         FROM play_versions AS t1
         INNER JOIN casinos__play_versions AS t2 ON t1.id = t2.play_version_id
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
-        WHERE t3.is_open = 1 AND (t1.id = 4 OR t1.id = 2)
+        WHERE t3.is_open = 1 AND (t1.id = 4)
         GROUP BY t1.id
         ORDER BY counter DESC 
         ")->toMap("unit", "counter");
 
         $array = array_merge($labels, $mobile);
 
+          $live =  SQL("
+        SELECT DISTINCT 
+        t1.name AS unit, count(distinct t3.id) as counter
+        FROM play_versions AS t1
+        INNER JOIN casinos__play_versions AS t2 ON t1.id = t2.play_version_id
+        INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
+        INNER JOIN casinos__game_types t4 ON t4.casino_id = t3.id AND t4.is_live = 1
+        INNER JOIN game_types t5 ON (t5.id = t4.game_type_id)
+        WHERE t3.is_open = 1 AND (t1.id = 2)
+        GROUP BY t1.id
+        ORDER BY counter DESC 
+        ")->toMap("unit", "counter");
+
+        $array = array_merge($array, $live);
+
+        
         $features =  SQL("
         SELECT
         t1.name AS unit, count(*) as counter
