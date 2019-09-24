@@ -6104,11 +6104,11 @@ a:focus {
   }
 }
 
-@media screen and (max-width: 690px){
+/*@media screen and (max-width: 690px){
 	.btn-holder{
 		margin-top: 5px;
 	}
-}
+}*/
 
 .btn-bordered {
   border-radius: 4px;
