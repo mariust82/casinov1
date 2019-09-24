@@ -9872,7 +9872,7 @@ html.no-scroll {
     justify-content: center;
 }
 
-.vote-button {
+.vote-block-holder .vote-button {
     width: 64px;
     height: 64px;
     border: 2px solid transparent;
