@@ -3,6 +3,7 @@ require_once("entities/Article.php");
 require_once("entities/Rating.php");
 require_once("entities/TmsContentValue.php");
 require_once("application/models/ResultSetWrapper.php");
+require_once("vendor/lucinda/queries/src/Select.php");
 
 class Articles
 {
@@ -11,30 +12,20 @@ class Articles
 
     private $parentSchema;
 
-    function __construct($parentSchema)
+    public function __construct($parentSchema)
     {
         $this->parentSchema = $parentSchema;
-    }
-    
-    public function getUploadsFolders($items) {
-        $uploadsFolders = [];
-        foreach ($items['results'] as $item) {
-            $uploadsFolders[$item->id] = "/upload" . $this->getUploadsFolder($item, 'live');
-            $uploadsFolders[$item->id] .= "/" . str_replace(" ", "_", $item->title) . "_thumbnail.jpg?" . strtotime("now");
-        }
-        
-        return $uploadsFolders;
     }
 
     public function getInfoByRoute($route)
     {
         $blogPosts = array();
 
-        $results = SQL("
-            SELECT a.*, tcnt.value as `tms_value`
-            FROM articles a LEFT JOIN {$this->parentSchema}.tms__content tcnt
-            ON a.route_id=tcnt.route_id
-            WHERE a.title LIKE :title;",
+        $results = SQL(
+            "
+            SELECT a.*
+            FROM articles a 
+            WHERE is_draft = 0 AND deleted = 0 AND a.title LIKE :title;",
             array(':title' => "%$route%")
         );
 
@@ -43,36 +34,16 @@ class Articles
             $blogPost->id = $row['id'];
             $blogPost->name = $row['title'];
             $blogPost->readingTime = $row['min_read'];
-            $blogPost->content = $row['tms_value'];
-            $blogPost->titleImageDesktop = "";
-            $blogPost->titleImageMobile = "";
-            $blogPost->thumbnail = "";
+            $blogPost->content = $row['content'];
+            $blogPost->titleImageDesktop = $row['titleImageDesktop'];
+            $blogPost->titleImageMobile = $row['titleImageMobile'];
+            $blogPost->thumbnail = $row['thumbnail'];
             $blogPost->postDate = $row['date_added'];
             $blogPost->routeId = $row['route_id'];
             $blogPosts[] = $blogPost;
         }
 
-        return $blogPosts;
-    }
-
-    function getUploadsFolder($object, $operationType)
-    {
-
-        if (empty($object)) return null;
-
-        switch ($operationType) {
-            case'draft':
-                if (!$object) return '/blogs/drafts/tmp';
-                return '/blogs/drafts/' . $object->id;
-                break;
-            case 'publish':
-                if (!$object) return '/blogs/drafts/tmp';
-                return '/blogs/published/' . $object->payload->id;
-                break;
-            case 'live':
-                return '/blogs/published/' . $object->id;
-                break;
-        }
+        return array_shift($blogPosts);
     }
 
     public function getInfoByName($name = '')
@@ -81,10 +52,12 @@ class Articles
         $name = preg_replace('/[^\da-z]/i', ' ', urldecode($name)); //allow only alphanumeric, case insensitive and -
         $results = SQL("
         SELECT articles.* FROM articles
-        WHERE articles.`title`=:name LIMIT 1
+        WHERE is_draft = 0 AND deleted = 0 AND articles.`title`=:name LIMIT 1
         ", [':name' => $name]);
         $results = ResultSetWrapper::from($results)->toList(new Article(), ['rating' => new Rating()]);
-        if (!$results) throw new Lucinda\MVC\STDOUT\PathNotFoundException();
+        if (!$results) {
+            throw new Lucinda\MVC\STDOUT\PathNotFoundException();
+        }
         return $results[0];
     }
 
@@ -93,28 +66,34 @@ class Articles
         $output = ['results' => [], 'total' => 0];
         //DB('SET NAMES UTF8');
         $query_vars = [];
-        $query = "
-            SELECT SQL_CALC_FOUND_ROWS a.*, a.likes as `rating.likes`, a.dislikes as `rating.dislikes`, tcnt.value, at.value AS type
-            FROM articles a JOIN article__types at ON a.type_id = at.id LEFT JOIN {$this->parentSchema}.tms__content tcnt
-            ON a.route_id=tcnt.route_id
-            WHERE 1=1 
-            ";
+        $select = new Lucinda\Query\Select("articles","a");
+        $select->fields()->add("SQL_CALC_FOUND_ROWS a.*")->add("a.likes","`rating.likes`")->add("a.dislikes","`rating.dislikes`")->add("a.content")->add("at.value","type");
+        $select->joinInner("article__types","at")->on(["a.type_id"=>"at.id"]);
+        
+        $where =  $select->where();
+        $where->set("a.deleted", 0);
+        $where->set("a.is_draft", 0);
         if (!empty($filters['id_not_in'])) {
-            $query .= " AND a.id NOT IN (" . implode(',', $filters['id_not_in']) . ") ";
+            $where->setIn("a.id", ":id1", FALSE);
+            $query_vars[':id1'] = $filters['id_not_in'][0];
         }
         if (isset($filters['id'])) {
-            $query .= "\nAND a.id=:id";
-            $query_vars[':id'] = (int)$filters['id'];
+            $query_vars[':id2'] = (int)$filters['id'];
+            $where->set("a.id", ":id2");
         }
         if (isset($filters['type'])) {
             $type_id = $this->getArticleTypeId($filters['type']);
-            $query .= "\nAND a.type_id=:id";
-            $query_vars[':id'] = (int)$type_id;
+            $query_vars[':id3'] = (int)$type_id;
+            $where->set("a.type_id", ":id3");
         }
-        $query .= "
-            ORDER BY a.id DESC
-            LIMIT $offset, $limit";
-        $resultSet = SQL($query, $query_vars);
+        
+        if (isset($filters['name'])) {
+            $query_vars[':id4'] = str_replace('-', ' ', $filters['name']);
+            $where->set("a.`title`", ":id4");
+        }
+        $select->orderBy()->add("a.id",Lucinda\Query\OrderByOperator::DESC);
+        $select->limit($limit, $offset);
+        $resultSet = SQL($select->toString(), $query_vars);
         $foundRows = (int)SQL('SELECT FOUND_ROWS()')->toValue();
         $results = [];
         while ($row = $resultSet->toRow()) {
@@ -127,7 +106,10 @@ class Articles
             $article->title = $row['title'];
             $article->date_added = $row['date_added'];
             $article->min_read = $row['min_read'];
-            $article->description = $row['value'];
+            $article->titleImageDesktop = $row['titleImageDesktop'];
+            $article->titleImageMobile = $row['titleImageMobile'];
+            $article->thumbnail = $row['thumbnail'];
+            $article->description = $row['content'];
             $article->rating = $rating;
             $results[] = $article;
         }
@@ -136,8 +118,9 @@ class Articles
         return $output;
     }
     
-    private function getArticleTypeId($type) {
-        return SQL("SELECT id FROM article__types WHERE `value` = :id",[':id'=>$type])->toValue();
+    private function getArticleTypeId($type)
+    {
+        return SQL("SELECT id FROM article__types WHERE `value` = :id", [':id'=>$type])->toValue();
     }
 
     public function getItemFromId($id = 0)
@@ -161,5 +144,4 @@ class Articles
             SET
             articles.dislikes=dislikes.nr");
     }
-
 }

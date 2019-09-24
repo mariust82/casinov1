@@ -1,29 +1,30 @@
 <?php
-class Casino extends Entity {
-	public $id;
-	public $name;
+class Casino extends Entity
+{
+    public $id;
+    public $name;
     public $code;
-	public $rating;
-	public $softwares;
-	public $languages;
-	public $currencies;
-	public $bonus_first_deposit;
-	public $bonus_free;
-	public $live_dealers;
-	public $date_established;
-	public $emails;
-	public $phones;
-	public $is_live_chat;
-	public $licenses;
-	public $certifiers;
-	public $affiliate_program;
+    public $rating;
+    public $softwares;
+    public $languages;
+    public $currencies;
+    public $bonus_first_deposit;
+    public $bonus_free;
+    public $live_dealers;
+    public $date_established;
+    public $emails;
+    public $phones;
+    public $is_live_chat;
+    public $licenses;
+    public $certifiers;
+    public $affiliate_program;
     public $affiliate_link;
     public $tc_link;
-	public $withdrawal_minimum;
-	public $withdrawal_limits;
-	public $withdrawal_timeframes;
-	public $deposit_methods;
-	public $withdraw_methods;
+    public $withdrawal_minimum;
+    public $withdrawal_limits;
+    public $withdrawal_timeframes;
+    public $deposit_methods;
+    public $withdraw_methods;
     public $is_country_accepted;
     public $is_language_accepted;
     public $is_currency_accepted;

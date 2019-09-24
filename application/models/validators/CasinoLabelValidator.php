@@ -1,17 +1,18 @@
 <?php
 class CasinoLabelValidator extends \Lucinda\RequestValidator\ParameterValidator
 {
-
     public function validate($value)
     {
-        if(empty($value))
+        if (empty($value)) {
             return null;
+        }
 
-        if($value == 'mobile')
+        if ($value == 'mobile') {
             return 'Mobile';
+        }
 
-        $v =  str_replace("-"," ", $value);
-        $id = SQL("SELECT id FROM casino_labels WHERE name=:name",array(":name"=>$v))->toValue();
+        $v =  str_replace("-", " ", $value);
+        $id = SQL("SELECT id FROM casino_labels WHERE name=:name", array(":name"=>$v))->toValue();
 
         return !empty($id) ? $id : null;
     }

@@ -13,7 +13,7 @@ require_once 'application/models/dao/entities/BlogPost.php';
  */
 class Drafts
 {
-    function getInfoByName($name)
+    public function getInfoByName($name)
     {
         $results = SQL("select *
                             from drafts
@@ -27,7 +27,7 @@ class Drafts
         return $drafts;
     }
 
-    function getInfoById($id)
+    public function getInfoById($id)
     {
         $results = SQL("select *
                             from drafts

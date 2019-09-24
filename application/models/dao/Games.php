@@ -8,11 +8,13 @@
 
 class Games
 {
-    public function incrementTimesPlayed($id) {
-        return SQL("UPDATE games SET times_played = times_played + 1 WHERE id=:id",array(":id"=>$id))->getAffectedRows();
+    public function incrementTimesPlayed($id)
+    {
+        return SQL("UPDATE games SET times_played = times_played + 1 WHERE id=:id", array(":id"=>$id))->getAffectedRows();
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         return SQL("SELECT name FROM games ORDER BY name ASC")->toColumn();
     }
 }

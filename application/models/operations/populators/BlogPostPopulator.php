@@ -19,11 +19,10 @@ use TMS\Routes;
 
 class BlogPostPopulator implements PopulatorInterface
 {
-
     private $request;
     private $routes;
 
-    function populate(SavableInterface &$savableObject)
+    public function populate(SavableInterface &$savableObject)
     {
         $route = "article/" . $this->request->parameters('search');
         $savableObject->attributes('id', $this->request->parameters('entity_id'));
@@ -35,7 +34,6 @@ class BlogPostPopulator implements PopulatorInterface
         $savableObject->attributes('titleImageMobile', !empty($_FILES['image_mobile']['name']) ? $_FILES['image_mobile']['name'] : basename($_POST['current_image_mobile']));
         $savableObject->attributes('postDate', date('Y-m-d H:i:s'));
         $savableObject->attributes('route_id', $this->getRouteId($route));
-
     }
 
     public function __construct(\Lucinda\MVC\STDOUT\Request $request)

@@ -11,9 +11,11 @@
  *
  * @author matan
  */
-class ArticleCategoryValidator {
-     public function validate($value) {
-         $arr = ['news','guides','blog'];
-         return in_array($value, $arr) ? $value : NULL;
-     }
+class ArticleCategoryValidator
+{
+    public function validate($value)
+    {
+        $arr = ['news','guides','blog'];
+        return in_array($value, $arr) ? $value : null;
+    }
 }

@@ -17,12 +17,12 @@ class OperationsManager
      */
     protected $operation;
 
-    function setOperation(OperationsInterface $operation)
+    public function setOperation(OperationsInterface $operation)
     {
         $this->operation = $operation;
     }
 
-    function execute()
+    public function execute()
     {
         return $this->operation->execute();
     }

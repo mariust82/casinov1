@@ -5,9 +5,8 @@
  * Date: 8/27/2018
  * Time: 9:56 AM
  */
-interface NoDepositBonusInterface{
-
-
+interface NoDepositBonusInterface
+{
     public function setFilter($filter);
     public function getData($sortCriteria);
 }

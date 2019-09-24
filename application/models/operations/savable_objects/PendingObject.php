@@ -10,15 +10,13 @@ require_once 'application/models/bonus_publisher/savable_objects/AbstractPending
 
 class PendingObject extends AbstractPendingSavableObject
 {
-
     public function __construct($id)
     {
         $this->id = $id;
     }
 
-    function getPropertiesMap()
+    public function getPropertiesMap()
     {
         // TODO: Implement getPropertiesMap() method.
     }
-
 }

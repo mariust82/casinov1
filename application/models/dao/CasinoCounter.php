@@ -8,5 +8,5 @@
 
 interface CasinoCounter
 {
-    function getCasinosCount();
+    public function getCasinosCount();
 }

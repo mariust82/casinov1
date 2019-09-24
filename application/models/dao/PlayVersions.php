@@ -4,7 +4,8 @@ require_once("FieldValidator.php");
 
 class PlayVersions implements CasinoCounter
 {
-    public function getCasinosCount() {
+    public function getCasinosCount()
+    {
         return SQL("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -14,10 +15,11 @@ class PlayVersions implements CasinoCounter
         WHERE t1.name IN ('Flash','Mobile') AND t3.is_open = 1
         GROUP BY t1.id
         ORDER BY counter DESC
-        ")->toMap("unit","counter");
+        ")->toMap("unit", "counter");
     }
 
-    public function getNumberOfCasinos($playVersionName) {
+    public function getNumberOfCasinos($playVersionName)
+    {
         return SQL("
         SELECT
         count(*) as counter
@@ -30,6 +32,6 @@ class PlayVersions implements CasinoCounter
 
     public function validate($name)
     {
-        return SQL("SELECT name FROM play_versions WHERE name=:name",array(":name"=>$name))->toValue();
+        return SQL("SELECT name FROM play_versions WHERE name=:name", array(":name"=>$name))->toValue();
     }
 }

@@ -11,8 +11,8 @@ require_once("application/models/dao/Certifications.php");
 require_once("application/models/dao/Casinos.php");
 require_once("CasinosListController.php");
 
-class CasinoLiveDealerController extends CasinosListController{
-
+class CasinoLiveDealerController extends CasinosListController
+{
     protected $limit = 30;
 
     protected function getSelectedEntity()
@@ -25,15 +25,15 @@ class CasinoLiveDealerController extends CasinosListController{
         return "feature";
     }
 
-    protected function pageInfo(){
-
+    protected function pageInfo()
+    {
         $selectedEntity = $this->getSelectedEntity();
 
         // get page info
         $url = $this->request->getValidator()->getPage();
         $object = new PageInfoDAO();
 
-        switch ($selectedEntity){
+        switch ($selectedEntity) {
             case 'Live Dealer':
                 $url = 'features/live-dealer';
                 break;
@@ -44,12 +44,13 @@ class CasinoLiveDealerController extends CasinosListController{
 
         $page =  $object->getInfoByURL($url, $this->response->attributes("selected_entity"));
         $this->pageInfoSpecifications($page);
-        $this->response->attributes("page_info", $page , $this->response->attributes("total_casinos"));
+        $this->response->attributes("page_info", $page, $this->response->attributes("total_casinos"));
     }
 
-    protected function pageInfoSpecifications(&$page){
-        $page->head_title = str_replace('(TYPE)',$this->response->attributes("selected_entity"),$page->head_title);
-        $page->head_description = str_replace('(TYPE)',$this->response->attributes("selected_entity"),$page->head_description);
-        $page->body_title = str_replace('(TYPE)',$this->response->attributes("selected_entity"),$page->body_title);
+    protected function pageInfoSpecifications(&$page)
+    {
+        $page->head_title = str_replace('(TYPE)', $this->response->attributes("selected_entity"), $page->head_title);
+        $page->head_description = str_replace('(TYPE)', $this->response->attributes("selected_entity"), $page->head_description);
+        $page->body_title = str_replace('(TYPE)', $this->response->attributes("selected_entity"), $page->body_title);
     }
 }

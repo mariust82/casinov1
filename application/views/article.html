@@ -3,19 +3,19 @@
     <div class="article-heading">
         <!-- Image -->
         <:if test="!empty(${data.title_image_desktop})">
-            <!--Image Desktop-->
-            <img class="img-desktop" src="${data.title_image_desktop}" width="1920" height="274"/>
-            <:else>
-                <img src="${get_img_dir()}/articles/${normalize(${data.article.title})}.jpg" width="1920" height="274"
-                     alt="${data.article.title}">
+        <!--Image Desktop-->
+        <img class="img-desktop" src="${data.title_image_desktop}" width="1920" height="274"/>
+        <:else>
+        <img src="${get_img_dir()}/articles/${normalize(${data.article.title})}.jpg" width="1920" height="274"
+             alt="${data.article.title}">
         </:if>
 
         <!-- Image Mobile -->
         <:if test="!empty(${data.title_image_mobile})">
-            <img class="img-mobile" src="${data.title_image_mobile}" width="640" height="453"/>
-            <:else>
-                <img src="${get_img_dir()}/articles/${normalize(${data.article.title})}.jpg" width="1920" height="274"
-                     alt="${data.article.title}">
+        <img class="img-mobile" src="${data.title_image_mobile}" width="640" height="453"/>
+        <:else>
+        <img src="${get_img_dir()}/articles/${normalize(${data.article.title})}.jpg" width="1920" height="274"
+             alt="${data.article.title}">
         </:if>
 
         <div class="article-heading-overlay">
@@ -29,36 +29,37 @@
 
 
     <div class="plain-text article-single">
-        <div class="container">
+        <div class="container subtitle">
             <:if test="!empty(${data.tms_article.content})">
-              ${h2_to_tile( ${data.tms_article.content})}
-                </:if>
-            <div class="vote-block">
-                <h3 class="vote-block-title">Did you like this article?</h3>
-                <div class="vote-block-holder js-vote">
-                    <a href="#" class="vote-button vote-block-item like" data-type="article" data-success="1"
-                       data-id="${data.article.id}">
-                        <div class="vote-block-num bubble-like">${data.article.rating.likes}</div>
-                        <i class="icon-icon_likes"></i>
-                    </a>
-                    <a href="#" class="vote-button vote-block-item dislike" data-type="article" data-success="0"
-                       data-id="${data.article.id}">
-                        <div class="vote-block-num bubble-dislike">${data.article.rating.dislikes}</div>
-                        <i class="icon-icon_dislikes"></i>
-                    </a>
-                </div>
-                <div class="success action-field center">
-                    <i class="icon-icon_available"></i>
-                    Thank you for vote.
-                </div>
-                <div class="success action-field">
-                    You already voted.
-                </div>
-            </div> 
+            ${h2_to_tile( ${data.tms_article.content})}
+            </:if>
         </div>
+        <div class="vote-block">
+            <h3 class="vote-block-title">Did you like this article?</h3>
+            <div class="vote-block-holder js-vote">
+                <a href="#" class="vote-button vote-block-item like" data-type="article" data-success="1"
+                   data-id="${data.article.id}">
+                    <div class="vote-block-num bubble-like">${data.article.rating.likes}</div>
+                    <i class="icon-icon_likes"></i>
+                </a>
+                <a href="#" class="vote-button vote-block-item dislike" data-type="article" data-success="0"
+                   data-id="${data.article.id}">
+                    <div class="vote-block-num bubble-dislike">${data.article.rating.dislikes}</div>
+                    <i class="icon-icon_dislikes"></i>
+                </a>
+            </div>
+            <div class="success action-field center">
+                <i class="icon-icon_available"></i>
+                Thank you for vote.
+            </div>
+            <div class="success action-field">
+                You already voted.
+            </div>
+        </div> 
     </div>
 
     <!--Related articles-->
+    <:if test="count(${data.related}) > 0">
     <div class="container js-articles">
         <h2 class="title-name"><span>Related articles</span></h2>
         <div class="cards-list">
@@ -68,4 +69,5 @@
             <a href="/blog" class="btn-bordered load js-more-items">SEE ALL ARTICLES</a>
         </div>
     </div>
+    </:if>
     <site:bottom menu="${data.menu_top}"/>

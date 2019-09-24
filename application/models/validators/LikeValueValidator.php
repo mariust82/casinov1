@@ -6,11 +6,11 @@
  * Time: 1:23 PM
  */
 
-class LikeValueValidator extends Lucinda\RequestValidator\ParameterValidator {
-
-    public function validate($string) {
+class LikeValueValidator extends Lucinda\RequestValidator\ParameterValidator
+{
+    public function validate($string)
+    {
         $accepted = [0,1];
         return in_array($string, $accepted) ? true : null;
     }
-
 }

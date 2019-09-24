@@ -3,14 +3,15 @@ require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
 require_once("hlis/tms/src/TextsManager.php");
 
-abstract class BaseController extends Lucinda\MVC\STDOUT\Controller {
-    public function run() {
+abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
+{
+    public function run()
+    {
         $specificPage = $this->request->getURI()->getPage();
         $country = $this->request->attributes("country");
         $this->response->attributes("country", $country);
-        $menu = new TopMenu($this->request->getValidator()->getPage(),$specificPage, $country);
+        $menu = new TopMenu($this->request->getValidator()->getPage(), $specificPage, $country);
         $this->response->attributes("menu_top", $menu->getEntries());
-
         $this->service();
 
         $this->pageInfo();
@@ -19,14 +20,15 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller {
 
         $this->response->attributes("use_bundle", (in_array(ENVIRONMENT, ["dev","live"])?true:false));
 
-//        $this->response->attributes("tms", $this->getTMSVariables());
+        $this->response->attributes("tms", $this->getTMSVariables());
     }
 
     abstract protected function service();
 
     abstract protected function pageInfo();
 
-    protected function getTMSVariables() {
+    protected function getTMSVariables()
+    {
         // gets variables path
         $xml = $this->application->getTag("application");
         $variables_folder = (string) $xml->paths->tms_variables;

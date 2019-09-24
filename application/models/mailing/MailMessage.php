@@ -22,7 +22,8 @@ class MailMessage
      * @param $subject Subject of email.
      * @param $body Email body.
      */
-    public function __construct($subject, $body) {
+    public function __construct($subject, $body)
+    {
         $this->subject = $subject;
         $this->message = $body;
     }
@@ -33,7 +34,8 @@ class MailMessage
      * @param string $email Value of email address.
      * @param string $name Name of person who holds email address (optional).
      */
-    public function addTo($email, $name=null) {
+    public function addTo($email, $name=null)
+    {
         $this->to[] = new MailAddress($email, $name);
     }
 
@@ -43,7 +45,8 @@ class MailMessage
      * @param string $email Value of email address.
      * @param string $name Name of person who holds email address (optional).
      */
-    public function setFrom($email, $name=null) {
+    public function setFrom($email, $name=null)
+    {
         $this->from = new MailAddress($email, $name);
     }
 
@@ -53,7 +56,8 @@ class MailMessage
      * @param string $email Value of email address.
      * @param string $name Name of person who holds email address (optional).
      */
-    public function setSender($email, $name=null) {
+    public function setSender($email, $name=null)
+    {
         $this->sender = new MailAddress($email, $name);
     }
 
@@ -63,7 +67,8 @@ class MailMessage
      * @param string $email Value of email address.
      * @param string $name Name of person who holds email address (optional).
      */
-    public function setReplyTo($email, $name=null) {
+    public function setReplyTo($email, $name=null)
+    {
         $this->replyTo = new MailAddress($email, $name);
     }
 
@@ -73,7 +78,8 @@ class MailMessage
      * @param string $email Value of email address.
      * @param string $name Name of person who holds email address (optional).
      */
-    public function addCC($email, $name=null) {
+    public function addCC($email, $name=null)
+    {
         $this->cc[] = new MailAddress($email, $name);
     }
 
@@ -83,7 +89,8 @@ class MailMessage
      * @param string $email Value of email address.
      * @param string $name Name of person who holds email address (optional).
      */
-    public function addBCC($email, $name=null) {
+    public function addBCC($email, $name=null)
+    {
         $this->bcc[] = new MailAddress($email, $name);
     }
 
@@ -94,7 +101,8 @@ class MailMessage
      * @param string $contentType
      * @param string $charset
      */
-    public function setContentType($contentType="text/html", $charset="UTF-8") {
+    public function setContentType($contentType="text/html", $charset="UTF-8")
+    {
         $this->customHeaders[] = 'Content-Type: '.$contentType.'; charset="'.$charset.'";';
     }
 
@@ -104,35 +112,40 @@ class MailMessage
      * @param $name Value of header name.
      * @param $value Value of header content.
      */
-    public function addCustomHeader($name, $value) {
+    public function addCustomHeader($name, $value)
+    {
         $this->customHeaders[] = $name.": ".$value;
     }
 
     /**
      * Sends mail to recipients
      */
-    public function send() {
-        if(empty($this->to)) throw new MailException("You must add at least one recipient to mail message!");
+    public function send()
+    {
+        if (empty($this->to)) {
+            throw new MailException("You must add at least one recipient to mail message!");
+        }
 
         $headers = $this->customHeaders;
-        if(!empty($this->from)) {
+        if (!empty($this->from)) {
             $headers[] = "From: ".$this->from;
         }
-        if(!empty($this->sender)) {
+        if (!empty($this->sender)) {
             $headers[] = "Sender: ". $this->sender;
         }
-        if(!empty($this->replyTo)) {
+        if (!empty($this->replyTo)) {
             $headers[] = "Reply-To: ".$this->replyTo;
         }
-        if(!empty($this->cc)) {
+        if (!empty($this->cc)) {
             $headers[] = "Cc: ".implode(",", $this->cc);
         }
-        if(!empty($this->bcc)) {
+        if (!empty($this->bcc)) {
             $headers[] = "Bcc: ".implode(",", $this->bcc);
         }
 
-        $result = mail(implode(",",$this->to), $this->subject, $this->message, implode("\r\n", $headers));
-        if(!$result) throw new MailException("Send failed!");
+        $result = mail(implode(",", $this->to), $this->subject, $this->message, implode("\r\n", $headers));
+        if (!$result) {
+            throw new MailException("Send failed!");
+        }
     }
 }
-

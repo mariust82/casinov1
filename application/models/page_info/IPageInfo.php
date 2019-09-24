@@ -11,10 +11,10 @@ interface IPageInfo
     /**
      * @return Head
      */
-    function getHead();
+    public function getHead();
 
     /**
      * @return Body
      */
-    function getBody();
+    public function getBody();
 }

@@ -22,7 +22,7 @@
 						<link rel="stylesheet" type="text/css" href="/public/build/css/parts/gameplay.css?ver=${data.version}" media="all">
 					</:if>
 					<div class="player-holder">
-						<iframe id="gameplay_iframe" src="${data.game_player.url}?game=${data.game.name}" width="${data.game_player.width}" height="${data.game_player.height}"></iframe>
+						<iframe id="gameplay_iframe" src="${data.game_player.url}?game=${strtolower(str_replace(' ', '-', ${data.game.name}))}" width="${data.game_player.width}" height="${data.game_player.height}"></iframe>
 					</div>
 					<div class="player-controls">
 						<span class="player-controls-btn" id="play-replay" >
@@ -33,12 +33,6 @@
 						</span>
 						<div style="clear: both; height: 1px;width: 1px;"></div>
 					</div>
-
-					<:if test="${data.use_bundle}">
-						<script src="/public/build/js/compilations/gameplay.js?ver=${data.version}"></script>
-					<:else/>
-						<script src="/public/build/js/parts/gameplay.js?ver=${data.version}"></script>
-					</:if>
 				</div>
 			</div>
 			<div class="game-info">

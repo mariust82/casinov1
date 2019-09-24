@@ -6,14 +6,14 @@ require_once("application/models/dao/CasinosMenu.php");
 require_once("BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
 
-abstract class CasinosListController extends BaseController {
-
+abstract class CasinosListController extends BaseController
+{
     protected $limit = 100;
 
-	public function service() {
-
+    public function service()
+    {
         $this->response->attributes("selected_entity", ucwords($this->getSelectedEntity()));
-        $this->response->attributes('is_mobile',$this->request->attributes("is_mobile"));
+        $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
 
         $menuBottom = new CasinosMenu($this->request->attributes("country")->name, $this->response->attributes("selected_entity"), $this->request->getURI()->getPage());
         $this->response->attributes("menu_bottom", $menuBottom->getEntries());
@@ -24,15 +24,16 @@ abstract class CasinosListController extends BaseController {
         $results = $this->getResults();
         $this->response->attributes("total_casinos", $results["total"]);
         $this->response->attributes("casinos", $results["list"]);
-        $this->response->attributes("page_type",$this->get_page_type());
-        $this->response->attributes('bonus_free_type',$this->getAbbreviation($this->response->attributes('casinos')));
+        $this->response->attributes("page_type", $this->get_page_type());
+        $this->response->attributes('bonus_free_type', $this->getAbbreviation($this->response->attributes('casinos')));
     }
 
-    private function getResults() {
-
+    private function getResults()
+    {
         $filter = new CasinoFilter(
             array($this->response->attributes("filter") => $this->response->attributes("selected_entity")),
-            $this->request->attributes("country"));
+            $this->request->attributes("country")
+        );
 
         $object = new CasinosList($filter);
         $results = array();
@@ -44,27 +45,30 @@ abstract class CasinosListController extends BaseController {
 
     abstract protected function getSelectedEntity();
 
-	abstract protected function getFilter();
+    abstract protected function getFilter();
 
-    protected function getSortCriteria(){
+    protected function getSortCriteria()
+    {
         return CasinoSortCriteria::NONE;
     }
 
-	protected function generatePathParameter($name) {
-	    return strtolower(str_replace(" ", "-", $name));
+    protected function generatePathParameter($name)
+    {
+        return strtolower(str_replace(" ", "-", $name));
     }
 
-    protected function pageInfo(){
+    protected function pageInfo()
+    {
         // get page info
         $object = new PageInfoDAO();
         $total_casinos = !empty($this->response->attributes("total_casinos")) ? $this->response->attributes("total_casinos") : '';
-        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("selected_entity"),$total_casinos ));
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("selected_entity"), $total_casinos));
     }
 
     private function get_page_type()
     {
-        $position = strpos($_SERVER["REQUEST_URI"],"/",1);
-        $url = ($position?substr($_SERVER["REQUEST_URI"],1, $position-1):$_SERVER["REQUEST_URI"]);
+        $position = strpos($_SERVER["REQUEST_URI"], "/", 1);
+        $url = ($position?substr($_SERVER["REQUEST_URI"], 1, $position-1):$_SERVER["REQUEST_URI"]);
         $page = substr($_SERVER["REQUEST_URI"], $position+1);
         if ($page === 'no-deposit-bonus') {
             return 'free_bonus';
@@ -99,9 +103,8 @@ abstract class CasinosListController extends BaseController {
         $abbr = array();
         $index = 0;
         foreach ($casinos as $casino) {
-
             $abbr[$index] = null;
-            if($casino->bonus_free) {
+            if ($casino->bonus_free) {
                 $name = $casino->bonus_free->type;
 
                 $words = explode(" ", $name);

@@ -23,7 +23,7 @@ class SavableObjectFactory
      */
     private $request;
 
-    function __construct(\Lucinda\MVC\STDOUT\Request $request)
+    public function __construct(\Lucinda\MVC\STDOUT\Request $request)
     {
         $this->request = $request;
     }

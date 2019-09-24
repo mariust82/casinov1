@@ -18,15 +18,17 @@ class PublishOperation implements OperationsInterface
      */
     protected $savableObject;
 
-    function __construct()
+    public function __construct()
     {
     }
 
-    function execute()
+    public function execute()
     {
         $id = null;
 
-        if (!$this->savableObject) throw new Exception('Invalid savable object.');
+        if (!$this->savableObject) {
+            throw new Exception('Invalid savable object.');
+        }
 
         if ($this->savableObject->payload->id) {
             // update
@@ -46,21 +48,22 @@ class PublishOperation implements OperationsInterface
         return $id;
     }
 
-    function addObject(SavableInterface $savableObject)
+    public function addObject(SavableInterface $savableObject)
     {
         $this->savableObject = $savableObject;
-
     }
 
     private function createNewPendingDashboard(AbstractPendingSavableObject $savableObject)
     {
-        $insertId = DB("
+        $insertId = DB(
+            "
           INSERT INTO drafts SET saver_user_id = :saver_user_id",
-            array(':saver_user_id' => $savableObject->user_id))->getInsertId();
+            array(':saver_user_id' => $savableObject->user_id)
+        )->getInsertId();
         return $insertId;
     }
 
-    function getObject()
+    public function getObject()
     {
         // TODO: Implement getObject() method.
     }
@@ -69,11 +72,11 @@ class PublishOperation implements OperationsInterface
     {
         $payload = $savableObject->payload;
 
-        $insertId = DB("
+        $insertId = DB(
+            "
             INSERT INTO blog_posts SET title = :title, reading_time = :reading_time, content = :content,
             title_image_desktop = :title_image_desktop, title_image_mobile = :title_image_mobile,
             thumbnail_image = :thumbnail_image, post_date = :post_date, route_id = :route_id",
-
             array(
                 ':title' => $payload->name, ':reading_time' => $payload->readingTime,
                 ':content' => $payload->content, ':title_image_desktop' => $payload->titleImageDesktop,
@@ -89,11 +92,11 @@ class PublishOperation implements OperationsInterface
     {
         $payload = $savableObject->payload;
 
-        $affectedRows = DB("
+        $affectedRows = DB(
+            "
             UPDATE blog_posts SET title = :title, reading_time = :reading_time, content = :content,
             title_image_desktop = :title_image_desktop, title_image_mobile = :title_image_mobile,
             thumbnail_image = :thumbnail_image, post_date = :post_date, route_id = :route_id WHERE id = :id",
-
             array(
                 ':title' => $payload->name, ':reading_time' => $payload->readingTime,
                 ':content' => $payload->content, ':title_image_desktop' => $payload->titleImageDesktop,

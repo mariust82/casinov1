@@ -11,6 +11,7 @@
  *
  * @author matan
  */
-class CasinosDao {
+class CasinosDao
+{
     //put your code here
 }

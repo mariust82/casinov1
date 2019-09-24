@@ -1,5 +1,5 @@
 <?php
-class  EmailValidator extends \Lucinda\RequestValidator\ParameterValidator
+class EmailValidator extends \Lucinda\RequestValidator\ParameterValidator
 {
     public function validate($value)
     {

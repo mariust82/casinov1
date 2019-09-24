@@ -2,7 +2,6 @@
 
 class CasinoNameValidator extends \Lucinda\RequestValidator\ParameterValidator
 {
-
     public function validate($value)
     {
         if (empty($value)) {
@@ -13,6 +12,5 @@ class CasinoNameValidator extends \Lucinda\RequestValidator\ParameterValidator
 
         $id = SQL("SELECT id FROM casinos WHERE name=:name", array(":name" => $v))->toValue();
         return !empty($id) ? $id : null;
-
     }
 }

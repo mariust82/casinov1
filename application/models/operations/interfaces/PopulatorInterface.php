@@ -12,7 +12,7 @@ require_once 'application/models/operations/interfaces/SavableInterface.php';
 
 interface PopulatorInterface
 {
-    function populate(SavableInterface &$savableObject);
+    public function populate(SavableInterface &$savableObject);
 
-    function __construct(\Lucinda\MVC\STDOUT\Request $request);
+    public function __construct(\Lucinda\MVC\STDOUT\Request $request);
 }

@@ -1,21 +1,23 @@
 <?php
 namespace CasinosLists;
 
-require_once(dirname(__DIR__,3)."/hlis/orm/src/dao/GameInfoDAO.php");
+require_once(dirname(__DIR__, 3)."/hlis/orm/src/dao/GameInfoDAO.php");
 require_once("drivers/GameFields.php");
 require_once("drivers/GameLineProcessor.php");
-require_once(dirname(__DIR__,3)."/vendor/lucinda/queries/src/Select.php");
+require_once(dirname(__DIR__, 3)."/vendor/lucinda/queries/src/Select.php");
 
 class GameInfo
 {
     private $results;
 
-    public function __construct($gameID) {
+    public function __construct($gameID)
+    {
         $fields = $this->getFields();
         $this->setResults($fields, $gameID);
     }
 
-    private function getFields() {
+    private function getFields()
+    {
         $gmf = new \Hlis\GameManufacturerFields();
         $gmf->setName();
 
@@ -37,7 +39,8 @@ class GameInfo
         return $fields;
     }
 
-    private function setResults(\Hlis\GameFields $fields, $gameID) {
+    private function setResults(\Hlis\GameFields $fields, $gameID)
+    {
         $glt = new \Hlis\GameInfoDAO(
             new \Hlis\GameInfoQuery($gameID, $fields),
             new \CasinosLists\GameLineProcessor()
@@ -45,7 +48,8 @@ class GameInfo
         $this->results = $glt->getResults();
     }
 
-    public function getResults() {
+    public function getResults()
+    {
         return $this->results;
     }
 }

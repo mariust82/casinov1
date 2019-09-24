@@ -11,5 +11,11 @@ namespace gtm\operations;
 abstract class AbstractSavableObject
 {
     // Those properties are mapping the drafts table.
-    public $id, $user_id, $panel_id, $entity_id, $entity_name, $payload, $date_modified;
+    public $id;
+    public $user_id;
+    public $panel_id;
+    public $entity_id;
+    public $entity_name;
+    public $payload;
+    public $date_modified;
 }

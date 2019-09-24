@@ -3,7 +3,6 @@ require_once("entities/MenuItem.php");
 
 class TopMenu
 {
-
     private $userCountry;
 
     private static $entries = [
@@ -110,40 +109,41 @@ class TopMenu
                 'Guides' => '/blog/guides',
                 'All Blog Articles' => '/blog',
             ],
-        ],
+        ]
 
     ];
     private $pages = array();
 
-    public function __construct($currentPage, $specific_page = '' ,$user_country = '') {
+    public function __construct($currentPage, $specific_page = '', $user_country = '')
+    {
         $this->userCountry = $user_country;
         $this->setUserCountryInMenu();
 
         $this->setEntries($currentPage, $specific_page);
     }
 
-    private function setUserCountryInMenu(){
-
+    private function setUserCountryInMenu()
+    {
         $country_url =   "/countries-list/".strtolower(str_replace(" ", "-", $this->userCountry->name));
         $countriesUrl = self::$entries['COUNTRIES']['sub_items'];
 
         $newMenuItem = [];
 
-         if(!in_array($country_url, $countriesUrl)){
-             $country_name = $this->countryMenuNameByUrl($country_url);
-             $key = (!empty($country_name) ? $country_name : $this->userCountry->name ) .' Casinos';
-             $newMenuItem[$key] = $country_url;
-             $countriesUrl = array_merge($newMenuItem, $countriesUrl);
-             self::$entries['COUNTRIES']['sub_items'] = $countriesUrl;
-         }
+        if (!in_array($country_url, $countriesUrl)) {
+            $country_name = $this->countryMenuNameByUrl($country_url);
+            $key = (!empty($country_name) ? $country_name : $this->userCountry->name) .' Casinos';
+            $newMenuItem[$key] = $country_url;
+            $countriesUrl = array_merge($newMenuItem, $countriesUrl);
+            self::$entries['COUNTRIES']['sub_items'] = $countriesUrl;
+        }
     }
 
     /**
      * set special case for the country name, based by url
      */
-    private function countryMenuNameByUrl($country_url){
-
-        switch ($country_url){
+    private function countryMenuNameByUrl($country_url)
+    {
+        switch ($country_url) {
 
             case '/countries-list/united-states':
                 return 'US';
@@ -155,22 +155,21 @@ class TopMenu
         }
 
         return '';
-
     }
 
-    private function setEntries($currentPage, $specific_page = '') {
-
+    private function setEntries($currentPage, $specific_page = '')
+    {
         $selectedEntry = $this->getSelectedEntry($currentPage, $specific_page);
 
-        foreach(self::$entries as $title=>$entry_data) {
+        foreach (self::$entries as $title=>$entry_data) {
             $object = new MenuItem();
             $object->title = $title;
             $object->url = $entry_data['item_url'];
             $object->is_active = ($title==$selectedEntry?true:false);
 
-            if(!empty($entry_data["sub_items"])){
+            if (!empty($entry_data["sub_items"])) {
                 $object->have_submenu = true;
-                foreach($entry_data["sub_items"] as $subItemTitle => $subItemUrl){
+                foreach ($entry_data["sub_items"] as $subItemTitle => $subItemUrl) {
                     $si = new MenuItem();
                     $si->title = $subItemTitle;
                     $si->url = $subItemUrl;
@@ -180,11 +179,12 @@ class TopMenu
             }
             $this->pages[] = $object;
         }
+//        var_dump($this->pages);
     }
 
-    private function getSelectedEntry($currentPage, $specificPage = '') {
-
-        switch($currentPage) {
+    private function getSelectedEntry($currentPage, $specificPage = '')
+    {
+        switch ($currentPage) {
             case "bonus-list/(name)":
                 return "NO DEPOSIT CASINOS";
                 break;
@@ -196,7 +196,7 @@ class TopMenu
                  * Should return a specific menu item
                  *
                  */
-                if($specificPage === "casinos/new"){
+                if ($specificPage === "casinos/new") {
                     return 'NEW CASINOS';
                     break;
                 }
@@ -233,13 +233,19 @@ class TopMenu
             case "play/(name)":
                 return "GAMES";
                 break;
+            case "blog":
+            case "blog/(category)":
+            case "(category)/(name)":
+                return "BLOG";
+                break;
             default:
                 return "";
                 break;
         }
     }
 
-    public function getEntries() {
+    public function getEntries()
+    {
         return $this->pages;
     }
 }

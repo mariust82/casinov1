@@ -10,15 +10,14 @@ require_once 'application/models/page_info/IAttributes.php';
 
 class Body implements IAtributes
 {
-
     protected $attributes = [];
 
-    function getAttribute($attribute)
+    public function getAttribute($attribute)
     {
         return empty($this->attributes[$attribute]) ? "" : $this->attributes[$attribute];
     }
 
-    function setAttribute($attribute, $value)
+    public function setAttribute($attribute, $value)
     {
         $this->attributes[$attribute] = $value;
     }

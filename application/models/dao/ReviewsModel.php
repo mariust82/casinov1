@@ -1,6 +1,6 @@
 <?php
-class ReviewsModel{
-
+class ReviewsModel
+{
     private $reviewData;
 
     public function __construct($reviewData)
@@ -8,8 +8,8 @@ class ReviewsModel{
         $this->reviewData = $reviewData;
     }
 
-    public function saveComment(){
-
+    public function saveComment()
+    {
         $review = new CasinoReview();
         $review->name = htmlspecialchars($this->reviewData['name']);
         $review->email = $this->reviewData['email'];
@@ -22,6 +22,5 @@ class ReviewsModel{
         $id = $object->insert($this->reviewData['casino_id'], $review);
 
         return $id;
-
     }
 }

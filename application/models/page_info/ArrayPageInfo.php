@@ -17,7 +17,7 @@ class ArrayPageInfo implements InterfaceInfo, IPageInfo
     protected $head = null;
     protected $body = null;
 
-    function __construct()
+    public function __construct()
     {
         $this->head = new Head();
         $this->body = new Body();
@@ -26,7 +26,7 @@ class ArrayPageInfo implements InterfaceInfo, IPageInfo
     /**
      * @return Head|null
      */
-    function getHead()
+    public function getHead()
     {
         return $this->head;
     }
@@ -34,12 +34,12 @@ class ArrayPageInfo implements InterfaceInfo, IPageInfo
     /**
      * @return Body|null
      */
-    function getBody()
+    public function getBody()
     {
         return $this->body;
     }
 
-    function getInfo()
+    public function getInfo()
     {
         return [
             'head' => [

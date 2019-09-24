@@ -4,7 +4,8 @@ require_once("FieldValidator.php");
 
 class BankingMethods implements CasinoCounter
 {
-    public function getCasinosCount() {
+    public function getCasinosCount()
+    {
         return SQL("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -14,11 +15,12 @@ class BankingMethods implements CasinoCounter
         WHERE t3.is_open = 1
         GROUP BY t1.id
         ORDER BY counter DESC 
-        ")->toMap("unit","counter");
+        ")->toMap("unit", "counter");
     }
 
 
-    public function getAll() {
+    public function getAll()
+    {
         return SQL("
         SELECT DISTINCT t1.name
         FROM banking_methods AS t1

@@ -10,9 +10,9 @@ namespace gtm\operations;
 
 interface OperationsInterface
 {
-    function execute();
+    public function execute();
 
-    function addObject(SavableInterface $savableObject);
+    public function addObject(SavableInterface $savableObject);
 
-    function getObject();
+    public function getObject();
 }

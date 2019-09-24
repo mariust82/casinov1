@@ -8,16 +8,26 @@
 
 class AbstractPendingSavableObject implements SavableInterface
 {
-    public $id, $saver_user_id, $current_user_id, $element_id, $panel_id,
-        $status_id, $payload, $date_added, $date_completed,
-        $date_modified, $draft_id;
+    public $id;
+    public $saver_user_id;
+    public $current_user_id;
+    public $element_id;
+    public $panel_id;
+    public $status_id;
+    public $payload;
+    public $date_added;
+    public $date_completed;
+    public $date_modified;
+    public $draft_id;
 
-    function setAttribute($name, $value)
+    public function setAttribute($name, $value)
     {
-        if (property_exists($this, $name)) $this->$name = $value;
+        if (property_exists($this, $name)) {
+            $this->$name = $value;
+        }
     }
 
-    function getAttribute($name)
+    public function getAttribute($name)
     {
         // TODO: Implement getAttribute() method.
     }
@@ -27,7 +37,7 @@ class AbstractPendingSavableObject implements SavableInterface
         $this->id = $id;
     }
 
-    function getPropertiesMap()
+    public function getPropertiesMap()
     {
         // TODO: Implement getPropertiesMap() method.
     }

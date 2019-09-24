@@ -1,15 +1,17 @@
 <?php
 class MockFeeder extends Lucinda\MVC\STDOUT\ResponseListener
 {
-    public function run() {
+    public function run()
+    {
         $objControllerLocator = new Lucinda\MVC\STDOUT\ControllerLocator($this->application, $this->request->getValidator()->getPage());
         $strClassName  = $objControllerLocator->getClassName();
-        if($strClassName) {
+        if ($strClassName) {
             $this->development2frontend(dirname(dirname(__DIR__)), $strClassName, $this->response);
         }
     }
 
-    private function development2frontend($frontendProjectLocation, $controllerName, Lucinda\MVC\STDOUT\Response $response) {
+    private function development2frontend($frontendProjectLocation, $controllerName, Lucinda\MVC\STDOUT\Response $response)
+    {
         $remoteController = $frontendProjectLocation."/application/controllers_frontend/".$controllerName.".php";
 
         // compose response attributes
@@ -18,8 +20,8 @@ class MockFeeder extends Lucinda\MVC\STDOUT\ResponseListener
 class '.$controllerName.' extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
         ';
-        foreach($attributes as $key=>$value) {
-            $addition .= '$this->response->attributes("'.$key.'", '.var_export($value,true).');'."\n";
+        foreach ($attributes as $key=>$value) {
+            $addition .= '$this->response->attributes("'.$key.'", '.var_export($value, true).');'."\n";
         }
         $addition.='
     }
@@ -27,5 +29,4 @@ class '.$controllerName.' extends Lucinda\MVC\STDOUT\Controller {
         ';
         file_put_contents($remoteController, $addition);
     }
-
 }

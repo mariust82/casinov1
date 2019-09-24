@@ -24,7 +24,7 @@ class XmlPageInfo extends ArrayPageInfo implements InterfaceInfo, IPageInfo
      */
     protected $body = null;
 
-    function __construct(\Lucinda\MVC\STDOUT\Application $application, \Lucinda\MVC\STDOUT\Request $request)
+    public function __construct(\Lucinda\MVC\STDOUT\Application $application, \Lucinda\MVC\STDOUT\Request $request)
     {
         $this->head = new Head();
         $this->body = new Body();
@@ -37,15 +37,13 @@ class XmlPageInfo extends ArrayPageInfo implements InterfaceInfo, IPageInfo
 
         $this->getBody()->setAttribute('title', (string)$pt[0]['view_title']);
         $this->getBody()->setAttribute('subtitle', (string)$pt[0]['view_subtitle']);
-
-
     }
 
 
     /**
      * @return Head
      */
-    function getHead()
+    public function getHead()
     {
         // TODO: Implement getHead() method.
         return $this->head;
@@ -54,7 +52,7 @@ class XmlPageInfo extends ArrayPageInfo implements InterfaceInfo, IPageInfo
     /**
      * @return Body
      */
-    function getBody()
+    public function getBody()
     {
         // TODO: Implement getBody() method.
         return $this->body;
