@@ -9897,7 +9897,7 @@ html.no-scroll {
 }
 
 @media screen and (min-width: 1025px) {
-	a.vote-button:hover{
+	.vote-block-holder a.vote-button:hover{
 		color: #fff;
 	}
 	.vote-button:hover.like {
