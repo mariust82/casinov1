@@ -6103,13 +6103,6 @@ a:focus {
     margin: 20px 0 0 0;
   }
 }
-
-/*@media screen and (max-width: 690px){
-	.btn-holder{
-		margin-top: 5px;
-	}
-}*/
-
 .btn-bordered {
   border-radius: 4px;
   display: inline-block;
