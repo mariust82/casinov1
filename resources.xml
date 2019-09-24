@@ -16,5 +16,8 @@
         </file>
     </js>
     <css source="public/build/css/parts" destination="public/build/css/compilations">
+        <file name="all">
+            <file name="all"/>
+        </file>
     </css>
 </xml>
