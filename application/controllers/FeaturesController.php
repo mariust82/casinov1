@@ -6,17 +6,20 @@ require_once("BaseController.php");
 
 /*
 * Play versions by number of casinos.
-* 
+*
 * @requestMethod GET
 * @responseFormat HTML
-* @source 
+* @source
 */
-class FeaturesController extends BaseController {
-    public function service() {
+class FeaturesController extends BaseController
+{
+    public function service()
+    {
         $this->response->attributes("results", $this->getResults());
-	}
+    }
 
-	private function getResults() {
+    private function getResults()
+    {
         $result = array();
 
         // get nr casinos for play version: live dealer
@@ -30,7 +33,8 @@ class FeaturesController extends BaseController {
         return $result;
     }
 
-    protected function pageInfo(){
+    protected function pageInfo()
+    {
         $object = new PageInfoDAO();
         $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }

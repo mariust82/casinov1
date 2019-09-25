@@ -1,8 +1,10 @@
 <?php
 require_once("AbstractSitemapController.php");
 
-class FeaturesController extends AbstractSitemapController {
-    protected function getItems() {
+class FeaturesController extends AbstractSitemapController
+{
+    protected function getItems()
+    {
         return ["Ecogra Casinos"];
     }
 

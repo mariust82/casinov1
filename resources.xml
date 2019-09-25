@@ -16,5 +16,11 @@
         </file>
     </js>
     <css source="public/build/css/parts" destination="public/build/css/compilations">
+        <file name="all">
+            <file name="all"/>
+        </file>
+        <file name="gameplay">
+            <file name="gameplay"/>
+        </file>
     </css>
 </xml>

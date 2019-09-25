@@ -2,7 +2,8 @@
 require_once("AbstractSitemapController.php");
 require_once("application/models/dao/BankingMethods.php");
 
-class BankingMethodsController extends AbstractSitemapController {
+class BankingMethodsController extends AbstractSitemapController
+{
     protected function getItems()
     {
         $bm = new BankingMethods();

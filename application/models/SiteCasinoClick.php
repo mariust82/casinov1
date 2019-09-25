@@ -25,7 +25,7 @@ class SiteCasinoClick extends CasinoClick
     {
         $casino = new Casinos();
         $name = $casino->getName($id);
-        return '/warn/'. str_replace(" ","-", strtolower($name));
+        return '/warn/'. str_replace(" ", "-", strtolower($name));
     }
 
     protected function getAffiliateLinkByBonus($bonusID)
@@ -38,7 +38,8 @@ class SiteCasinoClick extends CasinoClick
         return $this->info->affiliate_link;
     }
 
-    protected function send($casinoCode) {
+    protected function send($casinoCode)
+    {
         $uuid = getUuid();
         $tmp = CountryDetection::getInstance()->getCountry();
         $country = ($tmp?$tmp->code:"");

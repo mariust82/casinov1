@@ -1,5 +1,5 @@
 <?php
 interface FieldValidator
 {
-    function validate($parameter);
+    public function validate($parameter);
 }

@@ -6,11 +6,13 @@ class GamesMenu
 {
     private $pages = array();
 
-    public function __construct($selectedEntry) {
+    public function __construct($selectedEntry)
+    {
         $this->setEntries($selectedEntry);
     }
 
-    private function setEntries($selectedEntry) {
+    private function setEntries($selectedEntry)
+    {
         $types = SQL("
         SELECT
         t1.name AS unit, count(*) as counter
@@ -19,7 +21,7 @@ class GamesMenu
         GROUP BY t1.id
         ORDER BY counter DESC 
         ")->toColumn();
-        foreach($types as $name) {
+        foreach ($types as $name) {
             $name = $name == "Slots" ? "Classic Slots" : $name;
             $selectedEntry = $selectedEntry == "Slots" ? "Classic Slots" : $selectedEntry;
             $object = new MenuItem();
@@ -30,11 +32,13 @@ class GamesMenu
         }
     }
 
-    private function generatePathParameter($name) {
+    private function generatePathParameter($name)
+    {
         return strtolower(str_replace(" ", "-", $name));
     }
 
-    public function getEntries() {
+    public function getEntries()
+    {
         return $this->pages;
     }
 }

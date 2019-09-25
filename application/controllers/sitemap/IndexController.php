@@ -13,7 +13,8 @@ class IndexController extends AbstractSitemapController
         return "(item)";
     }
 
-    protected function getPriority() {
+    protected function getPriority()
+    {
         return "1.0";
     }
 }

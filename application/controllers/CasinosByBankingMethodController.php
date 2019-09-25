@@ -4,18 +4,18 @@ require_once("CasinosListController.php");
 
 /*
 * Casinos list by banking method
-* 
+*
 * @requestMethod GET
 * @responseFormat HTML
-* @source 
+* @source
 * @pathParameter name string Name of banking method
 */
-class CasinosByBankingMethodController extends CasinosListController {
-
+class CasinosByBankingMethodController extends CasinosListController
+{
     protected function getSelectedEntity()
     {
         $parameter = $this->request->getValidator()->parameters("name");
-        $name = str_replace("-"," ", $parameter);
+        $name = str_replace("-", " ", $parameter);
 
         return $name;
     }

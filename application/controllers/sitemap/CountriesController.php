@@ -2,7 +2,8 @@
 require_once("AbstractSitemapController.php");
 require_once("application/models/dao/Countries.php");
 
-class CountriesController extends AbstractSitemapController {
+class CountriesController extends AbstractSitemapController
+{
     protected function getItems()
     {
         $bm = new Countries();

@@ -1,9 +1,9 @@
 <?php
-class BooleanValidator extends  \Lucinda\RequestValidator\ParameterValidator{
-
-
-    public function validate($value){
-        switch ($value){
+class BooleanValidator extends \Lucinda\RequestValidator\ParameterValidator
+{
+    public function validate($value)
+    {
+        switch ($value) {
             case 1:
             case '1':
             case 0:
@@ -17,5 +17,4 @@ class BooleanValidator extends  \Lucinda\RequestValidator\ParameterValidator{
 
         return null;
     }
-
 }

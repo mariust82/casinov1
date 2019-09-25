@@ -1,55 +1,87 @@
 var AJAX_CUR_PAGE = 1;
 
+function tmsIframe() {
+    if($(".tms_iframe").length) {
+        $(".tms_iframe").each(function() {
+            var iframe = document.createElement("iframe");
+            $.each(this.attributes, function() {
+                if(this.name == "class") return;
+                iframe.setAttribute(this.name.replace("data-",""), this.value);
+            });
+            $(this).append(iframe);
+        });
+    }
+}
+
 (function($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
-    var fullScreenIframe = function() {
-
-        'use strict';
-        var tmsWrapper = document.getElementsByClassName('show-text-visible');
-        if (tmsWrapper !== null) {
-            var i;
-            for (i = 0; i < tmsWrapper.length; i++) {
-                var iframe = tmsWrapper[i].getElementsByTagName('iframe');
-                if (iframe.length > 0) {
-                    var j;
-                    for (j = 0; j < iframe.length; j++) {
-                        responsiveIframe(iframe[j]);
-                    }
-                }
-            }
-        }
-
-        function responsiveIframe(iframe) {
-            var width = iframe.getAttribute('width');
-            var height = iframe.getAttribute('height');
-            var aspectRatio = height / width;
-
-            iframe.style.width = '100%';
-
-            window.addEventListener("resize", function () {
-                iframe.style.height = iframe.clientWidth * aspectRatio + 'px';
-            });
-            window.dispatchEvent(new Event('resize'));
-        }
-    };
 
     $(document).ready(function() {
         initToggleMenu();
         initSite();
         initMobileMenu();
         menuHoverAction();
+
+
+    $('.load-more').click(function(){
+        var _request = new XMLHttpRequest();
+        var category = $(this).data('category');
+        var self = $(this);
+        _request = $.ajax( {
+        url: '/load-more/'+category+'/'+AJAX_CUR_PAGE,
+        data:{
+            page:AJAX_CUR_PAGE,
+            category: category
+        },
+        dataType: 'html',
+        type: 'post',
+        success: function (data) {
+            AJAX_CUR_PAGE++;
+            console.dir(data);
+             console.dir(data);
+            $('.cards-list').append(data);
+            if($(self).data('total') === $('.cards-list').children().length) {
+                $(self).hide();
+            }
+        },
+        error: function ( XMLHttpRequest ) {
+            var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+            if ( XMLHttpRequest.statusText != "abort" ) {
+                console.log( 'err' );
+                 __this.closest(_obj).next('.action-field.not-valid').show();
+            }
+        },
+        complete: function(){
+            BUSY_REQUEST = false;
+        }
+    } );
+    });
+
+//Load defer for pages on that you can see the footer on first load
+        var footerHeight = 260;
+        if($(window).scrollTop() + $(window).height() > $(document).height() - footerHeight) {
+               tmsIframe();
+        } else {
+            var deferEvent;
+            if($(window).width() < 768)
+                deferEvent = 'touchstart';
+            else
+                deferEvent = 'mousemove';
+            $(window).one(deferEvent, tmsIframe);
+        }
+
+        $(window).trigger('scroll');
+
         new SearchPanel ( $('.header') );
 
         var user_rate = $('.rating-container').data('user-rate');
-
         //console.log($('.box img.not-accepted').length);
 
         if($('.box img.not-accepted').length ){
             $('.br-widget a').unbind("mouseenter mouseleave mouseover click");
         }else {
-
 
             if (user_rate > 0) {
                 $('.br-widget').children().each(function () {
@@ -61,20 +93,7 @@ var AJAX_CUR_PAGE = 1;
                 $('.br-widget').unbind("mouseenter mouseleave mouseover click");
             }
         }
-
-        setTimeout(function() {
-            $(".tms_iframe").map(function () {
-                var iframe = document.createElement("iframe");
-                $.each(this.attributes, function () {
-                    iframe.setAttribute(this.name.replace("data-", ""), this.value);
-                });
-                this.after(iframe);
-            });
-            fullScreenIframe();
-        }, 300);
-
     });
-
 
     function menuHoverAction(){
         if (!checkIfIsMobileDevice()) {
@@ -741,7 +760,7 @@ var AJAX_CUR_PAGE = 1;
             }
 
             _ajaxRequestCasinos = function(_ajaxDataParams, _action) {
-
+                console.dir('test');
                 if (_action == 'add') {
                     _moreButton.addClass('loading');
                 } else {
@@ -880,7 +899,7 @@ var AJAX_CUR_PAGE = 1;
             },
 
             _getData = function(_target, _id, _success){
-                var _ret = {id:_id};
+                var _ret = {id:_id,is_like:_success};
                 // if (_target == 'review') _ret.review_id = _id;
                 // else _ret.article_id = _id;
                 return _ret;
@@ -888,7 +907,9 @@ var AJAX_CUR_PAGE = 1;
 
             _getTarget = function(_arg) {
                 var _target = '/casino/review-like';
-
+                if (_arg === 'article') {
+                    _target = '/blog/rate';
+                }
                 return _target;
             },
 
@@ -903,20 +924,29 @@ var AJAX_CUR_PAGE = 1;
                     dataType: 'json',
                     type: 'post',
                     success: function (data) {
+                        var error = data.body.message;
                         //console.log(data.body.likes);
                         //var currentVotes = _this.find('.vote-block-num');
                         //currentVotes.text(parseInt(currentVotes.text())+1);
-                        var _holderLikes = $(_this).find('.bubble-vote');
-                        var _oldLikes = _holderLikes.text();
-                        _holderLikes.text(++_oldLikes);
+                        if (_target === '/casino/review-like') {
+                            var _holderLikes = $(_this).find('.bubble-vote');
+                            var _oldLikes = _holderLikes.text();
+                            _holderLikes.text(++_oldLikes);
 
-                        // _this.closest(_obj).next('.action-field.success').show();
+                             _this.closest(_obj).next('.action-field.success').show();
+                        } else if(_target === '/blog/rate') {
+                            $(_this.parent().parent()).find('.votes-like .vote-block-num, .like .vote-block-num').text(data.body.likes);
+                            $(_this.parent().parent()).find('.votes-dislike .vote-block-num, .dislike .vote-block-num').text(data.body.dislikes);
+
+                            _this.closest(_obj).next('.action-field.success').show();
+                        }
                         //_this.parent().addClass('disabled');
                     },
                     error: function ( XMLHttpRequest ) {
+                        var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
                         if ( XMLHttpRequest.statusText != "abort" ) {
                             console.log( 'err' );
-                            // _this.closest(_obj).next('.action-field.not-valid').show();
+                             __this.closest(_obj).next('.action-field.not-valid').show();
                         }
                     },
                     complete: function(){
@@ -2058,6 +2088,8 @@ var AJAX_CUR_PAGE = 1;
                     goToPosition(position);
                 }
 
+                $('.expand-menu__list-item.active ').closest('.expand-holder').addClass('opened');
+
             }
 
             $(document).on('click touchstart',function(e) {
@@ -2388,6 +2420,7 @@ var AJAX_CUR_PAGE = 1;
         var linksSwiperParams = {
             slidesPerView: 'auto',
             spaceBetween: 30,
+            freeMode: true,
             // virtualTranslate: false,
             allowTouchMove:false,
             slidesOffsetAfter:-220,
@@ -2414,10 +2447,26 @@ var AJAX_CUR_PAGE = 1;
             }
         }
 
-        var swiperLinks = new Swiper('.links-casinos #links-nav', linksSwiperParams);
 
-        linksSwiperParams['slidesOffsetAfter'] = -330; //for games links slider
-        var swiperLinks2 = new Swiper('.links-games #links-nav', linksSwiperParams);
+        if ($('#links-nav').length) {
+            var swiperLinks = new Swiper('.links-casinos #links-nav', linksSwiperParams);
+
+            linksSwiperParams['slidesOffsetAfter'] = -330; //for games links slider
+            var swiperLinks2 = new Swiper('.links-games #links-nav', linksSwiperParams);
+
+            var swiperLinksIndx = $("#links-nav .active").parent().index() - 1;
+            var halfScreen = $(window).width() / 2 - 50;
+            var swiperLinksOffset = -$("#links-nav .active").parent().position().left + halfScreen;
+
+            if (checkIfIsMobileDevice()) {
+                if ($('.links-casinos #links-nav').length) swiperLinks.setTranslate(swiperLinksOffset);
+                if ($('.links-games #links-nav').length) swiperLinks2.setTranslate(swiperLinksOffset);
+            } else {
+                if ($('.links-casinos #links-nav').length) swiperLinks.slideTo(swiperLinksIndx, 300);
+                if ($('.links-games #links-nav').length) swiperLinks2.slideTo(swiperLinksIndx, 300);
+            }
+
+        }
 
         if ($(window).width() > 1024) {
             $('.links-casinos .links-nav a').on('mouseenter', function(e) {

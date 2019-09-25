@@ -7,14 +7,16 @@ class CasinoReviews
     const LIMIT = 5;
     const LIMIT_REPLIES = 5;
 
-    public function getAllTotal($casinoID) {
-        return SQL("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casinos__reviews.status != 3 AND casino_id = :casino_id AND parent_id = 0" ,array(":casino_id"=>$casinoID))->toValue();
+    public function getAllTotal($casinoID)
+    {
+        return SQL("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casinos__reviews.status != 3 AND casino_id = :casino_id AND parent_id = 0", array(":casino_id"=>$casinoID))->toValue();
     }
     
-    public function getMoreReplies($page,$parentID) {
-             $output = array();
+    public function getMoreReplies($page, $parentID)
+    {
+        $output = array();
     
-            $resultSet = SQL("
+        $resultSet = SQL("
                 SELECT t1.*, t2.code AS country
                 FROM casinos__reviews AS t1
                 INNER JOIN countries AS t2 ON t1.country_id = t2.id
@@ -22,23 +24,23 @@ class CasinoReviews
                 ORDER BY t1.date ASC
                 LIMIT ".self::LIMIT_REPLIES." OFFSET ".($page*self::LIMIT_REPLIES)."
             ");
-            while($row = $resultSet->toRow()) {
-                $object = new CasinoReview();
-                $object->id = $row["id"];
-                $object->name = $row["name"];
-                $object->email = $row["email"];
-                $object->body = $row["body"];
-                $object->country = $row["country"];
-                $object->date = $row["date"];
-                $object->likes = $row["likes"];
-                $object->parent_id = (integer) $row['parent_id'];
-                $output[] = $object;
-            }
-            return array_values($output);
+        while ($row = $resultSet->toRow()) {
+            $object = new CasinoReview();
+            $object->id = $row["id"];
+            $object->name = $row["name"];
+            $object->email = $row["email"];
+            $object->body = $row["body"];
+            $object->country = $row["country"];
+            $object->date = $row["date"];
+            $object->likes = $row["likes"];
+            $object->parent_id = (integer) $row['parent_id'];
+            $output[] = $object;
+        }
+        return array_values($output);
     }
 
-    public function getAll($casinoID, $page, $parentID = 0) {
-
+    public function getAll($casinoID, $page, $parentID = 0)
+    {
         $output = array();
 
         // get main reviews
@@ -51,9 +53,9 @@ class CasinoReviews
             AND t1.parent_id = 0
             ORDER BY t1.date DESC 
             LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT)."
-        ",array(":casino_id"=>$casinoID));
+        ", array(":casino_id"=>$casinoID));
 
-        while($row = $resultSet->toRow()) {
+        while ($row = $resultSet->toRow()) {
             $object = new CasinoReview();
             $object->id = $row["id"];
             $object->name = $row["name"];
@@ -65,19 +67,20 @@ class CasinoReviews
             $object->rating = (integer) $row["rating"];
             $object->parent_id = (integer) $row['parent_id'];
             $output[$row["id"]] = $object;
-
         }
-        if(empty($output)) return $output;
+        if (empty($output)) {
+            return $output;
+        }
 
         // get answers to main reviews
-        if($parentID==0) {
+        if ($parentID==0) {
             $resultSet = SQL("
                 SELECT count(id) AS nr, parent_id 
                 FROM casinos__reviews 
                 WHERE casinos__reviews.status != 3 AND  parent_id IN (".implode(",", array_keys($output)).")
                 GROUP BY parent_id
                 ");
-            while($row = $resultSet->toRow()) {
+            while ($row = $resultSet->toRow()) {
                 $output[$row["parent_id"]]->total_children = $row["nr"];
                 
                 $res = SQL("
@@ -88,38 +91,39 @@ class CasinoReviews
                 ORDER BY t1.date ASC
                 LIMIT ".self::LIMIT_REPLIES."
             ");
-            while($row = $res->toRow()) {
-                $object = new CasinoReview();
-                $object->id = $row["id"];
-                $object->name = $row["name"];
-                $object->email = $row["email"];
-                $object->body = $row["body"];
-                $object->country = $row["country"];
-                $object->date = $row["date"];
-                $object->likes = $row["likes"];
-                $object->parent_id = (integer) $row['parent_id'];
-                $output[$row["parent_id"]]->children[] = $object;
+                while ($row = $res->toRow()) {
+                    $object = new CasinoReview();
+                    $object->id = $row["id"];
+                    $object->name = $row["name"];
+                    $object->email = $row["email"];
+                    $object->body = $row["body"];
+                    $object->country = $row["country"];
+                    $object->date = $row["date"];
+                    $object->likes = $row["likes"];
+                    $object->parent_id = (integer) $row['parent_id'];
+                    $output[$row["parent_id"]]->children[] = $object;
+                }
             }
-        }
-            
         }
         return array_values($output);
     }
 
-    public function incrementLikes($id, $ip) {
-        $reviewID = SQL("SELECT id FROM casinos__reviews_likes WHERE review_id = :review_id AND ip = :ip",array(":review_id"=>$id, ":ip"=>$ip))->toValue();
-        if($reviewID) {
+    public function incrementLikes($id, $ip)
+    {
+        $reviewID = SQL("SELECT id FROM casinos__reviews_likes WHERE review_id = :review_id AND ip = :ip", array(":review_id"=>$id, ":ip"=>$ip))->toValue();
+        if ($reviewID) {
             return 0;
         } else {
-            SQL("INSERT INTO casinos__reviews_likes SET review_id = :review_id, ip = :ip",array(":review_id"=>$id, ":ip"=>$ip));
+            SQL("INSERT INTO casinos__reviews_likes SET review_id = :review_id, ip = :ip", array(":review_id"=>$id, ":ip"=>$ip));
         }
-        return SQL("UPDATE casinos__reviews SET likes = likes + 1 WHERE id=:id",array(":id"=>$id))->getAffectedRows();
+        return SQL("UPDATE casinos__reviews SET likes = likes + 1 WHERE id=:id", array(":id"=>$id))->getAffectedRows();
     }
 
-    public function insert($casinoID, CasinoReview $review) {
-
-        if(!$casinoID)
+    public function insert($casinoID, CasinoReview $review)
+    {
+        if (!$casinoID) {
             return false;
+        }
 
         return SQL("
         INSERT INTO casinos__reviews
@@ -142,15 +146,11 @@ class CasinoReviews
             ":parent"=>$review->parent,
             ":status" => $review->status
         ))->getInsertId();
-
     }
 
-    public function getCountryStatusText($status){
-
-       $status_text = str_replace("-"," ",$status);
-       return $status_text;
+    public function getCountryStatusText($status)
+    {
+        $status_text = str_replace("-", " ", $status);
+        return $status_text;
     }
-
-
-
 }

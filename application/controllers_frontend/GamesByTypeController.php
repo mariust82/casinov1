@@ -1,536 +1,538 @@
 <?php
-class GamesByTypeController extends Lucinda\MVC\STDOUT\Controller {
-    public function run() {
-        $this->response->attributes("country", array (
+class GamesByTypeController extends Lucinda\MVC\STDOUT\Controller
+{
+    public function run()
+    {
+        $this->response->attributes("country", array(
   'id' => '43',
   'code' => 'RO',
   'name' => 'Romania',
 ));
-$this->response->attributes("menu_top", array (
-  0 => 
-  array (
+        $this->response->attributes("menu_top", array(
+  0 =>
+  array(
     'title' => 'NO DEPOSIT CASINOS',
     'url' => '/bonus-list/no-deposit-bonus',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  1 => 
-  array (
+  1 =>
+  array(
     'title' => 'NEW CASINOS',
     'url' => '/casinos/new',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  2 => 
-  array (
+  2 =>
+  array(
     'title' => 'CASINOS',
     'url' => '/casinos',
     'is_active' => false,
-    'submenuItems' => 
-    array (
-      0 => 
-      array (
+    'submenuItems' =>
+    array(
+      0 =>
+      array(
         'title' => 'Best Casinos',
         'url' => '/casinos/best',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      1 => 
-      array (
+      1 =>
+      array(
         'title' => 'Live Casinos',
         'url' => '/features/live-dealer',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      2 => 
-      array (
+      2 =>
+      array(
         'title' => 'Mobile Casinos',
         'url' => '/casinos/mobile',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      3 => 
-      array (
+      3 =>
+      array(
         'title' => 'Low Wagering Casinos',
         'url' => '/casinos/low-wagering',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      4 => 
-      array (
+      4 =>
+      array(
         'title' => 'eCOGRA Casinos',
         'url' => '/features/ecogra-casinos',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      5 => 
-      array (
+      5 =>
+      array(
         'title' => 'Stay Away Casinos',
         'url' => '/casinos/stay-away',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      6 => 
-      array (
+      6 =>
+      array(
         'title' => 'Popular Casinos',
         'url' => '/casinos/popular',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      7 => 
-      array (
+      7 =>
+      array(
         'title' => 'All Casinos',
         'url' => '/casinos',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
     ),
     'have_submenu' => true,
   ),
-  3 => 
-  array (
+  3 =>
+  array(
     'title' => 'SOFTWARES',
     'url' => '/softwares',
     'is_active' => false,
-    'submenuItems' => 
-    array (
-      0 => 
-      array (
+    'submenuItems' =>
+    array(
+      0 =>
+      array(
         'title' => 'RTG Casinos',
         'url' => '/softwares/rtg',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      1 => 
-      array (
+      1 =>
+      array(
         'title' => 'Rival Casinos',
         'url' => '/softwares/rival',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      2 => 
-      array (
+      2 =>
+      array(
         'title' => 'NetEnt Casinos',
         'url' => '/softwares/netent',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      3 => 
-      array (
+      3 =>
+      array(
         'title' => 'Playtech Casinos',
         'url' => '/softwares/playtech',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      4 => 
-      array (
+      4 =>
+      array(
         'title' => 'MicroGaming Casinos',
         'url' => '/softwares/microgaming',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      5 => 
-      array (
+      5 =>
+      array(
         'title' => 'BetSoft Casinos',
         'url' => '/softwares/betsoft',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      6 => 
-      array (
+      6 =>
+      array(
         'title' => 'Saucify Casinos',
         'url' => '/softwares/saucify',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      7 => 
-      array (
+      7 =>
+      array(
         'title' => 'Cryptologic Casinos',
         'url' => '/softwares/cryptologic',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      8 => 
-      array (
+      8 =>
+      array(
         'title' => 'All Softwares',
         'url' => '/softwares',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
     ),
     'have_submenu' => true,
   ),
-  4 => 
-  array (
+  4 =>
+  array(
     'title' => 'COUNTRIES',
     'url' => '/countries',
     'is_active' => false,
-    'submenuItems' => 
-    array (
-      0 => 
-      array (
+    'submenuItems' =>
+    array(
+      0 =>
+      array(
         'title' => 'Romania Casinos',
         'url' => '/countries-list/romania',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      1 => 
-      array (
+      1 =>
+      array(
         'title' => 'USA Casinos',
         'url' => '/countries-list/united-states',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      2 => 
-      array (
+      2 =>
+      array(
         'title' => 'UK Casinos',
         'url' => '/countries-list/united-kingdom',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      3 => 
-      array (
+      3 =>
+      array(
         'title' => 'Australia Casinos',
         'url' => '/countries-list/australia',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      4 => 
-      array (
+      4 =>
+      array(
         'title' => 'Germany Casinos',
         'url' => '/countries-list/germany',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      5 => 
-      array (
+      5 =>
+      array(
         'title' => 'New Zealand Casinos',
         'url' => '/countries-list/new-zealand',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      6 => 
-      array (
+      6 =>
+      array(
         'title' => 'Netherlands Casinos',
         'url' => '/countries-list/netherlands',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      7 => 
-      array (
+      7 =>
+      array(
         'title' => 'Sweden Casinos',
         'url' => '/countries-list/sweden',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      8 => 
-      array (
+      8 =>
+      array(
         'title' => 'All Countries',
         'url' => '/countries ',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
     ),
     'have_submenu' => true,
   ),
-  5 => 
-  array (
+  5 =>
+  array(
     'title' => 'BANKING',
     'url' => '/banking',
     'is_active' => false,
-    'submenuItems' => 
-    array (
-      0 => 
-      array (
+    'submenuItems' =>
+    array(
+      0 =>
+      array(
         'title' => 'Neteller Casinos',
         'url' => '/banking/neteller',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      1 => 
-      array (
+      1 =>
+      array(
         'title' => 'Skrill Moneybookers Casinos',
         'url' => '/banking/skrill-moneybookers',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      2 => 
-      array (
+      2 =>
+      array(
         'title' => 'PayPal Casinos',
         'url' => '/banking/paypal',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      3 => 
-      array (
+      3 =>
+      array(
         'title' => 'Bitcoin Wallets Casinos',
         'url' => '/banking/bitcoin-wallets',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      4 => 
-      array (
+      4 =>
+      array(
         'title' => 'EcoPayz EcoCard Casinos',
         'url' => '/banking/ecopayz-ecocard',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      5 => 
-      array (
+      5 =>
+      array(
         'title' => 'Paysafe Card',
         'url' => '/banking/paysafe-card',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      6 => 
-      array (
+      6 =>
+      array(
         'title' => 'All Banking',
         'url' => '/banking',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
     ),
     'have_submenu' => true,
   ),
-  6 => 
-  array (
+  6 =>
+  array(
     'title' => 'GAMES',
     'url' => '/games',
     'is_active' => true,
-    'submenuItems' => 
-    array (
-      0 => 
-      array (
+    'submenuItems' =>
+    array(
+      0 =>
+      array(
         'title' => 'Video Slots',
         'url' => '/games/video-slots',
         'is_active' => true,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      1 => 
-      array (
+      1 =>
+      array(
         'title' => 'Classic Slots',
         'url' => '/games/slots',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      2 => 
-      array (
+      2 =>
+      array(
         'title' => 'Video Poker',
         'url' => '/games/video-poker',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      3 => 
-      array (
+      3 =>
+      array(
         'title' => 'Scratch Cards',
         'url' => '/games/scratch-cards',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      4 => 
-      array (
+      4 =>
+      array(
         'title' => 'Blackjack',
         'url' => '/games/blackjack',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      5 => 
-      array (
+      5 =>
+      array(
         'title' => 'Roulette',
         'url' => '/games/roulette',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      6 => 
-      array (
+      6 =>
+      array(
         'title' => 'Table Games',
         'url' => '/games/table-games',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      7 => 
-      array (
+      7 =>
+      array(
         'title' => 'Bingo',
         'url' => '/games/bingo',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      8 => 
-      array (
+      8 =>
+      array(
         'title' => 'Baccarat',
         'url' => '/games/baccarat',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      9 => 
-      array (
+      9 =>
+      array(
         'title' => 'Craps',
         'url' => '/games/craps',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      10 => 
-      array (
+      10 =>
+      array(
         'title' => 'Keno',
         'url' => '/games/keno',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      11 => 
-      array (
+      11 =>
+      array(
         'title' => 'Other',
         'url' => '/games/other',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
-      12 => 
-      array (
+      12 =>
+      array(
         'title' => 'All Games',
         'url' => '/games',
         'is_active' => false,
-        'submenuItems' => 
-        array (
+        'submenuItems' =>
+        array(
         ),
         'have_submenu' => false,
       ),
@@ -538,130 +540,130 @@ $this->response->attributes("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes("selected_entity", 'Video Slots');
-$this->response->attributes("menu_bottom", array (
-  0 => 
-  array (
+        $this->response->attributes("selected_entity", 'Video Slots');
+        $this->response->attributes("menu_bottom", array(
+  0 =>
+  array(
     'title' => 'Video Slots',
     'url' => '/games/video-slots',
     'is_active' => true,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  1 => 
-  array (
+  1 =>
+  array(
     'title' => 'Video Poker',
     'url' => '/games/video-poker',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  2 => 
-  array (
+  2 =>
+  array(
     'title' => 'Slots',
     'url' => '/games/slots',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  3 => 
-  array (
+  3 =>
+  array(
     'title' => 'Scratch Cards',
     'url' => '/games/scratch-cards',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  4 => 
-  array (
+  4 =>
+  array(
     'title' => 'Blackjack',
     'url' => '/games/blackjack',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  5 => 
-  array (
+  5 =>
+  array(
     'title' => 'Other',
     'url' => '/games/other',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  6 => 
-  array (
+  6 =>
+  array(
     'title' => 'Roulette',
     'url' => '/games/roulette',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  7 => 
-  array (
+  7 =>
+  array(
     'title' => 'Table Games',
     'url' => '/games/table-games',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  8 => 
-  array (
+  8 =>
+  array(
     'title' => 'Keno',
     'url' => '/games/keno',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  9 => 
-  array (
+  9 =>
+  array(
     'title' => 'Baccarat',
     'url' => '/games/baccarat',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  10 => 
-  array (
+  10 =>
+  array(
     'title' => 'Bingo',
     'url' => '/games/bingo',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
-  11 => 
-  array (
+  11 =>
+  array(
     'title' => 'Craps',
     'url' => '/games/craps',
     'is_active' => false,
-    'submenuItems' => 
-    array (
+    'submenuItems' =>
+    array(
     ),
     'have_submenu' => false,
   ),
 ));
-$this->response->attributes("software", array (
+        $this->response->attributes("software", array(
   0 => '021 test',
   1 => '1test233',
   2 => '1X2 Gaming',
@@ -861,444 +863,444 @@ $this->response->attributes("software", array (
   196 => 'Zeus Services',
   197 => 'Zukido',
 ));
-$this->response->attributes("filter", array (
+        $this->response->attributes("filter", array(
 ));
-$this->response->attributes("total_games", 4360);
-$this->response->attributes("games", array (
-  7268 => 
-  array (
+        $this->response->attributes("total_games", 4360);
+        $this->response->attributes("games", array(
+  7268 =>
+  array(
     'id' => '7268',
     'name' => 'Exotic Fruit Deluxe',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Booming Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '77',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Exotic_Fruit_Deluxe_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Exotic_Fruit_Deluxe_ss.jpg',
   ),
-  7085 => 
-  array (
+  7085 =>
+  array(
     'id' => '7085',
     'name' => 'World Match Xcalibur',
-    'type' => NULL,
+    'type' => null,
     'software' => 'World Match',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/World_Match_Xcalibur_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/World_Match_Xcalibur_ss.jpg',
   ),
-  1468 => 
-  array (
+  1468 =>
+  array(
     'id' => '1468',
     'name' => 'Foxin Wins Again',
-    'type' => NULL,
+    'type' => null,
     'software' => 'NextGen Gaming',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Foxin_Wins_Again_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Foxin_Wins_Again_ss.jpg',
   ),
-  7263 => 
-  array (
+  7263 =>
+  array(
     'id' => '7263',
     'name' => 'Goddess of the Amazon',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Inspired',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Goddess_of_the_Amazon_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Goddess_of_the_Amazon_ss.jpg',
   ),
-  7262 => 
-  array (
+  7262 =>
+  array(
     'id' => '7262',
     'name' => 'Inspired Centurion',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Inspired',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Inspired_Centurion_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Inspired_Centurion_ss.jpg',
   ),
-  7261 => 
-  array (
+  7261 =>
+  array(
     'id' => '7261',
     'name' => 'White Knight',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Inspired',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/White_Knight_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/White_Knight_ss.jpg',
   ),
-  7260 => 
-  array (
+  7260 =>
+  array(
     'id' => '7260',
     'name' => 'Inspired Monster Cash',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Inspired',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Inspired_Monster_Cash_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Inspired_Monster_Cash_ss.jpg',
   ),
-  7259 => 
-  array (
+  7259 =>
+  array(
     'id' => '7259',
     'name' => 'Inspired Diamond Goddess',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Inspired',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Inspired_Diamond_Goddess_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Inspired_Diamond_Goddess_ss.jpg',
   ),
-  7258 => 
-  array (
+  7258 =>
+  array(
     'id' => '7258',
     'name' => 'Inspired Treasure Island',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Inspired',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Inspired_Treasure_Island_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Inspired_Treasure_Island_ss.jpg',
   ),
-  7257 => 
-  array (
+  7257 =>
+  array(
     'id' => '7257',
     'name' => 'Which Witch',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Which_Witch_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Which_Witch_ss.jpg',
   ),
-  7256 => 
-  array (
+  7256 =>
+  array(
     'id' => '7256',
     'name' => 'Viking Storm',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Viking_Storm_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Viking_Storm_ss.jpg',
   ),
-  7255 => 
-  array (
+  7255 =>
+  array(
     'id' => '7255',
     'name' => 'Vegas Vegas',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Vegas_Vegas_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Vegas_Vegas_ss.jpg',
   ),
-  7254 => 
-  array (
+  7254 =>
+  array(
     'id' => '7254',
     'name' => 'Sweet King',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Sweet_King_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Sweet_King_ss.jpg',
   ),
-  7253 => 
-  array (
+  7253 =>
+  array(
     'id' => '7253',
     'name' => 'Space Katz',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Space_Katz_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Space_Katz_ss.jpg',
   ),
-  7252 => 
-  array (
+  7252 =>
+  array(
     'id' => '7252',
     'name' => 'Sherlock Murdered To Death',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Sherlock_Murdered_To_Death_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Sherlock_Murdered_To_Death_ss.jpg',
   ),
-  7251 => 
-  array (
+  7251 =>
+  array(
     'id' => '7251',
     'name' => 'Robins Reels',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Robins_Reels_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Robins_Reels_ss.jpg',
   ),
-  7250 => 
-  array (
+  7250 =>
+  array(
     'id' => '7250',
     'name' => 'Quest For Fire',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Quest_For_Fire_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Quest_For_Fire_ss.jpg',
   ),
-  7249 => 
-  array (
+  7249 =>
+  array(
     'id' => '7249',
     'name' => 'Pirates Treasure',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Pirates_Treasure_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Pirates_Treasure_ss.jpg',
   ),
-  7248 => 
-  array (
+  7248 =>
+  array(
     'id' => '7248',
     'name' => 'Mucho Money',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Mucho_Money_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Mucho_Money_ss.jpg',
   ),
-  7247 => 
-  array (
+  7247 =>
+  array(
     'id' => '7247',
     'name' => 'Intouch Games Monte Carlo',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Intouch_Games_Monte_Carlo_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Intouch_Games_Monte_Carlo_ss.jpg',
   ),
-  7246 => 
-  array (
+  7246 =>
+  array(
     'id' => '7246',
     'name' => 'Intouch Games Snakes and Ladders',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Intouch_Games_Snakes_and_Ladders_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Intouch_Games_Snakes_and_Ladders_ss.jpg',
   ),
-  7244 => 
-  array (
+  7244 =>
+  array(
     'id' => '7244',
     'name' => 'Mammoth Money',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Mammoth_Money_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Mammoth_Money_ss.jpg',
   ),
-  7243 => 
-  array (
+  7243 =>
+  array(
     'id' => '7243',
     'name' => 'Little Red Riding Reels',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Little_Red_Riding_Reels_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Little_Red_Riding_Reels_ss.jpg',
   ),
-  7241 => 
-  array (
+  7241 =>
+  array(
     'id' => '7241',
     'name' => 'Hansel And Gretel',
-    'type' => NULL,
+    'type' => null,
     'software' => 'Intouch Games',
-    'release_date' => NULL,
-    'technologies' => 
-    array (
+    'release_date' => null,
+    'technologies' =>
+    array(
     ),
-    'is_mobile' => NULL,
-    'is_3d' => NULL,
-    'overview' => NULL,
+    'is_mobile' => null,
+    'is_3d' => null,
+    'overview' => null,
     'times_played' => '0',
-    'play' => NULL,
+    'play' => null,
     'logo_big' => 'public/sync/game_ss/300x220/Hansel_And_Gretel_ss.jpg',
     'logo_small' => 'public/sync/game_ss/136x100/Hansel_And_Gretel_ss.jpg',
   ),
 ));
-$this->response->attributes("tms", array (
+        $this->response->attributes("tms", array(
   'upper_text' => '<p><b>Total number of games on site :&nbsp;6286</b></p>
 
 <p><b>Total number of games in the current list:&nbsp;4360</b></p>
@@ -1320,14 +1322,12 @@ $this->response->attributes("tms", array (
 <p><b>Software of the most popular game in the current list&nbsp;:&nbsp;Booming Games</b></p>
 ',
 ));
-$this->response->attributes("page_info", array (
+        $this->response->attributes("page_info", array(
   'head_title' => ' Play Video Slots Games for Free | Full List at CasinosLists.com',
   'head_description' => 'Play 4360 Video Slots Games for free at CasinosLists.com | Catch up with all Video Slots games releases from major online casino software developers.',
   'body_title' => 'Free Online Video Slots Games',
 ));
-$this->response->attributes("version", '0.8.8.383');
-$this->response->attributes("use_bundle", true);
-
+        $this->response->attributes("version", '0.8.8.383');
+        $this->response->attributes("use_bundle", true);
     }
 }
-        

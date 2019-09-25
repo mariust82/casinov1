@@ -1,9 +1,11 @@
 <?php
-require_once ("application/models/dao/PageInfoDAO.php");
-require_once ("application/models/dao/TopMenu.php");
+require_once("application/models/dao/PageInfoDAO.php");
+require_once("application/models/dao/TopMenu.php");
 
-class PageNotFoundController extends Lucinda\MVC\STDERR\Controller {
-    public function run(){
+class PageNotFoundController extends Lucinda\MVC\STDERR\Controller
+{
+    public function run()
+    {
         $object = new PageInfoDAO();
         $this->response->attributes("page_info", $object->getInfoByURL("404"));
 
@@ -15,7 +17,7 @@ class PageNotFoundController extends Lucinda\MVC\STDERR\Controller {
         $country->code = "US";
         $country->name = "United States";
 
-        $menu = new TopMenu("404", substr($_SERVER["REQUEST_URI"],1), $country);
+        $menu = new TopMenu("404", substr($_SERVER["REQUEST_URI"], 1), $country);
         $this->response->attributes("menu_top", $menu->getEntries());
     }
 }

@@ -1,8 +1,8 @@
 <?php
 require_once("hlis/tms/src/TextsManager.php");
 
-class TmsWrapper{
-
+class TmsWrapper
+{
     private $application;
     private $request;
     private $response;
@@ -15,27 +15,27 @@ class TmsWrapper{
         $this->response  = $response;
     }
 
-    private function getParentSchema(){
-
+    private function getParentSchema()
+    {
         return $this->application->attributes("parent_schema");
     }
 
-    private function getVariablesFolder(){
-
+    private function getVariablesFolder()
+    {
         return $this->application->getTag("application")->paths->tms_variables;
     }
 
 
-    public function getText(){
-
+    public function getText()
+    {
         $tms = new \TMS\TextsManager(
             $this->getVariablesFolder(),
             array(
                 "request"=>$this->request,
                 "response"=>$this->response
             ),
-            $this->getParentSchema());
+            $this->getParentSchema()
+        );
         return $tms->getTexts();
     }
-
 }

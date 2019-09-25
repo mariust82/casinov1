@@ -30,7 +30,7 @@ class BestCasinoLabel
 
     private function getAllBestCasinosQuery()
     {
-        $order_by = implode(' , ',$this->filter->sort_by);
+        $order_by = implode(' , ', $this->filter->sort_by);
 
         $query = "SELECT id , (rating_total/rating_votes) as score
         FROM casinos WHERE is_open = ".$this->filter->is_open." AND status_id = ".$this->filter->status_id." AND (rating_total/rating_votes) >= ".$this->filter->min_score. " 
@@ -43,14 +43,13 @@ class BestCasinoLabel
     // Return a sorted(by score ASC) array of best casinos
     private function getAllBestCasinos()
     {
-        if(!$this->from_sync) {
+        if (!$this->from_sync) {
             $results = SQL($this->getAllBestCasinosQuery());
-        }
-        else
+        } else {
             $results = DB::execute($this->getAllBestCasinosQuery());
+        }
         $output = array();
-        while($row = $results->toRow())
-        {
+        while ($row = $results->toRow()) {
             $best_casino_lists = new BestLabel();
             $best_casino_lists->casino_id = $row['id'] ;
             $output[sizeof($output)] = $best_casino_lists;
@@ -66,7 +65,7 @@ class BestCasinoLabel
         $result = SQL($query);
         $output = array();
 
-        while($row = $result->toRow()){
+        while ($row = $result->toRow()) {
             $best_casino_lists = new BestLabel();
             $best_casino_lists->casino_id = $row['casino_id'] ;
             $output[sizeof($output)] = $best_casino_lists;
@@ -80,12 +79,12 @@ class BestCasinoLabel
     {
         $results = $this->getAllBestCasinos();
 
-        foreach ($results as $arg)
-        {
-            if(!$this->from_sync)
+        foreach ($results as $arg) {
+            if (!$this->from_sync) {
                 SQL("INSERT INTO casinos__labels (casino_id,label_id) VALUE (" . $arg->casino_id . ",7)");
-            else
+            } else {
                 DB::execute("INSERT INTO casinos__labels (casino_id,label_id) VALUE (" . $arg->casino_id . ",7)");
+            }
         }
     }
 
@@ -103,22 +102,20 @@ class BestCasinoLabel
     // checks if the rated casino should be inserted or deleted from Best
     public function checkRatedCasino($casino_id)
     {
-        $is_best = $this->searchIfBest($this->getAllBestCasinos(),$casino_id);
-        $in_table = $this->searchIfBest($this->getAllBestLabels(),$casino_id);
+        $is_best = $this->searchIfBest($this->getAllBestCasinos(), $casino_id);
+        $in_table = $this->searchIfBest($this->getAllBestLabels(), $casino_id);
 
-        if($is_best!=$in_table)
-        {
+        if ($is_best!=$in_table) {
             $this->resetBestLabel();
             $this->populateBestLabel();
         }
     }
 
-    private function searchIfBest($best_casinos,$id)
+    private function searchIfBest($best_casinos, $id)
     {
         $found = false;
-        foreach ($best_casinos as $arg)
-        {
-            if($id == $arg->casino_id){
+        foreach ($best_casinos as $arg) {
+            if ($id == $arg->casino_id) {
                 $found = true;
                 break;
             }

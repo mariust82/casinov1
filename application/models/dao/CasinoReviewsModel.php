@@ -3,12 +3,12 @@ require_once("application/models/dao/CasinoReviews.php");
 require_once 'application/models/dao/ReviewStatuses.php';
 require_once 'application/models/dao/ReviewsModel.php';
 
-class CasinoReviewsModel{
-
+class CasinoReviewsModel
+{
     private $reviewData;
     private $reviewId;
 
-    function __construct($request)
+    public function __construct($request)
     {
         $reviewData = $request->parameters();
         $reviewData['user_ip'] = $request->attributes("ip");
@@ -16,7 +16,8 @@ class CasinoReviewsModel{
         $this->reviewData = $reviewData;
     }
 
-    public function saveReview(){      
+    public function saveReview()
+    {
         $review_status =  ReviewStatuses::APPROVED;
         $review_url = '';
 
@@ -25,12 +26,10 @@ class CasinoReviewsModel{
 
         $reviewsModel = new ReviewsModel($this->reviewData);
         $this->reviewId = $reviewsModel->saveComment();
-
     }
 
-    public function getReviewId(){
-
+    public function getReviewId()
+    {
         return $this->reviewId;
-
     }
 }

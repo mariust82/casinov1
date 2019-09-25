@@ -1,0 +1,22 @@
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="blog"/>
+   <div class="block">
+      <div class="container">
+         <div class="headeing">
+            <h1 class="title">${data.page_info.body_title}</h1>
+            <div class="subtitle">
+               <div class="js-condense">
+                  <span>${(isset(${data.tms.upper_text})?${data.tms.upper_text}:"")}</span>
+               </div>
+            </div>
+         </div>
+         <div class="cards-list">
+            <box:article data="${data.results}" folder="data.uploadsFolders"/>
+         </div>
+          <:if test="${data.total} > 9">
+                <div class="btn-holder">
+                    <a class="btn-bordered load js-more-items load-more" data-category="${data.category}" data-total="${data.total}">Load More</a>
+                 </div>
+          </:if>
+      </div>
+   </div>
+<site:bottom menu="${data.menu_top}"/>

@@ -16,7 +16,7 @@ class LiveDealerValidator extends \Lucinda\RequestValidator\ParameterValidator
 
         $value = str_replace("-", " ", $type);
 
-        switch($value){
+        switch ($value) {
             case 'roulette':
                 return 'Roulette';
             case 'blackjack':
@@ -28,6 +28,5 @@ class LiveDealerValidator extends \Lucinda\RequestValidator\ParameterValidator
             default:
                 return null;
         }
-
     }
 }

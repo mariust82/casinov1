@@ -6,10 +6,10 @@ require_once("application/models/UserOperationFailedException.php");
 
 /*
 * Writes a review on a casino
-* 
+*
 * @requestMethod POST
 * @responseFormat JSON
-* @source 
+* @source
 * @requestParameter casino string Name of casino
 * @requestParameter name string Reviewer name
 * @requestParameter email string Reviewer email
@@ -25,4 +25,3 @@ class CasinoReviewWriteController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes("id", $reviewModelObj->getReviewId());
     }
 }
-

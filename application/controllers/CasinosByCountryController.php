@@ -3,14 +3,14 @@ require_once("application/models/dao/Countries.php");
 require_once("CasinosListController.php");
 /*
 * Casinos list by country
-* 
+*
 * @requestMethod GET
 * @responseFormat HTML
-* @source 
+* @source
 * @pathParameter name string Name of country
 */
-class CasinosByCountryController extends CasinosListController {
-
+class CasinosByCountryController extends CasinosListController
+{
     protected function getSelectedEntity()
     {
         $object = new Countries();
@@ -21,8 +21,8 @@ class CasinosByCountryController extends CasinosListController {
         $language = !empty($result[0]['name']) ? $result[0]['name'] : '';
         $name =  !empty($result[0]['c_name']) ? $result[0]['c_name'] : '';
 
-        $this->response->attributes("currency",$code);
-        $this->response->attributes("language",$language);
+        $this->response->attributes("currency", $code);
+        $this->response->attributes("language", $language);
 
         return $name;
     }
@@ -32,7 +32,8 @@ class CasinosByCountryController extends CasinosListController {
         return "country";
     }
 
-    protected function getSortCriteria() {
+    protected function getSortCriteria()
+    {
         return CasinoSortCriteria::POPULARITY;
     }
 }

@@ -2,10 +2,8 @@
 
 class CasinoIdValidator extends \Lucinda\RequestValidator\ParameterValidator
 {
-
     public function validate($value)
     {
-
         if (empty($value)) {
             return null;
         }

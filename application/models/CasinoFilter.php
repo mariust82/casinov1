@@ -33,38 +33,38 @@ class CasinoFilter
     private $bonus_types = [];
     private $play_version_type;
 
-    public function __construct($requestParameters, Country $detectedCountry) {
+    public function __construct($requestParameters, Country $detectedCountry)
+    {
         $this->detectedCountry = $detectedCountry;
         if (isset($requestParameters['country'])) {
-                $countries = new Countries();
-                $result = $countries->getCountryDetails($requestParameters['country']);
-                $this->currency_id = $result[0]['c_id'];
-                $this->language_id = $result[0]['l_id'];
+            $countries = new Countries();
+            $result = $countries->getCountryDetails($requestParameters['country']);
+            $this->currency_id = $result[0]['c_id'];
+            $this->language_id = $result[0]['l_id'];
         }
         $booleans = array("country_accepted","currency_accepted","lang_accepted","free_bonus", "promoted");
-        foreach($booleans as $item) {
+        foreach ($booleans as $item) {
             $this->$item =  !empty($requestParameters[$item]);
         }
 
         $strings = array("banking_method", "label", "bonus_type", "country", "software", "game");
-        foreach($strings as $item) {
-            $this->$item =  (!empty($requestParameters[$item])?preg_replace("/[^a-zA-Z0-9\ \.\@\-\(\)]/","", $requestParameters[$item]):"");
-
+        foreach ($strings as $item) {
+            $this->$item =  (!empty($requestParameters[$item])?preg_replace("/[^a-zA-Z0-9\ \.\@\-\(\)]/", "", $requestParameters[$item]):"");
         }
         
 
-        if(!empty($requestParameters["compatibility"])) {
+        if (!empty($requestParameters["compatibility"])) {
             $compatibility = strtolower($requestParameters["compatibility"]);
-            if(in_array($compatibility, array("flash","mobile"))) {
+            if (in_array($compatibility, array("flash","mobile"))) {
                 $this->play_version = $compatibility;
             } else {
-                $this->operating_system = preg_replace("/[^a-z]/","", $compatibility);
+                $this->operating_system = preg_replace("/[^a-z]/", "", $compatibility);
             }
         }
 
-        if(!empty($requestParameters["feature"])) {
+        if (!empty($requestParameters["feature"])) {
             $feature = $requestParameters["feature"];
-            switch($feature) {
+            switch ($feature) {
                 case "Live Dealer":
                     $this->play_version = $feature;
                     break;
@@ -80,7 +80,7 @@ class CasinoFilter
         }
 
         // start hardcodings
-        switch($this->country) {
+        switch ($this->country) {
             case "Democratic Peoples Republic of Korea":
                 $this->country = "Democratic People\'s Republic of Korea";
                 break;
@@ -91,174 +91,211 @@ class CasinoFilter
                 $this->country = "Lao People\'s Democratic Republic";
                 break;
         }
-        if($this->operating_system && $this->operating_system=="iphone") {
+        if ($this->operating_system && $this->operating_system=="iphone") {
             $this->operating_system = "iOS";
         }
 
-        if(!empty($requestParameters["live_dealer"])){
+        if (!empty($requestParameters["live_dealer"])) {
             $this->play_version = 'Live Dealer';
             $this->play_version_type = $requestParameters["live_dealer"];
         }
 
 
 
-      /*  if(!empty($requestParameters['bonus_types'])){
-            $this->bonus_types = $requestParameters['bonus_types'];*/
+        /*  if(!empty($requestParameters['bonus_types'])){
+              $this->bonus_types = $requestParameters['bonus_types'];*/
     //    }
       //  var_dump($requestParameters);
         // end hardcodings
     }
 
-    public function getCountryAccepted() {
+    public function getCountryAccepted()
+    {
         return $this->country_accepted;
     }
 
-    public function setCountryAccepted($data) {
+    public function setCountryAccepted($data)
+    {
         $this->country_accepted = $data;
     }
     
-    public function getCurrencyAccepted() {
+    public function getCurrencyAccepted()
+    {
         return $this->currency_accepted;
     }
 
-    public function setCurrencyAccepted($data) {
+    public function setCurrencyAccepted($data)
+    {
         $this->currency_accepted = $data;
     }
     
-    public function getLanguageAccepted() {
+    public function getLanguageAccepted()
+    {
         return $this->lang_accepted;
     }
 
-    public function setLanguageAccepted($data) {
+    public function setLanguageAccepted($data)
+    {
         $this->lang_accepted = $data;
     }
     
-    public function getCurrencyID() {
+    public function getCurrencyID()
+    {
         return $this->currency_id;
     }
 
-    public function setCurrencyID($data) {
+    public function setCurrencyID($data)
+    {
         $this->currency_id = $data;
     }
     
-    public function getLanguageID() {
+    public function getLanguageID()
+    {
         return $this->language_id;
     }
 
-    public function setLanguageID($data) {
+    public function setLanguageID($data)
+    {
         $this->language_id = $data;
     }
 
-    public function getFreeBonus() {
+    public function getFreeBonus()
+    {
         return $this->free_bonus;
     }
 
-    public function setFreeBonus($data) {
+    public function setFreeBonus($data)
+    {
         $this->free_bonus = $data;
     }
 
-    public function getBankingMethod() {
+    public function getBankingMethod()
+    {
         return $this->banking_method;
     }
 
-    public function setBankingMethod($data) {
+    public function setBankingMethod($data)
+    {
         $this->banking_method = $data;
     }
 
-    public function getPromoted() {
+    public function getPromoted()
+    {
         return $this->promoted;
     }
 
-    public function setPromoted($data) {
+    public function setPromoted($data)
+    {
         $this->promoted = $data;
     }
 
-    public function getCasinoLabel() {
+    public function getCasinoLabel()
+    {
         return $this->label;
     }
 
-    public function setCasinoLabel($data) {
+    public function setCasinoLabel($data)
+    {
         $this->label = $data;
     }
 
-    public function getBonusType() {
+    public function getBonusType()
+    {
         return $this->bonus_type;
     }
 
-    public function setBonusType($data) {
+    public function setBonusType($data)
+    {
         $this->bonus_type = $data;
     }
 
-    public function getCountry() {
+    public function getCountry()
+    {
         return $this->country;
     }
 
-    public function setCountry($data) {
+    public function setCountry($data)
+    {
         $this->country = $data;
     }
 
-    public function getSoftware() {
+    public function getSoftware()
+    {
         return $this->software;
     }
 
-    public function setSoftware($data) {
+    public function setSoftware($data)
+    {
         $this->software = $data;
     }
 
-    public function getOperatingSystem() {
+    public function getOperatingSystem()
+    {
         return $this->operating_system;
     }
 
-    public function setOperatingSystem($data) {
+    public function setOperatingSystem($data)
+    {
         $this->operating_system = $data;
     }
 
-    public function getPlayVersion() {
+    public function getPlayVersion()
+    {
         return $this->play_version;
     }
 
-    public function setPlayVersion($data) {
+    public function setPlayVersion($data)
+    {
         $this->play_version = $data;
     }
 
-    public function getHighRoller() {
+    public function getHighRoller()
+    {
         return $this->high_roller;
     }
 
-    public function setHighRoller($data) {
+    public function setHighRoller($data)
+    {
         $this->high_roller = $data;
     }
 
-    public function getCertification() {
+    public function getCertification()
+    {
         return $this->certification;
     }
 
-    public function setCertification($data) {
+    public function setCertification($data)
+    {
         $this->certification = $data;
     }
 
-    public function getDetectedCountry() {
+    public function getDetectedCountry()
+    {
         return $this->detectedCountry;
     }
 
-    public function setDetectedCountry($data) {
+    public function setDetectedCountry($data)
+    {
         $this->detectedCountry = $data;
     }
 
-    public function getGame() {
+    public function getGame()
+    {
         return $this->game;
     }
 
-    public function setGame($data) {
+    public function setGame($data)
+    {
         $this->game = $data;
     }
 
-    public function getPlayVersionType(){
+    public function getPlayVersionType()
+    {
         return $this->play_version_type;
     }
 
-    public function setPlayVersionType($data){
+    public function setPlayVersionType($data)
+    {
         $this->play_version_type = $data;
     }
-
 }

@@ -5,9 +5,9 @@
  * Date: 14-May-19
  * Time: 12:04 PM
  */
-require_once ("entities/Casino.php");
-require_once ("entities/LowWageringLabelFilter.php");
-require_once ("entities/LowWageringLabel.php");
+require_once("entities/Casino.php");
+require_once("entities/LowWageringLabelFilter.php");
+require_once("entities/LowWageringLabel.php");
 
 class LowWageringCasinoLabel
 {
@@ -31,8 +31,8 @@ class LowWageringCasinoLabel
         $query = "SELECT t1.id , t1.name , t1.is_open , t1.status_id , t1.priority , t2.bonus_type_id , t2.wagering
         FROM casinos AS t1 
         INNER JOIN casinos__bonuses AS t2 ON t1.id = t2.casino_id
-        WHERE t1.is_open = ". $this->filter->is_open ." AND t1.status_id != ". $this->filter->status_id ." AND t2.bonus_type_id IN (". implode(',',$this->filter->bonus_types) .") AND CAST(t2.wagering AS UNSIGNED) <= ". $this->filter->max_wager ."
-        ORDER BY ". implode(',',$this->filter->sort_by) ;//." LIMIT " . self::LOW_WAGERING_CASINO_LIMIT;
+        WHERE t1.is_open = ". $this->filter->is_open ." AND t1.status_id != ". $this->filter->status_id ." AND t2.bonus_type_id IN (". implode(',', $this->filter->bonus_types) .") AND CAST(t2.wagering AS UNSIGNED) <= ". $this->filter->max_wager ."
+        ORDER BY ". implode(',', $this->filter->sort_by) ;//." LIMIT " . self::LOW_WAGERING_CASINO_LIMIT;
 
         return $query;
     }
@@ -43,8 +43,7 @@ class LowWageringCasinoLabel
         $result =  DB::execute($this->lowWageringCasinosQuery());
         $output = array();
 
-        while($row=$result->toRow())
-        {
+        while ($row=$result->toRow()) {
             $casinos = new LowWageringLabel();
             $casinos->id = $row['id'];
             $casinos->bonus_types = $row['bonus_type_id'];
@@ -60,8 +59,9 @@ class LowWageringCasinoLabel
     {
         $result = $this->getAllLowWageringCasinoLabel();
 
-        foreach ($result as $casino)
+        foreach ($result as $casino) {
             DB::execute("INSERT INTO casinos__labels (casino_id,label_id) VALUE (" . $casino->id . ",".$this->filter->label_id.")");
+        }
     }
 
     //resets all low wagering casinos

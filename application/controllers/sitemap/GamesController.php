@@ -2,7 +2,8 @@
 require_once("AbstractSitemapController.php");
 require_once("application/models/dao/Games.php");
 
-class GamesController extends AbstractSitemapController {
+class GamesController extends AbstractSitemapController
+{
     protected function getItems()
     {
         $bm = new Games();
@@ -14,7 +15,8 @@ class GamesController extends AbstractSitemapController {
         return "play/(item)";
     }
 
-    protected function getPriority() {
+    protected function getPriority()
+    {
         return "0.6";
     }
 }

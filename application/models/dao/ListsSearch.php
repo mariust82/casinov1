@@ -1,15 +1,16 @@
 <?php
 require_once("vendor/lucinda/queries/src/Select.php");
 
-class ListsSearch {
-    
+class ListsSearch
+{
     private $value;
-    public function __construct($value) {
+    public function __construct($value)
+    {
         $this->value = $value;
     }
     
-    public function getResults() {
-
+    public function getResults()
+    {
         if ($this->value == "") {
             return $this->setData($this->getSoftwares());
         }
@@ -23,22 +24,23 @@ class ListsSearch {
         return $this->setData($results);
     }
     
-    public function setData($arr) {
+    public function setData($arr)
+    {
         for ($i = 0;$i<count($arr);$i++) {
-
-            $row = SQL("SELECT * FROM pages WHERE url=:url",array(":url"=>$arr[$i]['url']))->toRow();
-            if($arr[$i]['url'] != 'games/(type)')
+            $row = SQL("SELECT * FROM pages WHERE url=:url", array(":url"=>$arr[$i]['url']))->toRow();
+            if ($arr[$i]['url'] != 'games/(type)') {
                 $arr[$i]['url'] = str_replace('(name)', strtolower(str_replace(' ', '-', $arr[$i]['name'])), $arr[$i]['url']);
-            else
+            } else {
                 $arr[$i]['url'] = str_replace('(type)', strtolower(str_replace(' ', '-', $arr[$i]['name'])), $arr[$i]['url']);
-            $arr[$i]['title'] = str_replace("(year)",date('Y'),str_replace("(month)",date('F'),str_replace("(name)", $arr[$i]['name'], $row['body_title'])));
+            }
+            $arr[$i]['title'] = str_replace("(year)", date('Y'), str_replace("(month)", date('F'), str_replace("(name)", $arr[$i]['name'], $row['body_title'])));
         }
         return $arr;
     }
     
-    public function getSoftwares() {
+    public function getSoftwares()
+    {
         if ($this->value == "") {
-
             $select = new Lucinda\Query\Select("game_manufacturers", "t1");
             $select->fields([
                 ' t1.name AS unit',
@@ -49,13 +51,12 @@ class ListsSearch {
             $select->joinInner('casinos', 't3')->on(['t2.casino_id' => 't3.id']);
             $where =  $select->where();
             $where->set('t3.is_open', 1);
-            $where->setIn('t1.name',["'RTG'", "'NetEnt'", "'Playtech'"]);
+            $where->setIn('t1.name', ["'RTG'", "'NetEnt'", "'Playtech'"]);
             $select->groupBy(['t1.id']);
-            $select->orderBy()->add('t1.id',Lucinda\Query\OrderByOperator::DESC);
+            $select->orderBy()->add('t1.id', Lucinda\Query\OrderByOperator::DESC);
             $query = $select->toString();
             $res = SQL($query);
         } else {
-
             $select = new Lucinda\Query\Select("game_manufacturers", "t1");
             $select->fields([
                 ' t1.name AS unit',
@@ -68,15 +69,14 @@ class ListsSearch {
             $where->set('t3.is_open', 1);
             $where->setLike('t1.name', "'%".$this->value."%'");
             $select->groupBy(['t1.id']);
-            $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
+            $select->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);
             $query = $select->toString();
             $res = SQL($query);
         }
 
         $output = array();
         $i = 0;
-        while($row = $res->toRow()) {
-
+        while ($row = $res->toRow()) {
             $output[$i]['name'] = $row['unit'];
             $output[$i]['count'] = $row['counter'];
             $output[$i]['url'] = "softwares/(name)";
@@ -85,8 +85,8 @@ class ListsSearch {
         return $output;
     }
     
-    public function getBonuses() {
-
+    public function getBonuses()
+    {
         $select = new Lucinda\Query\Select("bonus_types", "t1");
         $select->fields([
            ' t1.name AS unit',
@@ -98,26 +98,26 @@ class ListsSearch {
         $where->setIn('t1.name', ['"Free Play"', '"Free Spins"', '"No Deposit Bonus"']);
         $where->set('t3.is_open', 1);
         $where->setLike('t1.name', ':search_value');
-        $res = SQL($select->toString(),[':search_value' => $this->value ]);
+        $res = SQL($select->toString(), [':search_value' => $this->value ]);
         $output = $this->loop($res, "bonus-list/(name)");
         return $output;
     }
 
-    public function getCasinos() {
-
+    public function getCasinos()
+    {
         $select = new Lucinda\Query\Select("casino_labels", "t1");
         $select->fields(['t1.name AS unit', 'count(t1.id) as counter']);
         $select->joinInner('casinos__labels', 't2')->on(['t1.id' => 't2.label_id']);
         $select->joinInner('casinos', 't3')->on(['t2.casino_id' => 't3.id']);
         $where =  $select->where();
         $where->set('t3.is_open', 1);
-        $where->set('t1.id', 8,  Lucinda\Query\ComparisonOperator::DIFFERS );
+        $where->set('t1.id', 8, Lucinda\Query\ComparisonOperator::DIFFERS);
         $where->setLike('t1.name', ':search_value');
         $select->groupBy(['t1.id']);
-        $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
+        $select->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);
         $res = SQL($select->toString(), [':search_value' => $this->value ]);
 
-        $labels = $this->loop($res,"casinos/(name)");
+        $labels = $this->loop($res, "casinos/(name)");
 
         $play_versions_query  = new Lucinda\Query\Select("play_versions", "t1");
         $play_versions_query->fields(['t1.name AS unit', 'count(t1.id) as counter']);
@@ -131,12 +131,12 @@ class ListsSearch {
         $where->setGroup($group);
         $where->setLike('t1.name', "'%".$this->value."%'");
         $play_versions_query->groupBy(['t1.id']);
-        $play_versions_query->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
+        $play_versions_query->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);
         $res = SQL($play_versions_query->toString());
 
-        $mobile = $this->loop($res,"compatability/(name)");
+        $mobile = $this->loop($res, "compatability/(name)");
 
-        $array = array_merge($labels,$mobile);
+        $array = array_merge($labels, $mobile);
         $certifications  = new Lucinda\Query\Select("certifications", "t1");
         $certifications->fields(['t1.name AS unit', 'count(t1.id) as counter']);
         $certifications->joinInner('casinos__certifications', 't2')->on(['t1.id' => 't2.certification_id']);
@@ -146,18 +146,21 @@ class ListsSearch {
         $where->set('t1.id', 6);
         $where->setLike('t1.name', "'%".$this->value."%'");
         $certifications->groupBy(['t1.id']);
-        $certifications->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
+        $certifications->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);
         $res = SQL($certifications->toString());
 
-        $features = $this->loop($res,"features/(name)");
-        return array_merge($array,$features);
+        $features = $this->loop($res, "features/(name)");
+        return array_merge($array, $features);
     }
     
-    private function loop($res,$url) {
+    private function loop($res, $url)
+    {
         $arr = array();
         $i = 0;
-        while($row = $res->toRow()) {
-            if(!$row['unit']) continue;
+        while ($row = $res->toRow()) {
+            if (!$row['unit']) {
+                continue;
+            }
             $arr[$i]['name'] = $row['unit'];
             $arr[$i]['count'] = $row['counter'];
             $arr[$i]['url'] = $url;
@@ -166,9 +169,8 @@ class ListsSearch {
         return $arr;
     }
     
-    public function getCountries() {
-
-
+    public function getCountries()
+    {
         $select  = new Lucinda\Query\Select("countries", "t1");
         $select->fields(['t1.name AS unit', 'count(t1.id) as counter']);
         $select->joinInner('casinos__countries_allowed', 't2')->on(['t1.id' => 't2.country_id']);
@@ -177,15 +179,14 @@ class ListsSearch {
         $where->set('t3.is_open', 1);
         $where->setLike('t1.name', "'%".$this->value."%'");
         $select->groupBy(['t1.id']);
-        $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
+        $select->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);
         $res = SQL($select->toString());
-        $output = $this->loop($res,"countries-list/(name)");
+        $output = $this->loop($res, "countries-list/(name)");
         return $output;
     }
     
-    public function getBanking() {
-
-
+    public function getBanking()
+    {
         $select  = new Lucinda\Query\Select("banking_methods", "t1");
         $select->fields(['t1.name AS unit', 'count(t1.id) as counter']);
         $select->joinInner('casinos__deposit_methods', 't2')->on(['t1.id' => 't2.banking_method_id']);
@@ -194,23 +195,23 @@ class ListsSearch {
         $where->set('t3.is_open', 1);
         $where->setLike('t1.name', "'%".$this->value."%'");
         $select->groupBy(['t1.id']);
-        $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
+        $select->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);
         $res = SQL($select->toString());
-        $output = $this->loop($res,"banking/(name)");
+        $output = $this->loop($res, "banking/(name)");
         return $output;
     }
     
-    public function getGames() {
-
+    public function getGames()
+    {
         $select  = new Lucinda\Query\Select("game_types", "t1");
         $select->fields(['t1.name AS unit', 'count(t1.id) as counter']);
         $select->joinInner('games', 't2')->on(['t1.id' => 't2.game_type_id']);
         $where =  $select->where();
         $where->setLike('t1.name', "'%".$this->value."%'");
         $select->groupBy(['t1.id']);
-        $select->orderBy()->add('counter',Lucinda\Query\OrderByOperator::DESC);
+        $select->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);
         $res = SQL($select->toString());
-        $output = $this->loop($res,"games/(type)");
+        $output = $this->loop($res, "games/(type)");
         return $output;
     }
 }

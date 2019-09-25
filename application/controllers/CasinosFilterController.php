@@ -5,7 +5,7 @@ require_once("application/models/dao/CasinosList.php");
 
 /*
 * Filters casinos according to selections
-* 
+*
 * @requestMethod GET
 * @responseFormat HTML
 * @source
@@ -23,7 +23,6 @@ require_once("application/models/dao/CasinosList.php");
 */
 class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
 {
-
     protected $limit = 100;
 
     public function run()
@@ -40,48 +39,46 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
 
         $offset = $page * $this->limit;
 
-        $this->response->attributes("filter",$filter->getCasinoLabel());
+        $this->response->attributes("filter", $filter->getCasinoLabel());
         $this->response->attributes("total_casinos", $total);
-        $this->response->attributes("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset,true));
-        $this->response->attributes('page_type',$this->getPageType($filter));
-        $this->response->attributes('selected_entity',$filter->getCasinoLabel());
+        $this->response->attributes("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset, true));
+        $this->response->attributes('page_type', $this->getPageType($filter));
+        $this->response->attributes('selected_entity', $filter->getCasinoLabel());
     }
 
     private function getSortCriteria()
     {
         $sort_criteria = $this->request->attributes('validation_results')->get('sort');
-        if(empty($sort_criteria)|| $sort_criteria==null){
+        if (empty($sort_criteria)|| $sort_criteria==null) {
             return CasinoSortCriteria::NONE;
         }
 
-        if($sort_criteria == CasinoSortCriteria::NONE){
-            if($this->request->parameters("label") == "New")
+        if ($sort_criteria == CasinoSortCriteria::NONE) {
+            if ($this->request->parameters("label") == "New") {
                 return CasinoSortCriteria::NEWEST;
-            else if($this->request->parameters("label") == "Low Wagering")
+            } elseif ($this->request->parameters("label") == "Low Wagering") {
                 return CasinoSortCriteria::WAGERING;
-            else if($this->request->parameters("label") == "No Account Casinos"){
-                return CasinoSortCriteria::NO_ACCOUNT;}
-            else if(!empty($this->request->attributes('validation_results')->get('country')))
+            } elseif ($this->request->parameters("label") == "No Account Casinos") {
+                return CasinoSortCriteria::NO_ACCOUNT;
+            } elseif (!empty($this->request->attributes('validation_results')->get('country'))) {
                 return CasinoSortCriteria::POPULARITY;
+            }
             return CasinoSortCriteria::NONE;
-        }
-        else{
+        } else {
             return $this->request->attributes('validation_results')->get('sort');
         }
     }
 
     private function getPageType(CasinoFilter $filter)
     {
-        if($filter->getBankingMethod())
-        {
+        if ($filter->getBankingMethod()) {
             return 'banking_method';
-        }
-        else
-        {
-            if($filter->getCasinoLabel() == 'Low Wagering')
+        } else {
+            if ($filter->getCasinoLabel() == 'Low Wagering') {
                 return 'low_wagering';
-            else
+            } else {
                 return 'not_banking_method';
+            }
         }
     }
 }

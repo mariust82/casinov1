@@ -1,8 +1,10 @@
 <?php
 require_once("AbstractSitemapController.php");
 
-class BonusTypesController extends AbstractSitemapController {
-    protected function getItems() {
+class BonusTypesController extends AbstractSitemapController
+{
+    protected function getItems()
+    {
         return ["No Deposit Bonus"];
     }
 

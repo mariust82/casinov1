@@ -5,11 +5,13 @@ class GameInfo
 {
     private $result;
 
-    public function __construct($id) {
+    public function __construct($id)
+    {
         $this->setResult($id);
     }
 
-    private function setResult($id) {
+    private function setResult($id)
+    {
         $object = null;
         $resultSet = SQL("
             SELECT t1.id, t1.name, t1.times_played, t2.name AS game_type, t3.name AS software, t1.date_launched
@@ -18,8 +20,8 @@ class GameInfo
             INNER JOIN game_manufacturers AS t3 ON t1.game_manufacturer_id = t3.id
             WHERE
             t1.id = :id
-        ",array(":id"=>$id));
-        while($row = $resultSet->toRow()) {
+        ", array(":id"=>$id));
+        while ($row = $resultSet->toRow()) {
             $object = new Game();
             $object->id = $row["id"];
             $object->name = $row["name"];
@@ -28,7 +30,9 @@ class GameInfo
             $object->software = $row["software"];
             $object->release_date = $row["date_launched"];
         }
-        if(!$object) return;
+        if (!$object) {
+            return;
+        }
 
         $resultSet = SQL("
             SELECT t2.name
@@ -36,9 +40,9 @@ class GameInfo
             INNER JOIN game_features AS t2 ON t1.feature_id = t2.id
             WHERE
             t1.game_id = :id
-        ",array(":id"=>$object->id));
-        while($row = $resultSet->toRow()) {
-            switch($row["name"]) {
+        ", array(":id"=>$object->id));
+        while ($row = $resultSet->toRow()) {
+            switch ($row["name"]) {
                 case "3D Animation":
                     $object->is_3d = true;
                     break;
@@ -55,7 +59,8 @@ class GameInfo
         $this->result = $object;
     }
 
-    public function getResult() {
+    public function getResult()
+    {
         return $this->result;
     }
 }
