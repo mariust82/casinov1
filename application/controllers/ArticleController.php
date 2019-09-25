@@ -42,6 +42,6 @@ class ArticleController extends BaseController
         // get page info
         $object = new PageInfoDAO();
         $total_casinos = !empty($this->response->attributes("total_casinos")) ? $this->response->attributes("total_casinos") : '';
-        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), str_replace('-', ' ', $this->request->getValidator()->parameters('name')), $total_casinos));
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("article")->title, $total_casinos));
     }
 }
