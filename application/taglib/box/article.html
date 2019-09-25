@@ -6,7 +6,7 @@
           </div>
           <div class="card-footer">
              <div class="card-title">${article.title}</div>
-             <div class="card-description">${substr(${article.description},0,100)}</div>
+             <div class="card-description">${substr(strip_tags(${article.description}),0,100)}</div>
              <ul class="info-list">
                 <li class="item">${format_filter_date(${article.date_added},'M d, Y')}</li>
                 <li class="item">${article.min_read} min read</li>
