@@ -16,7 +16,6 @@
                       <div class="card-img">
                          <img src="${data.uploadsFolders.${article.id}}" width="288" height="205" alt="${article.title}">
                       </div>
-                    </a>
                       <div class="card-footer">
                          <div class="card-title">${article.title}</div>
                          <div class="card-description">${substr(${article.description},0,100)}</div>
@@ -26,6 +25,7 @@
                             <li class="item">${article.rating.likes} liked</li>
                          </ul>
                       </div>
+                   </a>
                 </div>
            </:foreach>
          </div>
