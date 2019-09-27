@@ -5,7 +5,6 @@ require_once("application/models/GameSortCriteria.php");
 require_once("application/models/dao/GamesMenu.php");
 require_once("BaseController.php");
 require_once("application/models/caching/GamesListKey.php");
-require_once('application/models/TmsWrapper.php');
 require_once("application/models/orm/GamesByType.php");
 
 /*
@@ -31,9 +30,6 @@ class GamesByTypeController extends BaseController
         $results = $this->getResults();
         $this->response->attributes("total_games", $results["total"]);
         $this->response->attributes("games", $results["list"]);
-
-        $tms = new TmsWrapper($this->application, $this->request, $this->response);
-        $this->response->attributes("tms", $tms->getText());
 
         $this->response->attributes("filter", array("game_type"=>$this->response->attributes("selected_entity")));
     }

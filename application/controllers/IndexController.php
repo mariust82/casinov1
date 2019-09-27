@@ -8,7 +8,6 @@ require_once("application/controllers/BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
 require_once("application/models/orm/GamesFeaturedList.php");
 require_once("application/models/caching/GamesListKey.php");
-require_once('application/models/TmsWrapper.php');
 
 /*
 * Homepage
@@ -69,5 +68,10 @@ class IndexController extends BaseController
     {
         $object = new PageInfoDAO();
         $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
+    }
+
+    protected function getWidgets()
+    {
+        $object = new \CMS\ContentManager();
     }
 }
