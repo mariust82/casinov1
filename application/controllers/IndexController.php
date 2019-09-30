@@ -8,6 +8,7 @@ require_once("application/controllers/BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
 require_once("application/models/orm/GamesFeaturedList.php");
 require_once("application/models/caching/GamesListKey.php");
+require_once("hlis/cms/src/ContentManager.php");
 
 /*
 * Homepage
@@ -34,6 +35,8 @@ class IndexController extends BaseController
         $this->response->attributes("filter", null);
         $this->response->attributes("page_type", "index");
         $this->response->attributes("selected_entity", "index");
+
+        $this->response->attributes("cms", $this->getContentCMS());
     }
 
     private function getCasinos($filter, $sortBy, $limit)
@@ -70,8 +73,17 @@ class IndexController extends BaseController
         $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
     }
 
-    protected function getWidgets()
+    protected function getContentCMS()
     {
-        $object = new \CMS\ContentManager();
+        // gets variables path
+        $xml = $this->application->getTag("application");
+        $variables_folder = (string) $xml->paths->tms_variables;
+
+        // gets parent schema
+        $parent_schema = $this->application->attributes("parent_schema");
+
+        // gets texts
+        $tms = new \CMS\ContentManager($variables_folder, array("request"=>$this->request, "response"=>$this->response), $parent_schema);
+        return $tms->getTexts();
     }
 }

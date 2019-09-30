@@ -1,10 +1,14 @@
 <?php
-
 function normalize($name)
 {
     $str = str_replace(" ", "-", $name);
     $str = str_replace("#", "-", $str);
     return strtolower($str);
+}
+
+function parse_video($url)
+{
+    return str_replace("youtu.be", "youtube.com/embed", $url);
 }
 
 function get_rating($score)
