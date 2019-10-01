@@ -1,7 +1,0 @@
-<img src="${strip_tags(${$[info].url})}"
-<:if test="!empty(${$[info].fullscreen})">
-    style="display: block; margin-left: auto; margin-right: auto; width: 100%; height: 100%;"
-<:elseif test="!empty(${$[info].width}) && !empty(${$[info].height})">
-    width="${strip_tags(${$[info].width})}" height="${strip_tags(${$[info].height})}"
-</:if>
-/>
