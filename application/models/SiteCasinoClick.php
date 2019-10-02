@@ -10,6 +10,7 @@ class SiteCasinoClick extends CasinoClick
     {
         $object = new Casinos();
         $this->info = $object->getBasicInfo($id);
+
         if (!$this->info) {
             throw new Lucinda\MVC\STDOUT\PathNotFoundException();
         }
@@ -36,13 +37,5 @@ class SiteCasinoClick extends CasinoClick
     protected function getAffiliateLinkByCasino($name)
     {
         return $this->info->affiliate_link;
-    }
-
-    protected function send($casinoCode)
-    {
-        $uuid = getUuid();
-        $tmp = CountryDetection::getInstance()->getCountry();
-        $country = ($tmp?$tmp->code:"");
-        Async::send("click-casino", array("uuid"=>$uuid, "country"=>$country, "casino"=>$this->info->code));
     }
 }
