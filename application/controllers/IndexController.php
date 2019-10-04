@@ -75,15 +75,11 @@ class IndexController extends BaseController
 
     protected function getContentCMS()
     {
-        // gets variables path
-        $xml = $this->application->getTag("application");
-        $variables_folder = (string) $xml->paths->tms_variables;
-
-        // gets parent schema
-        $parent_schema = $this->application->attributes("parent_schema");
-
-        // gets texts
-        $tms = new \CMS\ContentManager($variables_folder, array("request"=>$this->request, "response"=>$this->response), $parent_schema);
+        $tms = new \CMS\ContentManager(
+            $this->request->getValidator()->getPage(),
+            array("request"=>$this->request, "response"=>$this->response),
+            $this->application->attributes("parent_schema")
+        );
         return $tms->getTexts();
     }
 }
