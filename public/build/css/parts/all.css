@@ -3071,7 +3071,7 @@ a:focus {
   }
 
   .ios-device .search-drop {
-    height: calc(100vh - 162px);
+    padding-bottom: 162px;
   }
 }
 

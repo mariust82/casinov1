@@ -57,7 +57,13 @@ function tmsIframe() {
             BUSY_REQUEST = false;
         }
     } );
-    });
+
+
+});
+
+if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+    $('body').addClass('ios-device');
+}
 
 //Load defer for pages on that you can see the footer on first load
         var footerHeight = 260;
@@ -382,10 +388,6 @@ function tmsIframe() {
 
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
             return true;
-        }
-
-        if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
-            $('body').addClass('ios-device');
         }
 
         return false;
