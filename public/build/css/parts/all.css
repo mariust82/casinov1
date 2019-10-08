@@ -3069,6 +3069,10 @@ a:focus {
     padding: 20px 10px;
     border-radius: 0;
   }
+
+  .ios-device .search-drop {
+    height: calc(100vh - 162px);
+  }
 }
 
 .search-drop .mark {

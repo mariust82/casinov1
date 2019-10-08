@@ -384,6 +384,10 @@ function tmsIframe() {
             return true;
         }
 
+        if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
+            $('body').addClass('ios-device');
+        }
+
         return false;
     }
 
