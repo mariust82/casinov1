@@ -8668,7 +8668,7 @@ a:focus {
   .search-list {
     -webkit-overflow-scrolling: touch;
     overflow: auto;
-    height: calc(100vh - 210px);
+    height: calc(100vh - 236px);
     margin: 0 -10px;
     padding: 0 10px;
   }
