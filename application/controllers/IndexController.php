@@ -35,8 +35,6 @@ class IndexController extends BaseController
         $this->response->attributes("filter", null);
         $this->response->attributes("page_type", "index");
         $this->response->attributes("selected_entity", "index");
-
-        $this->response->attributes("cms", $this->getContentCMS());
     }
 
     private function getCasinos($filter, $sortBy, $limit)
@@ -71,15 +69,5 @@ class IndexController extends BaseController
     {
         $object = new PageInfoDAO();
         $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage()));
-    }
-
-    protected function getContentCMS()
-    {
-        $tms = new \CMS\ContentManager(
-            $this->request->getValidator()->getPage(),
-            array("request"=>$this->request, "response"=>$this->response),
-            $this->application->attributes("parent_schema")
-        );
-        return $tms->getTexts();
     }
 }
