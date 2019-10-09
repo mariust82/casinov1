@@ -288,7 +288,7 @@
 				<div class="title title-middle">
 					${(${data.total_reviews} == 0)?'Be the first to write a review':'Reviews'}
 					<div class="reviews-num">
-						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
+						<span class="reviews-qty">${data.total_reviews}</span> Review
 					</div>
 				</div>
 				<comment:list-container name="${data.user_score_class}" value="${normalize(${data.user_score_class})}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" />
