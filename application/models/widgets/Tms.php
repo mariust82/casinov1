@@ -81,12 +81,12 @@ class Tms implements Widget
                     ":user_id"=>$userID
                 ]);
             } else {
-                \SQL("INSERT INTO ".$this->schema.".tms__content SET value=:value, user_id=:user_id, route_id=:route_id, position_id=:position_id", [
+                $parameter->id = \SQL("INSERT INTO ".$this->schema.".tms__content SET value=:value, user_id=:user_id, route_id=:route_id, position_id=:position_id", [
                     ":value"=>$parameter->value,
                     ":user_id"=>$userID,
                     ":route_id"=>$routeID,
                     ":position_id"=>$positions[$parameter->name]
-                ]);
+                ])->getInsertId();
             }
         }
 
