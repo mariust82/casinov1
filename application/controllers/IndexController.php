@@ -8,7 +8,7 @@ require_once("application/controllers/BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
 require_once("application/models/orm/GamesFeaturedList.php");
 require_once("application/models/caching/GamesListKey.php");
-require_once("hlis/cms/src/ContentManager.php");
+require_once("application/models/widgets/Tms.php");
 
 /*
 * Homepage
@@ -21,6 +21,11 @@ class IndexController extends BaseController
 {
     public function service()
     {
+//        $tms = new \CMS\Tms();
+//        $results = $tms->get("games/asdasd");
+//        $results[0]->value = 18;
+//        $tms->set("games/asdasd", json_decode(json_encode($results)), 1);
+//        die("OK");
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $this->response->attributes("best_casinos", $this->getCasinos(array("label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
         $this->response->attributes("country_casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, 5));
