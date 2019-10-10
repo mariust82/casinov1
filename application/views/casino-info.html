@@ -16,7 +16,7 @@
 	<:elseif test="${data.casino.note}">
 			<div class="container">
 				<div class="warn-box note">
-					<div class="warn-box-body">${data.casino.note}</div>
+					<div class="warn-box-body">${str_replace("thebigfreechiplist","casinoslists",${data.casino.note})}</div>
 				</div>
 			</div>
 	</:if>
