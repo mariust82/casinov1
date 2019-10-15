@@ -30,11 +30,11 @@ function SQL($query, $boundParameters = array())
  */
 function NoSQL($query, $boundParameters = [], $callback = '', $expirationTime = 3600) {
     # For use with 'SELECT COUNT(...)'
-    if (!$callback) $callback = function(SQLStatementResults $results) { return (int)$results->toValue(); };
+    if (!$callback) $callback = function(\Lucinda\SQL\StatementResults $results) { return (int)$results->toValue(); };
     # For queries expected to return arrays
-    elseif ($callback == 'toList') $callback = function(SQLStatementResults $results) { return $results->toList(); };
+    elseif ($callback == 'toList') $callback = function(\Lucinda\SQL\StatementResults $results) { return $results->toList(); };
     $key = $_SERVER["SERVER_NAME"]."__".md5($query.json_encode($boundParameters));
-    $connection = NoSQLConnectionSingleton::getInstance();
+    $connection = \Lucinda\NoSQL\ConnectionSingleton::getInstance();
     if ($connection->contains($key)) {
         $value = $connection->get($key);
         if ($value) return unserialize($value);
