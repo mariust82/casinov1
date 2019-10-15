@@ -179,14 +179,12 @@
 							</div>
 						</div>
 
-						<:if test="${data.casino.date_established} != '0000-00-00'">
 							<div class="def-list-item">
 								<div class="def-list-key">Established</div>
 								<div class="def-list-val">
 									${date("M d, Y",  strtotime(${data.casino.date_established}))}
 								</div>
 							</div>
-						</:if>
 
 						<:if test="count(${data.casino.emails}) > 0">
 							<div class="def-list-item">
