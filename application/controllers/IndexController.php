@@ -21,6 +21,7 @@ class IndexController extends BaseController
 {
     public function service()
     {
+/*
         $contentManager = new \CMS\ContentManager(
             $this->request->getValidator()->getPage(),
             $this->application->attributes("parent_schema"),
@@ -28,6 +29,7 @@ class IndexController extends BaseController
             ["response"=>$this->response]
         );
         $this->response->attributes("widgets", $contentManager->getTexts());
+*/
 
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $this->response->attributes("best_casinos", $this->getCasinos(array("label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
