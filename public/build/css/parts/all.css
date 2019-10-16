@@ -3065,13 +3065,13 @@ a:focus {
   .search-drop {
     display: block;
     position: static;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 106px);
     padding: 20px 10px;
     border-radius: 0;
   }
 
   .ios-device .search-drop {
-    height: calc(100vh - 106px);
+    height: calc(100vh - 162px);
   }
 }
 
