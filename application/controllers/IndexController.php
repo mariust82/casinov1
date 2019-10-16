@@ -24,15 +24,11 @@ class IndexController extends BaseController
         $contentManager = new \CMS\ContentManager(
             $this->request->getValidator()->getPage(),
             $this->application->attributes("parent_schema"),
-            (string) $this->application->getTag("application")->paths->widgets
+            (string) $this->application->getTag("application")->paths->widgets,
+            ["response"=>$this->response]
         );
         $this->response->attributes("widgets", $contentManager->getTexts());
 
-//        $tms = new \CMS\Tms();
-//        $results = $tms->get("games/asdasd");
-//        $results[0]->value = 18;
-//        $tms->set("games/asdasd", json_decode(json_encode($results)), 1);
-//        die("OK");
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $this->response->attributes("best_casinos", $this->getCasinos(array("label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
         $this->response->attributes("country_casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, 5));
