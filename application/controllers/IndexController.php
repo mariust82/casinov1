@@ -8,7 +8,7 @@ require_once("application/controllers/BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
 require_once("application/models/orm/GamesFeaturedList.php");
 require_once("application/models/caching/GamesListKey.php");
-require_once("application/models/widgets/Tms.php");
+require_once("hlis/widgets/src/ContentManager.php");
 
 /*
 * Homepage
@@ -21,6 +21,13 @@ class IndexController extends BaseController
 {
     public function service()
     {
+        $contentManager = new \CMS\ContentManager(
+            $this->request->getValidator()->getPage(),
+            $this->application->attributes("parent_schema"),
+            (string) $this->application->getTag("application")->paths->widgets
+        );
+        $this->response->attributes("widgets", $contentManager->getTexts());
+
 //        $tms = new \CMS\Tms();
 //        $results = $tms->get("games/asdasd");
 //        $results[0]->value = 18;
