@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<xml>
+    <dynamic_variables folder="application/models/tms_variables"/>
+    <widgets folder="application/widgets">
+        <widget name="tms" video_width="560" video_height="315"/>
+        <widget name="video" width="560" height="315" class="SpecialVideoWidgetController"/>
+    </widgets>
+</xml>

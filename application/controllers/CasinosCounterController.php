@@ -1,7 +1,6 @@
 <?php
 require_once("BaseController.php");
 require_once("application/models/caching/CasinosCounterKey.php");
-require_once('application/models/TmsWrapper.php');
 /**
  * Lucinda\MVC\STDOUT\Controller
  */
@@ -11,9 +10,6 @@ abstract class CasinosCounterController extends BaseController
     {
         $object = $this->getCounter();
         $this->response->attributes("results", $this->getResults($object));
-        $tms = new TmsWrapper($this->application, $this->request, $this->response);
-        $tmsText = $tms->getText();
-        $this->response->attributes("tms", $tmsText);
     }
 
     protected function getResults(CasinoCounter $object)

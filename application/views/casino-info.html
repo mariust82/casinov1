@@ -16,7 +16,7 @@
 	<:elseif test="${data.casino.note}">
 			<div class="container">
 				<div class="warn-box note">
-					<div class="warn-box-body">${data.casino.note}</div>
+					<div class="warn-box-body">${str_replace("thebigfreechiplist","casinoslists",${data.casino.note})}</div>
 				</div>
 			</div>
 	</:if>
@@ -179,14 +179,12 @@
 							</div>
 						</div>
 
-						<:if test="${data.casino.date_established} != '0000-00-00'">
 							<div class="def-list-item">
 								<div class="def-list-key">Established</div>
 								<div class="def-list-val">
 									${date("M d, Y",  strtotime(${data.casino.date_established}))}
 								</div>
 							</div>
-						</:if>
 
 						<:if test="count(${data.casino.emails}) > 0">
 							<div class="def-list-item">
@@ -288,7 +286,7 @@
 				<div class="title title-middle">
 					${(${data.total_reviews} == 0)?'Be the first to write a review':'Reviews'}
 					<div class="reviews-num">
-						<span class="reviews-qty">${data.total_reviews}</span> Rewiew
+						<span class="reviews-qty">${data.total_reviews}</span> ${(${data.total_reviews} == 1)?'Review':'Reviews'}
 					</div>
 				</div>
 				<comment:list-container name="${data.user_score_class}" value="${normalize(${data.user_score_class})}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" />
