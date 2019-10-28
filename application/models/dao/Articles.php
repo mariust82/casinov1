@@ -45,6 +45,10 @@ class Articles
 
         return array_shift($blogPosts);
     }
+    
+    public function getArticleTags($id) {
+        return SQL("SELECT t1.name FROM tags AS t1 JOIN articles_tags AS t2 ON (t1.id = t2.tag_id) JOIN articles AS t3 ON (t2.article_id = t3.id) WHERE t3.id = :id",[':id'=>$id])->toList();
+    }
 
     public function getInfoByName($name = '')
     {
