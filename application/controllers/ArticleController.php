@@ -25,6 +25,7 @@ class ArticleController extends BaseController
         $article = $results["results"][0];
         $related_articles = $articles->getList(['id_not_in' => [$article->id],'type'=> $category], 0, 3);
         $tags = $articles->getArticleTags($article->id);
+        var_dump($tags);
         $singleArticle = new SingleArticle($results);
         
         $this->response->attributes("article", $article);
