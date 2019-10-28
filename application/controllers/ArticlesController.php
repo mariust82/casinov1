@@ -18,6 +18,7 @@ class ArticlesController extends BaseController
     protected $filter;
     protected $category;
     protected $offset;
+    protected $page;
     protected function pageInfo()
     {
         // get page info
@@ -30,7 +31,8 @@ class ArticlesController extends BaseController
     {
         $this->filter = [];
         $this->category = "blog";
-        $this->offset = 0;
+        $this->page = $this->request->getValidator()->parameters('page');
+        $this->offset = self::LIMIT*$this->page;
     }
 
     protected function service()
