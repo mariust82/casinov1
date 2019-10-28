@@ -10,12 +10,15 @@
             </div>
          </div>
          <div class="cards-list">
-            <box:article data="${data.results}" folder="data.uploadsFolders"/>
+            <box:article data="${data.results}" folder="data.uploadsFolders" total="120"/>
          </div>
+
+         <site:pagination/>
+
           <:if test="${data.total} > 9">
                 <div class="btn-holder">
                     <a class="btn-bordered load js-more-items load-more" data-category="${data.category}" data-total="${data.total}">Load More</a>
-                 </div>
+                </div>
           </:if>
       </div>
    </div>
