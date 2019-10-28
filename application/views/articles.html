@@ -14,12 +14,6 @@
          </div>
 
          <site:pagination/>
-
-          <:if test="${data.total} > 9">
-                <div class="btn-holder">
-                    <a class="btn-bordered load js-more-items load-more" data-category="${data.category}" data-total="${data.total}">Load More</a>
-                </div>
-          </:if>
       </div>
    </div>
 <site:bottom menu="${data.menu_top}"/>
