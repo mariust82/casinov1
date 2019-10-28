@@ -32,6 +32,7 @@ class ArticlesController extends BaseController
         $this->filter = [];
         $this->category = "blog";
         $this->page = $this->request->getValidator()->parameters('page');
+        var_dump($this->page);
         $this->offset = self::LIMIT*$this->page;
     }
 
