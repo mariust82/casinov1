@@ -1,7 +1,7 @@
 <div class="pagination">
-    <:if test="${data.page} == 0">
+    <:if test="${data.page} == 1">
         <a href="#" class="pagination-prev disabled">Prev</a> <!-- .disabled if is it first page -->
-    <:elseif test="${data.page} == 1">
+    <:elseif test="${data.page} == 2">
         <a href="${data.url}" class="pagination-prev">Prev</a> <!-- .disabled if is it first page -->
     <:else>
         <a href="${data.url}/${data.page}" class="pagination-prev">Prev</a> <!-- .disabled if is it first page -->
@@ -13,9 +13,10 @@
         <a href="#">4</a>
         <a href="#">5</a>
     </div>
-    <:if test="ceil(${data.total}/15) == ${data.page} + 1">
-    <a href="${data.url}/${data.page} + 1" class=" pagination-next disabled">Next</a> <!-- .disabled if is it last page -->
+    <:if test="ceil(${data.total}/15) == ${data.page}">
+    <a href="#" class=" pagination-next disabled">Next</a> <!-- .disabled if is it last page -->
     <:else>
-    <a href="${data.url}/${data.page} + 1" class="pagination-next">Next</a> <!-- .disabled if is it last page -->
+    <:set var="page" val="${data.page} + 1"/>
+    <a href="${data.url}/${page}" class="pagination-next">Next</a> <!-- .disabled if is it last page -->
     </:if>
 </div>
