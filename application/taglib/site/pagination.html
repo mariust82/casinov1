@@ -9,7 +9,7 @@
     </:if>
     <div class="pagination-wrapper">
         <:for start="1" end="${data.visible}" var="i">
-             <:if test="${data.page} - ceil(${data.visible}/2) < 0">
+             <:if test="${data.page} - ceil(${data.visible}/15) < 0">
                 <:if test="${data.page} == ${i}">
                     <span class="active">${data.page}</span>
                 <:else>
@@ -19,7 +19,7 @@
                         <a href="${data.url}/${i}">${i}</a>
                     </:if>
                 </:if>
-            <:elseif test="${data.page} + floor(${data.visible} / 2) > ${data.max_page}">
+            <:elseif test="${data.page} + floor(${data.visible} / 15) > ${data.max_page}">
                 <:if test="${data.max_page} > ${data.visible}">
                     <:set var="j" val="${data.max_page} - ${data.visible} + ${i}"/> 
                 <:else>
@@ -35,10 +35,10 @@
                     </:if>
                 </:if>
             <:else>
-                <:if test="${i} == ceil(${data.visible}/2)">
+                <:if test="${i} == ceil(${data.visible}/15)">
                     <span class="active"><span>${data.page}</span></span>
                 <:else>
-                    <:set var="j" val="${data.page} - ceil(${data.visible}/2) + ${i}"/>
+                    <:set var="j" val="${data.page} - ceil(${data.visible}/15) + ${i}"/>
                     <:if test="${j} == 1">
                     <a href="${data.url}">${j}</a>
                     <:else>
@@ -48,7 +48,7 @@
             </:if>
         </:for>
     </div>
-    <:if test="ceil(${data.total}/2) == ${data.page}">
+    <:if test="ceil(${data.total}/15) == ${data.page}">
     <a href="#" class=" pagination-next disabled">Next</a> <!-- .disabled if is it last page -->
     <:else>
     <:set var="page" val="${data.page} + 1"/>
