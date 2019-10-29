@@ -46,7 +46,7 @@ class ArticlesController extends BaseController
         $this->response->attributes("results", $items['results']);
         $this->response->attributes("category", $this->category);
         $this->response->attributes("url", $this->url);
-        $this->response->attributes("page", $this->page);
+        $this->response->attributes("page", $this->page + 1);
         $this->response->attributes("total", $items['total']);
         $this->response->attributes("uploadsFolders", $upload->getUploadsFolders($items));
     }
