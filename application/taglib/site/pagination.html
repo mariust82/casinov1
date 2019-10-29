@@ -26,13 +26,13 @@
                     <a href="${data.url}/${j}"><span>${j}</span></a>
                 </:if>
             <:else>
-            <if test="${i} == ceil(5/2)">
-                <span class="active"><span>${data.page}</span></span>
-            <:else>
-                <:set var="j" val="${data.page} - ceil(5/2) + ${i}"/>
-                <a href="${data.url}/${j}"><span>${j}</span></a>
+                <:if test="${i} == ceil(5/2)">
+                    <span class="active"><span>${data.page}</span></span>
+                <:else>
+                    <:set var="j" val="${data.page} - ceil(5/2) + ${i}"/>
+                    <a href="${data.url}/${j}"><span>${j}</span></a>
+                </:if>
             </:if>
-        </:if>
         </:for>
     </div>
     <:if test="ceil(${data.total}/2) == ${data.page}">
