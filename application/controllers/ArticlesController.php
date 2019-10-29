@@ -14,7 +14,7 @@ require_once "application/models/ArticlesModel.php";
 
 class ArticlesController extends BaseController
 {
-    const LIMIT = 15;
+    const LIMIT = 2;
     protected $filter;
     protected $category;
     protected $offset;
