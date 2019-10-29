@@ -171,10 +171,11 @@
         <parameter name="category" validator="ArticleCategoryValidator"/>
         <parameter name="page" validator="IntegerValidator"/>
     </route>
-    <route url="blog" controller="ArticlesController" view="articles"/>
     <route url="blog/(page)" controller="ArticlesController" view="articles">
         <parameter name="page" validator="IntegerValidator"/>
     </route>
+    <route url="blog" controller="ArticlesController" view="articles"/>
+    
      <route url="(category)/(name)" controller="ArticleController" view="article">
       <parameter name="category" validator="ArticleCategoryValidator"/>
       <parameter name="name" validator="ArticleValidator"/>
