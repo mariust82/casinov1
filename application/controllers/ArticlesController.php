@@ -33,7 +33,6 @@ class ArticlesController extends BaseController
         $this->category = "blog";
         
         $this->page = $this->request->getValidator()->parameters('page') == NULL ? 0 : $this->request->getValidator()->parameters('page') - 1;
-        var_dump($this->page);
         $this->offset = self::LIMIT*$this->page;
     }
 

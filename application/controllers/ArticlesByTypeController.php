@@ -18,7 +18,6 @@ class ArticlesByTypeController extends ArticlesController
     {
         $this->category = $this->request->getValidator()->parameters('category');
         $this->page = $this->request->getValidator()->parameters('page') == NULL ? 0 : $this->request->getValidator()->parameters('page') - 1;
-        echo 'shay';
         $this->offset = self::LIMIT*$this->page;
         $this->filter = ['type'=> $this->category];
     }
