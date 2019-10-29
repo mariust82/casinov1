@@ -12,8 +12,9 @@
          <div class="cards-list">
             <box:article data="${data.results}" folder="data.uploadsFolders" total="${data.total}"/>
          </div>
-
-         <site:pagination/>
+          <:if test="${data.total} > 15">
+            <site:pagination/>
+         </:if>
       </div>
    </div>
 <site:bottom menu="${data.menu_top}"/>
