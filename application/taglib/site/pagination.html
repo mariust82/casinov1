@@ -7,16 +7,16 @@
         <a href="${data.url}/${data.page}" class="pagination-prev">Prev</a> <!-- .disabled if is it first page -->
     </:if>
     <div class="pagination-wrapper">
-        <:for start="1" end="5" var="i">
-             <:if test="${data.page} - ceil(5/2) < 0">
+        <:for start="1" end="${data.visible}" var="i">
+             <:if test="${data.page} - ceil(${data.visible}/2) < 0">
                 <:if test="${data.page} == ${i}">
                     <span class="active">${data.page}</span>
                 <:else>
                     <a href="${data.url}/${i}">${i}</a>
                 </:if>
-            <:elseif test="${data.page} + floor(5 / 2) > 100">
-                <:if test="100 > 5">
-                    <:set var="j" val="100 - 5 + ${i}"/> 
+            <:elseif test="${data.page} + floor(${data.visible} / 2) > ${data.max_page}">
+                <:if test="${data.max_page} > ${data.visible}">
+                    <:set var="j" val="${data.max_page} - ${data.visible} + ${i}"/> 
                 <:else>
                     <:set var="j" val="${i}"/> 
                 </:if>
@@ -26,10 +26,10 @@
                     <a href="${data.url}/${j}">${j}</a>
                 </:if>
             <:else>
-                <:if test="${i} == ceil(5/2)">
+                <:if test="${i} == ceil(${data.visible}/2)">
                     <span class="active"><span>${data.page}</span></span>
                 <:else>
-                    <:set var="j" val="${data.page} - ceil(5/2) + ${i}"/>
+                    <:set var="j" val="${data.page} - ceil(${data.visible}/2) + ${i}"/>
                     <a href="${data.url}/${j}">${j}</a>
                 </:if>
             </:if>
