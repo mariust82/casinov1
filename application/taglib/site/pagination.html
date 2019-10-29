@@ -7,7 +7,7 @@
         <a href="${data.url}/${data.page}" class="pagination-prev">Prev</a> <!-- .disabled if is it first page -->
     </:if>
     <div class="pagination-wrapper">
-        <:for start="1" end="5" value="i">
+        <:for start="1" end="5" var="i">
              <:if condition="${data.page} - ceil(5/2) < 0">
                 <:if test="${data.page} == ${i}">
                     <span class="active">${data.page}</span>
