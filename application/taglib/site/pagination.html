@@ -7,12 +7,32 @@
         <a href="${data.url}/${data.page}" class="pagination-prev">Prev</a> <!-- .disabled if is it first page -->
     </:if>
     <div class="pagination-wrapper">
-        <:for start="${data.page}" end="ceil(${data.total}/2)" var="i">">
+        <:for start="1" end="5" value="i">
+             <:if condition="${data.page} - ceil(5/2) < 0">
                 <:if test="${data.page} == ${i}">
                     <span class="active">${data.page}</span>
                 <:else>
                     <a href="${data.url}/${i}">${i}</a>
                 </:if>
+            <:elseif test="${data.page} + floor(5 / 2) > 100">
+                <:if test="100 > 5">
+                    <:set var="j" val="100 - 5 + ${i}"/> 
+                <:else>
+                    <:set var="j" val="${i}"/> 
+                </:if>
+                 <:if test="${j} == ${data.page}">
+                    <span class="active"><span>${data.page}</span></span>
+                <:else>
+                    <a href="${data.url}/${j}"><span>${j}</span></a>
+                </:if>
+            <:else>
+            <if test="${i} == ceil(5/2)">
+                <span class="active"><span>${data.page}</span></span>
+            <:else>
+                <:set var="j" val="${data.page} - ceil(5/2) + ${i}"/>
+                <a href="${data.url}/${j}"><span>${j}</span></a>
+            </:if>
+        </:if>
         </:for>
     </div>
     <:if test="ceil(${data.total}/2) == ${data.page}">
