@@ -1,5 +1,5 @@
 <div class="pagination">
-    <a href="#" class="pagination-prev disabled">Prev</a> <!-- .disabled if is it first page -->
+    <a href="${data.url}/${data.page} + 1" class="pagination-prev disabled">Prev</a> <!-- .disabled if is it first page -->
 
     <div class="pagination-wrapper">
         <span class="active">1</span>
@@ -9,5 +9,5 @@
         <a href="#">5</a>
     </div>
 
-    <a href="#" class="pagination-next">Next</a> <!-- .disabled if is it last page -->
+    <a href="${data.url}/${data.page} - 1" class="pagination-next">Next</a> <!-- .disabled if is it last page -->
 </div>
