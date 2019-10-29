@@ -2,7 +2,8 @@
     <:if test="${data.page} == 0">
         <a href="#" class="pagination-prev disabled">Prev</a> <!-- .disabled if is it first page -->
     <:else>
-        <a href="${data.url}/${data.page - 1} " class="pagination-prev">Prev</a> <!-- .disabled if is it first page -->
+        <:set var="page" val="${data.page} - 1"/>
+        <a href="${data.url}/${page} " class="pagination-prev">Prev</a> <!-- .disabled if is it first page -->
     </:if>
     <div class="pagination-wrapper">
         <span class="active">1</span>
