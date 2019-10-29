@@ -164,8 +164,15 @@
       <parameter name="TYPE" validator="LiveDealerValidator"/>
     </route>
     <route url="blog" controller="ArticlesController" view="articles"/>
-    <route url="blog/(category)" controller="ArticlesByTypeController" view="articles">
+     <route url="blog/(page)" controller="ArticlesController" view="articles">
+        <parameter name="page" validator="IntegerValidator"/>
+    </route>
+    <route url="blog/category/(category)" controller="ArticlesByTypeController" view="articles">
         <parameter name="category" validator="ArticleCategoryValidator"/>
+    </route>
+    <route url="blog/category/(category)/(page)" controller="ArticlesByTypeController" view="articles">
+        <parameter name="category" validator="ArticleCategoryValidator"/>
+        <parameter name="page" validator="IntegerValidator"/>
     </route>
      <route url="(category)/(name)" controller="ArticleController" view="article">
       <parameter name="category" validator="ArticleCategoryValidator"/>
