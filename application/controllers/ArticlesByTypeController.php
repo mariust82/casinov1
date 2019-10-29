@@ -17,6 +17,7 @@ class ArticlesByTypeController extends ArticlesController
     protected function init()
     {
         $this->category = $this->request->getValidator()->parameters('category');
+        var_dump($this->page);
         $this->offset = self::LIMIT*$this->page;
         $this->filter = ['type'=> $this->category];
     }
