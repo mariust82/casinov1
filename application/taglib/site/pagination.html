@@ -32,8 +32,7 @@
                 <:if test="${i} == ceil(${data.visible}/15)">
                     <span class="active"><span>${data.page}</span></span>
                 <:else>
-                <div class="shay">test3</div>
-                <:if test="${data.page} == ceil(${data.visible}/15)">
+                <:if test="${data.page} == ${data.max_page}">
                     <:set var="j" val="${data.page} - ceil(${data.visible}/15)"/>
                     <a href="${data.url}/${j}">${j}</a>
                 <:else>
