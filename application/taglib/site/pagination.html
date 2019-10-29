@@ -13,6 +13,9 @@
         <a href="#">4</a>
         <a href="#">5</a>
     </div>
-
+    <:if test="ceil(${data.total}/15) == ${data.page} + 1">
+    <a href="${data.url}/${data.page} + 1" class=" pagination-next disabled">Next</a> <!-- .disabled if is it last page -->
+    <:else>
     <a href="${data.url}/${data.page} + 1" class="pagination-next">Next</a> <!-- .disabled if is it last page -->
+    </:if>
 </div>
