@@ -163,10 +163,7 @@
     <route url="live-dealer/(TYPE)" controller="CasinoLiveDealerController" view="casinos">
       <parameter name="TYPE" validator="LiveDealerValidator"/>
     </route>
-    <route url="blog" controller="ArticlesController" view="articles"/>
-    <route url="blog/(page)" controller="ArticlesController" view="articles">
-        <parameter name="page" validator="IntegerValidator"/>
-    </route>
+    
     <route url="blog/(category)" controller="ArticlesByTypeController" view="articles">
         <parameter name="category" validator="ArticleCategoryValidator"/>
     </route>
@@ -181,7 +178,12 @@
     <route url="load-more/(category)/(page)" controller="ArticlesLoadMoreController" view="article-item">
         <parameter name="category" validator="ArticleCategoryValidator"/>
         <parameter name="page" validator="IntegerValidator"/>
-    </route>  
+    </route>
+    <route url="blog/(page)" controller="ArticlesController" view="articles">
+        <parameter name="page" validator="IntegerValidator"/>
+    </route>
+    <route url="blog" controller="ArticlesController" view="articles"/>
+    
     <route url="blog/rate" controller="ArticleRateController" format="json">
       <parameter name="is_like" validator="LikeValueValidator"/>
       <parameter name="id" validator="ArticleIdValidator"/>
