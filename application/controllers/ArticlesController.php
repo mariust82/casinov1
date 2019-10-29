@@ -48,7 +48,7 @@ class ArticlesController extends BaseController
         $this->response->attributes("url", $this->url);
         $this->response->attributes("page", $this->page + 1);
         $this->response->attributes("visible", 5);
-        $this->response->attributes("max_page", ceil($items['total']/2));
+        $this->response->attributes("max_page", ceil($items['total']/15));
         $this->response->attributes("total", $items['total']);
         $this->response->attributes("uploadsFolders", $upload->getUploadsFolders($items));
     }
