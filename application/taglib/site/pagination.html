@@ -8,10 +8,12 @@
     </:if>
     <div class="pagination-wrapper">
         <:for start="1" end="ceil(${data.total}/15)" var="i">
-            <:if test="${data.page} == ${i}">
-                <span class="active">${data.page}</span>
-            <:else>
-                <a href="${data.url}/${i}">${i}</a>
+            <:if test="${i} <= 5">
+                <:if test="${data.page} == ${i}">
+                    <span class="active">${data.page}</span>
+                <:else>
+                    <a href="${data.url}/${i}">${i}</a>
+                </:if>
             </:if>
         </:for>
     </div>
