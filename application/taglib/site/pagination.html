@@ -9,15 +9,17 @@
     </:if>
     <div class="pagination-wrapper">
         <:for start="1" end="${data.visible}" var="i">
-             <:if test="${data.page} - ceil(${data.visible}/15) < 0">
-                <div class="shay">test1</div>
+             <:if test="${data.page} - ceil(${data.visible}/2) < 0">
                 <:if test="${data.page} == ${i}">
                     <span class="active">${data.page}</span>
                 <:else>
-                    <a href="${data.url}/${i}">${i}</a>
+                    <:if test="${i} == 1">
+                    <a href="${data.url}">${i}</a>
+                    <:else>
+                        <a href="${data.url}/${i}">${i}</a>
+                    </:if>
                 </:if>
-            <:elseif test="${data.page} + floor(${data.visible} / 15) > ${data.max_page}">
-                <div class="shay">test2</div>
+            <:elseif test="${data.page} + floor(${data.visible} / 2) > ${data.max_page}">
                 <:if test="${data.max_page} > ${data.visible}">
                     <:set var="j" val="${data.max_page} - ${data.visible} + ${i}"/> 
                 <:else>
@@ -26,19 +28,22 @@
                  <:if test="${j} == ${data.page}">
                     <span class="active"><span>${data.page}</span></span>
                 <:else>
-                    <a href="${data.url}/${j}">${j}</a>
+                    <:if test="${j} == 1">
+                    <a href="${data.url}">${j}</a>
+                    <:else>
+                        <a href="${data.url}/${j}">${j}</a>
+                    </:if>
                 </:if>
             <:else>
-                <:if test="${i} == ceil(${data.visible}/15)">
+                <:if test="${i} == ceil(${data.visible}/2)">
                     <span class="active"><span>${data.page}</span></span>
                 <:else>
-                <:if test="${data.page} == ${data.max_page}">
-                    <:set var="j" val="${data.page} - ceil(${data.visible}/15)"/>
-                    <a href="${data.url}/${j}">${j}</a>
-                <:else>
-                 <:set var="j" val="${data.page} - ceil(${data.visible}/15) + ${i}"/>
-                    <a href="${data.url}/${j}">${j}</a>
-                </:if>
+                    <:set var="j" val="${data.page} - ceil(${data.visible}/2) + ${i}"/>
+                    <:if test="${j} == 1">
+                    <a href="${data.url}">${j}</a>
+                    <:else>
+                        <a href="${data.url}/${j}">${j}</a>
+                    </:if>
                 </:if>
             </:if>
         </:for>
