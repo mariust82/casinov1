@@ -65,7 +65,7 @@ class Articles
         return $results[0];
     }
 
-    public function getList($filters = [], $offset = 0, $limit = 9)
+    public function getList($filters = [], $offset = 0, $limit = 15)
     {
         $output = ['results' => [], 'total' => 0];
         //DB('SET NAMES UTF8');
@@ -97,6 +97,7 @@ class Articles
         }
         $select->orderBy()->add("a.id",Lucinda\Query\OrderByOperator::DESC);
         $select->limit($limit, $offset);
+        echo $select->toString();
         $resultSet = SQL($select->toString(), $query_vars);
         $foundRows = (int)SQL('SELECT FOUND_ROWS()')->toValue();
         $results = [];
