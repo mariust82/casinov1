@@ -31,7 +31,7 @@ class ArticlesController extends BaseController
     {
         $this->filter = [];
         $this->category = "blog";
-        $this->offset = self::LIMIT*$this->page;
+        $this->offset = 0;
     }
 
     protected function service()
