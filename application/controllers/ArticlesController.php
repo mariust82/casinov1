@@ -18,8 +18,7 @@ class ArticlesController extends BaseController
     protected $filter;
     protected $category;
     protected $offset;
-    protected $page;
-    protected $url;
+    
     protected function pageInfo()
     {
         // get page info
@@ -32,8 +31,6 @@ class ArticlesController extends BaseController
     {
         $this->filter = [];
         $this->category = "blog";
-        $this->url = '/'.$this->category;
-        $this->page = $this->request->getValidator()->parameters('page') == NULL ? 0 : $this->request->getValidator()->parameters('page') - 1;
         $this->offset = self::LIMIT*$this->page;
     }
 
@@ -45,10 +42,6 @@ class ArticlesController extends BaseController
         $upload = new ArticlesModel($items);
         $this->response->attributes("results", $items['results']);
         $this->response->attributes("category", $this->category);
-        $this->response->attributes("url", $this->url);
-        $this->response->attributes("page", $this->page + 1);
-        $this->response->attributes("visible", ceil($items['total']/15));
-        $this->response->attributes("max_page", ceil($items['total']/15));
         $this->response->attributes("total", $items['total']);
         $this->response->attributes("uploadsFolders", $upload->getUploadsFolders($items));
     }
