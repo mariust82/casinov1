@@ -1,8 +1,8 @@
-<div class="filter">
-    <:if test="$[total] > 0">
-        <div class="qty-items">$[total] ${($[total] == "1")?'result':'results'}</div>
-  </:if>
-</div>
+<:if test="$[total] > 0">
+    <div class="filter">
+            <div class="qty-items">$[total] ${($[total] == "1")?'result':'results'}</div>  
+    </div>
+</:if>
 <div class="cards-list-wrapper">
   <:foreach var="$[data]" val="article">
       <div class="wrap-card">
