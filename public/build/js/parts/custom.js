@@ -323,7 +323,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
 
     function grayscaleIE() {
         if (getInternetExplorerVersion() >= 10){
-            $('.not-accepted').each(function(){
+            $('img.not-accepted').each(function(){
                 var el = $(this);
                 el.css({"position":"absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position":"absolute","z-index":"5","opacity":"0"}).insertBefore(el).queue(function(){
                     var el = $(this);
