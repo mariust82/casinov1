@@ -27,6 +27,7 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
             (string) $this->application->getTag("application")->paths->widgets,
             ["response"=>$this->response]
         );
+        var_dump($contentManager->getTexts());
         $this->response->attributes("widgets", $contentManager->getTexts());
     }
 
