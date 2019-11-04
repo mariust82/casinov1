@@ -21,6 +21,7 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes("use_bundle", (in_array(ENVIRONMENT, ["dev","live"])?true:false));
 
         $this->response->attributes("tms", $this->getTMSVariables());
+        var_dump($this->request->getValidator()->getPage());
          $contentManager = new \CMS\ContentManager(
             $this->request->getValidator()->getPage(),
             $this->application->attributes("parent_schema"),
