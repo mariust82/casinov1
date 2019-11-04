@@ -32,7 +32,9 @@ class Games extends \TMS\VariablesHolder
 
     public function getNewestGameInCurrentList()
     {
-        $request = $this->parameters["request"];
+        $request = (array) $this->parameters["request"];
+        var_dump($this->parameters);
+        var_dump($request);
         $gamesTms = new GamesTms($request);
         $result = $gamesTms->getData(GameSortCriteria::NEWEST, 1, 1);
         $name = !empty($result['list'][0]->name) ? $result['list'][0]->name : '';
