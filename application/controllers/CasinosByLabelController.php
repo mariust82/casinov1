@@ -29,6 +29,8 @@ class CasinosByLabelController extends CasinosListController
             ["response"=>$this->response]
         );
         $this->response->attributes("widgets", $contentManager->getTexts());
+        var_dump($this->response->attributes("widgets"));
+        die();
     }
 
     protected function getFilter()
