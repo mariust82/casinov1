@@ -1,6 +1,7 @@
 <?php
 require_once("application/models/dao/CasinoLabels.php");
 require_once("CasinosListController.php");
+require_once("hlis/widgets/src/ContentManager.php");
 /*
 * Casinos list by label
 *
@@ -18,6 +19,16 @@ class CasinosByLabelController extends CasinosListController
 
         $name =  $name == 'mobile' ? "Mobile" : $name ;
         return $name;
+    }
+    
+    protected function init() {
+        $contentManager = new \CMS\ContentManager(
+            $this->request->getValidator()->getPage(),
+            $this->application->attributes("parent_schema"),
+            (string) $this->application->getTag("application")->paths->widgets,
+            ["response"=>$this->response]
+        );
+        $this->response->attributes("widgets", $contentManager->getTexts());
     }
 
     protected function getFilter()

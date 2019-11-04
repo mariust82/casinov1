@@ -5,7 +5,7 @@ require_once("application/models/dao/CasinosList.php");
 require_once("application/models/dao/CasinosMenu.php");
 require_once("BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
-require_once("hlis/widgets/src/ContentManager.php");
+
 abstract class CasinosListController extends BaseController
 {
     protected $limit = 100;
@@ -26,14 +26,11 @@ abstract class CasinosListController extends BaseController
         $this->response->attributes("casinos", $results["list"]);
         $this->response->attributes("page_type", $this->get_page_type());
         $this->response->attributes('bonus_free_type', $this->getAbbreviation($this->response->attributes('casinos')));
-        $contentManager = new \CMS\ContentManager(
-            $this->request->getValidator()->getPage(),
-            $this->application->attributes("parent_schema"),
-            (string) $this->application->getTag("application")->paths->widgets,
-            ["response"=>$this->response]
-        );
-        $this->response->attributes("widgets", $contentManager->getTexts());
+        $this->init();
+       
     }
+    
+    protected function init() {}
 
     private function getResults()
     {
