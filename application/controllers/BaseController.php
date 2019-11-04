@@ -2,13 +2,11 @@
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
 require_once("hlis/tms/src/TextsManager.php");
-require_once("hlis/widgets/src/ContentManager.php");
 
 abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
 {
     public function run()
     {
-        
         $specificPage = $this->request->getURI()->getPage();
         $country = $this->request->attributes("country");
         $this->response->attributes("country", $country);
@@ -21,13 +19,7 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes("version", $this->application->getVersion());
 
         $this->response->attributes("use_bundle", (in_array(ENVIRONMENT, ["dev","live"])?true:false));
-         $contentManager = new \CMS\ContentManager(
-            $this->request->getValidator()->getPage(),
-            $this->application->attributes("parent_schema"),
-            (string) $this->application->getTag("application")->paths->widgets,
-            ["response"=>$this->response]
-        );
-        $this->response->attributes("widgets", $contentManager->getTexts());
+
         $this->response->attributes("tms", $this->getTMSVariables());
     }
 
