@@ -21,7 +21,7 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
             $this->request->getURI()->getPage()?$this->request->getURI()->getPage():"index",
             $this->application->attributes("parent_schema"),
             (string) $this->application->getTag("application")->paths->widgets,
-            ["response"=>$this->response]
+            ["response"=>$this->response, "request"=>$this->request]
         );
         $this->response->attributes("widgets", $contentManager->getTexts());
     }
