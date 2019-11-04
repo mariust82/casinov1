@@ -13,21 +13,16 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
         $menu = new TopMenu($this->request->getValidator()->getPage(), $specificPage, $country);
         $this->response->attributes("menu_top", $menu->getEntries());
         $this->service();
-
         $this->pageInfo();
-
         $this->response->attributes("version", $this->application->getVersion());
-
         $this->response->attributes("use_bundle", (in_array(ENVIRONMENT, ["dev","live"])?true:false));
-
         $this->response->attributes("tms", $this->getTMSVariables());
-         $contentManager = new \CMS\ContentManager(
-            $this->request->getValidator()->getPage(),
+        $contentManager = new \CMS\ContentManager(
+            $this->request->getURI()->getPage()?$this->request->getURI()->getPage():"index",
             $this->application->attributes("parent_schema"),
             (string) $this->application->getTag("application")->paths->widgets,
             ["response"=>$this->response]
         );
-        var_dump($contentManager->getTexts());
         $this->response->attributes("widgets", $contentManager->getTexts());
     }
 
