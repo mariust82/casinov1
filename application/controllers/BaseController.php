@@ -8,13 +8,7 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
 {
     public function run()
     {
-         $contentManager = new \CMS\ContentManager(
-            $this->request->getValidator()->getPage(),
-            $this->application->attributes("parent_schema"),
-            (string) $this->application->getTag("application")->paths->widgets,
-            ["response"=>$this->response]
-        );
-        $this->response->attributes("widgets", $contentManager->getTexts());
+        
         $specificPage = $this->request->getURI()->getPage();
         $country = $this->request->attributes("country");
         $this->response->attributes("country", $country);
@@ -27,7 +21,13 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes("version", $this->application->getVersion());
 
         $this->response->attributes("use_bundle", (in_array(ENVIRONMENT, ["dev","live"])?true:false));
-
+         $contentManager = new \CMS\ContentManager(
+            $this->request->getValidator()->getPage(),
+            $this->application->attributes("parent_schema"),
+            (string) $this->application->getTag("application")->paths->widgets,
+            ["response"=>$this->response]
+        );
+        $this->response->attributes("widgets", $contentManager->getTexts());
         $this->response->attributes("tms", $this->getTMSVariables());
     }
 
