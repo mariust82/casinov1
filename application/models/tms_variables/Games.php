@@ -32,7 +32,7 @@ class Games extends \TMS\VariablesHolder
 
     public function getNewestGameInCurrentList()
     {
-        $gamesTms = new GamesTms($this->parameters["response"]);
+        $gamesTms = new GamesTms($this->parameters["request"]);
         $result = $gamesTms->getData(GameSortCriteria::NEWEST, 1, 1);
         $name = !empty($result['list'][0]->name) ? $result['list'][0]->name : '';
         return $name;
@@ -51,7 +51,7 @@ class Games extends \TMS\VariablesHolder
 
     public function getMostPopularGameInCurrentList()
     {
-        $gamesTms = new GamesTms($this->parameters["response"]);
+        $gamesTms = new GamesTms($this->parameters["request"]);
         $result = $gamesTms->getData(GameSortCriteria::MOST_PLAYED, 1, 1);
         $name = !empty($result['list'][0]->name) ? $result['list'][0]->name : '';
         return $name;
@@ -73,7 +73,7 @@ class Games extends \TMS\VariablesHolder
 
     public function getSoftwareOfNewestGameInCurrentList()
     {
-        $gamesTms = new GamesTms($this->parameters["response"]);
+        $gamesTms = new GamesTms($this->parameters["request"]);
         $result = $gamesTms->getData(GameSortCriteria::NEWEST, 1, 1);
         $name = !empty($result['list'][0]->manufacturer) ? $result['list'][0]->manufacturer : '';
         return $name;
@@ -94,7 +94,7 @@ class Games extends \TMS\VariablesHolder
 
     public function getSoftwareOfTheMostPopularGameInCurentList()
     {
-        $gamesTms = new GamesTms($this->parameters["response"]);
+        $gamesTms = new GamesTms($this->parameters["request"]);
         $result = $gamesTms->getData(GameSortCriteria::MOST_PLAYED, 1, 1);
         $name = !empty($result['list'][0]->manufacturer) ? $result['list'][0]->manufacturer : '';
         return $name;
