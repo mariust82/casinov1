@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
 <xml>
-  <application version="0.8.8.8992" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
+  <application version="0.8.8.8995" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
     <paths>
       <controllers>application/controllers</controllers>
       <cacheables>application/models/cacheables</cacheables>
@@ -163,10 +163,12 @@
     <route url="live-dealer/(TYPE)" controller="CasinoLiveDealerController" view="casinos">
       <parameter name="TYPE" validator="LiveDealerValidator"/>
     </route>
+    <route url="blog" controller="ArticlesController" view="articles"/>
+     
     <route url="blog/(category)" controller="ArticlesByTypeController" view="articles">
         <parameter name="category" validator="ArticleCategoryValidator"/>
     </route>
-     <route url="(category)/(name)" controller="ArticleController" view="article">
+    <route url="(category)/(name)" controller="ArticleController" view="article">
       <parameter name="category" validator="ArticleCategoryValidator"/>
       <parameter name="name" validator="ArticleValidator"/>
     </route>
@@ -174,7 +176,6 @@
         <parameter name="category" validator="ArticleCategoryValidator"/>
         <parameter name="page" validator="IntegerValidator"/>
     </route>
-    <route url="blog" controller="ArticlesController" view="articles"/>
     
     <route url="blog/rate" controller="ArticleRateController" format="json">
       <parameter name="is_like" validator="LikeValueValidator"/>

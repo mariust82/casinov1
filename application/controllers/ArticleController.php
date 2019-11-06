@@ -24,9 +24,11 @@ class ArticleController extends BaseController
         $results = $articles->getList(['name'=>$article_name],0,1);
         $article = $results["results"][0];
         $related_articles = $articles->getList(['id_not_in' => [$article->id],'type'=> $category], 0, 3);
+        $tags = $articles->getArticleTags($article->id);
         $singleArticle = new SingleArticle($results);
         
         $this->response->attributes("article", $article);
+        $this->response->attributes("tags", $tags);
         $this->response->attributes("tms_article", $articles->getInfoByRoute($singleArticle->denormalize($article_name)));
         $this->response->attributes("related", $related_articles['results']);
         $this->response->attributes("uploadsFolders", $singleArticle->getUploadsFolders($results));

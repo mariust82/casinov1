@@ -45,6 +45,10 @@ class Articles
 
         return array_shift($blogPosts);
     }
+    
+    public function getArticleTags($id) {
+        return SQL("SELECT t1.name FROM tags AS t1 JOIN articles_tags AS t2 ON (t1.id = t2.tag_id) JOIN articles AS t3 ON (t2.article_id = t3.id) WHERE t3.id = :id",[':id'=>$id])->toList();
+    }
 
     public function getInfoByName($name = '')
     {
@@ -61,7 +65,7 @@ class Articles
         return $results[0];
     }
 
-    public function getList($filters = [], $offset = 0, $limit = 9)
+    public function getList($filters = [], $offset = 0, $limit = 15)
     {
         $output = ['results' => [], 'total' => 0];
         //DB('SET NAMES UTF8');

@@ -14,10 +14,11 @@ require_once "application/models/ArticlesModel.php";
 
 class ArticlesController extends BaseController
 {
-    const LIMIT = 9;
+    const LIMIT = 15;
     protected $filter;
     protected $category;
     protected $offset;
+    
     protected function pageInfo()
     {
         // get page info

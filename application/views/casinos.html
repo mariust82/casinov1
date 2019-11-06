@@ -6,9 +6,11 @@
 		<div class="container">
 			<div class="headeing">
 				<h1 class="title">${data.page_info.body_title}</h1>
-				<div class="subtitle">
-					<div class="js-condense"><span>${(isset(${data.tms.upper_text})?${data.tms.upper_text}:"")}</span></div>
+                                <:if test="isset(${data.widgets.upper})">
+				<div class="subtitle plain-text">
+					<div class="js-condense"><span>${implode("\n", ${data.widgets.upper})}</span></div>
 				</div>
+                                </:if>
 			</div>
 
 			<:if test="isset(${data.currency})">
@@ -19,6 +21,11 @@
 
 			<div class="data-container-holder">
 				<div class="holder">
+                                    <:if test="isset(${data.widgets.middle})">
+                                   <div class="subtitle plain-text">
+                                           <div class="js-condense"><span>${implode("\n", ${data.widgets.middle})}</span></div>
+                                   </div>
+                                   </:if>
 				    <:set var="low_wagering_class" val="(${data.selected_entity} == 'Low Wagering' ? 'low_wagering_list' : ''  )"/>
 					<div class="data-container ${low_wagering_class}" data-type="${data.page_type}" data-type-value="${data.selected_entity}">
 						<div class="qty-items" data-load-total="${data.total_casinos}">${data.total_casinos} results</div>
@@ -45,9 +52,11 @@
 				</:if>
 			</:if>
                         <br>
-                        <div class="subtitle">
-                            <div><span>${(isset(${data.tms.lower_text})?${data.tms.lower_text}:"")}</span></div>
+                         <:if test="isset(${data.widgets.lower})">
+                        <div class="subtitle plain-text">
+                                <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
                         </div>
+                        </:if>
 		</div>
 	</div>
 <site:bottom menu="${data.menu_top}"/>

@@ -6,16 +6,11 @@ class BankingMethods implements CasinoCounter
 {
     public function getCasinosCount()
     {
-        return SQL("
-        SELECT
-        t1.name AS unit, count(*) as counter
-        FROM banking_methods AS t1
-        INNER JOIN casinos__deposit_methods AS t2 ON t1.id = t2.banking_method_id
-        INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
-        WHERE t3.is_open = 1
-        GROUP BY t1.id
-        ORDER BY counter DESC 
-        ")->toMap("unit", "counter");
+        return SQL("SELECT name, COUNT(DISTINCT casino_id) AS nr FROM
+            ( SELECT t1.casino_id, t1.banking_method_id,t3.name FROM casinos__withdraw_methods AS t1 INNER JOIN banking_methods AS t3 ON (t1.banking_method_id = t3.id) INNER JOIN casinos AS t2 ON t2.id = t1.casino_id WHERE t2.is_open=1 
+            UNION SELECT t1.casino_id, t1.banking_method_id,t3.name FROM casinos__deposit_methods AS t1 INNER JOIN banking_methods AS t3 ON (t1.banking_method_id = t3.id) INNER JOIN casinos AS t2 ON t2.id = t1.casino_id WHERE t2.is_open=1 ) AS alias 
+            GROUP BY banking_method_id ORDER BY nr DESC
+        ")->toMap("name", "nr");
     }
 
 

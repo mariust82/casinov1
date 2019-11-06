@@ -41,8 +41,8 @@ function tmsIframe() {
             AJAX_CUR_PAGE++;
             console.dir(data);
              console.dir(data);
-            $('.cards-list').append(data);
-            if($(self).data('total') === $('.cards-list').children().length) {
+            $('.cards-list-wrapper').append(data);
+            if($(self).data('total') === $('.cards-list-wrapper').children().length) {
                 $(self).hide();
             }
         },
