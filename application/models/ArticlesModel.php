@@ -31,10 +31,10 @@ class ArticlesModel {
                 if (!$object) {
                     return '/blogs/drafts/tmp';
                 }
-                return '/blogs/published/' . $object->payload->id;
+                return '/' . $object->payload->id;
                 break;
             case 'live':
-                return '/blogs/published/' . $object->id;
+                return '/' . $object->id;
                 break;
         }
     }
