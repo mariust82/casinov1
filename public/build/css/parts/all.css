@@ -10001,7 +10001,8 @@ abbr[title] {
   margin:5px 5px 0 0;
   background: #E8EAF3;
   border-radius: 15px;
-  color:#2171CE;
+  /*color:#2171CE;*/
+  color:#465156;
   font-size:13px;
   line-height:17px;
   padding:6px 15px;
