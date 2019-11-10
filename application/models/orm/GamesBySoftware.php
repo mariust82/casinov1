@@ -2,6 +2,7 @@
 namespace CasinosLists;
 
 require_once(dirname(__DIR__, 3)."/hlis/orm/src/dao/GameListDAO.php");
+require_once(dirname(__DIR__, 3)."/hlis/orm/src/dao/GameListTotalDAO.php");
 require_once("drivers/GameFields.php");
 require_once("drivers/GameSort.php");
 require_once("drivers/GameLineProcessor.php");
