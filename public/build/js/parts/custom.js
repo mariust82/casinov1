@@ -1,5 +1,5 @@
 var AJAX_CUR_PAGE = 1;
-
+var GAME_CURR_PAGE = 1;
 function tmsIframe() {
     if($(".tms_iframe").length) {
         $(".tms_iframe").each(function() {
@@ -26,18 +26,19 @@ function tmsIframe() {
 
     $('.js-more-games').click(function(){
         var id = $(this).data('software');
+        console.dir(id);
         var self = $(this);
-        console.dir('/games-by-software/'+AJAX_CUR_PAGE);
+        console.dir('/games-by-software/'+GAME_CURR_PAGE);
         _request = $.ajax( {
-        url: '/games-by-software/'+AJAX_CUR_PAGE,
+        url: '/games-by-software/'+GAME_CURR_PAGE,
         data:{
-            page:AJAX_CUR_PAGE,
+            page:GAME_CURR_PAGE,
             software: id
         },
         dataType: 'html',
         type: 'post',
         success: function (data) {
-            AJAX_CUR_PAGE++;
+            GAME_CURR_PAGE++;
             console.dir(data);
              console.dir(data);
             $('.games-list').append(data);
