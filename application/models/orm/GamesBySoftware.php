@@ -32,7 +32,10 @@ class GamesBySoftware
 
     private function getCondition($software)
     {
+        $gmc = new \Hlis\GameManufacturerCondition();
+        $gmc->setId($software);
         $condition = new \Hlis\GameCondition();
+        $condition->setManufacturer($gmc);
         $condition->setId($software);
         return $condition;
     }
