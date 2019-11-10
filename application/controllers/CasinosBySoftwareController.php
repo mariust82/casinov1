@@ -23,7 +23,7 @@ class CasinosBySoftwareController extends CasinosListController
     protected function init() {
         $id = $this->request->attributes('validation_results')->get('name');
         $name = $this->getSelectedEntity();
-        $gfl = new \CasinosLists\GamesBySoftware($id,$name);
+        $gfl = new \CasinosLists\GamesBySoftware($id);
         $this->response->attributes("recommended_games", $gfl->getResults());
         $this->response->attributes("software_id", $id);
         $this->response->attributes("software", $name);

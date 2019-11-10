@@ -13,7 +13,7 @@ class GamesBySoftware
     private $results = [];
     const LIMIT = 4;
 
-    public function __construct($software,$name,$limit=self::LIMIT,$page=1)
+    public function __construct($software,$limit=self::LIMIT,$page=1)
     {
         $fields = $this->getFields();
         $condition = $this->getCondition($software);
