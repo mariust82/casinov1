@@ -47,11 +47,6 @@
 				</:if>
 			</:if>
                         <br>
-                         <:if test="isset(${data.widgets.lower})">
-                        <div class="subtitle plain-text">
-                                <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
-                        </div>
-                        </:if>
                         <:if test="count(${data.recommended_games})>0">
                             <div class="block related">
                                 <div class="container">
@@ -66,6 +61,12 @@
                                     LOAD MORE GAMES</a>
                             </div>
                         </:if>
+                         <:if test="isset(${data.widgets.lower})">
+                        <div class="subtitle plain-text">
+                                <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
+                        </div>
+                        </:if>
+                        
 		</div>
 	</div>
 <site:bottom menu="${data.menu_top}"/>
