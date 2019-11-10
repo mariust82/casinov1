@@ -24,6 +24,37 @@ function tmsIframe() {
         initMobileMenu();
         menuHoverAction();
 
+    $('.js-more-games').click(function(){
+        var id = $(this).data('software');
+        var self = $(this);
+        _request = $.ajax( {
+        url: '/games-by-software/',
+        data:{
+            page:AJAX_CUR_PAGE,
+            software: id
+        },
+        dataType: 'html',
+        type: 'post',
+        success: function (data) {
+            AJAX_CUR_PAGE++;
+            console.dir(data);
+             console.dir(data);
+            $('.games-list').append(data);
+            if($(self).data('total') === $('.games-list').children().length) {
+                $(self).hide();
+            }
+        },
+        error: function ( XMLHttpRequest ) {
+            var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+            if ( XMLHttpRequest.statusText != "abort" ) {
+                console.log( 'err' );
+            }
+        },
+        complete: function(){
+            BUSY_REQUEST = false;
+        }
+    } );
+    });
 
     $('.load-more').click(function(){
         var _request = new XMLHttpRequest();

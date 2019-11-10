@@ -13,12 +13,12 @@ class GamesBySoftware
     private $results = [];
     const LIMIT = 4;
 
-    public function __construct($software)
+    public function __construct($software,$limit=self::LIMIT,$page=1)
     {
         $fields = $this->getFields();
         $condition = $this->getCondition($software);
         $orderBy = $this->getOrderBy();
-        $this->setResults($fields, $condition, $orderBy);
+        $this->setResults($fields, $condition, $orderBy,$limit,$page);
     }
 
     private function getFields()
@@ -49,10 +49,10 @@ class GamesBySoftware
         return $orderBy;
     }
 
-    private function setResults(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $orderBy)
+    private function setResults(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $orderBy,$limit=self::LIMIT,$page = 1)
     {
         $gld  = new \Hlis\GameListDAO(
-            new \CasinosLists\GamesBySoftwareQuery($fields, $condition, $orderBy, 0, self::LIMIT),
+            new \CasinosLists\GamesBySoftwareQuery($fields, $condition, $orderBy, $page*$limit-$limit, $limit),
             new \CasinosLists\GameLineProcessor()
         );
         $this->results = $gld->getResults();
