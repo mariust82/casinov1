@@ -52,7 +52,7 @@ class GamesBySoftware
 
     private function setResults(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $orderBy,$limit=self::LIMIT,$page = 1)
     {
-        $offset = ($limit == 24 && $page == 1) ? ($page*$limit-$limit) + 4 : ($page*$limit-$limit);
+        $offset = ($page == 1) ? 4 : ($page*$limit-$limit) + 4;
         $gld  = new \Hlis\GameListDAO(
                 new \CasinosLists\GamesBySoftwareQuery($fields, $condition, $orderBy,$offset , $limit),
             new \CasinosLists\GameLineProcessor()
