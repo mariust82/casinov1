@@ -47,6 +47,7 @@ class GamesBySoftware
 
     private function setResults(\Hlis\GameFields $fields, \Hlis\GameManufacturerCondition $condition, \Hlis\GameSort $orderBy)
     {
+        var_dump($condition->id);
         $gld  = new \Hlis\GameListDAO(
             new \CasinosLists\GamesBySoftwareQuery($fields, $condition, $orderBy, 0, self::LIMIT),
             new \CasinosLists\GameLineProcessor()
