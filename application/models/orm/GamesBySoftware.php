@@ -27,6 +27,7 @@ class GamesBySoftware
         $gmf->setName();
         $fields = new \CasinosLists\GameFields();
         $fields->setName();
+        $fields->setTimesPlayed();
         return $fields;
     }
 
