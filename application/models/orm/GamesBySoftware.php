@@ -5,7 +5,7 @@ require_once(dirname(__DIR__, 3)."/hlis/orm/src/dao/GameListDAO.php");
 require_once("drivers/GameFields.php");
 require_once("drivers/GameSort.php");
 require_once("drivers/GameLineProcessor.php");
-require_once("drivers/GamesRecommendedQuery.php");
+require_once("drivers/GamesBySoftwareQuery.php");
 require_once(dirname(__DIR__, 3)."/vendor/lucinda/queries/src/Select.php");
 
 class GamesBySoftware
@@ -50,7 +50,7 @@ class GamesBySoftware
     private function setResults(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $orderBy)
     {
         $gld  = new \Hlis\GameListDAO(
-            new \CasinosLists\GamesRecommendedQuery($fields, $condition, $orderBy, 0, self::LIMIT),
+            new \CasinosLists\GamesBySoftwareQuery($fields, $condition, $orderBy, 0, self::LIMIT),
             new \CasinosLists\GameLineProcessor()
         );
         $this->results = $gld->getResults();
