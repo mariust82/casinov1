@@ -25,7 +25,6 @@ class CasinosBySoftwareController extends CasinosListController
         $name = $this->getSelectedEntity();
         $gfl = new \CasinosLists\GamesBySoftware($id);
         $results = $gfl->getResults();
-        var_dump($results);
         $this->response->attributes("recommended_games", $results['list']);
         $this->response->attributes("total_games", $results["total"]);
         $this->response->attributes("software_id", $id);
