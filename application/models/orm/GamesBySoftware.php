@@ -15,19 +15,19 @@ class GamesBySoftware
 
     public function __construct($software,$name,$limit=self::LIMIT,$page=1)
     {
-        $fields = $this->getFields($name);
+        $fields = $this->getFields();
         $condition = $this->getCondition($software);
         $orderBy = $this->getOrderBy();
         $this->setResults($fields, $condition, $orderBy,$limit,$page);
     }
 
-    private function getFields($name)
+    private function getFields()
     {
         $gmf = new \Hlis\GameManufacturerFields();
         $gmf->setName();
         $fields = new \CasinosLists\GameFields();
         $fields->setName();
-        $fields->setManufacturer($name);
+        $fields->setManufacturer($gmf);
         $fields->setTimesPlayed();
         return $fields;
     }
