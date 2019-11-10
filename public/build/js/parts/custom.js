@@ -26,14 +26,15 @@ function tmsIframe() {
 
     $('.js-more-games').click(function(){
         var id = $(this).data('software');
-        console.dir(id);
+        var name = $(this).data('name');
         var self = $(this);
         console.dir('/games-by-software/'+GAME_CURR_PAGE);
         _request = $.ajax( {
         url: '/games-by-software/'+GAME_CURR_PAGE,
         data:{
             page:GAME_CURR_PAGE,
-            software: id
+            software: id,
+            name: name
         },
         dataType: 'html',
         type: 'post',
