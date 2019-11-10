@@ -25,23 +25,24 @@ function tmsIframe() {
         menuHoverAction();
 
     $('.js-more-games').click(function(){
+        $(this).addClass('loading');
         var id = $(this).data('software');
-        var name = $(this).data('name');
         var self = $(this);
         console.dir('/games-by-software/'+GAME_CURR_PAGE);
         _request = $.ajax( {
         url: '/games-by-software/'+GAME_CURR_PAGE,
         data:{
             page:GAME_CURR_PAGE,
-            software: id,
-            name: name
+            software: id
         },
         dataType: 'html',
         type: 'post',
         success: function (data) {
+            setTimeout(function(){
+                                self.removeClass('loading');
+                                refresh();
+            }, 1000);
             GAME_CURR_PAGE++;
-            console.dir(data);
-             console.dir(data);
             $('.games-list').append(data);
             if($(self).data('total') === $('.games-list').children().length) {
                 $(self).hide();
