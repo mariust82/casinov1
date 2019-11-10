@@ -80,7 +80,8 @@
     <route url="softwares/(name)" controller="CasinosBySoftwareController" view="casinos" rebrand_tables="game_manufacturers">
       <parameter name="name" validator="SoftwareNameValidator"/>
     </route>
-    <route url="games-by-software" controller="LoadMoreGamesBySoftwareController" view="games-list">
+    <route url="games-by-software" controller="LoadMoreGamesBySoftwareController" view="games-list"/>
+    <route url="games-by-software/(page)" controller="LoadMoreGamesBySoftwareController" view="games-list">
       <parameter name="name" validator="SoftwareNameValidator"/>
     </route>
     <route url="softwares" controller="SoftwaresController" view="softwares"/>
