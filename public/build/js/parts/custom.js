@@ -27,8 +27,9 @@ function tmsIframe() {
     $('.js-more-games').click(function(){
         var id = $(this).data('software');
         var self = $(this);
+        console.dir('/games-by-software/'+AJAX_CUR_PAGE);
         _request = $.ajax( {
-        url: '/games-by-software/'+AJAX_CUR_PAGE,,
+        url: '/games-by-software/'+AJAX_CUR_PAGE,
         data:{
             page:AJAX_CUR_PAGE,
             software: id
