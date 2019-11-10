@@ -18,11 +18,12 @@ class CasinosBySoftwareController extends CasinosListController
         $gm = new GameManufacturers();
         $name = $gm->getGameManufactures($id);
         return $name;
-        
+    }
+    
+    protected function init() {
         $gfl = new \CasinosLists\GamesBySoftware($id);
         $this->response->attributes("recommended_games", $gfl->getResults());
         var_dump($this->response->attributes("recommended_games"));
-        die();
     }
 
     protected function getFilter()
