@@ -7,6 +7,7 @@ require_once("drivers/GameFields.php");
 require_once("drivers/GameSort.php");
 require_once("drivers/GameLineProcessor.php");
 require_once("drivers/GamesBySoftwareQuery.php");
+require_once("drivers/GameBySoftwareTotalQuery.php");
 require_once(dirname(__DIR__, 3)."/vendor/lucinda/queries/src/Select.php");
 
 class GamesBySoftware
