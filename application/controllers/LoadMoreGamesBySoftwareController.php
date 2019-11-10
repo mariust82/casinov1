@@ -19,7 +19,7 @@ class LoadMoreGamesBySoftwareController extends Lucinda\MVC\STDOUT\Controller
     {
         $driver = new \CasinosLists\GamesBySoftware(
             $this->request->parameters("software"),
-            self::LIMIT,
+            self::LIMIT+4,
             $this->request->getValidator()->parameters("page")
         );
         $results = $driver->getResults();
