@@ -6,7 +6,6 @@ class GamesBySoftwareQuery extends \Hlis\GameListRangeQuery
     protected function setWhere()
     {
         $where = $this->select->where();
-        var_dump($this->condition->condition);
-        $where->set("t2.id", $this->condition->manufacturer->id);
+        $where->set("t2.id", $this->condition->id);
     }
 }

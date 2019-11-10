@@ -34,20 +34,18 @@ class GamesBySoftware
     {
         $gmc = new \Hlis\GameManufacturerCondition();
         $gmc->setId($software);
-        $condition = new \Hlis\GameCondition();
-        $condition->setManufacturer($gmc);
-        return $condition;
+        return $gmc;
     }
 
     private function getOrderBy()
     {
         $orderBy = new \Hlis\GameSort();
-        $orderBy->setDateLaunched(TRUE);
+        $orderBy->setDateLaunched(FALSE);
         $orderBy->setId(false);
         return $orderBy;
     }
 
-    private function setResults(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $orderBy)
+    private function setResults(\Hlis\GameFields $fields, \Hlis\GameManufacturerCondition $condition, \Hlis\GameSort $orderBy)
     {
         $gld  = new \Hlis\GameListDAO(
             new \CasinosLists\GamesBySoftwareQuery($fields, $condition, $orderBy, 0, self::LIMIT),
