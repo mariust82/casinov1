@@ -24,7 +24,6 @@ class LoadMoreGamesBySoftwareController extends Lucinda\MVC\STDOUT\Controller
             $this->request->getValidator()->parameters("page")
         );
         $results = $driver->getResults();
-        $this->response->attributes("total_games", $results["total"]);
-        $this->response->attributes("games", $results["list"]);
+        $this->response->attributes("games", $results);
     }
 }
