@@ -24,6 +24,7 @@ class CasinosBySoftwareController extends CasinosListController
         $id = $this->request->attributes('validation_results')->get('name');
         $gfl = new \CasinosLists\GamesBySoftware($id);
         $this->response->attributes("recommended_games", $gfl->getResults());
+        $this->response->attributes("software", $this->getSelectedEntity());
     }
 
     protected function getFilter()
