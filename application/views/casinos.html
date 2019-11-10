@@ -53,6 +53,11 @@
                                         <div class="headeing">
                                                 <div class="title title-middle">Newest Games By ${data.software}</div>
                                         </div>
+                                        <:if test="isset(${data.widgets.middle})">
+                                        <div class="subtitle plain-text">
+                                            <div><span>${implode("\n", ${data.widgets.middle})}</span></div>
+                                        </div>
+                                        </:if>
                                         <game:list data="${data.recommended_games}"/>
                                 </div>
                             </div>
