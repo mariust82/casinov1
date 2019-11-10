@@ -10,7 +10,7 @@ require_once(dirname(__DIR__, 3)."/vendor/lucinda/queries/src/Select.php");
 
 class GamesBySoftware
 {
-    private $results = [];
+    private $results = ["total"=>0, "list"=>[]];
     const LIMIT = 4;
 
     public function __construct($software,$limit=self::LIMIT,$page=0)
@@ -51,13 +51,18 @@ class GamesBySoftware
     }
 
     private function setResults(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $orderBy,$limit=self::LIMIT,$page = 0)
-    {
+    {        
+        $glt = new \Hlis\GameListTotalDAO(new \Hlis\GameListTotalQuery($condition));
+        $this->results["total"] = $glt->getResults();
+        if (!$this->results["total"]) {
+            return;
+        }
         $offset =$page == 0 ? 0 : $page == 1 ? 4 : ($page*$limit-$limit) + 4;
         $gld  = new \Hlis\GameListDAO(
                 new \CasinosLists\GamesBySoftwareQuery($fields, $condition, $orderBy,$offset , $limit),
             new \CasinosLists\GameLineProcessor()
         );
-        $this->results = $gld->getResults();
+        $this->results["list"] = $gld->getResults();
     }
 
     public function getResults()
