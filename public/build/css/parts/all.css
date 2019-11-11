@@ -17,7 +17,7 @@ h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
 }
 
 .btn-games{
-    margin-bottom: 80px !important;
+    margin-bottom: 60px !important;
 }
 
 fieldset,
@@ -3341,6 +3341,10 @@ a:focus {
   .header-menu__item {
     text-align: center;
   }
+  
+  .btn-games{
+    margin-bottom: 80px !important;
+}
 }
 
 .search-opened .header-search {
@@ -9010,6 +9014,12 @@ a:focus {
   .fullscreen .player-wrap .player-controls a {
     margin: 0;
   }
+}
+
+@media screen and (min-width: 768px) {
+    .btn-games{
+    margin-bottom: 40px !important;
+}
 }
 
 @media (min-width: 480px) and (max-width: 736px) {
