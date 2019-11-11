@@ -197,11 +197,11 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         }
     }
 
-    $(window).resize(function(event) {
-        ww = $(window).width();
+    // $(window).resize(function(event) {
+    //     ww = $(window).width();
 
-        initMoboleBonusesPop(ww);
-    });
+    //     initMoboleBonusesPop(ww);
+    // });
     
     tooltipConfig = {
         trigger: 'click',
@@ -2029,7 +2029,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                 return false;
             });
 
-            console.log('test');
             _btnClose.on('click', function(e) {
                 $(this)
                     .closest(_mobilePop)
