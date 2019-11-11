@@ -61,10 +61,12 @@
                                         <game:list data="${data.recommended_games}"/>
                                 </div>
                             </div>
-                            <div class="btn-holder">
-                                <a class="btn-bordered load js-more-games" data-total="${data.total_games}" data-software="${data.software_id}">
-                                    LOAD MORE GAMES</a>
-                            </div>
+                            <:if test="${data.total_games} > 4">
+                                <div class="btn-holder">
+                                    <a class="btn-bordered load js-more-games" data-total="${data.total_games}" data-software="${data.software_id}">
+                                        LOAD MORE GAMES</a>
+                                </div>
+                            </:if>
                         </:if>
                          <:if test="isset(${data.widgets.lower})">
                         <div class="subtitle plain-text">
