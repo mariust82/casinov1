@@ -2020,7 +2020,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                     .closest(_container)
                     .find(_mobilePop)
                     .fadeIn('fast');
-                $('html, body').addClass('no-scroll');
+                    lockScreen()
                 _wrapper.css( 'top', _position * -1 );
             }
 
@@ -2037,7 +2037,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                     .fadeOut('fast')
                     .find('.mobile-popup-body')
                     .html('');
-                $('html, body').removeClass('no-scroll');
+                unlockScreen();
                 $('.overlay, .loader').fadeOut('fast');
 
                 goToPosition(_position);

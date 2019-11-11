@@ -9225,10 +9225,6 @@ img.grayscale {
   list-style: disc;
 }
 
-.no-scroll {
-  overflow: hidden;
-}
-
 body.no-scroll,
 html.no-scroll {
   position: fixed;
