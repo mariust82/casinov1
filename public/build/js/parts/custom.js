@@ -1970,7 +1970,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         var _mobilePop = $('.js-mobile-pop');
         var _btnOpen = $('.btn-round');
         var _btnClose = $('.js-mobile-pop-close');
-        var _wrapper = $('.wrapper');
         var _position = 0;
 
         if (_ww <= 690) {
@@ -2020,8 +2019,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                     .closest(_container)
                     .find(_mobilePop)
                     .fadeIn('fast');
-                    lockScreen()
-                _wrapper.css( 'top', _position * -1 );
+                    lockScreen();
             }
 
             _btnOpen.on('click', function(e) {
@@ -2030,8 +2028,8 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                 cloneContent($(this));
                 return false;
             });
-            
-            _btnClose.off( "click", "**" );
+
+            console.log('test');
             _btnClose.on('click', function(e) {
                 $(this)
                     .closest(_mobilePop)
@@ -2042,7 +2040,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                 $('.overlay, .loader').fadeOut('fast');
 
                 goToPosition(_position);
-                _wrapper.removeAttr( 'style' );
                 return false;
             });
         }
@@ -2153,7 +2150,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
     }
 
     function goToPosition(_position) {
-        console.log(_position);
         $('html, body').animate({
             scrollTop: _position
         }, 5);
