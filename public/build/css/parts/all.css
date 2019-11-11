@@ -3334,18 +3334,7 @@ a:focus {
   transition: all .3s linear;
 }
 
-@media screen and (min-width: 1024px) {
-  .search-opened .header-menu {
-    width: 0;
-  }
-  .header-menu__item {
-    text-align: center;
-  }
-  
-  .btn-games{
-    margin-bottom: 80px !important;
-}
-}
+
 
 .search-opened .header-search {
   width: 100%;
@@ -9010,6 +8999,8 @@ a:focus {
   flex-shrink: 0;
 }
 
+
+
 @media screen and (max-width: 768px) {
   .fullscreen .player-wrap .player-controls a {
     margin: 0;
@@ -9027,6 +9018,19 @@ a:focus {
     width: 40px;
     height: 40px;
   }
+}
+
+@media screen and (min-width: 1024px) {
+  .search-opened .header-menu {
+    width: 0;
+  }
+  .header-menu__item {
+    text-align: center;
+  }
+  
+  .btn-games{
+    margin-bottom: 80px !important;
+}
 }
 
 #contact-us-success {
