@@ -2152,6 +2152,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
     }
 
     function goToPosition(_position) {
+        console.log(_position);
         $('html, body').animate({
             scrollTop: _position
         }, 5);
