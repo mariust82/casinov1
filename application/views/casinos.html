@@ -46,7 +46,6 @@
 					</div>
 				</:if>
 			</:if>
-                        <br>
                         <:if test="count(${data.recommended_games})>0">
                             <div class="block related">
                                 <div class="container">
@@ -62,7 +61,7 @@
                                 </div>
                             </div>
                             <:if test="${data.total_games} > 4">
-                                <div class="btn-holder">
+                                <div class="btn-holder btn-games">
                                     <a class="btn-bordered load js-more-games" data-total="${data.total_games}" data-software="${data.software_id}">
                                         LOAD MORE GAMES</a>
                                 </div>
