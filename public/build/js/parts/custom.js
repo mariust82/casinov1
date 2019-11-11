@@ -2025,7 +2025,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             }
 
             _btnOpen.on('click', function(e) {
-                _position = $('html, body').scrollTop();
+                _position = $(window).scrollTop();
                 $('.overlay, .loader').fadeIn('fast');
                 cloneContent($(this));
                 return false;
