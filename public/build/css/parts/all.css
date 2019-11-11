@@ -2764,6 +2764,12 @@ html {
   background: #fff;
 }
 
+@media screen and (max-width: 767px) {
+  html {
+    height: auto;
+  }
+}
+
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -9229,7 +9235,7 @@ html.no-scroll {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
 }
 
 .btn-play-now {
