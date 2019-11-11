@@ -1970,7 +1970,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         var _mobilePop = $('.js-mobile-pop');
         var _btnOpen = $('.btn-round');
         var _btnClose = $('.js-mobile-pop-close');
-        var _position = null;
+        var _position = 0;
 
         if (_ww <= 690) {
             _btnOpen.off('click');
@@ -2038,9 +2038,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                 $('html, body').removeClass('no-scroll');
                 $('.overlay, .loader').fadeOut('fast');
 
-                $('html, body').animate({
-                    scrollTop: _position
-                }, 10);
+                goToPosition(_position);
                 return false;
             });
         }
@@ -2165,7 +2163,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         var _btnMobileClear = $('.js-mobile-search-clear');
         var _drop = $('.js-search-drop');
         var _input = $('.header-search-input input');
-        var _position = null;
+        var _position = 0;
 
         _btnOpen.on('click', function(e) {
             $('body').addClass('search-opened');
