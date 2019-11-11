@@ -2030,7 +2030,8 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                 cloneContent($(this));
                 return false;
             });
-
+            
+            _btnClose.off( "click", "**" );
             _btnClose.on('click', function(e) {
                 $(this)
                     .closest(_mobilePop)
