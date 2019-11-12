@@ -197,11 +197,11 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         }
     }
 
-    $(window).resize(function(event) {
-        ww = $(window).width();
+    // $(window).resize(function(event) {
+    //     ww = $(window).width();
 
-        initMoboleBonusesPop(ww);
-    });
+    //     initMoboleBonusesPop(ww);
+    // });
     
     tooltipConfig = {
         trigger: 'click',
@@ -1975,7 +1975,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         var _mobilePop = $('.js-mobile-pop');
         var _btnOpen = $('.btn-round');
         var _btnClose = $('.js-mobile-pop-close');
-        var _wrapper = $('.wrapper');
         var _position = 0;
 
         if (_ww <= 690) {
@@ -2025,8 +2024,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                     .closest(_container)
                     .find(_mobilePop)
                     .fadeIn('fast');
-                    lockScreen()
-                _wrapper.css( 'top', _position * -1 );
+                    lockScreen();
             }
 
             _btnOpen.on('click', function(e) {
@@ -2046,7 +2044,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                 $('.overlay, .loader').fadeOut('fast');
 
                 goToPosition(_position);
-                _wrapper.removeAttr( 'style' );
                 return false;
             });
         }
