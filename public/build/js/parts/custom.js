@@ -1039,6 +1039,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             name = _field_name.val();
             email = _field_email.val();
             message = _field_message.val();
+
             casino_name = $('.rating-container').data('casino-name');
             _rate_slider_result = $('.rating-current-value span').text();
             _reviewID = 0;
@@ -1048,7 +1049,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                 _reviewID = parent.data('id');
                 _is_child = true;
 
-
+                console.log(parent);
                 if (parent.next().find('.reply-data-holder').length > 0) {
                     _reviewHolder = parent.next().find('.reply-data-holder');
                     _is_child_of_child = false;
@@ -1111,7 +1112,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             var name = parent.find('.review-name').text();
             var pattern = '<strong>@'+name+'</strong> ';
 
-            message = pattern+_field_message.val();
+            message = pattern+_field_message.val().substr(name.length+1);
         },
 
         _changeName = function(){
@@ -1129,7 +1130,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                 parent: _reviewID,
                 casino_id : $('.reviews-form').attr('data-casino-id')
             };
-
             _sendReview(ajaxData, _this);
         },
 
@@ -1959,6 +1959,11 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
 
     function initReplies() {
         $('#reviews').on('click', '.js-reply-btn', function(e) {
+            var replyReview = $(this).closest('.reply.review');
+            if(replyReview.length > 0 && replyReview.find('.reply-data-holder').length > 0) {
+                var userName = $(this).parent().parent().parent().find('.review-name').text();
+                $(this).parent().parent().find('textarea').val('@'+userName+' ');
+            }
             $(this).parent().next().slideToggle();
 
             return false;
