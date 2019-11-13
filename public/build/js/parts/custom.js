@@ -1164,9 +1164,173 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         },
 
         _loadData = function(data, _this) {
-            $('#review-data-holder').load(location.href + ' #review-data-holder', function() {
+
+            if ($.isEmptyObject(data)) {
+                _showEmptyMessage();
+            } else {
+
+                function getItemPattern() {
+                    var pattern;
+
+                    if (_is_child) {
+                        pattern = '\
+                        <div class="review review-child '+name.toLowerCase()+'" data-id="'+data.body.id+'" data-img-dir="'+_imgDir+'">\
+                            <div class="review-wrap">\
+                                <div class="review-info">\
+                                    <div class="review-info-top">\
+                                        <div class="review-flag">\
+                                            <img src="'+_imgDir+'" alt="'+_countryCode+'" width="15" height="12">\
+                                        </div>\
+                                        <div class="review-info-body">\
+                                            <div class="review-name">'+name+'</div>\
+                                            <div class="review-date">'+_getCurrDate()+'</div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="review-body">\
+                                    <div class="review-text">\
+                                        <p>'+message+'</p>\
+                                    </div>\
+                                    <div class="review-underline">\
+                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
+                                        <div class="votes js-vote">\
+                                            <a href="#" class="votes-like vote-button" data-id="'+data.body.id+'">\
+                                                <i class="icon-icon_likes"></i>\
+                                                <span class="bubble bubble-vote">0</span>\
+                                            </a>\
+                                        </div>\
+                                    </div>\
+                                    <div class="review-form">\
+                                        <div class="form">\
+                                            <div class="form-row">\
+                                                <div class="textfield-holder">\
+                                                    <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
+                                                </div>\
+                                            </div>\
+                                            <div class="hidden js-expanding-textfields">\
+                                                <div class="form-row form-multicol">\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="name" class="textfield" placeholder="Name">\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="form-row">\
+                                                    <div class="review-submit-holder">\
+                                                        <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
+                                                        <div>\
+                                                            <div class="field-error-required not-valid action-field">\
+                                                                Please fill in the required fields.\
+                                                            </div>\
+                                                            <div class="field-success success action-field">\
+                                                                Thank You!\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        ';
+                    } else {
+                        pattern = '\
+                        <div class="review review-parent '+name.toLowerCase()+'" data-id="'+data.body.id+'">\
+                            <div class="review-wrap">\
+                                <div class="review-info">\
+                                    <div class="review-info-top">\
+                                        <div class="review-flag">\
+                                            <img src="'+_imgDir+'" alt="'+_countryCode+'" width="15" height="12">\
+                                        </div>\
+                                        <div class="review-info-body">\
+                                            <div class="review-name">'+name+'</div>\
+                                            <div class="review-date">'+_getCurrDate()+'</div>\
+                                        </div>\
+                                    </div>\
+                                    <div class="list-rating '+getWebName(get_rating(_rate_slider_result))+'">\
+                                        <div class="list-rating-wrap">\
+                                            <div class="list-rating-score">'+_rate_slider_result+'</div>\
+                                            <div class="list-rating-text">'+get_rating(_rate_slider_result)+'</div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="review-body">\
+                                    <div class="review-text">\
+                                        <p>'+message+'</p>\
+                                    </div>\
+                                    <div class="review-underline">\
+                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
+                                        <div class="votes js-vote">\
+                                            <a href="#" class="votes-like vote-button"  data-id="'+data.body.id+'">\
+                                                <i class="icon-icon_likes"></i>\
+                                                <span class="bubble bubble-vote">0</span>\
+                                            </a>\
+                                        </div>\
+                                    </div>\
+                                    <div class="review-form">\
+                                        <div class="form">\
+                                            <div class="form-row">\
+                                                <div class="textfield-holder">\
+                                                    <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
+                                                </div>\
+                                            </div>\
+                                            <div class="hidden js-expanding-textfields">\
+                                                <div class="form-row form-multicol">\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="name" class="textfield" placeholder="Name">\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="form-row">\
+                                                    <div class="review-submit-holder">\
+                                                        <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
+                                                        <div>\
+                                                            <div class="field-error-required not-valid action-field">\
+                                                                Please fill in the required fields.\
+                                                            </div>\
+                                                            <div class="field-success success action-field">\
+                                                                Thank You!\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        <div class="reply review">\
+                            <div class="reply-data-holder"></div>\
+                        </div>\
+                        ';
+                    }
+
+                    return pattern;
+                }
+
+                if (_is_child_of_child) {
+                    $(getItemPattern()).insertAfter(_this)
+                } else {
+                    _reviewHolder.prepend(getItemPattern());
+                }
+
+
                 _refreshData();
-            }, 500);
+            }
         },
 
         _refreshData = function(){
