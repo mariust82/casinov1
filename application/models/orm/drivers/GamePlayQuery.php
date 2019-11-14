@@ -55,7 +55,7 @@ class GamePlayQuery extends \Hlis\GameInfoQuery {
         }
         if($addFeatures) {
             $this->select->joinLeft("games__features","t8")->on(["t1.id"=>"t8.game_id"]);
-            $this->select->joinInner("game_features","t9")->on(["t8.feature_id"=>"t9.id"]);
+            $this->select->joinLeft("game_features","t9")->on(["t8.feature_id"=>"t9.id"]);
         }
     }
 }
