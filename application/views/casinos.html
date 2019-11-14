@@ -50,9 +50,15 @@
                 <:if test="count(${data.recommended_games}) > 0">
                 <div class="block related">
                     <div class="container">
+                            <:if test="${data.total_casinos} > count(${data.casinos})">
                             <div class="headeing">
                                     <div class="title title-middle">Newest Games By ${data.software}</div>
                             </div>
+                            <:else>
+                            <div class="headeing no_button">
+                                    <div class="title title-middle">Newest Games By ${data.software}</div>
+                            </div>
+                            </:if>
                             <:if test="isset(${data.widgets.middle})">
                             <div class="subtitle plain-text">
                                 <div><span>${implode("\n", ${data.widgets.middle})}</span></div>
