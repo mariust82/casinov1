@@ -33,6 +33,7 @@
             ${h2_to_tile( ${data.tms_article.content})}
             </:if>
         </div>
+
         <:if test="count(${data.tags}) > 0">
             <box:inline-list data="${data.tags}" label="Tags"/> 
         </:if>
