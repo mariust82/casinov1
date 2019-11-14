@@ -47,6 +47,7 @@
 				</:if>
 			</:if>
             <:if test="isset(${data.recommended_games})">
+                <:if test="count(${data.recommended_games}) > 0">
                 <div class="block related">
                     <div class="container">
                             <div class="headeing">
@@ -65,6 +66,7 @@
                         <a class="btn-bordered load js-more-games" data-total="${data.total_games}" data-software="${data.software_id}">
                             LOAD MORE GAMES</a>
                     </div>
+                </:if>
                 </:if>
             </:if>
              <:if test="isset(${data.widgets.lower})">
