@@ -46,12 +46,41 @@
 					</div>
 				</:if>
 			</:if>
-                        <br>
-                         <:if test="isset(${data.widgets.lower})">
-                        <div class="subtitle plain-text">
-                                <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
-                        </div>
-                        </:if>
+            <:if test="isset(${data.recommended_games})">
+                <:if test="count(${data.recommended_games}) > 0">
+                <div class="block related">
+                    <div class="container">
+                            <:if test="${data.total_casinos} > count(${data.casinos})">
+                            <div class="headeing">
+                                    <div class="title title-middle">Newest Games By ${data.software}</div>
+                            </div>
+                            <:else>
+                            <div class="headeing no_button">
+                                    <div class="title title-middle">Newest Games By ${data.software}</div>
+                            </div>
+                            </:if>
+                            <:if test="isset(${data.widgets.middle})">
+                            <div class="subtitle plain-text">
+                                <div><span>${implode("\n", ${data.widgets.middle})}</span></div>
+                            </div>
+                            </:if>
+                            <game:list data="${data.recommended_games}"/>
+                    </div>
+                </div>
+                <:if test="${data.total_games} > 4">
+                    <div class="btn-holder btn-games">
+                        <a class="btn-bordered load js-more-games" data-total="${data.total_games}" data-software="${data.software_id}">
+                            LOAD MORE GAMES</a>
+                    </div>
+                </:if>
+                </:if>
+            </:if>
+             <:if test="isset(${data.widgets.lower})">
+	            <div class="subtitle plain-text">
+                    <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
+	            </div>
+            </:if>
+                        
 		</div>
 	</div>
 <site:bottom menu="${data.menu_top}"/>

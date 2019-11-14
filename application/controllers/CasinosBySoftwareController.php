@@ -1,6 +1,7 @@
 <?php
 require_once("application/models/dao/GameManufacturers.php");
 require_once("CasinosListController.php");
+require_once("application/models/orm/GamesBySoftware.php");
 /*
 * Casinos list by software.
 *
@@ -17,6 +18,17 @@ class CasinosBySoftwareController extends CasinosListController
         $gm = new GameManufacturers();
         $name = $gm->getGameManufactures($id);
         return $name;
+    }
+    
+    protected function init() {
+        $id = $this->request->attributes('validation_results')->get('name');
+        $name = $this->getSelectedEntity();
+        $gfl = new \CasinosLists\GamesBySoftware($id);
+        $results = $gfl->getResults();
+        $this->response->attributes("recommended_games", $results['list']);
+        $this->response->attributes("total_games", $results["total"]);
+        $this->response->attributes("software_id", $id);
+        $this->response->attributes("software", $name);
     }
 
     protected function getFilter()
