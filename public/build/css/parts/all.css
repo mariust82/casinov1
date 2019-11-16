@@ -2927,7 +2927,7 @@ a:focus {
   -ms-flex-align: center;
   align-items: center;
   overflow: hidden;
-  padding: 10px 18px 5px 0;
+  padding: 10px 0px 5px;
   width: 21px;
   transition: width 0.3s linear;
   position: relative;
@@ -3123,7 +3123,7 @@ a:focus {
 .header-menu {
   width: 100%;
   transition: width .3s linear;
-  margin: 0 0 0 45px;
+  margin: 0 0 0 20px;
   white-space: nowrap;
 }
 
@@ -3168,8 +3168,8 @@ a:focus {
 }
 
 .header-menu__item {
-  padding: 33px 15px 23px;
-  font-size: 12px;
+  padding: 31px 11px 26px 10px;
+  font-size: 11px;
   line-height: 1;
   font-weight: 600;
   color: #fff;
