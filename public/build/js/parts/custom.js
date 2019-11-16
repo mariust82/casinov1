@@ -1,5 +1,5 @@
 var AJAX_CUR_PAGE = 1;
-
+var GAME_CURR_PAGE = 1;
 function tmsIframe() {
     if($(".tms_iframe").length) {
         $(".tms_iframe").each(function() {
@@ -24,6 +24,41 @@ function tmsIframe() {
         initMobileMenu();
         menuHoverAction();
 
+    $('.js-more-games').click(function(){
+        $(this).addClass('loading');
+        var id = $(this).data('software');
+        var self = $(this);
+        console.dir('/games-by-software/'+GAME_CURR_PAGE);
+        _request = $.ajax( {
+        url: '/games-by-software/'+GAME_CURR_PAGE,
+        data:{
+            page:GAME_CURR_PAGE,
+            software: id
+        },
+        dataType: 'html',
+        type: 'post',
+        success: function (data) {
+            setTimeout(function(){
+                                self.removeClass('loading');
+                                refresh();
+            }, 1000);
+            GAME_CURR_PAGE++;
+            $('.games-list').append(data);
+            if($(self).data('total') === $('.games-list').children().length) {
+                $(self).hide();
+            }
+        },
+        error: function ( XMLHttpRequest ) {
+            var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+            if ( XMLHttpRequest.statusText != "abort" ) {
+                console.log( 'err' );
+            }
+        },
+        complete: function(){
+            BUSY_REQUEST = false;
+        }
+    } );
+    });
 
     $('.load-more').click(function(){
         var _request = new XMLHttpRequest();
@@ -162,11 +197,11 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         }
     }
 
-    $(window).resize(function(event) {
-        ww = $(window).width();
+    // $(window).resize(function(event) {
+    //     ww = $(window).width();
 
-        initMoboleBonusesPop(ww);
-    });
+    //     initMoboleBonusesPop(ww);
+    // });
     
     tooltipConfig = {
         trigger: 'click',
@@ -1004,6 +1039,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             name = _field_name.val();
             email = _field_email.val();
             message = _field_message.val();
+
             casino_name = $('.rating-container').data('casino-name');
             _rate_slider_result = $('.rating-current-value span').text();
             _reviewID = 0;
@@ -1013,7 +1049,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                 _reviewID = parent.data('id');
                 _is_child = true;
 
-
+                console.log(parent);
                 if (parent.next().find('.reply-data-holder').length > 0) {
                     _reviewHolder = parent.next().find('.reply-data-holder');
                     _is_child_of_child = false;
@@ -1076,7 +1112,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             var name = parent.find('.review-name').text();
             var pattern = '<strong>@'+name+'</strong> ';
 
-            message = pattern+_field_message.val();
+            message = pattern+_field_message.val().substr(name.length+1);
         },
 
         _changeName = function(){
@@ -1094,7 +1130,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                 parent: _reviewID,
                 casino_id : $('.reviews-form').attr('data-casino-id')
             };
-
             _sendReview(ajaxData, _this);
         },
 
@@ -1129,9 +1164,173 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         },
 
         _loadData = function(data, _this) {
-            $('#review-data-holder').load(location.href + ' #review-data-holder', function() {
+
+            if ($.isEmptyObject(data)) {
+                _showEmptyMessage();
+            } else {
+
+                function getItemPattern() {
+                    var pattern;
+
+                    if (_is_child) {
+                        pattern = '\
+                        <div class="review review-child '+name.toLowerCase()+'" data-id="'+data.body.id+'" data-img-dir="'+_imgDir+'">\
+                            <div class="review-wrap">\
+                                <div class="review-info">\
+                                    <div class="review-info-top">\
+                                        <div class="review-flag">\
+                                            <img src="'+_imgDir+'" alt="'+_countryCode+'" width="15" height="12">\
+                                        </div>\
+                                        <div class="review-info-body">\
+                                            <div class="review-name">'+name+'</div>\
+                                            <div class="review-date">'+_getCurrDate()+'</div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="review-body">\
+                                    <div class="review-text">\
+                                        <p>'+message+'</p>\
+                                    </div>\
+                                    <div class="review-underline">\
+                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
+                                        <div class="votes js-vote">\
+                                            <a href="#" class="votes-like vote-button" data-id="'+data.body.id+'">\
+                                                <i class="icon-icon_likes"></i>\
+                                                <span class="bubble bubble-vote">0</span>\
+                                            </a>\
+                                        </div>\
+                                    </div>\
+                                    <div class="review-form">\
+                                        <div class="form">\
+                                            <div class="form-row">\
+                                                <div class="textfield-holder">\
+                                                    <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
+                                                </div>\
+                                            </div>\
+                                            <div class="hidden js-expanding-textfields">\
+                                                <div class="form-row form-multicol">\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="name" class="textfield" placeholder="Name">\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="form-row">\
+                                                    <div class="review-submit-holder">\
+                                                        <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
+                                                        <div>\
+                                                            <div class="field-error-required not-valid action-field">\
+                                                                Please fill in the required fields.\
+                                                            </div>\
+                                                            <div class="field-success success action-field">\
+                                                                Thank You!\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        ';
+                    } else {
+                        pattern = '\
+                        <div class="review review-parent '+name.toLowerCase()+'" data-id="'+data.body.id+'">\
+                            <div class="review-wrap">\
+                                <div class="review-info">\
+                                    <div class="review-info-top">\
+                                        <div class="review-flag">\
+                                            <img src="'+_imgDir+'" alt="'+_countryCode+'" width="15" height="12">\
+                                        </div>\
+                                        <div class="review-info-body">\
+                                            <div class="review-name">'+name+'</div>\
+                                            <div class="review-date">'+_getCurrDate()+'</div>\
+                                        </div>\
+                                    </div>\
+                                    <div class="list-rating '+getWebName(get_rating(_rate_slider_result))+'">\
+                                        <div class="list-rating-wrap">\
+                                            <div class="list-rating-score">'+_rate_slider_result+'</div>\
+                                            <div class="list-rating-text">'+get_rating(_rate_slider_result)+'</div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                                <div class="review-body">\
+                                    <div class="review-text">\
+                                        <p>'+message+'</p>\
+                                    </div>\
+                                    <div class="review-underline">\
+                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
+                                        <div class="votes js-vote">\
+                                            <a href="#" class="votes-like vote-button"  data-id="'+data.body.id+'">\
+                                                <i class="icon-icon_likes"></i>\
+                                                <span class="bubble bubble-vote">0</span>\
+                                            </a>\
+                                        </div>\
+                                    </div>\
+                                    <div class="review-form">\
+                                        <div class="form">\
+                                            <div class="form-row">\
+                                                <div class="textfield-holder">\
+                                                    <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
+                                                </div>\
+                                            </div>\
+                                            <div class="hidden js-expanding-textfields">\
+                                                <div class="form-row form-multicol">\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="name" class="textfield" placeholder="Name">\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="form-col">\
+                                                        <div class="textfield-holder error">\
+                                                            <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                                <div class="form-row">\
+                                                    <div class="review-submit-holder">\
+                                                        <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
+                                                        <div>\
+                                                            <div class="field-error-required not-valid action-field">\
+                                                                Please fill in the required fields.\
+                                                            </div>\
+                                                            <div class="field-success success action-field">\
+                                                                Thank You!\
+                                                            </div>\
+                                                        </div>\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>\
+                        </div>\
+                        <div class="reply review">\
+                            <div class="reply-data-holder"></div>\
+                        </div>\
+                        ';
+                    }
+
+                    return pattern;
+                }
+
+                if (_is_child_of_child) {
+                    $(getItemPattern()).insertAfter(_this)
+                } else {
+                    _reviewHolder.prepend(getItemPattern());
+                }
+
+
                 _refreshData();
-            }, 500);
+            }
         },
 
         _refreshData = function(){
@@ -1924,6 +2123,11 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
 
     function initReplies() {
         $('#reviews').on('click', '.js-reply-btn', function(e) {
+            var replyReview = $(this).closest('.reply.review');
+            if(replyReview.length > 0 && replyReview.find('.reply-data-holder').length > 0) {
+                var userName = $(this).parent().parent().parent().find('.review-name').text();
+                $(this).parent().parent().find('textarea').val('@'+userName+' ');
+            }
             $(this).parent().next().slideToggle();
 
             return false;
@@ -1984,11 +2188,11 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                     .closest(_container)
                     .find(_mobilePop)
                     .fadeIn('fast');
-                $('html, body').addClass('no-scroll');
+                    lockScreen();
             }
 
             _btnOpen.on('click', function(e) {
-                _position = $('html, body').scrollTop();
+                _position = $(window).scrollTop();
                 $('.overlay, .loader').fadeIn('fast');
                 cloneContent($(this));
                 return false;
@@ -2000,7 +2204,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                     .fadeOut('fast')
                     .find('.mobile-popup-body')
                     .html('');
-                $('html, body').removeClass('no-scroll');
+                unlockScreen();
                 $('.overlay, .loader').fadeOut('fast');
 
                 goToPosition(_position);

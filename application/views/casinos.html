@@ -6,9 +6,11 @@
 		<div class="container">
 			<div class="headeing">
 				<h1 class="title">${data.page_info.body_title}</h1>
+                                <:if test="isset(${data.widgets.upper})">
 				<div class="subtitle plain-text">
-					<div class="js-condense"><span>${(isset(${data.tms.upper_text})?${data.tms.upper_text}:"")}</span></div>
+					<div class="js-condense"><span>${implode("\n", ${data.widgets.upper})}</span></div>
 				</div>
+                                </:if>
 			</div>
 
 			<:if test="isset(${data.currency})">
@@ -44,10 +46,41 @@
 					</div>
 				</:if>
 			</:if>
-                        <br>
-                        <div class="subtitle plain-text">
-                            <div><span>${(isset(${data.tms.lower_text})?${data.tms.lower_text}:"")}</span></div>
-                        </div>
+            <:if test="isset(${data.recommended_games})">
+                <:if test="count(${data.recommended_games}) > 0">
+                <div class="block related">
+                    <div class="container">
+                            <:if test="${data.total_casinos} > count(${data.casinos})">
+                            <div class="headeing">
+                                    <div class="title title-middle">Newest Games By ${data.software}</div>
+                            </div>
+                            <:else>
+                            <div class="headeing no_button">
+                                    <div class="title title-middle">Newest Games By ${data.software}</div>
+                            </div>
+                            </:if>
+                            <:if test="isset(${data.widgets.middle})">
+                            <div class="subtitle plain-text">
+                                <div><span>${implode("\n", ${data.widgets.middle})}</span></div>
+                            </div>
+                            </:if>
+                            <game:list data="${data.recommended_games}"/>
+                    </div>
+                </div>
+                <:if test="${data.total_games} > 4">
+                    <div class="btn-holder btn-games">
+                        <a class="btn-bordered load js-more-games" data-total="${data.total_games}" data-software="${data.software_id}">
+                            LOAD MORE GAMES</a>
+                    </div>
+                </:if>
+                </:if>
+            </:if>
+             <:if test="isset(${data.widgets.lower})">
+	            <div class="subtitle plain-text">
+                    <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
+	            </div>
+            </:if>
+                        
 		</div>
 	</div>
 <site:bottom menu="${data.menu_top}"/>

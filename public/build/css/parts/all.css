@@ -11,6 +11,19 @@ h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
     padding-top: 10px;
 }
 
+.js-more-games{
+    cursor: pointer;
+    transition: none !important;
+}
+
+.no_button{
+    padding-top: 45px;
+}
+
+.btn-games{
+    margin-bottom: 60px !important;
+}
+
 fieldset,
 img {
   border: 0;
@@ -2755,6 +2768,12 @@ html {
   background: #fff;
 }
 
+@media screen and (max-width: 767px) {
+  html {
+    height: auto;
+  }
+}
+
 body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -2824,6 +2843,10 @@ a:focus {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
+}
+
+.no-scroll .wrapper {
+  position:relative;
 }
 
 #site-content {
@@ -3325,14 +3348,7 @@ a:focus {
   transition: all .3s linear;
 }
 
-@media screen and (min-width: 1024px) {
-  .search-opened .header-menu {
-    width: 0;
-  }
-  .header-menu__item {
-    text-align: center;
-  }
-}
+
 
 .search-opened .header-search {
   width: 100%;
@@ -9004,10 +9020,18 @@ a:focus {
   flex-shrink: 0;
 }
 
+
+
 @media screen and (max-width: 768px) {
   .fullscreen .player-wrap .player-controls a {
     margin: 0;
   }
+}
+
+@media screen and (min-width: 768px) {
+    .btn-games{
+    margin-bottom: 40px !important;
+}
 }
 
 @media (min-width: 480px) and (max-width: 736px) {
@@ -9015,6 +9039,19 @@ a:focus {
     width: 40px;
     height: 40px;
   }
+}
+
+@media screen and (min-width: 1024px) {
+  .search-opened .header-menu {
+    width: 0;
+  }
+  .header-menu__item {
+    text-align: center;
+  }
+  
+  .btn-games{
+    margin-bottom: 80px !important;
+}
 }
 
 #contact-us-success {
@@ -9192,17 +9229,13 @@ img.grayscale {
   list-style: disc;
 }
 
-.no-scroll {
-  overflow: hidden;
-}
-
 body.no-scroll,
 html.no-scroll {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  /*height: 100%;*/
 }
 
 .btn-play-now {
@@ -10008,7 +10041,8 @@ abbr[title] {
   margin:5px 5px 0 0;
   background: #E8EAF3;
   border-radius: 15px;
-  color:#2171CE;
+  /*color:#2171CE;*/
+  color:#465156;
   font-size:13px;
   line-height:17px;
   padding:6px 15px;

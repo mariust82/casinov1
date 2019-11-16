@@ -2,14 +2,18 @@
     <div class="container">
         <div class="headeing">
             <h1 class="title">${data.page_info.body_title}</h1>
-            <div class="subtitle plain-text">
-                <div class="js-condense"><span>${(isset(${data.tms.upper_text})?${data.tms.upper_text}:"")}</span></div>
-            </div>
+            <:if test="isset(${data.widgets.upper})">
+                <div class="subtitle plain-text">
+                    <div class="js-condense"><span>${implode("\n", ${data.widgets.upper})}</span></div>
+                </div>
+            </:if>
         </div>
 
         <categories:list items="$[items]" url="$[url]" image="$[image]" type="$[type]"/>
+        <:if test="isset(${data.widgets.lower})">
         <div class="subtitle plain-text">
-            <div><span>${(isset(${data.tms.lower_text})?${data.tms.lower_text}:"")}</span></div>
+            <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
         </div>
+        </:if>
     </div>
 </div>

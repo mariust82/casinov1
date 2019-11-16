@@ -26,7 +26,11 @@ abstract class CasinosListController extends BaseController
         $this->response->attributes("casinos", $results["list"]);
         $this->response->attributes("page_type", $this->get_page_type());
         $this->response->attributes('bonus_free_type', $this->getAbbreviation($this->response->attributes('casinos')));
+        $this->init();
+       
     }
+    
+    protected function init() {}
 
     private function getResults()
     {

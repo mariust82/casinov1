@@ -4,6 +4,7 @@ namespace CasinosLists;
 require_once(dirname(__DIR__, 3)."/hlis/orm/src/dao/GameInfoDAO.php");
 require_once("drivers/GameFields.php");
 require_once("drivers/GameLineProcessor.php");
+require_once("drivers/GamePlayQuery.php");
 require_once(dirname(__DIR__, 3)."/vendor/lucinda/queries/src/Select.php");
 
 class GameInfo
@@ -42,7 +43,7 @@ class GameInfo
     private function setResults(\Hlis\GameFields $fields, $gameID)
     {
         $glt = new \Hlis\GameInfoDAO(
-            new \Hlis\GameInfoQuery($gameID, $fields),
+            new \CasinosLists\GamePlayQuery($gameID, $fields),
             new \CasinosLists\GameLineProcessor()
         );
         $this->results = $glt->getResults();
