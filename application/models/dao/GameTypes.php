@@ -11,10 +11,15 @@ class GameTypes
         $this->feature_id = $this->is_mobile == TRUE ? 7 : 8;
     }
 
-        public function getGamesCount()
+    public function getGamesCount()
     {
         return SQL("
-        SELECT t3.name AS unit ,COUNT(DISTINCT t1.id) AS counter FROM games AS t1 INNER JOIN game_types AS t3 ON t1.game_type_id = t3.id INNER JOIN game_play__matches AS t6 ON t1.id = t6.game_id INNER JOIN game_play__patterns AS t7 ON t7.id = t6.pattern_id AND t7.isMobile IN (0,2) INNER JOIN games__features AS t8 ON t1.id = t8.game_id AND t8.feature_id = {$this->feature_id} WHERE t1.is_open = 1
+        SELECT t3.name AS unit ,COUNT(DISTINCT t1.id) AS counter 
+        FROM games AS t1 INNER JOIN game_types AS t3 ON t1.game_type_id = t3.id 
+        INNER JOIN game_play__matches AS t6 ON t1.id = t6.game_id 
+        INNER JOIN game_play__patterns AS t7 ON t7.id = t6.pattern_id AND t7.isMobile IN ({$this->is_mobile},2) 
+        INNER JOIN games__features AS t8 ON t1.id = t8.game_id AND t8.feature_id = {$this->feature_id} 
+        WHERE t1.is_open = 1
         GROUP BY t3.id
         ORDER BY counter DESC 
         ")->toMap("unit", "counter");
