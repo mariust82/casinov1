@@ -78,10 +78,9 @@ class CasinoFilter
                     break;
             }
         }
-
         // start hardcodings
         switch ($this->country) {
-            case "Democratic Peoples Republic of Korea":
+            case "Democratic Peoples Republic Of Korea":
                 $this->country = "Democratic People\'s Republic of Korea";
                 break;
             case "Cote DIvoire":
