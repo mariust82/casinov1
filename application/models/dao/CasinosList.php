@@ -26,7 +26,6 @@ class CasinosList
             $offset
         );
         $query = $queryGenerator->getQuery();
-        echo $query;
         // execute query
         $resultSet = SQL($query);
 
