@@ -6,7 +6,7 @@ class GameTypesController extends AbstractSitemapController
 {
     protected function getItems()
     {
-        $bm = new GameTypes();
+        $bm = new GameTypes($this->request->attributes("is_mobile"));
         return $bm->getAll();
     }
 
