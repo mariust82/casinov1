@@ -14,7 +14,7 @@ class GamesSearch
             "
             SELECT name
             FROM games
-            WHERE name LIKE :name AND is_open = 1
+            WHERE name LIKE :name
             ORDER BY id DESC, name ASC
             LIMIT ".$limit." OFFSET ".$offset,
             array(":name"=>"%".$this->value."%")
@@ -26,7 +26,7 @@ class GamesSearch
         // build query
         return (integer) SQL(
             "
-            SELECT COUNT(id) AS nr FROM games WHERE name LIKE :name AND is_open = 1",
+            SELECT COUNT(id) AS nr FROM games WHERE name LIKE :name",
             array(":name"=>"%".$this->value."%")
         )->toValue();
     }
