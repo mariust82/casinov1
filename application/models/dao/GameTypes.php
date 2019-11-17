@@ -7,8 +7,8 @@ class GameTypes
     private $feature_id;
     
     public function __construct($is_mobile) {
-        $this->is_mobile = $is_mobile;
-        $this->feature_id = $this->is_mobile == TRUE ? 7 : 8;
+        $this->feature_id = $is_mobile == TRUE ? 7 : 8;
+        $this->is_mobile = $is_mobile == TRUE ? 1 : 0;
     }
 
     public function getGamesCount()
