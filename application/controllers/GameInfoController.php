@@ -22,7 +22,7 @@ class GameInfoController extends BaseController
     public function service()
     {
         $this->response->attributes("country", $this->request->attributes("country"));
-
+        var_dump($this->request->attributes("is_mobile"));
         $object = new GameTypes($this->request->attributes("is_mobile"));
         $this->response->attributes("game_types", array_keys($object->getGamesCount()));
 
