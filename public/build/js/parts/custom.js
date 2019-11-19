@@ -828,7 +828,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                             $('.qty-items').attr('data-load-total',loadTotal);
                             $('.qty-items-quantity').text(loadTotal);
 
-                            if (cont.length < limit_items ) {
+                            if (cont.length === $('.qty-items').attr('data-load-total') ) {
                                 if(cont.length>0) {
                                     _loaderHolder.show();
                                     _emptyContent.hide();
