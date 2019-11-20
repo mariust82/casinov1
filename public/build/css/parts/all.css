@@ -2927,10 +2927,11 @@ a:focus {
   -ms-flex-align: center;
   align-items: center;
   overflow: hidden;
-  padding: 10px 0px 5px;
-  width: 21px;
+  padding: 7px 0 5px;
+  width: 19px;
   transition: width 0.3s linear;
   position: relative;
+  left: 4px;
 }
 
 @media screen and (max-width: 1023px) {
@@ -3168,9 +3169,9 @@ a:focus {
 }
 
 .header-menu__item {
-  padding: 31px 11px 26px 10px;
+  padding: 32px 11px 26px 10px;
   font-size: 11px;
-  line-height: 1;
+  line-height: 15px;
   font-weight: 600;
   color: #fff;
   background-color: transparent;
