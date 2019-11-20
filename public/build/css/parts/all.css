@@ -3128,6 +3128,12 @@ a:focus {
   white-space: nowrap;
 }
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { /*hack for IE*/
+   .header-menu {
+     margin: 0 0 0 10px;
+   }
+}
+
 @media screen and (max-width: 1023px) {
   .header-menu {
     position: fixed;
@@ -3184,6 +3190,12 @@ a:focus {
   align-items: center;
   cursor: pointer;
   text-transform: uppercase;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {  /*hack for IE*/
+   .header-menu__item {
+     padding: 32px 10px 26px;
+   }
 }
 
 .header-menu__item i {

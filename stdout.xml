@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
 <xml>
-  <application version="0.8.8.9022" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
+  <application version="0.8.8.9023" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
     <paths>
       <controllers>application/controllers</controllers>
       <cacheables>application/models/cacheables</cacheables>
