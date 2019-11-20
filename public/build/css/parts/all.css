@@ -7282,6 +7282,8 @@ a:focus {
   height: 18px;
   margin: 0 0 0 12px;
   border-radius: 50%;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .section.not-accepted .rating-container .br-widget a {
