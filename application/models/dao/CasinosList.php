@@ -109,7 +109,7 @@ class CasinosList
         if ($date != NULL) {
             $date_arr = explode('-', $date);
             $month_name = date('M', strtotime($date));
-            return $month_name.'. '.$date_arr[2].', '.$date_arr[0];
+            return $month_name.' '.$date_arr[2].', '.$date_arr[0];
         } return "None";
     }
 

@@ -75,7 +75,7 @@
 							<div class="multirow">
 								<div class="list-item-flex">
 									<:if test="'$[type]' == 'ESTABLISHED'">
-											<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
+											<span class="upper">${result.date_formatted}</span>
 									<:else>
 										<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
 											${result.softwares.0}
