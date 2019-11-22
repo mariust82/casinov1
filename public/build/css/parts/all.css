@@ -3232,13 +3232,13 @@ a:focus {
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  transition: opacity .3s, visibility .3s;
 }
 
 @media screen and (min-width: 1023px) {
   .expand-holder:hover .expand-menu {
     opacity: 1;
     visibility: visible;
+    transition: opacity .3s, visibility .3s;
   }
 }
 
