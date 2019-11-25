@@ -3090,14 +3090,14 @@ a:focus {
     display: block;
     position: static;
     overflow:auto;
-    height: calc(100vh - 270px);
+    height: calc(100vh - 120px);
     padding: 20px 10px;
     border-radius: 0;
   }
 
-  /*.ios-device .search-drop {
-    height: calc(100vh - 162px);
-  }*/
+  .ios-device .search-drop {
+    height: calc(100vh - 270px);
+  }
 }
 
 .search-drop .mark {
