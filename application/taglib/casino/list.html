@@ -59,7 +59,7 @@
 							<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
 								${result.name}
 								<:if test="'$[type]' == 'ESTABLISHED' && ${data.is_mobile}">
-									<div class="list-small-text">${result.date_formatted}</div>
+									<div class="list-small-text upper">${result.date_formatted}</div>
 								</:if>
 							</a>
 							<:if test="${result.is_tc_link}">
