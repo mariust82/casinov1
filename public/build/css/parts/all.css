@@ -3089,14 +3089,15 @@ a:focus {
   .search-drop {
     display: block;
     position: static;
-    height: calc(100vh - 106px);
+    overflow:auto;
+    height: calc(100vh - 270px);
     padding: 20px 10px;
     border-radius: 0;
   }
 
-  .ios-device .search-drop {
+  /*.ios-device .search-drop {
     height: calc(100vh - 162px);
-  }
+  }*/
 }
 
 .search-drop .mark {
@@ -3315,6 +3316,13 @@ a:focus {
 .mobile-search-opened .header-search {
   -webkit-transform: translateX(0);
   transform: translateX(0);
+  background:#fff;
+}
+
+.mobile-search-opened .search-drop {
+  -webkit-box-shadow:none;
+  -moz-box-shadow:none;
+  box-shadow:none;
 }
 
 .advanced-search-opened .header-search {
@@ -8717,8 +8725,6 @@ a:focus {
 @media screen and (max-width: 690px) {
   .search-list {
     -webkit-overflow-scrolling: touch;
-    overflow: auto;
-    height: calc(100vh - 236px);
     margin: 0 -10px;
     padding: 0 10px;
   }
