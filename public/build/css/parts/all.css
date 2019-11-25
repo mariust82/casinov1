@@ -8890,6 +8890,7 @@ a:focus {
   font-size: 11px;
   color: #465156;
   font-weight: 600;
+  text-transform: none;
 }
 
 #play-fullscreen svg {
@@ -9072,6 +9073,7 @@ a:focus {
   font-size: 13px;
   color: #465156;
   font-weight: 600;
+  text-transform: none;
 }
   
   .btn-games{
