@@ -28,7 +28,7 @@ class IndexController extends BaseController
         $this->response->attributes("new_casinos", $this->getCasinos([], CasinoSortCriteria::NEWEST, 5));
         $this->response->attributes("no_deposit_casinos", $this->getCasinos(
             array("bonus_type"=>"no deposit bonus"),
-            CasinoSortCriteria::NEWEST,
+            CasinoSortCriteria::DATE_ADDED,
             5
         ));
         $this->response->attributes("new_games", $this->getGames());

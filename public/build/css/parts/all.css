@@ -2927,10 +2927,11 @@ a:focus {
   -ms-flex-align: center;
   align-items: center;
   overflow: hidden;
-  padding: 10px 18px 5px 0;
-  width: 21px;
+  padding: 7px 0 5px;
+  width: 19px;
   transition: width 0.3s linear;
   position: relative;
+  left: 4px;
 }
 
 @media screen and (max-width: 1023px) {
@@ -3123,8 +3124,14 @@ a:focus {
 .header-menu {
   width: 100%;
   transition: width .3s linear;
-  margin: 0 0 0 45px;
+  margin: 0 0 0 20px;
   white-space: nowrap;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { /*hack for IE*/
+   .header-menu {
+     margin: 0 0 0 10px;
+   }
 }
 
 @media screen and (max-width: 1023px) {
@@ -3168,9 +3175,9 @@ a:focus {
 }
 
 .header-menu__item {
-  padding: 33px 15px 23px;
-  font-size: 12px;
-  line-height: 1;
+  padding: 32px 11px 26px 10px;
+  font-size: 11px;
+  line-height: 15px;
   font-weight: 600;
   color: #fff;
   background-color: transparent;
@@ -3183,6 +3190,12 @@ a:focus {
   align-items: center;
   cursor: pointer;
   text-transform: uppercase;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {  /*hack for IE*/
+   .header-menu__item {
+     padding: 32px 10px 26px;
+   }
 }
 
 .header-menu__item i {
@@ -7281,6 +7294,8 @@ a:focus {
   height: 18px;
   margin: 0 0 0 12px;
   border-radius: 50%;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .section.not-accepted .rating-container .br-widget a {
@@ -8872,8 +8887,10 @@ a:focus {
 }
 
 .upper {
-  text-transform: uppercase;
-  font-size: 13px;
+  font-size: 11px;
+  color: #465156;
+  font-weight: 600;
+  text-transform: none;
 }
 
 #play-fullscreen svg {
@@ -9032,6 +9049,9 @@ a:focus {
     .btn-games{
     margin-bottom: 40px !important;
 }
+.contact .form {
+    margin: 0 0 30px;
+}
 }
 
 @media (min-width: 480px) and (max-width: 736px) {
@@ -9048,6 +9068,13 @@ a:focus {
   .header-menu__item {
     text-align: center;
   }
+  
+.upper {
+  font-size: 13px;
+  color: #465156;
+  font-weight: 600;
+  text-transform: none;
+}
   
   .btn-games{
     margin-bottom: 80px !important;
@@ -9661,7 +9688,7 @@ html.no-scroll {
 
 .card-footer{
   padding: 10px;
-  height: 164px;
+  height: 185px;
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flex;

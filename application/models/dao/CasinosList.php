@@ -69,7 +69,7 @@ class CasinosList
         }
         // append bonuses
         $query = "
-        SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.minimum_deposit, t1.games, t2.name , t1.bonus_type_id
+        SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name , t1.bonus_type_id
         FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
         WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins','Free Play')
@@ -79,7 +79,7 @@ class CasinosList
             $bonus = new CasinoBonus();
             $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
             $bonus->amount = $this->checkForAbbr($bonus->amount);
-            $bonus->min_deposit = $row["minimum_deposit"];
+            $bonus->min_deposit = $row["deposit_minimum"];
             if ($row["wagering"] == '') {
                 $row["wagering"] = 0;
             }
@@ -109,7 +109,7 @@ class CasinosList
         if ($date != NULL) {
             $date_arr = explode('-', $date);
             $month_name = date('M', strtotime($date));
-            return $month_name.'. '.$date_arr[2].', '.$date_arr[0];
+            return $month_name.' '.$date_arr[2].', '.$date_arr[0];
         } return "None";
     }
 

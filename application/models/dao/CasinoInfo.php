@@ -25,7 +25,7 @@ class CasinoInfo
          (t1.rating_total/t1.rating_votes) AS average_rating,
           t2.name AS affiliate_program,
           IF(t1.tc_link<>'',1,0) AS is_tc_link,
-          t5.note AS note
+          t5.value AS note
         FROM casinos AS t1
         LEFT JOIN affiliate_programs AS t2 ON t1.affiliate_program_id = t2.id
         LEFT JOIN casinos__play_versions AS t3 ON t1.id = t3.casino_id AND t3.play_version_id = 2
@@ -217,7 +217,7 @@ class CasinoInfo
 
         $object = new CasinoBonus();
         $object->amount = $row["amount"];
-        $object->min_deposit = $row["minimum_deposit"];
+        $object->min_deposit = $row["deposit_minimum"];
         $object->wagering = $row["wagering"];
         $object->games_allowed = $row["games"];
         $object->code = $row["codes"];
@@ -330,7 +330,7 @@ class CasinoInfo
             $full_welcome_package = new FullWelcomePackage();
             $full_welcome_package->valid_on =$wp_data['availability'];
             $full_welcome_package->bonus = $wp_data['amount'];
-            $full_welcome_package->min_deposit = $wp_data['minimum_deposit'];
+            $full_welcome_package->min_deposit = $wp_data['deposit_minimum'];
             $full_welcome_package->wagering = $wp_data['wagering'];
             $full_welcome_package->games = $wp_data['games'];
             $full_welcome_package->bonus_codes = $wp_data['codes'];

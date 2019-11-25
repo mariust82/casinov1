@@ -20,7 +20,7 @@ class GameTypesController extends BaseController
 
     private function getResults()
     {
-        $object = new GameTypes();
+        $object = new GameTypes($this->request->attributes("is_mobile"));
         $counts = $object->getGamesCount();
         return $counts;
     }

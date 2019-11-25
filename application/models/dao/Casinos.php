@@ -33,7 +33,7 @@ class Casinos implements FieldValidator
     public function getBasicInfo($id)
     {
         $row = SQL("
-            SELECT t1.id, t1.name, t1.code, t2.name AS status, t1.affiliate_link, t1.is_open, t4.name AS software, t5.note
+            SELECT t1.id, t1.name, t1.code, t2.name AS status, t1.affiliate_link, t1.is_open, t4.name AS software, t5.value AS note
             FROM casinos AS t1
             LEFT JOIN casino_statuses AS t2 ON t1.status_id = t2.id
             LEFT JOIN casinos__game_manufacturers AS t3 ON t1.id = t3.casino_id AND t3.is_primary = 1
@@ -62,7 +62,7 @@ class Casinos implements FieldValidator
     public function getBonus($casinoID, $isFree)
     {
         $query = "
-        SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.minimum_deposit, t1.games, t2.name 
+        SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name 
         FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
         WHERE t1.casino_id = $casinoID AND t2.name IN (".($isFree?"'No Deposit Bonus','Free Spins','Free Play'":"'First Deposit Bonus'").")
@@ -71,7 +71,7 @@ class Casinos implements FieldValidator
         while ($row = $resultSet->toRow()) {
             $bonus = new CasinoBonus();
             $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
-            $bonus->min_deposit = $row["minimum_deposit"];
+            $bonus->min_deposit = $row["deposit_minimum"];
             $bonus->wagering = $row["wagering"];
             $bonus->games_allowed = $row["games"];
             $bonus->code = $row["codes"];

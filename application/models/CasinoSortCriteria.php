@@ -7,4 +7,5 @@ class CasinoSortCriteria
     const POPULARITY = 4;
     const WAGERING = 5;
     const NO_ACCOUNT = 6;
+    const DATE_ADDED = 7;
 }

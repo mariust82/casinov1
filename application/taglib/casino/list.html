@@ -59,7 +59,7 @@
 							<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
 								${result.name}
 								<:if test="'$[type]' == 'ESTABLISHED' && ${data.is_mobile}">
-									<div class="list-small-text">${result.date_formatted}</div>
+									<div class="list-small-text upper">${result.date_formatted}</div>
 								</:if>
 							</a>
 							<:if test="${result.is_tc_link}">
@@ -75,7 +75,7 @@
 							<div class="multirow">
 								<div class="list-item-flex">
 									<:if test="'$[type]' == 'ESTABLISHED'">
-											<span class="upper">${date("F d, Y",  strtotime(${result.date_established}))}</span>
+											<span class="upper">${result.date_formatted}</span>
 									<:else>
 										<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
 											${result.softwares.0}
