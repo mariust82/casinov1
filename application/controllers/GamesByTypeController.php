@@ -25,7 +25,7 @@ class GamesByTypeController extends BaseController
         $this->response->attributes("menu_bottom", $menu->getEntries());
 
         $object = new GameManufacturers();
-        $this->response->attributes("software", $object->getAllByGameType($this->response->attributes("selected_entity")));
+        $this->response->attributes("software", $object->getAllByGameType($this->request->attributes("is_mobile"),$this->response->attributes("selected_entity")));
 
         $results = $this->getResults();
         $this->response->attributes("total_games", $results["total"]);
