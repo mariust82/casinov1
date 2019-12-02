@@ -2506,6 +2506,7 @@ a:focus {
   transition: width 0.3s linear;
   position: relative;
   left: 4px;
+  opacity:0;
 }
 
 @media screen and (max-width: 1023px) {
