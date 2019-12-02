@@ -16,7 +16,7 @@ function tmsIframe() {
 (function($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
-
+    $('.header-search').css('opacity', 1);
 
     $(document).ready(function() {
         initToggleMenu();
