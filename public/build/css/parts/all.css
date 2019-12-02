@@ -2565,6 +2565,11 @@ a:focus {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  display:none;
+}
+
+.search-opened .header-search-input{
+  display:block;
 }
 
 @media screen and (max-width: 690px) {
@@ -2599,6 +2604,7 @@ a:focus {
 }
 
 .header-search-close {
+  display:none;
   color: #fff;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2607,6 +2613,10 @@ a:focus {
   transform: rotate(45deg) translateY(5px);
   position: relative;
   top: -3px;
+}
+
+.search-opened .header-search-close {
+  display:block;
 }
 
 @media screen and (max-width: 1023px) {
