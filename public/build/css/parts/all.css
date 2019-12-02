@@ -7924,6 +7924,7 @@ a:focus {
 .fullscreenGameplay .player-holder {
   overflow: auto;
   margin: auto;
+  padding:0;
   position: absolute;
   top: 0;
   left: 0;
@@ -7931,6 +7932,7 @@ a:focus {
   right: 0;
   display: table;
   width: 100%;
+  height:100%;
 }
 
 .fullscreenGameplay .player-controls {}
