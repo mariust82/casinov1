@@ -11,7 +11,7 @@ class CasinosMenu
         "/casinos/mobile"=>"Mobile Casinos",
         "/casinos/low-wagering" => "Low Wagering Casinos",
         "/casinos/new"=>"New Casinos",
-        "/casinos/stay-away"=>"Stay Away Casinos",
+        "/casinos/stay-away"=>"Blacklisted Casinos",
         "/casinos/no-account-casinos" => "No Account Casinos",
         "/casinos"=>"All Casinos",
     ];

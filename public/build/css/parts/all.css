@@ -2664,14 +2664,14 @@ a:focus {
     display: block;
     position: static;
     overflow:auto;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 270px);
     padding: 20px 10px;
     border-radius: 0;
   }
 
-  .ios-device .search-drop {
-    height: calc(100vh - 270px);
-  }
+  /*.ios-device .search-drop {
+    height: calc(100vh - 162px);
+  }*/
 }
 
 .search-drop .mark {
@@ -2807,13 +2807,13 @@ a:focus {
   overflow: hidden;
   opacity: 0;
   visibility: hidden;
-  transition: opacity .3s, visibility .3s;
 }
 
 @media screen and (min-width: 1023px) {
   .expand-holder:hover .expand-menu {
     opacity: 1;
     visibility: visible;
+    transition: opacity .3s, visibility .3s;
   }
 }
 
@@ -7498,6 +7498,7 @@ a:focus {
 .fullscreenGameplay .player-holder {
   overflow: auto;
   margin: auto;
+  padding:0;
   position: absolute;
   top: 0;
   left: 0;
@@ -7505,6 +7506,7 @@ a:focus {
   right: 0;
   display: table;
   width: 100%;
+  height:100%;
 }
 
 .fullscreenGameplay .player-controls {}
