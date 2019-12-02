@@ -2506,7 +2506,12 @@ a:focus {
   transition: width 0.3s linear;
   position: relative;
   left: 4px;
-  opacity:0;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { /*hack for IE*/
+   .header-search {
+    transition: none;
+   }
 }
 
 @media screen and (max-width: 1023px) {
