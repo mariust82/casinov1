@@ -16,7 +16,6 @@ function tmsIframe() {
 (function($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
-    $('.header-search').css('opacity', 1);
 
     $(document).ready(function() {
         initToggleMenu();
@@ -24,43 +23,47 @@ function tmsIframe() {
         initMobileMenu();
         menuHoverAction();
 
-    $('.js-more-games').click(function(){
-        $(this).addClass('loading');
-        var id = $(this).data('software');
-        var self = $(this);
-        console.dir('/games-by-software/'+GAME_CURR_PAGE);
-        _request = $.ajax( {
-        url: '/games-by-software/'+GAME_CURR_PAGE,
-        data:{
-            page:GAME_CURR_PAGE,
-            software: id
-        },
-        dataType: 'html',
-        type: 'post',
-        success: function (data) {
-            setTimeout(function(){
-                                self.removeClass('loading');
-                                refresh();
-            }, 1000);
-            GAME_CURR_PAGE++;
-            $('.games-list').append(data);
-            if($(self).data('total') === $('.games-list').children().length) {
-                $(self).hide();
-            }
-        },
-        error: function ( XMLHttpRequest ) {
-            var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
-            if ( XMLHttpRequest.statusText != "abort" ) {
-                console.log( 'err' );
-            }
-        },
-        complete: function(){
-            BUSY_REQUEST = false;
-        }
-    } );
-    });
+        setTimeout(function() {
+            $('.header-search').css('opacity', 1);
+        }, 500);
 
-    $('.load-more').click(function(){
+        $('.js-more-games').click(function(){
+            $(this).addClass('loading');
+            var id = $(this).data('software');
+            var self = $(this);
+            console.dir('/games-by-software/'+GAME_CURR_PAGE);
+            _request = $.ajax( {
+            url: '/games-by-software/'+GAME_CURR_PAGE,
+            data:{
+                page:GAME_CURR_PAGE,
+                software: id
+            },
+            dataType: 'html',
+            type: 'post',
+            success: function (data) {
+                setTimeout(function(){
+                                    self.removeClass('loading');
+                                    refresh();
+                }, 1000);
+                GAME_CURR_PAGE++;
+                $('.games-list').append(data);
+                if($(self).data('total') === $('.games-list').children().length) {
+                    $(self).hide();
+                }
+            },
+            error: function ( XMLHttpRequest ) {
+                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                if ( XMLHttpRequest.statusText != "abort" ) {
+                    console.log( 'err' );
+                }
+            },
+            complete: function(){
+                BUSY_REQUEST = false;
+            }
+        } );
+        });
+
+        $('.load-more').click(function(){
         var _request = new XMLHttpRequest();
         var category = $(this).data('category');
         var self = $(this);
