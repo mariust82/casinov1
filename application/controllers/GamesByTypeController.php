@@ -32,6 +32,7 @@ class GamesByTypeController extends BaseController
         $this->response->attributes("games", $results["list"]);
 
         $this->response->attributes("filter", array("game_type"=>$this->response->attributes("selected_entity")));
+        $this->response->attributes("is_mob", $this->request->attributes("is_mobile"));
     }
 
 
