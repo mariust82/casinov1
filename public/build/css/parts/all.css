@@ -6,6 +6,16 @@ h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
   padding: 0;
 }
 
+
+@font-face {
+  font-family: 'icomoon';
+  font-display: swap;
+  src: url("../../fonts/icomoon.eot?stten7");
+  src: url("../../fonts/icomoon.eot?stten7#iefix") format("embedded-opentype"), url("../../fonts/icomoon.ttf?stten7") format("truetype"), url("../../fonts/icomoon.woff?stten7") format("woff"), url("../../fonts/icomoon.svg?stten7#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .center{
     text-align: center;
     padding-top: 10px;

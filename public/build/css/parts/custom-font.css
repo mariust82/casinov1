@@ -1,11 +1,3 @@
-@font-face {
-  font-family: 'icomoon';
-  font-display: swap;
-  src: url("/public/build/fonts/icomoon.eot?stten7");
-  src: url("/public/build/fonts/icomoon.eot?stten7#iefix") format("embedded-opentype"), url("/public/build/fonts/icomoon.ttf?stten7") format("truetype"), url("/public/build/fonts/icomoon.woff?stten7") format("woff"), url("/public/build/fonts/icomoon.svg?stten7#icomoon") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
 
 /* cyrillic-ext */
 
