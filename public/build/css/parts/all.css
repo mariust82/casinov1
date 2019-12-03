@@ -2680,7 +2680,7 @@ a:focus {
     display: block;
     position: static;
     overflow:auto;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 130px);
     padding: 20px 10px;
     border-radius: 0;
   }
