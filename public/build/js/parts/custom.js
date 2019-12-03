@@ -24,15 +24,9 @@ function tmsIframe() {
         initMobileMenu();
         menuHoverAction();
 
-        $(window).bind("load", function() {
-            $(window).on("scroll", function () {
-                $('.lazy').each(function() {
-                    $(this).attr('src',$(this).data('src'));
-                    $(this).removeAttr('data-src');
-                    $(this).removeClass('.lazy');
-                });
-            });
-        });
+        document.ontouchmove = function(e){
+            e.preventDefault();
+        }
 
     $('.js-more-games').click(function(){
         $(this).addClass('loading');
@@ -167,8 +161,9 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
     //detect when scrolling is stopped
     
     var windowToBottom = 0;
+    
     $(window).on('scroll', function(){
-
+        
         //scroll down
         if (windowToBottom < $(window).scrollTop()) {
             $('body').removeClass('site__header_sticky');
@@ -185,6 +180,11 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             $('body').removeClass('site__header_sticky');
         }
 
+        $('.lazy').each(function() {
+            $(this).attr('src',$(this).data('src'));
+            $(this).removeAttr('data-src');
+            $(this).removeClass('.lazy');
+        });
     });
 
     if ($(window).width() < 768) {
@@ -2376,10 +2376,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             $('body').addClass('mobile-search-opened');
             lockScreen();
             _input.focus();
-
-            _container.animate({
-                scrollTop: 0
-            }, 10);
         });
 
         _btnMobileClose.on('click', function(e) {
@@ -2393,6 +2389,11 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         _btnMobileClear.on('click', function() {
             _input.val('').focus();
         });
+
+        _input.onfocus = function () {
+            window.scrollTo(0, 0);
+            document.body.scrollTop = 0;
+        }
     }
 
     function lockScreen() {
