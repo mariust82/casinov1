@@ -2938,7 +2938,7 @@ a:focus {
   display: none;
 }
 
-.kbopened .search-drop{
+.kbopened.ios-device .search-drop{
   height: calc(100vh - 342px);
 }
 
