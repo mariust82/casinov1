@@ -24,6 +24,16 @@ function tmsIframe() {
         initMobileMenu();
         menuHoverAction();
 
+        $(window).bind("load", function() {
+            $(window).on("scroll", function () {
+                $('.lazy').each(function() {
+                    $(this).attr('src',$(this).data('src'));
+                    $(this).removeAttr('data-src');
+                    $(this).removeClass('.lazy');
+                });
+            });
+        });
+
     $('.js-more-games').click(function(){
         $(this).addClass('loading');
         var id = $(this).data('software');
@@ -157,9 +167,8 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
     //detect when scrolling is stopped
     
     var windowToBottom = 0;
-    
     $(window).on('scroll', function(){
-        
+
         //scroll down
         if (windowToBottom < $(window).scrollTop()) {
             $('body').removeClass('site__header_sticky');
@@ -176,11 +185,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             $('body').removeClass('site__header_sticky');
         }
 
-        $('.lazy').each(function() {
-            $(this).attr('src',$(this).data('src'));
-            $(this).removeAttr('data-src');
-            $(this).removeClass('.lazy');
-        });
     });
 
     if ($(window).width() < 768) {
