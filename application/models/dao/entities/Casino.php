@@ -27,6 +27,7 @@ class Casino extends Entity
     public $withdraw_methods;
     public $is_country_accepted;
     public $is_language_accepted;
+    public $email_link;
     public $is_currency_accepted;
     public $note;
     public $is_tc_link;
