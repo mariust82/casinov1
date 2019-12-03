@@ -2391,11 +2391,21 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         });
 
         _input.on('focus', function() {
-            window.scrollTo(0, 0);
-            document.body.scrollTop = 0;
+            // window.scrollTo(0, 0);
+            // document.body.scrollTop = 0;
             goToPosition(0);
         });
     }
+
+    $(document).ready(function(){
+        $('input').bind('focus',function() {
+            $(window).scrollTop(10);
+            var keyboard_shown = $(window).scrollTop() > 0;
+            $(window).scrollTop(0);
+
+            $('body').append(keyboard_shown?'keyboard ':'nokeyboard ');
+        });
+    });
 
     function lockScreen() {
         $('html, body').addClass('no-scroll');
