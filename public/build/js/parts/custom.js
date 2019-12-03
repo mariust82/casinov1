@@ -885,6 +885,15 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                         }
 
                         checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
+                    },
+                    error: function(XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != "abort") {
+                            console.log('err');
+                        }
+                    },
+                    complete: function() {
+                        BUSY_REQUEST = false;
+                        $('.overlay, .loader').fadeOut('fast');
                         if (_url === '/casinos-filter/') {
                             console.dir('test1');
                             if ($('.qty-items').data('load-total') <= 100) {
@@ -901,15 +910,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                                 $('.js-more-items').show();
                             }
                         }
-                    },
-                    error: function(XMLHttpRequest) {
-                        if (XMLHttpRequest.statusText != "abort") {
-                            console.log('err');
-                        }
-                    },
-                    complete: function() {
-                        BUSY_REQUEST = false;
-                        $('.overlay, .loader').fadeOut('fast');
                     }
                 });
 
