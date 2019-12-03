@@ -2375,10 +2375,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             _position = $(window).scrollTop();
             $('body').addClass('mobile-search-opened');
             lockScreen();
-
-            setTimeout(function() {
             _input.focus();
-            }, 500)
         });
 
         _btnMobileClose.on('click', function(e) {
@@ -2393,10 +2390,11 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             _input.val('').focus();
         });
 
-        _input.onfocus = function () {
+        _input.on('focus', function() {
             window.scrollTo(0, 0);
             document.body.scrollTop = 0;
-        }
+            goToPosition(0);
+        });
     }
 
     function lockScreen() {
