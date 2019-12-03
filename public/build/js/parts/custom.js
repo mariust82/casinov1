@@ -2378,7 +2378,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
 
             setTimeout(function() {
             _input.focus();
-            }, 1000)
+            }, 500)
         });
 
         _btnMobileClose.on('click', function(e) {
