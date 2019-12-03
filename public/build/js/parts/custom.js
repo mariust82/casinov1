@@ -175,6 +175,12 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
          if ($(window).scrollTop() === 0) {
             $('body').removeClass('site__header_sticky');
         }
+
+        $('.lazy').each(function() {
+            $(this).attr('src',$(this).data('src'));
+            $(this).removeAttr('data-src');
+            $(this).removeClass('.lazy');
+        });
     });
 
     if ($(window).width() < 768) {
