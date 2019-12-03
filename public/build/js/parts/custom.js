@@ -885,13 +885,13 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                         }
 
                         checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
-                        if (url === '/casinos-filter/') {
+                        if (_url === '/casinos-filter/') {
                             if ($('.qty-items').data('load-total') <= 100) {
                                 $('.js-more-items').hide();
                             } else {
                                 $('.js-more-items').show();
                             }
-                        } else if(url === '/games-filter/') {
+                        } else if(_url === '/games-filter/') {
                             if ($('.qty-items').data('load-total') <= 24) {
                                 $('.js-more-items').hide();
                             } else {
