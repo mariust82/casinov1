@@ -2680,7 +2680,7 @@ a:focus {
     display: block;
     position: static;
     overflow:auto;
-    height: calc(100vh - 270px);
+    height: calc(100vh - 50px);
     padding: 20px 10px;
     border-radius: 0;
   }
@@ -2939,7 +2939,7 @@ a:focus {
 }
 
 .kbopened.ios-device .search-drop{
-  height: calc(100vh - 342px);
+  height: calc(100vh - 340px);
 }
 
 .menu-opened {
