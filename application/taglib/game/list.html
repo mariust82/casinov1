@@ -4,7 +4,7 @@
 		<:foreach var="$[data]" val="result">
 			<div class="game loaded-item">
 				<a href="/play/${normalize(${result.name})}" class="game-holder">
-					<:if test="${data.is_mob}">
+					<:if test="${data.is_mobile}">
 						<:if test="${i} <= 3">
 							<span class="game-img">
 								<:set var="imgSrc" val="${result.logo}"/>
