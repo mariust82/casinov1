@@ -1,38 +1,39 @@
 <div class="games">
-    <div class="games-list">
-        <:set var="i" val="0"/>
-        <:foreach var="$[data]" val="result">
-            <div class="game loaded-item">
-                <a href="/play/${normalize(${result.name})}" class="game-holder">
-                    <:if test="${data.is_mob}">
-                        <:if test="${i} <= 3">
+	<div class="games-list">
+		<:set var="i" val="0"/>
+		<:foreach var="$[data]" val="result">
+			<div class="game loaded-item">
+				<a href="/play/${normalize(${result.name})}" class="game-holder">
+					<:if test="${data.is_mob}">
+						<:if test="${i} <= 3">
 							<span class="game-img">
 								<:set var="imgSrc" val="${result.logo}"/>
 								<:set var="noImgSrc" val="public/build/images/games/default_game_ss.png"/>
 								<img src=${imgSrc} onerror="this.src='/${noImgSrc}';" alt="${result.name}" width="300" height="220">
 							</span>
-                            <:else>
-								<span class="game-img">
+							<:else>
+							<span class="game-img">
 								<:set var="imgSrc" val="${result.logo}"/>
 								<:set var="noImgSrc" val="public/build/images/games/default_game_ss.png"/>
-								<img data-src=${imgSrc} onerror="this.src='/${noImgSrc}';" data-alt="${result.name}" data-width="300" data-height="220">
-							</span>
-                        </:if>
-                        <:else>
-                            <:if test="${i} <= 15">
-						 <span class="game-img">
+								<img class="lazy" data-src=${imgSrc} onerror="this.src='/${noImgSrc}';" data-alt="${result.name}" data-width="300" data-height="220">
+					    	</span>
+						</:if>
+						<:else>
+							<:if test="${i} <= 2">
+					        <span class="game-img">
 								<:set var="imgSrc" val="${result.logo}"/>
 								<:set var="noImgSrc" val="public/build/images/games/default_game_ss.png"/>
 								<img src=${imgSrc} onerror="this.src='/${noImgSrc}';" alt="${result.name}" width="300" height="220">
-							</span>
-                                <:else>
-								<span class="game-img">
+					        </span>
+								<:else>
+							<span class="game-img">
 								<:set var="imgSrc" val="${result.logo}"/>
 								<:set var="noImgSrc" val="public/build/images/games/default_game_ss.png"/>
-								<img data-src=${imgSrc} onerror="this.src='/${noImgSrc}';" data-alt="${result.name}" data-width="300" data-height="220">
-                            </:if>
-                    </:if>
-                    <span class="game-desc">
+								<img class="lazy" data-src=${imgSrc} onerror="this.src='/${noImgSrc}';" data-alt="${result.name}" data-width="300" data-height="220">
+							</span>
+							</:if>
+					</:if>
+					<span class="game-desc">
 						<span class="game-title">${result.name}</span>
 						<span class="game-options">
 							<span class="game-played">
@@ -44,9 +45,9 @@
 							<span class="game-soft">${result.manufacturer}</span>
 						</span>
 					</span>
-                </a>
-            </div>
-            <:set var="i" val="${i}+1"/>
-        </:foreach>
-    </div>
+				</a>
+			</div>
+			<:set var="i" val="${i}+1"/>
+		</:foreach>
+	</div>
 </div>
