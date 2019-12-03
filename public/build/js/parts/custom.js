@@ -27,41 +27,42 @@ function tmsIframe() {
         document.ontouchmove = function(e){
             e.preventDefault();
         }
+        detectIsKeyboardOpened();
 
-    $('.js-more-games').click(function(){
-        $(this).addClass('loading');
-        var id = $(this).data('software');
-        var self = $(this);
-        console.dir('/games-by-software/'+GAME_CURR_PAGE);
-        _request = $.ajax( {
-        url: '/games-by-software/'+GAME_CURR_PAGE,
-        data:{
-            page:GAME_CURR_PAGE,
-            software: id
-        },
-        dataType: 'html',
-        type: 'post',
-        success: function (data) {
-            setTimeout(function(){
-                                self.removeClass('loading');
-                                refresh();
-            }, 1000);
-            GAME_CURR_PAGE++;
-            $('.games-list').append(data);
-            if($(self).data('total') === $('.games-list').children().length) {
-                $(self).hide();
+        $('.js-more-games').click(function(){
+            $(this).addClass('loading');
+            var id = $(this).data('software');
+            var self = $(this);
+            console.dir('/games-by-software/'+GAME_CURR_PAGE);
+            _request = $.ajax( {
+            url: '/games-by-software/'+GAME_CURR_PAGE,
+            data:{
+                page:GAME_CURR_PAGE,
+                software: id
+            },
+            dataType: 'html',
+            type: 'post',
+            success: function (data) {
+                setTimeout(function(){
+                                    self.removeClass('loading');
+                                    refresh();
+                }, 1000);
+                GAME_CURR_PAGE++;
+                $('.games-list').append(data);
+                if($(self).data('total') === $('.games-list').children().length) {
+                    $(self).hide();
+                }
+            },
+            error: function ( XMLHttpRequest ) {
+                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                if ( XMLHttpRequest.statusText != "abort" ) {
+                    console.log( 'err' );
+                }
+            },
+            complete: function(){
+                BUSY_REQUEST = false;
             }
-        },
-        error: function ( XMLHttpRequest ) {
-            var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
-            if ( XMLHttpRequest.statusText != "abort" ) {
-                console.log( 'err' );
-            }
-        },
-        complete: function(){
-            BUSY_REQUEST = false;
-        }
-    } );
+        } );
     });
 
     $('.load-more').click(function(){
@@ -2391,21 +2392,42 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         });
 
         _input.on('focus', function() {
-            // window.scrollTo(0, 0);
-            // document.body.scrollTop = 0;
             goToPosition(0);
         });
     }
 
-    $(document).ready(function(){
-        $('input').bind('focus',function() {
-            $(window).scrollTop(10);
-            var keyboard_shown = $(window).scrollTop() > 0;
-            $(window).scrollTop(0);
-
-            $('body').addClass(keyboard_shown?'keyboard ':'nokeyboard ');
+    function detectIsKeyboardOpened() {
+        $('input').on('focus blur', function() {
+            var i=0,
+            initialScreenSize = screen.height, //Checks initial height of the screen 
+            intId =  window.setInterval(function(){ //Setting interval to check screensize changes / not
+                if(check()){
+                    addClass();
+                }else{
+                    removeClass();
+                };    
+            },800);
+            
+            function check(){ //Actual screen height change checking code
+                var kbactive = screen.height;
+                if(initialScreenSize !== kbactive ){
+                    addClass();
+                    return true;
+                }else{
+                    removeClass();
+                    return false;    
+                }
+            }
+            
+            function addClass(){ //Adds keyboard active class
+                $('body').addClass('kbactive');    
+            }
+            
+            function removeClass(){ //Removes keyboard active class
+                $('body').removeClass('kbactive');    
+            }
         });
-    });
+    }
 
     function lockScreen() {
         $('html, body').addClass('no-scroll');
