@@ -2372,6 +2372,10 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             $('body').addClass('mobile-search-opened');
             lockScreen();
             _input.focus();
+
+            _container.animate({
+                scrollTop: 0
+            }, 10);
         });
 
         _btnMobileClose.on('click', function(e) {

@@ -2907,6 +2907,7 @@ a:focus {
   -webkit-transform: translateX(0);
   transform: translateX(0);
   background:#fff;
+  overflow:hidden;
 }
 
 .mobile-search-opened .search-drop {
