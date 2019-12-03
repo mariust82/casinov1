@@ -2938,6 +2938,10 @@ a:focus {
   display: none;
 }
 
+.kbopened .search-drop{
+  height: calc(100vh - 342px);
+}
+
 .menu-opened {
   overflow: hidden;
 }
