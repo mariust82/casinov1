@@ -886,12 +886,14 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
 
                         checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
                         if (_url === '/casinos-filter/') {
+                            console.dir('test1');
                             if ($('.qty-items').data('load-total') <= 100) {
                                 $('.js-more-items').hide();
                             } else {
                                 $('.js-more-items').show();
                             }
                         } else if(_url === '/games-filter/') {
+                            console.dir('test2');
                             if ($('.qty-items').data('load-total') <= 24) {
                                 $('.js-more-items').hide();
                             } else {
