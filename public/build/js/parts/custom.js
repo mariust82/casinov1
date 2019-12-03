@@ -894,6 +894,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                             }
                         } else if(_url === '/games-filter/') {
                             console.dir('test2');
+                            console.dir($('.qty-items').data('load-total'));
                             if ($('.qty-items').data('load-total') <= 24) {
                                 $('.js-more-items').hide();
                             } else {
