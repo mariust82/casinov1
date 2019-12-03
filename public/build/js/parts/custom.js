@@ -27,41 +27,42 @@ function tmsIframe() {
         document.ontouchmove = function(e){
             e.preventDefault();
         }
+        detectIsKeyboardOpened();
 
-    $('.js-more-games').click(function(){
-        $(this).addClass('loading');
-        var id = $(this).data('software');
-        var self = $(this);
-        console.dir('/games-by-software/'+GAME_CURR_PAGE);
-        _request = $.ajax( {
-        url: '/games-by-software/'+GAME_CURR_PAGE,
-        data:{
-            page:GAME_CURR_PAGE,
-            software: id
-        },
-        dataType: 'html',
-        type: 'post',
-        success: function (data) {
-            setTimeout(function(){
-                                self.removeClass('loading');
-                                refresh();
-            }, 1000);
-            GAME_CURR_PAGE++;
-            $('.games-list').append(data);
-            if($(self).data('total') === $('.games-list').children().length) {
-                $(self).hide();
+        $('.js-more-games').click(function(){
+            $(this).addClass('loading');
+            var id = $(this).data('software');
+            var self = $(this);
+            console.dir('/games-by-software/'+GAME_CURR_PAGE);
+            _request = $.ajax( {
+            url: '/games-by-software/'+GAME_CURR_PAGE,
+            data:{
+                page:GAME_CURR_PAGE,
+                software: id
+            },
+            dataType: 'html',
+            type: 'post',
+            success: function (data) {
+                setTimeout(function(){
+                                    self.removeClass('loading');
+                                    refresh();
+                }, 1000);
+                GAME_CURR_PAGE++;
+                $('.games-list').append(data);
+                if($(self).data('total') === $('.games-list').children().length) {
+                    $(self).hide();
+                }
+            },
+            error: function ( XMLHttpRequest ) {
+                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                if ( XMLHttpRequest.statusText != "abort" ) {
+                    console.log( 'err' );
+                }
+            },
+            complete: function(){
+                BUSY_REQUEST = false;
             }
-        },
-        error: function ( XMLHttpRequest ) {
-            var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
-            if ( XMLHttpRequest.statusText != "abort" ) {
-                console.log( 'err' );
-            }
-        },
-        complete: function(){
-            BUSY_REQUEST = false;
-        }
-    } );
+        } );
     });
 
     $('.load-more').click(function(){
@@ -2375,10 +2376,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             _position = $(window).scrollTop();
             $('body').addClass('mobile-search-opened');
             lockScreen();
-
-            setTimeout(function() {
             _input.focus();
-            }, 500)
         });
 
         _btnMobileClose.on('click', function(e) {
@@ -2393,10 +2391,19 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             _input.val('').focus();
         });
 
-        _input.onfocus = function () {
-            window.scrollTo(0, 0);
-            document.body.scrollTop = 0;
-        }
+        _input.on('focus', function() {
+            goToPosition(0);
+        });
+    }
+
+    function detectIsKeyboardOpened() {
+        $(document).on('focus', 'input, textarea', function() {
+            $('body').addClass('kbopened');
+        });
+
+        $(document).on('blur', 'input, textarea', function() {
+            $('body').removeClass('kbopened');
+        });
     }
 
     function lockScreen() {
