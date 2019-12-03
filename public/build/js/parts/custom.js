@@ -2403,7 +2403,7 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             var keyboard_shown = $(window).scrollTop() > 0;
             $(window).scrollTop(0);
 
-            $('body').append(keyboard_shown?'keyboard ':'nokeyboard ');
+            $('body').addClass(keyboard_shown?'keyboard ':'nokeyboard ');
         });
     });
 
