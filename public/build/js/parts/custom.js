@@ -895,15 +895,13 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                         BUSY_REQUEST = false;
                         $('.overlay, .loader').fadeOut('fast');
                         if (_url === '/casinos-filter/') {
-                            console.dir('test1');
-                            if (parseInt($('.qty-items-quantity').html()) <= 100) {
+                            if (parseInt($('.qty-items').attr('data-load-total')) <= 100) {
                                 $('.js-more-items').hide();
                             } else {
                                 $('.js-more-items').show();
                             }
                         } else if(_url === '/games-filter/') {
-                            console.dir('test2');
-                            console.dir($('.qty-items').data('load-total'));
+                            
                             if (parseInt($('.qty-items-quantity').html()) <= 24) {
                                 $('.js-more-items').hide();
                             } else {
