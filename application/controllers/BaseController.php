@@ -14,6 +14,7 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes("menu_top", $menu->getEntries());
         $this->service();
         $this->pageInfo();
+        $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $this->response->attributes("version", $this->application->getVersion());
         $this->response->attributes("use_bundle", (in_array(ENVIRONMENT, ["dev","live"])?true:false));
         $this->response->attributes("tms", $this->getTMSVariables());
