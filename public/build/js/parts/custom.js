@@ -2705,13 +2705,8 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             var halfScreen = $(window).width() / 2 - 50;
             var swiperLinksOffset = -$("#links-nav .active").parent().position().left + halfScreen;
 
-            if (checkIfIsMobileDevice()) {
-                if ($('.links-casinos #links-nav').length) swiperLinks.setTranslate(swiperLinksOffset);
-                if ($('.links-games #links-nav').length) swiperLinks2.setTranslate(swiperLinksOffset);
-            } else {
-                if ($('.links-casinos #links-nav').length) swiperLinks.slideTo(swiperLinksIndx, 300);
-                if ($('.links-games #links-nav').length) swiperLinks2.slideTo(swiperLinksIndx, 300);
-            }
+            if ($('.links-casinos #links-nav').length) swiperLinks.slideTo(swiperLinksIndx, 300);
+            if ($('.links-games #links-nav').length) swiperLinks2.slideTo(swiperLinksIndx, 300);
 
         }
 
