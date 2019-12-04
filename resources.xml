@@ -18,7 +18,6 @@
 <css source="public/build/css/parts" destination="public/build/css/compilations">
     <file name="all">
         <file name="all"/>
-        <file name="custom-font"/>
     </file>
     <file name="gameplay">
         <file name="gameplay"/>
