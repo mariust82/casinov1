@@ -1,5 +1,6 @@
 var AJAX_CUR_PAGE = 1;
 var GAME_CURR_PAGE = 1;
+
 function tmsIframe() {
     if($(".tms_iframe").length) {
         $(".tms_iframe").each(function() {
@@ -13,12 +14,27 @@ function tmsIframe() {
     }
 }
 
+
 (function($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
-
     $(document).ready(function() {
+        var initImageLazyLoad = function() {
+            var config = new imageDeferCONFIG();
+            config.setImagesSelector('.data-logo_image');
+            config.setDeferLoadAmount(2);
+            if(navigator.userAgent.match(/(iPhone|iPod|iPad|Android|webOS|BlackBerry|IEMobile|Opera Mini)/i)){
+                config.setPageLoadAmount(4);
+            }else{
+                config.setPageLoadAmount(16);
+            }
+            config.setScrollOffset(200);
+
+            new imageDefer(config);
+        };
+        initImageLazyLoad();
+
         initToggleMenu();
         initSite();
         initMobileMenu();
@@ -181,11 +197,11 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             $('body').removeClass('site__header_sticky');
         }
 
-        $('.lazy').each(function() {
+  /* $('.lazy').each(function() {
             $(this).attr('src',$(this).data('src'));
             $(this).removeAttr('data-src');
             $(this).removeClass('.lazy');
-        });
+        });*/
     });
 
     if ($(window).width() < 768) {
