@@ -13,26 +13,46 @@ function tmsIframe() {
         });
     }
 }
+var configImgLazyLoad = new imageDeferCONFIG();
+var initImageLazyLoad = function() {
 
+    configImgLazyLoad.setImagesSelector('.data-logo_image');
+    configImgLazyLoad.setDeferLoadAmount(8);
+    if(navigator.userAgent.match(/(iPhone|iPod|iPad|Android|webOS|BlackBerry|IEMobile|Opera Mini)/i)){
+        configImgLazyLoad.setPageLoadAmount(4);
+    }else{
+        configImgLazyLoad.setPageLoadAmount(16);
+    }
+    configImgLazyLoad.setScrollOffset(200);
+
+    new imageDefer(configImgLazyLoad);
+};
+/*
+var newGameAdded = $('.loaded-item');
+var in_dom = document.body.contains(newGameAdded);
+var observer = new MutationObserver(function(mutations) {
+    if (element.closest('body')) {
+        if (!in_dom) {
+            log("element inserted");
+        }
+        in_dom = true;
+    } else if (in_dom) {
+        in_dom = false;
+        log("element removed");
+    }
+});
+observer.observe(document.body, {childList: true});
+/*var mutationObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        console.log(mutation);
+    });
+});*/
 
 (function($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
     $(document).ready(function() {
-        var initImageLazyLoad = function() {
-            var config = new imageDeferCONFIG();
-            config.setImagesSelector('.data-logo_image');
-            config.setDeferLoadAmount(2);
-            if(navigator.userAgent.match(/(iPhone|iPod|iPad|Android|webOS|BlackBerry|IEMobile|Opera Mini)/i)){
-                config.setPageLoadAmount(4);
-            }else{
-                config.setPageLoadAmount(16);
-            }
-            config.setScrollOffset(200);
-
-            new imageDefer(config);
-        };
         initImageLazyLoad();
 
         initToggleMenu();
@@ -762,7 +782,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                 _moreButton.off();
                 _moreButton.on('click', function() {
                     _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add');
-
                     return false;
                 });
 
@@ -924,6 +943,20 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                                 $('.js-more-items').show();
                             }
                         }
+                        var observer = new MutationObserver(function (mutations) {
+                            mutations.forEach(function (mutation) {
+                                if (mutation.type === "childList" && mutation.addedNodes.length !== 0) {
+                                    initImageLazyLoad();
+                                }
+                            });
+                        });
+
+                        observer.observe(
+                            document.getElementsByClassName("data-add-container")[0],
+                            {
+                                childList: true,
+                                subtree: true,
+                            });
                     }
                 });
 
