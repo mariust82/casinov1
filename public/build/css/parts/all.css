@@ -2743,9 +2743,9 @@ a:focus {
     border-radius: 0;
   }
 
-  /*.ios-device .search-drop {
+  .ios-device .search-drop {
     height: calc(100vh - 162px);
-  }*/
+  }
 }
 
 .search-drop .mark {
@@ -2967,6 +2967,7 @@ a:focus {
   background:#fff;
   position:absolute;
   height:100vh;
+  height: calc(var(--vh, 1vh) * 100);
   overflow:hidden;
 }
 
