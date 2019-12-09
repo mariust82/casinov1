@@ -2732,14 +2732,13 @@ a:focus {
     position: static;
     overflow:auto;
     height: calc(100vh - 130px);
-    height: calc(var(--searchVh, 1vh) * 100);
     padding: 20px 10px;
     border-radius: 0;
   }
 
-  /*.ios-device .search-drop {
+  .ios-device .search-drop {
     height: calc(100vh - 162px);
-  }*/
+  }
 }
 
 .search-drop .mark {
