@@ -2566,7 +2566,7 @@ a:focus {
 }
 
 @media (max-width: 901px) {
-    .player-controls{
+    .top-player-controler{
         position: absolute;
         width: 100%;
     }
