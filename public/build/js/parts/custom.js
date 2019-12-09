@@ -59,6 +59,7 @@ observer.observe(document.body, {childList: true});
         initSite();
         initMobileMenu();
         menuHoverAction();
+        setStyleProps();
 
         document.ontouchmove = function(e){
             e.preventDefault();
@@ -139,6 +140,17 @@ observer.observe(document.body, {childList: true});
 
 if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
     $('body').addClass('ios-device');
+}
+
+
+function setStyleProps() {
+    var vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', vh + 'px');
+
+    $(window).on('resize', function(){
+      var vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', vh + 'px');
+    });
 }
 
 //Load defer for pages on that you can see the footer on first load
