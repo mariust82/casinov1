@@ -125,7 +125,10 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
 
 function setStyleProps() {
     var vh = window.innerHeight * 0.01;
+    var searchVh = window.innerHeight * 0.01 - $('.header-search-input').height() - $('.search-all-holder').height();
+
     document.documentElement.style.setProperty('--vh', vh + 'px');
+    document.documentElement.style.setProperty('--searchVh', vh + 'px');
 
     $(window).on('resize', function(){
       var vh = window.innerHeight * 0.01;
