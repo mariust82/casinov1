@@ -2565,6 +2565,13 @@ a:focus {
    }
 }
 
+@media (max-width: 901px) {
+    .player-controls{
+        position: absolute;
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 1023px) {
   .header-search {
     padding: 0 0 5px;
