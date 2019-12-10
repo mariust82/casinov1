@@ -1,7 +1,7 @@
 <?php
 require_once("hlis/redirect.php");
 
-class GoToController extends Controller
+class GoToController extends Lucinda\MVC\STDOUT\Controller
 {
     public function run()
     {
