@@ -190,6 +190,7 @@ class CasinoFilter
 
     public function getCasinoLabel()
     {
+        var_dump($this->label);
         return $this->label = $this->label == 'Stay away' ? 'Blacklisted Casinos' : $this->label;
     }
 
