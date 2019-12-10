@@ -18,7 +18,7 @@ var initImageLazyLoad = function() {
 //console.log("initImageLazyLoad");
     configImgLazyLoad.setImagesSelector('.data-logo_image');
     configImgLazyLoad.setDeferLoadAmount(8);
-    if(navigator.userAgent.match(/(iPhone|iPod|iPad|Android|webOS|BlackBerry|IEMobile|Opera Mini)/i)){
+    if(navigator.userAgent.match(/(iPhone|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini)/i)){
         configImgLazyLoad.setPageLoadAmount(4);
     }else{
         configImgLazyLoad.setPageLoadAmount(16);
