@@ -15,7 +15,7 @@ function tmsIframe() {
 }
 var configImgLazyLoad = new imageDeferCONFIG();
 var initImageLazyLoad = function() {
-
+//console.log("initImageLazyLoad");
     configImgLazyLoad.setImagesSelector('.data-logo_image');
     configImgLazyLoad.setDeferLoadAmount(8);
     if(navigator.userAgent.match(/(iPhone|iPod|iPad|Android|webOS|BlackBerry|IEMobile|Opera Mini)/i)){
@@ -27,26 +27,6 @@ var initImageLazyLoad = function() {
 
     new imageDefer(configImgLazyLoad);
 };
-/*
-var newGameAdded = $('.loaded-item');
-var in_dom = document.body.contains(newGameAdded);
-var observer = new MutationObserver(function(mutations) {
-    if (element.closest('body')) {
-        if (!in_dom) {
-            log("element inserted");
-        }
-        in_dom = true;
-    } else if (in_dom) {
-        in_dom = false;
-        log("element removed");
-    }
-});
-observer.observe(document.body, {childList: true});
-/*var mutationObserver = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-        console.log(mutation);
-    });
-});*/
 
 (function($) {
     BUSY_REQUEST = false;
@@ -753,16 +733,41 @@ function setStyleProps() {
             _itemsPerPage = $('.list-item').length,
             _defaultButton = $('#default'),
             _totalItems = $('.qty-items').data('load-total'),
-            _clicks = Math.floor(_totalItems/_itemsPerPage);
+            _clicks = Math.floor(_totalItems/_itemsPerPage),
             _currentClick = 0,
             _request = new XMLHttpRequest();
 
-            if (typeof _paramName == 'undefined') {
+        if (typeof _paramName == 'undefined') {
                 _paramName = 'game_type';
             }
 
-            _url = _obj.data('url');
-            _defaultButton.prop('checked', true);
+        var _url = _obj.data('url');
+        _defaultButton.prop('checked', true);
+
+        if(_url === "/games-filter/") {
+            var dataContainerMutationObserver = new MutationObserver(function (mutations) {
+                var c = 0;
+
+                mutations.forEach(function (mutation) {
+                    if (mutation.type === "childList" && mutation.addedNodes.length !== 0 && c < 1) {
+                        initImageLazyLoad();
+                        c++;
+                    }
+                });
+            });
+
+            dataContainerMutationObserver.observe($('.data-container').get(0),
+                {
+                    childList: true,
+                    subtree: true,
+                });
+            dataContainerMutationObserver.observe($('.data-add-container').get(0),
+                {
+                    childList: true,
+                    subtree: true,
+                });
+        }
+
 
         var _onEvent = function() {
                 _moreButton = $('.js-more-items');
@@ -955,20 +960,6 @@ function setStyleProps() {
                                 $('.js-more-items').show();
                             }
                         }
-                        var observer = new MutationObserver(function (mutations) {
-                            mutations.forEach(function (mutation) {
-                                if (mutation.type === "childList" && mutation.addedNodes.length !== 0) {
-                                    initImageLazyLoad();
-                                }
-                            });
-                        });
-
-                        observer.observe(
-                            document.getElementsByClassName("data-add-container")[0],
-                            {
-                                childList: true,
-                                subtree: true,
-                            });
                     }
                 });
 
