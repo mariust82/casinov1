@@ -10,7 +10,7 @@ class CasinoLabels implements CasinoCounter
         'Mobile',
         'Low Wagering',
         'eCOGRA',
-        'Blacklisted Casinos',
+        'Stay away',
         'Popular',
         'No Account Casinos',
     ];
