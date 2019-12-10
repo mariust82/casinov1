@@ -42,6 +42,19 @@
 					</span>
 					<i class="icon-chevron-right"></i>
                                     </a>
+                                <:elseif test="${key} == 'Blacklisted Casinos'">
+                                    <a href="$[url]/stay-away">
+					<:if test="$[image]">
+						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>
+					</:if>
+					<span class="category-body">
+						<span class="category-title">${key}
+							<:if test="'$[type]' == 'software'">Casinos</:if>
+						</span>
+						<span class="category-qty">${result}</span>
+					</span>
+					<i class="icon-chevron-right"></i>
+                                    </a>
                                 <:else>
                                     <a href="$[url]/${normalize(${key})}">
 					<:if test="$[image]">
