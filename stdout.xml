@@ -66,6 +66,10 @@
     <route url="link/(name)-terms" controller="CasinoTermsVisitController">
       <parameter name="name" validator="CasinoNameValidator"/>
     </route>
+    <route url="goto/(url)" controller="GoToController">
+        <parameter name="url" validator="StringValidator"/>
+        <parameter name="utm_medium" validator="StringValidator"/>
+    </route>
     <route url="warn/(name)" controller="CasinoWarningController" view="casino-warning">
       <parameter name="name" validator="CasinoNameValidator"/>
     </route>
