@@ -36,7 +36,6 @@ class SiteCasinoClick extends CasinoClick
 
     protected function getAffiliateLinkByCasino($name,$sourceId)
     {
-        var_dump($sourceId);die();
         if ($sourceId == "email" && !empty($this->info->email_link)) {
             return $this->info->email_link;
         }
