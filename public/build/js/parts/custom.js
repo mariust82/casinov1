@@ -81,6 +81,10 @@ var initImageLazyLoad = function() {
             }
         } );
     });
+    
+    window.addEventListener("beforeunload", function(event) {
+        document.cookie = "PHPSESSID=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    });
 
     $('.load-more').click(function(){
         var _request = new XMLHttpRequest();
