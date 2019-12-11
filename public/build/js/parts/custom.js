@@ -1,5 +1,6 @@
 var AJAX_CUR_PAGE = 1;
 var GAME_CURR_PAGE = 1;
+
 function tmsIframe() {
     if($(".tms_iframe").length) {
         $(".tms_iframe").each(function() {
@@ -12,52 +13,73 @@ function tmsIframe() {
         });
     }
 }
+var configImgLazyLoad = new imageDeferCONFIG();
+var initImageLazyLoad = function() {
+//console.log("initImageLazyLoad");
+    configImgLazyLoad.setImagesSelector('.data-logo_image');
+    configImgLazyLoad.setDeferLoadAmount(8);
+    if(navigator.userAgent.match(/(iPhone|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini)/i)){
+        configImgLazyLoad.setPageLoadAmount(4);
+    }else{
+        configImgLazyLoad.setPageLoadAmount(16);
+    }
+    configImgLazyLoad.setScrollOffset(200);
+
+    new imageDefer(configImgLazyLoad);
+};
 
 (function($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
-
     $(document).ready(function() {
+        initImageLazyLoad();
+
         initToggleMenu();
         initSite();
         initMobileMenu();
         menuHoverAction();
+        setStyleProps();
 
-    $('.js-more-games').click(function(){
-        $(this).addClass('loading');
-        var id = $(this).data('software');
-        var self = $(this);
-        console.dir('/games-by-software/'+GAME_CURR_PAGE);
-        _request = $.ajax( {
-        url: '/games-by-software/'+GAME_CURR_PAGE,
-        data:{
-            page:GAME_CURR_PAGE,
-            software: id
-        },
-        dataType: 'html',
-        type: 'post',
-        success: function (data) {
-            setTimeout(function(){
-                                self.removeClass('loading');
-                                refresh();
-            }, 1000);
-            GAME_CURR_PAGE++;
-            $('.games-list').append(data);
-            if($(self).data('total') === $('.games-list').children().length) {
-                $(self).hide();
-            }
-        },
-        error: function ( XMLHttpRequest ) {
-            var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
-            if ( XMLHttpRequest.statusText != "abort" ) {
-                console.log( 'err' );
-            }
-        },
-        complete: function(){
-            BUSY_REQUEST = false;
+        document.ontouchmove = function(e){
+            e.preventDefault();
         }
-    } );
+        detectIsKeyboardOpened();
+
+        $('.js-more-games').click(function(){
+            $(this).addClass('loading');
+            var id = $(this).data('software');
+            var self = $(this);
+            console.dir('/games-by-software/'+GAME_CURR_PAGE);
+            _request = $.ajax( {
+            url: '/games-by-software/'+GAME_CURR_PAGE,
+            data:{
+                page:GAME_CURR_PAGE,
+                software: id
+            },
+            dataType: 'html',
+            type: 'post',
+            success: function (data) {
+                setTimeout(function(){
+                                    self.removeClass('loading');
+                                    refresh();
+                }, 1000);
+                GAME_CURR_PAGE++;
+                $('.games-list').append(data);
+                if($(self).data('total') === $('.games-list').children().length) {
+                    $(self).hide();
+                }
+            },
+            error: function ( XMLHttpRequest ) {
+                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                if ( XMLHttpRequest.statusText != "abort" ) {
+                    console.log( 'err' );
+                }
+            },
+            complete: function(){
+                BUSY_REQUEST = false;
+            }
+        } );
     });
 
     $('.load-more').click(function(){
@@ -98,6 +120,17 @@ function tmsIframe() {
 
 if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
     $('body').addClass('ios-device');
+}
+
+
+function setStyleProps() {
+    var vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', vh + 'px');
+
+    $(window).on('resize', function(){
+      var vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', vh + 'px');
+    });
 }
 
 //Load defer for pages on that you can see the footer on first load
@@ -175,6 +208,12 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
          if ($(window).scrollTop() === 0) {
             $('body').removeClass('site__header_sticky');
         }
+
+  /* $('.lazy').each(function() {
+            $(this).attr('src',$(this).data('src'));
+            $(this).removeAttr('data-src');
+            $(this).removeClass('.lazy');
+        });*/
     });
 
     if ($(window).width() < 768) {
@@ -694,16 +733,41 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             _itemsPerPage = $('.list-item').length,
             _defaultButton = $('#default'),
             _totalItems = $('.qty-items').data('load-total'),
-            _clicks = Math.floor(_totalItems/_itemsPerPage);
+            _clicks = Math.floor(_totalItems/_itemsPerPage),
             _currentClick = 0,
             _request = new XMLHttpRequest();
 
-            if (typeof _paramName == 'undefined') {
+        if (typeof _paramName == 'undefined') {
                 _paramName = 'game_type';
             }
 
-            _url = _obj.data('url');
-            _defaultButton.prop('checked', true);
+        var _url = _obj.data('url');
+        _defaultButton.prop('checked', true);
+
+        if(_url === "/games-filter/") {
+            var dataContainerMutationObserver = new MutationObserver(function (mutations) {
+                var c = 0;
+
+                mutations.forEach(function (mutation) {
+                    if (mutation.type === "childList" && mutation.addedNodes.length !== 0 && c < 1) {
+                        initImageLazyLoad();
+                        c++;
+                    }
+                });
+            });
+
+            dataContainerMutationObserver.observe($('.data-container').get(0),
+                {
+                    childList: true,
+                    subtree: true,
+                });
+            dataContainerMutationObserver.observe($('.data-add-container').get(0),
+                {
+                    childList: true,
+                    subtree: true,
+                });
+        }
+
 
         var _onEvent = function() {
                 _moreButton = $('.js-more-items');
@@ -735,7 +799,6 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                 _moreButton.off();
                 _moreButton.on('click', function() {
                     _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add');
-
                     return false;
                 });
 
@@ -883,6 +946,20 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
                     complete: function() {
                         BUSY_REQUEST = false;
                         $('.overlay, .loader').fadeOut('fast');
+                        if (_url === '/casinos-filter/') {
+                            if (parseInt($('.qty-items').attr('data-load-total')) <= 100) {
+                                $('.js-more-items').hide();
+                            } else {
+                                $('.js-more-items').show();
+                            }
+                        } else if(_url === '/games-filter/') {
+                            
+                            if (parseInt($('.qty-items-quantity').html()) <= 24) {
+                                $('.js-more-items').hide();
+                            } else {
+                                $('.js-more-items').show();
+                            }
+                        }
                     }
                 });
 
@@ -2379,6 +2456,20 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
         _btnMobileClear.on('click', function() {
             _input.val('').focus();
         });
+
+        _input.on('focus', function() {
+            goToPosition(0);
+        });
+    }
+
+    function detectIsKeyboardOpened() {
+        $(document).on('focus', 'input, textarea', function() {
+            $('body').addClass('kbopened');
+        });
+
+        $(document).on('blur', 'input, textarea', function() {
+            $('body').removeClass('kbopened');
+        });
     }
 
     function lockScreen() {
@@ -2666,13 +2757,8 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
             var halfScreen = $(window).width() / 2 - 50;
             var swiperLinksOffset = -$("#links-nav .active").parent().position().left + halfScreen;
 
-            if (checkIfIsMobileDevice()) {
-                if ($('.links-casinos #links-nav').length) swiperLinks.setTranslate(swiperLinksOffset);
-                if ($('.links-games #links-nav').length) swiperLinks2.setTranslate(swiperLinksOffset);
-            } else {
-                if ($('.links-casinos #links-nav').length) swiperLinks.slideTo(swiperLinksIndx, 300);
-                if ($('.links-games #links-nav').length) swiperLinks2.slideTo(swiperLinksIndx, 300);
-            }
+            if ($('.links-casinos #links-nav').length) swiperLinks.slideTo(swiperLinksIndx, 300);
+            if ($('.links-games #links-nav').length) swiperLinks2.slideTo(swiperLinksIndx, 300);
 
         }
 

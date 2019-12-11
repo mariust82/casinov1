@@ -95,7 +95,7 @@ class CasinosListQuery
         }
 
         if ($filter->getCasinoLabel()) {
-            if ($filter->getCasinoLabel() == "Stay away") {
+            if ($filter->getCasinoLabel() == 'Blacklisted Casinos') {
                 $filter->setPromoted(false);
             }
             if (($filter->getCasinoLabel() != "New")) {

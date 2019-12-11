@@ -1,26 +1,29 @@
 <?xml version="1.0"?>
-<!DOCTYPE xml>
+        <!DOCTYPE xml>
 <xml>
-    <js source="public/build/js/parts" destination="public/build/js/compilations">
-        <file name="bundle">
-            <file name="jquery"/>
-            <file name="jquery-bar"/>
-            <file name="jquery-debounce"/>
-            <file name="jquery-select2"/>
-            <file name="swiper"/>
-            <file name="tooltipster"/>
-        </file>
-        <file name="main">
-            <file name="custom"/>
-            <file name="gameplay"/>
-        </file>
-    </js>
-    <css source="public/build/css/parts" destination="public/build/css/compilations">
-        <file name="all">
-            <file name="all"/>
-        </file>
-        <file name="gameplay">
-            <file name="gameplay"/>
-        </file>
-    </css>
+<js source="public/build/js/parts" destination="public/build/js/compilations">
+    <file name="bundle">
+        <file name="global_js/jquery-2.1.3.min" />
+        <file name="jquery-bar"/>
+        <file name="jquery-debounce"/>
+        <file name="jquery-select2"/>
+        <file name="swiper"/>
+        <file name="tooltipster"/>
+    </file>
+    <file name="custom">
+        <file name="global_js/image-defer" />
+        <file name="custom"/>
+    </file>
+    <file name="gameplay">
+        <file name="gameplay"/>
+    </file>
+</js>
+<css source="public/build/css/parts" destination="public/build/css/compilations">
+    <file name="all">
+        <file name="all"/>
+    </file>
+    <file name="gameplay">
+        <file name="gameplay"/>
+    </file>
+</css>
 </xml>

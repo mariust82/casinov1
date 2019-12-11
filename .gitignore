@@ -15,3 +15,4 @@ node_modules
 /compilations
 *.log
 *.lock
+/public/build/js/parts/global_js

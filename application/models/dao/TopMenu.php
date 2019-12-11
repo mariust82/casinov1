@@ -37,7 +37,7 @@ class TopMenu
                 "Mobile Casinos" => "/casinos/mobile",
                 "Low Wagering Casinos" => "/casinos/low-wagering",
                 "eCOGRA Casinos" => "/features/ecogra-casinos",
-                "Stay Away Casinos" => "/casinos/stay-away",
+                "Blacklisted Casinos" => "/casinos/stay-away",
                 "Popular Casinos" => "/casinos/popular",
                 "No Account Casinos" => "/casinos/no-account-casinos",
                 "All Casinos" => "/casinos"

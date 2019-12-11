@@ -28,5 +28,6 @@ class GamesFilterController extends Lucinda\MVC\STDOUT\Controller
         $results = $driver->getResults();
         $this->response->attributes("total_games", $results["total"]);
         $this->response->attributes("games", $results["list"]);
+        $this->response->attributes("is_mobile", $this->request->attributes("is_mobile"));
     }
 }
