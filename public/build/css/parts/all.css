@@ -68,7 +68,7 @@ h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
 }
 
 .no_button{
-    padding-top: 45px;
+    margin-top: 45px;
 }
 
 .btn-games{
@@ -9595,6 +9595,37 @@ html.no-scroll {
 	.plain-text .title-name{
 		font-size: 17px;
 	}
+}
+
+.plain-text ul{
+  list-style:none;
+  margin: 15px 0;
+}
+
+.plain-text li{
+  margin:15px 0 0 0;
+  position:relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+
+.plain-text li:first-child{
+  margin:0;
+}
+
+.plain-text li:before{
+  content: '';
+  width:6px;
+  height:6px;
+  background:#2171CE;
+  border-radius:50%;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin:0 14px 0 0;
 }
 
 .box-wrap{

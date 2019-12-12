@@ -6,11 +6,11 @@
 		<div class="container">
 			<div class="headeing">
 				<h1 class="title">${data.page_info.body_title}</h1>
-                                <:if test="isset(${data.widgets.upper})">
-				<div class="subtitle plain-text">
-					<div class="js-condense"><span>${implode("\n", ${data.widgets.upper})}</span></div>
-				</div>
-                                </:if>
+                <:if test="isset(${data.widgets.upper})">
+					<div class="subtitle plain-text">
+						<div class="js-condense"><span>${implode("\n", ${data.widgets.upper})}</span></div>
+					</div>
+                </:if>
 			</div>
 
 			<:if test="isset(${data.currency})">
@@ -37,50 +37,89 @@
 				<filter:reset/>
 			</div>
 
-
-			<:if test="${data.selected_entity} != 'Best'">
-				<:if test="${data.total_casinos} > count(${data.casinos})">
-					<div class="btn-holder">
-						<a href="#" class="btn-bordered load js-more-items">
-							LOAD MORE CASINOS</a>
-					</div>
-				</:if>
+			<:if test="${data.selected_entity} != 'Best' && ${data.total_casinos} > count(${data.casinos})">
+				<div class="btn-holder">
+					<a href="#" class="btn-bordered load js-more-items">LOAD MORE CASINOS</a>
+				</div>
 			</:if>
-            <:if test="isset(${data.recommended_games})">
-                <:if test="count(${data.recommended_games}) > 0">
+
+            <:if test="isset(${data.recommended_games} || count(${data.recommended_games}) > 0)">
                 <div class="block related">
                     <div class="container">
-                            <:if test="${data.total_casinos} > count(${data.casinos})">
-                            <div class="headeing">
-                                    <div class="title title-middle">Newest Games By ${data.software}</div>
-                            </div>
-                            <:else>
-                            <div class="headeing no_button">
-                                    <div class="title title-middle">Newest Games By ${data.software}</div>
-                            </div>
-                            </:if>
-                            <:if test="isset(${data.widgets.middle})">
+                    	<:set var="headeing_class" val="(${data.total_casinos} > count(${data.casinos}) ? '' : 'no_button')"/>
+                        <div class="headeing ${headeing_class}">
+                            <div class="title title-middle">Newest Games By ${data.software}</div>
+                        </div>
+
+                        <:if test="isset(${data.widgets.middle})">
                             <div class="subtitle plain-text">
                                 <div><span>${implode("\n", ${data.widgets.middle})}</span></div>
                             </div>
-                            </:if>
-                            <game:list data="${data.recommended_games}"/>
+                        </:if>
+                        <game:list data="${data.recommended_games}"/>
                     </div>
                 </div>
+
                 <:if test="${data.total_games} > 4">
                     <div class="btn-holder btn-games">
-                        <a class="btn-bordered load js-more-games" data-total="${data.total_games}" data-software="${data.software_id}">
-                            LOAD MORE GAMES</a>
+                        <a class="btn-bordered load js-more-games" data-total="${data.total_games}" data-software="${data.software_id}">LOAD MORE GAMES</a>
                     </div>
                 </:if>
-                </:if>
             </:if>
-             <:if test="isset(${data.widgets.lower})">
-	            <div class="subtitle plain-text">
-                    <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
-	            </div>
-            </:if>
-                        
+
+            <div class="block related">
+                <div class="container">
+                    <div class="headeing">
+                        <div class="title no_button">New ${data.software} Casinos</div>
+                    </div>
+
+                    <div class="subtitle plain-text">
+                        <div><span>${implode("\n", ${data.widgets.new})}</span></div>
+                    </div>
+                    <casino:list type="SOFTWARE" id="2" data="${data.new_casinos}"/>
+                </div>
+            </div>
+            <div class="btn-holder">
+            	<a href="#" class="btn-bordered load js-more-items">LOAD MORE CASINOS</a>
+            </div>
+
+            <div class="block related">
+                <div class="container">
+                    <div class="headeing">
+                        <div class="title no_button">Best ${data.software} Casinos</div>
+                    </div>
+
+                    <div class="subtitle plain-text">
+                        <div><span>${implode("\n", ${data.widgets.best})}</span></div>
+                    </div>
+                    <casino:list type="SOFTWARE" id="3" data="${data.best_casinos}"/>
+                </div>
+            </div>
+            <div class="btn-holder">
+            	<a href="#" class="btn-bordered load js-more-items">LOAD MORE CASINOS</a>
+            </div>
+
+            <div class="block related">
+                <div class="container">
+                    <div class="headeing">
+                        <div class="title no_button">${data.country.name} ${data.software} Casinos</div>
+                    </div>
+
+                    <div class="subtitle plain-text">
+                        <div><span>${implode("\n", ${data.widgets.country})}</span></div>
+                    </div>
+                    <casino:list type="SOFTWARE" id="4" data="${data.country_casinos}"/>
+                </div>
+            </div>
+            <div class="btn-holder">
+            	<a href="#" class="btn-bordered load js-more-items">LOAD MORE CASINOS</a>
+            </div>
+
+			<:if test="isset(${data.widgets.lower})">
+				<div class="subtitle plain-text">
+				    <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
+				</div>
+			</:if>
 		</div>
 	</div>
 <site:bottom menu="${data.menu_top}"/>
