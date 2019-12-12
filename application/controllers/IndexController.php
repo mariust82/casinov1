@@ -42,8 +42,6 @@ class IndexController extends BaseController
 
     private function getUserPreferences()
     {
-        $this->request->attributes("country")->id = 14;
-
         $info = new \Hlis\TraitFilter();
         $info->countries[]=$this->request->attributes("country")->id;
         $preferences = new Hlis\TraitsFinder(\Lucinda\SQL\ConnectionSingleton::getInstance(), $info);
