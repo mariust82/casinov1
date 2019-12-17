@@ -9,6 +9,7 @@ require_once("application/models/caching/CasinosListKey.php");
 require_once("application/models/orm/GamesFeaturedList.php");
 require_once("application/models/caching/GamesListKey.php");
 require_once("hlis/widgets/src/ContentManager.php");
+require_once("hlis/user_preferences/TraitsFinder.php");
 
 /*
 * Homepage
@@ -21,6 +22,8 @@ class IndexController extends BaseController
 {
     public function service()
     {
+        $this->response->attributes("user_preferences", (array) $this->getUserPreferences());
+
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $this->response->attributes("best_casinos", $this->getCasinos(array("label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
         $this->response->attributes("country_casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, 5));
@@ -35,6 +38,14 @@ class IndexController extends BaseController
         $this->response->attributes("filter", null);
         $this->response->attributes("page_type", "index");
         $this->response->attributes("selected_entity", "index");
+    }
+
+    private function getUserPreferences()
+    {
+        $info = new \Hlis\TraitFilter();
+        $info->countries[]=$this->request->attributes("country")->id;
+        $preferences = new Hlis\TraitsFinder(\Lucinda\SQL\ConnectionSingleton::getInstance(), $info);
+        return $preferences->getResult();
     }
 
     private function getCasinos($filter, $sortBy, $limit)
