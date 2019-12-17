@@ -934,7 +934,6 @@ function setStyleProps() {
                             $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
                             $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                             initMoboleBonusesPop(ww);
-                            grayscaleIE();
                         }
 
                         checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
@@ -961,6 +960,7 @@ function setStyleProps() {
                                 $('.js-more-items').show();
                             }
                         }
+                        grayscaleIE();
                     }
                 });
 
