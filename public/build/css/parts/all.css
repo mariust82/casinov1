@@ -9892,3 +9892,6 @@ abbr[title] {
   pointer-events:none;
   opacity:.6;
 }
+.img_wrapper{
+  vertical-align:middle;
+}
