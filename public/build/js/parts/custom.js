@@ -934,6 +934,7 @@ function setStyleProps() {
                             $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
                             $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                             initMoboleBonusesPop(ww);
+                            grayscaleIE();
                         }
 
                         checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
@@ -1430,6 +1431,7 @@ function setStyleProps() {
             $('.review, .reply').each(function() {
                 new AddingReview ( $(this) );
             });
+            grayscaleIE();
         },
 
         _doIfReviewedAlready = function(){
@@ -1571,6 +1573,7 @@ function setStyleProps() {
             $('.review').each(function() {
                 new AddingReview ( $(this) );
             });
+            grayscaleIE();
         };
     }
 

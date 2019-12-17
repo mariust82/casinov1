@@ -34,11 +34,8 @@
 					</:if>
 					<div class="list-flex">
 						<div class="list-flag">
-							<:if test="${result.is_country_accepted} == 1">
-								<img class="accepted" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
-							<:else>
-								<img class="not-accepted" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
-							</:if>
+							<:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
+							<img class="${accepted_class}" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
 						</div>
 						<:set var="score_class" val="get_rating(${result.rating})"/>
 						<div class="list-rating ${normalize(${score_class})}">
