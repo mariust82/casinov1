@@ -5486,7 +5486,11 @@ a:focus {
 
 .links-nav .swiper-slide {
   width: auto;
-  margin-right: 30px;
+  /*margin-right: 30px;*/
+}
+
+.links-nav .swiper-slide:last-child {
+  /*margin-right:0 !important;*/
 }
 
 .links-nav .swiper-container .links-left,

@@ -2729,8 +2729,8 @@ function setStyleProps() {
             spaceBetween: 30,
             freeMode: true,
             // virtualTranslate: false,
-            allowTouchMove:false,
-            slidesOffsetAfter:-220,
+            // allowTouchMove:false,
+            // slidesOffsetAfter:-220,
             on: {
                 slideChangeTransitionStart: function (argument) {
                     $('.links-left, .links-right').fadeIn('fast');
@@ -2760,7 +2760,7 @@ function setStyleProps() {
         if ($('#links-nav').length) {
             var swiperLinks = new Swiper('.links-casinos #links-nav', linksSwiperParams);
 
-            linksSwiperParams['slidesOffsetAfter'] = -330; //for games links slider
+            // linksSwiperParams['slidesOffsetAfter'] = -330; //for games links slider
             var swiperLinks2 = new Swiper('.links-games #links-nav', linksSwiperParams);
 
             var swiperLinksIndx = $("#links-nav .active").parent().index() - 1;
