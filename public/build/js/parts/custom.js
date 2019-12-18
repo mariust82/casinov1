@@ -2728,14 +2728,16 @@ function setStyleProps() {
             slidesOffsetAfter:-220,
             on: {
                 slideChangeTransitionStart: function (argument) {
-                    $('.links-left').fadeIn('fast');
+                    $('.links-left, .links-right').fadeIn('fast');
                 },
                 slideChangeTransitionEnd: function (argument) {
-
                     if (this.translate == 0) {
                         $('.links-left').fadeOut('fast');
                     }
 
+                    if (this.isEnd) {
+                        $('.links-right').fadeOut('fast');
+                    }
                 },
             },
             breakpoints: {
