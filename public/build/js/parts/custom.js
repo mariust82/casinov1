@@ -2729,7 +2729,7 @@ function setStyleProps() {
             spaceBetween: 30,
             freeMode: true,
             // virtualTranslate: false,
-            // allowTouchMove:false,
+            allowTouchMove:false,
             // slidesOffsetAfter:-220,
             on: {
                 slideChangeTransitionStart: function (argument) {

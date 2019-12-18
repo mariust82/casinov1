@@ -5489,10 +5489,6 @@ a:focus {
   /*margin-right: 30px;*/
 }
 
-.links-nav .swiper-slide:last-child {
-  /*margin-right:0 !important;*/
-}
-
 .links-nav .swiper-container .links-left,
 .links-nav .swiper-container .links-right {
   position: absolute;
