@@ -1715,7 +1715,10 @@ function setStyleProps() {
                         } else {
                             _searchAllButton.parent().fadeOut();
                         }
-                    }
+                    },
+                    // 'blur': function() {
+                    //     unlockScreen();
+                    // }
                 });
 
                 _searchUpdate.on(
@@ -1918,6 +1921,7 @@ function setStyleProps() {
                         _response_container.html(data);
                         _hidePopup();
                         _initMoreButtons();
+                        unlockScreen();
 
                         _response_container.find('#js-search-back').each(function() {
                             $(this).on({
@@ -1943,6 +1947,7 @@ function setStyleProps() {
             },
 
             _ajaxRequestPopup = function(target, page) {
+                lockScreen();
                 if (BUSY_REQUEST && (nr_requests_completed == nr_requests)) // if nr request completed = nr request sent
                 {
                     //  console.log("\n\n END \n\n");
