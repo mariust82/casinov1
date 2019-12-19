@@ -221,7 +221,13 @@ class TopMenu
                 return "BANKING";
                 break;
             case "live-dealer/(TYPE)":
-            case "features":
+                /*
+                    Specific case for features/ecogra-casinos
+                */
+                if ($specificPage === "features/ecogra-casinos") {
+                    return "CASINOS";
+                    break;
+                }
             case "features/(name)":
                 return "LIVE";
                 break;
