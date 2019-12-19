@@ -220,10 +220,7 @@ class TopMenu
             case "banking/(name)":
                 return "BANKING";
                 break;
-            case "features":
-            case "features/(name)":
-                return "FEATURES";
-                break;
+            case "live-dealer/(TYPE)":
             case "features":
             case "features/(name)":
                 return "FEATURES";
