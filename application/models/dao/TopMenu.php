@@ -221,6 +221,7 @@ class TopMenu
                 return "BANKING";
                 break;
             case "live-dealer/(TYPE)":
+            case "features/(name)":
                 /*
                     Specific case for features/ecogra-casinos
                 */
@@ -228,7 +229,6 @@ class TopMenu
                     return "CASINOS";
                     break;
                 }
-            case "features/(name)":
                 return "LIVE";
                 break;
             case "games":
