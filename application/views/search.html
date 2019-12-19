@@ -38,7 +38,7 @@
 							<li><a href="/reviews/${normalize(${result})}-review">${result}</a></li>
 						</:foreach>
 					</ul>
-					<:if test="${data.total_casinos} > 4">
+					<:if test="${data.total_casinos} > 5">
 						<div class="search-list-more">
 							<a href="#" id="js-search-more-casinos">Show <span class="more-num" data-total-casinos="${data.total_casinos}">5</span> more <i class="icon-chevron-down"></i></a>
 						</div>
@@ -57,7 +57,7 @@
 							<li><a href="/play/${normalize(${result})}">${result}</a></li>
 						</:foreach>
 					</ul>
-					<:if test="${data.total_games} > 4">
+					<:if test="${data.total_games} > 5">
 						<div class="search-list-more">
 							<a href="#" id="js-search-more-pages">Show <span class="more-num" data-total-games="${data.total_games}">5</span> more <i class="icon-chevron-down"></i></a>
 						</div>
