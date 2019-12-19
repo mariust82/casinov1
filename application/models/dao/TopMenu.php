@@ -223,7 +223,7 @@ class TopMenu
             case "live-dealer/(TYPE)":
             case "features":
             case "features/(name)":
-                return "FEATURES";
+                return "LIVE";
                 break;
             case "games":
             case "games/(type)":
