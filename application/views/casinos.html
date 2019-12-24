@@ -82,10 +82,6 @@
         </:if>
         </:if>
         </:if>
-        <:if test="isset(${data.widgets.lower})">
-        <div class="subtitle plain-text">
-            <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
-        </div>
         </:if>
         <:if test="isset(${data.recommended_games})">
         <:if test="${data.total_casinos} > 100">
@@ -156,6 +152,11 @@
         </div>
         </:if>
         </:if>          
+         <:if test="isset(${data.widgets.lower})">
+            <div class="subtitle plain-text">
+                <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
+            </div>
+        </:if>
     </div>
 </div>
 <site:bottom menu="${data.menu_top}"/>
