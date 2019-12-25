@@ -29,8 +29,6 @@ class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller 
         } else {
             $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::POPULARITY, self::LIMIT,$offset)['result']);
         }
-        $this->response->attributes("selected_entity", $this->request->parameters("software"));
-        $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
     }
 
     private function getCasinos($filter, $sortBy, $limit,$offset, $label = '') {
