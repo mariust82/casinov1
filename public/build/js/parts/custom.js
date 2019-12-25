@@ -1,5 +1,8 @@
 var AJAX_CUR_PAGE = 1;
 var GAME_CURR_PAGE = 1;
+var NEW_CURR_PAGE = 1;
+var BEST_CURR_PAGE = 1;
+var COUNTRY_CURR_PAGE = 1;
 
 function tmsIframe() {
     if($(".tms_iframe").length) {
@@ -67,6 +70,41 @@ var initImageLazyLoad = function() {
                 GAME_CURR_PAGE++;
                 $('.games-list').append(data);
                 if($(self).data('total') === $('.games-list').children().length) {
+                    $(self).hide();
+                }
+            },
+            error: function ( XMLHttpRequest ) {
+                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                if ( XMLHttpRequest.statusText != "abort" ) {
+                    console.log( 'err' );
+                }
+            },
+            complete: function(){
+                BUSY_REQUEST = false;
+            }
+        } );
+    });
+    
+    $('.js-more-casinos').click(function(){
+            $(this).addClass('loading');
+            var key = $(this).data('key');
+            var self = $(this);
+            _request = $.ajax( {
+            url: '/casinos-by-software/'+determineCasinoPage(key),
+            data:{
+                page:determineCasinoPage(key),
+                type: key
+            },
+            dataType: 'html',
+            type: 'post',
+            success: function (data) {
+                setTimeout(function(){
+                                    self.removeClass('loading');
+                                    refresh();
+                }, 1000);
+                raiseCasinoPage(key);
+                $(self).parent().prev().find('.list-body').append(data);
+                if($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
                     $(self).hide();
                 }
             },
@@ -2824,6 +2862,29 @@ function setStyleProps() {
         var yyyy = today.getFullYear();
 
         return today = dd + '.' + mm + '.' + yyyy;
+    }
+    
+    function determineCasinoPage(key) {
+        var page;
+        if (key === 'new') {
+            page = NEW_CURR_PAGE;
+        } else if (key === 'best') {
+            page = BEST_CURR_PAGE;
+        } else if (key === 'country') {
+            page = COUNTRY_CURR_PAGE;
+        }
+        
+        return page;
+    }
+    
+    function raiseCasinoPage(key) {
+        if (key === 'new') {
+            NEW_CURR_PAGE++;
+        } else if (key === 'best') {
+            BEST_CURR_PAGE++;
+        } else if (key === 'country') {
+            COUNTRY_CURR_PAGE++;
+        }
     }
 
 })(jQuery);

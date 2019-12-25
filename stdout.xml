@@ -87,6 +87,9 @@
     <route url="games-by-software/(page)" controller="LoadMoreGamesBySoftwareController" view="game-item">
       <parameter name="page" validator="IntegerValidator"/>
     </route>
+    <route url="casinos-by-software/(page)" controller="LoadMoreCasinosBySoftwareController" view="casino-item">
+      <parameter name="page" validator="IntegerValidator"/>
+    </route>
     <route url="softwares" controller="SoftwaresController" view="softwares"/>
     <route url="games/(type)" controller="GamesByTypeController" view="games">
       <parameter name="type" validator="GameTypeValidator"/>

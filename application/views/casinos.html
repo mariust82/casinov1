@@ -100,7 +100,7 @@
             </div>
             <:if test="${data.new_casinos_total} > 5">
             <div class="btn-holder">
-                <a href="#" class="btn-bordered load js-more-items">
+                <a href="#" class="btn-bordered load js-more-casinos" data-total="${data.new_casinos_total}" data-key="new">
                     LOAD MORE CASINOS</a>
             </div>
             </:if>
@@ -122,7 +122,7 @@
             </div>
             <:if test="${data.best_casinos_total} > 5">
             <div class="btn-holder">
-                <a href="#" class="btn-bordered load js-more-items">
+                <a href="#" class="btn-bordered load js-more-casinos" data-total="${data.best_casinos_total}" data-key="best">
                     LOAD MORE CASINOS</a>
             </div>
             </:if>
@@ -144,7 +144,7 @@
             </div>
             <:if test="${data.country_casinos_total} > 5">
             <div class="btn-holder">
-                <a href="#" class="btn-bordered load js-more-items">
+                <a href="#" class="btn-bordered load js-more-casinos" data-total="${data.country_casinos_total}" data-key="country" data-country="${data.country.name}">
                     LOAD MORE CASINOS</a>
             </div>
             </:if>
