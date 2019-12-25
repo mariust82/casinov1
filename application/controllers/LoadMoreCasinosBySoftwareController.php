@@ -1,6 +1,7 @@
 <?php
 require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/CasinoFilter.php");
+require_once("application/models/dao/CasinosList.php");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
