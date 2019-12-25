@@ -14,11 +14,23 @@ require_once("application/models/CasinoFilter.php");
  */
 class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller {
 
+    const LIMIT = 10;
+
+
     public function run() {
-        $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::NEWEST, 5,'New')['result']);
+        $type = $this->request->parameters("type");
+        $page = $this->request->parameters("page");
+        $offset = $page * self::LIMIT - self::LIMIT;
+        if ($type == 'new') {
+            $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::NEWEST, self::LIMIT,$offset,'New')['result']);
+        } elseif ($type == 'best') {
+            $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::TOP_RATED, self::LIMIT,$offset,'Best')['result']);
+        } else {
+            $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::POPULARITY, self::LIMIT,$offset)['result']);
+        }
     }
 
-    private function getCasinos($filter, $sortBy, $limit, $label = '') {
+    private function getCasinos($filter, $sortBy, $limit,$offset, $label = '') {
         $casinoFilter = new CasinoFilter($filter, $this->request->attributes("country"));
         if (!empty($label)) {
             $casinoFilter->setCasinoLabel($label);
@@ -26,9 +38,9 @@ class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller 
                 $casinoFilter->setPromoted(TRUE);
             }
         }
-        $casinoFilter->setSoftware($this->getSelectedEntity());
+        $casinoFilter->setSoftware($this->request->parameters("software"));
         $object = new CasinosList($casinoFilter);
-        $results = $object->getResults($sortBy, 0, $limit);
+        $results = $object->getResults($sortBy, 0, $limit,$offset);
         $total = $object->getTotal();
         $return = ['total' => $total, 'result' => $results];
         return $return;
