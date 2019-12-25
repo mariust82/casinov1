@@ -2,6 +2,7 @@
 require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/CasinoFilter.php");
 require_once("application/models/dao/CasinosList.php");
+require_once("CasinosBySoftwareController.php");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,7 +14,7 @@ require_once("application/models/dao/CasinosList.php");
  *
  * @author user
  */
-class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller {
+class LoadMoreCasinosBySoftwareController extends CasinosBySoftwareController {
 
     const LIMIT = 10;
 
@@ -29,7 +30,6 @@ class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller 
         } else {
             $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::POPULARITY, self::LIMIT,$offset)['result']);
         }
-        $this->response->attributes("selected_entity", $this->request->parameters("software"));
     }
 
     private function getCasinos($filter, $sortBy, $limit,$offset, $label = '') {
