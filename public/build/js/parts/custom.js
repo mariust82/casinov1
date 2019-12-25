@@ -93,7 +93,8 @@ var initImageLazyLoad = function() {
             url: '/casinos-by-software/'+determineCasinoPage(key),
             data:{
                 page:determineCasinoPage(key),
-                type: key
+                type: key,
+                software: $(self).data('software')
             },
             dataType: 'html',
             type: 'post',
