@@ -19,7 +19,7 @@ class LoadMoreCasinosBySoftwareController extends CasinosBySoftwareController {
     const LIMIT = 10;
 
 
-    public function run() {
+    protected function init() {
         $type = $this->request->parameters("type");
         $page = $this->request->parameters("page");
         $offset = $page * self::LIMIT - self::LIMIT;
