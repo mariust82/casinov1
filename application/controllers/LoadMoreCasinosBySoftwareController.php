@@ -11,7 +11,7 @@ require_once("application/models/CasinoSortCriteria.php");
  *
  * @author user
  */
-class LoadMorCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller {
+class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller {
 
     public function run() {
         $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::NEWEST, 5,'New')['result']);
