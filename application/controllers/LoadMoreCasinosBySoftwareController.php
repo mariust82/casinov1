@@ -21,7 +21,7 @@ class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller 
     public function run() {
         $type = $this->request->parameters("type");
         $page = $this->request->parameters("page");
-        $offset = $page * self::LIMIT - self::LIMIT;
+        $offset = ($page * self::LIMIT - self::LIMIT) + 5;
         if ($type == 'new') {
             $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::NEWEST, self::LIMIT,$offset,'New')['result']);
         } elseif ($type == 'best') {
