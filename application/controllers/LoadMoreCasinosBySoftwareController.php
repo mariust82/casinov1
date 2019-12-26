@@ -27,7 +27,7 @@ class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller 
         } elseif ($type == 'best') {
             $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::TOP_RATED, self::LIMIT,$offset,'Best')['result']);
         } else {
-            $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::POPULARITY, self::LIMIT,$offset)['result']);
+            $this->response->attributes("casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, self::LIMIT,$offset)['result']);
         }
         $this->response->attributes("page_type", "software");
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
