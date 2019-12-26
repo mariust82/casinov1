@@ -968,13 +968,6 @@ function setStyleProps() {
 
                         _construct();
 
-                        function refresh() {
-                            $('.js-tooltip').tooltipster(tooltipConfig);
-                            $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-                            $('.js-tooltip-content').tooltipster(contentTooltipConfig);
-                            initMoboleBonusesPop(ww);
-                        }
-
                         checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
                     },
                     error: function(XMLHttpRequest) {
@@ -2876,6 +2869,13 @@ function setStyleProps() {
         }
         
         return page;
+    }
+    
+    function refresh() {
+        $('.js-tooltip').tooltipster(tooltipConfig);
+        $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+        $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+        initMoboleBonusesPop(ww);
     }
     
     function raiseCasinoPage(key) {
