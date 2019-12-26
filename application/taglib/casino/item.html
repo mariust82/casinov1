@@ -12,7 +12,7 @@
 					<div class="list-flex">
 						<div class="list-flag">
 							<:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
-							<img class="${accepted_class}" src="/public/build/images/flags/$[country].code}.png" width="30" height="20" alt="$[country].code}">
+							<img class="${accepted_class}" src="/public/build/images/flags/$[country].png" width="30" height="20" alt="$[country]">
 						</div>
 						<:set var="score_class" val="get_rating(${result.rating})"/>
 						<div class="list-rating ${normalize(${score_class})}">
