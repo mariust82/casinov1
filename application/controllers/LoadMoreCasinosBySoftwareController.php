@@ -22,13 +22,16 @@ class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller 
         $type = $this->request->parameters("type");
         $page = $this->request->parameters("page");
         $offset = ($page * self::LIMIT - self::LIMIT) + 5;
+        $page_type = "SOFTWARE";
         if ($type == 'new') {
+            $page_type = "ESTABLISHED";
             $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::NEWEST, self::LIMIT,$offset,'New')['result']);
         } elseif ($type == 'best') {
             $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::TOP_RATED, self::LIMIT,$offset,'Best')['result']);
         } else {
             $this->response->attributes("casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, self::LIMIT,$offset)['result']);
         }
+        $this->response->attributes("type", $page_type);
         $this->response->attributes("page_type", "software");
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $this->response->attributes("selected_entity", $this->request->parameters("software"));
