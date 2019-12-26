@@ -16,7 +16,6 @@ class LoadMoreGamesBySoftwareController extends Lucinda\MVC\STDOUT\Controller
 {
     public function run()
     {
-        var_dump($this->request->attributes("is_mobile"));
         $limit = $this->request->attributes("is_mobile") ? 4 : 8;
         $driver = new \CasinosLists\GamesBySoftware(
             $this->request->parameters("software"),
