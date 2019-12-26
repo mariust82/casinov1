@@ -9,6 +9,10 @@
   font-style: normal;
 }
 
+.js-more-casinos{
+    transition: none !important;
+}
+
 @font-face {
   font-family: 'Open Sans';
   font-display: swap;
