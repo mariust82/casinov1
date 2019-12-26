@@ -12,7 +12,7 @@
 					<div class="list-flex">
 						<div class="list-flag">
 							<:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
-							<img class="${accepted_class}" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
+							<img class="${accepted_class}" src="/public/build/images/flags/$[country].code}.png" width="30" height="20" alt="$[country].code}">
 						</div>
 						<:set var="score_class" val="get_rating(${result.rating})"/>
 						<div class="list-rating ${normalize(${score_class})}">
@@ -32,7 +32,7 @@
 						<div class="list-title-holder">
 							<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
 								${result.name}
-								<:if test="'$[type]' == 'ESTABLISHED' && ${data.is_mobile}">
+								<:if test="'$[type]' == 'ESTABLISHED' && $[mobile]">
 									<div class="list-small-text upper">${result.date_formatted}</div>
 								</:if>
 							</a>
@@ -43,7 +43,7 @@
 					</div>
 				</div>
 
-				<:if test="${data.page_type} != 'banking_method'">
+				<:if test="$[pagetype] != 'banking_method'">
 					<:if test="!${is_low_wagering}">
 						<div class="list-item-cell list-item-type">
 							<div class="multirow">
@@ -75,7 +75,7 @@
 					</div>
 				</:if>
 
-				<:if test="${data.is_mobile}">
+				<:if test="$[mobile]">
 					<:if test="${is_low_wagering}">
 						<div class="btn-round-holder list-item-cell-bfnp">
 							<span class="btn-round" data-name="${result.name}" data-is-free="1"> ${result.bonus_free.amount}

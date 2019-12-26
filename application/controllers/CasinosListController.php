@@ -73,7 +73,6 @@ abstract class CasinosListController extends BaseController
     {
         $position = strpos($_SERVER["REQUEST_URI"], "/", 1);
         $url = ($position?substr($_SERVER["REQUEST_URI"], 1, $position-1):$_SERVER["REQUEST_URI"]);
-        var_dump($url);
         $page = substr($_SERVER["REQUEST_URI"], $position+1);
         if ($page === 'no-deposit-bonus') {
             return 'free_bonus';
