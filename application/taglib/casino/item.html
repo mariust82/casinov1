@@ -1,9 +1,8 @@
-<div class="shay">$[type]</div>
 <:set var="i" val="0"/>
 <:set var="is_low_wagering" val="($[pagetype] == 'label' && $[entity] == 'Low Wagering') || ($[pagetype] == 'low_wagering')"/>
 		<:foreach var="$[data]" val="result">
 			<:set var="fdb_amount" val="${result.bonus_first_deposit.amount}"/>
-                        
+
 			<div class="list-item loaded-item">
 				<div class="list-item-cell list-item-casino">
 					<:if test="${result.new} == true && $[entity] != 'New'">
