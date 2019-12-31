@@ -9,6 +9,14 @@
   font-style: normal;
 }
 
+.missing{
+    color: #0052cc;
+}
+
+.missing:visited{
+    color: #0052cc;
+}
+
 .js-more-casinos{
     transition: none !important;
 }

@@ -96,7 +96,13 @@
                     </div>
                 </div>
                 </:if>
+                <:if test="${data.new_casinos_total} > 0">
                 <casino:list type="ESTABLISHED" id="1" data="${data.new_casinos}" name="New ${data.software} Casinos"/>
+                <:else>
+                <div>
+                    <p>No ${data.software} Casinos were established in the last 12 months. Please refer to the casino list above or visit our <a class="missing" href="/casinos/new">New Online Casinos</a> page for the newest online gambling casinos on the market</p>
+                </div>
+                </:if>
             </div>
             <:if test="${data.new_casinos_total} > 5">
             <div class="btn-holder">
@@ -118,7 +124,13 @@
                     </div>
                 </div>
                 </:if>
+                <:if test="${data.best_casinos_total} > 0">
                 <casino:list type="SOFTWARE" id="2" data="${data.best_casinos}" name="Best ${data.software} Casinos"/>
+                <:else>
+                <div>
+                    <p>There are no ${data.software} Casinos that comply with our criteria for Best Casinos. Please visit our <a class="missing" href="/casinos/best">Best Online Casinos</a> page and discover the top rated gambling sites.</p>
+                </div>
+                </:if>
             </div>
             <:if test="${data.best_casinos_total} > 5">
             <div class="btn-holder">
@@ -140,7 +152,13 @@
                     </div>
                 </div>
                 </:if>
+                <:if test="${data.country_casinos_total} > 0">
                 <casino:list type="SOFTWARE" id="3" data="${data.country_casinos}" name="${data.country.name} ${data.software} Casinos"/>
+                <:else>
+                <div>
+                    <p>There are no ${data.software} Casinos available in your country. Please visit our <a class="missing" href="countries-list/${normalize(${data.country.name})}">${data.country.name} Casinos List</a> page and discover our collection of gambling sites available in your country.</p>
+                </div>
+                </:if>
             </div>
             <:if test="${data.country_casinos_total} > 5">
             <div class="btn-holder">
