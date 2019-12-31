@@ -89,14 +89,14 @@
                 <div class="headeing">
                     <div class="title title-middle">New ${data.software} Casinos</div>
                 </div>
-                <:if test="isset(${data.widgets.new})">
-                <div class="subtitle plain-text">
-                    <div>
-                        <span>${implode("\n", ${data.widgets.new})}</span>
-                    </div>
-                </div>
-                </:if>
                 <:if test="${data.new_casinos_total} > 0">
+                    <:if test="isset(${data.widgets.new})">
+                    <div class="subtitle plain-text">
+                        <div>
+                            <span>${implode("\n", ${data.widgets.new})}</span>
+                        </div>
+                    </div>
+                    </:if>
                 <casino:list type="ESTABLISHED" id="1" data="${data.new_casinos}" name="New ${data.software} Casinos"/>
                 <:else>
                 <div>
@@ -117,14 +117,14 @@
                 <div class="headeing">
                     <div class="title title-middle">Best ${data.software} Casinos</div>
                 </div>
-                <:if test="isset(${data.widgets.best})">
-                <div class="subtitle plain-text">
-                    <div>
-                        <span>${implode("\n", ${data.widgets.best})}</span>
-                    </div>
-                </div>
-                </:if>
                 <:if test="${data.best_casinos_total} > 0">
+                    <:if test="isset(${data.widgets.best})">
+                    <div class="subtitle plain-text">
+                        <div>
+                            <span>${implode("\n", ${data.widgets.best})}</span>
+                        </div>
+                    </div>
+                    </:if>
                 <casino:list type="SOFTWARE" id="2" data="${data.best_casinos}" name="Best ${data.software} Casinos"/>
                 <:else>
                 <div>
@@ -145,14 +145,14 @@
                 <div class="headeing">
                     <div class="title title-middle">${data.country.name} ${data.software} Casinos</div>
                 </div>
-                <:if test="isset(${data.widgets.country})">
-                <div class="subtitle plain-text">
-                    <div>
-                        <span>${implode("\n", ${data.widgets.country})}</span>
-                    </div>
-                </div>
-                </:if>
                 <:if test="${data.country_casinos_total} > 0">
+                    <:if test="isset(${data.widgets.country})">
+                    <div class="subtitle plain-text">
+                        <div>
+                            <span>${implode("\n", ${data.widgets.country})}</span>
+                        </div>
+                    </div>
+                    </:if>
                 <casino:list type="SOFTWARE" id="3" data="${data.country_casinos}" name="${data.country.name} ${data.software} Casinos"/>
                 <:else>
                 <div>
