@@ -42,7 +42,7 @@ class IndexController extends BaseController
     
     private function getTotalCasinos() {
         $filter = new CasinoFilter(
-                [], $this->country
+                [], $this->request->attributes("country")
         );
         $filter->setPromoted(TRUE);
         $object = new CasinosList($filter);
