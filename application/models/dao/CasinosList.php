@@ -123,6 +123,7 @@ class CasinosList
          }
         $queryGenerator = new CasinosListQuery($this->filter, array($fields), null, 0, '', false);
         $query = $queryGenerator->getQuery();
+        echo $query;
         return SQL($query)->toValue();
     }
 
