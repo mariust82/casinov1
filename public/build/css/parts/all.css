@@ -5826,7 +5826,7 @@ a:focus {
 .btn-bordered {
   border-radius: 4px;
   display: inline-block;
-  font-size: 12px;
+  font-size: 11px;
   text-align: center;
   text-transform: uppercase;
   padding: 13px 30px;
@@ -8727,6 +8727,20 @@ a:focus {
 }
 .contact .form {
     margin: 0 0 30px;
+}
+
+.btn-bordered {
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 13px 30px;
+  background: #fff;
+  color: #2171CE;
+  border: 2px solid #2171CE;
+  box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.16);
+  font-weight: 600;
 }
 }
 
