@@ -17,6 +17,10 @@
     color: #0052cc;
 }
 
+.plain-text p{
+    font-size: 14px !important;
+}
+
 .js-more-casinos{
     transition: none !important;
 }
