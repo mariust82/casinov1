@@ -7,7 +7,13 @@
 			<div class="headeing">
 				<h1 class="title">${data.page_info.body_title}</h1>
 				<div class="subtitle">
-					<div class="js-condense"><span>${(isset(${data.widgets.upper})?${implode("\n", ${data.widgets.upper})}:"")}</span></div>
+					<div class="js-condense">
+                                            <span>
+                                                <:if test="isset(${data.widgets.upper})">
+                                                    ${implode("\n", ${data.widgets.upper})}
+                                                </:if>
+                                            </span>
+                                        </div>
 				</div>
 			</div>
 			
