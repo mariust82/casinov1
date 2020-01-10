@@ -34,6 +34,7 @@ class Casino extends Entity
     public $logo_big;
     public $logo_small;
     public $new;
+    public $is_software = false;
     public $score_class;
     public $all_softwares;
     public $deposit_minimum;

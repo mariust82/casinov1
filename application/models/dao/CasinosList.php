@@ -13,7 +13,7 @@ class CasinosList
         $this->filter = $filter;
     }
 
-    public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "")
+    public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "",$label="")
     {
         $output = array();
         $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
@@ -40,6 +40,9 @@ class CasinosList
             $object->date_formatted = $this->formatDate($row["date_established"]);
             $object->status = $row["status_id"];
             $object->is_tc_link = $row["is_tc_link"];
+            if ($label == 'New') {
+                $object->is_software = TRUE;
+            }
             $object->logo_big = $this->getCasinoLogo($object->code = $row["code"], "124x82"); //  $object->logo_big = "/public/sync/casino_logo_light/124x82/".strtolower(str_replace(" ", "_", $object->code)).".png";
             $object->logo_small = $this->getCasinoLogo($object->code = $row["code"], "85x56");//   $object->logo_small = "/public/sync/casino_logo_light/85x56/".strtolower(str_replace(" ", "_", $object->code)).".png";
             $object->new = $this->isCasinoNew($row["date_established"]);
