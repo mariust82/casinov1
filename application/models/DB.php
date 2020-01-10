@@ -12,9 +12,15 @@ require_once("dao/entities/Entity.php");
  */
 function SQL($query, $boundParameters = array())
 {
+    $start = microtime(true);
     $preparedStatement = Lucinda\SQL\ConnectionSingleton::getInstance()->createPreparedStatement();
     $preparedStatement->prepare($query);
-    return $preparedStatement->execute($boundParameters);
+    $result = $preparedStatement->execute($boundParameters);
+    $end = microtime(true);
+    if (($end-$start)>=0.1) {
+        error_log(json_encode(["duration"=>($end-$start), "url"=>$_SERVER["REQUEST_URI"], "query"=>$query, "parameters"=>$boundParameters])."\n", 3, "queries.log");
+    }
+    return $result;
 }
 
 /**
