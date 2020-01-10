@@ -42,6 +42,8 @@ class CasinosList
             $object->is_tc_link = $row["is_tc_link"];
             if ($label == 'New') {
                 $object->is_software = TRUE;
+            } else {
+                $object->is_software = FALSE;
             }
             $object->logo_big = $this->getCasinoLogo($object->code = $row["code"], "124x82"); //  $object->logo_big = "/public/sync/casino_logo_light/124x82/".strtolower(str_replace(" ", "_", $object->code)).".png";
             $object->logo_small = $this->getCasinoLogo($object->code = $row["code"], "85x56");//   $object->logo_small = "/public/sync/casino_logo_light/85x56/".strtolower(str_replace(" ", "_", $object->code)).".png";
