@@ -28,7 +28,7 @@ class Newest extends \TMS\VariablesHolder
         $casinoName = SQL("
           SELECT name FROM casinos
           WHERE is_open = 1
-          AND date_established > DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
+          AND date_established > '".date("Y-m-d", strtotime(date("Y-m-d")." -1 year"))."'
           ORDER BY date_established DESC LIMIT 1
         ")->toValue();
         if ($casinoName) {

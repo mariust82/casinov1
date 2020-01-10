@@ -32,7 +32,7 @@ class CasinoLabels implements CasinoCounter
         /*$new_casinos_nr = SQL("
           SELECT DISTINCT COUNT(t1.id) AS counter
            FROM casinos AS t1
-            WHERE t1.is_open = 1 AND t1.date_established > DATE_SUB(CURDATE(), INTERVAL 1 YEAR)
+            WHERE t1.is_open = 1 AND t1.date_established > '".date("Y-m-d", strtotime(date("Y-m-d")." -1 year"))."'
         ")->toValue();
 
         $new_casinos['New'] = $new_casinos_nr;

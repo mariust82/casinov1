@@ -165,7 +165,7 @@ class CasinosListQuery
 
         switch ($filter->getCasinoLabel()) {
             case 'New':
-                $where->set("t1.date_established", "DATE_SUB(CURDATE(), INTERVAL 1 YEAR )", Lucinda\Query\ComparisonOperator::GREATER);
+                $where->set("t1.date_established", "'".date("Y-m-d", strtotime(date("Y-m-d")." -1 year"))."'", Lucinda\Query\ComparisonOperator::GREATER);
                 break;
         }
 
