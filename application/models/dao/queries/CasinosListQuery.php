@@ -189,7 +189,7 @@ class CasinosListQuery
                 case CasinoSortCriteria::NEWEST:
                     $orderBy->add('complex_case', 'ASC');
                     $orderBy->add("t1.date_established", "DESC");
-//                    $orderBy->add("t1.priority", "DESC");
+                    $orderBy->add("t1.priority", "DESC");
                     $orderBy->add("t1.id", "DESC");
                     break;
                 case CasinoSortCriteria::DATE_ADDED:
