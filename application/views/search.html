@@ -8,54 +8,66 @@
 		<h1 class="search-title">Search results for "<span>${data.value}</span>"</h1>
 
 		<nav class="search-list">
-                        <div class="search-list-block">
-				<div class="search-list-heading">
-					<span>LISTS</span>
-					<span>${data.total_lists} Results</span>
-				</div>
-				<ul id="all-lists-container">
-					<:for start="0" end="${data.index} - 1" var="i">
-						<li><a href="/${data.lists.${i}.url}">${data.lists.${i}.title}</a></li>
-					</:for>
-				</ul>
-				<:if test="${data.total_lists} > 5">
-					<div class="search-list-more">
-						<a href="#" id="js-search-more-lists">Show&nbsp;<span class="more-lists" data-total-casinos="${data.total_lists}">5</span>&nbsp;more <i class="icon-chevron-down"></i></a>
+			<:if test="${data.total_lists}>0">
+	            <div class="search-list-block">
+					<div class="search-list-heading">
+						<span>LISTS</span>
+						<span>${data.total_lists} Results</span>
 					</div>
-				</:if>
-			</div>
-                        <div class="search-list-block">
-				<div class="search-list-heading">
-					<span>CASINOS</span>
-					<span>${data.total_casinos} Results</span>
+					<ul id="all-lists-container">
+						<:for start="0" end="${data.index} - 1" var="i">
+							<li><a href="/${data.lists.${i}.url}">${data.lists.${i}.title}</a></li>
+						</:for>
+					</ul>
+					<:if test="${data.total_lists} > 5">
+						<div class="search-list-more">
+							<a href="#" id="js-search-more-lists">Show&nbsp;<span class="more-lists" data-total-casinos="${data.total_lists}">5</span>&nbsp;more <i class="icon-chevron-down"></i></a>
+						</div>
+					</:if>
 				</div>
-				<ul id="all-casinos-container">
-					<:foreach var="${data.casinos}" key="key" val="result">
-						<li><a href="/reviews/${normalize(${result})}-review">${result}</a></li>
-					</:foreach>
-				</ul>
-				<:if test="${data.total_casinos} > 4">
-					<div class="search-list-more">
-						<a href="#" id="js-search-more-casinos">Show <span class="more-num" data-total-casinos="${data.total_casinos}">5</span> more <i class="icon-chevron-down"></i></a>
+			</:if>
+
+			<:if test="${data.total_casinos}>0">
+	            <div class="search-list-block">
+					<div class="search-list-heading">
+						<span>CASINOS</span>
+						<span>${data.total_casinos} Results</span>
 					</div>
-				</:if>
-			</div>
-			<div class="search-list-block">
-				<div class="search-list-heading">
-					<span>GAMES</span>
-					<span>${data.total_games} Results <i class=""></i></span>
+					<ul id="all-casinos-container">
+						<:foreach var="${data.casinos}" key="key" val="result">
+							<li><a href="/reviews/${normalize(${result})}-review">${result}</a></li>
+						</:foreach>
+					</ul>
+					<:if test="${data.total_casinos} > 5">
+						<div class="search-list-more">
+							<a href="#" id="js-search-more-casinos">Show <span class="more-num" data-total-casinos="${data.total_casinos}">5</span> more <i class="icon-chevron-down"></i></a>
+						</div>
+					</:if>
 				</div>
-				<ul id="all-games-container">
-					<:foreach var="${data.games}" key="key" val="result">
-						<li><a href="/play/${normalize(${result})}">${result}</a></li>
-					</:foreach>
-				</ul>
-				<:if test="${data.total_games} > 4">
-					<div class="search-list-more">
-						<a href="#" id="js-search-more-pages">Show <span class="more-num" data-total-games="${data.total_games}">5</span> more <i class="icon-chevron-down"></i></a>
+			</:if>
+
+			<:if test="${data.total_games}>0">
+				<div class="search-list-block">
+					<div class="search-list-heading">
+						<span>GAMES</span>
+						<span>${data.total_games} Results <i class=""></i></span>
 					</div>
-				</:if>
-			</div>
+					<ul id="all-games-container">
+						<:foreach var="${data.games}" key="key" val="result">
+							<li><a href="/play/${normalize(${result})}">${result}</a></li>
+						</:foreach>
+					</ul>
+					<:if test="${data.total_games} > 5">
+						<div class="search-list-more">
+							<a href="#" id="js-search-more-pages">Show <span class="more-num" data-total-games="${data.total_games}">5</span> more <i class="icon-chevron-down"></i></a>
+						</div>
+					</:if>
+				</div>
+			</:if>
+
+			<:if test="${data.total_lists}==0 && ${data.total_casinos}==0 && ${data.total_games}==0">
+				<p>Sorry, there are no results for your query.</p>
+			</:if>
 		</nav>
 	</div>
 </div>

@@ -13,6 +13,7 @@ class CasinoTermsVisitController extends Lucinda\MVC\STDOUT\Controller
             throw new Lucinda\MVC\STDOUT\PathNotFoundException();
         }
         // redirect to link
+        header("HTTP/1.1 301 Moved Permanently"); 
         header("Location: ".$termsLink);
         exit();
     }
