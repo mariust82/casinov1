@@ -48,8 +48,8 @@ class CasinosBySoftwareController extends CasinosListController
         $this->response->attributes("new_casinos_total", $this->getCasinos([], CasinoSortCriteria::NEWEST, 5,'New')['total']);
         $this->response->attributes("best_casinos", $this->getCasinos([], CasinoSortCriteria::TOP_RATED, 5,'Best')['result']);
         $this->response->attributes("best_casinos_total", $this->getCasinos([], CasinoSortCriteria::TOP_RATED, 5,'Best')['total']);
-        $this->response->attributes("country_casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, 5)['result']);
-        $this->response->attributes("country_casinos_total", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, 5)['total']);
+        $this->response->attributes("country_casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::NONE, 5)['result']);
+        $this->response->attributes("country_casinos_total", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::NONE, 5)['total']);
         $this->response->attributes("software_id", $id);
         $this->response->attributes("software", $name);
     }
