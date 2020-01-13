@@ -43,6 +43,7 @@ var initImageLazyLoad = function() {
         initMobileMenu();
         menuHoverAction();
         setStyleProps();
+        setIframeAsResponsive();
 
         document.ontouchmove = function(e){
             e.preventDefault();
@@ -161,6 +162,15 @@ if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
     $('body').addClass('ios-device');
 }
 
+function setIframeAsResponsive() {
+    var iframes = $('.plain-text iframe');
+
+    if (iframes.length) {
+        iframes.each(function(index, el) {
+            $(el).wrap('<div class="iframe-wrapper"></div>');
+        });
+    }
+}
 
 function setStyleProps() {
     var vh = window.innerHeight * 0.01;
