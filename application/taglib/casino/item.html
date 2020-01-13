@@ -5,7 +5,7 @@
 
 			<div class="list-item loaded-item">
 				<div class="list-item-cell list-item-casino">
-					<:if test="${result.new} == true && $[entity] != 'New'">
+					<:if test="${result.new} == true && $[type] != 'ESTABLISHED'">
 						<div class="new-casino">
 							<div class="new-casino-text"> New </div>
 						</div>
@@ -33,7 +33,7 @@
 						<div class="list-title-holder">
 							<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
 								${result.name}
-								<:if test="'$[type]' == 'ESTABLISHED' && $[mobile]">
+								<:if test="$[type] == 'ESTABLISHED' && ${data.is_mobile}">
 									<div class="list-small-text upper">${result.date_formatted}</div>
 								</:if>
 							</a>

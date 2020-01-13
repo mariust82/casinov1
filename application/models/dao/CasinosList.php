@@ -61,10 +61,8 @@ class CasinosList
         INNER JOIN game_manufacturers AS t2 ON t1.game_manufacturer_id = t2.id
         WHERE t1.casino_id IN (".implode(",", array_keys($output)).") ORDER BY t1.is_primary DESC;
         ";
-        $list = NoSQL($query, [], function ($resultSet) {
-            return $resultSet->toList();
-        });
-        foreach ($list as $row) {
+        $resultSet = SQL($query);
+        while ($row=$resultSet->toRow()) {
             $output[$row["casino_id"]]->softwares[] = $row["name"];
         }
         // append bonuses
