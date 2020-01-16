@@ -8,8 +8,8 @@ class BanckingMethodNameValidator extends \Lucinda\RequestValidator\ParameterVal
         }
 
         $v =  str_replace("-", " ", $value);
-        $id =  SQL("SELECT id FROM banking_methods WHERE name=:name", array(":name"=>$v))->toValue();
+        $name =  SQL("SELECT name FROM banking_methods WHERE name=:name", array(":name"=>$v))->toValue();
 
-        return !empty($id) ? $value : null;
+        return !empty($name) ? $name : null;
     }
 }
