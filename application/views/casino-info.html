@@ -399,10 +399,12 @@
 							<:foreach var="${data.casino.casino_deposit_methods}" key ="dep_method" val="dep_method_data">
 							<tr>
 								<td >
-									<div class="table-flex">
-										<img class="payment-logo" src="${dep_method_data.logo}" width="60" height="40" alt="${dep_method} Logo">
-										<div class="table-desctop-visible">${dep_method}</div>
-									</div>
+									<a href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
+										<div class="table-flex">
+											<img class="payment-logo" src="${dep_method_data.logo}" width="60" height="40" alt="${dep_method} Logo">
+											<div class="table-desctop-visible">${dep_method}</div>
+										</div>
+									</a>
 								</td>
 								<td align="center">
 									<:if test="empty(${dep_method_data.deposit_methods})">
