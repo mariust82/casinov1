@@ -172,7 +172,7 @@
         <:if test="isset(${data.banking})">
             <:if test="${data.total_casinos} > 100">
             <div class="block">
-                <div class="container">
+                <div class="container block_pad">
                     <div class="headeing">
                         <div class="title title-middle">Best ${data.banking} Casinos for ${data.country.name}</div>
                     </div>
@@ -205,7 +205,7 @@
             <:else>
                 <div class="block no_padd">
             </:if>
-                <div class="container">
+                <div class="container block_pad">
                     <div class="headeing">
                         <div class="title title-middle">Other Popular Casino Banking Methods</div>
                         <:if test="isset(${data.widgets.pop_banking})">
