@@ -13,6 +13,11 @@
     color: #0052cc;
 }
 
+.block_pad{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
 .missing:visited{
     color: #0052cc;
 }
