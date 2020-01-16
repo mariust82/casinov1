@@ -2522,6 +2522,11 @@ a:focus {
     padding-left: 10px !important;
     padding-right: 10px !important;
   }
+  
+  .block_pad{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
 }
 
 @media screen and (max-width: 690px) {
