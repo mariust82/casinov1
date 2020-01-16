@@ -5854,6 +5854,7 @@ a:focus {
 .btn-bordered.load {
   min-width: 300px;
   border-radius: 2px;
+  transition: none !important;
 }
 
 @media screen and (max-width: 375px) {
