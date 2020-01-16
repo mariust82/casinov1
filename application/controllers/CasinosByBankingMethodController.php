@@ -35,9 +35,12 @@ class CasinosByBankingMethodController extends CasinosListController
     
     protected function init() {
         $casinos = $this->getCasinos([], CasinoSortCriteria::TOP_RATED, 5);
+        $banking = new BankingMethods();
         $this->response->attributes("banking", $this->getSelectedEntity());
         $this->response->attributes("best_banking", $casinos['result']);
         $this->response->attributes("best_banking_total", $casinos['total']);
+        $this->response->attributes("pop_banking", $banking->getPopularBankingCasinosCount($this->getSelectedEntity()));
+        
     }
 
     protected function getFilter()
