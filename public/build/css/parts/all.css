@@ -5842,6 +5842,7 @@ a:focus {
   border: 2px solid #2171CE;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.16);
   font-weight: 600;
+  transition: none !important;
 }
 
 @media screen and (min-width: 1023px) {
@@ -5854,7 +5855,6 @@ a:focus {
 .btn-bordered.load {
   min-width: 300px;
   border-radius: 2px;
-  transition: none !important;
 }
 
 @media screen and (max-width: 375px) {
