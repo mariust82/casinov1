@@ -21,6 +21,10 @@
     font-size: 14px !important;
 }
 
+.no_padd{
+    padding-top: 49px !important;
+}
+
 .js-more-casinos{
     transition: none !important;
 }

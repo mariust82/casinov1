@@ -200,7 +200,11 @@
             </div>
             </:if>
             <:if test="count(${data.pop_banking}) > 0">
-            <div class="block">
+            <:if test="${data.total_casinos} > 100">
+                <div class="block">
+            <:else>
+                <div class="block no_padd">
+            </:if>
                 <div class="container">
                     <div class="headeing">
                         <div class="title title-middle">Other Popular Casino Banking Methods</div>
