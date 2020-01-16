@@ -63,7 +63,7 @@
     <route url="visit/(name)" controller="CasinoVisitController">
       <parameter name="name" validator="CasinoNameValidator"/>
     </route>
-    <route url="link/(name)-terms" controller="CasinoTermsVisitController">
+    <route url="visit/(name)-terms" controller="CasinoTermsVisitController">
       <parameter name="name" validator="CasinoNameValidator"/>
     </route>
     <route url="goto/(url)" controller="GoToController">
