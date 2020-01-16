@@ -3,6 +3,7 @@ var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
 var COUNTRY_CURR_PAGE = 1;
+var BEST_BANKING_PAGE = 1;
 
 function tmsIframe() {
     if($(".tms_iframe").length) {
@@ -105,6 +106,41 @@ var initImageLazyLoad = function() {
                                     refresh();
                 }, 1000);
                 raiseCasinoPage(key);
+                $(self).parent().prev().find('.list-body').append(data);
+                if($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
+                    $(self).hide();
+                }
+            },
+            error: function ( XMLHttpRequest ) {
+                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                if ( XMLHttpRequest.statusText != "abort" ) {
+                    console.log( 'err' );
+                }
+            },
+            complete: function(){
+                BUSY_REQUEST = false;
+            }
+        } );
+    });
+    
+    $('.js-more-banking').click(function(){
+            $(this).addClass('loading');
+            var key = $(this).data('key');
+            var self = $(this);
+            _request = $.ajax( {
+            url: '/casinos-by-banking/'+BEST_BANKING_PAGE,
+            data:{
+                page:BEST_BANKING_PAGE,
+                banking: $(self).data('banking')
+            },
+            dataType: 'html',
+            type: 'post',
+            success: function (data) {
+                setTimeout(function(){
+                                    self.removeClass('loading');
+                                    refresh();
+                }, 1000);
+                BEST_BANKING_PAGE++;
                 $(self).parent().prev().find('.list-body').append(data);
                 if($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
                     $(self).hide();
