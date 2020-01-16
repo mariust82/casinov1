@@ -16,8 +16,8 @@ class CasinosByBankingMethodController extends CasinosListController
     {
         $parameter = $this->request->getValidator()->parameters("name");
         $name = str_replace("-", " ", $parameter);
-
-        return $name;
+        $banking = new BankingMethods();
+        return $banking->getMethodName($name);
     }
     
     private function getCasinos($filter, $sortBy, $limit)

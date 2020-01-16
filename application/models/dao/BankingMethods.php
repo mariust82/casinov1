@@ -21,6 +21,10 @@ class BankingMethods implements CasinoCounter
             GROUP BY banking_method_id ORDER BY priority DESC, nr DESC LIMIT 3
         ")->toMap("name", "nr");
     }
+    
+    public function getMethodName($name) {
+        return SQL("SELECT name FROM banking_methods WHERE name=:name", array(":name"=>$name))->toValue();
+    }
 
     public function getAll()
     {
