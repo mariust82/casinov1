@@ -19,6 +19,26 @@ class CasinosByBankingMethodController extends CasinosListController
 
         return $name;
     }
+    
+    private function getCasinos($filter, $sortBy, $limit)
+    {
+        $casinoFilter = new CasinoFilter($filter, $this->request->attributes("country"));
+        $casinoFilter->setBankingMethod($this->getSelectedEntity());
+        $casinoFilter->setPromoted(TRUE);
+        $casinoFilter->setCountryAccepted(TRUE);
+        $object = new CasinosList($casinoFilter);
+        $results = $object->getResults($sortBy, 0, $limit);
+        $total = $object->getTotal();
+        $return = ['total'=>$total,'result'=>$results];
+        return $return;
+    }
+    
+    protected function init() {
+        $casinos = $this->getCasinos([], CasinoSortCriteria::TOP_RATED, 5);
+        $this->response->attributes("banking", $this->getSelectedEntity());
+        $this->response->attributes("best_banking", $casinos['result']);
+        $this->response->attributes("best_banking_total", $casinos['total']);
+    }
 
     protected function getFilter()
     {
