@@ -60,10 +60,10 @@
     <route url="reviews/(name)-review" controller="CasinoInfoController" view="casino-info" rebrand_tables="casinos">
       <parameter name="name" validator="CasinoNameValidator"/>
     </route>
-    <route url="visit/(name)" controller="CasinoVisitController">
+    <route url="visit/(name)-terms" controller="CasinoTermsVisitController">
       <parameter name="name" validator="CasinoNameValidator"/>
     </route>
-    <route url="visit/(name)-terms" controller="CasinoTermsVisitController">
+    <route url="visit/(name)" controller="CasinoVisitController">
       <parameter name="name" validator="CasinoNameValidator"/>
     </route>
     <route url="goto/(url)" controller="GoToController">
