@@ -24,7 +24,7 @@ class LoadMoreCasinosByBankingController extends Lucinda\MVC\STDOUT\Controller {
         $casinos = $this->getCasinos([], CasinoSortCriteria::TOP_RATED, self::LIMIT,$offset);
         $this->response->attributes("casinos", $casinos['result']);
         $this->response->attributes("type", 'banking');
-        $this->response->attributes("page_type", "banking");
+        $this->response->attributes("page_type", "banking_method");
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $this->response->attributes("selected_entity", $this->request->parameters("banking"));
         $this->response->attributes("country", $this->request->attributes("country"));
