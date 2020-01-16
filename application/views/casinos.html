@@ -199,6 +199,35 @@
                 </:if>
             </div>
             </:if>
+            <:if test="count(${data.pop_banking}) > 0">
+            <div class="block">
+                <div class="container">
+                    <div class="headeing">
+                        <h1 class="title">Other Popular Casino Banking Methods</h1>
+                        <:if test="isset(${data.widgets.pop_banking})">
+                            <div class="subtitle plain-text">
+                                <div class="js-condense"><span>${implode("\n", ${data.widgets.pop_banking})}</span></div>
+                            </div>
+                        </:if>
+                    </div>
+                    <div class="categories">
+                        <div class="categories-list ">
+                            <:foreach var="${data.pop_banking}" key ="key" val="result">
+                            <div class="category ">
+                                <a href="/banking/${normalize(${key})}">
+                                    <span class="category-body">
+                                        <span class="category-title">${key} </span>
+                                        <span class="category-qty">${result}</span>
+                                    </span>
+                                    <i class="icon-chevron-right"></i>
+                                </a>
+                            </div>
+                            </:foreach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </:if>
         </:if>
         <:if test="isset(${data.widgets.lower})">
         <div class="subtitle plain-text">
