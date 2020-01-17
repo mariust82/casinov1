@@ -3671,8 +3671,6 @@ a:focus {
 }
 
 .list-item-trun {
-  overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
   display: block;
 }
