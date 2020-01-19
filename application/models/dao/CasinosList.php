@@ -127,7 +127,7 @@ class CasinosList
     public function getTopPicks($country) {
         $resultSet = SQL("SELECT t2.*, IF(t3.id IS NOT NULL, 1, 0) AS is_country_supported FROM `top_picks` AS `t1` 
         INNER JOIN `casinos` AS `t2` ON (`t1`.`n_c_id` = `t2`.`id`) 
-        LEFT JOIN casinos__countries_allowed AS t3 ON (t2.id = t3.casino_id) AND t3.country_id = {$country})
+        LEFT JOIN casinos__countries_allowed AS t3 ON (t2.id = t3.casino_id) AND t3.country_id = {$country}
         WHERE `t1`.`date`='" . date("Y-m-01") . "'");
 
         while ($row = $resultSet->toRow()) {
