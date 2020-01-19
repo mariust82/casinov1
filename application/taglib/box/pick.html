@@ -1,96 +1,26 @@
 <div class="block">
-	<div class="container">
-		<div class="pick-list">
-			<div class="pick">
-				<div class="pick-header">
-					<div class="pick-flag">
-						<img src="https://www.casinoslists.com/public/build/images/flags/NL.png" alt="alt">
-					</div>
-					<a href="#" class="pick-title">21 Dukes Casino</a>
-				</div>
-				<div class="pick-body">
-					<a href="#" class="pick-img">
-						<img src="https://www.casinoslists.com/public/sync/casino_logo_light/85x56/play24bet_casino.png" alt="alt">
-					</a>
-					<div class="pick-buttons">
-						<div class="btn-round">100 FS</div>
-						<div class="btn-round">200% + 1000 FS</div>
-					</div>
-					<a href="#" class="btn btn-full-width"><span>VISIT</span></a>
-				</div>
-			</div>
-			<div class="pick">
-				<div class="pick-header">
-					<div class="pick-flag">
-						<img src="https://www.casinoslists.com/public/build/images/flags/NL.png" alt="alt">
-					</div>
-					<a href="#" class="pick-title">21 Dukes Casino</a>
-				</div>
-				<div class="pick-body">
-					<a href="#" class="pick-img">
-						<img src="https://www.casinoslists.com/public/sync/casino_logo_light/85x56/play24bet_casino.png" alt="alt">
-					</a>
-					<div class="pick-buttons">
-						<div class="btn-round">100 FS</div>
-						<div class="btn-round">200% + 1000 FS</div>
-					</div>
-					<a href="#" class="btn btn-full-width"><span>VISIT</span></a>
-				</div>
-			</div>
-			<div class="pick">
-				<div class="pick-header">
-					<div class="pick-flag">
-						<img src="https://www.casinoslists.com/public/build/images/flags/NL.png" alt="alt">
-					</div>
-					<a href="#" class="pick-title">21 Dukes Casino</a>
-				</div>
-				<div class="pick-body">
-					<a href="#" class="pick-img">
-						<img src="https://www.casinoslists.com/public/sync/casino_logo_light/85x56/play24bet_casino.png" alt="alt">
-					</a>
-					<div class="pick-buttons">
-						<div class="btn-round">100 FS</div>
-						<div class="btn-round">200% + 1000 FS</div>
-					</div>
-					<a href="#" class="btn btn-full-width"><span>VISIT</span></a>
-				</div>
-			</div>
-			<div class="pick">
-				<div class="pick-header">
-					<div class="pick-flag">
-						<img src="https://www.casinoslists.com/public/build/images/flags/NL.png" alt="alt">
-					</div>
-					<a href="#" class="pick-title">21 Dukes Casino</a>
-				</div>
-				<div class="pick-body">
-					<a href="#" class="pick-img">
-						<img src="https://www.casinoslists.com/public/sync/casino_logo_light/85x56/play24bet_casino.png" alt="alt">
-					</a>
-					<div class="pick-buttons">
-						<div class="btn-round">100 FS</div>
-						<div class="btn-round">200% + 1000 FS</div>
-					</div>
-					<a href="#" class="btn btn-full-width"><span>VISIT</span></a>
-				</div>
-			</div>
-			<div class="pick">
-				<div class="pick-header">
-					<div class="pick-flag">
-						<img src="https://www.casinoslists.com/public/build/images/flags/NL.png" alt="alt">
-					</div>
-					<a href="#" class="pick-title">21 Dukes Casino</a>
-				</div>
-				<div class="pick-body">
-					<a href="#" class="pick-img">
-						<img src="https://www.casinoslists.com/public/sync/casino_logo_light/85x56/play24bet_casino.png" alt="alt">
-					</a>
-					<div class="pick-buttons">
-						<div class="btn-round">100 FS</div>
-						<div class="btn-round">200% + 1000 FS</div>
-					</div>
-					<a href="#" class="btn btn-full-width"><span>VISIT</span></a>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="pick-list">
+            <:foreach var="${data.picks}" val="result">
+            <div class="pick">
+                <div class="pick-header">
+                    <div class="pick-flag">
+                        <:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
+                        <img class="${accepted_class}" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
+                    </div>
+                    <a href="/reviews/${normalize(${result.name})}-review" class="pick-title">${result.name}</a>
+                </div>
+                <div class="pick-body">
+                    <a href="/reviews/${normalize(${result.name})}-review" class="pick-img">
+                        <img src="${result.logo_small}" alt="${result.name} Logo">
+                    </a>
+                    <div class="pick-buttons">
+                        <div class="btn-round">${result.bonus_free.amount}</div>
+                        <div class="btn-round">${result.bonus_first_deposit.amount}</div>
+                    </div>
+                    <a href="/visit/${normalize(${result.name})}" class="btn btn-full-width"><span>VISIT</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
