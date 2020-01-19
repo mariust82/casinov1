@@ -20,9 +20,9 @@
                         <img src="${result.logo_small}" alt="${result.name} Logo">
                     </a>
                     <div class="pick-buttons">
-                        <div class="btn-round">${result.bonus_first_deposit.amount}</div>
+                        <div class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</div>
                         <:if test="!empty(${result.bonus_free.amount})">
-                            <div class="btn-round">${result.bonus_free.amount}</div>
+                            <div class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="1">${result.bonus_free.amount}</div>
                         </:if>
                     </div>
                     <a href="/visit/${normalize(${result.name})}" class="btn btn-full-width"><span>VISIT</span></a>
