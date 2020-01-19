@@ -73,7 +73,7 @@ class IndexController extends BaseController
     private function getTopPicks($filter)
     {
         $object = new CasinosList(new CasinoFilter($filter, $this->request->attributes("country")));
-        $results = $object->getTopPicks();
+        $results = $object->getTopPicks($this->request->attributes("country")->id);
         return $results;
     }
 
