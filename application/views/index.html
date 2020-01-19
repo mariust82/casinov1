@@ -7,6 +7,32 @@
 	<:if test="isset(${data.widgets.upper})">
 		<div style="background-color:#330000; color:white; margin:0 0 30px;">${implode("\n", ${data.widgets.upper})}</div>
 	</:if>
+	<div class="block">
+            <div class="container">
+                <div class="pick-list">
+                    <:foreach var="${data.picks}" val="result">
+                    <div class="pick">
+                        <div class="pick-header">
+                            <div class="pick-flag">
+                                <:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
+                                <img class="${accepted_class}" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
+                            </div>
+                            <a href="/reviews/${normalize(${result.name})}-review" class="pick-title">${result.name}</a>
+                        </div>
+                        <div class="pick-body">
+                            <a href="/reviews/${normalize(${result.name})}-review" class="pick-img">
+                                <img src="${result.logo_small}" alt="${result.name} Logo">
+                            </a>
+                            <div class="pick-buttons">
+                                <div class="btn-round">${result.bonus_free.amount}</div>
+                                <div class="btn-round">${result.bonus_first_deposit.amount}</div>
+                            </div>
+                            <a href="/visit/${normalize(${result.name})}" class="btn btn-full-width"><span>VISIT</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	<casino:carousel-container title="Top-Rated Casinos" url="/casinos/best" items="${data.best_casinos}" country="${data.country}" description="We invite you to browse through the best online casinos in the world, ranked and reviewed by real casino players. The list is constantly updated so make sure you check it from time to time to stay up to date with the latest rankings!"/>
 	<casino:list-container id="1" data="${data.country_casinos}" type="SOFTWARE" url="/countries-list/${normalize(${data.country.name})}" name="${data.country.name} Casinos" description="You’d like to play at an online casino, but you’re not sure if it accepts players from your country of residence? Look no further, as we have already put together a list of online casinos which welcome players located in your country. You can browse by accessing our “Countries” section at the navigation bar. Currently, we host ${data.casinos_per_country} online casinos available for players from ${data.country.name}."/>
 	<casino:list-container id="2" data="${data.new_casinos}" type="ESTABLISHED" url="/casinos/new" name="New Casinos" description="The online gaming market is ever-growing and constantly reinventing itself. As new casinos pop up all the time, we decided to put all the newest casinos from the last 12 months on one list, so you can browse and find your new favorite place in no time. The websites on the page are sorted by newest first, so you’ll always be met with the latest updates. And don’t forget that, as a new player, you’re sometimes entitled to generous no deposit bonuses, all of which can be found on our New Online Casinos page."/>
