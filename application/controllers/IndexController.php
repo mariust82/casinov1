@@ -23,6 +23,8 @@ class IndexController extends BaseController
     public function service()
     {
         $this->response->attributes("picks", $this->getTopPicks([]));
+        $this->response->attributes("month", date('F'));
+        $this->response->attributes("year", date('Y'));
         $this->response->attributes("user_preferences", (array) $this->getUserPreferences());
         $this->getTotalCasinos();
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
