@@ -24,7 +24,7 @@ class TopPicks {
     }
 
     private function setTopPicks() {
-        $resultSet = SQL("SELECT select t2.* FROM `top_picks` AS `t1` 
+        $resultSet = SQL("SELECT t2.* FROM `top_picks` AS `t1` 
         INNER JOIN `casinos` AS `t2` ON (`t1`.`n_c_id` = `t2`.`id`) 
         WHERE `t1`.`date`='" . date("Y-m-01") . "'");
 
