@@ -2,7 +2,6 @@
 require_once("application/models/CasinoFilter.php");
 require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
-require_once("application/models/dao/TopPicks.php");
 require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
 require_once("application/controllers/BaseController.php");
@@ -23,8 +22,7 @@ class IndexController extends BaseController
 {
     public function service()
     {
-        $picks = new TopPicks();
-        $this->response->attributes("picks", $picks->getTopPicks());
+        $this->response->attributes("picks", $this->getTopPicks([]));
         $this->response->attributes("user_preferences", (array) $this->getUserPreferences());
         $this->getTotalCasinos();
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
@@ -69,6 +67,13 @@ class IndexController extends BaseController
             $object = new CasinosList(new CasinoFilter($filter, $this->request->attributes("country")));
             $results = $object->getResults($sortBy, 0, $limit);
         }
+        return $results;
+    }
+    
+    private function getTopPicks($filter)
+    {
+        $object = new CasinosList(new CasinoFilter($filter, $this->request->attributes("country")));
+        $results = $object->getTopPicks();
         return $results;
     }
 
