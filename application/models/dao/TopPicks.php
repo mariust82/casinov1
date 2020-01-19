@@ -33,7 +33,6 @@ class TopPicks {
             $object->id = $row["id"];
             $object->name = $row["name"];
             $object->code = $row["code"];
-            $object->rating = ceil($row["average_rating"]);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
             $object->date_formatted = $this->formatDate($row["date_established"]);
