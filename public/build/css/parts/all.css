@@ -35,9 +35,9 @@ blockquote p span{
 }
 
 .spec_div{
-    border: 1px solid #E2E2E3;
-    padding: 20px 15px 20px 15px;
-    background: #F8F8F8;
+    border: 1px solid #E2E2E3 !important;
+    padding: 20px 15px 20px 15px !important;
+    background: #F8F8F8 !important;
     font-family: "Open Sans";
     font-size: 14px !important;
     color: #646464 !important;
@@ -8788,9 +8788,9 @@ blockquote p{
 }
 
 .spec_div{
-    border: 1px solid #E2E2E3;
-    padding: 20px 20px 20px 20px;
-    background: #F8F8F8;
+    border: 1px solid #E2E2E3 !important;
+    padding: 20px 20px 20px 20px !important;
+    background: #F8F8F8 !important;
     font-family: "Open Sans";
     font-size: 14px !important;
     color: #646464 !important;
