@@ -34,7 +34,7 @@ blockquote p span{
     border-top: 1px solid #E2E2E3;
 }
 
-.spec_dev{
+.spec_div{
     border: 1px solid #E2E2E3;
     padding: 20px 15px 20px 15px;
     background: #F8F8F8;
@@ -8787,7 +8787,7 @@ blockquote p{
     padding-left: 30px;
 }
 
-.spec_dev{
+.spec_div{
     border: 1px solid #E2E2E3;
     padding: 20px 20px 20px 20px;
     background: #F8F8F8;
