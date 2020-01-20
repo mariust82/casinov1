@@ -10094,6 +10094,7 @@ abbr[title] {
 }
 .pick-img img{
   width:100%;
+  height:auto;
 }
 .pick-buttons {
   display: -webkit-box;
