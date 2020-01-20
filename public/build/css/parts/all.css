@@ -34,6 +34,15 @@ blockquote p span{
     border-top: 1px solid #E2E2E3;
 }
 
+.spec_dev{
+    border: 1px solid #E2E2E3;
+    padding: 20px 15px 20px 15px;
+    background: #F8F8F8;
+    font-family: "Open Sans";
+    font-size: 14px !important;
+    color: #646464 !important;
+}
+
 blockquote p{
     padding-left: 16px;
 }
@@ -8776,6 +8785,15 @@ a:focus {
 
 blockquote p{
     padding-left: 30px;
+}
+
+.spec_dev{
+    border: 1px solid #E2E2E3;
+    padding: 20px 20px 20px 20px;
+    background: #F8F8F8;
+    font-family: "Open Sans";
+    font-size: 14px !important;
+    color: #646464 !important;
 }
 
 .btn-bordered {
