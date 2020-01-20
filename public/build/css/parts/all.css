@@ -31,6 +31,7 @@ blockquote p span{
 }
 
 .article-single hr{
+    border:none;
     border-top: 1px solid #E2E2E3;
 }
 
@@ -8072,7 +8073,33 @@ a:focus {
 }
 
 .plain-text {
-  color: #60686A;
+  color: #646464;
+}
+
+.plain-text h2{
+  color: #313536;
+  font-size:32px;
+}
+
+.plain-text h3{
+  color: #313536;
+  font-size:28px;
+}
+
+.plain-text h4{
+  color: #313536;
+  font-size:24px;
+}
+
+.plain-text h5{
+  color: #313536;
+  font-size:20px;
+}
+
+.plain-text h6{
+  color: #313536;
+  font-size:20px;
+  font-weight:bold;
 }
 
 .plain-text p {
@@ -9693,6 +9720,32 @@ html.no-scroll {
 		font-size: 17px;
 	}
 }
+
+.plain-text table{
+  border-collapse:collapse;
+  table-layout:fixed;
+}
+
+.plain-text table th,
+.plain-text table td {
+  font-size:16px;
+  line-height:19px;
+  padding:15px 15px 14px;
+  text-align:center;
+  border:2px solid #fff;
+}
+
+.plain-text table th{
+  background:#2171CE;
+  color:#fff;
+  text-transform:uppercase;
+}
+
+.plain-text table td{
+  background:#F7F7F7;
+  color:#646464;
+}
+
 
 .box-wrap{
 	margin-bottom: 25px;
