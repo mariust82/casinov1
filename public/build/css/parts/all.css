@@ -30,6 +30,10 @@ blockquote p span{
     font-family: 'Open Sans';
 }
 
+blockquote p{
+    padding-left: 16px;
+}
+
 .missing:visited{
     color: #0052cc;
 }
@@ -8764,6 +8768,10 @@ a:focus {
 }
 .contact .form {
     margin: 0 0 30px;
+}
+
+blockquote p{
+    padding-left: 30px;
 }
 
 .btn-bordered {
