@@ -9,16 +9,16 @@
         <div class="pick-list">
             <:foreach var="${data.picks}" val="result">
             <div class="pick">
-                <div class="pick-header">
-                    <div class="pick-flag">
+                <a href="/reviews/${normalize(${result.name})}-review" class="pick-header">
+                    <span class="pick-flag">
                         <:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
-                        <img class="${accepted_class}" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
-                    </div>
-                    <a href="/reviews/${normalize(${result.name})}-review" class="pick-title">${result.name}</a>
-                </div>
+                        <img class="${accepted_class}" src="/public/build/images/flags/${data.country.code}.png" width="20" height="14" alt="${data.country.code}">
+                    </span>
+                    <span class="pick-title">${result.name}</span>
+                </a>
                 <div class="pick-body">
                     <a href="/reviews/${normalize(${result.name})}-review" class="pick-img">
-                        <img src="${result.logo_small}" alt="${result.name} Logo">
+                        <img width="98" height="65" src="${result.logo_small}" onerror="this.onerror=null; this.src='/public/build/images/default_casino_logo.png'" alt="${result.name} Logo">
                     </a>
                     <div class="pick-buttons">
                         <div class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</div>
