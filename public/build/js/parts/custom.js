@@ -51,6 +51,8 @@ var initImageLazyLoad = function() {
         }
         detectIsKeyboardOpened();
 
+        $('.plain-text table').stacktable();
+
         $('.js-more-games').click(function(){
             $(this).addClass('loading');
             var id = $(this).data('software');
