@@ -50,8 +50,8 @@ var initImageLazyLoad = function() {
             e.preventDefault();
         }
         detectIsKeyboardOpened();
+        initMobileLayoutOfTable();
 
-        // $('.plain-text table').stacktable();
 
         $('.js-more-games').click(function(){
             $(this).addClass('loading');
@@ -198,6 +198,50 @@ var initImageLazyLoad = function() {
 
 if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
     $('body').addClass('ios-device');
+}
+
+function initMobileLayoutOfTable() {
+    var _table = $('.plain-text table');
+    var _tr = _table.find('tr');
+    var _th = _table.find('th');
+    var _newTable = $('<table class="separate-table"></table>');
+    var _isInited = false;
+
+    if ($(window).width() < 768) {
+        init();
+        _isInited = true;
+    }
+
+    $(window).resize(function() {
+        if ($(window).width() < 768 && !_isInited) {
+            init();
+            _isInited = true;
+        } else {
+            destroy();
+            // _isInited = false;
+        }
+    });
+
+    function init() {
+        _th.each(function(index, el) {
+            var i = index;
+
+            _tr.each(function(index, el) {
+                var _itemTh = $(el).find('th').eq(i).clone().wrap('<tr></tr>').parent();
+                var _itemTd = $(el).find('td').eq(i).clone().wrap('<tr></tr>').parent();
+                _newTable.append(_itemTh, _itemTd);
+            });
+
+            _newTable.insertAfter(_table);
+        });
+
+        _table.hide();
+    }
+
+    function destroy() {
+        _table.show();
+        $('.separate-table').remove();
+    }
 }
 
 function setIframeAsResponsive() {
