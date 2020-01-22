@@ -2343,7 +2343,7 @@ function setStyleProps() {
     }
 
     function initMoboleBonusesPop(_ww) {
-        var _container = $('.list-item');
+        var _container = $('.list-item, .pick-list');
         var _mobilePop = $('.js-mobile-pop');
         var _btnOpen = $('.btn-round');
         var _btnClose = $('.js-mobile-pop-close');
