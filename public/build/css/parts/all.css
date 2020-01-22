@@ -10212,6 +10212,7 @@ abbr[title] {
 }
 .pick-header {
   height:50px;
+  border-radius:4px 4px 0 0;
   overflow:hidden;
   background:#F7F7F7;
   display: -webkit-box;
@@ -10239,6 +10240,7 @@ abbr[title] {
 }
 .pick-body {
   padding:10px;
+  border-radius:0 0 4px 4px;
   background:#fff;
   display: -webkit-box;
   display: -ms-flexbox;
