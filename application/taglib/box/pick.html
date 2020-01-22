@@ -21,9 +21,9 @@
                         <img width="98" height="65" src="${result.logo_small}" onerror="this.onerror=null; this.src='/public/build/images/default_casino_logo.png'" alt="${result.name} Logo">
                     </a>
                     <div class="pick-buttons">
-                        <div class="btn-round"  data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</div>
+                        <div class="btn-round ${(${data.is_mobile}?'':'js-tooltip-content')}" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</div>
                         <:if test="!empty(${result.bonus_free.amount})">
-                            <div class="btn-round"  data-name="${result.name}" data-is-free="1">${result.bonus_free.amount}</div>
+                            <div class="btn-round ${(${data.is_mobile}?'':'js-tooltip-content')}" data-name="${result.name}" data-is-free="1">${result.bonus_free.amount}</div>
                         </:if>
                     </div>
                     <a href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank" class="btn btn-full-width"><span>VISIT</span></a>
