@@ -30,6 +30,12 @@ blockquote p span{
     font-family: 'Open Sans';
 }
 
+@media screen and (max-width: 767px) {
+  .article-single{
+    padding:0 5px;
+  }
+}
+
 .article-single hr{
     border-top: 1px solid #E2E2E3;
 }
@@ -56,6 +62,18 @@ blockquote p span{
   color: #2171CE;
   text-transform: uppercase;
   margin:0 0 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .plain-text .spec_div h1,
+  .plain-text .spec_div h2,
+  .plain-text .spec_div h3,
+  .plain-text .spec_div h4,
+  .plain-text .spec_div h5,
+  .plain-text .spec_div h6 {
+    font-size:20px;
+    margin:0 0 10px;
+  }
 }
 
 blockquote p{
@@ -9693,22 +9711,54 @@ html.no-scroll {
   font-size:32px;
 }
 
+@media screen and (max-width: 767px) {
+  .plain-text h2 {
+    font-size:24px;
+  }
+}
+
 .plain-text h3{
   font-size:28px;
+}
+
+@media screen and (max-width: 767px) {
+  .plain-text h3 {
+    font-size:19px;
+  }
 }
 
 .plain-text h4{
   font-size:24px;
 }
 
+@media screen and (max-width: 767px) {
+  .plain-text h4 {
+    font-size:18px;
+    text-transform:uppercase;
+  }
+}
+
 .plain-text h5{
   font-size:20px;
+}
+
+@media screen and (max-width: 767px) {
+  .plain-text h5 {
+    font-size:18px;
+  }
 }
 
 .plain-text h6{
   font-size:20px;
   font-weight:bold;
 }
+
+@media screen and (max-width: 767px) {
+  .plain-text h6 {
+    font-size:18px;
+  }
+}
+
 
 .plain-text p {
   margin: 0 0 15px;

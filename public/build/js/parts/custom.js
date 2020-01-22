@@ -204,27 +204,23 @@ function initMobileLayoutOfTable() {
     var _table = $('.plain-text table');
     var _tr = _table.find('tr');
     var _th = _table.find('th');
-    var _newTable = $('<table class="separate-table"></table>');
     var _isInited = false;
 
-    if ($(window).width() < 768) {
-        init();
-        _isInited = true;
-    }
+    if ($(window).width() < 768) init();
 
     $(window).resize(function() {
-        if ($(window).width() < 768 && !_isInited) {
-            init();
-            _isInited = true;
+        if ($(window).width() < 768) {
+            if (!_isInited) init();
         } else {
             destroy();
-            // _isInited = false;
         }
     });
 
     function init() {
+        $('.separate-table').remove();
         _th.each(function(index, el) {
             var i = index;
+            var _newTable = $('<table class="separate-table"></table>');
 
             _tr.each(function(index, el) {
                 var _itemTh = $(el).find('th').eq(i).clone().wrap('<tr></tr>').parent();
@@ -232,15 +228,18 @@ function initMobileLayoutOfTable() {
                 _newTable.append(_itemTh, _itemTd);
             });
 
-            _newTable.insertAfter(_table);
+            _newTable.insertBefore(_table);
         });
 
-        _table.hide();
+        _table.remove();
+        _isInited = true;
     }
 
     function destroy() {
-        _table.show();
+        _table.insertAfter('.separate-table:first');
+      
         $('.separate-table').remove();
+        _isInited = false;
     }
 }
 
