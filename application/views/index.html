@@ -1,8 +1,6 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="index"/>
 	<!-- START: Hardcoding requested by TAN -->
-	<:if test="!empty(${data.user_preferences})">
-		<pre>${var_dump(${data.user_preferences})}</pre>
-	</:if>
+
 	<!-- END: Hardcoding requested by TAN -->
 	<:if test="isset(${data.widgets.upper})">
 		<div style="background-color:#330000; color:white; margin:0 0 30px;">${implode("\n", ${data.widgets.upper})}</div>

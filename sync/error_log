@@ -1,0 +1,32 @@
+[29-Jul-2018 02:20:02 UTC] PHP Fatal error:  Uncaught exception 'SQLConnectionException' with message 'SQLSTATE[HY000] [1040] Too many connections' in /home/casinoslists/public_html/live/site/vendor/lucinda/sql-data-access/src/SQLConnection.php:39
+Stack trace:
+#0 /home/casinoslists/public_html/live/site/vendor/lucinda/sql-data-access/src/SQLConnectionSingleton.php(54): SQLConnection->connect(Object(SQLDataSource))
+#1 /home/casinoslists/public_html/live/site/vendor/lucinda/sql-data-access/src/SQLConnectionSingleton.php(42): SQLConnectionSingleton->__construct()
+#2 /home/casinoslists/public_html/live/site/hlis/sync/src/models/DB.php(12): SQLConnectionSingleton::getInstance()
+#3 /home/casinoslists/public_html/live/site/hlis/sync/src/models/StatusReporter.php(68): DB::execute('UPDATE crons SE...', Array)
+#4 /home/casinoslists/public_html/live/site/vendor/lucinda/errors/src/ErrorHandler.php(37): StatusReporter->report(Object(SQLConnectionException))
+#5 [internal function]: ErrorHandler->handle(Object(SQLConnectionException))
+#6 {main}
+  thrown in /home/casinoslists/public_html/live/site/vendor/lucinda/sql-data-access/src/SQLConnection.php on line 39
+[20-Oct-2018 05:00:01 UTC] PHP Fatal error:  Uncaught exception 'SQLConnectionException' with message 'SQLSTATE[08004] [1040] Too many connections' in /home/casinoslists/public_html/live/site/vendor/lucinda/sql-data-access/src/SQLConnection.php:39
+Stack trace:
+#0 /home/casinoslists/public_html/live/site/vendor/lucinda/sql-data-access/src/SQLConnectionSingleton.php(54): SQLConnection->connect(Object(SQLDataSource))
+#1 /home/casinoslists/public_html/live/site/vendor/lucinda/sql-data-access/src/SQLConnectionSingleton.php(42): SQLConnectionSingleton->__construct()
+#2 /home/casinoslists/public_html/live/site/hlis/sync/src/models/DB.php(12): SQLConnectionSingleton::getInstance()
+#3 /home/casinoslists/public_html/live/site/hlis/sync/src/models/StatusReporter.php(68): DB::execute('UPDATE crons SE...', Array)
+#4 /home/casinoslists/public_html/live/site/vendor/lucinda/errors/src/ErrorHandler.php(37): StatusReporter->report(Object(SQLConnectionException))
+#5 [internal function]: ErrorHandler->handle(Object(SQLConnectionException))
+#6 {main}
+  thrown in /home/casinoslists/public_html/live/site/vendor/lucinda/sql-data-access/src/SQLConnection.php on line 39
+[20-Oct-2018 05:00:01 UTC] PHP Fatal error:  Uncaught exception 'SQLConnectionException' with message 'SQLSTATE[08004] [1040] Too many connections' in /home/casinoslists/public_html/live/site/vendor/lucinda/sql-data-access/src/SQLConnection.php:39
+Stack trace:
+#0 /home/casinoslists/public_html/live/site/vendor/lucinda/sql-data-access/src/SQLConnectionSingleton.php(54): SQLConnection->connect(Object(SQLDataSource))
+#1 /home/casinoslists/public_html/live/site/vendor/lucinda/sql-data-access/src/SQLConnectionSingleton.php(42): SQLConnectionSingleton->__construct()
+#2 /home/casinoslists/public_html/live/site/hlis/sync/src/models/DB.php(12): SQLConnectionSingleton::getInstance()
+#3 /home/casinoslists/public_html/live/site/hlis/sync/src/models/StatusReporter.php(68): DB::execute('UPDATE crons SE...', Array)
+#4 /home/casinoslists/public_html/live/site/vendor/lucinda/errors/src/ErrorHandler.php(37): StatusReporter->report(Object(SQLConnectionException))
+#5 [internal function]: ErrorHandler->handle(Object(SQLConnectionException))
+#6 {main}
+  thrown in /home/casinoslists/public_html/live/site/vendor/lucinda/sql-data-access/src/SQLConnection.php on line 39
+[28-May-2019 09:03:39 America/New_York] PHP Warning:  require_once(/home/casinoslists/public_html/live/site/hlis/php-errors-api/loader.php): failed to open stream: No such file or directory in /home/casinoslists/public_html/live/site/hlis/sync/src/controllers/Cron.php on line 70
+[28-May-2019 09:03:39 America/New_York] PHP Fatal error:  require_once(): Failed opening required '/home/casinoslists/public_html/live/site/hlis/php-errors-api/loader.php' (include_path='/home/casinoslists/public_html/live/site/hlis/sync') in /home/casinoslists/public_html/live/site/hlis/sync/src/controllers/Cron.php on line 70
