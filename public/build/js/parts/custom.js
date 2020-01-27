@@ -3,6 +3,7 @@ var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
 var COUNTRY_CURR_PAGE = 1;
+var BEST_BANKING_PAGE = 1;
 
 function tmsIframe() {
     if($(".tms_iframe").length) {
@@ -49,6 +50,8 @@ var initImageLazyLoad = function() {
             e.preventDefault();
         }
         detectIsKeyboardOpened();
+        initMobileLayoutOfTable();
+
 
         $('.js-more-games').click(function(){
             $(this).addClass('loading');
@@ -121,6 +124,41 @@ var initImageLazyLoad = function() {
             }
         } );
     });
+    
+    $('.js-more-banking').click(function(){
+            $(this).addClass('loading');
+            var key = $(this).data('key');
+            var self = $(this);
+            _request = $.ajax( {
+            url: '/casinos-by-banking/'+BEST_BANKING_PAGE,
+            data:{
+                page:BEST_BANKING_PAGE,
+                banking: $(self).data('banking')
+            },
+            dataType: 'html',
+            type: 'post',
+            success: function (data) {
+                setTimeout(function(){
+                                    self.removeClass('loading');
+                                    refresh();
+                }, 1000);
+                BEST_BANKING_PAGE++;
+                $(self).parent().prev().find('.list-body').append(data);
+                if($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
+                    $(self).hide();
+                }
+            },
+            error: function ( XMLHttpRequest ) {
+                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                if ( XMLHttpRequest.statusText != "abort" ) {
+                    console.log( 'err' );
+                }
+            },
+            complete: function(){
+                BUSY_REQUEST = false;
+            }
+        } );
+    });
 
     $('.load-more').click(function(){
         var _request = new XMLHttpRequest();
@@ -160,6 +198,49 @@ var initImageLazyLoad = function() {
 
 if( /iPhone|iPad|iPod/i.test(navigator.userAgent) ) {
     $('body').addClass('ios-device');
+}
+
+function initMobileLayoutOfTable() {
+    var _table = $('.plain-text table');
+    var _tr = _table.find('tr');
+    var _th = _table.find('th');
+    var _isInited = false;
+
+    if ($(window).width() < 768) init();
+
+    $(window).resize(function() {
+        if ($(window).width() < 768) {
+            if (!_isInited) init();
+        } else {
+            destroy();
+        }
+    });
+
+    function init() {
+        $('.separate-table').remove();
+        _th.each(function(index, el) {
+            var i = index;
+            var _newTable = $('<table class="separate-table"></table>');
+
+            _tr.each(function(index, el) {
+                var _itemTh = $(el).find('th').eq(i).clone().wrap('<tr></tr>').parent();
+                var _itemTd = $(el).find('td').eq(i).clone().wrap('<tr></tr>').parent();
+                _newTable.append(_itemTh, _itemTd);
+            });
+
+            _newTable.insertBefore(_table);
+        });
+
+        _table.remove();
+        _isInited = true;
+    }
+
+    function destroy() {
+        _table.insertAfter('.separate-table:first');
+      
+        $('.separate-table').remove();
+        _isInited = false;
+    }
 }
 
 function setIframeAsResponsive() {
@@ -2262,7 +2343,7 @@ function setStyleProps() {
     }
 
     function initMoboleBonusesPop(_ww) {
-        var _container = $('.list-item');
+        var _container = $('.list-item, .pick');
         var _mobilePop = $('.js-mobile-pop');
         var _btnOpen = $('.btn-round');
         var _btnClose = $('.js-mobile-pop-close');

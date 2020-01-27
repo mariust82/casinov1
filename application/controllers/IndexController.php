@@ -22,6 +22,9 @@ class IndexController extends BaseController
 {
     public function service()
     {
+        $this->response->attributes("picks", $this->getTopPicks([]));
+        $this->response->attributes("month", date('F'));
+        $this->response->attributes("year", date('Y'));
         $this->response->attributes("user_preferences", (array) $this->getUserPreferences());
         $this->getTotalCasinos();
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
@@ -66,6 +69,13 @@ class IndexController extends BaseController
             $object = new CasinosList(new CasinoFilter($filter, $this->request->attributes("country")));
             $results = $object->getResults($sortBy, 0, $limit);
         }
+        return $results;
+    }
+    
+    private function getTopPicks($filter)
+    {
+        $object = new CasinosList(new CasinoFilter($filter, $this->request->attributes("country")));
+        $results = $object->getTopPicks($this->request->attributes("country")->id);
         return $results;
     }
 

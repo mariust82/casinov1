@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
 <xml>
-  <application version="0.8.8.9090" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
+  <application version="0.8.8.9122" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
     <paths>
       <controllers>application/controllers</controllers>
       <cacheables>application/models/cacheables</cacheables>
@@ -60,10 +60,10 @@
     <route url="reviews/(name)-review" controller="CasinoInfoController" view="casino-info" rebrand_tables="casinos">
       <parameter name="name" validator="CasinoNameValidator"/>
     </route>
-    <route url="visit/(name)" controller="CasinoVisitController">
+    <route url="visit/(name)-terms" controller="CasinoTermsVisitController">
       <parameter name="name" validator="CasinoNameValidator"/>
     </route>
-    <route url="link/(name)-terms" controller="CasinoTermsVisitController">
+    <route url="visit/(name)" controller="CasinoVisitController">
       <parameter name="name" validator="CasinoNameValidator"/>
     </route>
     <route url="goto/(url)" controller="GoToController">
@@ -90,6 +90,10 @@
     <route url="casinos-by-software/(page)" controller="LoadMoreCasinosBySoftwareController" view="casino-item">
       <parameter name="page" validator="IntegerValidator"/>
     </route>
+    <route url="casinos-by-banking/(page)" controller="LoadMoreCasinosByBankingController" view="casino-item">
+      <parameter name="page" validator="IntegerValidator"/>
+    </route>
+    
     <route url="softwares" controller="SoftwaresController" view="softwares"/>
     <route url="games/(type)" controller="GamesByTypeController" view="games">
       <parameter name="type" validator="GameTypeValidator"/>

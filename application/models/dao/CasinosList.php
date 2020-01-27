@@ -123,6 +123,53 @@ class CasinosList
         $query = $queryGenerator->getQuery();
         return SQL($query)->toValue();
     }
+    
+    public function getTopPicks($country) {
+        $resultSet = SQL("SELECT t2.*, IF(t3.id IS NOT NULL, 1, 0) AS is_country_supported FROM `top_picks` AS `t1` 
+        INNER JOIN `casinos` AS `t2` ON (`t1`.`n_c_id` = `t2`.`id`) 
+        LEFT JOIN casinos__countries_allowed AS t3 ON (t2.id = t3.casino_id) AND t3.country_id = {$country}
+        WHERE `t1`.`date`='" . date("Y-m-01") . "'");
+
+        while ($row = $resultSet->toRow()) {
+            $object = new Casino();
+            $object->name = $row["name"];
+            $object->is_country_accepted = $row["is_country_supported"];            
+            $object->logo_small = $this->getCasinoLogo($object->code = $row["code"], "85x56");//   $object->logo_small = "/public/sync/casino_logo_light/85x56/".strtolower(str_replace(" ", "_", $object->code)).".png";
+            $output[$row["id"]] = $object;
+        }
+        if (empty($output)) {
+            return array();
+        }
+        
+        // append bonuses
+        $query = "
+        SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name , t1.bonus_type_id
+        FROM casinos__bonuses AS t1
+        INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
+        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins','Free Play')
+        ";
+        $resultSet = SQL($query);
+        while ($row = $resultSet->toRow()) {
+            $bonus = new CasinoBonus();
+            $bonus->amount = $row["amount"];
+            $bonus->amount = $this->checkForAbbr($bonus->amount);
+            $bonus->min_deposit = $row["deposit_minimum"];
+            if ($row["wagering"] == '') {
+                $row["wagering"] = 0;
+            }
+            $bonus->wagering = $row["wagering"];
+            $bonus->games_allowed = $row["games"];
+            $bonus->code = $row["codes"];
+            $bonus->type = $row["name"];
+            if ($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins" || $row["name"]=="Free Play" || $row["name"]=="Bonus Spins") {
+                $output[$row["casino_id"]]->bonus_free = $bonus;
+            } else {
+                $output[$row["casino_id"]]->bonus_first_deposit = $bonus;
+            }
+        }
+        
+        return array_values($output);
+    }
 
     private function getCasinoLogo($name, $resolution)
     {
