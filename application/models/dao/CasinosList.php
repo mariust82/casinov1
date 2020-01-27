@@ -151,7 +151,7 @@ class CasinosList
         $resultSet = SQL($query);
         while ($row = $resultSet->toRow()) {
             $bonus = new CasinoBonus();
-            $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
+            $bonus->amount = $row["amount"];
             $bonus->amount = $this->checkForAbbr($bonus->amount);
             $bonus->min_deposit = $row["deposit_minimum"];
             if ($row["wagering"] == '') {
