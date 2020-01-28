@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
 <xml>
-  <application version="0.8.8.386" default_content_type="text/html" templates_extension="html">
+  <application version="0.8.8.386" default_format="html" templates_extension="html">
     <paths>
       <compilations>compilations</compilations>
       <controllers>application/controllers</controllers>
@@ -29,8 +29,8 @@
     </live>
   </reporters>
   <renderers>
-    <renderer name="html" content_type="text/html" class="ViewLanguageRenderer" charset="UTF-8"/>
-    <renderer name="json" content_type="application/json" class="JsonRenderer" charset="UTF-8"/>
+    <renderer format="html" content_type="text/html" class="ViewLanguageRenderer" charset="UTF-8"/>
+    <renderer format="json" content_type="application/json" class="JsonRenderer" charset="UTF-8"/>
   </renderers>
   <exceptions error_type="LOGICAL" controller="ErrorsController">
     <exception class="Lucinda\MVC\STDOUT\PathNotFoundException" controller="PageNotFoundController" http_status="404" error_type="CLIENT" view="404"/>

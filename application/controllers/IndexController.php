@@ -22,8 +22,11 @@ class IndexController extends BaseController
 {
     public function service()
     {
+        $this->response->attributes("picks", $this->getTopPicks([]));
+        $this->response->attributes("month", date('F'));
+        $this->response->attributes("year", date('Y'));
         $this->response->attributes("user_preferences", (array) $this->getUserPreferences());
-
+        $this->getTotalCasinos();
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $this->response->attributes("best_casinos", $this->getCasinos(array("label"=>"Best"), CasinoSortCriteria::TOP_RATED, 10));
         $this->response->attributes("country_casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, 5));
@@ -38,6 +41,15 @@ class IndexController extends BaseController
         $this->response->attributes("filter", null);
         $this->response->attributes("page_type", "index");
         $this->response->attributes("selected_entity", "index");
+    }
+    
+    private function getTotalCasinos() {
+        $filter = new CasinoFilter(
+                [], $this->request->attributes("country")
+        );
+        $filter->setPromoted(TRUE);
+        $object = new CasinosList($filter);
+        return $object->getTotal();
     }
 
     private function getUserPreferences()
@@ -57,6 +69,13 @@ class IndexController extends BaseController
             $object = new CasinosList(new CasinoFilter($filter, $this->request->attributes("country")));
             $results = $object->getResults($sortBy, 0, $limit);
         }
+        return $results;
+    }
+    
+    private function getTopPicks($filter)
+    {
+        $object = new CasinosList(new CasinoFilter($filter, $this->request->attributes("country")));
+        $results = $object->getTopPicks($this->request->attributes("country")->id);
         return $results;
     }
 

@@ -14,12 +14,12 @@ require_once("application/models/orm/GamesBySoftware.php");
 */
 class LoadMoreGamesBySoftwareController extends Lucinda\MVC\STDOUT\Controller
 {
-    const LIMIT = 24;
     public function run()
     {
+        $limit = $this->request->attributes("is_mobile") ? 4 : 8;
         $driver = new \CasinosLists\GamesBySoftware(
             $this->request->parameters("software"),
-            self::LIMIT,
+            $limit,
             $this->request->getValidator()->parameters("page")
         );
         $results = $driver->getResults();

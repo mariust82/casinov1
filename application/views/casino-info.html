@@ -27,14 +27,14 @@
 				<div class="casino-review-heading-left">
 					<h1 class="casino-review-title">${data.page_info.body_title}</h1>
 					<div class="btn-group">
-						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
-                        <:if test="${data.casino.status} == 'Blacklisted' || ${data.casino.status} == 'Warning'">
-                            <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" rel="nofollow">PLAY NOW</a>
-                        <:else>
-                            <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
-                        </:if>
+                                            <a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
+                                               <:if test="${data.casino.status} == 'Blacklisted' || ${data.casino.status} == 'Warning'">
+                                               <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" rel="nofollow">PLAY NOW</a>
+                                               <:else>
+                                               <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
+                                               </:if>
                         <:if test="${data.casino.is_tc_link}">
-	                    	<a href="/link/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
+	                    	<a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
                         </:if>
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 					<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
 					<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
 					<:if test="${data.casino.is_tc_link}">
-						<a href="/link/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
+						<a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
 					</:if>
 				</div>
 				<div class="casino-review-country casino-review-mobile">
@@ -399,10 +399,12 @@
 							<:foreach var="${data.casino.casino_deposit_methods}" key ="dep_method" val="dep_method_data">
 							<tr>
 								<td >
-									<div class="table-flex">
-										<img class="payment-logo" src="${dep_method_data.logo}" width="60" height="40" alt="${dep_method} Logo">
-										<div class="table-desctop-visible">${dep_method}</div>
-									</div>
+									<a href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
+										<div class="table-flex">
+											<img class="payment-logo" src="${dep_method_data.logo}" width="60" height="40" alt="${dep_method} Logo">
+											<div class="table-desctop-visible">${dep_method}</div>
+										</div>
+									</a>
 								</td>
 								<td align="center">
 									<:if test="empty(${dep_method_data.deposit_methods})">

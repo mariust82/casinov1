@@ -1,33 +1,11 @@
-<:set var="bonus" val="Free"/>
-<:set var="is_low_wagering" val="(${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')"/>
-<div class="list">
-	<div class="list-heading list-item">
-		<div class="list-item-cell list-item-casino list-heading-title">CASINO</div>
-
-		<:if test="${is_low_wagering}">
-			<div class="list-item-cell list-heading-title list-item-cell-bfnp">BONUS <span>FOR NEW PLAYERS</span></div>
-			<div class="list-item-cell list-heading-title list-item-cell-wagering">WAGERING</div>
-			<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
-		<:else>
-			<:if test="${data.page_type} == 'banking_method'">
-				<div class="list-item-cell list-heading-title list-item-banking-dep">DEPOSIT</div>
-				<div class="list-item-cell list-heading-title list-item-banking-wit">WITHDRAWAL</div>
-			<:else>
-				<div class="list-item-cell list-heading-title list-item-type">$[type]</div>
-			</:if>
-			<div class="list-item-cell list-heading-title list-item-fd-bonus"><span>FIRST DEPOSIT</span> BONUS</div>
-			<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
-			<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
-		</:if>
-	</div>
-	<div class="list-body">
-		<:set var="i" val="0"/>
+<:set var="i" val="0"/>
+<:set var="is_low_wagering" val="($[pagetype] == 'label' && $[entity] == 'Low Wagering') || ($[pagetype] == 'low_wagering')"/>
 		<:foreach var="$[data]" val="result">
 			<:set var="fdb_amount" val="${result.bonus_first_deposit.amount}"/>
 
 			<div class="list-item loaded-item">
 				<div class="list-item-cell list-item-casino">
-					<:if test="${result.new} == true && '$[type]' != 'ESTABLISHED'">
+					<:if test="${result.new} == true && $[type] != 'ESTABLISHED'">
 						<div class="new-casino">
 							<div class="new-casino-text"> New </div>
 						</div>
@@ -35,7 +13,7 @@
 					<div class="list-flex">
 						<div class="list-flag">
 							<:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
-							<img class="${accepted_class}" src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
+							<img class="${accepted_class}" src="/public/build/images/flags/$[country].png" width="30" height="20" alt="$[country]">
 						</div>
 						<:set var="score_class" val="get_rating(${result.rating})"/>
 						<div class="list-rating ${normalize(${score_class})}">
@@ -55,7 +33,7 @@
 						<div class="list-title-holder">
 							<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
 								${result.name}
-								<:if test="'$[type]' == 'ESTABLISHED' && ${data.is_mobile}">
+								<:if test="$[type] == 'ESTABLISHED' && ${data.is_mobile}">
 									<div class="list-small-text upper">${result.date_formatted}</div>
 								</:if>
 							</a>
@@ -66,12 +44,12 @@
 					</div>
 				</div>
 
-				<:if test="${data.page_type} != 'banking_method'">
+				<:if test="$[pagetype] != 'banking_method'">
 					<:if test="!${is_low_wagering}">
 						<div class="list-item-cell list-item-type">
 							<div class="multirow">
 								<div class="list-item-flex">
-									<:if test="'$[type]' == 'ESTABLISHED'">
+									<:if test="$[type] == 'ESTABLISHED'">
 											<span class="upper">${result.date_formatted}</span>
 									<:else>
 										<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
@@ -98,7 +76,7 @@
 					</div>
 				</:if>
 
-				<:if test="${data.is_mobile}">
+				<:if test="$[mobile]">
 					<:if test="${is_low_wagering}">
 						<div class="btn-round-holder list-item-cell-bfnp">
 							<span class="btn-round" data-name="${result.name}" data-is-free="1"> ${result.bonus_free.amount}
@@ -188,5 +166,3 @@
 
 		<:unset var="i"/>
 		<:unset var="result"/>
-	</div>
-</div>
