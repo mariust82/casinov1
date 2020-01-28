@@ -9573,7 +9573,6 @@ html.no-scroll {
   font-size:14px;
   list-style: decimal;
   padding: 0 0 0 15px;
-  margin: 15px 0;
   line-height: 26px;
 }
 
@@ -9594,7 +9593,6 @@ html.no-scroll {
 .plain-text li {
   padding: 0;
   position: relative;
-  margin: 15px 0 0 0;
 }
 
 .plain-text ul li{
@@ -9761,7 +9759,6 @@ html.no-scroll {
 
 
 .plain-text p {
-  margin: 0 0 15px;
   line-height: 1.9;
 }
 
