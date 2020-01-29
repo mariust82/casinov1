@@ -12,7 +12,6 @@
 .missing{
     color: #0052cc;
 }
-
 .block_pad{
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -9594,7 +9593,6 @@ html.no-scroll {
 .plain-text li {
   padding: 0;
   position: relative;
-  margin: 15px 0 0 0;
 }
 
 .plain-text ul li{
@@ -9831,16 +9829,22 @@ html.no-scroll {
   }
 }
 
-.plain-text br{
-  display:none;
-}
-
 .box-wrap{
 	margin-bottom: 25px;
 }
 
 .plain-text ul b{
 	color: #2171CE;
+}
+
+.plain-text-lower{
+  margin:80px 0 0 0;
+}
+
+@media screen and (max-width: 767px) {
+  .plain-text-lower{
+    margin:40px 0 0 0;
+  }
 }
 
 .vote-block {
@@ -10158,7 +10162,6 @@ abbr[title] {
 
 .plain-text img{
   width:100% !important;
-  max-width:560px;
   height:auto !important;
 }
 
