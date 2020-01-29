@@ -2598,6 +2598,10 @@ function setStyleProps() {
         _input.on('focus', function() {
             goToPosition(0);
         });
+
+        _drop.on('scroll', function(event) {
+            _input.blur();
+        });
     }
 
     function detectIsKeyboardOpened() {
