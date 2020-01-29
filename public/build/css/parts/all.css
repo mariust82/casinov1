@@ -12,7 +12,6 @@
 .missing{
     color: #0052cc;
 }
-https://www.casinoslists.com/bonus-list/no-deposit-bonus
 .block_pad{
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -9594,7 +9593,6 @@ html.no-scroll {
 .plain-text li {
   padding: 0;
   position: relative;
-  margin: 15px 0 0 0;
 }
 
 .plain-text ul li{
@@ -9837,6 +9835,16 @@ html.no-scroll {
 
 .plain-text ul b{
 	color: #2171CE;
+}
+
+.plain-text-lower{
+  margin:80px 0 0 0;
+}
+
+@media screen and (max-width: 767px) {
+  .plain-text-lower{
+    margin:40px 0 0 0;
+  }
 }
 
 .vote-block {
