@@ -10404,3 +10404,7 @@ abbr[title] {
     display:block;
   }
 }
+
+[data-is-free="1"]{
+  color:#529724;
+}
