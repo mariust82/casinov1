@@ -1,5 +1,6 @@
 <?php
 require_once("AbstractSitemapController.php");
+require_once 'application/models/dao/CasinosSitemap.php';
 
 class CasinoLabelsController extends AbstractSitemapController
 {
