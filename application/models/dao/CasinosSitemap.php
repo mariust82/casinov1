@@ -25,7 +25,7 @@ class CasinosSitemap {
 
     private function setCasinosByLabelLastMod() {
         $output = [];
-        $labels = ["Best", "New", "Popular", "Stay Away", "Low Wagering", "No Account Casinos"];
+        $labels = ["Best", "New", "Popular", "Blacklisted Casinos", "Low Wagering", "No Account Casinos"];
         foreach ($labels as $label) {
             $order = 't1.priority DESC, t1.id DESC';
             
