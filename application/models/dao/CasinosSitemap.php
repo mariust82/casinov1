@@ -33,7 +33,7 @@ class CasinosSitemap {
                 $now = date("Y-m-d");
                 $date = strtotime($now . ' -1 year');
                 $last = date('Y-m-d', $date);
-                $output[$label] = SQL("SELET MAX(t1.date) FROM casinos AS t1 LEFT OUTER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$this->country} WHERE t1.is_open = 1 AND t1.date_established > '{$last}' ORDER BY t1.date_established DESC, t1.priority DESC, t1.id DESC")->toValue();
+                $output[$label] = SQL("SELECT MAX(t1.date) FROM casinos AS t1 LEFT OUTER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$this->country} WHERE t1.is_open = 1 AND t1.date_established > '{$last}' ORDER BY t1.date_established DESC, t1.priority DESC, t1.id DESC")->toValue();
             } else {
                 switch ($label) {
                     case 'Best':
