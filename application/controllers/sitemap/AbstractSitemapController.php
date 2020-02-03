@@ -3,9 +3,13 @@ abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
 {
     public function run()
     {
+        $this->init();
         $this->response->attributes("pages", $this->getPages());
+        $this->response->attributes("lastMod", $this->getLastMod());
         $this->response->attributes("priority", $this->getPriority());
     }
+    
+    protected function init() {}
 
     private function getPages()
     {
@@ -27,6 +31,8 @@ abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
         $page = $this->request->getURI()->getPage();
         return (strpos($page, "sitemaps_ps/")===0?"https":"http");
     }
+    
+    abstract protected function getLastMod();
 
     abstract protected function getItems();
 

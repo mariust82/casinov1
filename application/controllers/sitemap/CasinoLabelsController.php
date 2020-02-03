@@ -1,11 +1,24 @@
 <?php
 require_once("AbstractSitemapController.php");
+require_once 'application/models/dao/CasinosSitemap.php';
 
 class CasinoLabelsController extends AbstractSitemapController
 {
+    private $dao;
+    private $rows;
+    
+    protected function init() {
+        $this->dao = new CasinosSitemap($this->request->attributes("country")->id);
+        $this->rows = $this->dao->getCasinosByLabelLastMod();
+    }
+    
     protected function getItems()
     {
-        return ["Best", "New", "Popular", "Stay Away","Low Wagering","No Account Casinos"];
+        return array_keys($this->rows);
+    }
+    
+    protected function getLastMod() {
+        return array_values($this->rows);
     }
 
     protected function getUrlPattern()

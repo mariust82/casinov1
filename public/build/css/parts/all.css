@@ -150,7 +150,7 @@ h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
 }
 
 .no_button{
-    padding-top: 45px;
+    margin-top: 45px;
 }
 
 .btn-games{
@@ -10403,4 +10403,8 @@ abbr[title] {
     content:'\e903';
     display:block;
   }
+}
+
+[data-is-free="1"]{
+  color:#529724;
 }

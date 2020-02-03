@@ -414,7 +414,6 @@ function setStyleProps() {
             $('body').removeClass('shadow');
         },
         functionBefore: function(instance, helper) {
-            
             var $origin = $(helper.origin);
 
             if ($origin.data('loaded') !== true) {
@@ -435,16 +434,24 @@ function setStyleProps() {
                     success: function (response) {
                         instance.content(response);
                         setTimeout(function(){
-                            $('.js-tooltip').tooltipster(tooltipConfig);
-                            $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-                            copyToClipboard();
-                            checkStringLength($('.bonus-box'), 15);
-                        }, 50)
-
+                            updateHandlers();
+                        }, 50);
                         $origin.data('loaded', true);
                     }
                 });
+            } else {
+                setTimeout(function(){
+                    updateHandlers();
+                }, 50);
             }
+
+            function updateHandlers() {
+                $('.js-tooltip').tooltipster(tooltipConfig);
+                $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                copyToClipboard();
+                checkStringLength($('.bonus-box'), 15);
+            }
+
         }
     };
 
@@ -2590,6 +2597,10 @@ function setStyleProps() {
 
         _input.on('focus', function() {
             goToPosition(0);
+        });
+
+        _drop.on('scroll', function(event) {
+            _input.blur();
         });
     }
 

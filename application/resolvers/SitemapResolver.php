@@ -9,16 +9,22 @@ class SitemapResolver extends \Lucinda\MVC\STDOUT\ViewResolver
     {
         // get parameters based on which sitemap will be constructed
         $pages = $this->response->attributes("pages");
-        $lastModifiedDate = date("Y-m-d");
+        $lastModifiedDate = $this->response->attributes("lastMod");
         $changeFrequency = "daily";
         $priority = $this->response->attributes("priority");
         // construct xml
         ob_start();
         $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>');
+        $i = 0;
         foreach ($pages as $page) {
             $child = $xml->addChild("url");
             $child->addChild("loc", $page);
-            $child->addChild("lastmod", $lastModifiedDate);
+            if (is_array($lastModifiedDate)) {        
+                $child->addChild("lastmod", $lastModifiedDate[$i]);
+                $i++;
+            } else {
+                $child->addChild("lastmod", $lastModifiedDate);
+            }
             $child->addChild("changefreq", $changeFrequency);
             $child->addChild("priority", $priority);
         }
