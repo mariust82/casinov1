@@ -19,7 +19,7 @@ abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
         $pages = array();
         foreach ($items as $name) {
             if(strtolower($name) == "slots") {
-                $pages[] = $protocol . "://" . $this->request->getServer()->getName() . "/" . strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars('clasic-'.$name), $urlPattern)));
+                $pages[] = $protocol . "://" . $this->request->getServer()->getName() . "/" . strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars('classic-'.$name), $urlPattern)));
             }else
                 $pages[] = $protocol."://".$this->request->getServer()->getName()."/".strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars($name), $urlPattern)));
         }
