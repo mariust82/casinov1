@@ -19,6 +19,8 @@ class BankingSitemap {
         foreach ($methods as $key => $value) {
             $output[$value] = SQL("SELECT MAX(t1.date) FROM casinos AS t1 LEFT OUTER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = 25 LEFT OUTER JOIN casinos__deposit_methods AS t3 ON t1.id = t3.casino_id AND t3.banking_method_id = {$key} LEFT OUTER JOIN casinos__withdraw_methods AS t14 ON t1.id = t14.casino_id AND t14.banking_method_id = 58 WHERE t1.is_open = 1 AND (t3.id IS NOT NULL OR t14.id IS NOT NULL)")->toValue();
         }
+        var_dump($output);
+        die();
         return $output;
     }
     
