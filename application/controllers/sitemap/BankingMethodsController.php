@@ -8,7 +8,7 @@ class BankingMethodsController extends AbstractSitemapController
     private $rows;
     
     protected function init() {
-        $this->dao = new BankingSitemap();
+        $this->dao = new BankingSitemap($this->request->attributes("country")->id);
         $this->rows = $this->dao->getBankingRows();
     }
     
