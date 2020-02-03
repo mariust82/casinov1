@@ -19,4 +19,8 @@ class GameTypesController extends AbstractSitemapController
     {
         return "0.8";
     }
+    protected function getLastMod()
+    {
+
+    }
 }
