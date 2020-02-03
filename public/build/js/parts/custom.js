@@ -2077,7 +2077,9 @@ function setStyleProps() {
             },
 
             _ajaxRequestPopup = function(target, page) {
-                lockScreen();
+                if (checkIfIsMobileDevice()) {
+                    lockScreen();
+                }
                 if (BUSY_REQUEST && (nr_requests_completed == nr_requests)) // if nr request completed = nr request sent
                 {
                     //  console.log("\n\n END \n\n");
@@ -2505,9 +2507,9 @@ function setStyleProps() {
             if (checkIfIsMobileDevice()) {
                 position = $(window).scrollTop();
                 if (_window.hasClass('no-scroll')) {
-                    _window.addClass('no-scroll');
+                    lockScreen();
                 } else {
-                    _window.removeClass('no-scroll');
+                    unlockScreen();
                     goToPosition(position);
                 }
 
