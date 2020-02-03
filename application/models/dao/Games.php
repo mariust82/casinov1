@@ -15,6 +15,6 @@ class Games
 
     public function getAll()
     {
-        return SQL("SELECT name FROM games ORDER BY name ASC")->toColumn();
+        return SQL("SELECT name FROM games ORDER BY date_launched DESC,id DESC")->toColumn();
     }
 }
