@@ -17,4 +17,20 @@ class Games
     {
         return SQL("SELECT name FROM games ORDER BY date_launched DESC,id DESC")->toColumn();
     }
+    
+    private function setGamesLastMod()
+    {
+        $res = SQL("SELECT date FROM games ORDER BY date_launched DESC,id DESC")->toColumn();
+        $output = [];
+        foreach ($res as $value) {
+            $arr = explode(' ', $value);
+            $output[] = $arr[0];
+        }
+        return $output;
+    }
+    
+    public function getGamesLastMod()
+    {
+        return $this->setGamesLastMod();
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once("application/models/dao/BankingSitemap.php");
+require_once("application/models/dao/sitemap/BankingSitemap.php");
 
 class BankingMethodsController extends AbstractSitemapController
 {

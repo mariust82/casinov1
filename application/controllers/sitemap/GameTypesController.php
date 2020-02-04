@@ -1,13 +1,25 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once("application/models/dao/GameTypes.php");
+require_once("application/models/dao/sitemap/GameTypesSitemap.php");
 
 class GameTypesController extends AbstractSitemapController
 {
+    
+    private $dao;
+    private $rows;
+    
+    protected function init() {
+        $this->dao = new GameTypesSitemap($this->request->attributes("country")->id);
+        $this->rows = $this->dao->getGameTypesRows();
+    }
+    
     protected function getItems()
     {
-        $bm = new GameTypes($this->request->attributes("is_mobile"));
-        return $bm->getAll();
+        return array_keys($this->rows);
+    }
+    
+    protected function getLastMod() {
+        return array_values($this->rows);
     }
 
     protected function getUrlPattern()
@@ -19,8 +31,5 @@ class GameTypesController extends AbstractSitemapController
     {
         return "0.8";
     }
-    protected function getLastMod()
-    {
-
-    }
+    
 }

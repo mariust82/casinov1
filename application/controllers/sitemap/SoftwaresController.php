@@ -1,6 +1,6 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once("application/models/dao/GameManufacturersSitemap.php");
+require_once("application/models/dao/sitemap/GameManufacturersSitemap.php");
 
 class SoftwaresController extends AbstractSitemapController
 {

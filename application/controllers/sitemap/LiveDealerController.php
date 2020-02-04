@@ -47,4 +47,9 @@ class LiveDealerController extends AbstractSitemapController
 
         return $pages;
     }
+
+    protected function getLastMod() {
+        return date("Y-m-d");
+    }
+
 }
