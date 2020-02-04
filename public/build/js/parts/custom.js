@@ -2360,8 +2360,7 @@ function setStyleProps() {
             _btnOpen.off('click');
 
             function cloneContent(_this) {
-                var _contentHolder = _this.closest(_container).find('.mobile-popup-body');
-                var _heading = _this.closest(_container).find('.mobile-popup-title');
+                var _contentHolder = _this.closest(_container).find('.pick-body, .list-item-cell-buttons');
                 var _items = _this.closest(_container).find('.js-tooltip-content');
                 var _name = _this.data('name');
                 var _is_free = _this.data('is-free');
@@ -2377,52 +2376,37 @@ function setStyleProps() {
                     dataType: 'html',
                     type: 'GET',
                     success: function (response) {
-                        $bonus = response;
-                        
-                        if(_is_free) {
-                            _contentHolder.prepend($bonus);
-                        } else {
-                            _contentHolder.append($bonus);
-                        }
-
-                        _heading.text($($bonus).find('.tooltip-templates-title').text());
-
-                        _contentHolder.find('.js-tooltip').tooltipster(tooltipConfig);
-                        _contentHolder.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                        console.log('123');
+                        $(response).insertAfter(_contentHolder);
+                        var _mobilePop = _this.closest(_container).find('.js-mobile-pop');
+                        _mobilePop.find('.js-tooltip').tooltipster(tooltipConfig);
+                        _mobilePop.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+                        var _btnClose = _mobilePop.find('.js-mobile-pop-close');
                         checkStringLength($('.bonus-box'), 21);
                         copyToClipboard();
+
                         $('.overlay, .loader').fadeOut('fast');
+                        _mobilePop.fadeIn('fast').fadeIn('fast');
+                        lockScreen();
+                        _btnClose.on('click', function(e) {
+                            _mobilePop.fadeOut('fast')
+                                .find('.mobile-popup-body')
+                                .html('');
+                            unlockScreen();
+                            $('.overlay, .loader').fadeOut('fast');
+
+                            goToPosition(_position);
+                            $(_mobilePop).remove();
+                            return false;
+                        });
                     }
                 });
-                
-                showPop(_this);
-            }
-
-            function showPop(_this) {
-                _this
-                    .closest(_container)
-                    .find(_mobilePop)
-                    .fadeIn('fast');
-                    lockScreen();
             }
 
             _btnOpen.on('click', function(e) {
                 _position = $(window).scrollTop();
                 $('.overlay, .loader').fadeIn('fast');
                 cloneContent($(this));
-                return false;
-            });
-
-            _btnClose.on('click', function(e) {
-                $(this)
-                    .closest(_mobilePop)
-                    .fadeOut('fast')
-                    .find('.mobile-popup-body')
-                    .html('');
-                unlockScreen();
-                $('.overlay, .loader').fadeOut('fast');
-
-                goToPosition(_position);
                 return false;
             });
         }
