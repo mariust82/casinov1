@@ -4,7 +4,7 @@ var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
 var COUNTRY_CURR_PAGE = 1;
 var BEST_BANKING_PAGE = 1;
-
+var searched_value = '';
 function tmsIframe() {
     if ($(".tms_iframe").length) {
         $(".tms_iframe").each(function () {
