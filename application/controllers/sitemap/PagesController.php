@@ -4,9 +4,17 @@ require_once 'application/models/dao/PagesSitemap.php';
 
 class PagesController extends AbstractSitemapController
 {
+    
+    private $dao;
+    private $rows;
+    protected function init() {
+        $this->dao = new PagesSitemap($this->request->attributes("country")->id);
+        $this->rows = $this->dao->getPagesRows();
+    }
+
     protected function getItems()
     {
-        return ["Casinos","Softwares","Countries","Banking","Games"];
+        return array_keys($this->rows);
     }
 
     protected function getUrlPattern()
@@ -20,8 +28,7 @@ class PagesController extends AbstractSitemapController
     }
 
     protected function getLastMod() {
-        $dao = new PagesSitemap($this->request->attributes("country")->id);
-        return $dao->getPagesRows();
+        return array_values($this->rows);
     }
 
 }
