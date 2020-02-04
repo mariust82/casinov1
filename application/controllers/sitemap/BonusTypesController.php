@@ -1,6 +1,6 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once 'application/models/dao/BonusTypesSitemap.php';
+require_once 'application/models/dao/sitemap/BonusTypesSitemap.php';
 
 class BonusTypesController extends AbstractSitemapController
 {

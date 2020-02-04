@@ -1,6 +1,6 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once 'application/models/dao/PagesSitemap.php';
+require_once 'application/models/dao/sitemap/PagesSitemap.php';
 
 class PagesController extends AbstractSitemapController
 {

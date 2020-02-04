@@ -1,6 +1,6 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once("application/models/dao/CountriesSitemap.php");
+require_once("application/models/dao/sitemap/CountriesSitemap.php");
 
 class CountriesController extends AbstractSitemapController
 {

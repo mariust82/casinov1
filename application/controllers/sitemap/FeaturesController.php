@@ -1,6 +1,6 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once 'application/models/dao/FeaturesSitemap.php';
+require_once 'application/models/dao/sitemap/FeaturesSitemap.php';
 class FeaturesController extends AbstractSitemapController
 {
     protected function getItems()
