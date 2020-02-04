@@ -1,5 +1,5 @@
 <?php
-class GameTypesController extends Lucinda\MVC\STDOUT\Controller {
+class ContactController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
         $this->response->attributes("country", array (
   'id' => '43',
@@ -461,7 +461,7 @@ $this->response->attributes("menu_top", array (
   array (
     'title' => 'GAMES',
     'url' => '/games',
-    'is_active' => true,
+    'is_active' => false,
     'submenuItems' => 
     array (
       0 => 
@@ -588,7 +588,7 @@ $this->response->attributes("menu_top", array (
       array (
         'title' => 'All Games',
         'url' => '/games',
-        'is_active' => true,
+        'is_active' => false,
         'submenuItems' => 
         array (
         ),
@@ -638,76 +638,17 @@ $this->response->attributes("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes("results", array (
-  'Video Slots' => '3079',
-  'Slots' => '289',
-  'Video Poker' => '287',
-  'Scratch Cards' => '155',
-  'Blackjack' => '112',
-  'Roulette' => '109',
-  'Table Games' => '99',
-  'Other' => '91',
-  'Bingo' => '26',
-  'Keno' => '26',
-  'Baccarat' => '20',
-  'Craps' => '10',
-));
-$this->response->attributes("logos", array (
-  0 => '/public/sync/game_type_logo/136x100/video_slots.jpg',
-  1 => '/public/sync/game_type_logo/136x100/slots.jpg',
-  2 => '/public/sync/game_type_logo/136x100/video_poker.jpg',
-  3 => '/public/sync/game_type_logo/136x100/scratch_cards.jpg',
-  4 => '/public/sync/game_type_logo/136x100/blackjack.jpg',
-  5 => '/public/sync/game_type_logo/136x100/roulette.jpg',
-  6 => '/public/sync/game_type_logo/136x100/table_games.jpg',
-  7 => '/public/sync/game_type_logo/136x100/other.jpg',
-  8 => '/public/sync/game_type_logo/136x100/bingo.jpg',
-  9 => '/public/sync/game_type_logo/136x100/keno.jpg',
-  10 => '/public/sync/game_type_logo/136x100/baccarat.jpg',
-  11 => '/public/sync/game_type_logo/136x100/craps.jpg',
-));
 $this->response->attributes("page_info", array (
-  'head_title' => 'Casino Games Categories | Slots, Blackjack, Roulette and more',
-  'head_description' => 'The complete list of online casino games types. With so many games available, we divided them into categories. Play Video Slots, Blackjack, Roulette & more',
-  'body_title' => 'Casino Games Types',
+  'head_title' => 'CasinosLists.com - Contact Us',
+  'head_description' => 'CasinosLists.com - Contact Us. Contact the CasinosLists support team by filling in the form below and we will be happy to get back to you as soon as possible.',
+  'body_title' => 'CasinosLists.com - Contact Us',
 ));
 $this->response->attributes("is_mobile", false);
 $this->response->attributes("version", '0.8.8.9129');
 $this->response->attributes("use_bundle", true);
 $this->response->attributes("tms", array (
-  'upper_text' => '<p>Total number of games on site : 6296</p>
-
-<p>Total number of games in the current list: </p>
-
-<p>Newest game on site  :  Majestic Sea</p>
-
-<p>Newest game in the current list : test2</p>
-
-<p>Software of the newest game on site : NetEnt</p>
-
-<p>Software of the newest game in the current list : RTG</p>
-
-<p>Most popular game on site : Exotic Fruit Deluxe</p>
-
-<p>Most popular game in the current list: Exotic Fruit Deluxe</p>
-
-<p>Software of the most popular game on site : Booming Games</p>
-
-<p>Software of the most popular game in the current list : Booming Games</p>
-
-<p>games - update</p>
-
-<p><b>0</b></p>
-
-<p><strong>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</strong></p>
-',
 ));
 $this->response->attributes("widgets", array (
-  'upper' => 
-  array (
-    0 => '<p>video slots upper text search</p>
-',
-  ),
 ));
 
     }
