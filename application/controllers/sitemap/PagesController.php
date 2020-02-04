@@ -1,5 +1,6 @@
 <?php
 require_once("AbstractSitemapController.php");
+require_once 'application/models/dao/PagesSitemap.php';
 
 class PagesController extends AbstractSitemapController
 {
@@ -17,4 +18,10 @@ class PagesController extends AbstractSitemapController
     {
         return "0.6";
     }
+
+    protected function getLastMod() {
+        $dao = new PagesSitemap($this->request->attributes("country")->id);
+        return $dao->getPagesRows();
+    }
+
 }
