@@ -1,5 +1,6 @@
 <?php
 require_once("AbstractSitemapController.php");
+require_once 'application/models/dao/BonusTypesSitemap.php';
 
 class BonusTypesController extends AbstractSitemapController
 {
@@ -17,4 +18,10 @@ class BonusTypesController extends AbstractSitemapController
     {
         return "0.9";
     }
+
+    protected function getLastMod() {
+        $dao = new BonusTypesSitemap($this->request->attributes("country")->id);
+        return $dao->getLastMod();
+    }
+
 }

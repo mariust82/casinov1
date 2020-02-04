@@ -19,4 +19,10 @@ class GamesController extends AbstractSitemapController
     {
         return "0.6";
     }
+
+    protected function getLastMod() {
+        $bm = new Games();
+        return $bm->getGamesLastMod();
+    }
+
 }
