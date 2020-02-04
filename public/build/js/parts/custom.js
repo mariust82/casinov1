@@ -1173,15 +1173,14 @@ function setStyleProps() {
                     dataType: 'json',
                     type: 'post',
                     success: function (data) {
-                        var error = data.body.message;
-                        //console.log(data.body.likes);
-                        //var currentVotes = _this.find('.vote-block-num');
-                        //currentVotes.text(parseInt(currentVotes.text())+1);
                         if (_target === '/casino/review-like') {
-                            var _holderLikes = $(_this).find('.bubble-vote');
-                            var _oldLikes = _holderLikes.text();
-                            _holderLikes.text(++_oldLikes);
-
+                            if(data.body.status == 'not_ok') {
+                                console.log(data.body.message);
+                            }else{
+                                var _holderLikes = $(_this).find('.bubble-vote');
+                                var _oldLikes = _holderLikes.text();
+                                _holderLikes.text(++_oldLikes);
+                            }
                              _this.closest(_obj).next('.action-field.success').show();
                         } else if(_target === '/blog/rate') {
                             $(_this.parent().parent()).find('.votes-like .vote-block-num, .like .vote-block-num').text(data.body.likes);
@@ -1194,7 +1193,6 @@ function setStyleProps() {
                     error: function ( XMLHttpRequest ) {
                         var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
                         if ( XMLHttpRequest.statusText != "abort" ) {
-                            console.log( 'err' );
                              __this.closest(_obj).next('.action-field.not-valid').show();
                         }
                     },
@@ -2077,7 +2075,9 @@ function setStyleProps() {
             },
 
             _ajaxRequestPopup = function(target, page) {
-                lockScreen();
+                if (checkIfIsMobileDevice()) {
+                    lockScreen();
+                }
                 if (BUSY_REQUEST && (nr_requests_completed == nr_requests)) // if nr request completed = nr request sent
                 {
                     //  console.log("\n\n END \n\n");
@@ -2505,9 +2505,9 @@ function setStyleProps() {
             if (checkIfIsMobileDevice()) {
                 position = $(window).scrollTop();
                 if (_window.hasClass('no-scroll')) {
-                    _window.addClass('no-scroll');
+                    lockScreen();
                 } else {
-                    _window.removeClass('no-scroll');
+                    unlockScreen();
                     goToPosition(position);
                 }
 

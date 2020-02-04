@@ -20,7 +20,9 @@ class CasinoReviewLikeController extends Lucinda\MVC\STDOUT\Controller
             $this->request->attributes("ip")
         )
         ) {
-            throw new UserOperationFailedException("Review already liked!");
+            $this->response->attributes("status", "not_ok");
+            $this->response->attributes("message","Review already liked!");
+           // throw new UserOperationFailedException("Review already liked!");
         }
     }
 }

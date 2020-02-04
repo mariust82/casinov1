@@ -1,5 +1,5 @@
 <?php
-class GameTypesController extends Lucinda\MVC\STDOUT\Controller {
+class ArticlesLoadMoreController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
         $this->response->attributes("country", array (
   'id' => '43',
@@ -461,7 +461,7 @@ $this->response->attributes("menu_top", array (
   array (
     'title' => 'GAMES',
     'url' => '/games',
-    'is_active' => true,
+    'is_active' => false,
     'submenuItems' => 
     array (
       0 => 
@@ -588,7 +588,7 @@ $this->response->attributes("menu_top", array (
       array (
         'title' => 'All Games',
         'url' => '/games',
-        'is_active' => true,
+        'is_active' => false,
         'submenuItems' => 
         array (
         ),
@@ -639,75 +639,146 @@ $this->response->attributes("menu_top", array (
   ),
 ));
 $this->response->attributes("results", array (
-  'Video Slots' => '3079',
-  'Slots' => '289',
-  'Video Poker' => '287',
-  'Scratch Cards' => '155',
-  'Blackjack' => '112',
-  'Roulette' => '109',
-  'Table Games' => '99',
-  'Other' => '91',
-  'Bingo' => '26',
-  'Keno' => '26',
-  'Baccarat' => '20',
-  'Craps' => '10',
+  0 => 
+  array (
+    'id' => '59',
+    'title' => 'Test Mihai 1',
+    'type' => 'guides',
+    'description' => '<p>Text test</p>
+',
+    'date_added' => '2019-11-06 04:11:46',
+    'min_read' => '5',
+    'rating' => 
+    array (
+      'likes' => '0',
+      'dislikes' => '0',
+    ),
+    'titleImageDesktop' => '',
+    'titleImageMobile' => '',
+    'thumbnail' => '',
+  ),
+  1 => 
+  array (
+    'id' => '55',
+    'title' => 'test news images',
+    'type' => 'news',
+    'description' => '<p>aaa</p>
+',
+    'date_added' => '2019-10-31 10:10:00',
+    'min_read' => '7',
+    'rating' => 
+    array (
+      'likes' => '1',
+      'dislikes' => '0',
+    ),
+    'titleImageDesktop' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/55/1.png',
+    'titleImageMobile' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/55/3.png',
+    'thumbnail' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/55/2.png',
+  ),
+  2 => 
+  array (
+    'id' => '41',
+    'title' => 'test guide 2',
+    'type' => 'guides',
+    'description' => '<p>isbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfg</p>
+
+<p> </p>
+
+<p> </p>
+
+<p><div class="tms_iframe" data-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-frameborder="0" data-height="315" data-src="https://www.youtube.com/embed/NBuo0jm3RLI" data-width="560"></div></p>
+
+<p> </p>
+
+<p>isbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfgisbkjbdfksgbkdfg kdfjbngknfdkgnkjdfg dfjngkjnfdkgnkdfngd fgdnfgndkfgnkdfng dfkgnjknfdkgnkdfngkndfg</p>
+',
+    'date_added' => '2019-10-31 04:10:15',
+    'min_read' => '10',
+    'rating' => 
+    array (
+      'likes' => '0',
+      'dislikes' => '0',
+    ),
+    'titleImageDesktop' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/41/1.png',
+    'titleImageMobile' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/41/3.png',
+    'thumbnail' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/41/2.png',
+  ),
+  3 => 
+  array (
+    'id' => '40',
+    'title' => 'test guides',
+    'type' => 'guides',
+    'description' => '<p>test guide </p>
+',
+    'date_added' => '2019-10-31 04:10:21',
+    'min_read' => '10',
+    'rating' => 
+    array (
+      'likes' => '0',
+      'dislikes' => '0',
+    ),
+    'titleImageDesktop' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/40/1.png',
+    'titleImageMobile' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/40/3.png',
+    'thumbnail' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/40/2.png',
+  ),
+  4 => 
+  array (
+    'id' => '39',
+    'title' => 'test bugfix',
+    'type' => 'news',
+    'description' => '<p>test bug fix</p>
+',
+    'date_added' => '2019-10-30 04:10:16',
+    'min_read' => '10',
+    'rating' => 
+    array (
+      'likes' => '0',
+      'dislikes' => '0',
+    ),
+    'titleImageDesktop' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/39/1.png',
+    'titleImageMobile' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/39/3.png',
+    'thumbnail' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/39/2.png',
+  ),
+  5 => 
+  array (
+    'id' => '37',
+    'title' => 'test pagination',
+    'type' => 'guides',
+    'description' => '<p>test</p>
+',
+    'date_added' => '2019-10-29 07:10:10',
+    'min_read' => '10',
+    'rating' => 
+    array (
+      'likes' => '1',
+      'dislikes' => '0',
+    ),
+    'titleImageDesktop' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/37/1.png',
+    'titleImageMobile' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/37/3.png',
+    'thumbnail' => '/home/casinoslists/public_html/dev/site/upload/blogs/published/37/2.png',
+  ),
 ));
-$this->response->attributes("logos", array (
-  0 => '/public/sync/game_type_logo/136x100/video_slots.jpg',
-  1 => '/public/sync/game_type_logo/136x100/slots.jpg',
-  2 => '/public/sync/game_type_logo/136x100/video_poker.jpg',
-  3 => '/public/sync/game_type_logo/136x100/scratch_cards.jpg',
-  4 => '/public/sync/game_type_logo/136x100/blackjack.jpg',
-  5 => '/public/sync/game_type_logo/136x100/roulette.jpg',
-  6 => '/public/sync/game_type_logo/136x100/table_games.jpg',
-  7 => '/public/sync/game_type_logo/136x100/other.jpg',
-  8 => '/public/sync/game_type_logo/136x100/bingo.jpg',
-  9 => '/public/sync/game_type_logo/136x100/keno.jpg',
-  10 => '/public/sync/game_type_logo/136x100/baccarat.jpg',
-  11 => '/public/sync/game_type_logo/136x100/craps.jpg',
+$this->response->attributes("category", 'blog');
+$this->response->attributes("total", 21);
+$this->response->attributes("uploadsFolders", array (
+  59 => '/upload/59/?1580739413',
+  55 => '/upload/55/2.png?1580739413',
+  41 => '/upload/41/2.png?1580739413',
+  40 => '/upload/40/2.png?1580739413',
+  39 => '/upload/39/2.png?1580739413',
+  37 => '/upload/37/2.png?1580739413',
 ));
 $this->response->attributes("page_info", array (
-  'head_title' => 'Casino Games Categories | Slots, Blackjack, Roulette and more',
-  'head_description' => 'The complete list of online casino games types. With so many games available, we divided them into categories. Play Video Slots, Blackjack, Roulette & more',
-  'body_title' => 'Casino Games Types',
+  'head_title' => '',
+  'head_description' => '',
+  'body_title' => '',
 ));
 $this->response->attributes("is_mobile", false);
 $this->response->attributes("version", '0.8.8.9129');
 $this->response->attributes("use_bundle", true);
 $this->response->attributes("tms", array (
-  'upper_text' => '<p>Total number of games on site : 6296</p>
-
-<p>Total number of games in the current list: </p>
-
-<p>Newest game on site  :  Majestic Sea</p>
-
-<p>Newest game in the current list : test2</p>
-
-<p>Software of the newest game on site : NetEnt</p>
-
-<p>Software of the newest game in the current list : RTG</p>
-
-<p>Most popular game on site : Exotic Fruit Deluxe</p>
-
-<p>Most popular game in the current list: Exotic Fruit Deluxe</p>
-
-<p>Software of the most popular game on site : Booming Games</p>
-
-<p>Software of the most popular game in the current list : Booming Games</p>
-
-<p>games - update</p>
-
-<p><b>0</b></p>
-
-<p><strong>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</strong></p>
-',
 ));
 $this->response->attributes("widgets", array (
-  'upper' => 
-  array (
-    0 => '<p>video slots upper text search</p>
-',
-  ),
 ));
 
     }
