@@ -23,7 +23,8 @@ class CountriesSitemap {
         $output = [];
         $countries = $this->getAll();
         foreach ($countries as $value) {
-            $date = SQL("SELECT MAX(t1.date) FROM casinos AS t1 LEFT OUTER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$this->country} INNER JOIN casinos__countries_allowed AS t7 ON t1.id = t7.casino_id AND t7.country_id = (SELECT id FROM countries WHERE name = '{$value}') AND t1.is_open = 1")->toValue();
+            $query_value = str_replace("'", "\'", $value);
+            $date = SQL("SELECT MAX(t1.date) FROM casinos AS t1 LEFT OUTER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$this->country} INNER JOIN casinos__countries_allowed AS t7 ON t1.id = t7.casino_id AND t7.country_id = (SELECT id FROM countries WHERE name = '{$query_value}') AND t1.is_open = 1")->toValue();
             $output[$value] = explode(' ', $date)[0];
         }
         array_multisort($output, SORT_DESC);
