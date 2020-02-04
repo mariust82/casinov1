@@ -124,6 +124,11 @@ class Casinos implements FieldValidator
     {
         return SQL("SELECT name FROM casinos ORDER BY name ASC")->toColumn();
     }
+    
+    public function getDate()
+    {
+        return SQL("SELECT date FROM casinos ORDER BY name ASC")->toColumn();
+    }
 
     public function getCasinoData($id)
     {
