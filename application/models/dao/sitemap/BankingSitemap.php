@@ -1,5 +1,5 @@
 <?php
-
+require_once 'application/models/dao/sitemap/Sitemap.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +11,7 @@
  *
  * @author matan
  */
-class BankingSitemap {
-    
-    private $country;
-    
-    public function __construct($country) {
-        $this->country = $country;
-    }
+class BankingSitemap extends Sitemap {
     
     private function setBankingRows() {
         $output = [];

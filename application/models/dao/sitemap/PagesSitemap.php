@@ -1,5 +1,5 @@
 <?php
-
+require_once 'application/models/dao/sitemap/Sitemap.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +11,8 @@
  *
  * @author matan
  */
-class PagesSitemap {
-    private $country;
-    
-    public function __construct($country) {
-        $this->country = $country;
-    }
-    
+class PagesSitemap extends Sitemap {
+   
     private function setPagesRows() {
         $casinos = explode(' ',SQL("SELECT MAX(t3.date) FROM casino_labels AS t1 INNER JOIN casinos__labels AS t2 ON t1.id = t2.label_id INNER JOIN casinos AS t3 ON t2.casino_id = t3.id WHERE t3.is_open = 1 AND t1.id != 8 AND t1.id != 3 AND t1.id != 1")->toValue())[0];
         $softwares = explode(' ', SQL("SELECT MAX(t3.date) FROM game_manufacturers AS t1 INNER JOIN casinos__game_manufacturers AS t2 ON t1.id = t2.game_manufacturer_id INNER JOIN casinos AS t3 ON t2.casino_id = t3.id WHERE t3.is_open = 1")->toValue())[0];
