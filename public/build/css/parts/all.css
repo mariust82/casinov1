@@ -8917,6 +8917,12 @@ html.no-scroll {
   /*height: 100%;*/
 }
 
+.ios-device body.no-scroll,
+html.ios-device.no-scroll {
+  position:static;
+  overflow:hidden;
+}
+
 .btn-play-now {
   position: fixed;
   z-index: 10;

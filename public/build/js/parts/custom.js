@@ -219,7 +219,7 @@ var initImageLazyLoad = function () {
         });
 
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-            $('body').addClass('ios-device');
+            $('html').addClass('ios-device');
         }
 
         function initMobileLayoutOfTable() {
