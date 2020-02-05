@@ -8917,8 +8917,7 @@ html.no-scroll {
   /*height: 100%;*/
 }
 
-.ios-device body.no-scroll,
-html.ios-device.no-scroll {
+.ios-device body.no-scroll {
   position:static;
   overflow:hidden;
 }
