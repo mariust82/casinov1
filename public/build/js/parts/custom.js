@@ -59,7 +59,6 @@ var initImageLazyLoad = function () {
             if (search_val.length > 2 && search_val != searched_value) {
                 searched_value = search_val;
                 SearchTracker(search_val);
-                console.log(SearchTracker(search_val));
             }
         });
 
