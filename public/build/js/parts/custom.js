@@ -61,18 +61,18 @@ var initImageLazyLoad = function () {
                 SearchTracker(search_val);
             }
         });
-
-        $('body').on('click mousedown', '#search-all', function (e) {
-
-            e.preventDefault();
-            $('.search_input').unbind('blur');
-            $('.search_input').unbind('touchleave');
-            var search_val = $(this).val().trim();
-            if (search_val.length > 2 && search_val != searched_value) {
-                searched_value = search_val;
-                SearchTracker(search_val);
-            }
-        });
+//
+//        $('body').on('click mousedown', '#search-all', function (e) {
+//
+//            e.preventDefault();
+//            $('.search_input').unbind('blur');
+//            $('.search_input').unbind('touchleave');
+//            var search_val = $(this).val().trim();
+//            if (search_val.length > 2 && search_val != searched_value) {
+//                searched_value = search_val;
+//                SearchTracker(search_val);
+//            }
+//        });
 
         $('.js-more-games').click(function () {
             $(this).addClass('loading');
