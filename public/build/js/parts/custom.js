@@ -5,6 +5,7 @@ var BEST_CURR_PAGE = 1;
 var COUNTRY_CURR_PAGE = 1;
 var BEST_BANKING_PAGE = 1;
 var searched_value = '';
+var isSearchResultEvent = false;
 function tmsIframe() {
     if ($(".tms_iframe").length) {
         $(".tms_iframe").each(function () {
@@ -56,9 +57,20 @@ var initImageLazyLoad = function () {
         $('body').on('touchleave blur ', '.search_input', function (e) {
             e.preventDefault();
             var search_val = $(this).val().trim();
+            if(isSearchResultEvent) return;
+            if($('.search-tag-manager').length  && $(this).val().trim() == search_val) return;
             if (search_val.length > 2 && search_val != searched_value) {
                 searched_value = search_val;
                 SearchTracker(search_val);
+            }
+        });
+        
+        $('#search-all').on({
+            mousedown: function(){
+                isSearchResultEvent = true;
+            },
+            mouseup: function(){
+                isSearchResultEvent = false;
             }
         });
 
@@ -1817,6 +1829,7 @@ var initImageLazyLoad = function () {
                         _hidePanel();
                         _resetPages();
                     } else if (e.keyCode == 13) {
+                        isSearchResultEvent = true;
                         if (_searchInput.val() != '') {
                             // location.href = '/search/advanced?value='+_searchInput.val();
                             // _searchInput.val('');
@@ -1825,6 +1838,7 @@ var initImageLazyLoad = function () {
                         }
                         _resetPages();
                     } else {
+                        isSearchResultEvent = false;
                         var searchPopup = _obj.find('#search__popup');
                         searchPopup.addClass('load');
                         nr_requests++;
@@ -2537,7 +2551,10 @@ var initImageLazyLoad = function () {
 
         _input.on('keydown', function (e) {
             if (e.keyCode != 13) {
+                isSearchResultEvent = true;
                 searchDropOpen(_drop);
+            } else {
+                isSearchResultEvent = false;
             }
         });
 
