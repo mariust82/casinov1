@@ -54,14 +54,15 @@ var initImageLazyLoad = function () {
         detectIsKeyboardOpened();
         initMobileLayoutOfTable();
 
-        $('body').on('touchleave blur ', '.search_input', function (e) {
-            e.preventDefault();
-            var search_val = $(this).val().trim();
-            if(isSearchResultEvent) return;
-            if($('.search-tag-manager').length  && $(this).val().trim() == search_val) return;
-            if (search_val.length > 2 && search_val != searched_value) {
-                searched_value = search_val;
-                SearchTracker(search_val);
+        $('.search_input').on({
+            blur: function(e){
+                var search_val = $(this).val().trim();
+                if(isSearchResultEvent) return;
+                if($('.search-tag-manager').length  && $(this).val().trim() == search_val) return;
+                if (search_val.length > 2 && search_val != searched_value) {
+                    searched_value = search_val;
+                    SearchTracker(search_val);
+                }
             }
         });
         
