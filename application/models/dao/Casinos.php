@@ -127,7 +127,12 @@ class Casinos implements FieldValidator
     
     public function getDate()
     {
-        return SQL("SELECT date FROM casinos ORDER BY name ASC")->toColumn();
+        $output = [];
+        $res = SQL("SELECT date FROM casinos ORDER BY name ASC");
+        while ($row = $res->toRow()) {
+            $output[] = explode(' ', $row['date'])[0];
+        }
+        return $output;
     }
 
     public function getCasinoData($id)
