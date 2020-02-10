@@ -17,4 +17,9 @@ class IndexController extends AbstractSitemapController
     {
         return "1.0";
     }
+
+    protected function getLastMod() {
+        return date("Y-m-d");
+    }
+
 }

@@ -4,10 +4,15 @@ require_once("application/models/dao/Casinos.php");
 
 class CasinosController extends AbstractSitemapController
 {
+    private $dao;
+    
+    protected function init() {
+        $this->dao = new Casinos();
+    }
+
     protected function getItems()
     {
-        $bm = new Casinos();
-        return $bm->getAll();
+        return $this->dao->getAll();
     }
 
     protected function getUrlPattern()
@@ -19,4 +24,9 @@ class CasinosController extends AbstractSitemapController
     {
         return "0.7";
     }
+
+    protected function getLastMod() {
+        return $this->dao->getDate();
+    }
+
 }

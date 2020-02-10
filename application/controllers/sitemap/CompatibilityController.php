@@ -1,6 +1,6 @@
 <?php
 require_once("AbstractSitemapController.php");
-
+require_once 'application/models/dao/sitemap/CompatibilitySitemap.php';
 class CompatibilityController extends AbstractSitemapController
 {
     protected function getItems()
@@ -17,4 +17,10 @@ class CompatibilityController extends AbstractSitemapController
     {
         return "0.9";
     }
+
+    protected function getLastMod() {
+        $dao = new CompatibilitySitemap($this->request->attributes("country")->id);
+        return $dao->getLastMod();
+    }
+
 }

@@ -1,0 +1,1 @@
+function SearchTracker(e){if("undefined"!=typeof dataLayer){var a,r={event:"search",Category:"UserSearch"};r.item=e,console.log(r),a=r,dataLayer.push(a)}}

@@ -4,10 +4,16 @@ require_once("application/models/dao/Games.php");
 
 class GamesController extends AbstractSitemapController
 {
+    
+    private $dao;
+    
+    protected function init() {
+        $this->dao = new Games();
+    }
+    
     protected function getItems()
     {
-        $bm = new Games();
-        return $bm->getAll();
+        return $this->dao->getAll();
     }
 
     protected function getUrlPattern()
@@ -19,4 +25,9 @@ class GamesController extends AbstractSitemapController
     {
         return "0.6";
     }
+
+    protected function getLastMod() {
+        return $this->dao->getGamesLastMod();
+    }
+
 }
