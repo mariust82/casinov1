@@ -17,7 +17,7 @@ class GameManufacturersSitemap extends Sitemap {
         $output = [];
         $softwares = $this->getAll();
         foreach ($softwares as $value) {
-            $output[$value] = SQL("SELECT MAX(t1.date) FROM casinos AS t1 LEFT OUTER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$this->country} INNER JOIN casinos__game_manufacturers AS t10 ON t1.id = t10.casino_id AND t10.game_manufacturer_id = (SELECT id FROM game_manufacturers WHERE name = '{$value}') WHERE t1.is_open = 1 ")->toValue();
+            $output[$value] = explode(' ',SQL("SELECT MAX(t1.date) FROM casinos AS t1 LEFT OUTER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$this->country} INNER JOIN casinos__game_manufacturers AS t10 ON t1.id = t10.casino_id AND t10.game_manufacturer_id = (SELECT id FROM game_manufacturers WHERE name = '{$value}') WHERE t1.is_open = 1 ")->toValue())[0];
         }
         array_multisort($output, SORT_DESC);
         return $output;
