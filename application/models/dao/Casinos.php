@@ -122,7 +122,7 @@ class Casinos implements FieldValidator
 
     public function getAll()
     {
-        return SQL("SELECT name FROM casinos ORDER BY name ASC")->toColumn();
+        return SQL("SELECT name FROM casinos ORDER BY date_established DESC")->toColumn();
     }
     
     public function getDate()
