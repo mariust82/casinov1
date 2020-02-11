@@ -112,7 +112,7 @@ var initImageLazyLoad = function () {
             });
         });
         
-        $('.js-more-casinos').click(function () {
+        $('.js-all-casinos').click(function () {
             $(this).addClass('loading');
             var key = $(this).data('key');
             var self = $(this);

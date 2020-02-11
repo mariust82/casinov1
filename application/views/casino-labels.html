@@ -16,13 +16,13 @@
                     <div class="qty-items" data-load-total="${data.total_casinos}">${data.total_casinos} results</div>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
                 </div>
-                <div class="data-add-container ${low_wagering_class}" data-total="${data.total_casinos}"></div>
+                <div class="data-add-container" data-total="${data.total_casinos}"></div>
             </div>
             <filter:reset/>
         </div>
         <:if test="${data.total_casinos} > 30">
         <div class="btn-holder">
-            <a href="#" class="btn-bordered load js-all-casinos">
+            <a class="btn-bordered load js-all-casinos">
                 LOAD MORE CASINOS</a>
         </div>
         </:if>
