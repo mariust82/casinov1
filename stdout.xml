@@ -229,10 +229,10 @@
   <servers>
     <sql>
       <dev>
-        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_dev" parent_schema="casinosl_admin_dev" charset="utf8"/>
+        <server driver="mysql" host="localhost" port="3306" username="casinosl_user" password="pongcpanel09!" schema="casinosl_dev" parent_schema="casinosl_admin_dev" charset="utf8"/>
       </dev>
       <live>
-        <server driver="mysql" host="localhost" port="3306" username="casinoslists" password="pongcpanel09!" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
+        <server driver="mysql" host="localhost" port="3306" username="casinosl_user" password="pongcpanel09!" schema="casinosl_go" parent_schema="casinosl_admin" charset="utf8"/>
       </live>
       <lucian>
         <server driver="mysql" host="localhost" port="3306" username="gtm" password="hliscorp" schema="lucian__casinoslists_main" parent_schema="lucian__casinoslists_admin" charset="utf8"/>
