@@ -17,6 +17,10 @@
     padding-right: 0 !important;
 }
 
+.article-single .subtitle{
+    overflow-x: hidden;
+}
+
 blockquote{
     position: relative;
     padding-left: 1em;
