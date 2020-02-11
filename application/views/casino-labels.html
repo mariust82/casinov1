@@ -26,6 +26,12 @@
                 LOAD MORE CASINOS</a>
         </div>
         </:if>
+
+        <:if test="isset(${data.widgets.casinos_lower})">
+        <div class="subtitle plain-text">
+            <div><span>${implode("\n", ${data.widgets.casinos_lower})}</span></div>
+        </div>
+        </:if>
     </div>
 </div>
 <site:bottom menu="${data.menu_top}"/>
