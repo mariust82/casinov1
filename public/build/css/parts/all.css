@@ -10152,13 +10152,14 @@ abbr[title] {
   position: relative;
   height: 0;
   width:100%;
-  max-width:560px;
+  min-height: 500px;
   padding-bottom: 29%;
 }
 
 @media screen and (max-width: 560px) {
   .plain-text .iframe-wrapper{
     padding-bottom: 56%;
+    min-height: auto;
   }
 }
 .plain-text .iframe-wrapper iframe{
