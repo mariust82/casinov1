@@ -9647,6 +9647,12 @@ html.no-scroll {
 	margin-bottom: 15px;
 }
 
+@media screen and (max-width: 767px) {
+  .plain-text img{
+    width: 100% !important;
+  }
+}
+
 .plain-text .title-name{
 	margin-bottom: 20px;
 	font-size: 20px;
@@ -10414,4 +10420,56 @@ abbr[title] {
 
 [data-is-free="1"]{
   color:#529724;
+}
+.qa{
+  border:1px solid #E2E2E3;
+  border-radius:2px;
+}
+
+.qa p{
+  padding:20px;
+}
+
+@media screen and (max-width: 767px) {
+  .qa p{
+    padding:10px;
+  }
+}
+
+.qa{
+  font-size:14px;
+  line-height:28px;
+}
+.qa strong{
+  font-size:16px;
+  line-height:28px;
+}
+@media screen and (max-width: 767px) {
+  .qa strong{
+    font-size:14px;
+    line-height:22px;
+    display:block;
+    margin:0 0 -20px;
+  }
+}
+.qa p>strong:first-child{
+  font-size:22px;
+  line-height:30px;
+  text-transform:uppercase;
+  font-weight:400;
+  padding:20px;
+  display:block;
+  color:#4A4A4A;
+  background:#F7F7F7;
+  margin:-20px -20px -35px;
+}
+
+@media screen and (max-width: 767px) {
+  .qa p>strong:first-child{
+    font-weight:900;
+    font-size:15px;
+    line-height:22px;
+    padding:10px;
+    margin:-10px -10px -15px;
+  }
 }
