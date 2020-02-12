@@ -10,7 +10,7 @@
         </div>
 
         <categories:list items="$[items]" url="$[url]" image="$[image]" type="$[type]"/>
-        <:if test="$[name] == 'Casinos'">
+        <:if test="isset($[name]) && $[name] == 'Casinos'">
         <div class="block">
             <div class="container">
                 <div class="headeing">
