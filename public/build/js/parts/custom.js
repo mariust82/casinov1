@@ -3,6 +3,7 @@ var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
 var COUNTRY_CURR_PAGE = 1;
+var ALL_CASINOS_KEY = 1;
 var BEST_BANKING_PAGE = 1;
 var searched_value = '';
 var isSearchResultEvent = false;
@@ -96,6 +97,42 @@ var initImageLazyLoad = function () {
                     GAME_CURR_PAGE++;
                     $('.games-list').append(data);
                     if ($(self).data('total') === $('.games-list').children().length) {
+                        $(self).hide();
+                    }
+                },
+                error: function (XMLHttpRequest) {
+                    var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                    if (XMLHttpRequest.statusText != "abort") {
+                        console.log('err');
+                    }
+                },
+                complete: function () {
+                    BUSY_REQUEST = false;
+                }
+            });
+        });
+        
+        $('.js-all-casinos').click(function () {
+            $(this).addClass('loading');
+            var key = $(this).data('key');
+            var self = $(this);
+            _request = $.ajax({
+                url: '/load-all-casinos/' + ALL_CASINOS_KEY,
+                data: {
+                    page: ALL_CASINOS_KEY,
+                    type: key,
+                    software: $(self).data('software')
+                },
+                dataType: 'html',
+                type: 'post',
+                success: function (data) {
+                    setTimeout(function () {
+                        self.removeClass('loading');
+                        refresh();
+                    }, 1000);
+                    ALL_CASINOS_KEY++;
+                    $(self).parent().prev().find('.list-body').append(data);
+                    if ($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
                         $(self).hide();
                     }
                 },

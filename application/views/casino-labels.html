@@ -1,3 +1,37 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casinos"/>
-	<categories:list-container name="Casinos" url="/casinos" image="false" description="" items="${data.results}"/>
+<categories:list-container name="Casinos" url="/casinos" image="false" description="" items="${data.results}"/>
+<div class="block">
+    <div class="container">
+        <div class="headeing">
+            <h2 class="title">All Online Casinos</h2>
+        </div>
+        <:if test="isset(${data.currency})">
+        <filter:casinos id="${data.selected_entity}" name="${data.currency}" code="${data.language}" key="true"/>
+        <:else>
+        <filter:casinos id="${data.selected_entity}" name="${data.country.name}" code="${data.country.code}"  key="false"/>
+        </:if>
+        <div class="data-container-holder">
+            <div class="holder">
+                <div class="data-container" data-type="${data.page_type}" data-type-value="${data.selected_entity}">
+                    <div class="qty-items" data-load-total="${data.total_casinos}">${data.total_casinos} results</div>
+                    <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
+                </div>
+                <div class="data-add-container" data-total="${data.total_casinos}"></div>
+            </div>
+            <filter:reset/>
+        </div>
+        <:if test="${data.total_casinos} > 30">
+        <div class="btn-holder">
+            <a class="btn-bordered load js-all-casinos">
+                LOAD MORE CASINOS</a>
+        </div>
+        </:if>
+
+        <:if test="isset(${data.widgets.casinos_lower})">
+        <div class="subtitle plain-text">
+            <div><span>${implode("\n", ${data.widgets.casinos_lower})}</span></div>
+        </div>
+        </:if>
+    </div>
+</div>
 <site:bottom menu="${data.menu_top}"/>
