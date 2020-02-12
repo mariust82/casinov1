@@ -6,10 +6,11 @@
             <div class="subtitle plain-text">
                 <div class="js-condense"><span>${implode("\n", ${data.widgets.upper})}</span></div>
             </div>
-            </:if>
+            
         </div>
 
         <categories:list items="$[items]" url="$[url]" image="$[image]" type="$[type]"/>
+        <:if test="$[name] == 'Casinos'">
         <div class="block">
             <div class="container">
                 <div class="headeing">
@@ -32,12 +33,13 @@
                 </div>
                 <:if test="$[total] > 30">
                 <div class="btn-holder">
-                    <a class="btn-bordered load js-all-casinos">
+                    <a class="btn-bordered load js-more-items">
                         LOAD MORE CASINOS</a>
                 </div>
                 </:if>
             </div>
         </div>
+        </:if>
         <:if test="isset(${data.widgets.lower})">
         <div class="subtitle plain-text plain-text-lower">
             <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
