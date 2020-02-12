@@ -10,7 +10,7 @@
         </div>
 
         <categories:list items="$[items]" url="$[url]" image="$[image]" type="$[type]"/>
-        <:if test="'$[name]' == 'Casinos'">
+        <:if test="'$[name]' != 'Casinos'">
             <:if test="isset(${data.widgets.lower})">
             <div class="subtitle plain-text plain-text-lower">
                 <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
