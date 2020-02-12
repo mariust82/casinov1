@@ -98,7 +98,7 @@ class CasinosListQuery
             if ($filter->getCasinoLabel() == 'Blacklisted Casinos') {
                 $filter->setPromoted(false);
             }
-            if (($filter->getCasinoLabel() != "New")) {
+            if (($filter->getCasinoLabel() != "New") && ($filter->getCasinoLabel() != "all")) {
                 $sub_query = new Lucinda\Query\MySQLSelect("casino_labels");
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name"=> "'". $filter->getCasinoLabel() . "'"]);

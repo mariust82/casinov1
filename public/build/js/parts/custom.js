@@ -116,6 +116,7 @@ var initImageLazyLoad = function () {
             $(this).addClass('loading');
             var key = $(this).data('key');
             var self = $(this);
+             new Filters($('#filters'));
             _request = $.ajax({
                 url: '/load-all-casinos/' + ALL_CASINOS_KEY,
                 data: {
@@ -1071,7 +1072,9 @@ var initImageLazyLoad = function () {
             BUSY_REQUEST = true;
             _request.abort();
             var limit_items = (_url == '/games-filter/') ? 24 : 100;
-
+            if (location.pathname === '/casinos') {
+                _url = 'load-all-casinos/';
+            }
             _request = $.ajax({
                 url: _url + AJAX_CUR_PAGE,
                 data: _ajaxDataParams,

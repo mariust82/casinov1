@@ -46,7 +46,7 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes('selected_entity', $filter->getCasinoLabel());
     }
 
-    private function getSortCriteria()
+    protected function getSortCriteria()
     {
         $sort_criteria = $this->request->attributes('validation_results')->get('sort');
         if (empty($sort_criteria)|| $sort_criteria==null) {
@@ -69,7 +69,7 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         }
     }
 
-    private function getPageType(CasinoFilter $filter)
+    protected function getPageType(CasinoFilter $filter)
     {
         if ($filter->getBankingMethod()) {
             return 'banking_method';
