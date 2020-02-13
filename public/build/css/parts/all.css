@@ -9488,6 +9488,7 @@ html.no-scroll {
 }
 
 .article-heading-title {
+    max-width:960px;
     color: #fff;
     font-size: 42px;
     margin-bottom: 25px;
