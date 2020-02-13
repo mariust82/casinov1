@@ -49,6 +49,7 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
     protected function getSortCriteria()
     {
         $sort_criteria = $this->request->attributes('validation_results')->get('sort');
+        var_dump($sort_criteria);
         if (empty($sort_criteria)|| $sort_criteria==null) {
             return CasinoSortCriteria::NONE;
         }
