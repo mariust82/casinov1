@@ -29,6 +29,7 @@ class LoadAllCasinosController extends CasinosFilterController
     {
         $this->response->attributes("country", $this->request->attributes("country"));
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
+        var_dump((integer)$this->request->getValidator()->parameters("sort"));
         $sortCriteria = $this->getSortCriteria();
         $page = (integer)$this->request->getValidator()->parameters("page");
         $filter = new CasinoFilter($_GET, $this->request->attributes("country"));
