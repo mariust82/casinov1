@@ -29,8 +29,6 @@ class LoadAllCasinosController extends CasinosFilterController
     {
         $this->response->attributes("country", $this->request->attributes("country"));
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
-        var_dump((integer)$this->request->getValidator()->parameters("sort"));
-        $sortCriteria = $this->getSortCriteria();
         $page = (integer)$this->request->getValidator()->parameters("page");
         $filter = new CasinoFilter($_GET, $this->request->attributes("country"));
         $object = new CasinosList($filter);
@@ -43,7 +41,7 @@ class LoadAllCasinosController extends CasinosFilterController
 
         $this->response->attributes("filter", $filter->getCasinoLabel());
         $this->response->attributes("total_casinos", $total);
-        $this->response->attributes("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset, true));
+        $this->response->attributes("casinos", $object->getResults($sort, $page, $this->limit, $offset, true));
         $this->response->attributes('page_type', $this->getPageType($filter));
         $this->response->attributes('selected_entity', $filter->getCasinoLabel());
     }
