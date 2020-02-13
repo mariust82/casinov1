@@ -10424,15 +10424,28 @@ abbr[title] {
 .qa{
   border:1px solid #E2E2E3;
   border-radius:2px;
-}
-
-.qa p{
   padding:20px;
 }
 
 @media screen and (max-width: 767px) {
-  .qa p{
+  .qa{
     padding:10px;
+  }
+}
+.qa p{
+  margin:0 0 20px;
+}
+
+.qa hr{
+  border:none;
+  border-top:1px solid #E2E2E3;
+  margin:0 0 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .qa p,
+  .qa hr{
+    margin:0 0 15px;
   }
 }
 
@@ -10443,16 +10456,21 @@ abbr[title] {
 .qa strong{
   font-size:16px;
   line-height:28px;
+  display:block;
+  margin:0 0 -20px;
 }
 @media screen and (max-width: 767px) {
   .qa strong{
     font-size:14px;
     line-height:22px;
-    display:block;
-    margin:0 0 -20px;
+    margin:0 0 -10px;
   }
 }
-.qa p>strong:first-child{
+.qa h2{
+  margin:-20px -20px 20px;
+}
+
+.qa h2 strong{
   font-size:22px;
   line-height:30px;
   text-transform:uppercase;
@@ -10461,15 +10479,18 @@ abbr[title] {
   display:block;
   color:#4A4A4A;
   background:#F7F7F7;
-  margin:-20px -20px -35px;
+  margin:0;
 }
 
 @media screen and (max-width: 767px) {
-  .qa p>strong:first-child{
+  .qa h2{
+    margin:-10px -10px 15px;
+  }
+
+  .qa h2 strong{
     font-weight:900;
     font-size:15px;
     line-height:22px;
     padding:10px;
-    margin:-10px -10px -15px;
   }
 }
