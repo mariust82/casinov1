@@ -1,9 +1,8 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="index"/>
-	<!-- START: Hardcoding requested by TAN -->
-
-	<!-- END: Hardcoding requested by TAN -->
 	<:if test="isset(${data.widgets.upper})">
-		<div style="background-color:#330000; color:white; margin:0 0 30px;">${implode("\n", ${data.widgets.upper})}</div>
+		<div style="border: 5px solid black; color:black; margin:0 0 30px;">
+			${implode("\n", ${data.widgets.upper})}
+		</div>
 	</:if>
 	<box:pick/>
 	<casino:carousel-container title="Top-Rated Casinos" url="/casinos/best" items="${data.best_casinos}" country="${data.country}" description="We invite you to browse through the best online casinos in the world, ranked and reviewed by real casino players. The list is constantly updated so make sure you check it from time to time to stay up to date with the latest rankings!"/>
@@ -15,6 +14,8 @@
 	<casino:list-container id="3" data="${data.no_deposit_casinos}" type="SOFTWARE" url="/bonus-list/no-deposit-bonus" name="No Deposit Casinos" description="These No Deposit Casinos offer free bonuses upon registration to their new players, which can either be free money, free spins or free play, allowing you to keep your winnings. This is a great way to explore the grounds of new casinos without risking your own money."/>
 	<game:list-container id="4" data="${data.new_games}" url="/games" name="New Games" description="Whether you are an amateur or an experienced player, on CasinosLists.com you’ll always find the newest game releases. Online Casino Games such as Video Slots, Blackjack, Roulette and more can be found here to play for fun! As the online gaming world is one of the most competitive domains, software developers are always racing to create the best games on the market. We make sure to always be up to date with the newest arrivals, so you can try them out for free!"/>
 	<:if test="isset(${data.widgets.lower})">
-		<div style="background-color:#000033; color:white;">${implode("\n", ${data.widgets.lower})}</div>
+		<div style="border: 5px solid black; color:black; margin:0 0 30px;">
+			${implode("\n", ${data.widgets.lower})}
+		</div>
 	</:if>
 <site:bottom menu="${data.menu_top}"/>
