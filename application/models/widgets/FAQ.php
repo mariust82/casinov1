@@ -1,5 +1,6 @@
 <?php
 namespace CasinosLists;
+require_once 'hlis/widgets/src/widgets/FAQ';
 
 class FAQ extends \CMS\FAQ
 {
@@ -26,3 +27,4 @@ class FAQ extends \CMS\FAQ
         return $output;
     }
 }
+    
