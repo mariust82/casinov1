@@ -37,7 +37,7 @@ class LoadAllCasinosController extends CasinosFilterController
         $free_bonus = $this->request->parameters('free_bonus');
         $country_accepted = $this->request->parameters('country_accepted');
         $sort = $this->request->parameters('sort');
-        $offset = ($free_bonus == NULL && $country_accepted == NULL && $sort == '1') ? 30 : $page * $this->limit;
+        $offset = ($free_bonus == NULL && $country_accepted == NULL && $sort == '1') && $page == 1 ? 30 : ($page -1) * $this->limit + 30;
 
         $this->response->attributes("filter", $filter->getCasinoLabel());
         $this->response->attributes("total_casinos", $total);
