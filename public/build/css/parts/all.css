@@ -9660,14 +9660,17 @@ html.no-scroll {
 	}
 }
 
-.plain-text table{
+.plain-text table,
+.widget.table table{
   width:100% !important;
   border-collapse:collapse;
   table-layout:fixed;
 }
 
 .plain-text table th,
-.plain-text table td {
+.plain-text table td,
+.widget.table table th,
+.widget.table table td {
   font-size:16px;
   line-height:19px;
   padding:15px 15px 14px;
@@ -9675,13 +9678,15 @@ html.no-scroll {
   border:2px solid #fff;
 }
 
-.plain-text table th{
+.plain-text table th,
+.widget.table table th{
   background:#2171CE;
   color:#fff;
   text-transform:uppercase;
 }
 
-.plain-text table td{
+.plain-text table td,
+.widget.table table td{
   background:#F7F7F7;
   color:#646464;
 }

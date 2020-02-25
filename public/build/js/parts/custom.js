@@ -261,7 +261,7 @@ var initImageLazyLoad = function () {
         }
 
         function initMobileLayoutOfTable() {
-            var _table = $('.plain-text table');
+            var _table = $('.plain-text table, .widget.table table');
             var _tr = _table.find('tr');
             var _th = _table.find('th');
             var _isInited = false;
