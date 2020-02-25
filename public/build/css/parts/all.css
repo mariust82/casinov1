@@ -10421,15 +10421,28 @@ abbr[title] {
 [data-is-free="1"]{
   color:#529724;
 }
-.qa{
+.qa,
+.widget.faq{
+  font-size:14px;
+  line-height:28px;
   border:1px solid #E2E2E3;
   border-radius:2px;
   padding:20px;
 }
 
+.widget.faq{
+  padding:20px 20px 0;
+}
+
 @media screen and (max-width: 767px) {
-  .qa{
+  .qa,
+  .widget.faq{
     padding:10px;
+    line-height:26px;
+  }
+
+  .widget.faq{
+    padding:10px 10px 0;
   }
 }
 .qa p{
@@ -10449,18 +10462,16 @@ abbr[title] {
   }
 }
 
-.qa{
-  font-size:14px;
-  line-height:28px;
-}
-.qa strong{
+.qa strong,
+.widget.faq strong{
   font-size:16px;
   line-height:28px;
   display:block;
   margin:0 0 -20px;
 }
 @media screen and (max-width: 767px) {
-  .qa strong{
+  .qa strong,
+  .widget.faq strong{
     font-size:14px;
     line-height:22px;
     margin:0 0 -10px;
@@ -10470,7 +10481,12 @@ abbr[title] {
   margin:-20px -20px 20px;
 }
 
-.qa h2 strong{
+.widget.faq h2{
+  margin:-20px -20px 0;
+}
+
+.qa h2 strong,
+.widget.faq h2{
   font-size:22px;
   line-height:30px;
   text-transform:uppercase;
@@ -10479,6 +10495,9 @@ abbr[title] {
   display:block;
   color:#4A4A4A;
   background:#F7F7F7;
+}
+
+.qa h2 strong{
   margin:0;
 }
 
@@ -10486,12 +10505,47 @@ abbr[title] {
   .qa h2{
     margin:-10px -10px 15px;
   }
+  
+  .widget.faq h2{
+    margin:-10px -10px 0;
+  }
 
-  .qa h2 strong{
+  .qa h2 strong,
+  .widget.faq h2{
     font-weight:900;
     font-size:15px;
     line-height:22px;
     padding:10px;
+  }
+}
+
+.widget.faq>div{
+  padding:20px 0;
+  border-bottom:1px solid #E2E2E3;
+}
+
+@media screen and (max-width: 767px) {
+  .widget.faq>div{
+    padding:15px 0;
+  }
+}
+
+.widget.faq>div:last-child{
+  border:none;
+}
+
+.widget.faq>div>div:first-child{
+  font-weight:bold;
+  font-size:16px;
+  margin:0 0 15px;
+  color:#60686A;
+}
+
+@media screen and (max-width: 767px) {
+  .widget.faq>div>div:first-child{
+    font-size:14px;
+    line-height:22px;
+    margin:0 0 10px;
   }
 }
 
