@@ -10495,3 +10495,12 @@ abbr[title] {
     padding:10px;
   }
 }
+
+.widget{
+  margin:0 0 30px;
+}
+
+hr.widget{
+  border:none;
+  border-top:1px solid #E2E2E3;
+}
