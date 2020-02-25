@@ -43,13 +43,15 @@ blockquote p span{
     border-top: 1px solid #E2E2E3;
 }
 
-.spec_div{
+.spec_div,
+.special_block_text{
     display: block !important;
     border: 1px solid #E2E2E3 !important;
     padding: 20px 15px 20px 15px !important;
     background: #F8F8F8 !important;
     font-family: "Open Sans";
     font-size: 14px !important;
+    line-height:28px;
     color: #646464 !important;
 }
 
@@ -58,7 +60,8 @@ blockquote p span{
 .plain-text .spec_div h3,
 .plain-text .spec_div h4,
 .plain-text .spec_div h5,
-.plain-text .spec_div h6 {
+.plain-text .spec_div h6,
+.special_block_text h2 {
   color:#2171CE;
   font-size:22px;
   line-height:30px;
@@ -73,7 +76,8 @@ blockquote p span{
   .plain-text .spec_div h3,
   .plain-text .spec_div h4,
   .plain-text .spec_div h5,
-  .plain-text .spec_div h6 {
+  .plain-text .spec_div h6,
+  .special_block_text h2 {
     font-size:20px;
     margin:0 0 10px;
   }
@@ -8702,16 +8706,6 @@ a:focus {
 
 blockquote p{
     padding-left: 30px;
-}
-
-.spec_div{
-    display: block !important;
-    border: 1px solid #E2E2E3 !important;
-    padding: 20px 20px 20px 20px !important;
-    background: #F8F8F8 !important;
-    font-family: "Open Sans";
-    font-size: 14px !important;
-    color: #646464 !important;
 }
 
 .btn-bordered {
