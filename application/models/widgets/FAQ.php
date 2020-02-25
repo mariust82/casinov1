@@ -1,6 +1,6 @@
 <?php
 namespace CasinosLists;
-require_once 'hlis/widgets/src/widgets/FAQ';
+require_once 'hlis/widgets/src/widgets/FAQ.php';
 
 class FAQ extends \CMS\FAQ
 {
