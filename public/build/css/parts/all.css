@@ -51,7 +51,7 @@ blockquote p span{
     background: #F8F8F8 !important;
     font-family: "Open Sans";
     font-size: 14px !important;
-    line-height:28px;
+    line-height:28px !important;
     color: #646464 !important;
 }
 
@@ -62,12 +62,11 @@ blockquote p span{
 .plain-text .spec_div h5,
 .plain-text .spec_div h6,
 .special_block_text h2 {
-  color:#2171CE;
-  font-size:22px;
-  line-height:30px;
-  color: #2171CE;
-  text-transform: uppercase;
-  margin:0 0 20px;
+  color:#2171CE !important;
+  font-size:22px !important;
+  line-height:30px !important;
+  text-transform: uppercase !important;
+  margin:0 0 20px !important;
 }
 
 @media screen and (max-width: 767px) {
@@ -78,8 +77,8 @@ blockquote p span{
   .plain-text .spec_div h5,
   .plain-text .spec_div h6,
   .special_block_text h2 {
-    font-size:20px;
-    margin:0 0 10px;
+    font-size:20px !important;
+    margin:0 0 10px !important;
   }
 }
 
@@ -9790,15 +9789,7 @@ html.no-scroll {
 .plain-text blockquote,
 .plain-text hr,
 .plain-text .spec_div{
-  margin:0 0 40px;
-}
-
-@media screen and (max-width: 767px) {
-  .plain-text blockquote,
-  .plain-text hr,
-  .plain-text .spec_div{
-    margin:0 0 50px;
-  }
+  margin:0 0 30px;
 }
 
 .plain-text-part {
