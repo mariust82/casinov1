@@ -39,7 +39,8 @@ blockquote.widget{
 
 blockquote.widget p span{
     color: #60686A !important;
-    font-size: 16px !important;
+    font-size: 16px
+     !important;
     font-family: 'Open Sans';
 }
 
@@ -9708,7 +9709,7 @@ html.no-scroll {
   color: #646464;
 }
 
-.plain-text p{
+.plain-text>p{
     font-size: 14px !important;
 }
 
@@ -9786,18 +9787,18 @@ html.no-scroll {
 }
 
 
-.plain-text p {
+.plain-text>p {
   margin: 0 0 15px;
   line-height: 1.9;
 }
 
 @media screen and (max-width: 690px) {
-  .plain-text p {
+  .plain-text>p {
     line-height: 22px;
   }
 }
 
-.plain-text p:last-child {
+.plain-text>p:last-child {
   margin:0;
 }
 
