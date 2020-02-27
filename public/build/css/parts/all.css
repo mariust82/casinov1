@@ -21,16 +21,32 @@
     overflow-x: hidden;
 }
 
-blockquote{
+blockquote.widget{
+    font-size: 16px;
+    line-height:28px;
+    color:#60686A;
     position: relative;
-    padding-left: 1em;
+    padding-left: 34px;
     border-left: 4px solid #2171CE;
 }
 
-blockquote p span{
+@media screen and (max-width: 767px) {
+  blockquote.widget{
+      line-height:26px;
+      padding-left: 20px;
+  }
+}
+
+blockquote.widget p span{
     color: #60686A !important;
-    font-size: 16px !important;
+    font-size: 16px
+     !important;
     font-family: 'Open Sans';
+}
+
+blockquote.widget p{
+  padding:0;
+  font-size: 16px !important;
 }
 
 @media screen and (max-width: 767px) {
@@ -51,7 +67,7 @@ blockquote p span{
     background: #F8F8F8 !important;
     font-family: "Open Sans";
     font-size: 14px !important;
-    line-height:28px;
+    line-height:28px !important;
     color: #646464 !important;
 }
 
@@ -62,12 +78,11 @@ blockquote p span{
 .plain-text .spec_div h5,
 .plain-text .spec_div h6,
 .special_block_text h2 {
-  color:#2171CE;
-  font-size:22px;
-  line-height:30px;
-  color: #2171CE;
-  text-transform: uppercase;
-  margin:0 0 20px;
+  color:#2171CE !important;
+  font-size:22px !important;
+  line-height:30px !important;
+  text-transform: uppercase !important;
+  margin:0 0 20px !important;
 }
 
 @media screen and (max-width: 767px) {
@@ -78,8 +93,8 @@ blockquote p span{
   .plain-text .spec_div h5,
   .plain-text .spec_div h6,
   .special_block_text h2 {
-    font-size:20px;
-    margin:0 0 10px;
+    font-size:20px !important;
+    margin:0 0 10px !important;
   }
 }
 
@@ -3567,16 +3582,15 @@ a:focus {
   padding: 0 0 2px;
 }
 
-.subtitle div {
+.subtitle {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
   line-height: 26px;
-  display: inline-block;
 }
 
 @media screen and (max-width: 690px){
-  .subtitle div{
+  .subtitle{
     line-height: 1.3;
   }
 }
@@ -9695,7 +9709,7 @@ html.no-scroll {
   color: #646464;
 }
 
-.plain-text p{
+.plain-text>p{
     font-size: 14px !important;
 }
 
@@ -9773,33 +9787,25 @@ html.no-scroll {
 }
 
 
-.plain-text p {
+.plain-text>p {
   margin: 0 0 15px;
   line-height: 1.9;
 }
 
 @media screen and (max-width: 690px) {
-  .plain-text p {
+  .plain-text>p {
     line-height: 22px;
   }
 }
 
-.plain-text p:last-child {
+.plain-text>p:last-child {
   margin:0;
 }
 
 .plain-text blockquote,
 .plain-text hr,
 .plain-text .spec_div{
-  margin:0 0 40px;
-}
-
-@media screen and (max-width: 767px) {
-  .plain-text blockquote,
-  .plain-text hr,
-  .plain-text .spec_div{
-    margin:0 0 50px;
-  }
+  margin:0 0 30px;
 }
 
 .plain-text-part {
