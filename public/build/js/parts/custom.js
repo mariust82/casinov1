@@ -51,7 +51,10 @@ function createFAQScript() {
 
         objItem["@type"] = "Question";
         objItem["name"] = question;
-        objItem["acceptedAnswer"] = answer;
+        objItem["acceptedAnswer"] = {
+            "@type": "Answer",
+            "text": answer
+        };
         jsonObj["mainEntity"].push(objItem);
     });
 
