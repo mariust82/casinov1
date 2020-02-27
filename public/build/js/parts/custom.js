@@ -54,11 +54,14 @@ function createFAQScript() {
         objItem["acceptedAnswer"] = answer;
         jsonObj["mainEntity"].push(objItem);
     });
-    
+
     $script.append(JSON.stringify(jsonObj))
 
 }
-createFAQScript();
+
+if ($(".widget.faq").length > 0) {
+    createFAQScript();
+}
 
 (function ($) {
     BUSY_REQUEST = false;
