@@ -35,6 +35,31 @@ var initImageLazyLoad = function () {
     new imageDefer(configImgLazyLoad);
 };
 
+function createFAQScript() {
+    var $script = $('<script type="application/ld+json"></script>');
+    var jsonObj = {
+            "@context":"https://schema.org",
+            "@type":"FAQPage",
+            "mainEntity":[]
+        };
+
+    $('head').append($script);
+    $(".widget.faq").children('div').each(function(i){
+        var question = $(this).find('div').eq(0).text();
+        var answer = $(this).find('div').eq(1).text();
+        var objItem = {};
+
+        objItem["@type"] = "Question";
+        objItem["name"] = question;
+        objItem["acceptedAnswer"] = answer;
+        jsonObj["mainEntity"].push(objItem);
+    });
+    
+    $script.append(JSON.stringify(jsonObj))
+
+}
+createFAQScript();
+
 (function ($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
