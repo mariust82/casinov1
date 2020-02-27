@@ -3,6 +3,7 @@ var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
 var COUNTRY_CURR_PAGE = 1;
+var ALL_CASINOS_KEY = 1;
 var BEST_BANKING_PAGE = 1;
 var searched_value = '';
 var isSearchResultEvent = false;
@@ -33,6 +34,37 @@ var initImageLazyLoad = function () {
 
     new imageDefer(configImgLazyLoad);
 };
+
+function createFAQScript() {
+    var $script = $('<script type="application/ld+json"></script>');
+    var jsonObj = {
+            "@context":"https://schema.org",
+            "@type":"FAQPage",
+            "mainEntity":[]
+        };
+
+    $('head').append($script);
+    $(".widget.faq").children('div').each(function(i){
+        var question = $(this).find('div').eq(0).text();
+        var answer = $(this).find('div').eq(1).text();
+        var objItem = {};
+
+        objItem["@type"] = "Question";
+        objItem["name"] = question;
+        objItem["acceptedAnswer"] = {
+            "@type": "Answer",
+            "text": answer
+        };
+        jsonObj["mainEntity"].push(objItem);
+    });
+
+    $script.append(JSON.stringify(jsonObj))
+
+}
+
+if ($(".widget.faq").length > 0) {
+    createFAQScript();
+}
 
 (function ($) {
     BUSY_REQUEST = false;
@@ -96,6 +128,43 @@ var initImageLazyLoad = function () {
                     GAME_CURR_PAGE++;
                     $('.games-list').append(data);
                     if ($(self).data('total') === $('.games-list').children().length) {
+                        $(self).hide();
+                    }
+                },
+                error: function (XMLHttpRequest) {
+                    var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                    if (XMLHttpRequest.statusText != "abort") {
+                        console.log('err');
+                    }
+                },
+                complete: function () {
+                    BUSY_REQUEST = false;
+                }
+            });
+        });
+        
+        $('.js-all-casinos').click(function () {
+            $(this).addClass('loading');
+            var key = $(this).data('key');
+            var self = $(this);
+             new Filters($('#filters'));
+            _request = $.ajax({
+                url: '/load-all-casinos/' + ALL_CASINOS_KEY,
+                data: {
+                    page: ALL_CASINOS_KEY,
+                    type: key,
+                    software: $(self).data('software')
+                },
+                dataType: 'html',
+                type: 'post',
+                success: function (data) {
+                    setTimeout(function () {
+                        self.removeClass('loading');
+                        refresh();
+                    }, 1000);
+                    ALL_CASINOS_KEY++;
+                    $(self).parent().prev().find('.list-body').append(data);
+                    if ($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
                         $(self).hide();
                     }
                 },
@@ -223,7 +292,7 @@ var initImageLazyLoad = function () {
         }
 
         function initMobileLayoutOfTable() {
-            var _table = $('.plain-text table');
+            var _table = $('.plain-text table, .widget.table table');
             var _tr = _table.find('tr');
             var _th = _table.find('th');
             var _isInited = false;
@@ -1034,7 +1103,9 @@ var initImageLazyLoad = function () {
             BUSY_REQUEST = true;
             _request.abort();
             var limit_items = (_url == '/games-filter/') ? 24 : 100;
-
+            if (location.pathname === '/casinos') {
+                _url = 'load-all-casinos/';
+            }
             _request = $.ajax({
                 url: _url + AJAX_CUR_PAGE,
                 data: _ajaxDataParams,

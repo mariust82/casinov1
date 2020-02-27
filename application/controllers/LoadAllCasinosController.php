@@ -2,6 +2,7 @@
 require_once("application/models/CasinoFilter.php");
 require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
+require_once 'application/controllers/CasinosFilterController.php';
 
 /*
 * Filters casinos according to selections
@@ -21,64 +22,34 @@ require_once("application/models/dao/CasinosList.php");
 * @requestParameter play_version string Value of current play version, if  current page is "Features"
 * @requestParameter sort string Value can be "default", "top rated" or "newest"
 */
-class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
+class LoadAllCasinosController extends CasinosFilterController
 {
-    protected $limit = 100;
 
     public function run()
     {
         $this->response->attributes("country", $this->request->attributes("country"));
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
-        $sortCriteria = $this->getSortCriteria();
-
         $page = (integer)$this->request->getValidator()->parameters("page");
         $filter = new CasinoFilter($_GET, $this->request->attributes("country"));
         $object = new CasinosList($filter);
 
         $total = $object->getTotal();
-
-        $offset = $page * $this->limit;
-
+        $free_bonus = $this->request->parameters('free_bonus');
+        $country_accepted = $this->request->parameters('country_accepted');
+        $sort = $this->request->parameters('sort');
+        if ($free_bonus == NULL && $country_accepted == NULL && $sort == '1') {
+            if ($page == 1) {
+                $offset =  30;
+            } else {
+                $offset =  ($page -1) * $this->limit + 30;
+            }
+        } else {
+            $offset = $page * $this->limit;
+        }
         $this->response->attributes("filter", $filter->getCasinoLabel());
         $this->response->attributes("total_casinos", $total);
-        $this->response->attributes("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset, true));
+        $this->response->attributes("casinos", $object->getResults($sort, $page, $this->limit, $offset, true));
         $this->response->attributes('page_type', $this->getPageType($filter));
         $this->response->attributes('selected_entity', $filter->getCasinoLabel());
-    }
-
-    private function getSortCriteria()
-    {
-        $sort_criteria = $this->request->attributes('validation_results')->get('sort');
-        if (empty($sort_criteria)|| $sort_criteria==null) {
-            return CasinoSortCriteria::NONE;
-        }
-
-        if ($sort_criteria == CasinoSortCriteria::NONE) {
-            if ($this->request->parameters("label") == "New") {
-                return CasinoSortCriteria::NEWEST;
-            } elseif ($this->request->parameters("label") == "Low Wagering") {
-                return CasinoSortCriteria::WAGERING;
-            } elseif ($this->request->parameters("label") == "No Account Casinos") {
-                return CasinoSortCriteria::NO_ACCOUNT;
-            } elseif (!empty($this->request->attributes('validation_results')->get('country'))) {
-                return CasinoSortCriteria::POPULARITY;
-            }
-            return CasinoSortCriteria::NONE;
-        } else {
-            return $this->request->attributes('validation_results')->get('sort');
-        }
-    }
-
-    protected function getPageType(CasinoFilter $filter)
-    {
-        if ($filter->getBankingMethod()) {
-            return 'banking_method';
-        } else {
-            if ($filter->getCasinoLabel() == 'Low Wagering') {
-                return 'low_wagering';
-            } else {
-                return 'not_banking_method';
-            }
-        }
     }
 }

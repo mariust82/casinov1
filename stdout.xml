@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
 <xml>
-  <application version="0.8.8.9150" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
+  <application version="0.8.8.9165" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
     <paths>
       <controllers>application/controllers</controllers>
       <cacheables>application/models/cacheables</cacheables>
@@ -85,6 +85,9 @@
       <parameter name="name" validator="SoftwareNameValidator"/>
     </route>
     <route url="games-by-software/(page)" controller="LoadMoreGamesBySoftwareController" view="game-item">
+      <parameter name="page" validator="IntegerValidator"/>
+    </route>
+    <route url="load-all-casinos/(page)" controller="LoadAllCasinosController" view="casinos-list">
       <parameter name="page" validator="IntegerValidator"/>
     </route>
     <route url="casinos-by-software/(page)" controller="LoadMoreCasinosBySoftwareController" view="casino-item">

@@ -10,7 +10,10 @@ abstract class CasinosCounterController extends BaseController
     {
         $object = $this->getCounter();
         $this->response->attributes("results", $this->getResults($object));
+        $this->init();
     }
+    
+    protected function init() {}
 
     protected function getResults(CasinoCounter $object)
     {
