@@ -21,16 +21,32 @@
     overflow-x: hidden;
 }
 
-blockquote{
+blockquote.widget{
+    font-size: 16px;
+    line-height:28px;
+    color:#60686A;
     position: relative;
-    padding-left: 1em;
+    padding-left: 34px;
     border-left: 4px solid #2171CE;
 }
 
-blockquote p span{
+@media screen and (max-width: 767px) {
+  blockquote.widget{
+      line-height:26px;
+      padding-left: 20px;
+  }
+}
+
+blockquote.widget p span{
     color: #60686A !important;
-    font-size: 16px !important;
+    font-size: 16px
+     !important;
     font-family: 'Open Sans';
+}
+
+blockquote.widget p{
+  padding:0;
+  font-size: 16px !important;
 }
 
 @media screen and (max-width: 767px) {
@@ -43,13 +59,15 @@ blockquote p span{
     border-top: 1px solid #E2E2E3;
 }
 
-.spec_div{
+.spec_div,
+.special_block_text{
     display: block !important;
     border: 1px solid #E2E2E3 !important;
     padding: 20px 15px 20px 15px !important;
     background: #F8F8F8 !important;
     font-family: "Open Sans";
     font-size: 14px !important;
+    line-height:28px !important;
     color: #646464 !important;
 }
 
@@ -58,13 +76,13 @@ blockquote p span{
 .plain-text .spec_div h3,
 .plain-text .spec_div h4,
 .plain-text .spec_div h5,
-.plain-text .spec_div h6 {
-  color:#2171CE;
-  font-size:22px;
-  line-height:30px;
-  color: #2171CE;
-  text-transform: uppercase;
-  margin:0 0 20px;
+.plain-text .spec_div h6,
+.special_block_text h2 {
+  color:#2171CE !important;
+  font-size:22px !important;
+  line-height:30px !important;
+  text-transform: uppercase !important;
+  margin:0 0 20px !important;
 }
 
 @media screen and (max-width: 767px) {
@@ -73,9 +91,10 @@ blockquote p span{
   .plain-text .spec_div h3,
   .plain-text .spec_div h4,
   .plain-text .spec_div h5,
-  .plain-text .spec_div h6 {
-    font-size:20px;
-    margin:0 0 10px;
+  .plain-text .spec_div h6,
+  .special_block_text h2 {
+    font-size:20px !important;
+    margin:0 0 10px !important;
   }
 }
 
@@ -3563,16 +3582,15 @@ a:focus {
   padding: 0 0 2px;
 }
 
-.subtitle div {
+.subtitle {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
   line-height: 26px;
-  display: inline-block;
 }
 
 @media screen and (max-width: 690px){
-  .subtitle div{
+  .subtitle{
     line-height: 1.3;
   }
 }
@@ -8704,16 +8722,6 @@ blockquote p{
     padding-left: 30px;
 }
 
-.spec_div{
-    display: block !important;
-    border: 1px solid #E2E2E3 !important;
-    padding: 20px 20px 20px 20px !important;
-    background: #F8F8F8 !important;
-    font-family: "Open Sans";
-    font-size: 14px !important;
-    color: #646464 !important;
-}
-
 .btn-bordered {
   border-radius: 4px;
   display: inline-block;
@@ -9488,6 +9496,7 @@ html.no-scroll {
 }
 
 .article-heading-title {
+    max-width:960px;
     color: #fff;
     font-size: 42px;
     margin-bottom: 25px;
@@ -9647,6 +9656,12 @@ html.no-scroll {
 	margin-bottom: 15px;
 }
 
+@media screen and (max-width: 767px) {
+  .plain-text img{
+    width: 100% !important;
+  }
+}
+
 .plain-text .title-name{
 	margin-bottom: 20px;
 	font-size: 20px;
@@ -9659,14 +9674,17 @@ html.no-scroll {
 	}
 }
 
-.plain-text table{
+.plain-text table,
+.widget.table table{
   width:100% !important;
   border-collapse:collapse;
   table-layout:fixed;
 }
 
 .plain-text table th,
-.plain-text table td {
+.plain-text table td,
+.widget.table table th,
+.widget.table table td {
   font-size:16px;
   line-height:19px;
   padding:15px 15px 14px;
@@ -9674,13 +9692,15 @@ html.no-scroll {
   border:2px solid #fff;
 }
 
-.plain-text table th{
+.plain-text table th,
+.widget.table table th{
   background:#2171CE;
   color:#fff;
   text-transform:uppercase;
 }
 
-.plain-text table td{
+.plain-text table td,
+.widget.table table td{
   background:#F7F7F7;
   color:#646464;
 }
@@ -9689,7 +9709,7 @@ html.no-scroll {
   color: #646464;
 }
 
-.plain-text p{
+.plain-text>p{
     font-size: 14px !important;
 }
 
@@ -9767,33 +9787,25 @@ html.no-scroll {
 }
 
 
-.plain-text p {
+.plain-text>p {
   margin: 0 0 15px;
   line-height: 1.9;
 }
 
 @media screen and (max-width: 690px) {
-  .plain-text p {
+  .plain-text>p {
     line-height: 22px;
   }
 }
 
-.plain-text p:last-child {
+.plain-text>p:last-child {
   margin:0;
 }
 
 .plain-text blockquote,
 .plain-text hr,
 .plain-text .spec_div{
-  margin:0 0 40px;
-}
-
-@media screen and (max-width: 767px) {
-  .plain-text blockquote,
-  .plain-text hr,
-  .plain-text .spec_div{
-    margin:0 0 50px;
-  }
+  margin:0 0 30px;
 }
 
 .plain-text-part {
@@ -10414,4 +10426,140 @@ abbr[title] {
 
 [data-is-free="1"]{
   color:#529724;
+}
+.qa,
+.widget.faq{
+  font-size:14px;
+  line-height:28px;
+  border:1px solid #E2E2E3;
+  border-radius:2px;
+  padding:20px;
+}
+
+.widget.faq{
+  padding:20px 20px 0;
+}
+
+@media screen and (max-width: 767px) {
+  .qa,
+  .widget.faq{
+    padding:10px;
+    line-height:26px;
+  }
+
+  .widget.faq{
+    padding:10px 10px 0;
+  }
+}
+.qa p{
+  margin:0 0 20px;
+}
+
+.qa hr{
+  border:none;
+  border-top:1px solid #E2E2E3;
+  margin:0 0 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .qa p,
+  .qa hr{
+    margin:0 0 15px;
+  }
+}
+
+.qa strong,
+.widget.faq strong{
+  font-size:16px;
+  line-height:28px;
+  display:block;
+  margin:0 0 -20px;
+}
+@media screen and (max-width: 767px) {
+  .qa strong,
+  .widget.faq strong{
+    font-size:14px;
+    line-height:22px;
+    margin:0 0 -10px;
+  }
+}
+.qa h2{
+  margin:-20px -20px 20px;
+}
+
+.widget.faq h2{
+  margin:-20px -20px 0;
+}
+
+.qa h2 strong,
+.widget.faq h2{
+  font-size:22px;
+  line-height:30px;
+  text-transform:uppercase;
+  font-weight:400;
+  padding:20px;
+  display:block;
+  color:#4A4A4A;
+  background:#F7F7F7;
+}
+
+.qa h2 strong{
+  margin:0;
+}
+
+@media screen and (max-width: 767px) {
+  .qa h2{
+    margin:-10px -10px 15px;
+  }
+  
+  .widget.faq h2{
+    margin:-10px -10px 0;
+  }
+
+  .qa h2 strong,
+  .widget.faq h2{
+    font-weight:900;
+    font-size:15px;
+    line-height:22px;
+    padding:10px;
+  }
+}
+
+.widget.faq>div{
+  padding:20px 0;
+  border-bottom:1px solid #E2E2E3;
+}
+
+@media screen and (max-width: 767px) {
+  .widget.faq>div{
+    padding:15px 0;
+  }
+}
+
+.widget.faq>div:last-child{
+  border:none;
+}
+
+.widget.faq>div>div:first-child{
+  font-weight:bold;
+  font-size:16px;
+  margin:0 0 15px;
+  color:#60686A;
+}
+
+@media screen and (max-width: 767px) {
+  .widget.faq>div>div:first-child{
+    font-size:14px;
+    line-height:22px;
+    margin:0 0 10px;
+  }
+}
+
+.widget{
+  margin:0 0 30px;
+}
+
+hr.widget{
+  border:none;
+  border-top:1px solid #E2E2E3;
 }

@@ -27,7 +27,7 @@ class CasinoLabelsController extends CasinosCounterController
         $this->response->attributes("total_casinos", $results["total"]);
         $this->response->attributes("casinos", $results["list"]);
         $this->response->attributes("page_type", 'label');
-        $this->response->attributes("selected_entity", "New");
+        $this->response->attributes("selected_entity", "all");
     }
 
     private function getCasinos()

@@ -35,6 +35,37 @@ var initImageLazyLoad = function () {
     new imageDefer(configImgLazyLoad);
 };
 
+function createFAQScript() {
+    var $script = $('<script type="application/ld+json"></script>');
+    var jsonObj = {
+            "@context":"https://schema.org",
+            "@type":"FAQPage",
+            "mainEntity":[]
+        };
+
+    $('head').append($script);
+    $(".widget.faq").children('div').each(function(i){
+        var question = $(this).find('div').eq(0).text();
+        var answer = $(this).find('div').eq(1).text();
+        var objItem = {};
+
+        objItem["@type"] = "Question";
+        objItem["name"] = question;
+        objItem["acceptedAnswer"] = {
+            "@type": "Answer",
+            "text": answer
+        };
+        jsonObj["mainEntity"].push(objItem);
+    });
+
+    $script.append(JSON.stringify(jsonObj))
+
+}
+
+if ($(".widget.faq").length > 0) {
+    createFAQScript();
+}
+
 (function ($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
@@ -116,6 +147,7 @@ var initImageLazyLoad = function () {
             $(this).addClass('loading');
             var key = $(this).data('key');
             var self = $(this);
+             new Filters($('#filters'));
             _request = $.ajax({
                 url: '/load-all-casinos/' + ALL_CASINOS_KEY,
                 data: {
@@ -260,7 +292,7 @@ var initImageLazyLoad = function () {
         }
 
         function initMobileLayoutOfTable() {
-            var _table = $('.plain-text table');
+            var _table = $('.plain-text table, .widget.table table');
             var _tr = _table.find('tr');
             var _th = _table.find('th');
             var _isInited = false;
@@ -1071,7 +1103,9 @@ var initImageLazyLoad = function () {
             BUSY_REQUEST = true;
             _request.abort();
             var limit_items = (_url == '/games-filter/') ? 24 : 100;
-
+            if (location.pathname === '/casinos') {
+                _url = 'load-all-casinos/';
+            }
             _request = $.ajax({
                 url: _url + AJAX_CUR_PAGE,
                 data: _ajaxDataParams,

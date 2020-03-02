@@ -69,7 +69,7 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         }
     }
 
-    private function getPageType(CasinoFilter $filter)
+    protected function getPageType(CasinoFilter $filter)
     {
         if ($filter->getBankingMethod()) {
             return 'banking_method';
