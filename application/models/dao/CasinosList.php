@@ -77,6 +77,9 @@ class CasinosList
             $bonus = new CasinoBonus();
             $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
             $bonus->amount = $this->checkForAbbr($bonus->amount);
+            if(!preg_match('[FS|NDB|CB|FDB]', $bonus->amount)) {
+                $bonus->bonus_type_Abbreviation ='<abbr title="'.$row["name"].'"> '.$this->getAbbreviation($row["name"]);
+            }
             $bonus->min_deposit = $row["deposit_minimum"];
             if ($row["wagering"] == '') {
                 $row["wagering"] = 0;
@@ -243,7 +246,7 @@ class CasinosList
         }
         if (strpos($amount, 'CB') !== false) {
             return str_replace("CB",'<abbr title="Cashback "> CB',$amount);
-         }
+        }
         if (strpos($amount, 'FDB') !== false) {
             return str_replace("FDB",'<abbr title="First Deposit Bonus"> FDB',$amount);
         }
