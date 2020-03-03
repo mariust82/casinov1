@@ -22,7 +22,7 @@
                     </a>
                     <div class="pick-buttons">
                         <:if test="!empty(${result.bonus_free.amount})">
-                            <div class="btn-round ${(${data.is_mobile}?'':'js-tooltip-content')}" data-name="${result.name}" data-is-free="1">${result.bonus_free.amount}</div>
+                            <div class="btn-round ${(${data.is_mobile}?'':'js-tooltip-content')}" data-name="${result.name}" data-is-free="1">${result.bonus_free.amount} ${result.bonus_free.bonus_type_Abbreviation}</div>
                         </:if>
                         <div class="btn-round ${(${data.is_mobile}?'':'js-tooltip-content')}" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</div>
                     </div>
