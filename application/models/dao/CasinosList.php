@@ -156,6 +156,9 @@ class CasinosList
             $bonus = new CasinoBonus();
             $bonus->amount = $row["amount"];
             $bonus->amount = $this->checkForAbbr($bonus->amount);
+            if(!preg_match('[FS|NDB|CB|FDB]', $bonus->amount)) {
+                $bonus->bonus_type_Abbreviation ='<abbr title="'.$row["name"].'"> '.$this->getAbbreviation($row["name"]);
+            }
             $bonus->min_deposit = $row["deposit_minimum"];
             if ($row["wagering"] == '') {
                 $row["wagering"] = 0;
