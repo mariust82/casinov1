@@ -95,7 +95,8 @@ $(function () {
                 addMobileEvent();
                 //add config function trigger
                 if(undefined !== configuration.triggerOnPlay){
-                    $(configuration.events.fullscreen).on('click', function () {
+                    var iframePlayButton = $iframe.contents().find(configuration.events.play);
+                    $(iframePlayButton).on('click', function () {
                         configuration.triggerOnPlay();
                     });
                 }
