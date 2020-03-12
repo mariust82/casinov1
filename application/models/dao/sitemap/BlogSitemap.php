@@ -22,10 +22,10 @@ class BlogSitemap {
     }
     
     public function getBlogCategoriesLastMod() {
-        $this->setBlogCategoriesLastMod();
+        return $this->setBlogCategoriesLastMod();
     }
 
     public function getBlogCategories() {
-        $this->setBlogCategories();
+        return $this->setBlogCategories();
     }
 }
