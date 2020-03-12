@@ -14,10 +14,14 @@
 class BlogSitemap {
     
     private function setBlogCategories() {
-        $output = [];
+        $output = [
+            "blog"=>explode(' ',SQL("SELECT MAX(last_changed) FROM articles AS a INNER JOIN article__types AS at ON a.type_id = at.id WHERE a.deleted = 0 AND a.is_draft = 0")->toValue())[0],
+            "blog/news"=>explode(' ',SQL("SELECT MAX(last_changed) FROM articles AS a INNER JOIN article__types AS at ON a.type_id = at.id WHERE a.deleted = 0 AND a.is_draft = 0 AND a.type_id = 2 ")->toValue())[0],
+            "blog/guides"=>explode(' ',SQL("SELECT MAX(last_changed) FROM articles AS a INNER JOIN article__types AS at ON a.type_id = at.id WHERE a.deleted = 0 AND a.is_draft = 0 AND a.type_id = 1 ")->toValue())[0],
+        ];
         $res = $this->getAll();
         while($row = $res->toRow()) {
-            $output[$row['type'].'/'.strtolower(str_replace(' ','-',$row['title']))] = $row['last_changed'];
+            $output[$row['type'].'/'.strtolower(str_replace(' ','-',$row['title']))] = explode(' ', $row['last_changed'])[0];
         }
         array_multisort($output, SORT_DESC);
         return $output;
