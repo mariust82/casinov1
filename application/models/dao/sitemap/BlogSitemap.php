@@ -14,18 +14,21 @@
 class BlogSitemap {
     
     private function setBlogCategories() {
-        return SQL("SELECT a.title, at.value AS type FROM articles AS a INNER JOIN article__types AS at ON a.type_id = at.id WHERE a.deleted = 0 AND a.is_draft = 0 ORDER BY a.id DESC")->toMap("title","type");
-    }
-    
-    private function setBlogCategoriesLastMod() {
-        return SQL("SELECT a.last_changed WHERE a.deleted = 0 AND a.is_draft = 0 ORDER BY a.id DESC")->toColumn();
-    }
-    
-    public function getBlogCategoriesLastMod() {
-        return $this->setBlogCategoriesLastMod();
+        $output = [];
+        $res = $this->getAll();
+        while($row = $res->toRow()) {
+            $output[$row['type'].'/'.strtolower(str_replace(' ','-',$row['title']))] = $row['last_changed'];
+        }
+        array_multisort($output, SORT_DESC);
+        return $output;
     }
 
     public function getBlogCategories() {
         return $this->setBlogCategories();
+    }
+    
+     private function getAll()
+    {
+       return SQL("SELECT a.title,a.last_changed,at.value AS type FROM articles AS a INNER JOIN article__types AS at ON a.type_id = at.id WHERE a.deleted = 0 AND a.is_draft = 0 ORDER BY a.id DESC");
     }
 }

@@ -8,21 +8,21 @@ class BlogCategoriesController extends AbstractSitemapController {
     
     protected function init() {
         $this->dao = new BlogSitemap();
-        
+        $this->rows = $this->dao->getBlogCategories();
     }
     
     protected function getItems()
     {
-       return $this->dao->getBlogCategories();
+        return array_keys($this->rows);
     }
     
-    protected function getLastMod() {   
-        return $this->dao->getBlogCategoriesLastMod();
+    protected function getLastMod() {
+        return array_values($this->rows);
     }
 
     protected function getUrlPattern()
     {
-        return "(category)/(name)";
+        return "(item)";
     }
 
     protected function getPriority()
