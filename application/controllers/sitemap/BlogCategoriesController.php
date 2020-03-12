@@ -13,7 +13,7 @@ class BlogCategoriesController extends AbstractSitemapController {
     
     protected function getItems()
     {
-       $this->rows = $this->dao->getBlogCategories();
+       return $this->dao->getBlogCategories();
     }
     
     protected function getLastMod() {   
