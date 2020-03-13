@@ -92,7 +92,6 @@ $(function () {
             });
 
             $iframe.one('load', function () {
-                console.log('test');
                 addMobileEvent();
                 //add config function trigger
                 if(undefined !== configuration.triggerOnPlay){
