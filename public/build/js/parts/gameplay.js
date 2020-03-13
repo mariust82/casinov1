@@ -91,7 +91,7 @@ $(function () {
                 toogleFullscreen();
             });
 
-            setTimeout(function () {
+            $iframe.load(function () {
                 addMobileEvent();
                 //add config function trigger
                 if(undefined !== configuration.triggerOnPlay){
@@ -100,7 +100,7 @@ $(function () {
                         configuration.triggerOnPlay();
                     });
                 }
-            }, 500);
+            });
         }
 
         function addMobileEvent() {
