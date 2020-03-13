@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
 <xml>
-  <application version="0.8.8.9166" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
+  <application version="0.8.8.9178" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
     <paths>
       <controllers>application/controllers</controllers>
       <cacheables>application/models/cacheables</cacheables>
@@ -227,6 +227,7 @@
     <route url="sitemaps_ps/sitemap_spec_cas_ps.php" controller="sitemap/CasinosController" format="xml"/>
     <route url="sitemaps_ps/sitemap_spec_games_ps.php" controller="sitemap/GamesController" format="xml"/>
     <route url="sitemaps_ps/sitemap_cas_live_dealer.php" controller="sitemap/LiveDealerController" format="xml"/>
+    <route url="sitemaps_ps/sitemap_blog_ps.php" controller="sitemap/BlogCategoriesController" format="xml"/>
   </routes>
   <http_caching class="DateCacheableDriver" drivers_path="application/models/cacheables"/>
   <servers>
