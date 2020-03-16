@@ -7687,7 +7687,7 @@ a:focus {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999999;
+  z-index: 99999999;
   height: 100%;
   width: 100%;
   background: #000;
@@ -7912,7 +7912,20 @@ a:focus {
   right: 0;
   height: 100%;
   box-sizing: border-box;
-  padding: 60px 90px 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.player-controls.right-player-controler div{
+  display:none;
 }
 
 .player-controls.right-player-controler span {
@@ -8566,6 +8579,12 @@ a:focus {
 
 .player-wrap {
   position: relative;
+}
+
+@media screen and (max-width: 690px) {
+  .player-wrap {
+    margin:0 0 10px;
+  }
 }
 
 .fullscreen {
