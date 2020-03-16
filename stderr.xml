@@ -18,6 +18,7 @@
       <mihai>1</mihai>
       <bogdan>1</bogdan>
       <shay>1</shay>
+      <bogdan_local>1</bogdan_local>
     </display_errors>
   </application>
   <reporters>
