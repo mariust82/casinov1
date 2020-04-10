@@ -2927,7 +2927,7 @@ a:focus {
   .header-menu__list-holder {
     display: block;
     overflow: auto;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 125px);
   }
 }
 
