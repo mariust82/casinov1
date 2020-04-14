@@ -28,7 +28,7 @@
       <bogdan>/var/www/html/bogdan/casinoslists</bogdan>
       <shay>www.casinoslists.mark</shay>
       <shay>C:\xampp\htdocs\casinoslists</shay>
-      <bogdan>www.casinoslists.local</bogdan>
+      <bogdan_local>www.casinoslists.local</bogdan_local>
       <bogdan_local>C:\xampp\htdocs\gtm\casinoslists</bogdan_local>
 	</environments>
   </application>
