@@ -10,7 +10,7 @@
             </ul>
             
             <:if test="!empty(${data.title_image_desktop})">
-                <img src="${data.title_image_desktop}" width="1010" height="633"/>
+                <img src="${data.title_image_desktop}" width="960" height="634"/>
             <:else>
                 <img src="${get_img_dir()}/articles/${normalize(${data.article.title})}.jpg" width="1010" height="633"alt="${data.article.title}"/>
             </:if>
