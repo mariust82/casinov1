@@ -58,6 +58,10 @@ class CasinoInfoController extends BaseController
     {
         // get page info
         $object = new PageInfoDAO();
+        $position = strpos($_SERVER["REQUEST_URI"], "/", 1);
+        $url = ($position?substr($_SERVER["REQUEST_URI"], 1, $position-1):$_SERVER["REQUEST_URI"]);
+
+        $this->response->attributes("page_type", $url);
         $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("casino")["name"]));
     }
 
