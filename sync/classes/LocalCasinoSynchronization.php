@@ -73,6 +73,7 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
             $this->setBonuses($casinoID, $item["bonuses"]);
             $this->setCertifications($casinoID, $item["certifications"]);
             $this->setCountries($casinoID, $item["countries"]);
+            $this->setCountriesAllowed($casinoID, $item["countries"]);
             $this->setCurrencies($casinoID, $item["currencies"]);
             $this->setDepositMethods($casinoID, $item["deposit_methods"]);
             $this->setEmails($casinoID, $item["emails"]);
