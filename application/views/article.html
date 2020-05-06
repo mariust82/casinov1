@@ -1,29 +1,19 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="blog-single">
     <!-- Article Heading -->
     <div class="article-heading">
-        <!-- Image -->
-        <:if test="!empty(${data.title_image_desktop})">
-        <!--Image Desktop-->
-        <img class="img-desktop" src="${data.title_image_desktop}" width="1920" height="274"/>
-        <:else>
-        <img src="${get_img_dir()}/articles/${normalize(${data.article.title})}.jpg" width="1920" height="274"
-             alt="${data.article.title}">
-        </:if>
-
-        <!-- Image Mobile -->
-        <:if test="!empty(${data.title_image_mobile})">
-        <img class="img-mobile" src="${data.title_image_mobile}" width="640" height="453"/>
-        <:else>
-        <img src="${get_img_dir()}/articles/${normalize(${data.article.title})}.jpg" width="1920" height="274"
-             alt="${data.article.title}">
-        </:if>
-
-        <div class="article-heading-overlay">
+        <div class="container">
             <h1 class="article-heading-title">${data.article.title}</h1>
+            
             <ul class="article-heading-list">
                 <li><:if test="!empty(${data.article.date_added})">${datef(${data.article.date_added})}</:if></li>
                 <li><:if test="!empty(${data.article.min_read})">${data.article.min_read} min read</:if></li>
             </ul>
+            
+            <:if test="!empty(${data.title_image_desktop})">
+                <img src="${data.title_image_desktop}" width="960" height="634"/>
+            <:else>
+                <img src="${get_img_dir()}/articles/${normalize(${data.article.title})}.jpg" width="1010" height="633"alt="${data.article.title}"/>
+            </:if>
         </div>
     </div>
 

@@ -2400,7 +2400,7 @@ var initImageLazyLoad = function () {
             _btnOpen.off('click');
 
             function cloneContent(_this) {
-                var _contentHolder = _this.closest(_container).find('.pick-body, .list-item-cell-buttons');
+                var _contentHolder = _this.closest(_container).find('.list-item-cell-buttons');
                 var _items = _this.closest(_container).find('.js-tooltip-content');
                 var _name = _this.data('name');
                 var _is_free = _this.data('is-free');
@@ -2417,7 +2417,9 @@ var initImageLazyLoad = function () {
                     type: 'GET',
                     success: function (response) {
                         console.log('123');
+                        console.log('response => ' + response);
                         $(response).insertAfter(_contentHolder);
+
                         var _mobilePop = _this.closest(_container).find('.js-mobile-pop');
                         _mobilePop.find('.js-tooltip').tooltipster(tooltipConfig);
                         _mobilePop.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
