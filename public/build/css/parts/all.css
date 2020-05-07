@@ -10466,6 +10466,7 @@ abbr[title] {
   font-size:16px;
   line-height:28px;
   display:block;
+  margin:0 0 5px;
 }
 @media screen and (max-width: 767px) {
   .qa strong,
