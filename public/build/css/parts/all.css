@@ -10466,14 +10466,13 @@ abbr[title] {
   font-size:16px;
   line-height:28px;
   display:block;
-  margin:0 0 -20px;
 }
 @media screen and (max-width: 767px) {
   .qa strong,
   .widget.faq strong{
     font-size:14px;
     line-height:22px;
-    margin:0 0 -10px;
+    margin:0 0 5px;
   }
 }
 .qa h2{
