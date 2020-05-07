@@ -10,7 +10,7 @@ class ArticleValidator extends Lucinda\RequestValidator\ParameterValidator
 {
     public function validate($value)
     {
-        $results = SQL("SELECT id FROM `articles` WHERE articles.`title`=:name LIMIT 1", [':name' => str_replace('-', ' ', $value)])->toValue();
+        $results = SQL("SELECT id FROM `articles` WHERE articles.`url`=:url LIMIT 1", [':url' => $value])->toValue();
         return ($results? $results:null);
     }
 }

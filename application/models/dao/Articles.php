@@ -25,8 +25,8 @@ class Articles
             "
             SELECT a.*
             FROM articles a 
-            WHERE is_draft = 0 AND deleted = 0 AND a.title LIKE :title;",
-            array(':title' => "%$route%")
+            WHERE is_draft = 0 AND deleted = 0 AND a.url = :url;",
+            array(':url' => "$route")
         );
 
         while ($row = $results->toRow()) {
@@ -92,8 +92,8 @@ class Articles
         }
         
         if (isset($filters['name'])) {
-            $query_vars[':id4'] = str_replace('-', ' ', $filters['name']);
-            $where->set("a.`title`", ":id4");
+            $query_vars[':id4'] = $filters['name'];
+            $where->set("a.`url`", ":id4");
         }
         $select->orderBy()->add("a.id",Lucinda\Query\OrderByOperator::DESC);
         $select->limit($limit, $offset);
@@ -108,6 +108,7 @@ class Articles
             $article->id = $row['id'];
             $article->type = $row['type'];
             $article->title = $row['title'];
+            $article->url = $row['url'];
             $article->date_added = $row['date_added'];
             $article->min_read = $row['min_read'];
             $article->titleImageDesktop = $row['titleImageDesktop'];
