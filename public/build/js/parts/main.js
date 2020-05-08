@@ -11,10 +11,9 @@ var isSearchResultEvent = false;
 function sliderInit() {
     if(!($('#main-carousel').length || $('#links-nav').length))   return;
 
-    console.log('1241');
     var swiperMain = new Swiper('#main-carousel', {
         slidesPerView: 6,
-        spaceBetween: 50,
+        spaceBetween: 5,
         navigation: {
             nextEl: '.carousel-next',
             prevEl: '.carousel-prev',
