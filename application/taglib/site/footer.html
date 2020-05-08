@@ -5,17 +5,17 @@
         <:if if test="!empty(${data.page_type}) && ${data.page_type} == 'game_info'">
 	        <script src="/public/build/js/compilations/gameplay.js?ver=${data.version}"></script>
         <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'reviews'">
-            <script src="/public/build/js/compilations/single_review.js?ver=${data.version}"></script>
+            <script src="/public/build/js/compilations/casino_view.js?ver=${data.version}"></script>
        <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'contact'">
            <script src="/public/build/js/compilations/contact.js?ver=${data.version}"></script>
        <:else>
-           <script src="/public/build/js/compilations/bundle.js?ver=${data.version}"></script>
+           <script src="/public/build/js/compilations/common.js?ver=${data.version}"></script>
         </:if>
    <:else>
         <script src="/public/build/js/compilations/bundle.js?ver=${data.version}"></script>
-        <script src="/public/build/js/parts/custom.js?ver=${data.version}"></script>
+        <script src="/public/build/js/parts/main.js?ver=${data.version}"></script>
         <script src="/public/build/js/parts/contact.js?ver=${data.version}"></script>
-        <script src="/public/build/js/parts/single_review.js?ver=${data.version}"></script>
+        <script src="/public/build/js/parts/casino_review.js?ver=${data.version}"></script>
 
         <:if if test="!empty(${data.page_type}) && ${data.page_type} == 'game_info'">
 		   	<script src="/public/build/js/parts/gameplay.js?ver=${data.version}"></script>

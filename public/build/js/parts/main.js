@@ -20,6 +20,14 @@ function tmsIframe() {
         });
     }
 }
+
+// Load game images after page load
+var initImageLazyLoad = function() {
+    imageDefer("lazy_loaded");
+};
+
+/*
+
 var configImgLazyLoad = new imageDeferCONFIG();
 var initImageLazyLoad = function () {
     configImgLazyLoad.setImagesSelector('.data-logo_image');
@@ -33,6 +41,7 @@ var initImageLazyLoad = function () {
 
     new imageDefer(configImgLazyLoad);
 };
+*/
 
 function validateEmail(email) {
     var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
@@ -359,6 +368,15 @@ function validateEmail(email) {
                 $('.br-widget').unbind("mouseenter mouseleave mouseover click");
             }
         }
+
+/*        $(window).mousemove(function () {
+            loadScripts(['tooltipster', 'swiper']);
+        });
+        $(window).scroll(function(){
+            loadScripts(['tooltipster', 'swiper']);
+        });*/
+        initImageLazyLoad();
+       // loadScripts(['tooltipster', 'swiper']);
     });
 
     function menuHoverAction() {
@@ -417,6 +435,17 @@ function validateEmail(email) {
             });
         }
     }
+
+    function loadScripts(_scripts) {
+        var version = $('.controller_main').data("version");
+        $.each(_scripts, function(index, script) {
+            if (!$("script[src='/public/build/js/compilations/assets/"+script+".js']").length) {
+                $("body").append($('<script type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js?'+version+'"></script>"'));
+            }
+        });
+       // initSite();
+    }
+
 
     tooltipConfig = {
         trigger: 'click',
@@ -556,6 +585,7 @@ function validateEmail(email) {
 
         new newsletter($('.subscribe'));
 
+        loadScripts(['tooltipster']);
         $('.js-tooltip').tooltipster(tooltipConfig);
         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
@@ -1972,8 +2002,10 @@ function validateEmail(email) {
     }
 
     function initCustomSelect() {
-        var _filterOptions = $('.js-filter > option');
+        if(!$('.js-filter').length)  return;
 
+        loadScripts(['jquery-select2']);
+        var _filterOptions = $('.js-filter > option');
         $('.js-filter').select2MultiCheckboxes({
             templateSelection: function () {
                 return "Game software";
@@ -2112,6 +2144,9 @@ function validateEmail(email) {
     }
 
     function sliderInit() {
+        if(!($('#main-carousel').length || $('#links-nav').length))   return;
+
+        loadScripts(['swiper']);
         var swiperMain = new Swiper('#main-carousel', {
             slidesPerView: 6,
             spaceBetween: 50,

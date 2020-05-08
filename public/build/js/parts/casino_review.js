@@ -1,3 +1,8 @@
+$(document).ready(function () {
+    // here place mouse event
+});
+
+
 var Score = function (obj) {
     var _obj = obj,
         _name = _obj.name,
