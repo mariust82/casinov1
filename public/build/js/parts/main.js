@@ -127,10 +127,11 @@ function tmsIframe() {
     }
 }
 
+
 // Load game images after page load
-var initImageLazyLoad = function() {
-    imageDefer("lazy_loaded");
-};
+    var initImageLazyLoad = function() {
+        imageDefer("lazy_loaded");
+    };
 
 /*
 
@@ -160,8 +161,9 @@ function validateEmail(email) {
 
     $(document).ready(function () {
         loadScripts(['tooltipster', 'swiper']);
-        if(window.location.href.indexOf('games/'))
+        if(window.location.href.indexOf('games/') != -1) {
             loadScripts(['jquery-select2']);
+        }
         initImageLazyLoad();
         initToggleMenu();
         initSite();
@@ -484,9 +486,6 @@ function validateEmail(email) {
         $(window).scroll(function(){
             loadScripts(['swiper']);
         });*/
-        initImageLazyLoad();
-
-
     });
 
     function menuHoverAction() {
