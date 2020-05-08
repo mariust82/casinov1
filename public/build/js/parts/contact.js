@@ -1,5 +1,4 @@
 function handleContactUs(obj) {
-    console.log('123');
     var _wrap = obj,
         _field_name = $('.contact-name'),
         _field_email = $('.contact-email'),
@@ -70,9 +69,7 @@ function handleContactUs(obj) {
                         _onEvents();
                     }
                     else if (response.status == "error") {
-                        // console.error(response.body);
                         var arr = JSON.parse(response.body);
-
                         _server_error.show();
                     }
                 },
@@ -85,7 +82,6 @@ function handleContactUs(obj) {
             _contact_btn.on({
                 'click': function (e) {
                     var error = _prepContact();
-
                     if (error === false) {
                         e.stopPropagation();
                     } else {
@@ -93,10 +89,6 @@ function handleContactUs(obj) {
                     }
                 }
             });
-        },
-        _init = function () {
-            _onEvents();
         };
-
-    _init();
+        _onEvents();
 }
