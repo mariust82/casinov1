@@ -130,6 +130,7 @@ function tmsIframe() {
 
 // Load game images after page load
     var initImageLazyLoad = function() {
+    console.log('asdasd');
         imageDefer("lazy_loaded");
     };
 
@@ -160,11 +161,12 @@ function validateEmail(email) {
     var ww = $(window).width();
 
     $(document).ready(function () {
-        loadScripts(['tooltipster', 'swiper']);
+        initImageLazyLoad(); return;
+       loadScripts(['tooltipster', 'swiper']);
         if(window.location.href.indexOf('games/') != -1) {
             loadScripts(['jquery-select2']);
         }
-        initImageLazyLoad();
+
         initToggleMenu();
         initSite();
         initMobileMenu();
