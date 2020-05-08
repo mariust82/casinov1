@@ -92,6 +92,26 @@ function sliderInit() {
 }
 
 
+function loadScripts(_scripts) {
+    var version = $('.controller_main').data("version");
+
+    $.each(_scripts, function(index, script) {
+        if (!$("script[src='/public/build/js/compilations/assets/"+script+".js']").length) {
+            $("body").append($('<script type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js"></script>"'));
+        }
+    });
+}
+
+function initCustomSelect() {
+    if(!$('.js-filter').length)  return;
+    var _filterOptions = $('.js-filter > option');
+    $('.js-filter').select2MultiCheckboxes({
+        templateSelection: function () {
+            return "Game software";
+        }
+    })
+    _filterOptions.prop("selected", false);
+}
 
 function tmsIframe() {
     if ($(".tms_iframe").length) {
@@ -140,6 +160,8 @@ function validateEmail(email) {
 
     $(document).ready(function () {
         loadScripts(['tooltipster', 'swiper']);
+        if(window.location.href.indexOf('games/'))
+            loadScripts(['jquery-select2']);
         initImageLazyLoad();
         initToggleMenu();
         initSite();
@@ -524,15 +546,7 @@ function validateEmail(email) {
         }
     }
 
-    function loadScripts(_scripts) {
-        var version = $('.controller_main').data("version");
 
-        $.each(_scripts, function(index, script) {
-            if (!$("script[src='/public/build/js/compilations/assets/"+script+".js']").length) {
-                $("body").append($('<script type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js"></script>"'));
-            }
-        });
-    }
 
 
     tooltipConfig = {
@@ -620,7 +634,7 @@ function validateEmail(email) {
        // sliderInit();
         initExpandingText();
         initBarRating();
-        initCustomSelect();
+       // initCustomSelect();
         initSearch();
         copyToClipboard();
         initMoboleBonusesPop(ww);
@@ -2088,18 +2102,7 @@ function validateEmail(email) {
         }, 300);
     }
 
-    function initCustomSelect() {
-        if(!$('.js-filter').length)  return;
 
-        loadScripts(['jquery-select2']);
-        var _filterOptions = $('.js-filter > option');
-        $('.js-filter').select2MultiCheckboxes({
-            templateSelection: function () {
-                return "Game software";
-            }
-        })
-        _filterOptions.prop("selected", false);
-    }
 
     function initBarRating() {
         var container = $('.rating-container');
