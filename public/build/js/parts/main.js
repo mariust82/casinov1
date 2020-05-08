@@ -127,10 +127,11 @@ function tmsIframe() {
     }
 }
 
+
 // Load game images after page load
-var initImageLazyLoad = function() {
-    imageDefer("lazy_loaded");
-};
+    var initImageLazyLoad = function() {
+        imageDefer("lazy_loaded");
+    };
 
 /*
 
@@ -485,9 +486,6 @@ function validateEmail(email) {
         $(window).scroll(function(){
             loadScripts(['swiper']);
         });*/
-        initImageLazyLoad();
-
-
     });
 
     function menuHoverAction() {
