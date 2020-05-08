@@ -1,4 +1,3 @@
-loadScripts(['jquery-select2']);
 var Score = function (obj) {
     var _obj = obj,
         _name = _obj.name,

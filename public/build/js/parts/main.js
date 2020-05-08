@@ -160,6 +160,8 @@ function validateEmail(email) {
 
     $(document).ready(function () {
         loadScripts(['tooltipster', 'swiper']);
+        if(window.location.href.indexOf('games/'))
+            loadScripts(['jquery-select2']);
         initImageLazyLoad();
         initToggleMenu();
         initSite();
