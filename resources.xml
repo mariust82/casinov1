@@ -22,12 +22,6 @@
         <file name="main"/>
         <file name="gameplay"/>
     </file>
-    <file name="blog">
-        <file name="global_js/jquery-2.1.3.min" />
-        <file name="global_js/image-defer"/>
-        <file name="assets/search-tracker"/>
-        <file name="main"/>
-    </file>
     <file name="common">
         <file name="global_js/jquery-2.1.3.min" />
         <file name="global_js/image-defer" />
