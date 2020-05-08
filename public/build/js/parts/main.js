@@ -161,12 +161,11 @@ function validateEmail(email) {
     var ww = $(window).width();
 
     $(document).ready(function () {
-        initImageLazyLoad(); return;
+       initImageLazyLoad();
        loadScripts(['tooltipster', 'swiper']);
         if(window.location.href.indexOf('games/') != -1) {
             loadScripts(['jquery-select2']);
         }
-
         initToggleMenu();
         initSite();
         initMobileMenu();
