@@ -7,6 +7,93 @@ var ALL_CASINOS_KEY = 1;
 var BEST_BANKING_PAGE = 1;
 var searched_value = '';
 var isSearchResultEvent = false;
+
+function sliderInit() {
+    if(!($('#main-carousel').length || $('#links-nav').length))   return;
+
+    console.log('1241');
+    var swiperMain = new Swiper('#main-carousel', {
+        slidesPerView: 6,
+        spaceBetween: 50,
+        navigation: {
+            nextEl: '.carousel-next',
+            prevEl: '.carousel-prev',
+        },
+        breakpoints: {
+            1024: {
+                freeMode: true,
+                slidesPerView: 'auto'
+            },
+        }
+    });
+
+    var linksSwiperParams = {
+        slidesPerView: 'auto',
+        spaceBetween: 30,
+        freeMode: true,
+        allowTouchMove: false,
+
+        on: {
+            slideChangeTransitionStart: function (argument) {
+                $('.links-left, .links-right').fadeIn('fast');
+            },
+            slideChangeTransitionEnd: function (argument) {
+                if (this.translate == 0) {
+                    $('.links-left').fadeOut('fast');
+                }
+
+                if (this.isEnd) {
+                    $('.links-right').fadeOut('fast');
+                }
+            },
+        },
+        breakpoints: {
+            1024: {
+                allowTouchMove: true,
+            },
+            690: {
+                spaceBetween: 15,
+                allowTouchMove: true,
+            }
+        }
+    }
+
+
+    if ($('#links-nav').length) {
+        var swiperLinks = new Swiper('.links-casinos #links-nav', linksSwiperParams);
+        var swiperLinks2 = new Swiper('.links-games #links-nav', linksSwiperParams);
+        var swiperLinksIndx = $("#links-nav .active").parent().index() - 1;
+
+        if ($('.links-casinos #links-nav').length)
+            swiperLinks.slideTo(swiperLinksIndx, 300);
+        if ($('.links-games #links-nav').length)
+            swiperLinks2.slideTo(swiperLinksIndx, 300);
+    }
+
+    if ($(window).width() > 1024) {
+        $('.links-casinos .links-nav a').on('mouseenter', function (e) {
+            swiperAction($(this), e, swiperLinks);
+        });
+
+        $('.links-games .links-nav a').on('mouseenter', function (e) {
+            swiperAction($(this), e, swiperLinks2);
+        });
+
+        function swiperAction(_this, _e, _id) {
+            var container = _this.closest('.swiper-container');
+            var curPosition = _e;
+
+            if (curPosition.clientX > container.offset().left + (container.width() / 1.3)) {
+                _id.slideNext(500);
+            } else if (curPosition.clientX < container.offset().left + (container.width() / 6)) {
+                _id.slidePrev(500);
+            }
+        }
+    }
+}
+
+
+
 function tmsIframe() {
     if ($(".tms_iframe").length) {
         $(".tms_iframe").each(function () {
@@ -53,6 +140,7 @@ function validateEmail(email) {
     var ww = $(window).width();
 
     $(document).ready(function () {
+        loadScripts(['tooltipster', 'swiper']);
         initImageLazyLoad();
         initToggleMenu();
         initSite();
@@ -370,13 +458,14 @@ function validateEmail(email) {
         }
 
 /*        $(window).mousemove(function () {
-            loadScripts(['tooltipster', 'swiper']);
+            loadScripts(['swiper']);
         });
         $(window).scroll(function(){
-            loadScripts(['tooltipster', 'swiper']);
+            loadScripts(['swiper']);
         });*/
         initImageLazyLoad();
-       // loadScripts(['tooltipster', 'swiper']);
+
+
     });
 
     function menuHoverAction() {
@@ -438,12 +527,12 @@ function validateEmail(email) {
 
     function loadScripts(_scripts) {
         var version = $('.controller_main').data("version");
+
         $.each(_scripts, function(index, script) {
             if (!$("script[src='/public/build/js/compilations/assets/"+script+".js']").length) {
-                $("body").append($('<script type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js?'+version+'"></script>"'));
+                $("body").append($('<script type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js"></script>"'));
             }
         });
-       // initSite();
     }
 
 
@@ -529,7 +618,7 @@ function validateEmail(email) {
     };
 
     var initSite = function () {
-        sliderInit();
+       // sliderInit();
         initExpandingText();
         initBarRating();
         initCustomSelect();
@@ -585,7 +674,6 @@ function validateEmail(email) {
 
         new newsletter($('.subscribe'));
 
-        loadScripts(['tooltipster']);
         $('.js-tooltip').tooltipster(tooltipConfig);
         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
@@ -2143,89 +2231,7 @@ function validateEmail(email) {
         });
     }
 
-    function sliderInit() {
-        if(!($('#main-carousel').length || $('#links-nav').length))   return;
 
-        loadScripts(['swiper']);
-        var swiperMain = new Swiper('#main-carousel', {
-            slidesPerView: 6,
-            spaceBetween: 50,
-            navigation: {
-                nextEl: '.carousel-next',
-                prevEl: '.carousel-prev',
-            },
-            breakpoints: {
-                1024: {
-                    freeMode: true,
-                    slidesPerView: 'auto'
-                },
-            }
-        });
-
-        var linksSwiperParams = {
-            slidesPerView: 'auto',
-            spaceBetween: 30,
-            freeMode: true,
-            allowTouchMove: false,
-
-            on: {
-                slideChangeTransitionStart: function (argument) {
-                    $('.links-left, .links-right').fadeIn('fast');
-                },
-                slideChangeTransitionEnd: function (argument) {
-                    if (this.translate == 0) {
-                        $('.links-left').fadeOut('fast');
-                    }
-
-                    if (this.isEnd) {
-                        $('.links-right').fadeOut('fast');
-                    }
-                },
-            },
-            breakpoints: {
-                1024: {
-                    allowTouchMove: true,
-                },
-                690: {
-                    spaceBetween: 15,
-                    allowTouchMove: true,
-                }
-            }
-        }
-
-
-        if ($('#links-nav').length) {
-            var swiperLinks = new Swiper('.links-casinos #links-nav', linksSwiperParams);
-            var swiperLinks2 = new Swiper('.links-games #links-nav', linksSwiperParams);
-            var swiperLinksIndx = $("#links-nav .active").parent().index() - 1;
-
-            if ($('.links-casinos #links-nav').length)
-                swiperLinks.slideTo(swiperLinksIndx, 300);
-            if ($('.links-games #links-nav').length)
-                swiperLinks2.slideTo(swiperLinksIndx, 300);
-        }
-
-        if ($(window).width() > 1024) {
-            $('.links-casinos .links-nav a').on('mouseenter', function (e) {
-                swiperAction($(this), e, swiperLinks);
-            });
-
-            $('.links-games .links-nav a').on('mouseenter', function (e) {
-                swiperAction($(this), e, swiperLinks2);
-            });
-
-            function swiperAction(_this, _e, _id) {
-                var container = _this.closest('.swiper-container');
-                var curPosition = _e;
-
-                if (curPosition.clientX > container.offset().left + (container.width() / 1.3)) {
-                    _id.slideNext(500);
-                } else if (curPosition.clientX < container.offset().left + (container.width() / 6)) {
-                    _id.slidePrev(500);
-                }
-            }
-        }
-    }
 
     function determineCasinoPage(key) {
         var page;
