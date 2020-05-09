@@ -1,3 +1,4 @@
+new handleContactUs($('.contact-form'));
 function handleContactUs(obj) {
     var _wrap = obj,
         _field_name = $('.contact-name'),
@@ -90,5 +91,9 @@ function handleContactUs(obj) {
                 }
             });
         };
-        _onEvents();
+    function validateEmail(email) {
+        var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
+        return pattern.test(email);
+    }
+    _onEvents();
 }

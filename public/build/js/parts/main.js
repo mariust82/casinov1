@@ -7,12 +7,45 @@ var ALL_CASINOS_KEY = 1;
 var BEST_BANKING_PAGE = 1;
 var searched_value = '';
 var isSearchResultEvent = false;
+function tmsIframe() {
+    if ($(".tms_iframe").length) {
+        $(".tms_iframe").each(function () {
+            var iframe = document.createElement("iframe");
+            $.each(this.attributes, function () {
+                if (this.name == "class")
+                    return;
+                iframe.setAttribute(this.name.replace("data-", ""), this.value);
+            });
+            $(this).append(iframe);
+        });
+    }
+}
+
+function loadScripts(_scripts) {
+    var version = $('.controller_main').data("version");
+
+    $.each(_scripts, function(index, script) {
+        if (!$("script[src='/public/build/js/compilations/assets/"+script+".js']").length) {
+            $("body").append($('<script type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js"></script>"'));
+        }
+    });
+}
+
+function initCustomSelect() {
+    if(!$('.js-filter').length)  return;
+    var _filterOptions = $('.js-filter > option');
+    $('.js-filter').select2MultiCheckboxes({
+        templateSelection: function () {
+            return "Game software";
+        }
+    })
+    _filterOptions.prop("selected", false);
+}
 
 function sliderInit() {
-    if(!($('#main-carousel').length || $('#links-nav').length))   return;
-
     var swiperMain = new Swiper('#main-carousel', {
         slidesPerView: 6,
+        // centeredSlides: true,
         spaceBetween: 5,
         navigation: {
             nextEl: '.carousel-next',
@@ -23,6 +56,15 @@ function sliderInit() {
                 freeMode: true,
                 slidesPerView: 'auto'
             },
+            // 768: {
+            //     slidesPerView: 3,
+            // },
+            // 640: {
+            //     slidesPerView: 2,
+            // },
+            // 320: {
+            //     slidesPerView: 1,
+            // }
         }
     });
 
@@ -30,8 +72,9 @@ function sliderInit() {
         slidesPerView: 'auto',
         spaceBetween: 30,
         freeMode: true,
+        // virtualTranslate: false,
         allowTouchMove: false,
-
+        // slidesOffsetAfter:-220,
         on: {
             slideChangeTransitionStart: function (argument) {
                 $('.links-left, .links-right').fadeIn('fast');
@@ -60,13 +103,19 @@ function sliderInit() {
 
     if ($('#links-nav').length) {
         var swiperLinks = new Swiper('.links-casinos #links-nav', linksSwiperParams);
+
+        // linksSwiperParams['slidesOffsetAfter'] = -330; //for games links slider
         var swiperLinks2 = new Swiper('.links-games #links-nav', linksSwiperParams);
+
         var swiperLinksIndx = $("#links-nav .active").parent().index() - 1;
+        var halfScreen = $(window).width() / 2 - 50;
+        var swiperLinksOffset = -$("#links-nav .active").parent().position().left + halfScreen;
 
         if ($('.links-casinos #links-nav').length)
             swiperLinks.slideTo(swiperLinksIndx, 300);
         if ($('.links-games #links-nav').length)
             swiperLinks2.slideTo(swiperLinksIndx, 300);
+
     }
 
     if ($(window).width() > 1024) {
@@ -91,53 +140,12 @@ function sliderInit() {
     }
 }
 
-
-function loadScripts(_scripts) {
-    var version = $('.controller_main').data("version");
-
-    $.each(_scripts, function(index, script) {
-        if (!$("script[src='/public/build/js/compilations/assets/"+script+".js']").length) {
-            $("body").append($('<script type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js"></script>"'));
-        }
-    });
-}
-
-function initCustomSelect() {
-    if(!$('.js-filter').length)  return;
-    var _filterOptions = $('.js-filter > option');
-    $('.js-filter').select2MultiCheckboxes({
-        templateSelection: function () {
-            return "Game software";
-        }
-    })
-    _filterOptions.prop("selected", false);
-}
-
-function tmsIframe() {
-    if ($(".tms_iframe").length) {
-        $(".tms_iframe").each(function () {
-            var iframe = document.createElement("iframe");
-            $.each(this.attributes, function () {
-                if (this.name == "class")
-                    return;
-                iframe.setAttribute(this.name.replace("data-", ""), this.value);
-            });
-            $(this).append(iframe);
-        });
-    }
-}
-
-
-// Load game images after page load
-    var initImageLazyLoad = function() {
-    console.log('asdasd');
-        imageDefer("lazy_loaded");
-    };
+var initImageLazyLoad = function () {};
 
 /*
-
 var configImgLazyLoad = new imageDeferCONFIG();
 var initImageLazyLoad = function () {
+//console.log("initImageLazyLoad");
     configImgLazyLoad.setImagesSelector('.data-logo_image');
     configImgLazyLoad.setDeferLoadAmount(8);
     if (navigator.userAgent.match(/(iPhone|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini)/i)) {
@@ -151,18 +159,13 @@ var initImageLazyLoad = function () {
 };
 */
 
-function validateEmail(email) {
-    var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
-    return pattern.test(email);
-}
-
 (function ($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
     $(document).ready(function () {
-       initImageLazyLoad();
-       loadScripts(['tooltipster', 'swiper']);
+       // initImageLazyLoad();
+        loadScripts(['tooltipster', 'swiper']);
         if(window.location.href.indexOf('games/') != -1) {
             loadScripts(['jquery-select2']);
         }
@@ -190,7 +193,7 @@ function validateEmail(email) {
                 }
             }
         });
-        
+
         $('#search-all').on({
             mousedown: function(){
                 isSearchResultEvent = true;
@@ -235,12 +238,12 @@ function validateEmail(email) {
                 }
             });
         });
-        
+
         $('.js-all-casinos').click(function () {
             $(this).addClass('loading');
             var key = $(this).data('key');
             var self = $(this);
-             new Filters($('#filters'));
+            new Filters($('#filters'));
             _request = $.ajax({
                 url: '/load-all-casinos/' + ALL_CASINOS_KEY,
                 data: {
@@ -376,6 +379,8 @@ function validateEmail(email) {
                     BUSY_REQUEST = false;
                 }
             });
+
+
         });
 
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
@@ -465,6 +470,7 @@ function validateEmail(email) {
         new SearchPanel($('.header'));
 
         var user_rate = $('.rating-container').data('user-rate');
+        //console.log($('.box img.not-accepted').length);
 
         if ($('.box img.not-accepted').length) {
             $('.br-widget a').unbind("mouseenter mouseleave mouseover click");
@@ -480,13 +486,6 @@ function validateEmail(email) {
                 $('.br-widget').unbind("mouseenter mouseleave mouseover click");
             }
         }
-
-/*        $(window).mousemove(function () {
-            loadScripts(['swiper']);
-        });
-        $(window).scroll(function(){
-            loadScripts(['swiper']);
-        });*/
     });
 
     function menuHoverAction() {
@@ -497,6 +496,7 @@ function validateEmail(email) {
         }
     }
 
+    //detect when scrolling is stoped
     $.fn.scrollEnd = function (callback, timeout) {
         $(this).scroll(function () {
             var $this = $(this);
@@ -506,10 +506,12 @@ function validateEmail(email) {
             $this.data('scrollTimeout', setTimeout(callback, timeout));
         });
     };
+    //detect when scrolling is stopped
 
     var windowToBottom = 0;
 
     $(window).on('scroll', function () {
+
         //scroll down
         if (windowToBottom < $(window).scrollTop()) {
             $('body').removeClass('site__header_sticky');
@@ -521,9 +523,16 @@ function validateEmail(email) {
                 windowToBottom = $(window).scrollTop();
             }
         }
+
         if ($(window).scrollTop() === 0) {
             $('body').removeClass('site__header_sticky');
         }
+
+        /* $('.lazy').each(function() {
+         $(this).attr('src',$(this).data('src'));
+         $(this).removeAttr('data-src');
+         $(this).removeClass('.lazy');
+         });*/
     });
 
     if ($(window).width() < 768) {
@@ -546,14 +555,18 @@ function validateEmail(email) {
         }
     }
 
+    // $(window).resize(function(event) {
+    //     ww = $(window).width();
 
-
+    //     initMoboleBonusesPop(ww);
+    // });
 
     tooltipConfig = {
         trigger: 'click',
         maxWidth: 279,
         animation: 'grow',
         debug: false,
+        // contentCloning: true
     };
 
     copyTooltipConfig = {
@@ -627,21 +640,17 @@ function validateEmail(email) {
                 copyToClipboard();
                 checkStringLength($('.bonus-box'), 15);
             }
+
         }
     };
 
     var initSite = function () {
-       // sliderInit();
         initExpandingText();
         initBarRating();
-       // initCustomSelect();
+        initCustomSelect();
         initSearch();
         copyToClipboard();
         initMoboleBonusesPop(ww);
-        initReviewForm();
-        initReplies();
-        initTexfieldsLabels();
-        showMoreReviews();
         checkStringLength($('.list .bonus-box'), 21);
         checkStringLength($('.bonus-item .bonus-box'), 33);
         grayscaleIE();
@@ -672,17 +681,13 @@ function validateEmail(email) {
             });
         }
 
-        if ($('.js-vote').length > 0) {
+ /*     if ($('.js-vote').length > 0) {
             new Vote($('.js-vote'));
-        }
+        }*/
 
         if ($('.js-run-counter').length > 0) {
             var _name = $('.js-run-counter').data('name');
             runPlayCounter(_name);
-        }
-
-        if ($('.contact-form').length > 0) {
-            new handleContactUs($('.contact-form'));
         }
 
         new newsletter($('.subscribe'));
@@ -695,6 +700,7 @@ function validateEmail(email) {
     function initTableOpen() {
         $('.js-table-package-opener').on('click', function (e) {
             $(this).closest('tr').toggleClass('active');
+            // $(this).closest('tr').find('td:last-child, td:nth-child(5)').show();
             e.preventDefault();
         });
     }
@@ -769,19 +775,25 @@ function validateEmail(email) {
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
             return true;
         }
+
         return false;
     }
+
 
 
     function initToggleMenu() {
         var targetNode = document.querySelector('.header-menu__list-holder');
         if (targetNode) {
+
+
             var isMobile = checkIfIsMobileDevice();
+
             var eventL = isMobile ? 'click' : 'hover';
 
             targetNode.addEventListener(eventL, function (e) {
 
-                var that = this, currentOpened, currentTarget = e.target;
+                var that = this, currentOpened,
+                    currentTarget = e.target;
                 while (currentTarget != that) {
                     if (currentTarget.classList.contains('expand-holder')) {
                         currentOpened = document.querySelector('.expand-holder.opened');
@@ -804,6 +816,7 @@ function validateEmail(email) {
                                 currentTarget.classList.add('opened');
                             }
                         }
+
                         break;
                     }
                     else {
@@ -826,13 +839,13 @@ function validateEmail(email) {
 
     function newsletter(obj) {
         var _wrap = obj,
-                _field_email = _wrap.find('.news-email'),
-                _send_btn = _wrap.find('.news-btn'),
-                _contact_success = $('#news-success'),
-                _contact_error = $('#news-note'),
-                _contact_error_class = 'not-valid',
-                email,
-                _request = new XMLHttpRequest();
+            _field_email = _wrap.find('.news-email'),
+            _send_btn = _wrap.find('.news-btn'),
+            _contact_success = $('#news-success'),
+            _contact_error = $('#news-note'),
+            _contact_error_class = 'not-valid',
+            email,
+            _request = new XMLHttpRequest();
 
         _prepMessage = function () {
             email = _field_email.val();
@@ -853,81 +866,80 @@ function validateEmail(email) {
 
             return ok;
         },
-                _sendNews = function (email) {
-                    _request.abort();
-                    _request = $.ajax({
-                        url: "/newsletter/subscribe",
-                        data: {
-                            email: email,
-                        },
-                        dataType: 'json',
-                        timeout: 20000,
-                        type: 'POST',
-                        success: function (response) {
-                            if (response.status == "ok") {
-                                _contact_success.show();
-                                _contact_error.hide();
-                                _send_btn.prop('disabled', true);
-                                _field_email.val('');
-                                _onEvents();
-                            }
-                            else if (response.status == "error") {
-                                var arr = JSON.parse(response.body);
+            _sendNews = function (email) {
+                _request.abort();
+                _request = $.ajax({
+                    url: "/newsletter/subscribe",
+                    data: {
+                        email: email,
+                    },
+                    dataType: 'json',
+                    timeout: 20000,
+                    type: 'POST',
+                    success: function (response) {
+                        if (response.status == "ok") {
+                            _contact_success.show();
+                            _contact_error.hide();
+                            _send_btn.prop('disabled', true);
+                            _field_email.val('');
+                            _onEvents();
+                        }
+                        else if (response.status == "error") {
+                            // console.error(response.body);
+                            var arr = JSON.parse(response.body);
 
-                                $('.action-added').remove();
-                                $.each(arr, function (index, val) {
-                                    var $msg = '<div class="action-field action-added not-valid ">' + val + '</div>';
-                                    $('.review-submit-holder .msg-holder').append($msg);
-                                });
-                            }
-                        },
-                        error: function (XMLHttpRequest) {
-                            console.error("Could not send message!");
+                            $('.action-added').remove();
+                            $.each(arr, function (index, val) {
+                                var $msg = '<div class="action-field action-added not-valid ">' + val + '</div>';
+                                $('.review-submit-holder .msg-holder').append($msg);
+                            });
                         }
-                    });
-                },
-                _onEvents = function () {
-                    _send_btn.on({
-                        'click': function (e) {
-                            var error = _prepMessage();
-                            if (error === false) {
-                                e.stopPropagation();
-                            } else {
-                                _sendNews(email);
-                            }
+                    },
+                    error: function (XMLHttpRequest) {
+                        console.error("Could not send message!");
+                    }
+                });
+            },
+            _onEvents = function () {
+                _send_btn.on({
+                    'click': function (e) {
+                        var error = _prepMessage();
+                        if (error === false) {
+                            e.stopPropagation();
+                        } else {
+                            _sendNews(email);
                         }
-                    });
-                },
-                _init = function () {
-                    _onEvents();
-                };
+                    }
+                });
+            },
+            _init = function () {
+                _onEvents();
+            };
 
         _init();
     }
 
-
-
     var Filters = function (obj) {
         var _obj = obj,
-                _self = this,
-                _switchers = _obj.find('input[type=checkbox]'),
-                _radios = _obj.find('input[type=radio]'),
-                _selectFilter = _obj.find('select[name=soft]'),
-                _targetContainer = $('.data-container'),
-                _targetAddContainer = $('.data-add-container'),
-                _paramName = _targetContainer.data('type'),
-                _paramValue = _targetContainer.data('type-value'),
-                _ajaxContent = $('.aj-content'),
-                _emptyContent = $('.empty-filters'),
-                _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
-                _moreButton,
-                _resetButton,
-                _itemsPerPage = $('.list-item').length,
-                _defaultButton = $('#default'),
-                _totalItems = $('.qty-items').data('load-total'),
-                _clicks = Math.floor(_totalItems / _itemsPerPage),
-                _currentClick = 0,
-                _request = new XMLHttpRequest();
+            _self = this,
+            _switchers = _obj.find('input[type=checkbox]'),
+            _radios = _obj.find('input[type=radio]'),
+            _selectFilter = _obj.find('select[name=soft]'),
+            _targetContainer = $('.data-container'),
+            _targetAddContainer = $('.data-add-container'),
+            _paramName = _targetContainer.data('type'),
+            _paramValue = _targetContainer.data('type-value'),
+            _ajaxContent = $('.aj-content'),
+            _emptyContent = $('.empty-filters'),
+            _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
+            _moreButton,
+            _resetButton,
+            _itemsPerPage = $('.list-item').length,
+            _defaultButton = $('#default'),
+            _totalItems = $('.qty-items').data('load-total'),
+            _clicks = Math.floor(_totalItems / _itemsPerPage),
+            _currentClick = 0,
+            _request = new XMLHttpRequest();
 
         if (typeof _paramName == 'undefined') {
             _paramName = 'game_type';
@@ -949,111 +961,111 @@ function validateEmail(email) {
             });
 
             dataContainerMutationObserver.observe($('.data-container').get(0),
-                    {
-                        childList: true,
-                        subtree: true,
-                    });
+                {
+                    childList: true,
+                    subtree: true,
+                });
             dataContainerMutationObserver.observe($('.data-add-container').get(0),
-                    {
-                        childList: true,
-                        subtree: true,
-                    });
+                {
+                    childList: true,
+                    subtree: true,
+                });
         }
 
 
         var _onEvent = function () {
-            _moreButton = $('.js-more-items');
-            _resetButton = $('.js-reset-items');
-            _switchers.off();
-            _switchers.on('click', function () {
-                _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
-            });
+                _moreButton = $('.js-more-items');
+                _resetButton = $('.js-reset-items');
+                _switchers.off();
+                _switchers.on('click', function () {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
 
-            _radios.off();
-            _radios.on('click', function () {
-                _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
-            });
+                _radios.off();
+                _radios.on('click', function () {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
 
-            $('.js-filter > option').on('click', function () {
-                var counter = 0;
-                $('.js-filter > option').each(function (index, el) {
-                    if ($(this).prop("selected")) {
-                        counter++;
+                $('.js-filter > option').on('click', function () {
+                    var counter = 0;
+                    $('.js-filter > option').each(function (index, el) {
+                        if ($(this).prop("selected")) {
+                            counter++;
+                        }
+                    });
+                });
+
+                _selectFilter.off();
+                _selectFilter.on('change', function () {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
+
+                _moreButton.off();
+                _moreButton.on('click', function () {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add');
+                    return false;
+                });
+
+                _resetButton.off();
+                _resetButton.on('click', function () {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset'), 'add');
+
+                    return false;
+                });
+
+            },
+            _getAjaxParams = function (_paramName, _paramValue, _action) {
+
+                var _ajaxDataParams = {};
+                $.each(_switchers, function (index, el) {
+                    if ($(el).is(':checked')) {
+                        _ajaxDataParams[$(el).attr('name')] = 1;
+                    }
+
+                    if (_action == 'reset') {
+                        _ajaxDataParams[$(el).attr('name')] = '';
+                        $(el).prop('checked', false);
                     }
                 });
-            });
 
-            _selectFilter.off();
-            _selectFilter.on('change', function () {
-                _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
-            });
-
-            _moreButton.off();
-            _moreButton.on('click', function () {
-                _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add');
-                return false;
-            });
-
-            _resetButton.off();
-            _resetButton.on('click', function () {
-                _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset'), 'add');
-
-                return false;
-            });
-
-        },
-                _getAjaxParams = function (_paramName, _paramValue, _action) {
-
-                    var _ajaxDataParams = {};
-                    $.each(_switchers, function (index, el) {
-                        if ($(el).is(':checked')) {
-                            _ajaxDataParams[$(el).attr('name')] = 1;
-                        }
-
-                        if (_action == 'reset') {
-                            _ajaxDataParams[$(el).attr('name')] = '';
-                            $(el).prop('checked', false);
-                        }
-                    });
-
-                    $.each(_radios, function (index, el) {
-                        if ($(el).is(':checked')) {
-                            _ajaxDataParams[$(el).attr('name')] = $(el).attr('value');
-                        }
-
-                        if (_action == 'reset') {
-                            _ajaxDataParams[$(el).attr('name')] = 1;
-                            if (index == 0) {
-                                $(el).prop('checked', true);
-                            }
-                        }
-                    });
-
-                    _ajaxDataParams[_paramName] = _paramValue;
-
-                    if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
-                        _ajaxDataParams['software'] = _selectFilter.val().join();
-
-                        if (_action == 'reset') {
-                            _ajaxDataParams['software'] = '';
-
-                        }
+                $.each(_radios, function (index, el) {
+                    if ($(el).is(':checked')) {
+                        _ajaxDataParams[$(el).attr('name')] = $(el).attr('value');
                     }
 
-                    if (typeof AJAX_CUR_PAGE == "undefined")
-                        AJAX_CUR_PAGE = 1;
-
-                    if (_action != 'add' || _action == 'reset') {
-                        AJAX_CUR_PAGE = 0;
+                    if (_action == 'reset') {
+                        _ajaxDataParams[$(el).attr('name')] = 1;
+                        if (index == 0) {
+                            $(el).prop('checked', true);
+                        }
                     }
+                });
 
-                    if (_ajaxDataParams["label"] != undefined && _ajaxDataParams["label"] == "Mobile") {
-                        _ajaxDataParams["compatibility"] = "mobile";
-                        delete _ajaxDataParams.label;
+                _ajaxDataParams[_paramName] = _paramValue;
+
+                if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
+                    _ajaxDataParams['software'] = _selectFilter.val().join();
+
+                    if (_action == 'reset') {
+                        _ajaxDataParams['software'] = '';
+
                     }
-
-                    return _ajaxDataParams;
                 }
+
+                if (typeof AJAX_CUR_PAGE == "undefined")
+                    AJAX_CUR_PAGE = 1;
+
+                if (_action != 'add' || _action == 'reset') {
+                    AJAX_CUR_PAGE = 0;
+                }
+
+                if (_ajaxDataParams["label"] != undefined && _ajaxDataParams["label"] == "Mobile") {
+                    _ajaxDataParams["compatibility"] = "mobile";
+                    delete _ajaxDataParams.label;
+                }
+
+                return _ajaxDataParams;
+            }
 
         _ajaxRequestCasinos = function (_ajaxDataParams, _action) {
             console.dir('test');
@@ -1101,6 +1113,9 @@ function validateEmail(email) {
                             _emptyContent.hide();
                         }
 
+                        /* if (loadTotal <= cont.length) {
+                         _moreButton.hide();
+                         }*/
                         refresh();
                         AJAX_CUR_PAGE = 1;
                         _currentClick = 0;
@@ -1118,7 +1133,9 @@ function validateEmail(email) {
                             }
                         }, 1000)
                     }
+
                     _construct();
+
                     checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
                 },
                 error: function (XMLHttpRequest) {
@@ -1146,109 +1163,38 @@ function validateEmail(email) {
                     grayscaleIE();
                 }
             });
+
+            var loadDelay = setTimeout(function () {
+            }, 300);
+
+            _hideLoading = function () {
+                clearTimeout(loadDelay);
+            }
         },
-                _construct = function () {
-                    _onEvent();
-                    _obj[0].obj = _self;
-                };
+            _loadData = function (data) {
+
+            },
+            _construct = function () {
+                _onEvent();
+                _obj[0].obj = _self;
+            };
 
         _construct();
     };
 
-    function initReviewForm() {
-        var field = $('.expanding');
-        var hiddenBlocks = $('.js-expanding-textfields');
-
-        if ($('.box img.not-accepted').length) {
-            field.unbind("mouseenter mouseleave mouseover click focus");
-        } else {
-            field.on('focus', function () {
-                $(this).removeClass('expanding');
-                $(this).closest('.form').find(hiddenBlocks).slideDown();
-            });
-        }
-    }
-
-    var Vote = function (obj) {
-
-        var _obj = obj,
-                _trigger = _obj.find('.vote-button'),
-                _request = new XMLHttpRequest;
-
-        var _init = function () {
-            _trigger.off();
-            _trigger.on('click', function () {
-                var _id = $(this).data('id');
-                var _success = $(this).data('success');
-                var _target = $(this).data('type');
-
-                _updateVote($(this), _getTarget(_target), _getData(_target, _id, _success));
-
-                return false;
-            });
-        },
-                _getData = function (_target, _id, _success) {
-                    var _ret = {id: _id, is_like: _success};
-                    return _ret;
-                }
-
-        _getTarget = function (_arg) {
-            var _target = '/casino/review-like';
-            if (_arg === 'article') {
-                _target = '/blog/rate';
-            }
-            return _target;
-        },
-                _updateVote = function (_this, _target, _data) {
-                    if (BUSY_REQUEST)
-                        return;
-                    BUSY_REQUEST = true;
-                    _request.abort();
-
-                    _request = $.ajax({
-                        url: _target,
-                        data: _data,
-                        dataType: 'json',
-                        type: 'post',
-                        success: function (data) {
-                            if (_target === '/casino/review-like') {
-                                if (data.body.status == 'not_ok') {
-                                    console.log(data.body.message);
-                                } else {
-                                    var _holderLikes = $(_this).find('.bubble-vote');
-                                    var _oldLikes = _holderLikes.text();
-                                    _holderLikes.text(++_oldLikes);
-                                }
-                                _this.closest(_obj).next('.action-field.success').show();
-                            } else if (_target === '/blog/rate') {
-                                $(_this.parent().parent()).find('.votes-like .vote-block-num, .like .vote-block-num').text(data.body.likes);
-                                $(_this.parent().parent()).find('.votes-dislike .vote-block-num, .dislike .vote-block-num').text(data.body.dislikes);
-
-                                _this.closest(_obj).next('.action-field.success').show();
-                            }
-                        },
-                        error: function (XMLHttpRequest) {
-                            var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
-                            if (XMLHttpRequest.statusText != "abort") {
-                                __this.closest(_obj).next('.action-field.not-valid').show();
-                            }
-                        },
-                        complete: function () {
-                            BUSY_REQUEST = false;
-                        }
-                    });
-                };
-        _init();
-    };
-
     function initScrollTo(_target, _offset) {
+
         if (typeof _target !== "undefined") {
             action(_target, _offset);
         } else {
             var btn = $('.js-scroll');
+
             btn.on('click', function (a) {
                 var target = $($(this).attr('href'));
+                // var targetOffset = target.offset().top;
+
                 action(target, 0);
+
                 a.preventDefault();
             });
         }
@@ -1260,108 +1206,41 @@ function validateEmail(email) {
         }
     }
 
-    function showMoreReviews() {
-        var _btn = $('.js-more-reviews');
-        var _holderParent = $('#review-data-holder');
-        var _holderMoreChild = $('.reply-data-holder');
-        var _name = $('.rating-container').data('casino-name');
-        var _request = new XMLHttpRequest;
-        _btn.on('click', function () {
-            _addReviews($(this), $(this).data('type'));
-            return false;
-        });
 
-        if ($(".not-accepted").length)
-            _btn.css("pointer-events", "auto");
 
-        var _addReviews = function (_this, _type) {
-            if (BUSY_REQUEST)
-                return;
-            BUSY_REQUEST = true;
-            _request.abort();
-            _request = $.ajax({
-                url: '/casino/more-reviews/' + getWebName(_name) + '/' + _this.data('page'),
-                dataType: 'HTML',
-                data: {
-                    id: _this.data('id'),
-                    type: _type
-                },
-                type: 'GET',
-                success: function (data) {
-
-                    if (_type == 'review') {
-                        _holderParent.append(data);
-                        if (_this.data('page') >= (_this.data('total') / 5) - 1) {
-                            _this.hide();
-                        }
-                    } else if (_type == 'reply') {
-                        _this.closest('.reply').find(_holderMoreChild).append(data);
-                    }
-
-                    if (_this.data('page') >= (_this.data('total') / 5) - 1) {
-                        _this.hide();
-                    }
-
-                    var _page = _this.data('page');
-
-                    _this.data('page', ++_page);
-
-                    _refreshData();
-
-                    showMoreReviews();
-                },
-                error: function (XMLHttpRequest) {
-                    if (XMLHttpRequest.statusText != "abort") {
-                        console.log('err');
-                    }
-                },
-                complete: function () {
-                    BUSY_REQUEST = false;
-                }
-            });
-        },
-                _refreshData = function () {
-
-                    initReviewForm();
-                    initTexfieldsLabels();
-
-                    new Vote($('.js-vote'));
-                    $('.review').each(function () {
-                        new AddingReview($(this));
-                    });
-                    grayscaleIE();
-                };
-    }
 
     var SearchPanel = function (obj) {
         var _obj = obj,
-                _self = this,
-                _searchButton = _obj.find('.js-trigger-search'),
-                _searchAllButton = _obj.find('#search-all'),
-                _searchContainer = _obj.find('#search'),
-                _searchForm = _obj.find('#search-form'),
-                _searchInput = _searchForm.find('input'),
-                _searchUpdate = _searchForm.find('.js-mobile-search-clear'), // clear text
-                _searchCasinosContainer = _searchContainer.find('#search-casinos ul'),
-                _searchListsContainer = _searchContainer.find('#search-lists ul'),
-                _searchPagesContainer = _searchContainer.find('#search-pages ul'),
-                _searchEmptyContainer = _searchContainer.find('#search-empty'),
-                _imgDir = _searchContainer.data('img-dir'),
-                _loadNewContent = true,
-                _loadMoreContent = false,
-                _is_content_detached = false,
-                _showMoreNum = 5,
-                _fromCasinos = 1,
-                _fromLists = 1,
-                _fromPages = 1,
-                _request = new XMLHttpRequest();
+            _self = this,
+            _searchButton = _obj.find('.js-trigger-search'),
+            _searchAllButton = _obj.find('#search-all'),
+            _searchContainer = _obj.find('#search'),
+            _searchForm = _obj.find('#search-form'),
+            _searchBody = _obj.find('.search-results'),
+            _searchInput = _searchForm.find('input'),
+            _searchUpdate = _searchForm.find('.js-mobile-search-clear'), // clear text
+            _searchCasinosContainer = _searchContainer.find('#search-casinos ul'),
+            _searchListsContainer = _searchContainer.find('#search-lists ul'),
+            _searchPagesContainer = _searchContainer.find('#search-pages ul'),
+            _searchEmptyContainer = _searchContainer.find('#search-empty'),
+            _imgDir = _searchContainer.data('img-dir'),
+            _loadNewContent = true,
+            _loadMoreContent = false,
+            _is_content_detached = false,
+            _showMoreNum = 5,
+            _fromCasinos = 1,
+            _fromLists = 1,
+            _fromPages = 1,
+            loadDelay = 0,
+            // scrollingBlock = $('.js-scrolling'),
+            _request = new XMLHttpRequest();
         window.contentBeforeSearch;
-            var nr_requests;
-            var nr_requests_completed;
+        var nr_requests; // nr requests sent
+        var nr_requests_completed; // nr requests completed
 
-            var _onEvent = function () {
+        var _onEvent = function () {
 
-            _searchButton.on(
+                _searchButton.on(
                     'click',
                     function () {
                         _ajaxRequestPopup('/search');
@@ -1369,42 +1248,48 @@ function validateEmail(email) {
                         return false;
                     });
 
-            _searchInput.on({
-                'focus': function () {
-                    nr_requests = 0;
-                    nr_requests_completed = 0;
-                    _ajaxRequestPopup('/search');
-                    _resetPages();
-                },
-                'keyup': function (e) {
-                    if (e.keyCode == 27) {
-                        _hidePanel();
-                        _resetPages();
-                    } else if (e.keyCode == 13) {
-                        isSearchResultEvent = true;
-                        if (_searchInput.val() != '') {
-                            _ajaxRequestAdvanced();
-                            _searchInput.blur();
-                        }
-                        _resetPages();
-                    } else {
-                        isSearchResultEvent = false;
-                        var searchPopup = _obj.find('#search__popup');
-                        searchPopup.addClass('load');
-                        nr_requests++;
+                _searchInput.on({
+                    'focus': function () {
+                        nr_requests = 0;
+                        nr_requests_completed = 0;
                         _ajaxRequestPopup('/search');
                         _resetPages();
-                    }
+                    },
+                    'keyup': function (e) {
+                        if (e.keyCode == 27) {
+                            _hidePanel();
+                            _resetPages();
+                        } else if (e.keyCode == 13) {
+                            isSearchResultEvent = true;
+                            if (_searchInput.val() != '') {
+                                // location.href = '/search/advanced?value='+_searchInput.val();
+                                // _searchInput.val('');
+                                _ajaxRequestAdvanced();
+                                _searchInput.blur();
+                            }
+                            _resetPages();
+                        } else {
+                            isSearchResultEvent = false;
+                            var searchPopup = _obj.find('#search__popup');
+                            searchPopup.addClass('load');
+                            nr_requests++;
+                            // console.log("Nr_request = "+nr_requests);
+                            _ajaxRequestPopup('/search');
+                            _resetPages();
+                        }
 
-                    if (_searchInput.val() != '') {
-                        _searchAllButton.parent().fadeIn();
-                    } else {
-                        _searchAllButton.parent().fadeOut();
-                    }
-                },
-            });
+                        if (_searchInput.val() != '') {
+                            _searchAllButton.parent().fadeIn();
+                        } else {
+                            _searchAllButton.parent().fadeOut();
+                        }
+                    },
+                    // 'blur': function() {
+                    //     unlockScreen();
+                    // }
+                });
 
-            _searchUpdate.on(
+                _searchUpdate.on(
                     'click',
                     function () {
                         _searchInput.val('').focus();
@@ -1412,428 +1297,462 @@ function validateEmail(email) {
                         _resetPages();
                         return false;
                     }
-            );
+                );
 
-            _searchAllButton.on(
+                _searchAllButton.on(
                     'click',
                     function () {
                         if (_searchInput.val() != '') {
+                            // location.href = '/search/advanced?value='+_searchInput.val();
+                            // _searchInput.val('');
                             _ajaxRequestAdvanced();
                         }
+
                         return false;
                     }
-            );
-        },
-                _closeSearch = function () {
-                    $('#site-content').html('').append(contentBeforeSearch);
-                    $('.js-search-drop').show();
-                    $('body').removeClass('advanced-search-opened');
-                    _searchInput.blur();
-                    setTimeout(function () {
-                        initSite();
-                    }, 1000);
-                },
-                _initMoreButtons = function () {
-                    var _searchMoreLists = $('#js-search-more-lists');
-                    var _searchMoreListsNumHolder = $('.more-lists', _searchMoreLists);
-                    var _searchMoreListsNum = _searchMoreListsNumHolder.data('total-casinos');
+                );
+            },
+            _closeSearch = function () {
+                $('#site-content').html('').append(contentBeforeSearch);
+                $('.js-search-drop').show();
+                $('body').removeClass('advanced-search-opened');
+                _searchInput.blur();
+                setTimeout(function () {
+                    initSite();
+                }, 1000);
+            },
+            _initMoreButtons = function () {
+                var _searchMoreLists = $('#js-search-more-lists');
+                var _searchMoreListsNumHolder = $('.more-lists', _searchMoreLists);
+                var _searchMoreListsNum = _searchMoreListsNumHolder.data('total-casinos');
 
 
-                    var _searchMoreCasinos = $('#js-search-more-casinos');
-                    var _searchMoreCasinosNumHolder = $('.more-num', _searchMoreCasinos);
-                    var _searchMoreCasinosNum = _searchMoreCasinosNumHolder.data('total-casinos');
+                var _searchMoreCasinos = $('#js-search-more-casinos');
+                var _searchMoreCasinosNumHolder = $('.more-num', _searchMoreCasinos);
+                var _searchMoreCasinosNum = _searchMoreCasinosNumHolder.data('total-casinos');
 
-                    var _searchMorePages = $('#js-search-more-pages');
-                    var _searchMorePagesNumHolder = $('.more-num', _searchMorePages);
-                    var _searchMorePagesNum = _searchMorePagesNumHolder.data('total-games');
+                var _searchMorePages = $('#js-search-more-pages');
+                var _searchMorePagesNumHolder = $('.more-num', _searchMorePages);
+                var _searchMorePagesNum = _searchMorePagesNumHolder.data('total-games');
 
-                    var _clicksLists = Math.floor(_searchMoreListsNum / _showMoreNum);
-                    var _clicksCasinos = Math.floor(_searchMoreCasinosNum / _showMoreNum);
-                    var _clicksPages = Math.floor(_searchMorePagesNum / _showMoreNum);
+                var _clicksLists = Math.floor(_searchMoreListsNum / _showMoreNum);
+                var _clicksCasinos = Math.floor(_searchMoreCasinosNum / _showMoreNum);
+                var _clicksPages = Math.floor(_searchMorePagesNum / _showMoreNum);
 
-                    var _remainderLists = _searchMoreListsNum % _showMoreNum;
-                    var _remainderCasinos = _searchMoreCasinosNum % _showMoreNum;
-                    var _remainderPages = _searchMorePagesNum % _showMoreNum;
+                var _remainderLists = _searchMoreListsNum % _showMoreNum;
+                var _remainderCasinos = _searchMoreCasinosNum % _showMoreNum;
+                var _remainderPages = _searchMorePagesNum % _showMoreNum;
 
-                    if (_remainderLists < _showMoreNum && _clicksLists == 1) {
-                        _searchMoreListsNumHolder.text(_remainderLists);
-                    }
+                if (_remainderLists < _showMoreNum && _clicksLists == 1) {
+                    _searchMoreListsNumHolder.text(_remainderLists);
+                }
 
-                    if (_remainderCasinos < _showMoreNum && _clicksCasinos == 1) {
-                        _searchMoreCasinosNumHolder.text(_remainderCasinos);
-                    }
+                if (_remainderCasinos < _showMoreNum && _clicksCasinos == 1) {
+                    _searchMoreCasinosNumHolder.text(_remainderCasinos);
+                }
 
-                    if (_remainderPages < _showMoreNum && _clicksPages == 1) {
-                        _searchMorePagesNumHolder.text(_remainderPages);
-                    }
+                if (_remainderPages < _showMoreNum && _clicksPages == 1) {
+                    _searchMorePagesNumHolder.text(_remainderPages);
+                }
 
-                    _searchMoreLists.on(
-                            'click',
-                            function () {
-                                _ajaxMore('/search/more-lists/' + _fromLists, $('.search-title span').text(), $('#all-lists-container'), 'lists');
+                _searchMoreLists.on(
+                    'click',
+                    function () {
+                        _ajaxMore('/search/more-lists/' + _fromLists, $('.search-title span').text(), $('#all-lists-container'), 'lists');
+                        // _loadMoreContent = true;
 
-                                if (_fromLists >= _clicksLists) {
-                                    _searchMoreLists.fadeOut();
-                                } else {
-                                    _searchMoreLists.fadeIn();
-                                }
-
-                                if (_fromLists >= _clicksLists - 1 && _remainderLists > 0) {
-                                    _searchMoreListsNumHolder.text(_remainderLists);
-                                }
-                                _fromLists++;
-
-                                return false;
-                            }
-                    );
-
-                    _searchMoreCasinos.on(
-                            'click',
-                            function () {
-                                _ajaxMore('/search/more-casinos/' + _fromCasinos, $('.search-title span').text(), $('#all-casinos-container'), 'casinos');
-
-                                if (_fromCasinos >= _clicksCasinos) {
-                                    _searchMoreCasinos.fadeOut();
-                                } else {
-                                    _searchMoreCasinos.fadeIn();
-                                }
-
-                                if (_fromCasinos >= _clicksCasinos - 1 && _remainderCasinos > 0) {
-                                    _searchMoreCasinosNumHolder.text(_remainderCasinos);
-                                }
-                                _fromCasinos++;
-                                return false;
-                            }
-                    );
-
-                    _searchMorePages.on(
-                            'click',
-                            function () {
-                                _ajaxMore('/search/more-games/' + _fromPages, $('.search-title span').text(), $('#all-games-container'), 'games');
-
-                                if (_fromPages >= _clicksPages) {
-                                    _searchMorePages.fadeOut();
-                                } else {
-                                    _searchMorePages.fadeIn();
-                                }
-                                if (_fromPages >= _clicksPages - 1 && _remainderPages > 0) {
-                                    _searchMorePagesNumHolder.text(_remainderPages);
-                                }
-                                _fromPages++;
-                                return false;
-                            }
-                    );
-                },
-                _clearSearchBody = function () {
-                    _searchListsContainer.empty();
-                    _searchCasinosContainer.empty();
-                    _searchPagesContainer.empty();
-                },
-                _ajaxMore = function (target, val, container, type) {
-                    if (BUSY_REQUEST)
-                        return;
-                    BUSY_REQUEST = true;
-                    _request.abort();
-                    _request = $.ajax({
-                        url: target,
-                        data: {
-                            value: val
-                        },
-                        dataType: 'json',
-                        type: 'GET',
-                        success: function (data) {
-                            _loadMoreData(data, container, type);
-                        },
-                        error: function (XMLHttpRequest) {
-                            if (XMLHttpRequest.statusText != "abort") {
-                                _showEmptyMessage();
-                            }
-                        },
-                        complete: function () {
-                            BUSY_REQUEST = false;
+                        if (_fromLists >= _clicksLists) {
+                            _searchMoreLists.fadeOut();
+                        } else {
+                            _searchMoreLists.fadeIn();
                         }
-                    });
-                },
-                _ajaxRequestAdvanced = function () {
-                    window.scrollTo(0, 0);
-                    var _response_container = $('#site-content');
-                    if (BUSY_REQUEST)
-                        return;
-                    BUSY_REQUEST = true;
-                    _request.abort();
-                    _request = $.ajax({
-                        url: '/search/advanced',
-                        data: {
-                            value: _searchInput.val(),
-                        },
-                        dataType: 'HTML',
-                        type: 'GET',
-                        success: function (data) {
-                            $('body').addClass('advanced-search-opened');
-                            if (!_is_content_detached) {
-                                contentBeforeSearch = $('#site-content .main, #site-content .promo').detach();
-                            }
-                            _is_content_detached = true;
-                            _response_container.html(data);
-                            _hidePopup();
-                            _initMoreButtons();
-                            unlockScreen();
 
-                            _response_container.find('#js-search-back').each(function () {
-                                $(this).on({
-                                    click: function () {
-                                        _closeSearch();
-                                    }
-                                })
-                            });
-
-                            $('.js-mobile-search-close').on('click', function () {
-                                _closeSearch();
-                            });
-                        },
-                        error: function (XMLHttpRequest) {
-                            if (XMLHttpRequest.statusText != "abort") {
-                                console.log('err');
-                            }
-                        },
-                        complete: function () {
-                            BUSY_REQUEST = false;
+                        if (_fromLists >= _clicksLists - 1 && _remainderLists > 0) {
+                            _searchMoreListsNumHolder.text(_remainderLists);
                         }
-                    });
-                },
-                _ajaxRequestPopup = function (target, page) {
-                    if (checkIfIsMobileDevice()) {
-                        lockScreen();
+
+                        _fromLists++;
+
+                        return false;
                     }
-                    if (BUSY_REQUEST && (nr_requests_completed == nr_requests)) return;
-                    BUSY_REQUEST = true;
-                    _request.abort();
-                    _request = $.ajax({
-                        url: target,
-                        data: {
-                            value: _searchInput.val(),
-                            page: page
-                        },
-                        dataType: 'json',
-                        type: 'GET',
-                        success: function (data) {
-                            _loadData(data);
-                        },
-                        error: function (XMLHttpRequest) {
-                            if (XMLHttpRequest.statusText != "abort") {
-                                _showEmptyMessage();
-                            }
-                        },
-                        complete: function (data) {
-                            nr_requests_completed++;
-                            BUSY_REQUEST = false;
+                );
+
+                _searchMoreCasinos.on(
+                    'click',
+                    function () {
+                        _ajaxMore('/search/more-casinos/' + _fromCasinos, $('.search-title span').text(), $('#all-casinos-container'), 'casinos');
+                        // _loadMoreContent = true;
+
+                        if (_fromCasinos >= _clicksCasinos) {
+                            _searchMoreCasinos.fadeOut();
+                        } else {
+                            _searchMoreCasinos.fadeIn();
                         }
-                    });
-                },
-                getWebName = function (name) {
-                    return name.replace(/\s/g, '-').toLowerCase();
-                },
-                getItemPattern = function (itemData) {
-                    var pattern = '<li>\
+
+                        if (_fromCasinos >= _clicksCasinos - 1 && _remainderCasinos > 0) {
+                            _searchMoreCasinosNumHolder.text(_remainderCasinos);
+                        }
+
+                        _fromCasinos++;
+
+                        return false;
+                    }
+                );
+
+                _searchMorePages.on(
+                    'click',
+                    function () {
+                        _ajaxMore('/search/more-games/' + _fromPages, $('.search-title span').text(), $('#all-games-container'), 'games');
+                        // _loadMoreContent = true;
+
+                        if (_fromPages >= _clicksPages) {
+                            _searchMorePages.fadeOut();
+                        } else {
+                            _searchMorePages.fadeIn();
+                        }
+
+                        if (_fromPages >= _clicksPages - 1 && _remainderPages > 0) {
+                            _searchMorePagesNumHolder.text(_remainderPages);
+                        }
+
+                        _fromPages++;
+                        return false;
+                    }
+                );
+            },
+            _clearSearchBody = function () {
+                _searchListsContainer.empty();
+                _searchCasinosContainer.empty();
+                _searchPagesContainer.empty();
+            },
+            _ajaxMore = function (target, val, container, type) {
+                if (BUSY_REQUEST)
+                    return;
+                BUSY_REQUEST = true;
+                _request.abort();
+                _request = $.ajax({
+                    url: target,
+                    data: {
+                        value: val
+                    },
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (data) {
+                        _hideLoading();
+                        _loadMoreData(data, container, type);
+                    },
+                    error: function (XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != "abort") {
+                            _hideLoading();
+                            console.log('err');
+                            _showEmptyMessage();
+                        }
+                    },
+                    complete: function () {
+                        _hideLoading();
+                        BUSY_REQUEST = false;
+                    }
+                });
+
+                var loadDelay = setTimeout(function () {
+                    // _searchContainer.addClass('loading');
+                }, 300);
+
+                _hideLoading = function () {
+                    clearTimeout(loadDelay);
+                    // _searchContainer.removeClass('loading');
+                }
+            },
+            _ajaxRequestAdvanced = function () {
+                window.scrollTo(0, 0);
+                var _response_container = $('#site-content');
+                if (BUSY_REQUEST)
+                    return;
+                BUSY_REQUEST = true;
+                _request.abort();
+                _request = $.ajax({
+                    url: '/search/advanced',
+                    data: {
+                        value: _searchInput.val(),
+                    },
+                    dataType: 'HTML',
+                    type: 'GET',
+                    success: function (data) {
+                        $('body').addClass('advanced-search-opened');
+                        if (!_is_content_detached) {
+                            contentBeforeSearch = $('#site-content .main, #site-content .promo').detach();
+                        }
+                        _is_content_detached = true;
+                        _response_container.html(data);
+                        _hidePopup();
+                        _initMoreButtons();
+                        unlockScreen();
+
+                        _response_container.find('#js-search-back').each(function () {
+                            $(this).on({
+                                click: function () {
+                                    _closeSearch();
+                                }
+                            })
+                        });
+
+                        $('.js-mobile-search-close').on('click', function () {
+                            _closeSearch();
+                        });
+                    },
+                    error: function (XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != "abort") {
+                            console.log('err');
+                        }
+                    },
+                    complete: function () {
+                        BUSY_REQUEST = false;
+                    }
+                });
+            },
+            _ajaxRequestPopup = function (target, page) {
+                if (checkIfIsMobileDevice()) {
+                    lockScreen();
+                }
+                if (BUSY_REQUEST && (nr_requests_completed == nr_requests)) // if nr request completed = nr request sent
+                {
+                    //  console.log("\n\n END \n\n");
+                    return;
+                }
+                BUSY_REQUEST = true;
+                _request.abort();
+                _request = $.ajax({
+                    url: target,
+                    data: {
+                        value: _searchInput.val(),
+                        page: page
+                    },
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (data) {
+                        // console.log("request succes " + _searchInput.val());
+                        _hideLoading();
+                        _loadData(data);
+
+                    },
+                    error: function (XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != "abort") {
+                            _hideLoading();
+                            console.log('err');
+                            _showEmptyMessage();
+                        }
+                    },
+                    complete: function (data) {
+                        // console.log('request complete');
+                        _hideLoading();
+                        nr_requests_completed++;
+                        BUSY_REQUEST = false;
+                    }
+                });
+
+                var loadDelay = setTimeout(function () {
+                    // _searchContainer.addClass('loading');
+                }, 300);
+
+                _hideLoading = function () {
+                    clearTimeout(loadDelay);
+                    // _searchContainer.removeClass('loading');
+                }
+            },
+            getWebName = function (name) {
+                return name.replace(/\s/g, '-').toLowerCase();
+            },
+            getItemPattern = function (itemData) {
+                var pattern = '<li>\
                     <a class="search-results-label" href="/' + itemData.link.replace("/games/", "") + '">\
                         ' + itemData.name + '\
                     </a>\
                 </li>';
-                    return pattern;
-                },
-                _loadMoreData = function (data, container, type) {
-                    var items = data.body.results;
-                    var link;
-                    if (type === 'lists') {
-                        for (var i = 0; i < items.length; i++) {
-                            var _item = getItemPattern({
-                                link: items[i]['url'],
-                                name: items[i]['title']
-                            });
-                            container.append(_item);
-                        }
-                    } else {
-                        for (var item in items) {
-                            if (type == 'games') {
-                                link = 'play/' + getWebName(items[item]);
-                            } else if (type == 'casinos') {
-                                link = 'reviews/' + getWebName(items[item]) + '-review';
-                            }
 
-                            var _item = getItemPattern({
-                                link: link,
-                                name: items[item]
-                            });
-                            container.append(_item);
-                        }
-                    }
-                },
-                _loadData = function (data) {
-                    var lists = data.body.lists;
-                    var casinos = data.body.casinos;
-                    var pages = data.body.games;
-
-                    if (!_loadMoreContent)
-                        _clearSearchBody();
-
-                    if ($.isEmptyObject(lists) && $.isEmptyObject(casinos) && $.isEmptyObject(pages)) {
-                        _showEmptyMessage();
-                    } else {
-                        _hideEmptyMessage();
-
-                        if (!$.isEmptyObject(lists)) {
-                            _searchListsContainer
-                                    .parent()
-                                    .show()
-                                    .next()
-                                    .removeClass('single');
-
-                            if (data.body.total_lists > 3 && Math.ceil(data.body.total_lists / 3) > _fromLists) {
-                            } else {
-                                _fromLists = 1;
-                            }
-                        } else {
-                            _searchListsContainer
-                                    .parent()
-                                    .hide()
-                                    .next()
-                                    .addClass('single');
-                        }
-
-                        if (!$.isEmptyObject(casinos)) {
-                            _searchCasinosContainer
-                                    .parent()
-                                    .show()
-                                    .next()
-                                    .removeClass('single');
-
-                            if (data.body.total_casinos > 3 && Math.ceil(data.body.total_casinos / 3) > _fromCasinos) {
-                            } else {
-                                _fromCasinos = 1;
-                            }
-                        } else {
-                            _searchCasinosContainer
-                                    .parent()
-                                    .hide()
-                                    .next()
-                                    .addClass('single');
-                        }
-
-                        if (!$.isEmptyObject(pages)) {
-                            _searchPagesContainer
-                                    .parent()
-                                    .show()
-                                    .prev()
-                                    .removeClass('single');
-                            if (data.body.total_pages > 3 && Math.ceil(data.body.total_casinos / 3) > _fromPages) {
-                            } else {
-                                _fromPages = 1;
-                            }
-                        } else {
-                            _searchPagesContainer
-                                    .parent()
-                                    .hide()
-                                    .prev()
-                                    .addClass('single');
-                        }
-                        _searchListsContainer.html("");
-                        for (var i = 0; i < lists.length; i++) {
-
-                            var _item = getItemPattern({
-                                link: (lists[i]['url']),
-                                name: lists[i]['title']
-                            });
-                            _searchListsContainer.append(_item);
-                        }
-
-                        for (var casino in casinos) {
-
-                            var _item = getItemPattern({
-                                link: 'reviews/' + getWebName(casinos[casino]) + '-review',
-                                name: casinos[casino]
-                            });
-                            _searchCasinosContainer.append(_item);
-                        }
-
-                        for (var page in pages) {
-
-                            var _item = getItemPattern({
-                                link: 'play/' + getWebName(pages[page]),
-                                name: pages[page]
-                            });
-
-                            _searchPagesContainer.append(_item);
-                        }
-                        if (_searchInput.val() != '') {
-                            _illumination();
-                        }
-                    }
-                },
-                _resetPages = function () {
-                    _fromPages = 1;
-                    _fromCasinos = 1;
-                },
-                _showEmptyMessage = function () {
-                    _searchListsContainer.parent().hide();
-                    _searchCasinosContainer.parent().hide();
-                    _searchPagesContainer.parent().hide();
-                    _searchEmptyContainer.show();
-                    _searchAllButton.parent().fadeOut();
-                },
-                _hideEmptyMessage = function () {
-                    _searchListsContainer.parent().show();
-                    _searchCasinosContainer.parent().show();
-                    _searchPagesContainer.parent().show();
-                    _searchEmptyContainer.hide();
-                },
-                _hidePopup = function () {
-                    searchDropClose($('.js-search-drop'));
-                    _loadNewContent = true;
-                },
-                _hidePanel = function () {
-                    _hidePopup();
-                },
-                _illumination = function () {
-                    var searchItems = _obj.find('.search-results-label');
-                    searchItems.each(function () {
-                        $(this).html(function (_, html) {
-                            return html.replace(new RegExp(_searchInput.val().toLowerCase(), 'i\g'), '<b>$&</b>')
+                return pattern;
+            },
+            _loadMoreData = function (data, container, type) {
+                var items = data.body.results;
+                var link;
+                if (type === 'lists') {
+                    for (var i = 0; i < items.length; i++) {
+                        var _item = getItemPattern({
+                            link: items[i]['url'],
+                            name: items[i]['title']
                         });
+
+                        container.append(_item);
+                    }
+                } else {
+                    for (var item in items) {
+                        if (type == 'games') {
+                            link = 'play/' + getWebName(items[item]);
+                        } else if (type == 'casinos') {
+                            link = 'reviews/' + getWebName(items[item]) + '-review';
+                        }
+
+                        var _item = getItemPattern({
+                            link: link,
+                            name: items[item]
+                        });
+
+                        container.append(_item);
+                    }
+                }
+            },
+            _loadData = function (data) {
+
+                var lists = data.body.lists;
+                var casinos = data.body.casinos;
+                var pages = data.body.games;
+
+                if (!_loadMoreContent) {
+                    _clearSearchBody();
+                }
+
+                if ($.isEmptyObject(lists) && $.isEmptyObject(casinos) && $.isEmptyObject(pages)) {
+                    _showEmptyMessage();
+                } else {
+                    _hideEmptyMessage();
+
+                    if (!$.isEmptyObject(lists)) {
+                        _searchListsContainer
+                            .parent()
+                            .show()
+                            .next()
+                            .removeClass('single');
+
+                        if (data.body.total_lists > 3 && Math.ceil(data.body.total_lists / 3) > _fromLists) {
+                            // _searchMoreCasinos.show();
+                        } else {
+                            // _searchMoreCasinos.hide();
+                            _fromLists = 1;
+                        }
+                    } else {
+                        _searchListsContainer
+                            .parent()
+                            .hide()
+                            .next()
+                            .addClass('single');
+                    }
+
+                    if (!$.isEmptyObject(casinos)) {
+                        _searchCasinosContainer
+                            .parent()
+                            .show()
+                            .next()
+                            .removeClass('single');
+
+                        if (data.body.total_casinos > 3 && Math.ceil(data.body.total_casinos / 3) > _fromCasinos) {
+                            // _searchMoreCasinos.show();
+                        } else {
+                            // _searchMoreCasinos.hide();
+                            _fromCasinos = 1;
+                        }
+                    } else {
+                        _searchCasinosContainer
+                            .parent()
+                            .hide()
+                            .next()
+                            .addClass('single');
+                    }
+
+                    if (!$.isEmptyObject(pages)) {
+                        _searchPagesContainer
+                            .parent()
+                            .show()
+                            .prev()
+                            .removeClass('single');
+                        if (data.body.total_pages > 3 && Math.ceil(data.body.total_casinos / 3) > _fromPages) {
+                            // _searchMorePages.show();
+                        } else {
+                            // _searchMorePages.hide();
+                            _fromPages = 1;
+                        }
+                    } else {
+                        _searchPagesContainer
+                            .parent()
+                            .hide()
+                            .prev()
+                            .addClass('single');
+                    }
+                    _searchListsContainer.html("");
+                    for (var i = 0; i < lists.length; i++) {
+
+                        var _item = getItemPattern({
+                            link: (lists[i]['url']),
+                            name: lists[i]['title']
+                        });
+                        _searchListsContainer.append(_item);
+                    }
+
+                    for (var casino in casinos) {
+
+                        var _item = getItemPattern({
+                            link: 'reviews/' + getWebName(casinos[casino]) + '-review',
+                            name: casinos[casino]
+                        });
+                        _searchCasinosContainer.append(_item);
+                    }
+
+                    for (var page in pages) {
+
+                        var _item = getItemPattern({
+                            link: 'play/' + getWebName(pages[page]),
+                            name: pages[page]
+                        });
+
+                        _searchPagesContainer.append(_item);
+                    }
+                    if (_searchInput.val() != '') {
+                        _illumination();
+                    }
+                }
+            },
+            _resetPages = function () {
+                _fromPages = 1;
+                _fromCasinos = 1;
+            },
+            _showEmptyMessage = function () {
+                _searchListsContainer.parent().hide();
+                _searchCasinosContainer.parent().hide();
+                _searchPagesContainer.parent().hide();
+                _searchEmptyContainer.show();
+                _searchAllButton.parent().fadeOut();
+            },
+            _hideEmptyMessage = function () {
+                _searchListsContainer.parent().show();
+                _searchCasinosContainer.parent().show();
+                _searchPagesContainer.parent().show();
+                _searchEmptyContainer.hide();
+            },
+            _hidePopup = function () {
+                searchDropClose($('.js-search-drop'));
+                _loadNewContent = true;
+            },
+            _hidePanel = function () {
+                _hidePopup();
+            },
+            _illumination = function () {
+                var searchItems = _obj.find('.search-results-label');
+                searchItems.each(function () {
+                    $(this).html(function (_, html) {
+                        return html.replace(new RegExp(_searchInput.val().toLowerCase(), 'i\g'), '<b>$&</b>')
                     });
-                },
-                _construct = function () {
-                    _onEvent();
-                    _obj[0].obj = _self;
-                };
+                });
+            },
+            _construct = function () {
+                _onEvent();
+                _obj[0].obj = _self;
+            };
         _self.close = function () {
             _hidePanel();
         };
+
         _construct();
     };
 
-    function initTexfieldsLabels() {
-        var field = $('.textfield');
-        field.focus(function () {
-            $(this).parent().addClass('active').removeClass('not-valid');
-        });
-        field.blur(function () {
-            if ($(this).val() == '') {
-                $(this).parent().removeClass('active');
-            }
-        });
-    }
 
-    function initReplies() {
-        $('#reviews').on('click', '.js-reply-btn', function (e) {
-            var replyReview = $(this).closest('.reply.review');
-            if (replyReview.length > 0 && replyReview.find('.reply-data-holder').length > 0) {
-                var userName = $(this).parent().parent().parent().find('.review-name').text();
-                $(this).parent().parent().find('textarea').val('@' + userName + ' ');
-            }
-            $(this).parent().next().slideToggle();
-            return false;
-        });
-    }
 
     function initMoboleBonusesPop(_ww) {
         var _container = $('.list-item, .pick');
@@ -1847,6 +1766,7 @@ function validateEmail(email) {
 
             function cloneContent(_this) {
                 var _contentHolder = _this.closest(_container).find('.list-item-cell-buttons');
+                var _items = _this.closest(_container).find('.js-tooltip-content');
                 var _name = _this.data('name');
                 var _is_free = _this.data('is-free');
                 var _request = new XMLHttpRequest();
@@ -1861,6 +1781,8 @@ function validateEmail(email) {
                     dataType: 'html',
                     type: 'GET',
                     success: function (response) {
+                        console.log('123');
+                        console.log('response => ' + response);
                         $(response).insertAfter(_contentHolder);
 
                         var _mobilePop = _this.closest(_container).find('.js-mobile-pop');
@@ -1875,8 +1797,8 @@ function validateEmail(email) {
                         lockScreen();
                         _btnClose.on('click', function (e) {
                             _mobilePop.fadeOut('fast')
-                                    .find('.mobile-popup-body')
-                                    .html('');
+                                .find('.mobile-popup-body')
+                                .html('');
                             unlockScreen();
                             $('.overlay, .loader').fadeOut('fast');
 
@@ -1897,6 +1819,7 @@ function validateEmail(email) {
         }
     }
 
+    //remove HTML tags from text
     function strip(html) {
         var tmp = document.createElement("DIV");
         tmp.innerHTML = html;
@@ -1905,7 +1828,8 @@ function validateEmail(email) {
 
     function copyToClipboard() {
         window.Clipboard = (function (window, document, navigator) {
-            var textArea, copy;
+            var textArea,
+                copy;
 
             function isOS() {
                 return navigator.userAgent.match(/ipad|iphone/i);
@@ -1922,7 +1846,7 @@ function validateEmail(email) {
 
             function selectText() {
                 var range,
-                        selection;
+                    selection;
 
                 if (isOS()) {
                     range = document.createRange();
@@ -1979,6 +1903,7 @@ function validateEmail(email) {
                 }
 
                 $('.expand-menu__list-item.active ').closest('.expand-holder').addClass('opened');
+
             }
 
             $(document).on('click touchstart', function (e) {
@@ -1993,6 +1918,8 @@ function validateEmail(email) {
                 }
             });
             e.preventDefault();
+
+
         });
     }
 
@@ -2021,9 +1948,9 @@ function validateEmail(email) {
 
             $(document).on('click touchstart', function (e) {
                 if ($(e.target).closest(_drop).length == 0
-                        && $(e.target).closest(_input).length == 0
-                        && $(e.target).closest(_btnMobileOpen).length == 0
-                        && $(e.target).closest(_btnOpen).length == 0) {
+                    && $(e.target).closest(_input).length == 0
+                    && $(e.target).closest(_btnMobileOpen).length == 0
+                    && $(e.target).closest(_btnOpen).length == 0) {
                     _input.val("");
                     searchDropClose(_drop);
                 }
@@ -2102,8 +2029,6 @@ function validateEmail(email) {
         }, 300);
     }
 
-
-
     function initBarRating() {
         var container = $('.rating-container');
         var defRating = container.data('casino-rating');
@@ -2124,19 +2049,19 @@ function validateEmail(email) {
                     $('.br-widget').unbind("mouseenter mouseleave mouseover click");
 
                     _this
-                            .closest(container)
-                            .find('.rating-current-text')
-                            .text(text)
-                            .removeClass(_classes)
-                            .attr("class", "rating-current-text " + getWebName(text));
+                        .closest(container)
+                        .find('.rating-current-text')
+                        .text(text)
+                        .removeClass(_classes)
+                        .attr("class", "rating-current-text " + getWebName(text));
                     _this
-                            .closest(container)
-                            .find('.rating-current-value span')
-                            .text(value);
+                        .closest(container)
+                        .find('.rating-current-value span')
+                        .text(value);
                     _this
-                            .closest(container)
-                            .find('.rating-current')
-                            .attr('data-rating-current', value);
+                        .closest(container)
+                        .find('.rating-current')
+                        .attr('data-rating-current', value);
                     new Score({
                         value: value,
                         name: container.data('casino-name')
@@ -2144,7 +2069,8 @@ function validateEmail(email) {
                 }
             }
         };
-        $('.rating-bar', container).barrating('show', ratingParams);
+
+        //$('.rating-bar', container).barrating('show', ratingParams);
     }
 
     function getWebName(name) {
@@ -2160,28 +2086,28 @@ function validateEmail(email) {
             this.each(function () {
 
                 var element = $(this),
-                        textelement = element.find("p"),
-                        baseclass = "b-morelines_",
-                        basejsclass = "js-morelines_",
-                        currentclass = "section",
-                        singleline = parseFloat(element.css("line-height")),
-                        auto = 1,
-                        fullheight = element.innerHeight(),
-                        settings = $.extend({
-                            linecount: auto,
-                            baseclass: baseclass,
-                            basejsclass: basejsclass,
-                            classspecific: currentclass,
-                            buttontxtmore: "more lines",
-                            buttontxtless: "less lines",
-                            animationspeed: auto
-                        }, options),
-                        ellipsisclass = settings.baseclass + settings.classspecific + "_ellipsis",
-                        buttonclass = settings.baseclass + settings.classspecific + "_button",
-                        wrapcss = settings.baseclass + settings.classspecific + "_wrapper",
-                        wrapjs = settings.basejsclass + settings.classspecific + "_wrapper",
-                        wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs).css({'max-width': element.css('width')}),
-                        linescount = singleline * settings.linecount;
+                    textelement = element.find("p"),
+                    baseclass = "b-morelines_",
+                    basejsclass = "js-morelines_",
+                    currentclass = "section",
+                    singleline = parseFloat(element.css("line-height")),
+                    auto = 1,
+                    fullheight = element.innerHeight(),
+                    settings = $.extend({
+                        linecount: auto,
+                        baseclass: baseclass,
+                        basejsclass: basejsclass,
+                        classspecific: currentclass,
+                        buttontxtmore: "more lines",
+                        buttontxtless: "less lines",
+                        animationspeed: auto
+                    }, options),
+                    ellipsisclass = settings.baseclass + settings.classspecific + "_ellipsis",
+                    buttonclass = settings.baseclass + settings.classspecific + "_button",
+                    wrapcss = settings.baseclass + settings.classspecific + "_wrapper",
+                    wrapjs = settings.basejsclass + settings.classspecific + "_wrapper",
+                    wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs).css({'max-width': element.css('width')}),
+                    linescount = singleline * settings.linecount;
 
                 element.wrap(wrapper);
 
@@ -2232,7 +2158,64 @@ function validateEmail(email) {
             animationspeed: 250
         });
     }
+    function initMultirow() {
+        var multirowContainer = $('.js-multirow');
+        multirowContainer.each(function (index, el) {
+            var num = $(this).find('div').length;
 
+            if (num > 1) {
+                var showedNum = num - 1;
+                $(this).readmore({
+                    moreLink: '<a href="#" class="multirow-trigger multirow-open">+' + showedNum + '</a>',
+                    lessLink: '<a href="#" class="multirow-trigger multirow-close">Show Less</a>',
+                    collapsedHeight: 21,
+                    speed: 1,
+                    blockProcessed: function (el) {
+                        chaneBtnPosition(el);
+                    },
+                    beforeToggle: function (trigger, el, expanded) {
+                        $(el).parent().toggleClass('active');
+
+                        if (expanded) {
+                            chaneBtnPosition(el);
+                        } else {
+                            // $(el).append(trigger);
+                            $(trigger).insertAfter(el);
+                        }
+                    }
+                });
+            }
+
+            function chaneBtnPosition(el) {
+                var $opener = $(el).parent().find('.multirow-trigger');
+                var etalon = $(el).find('div').first();
+                etalon.append($opener);
+            }
+        });
+    }
+
+    function validateEmail(email) {
+        var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
+        return pattern.test(email);
+    }
+
+    function _validateInputName(txt) {
+        // var regex = /^[a-zA-Z0-9 ]+$/;
+        // return regex.test(txt);
+
+        if (txt != '') {
+            return true;
+        }
+    }
+
+    function _validateInputMessage(txt) {
+        // var regex = /^[\w\.,:;!\s]+$/;
+        // return regex.test(txt);
+
+        if (txt != '') {
+            return true;
+        }
+    }
 
 
     function determineCasinoPage(key) {
@@ -2244,6 +2227,7 @@ function validateEmail(email) {
         } else if (key === 'country') {
             page = COUNTRY_CURR_PAGE;
         }
+
         return page;
     }
 
@@ -2263,4 +2247,5 @@ function validateEmail(email) {
             COUNTRY_CURR_PAGE++;
         }
     }
+
 })(jQuery);

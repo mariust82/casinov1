@@ -10,7 +10,6 @@
         <file name="casino_review"/>
     </file>
     <file name="contact">
-        <file name="main"/>
         <file name="contact"/>
     </file>
     <file name="gameplay">
@@ -24,18 +23,6 @@
         <file name="assets/jquery-bar"/>
         <file name="assets/search-tracker"/>
         <file name="main"/>
-    </file>
-
-    <!-- bundle used only locally -->
-    <file name="bundle">
-        <file name="global_js/jquery-2.1.3.min" />
-        <file name="global_js/image-defer" />
-        <file name="assets/jquery-bar"/>
-        <file name="assets/jquery-select2"/>
-        <file name="assets/jquery-debounce"/>
-        <file name="assets/search-tracker"/>
-        <file name="assets/swiper"/>
-        <file name="assets/tooltipster"/>
     </file>
 </js>
 <css source="public/build/css/parts" destination="public/build/css/compilations">
