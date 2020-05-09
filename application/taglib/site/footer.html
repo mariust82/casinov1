@@ -9,7 +9,7 @@
        <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'contact'">
            <script src="/public/build/js/compilations/contact.js?ver=${data.version}"></script>
        <:else>
-           <script src="/public/build/js/compilations/common.js?ver=${data.version}"></script>
+           <script src="/public/build/js/compilations/main.js?ver=${data.version}"></script>
         </:if>
 <:else/>
     <:if if test="!empty(${data.page_type}) && ${data.page_type} == 'game_info'">
