@@ -1,3 +1,12 @@
+initReviewForm();
+initReplies();
+initTexfieldsLabels();
+showMoreReviews();
+
+getWebName = function (name) {
+    return name.replace(/\s/g, '-').toLowerCase();
+}
+
 var Score = function (obj) {
     var _obj = obj,
         _name = _obj.name,
@@ -142,6 +151,10 @@ function AddingReview(obj) {
                 parent.find($('.rating-container')).removeClass(_contact_error_class);
             }
         }
+        function validateEmail(email) {
+            var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
+            return pattern.test(email);
+        }
         return ok;
     },
         _setReviewerName = function (parent) {
@@ -196,6 +209,13 @@ function AddingReview(obj) {
                 }
             });
         },
+        _showEmptyMessage = function () {
+        _searchListsContainer.parent().hide();
+        _searchCasinosContainer.parent().hide();
+        _searchPagesContainer.parent().hide();
+        _searchEmptyContainer.show();
+        _searchAllButton.parent().fadeOut();
+    },
         _loadData = function (data, _this) {
 
             if ($.isEmptyObject(data)) {
@@ -414,10 +434,7 @@ function AddingReview(obj) {
                 _changeName();
             }
         },
-        _init = function () {
-            _onEvents();
-        };
-    _init();
+        _onEvents();
 }
 
 function _getCurrDate() {
@@ -442,4 +459,251 @@ function get_rating($name) {
         $string = 'Terrible';
     }
     return $string;
+}
+
+function initReviewForm() {
+    var field = $('.expanding');
+    var hiddenBlocks = $('.js-expanding-textfields');
+
+    if ($('.box img.not-accepted').length) {
+        field.unbind("mouseenter mouseleave mouseover click focus");
+    } else {
+        field.on('focus', function () {
+            $(this).removeClass('expanding');
+            $(this).closest('.form').find(hiddenBlocks).slideDown();
+        });
+    }
+}
+
+function initTexfieldsLabels() {
+    var field = $('.textfield');
+
+    field.focus(function () {
+        $(this).parent().addClass('active').removeClass('not-valid');
+    });
+
+    field.blur(function () {
+        if ($(this).val() == '') {
+            $(this).parent().removeClass('active');
+        }
+    });
+}
+
+function initReplies() {
+    $('#reviews').on('click', '.js-reply-btn', function (e) {
+        var replyReview = $(this).closest('.reply.review');
+        if (replyReview.length > 0 && replyReview.find('.reply-data-holder').length > 0) {
+            var userName = $(this).parent().parent().parent().find('.review-name').text();
+            $(this).parent().parent().find('textarea').val('@' + userName + ' ');
+        }
+        $(this).parent().next().slideToggle();
+
+        return false;
+    });
+}
+
+function showMoreReviews() {
+    var _btn = $('.js-more-reviews');
+    var _totalReviews = _btn.data('reviews');
+    var _holderParent = $('#review-data-holder');
+    var _holderMoreChild = $('.reply-data-holder');
+    var _name = $('.rating-container').data('casino-name');
+    var _request = new XMLHttpRequest;
+    _btn.on('click', function () {
+        _addReviews($(this), $(this).data('type'));
+        return false;
+    });
+
+    if ($(".not-accepted").length) {
+        _btn.css("pointer-events", "auto");
+    }
+
+    var _addReviews = function (_this, _type) {
+            if (BUSY_REQUEST)
+                return;
+            BUSY_REQUEST = true;
+            _request.abort();
+            _request = $.ajax({
+                url: '/casino/more-reviews/' + getWebName(_name) + '/' + _this.data('page'),
+                dataType: 'HTML',
+                data: {
+                    id: _this.data('id'),
+                    type: _type
+                },
+                type: 'GET',
+                success: function (data) {
+
+                    if (_type == 'review') {
+                        _holderParent.append(data);
+                        if (_this.data('page') >= (_this.data('total') / 5) - 1) {
+                            _this.hide();
+                        }
+                    } else if (_type == 'reply') {
+                        _this.closest('.reply').find(_holderMoreChild).append(data);
+                    }
+
+                    if (_this.data('page') >= (_this.data('total') / 5) - 1) {
+                        _this.hide();
+                    }
+
+                    var _page = _this.data('page');
+
+                    _this.data('page', ++_page);
+
+                    _refreshData();
+
+                    showMoreReviews();
+                },
+                error: function (XMLHttpRequest) {
+                    if (XMLHttpRequest.statusText != "abort") {
+                        console.log('err');
+                    }
+                },
+                complete: function () {
+                    BUSY_REQUEST = false;
+                }
+            });
+        },
+        _refreshData = function () {
+            // initReplies();
+            initReviewForm();
+            initTexfieldsLabels();
+
+            Vote($('.js-vote'));
+            $('.review').each(function () {
+                new AddingReview($(this));
+            });
+            grayscaleIE();
+        };
+}
+
+var Vote = function (obj) {
+
+    var _obj = obj,
+        _trigger = _obj.find('.vote-button'),
+        _request = new XMLHttpRequest;
+
+    var _init = function () {
+            _trigger.off();
+            _trigger.on('click', function () {
+                var _id = $(this).data('id');
+                var _success = $(this).data('success');
+                var _target = $(this).data('type');
+
+                _updateVote($(this), _getTarget(_target), _getData(_target, _id, _success));
+
+                return false;
+            });
+
+        },
+        _getData = function (_target, _id, _success) {
+            var _ret = {id: _id, is_like: _success};
+            // if (_target == 'review') _ret.review_id = _id;
+            // else _ret.article_id = _id;
+            return _ret;
+        },
+
+    _getTarget = function (_arg) {
+        var _target = '/casino/review-like';
+        if (_arg === 'article') {
+            _target = '/blog/rate';
+        }
+        return _target;
+    },
+        _updateVote = function (_this, _target, _data) {
+            if (BUSY_REQUEST)
+                return;
+            BUSY_REQUEST = true;
+            _request.abort();
+
+            _request = $.ajax({
+                url: _target,
+                data: _data,
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    if (_target === '/casino/review-like') {
+                        if (data.body.status == 'not_ok') {
+                            console.log(data.body.message);
+                        } else {
+                            var _holderLikes = $(_this).find('.bubble-vote');
+                            var _oldLikes = _holderLikes.text();
+                            _holderLikes.text(++_oldLikes);
+                        }
+                        _this.closest(_obj).next('.action-field.success').show();
+                    } else if (_target === '/blog/rate') {
+                        $(_this.parent().parent()).find('.votes-like .vote-block-num, .like .vote-block-num').text(data.body.likes);
+                        $(_this.parent().parent()).find('.votes-dislike .vote-block-num, .dislike .vote-block-num').text(data.body.dislikes);
+
+                        _this.closest(_obj).next('.action-field.success').show();
+                    }
+                    //_this.parent().addClass('disabled');
+                },
+                error: function (XMLHttpRequest) {
+                    var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                    if (XMLHttpRequest.statusText != "abort") {
+                        __this.closest(_obj).next('.action-field.not-valid').show();
+                    }
+                },
+                complete: function () {
+                    BUSY_REQUEST = false;
+                }
+            });
+        };
+    _init();
+};
+
+function grayscaleIE() {
+    if (getInternetExplorerVersion() >= 10) {
+        $('img.not-accepted').each(function () {
+            var el = $(this);
+            el.css({"position": "absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
+                var el = $(this);
+                el.parent().css({"width": this.width, "height": this.height});
+                el.dequeue();
+            });
+            this.src = grayscaleIE10(this.src);
+        });
+
+        function grayscaleIE10(src) {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            var imgObj = new Image();
+            imgObj.src = src;
+            canvas.width = imgObj.width;
+            canvas.height = imgObj.height;
+            ctx.drawImage(imgObj, 0, 0);
+            var imgPixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            for (var y = 0; y < imgPixels.height; y++) {
+                for (var x = 0; x < imgPixels.width; x++) {
+                    var i = (y * 4) * imgPixels.width + x * 4;
+                    var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+                    imgPixels.data[i] = avg;
+                    imgPixels.data[i + 1] = avg;
+                    imgPixels.data[i + 2] = avg;
+                }
+            }
+            ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+            return canvas.toDataURL();
+        }
+        ;
+    }
+    ;
+}
+
+function getInternetExplorerVersion() {
+    var rv = -1;
+    if (navigator.appName == 'Microsoft Internet Explorer') {
+        var ua = navigator.userAgent;
+        var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null)
+            rv = parseFloat(RegExp.$1);
+    }
+    else if (navigator.appName == 'Netscape') {
+        var ua = navigator.userAgent;
+        var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null)
+            rv = parseFloat(RegExp.$1);
+    }
+    return rv;
 }
