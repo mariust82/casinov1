@@ -10463,9 +10463,8 @@ abbr[title] {
 
 .qa strong,
 .widget.faq strong{
-  font-size:16px;
+  font-size:14px;
   line-height:28px;
-  display:block;
   margin:0 0 5px;
 }
 @media screen and (max-width: 767px) {
