@@ -2261,7 +2261,7 @@ function runJquery ($) {
     var nTimer = setInterval(function() {
         console.log(window.jQuery);
         if (window.jQuery) {
-           // runJquery(jQuery);
+            runJquery();
             console.log('clear');
             clearInterval(nTimer);
         }
