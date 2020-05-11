@@ -151,10 +151,11 @@ var initImageLazyLoad = function () {
 
     $(document).ready(function () {
 
-        loadScripts(['tooltipster', 'swiper']);
+
+        /*loadScripts(['tooltipster', 'swiper']);
         if(window.location.href.indexOf('games/') != -1) {
             loadScripts(['jquery-select2']);
-        }
+        }*/
         initToggleMenu();
         initSite();
         initMobileMenu();
@@ -472,6 +473,16 @@ var initImageLazyLoad = function () {
                 $('.br-widget').unbind("mouseenter mouseleave mouseover click");
             }
         }
+        $(window).mousemove(function () {
+            console.log('mouse mOVE');
+            loadScripts(['tooltipster', 'swiper', 'jquery-select2']);
+            $(window).unbind( "mousemove" );
+        });
+        $(window).scroll(function(){
+            console.log('scroll');
+            loadScripts(['tooltipster', 'swiper', 'jquery-select2']);
+            $(window).unbind( "scroll" );
+        });
 
         initImageLazyLoad();
     });
@@ -680,9 +691,9 @@ var initImageLazyLoad = function () {
 
         new newsletter($('.subscribe'));
 
-        $('.js-tooltip').tooltipster(tooltipConfig);
+/*        $('.js-tooltip').tooltipster(tooltipConfig);
         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-        $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+        $('.js-tooltip-content').tooltipster(contentTooltipConfig);*/
     }
 
     function initTableOpen() {
