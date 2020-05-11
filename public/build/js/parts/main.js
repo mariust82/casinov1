@@ -140,31 +140,17 @@ function sliderInit() {
     }
 }
 
-var initImageLazyLoad = function () {};
-
-/*
-var configImgLazyLoad = new imageDeferCONFIG();
 var initImageLazyLoad = function () {
-//console.log("initImageLazyLoad");
-    configImgLazyLoad.setImagesSelector('.data-logo_image');
-    configImgLazyLoad.setDeferLoadAmount(8);
-    if (navigator.userAgent.match(/(iPhone|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini)/i)) {
-        configImgLazyLoad.setPageLoadAmount(4);
-    } else {
-        configImgLazyLoad.setPageLoadAmount(16);
-    }
-    configImgLazyLoad.setScrollOffset(200);
-
-    new imageDefer(configImgLazyLoad);
+    imageDefer("lazy_loaded");
 };
-*/
+
 
 (function ($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
     $(document).ready(function () {
-       // initImageLazyLoad();
+
         loadScripts(['tooltipster', 'swiper']);
         if(window.location.href.indexOf('games/') != -1) {
             loadScripts(['jquery-select2']);
@@ -486,6 +472,8 @@ var initImageLazyLoad = function () {
                 $('.br-widget').unbind("mouseenter mouseleave mouseover click");
             }
         }
+
+        initImageLazyLoad();
     });
 
     function menuHoverAction() {
