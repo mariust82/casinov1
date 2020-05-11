@@ -162,7 +162,7 @@ var initImageLazyLoad = function () {
 
 
 
-function runJquery ($) {
+function run () {
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
@@ -2261,7 +2261,7 @@ function runJquery ($) {
     var nTimer = setInterval(function() {
         console.log(window.jQuery);
         if (window.jQuery) {
-            runJquery();
+            run();
             console.log('clear');
             clearInterval(nTimer);
         }
