@@ -42,6 +42,7 @@ function initCustomSelect() {
     _filterOptions.prop("selected", false);
 }
 
+
 function sliderInit() {
     var swiperMain = new Swiper('#main-carousel', {
         slidesPerView: 6,
@@ -70,7 +71,6 @@ function sliderInit() {
 
     var linksSwiperParams = {
         slidesPerView: 'auto',
-        spaceBetween: 30,
         freeMode: true,
         // virtualTranslate: false,
         allowTouchMove: false,
@@ -94,7 +94,6 @@ function sliderInit() {
                 allowTouchMove: true,
             },
             690: {
-                spaceBetween: 15,
                 allowTouchMove: true,
             }
         }
@@ -140,6 +139,13 @@ function sliderInit() {
     }
 }
 
+
+function initTooltipseter() {
+    $('.js-tooltip').tooltipster(tooltipConfig);
+    $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+    $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+}
+
 var initImageLazyLoad = function () {
     imageDefer("lazy_loaded");
 };
@@ -152,10 +158,6 @@ var initImageLazyLoad = function () {
     $(document).ready(function () {
 
 
-        /*loadScripts(['tooltipster', 'swiper']);
-        if(window.location.href.indexOf('games/') != -1) {
-            loadScripts(['jquery-select2']);
-        }*/
         initToggleMenu();
         initSite();
         initMobileMenu();
@@ -474,16 +476,16 @@ var initImageLazyLoad = function () {
             }
         }
         $(window).mousemove(function () {
-            console.log('mouse mOVE');
             loadScripts(['tooltipster', 'swiper', 'jquery-select2']);
-            $(window).unbind( "mousemove" );
-        });
-        $(window).scroll(function(){
-            console.log('scroll');
-            loadScripts(['tooltipster', 'swiper', 'jquery-select2']);
-            $(window).unbind( "scroll" );
+            $(window).unbind("mousemove");
+            initTooltipseter();
         });
 
+        $(window).scroll(function(){
+            loadScripts(['tooltipster', 'swiper', 'jquery-select2']);
+            $(window).unbind("scroll");
+            initTooltipseter();
+        });
         initImageLazyLoad();
     });
 
@@ -644,6 +646,9 @@ var initImageLazyLoad = function () {
     };
 
     var initSite = function () {
+
+
+
         initExpandingText();
         initBarRating();
         initCustomSelect();
@@ -691,10 +696,10 @@ var initImageLazyLoad = function () {
 
         new newsletter($('.subscribe'));
 
-/*        $('.js-tooltip').tooltipster(tooltipConfig);
-        $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-        $('.js-tooltip-content').tooltipster(contentTooltipConfig);*/
+
     }
+
+
 
     function initTableOpen() {
         $('.js-table-package-opener').on('click', function (e) {
