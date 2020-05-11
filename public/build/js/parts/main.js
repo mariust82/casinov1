@@ -157,7 +157,6 @@ var initImageLazyLoad = function () {
 
     $(document).ready(function () {
 
-
         initToggleMenu();
         initSite();
         initMobileMenu();
@@ -646,12 +645,9 @@ var initImageLazyLoad = function () {
     };
 
     var initSite = function () {
-
-
-
         initExpandingText();
         initBarRating();
-        initCustomSelect();
+       // initCustomSelect();
         initSearch();
         copyToClipboard();
         initMoboleBonusesPop(ww);
@@ -2074,7 +2070,7 @@ var initImageLazyLoad = function () {
             }
         };
 
-        //$('.rating-bar', container).barrating('show', ratingParams);
+        $('.rating-bar', container).barrating('show', ratingParams);
     }
 
     function getWebName(name) {
