@@ -7,7 +7,6 @@ var ALL_CASINOS_KEY = 1;
 var BEST_BANKING_PAGE = 1;
 var searched_value = '';
 var isSearchResultEvent = false;
-
 function tmsIframe() {
     if ($(".tms_iframe").length) {
         $(".tms_iframe").each(function () {
@@ -160,16 +159,14 @@ var initImageLazyLoad = function () {
 };
 */
 
-
-
-function run () {
+(function ($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
     $(document).ready(function () {
-        // initImageLazyLoad();
+       // initImageLazyLoad();
         loadScripts(['tooltipster', 'swiper']);
-        if (window.location.href.indexOf('games/') != -1) {
+        if(window.location.href.indexOf('games/') != -1) {
             loadScripts(['jquery-select2']);
         }
         initToggleMenu();
@@ -186,10 +183,10 @@ function run () {
         initMobileLayoutOfTable();
 
         $('.search_input').on({
-            blur: function (e) {
+            blur: function(e){
                 var search_val = $(this).val().trim();
-                if (isSearchResultEvent) return;
-                if ($('.search-tag-manager').length && $(this).val().trim() == search_val) return;
+                if(isSearchResultEvent) return;
+                if($('.search-tag-manager').length  && $(this).val().trim() == search_val) return;
                 if (search_val.length > 2 && search_val != searched_value) {
                     searched_value = search_val;
                     SearchTracker(search_val);
@@ -198,10 +195,10 @@ function run () {
         });
 
         $('#search-all').on({
-            mousedown: function () {
+            mousedown: function(){
                 isSearchResultEvent = true;
             },
-            mouseup: function () {
+            mouseup: function(){
                 isSearchResultEvent = false;
             }
         });
@@ -684,9 +681,9 @@ function run () {
             });
         }
 
-        /*     if ($('.js-vote').length > 0) {
-                   new Vote($('.js-vote'));
-               }*/
+ /*     if ($('.js-vote').length > 0) {
+            new Vote($('.js-vote'));
+        }*/
 
         if ($('.js-run-counter').length > 0) {
             var _name = $('.js-run-counter').data('name');
@@ -712,11 +709,7 @@ function run () {
         if (getInternetExplorerVersion() >= 10) {
             $('img.not-accepted').each(function () {
                 var el = $(this);
-                el.css({"position": "absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({
-                    "position": "absolute",
-                    "z-index": "5",
-                    "opacity": "0"
-                }).insertBefore(el).queue(function () {
+                el.css({"position": "absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
                     var el = $(this);
                     el.parent().css({"width": this.width, "height": this.height});
                     el.dequeue();
@@ -757,7 +750,8 @@ function run () {
             var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
             if (re.exec(ua) != null)
                 rv = parseFloat(RegExp.$1);
-        } else if (navigator.appName == 'Netscape') {
+        }
+        else if (navigator.appName == 'Netscape') {
             var ua = navigator.userAgent;
             var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
             if (re.exec(ua) != null)
@@ -786,6 +780,7 @@ function run () {
     }
 
 
+
     function initToggleMenu() {
         var targetNode = document.querySelector('.header-menu__list-holder');
         if (targetNode) {
@@ -807,7 +802,8 @@ function run () {
                             if (e.target.className !== 'expand-menu') {
                                 currentOpened.classList.remove('opened');
                             }
-                        } else {
+                        }
+                        else {
                             if (currentOpened) {
                                 if (e.target.className !== 'expand-menu') {
                                     currentOpened.classList.remove('opened');
@@ -815,20 +811,21 @@ function run () {
                                 setTimeout(function () {
                                     currentTarget.classList.add('opened');
                                 }, 400);
-                            } else {
+                            }
+                            else {
                                 currentTarget.classList.add('opened');
                             }
                         }
 
                         break;
-                    } else {
+                    }
+                    else {
                         currentTarget = currentTarget.parentNode;
                     }
                 }
             }, true);
         }
     }
-
     function checkStringLength(box, num) {
         $(box).each(function (index, el) {
             var child = $(this).find('.list-item-trun');
@@ -886,7 +883,8 @@ function run () {
                             _send_btn.prop('disabled', true);
                             _field_email.val('');
                             _onEvents();
-                        } else if (response.status == "error") {
+                        }
+                        else if (response.status == "error") {
                             // console.error(response.body);
                             var arr = JSON.parse(response.body);
 
@@ -1207,6 +1205,8 @@ function run () {
             }, 1000);
         }
     }
+
+
 
 
     var SearchPanel = function (obj) {
@@ -1753,6 +1753,7 @@ function run () {
     };
 
 
+
     function initMoboleBonusesPop(_ww) {
         var _container = $('.list-item, .pick');
         var _mobilePop = $('.js-mobile-pop');
@@ -2114,11 +2115,7 @@ function run () {
 
                     if (fullheight > linescount) {
 
-                        element.addClass(ellipsisclass).css({
-                            'min-height': linescount,
-                            'max-height': linescount,
-                            'overflow': 'hidden'
-                        });
+                        element.addClass(ellipsisclass).css({'min-height': linescount, 'max-height': linescount, 'overflow': 'hidden'});
 
                         var moreLinesButton = $("<div>", {
                             "class": buttonclass,
@@ -2128,10 +2125,7 @@ function run () {
                                 $(this).toggleClass(buttonclass + '_active');
 
                                 if (element.css('max-height') !== 'none') {
-                                    element.css({
-                                        'height': linescount,
-                                        'max-height': ''
-                                    }).animate({height: '100%'}, settings.animationspeed, function () {
+                                    element.css({'height': linescount, 'max-height': ''}).animate({height: '100%'}, settings.animationspeed, function () {
                                         moreLinesButton.html(settings.buttontxtless);
                                     });
 
@@ -2164,7 +2158,6 @@ function run () {
             animationspeed: 250
         });
     }
-
     function initMultirow() {
         var multirowContainer = $('.js-multirow');
         multirowContainer.each(function (index, el) {
@@ -2255,15 +2248,4 @@ function run () {
         }
     }
 
-};
-
-(function() {
-    var nTimer = setInterval(function() {
-        console.log(window.jQuery);
-        if (window.jQuery) {
-            run();
-            console.log('clear');
-            clearInterval(nTimer);
-        }
-    }, 100);
-})();
+})(jQuery);
