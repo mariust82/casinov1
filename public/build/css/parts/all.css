@@ -5585,6 +5585,9 @@ a:focus {
   .links-nav a {
     padding: 0 0 12px;
   }
+  .links-nav .swiper-slide {
+    margin-right: 15px;
+  }
 }
 
 .links-nav a.active,
@@ -5594,7 +5597,7 @@ a:focus {
 
 .links-nav .swiper-slide {
   width: auto;
-  /*margin-right: 30px;*/
+  margin-right: 30px;
 }
 
 .links-nav .swiper-container .links-left,
