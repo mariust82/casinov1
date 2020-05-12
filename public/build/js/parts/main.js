@@ -350,7 +350,6 @@ var initImageLazyLoad = function () {
                 success: function (data) {
                     AJAX_CUR_PAGE++;
                     console.dir(data);
-                    console.dir(data);
                     $('.cards-list-wrapper').append(data);
                     if ($(self).data('total') === $('.cards-list-wrapper').children().length) {
                         $(self).hide();
@@ -1137,6 +1136,7 @@ var initImageLazyLoad = function () {
                     _construct();
 
                     checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
+                    initImageLazyLoad();
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.statusText != "abort") {
