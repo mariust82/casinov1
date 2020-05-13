@@ -6,7 +6,7 @@
 					<span class="game-img">
 							<:set var="imgSrc" val="${result.logo}"/>
 							<:set var="noImgSrc" val="public/build/images/games/default_game_ss.png"/>
-							<img class="lazy_loaded" data-src=${imgSrc} src=/${noImgSrc} onerror="this.src='/${noImgSrc}';" data-alt="${result.name}" data-width="300" data-height="220">
+							<img class="lazy_loaded" data-src=${imgSrc} onerror="this.src='/${noImgSrc}';" data-alt="${result.name}" data-width="300" data-height="220">
 					</span>
 					<span class="game-desc">
 						<span class="game-title">${result.name}</span>
