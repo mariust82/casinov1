@@ -4587,17 +4587,17 @@ a:focus {
 
 .game-img {
   display: block;
+  position:relative;
+  height:0;
+  padding-bottom:74%;
 }
 
 .game-img img {
   width: 100%;
-  height: auto;
-}
-
-@media screen and (max-width: 1023px) {
-  .game-img img {
-    height: auto;
-  }
+  height: 100%;
+  position:absolute;
+  top:0;
+  left:0;
 }
 
 .game-desc {
