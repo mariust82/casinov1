@@ -139,7 +139,6 @@ function sliderInit() {
     }
 }
 
-
 function initTooltipseter() {
     $('.js-tooltip').tooltipster(tooltipConfig);
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
@@ -366,8 +365,6 @@ var initImageLazyLoad = function () {
                     BUSY_REQUEST = false;
                 }
             });
-
-
         });
 
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
@@ -439,7 +436,7 @@ var initImageLazyLoad = function () {
             });
         }
 
-//Load defer for pages on that you can see the footer on first load
+        //Load defer for pages on that you can see the footer on first load
         var footerHeight = 260;
         if ($(window).scrollTop() + $(window).height() > $(document).height() - footerHeight) {
             tmsIframe();
@@ -484,6 +481,10 @@ var initImageLazyLoad = function () {
             $(window).unbind("scroll");
             initTooltipseter();
         });
+        initImageLazyLoad();
+    });
+
+    $(document).ajaxComplete(function() {
         initImageLazyLoad();
     });
 
@@ -1136,7 +1137,6 @@ var initImageLazyLoad = function () {
                     _construct();
 
                     checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
-                    initImageLazyLoad();
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.statusText != "abort") {

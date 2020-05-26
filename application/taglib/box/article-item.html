@@ -2,7 +2,7 @@
       <div class="wrap-card">
             <a href="/${article.type}/${article.url}" class="card">
             <div class="card-img">
-               <img src="${$[folder].${article.id}}" width="288" height="205" alt="${article.title}">
+               <img class="lazy_loaded" data-src="${$[folder].${article.id}}" width="288" height="205" alt="${article.title}">
             </div>
             <div class="card-footer">
                <div class="card-type">${article.type}</div>
