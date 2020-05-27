@@ -1814,8 +1814,8 @@ var initImageLazyLoad = function () {
             _btnOpen.on('click', function (e) {
                 _position = $(window).scrollTop();
                 $('.overlay, .loader').fadeIn('fast');
-                $('body').removeClass('site__header_sticky');
                 cloneContent($(this));
+                $('body').removeClass('site__header_sticky');
                 return false;
             });
         }
