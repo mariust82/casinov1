@@ -470,9 +470,8 @@ var initImageLazyLoad = function () {
                 $('.br-widget').unbind("mouseenter mouseleave mouseover click");
             }
         }
-
         $(window).on('scroll mousemove', function(){
-            loadScripts(['tooltipster', 'swiper', 'jquery-select2']);
+            loadScripts(['tooltipster', 'swiper']);
             $(window).unbind("scroll mousemove");
             initTooltipseter();
         });
@@ -481,6 +480,7 @@ var initImageLazyLoad = function () {
             loadScripts(['swiper']);
         }
 
+        loadScripts(['jquery-select2']);
         initImageLazyLoad();
     });
 
