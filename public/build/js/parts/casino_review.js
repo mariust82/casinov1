@@ -578,7 +578,6 @@ function showMoreReviews() {
 }
 
 var Vote = function (obj) {
-
     var _obj = obj,
         _trigger = _obj.find('.vote-button'),
         _request = new XMLHttpRequest;

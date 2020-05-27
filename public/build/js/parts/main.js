@@ -681,9 +681,9 @@ var initImageLazyLoad = function () {
             });
         }
 
- /*     if ($('.js-vote').length > 0) {
-            new Vote($('.js-vote'));
-        }*/
+        if ($('.js-vote').length > 0) {
+                new Vote($('.js-vote'));
+        }
 
         if ($('.js-run-counter').length > 0) {
             var _name = $('.js-run-counter').data('name');
