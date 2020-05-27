@@ -470,17 +470,17 @@ var initImageLazyLoad = function () {
                 $('.br-widget').unbind("mouseenter mouseleave mouseover click");
             }
         }
-        $(window).mousemove(function () {
+
+        $(window).on('scroll mousemove', function(){
             loadScripts(['tooltipster', 'swiper', 'jquery-select2']);
-            $(window).unbind("mousemove");
+            $(window).unbind("scroll mousemove");
             initTooltipseter();
         });
 
-        $(window).scroll(function(){
-            loadScripts(['tooltipster', 'swiper', 'jquery-select2']);
-            $(window).unbind("scroll");
-            initTooltipseter();
-        });
+        if (checkIfIsMobileDevice()) {
+            loadScripts(['swiper']);
+        }
+
         initImageLazyLoad();
     });
 
