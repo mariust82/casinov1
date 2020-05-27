@@ -1796,6 +1796,7 @@ var initImageLazyLoad = function () {
                         _mobilePop.fadeIn('fast').fadeIn('fast');
                         lockScreen();
                         _btnClose.on('click', function (e) {
+                            $('body').addClass('site__header_sticky');
                             _mobilePop.fadeOut('fast')
                                 .find('.mobile-popup-body')
                                 .html('');
@@ -1813,6 +1814,7 @@ var initImageLazyLoad = function () {
             _btnOpen.on('click', function (e) {
                 _position = $(window).scrollTop();
                 $('.overlay, .loader').fadeIn('fast');
+                $('body').removeClass('site__header_sticky');
                 cloneContent($(this));
                 return false;
             });
