@@ -471,9 +471,8 @@ var initImageLazyLoad = function () {
                 $('.br-widget').unbind("mouseenter mouseleave mouseover click");
             }
         }
-
         $(window).on('scroll mousemove', function(){
-            loadScripts(['tooltipster', 'swiper', 'jquery-select2']);
+            loadScripts(['tooltipster', 'swiper']);
             $(window).unbind("scroll mousemove");
             initTooltipseter();
         });
@@ -482,6 +481,7 @@ var initImageLazyLoad = function () {
             loadScripts(['swiper']);
         }
 
+        loadScripts(['jquery-select2']);
         initImageLazyLoad();
     });
 
@@ -682,9 +682,9 @@ var initImageLazyLoad = function () {
             });
         }
 
- /*     if ($('.js-vote').length > 0) {
-            new Vote($('.js-vote'));
-        }*/
+        if ($('.js-vote').length > 0) {
+                new Vote($('.js-vote'));
+        }
 
         if ($('.js-run-counter').length > 0) {
             var _name = $('.js-run-counter').data('name');
@@ -1797,6 +1797,7 @@ var initImageLazyLoad = function () {
                         _mobilePop.fadeIn('fast').fadeIn('fast');
                         lockScreen();
                         _btnClose.on('click', function (e) {
+                            $('body').addClass('site__header_sticky');
                             _mobilePop.fadeOut('fast')
                                 .find('.mobile-popup-body')
                                 .html('');
@@ -1815,6 +1816,7 @@ var initImageLazyLoad = function () {
                 _position = $(window).scrollTop();
                 $('.overlay, .loader').fadeIn('fast');
                 cloneContent($(this));
+                $('body').removeClass('site__header_sticky');
                 return false;
             });
         }
