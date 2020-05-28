@@ -11,6 +11,8 @@
         <file name="casino_review"/>
     </file>
     <file name="contact">
+        <file name="global_js/jquery-2.1.3.min" />
+        <file name="main"/>
         <file name="contact"/>
     </file>
     <file name="gameplay">

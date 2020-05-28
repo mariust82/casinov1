@@ -146,7 +146,9 @@ function initTooltipseter() {
 }
 
 var initImageLazyLoad = function () {
-    imageDefer("lazy_loaded");
+    if (typeof imageDefer != "undefined") {
+        imageDefer("lazy_loaded");
+    }
 };
 
 var Vote = function (obj) {
@@ -2146,8 +2148,9 @@ var Vote = function (obj) {
                 }
             }
         };
-
-        $('.rating-bar', container).barrating('show', ratingParams);
+        if ($().barrating) {
+            $('.rating-bar', container).barrating('show', ratingParams);
+        }
     }
 
     function getWebName(name) {
