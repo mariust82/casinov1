@@ -1871,7 +1871,6 @@ console.log('123'); return;
                         $('.overlay, .loader').fadeOut('fast');
                         _mobilePop.fadeIn('fast').fadeIn('fast');
                         var headBar = $('html, body').hasClass('site__header_sticky');
-                        console.log('headBar ' + headBar);
                         if(headBar) $('html, body').removeClass('site__header_sticky');
                           lockScreen();
                         _btnClose.on('click', function (e) {
