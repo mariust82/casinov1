@@ -138,7 +138,6 @@ function sliderInit() {
     }
 }
 
-
 function initTooltipseter() {
     $('.js-tooltip').tooltipster(tooltipConfig);
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
@@ -146,9 +145,85 @@ function initTooltipseter() {
 }
 
 var initImageLazyLoad = function () {
-    imageDefer("lazy_loaded");
+    if (typeof imageDefer != "undefined") {
+        imageDefer("lazy_loaded");
+    }
 };
 
+var Vote = function (obj) {
+    var _obj = obj,
+        _trigger = _obj.find('.vote-button'),
+        _request = new XMLHttpRequest;
+
+    var _init = function () {
+            _trigger.off();
+            _trigger.on('click', function () {
+                var _id = $(this).data('id');
+                var _success = $(this).data('success');
+                var _target = $(this).data('type');
+
+                _updateVote($(this), _getTarget(_target), _getData(_target, _id, _success));
+
+                return false;
+            });
+
+        },
+        _getData = function (_target, _id, _success) {
+            var _ret = {id: _id, is_like: _success};
+            // if (_target == 'review') _ret.review_id = _id;
+            // else _ret.article_id = _id;
+            return _ret;
+        },
+
+        _getTarget = function (_arg) {
+            var _target = '/casino/review-like';
+            if (_arg === 'article') {
+                _target = '/blog/rate';
+            }
+            return _target;
+        },
+        _updateVote = function (_this, _target, _data) {
+            if (BUSY_REQUEST)
+                return;
+            BUSY_REQUEST = true;
+            _request.abort();
+
+            _request = $.ajax({
+                url: _target,
+                data: _data,
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    if (_target === '/casino/review-like') {
+                        if (data.body.status == 'not_ok') {
+                            console.log(data.body.message);
+                        } else {
+                            var _holderLikes = $(_this).find('.bubble-vote');
+                            var _oldLikes = _holderLikes.text();
+                            _holderLikes.text(++_oldLikes);
+                        }
+                        _this.closest(_obj).next('.action-field.success').show();
+                    } else if (_target === '/blog/rate') {
+                        $(_this.parent().parent()).find('.votes-like .vote-block-num, .like .vote-block-num').text(data.body.likes);
+                        $(_this.parent().parent()).find('.votes-dislike .vote-block-num, .dislike .vote-block-num').text(data.body.dislikes);
+
+                        _this.closest(_obj).next('.action-field.success').show();
+                    }
+                    //_this.parent().addClass('disabled');
+                },
+                error: function (XMLHttpRequest) {
+                    var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                    if (XMLHttpRequest.statusText != "abort") {
+                        __this.closest(_obj).next('.action-field.not-valid').show();
+                    }
+                },
+                complete: function () {
+                    BUSY_REQUEST = false;
+                }
+            });
+        };
+    _init();
+};
 
 (function ($) {
     BUSY_REQUEST = false;
@@ -365,8 +440,6 @@ var initImageLazyLoad = function () {
                     BUSY_REQUEST = false;
                 }
             });
-
-
         });
 
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
@@ -438,7 +511,7 @@ var initImageLazyLoad = function () {
             });
         }
 
-//Load defer for pages on that you can see the footer on first load
+        //Load defer for pages on that you can see the footer on first load
         var footerHeight = 260;
         if ($(window).scrollTop() + $(window).height() > $(document).height() - footerHeight) {
             tmsIframe();
@@ -472,17 +545,21 @@ var initImageLazyLoad = function () {
                 $('.br-widget').unbind("mouseenter mouseleave mouseover click");
             }
         }
-        $(window).mousemove(function () {
-            loadScripts(['tooltipster', 'swiper', 'jquery-select2']);
-            $(window).unbind("mousemove");
+        $(window).on('scroll mousemove', function(){
+            loadScripts(['tooltipster', 'swiper']);
+            $(window).unbind("scroll mousemove");
             initTooltipseter();
         });
 
-        $(window).scroll(function(){
-            loadScripts(['tooltipster', 'swiper', 'jquery-select2']);
-            $(window).unbind("scroll");
-            initTooltipseter();
-        });
+        if (checkIfIsMobileDevice()) {
+            loadScripts(['swiper']);
+        }
+
+        loadScripts(['jquery-select2']);
+        initImageLazyLoad();
+    });
+
+    $(document).ajaxComplete(function() {
         initImageLazyLoad();
     });
 
@@ -679,9 +756,9 @@ console.log('123'); return;
             });
         }
 
- /*     if ($('.js-vote').length > 0) {
-            new Vote($('.js-vote'));
-        }*/
+        if ($('.js-vote').length > 0) {
+                new Vote($('.js-vote'));
+        }
 
         if ($('.js-run-counter').length > 0) {
             var _name = $('.js-run-counter').data('name');
@@ -692,6 +769,7 @@ console.log('123'); return;
 
 
     }
+
 
 
 
@@ -1125,6 +1203,7 @@ console.log('123'); return;
                             _targetAddContainer.append(cont);
                             _moreButton.removeClass('loading');
                             refresh();
+                            initImageLazyLoad();
 
                             if (cont.length < limit_items) {
                                 _moreButton.hide();
@@ -1135,7 +1214,6 @@ console.log('123'); return;
                     _construct();
 
                     checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
-
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.statusText != "abort") {
@@ -1797,6 +1875,7 @@ console.log('123'); return;
                         if(headBar) $('html, body').removeClass('site__header_sticky');
                           lockScreen();
                         _btnClose.on('click', function (e) {
+                            $('body').addClass('site__header_sticky');
                             _mobilePop.fadeOut('fast')
                                 .find('.mobile-popup-body')
                                 .html('');
@@ -1817,6 +1896,7 @@ console.log('123'); return;
                 _position = $(window).scrollTop();
                 $('.overlay, .loader').fadeIn('fast');
                 cloneContent($(this));
+                $('body').removeClass('site__header_sticky');
                 return false;
             });
         }
@@ -2072,8 +2152,9 @@ console.log('123'); return;
                 }
             }
         };
-
-        $('.rating-bar', container).barrating('show', ratingParams);
+        if ($().barrating) {
+            $('.rating-bar', container).barrating('show', ratingParams);
+        }
     }
 
     function getWebName(name) {

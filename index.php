@@ -1,10 +1,13 @@
 <?php
-require_once("hlis/firewall/Manager.php");
-
 // performs environment detection
 $environment = getenv("ENVIRONMENT");
 if(!$environment) die("Value of environment variable 'ENVIRONMENT' could not be detected!");
 define("ENVIRONMENT", $environment);
+
+// load firewall
+if (ENVIRONMENT == "live") {
+    require_once("hlis/firewall/Manager.php");
+}
 
 // takes control of STDERR
 require_once("vendor/lucinda/errors-mvc/src/FrontController.php");

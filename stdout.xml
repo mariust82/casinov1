@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
 <xml>
-  <application version="0.8.8.9214" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
+  <application version="0.8.8.9215" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
     <paths>
       <controllers>application/controllers</controllers>
       <cacheables>application/models/cacheables</cacheables>
@@ -30,6 +30,8 @@
       <shay>C:\xampp\htdocs\casinoslists</shay>
       <bogdan_local>www.casinoslists.local</bogdan_local>
       <bogdan_local>C:\xampp\htdocs\gtm\casinoslists</bogdan_local>
+      <marius_local>www.casinolists.marius</marius_local>
+      <marius_local>C:\xampp\htdocs\casinoslists</marius_local>
 	</environments>
   </application>
   <formats>
@@ -258,6 +260,9 @@
       <bogdan_local>
         <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="bogdan__casinoslists_main" parent_schema="bogdan__casinoslists_admin" charset="utf8"/>
       </bogdan_local>
+      <marius_local>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinoslists_main" parent_schema="casinoslists_admin" charset="utf8"/>
+      </marius_local>
     </sql>
     <nosql>
       <dev>
@@ -284,6 +289,9 @@
       <bogdan_local>
         <server driver="redis" host="localhost"/>
       </bogdan_local>
+      <marius_local>
+        <server driver="redis" host="localhost"/>
+      </marius_local>
     </nosql>
   </servers>
   <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
@@ -295,6 +303,7 @@
     <bogdan>api.datamother.com</bogdan>
     <shay>api.datamother.com</shay>
     <bogdan_local>api.datamother.com</bogdan_local>
+    <marius_local>api.datamother.com</marius_local>
   </rest_api>
   <geoip>
     <dev>/home/casinoslists/public_html/dev/ip2country.mmdb</dev>
@@ -305,6 +314,7 @@
     <bogdan>/var/www/html/ip2country.mmdb</bogdan>
     <shay>C:\xampp\htdocs\ip2country.mmdb</shay>
     <bogdan_local>E:\xammp\htdocs\ip2country.mmdb</bogdan_local>
+    <marius_local>C:\xammp\htdocs\ip2country.mmdb</marius_local>
   </geoip>
   <images path="public/sync">
     <image type="casino_logo_light">
@@ -332,6 +342,7 @@
     <bogdan>www.casinoslists.bogdan</bogdan>
     <shay>www.casinoslists.mark</shay>
     <bogdan>www.casinoslists.local</bogdan>
+    <marius_local>www.casinolists.marius</marius_local>
   </hosts>
   <gameplay width="960" height="720">
     <dev>https://devgame.casinoslists.com</dev>
@@ -342,6 +353,7 @@
     <bogdan>http://game.casinoslists.bogdan</bogdan>
     <shay>http://game.casinoslists.mark</shay>
     <bogdan_local>http://game.casinoslists.local</bogdan_local>
+    <marius_local>http://game.casinolists.marius</marius_local>
   </gameplay>
   <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
 </xml>

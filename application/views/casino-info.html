@@ -40,7 +40,7 @@
 				</div>
 				<div class="casino-review-heading-right">
 					<div class="casino-review-heading-img">
-						<img src="${data.casino.logo_big}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
+						<img class="lazy_loaded" data-src="${data.casino.logo_big}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
 					</div>
 					<:set var="score_class" val="get_rating(${data.casino.rating})"/>
 					<div class="list-rating ${normalize(${score_class})}">
@@ -64,7 +64,7 @@
 					</:if>
 				</div>
 				<div class="casino-review-country casino-review-mobile">
-					<img class="${data.country_status}" src="/public/build/images/flags/${data.country.code}.png" alt="" width="20" height="14">
+					<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="20" height="14">
 					${data.country.name}
 					${data.country_status_text}
 				</div>
@@ -81,7 +81,7 @@
 						<div class="def-list-item">
 							<div class="def-list-key">Country</div>
 							<div class="def-list-val">
-								<img class="${data.country_status}" src="/public/build/images/flags/${data.country.code}.png" alt="" width="15" height="12">
+								<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="15" height="12">
 								${data.country.name}
 								<:if test="${data.casino.is_country_accepted} == 1">
 									accepted
@@ -401,7 +401,7 @@
 								<td >
 									<a href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
 										<div class="table-flex">
-											<img class="payment-logo" src="${dep_method_data.logo}" width="60" height="40" alt="${dep_method} Logo">
+											<img class="payment-logo lazy_loaded" data-src="${dep_method_data.logo}" width="60" height="40" alt="${dep_method} Logo">
 											<div class="table-desctop-visible">${dep_method}</div>
 										</div>
 									</a>
