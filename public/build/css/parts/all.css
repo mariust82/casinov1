@@ -193,7 +193,7 @@ img {
 }
 
 .site__header_sticky {
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 img,
@@ -4529,11 +4529,7 @@ a:focus {
   content: "";
 }
 
-.game {
-  display: inline-block;
-  width: 25%;
-  padding: 20px 0 0 20px;
-}
+
 
 @media screen and (max-width: 1023px) {
   .game {
@@ -4583,6 +4579,12 @@ a:focus {
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.16);
   border-radius: 2px;
   overflow: hidden;
+}
+
+.game {
+  display: inline-block;
+  width: 25%;
+  padding: 20px 0 0 20px;
 }
 
 .game-img {
@@ -8483,7 +8485,7 @@ a:focus {
 }
 
 .mobile-popup {
-  display: none;
+  display: block;
   position: fixed;
   top: 0;
   left: 0;

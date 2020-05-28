@@ -23,10 +23,9 @@ function tmsIframe() {
 
 function loadScripts(_scripts) {
     var version = $('.controller_main').data("version");
-
     $.each(_scripts, function(index, script) {
-        if (!$("script[src='/public/build/js/compilations/assets/"+script+".js']").length) {
-            $("body").append($('<script type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js"></script>"'));
+        if (!$("script[src='/public/build/js/compilations/assets/"+script+".js?"+version+"']").length) {
+            $("body").append($('<script type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js?'+version+'"></script>"'));
         }
     });
 }
@@ -609,7 +608,7 @@ var initImageLazyLoad = function () {
                 var _name = $origin.data('name');
                 var _is_free = $origin.data('is-free');
                 var _request = new XMLHttpRequest();
-
+console.log('123'); return;
                 _request.abort();
                 _request = $.ajax({
                     url: "/casino/bonus",
@@ -1067,7 +1066,7 @@ var initImageLazyLoad = function () {
             }
 
         _ajaxRequestCasinos = function (_ajaxDataParams, _action) {
-            console.dir('test');
+            console.dir('test 2');
             if (_action == 'add') {
                 _moreButton.addClass('loading');
             } else {
@@ -1136,7 +1135,7 @@ var initImageLazyLoad = function () {
                     _construct();
 
                     checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
-                    initImageLazyLoad();
+
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.statusText != "abort") {
@@ -1161,6 +1160,7 @@ var initImageLazyLoad = function () {
                         }
                     }
                     grayscaleIE();
+                    initImageLazyLoad();
                 }
             });
 
@@ -1755,17 +1755,17 @@ var initImageLazyLoad = function () {
 
 
     function initMoboleBonusesPop(_ww) {
-        var _container = $('.list-item, .pick');
-        var _mobilePop = $('.js-mobile-pop');
+        var _container = $('.block .container');
+        //var _mobilePop = $('.js-mobile-pop');
         var _btnOpen = $('.btn-round');
         var _btnClose = $('.js-mobile-pop-close');
-        var _position = 0;
+        var _position = document.body.scrollTop;
 
         if (_ww <= 690) {
             _btnOpen.off('click');
 
             function cloneContent(_this) {
-                var _contentHolder = _this.closest(_container).find('.list-item-cell-buttons');
+                var _contentHolder = _this.closest(_container);
                 var _items = _this.closest(_container).find('.js-tooltip-content');
                 var _name = _this.data('name');
                 var _is_free = _this.data('is-free');
@@ -1781,11 +1781,9 @@ var initImageLazyLoad = function () {
                     dataType: 'html',
                     type: 'GET',
                     success: function (response) {
-                        console.log('123');
-                        console.log('response => ' + response);
-                        $(response).insertAfter(_contentHolder);
+                      var _mobilePop =  $(response).insertAfter(_contentHolder);
 
-                        var _mobilePop = _this.closest(_container).find('.js-mobile-pop');
+                       // var _mobilePop = _contentHolder.parent().find('.mobile.popup');
                         _mobilePop.find('.js-tooltip').tooltipster(tooltipConfig);
                         _mobilePop.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
                         var _btnClose = _mobilePop.find('.js-mobile-pop-close');
@@ -1794,16 +1792,21 @@ var initImageLazyLoad = function () {
 
                         $('.overlay, .loader').fadeOut('fast');
                         _mobilePop.fadeIn('fast').fadeIn('fast');
-                        lockScreen();
+                        var headBar = $('html, body').hasClass('site__header_sticky');
+                        console.log('headBar ' + headBar);
+                        if(headBar) $('html, body').removeClass('site__header_sticky');
+                          lockScreen();
                         _btnClose.on('click', function (e) {
                             _mobilePop.fadeOut('fast')
                                 .find('.mobile-popup-body')
                                 .html('');
                             unlockScreen();
+                            if(headBar)   $('html, body').addClass('site__header_sticky');
+
                             $('.overlay, .loader').fadeOut('fast');
 
                             goToPosition(_position);
-                            $(_mobilePop).remove();
+                            _mobilePop.remove();
                             return false;
                         });
                     }
