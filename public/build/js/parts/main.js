@@ -1204,6 +1204,7 @@ var Vote = function (obj) {
                             _targetAddContainer.append(cont);
                             _moreButton.removeClass('loading');
                             refresh();
+                            initImageLazyLoad();
 
                             if (cont.length < limit_items) {
                                 _moreButton.hide();
