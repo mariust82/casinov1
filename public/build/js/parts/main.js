@@ -685,7 +685,7 @@ var Vote = function (obj) {
                 var _name = $origin.data('name');
                 var _is_free = $origin.data('is-free');
                 var _request = new XMLHttpRequest();
-console.log('123'); return;
+
                 _request.abort();
                 _request = $.ajax({
                     url: "/casino/bonus",
