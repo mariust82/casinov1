@@ -4530,6 +4530,11 @@ a:focus {
 }
 
 
+.game {
+  display: inline-block;
+  width: 25%;
+  padding: 20px 0 0 20px;
+}
 
 @media screen and (max-width: 1023px) {
   .game {
@@ -4545,7 +4550,7 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   .game {
-    width: 50%;
+    width: 50% !important;
   }
 }
 
@@ -4579,12 +4584,6 @@ a:focus {
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.16);
   border-radius: 2px;
   overflow: hidden;
-}
-
-.game {
-  display: inline-block;
-  width: 50%;
-  padding: 20px 0 0 20px;
 }
 
 .game-img {
