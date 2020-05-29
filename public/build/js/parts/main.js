@@ -24,8 +24,8 @@ function tmsIframe() {
 function loadScripts(_scripts) {
     var version = $('.controller_main').data("version");
     $.each(_scripts, function(index, script) {
-        if (!$("script[src='/public/build/js/compilations/assets/"+script+".js?"+version+"']").length) {
-            $("body").append($('<script type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js?'+version+'"></script>"'));
+        if (!$("script[src='/public/build/js/compilations/assets/"+script+".js?v="+version+"']").length) {
+            $("body").append($('<script type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js?v='+version+'"></script>"'));
         }
     });
 }
