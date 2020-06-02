@@ -193,7 +193,7 @@ img {
 }
 
 .site__header_sticky {
-  padding-top: 50px;
+  padding-top: 40px;
 }
 
 img,
@@ -4529,6 +4529,7 @@ a:focus {
   content: "";
 }
 
+
 .game {
   display: inline-block;
   width: 25%;
@@ -4549,7 +4550,7 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   .game {
-    width: 50%;
+    width: 50% !important;
   }
 }
 
@@ -4587,17 +4588,17 @@ a:focus {
 
 .game-img {
   display: block;
+  position:relative;
+  height:0;
+  padding-bottom:74%;
 }
 
 .game-img img {
   width: 100%;
-  height: auto;
-}
-
-@media screen and (max-width: 1023px) {
-  .game-img img {
-    height: auto;
-  }
+  height: 100%;
+  position:absolute;
+  top:0;
+  left:0;
 }
 
 .game-desc {
@@ -5585,6 +5586,9 @@ a:focus {
   .links-nav a {
     padding: 0 0 12px;
   }
+  .links-nav .swiper-slide {
+    margin-right: 15px;
+  }
 }
 
 .links-nav a.active,
@@ -5594,7 +5598,7 @@ a:focus {
 
 .links-nav .swiper-slide {
   width: auto;
-  /*margin-right: 30px;*/
+  margin-right: 30px;
 }
 
 .links-nav .swiper-container .links-left,
@@ -8480,7 +8484,7 @@ a:focus {
 }
 
 .mobile-popup {
-  display: none;
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
@@ -10463,17 +10467,16 @@ abbr[title] {
 
 .qa strong,
 .widget.faq strong{
-  font-size:16px;
+  font-size:14px;
   line-height:28px;
-  display:block;
-  margin:0 0 -20px;
+  margin:0 0 5px;
 }
 @media screen and (max-width: 767px) {
   .qa strong,
   .widget.faq strong{
     font-size:14px;
     line-height:22px;
-    margin:0 0 -10px;
+    margin:0 0 5px;
   }
 }
 .qa h2{

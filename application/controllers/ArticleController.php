@@ -29,7 +29,7 @@ class ArticleController extends BaseController
         
         $this->response->attributes("article", $article);
         $this->response->attributes("tags", $tags);
-        $this->response->attributes("tms_article", $articles->getInfoByRoute($singleArticle->denormalize($article_name)));
+        $this->response->attributes("tms_article", $articles->getInfoByRoute($article_name));
         $this->response->attributes("related", $related_articles['results']);
         $this->response->attributes("uploadsFolders", $singleArticle->getUploadsFolders($results));
         $this->response->attributes("relateduploadsFolders", $singleArticle->getUploadsFolders($related_articles));
