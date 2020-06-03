@@ -38,6 +38,8 @@
     <format name="html" content_type="text/html" class="ViewLanguageResolver" charset="UTF-8"/>
     <format name="json" content_type="application/json" class="JsonResolver" charset="UTF-8"/>
     <format name="xml" content_type="text/xml" class="SitemapResolver" charset="UTF-8"/>
+    <format name="sitemap" content_type="text/xml" class="SitemapResolver" charset="UTF-8"/>
+    <format name="rss" content_type="application/rss+xml" class="RssResolver" charset="UTF-8"/>
   </formats>
   <listeners>
     <listener class="AsyncListener"/>
@@ -206,32 +208,32 @@
       <parameter name="page" validator="PositiveNumberValidator"/>
     </route>
     <route url="404" controller="PageNotFoundController" view="404"/>
-    <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" format="xml"/>
-    <route url="sitemap_cas_bon.php" controller="sitemap/BonusTypesController" format="xml"/>
-    <route url="sitemap_cas_cas.php" controller="sitemap/CasinoLabelsController" format="xml"/>
-    <route url="sitemap_cas_con.php" controller="sitemap/CountriesController" format="xml"/>
-    <route url="sitemap_cas_feat.php" controller="sitemap/FeaturesController" format="xml"/>
-    <route url="sitemap_cas_games.php" controller="sitemap/GameTypesController" format="xml"/>
-    <route url="sitemap_cas_os.php" controller="sitemap/CompatibilityController" format="xml"/>
-    <route url="sitemap_cas_soft.php" controller="sitemap/SoftwaresController" format="xml"/>
-    <route url="sitemap_lists.php" controller="sitemap/PagesController" format="xml"/>
-    <route url="sitemap_main.php" controller="sitemap/IndexController" format="xml"/>
-    <route url="sitemap_spec_cas.php" controller="sitemap/CasinosController" format="xml"/>
-    <route url="sitemap_spec_games.php" controller="sitemap/GamesController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_bank_ps.php" controller="sitemap/BankingMethodsController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_bon_ps.php" controller="sitemap/BonusTypesController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_cas_ps.php" controller="sitemap/CasinoLabelsController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_con_ps.php" controller="sitemap/CountriesController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_feat_ps.php" controller="sitemap/FeaturesController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_games_ps.php" controller="sitemap/GameTypesController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_os_ps.php" controller="sitemap/CompatibilityController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_soft_ps.php" controller="sitemap/SoftwaresController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_lists_ps.php" controller="sitemap/PagesController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_main_ps.php" controller="sitemap/IndexController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_spec_cas_ps.php" controller="sitemap/CasinosController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_spec_games_ps.php" controller="sitemap/GamesController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_cas_live_dealer.php" controller="sitemap/LiveDealerController" format="xml"/>
-    <route url="sitemaps_ps/sitemap_blog_ps.php" controller="sitemap/BlogCategoriesController" format="xml"/>
+    <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" format="sitemap"/>
+    <route url="sitemap_cas_bon.php" controller="sitemap/BonusTypesController" format="sitemap"/>
+    <route url="sitemap_cas_cas.php" controller="sitemap/CasinoLabelsController" format="sitemap"/>
+    <route url="sitemap_cas_con.php" controller="sitemap/CountriesController" format="sitemap"/>
+    <route url="sitemap_cas_feat.php" controller="sitemap/FeaturesController" format="sitemap"/>
+    <route url="sitemap_cas_games.php" controller="sitemap/GameTypesController" format="sitemap"/>
+    <route url="sitemap_cas_os.php" controller="sitemap/CompatibilityController" format="sitemap"/>
+    <route url="sitemap_cas_soft.php" controller="sitemap/SoftwaresController" format="sitemap"/>
+    <route url="sitemap_lists.php" controller="sitemap/PagesController" format="sitemap"/>
+    <route url="sitemap_main.php" controller="sitemap/IndexController" format="sitemap"/>
+    <route url="sitemap_spec_cas.php" controller="sitemap/CasinosController" format="sitemap"/>
+    <route url="sitemap_spec_games.php" controller="sitemap/GamesController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_cas_bank_ps.php" controller="sitemap/BankingMethodsController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_cas_bon_ps.php" controller="sitemap/BonusTypesController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_cas_cas_ps.php" controller="sitemap/CasinoLabelsController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_cas_con_ps.php" controller="sitemap/CountriesController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_cas_feat_ps.php" controller="sitemap/FeaturesController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_cas_games_ps.php" controller="sitemap/GameTypesController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_cas_os_ps.php" controller="sitemap/CompatibilityController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_cas_soft_ps.php" controller="sitemap/SoftwaresController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_lists_ps.php" controller="sitemap/PagesController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_main_ps.php" controller="sitemap/IndexController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_spec_cas_ps.php" controller="sitemap/CasinosController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_spec_games_ps.php" controller="sitemap/GamesController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_cas_live_dealer.php" controller="sitemap/LiveDealerController" format="sitemap"/>
+    <route url="sitemaps_ps/sitemap_blog_ps.php" controller="sitemap/BlogCategoriesController" format="sitemap"/>
   </routes>
   <http_caching class="DateCacheableDriver" drivers_path="application/models/cacheables"/>
   <servers>

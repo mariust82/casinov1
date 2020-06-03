@@ -32,6 +32,8 @@
   <renderers>
     <renderer format="html" content_type="text/html" class="ViewLanguageRenderer" charset="UTF-8"/>
     <renderer format="json" content_type="application/json" class="JsonRenderer" charset="UTF-8"/>
+    <renderer format="sitemap" content_type="text/xml" class="SitemapRenderer" charset="UTF-8"/>
+    <renderer format="rss" content_type="application/rss+xml" class="RssRenderer" charset="UTF-8"/>
   </renderers>
   <exceptions error_type="LOGICAL" controller="ErrorsController">
     <exception class="Lucinda\MVC\STDOUT\PathNotFoundException" controller="PageNotFoundController" http_status="404" error_type="CLIENT" view="404"/>
