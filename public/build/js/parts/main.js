@@ -7,9 +7,11 @@ var ALL_CASINOS_KEY = 1;
 var BEST_BANKING_PAGE = 1;
 var searched_value = '';
 var isSearchResultEvent = false;
+
 $.ajaxSetup({
     cache: true
 });
+
 function tmsIframe() {
     if ($(".tms_iframe").length) {
         $(".tms_iframe").each(function () {
@@ -44,11 +46,9 @@ function initCustomSelect() {
     _filterOptions.prop("selected", false);
 }
 
-
 function sliderInit() {
     var swiperMain = new Swiper('#main-carousel', {
         slidesPerView: 6,
-        // centeredSlides: true,
         spaceBetween: 5,
         navigation: {
             nextEl: '.carousel-next',
@@ -59,24 +59,13 @@ function sliderInit() {
                 freeMode: true,
                 slidesPerView: 'auto'
             },
-            // 768: {
-            //     slidesPerView: 3,
-            // },
-            // 640: {
-            //     slidesPerView: 2,
-            // },
-            // 320: {
-            //     slidesPerView: 1,
-            // }
         }
     });
 
     var linksSwiperParams = {
         slidesPerView: 'auto',
         freeMode: true,
-        // virtualTranslate: false,
         allowTouchMove: false,
-        // slidesOffsetAfter:-220,
         on: {
             slideChangeTransitionStart: function (argument) {
                 $('.links-left, .links-right').fadeIn('fast');
@@ -101,16 +90,12 @@ function sliderInit() {
         }
     }
 
-
     if ($('#links-nav').length) {
         var swiperLinks = new Swiper('.links-casinos #links-nav', linksSwiperParams);
 
-        // linksSwiperParams['slidesOffsetAfter'] = -330; //for games links slider
         var swiperLinks2 = new Swiper('.links-games #links-nav', linksSwiperParams);
 
         var swiperLinksIndx = $("#links-nav .active").parent().index() - 1;
-        var halfScreen = $(window).width() / 2 - 50;
-        var swiperLinksOffset = -$("#links-nav .active").parent().position().left + halfScreen;
 
         if ($('.links-casinos #links-nav').length)
             swiperLinks.slideTo(swiperLinksIndx, 300);
@@ -147,6 +132,62 @@ function initTooltipseter() {
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
 }
 
+function getInternetExplorerVersion() {
+    var rv = -1;
+    if (navigator.appName == 'Microsoft Internet Explorer') {
+        var ua = navigator.userAgent;
+        var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null)
+            rv = parseFloat(RegExp.$1);
+    }
+    else if (navigator.appName == 'Netscape') {
+        var ua = navigator.userAgent;
+        var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null)
+            rv = parseFloat(RegExp.$1);
+    }
+    return rv;
+}
+
+function grayscaleIE() {
+    if (getInternetExplorerVersion() >= 10) {
+        $('img.not-accepted').each(function () {
+            var el = $(this);
+            el.css({"position": "absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
+                var el = $(this);
+                el.parent().css({"width": this.width, "height": this.height});
+                el.dequeue();
+            });
+            this.src = grayscaleIE10(this.src);
+        });
+
+        function grayscaleIE10(src) {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            var imgObj = new Image();
+            imgObj.src = src;
+            canvas.width = imgObj.width;
+            canvas.height = imgObj.height;
+            ctx.drawImage(imgObj, 0, 0);
+            var imgPixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            for (var y = 0; y < imgPixels.height; y++) {
+                for (var x = 0; x < imgPixels.width; x++) {
+                    var i = (y * 4) * imgPixels.width + x * 4;
+                    var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+                    imgPixels.data[i] = avg;
+                    imgPixels.data[i + 1] = avg;
+                    imgPixels.data[i + 2] = avg;
+                }
+            }
+            ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+            return canvas.toDataURL();
+        }
+        ;
+    }
+    ;
+}
+
+
 var initImageLazyLoad = function () {
     if (typeof imageDefer != "undefined") {
         imageDefer("lazy_loaded");
@@ -172,10 +213,7 @@ var Vote = function (obj) {
 
         },
         _getData = function (_target, _id, _success) {
-            var _ret = {id: _id, is_like: _success};
-            // if (_target == 'review') _ret.review_id = _id;
-            // else _ret.article_id = _id;
-            return _ret;
+            return {id: _id, is_like: _success};
         },
 
         _getTarget = function (_arg) {
@@ -212,7 +250,6 @@ var Vote = function (obj) {
 
                         _this.closest(_obj).next('.action-field.success').show();
                     }
-                    //_this.parent().addClass('disabled');
                 },
                 error: function (XMLHttpRequest) {
                     var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
@@ -379,7 +416,6 @@ var Vote = function (obj) {
 
         $('.js-more-banking').click(function () {
             $(this).addClass('loading');
-            var key = $(this).data('key');
             var self = $(this);
             _request = $.ajax({
                 url: '/casinos-by-banking/' + BEST_BANKING_PAGE,
@@ -532,7 +568,6 @@ var Vote = function (obj) {
         new SearchPanel($('.header'));
 
         var user_rate = $('.rating-container').data('user-rate');
-        //console.log($('.box img.not-accepted').length);
 
         if ($('.box img.not-accepted').length) {
             $('.br-widget a').unbind("mouseenter mouseleave mouseover click");
@@ -605,12 +640,6 @@ var Vote = function (obj) {
         if ($(window).scrollTop() === 0) {
             $('body').removeClass('site__header_sticky');
         }
-
-        /* $('.lazy').each(function() {
-         $(this).attr('src',$(this).data('src'));
-         $(this).removeAttr('data-src');
-         $(this).removeClass('.lazy');
-         });*/
     });
 
     if ($(window).width() < 768) {
@@ -633,18 +662,11 @@ var Vote = function (obj) {
         }
     }
 
-    // $(window).resize(function(event) {
-    //     ww = $(window).width();
-
-    //     initMoboleBonusesPop(ww);
-    // });
-
     tooltipConfig = {
         trigger: 'click',
         maxWidth: 279,
         animation: 'grow',
         debug: false,
-        // contentCloning: true
     };
 
     copyTooltipConfig = {
@@ -725,7 +747,6 @@ var Vote = function (obj) {
     var initSite = function () {
         initExpandingText();
         initBarRating();
-       // initCustomSelect();
         initSearch();
         copyToClipboard();
         initMoboleBonusesPop(ww);
@@ -770,11 +791,7 @@ var Vote = function (obj) {
 
         new newsletter($('.subscribe'));
 
-
     }
-
-
-
 
     function initTableOpen() {
         $('.js-table-package-opener').on('click', function (e) {
@@ -782,61 +799,6 @@ var Vote = function (obj) {
             // $(this).closest('tr').find('td:last-child, td:nth-child(5)').show();
             e.preventDefault();
         });
-    }
-
-    function grayscaleIE() {
-        if (getInternetExplorerVersion() >= 10) {
-            $('img.not-accepted').each(function () {
-                var el = $(this);
-                el.css({"position": "absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
-                    var el = $(this);
-                    el.parent().css({"width": this.width, "height": this.height});
-                    el.dequeue();
-                });
-                this.src = grayscaleIE10(this.src);
-            });
-
-            function grayscaleIE10(src) {
-                var canvas = document.createElement('canvas');
-                var ctx = canvas.getContext('2d');
-                var imgObj = new Image();
-                imgObj.src = src;
-                canvas.width = imgObj.width;
-                canvas.height = imgObj.height;
-                ctx.drawImage(imgObj, 0, 0);
-                var imgPixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                for (var y = 0; y < imgPixels.height; y++) {
-                    for (var x = 0; x < imgPixels.width; x++) {
-                        var i = (y * 4) * imgPixels.width + x * 4;
-                        var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
-                        imgPixels.data[i] = avg;
-                        imgPixels.data[i + 1] = avg;
-                        imgPixels.data[i + 2] = avg;
-                    }
-                }
-                ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-                return canvas.toDataURL();
-            }
-            ;
-        }
-        ;
-    }
-
-    function getInternetExplorerVersion() {
-        var rv = -1;
-        if (navigator.appName == 'Microsoft Internet Explorer') {
-            var ua = navigator.userAgent;
-            var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-            if (re.exec(ua) != null)
-                rv = parseFloat(RegExp.$1);
-        }
-        else if (navigator.appName == 'Netscape') {
-            var ua = navigator.userAgent;
-            var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
-            if (re.exec(ua) != null)
-                rv = parseFloat(RegExp.$1);
-        }
-        return rv;
     }
 
     function checkIfIsMobileDevice() {
@@ -857,8 +819,6 @@ var Vote = function (obj) {
 
         return false;
     }
-
-
 
     function initToggleMenu() {
         var targetNode = document.querySelector('.header-menu__list-holder');
@@ -905,6 +865,7 @@ var Vote = function (obj) {
             }, true);
         }
     }
+
     function checkStringLength(box, num) {
         $(box).each(function (index, el) {
             var child = $(this).find('.list-item-trun');
@@ -1286,9 +1247,6 @@ var Vote = function (obj) {
             }, 1000);
         }
     }
-
-
-
 
     var SearchPanel = function (obj) {
         var _obj = obj,
@@ -1833,8 +1791,6 @@ var Vote = function (obj) {
         _construct();
     };
 
-
-
     function initMoboleBonusesPop(_ww) {
         var _container = $('.block .container');
         //var _mobilePop = $('.js-mobile-pop');
@@ -2244,65 +2200,11 @@ var Vote = function (obj) {
             animationspeed: 250
         });
     }
-    function initMultirow() {
-        var multirowContainer = $('.js-multirow');
-        multirowContainer.each(function (index, el) {
-            var num = $(this).find('div').length;
-
-            if (num > 1) {
-                var showedNum = num - 1;
-                $(this).readmore({
-                    moreLink: '<a href="#" class="multirow-trigger multirow-open">+' + showedNum + '</a>',
-                    lessLink: '<a href="#" class="multirow-trigger multirow-close">Show Less</a>',
-                    collapsedHeight: 21,
-                    speed: 1,
-                    blockProcessed: function (el) {
-                        chaneBtnPosition(el);
-                    },
-                    beforeToggle: function (trigger, el, expanded) {
-                        $(el).parent().toggleClass('active');
-
-                        if (expanded) {
-                            chaneBtnPosition(el);
-                        } else {
-                            // $(el).append(trigger);
-                            $(trigger).insertAfter(el);
-                        }
-                    }
-                });
-            }
-
-            function chaneBtnPosition(el) {
-                var $opener = $(el).parent().find('.multirow-trigger');
-                var etalon = $(el).find('div').first();
-                etalon.append($opener);
-            }
-        });
-    }
 
     function validateEmail(email) {
         var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
         return pattern.test(email);
     }
-
-    function _validateInputName(txt) {
-        // var regex = /^[a-zA-Z0-9 ]+$/;
-        // return regex.test(txt);
-
-        if (txt != '') {
-            return true;
-        }
-    }
-
-    function _validateInputMessage(txt) {
-        // var regex = /^[\w\.,:;!\s]+$/;
-        // return regex.test(txt);
-
-        if (txt != '') {
-            return true;
-        }
-    }
-
 
     function determineCasinoPage(key) {
         var page;

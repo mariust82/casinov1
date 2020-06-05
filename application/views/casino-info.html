@@ -296,7 +296,7 @@
 
 <!-- Full Welcome Package -->
 
-		<div class="section">
+	<div class="section">
 			<div class="container">
 				<div class="box box-alt2">
 					<div class="title title-middle">Full Welcome Package</div>
@@ -427,6 +427,84 @@
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div class="review-element review hidden" hidden  data-id="" data-img-dir="">
+		<div class="review-wrap">
+			<div class="review-info">
+				<div class="review-info-top">
+					<div class="review-flag">
+						<img src="" alt="" width="15" height="12">
+					</div>
+					<div class="review-info-body">
+						<div class="review-name"></div>
+						<div class="review-date"></div>
+					</div>
+				</div>
+
+				<div class="list-rating">
+					<div class="list-rating-wrap">
+						<div class="list-rating-score"></div>
+						<div class="list-rating-text"></div>
+					</div>
+				</div>
+
+			</div>
+			<div class="review-body">
+				<div class="review-text">
+					<p></p>
+				</div>
+				<div class="review-underline">
+					<a href="#" class="review-replies js-reply-btn">Reply</a>
+					<div class="votes js-vote">
+						<a href="#" class="votes-like vote-button" data-id="">
+							<i class="icon-icon_likes"></i>
+							<span class="bubble bubble-vote">0</span>
+						</a>
+					</div>
+				</div>
+				<div class="review-form">
+					<div class="form">
+						<div class="form-row">
+							<div class="textfield-holder">
+								<textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>
+							</div>
+						</div>
+						<div class="hidden js-expanding-textfields">
+							<div class="form-row form-multicol">
+								<div class="form-col">
+									<div class="textfield-holder error">
+										<input type="text" name="name" class="textfield" placeholder="Name">
+									</div>
+								</div>
+								<div class="form-col">
+									<div class="textfield-holder error">
+										<input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="review-submit-holder">
+									<input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">
+									<div>
+										<div class="field-error-required not-valid action-field">
+											Please fill in the required fields.
+										</div>
+										<div class="field-success success action-field">
+											Thank You!
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+
+	<div class="reply-holder reply review hidden" hidden>
+		<div class="reply-data-holder"></div>
 	</div>
 
 <site:bottom menu="${data.menu_top}"/>
