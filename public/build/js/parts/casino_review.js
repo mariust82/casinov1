@@ -52,6 +52,35 @@ var Score = function (obj) {
     _init();
 };
 
+function _getCurrDate() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) dd='0'+dd;
+
+    if(mm<10) mm='0'+mm;
+
+    return dd + '.' + mm + '.' + yyyy;
+}
+
+function get_rating($name) {
+    if ($name > 8) {
+        $string = 'Excellent';
+    } else if ($name > 6 && $name <= 8) {
+        $string = 'Very good';
+    } else if ($name > 4 && $name <= 6) {
+        $string = 'Good';
+    } else if ($name > 2 && $name <= 4) {
+        $string = 'Poor';
+    } else {
+        $string = 'Terrible';
+    }
+
+    return $string;
+}
+
 function AddingReview(obj) {
     this.obj = obj;
     var _wrap = obj,
@@ -202,7 +231,6 @@ function AddingReview(obj) {
                     _errors_found = $.parseJSON(jqXHR.responseText);
                     console.error("Could not send message!");
                     console.log(_errors_found.body.message);
-                    //_contact_error.html(_errors_found.join('<br />')).show();
                 },
                 complete: function () {
                     BUSY_REQUEST = false;
@@ -222,161 +250,49 @@ function AddingReview(obj) {
                 _showEmptyMessage();
             } else {
 
+
                 function getItemPattern() {
-                    var pattern;
+                    var review_element = $('.review-element').clone();
 
                     if (_is_child) {
-                        pattern = '\
-                        <div class="review review-child ' + name.toLowerCase() + '" data-id="' + data.body.id + '" data-img-dir="' + _imgDir + '">\
-                            <div class="review-wrap">\
-                                <div class="review-info">\
-                                    <div class="review-info-top">\
-                                        <div class="review-flag">\
-                                            <img src="' + _imgDir + '" alt="' + _countryCode + '" width="15" height="12">\
-                                        </div>\
-                                        <div class="review-info-body">\
-                                            <div class="review-name">' + name + '</div>\
-                                            <div class="review-date">' + _getCurrDate() + '</div>\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                                <div class="review-body">\
-                                    <div class="review-text">\
-                                        <p>' + message + '</p>\
-                                    </div>\
-                                    <div class="review-underline">\
-                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
-                                        <div class="votes js-vote">\
-                                            <a href="#" class="votes-like vote-button" data-id="' + data.body.id + '">\
-                                                <i class="icon-icon_likes"></i>\
-                                                <span class="bubble bubble-vote">0</span>\
-                                            </a>\
-                                        </div>\
-                                    </div>\
-                                    <div class="review-form">\
-                                        <div class="form">\
-                                            <div class="form-row">\
-                                                <div class="textfield-holder">\
-                                                    <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
-                                                </div>\
-                                            </div>\
-                                            <div class="hidden js-expanding-textfields">\
-                                                <div class="form-row form-multicol">\
-                                                    <div class="form-col">\
-                                                        <div class="textfield-holder error">\
-                                                            <input type="text" name="name" class="textfield" placeholder="Name">\
-                                                        </div>\
-                                                    </div>\
-                                                    <div class="form-col">\
-                                                        <div class="textfield-holder error">\
-                                                            <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
-                                                        </div>\
-                                                    </div>\
-                                                </div>\
-                                                <div class="form-row">\
-                                                    <div class="review-submit-holder">\
-                                                        <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
-                                                        <div>\
-                                                            <div class="field-error-required not-valid action-field">\
-                                                                Please fill in the required fields.\
-                                                            </div>\
-                                                            <div class="field-success success action-field">\
-                                                                Thank You!\
-                                                            </div>\
-                                                        </div>\
-                                                    </div>\
-                                                </div>\
-                                            </div>\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                        </div>\
-                        ';
+                        return setComment(review_element, 'review-child',  name, data.body.id, _imgDir, _countryCode, message);
                     } else {
-                        pattern = '\
-                        <div class="review review-parent ' + name.toLowerCase() + '" data-id="' + data.body.id + '">\
-                            <div class="review-wrap">\
-                                <div class="review-info">\
-                                    <div class="review-info-top">\
-                                        <div class="review-flag">\
-                                            <img src="' + _imgDir + '" alt="' + _countryCode + '" width="15" height="12">\
-                                        </div>\
-                                        <div class="review-info-body">\
-                                            <div class="review-name">' + name + '</div>\
-                                            <div class="review-date">' + _getCurrDate() + '</div>\
-                                        </div>\
-                                    </div>\
-                                    <div class="list-rating ' + getWebName(get_rating(_rate_slider_result)) + '">\
-                                        <div class="list-rating-wrap">\
-                                            <div class="list-rating-score">' + _rate_slider_result + '</div>\
-                                            <div class="list-rating-text">' + get_rating(_rate_slider_result) + '</div>\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                                <div class="review-body">\
-                                    <div class="review-text">\
-                                        <p>' + message + '</p>\
-                                    </div>\
-                                    <div class="review-underline">\
-                                        <a href="#" class="review-replies js-reply-btn">Reply</a>\
-                                        <div class="votes js-vote">\
-                                            <a href="#" class="votes-like vote-button"  data-id="' + data.body.id + '">\
-                                                <i class="icon-icon_likes"></i>\
-                                                <span class="bubble bubble-vote">0</span>\
-                                            </a>\
-                                        </div>\
-                                    </div>\
-                                    <div class="review-form">\
-                                        <div class="form">\
-                                            <div class="form-row">\
-                                                <div class="textfield-holder">\
-                                                    <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>\
-                                                </div>\
-                                            </div>\
-                                            <div class="hidden js-expanding-textfields">\
-                                                <div class="form-row form-multicol">\
-                                                    <div class="form-col">\
-                                                        <div class="textfield-holder error">\
-                                                            <input type="text" name="name" class="textfield" placeholder="Name">\
-                                                        </div>\
-                                                    </div>\
-                                                    <div class="form-col">\
-                                                        <div class="textfield-holder error">\
-                                                            <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">\
-                                                        </div>\
-                                                    </div>\
-                                                </div>\
-                                                <div class="form-row">\
-                                                    <div class="review-submit-holder">\
-                                                        <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">\
-                                                        <div>\
-                                                            <div class="field-error-required not-valid action-field">\
-                                                                Please fill in the required fields.\
-                                                            </div>\
-                                                            <div class="field-success success action-field">\
-                                                                Thank You!\
-                                                            </div>\
-                                                        </div>\
-                                                    </div>\
-                                                </div>\
-                                            </div>\
-                                        </div>\
-                                    </div>\
-                                </div>\
-                            </div>\
-                        </div>\
-                        <div class="reply review">\
-                            <div class="reply-data-holder"></div>\
-                        </div>\
-                        ';
+                        return setComment(review_element, 'review-parent', name, data.body.id, _imgDir, _countryCode, message);
                     }
-                    return pattern;
+                }
+
+
+                function setComment(review_element, element_class, name, data_id, imgDir, countryCode, message ){
+                    $(review_element).removeClass('review-element');
+                    $(review_element).removeClass('hidden');
+                    $(review_element).removeAttr('hidden');
+                    $(review_element).addClass(element_class);
+                    $(review_element).addClass(name.toLowerCase());
+                    $(review_element).addClass('review-parent');
+                    $(review_element).attr('data-id', data_id);
+                    $(review_element).find('.review-flag img').attr('src', imgDir);
+                    $(review_element).find('.review-flag img').attr('alt', countryCode);
+                    $(review_element).find('.review-name').text(name);
+                    $(review_element).find('.review-date').text(_getCurrDate());
+                    $(review_element).find('.review-text').html(message);
+                    review_element.find('.js-vote .votes-like').attr('data-id', data_id);
+
+                    if(element_class === 'review-parent'){
+                        $(review_element).find('.list-rating').addClass(getWebName(get_rating(_rate_slider_result)));
+                        $(review_element).find('.list-rating-score').text(_rate_slider_result);
+                        $(review_element).find('.list-rating-text').text(getWebName(get_rating(_rate_slider_result)));
+                    }else{
+                        $(review_element).find('.list-rating').remove();
+                        $(review_element).attr('data-img-dir', _imgDir);
+                    }
+
+                    return review_element;
                 }
 
                 if (_is_child_of_child) {
-                    $(getItemPattern()).insertAfter(_this)
+                    $(getItemPattern()).insertAfter(_this);
                 } else {
+                    _reviewHolder.prepend($('.to-clone').clone());
                     _reviewHolder.prepend(getItemPattern());
                 }
                 _refreshData();
@@ -435,71 +351,6 @@ function AddingReview(obj) {
             }
         },
         _onEvents();
-}
-
-function _getCurrDate() {
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
-
-    return dd + '.' + mm + '.' + yyyy;
-}
-
-function get_rating($name) {
-    if ($name > 8) {
-        $string = 'Excellent';
-    } else if ($name > 6 && $name <= 8) {
-        $string = 'Very good';
-    } else if ($name > 4 && $name <= 6) {
-        $string = 'Good';
-    } else if ($name > 2 && $name <= 4) {
-        $string = 'Poor';
-    } else {
-        $string = 'Terrible';
-    }
-    return $string;
-}
-
-function initReviewForm() {
-    var field = $('.expanding');
-    var hiddenBlocks = $('.js-expanding-textfields');
-
-    if ($('.box img.not-accepted').length) {
-        field.unbind("mouseenter mouseleave mouseover click focus");
-    } else {
-        field.on('focus', function () {
-            $(this).removeClass('expanding');
-            $(this).closest('.form').find(hiddenBlocks).slideDown();
-        });
-    }
-}
-
-function initTexfieldsLabels() {
-    var field = $('.textfield');
-
-    field.focus(function () {
-        $(this).parent().addClass('active').removeClass('not-valid');
-    });
-
-    field.blur(function () {
-        if ($(this).val() == '') {
-            $(this).parent().removeClass('active');
-        }
-    });
-}
-
-function initReplies() {
-    $('#reviews').on('click', '.js-reply-btn', function (e) {
-        var replyReview = $(this).closest('.reply.review');
-        if (replyReview.length > 0 && replyReview.find('.reply-data-holder').length > 0) {
-            var userName = $(this).parent().parent().parent().find('.review-name').text();
-            $(this).parent().parent().find('textarea').val('@' + userName + ' ');
-        }
-        $(this).parent().next().slideToggle();
-
-        return false;
-    });
 }
 
 function showMoreReviews() {
@@ -577,57 +428,44 @@ function showMoreReviews() {
         };
 }
 
-function grayscaleIE() {
-    if (getInternetExplorerVersion() >= 10) {
-        $('img.not-accepted').each(function () {
-            var el = $(this);
-            el.css({"position": "absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
-                var el = $(this);
-                el.parent().css({"width": this.width, "height": this.height});
-                el.dequeue();
-            });
-            this.src = grayscaleIE10(this.src);
+function initReviewForm() {
+    var field = $('.expanding');
+    var hiddenBlocks = $('.js-expanding-textfields');
+
+    if ($('.box img.not-accepted').length) {
+        field.unbind("mouseenter mouseleave mouseover click focus");
+    } else {
+        field.on('focus', function () {
+            $(this).removeClass('expanding');
+            $(this).closest('.form').find(hiddenBlocks).slideDown();
         });
+    }
+}
 
-        function grayscaleIE10(src) {
-            var canvas = document.createElement('canvas');
-            var ctx = canvas.getContext('2d');
-            var imgObj = new Image();
-            imgObj.src = src;
-            canvas.width = imgObj.width;
-            canvas.height = imgObj.height;
-            ctx.drawImage(imgObj, 0, 0);
-            var imgPixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            for (var y = 0; y < imgPixels.height; y++) {
-                for (var x = 0; x < imgPixels.width; x++) {
-                    var i = (y * 4) * imgPixels.width + x * 4;
-                    var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
-                    imgPixels.data[i] = avg;
-                    imgPixels.data[i + 1] = avg;
-                    imgPixels.data[i + 2] = avg;
-                }
-            }
-            ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
-            return canvas.toDataURL();
+function initTexfieldsLabels() {
+    var field = $('.textfield');
+
+    field.focus(function () {
+        $(this).parent().addClass('active').removeClass('not-valid');
+    });
+
+    field.blur(function () {
+        if ($(this).val() == '') {
+            $(this).parent().removeClass('active');
         }
-        ;
-    }
-    ;
+    });
 }
 
-function getInternetExplorerVersion() {
-    var rv = -1;
-    if (navigator.appName == 'Microsoft Internet Explorer') {
-        var ua = navigator.userAgent;
-        var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-        if (re.exec(ua) != null)
-            rv = parseFloat(RegExp.$1);
-    }
-    else if (navigator.appName == 'Netscape') {
-        var ua = navigator.userAgent;
-        var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
-        if (re.exec(ua) != null)
-            rv = parseFloat(RegExp.$1);
-    }
-    return rv;
+function initReplies() {
+    $('#reviews').on('click', '.js-reply-btn', function (e) {
+        var replyReview = $(this).closest('.reply.review');
+        if (replyReview.length > 0 && replyReview.find('.reply-data-holder').length > 0) {
+            var userName = $(this).parent().parent().parent().find('.review-name').text();
+            $(this).parent().parent().find('textarea').val('@' + userName + ' ');
+        }
+        $(this).parent().next().slideToggle();
+
+        return false;
+    });
 }
+

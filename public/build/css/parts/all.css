@@ -4105,6 +4105,10 @@ a:focus {
   text-transform: uppercase;
 }
 
+.flag-spacing{
+  margin-right: 8.5px;
+}
+
 @media screen and (max-width: 690px) {
   .new-casino-text {
     font-size: 9px;
@@ -4116,12 +4120,35 @@ a:focus {
   position: absolute;
   top: 0px;
   left: -8px;
-  content: '';
+  content: 'NEW';
   border-bottom: 16px solid #4AB802;
   border-left: 16px solid transparent;
   border-right: 16px solid transparent;
   height: 0;
   width: 19px;
+
+  color: white;
+  font-size: 11px;
+  text-align: -moz-left;
+  font-stretch: condensed;
+  font-weight: bold;
+  font-family: "Open Sans Condensed";
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.list-rating-score {
+  color: #fff;
+  font-size: 12px;
+  line-height: 17px;
+  -ms-flex-item-align: stretch;
+  -ms-grid-row-align: stretch;
+  align-self: stretch;
+  width: 20px;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  background: #5DC916;
+  text-align: center;
 }
 
 @media screen and (max-width: 690px) {
@@ -4224,19 +4251,6 @@ a:focus {
   }
 }
 
-.list-rating-score {
-  color: #fff;
-  font-size: 12px;
-  line-height: 17px;
-  -ms-flex-item-align: stretch;
-  -ms-grid-row-align: stretch;
-  align-self: stretch;
-  width: 20px;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  background: #5DC916;
-  text-align: center;
-}
 
 .list-rating.no-score .list-rating-score {
   background: #A8AEC8;
