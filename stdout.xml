@@ -31,7 +31,7 @@
       <bogdan_local>www.casinoslists.local</bogdan_local>
       <bogdan_local>C:\xampp\htdocs\gtm\casinoslists</bogdan_local>
       <marius_local>www.casinolists.marius</marius_local>
-      <marius_local>C:\xampp\htdocs\casinoslists</marius_local>
+      <marius_local>/var/www/html/casinoslists</marius_local>
 	</environments>
   </application>
   <formats>
@@ -314,7 +314,7 @@
     <bogdan>/var/www/html/ip2country.mmdb</bogdan>
     <shay>C:\xampp\htdocs\ip2country.mmdb</shay>
     <bogdan_local>E:\xammp\htdocs\ip2country.mmdb</bogdan_local>
-    <marius_local>C:\xammp\htdocs\ip2country.mmdb</marius_local>
+    <marius_local>/var/www/html/ip2country.mmdb</marius_local>
   </geoip>
   <images path="public/sync">
     <image type="casino_logo_light">
