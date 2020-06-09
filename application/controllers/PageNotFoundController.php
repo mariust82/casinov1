@@ -6,6 +6,10 @@ class PageNotFoundController extends Lucinda\MVC\STDERR\Controller
 {
     public function run()
     {
+        if (strpos($this->response->headers("Content-Type"), "text/html")===false) {
+            $this->response->attributes("class", get_class($this->request->getException()));
+            return;
+        }
         $object = new PageInfoDAO();
         $this->response->attributes("page_info", $object->getInfoByURL("404"));
 
