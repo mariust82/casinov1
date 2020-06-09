@@ -187,7 +187,6 @@ function grayscaleIE() {
     ;
 }
 
-
 var initImageLazyLoad = function () {
     if (typeof imageDefer != "undefined") {
         imageDefer("lazy_loaded");
@@ -652,10 +651,11 @@ var Vote = function (obj) {
         if (/\/reviews\//.test(window.location.href) && $('.btn-group-mobile .btn-middle').length > 0) {
             var appended = false;
             var position = $(window).height() / 2 + $(window).scrollTop();
+            var body = $('body');
             $(window).on('scroll', function () {
                 if ($(window).scrollTop() > position && appended === false) {
-                    $('body').append('<a rel="nofollow" target="_blank" class="btn-play-now" href="' + $('.btn-group-mobile .btn-middle').attr('href') + '">Play Now</a>');
-                    $('body').addClass('play-now-appended');
+                    body.append('<a rel="nofollow" target="_blank" class="btn-play-now" href="' + $('.btn-group-mobile .btn-middle').attr('href') + '">Play Now</a>');
+                    body.addClass('play-now-appended');
                     appended = true;
                 }
             });
@@ -925,7 +925,6 @@ var Vote = function (obj) {
                             _onEvents();
                         }
                         else if (response.status == "error") {
-                            // console.error(response.body);
                             var arr = JSON.parse(response.body);
 
                             $('.action-added').remove();
@@ -1108,7 +1107,6 @@ var Vote = function (obj) {
             }
 
         _ajaxRequestCasinos = function (_ajaxDataParams, _action) {
-            console.dir('test 2');
             if (_action == 'add') {
                 _moreButton.addClass('loading');
             } else {
@@ -1131,14 +1129,14 @@ var Vote = function (obj) {
                 success: function (data) {
                     var cont = $(data).find('.loaded-item');
                     var loadTotal = $(data).filter('[data-load-total]').data('load-total');
-
+                    var qty_items = $('.qty-items');
                     if (_action == 'replace') {
                         _targetContainer.html(data);
                         _targetAddContainer.html('');
-                        $('.qty-items').attr('data-load-total', loadTotal);
+                        qty_items.attr('data-load-total', loadTotal);
                         $('.qty-items-quantity').text(loadTotal);
 
-                        if (cont.length === $('.qty-items').attr('data-load-total')) {
+                        if (cont.length === qty_items.attr('data-load-total')) {
                             if (cont.length > 0) {
                                 _loaderHolder.show();
                                 _emptyContent.hide();
@@ -1153,9 +1151,6 @@ var Vote = function (obj) {
                             _emptyContent.hide();
                         }
 
-                        /* if (loadTotal <= cont.length) {
-                         _moreButton.hide();
-                         }*/
                         refresh();
                         AJAX_CUR_PAGE = 1;
                         _currentClick = 0;
@@ -1233,7 +1228,6 @@ var Vote = function (obj) {
 
             btn.on('click', function (a) {
                 var target = $($(this).attr('href'));
-                // var targetOffset = target.offset().top;
 
                 action(target, 0);
 
@@ -1270,8 +1264,6 @@ var Vote = function (obj) {
             _fromCasinos = 1,
             _fromLists = 1,
             _fromPages = 1,
-            loadDelay = 0,
-            // scrollingBlock = $('.js-scrolling'),
             _request = new XMLHttpRequest();
         window.contentBeforeSearch;
         var nr_requests; // nr requests sent
@@ -1301,8 +1293,6 @@ var Vote = function (obj) {
                         } else if (e.keyCode == 13) {
                             isSearchResultEvent = true;
                             if (_searchInput.val() != '') {
-                                // location.href = '/search/advanced?value='+_searchInput.val();
-                                // _searchInput.val('');
                                 _ajaxRequestAdvanced();
                                 _searchInput.blur();
                             }
@@ -1312,7 +1302,6 @@ var Vote = function (obj) {
                             var searchPopup = _obj.find('#search__popup');
                             searchPopup.addClass('load');
                             nr_requests++;
-                            // console.log("Nr_request = "+nr_requests);
                             _ajaxRequestPopup('/search');
                             _resetPages();
                         }
@@ -1323,9 +1312,6 @@ var Vote = function (obj) {
                             _searchAllButton.parent().fadeOut();
                         }
                     },
-                    // 'blur': function() {
-                    //     unlockScreen();
-                    // }
                 });
 
                 _searchUpdate.on(
@@ -1398,7 +1384,6 @@ var Vote = function (obj) {
                     'click',
                     function () {
                         _ajaxMore('/search/more-lists/' + _fromLists, $('.search-title span').text(), $('#all-lists-container'), 'lists');
-                        // _loadMoreContent = true;
 
                         if (_fromLists >= _clicksLists) {
                             _searchMoreLists.fadeOut();
@@ -1420,7 +1405,6 @@ var Vote = function (obj) {
                     'click',
                     function () {
                         _ajaxMore('/search/more-casinos/' + _fromCasinos, $('.search-title span').text(), $('#all-casinos-container'), 'casinos');
-                        // _loadMoreContent = true;
 
                         if (_fromCasinos >= _clicksCasinos) {
                             _searchMoreCasinos.fadeOut();
@@ -1494,12 +1478,10 @@ var Vote = function (obj) {
                 });
 
                 var loadDelay = setTimeout(function () {
-                    // _searchContainer.addClass('loading');
                 }, 300);
 
                 _hideLoading = function () {
                     clearTimeout(loadDelay);
-                    // _searchContainer.removeClass('loading');
                 }
             },
             _ajaxRequestAdvanced = function () {
@@ -1555,7 +1537,6 @@ var Vote = function (obj) {
                 }
                 if (BUSY_REQUEST && (nr_requests_completed == nr_requests)) // if nr request completed = nr request sent
                 {
-                    //  console.log("\n\n END \n\n");
                     return;
                 }
                 BUSY_REQUEST = true;
@@ -1569,7 +1550,6 @@ var Vote = function (obj) {
                     dataType: 'json',
                     type: 'GET',
                     success: function (data) {
-                        // console.log("request succes " + _searchInput.val());
                         _hideLoading();
                         _loadData(data);
 
@@ -1582,7 +1562,6 @@ var Vote = function (obj) {
                         }
                     },
                     complete: function (data) {
-                        // console.log('request complete');
                         _hideLoading();
                         nr_requests_completed++;
                         BUSY_REQUEST = false;
@@ -1590,12 +1569,10 @@ var Vote = function (obj) {
                 });
 
                 var loadDelay = setTimeout(function () {
-                    // _searchContainer.addClass('loading');
                 }, 300);
 
                 _hideLoading = function () {
                     clearTimeout(loadDelay);
-                    // _searchContainer.removeClass('loading');
                 }
             },
             getWebName = function (name) {
