@@ -2,15 +2,18 @@
 require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once("queries/CasinosListQuery.php");
+require_once("helpers/CasinoHelper.php");
 
 class CasinosList
 {
     const LIMIT = 100;
     private $filter;
+    private $helper;
 
-    public function __construct(CasinoFilter $filter)
+    public function __construct(CasinoFilter $filter, CasinoHelper $helper)
     {
         $this->filter = $filter;
+        $this->helper = $helper;
     }
 
     public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "")
@@ -37,15 +40,13 @@ class CasinosList
             $object->rating = ceil($row["average_rating"]);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
-            $object->date_formatted = $this->formatDate($row["date_established"]);
+            $object->date_formatted = $this->helper->formatDate($row["date_established"]);
             $object->status = $row["status_id"];
             $object->is_tc_link = $row["is_tc_link"];
-            $object->logo_big = $this->getCasinoLogo($object->code = $row["code"], "124x82"); //  $object->logo_big = "/public/sync/casino_logo_light/124x82/".strtolower(str_replace(" ", "_", $object->code)).".png";
-            $object->logo_small = $this->getCasinoLogo($object->code = $row["code"], "85x56");//   $object->logo_small = "/public/sync/casino_logo_light/85x56/".strtolower(str_replace(" ", "_", $object->code)).".png";
-//            var_dump($object->logo_small);
-//            die();
-            $object->new = $this->isCasinoNew($row["date_established"]);
-            $object->score_class = $this->getScoreClass($object->rating);
+            $object->logo_big = $this->helper->getCasinoLogo($object->code, "124x82"); //  $object->logo_big = "/public/sync/casino_logo_light/124x82/".strtolower(str_replace(" ", "_", $object->code)).".png";
+            $object->logo_small = $this->helper->getCasinoLogo($object->code, "85x56");//   $object->logo_small = "/public/sync/casino_logo_light/85x56/".strtolower(str_replace(" ", "_", $object->code)).".png";
+            $object->new = $this->helper->isCasinoNew($row["date_established"]);
+            $object->score_class = $this->helper->getScoreClass($object->rating);
             if ($this->filter->getBankingMethod()) {
                 $object->deposit_methods = $row["has_dm"];
                 $object->withdraw_methods = $row["has_wm"];
@@ -78,9 +79,9 @@ class CasinosList
         while ($row = $resultSet->toRow()) {
             $bonus = new CasinoBonus();
             $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
-            $bonus->amount = $this->checkForAbbr($bonus->amount);
+            $bonus->amount = $this->helper->checkForAbbr($bonus->amount);
             if(!preg_match('[FS|NDB|CB|FDB]', $bonus->amount)) {
-                $bonus->bonus_type_Abbreviation ='<abbr title="'.$row["name"].'"> '.$this->getAbbreviation($row["name"]);
+                $bonus->bonus_type_Abbreviation = $this->helper->getAbbreviation($row["name"]);
             }
             $bonus->min_deposit = $row["deposit_minimum"];
             if ($row["wagering"] == '') {
@@ -92,43 +93,34 @@ class CasinosList
             $bonus->type = $row["name"];
             if ($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins" || $row["name"]=="Free Play" || $row["name"]=="Bonus Spins") {
                 $output[$row["casino_id"]]->bonus_free = $bonus;
-                $output[$row["casino_id"]]->bonus_free->bonus_type_Abbreviation = $this->getAbbreviation($output[$row["casino_id"]]->bonus_free->type);
+                $output[$row["casino_id"]]->bonus_free->bonus_type_Abbreviation = $this->helper->getAbbreviation($output[$row["casino_id"]]->bonus_free->type);
             } else {
                 $output[$row["casino_id"]]->bonus_first_deposit = $bonus;
-                //  $output[$row["casino_id"]]->bonus_first_deposit =  $this->getAbbreviation($output[$row["casino_id"]]->bonus_first_deposit->type);
+                //  $output[$row["casino_id"]]->bonus_first_deposit =  $this->helper->getAbbreviation($output[$row["casino_id"]]->bonus_first_deposit->type);
             }
         }
 
         foreach ($output as $arg) {
             if (sizeof($arg->softwares)>1) {
-                $arg->all_softwares = $this->get_string($arg->softwares);
+                $arg->all_softwares = $this->helper->get_string($arg->softwares);
             }
         }
         return array_values($output);
     }
 
-    private function formatDate($date)
-    {
-        if ($date != NULL) {
-            $date_arr = explode('-', $date);
-            $month_name = date('M', strtotime($date));
-            return $month_name.' '.$date_arr[2].', '.$date_arr[0];
-        } return "None";
-    }
-
     public function getTotal()
     {
         // build query
-         if ($this->filter->getPlayVersion() == "Live Dealer") {
-            $fields = "COUNT(DISTINCT t1.id) AS nr"; 
-         } else {
+        if ($this->filter->getPlayVersion() == "Live Dealer") {
+            $fields = "COUNT(DISTINCT t1.id) AS nr";
+        } else {
             $fields = "COUNT(t1.id) AS nr";
-         }
+        }
         $queryGenerator = new CasinosListQuery($this->filter, array($fields), null, 0, '', false);
         $query = $queryGenerator->getQuery();
         return SQL($query)->toValue();
     }
-    
+
     public function getTopPicks($country) {
         $resultSet = SQL("SELECT t2.*, IF(t3.id IS NOT NULL, 1, 0) AS is_country_supported FROM `top_picks` AS `t1` 
         INNER JOIN `casinos` AS `t2` ON (`t1`.`n_c_id` = `t2`.`id`) 
@@ -138,14 +130,14 @@ class CasinosList
         while ($row = $resultSet->toRow()) {
             $object = new Casino();
             $object->name = $row["name"];
-            $object->is_country_accepted = $row["is_country_supported"];            
-            $object->logo_small = $this->getCasinoLogo($object->code = $row["code"], "85x56");//   $object->logo_small = "/public/sync/casino_logo_light/85x56/".strtolower(str_replace(" ", "_", $object->code)).".png";
+            $object->is_country_accepted = $row["is_country_supported"];
+            $object->logo_small = $this->helper->getCasinoLogo($object->code = $row["code"], "85x56");//   $object->logo_small = "/public/sync/casino_logo_light/85x56/".strtolower(str_replace(" ", "_", $object->code)).".png";
             $output[$row["id"]] = $object;
         }
         if (empty($output)) {
             return array();
         }
-        
+
         // append bonuses
         $query = "
         SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name , t1.bonus_type_id
@@ -157,9 +149,9 @@ class CasinosList
         while ($row = $resultSet->toRow()) {
             $bonus = new CasinoBonus();
             $bonus->amount = $row["amount"];
-            $bonus->amount = $this->checkForAbbr($bonus->amount);
+            $bonus->amount = $this->helper->checkForAbbr($bonus->amount);
             if(!preg_match('[FS|NDB|CB|FDB]', $bonus->amount)) {
-                $bonus->bonus_type_Abbreviation ='<abbr title="'.$row["name"].'"> '.$this->getAbbreviation($row["name"]);
+                $bonus->bonus_type_Abbreviation = $this->helper->getAbbreviation($row["name"]);
             }
             $bonus->min_deposit = $row["deposit_minimum"];
             if ($row["wagering"] == '') {
@@ -175,87 +167,8 @@ class CasinosList
                 $output[$row["casino_id"]]->bonus_first_deposit = $bonus;
             }
         }
-        
+
         return array_values($output);
-    }
-
-    private function getCasinoLogo($name, $resolution)
-    {
-        $logoDirPath = "/public/sync/casino_logo_light/".$resolution;
-        $logoFile = strtolower(str_replace(" ", "_", $name)).".png";
-        $logo = $logoDirPath.'/'.$logoFile;
-
-        if (!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$logo)) {
-            $logo ="/public/build/images/default_casino_logo.png";
-        }
-        return $logo;
-    }
-
-    private function isCasinoNew($date)
-    {
-        $date_old = new DateTime($date);
-        $today = new DateTime(date('Y-m-d'));
-
-        if ($today->getTimestamp()-$date_old->getTimestamp()<=31536000) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private function getScoreClass($score)
-    {
-        if ($score == 0) {
-            return 'No score';
-        } elseif ($score >= 1 && $score <= 4.99) {
-            return  'Poor';
-        } elseif ($score >= 5 && $score <= 7.99) {
-            return  'Good';
-        } elseif ($score >= 8 && $score <= 10) {
-            return 'Excellent';
-        }
-    }
-
-    private function getAbbreviation($name)
-    {
-        $words = explode(" ", $name);
-        $abbr = "";
-
-        foreach ($words as $word) {
-            $abbr .= $word[0];
-        }
-        return $abbr;
-    }
-
-    private function get_string($name)
-    {
-        foreach ($name as $key => $item) {
-            if ($key != 0) {
-                $items[$key] = $item;
-            }
-        }
-        return implode(", ", $items);
-    }
-
-    public function getFilter()
-    {
-        return $this->filter;
-    }
-
-    private function checkForAbbr($amount) {
-        if (strpos($amount, 'FS') !== false) {
-            return str_replace("FS",'<abbr title="Free Spins"> FS',$amount);
-        }
-        if (strpos($amount, 'NDB') !== false) {
-            return str_replace("NDB",'<abbr title="No Deposit Bonus"> NDB',$amount);
-        }
-        if (strpos($amount, 'CB') !== false) {
-            return str_replace("CB",'<abbr title="Cashback "> CB',$amount);
-        }
-        if (strpos($amount, 'FDB') !== false) {
-            return str_replace("FDB",'<abbr title="First Deposit Bonus"> FDB',$amount);
-        }
-        return $amount;
     }
 
 }
