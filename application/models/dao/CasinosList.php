@@ -40,7 +40,7 @@ class CasinosList
             $object->rating = ceil($row["average_rating"]);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
-            $object->date_formatted = $this->helper->formatDate($row["date_established"]);
+            $object->date_formatted = $row["date_established"];
             $object->status = $row["status_id"];
             $object->is_tc_link = $row["is_tc_link"];
             $object->logo_big = $this->helper->getCasinoLogo($object->code, "124x82"); //  $object->logo_big = "/public/sync/casino_logo_light/124x82/".strtolower(str_replace(" ", "_", $object->code)).".png";
