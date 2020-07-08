@@ -4149,6 +4149,7 @@ a:focus {
   flex-shrink: 0;
   background: #5DC916;
   text-align: center;
+  margin-right: 5px;
 }
 
 @media screen and (max-width: 690px) {
@@ -4243,6 +4244,9 @@ a:focus {
   -ms-flex-align: center;
   align-items: center;
   border: 1px solid #5DC916;
+  font-size: 10px;
+  text-align: center;
+  color: #676767;
 }
 
 @media screen and (max-width: 1023px) {

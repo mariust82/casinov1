@@ -37,14 +37,14 @@
 						<div class="list-rating ${normalize(${score_class})}">
 							<div class="list-rating-wrap">
 								<:if test="${result.rating} == 0">
-									<div class="list-rating-score">-</div>
+									<span class="list-rating-score">-</span>
 									<div class=" list-rating-score list-rating-score-mobile">|</div>
-									<div class="list-rating-text">${score_class}</div>
+									${score_class}
 								<:else>
-									<div class="list-rating-score">
+									<span class="list-rating-score">
 										${ceil(${result.rating})}
-									</div>
-									<div class="list-rating-text">${score_class}</div>
+									</span>
+									${score_class}
 								</:if>
 							</div>
 						</div>
