@@ -2,7 +2,7 @@
 require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once("queries/CasinosListQuery.php");
-require_once("helpers/CasinoHelper.php");
+require_once("application/helpers/CasinoHelper.php");
 
 class CasinosList
 {
@@ -10,10 +10,11 @@ class CasinosList
     private $filter;
     private $helper;
 
-    public function __construct(CasinoFilter $filter, CasinoHelper $helper)
+    public function __construct(CasinoFilter $filter)
     {
         $this->filter = $filter;
-        $this->helper = $helper;
+        //TODO: CHANGE BACK
+        $this->helper = new Casinohelper();
     }
 
     public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "")

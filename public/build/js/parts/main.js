@@ -3,7 +3,6 @@ var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
 var COUNTRY_CURR_PAGE = 1;
-var ALL_CASINOS_KEY = 1;
 var BEST_BANKING_PAGE = 1;
 var searched_value = '';
 var isSearchResultEvent = false;
@@ -182,9 +181,7 @@ function grayscaleIE() {
             ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
             return canvas.toDataURL();
         }
-        ;
     }
-    ;
 }
 
 var initImageLazyLoad = function () {
@@ -269,7 +266,6 @@ var Vote = function (obj) {
     var ww = $(window).width();
 
     $(document).ready(function () {
-
         initToggleMenu();
         initSite();
         initMobileMenu();
@@ -280,6 +276,7 @@ var Vote = function (obj) {
         document.ontouchmove = function (e) {
             e.preventDefault();
         }
+
         detectIsKeyboardOpened();
         initMobileLayoutOfTable();
 
@@ -325,43 +322,6 @@ var Vote = function (obj) {
                     GAME_CURR_PAGE++;
                     $('.games-list').append(data);
                     if ($(self).data('total') === $('.games-list').children().length) {
-                        $(self).hide();
-                    }
-                },
-                error: function (XMLHttpRequest) {
-                    var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
-                    if (XMLHttpRequest.statusText != "abort") {
-                        console.log('err');
-                    }
-                },
-                complete: function () {
-                    BUSY_REQUEST = false;
-                }
-            });
-        });
-
-        $('.js-all-casinos').click(function () {
-            $(this).addClass('loading');
-            var key = $(this).data('key');
-            var self = $(this);
-            new Filters($('#filters'));
-            _request = $.ajax({
-                url: '/load-all-casinos/' + ALL_CASINOS_KEY,
-                data: {
-                    page: ALL_CASINOS_KEY,
-                    type: key,
-                    software: $(self).data('software')
-                },
-                dataType: 'html',
-                type: 'post',
-                success: function (data) {
-                    setTimeout(function () {
-                        self.removeClass('loading');
-                        refresh();
-                    }, 1000);
-                    ALL_CASINOS_KEY++;
-                    $(self).parent().prev().find('.list-body').append(data);
-                    if ($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
                         $(self).hide();
                     }
                 },
@@ -582,6 +542,7 @@ var Vote = function (obj) {
                 $('.br-widget').unbind("mouseenter mouseleave mouseover click");
             }
         }
+
         $(window).on('scroll mousemove', function(){
             loadScripts(['tooltipster', 'swiper']);
             $(window).unbind("scroll mousemove");
@@ -618,12 +579,10 @@ var Vote = function (obj) {
             $this.data('scrollTimeout', setTimeout(callback, timeout));
         });
     };
-    //detect when scrolling is stopped
 
     var windowToBottom = 0;
 
     $(window).on('scroll', function () {
-
         //scroll down
         if (windowToBottom < $(window).scrollTop()) {
             $('body').removeClass('site__header_sticky');
@@ -740,20 +699,17 @@ var Vote = function (obj) {
                 copyToClipboard();
                 checkStringLength($('.bonus-box'), 15);
             }
-
         }
     };
 
     var initSite = function () {
         initExpandingText();
-        initBarRating();
         initSearch();
         copyToClipboard();
-        initMoboleBonusesPop(ww);
+        initMobileBonusesPop(ww);
         checkStringLength($('.list .bonus-box'), 21);
         checkStringLength($('.bonus-item .bonus-box'), 33);
         grayscaleIE();
-        initTableOpen();
 
         $('.message .close').on('click', function (e) {
             $(this).parent().fadeOut();
@@ -784,21 +740,7 @@ var Vote = function (obj) {
                 new Vote($('.js-vote'));
         }
 
-        if ($('.js-run-counter').length > 0) {
-            var _name = $('.js-run-counter').data('name');
-            runPlayCounter(_name);
-        }
-
         new newsletter($('.subscribe'));
-
-    }
-
-    function initTableOpen() {
-        $('.js-table-package-opener').on('click', function (e) {
-            $(this).closest('tr').toggleClass('active');
-            // $(this).closest('tr').find('td:last-child, td:nth-child(5)').show();
-            e.preventDefault();
-        });
     }
 
     function checkIfIsMobileDevice() {
@@ -823,8 +765,6 @@ var Vote = function (obj) {
     function initToggleMenu() {
         var targetNode = document.querySelector('.header-menu__list-holder');
         if (targetNode) {
-
-
             var isMobile = checkIfIsMobileDevice();
 
             var eventL = isMobile ? 'click' : 'hover';
@@ -867,7 +807,7 @@ var Vote = function (obj) {
     }
 
     function checkStringLength(box, num) {
-        $(box).each(function (index, el) {
+        $(box).each(function () {
             var child = $(this).find('.list-item-trun');
             var bubble = $(this).find('.bubble');
 
@@ -968,15 +908,11 @@ var Vote = function (obj) {
             _targetAddContainer = $('.data-add-container'),
             _paramName = _targetContainer.data('type'),
             _paramValue = _targetContainer.data('type-value'),
-            _ajaxContent = $('.aj-content'),
             _emptyContent = $('.empty-filters'),
             _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
             _moreButton,
             _resetButton,
-            _itemsPerPage = $('.list-item').length,
             _defaultButton = $('#default'),
-            _totalItems = $('.qty-items').data('load-total'),
-            _clicks = Math.floor(_totalItems / _itemsPerPage),
             _currentClick = 0,
             _request = new XMLHttpRequest();
 
@@ -1249,14 +1185,12 @@ var Vote = function (obj) {
             _searchAllButton = _obj.find('#search-all'),
             _searchContainer = _obj.find('#search'),
             _searchForm = _obj.find('#search-form'),
-            _searchBody = _obj.find('.search-results'),
             _searchInput = _searchForm.find('input'),
             _searchUpdate = _searchForm.find('.js-mobile-search-clear'), // clear text
             _searchCasinosContainer = _searchContainer.find('#search-casinos ul'),
             _searchListsContainer = _searchContainer.find('#search-lists ul'),
             _searchPagesContainer = _searchContainer.find('#search-pages ul'),
             _searchEmptyContainer = _searchContainer.find('#search-empty'),
-            _imgDir = _searchContainer.data('img-dir'),
             _loadNewContent = true,
             _loadMoreContent = false,
             _is_content_detached = false,
@@ -1328,11 +1262,8 @@ var Vote = function (obj) {
                     'click',
                     function () {
                         if (_searchInput.val() != '') {
-                            // location.href = '/search/advanced?value='+_searchInput.val();
-                            // _searchInput.val('');
                             _ajaxRequestAdvanced();
                         }
-
                         return false;
                     }
                 );
@@ -1637,13 +1568,10 @@ var Vote = function (obj) {
                             .show()
                             .next()
                             .removeClass('single');
-
-                        if (data.body.total_lists > 3 && Math.ceil(data.body.total_lists / 3) > _fromLists) {
-                            // _searchMoreCasinos.show();
-                        } else {
-                            // _searchMoreCasinos.hide();
+                        if (!(data.body.total_lists > 3 && Math.ceil(data.body.total_lists / 3) > _fromLists)) {
                             _fromLists = 1;
                         }
+
                     } else {
                         _searchListsContainer
                             .parent()
@@ -1659,12 +1587,10 @@ var Vote = function (obj) {
                             .next()
                             .removeClass('single');
 
-                        if (data.body.total_casinos > 3 && Math.ceil(data.body.total_casinos / 3) > _fromCasinos) {
-                            // _searchMoreCasinos.show();
-                        } else {
-                            // _searchMoreCasinos.hide();
+                        if (!(data.body.total_casinos > 3 && Math.ceil(data.body.total_casinos / 3) > _fromCasinos)) {
                             _fromCasinos = 1;
                         }
+
                     } else {
                         _searchCasinosContainer
                             .parent()
@@ -1679,10 +1605,7 @@ var Vote = function (obj) {
                             .show()
                             .prev()
                             .removeClass('single');
-                        if (data.body.total_pages > 3 && Math.ceil(data.body.total_casinos / 3) > _fromPages) {
-                            // _searchMorePages.show();
-                        } else {
-                            // _searchMorePages.hide();
+                        if (!(data.body.total_pages > 3 && Math.ceil(data.body.total_casinos / 3) > _fromPages)) {
                             _fromPages = 1;
                         }
                     } else {
@@ -1694,7 +1617,6 @@ var Vote = function (obj) {
                     }
                     _searchListsContainer.html("");
                     for (var i = 0; i < lists.length; i++) {
-
                         var _item = getItemPattern({
                             link: (lists[i]['url']),
                             name: lists[i]['title']
@@ -1703,7 +1625,6 @@ var Vote = function (obj) {
                     }
 
                     for (var casino in casinos) {
-
                         var _item = getItemPattern({
                             link: 'reviews/' + getWebName(casinos[casino]) + '-review',
                             name: casinos[casino]
@@ -1768,7 +1689,7 @@ var Vote = function (obj) {
         _construct();
     };
 
-    function initMoboleBonusesPop(_ww) {
+    function initMobileBonusesPop(_ww) {
         var _container = $('.block .container');
         //var _mobilePop = $('.js-mobile-pop');
         var _btnOpen = $('.btn-round');
@@ -1796,8 +1717,6 @@ var Vote = function (obj) {
                     type: 'GET',
                     success: function (response) {
                       var _mobilePop =  $(response).insertAfter(_contentHolder);
-
-                       // var _mobilePop = _contentHolder.parent().find('.mobile.popup');
                         _mobilePop.find('.js-tooltip').tooltipster(tooltipConfig);
                         _mobilePop.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
                         var _btnClose = _mobilePop.find('.js-mobile-pop-close');
@@ -2047,55 +1966,6 @@ var Vote = function (obj) {
         }, 300);
     }
 
-    function initBarRating() {
-        var container = $('.rating-container');
-        var defRating = container.data('casino-rating');
-        var user_rate = container.attr('data-user-rate');
-        var ratingParams = {
-            showSelectedRating: false,
-            onSelect: function (value, text, event) {
-                if (typeof event != 'undefined') {
-                    var _this = $(event.currentTarget);
-                    var _classes = 'terrible poor good very-good excellent';
-
-                    $('.br-widget').children().each(function () {
-                        $(this).unbind("mouseenter mouseleave mouseover click");
-                        if (parseInt($(this).data('rating-value')) <= parseInt(user_rate)) {
-                            $(this).addClass('br-active');
-                        }
-                    });
-                    $('.br-widget').unbind("mouseenter mouseleave mouseover click");
-
-                    _this
-                        .closest(container)
-                        .find('.rating-current-text')
-                        .text(text)
-                        .removeClass(_classes)
-                        .attr("class", "rating-current-text " + getWebName(text));
-                    _this
-                        .closest(container)
-                        .find('.rating-current-value span')
-                        .text(value);
-                    _this
-                        .closest(container)
-                        .find('.rating-current')
-                        .attr('data-rating-current', value);
-                    new Score({
-                        value: value,
-                        name: container.data('casino-name')
-                    });
-                }
-            }
-        };
-        if ($().barrating) {
-            $('.rating-bar', container).barrating('show', ratingParams);
-        }
-    }
-
-    function getWebName(name) {
-        return name.replace(/\s/g, '-').toLowerCase();
-    }
-
     function initExpandingText() {
 
         $.fn.moreLines = function (options) {
@@ -2105,7 +1975,6 @@ var Vote = function (obj) {
             this.each(function () {
 
                 var element = $(this),
-                    textelement = element.find("p"),
                     baseclass = "b-morelines_",
                     basejsclass = "js-morelines_",
                     currentclass = "section",
@@ -2200,7 +2069,7 @@ var Vote = function (obj) {
         $('.js-tooltip').tooltipster(tooltipConfig);
         $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
-        initMoboleBonusesPop(ww);
+        initMobileBonusesPop(ww);
     }
 
     function raiseCasinoPage(key) {
