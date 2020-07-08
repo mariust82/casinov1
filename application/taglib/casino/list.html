@@ -35,7 +35,6 @@
 						<img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
 						<:set var="score_class" val="get_rating(${result.rating})"/>
 						<div class="list-rating ${normalize(${score_class})}">
-							<div class="list-rating-wrap">
 								<:if test="${result.rating} == 0">
 									<span class="list-rating-score">-</span>
 									<div class=" list-rating-score list-rating-score-mobile">|</div>
@@ -46,7 +45,6 @@
 									</span>
 									${score_class}
 								</:if>
-							</div>
 						</div>
 						<div class="list-title-holder">
 							<a href="/reviews/${normalize(${result.name})}-review" class="list-title">

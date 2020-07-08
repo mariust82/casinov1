@@ -4047,7 +4047,8 @@ a:focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .list-rating.no-score .list-rating-wrap .list-rating-text {
+  .list-rating.no-score .list-rating-wrap .list-rating-text,
+  .list-rating.no-score .list-rating-text{
     background: #cecece;
   }
 }
@@ -4138,6 +4139,10 @@ a:focus {
 }
 
 .list-rating-score {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 17px;
   color: #fff;
   font-size: 12px;
   line-height: 17px;
@@ -4236,7 +4241,23 @@ a:focus {
   }
 }
 
-.list-rating-wrap {
+.list-rating-wrap{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid #5dc916;
+  font-size: 10px;
+  text-align: center;
+  color: #676767;
+}
+
+.list-rating{
+  position: relative;
+  height: 18px;
+  padding-left: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4247,10 +4268,12 @@ a:focus {
   font-size: 10px;
   text-align: center;
   color: #676767;
+  justify-content: center;
 }
 
 @media screen and (max-width: 1023px) {
-  .list-rating-wrap {
+  .list-rating-wrap,
+  .list-rating{
     border-radius: 2px;
   }
 }
@@ -4260,7 +4283,8 @@ a:focus {
   background: #A8AEC8;
 }
 
-.list-rating.very-good .list-rating-wrap {
+.list-rating.very-good .list-rating-wrap,
+.list-rating.very-good{
   border: 1px solid #96CB00;
 }
 
@@ -4268,7 +4292,8 @@ a:focus {
   background: #96CB00;
 }
 
-.list-rating.good .list-rating-wrap {
+.list-rating.good .list-rating-wrap,
+.list-rating.good{
   border: 1px solid #E9CA00;
 }
 
@@ -4276,7 +4301,8 @@ a:focus {
   background: #E9CA00;
 }
 
-.list-rating.poor .list-rating-wrap {
+.list-rating.poor .list-rating-wrap,
+.list-rating.poor{
   border: 1px solid #F17D0A;
 }
 
@@ -4284,16 +4310,19 @@ a:focus {
   background: #F17D0A;
 }
 
-.list-rating.terrible .list-rating-wrap {
+.list-rating.terrible .list-rating-wrap,
+.list-rating.terrible{
   border: 1px solid #DB2424;
 }
 
-.list-rating.no-score .list-rating-wrap {
+.list-rating.no-score .list-rating-wrap,
+.list-rating.no-score{
   border: 1px solid #A8AEC8;
 }
 
 @media screen and (max-width: 1023px) {
-  .list-rating.no-score .list-rating-wrap {
+  .list-rating.no-score .list-rating-wrap,
+  .list-rating.no-score{
     background: #A8AEC8;
     color: #fff;
   }
@@ -6120,7 +6149,8 @@ a:focus {
   }
 }
 
-.casino-review .list-rating-wrap {
+.casino-review .list-rating-wrap,
+.casino-review .list-rating{
   border-radius: 2px;
 }
 

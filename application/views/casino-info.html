@@ -44,13 +44,12 @@
 					</div>
 					<:set var="score_class" val="get_rating(${data.casino.rating})"/>
 					<div class="list-rating ${normalize(${score_class})}">
-						<div class="list-rating-wrap">
                                                     <:if test="${data.casino.rating} == 0">
                                                         <div class="list-rating-score">-</div>
-							<div class="list-rating-text">No score</div>
+							No score
                                                     <:else>
                                                         <div class="list-rating-score">${ceil(${data.casino.rating})}</div>
-							<div class="list-rating-text">${score_class} </div>
+							${score_class}
                                                     </:if>
 						</div>
 					</div>
