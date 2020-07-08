@@ -4156,6 +4156,9 @@ a:focus {
   text-align: center;
   margin-right: 5px;
 }
+.casino-review .list-rating-score{
+  height: 27px;
+}
 
 @media screen and (max-width: 690px) {
   .new-casino:after {
@@ -4254,6 +4257,7 @@ a:focus {
   color: #676767;
 }
 
+
 .list-rating{
   position: relative;
   height: 18px;
@@ -4270,6 +4274,13 @@ a:focus {
   color: #676767;
   justify-content: center;
 }
+
+.casino-review .list-rating{
+  font-size: 14px;
+  height: 28px;
+}
+
+
 
 @media screen and (max-width: 1023px) {
   .list-rating-wrap,
