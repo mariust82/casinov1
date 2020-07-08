@@ -10,11 +10,10 @@ class CasinosList
     private $filter;
     private $helper;
 
-    public function __construct(CasinoFilter $filter)
+    public function __construct(CasinoFilter $filter, CasinoHelper $helper)
     {
         $this->filter = $filter;
-        //TODO: CHANGE BACK
-        $this->helper = new Casinohelper();
+        $this->helper = $helper;
     }
 
     public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "")
