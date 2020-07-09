@@ -13,13 +13,12 @@ abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
 
     private function getPages()
     {
-        $sitemap = new SitemapNode();
         $urlPattern = $this->getUrlPattern();
         $protocol = $this->getProtocol();
         $items = $this->getItems();
-
         $output = array();
         foreach ($items as $name) {
+            $sitemap = new SitemapNode();
             if(strtolower($name) == "slots") {
                 $sitemap->loc = $protocol . "://" . $this->request->getServer()->getName() . "/" . strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars('classic-'.$name), $urlPattern)));
             }else
