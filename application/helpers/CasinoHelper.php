@@ -49,6 +49,16 @@ class CasinoHelper
         }
     }
 
+    public function get_string($name)
+    {
+        foreach ($name as $key => $item) {
+            if ($key != 0) {
+                $items[$key] = $item;
+            }
+        }
+        return implode(", ", $items);
+    }
+
     public function getAbbreviation($name)
     {
         $words = explode(" ", $name);
@@ -58,16 +68,6 @@ class CasinoHelper
             $abbr .= $word[0];
         }
         return $abbr;
-    }
-
-    public function get_string($name)
-    {
-        foreach ($name as $key => $item) {
-            if ($key != 0) {
-                $items[$key] = $item;
-            }
-        }
-        return implode(", ", $items);
     }
 
     public function checkForAbbr($amount) {
