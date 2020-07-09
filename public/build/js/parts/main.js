@@ -464,7 +464,7 @@ var Vote = function (obj) {
         }
 
         $(window).on('scroll mousemove', function(){
-            loadScripts(['tooltipster', 'swiper']);
+            loadScripts(['tooltipster', 'swiper', 'slider']);
             $(window).unbind("scroll mousemove");
             initTooltipseter();
         });
@@ -473,7 +473,7 @@ var Vote = function (obj) {
             loadScripts(['swiper']);
         }
 
-        loadScripts(['jquery-select2', 'Slider']);
+        loadScripts(['jquery-select2']);
         initImageLazyLoad();
     });
 

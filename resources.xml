@@ -27,6 +27,7 @@
         <file name="global_js/image-defer" />
         <file name="assets/jquery-bar"/>
         <file name="assets/search-tracker"/>
+        <file name="assets/slider"/>
         <file name="main"/>
     </file>
     <!-- bundle used only for local dev -->
