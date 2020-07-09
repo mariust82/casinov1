@@ -18,7 +18,7 @@
                 </a>
                 <div class="pick-body">
                     <a href="/reviews/${normalize(${result.name})}-review" class="pick-img">
-                        <img width="98" height="65" class="lazy_loaded" data-src="${getCasinoLogo(${result.code}, '85x56')}" onerror="this.onerror=null; this.src='/public/build/images/default_casino_logo.png'" alt="${result.name} Logo">
+                        <img width="98" height="65" class="lazy_loaded" data-src="${getCasinoLogo(${result.code}, 85, 56)}" onerror="this.onerror=null; this.src='/public/build/images/default_casino_logo.png'" alt="${result.name} Logo">
                     </a>
                     <div class="pick-buttons">
                         <:if test="!empty(${result.bonus_free.amount})">

@@ -53,8 +53,9 @@ function Tests($name)
     //die();
 }
 
-function getCasinoLogo($name, $resolution)
+function getCasinoLogo($name, $width, $height)
 {
+    $resolution = $width . 'x' . $height;
     $logoDirPath = "/public/sync/casino_logo_light/".$resolution;
     $logoFile = strtolower(str_replace(" ", "_", $name)).".png";
     $logo = $logoDirPath.'/'.$logoFile;
