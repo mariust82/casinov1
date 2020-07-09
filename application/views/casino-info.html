@@ -40,7 +40,7 @@
 				</div>
 				<div class="casino-review-heading-right">
 					<div class="casino-review-heading-img">
-						<img class="lazy_loaded" data-src="${data.casino.logo_big}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
+						<img class="lazy_loaded" data-src="${getCasinoLogo(${data.casino.code}, '124x82')}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
 					</div>
 					<:set var="score_class" val="get_rating(${data.casino.rating})"/>
 					<div class="list-rating ${normalize(${score_class})}">

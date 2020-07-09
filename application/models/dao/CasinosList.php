@@ -44,8 +44,8 @@ class CasinosList
             $object->date_formatted = $row["date_established"];
             $object->status = $row["status_id"];
             $object->is_tc_link = $row["is_tc_link"];
-            $object->logo_big = $this->helper->getCasinoLogo($object->code, "124x82"); //  $object->logo_big = "/public/sync/casino_logo_light/124x82/".strtolower(str_replace(" ", "_", $object->code)).".png";
-            $object->logo_small = $this->helper->getCasinoLogo($object->code, "85x56");//   $object->logo_small = "/public/sync/casino_logo_light/85x56/".strtolower(str_replace(" ", "_", $object->code)).".png";
+            $object->logo_big = $this->helper->getCasinoLogo($object->code, "124x82");
+            $object->logo_small = $this->helper->getCasinoLogo($object->code, "85x56");
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->score_class = $this->helper->getScoreClass($object->rating);
             if ($this->filter->getBankingMethod()) {

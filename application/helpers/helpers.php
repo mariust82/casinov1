@@ -52,3 +52,16 @@ function Tests($name)
     var_dump($name);
     //die();
 }
+
+function getCasinoLogo($name, $resolution)
+{
+    $logoDirPath = "/public/sync/casino_logo_light/".$resolution;
+    $logoFile = strtolower(str_replace(" ", "_", $name)).".png";
+    $logo = $logoDirPath.'/'.$logoFile;
+
+    if (!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$logo)) {
+        $logo = $logoDirPath . "/no-logo-{$resolution}.png";
+    }
+
+    return $logo;
+}
