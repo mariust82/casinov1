@@ -4058,7 +4058,18 @@ a:focus {
     display: none;
   }
   .list-rating{
+    height: 21px !important;
+    width: 32px !important;
     text-indent: -9999px !important;
+  }
+  .list-rating .list-rating-score{
+    width: 30px !important;
+    height: 19px !important;
+    text-indent: initial !important;
+  }
+
+  .list-rating.no-score .list-rating-score-mobile{
+    position: absolute !important;
   }
 
   .list-rating .list-rating-score{
@@ -4073,6 +4084,18 @@ a:focus {
 @media screen and (max-width: 690px) {
   .list {
     margin: 10px 0 0 0;
+  }
+
+  .list-rating{
+    width: 24px !important;
+    height: 17px !important;
+    text-indent: -9999px !important;
+  }
+
+  .list-rating .list-rating-score{
+    width: 22px !important;
+    height: 15px !important;
+    text-indent: initial !important;
   }
 }
 
