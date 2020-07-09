@@ -3,6 +3,7 @@ require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once("queries/CasinosListQuery.php");
 require_once("application/helpers/CasinoHelper.php");
+require_once("application/models/wrappers/CasinoListsWrapper.php");
 
 class CasinosList
 {
@@ -78,10 +79,6 @@ class CasinosList
         while ($row = $resultSet->toRow()) {
             $bonus = new CasinoBonus();
             $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
-            $bonus->amount = $this->helper->checkForAbbr($bonus->amount);
-            if(!preg_match('[FS|NDB|CB|FDB]', $bonus->amount)) {
-                $bonus->bonus_type_Abbreviation = $this->helper->getAbbreviation($row["name"]);
-            }
             $bonus->min_deposit = $row["deposit_minimum"];
             if ($row["wagering"] == '') {
                 $row["wagering"] = 0;
@@ -92,7 +89,7 @@ class CasinosList
             $bonus->type = $row["name"];
             if ($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins" || $row["name"]=="Free Play" || $row["name"]=="Bonus Spins") {
                 $output[$row["casino_id"]]->bonus_free = $bonus;
-                $output[$row["casino_id"]]->bonus_free->bonus_type_Abbreviation = $this->helper->getAbbreviation($output[$row["casino_id"]]->bonus_free->type);
+//                $output[$row["casino_id"]]->bonus_free->bonus_type_Abbreviation = $this->helper->getAbbreviation($output[$row["casino_id"]]->bonus_free->type);
             } else {
                 $output[$row["casino_id"]]->bonus_first_deposit = $bonus;
                 //  $output[$row["casino_id"]]->bonus_first_deposit =  $this->helper->getAbbreviation($output[$row["casino_id"]]->bonus_first_deposit->type);
@@ -104,7 +101,8 @@ class CasinosList
                 $arg->all_softwares = $this->helper->get_string($arg->softwares);
             }
         }
-        return array_values($output);
+
+        return $output;
     }
 
     public function getTotal()
