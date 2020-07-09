@@ -3,7 +3,6 @@ require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once("queries/CasinosListQuery.php");
 require_once("application/helpers/CasinoHelper.php");
-require_once("application/models/wrappers/CasinoListsWrapper.php");
 
 class CasinosList
 {
