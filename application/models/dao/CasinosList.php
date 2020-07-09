@@ -99,7 +99,7 @@ class CasinosList
             }
         }
 
-        return $output;
+        return array_values($output);
     }
 
     public function getTotal()
@@ -143,10 +143,6 @@ class CasinosList
         while ($row = $resultSet->toRow()) {
             $bonus = new CasinoBonus();
             $bonus->amount = $row["amount"];
-            $bonus->amount = $this->helper->checkForAbbr($bonus->amount);
-            if(!preg_match('[FS|NDB|CB|FDB]', $bonus->amount)) {
-                $bonus->bonus_type_Abbreviation = $this->helper->getAbbreviation($row["name"]);
-            }
             $bonus->min_deposit = $row["deposit_minimum"];
             if ($row["wagering"] == '') {
                 $row["wagering"] = 0;

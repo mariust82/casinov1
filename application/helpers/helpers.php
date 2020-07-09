@@ -85,7 +85,7 @@ function checkForAbbr($amount) {
 
 function getAbbreviation($name, $amount)
 {
-    if(!preg_match('[FS|NDB|CB|FDB]', $amount) && (!empty($name) && !empty($amount))){
+    if(!preg_match('[FS|NDB|CB|FDB]', $amount) && !empty($name) && !empty($amount)){
         $words = explode(" ", $name);
         $abbr = "";
 
