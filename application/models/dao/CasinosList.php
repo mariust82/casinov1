@@ -89,10 +89,8 @@ class CasinosList
             $bonus->type = $row["name"];
             if ($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins" || $row["name"]=="Free Play" || $row["name"]=="Bonus Spins") {
                 $output[$row["casino_id"]]->bonus_free = $bonus;
-//                $output[$row["casino_id"]]->bonus_free->bonus_type_Abbreviation = $this->helper->getAbbreviation($output[$row["casino_id"]]->bonus_free->type);
             } else {
                 $output[$row["casino_id"]]->bonus_first_deposit = $bonus;
-                //  $output[$row["casino_id"]]->bonus_first_deposit =  $this->helper->getAbbreviation($output[$row["casino_id"]]->bonus_first_deposit->type);
             }
         }
 

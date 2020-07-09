@@ -3,7 +3,6 @@ require_once("application/models/CasinoFilter.php");
 require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/dao/CasinosList.php");
 require_once("application/models/dao/CasinosMenu.php");
-require_once("application/models/wrappers/CasinoListsWrapper.php");
 require_once("BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
 
@@ -43,10 +42,9 @@ abstract class CasinosListController extends BaseController
 
 
         $object = new CasinosList($filter);
-        $casinoListWrapper = new CasinoListsWrapper($object->getResults($this->response->attributes("sort_criteria"), 1, $this->limit));
         $results = array();
         $results["total"] = $object->getTotal();
-        $results["list"] = ($results["total"]>0 ? $casinoListWrapper->getCasinosList() : array());
+        $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->attributes("sort_criteria"), 1, $this->limit) : array());
 
         return $results;
     }
