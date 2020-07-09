@@ -19,7 +19,7 @@ class CasinoHelper
         $logo = $logoDirPath.'/'.$logoFile;
 
         if (!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$logo)) {
-            $logo ="/public/build/images/default_casino_logo.png";
+            $logo =$logoDirPath."/no-logo-{$resolution}.png";
         }
         return $logo;
     }

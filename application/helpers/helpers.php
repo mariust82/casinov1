@@ -60,7 +60,7 @@ function getCasinoLogo($name, $resolution)
     $logo = $logoDirPath.'/'.$logoFile;
 
     if (!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$logo)) {
-        $logo = $logoDirPath . "/no-logo-{$resolution}.png";
+        $logo ="/public/build/images/default_casino_logo.png";
     }
 
     return $logo;
