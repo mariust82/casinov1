@@ -110,7 +110,7 @@ class Articles
             $article->title = $row['title'];
             $article->url = $row['url'];
             $article->date_added = $row['date_added'];
-            $article->min_read = $row['min_read'];
+            $article->min_read = $row['min_read'] + 1;
             $article->titleImageDesktop = $row['titleImageDesktop'];
             $article->titleImageMobile = $row['titleImageMobile'];
             $article->thumbnail = $row['thumbnail'];
