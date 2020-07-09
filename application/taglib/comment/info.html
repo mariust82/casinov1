@@ -12,8 +12,8 @@
 			</div>
 			<:if test="'$[class]' != 'review-child'">
 				<div class="list-rating ${normalize(get_rating(${result.rating}))}">
+					${get_rating(${result.rating})}
 						<div class="list-rating-score">${ceil(${result.rating})}</div>
-						${get_rating(${result.rating})}
 				</div>
 			</:if>
 		</div>

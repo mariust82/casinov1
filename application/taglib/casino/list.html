@@ -36,14 +36,14 @@
 						<:set var="score_class" val="get_rating(${result.rating})"/>
 						<div class="list-rating ${normalize(${score_class})}">
 								<:if test="${result.rating} == 0">
+									${score_class}
 									<span class="list-rating-score">-</span>
 									<div class=" list-rating-score list-rating-score-mobile">|</div>
-									${score_class}
 								<:else>
+									${score_class}
 									<span class="list-rating-score">
 										${ceil(${result.rating})}
 									</span>
-									${score_class}
 								</:if>
 						</div>
 						<div class="list-title-holder">

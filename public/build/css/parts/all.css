@@ -4057,6 +4057,13 @@ a:focus {
   .list-item .list-rating-text {
     display: none;
   }
+  .list-rating{
+    text-indent: -9999px !important;
+  }
+
+  .list-rating .list-rating-score{
+    text-indent: initial;
+  }
 }
 
 .list {
