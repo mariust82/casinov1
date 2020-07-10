@@ -1,6 +1,7 @@
 initBarRating();
 initReviewForm();
 initReplies();
+initVote();
 initTexfieldsLabels();
 showMoreReviews();
 initTableOpen();
@@ -520,6 +521,12 @@ function initTableOpen() {
         $(this).closest('tr').toggleClass('active');
         e.preventDefault();
     });
+}
+
+function initVote(){
+    if ($('.js-vote').length > 0) {
+            new Vote($('.js-vote'));
+    }
 }
 
 
