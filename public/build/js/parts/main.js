@@ -585,9 +585,9 @@ var initImageLazyLoad = function () {
             });
         }
 
-        if ($('.js-vote').length > 0) {
-                new Vote($('.js-vote'));
-        }
+        // if ($('.js-vote').length > 0) {
+        //         new Vote($('.js-vote'));
+        // }
 
         new newsletter($('.subscribe'));
     }
