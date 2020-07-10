@@ -393,7 +393,7 @@ var initImageLazyLoad = function () {
         }
 
         $(window).on('scroll mousemove', function(){
-            loadScripts(['tooltipster', 'swiper', 'slider']);
+            loadScripts(['tooltipster', 'swiper', 'Slider']);
             $(window).unbind("scroll mousemove");
             initTooltipseter();
         });
