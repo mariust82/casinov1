@@ -15,6 +15,7 @@
 <:else/>
     <script src="/public/build/js/compilations/bundle.js?ver=${data.version}"></script>
     <script src="/public/build/js/parts/main.js?ver=${data.version}"></script>
+    <script src="/public/build/js/parts/vote.js?ver=${data.version}"></script>
 
     <:if if test="!empty(${data.page_type}) && ${data.page_type} == 'game_info'">
         <script src="/public/build/js/parts/gameplay.js?ver=${data.version}"></script>

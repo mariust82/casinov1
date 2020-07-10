@@ -322,6 +322,11 @@ function AddingReview(obj) {
                     return false;
                 });
             }
+
+            $('.review, .reply').each(function () {
+                new AddingReview($(this));
+            });
+
             grayscaleIE();
         },
         _doIfReviewedAlready = function () {
