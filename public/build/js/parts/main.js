@@ -989,29 +989,6 @@ var initImageLazyLoad = function () {
         _construct();
     };
 
-    function initScrollTo(_target, _offset) {
-
-        if (typeof _target !== "undefined") {
-            action(_target, _offset);
-        } else {
-            var btn = $('.js-scroll');
-
-            btn.on('click', function (a) {
-                var target = $($(this).attr('href'));
-
-                action(target, 0);
-
-                a.preventDefault();
-            });
-        }
-
-        function action(target, offset) {
-            $('html, body').animate({
-                scrollTop: target.offset().top - offset
-            }, 1000);
-        }
-    }
-
     var SearchPanel = function (obj) {
         var _obj = obj,
             _self = this,

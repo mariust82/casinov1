@@ -316,20 +316,11 @@ function AddingReview(obj) {
             new Vote($('.js-vote'));
 
             if ($('#reviews').length > 0) {
-                $('.review, .reply').each(function () {
-                    new AddingReview($(this));
-                });
-
                 $('[href="#reviews"]').on('click', function () {
                     initScrollTo($('#reviews'), 100);
                     return false;
                 });
             }
-
-            if ($('.js-vote').length > 0) {
-                new Vote($('.js-vote'));
-            }
-
             grayscaleIE();
         },
         _doIfReviewedAlready = function () {
@@ -434,7 +425,7 @@ function showMoreReviews() {
             initReviewForm();
             initTexfieldsLabels();
 
-            Vote($('.js-vote'));
+            new Vote($('.js-vote'));
             $('.review').each(function () {
                 new AddingReview($(this));
             });
@@ -533,5 +524,29 @@ function initTableOpen() {
         e.preventDefault();
     });
 }
+
+function initScrollTo(_target, _offset) {
+
+    if (typeof _target !== "undefined") {
+        action(_target, _offset);
+    } else {
+        var btn = $('.js-scroll');
+
+        btn.on('click', function (a) {
+            var target = $($(this).attr('href'));
+
+            action(target, 0);
+
+            a.preventDefault();
+        });
+    }
+
+    function action(target, offset) {
+        $('html, body').animate({
+            scrollTop: target.offset().top - offset
+        }, 1000);
+    }
+}
+
 
 
