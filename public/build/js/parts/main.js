@@ -136,6 +136,7 @@ var initImageLazyLoad = function () {
                 if($('.search-tag-manager').length  && $(this).val().trim() == search_val) return;
                 if (search_val.length > 2 && search_val != searched_value) {
                     searched_value = search_val;
+                    loadScripts(['search-tracker']);
                     SearchTracker(search_val);
                 }
             }
@@ -570,6 +571,10 @@ var initImageLazyLoad = function () {
             e.preventDefault();
         });
 
+        if ($('#filters').length > 0) {
+            new Filters($('#filters'));
+        }
+
         new newsletter($('.subscribe'));
     }
 
@@ -607,7 +612,6 @@ var initImageLazyLoad = function () {
                     if (currentTarget.classList.contains('expand-holder')) {
                         currentOpened = document.querySelector('.expand-holder.opened');
                         if (currentOpened == currentTarget) {
-                            var toggleSection = currentOpened.querySelector(".expand-menu");
                             if (e.target.className !== 'expand-menu') {
                                 currentOpened.classList.remove('opened');
                             }
@@ -727,6 +731,263 @@ var initImageLazyLoad = function () {
 
         _init();
     }
+
+    var Filters = function (obj) {
+        var _obj = obj,
+            _self = this,
+            _switchers = _obj.find('input[type=checkbox]'),
+            _radios = _obj.find('input[type=radio]'),
+            _selectFilter = _obj.find('select[name=soft]'),
+            _targetContainer = $('.data-container'),
+            _targetAddContainer = $('.data-add-container'),
+            _paramName = _targetContainer.data('type'),
+            _paramValue = _targetContainer.data('type-value'),
+            _emptyContent = $('.empty-filters'),
+            _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
+            _moreButton,
+            _resetButton,
+            _defaultButton = $('#default'),
+            _currentClick = 0,
+            _request = new XMLHttpRequest();
+
+        if (typeof _paramName == 'undefined') {
+            _paramName = 'game_type';
+        }
+
+        var _url = _obj.data('url');
+        _defaultButton.prop('checked', true);
+
+        if (_url === "/games-filter/") {
+            var dataContainerMutationObserver = new MutationObserver(function (mutations) {
+                var c = 0;
+
+                mutations.forEach(function (mutation) {
+                    if (mutation.type === "childList" && mutation.addedNodes.length !== 0 && c < 1) {
+                        initImageLazyLoad();
+                        c++;
+                    }
+                });
+            });
+
+            dataContainerMutationObserver.observe($('.data-container').get(0),
+                {
+                    childList: true,
+                    subtree: true,
+                });
+            dataContainerMutationObserver.observe($('.data-add-container').get(0),
+                {
+                    childList: true,
+                    subtree: true,
+                });
+        }
+
+
+        var _onEvent = function () {
+                _moreButton = $('.js-more-items');
+                _resetButton = $('.js-reset-items');
+                _switchers.off();
+                _switchers.on('click', function () {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
+
+                _radios.off();
+                _radios.on('click', function () {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
+
+                $('.js-filter > option').on('click', function () {
+                    var counter = 0;
+                    $('.js-filter > option').each(function (index, el) {
+                        if ($(this).prop("selected")) {
+                            counter++;
+                        }
+                    });
+                });
+
+                _selectFilter.off();
+                _selectFilter.on('change', function () {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+                });
+
+                _moreButton.off();
+                _moreButton.on('click', function () {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add');
+                    return false;
+                });
+
+                _resetButton.off();
+                _resetButton.on('click', function () {
+                    _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset'), 'add');
+
+                    return false;
+                });
+
+            },
+            _getAjaxParams = function (_paramName, _paramValue, _action) {
+
+                var _ajaxDataParams = {};
+                $.each(_switchers, function (index, el) {
+                    if ($(el).is(':checked')) {
+                        _ajaxDataParams[$(el).attr('name')] = 1;
+                    }
+
+                    if (_action == 'reset') {
+                        _ajaxDataParams[$(el).attr('name')] = '';
+                        $(el).prop('checked', false);
+                    }
+                });
+
+                $.each(_radios, function (index, el) {
+                    if ($(el).is(':checked')) {
+                        _ajaxDataParams[$(el).attr('name')] = $(el).attr('value');
+                    }
+
+                    if (_action == 'reset') {
+                        _ajaxDataParams[$(el).attr('name')] = 1;
+                        if (index == 0) {
+                            $(el).prop('checked', true);
+                        }
+                    }
+                });
+
+                _ajaxDataParams[_paramName] = _paramValue;
+
+                if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
+                    _ajaxDataParams['software'] = _selectFilter.val().join();
+
+                    if (_action == 'reset') {
+                        _ajaxDataParams['software'] = '';
+
+                    }
+                }
+
+                if (typeof AJAX_CUR_PAGE == "undefined")
+                    AJAX_CUR_PAGE = 1;
+
+                if (_action != 'add' || _action == 'reset') {
+                    AJAX_CUR_PAGE = 0;
+                }
+
+                if (_ajaxDataParams["label"] != undefined && _ajaxDataParams["label"] == "Mobile") {
+                    _ajaxDataParams["compatibility"] = "mobile";
+                    delete _ajaxDataParams.label;
+                }
+
+                return _ajaxDataParams;
+            }
+
+        _ajaxRequestCasinos = function (_ajaxDataParams, _action) {
+            if (_action == 'add') {
+                _moreButton.addClass('loading');
+            } else {
+                $('.overlay, .loader').fadeIn('fast');
+            }
+
+            if (BUSY_REQUEST)
+                return;
+            BUSY_REQUEST = true;
+            _request.abort();
+            var limit_items = (_url == '/games-filter/') ? 24 : 100;
+            if (location.pathname === '/casinos') {
+                _url = 'load-all-casinos/';
+            }
+            _request = $.ajax({
+                url: _url + AJAX_CUR_PAGE,
+                data: _ajaxDataParams,
+                dataType: 'html',
+                type: 'GET',
+                success: function (data) {
+                    var cont = $(data).find('.loaded-item');
+                    var loadTotal = $(data).filter('[data-load-total]').data('load-total');
+                    var qty_items = $('.qty-items');
+                    if (_action == 'replace') {
+                        _targetContainer.html(data);
+                        _targetAddContainer.html('');
+                        qty_items.attr('data-load-total', loadTotal);
+                        $('.qty-items-quantity').text(loadTotal);
+
+                        if (cont.length === qty_items.attr('data-load-total')) {
+                            if (cont.length > 0) {
+                                _loaderHolder.show();
+                                _emptyContent.hide();
+                            } else {
+                                _loaderHolder.hide();
+                                _emptyContent.show();
+                            }
+                            _moreButton.hide();
+                        } else {
+                            _moreButton.show();
+                            _loaderHolder.show();
+                            _emptyContent.hide();
+                        }
+
+                        refresh();
+                        AJAX_CUR_PAGE = 1;
+                        _currentClick = 0;
+                    } else {
+                        AJAX_CUR_PAGE++;
+                        _currentClick++;
+
+                        setTimeout(function () {
+                            _targetAddContainer.append(cont);
+                            _moreButton.removeClass('loading');
+                            refresh();
+                            initImageLazyLoad();
+
+                            if (cont.length < limit_items) {
+                                _moreButton.hide();
+                            }
+                        }, 1000)
+                    }
+
+                    _construct();
+
+                    checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
+                },
+                error: function (XMLHttpRequest) {
+                    if (XMLHttpRequest.statusText != "abort") {
+                        console.log('err');
+                    }
+                },
+                complete: function () {
+                    BUSY_REQUEST = false;
+                    $('.overlay, .loader').fadeOut('fast');
+                    if (_url === '/casinos-filter/') {
+                        if (parseInt($('.qty-items').attr('data-load-total')) <= 100) {
+                            $('.js-more-items').hide();
+                        } else {
+                            $('.js-more-items').show();
+                        }
+                    } else if (_url === '/games-filter/') {
+
+                        if (parseInt($('.qty-items-quantity').html()) <= 24) {
+                            $('.js-more-items').hide();
+                        } else {
+                            $('.js-more-items').show();
+                        }
+                    }
+                    grayscaleIE();
+                    initImageLazyLoad();
+                }
+            });
+
+            var loadDelay = setTimeout(function () {
+            }, 300);
+
+            _hideLoading = function () {
+                clearTimeout(loadDelay);
+            }
+        },
+            _loadData = function (data) {
+
+            },
+            _construct = function () {
+                _onEvent();
+                _obj[0].obj = _self;
+            };
+
+        _construct();
+    };
 
     var SearchPanel = function (obj) {
         var _obj = obj,
@@ -1517,7 +1778,6 @@ var initImageLazyLoad = function () {
     }
 
     function initExpandingText() {
-
         $.fn.moreLines = function (options) {
 
             "use strict";
@@ -1631,5 +1891,4 @@ var initImageLazyLoad = function () {
             COUNTRY_CURR_PAGE++;
         }
     }
-
 })(jQuery);
