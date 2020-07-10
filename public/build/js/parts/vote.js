@@ -68,3 +68,5 @@ var Vote = function (obj) {
         };
     _init();
 };
+
+new Vote($('.js-vote'));
