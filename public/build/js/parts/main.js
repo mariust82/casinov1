@@ -574,17 +574,6 @@ var initImageLazyLoad = function () {
             new Filters($('#filters'));
         }
 
-        if ($('#reviews').length > 0) {
-            $('.review').each(function (i) {
-                new AddingReview($(this));
-            });
-
-            $('[href="#reviews"]').on('click', function () {
-                initScrollTo($('#reviews'), 100);
-                return false;
-            });
-        }
-
         new newsletter($('.subscribe'));
     }
 

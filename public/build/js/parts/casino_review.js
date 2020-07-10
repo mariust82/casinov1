@@ -1,7 +1,6 @@
 initBarRating();
 initReviewForm();
 initReplies();
-initVote();
 initTexfieldsLabels();
 showMoreReviews();
 initTableOpen();
@@ -316,9 +315,21 @@ function AddingReview(obj) {
 
             new Vote($('.js-vote'));
 
-            $('.review, .reply').each(function () {
-                new AddingReview($(this));
-            });
+            if ($('#reviews').length > 0) {
+                $('.review, .reply').each(function () {
+                    new AddingReview($(this));
+                });
+
+                $('[href="#reviews"]').on('click', function () {
+                    initScrollTo($('#reviews'), 100);
+                    return false;
+                });
+            }
+
+            if ($('.js-vote').length > 0) {
+                new Vote($('.js-vote'));
+            }
+
             grayscaleIE();
         },
         _doIfReviewedAlready = function () {
@@ -521,12 +532,6 @@ function initTableOpen() {
         $(this).closest('tr').toggleClass('active');
         e.preventDefault();
     });
-}
-
-function initVote(){
-    if ($('.js-vote').length > 0) {
-            new Vote($('.js-vote'));
-    }
 }
 
 
