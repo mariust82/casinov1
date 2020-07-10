@@ -374,8 +374,6 @@ var initImageLazyLoad = function () {
 
         $(window).trigger('scroll');
 
-        new SearchPanel($('.header'));
-
         var user_rate = $('.rating-container').data('user-rate');
 
         if ($('.box img.not-accepted').length) {
@@ -395,6 +393,7 @@ var initImageLazyLoad = function () {
         $(window).on('scroll mousemove', function(){
             loadScripts(['tooltipster', 'swiper']);
             $(window).unbind("scroll mousemove");
+            new SearchPanel($('.header'));
             initTooltipseter();
         });
 
@@ -1504,9 +1503,7 @@ var initImageLazyLoad = function () {
 
     function initMobileBonusesPop(_ww) {
         var _container = $('.block .container');
-        //var _mobilePop = $('.js-mobile-pop');
         var _btnOpen = $('.btn-round');
-        var _btnClose = $('.js-mobile-pop-close');
         var _position = document.body.scrollTop;
 
         if (_ww <= 690) {
@@ -1514,7 +1511,6 @@ var initImageLazyLoad = function () {
 
             function cloneContent(_this) {
                 var _contentHolder = _this.closest(_container);
-                var _items = _this.closest(_container).find('.js-tooltip-content');
                 var _name = _this.data('name');
                 var _is_free = _this.data('is-free');
                 var _request = new XMLHttpRequest();

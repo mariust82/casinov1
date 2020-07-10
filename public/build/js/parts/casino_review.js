@@ -1,10 +1,10 @@
 initBarRating();
-initAddReview();
 initReviewForm();
 initReplies();
 initTexfieldsLabels();
 showMoreReviews();
 initTableOpen();
+initAddReview();
 
 getWebName = function (name) {
     return name.replace(/\s/g, '-').toLowerCase();
@@ -112,7 +112,7 @@ function AddingReview(obj) {
         _request = new XMLHttpRequest();
 
     _prepReview = function (_self) {
-
+        alert('ss');
         var parent = _self;
         _field_name = parent.find('input[name=name]');
         _field_email = parent.find('input[name=email]');
@@ -128,9 +128,9 @@ function AddingReview(obj) {
         _rate_slider_result = $('.rating-current-value span').text();
         _reviewID = 0;
         ok = true;
-
         if (parent.data('id') != undefined) {
             _reviewID = parent.data('id');
+            console.log(_reviewID + 'ttt');
             _is_child = true;
 
             if (parent.next().find('.reply-data-holder').length > 0) {
@@ -143,10 +143,15 @@ function AddingReview(obj) {
                 _reviewHolder = parent.closest('.reply-data-holder');
             }
             _childReplies = parent.find('.js-reply-btn span');
+
+
+            console.log(_reviewID + 't4');
         } else {
             _is_child = false;
             _reviewHolder = $('#review-data-holder');
         }
+
+        console.log(_reviewID + 't');
 
         if (name === '') {
             _field_name.parent().addClass(_contact_error_class);
@@ -216,6 +221,7 @@ function AddingReview(obj) {
                 return;
             BUSY_REQUEST = true;
             _request.abort();
+            console.log(ajaxData);
             _request = $.ajax({
                 url: "/casino/review-write",
                 data: ajaxData,
@@ -315,13 +321,6 @@ function AddingReview(obj) {
             initTexfieldsLabels();
 
             new Vote($('.js-vote'));
-
-            if ($('#reviews').length > 0) {
-                $('[href="#reviews"]').on('click', function () {
-                    initScrollTo($('#reviews'), 100);
-                    return false;
-                });
-            }
 
             $('.review, .reply').each(function () {
                 new AddingReview($(this));
@@ -431,7 +430,7 @@ function showMoreReviews() {
             initReviewForm();
             initTexfieldsLabels();
 
-            new Vote($('.js-vote'));
+            Vote($('.js-vote'));
 
             $('.review').each(function () {
                 new AddingReview($(this));
