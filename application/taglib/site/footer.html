@@ -1,4 +1,4 @@
-<div class="overlay"></div>
+<div class="overlay">${data.page_type}</div>
 <site:css-loader/>
 <:if test="${data.use_bundle}">
         <:if if test="!empty(${data.page_type}) && ${data.page_type} == 'game_info'">
@@ -7,6 +7,8 @@
             <script src="/public/build/js/compilations/casino_view.js?ver=${data.version}"></script>
        <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'contact'">
            <script src="/public/build/js/compilations/contact.js?ver=${data.version}"></script>
+       <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'blog'">
+           <script src="/public/build/js/compilations/blog.js?ver=${data.version}"></script>
        <:else>
            <script src="/public/build/js/compilations/main.js?ver=${data.version}"></script>
         </:if>
