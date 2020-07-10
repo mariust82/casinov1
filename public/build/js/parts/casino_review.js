@@ -1,4 +1,5 @@
 initBarRating();
+initAddReview();
 initReviewForm();
 initReplies();
 initTexfieldsLabels();
@@ -426,6 +427,7 @@ function showMoreReviews() {
             initTexfieldsLabels();
 
             new Vote($('.js-vote'));
+
             $('.review').each(function () {
                 new AddingReview($(this));
             });
@@ -546,6 +548,12 @@ function initScrollTo(_target, _offset) {
             scrollTop: target.offset().top - offset
         }, 1000);
     }
+}
+
+function initAddReview(){
+    $('.review').each(function () {
+        new AddingReview($(this));
+    });
 }
 
 
