@@ -39,6 +39,8 @@ abstract class CasinosListController extends BaseController
             $this->request->attributes("country")
         );
 
+
+
         $object = new CasinosList($filter);
         $results = array();
         $results["total"] = $object->getTotal();

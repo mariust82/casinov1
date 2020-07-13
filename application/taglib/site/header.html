@@ -23,7 +23,7 @@
     </:if>
 </head>
 <body>
-
+<div class="controller_main" data-version="${data.version}"></div>
     <:if test="!empty($_GET['debug'])">
         <div>
             <pre>${var_dump(${data}); die()}</pre>

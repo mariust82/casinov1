@@ -185,13 +185,6 @@ img {
   border: 0;
 }
 
-.article-heading {
-    height: 274px;
-    position: relative;
-    overflow: hidden;
-    margin: 0 0 40px;
-}
-
 .site__header_sticky .header {
   position: fixed!important;
   top: 0;
@@ -200,7 +193,7 @@ img {
 }
 
 .site__header_sticky {
-  padding-top: 50px;
+  padding-top: 40px;
 }
 
 img,
@@ -2934,7 +2927,7 @@ a:focus {
   .header-menu__list-holder {
     display: block;
     overflow: auto;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 125px);
   }
 }
 
@@ -4054,7 +4047,8 @@ a:focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .list-rating.no-score .list-rating-wrap .list-rating-text {
+  .list-rating.no-score .list-rating-wrap .list-rating-text,
+  .list-rating.no-score .list-rating-text{
     background: #cecece;
   }
 }
@@ -4062,6 +4056,24 @@ a:focus {
 @media screen and (max-width: 1023px) {
   .list-item .list-rating-text {
     display: none;
+  }
+  .list-rating{
+    height: 21px !important;
+    width: 32px !important;
+    text-indent: -9999px !important;
+  }
+  .list-rating .list-rating-score{
+    width: 30px !important;
+    height: 19px !important;
+    text-indent: initial !important;
+  }
+
+  .list-rating.no-score .list-rating-score-mobile{
+    position: absolute !important;
+  }
+
+  .list-rating .list-rating-score{
+    text-indent: initial;
   }
 }
 
@@ -4072,6 +4084,18 @@ a:focus {
 @media screen and (max-width: 690px) {
   .list {
     margin: 10px 0 0 0;
+  }
+
+  .list-rating{
+    width: 24px !important;
+    height: 17px !important;
+    text-indent: -9999px !important;
+  }
+
+  .list-rating .list-rating-score{
+    width: 22px !important;
+    height: 15px !important;
+    text-indent: initial !important;
   }
 }
 
@@ -4112,6 +4136,10 @@ a:focus {
   text-transform: uppercase;
 }
 
+.flag-spacing{
+  margin-right: 8.5px;
+}
+
 @media screen and (max-width: 690px) {
   .new-casino-text {
     font-size: 9px;
@@ -4123,12 +4151,43 @@ a:focus {
   position: absolute;
   top: 0px;
   left: -8px;
-  content: '';
+  content: 'NEW';
   border-bottom: 16px solid #4AB802;
   border-left: 16px solid transparent;
   border-right: 16px solid transparent;
   height: 0;
   width: 19px;
+
+  color: white;
+  font-size: 11px;
+  text-align: -moz-left;
+  font-stretch: condensed;
+  font-weight: bold;
+  font-family: "Open Sans Condensed";
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.list-rating-score {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 19px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 19px;
+  -ms-flex-item-align: stretch;
+  -ms-grid-row-align: stretch;
+  align-self: stretch;
+  width: 20px;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  background: #5DC916;
+  text-align: center;
+  margin-right: 5px;
+}
+.casino-review .list-rating-score{
+  height: 27px;
 }
 
 @media screen and (max-width: 690px) {
@@ -4215,7 +4274,24 @@ a:focus {
   }
 }
 
-.list-rating-wrap {
+.list-rating-wrap{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid #5dc916;
+  font-size: 10px;
+  text-align: center;
+  color: #676767;
+}
+
+
+.list-rating{
+  position: relative;
+  height: 20px;
+  padding-left: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4223,33 +4299,33 @@ a:focus {
   -ms-flex-align: center;
   align-items: center;
   border: 1px solid #5DC916;
+  font-size: 10px;
+  text-align: center;
+  color: #676767;
+  justify-content: center;
 }
 
+.casino-review .list-rating{
+  font-size: 14px;
+  height: 28px;
+}
+
+
+
 @media screen and (max-width: 1023px) {
-  .list-rating-wrap {
+  .list-rating-wrap,
+  .list-rating{
     border-radius: 2px;
   }
 }
 
-.list-rating-score {
-  color: #fff;
-  font-size: 12px;
-  line-height: 17px;
-  -ms-flex-item-align: stretch;
-  -ms-grid-row-align: stretch;
-  align-self: stretch;
-  width: 20px;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  background: #5DC916;
-  text-align: center;
-}
 
 .list-rating.no-score .list-rating-score {
   background: #A8AEC8;
 }
 
-.list-rating.very-good .list-rating-wrap {
+.list-rating.very-good .list-rating-wrap,
+.list-rating.very-good{
   border: 1px solid #96CB00;
 }
 
@@ -4257,7 +4333,8 @@ a:focus {
   background: #96CB00;
 }
 
-.list-rating.good .list-rating-wrap {
+.list-rating.good .list-rating-wrap,
+.list-rating.good{
   border: 1px solid #E9CA00;
 }
 
@@ -4265,7 +4342,8 @@ a:focus {
   background: #E9CA00;
 }
 
-.list-rating.poor .list-rating-wrap {
+.list-rating.poor .list-rating-wrap,
+.list-rating.poor{
   border: 1px solid #F17D0A;
 }
 
@@ -4273,16 +4351,19 @@ a:focus {
   background: #F17D0A;
 }
 
-.list-rating.terrible .list-rating-wrap {
+.list-rating.terrible .list-rating-wrap,
+.list-rating.terrible{
   border: 1px solid #DB2424;
 }
 
-.list-rating.no-score .list-rating-wrap {
+.list-rating.no-score .list-rating-wrap,
+.list-rating.no-score{
   border: 1px solid #A8AEC8;
 }
 
 @media screen and (max-width: 1023px) {
-  .list-rating.no-score .list-rating-wrap {
+  .list-rating.no-score .list-rating-wrap,
+  .list-rating.no-score{
     background: #A8AEC8;
     color: #fff;
   }
@@ -4536,6 +4617,7 @@ a:focus {
   content: "";
 }
 
+
 .game {
   display: inline-block;
   width: 25%;
@@ -4556,7 +4638,7 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   .game {
-    width: 50%;
+    width: 50% !important;
   }
 }
 
@@ -4594,17 +4676,17 @@ a:focus {
 
 .game-img {
   display: block;
+  position:relative;
+  height:0;
+  padding-bottom:74%;
 }
 
 .game-img img {
   width: 100%;
-  height: auto;
-}
-
-@media screen and (max-width: 1023px) {
-  .game-img img {
-    height: auto;
-  }
+  height: 100%;
+  position:absolute;
+  top:0;
+  left:0;
 }
 
 .game-desc {
@@ -5592,6 +5674,9 @@ a:focus {
   .links-nav a {
     padding: 0 0 12px;
   }
+  .links-nav .swiper-slide {
+    margin-right: 15px;
+  }
 }
 
 .links-nav a.active,
@@ -5601,7 +5686,7 @@ a:focus {
 
 .links-nav .swiper-slide {
   width: auto;
-  /*margin-right: 30px;*/
+  margin-right: 30px;
 }
 
 .links-nav .swiper-container .links-left,
@@ -6105,7 +6190,8 @@ a:focus {
   }
 }
 
-.casino-review .list-rating-wrap {
+.casino-review .list-rating-wrap,
+.casino-review .list-rating{
   border-radius: 2px;
 }
 
@@ -7687,7 +7773,7 @@ a:focus {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999999;
+  z-index: 99999999;
   height: 100%;
   width: 100%;
   background: #000;
@@ -7912,7 +7998,20 @@ a:focus {
   right: 0;
   height: 100%;
   box-sizing: border-box;
-  padding: 60px 90px 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.player-controls.right-player-controler div{
+  display:none;
 }
 
 .player-controls.right-player-controler span {
@@ -8474,7 +8573,7 @@ a:focus {
 }
 
 .mobile-popup {
-  display: none;
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
@@ -8566,6 +8665,12 @@ a:focus {
 
 .player-wrap {
   position: relative;
+}
+
+@media screen and (max-width: 690px) {
+  .player-wrap {
+    margin:0 0 10px;
+  }
 }
 
 .fullscreen {
@@ -9471,83 +9576,73 @@ html.no-scroll {
 }
 
 .article-heading {
-    height: 274px;
+    padding:40px 0 0 0;
     position: relative;
-    overflow: hidden;
+    margin: 0 0 40px
 }
 
-.article-heading-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  box-shadow: inset 1px -153px 138px 0 rgba(0,0,0,.8);
-  padding: 0 0 20px;
+@media screen and (max-width: 767px) {
+    .article-heading {
+        padding:10px 0 0 0;
+        margin:0 0 15px;
+    }
 }
 
 .article-heading-title {
-    max-width:960px;
-    color: #fff;
-    font-size: 42px;
-    margin-bottom: 25px;
-    padding: 0 15px;
-    text-align: center;
+    font-size: 24px;
+    line-height:34px;
+    color:#465156;
+    font-weight:bold;
+    margin-bottom: 20px;
 }
 
-@media screen and (max-width: 1024px){
-  .article-heading-title{
-    font-size: 38px;
-  }
+@media screen and (max-width: 767px) {
+    .article-heading-title {
+        font-size:18px;
+        line-height:24px;
+    }
 }
 
 .article-heading img {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
+    width:100%;
+    height:auto;
 }
 
 .article-heading-list {
-    color: #fff;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+    margin:0 0 30px;
+}
+
+@media screen and (max-width: 767px) {
+    .article-heading-list {
+        margin:0 0 20px;
+    }
 }
 
 .article-heading-list li {
     position: relative;
-    padding: 0 10px;
+    padding: 0 10px
 }
 
 .article-heading-list li:before {
-	content: "";
-	border-radius: 50%;
+    content: "";
+    border-radius: 50%;
     position: absolute;
     top: 50%;
     left: -2px;
     width: 4px;
     height: 4px;
-    background: #fff;
+    background: #60686A;
     -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
+    transform: translateY(-50%)
 }
-
-.article-heading-list li:first-child:before{
-	display: none;
+.article-heading-list li:first-child{
+    padding: 0 10px 0 0;
+}
+.article-heading-list li:first-child:before {
+    display: none
 }
 
 .img-mobile{
@@ -9562,15 +9657,6 @@ html.no-scroll {
 		display: block;
 		width: 100%;
 		height: 100%;
-	}
-	.article-heading-title{
-		font-size: 32px;
-	}
-}
-
-@media screen and (max-width: 479px){
-	.article-heading-title{
-		font-size: 30px;
 	}
 }
 
@@ -10470,17 +10556,16 @@ abbr[title] {
 
 .qa strong,
 .widget.faq strong{
-  font-size:16px;
+  font-size:14px;
   line-height:28px;
-  display:block;
-  margin:0 0 -20px;
+  margin:0 0 5px;
 }
 @media screen and (max-width: 767px) {
   .qa strong,
   .widget.faq strong{
     font-size:14px;
     line-height:22px;
-    margin:0 0 -10px;
+    margin:0 0 5px;
   }
 }
 .qa h2{

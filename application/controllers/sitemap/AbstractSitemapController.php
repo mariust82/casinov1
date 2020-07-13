@@ -1,12 +1,12 @@
 <?php
+require_once 'application/models/entities/SitemapNode.php';
+
 abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
 {
     public function run()
     {
         $this->init();
-        $this->response->attributes("pages", $this->getPages());
-        $this->response->attributes("lastMod", $this->getLastMod());
-        $this->response->attributes("priority", $this->getPriority());
+        $this->response->attributes("sitemap", $this->getPages());
     }
     
     protected function init() {}
@@ -16,14 +16,20 @@ abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
         $urlPattern = $this->getUrlPattern();
         $protocol = $this->getProtocol();
         $items = $this->getItems();
-        $pages = array();
+        $output = array();
         foreach ($items as $name) {
+            $sitemap = new SitemapNode();
             if(strtolower($name) == "slots") {
-                $pages[] = $protocol . "://" . $this->request->getServer()->getName() . "/" . strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars('classic-'.$name), $urlPattern)));
+                $sitemap->loc = $protocol . "://" . $this->request->getServer()->getName() . "/" . strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars('classic-'.$name), $urlPattern)));
             }else
-                $pages[] = $protocol."://".$this->request->getServer()->getName()."/".strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars($name), $urlPattern)));
+                $sitemap->loc = $protocol."://".$this->request->getServer()->getName()."/".strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars($name), $urlPattern)));
+            $sitemap->changefreq = 'daily' ;
+            $sitemap->priority = $this->getPriority();
+            $sitemap->lastmod =  $this->getLastMod();
+            $output[] = $sitemap;
         }
-        return $pages;
+
+        return $output;
     }
 
     private function getProtocol()

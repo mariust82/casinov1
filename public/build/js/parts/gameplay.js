@@ -27,24 +27,13 @@ $(function () {
                 setExtraElement('width');
                 var widthBasedOnHeight = height / ratio;
                 //if we have extra elements, take in to account
-                //var spaceReq = (width < mobileWidth ? 1 : 2);
                 var spaceReq = 2;
                 var extraElWidth = $extraEl.outerWidth(true);
                 if (widthBasedOnHeight + extraElWidth * spaceReq > width) {
-                    //if (width < mobileWidth) {
-                    //var newWidthWithExtraEl = widthBasedOnHeight + (width - widthBasedOnHeight - extraElWidth * spaceReq);
-                    //setIframeAttr(newWidthWithExtraEl, newWidthWithExtraEl * ratio, extraElWidth);
-                    //} else {
                     var newWidthWithExtraEl = widthBasedOnHeight + (width - widthBasedOnHeight - extraElWidth * 2);
                     setIframeAttr(newWidthWithExtraEl, newWidthWithExtraEl * ratio);
-                    //}
                 } else {
-                    //if (width < mobileWidth) {
-                    //var extraSpace = width - widthBasedOnHeight;
-                    //setIframeAttr(widthBasedOnHeight, height, extraSpace);
-                    //} else {
                     setIframeAttr(widthBasedOnHeight, height);
-                    //}
                 }
             }
         };
@@ -54,7 +43,6 @@ $(function () {
             $iframe.css({'margin-right': marginRight}).width(Math.round(width)).height(Math.round(height));
         }
     };
-
 
     var GameplayResize = function (configuration) {
         //Set domain same as gameplay domain for communication between iframe - site
@@ -91,15 +79,17 @@ $(function () {
                 toogleFullscreen();
             });
 
-            setTimeout(function () {
+            $iframe.one('load', function () {
                 addMobileEvent();
                 //add config function trigger
                 if(undefined !== configuration.triggerOnPlay){
-                    $(configuration.events.fullscreen).on('click', function () {
+                    var iframePlayButton = $iframe.contents().find(configuration.events.play);
+                    $(iframePlayButton).on('click', function () {
                         configuration.triggerOnPlay();
                     });
                 }
-            }, 500);
+            });
+
         }
 
         function addMobileEvent() {
@@ -126,17 +116,6 @@ $(function () {
             $iframe.attr('src', src);
 
         }
-
-        // function getExtraHeight() {
-        //     //Calculate the height of extra elements
-        //     var $elements = $iframe.parent().children().not(iframe);
-        //     var elHeight = 0;
-        //     $elements.each(function () {
-        //         elHeight += $(this).outerHeight(true);
-        //     });
-        //     return elHeight;
-
-        // }
 
         //Toogle fullscreen state
         function toogleFullscreen() {
@@ -229,8 +208,5 @@ $(function () {
         }
     };
 
-    //if ($iframe.length > 0) {
-        new GameplayResize(gameplayConfig);
-    //}
-
+    new GameplayResize(gameplayConfig);
 });

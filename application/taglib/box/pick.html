@@ -12,18 +12,19 @@
                 <a href="/reviews/${normalize(${result.name})}-review" class="pick-header">
                     <span class="pick-flag">
                         <:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
-                        <img class="${accepted_class}" src="/public/build/images/flags/${data.country.code}.png" width="20" height="14" alt="${data.country.code}">
+                        <img class="${accepted_class} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="14" alt="${data.country.code}">
                     </span>
                     <span class="pick-title">${result.name}</span>
                 </a>
                 <div class="pick-body">
                     <a href="/reviews/${normalize(${result.name})}-review" class="pick-img">
-                        <img width="98" height="65" src="${result.logo_small}" onerror="this.onerror=null; this.src='/public/build/images/default_casino_logo.png'" alt="${result.name} Logo">
+                        <img width="98" height="65" class="lazy_loaded" data-src="${getCasinoLogo(${result.code}, 85, 56)}" onerror="this.onerror=null; this.src='/public/build/images/default_casino_logo.png'" alt="${result.name} Logo">
                     </a>
                     <div class="pick-buttons">
                         <:if test="!empty(${result.bonus_free.amount})">
-                          <div class="btn-round ${(${data.is_mobile}?'':'js-tooltip-content')}" data-name="${result.name}" data-is-free="1">${result.bonus_free.amount} ${result.bonus_free.bonus_type_Abbreviation}</div>
-                          <div class="btn-round ${(${data.is_mobile}?'':'js-tooltip-content')}" data-name="${result.name}" data-is-free="0">${result.bonus_first_deposit.amount}</div>
+                          <div class="btn-round ${(${data.is_mobile}?'':'js-tooltip-content')}" data-name="${result.name}" data-is-free="1">${checkForAbbr(${result.bonus_free.amount})} ${getAbbreviation(${result.bonus_free.type}, checkForAbbr(${result.bonus_free.amount}) )}</div>
+                        </:if>
+                          <div class="btn-round ${(${data.is_mobile}?'':'js-tooltip-content')}" data-name="${result.name}" data-is-free="0">${checkForAbbr(${result.bonus_first_deposit.amount})}</div>
                     </div>
                     <a href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank" class="btn btn-full-width"><span>VISIT</span></a>
                 </div>
