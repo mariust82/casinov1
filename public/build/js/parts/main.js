@@ -391,7 +391,7 @@ var initImageLazyLoad = function () {
         }
 
         $(window).on('scroll mousemove', function(){
-            loadScripts(['tooltipster', 'swiper']);
+            loadScripts(['tooltipster', 'swiper', 'jquery-select2']);
             $(window).unbind("scroll mousemove");
             new SearchPanel($('.header'));
             initTooltipseter();
@@ -401,7 +401,7 @@ var initImageLazyLoad = function () {
             loadScripts(['swiper']);
         }
 
-        loadScripts(['jquery-select2', 'Slider']);
+        loadScripts(['Slider']);
         initImageLazyLoad();
     });
 
