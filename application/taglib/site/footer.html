@@ -10,7 +10,7 @@
        <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'blog'">
            <script src="/public/build/js/compilations/blog.js?ver=${data.version}"></script>
        <:else>
-           <script defer src="/public/build/js/compilations/main.js?ver=${data.version}"></script>
+           <script async src="/public/build/js/compilations/main.js?ver=${data.version}"></script>
         </:if>
 <:else/>
     <script src="/public/build/js/compilations/bundle.js?ver=${data.version}"></script>
