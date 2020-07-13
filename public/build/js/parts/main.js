@@ -134,12 +134,18 @@ var initImageLazyLoad = function () {
     var ww = $(window).width();
 
     $(document).ready(function () {
-        $(window).on('scroll mousemove', function(){
+        $(document).on('scroll mousemove', function(){
+            alert('moved');
             loadScripts(['tooltipster', 'swiper', 'jquery-select2', 'bindings']);
-            $(window).unbind("scroll mousemove");
+            $(document).unbind("scroll mousemove");
             initToggleMenu();
             initSearch();
             initMobileBonusesPop(ww);
+
+            if ($('#filters').length > 0) {
+                new Filters($('#filters'));
+            }
+            new newsletter($('.subscribe'));
         });
 
         initSite();
@@ -437,15 +443,6 @@ var initImageLazyLoad = function () {
             window.history.back();
             e.preventDefault();
         });
-
-        $(window).on('scroll mousemove', function(){
-            $(window).unbind("scroll mousemove");
-            if ($('#filters').length > 0) {
-                new Filters($('#filters'));
-            }
-            new newsletter($('.subscribe'));
-        });
-
     }
 
     var SearchPanel = function (obj) {
