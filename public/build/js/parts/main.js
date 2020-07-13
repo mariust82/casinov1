@@ -118,9 +118,9 @@ var initImageLazyLoad = function () {
         $(window).on('scroll mousemove', function(){
             loadScripts(['tooltipster', 'swiper', 'jquery-select2', 'bindings']);
             $(window).unbind("scroll mousemove");
+            initToggleMenu();
         });
 
-        initToggleMenu();
         initSite();
         initMobileMenu();
         menuHoverAction();
