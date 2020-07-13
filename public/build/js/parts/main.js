@@ -130,12 +130,11 @@ var initImageLazyLoad = function () {
     $(document).ready(function () {
         $(document).on('scroll mousemove', function(){
             alert('moved');
-            loadScripts(['tooltipster', 'jquery-select2', 'bindings']);
+            loadScripts(['tooltipster', 'bindings', 'swiper', 'jquery-select2']);
             $(document).unbind("scroll mousemove");
             initToggleMenu();
             initSearch();
             initMobileBonusesPop(ww);
-
             new SearchPanel($('.header'));
             initTooltipseter();
 
