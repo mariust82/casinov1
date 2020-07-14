@@ -48,7 +48,7 @@ function loadScripts(_scripts) {
     var version = $('.controller_main').data("version");
     $.each(_scripts, function(index, script) {
         if (!$("script[src='/public/build/js/compilations/"+script+".js?v="+version+"']").length) {
-            $("body").append($('<script defer type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js?v='+version+'"></script>"'));
+            $("body").append($('<script defer type="text/javascript" src="/public/build/js/compilations/'+script+'.js?v='+version+'"></script>"'));
         }
     });
 }
