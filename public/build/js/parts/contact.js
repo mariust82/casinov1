@@ -1,7 +1,7 @@
-new handleContactUs($('.contact-form'));
-function handleContactUs(obj) {
-    var _wrap = obj,
-        _field_name = $('.contact-name'),
+new handleContactUs();
+
+function handleContactUs() {
+    var _field_name = $('.contact-name'),
         _field_email = $('.contact-email'),
         _field_message = $('.contact-message'),
         _contact_btn = $('.contact-btn'),
@@ -70,11 +70,10 @@ function handleContactUs(obj) {
                         _onEvents();
                     }
                     else if (response.status == "error") {
-                        var arr = JSON.parse(response.body);
                         _server_error.show();
                     }
                 },
-                error: function (XMLHttpRequest) {
+                error: function () {
                     console.error("Could not send message!");
                 }
             });
@@ -91,9 +90,11 @@ function handleContactUs(obj) {
                 }
             });
         };
+
     function validateEmail(email) {
         var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
         return pattern.test(email);
     }
+
     _onEvents();
 }

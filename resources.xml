@@ -6,9 +6,16 @@
         <file name="global_js/jquery-2.1.3.min" />
         <file name="global_js/image-defer" />
         <file name="assets/jquery-bar"/>
-        <file name="assets/search-tracker"/>
+        <file name="vote"/>
         <file name="main"/>
         <file name="casino_review"/>
+    </file>
+    <file name="blog">
+        <file name="global_js/jquery-2.1.3.min" />
+        <file name="global_js/image-defer" />
+        <file name="assets/jquery-bar"/>
+        <file name="vote"/>
+        <file name="main"/>
     </file>
     <file name="contact">
         <file name="global_js/jquery-2.1.3.min" />
@@ -18,7 +25,6 @@
     <file name="gameplay">
         <file name="global_js/jquery-2.1.3.min" />
         <file name="global_js/image-defer" />
-        <file name="assets/search-tracker"/>
         <file name="main"/>
         <file name="gameplay"/>
     </file>
@@ -26,7 +32,6 @@
         <file name="global_js/jquery-2.1.3.min" />
         <file name="global_js/image-defer" />
         <file name="assets/jquery-bar"/>
-        <file name="assets/search-tracker"/>
         <file name="main"/>
     </file>
     <!-- bundle used only for local dev -->

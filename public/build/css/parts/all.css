@@ -4047,7 +4047,8 @@ a:focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .list-rating.no-score .list-rating-wrap .list-rating-text {
+  .list-rating.no-score .list-rating-wrap .list-rating-text,
+  .list-rating.no-score .list-rating-text{
     background: #cecece;
   }
 }
@@ -4055,6 +4056,24 @@ a:focus {
 @media screen and (max-width: 1023px) {
   .list-item .list-rating-text {
     display: none;
+  }
+  .list-rating{
+    height: 21px !important;
+    width: 32px !important;
+    text-indent: -9999px !important;
+  }
+  .list-rating .list-rating-score{
+    width: 30px !important;
+    height: 19px !important;
+    text-indent: initial !important;
+  }
+
+  .list-rating.no-score .list-rating-score-mobile{
+    position: absolute !important;
+  }
+
+  .list-rating .list-rating-score{
+    text-indent: initial;
   }
 }
 
@@ -4065,6 +4084,18 @@ a:focus {
 @media screen and (max-width: 690px) {
   .list {
     margin: 10px 0 0 0;
+  }
+
+  .list-rating{
+    width: 24px !important;
+    height: 17px !important;
+    text-indent: -9999px !important;
+  }
+
+  .list-rating .list-rating-score{
+    width: 22px !important;
+    height: 15px !important;
+    text-indent: initial !important;
   }
 }
 
@@ -4105,6 +4136,10 @@ a:focus {
   text-transform: uppercase;
 }
 
+.flag-spacing{
+  margin-right: 8.5px;
+}
+
 @media screen and (max-width: 690px) {
   .new-casino-text {
     font-size: 9px;
@@ -4116,12 +4151,43 @@ a:focus {
   position: absolute;
   top: 0px;
   left: -8px;
-  content: '';
+  content: 'NEW';
   border-bottom: 16px solid #4AB802;
   border-left: 16px solid transparent;
   border-right: 16px solid transparent;
   height: 0;
   width: 19px;
+
+  color: white;
+  font-size: 11px;
+  text-align: -moz-left;
+  font-stretch: condensed;
+  font-weight: bold;
+  font-family: "Open Sans Condensed";
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.list-rating-score {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 19px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 19px;
+  -ms-flex-item-align: stretch;
+  -ms-grid-row-align: stretch;
+  align-self: stretch;
+  width: 20px;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  background: #5DC916;
+  text-align: center;
+  margin-right: 5px;
+}
+.casino-review .list-rating-score{
+  height: 27px;
 }
 
 @media screen and (max-width: 690px) {
@@ -4208,7 +4274,24 @@ a:focus {
   }
 }
 
-.list-rating-wrap {
+.list-rating-wrap{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid #5dc916;
+  font-size: 10px;
+  text-align: center;
+  color: #676767;
+}
+
+
+.list-rating{
+  position: relative;
+  height: 20px;
+  padding-left: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4216,33 +4299,33 @@ a:focus {
   -ms-flex-align: center;
   align-items: center;
   border: 1px solid #5DC916;
+  font-size: 10px;
+  text-align: center;
+  color: #676767;
+  justify-content: center;
 }
 
+.casino-review .list-rating{
+  font-size: 14px;
+  height: 28px;
+}
+
+
+
 @media screen and (max-width: 1023px) {
-  .list-rating-wrap {
+  .list-rating-wrap,
+  .list-rating{
     border-radius: 2px;
   }
 }
 
-.list-rating-score {
-  color: #fff;
-  font-size: 12px;
-  line-height: 17px;
-  -ms-flex-item-align: stretch;
-  -ms-grid-row-align: stretch;
-  align-self: stretch;
-  width: 20px;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  background: #5DC916;
-  text-align: center;
-}
 
 .list-rating.no-score .list-rating-score {
   background: #A8AEC8;
 }
 
-.list-rating.very-good .list-rating-wrap {
+.list-rating.very-good .list-rating-wrap,
+.list-rating.very-good{
   border: 1px solid #96CB00;
 }
 
@@ -4250,7 +4333,8 @@ a:focus {
   background: #96CB00;
 }
 
-.list-rating.good .list-rating-wrap {
+.list-rating.good .list-rating-wrap,
+.list-rating.good{
   border: 1px solid #E9CA00;
 }
 
@@ -4258,7 +4342,8 @@ a:focus {
   background: #E9CA00;
 }
 
-.list-rating.poor .list-rating-wrap {
+.list-rating.poor .list-rating-wrap,
+.list-rating.poor{
   border: 1px solid #F17D0A;
 }
 
@@ -4266,16 +4351,19 @@ a:focus {
   background: #F17D0A;
 }
 
-.list-rating.terrible .list-rating-wrap {
+.list-rating.terrible .list-rating-wrap,
+.list-rating.terrible{
   border: 1px solid #DB2424;
 }
 
-.list-rating.no-score .list-rating-wrap {
+.list-rating.no-score .list-rating-wrap,
+.list-rating.no-score{
   border: 1px solid #A8AEC8;
 }
 
 @media screen and (max-width: 1023px) {
-  .list-rating.no-score .list-rating-wrap {
+  .list-rating.no-score .list-rating-wrap,
+  .list-rating.no-score{
     background: #A8AEC8;
     color: #fff;
   }
@@ -6102,7 +6190,8 @@ a:focus {
   }
 }
 
-.casino-review .list-rating-wrap {
+.casino-review .list-rating-wrap,
+.casino-review .list-rating{
   border-radius: 2px;
 }
 
@@ -8481,6 +8570,18 @@ a:focus {
     -ms-word-break: break-word;
     word-break: break-word;
   }
+
+  .list-item-cell .btn-round:nth-child(even){
+    margin: 5px 0 0 0;
+    -ms-word-break: break-word;
+    word-break: break-word;
+  }
+}
+
+.button-wrapper{
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
 }
 
 .mobile-popup {

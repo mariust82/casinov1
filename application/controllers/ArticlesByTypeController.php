@@ -36,7 +36,8 @@ class ArticlesByTypeController extends ArticlesController
                 $object->body_title = "Online Casino Guides";
                 break;
         }
-        
+
         $this->response->attributes("page_info", $object);
+        $this->response->attributes("page_type", 'blog');
     }
 }
