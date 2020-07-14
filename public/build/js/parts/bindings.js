@@ -1337,7 +1337,7 @@ var SearchPanel = function (obj) {
         },
         getItemPattern = function (itemData) {
             var pattern = '<li>\
-                    <a class="search-results-label" href=' + itemData.link.replace("/games/", "") + '"/">\
+                    <a class="search-results-label" href=' + itemData.link.replace("/games/", "") + '">\
                         ' + itemData.name + '\
                     </a>\
                 </li>';
