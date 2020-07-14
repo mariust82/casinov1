@@ -260,10 +260,6 @@ var initImageLazyLoad = function () {
         });
     }
 
-    function lockScreen() {
-        $('html, body').addClass('no-scroll');
-    }
-
     function initMobileLayoutOfTable() {
         var _table = $('.plain-text table, .widget.table table');
         var _tr = _table.find('tr');
@@ -407,10 +403,6 @@ var initImageLazyLoad = function () {
             var vh = window.innerHeight * 0.01;
             document.documentElement.style.setProperty('--vh', vh + 'px');
         });
-    }
-
-    function unlockScreen() {
-        $('html, body').removeClass('no-scroll');
     }
 
     function validateEmail(email) {

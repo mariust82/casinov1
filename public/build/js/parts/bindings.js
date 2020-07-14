@@ -81,6 +81,14 @@ contentTooltipConfig = {
     }
 };
 
+function unlockScreen() {
+    $('html, body').removeClass('no-scroll');
+}
+
+function lockScreen() {
+    $('html, body').addClass('no-scroll');
+}
+
 function newsletter(obj) {
     var _wrap = obj,
         _field_email = _wrap.find('.news-email'),
