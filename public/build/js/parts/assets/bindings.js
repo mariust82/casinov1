@@ -341,85 +341,6 @@ function initMobileMenu() {
     });
 }
 
-function initExpandingText() {
-    $.fn.moreLines = function (options) {
-
-        "use strict";
-
-        this.each(function () {
-
-            var element = $(this),
-                baseclass = "b-morelines_",
-                basejsclass = "js-morelines_",
-                currentclass = "section",
-                singleline = parseFloat(element.css("line-height")),
-                auto = 1,
-                fullheight = element.innerHeight(),
-                settings = $.extend({
-                    linecount: auto,
-                    baseclass: baseclass,
-                    basejsclass: basejsclass,
-                    classspecific: currentclass,
-                    buttontxtmore: "more lines",
-                    buttontxtless: "less lines",
-                    animationspeed: auto
-                }, options),
-                ellipsisclass = settings.baseclass + settings.classspecific + "_ellipsis",
-                buttonclass = settings.baseclass + settings.classspecific + "_button",
-                wrapcss = settings.baseclass + settings.classspecific + "_wrapper",
-                wrapjs = settings.basejsclass + settings.classspecific + "_wrapper",
-                wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs).css({'max-width': element.css('width')}),
-                linescount = singleline * settings.linecount;
-
-            element.wrap(wrapper);
-
-            if (element.parent().not(wrapjs)) {
-
-                if (fullheight > linescount) {
-
-                    element.addClass(ellipsisclass).css({'min-height': linescount, 'max-height': linescount, 'overflow': 'hidden'});
-
-                    var moreLinesButton = $("<div>", {
-                        "class": buttonclass,
-                        click: function () {
-
-                            element.toggleClass(ellipsisclass);
-                            $(this).toggleClass(buttonclass + '_active');
-
-                            if (element.css('max-height') !== 'none') {
-                                element.css({'height': linescount, 'max-height': ''}).animate({height: '100%'}, settings.animationspeed, function () {
-                                    moreLinesButton.html(settings.buttontxtless);
-                                });
-
-                            } else {
-                                element.animate({height: linescount}, settings.animationspeed, function () {
-                                    moreLinesButton.html(settings.buttontxtmore);
-                                    element.css('max-height', linescount);
-                                });
-                            }
-                        },
-                        html: settings.buttontxtmore
-                    });
-
-                    element.after(moreLinesButton);
-
-                }
-            }
-        });
-
-        return this;
-    };
-
-    $('.js-condense').moreLines({
-        linecount: 3,
-        baseclass: 'js-condense',
-        basejsclass: 'js-condense',
-        classspecific: '_readmore',
-        buttontxtmore: "Read More",
-        buttontxtless: "Read Less",
-        animationspeed: 250
-    });
-}
 
 function initToggleMenu() {
     var targetNode = document.querySelector('.header-menu__list-holder');
@@ -1418,7 +1339,6 @@ var SearchPanel = function (obj) {
 };
 
 var initSite = function () {
-    initExpandingText();
     copyToClipboard();
     checkStringLength($('.list .bonus-box'), 21);
     checkStringLength($('.bonus-item .bonus-box'), 33);
