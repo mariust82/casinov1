@@ -46,7 +46,10 @@ abstract class CasinosListController extends BaseController
         $results["total"] = $object->getTotal();
         $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->attributes("sort_criteria"), 1, $this->limit) : array());
 
+        var_dump($results);
+        die();
         return $results;
+
     }
 
     abstract protected function getSelectedEntity();

@@ -13,7 +13,6 @@ class CasinosList
     public function __construct(CasinoFilter $filter)
     {
         $this->filter = $filter;
-        //TODO: CHANGE BACK
         $this->helper = new Casinohelper();
     }
 
@@ -41,7 +40,6 @@ class CasinosList
             $object->rating = ceil($row["average_rating"]);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
-            $object->date_formatted = $row["date_established"];
             $object->status = $row["status_id"];
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
