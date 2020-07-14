@@ -112,7 +112,6 @@ function AddingReview(obj) {
         _request = new XMLHttpRequest();
 
     _prepReview = function (_self) {
-        alert('ss');
         var parent = _self;
         _field_name = parent.find('input[name=name]');
         _field_email = parent.find('input[name=email]');
