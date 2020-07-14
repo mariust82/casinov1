@@ -293,6 +293,132 @@ function initSearch() {
     });
 }
 
+function goToPosition(_position) {
+    $('html, body').animate({
+        scrollTop: _position
+    }, 5);
+}
+
+function initMobileMenu() {
+    var btn = $('#js-mobile-menu-opener, #js-mobile-menu-close');
+    var menu = $('.header-menu');
+    var position = null;
+    var _window = $('html, body');
+
+    btn.on('click', function (e) {
+        $('body').toggleClass('menu-opened');
+        btn.toggleClass('active');
+
+        if (checkIfIsMobileDevice()) {
+            position = $(window).scrollTop();
+            if (_window.hasClass('no-scroll')) {
+                lockScreen();
+            } else {
+                unlockScreen();
+                goToPosition(position);
+            }
+
+            $('.expand-menu__list-item.active ').closest('.expand-holder').addClass('opened');
+
+        }
+
+        $(document).on('click touchstart', function (e) {
+            if ($(e.target).closest(menu).length == 0 && $(e.target).closest(btn).length == 0) {
+                $("body").removeClass('menu-opened');
+                if (checkIfIsMobileDevice()) {
+                    unlockScreen();
+
+                    goToPosition(position);
+                }
+                btn.removeClass('active');
+            }
+        });
+        e.preventDefault();
+
+
+    });
+}
+
+function initExpandingText() {
+    $.fn.moreLines = function (options) {
+
+        "use strict";
+
+        this.each(function () {
+
+            var element = $(this),
+                baseclass = "b-morelines_",
+                basejsclass = "js-morelines_",
+                currentclass = "section",
+                singleline = parseFloat(element.css("line-height")),
+                auto = 1,
+                fullheight = element.innerHeight(),
+                settings = $.extend({
+                    linecount: auto,
+                    baseclass: baseclass,
+                    basejsclass: basejsclass,
+                    classspecific: currentclass,
+                    buttontxtmore: "more lines",
+                    buttontxtless: "less lines",
+                    animationspeed: auto
+                }, options),
+                ellipsisclass = settings.baseclass + settings.classspecific + "_ellipsis",
+                buttonclass = settings.baseclass + settings.classspecific + "_button",
+                wrapcss = settings.baseclass + settings.classspecific + "_wrapper",
+                wrapjs = settings.basejsclass + settings.classspecific + "_wrapper",
+                wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs).css({'max-width': element.css('width')}),
+                linescount = singleline * settings.linecount;
+
+            element.wrap(wrapper);
+
+            if (element.parent().not(wrapjs)) {
+
+                if (fullheight > linescount) {
+
+                    element.addClass(ellipsisclass).css({'min-height': linescount, 'max-height': linescount, 'overflow': 'hidden'});
+
+                    var moreLinesButton = $("<div>", {
+                        "class": buttonclass,
+                        click: function () {
+
+                            element.toggleClass(ellipsisclass);
+                            $(this).toggleClass(buttonclass + '_active');
+
+                            if (element.css('max-height') !== 'none') {
+                                element.css({'height': linescount, 'max-height': ''}).animate({height: '100%'}, settings.animationspeed, function () {
+                                    moreLinesButton.html(settings.buttontxtless);
+                                });
+
+                            } else {
+                                element.animate({height: linescount}, settings.animationspeed, function () {
+                                    moreLinesButton.html(settings.buttontxtmore);
+                                    element.css('max-height', linescount);
+                                });
+                            }
+                        },
+                        html: settings.buttontxtmore
+                    });
+
+                    element.after(moreLinesButton);
+
+                }
+            }
+        });
+
+        return this;
+    };
+
+    $('.js-condense').moreLines({
+        linecount: 3,
+        baseclass: 'js-condense',
+        basejsclass: 'js-condense',
+        classspecific: '_readmore',
+        buttontxtmore: "Read More",
+        buttontxtless: "Read Less",
+        animationspeed: 250
+    });
+}
+
 function initToggleMenu() {
     var targetNode = document.querySelector('.header-menu__list-holder');
     if (targetNode) {
@@ -334,6 +460,19 @@ function initToggleMenu() {
             }
         }, true);
     }
+}
+
+function searchDropOpen(_drop) {
+    setTimeout(function () {
+        _drop.slideDown('fast');
+    }, 300);
+}
+
+function searchDropClose(_drop) {
+    _drop.slideUp('fast');
+    setTimeout(function () {
+        $('body').removeClass('search-opened');
+    }, 300);
 }
 
 function sliderInit() {
@@ -421,6 +560,85 @@ function refresh() {
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
     initMobileBonusesPop(ww);
+}
+
+function copyToClipboard() {
+    window.Clipboard = (function (window, document, navigator) {
+        var textArea,
+            copy;
+
+        function isOS() {
+            return navigator.userAgent.match(/ipad|iphone/i);
+        }
+
+        function createTextArea(text, self) {
+            textArea = document.createElement('textArea');
+            if (isOS()) {
+                textArea.setAttribute('readonly', 'readonly');
+            }
+            textArea.value = text;
+            self.parent().append(textArea);
+        }
+
+        function selectText() {
+            var range,
+                selection;
+
+            if (isOS()) {
+                range = document.createRange();
+                range.selectNodeContents(textArea);
+                selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+                textArea.setSelectionRange(0, 999999);
+            } else {
+                textArea.select();
+            }
+        }
+
+        function copyToClipboard(self) {
+            document.execCommand('copy');
+            self.parent().find(textArea).remove();
+        }
+
+        copy = function (text, self) {
+            var strippedText = strip(text);
+            createTextArea(strippedText, self);
+            selectText();
+            copyToClipboard(self);
+        };
+
+        return {
+            copy: copy
+        };
+    })(window, document, navigator);
+
+    $('.js-copy-to-clip').on('click touch', function (e) {
+        Clipboard.copy($(this).data('code'), $(this));
+        e.preventDefault();
+    });
+}
+
+function initCustomSelect() {
+    if(!$('.js-filter').length)  return;
+    var _filterOptions = $('.js-filter > option');
+    $('.js-filter').select2MultiCheckboxes({
+        templateSelection: function () {
+            return "Game software";
+        }
+    })
+    _filterOptions.prop("selected", false);
+}
+
+function checkStringLength(box, num) {
+    $(box).each(function () {
+        var child = $(this).find('.list-item-trun');
+        var bubble = $(this).find('.bubble');
+
+        if (child.text().length >= num) {
+            bubble.css('visibility', 'visible');
+        }
+    });
 }
 
 function initTooltipseter() {
@@ -1196,3 +1414,23 @@ var SearchPanel = function (obj) {
 
     _construct();
 };
+
+var initSite = function () {
+    initExpandingText();
+    copyToClipboard();
+    checkStringLength($('.list .bonus-box'), 21);
+    checkStringLength($('.bonus-item .bonus-box'), 33);
+    grayscaleIE();
+
+    initMobileMenu();
+
+    $('.message .close').on('click', function (e) {
+        $(this).parent().fadeOut();
+        e.preventDefault();
+    });
+
+    $('.js-history-back').on('click', function (e) {
+        window.history.back();
+        e.preventDefault();
+    });
+}
