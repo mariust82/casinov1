@@ -134,7 +134,7 @@ var initImageLazyLoad = function () {
             }
             new newsletter($('.subscribe'));
         });
-        
+
         initExpandingText();
         menuHoverAction();
         setStyleProps();
