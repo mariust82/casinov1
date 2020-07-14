@@ -47,7 +47,7 @@ function checkIfIsMobileDevice() {
 function loadScripts(_scripts) {
     var version = $('.controller_main').data("version");
     $.each(_scripts, function(index, script) {
-        if (!$("script[src='/public/build/js/compilations/assets/"+script+".js?v="+version+"']").length) {
+        if (!$("script[src='/public/build/js/compilations/"+script+".js?v="+version+"']").length) {
             $("body").append($('<script defer type="text/javascript" src="/public/build/js/compilations/assets/'+script+'.js?v='+version+'"></script>"'));
         }
     });
@@ -119,7 +119,7 @@ var initImageLazyLoad = function () {
     $(document).ready(function () {
         //Load Defer Scripts and Binding
         $(document).on('scroll mousemove', function(){
-            loadScripts(['bindings', 'tooltipster', 'swiper', 'jquery-select2']);
+            loadScripts(['bindings', 'assets/tooltipster', 'assets/swiper', 'assets/jquery-select2']);
             $(document).unbind("scroll mousemove");
 
             initSite();

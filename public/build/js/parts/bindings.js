@@ -341,7 +341,6 @@ function initMobileMenu() {
     });
 }
 
-
 function initToggleMenu() {
     var targetNode = document.querySelector('.header-menu__list-holder');
     if (targetNode) {
@@ -578,7 +577,7 @@ function bindButtons(){
             if($('.search-tag-manager').length  && $(this).val().trim() == search_val) return;
             if (search_val.length > 2 && search_val != searched_value) {
                 searched_value = search_val;
-                loadScripts(['search-tracker']);
+                loadScripts(['assets/search-tracker']);
                 SearchTracker(search_val);
             }
         }
@@ -1323,7 +1322,7 @@ var SearchPanel = function (obj) {
         },
         getItemPattern = function (itemData) {
             var pattern = '<li>\
-                    <a class="search-results-label" href="/' + itemData.link.replace("/games/", "") + '">\
+                    <a class="search-results-label" href=' + itemData.link.replace("/games/", "") + '"/">\
                         ' + itemData.name + '\
                     </a>\
                 </li>';
