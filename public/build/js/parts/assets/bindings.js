@@ -1,3 +1,5 @@
+var ww = $(window).width();
+
 tooltipConfig = {
     trigger: 'click',
     maxWidth: 279,
