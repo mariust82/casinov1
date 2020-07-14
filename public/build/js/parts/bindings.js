@@ -541,6 +541,13 @@ function copyToClipboard() {
     });
 }
 
+//remove HTML tags from text
+function strip(html) {
+    var tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+}
+
 function initCustomSelect() {
     if(!$('.js-filter').length)  return;
     var _filterOptions = $('.js-filter > option');
