@@ -570,6 +570,169 @@ function initTooltipseter() {
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
 }
 
+function bindButtons(){
+    $('.search_input').on({
+        blur: function(e){
+            var search_val = $(this).val().trim();
+            if(isSearchResultEvent) return;
+            if($('.search-tag-manager').length  && $(this).val().trim() == search_val) return;
+            if (search_val.length > 2 && search_val != searched_value) {
+                searched_value = search_val;
+                loadScripts(['search-tracker']);
+                SearchTracker(search_val);
+            }
+        }
+    });
+
+    $('#search-all').on({
+        mousedown: function(){
+            isSearchResultEvent = true;
+        },
+        mouseup: function(){
+            isSearchResultEvent = false;
+        }
+    });
+
+    $('.js-more-games').click(function () {
+        $(this).addClass('loading');
+        var id = $(this).data('software');
+        var self = $(this);
+        console.dir('/games-by-software/' + GAME_CURR_PAGE);
+        _request = $.ajax({
+            url: '/games-by-software/' + GAME_CURR_PAGE,
+            data: {
+                page: GAME_CURR_PAGE,
+                software: id
+            },
+            dataType: 'html',
+            type: 'post',
+            success: function (data) {
+                setTimeout(function () {
+                    self.removeClass('loading');
+                    refresh();
+                }, 1000);
+                GAME_CURR_PAGE++;
+                $('.games-list').append(data);
+                if ($(self).data('total') === $('.games-list').children().length) {
+                    $(self).hide();
+                }
+            },
+            error: function (XMLHttpRequest) {
+                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                if (XMLHttpRequest.statusText != "abort") {
+                    console.log('err');
+                }
+            },
+            complete: function () {
+                BUSY_REQUEST = false;
+            }
+        });
+    });
+
+    $('.js-more-casinos').click(function () {
+        $(this).addClass('loading');
+        var key = $(this).data('key');
+        var self = $(this);
+        _request = $.ajax({
+            url: '/casinos-by-software/' + determineCasinoPage(key),
+            data: {
+                page: determineCasinoPage(key),
+                type: key,
+                software: $(self).data('software')
+            },
+            dataType: 'html',
+            type: 'post',
+            success: function (data) {
+                setTimeout(function () {
+                    self.removeClass('loading');
+                    refresh();
+                }, 1000);
+                raiseCasinoPage(key);
+                $(self).parent().prev().find('.list-body').append(data);
+                if ($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
+                    $(self).hide();
+                }
+            },
+            error: function (XMLHttpRequest) {
+                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                if (XMLHttpRequest.statusText != "abort") {
+                    console.log('err');
+                }
+            },
+            complete: function () {
+                BUSY_REQUEST = false;
+            }
+        });
+    });
+
+    $('.js-more-banking').click(function () {
+        $(this).addClass('loading');
+        var self = $(this);
+        _request = $.ajax({
+            url: '/casinos-by-banking/' + BEST_BANKING_PAGE,
+            data: {
+                page: BEST_BANKING_PAGE,
+                banking: $(self).data('banking')
+            },
+            dataType: 'html',
+            type: 'post',
+            success: function (data) {
+                setTimeout(function () {
+                    self.removeClass('loading');
+                    refresh();
+                }, 1000);
+                BEST_BANKING_PAGE++;
+                $(self).parent().prev().find('.list-body').append(data);
+                if ($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
+                    $(self).hide();
+                }
+            },
+            error: function (XMLHttpRequest) {
+                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                if (XMLHttpRequest.statusText != "abort") {
+                    console.log('err');
+                }
+            },
+            complete: function () {
+                BUSY_REQUEST = false;
+            }
+        });
+    });
+
+    $('.load-more').click(function () {
+        var _request = new XMLHttpRequest();
+        var category = $(this).data('category');
+        var self = $(this);
+        _request = $.ajax({
+            url: '/load-more/' + category + '/' + AJAX_CUR_PAGE,
+            data: {
+                page: AJAX_CUR_PAGE,
+                category: category
+            },
+            dataType: 'html',
+            type: 'post',
+            success: function (data) {
+                AJAX_CUR_PAGE++;
+                console.dir(data);
+                $('.cards-list-wrapper').append(data);
+                if ($(self).data('total') === $('.cards-list-wrapper').children().length) {
+                    $(self).hide();
+                }
+            },
+            error: function (XMLHttpRequest) {
+                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                if (XMLHttpRequest.statusText != "abort") {
+                    console.log('err');
+                    __this.closest(_obj).next('.action-field.not-valid').show();
+                }
+            },
+            complete: function () {
+                BUSY_REQUEST = false;
+            }
+        });
+    });
+}
+
 var Filters = function (obj) {
     var _obj = obj,
         _self = this,
