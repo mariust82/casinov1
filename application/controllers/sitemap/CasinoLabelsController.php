@@ -1,6 +1,6 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once 'application/models/dao/sitemap/CasinosSitemap.php';
+require_once 'application/models/dao/Casinos.php';
 
 class CasinoLabelsController extends AbstractSitemapController
 {
@@ -8,17 +8,12 @@ class CasinoLabelsController extends AbstractSitemapController
     private $rows;
     
     protected function init() {
-        $this->dao = new CasinosSitemap($this->request->attributes("country")->id);
-        $this->rows = $this->dao->getCasinosByLabelLastMod();
+        $this->dao = new Casinos();
     }
     
     protected function getItems()
     {
-        return array_keys($this->rows);
-    }
-    
-    protected function getLastMod() {
-        return array_values($this->rows);
+        return $this->dao->getAllByLabels();
     }
 
     protected function getUrlPattern()

@@ -37,4 +37,16 @@ class BankingMethods implements CasinoCounter
         ORDER BY t1.name ASC
         ")->toColumn();
     }
+    
+    public function getAllByDate()
+    {
+        return SQL("
+        SELECT t1.name, MAX(t3.date) AS sort_criteria
+        FROM banking_methods AS t1
+        INNER JOIN casinos__deposit_methods AS t2 ON t1.id = t2.banking_method_id
+        INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
+        WHERE t3.is_open = 1
+        GROUP BY t1.name
+        ORDER BY sort_criteria DESC, t1.id DESC")->toMap("name", "sort_criteria");
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once("application/models/dao/sitemap/GameManufacturersSitemap.php");
+require_once("application/models/dao/Games.php");
 
 class SoftwaresController extends AbstractSitemapController
 {
@@ -8,17 +8,12 @@ class SoftwaresController extends AbstractSitemapController
     private $rows;
     
     protected function init() {
-        $this->dao = new GameManufacturersSitemap($this->request->attributes("country")->id);
-        $this->rows = $this->dao->getGameManufacturersRows();
+        $this->dao = new Games();
     }
     
     protected function getItems()
     {
-        return array_keys($this->rows);
-    }
-    
-    protected function getLastMod() {
-        return array_values($this->rows);
+        return $this->dao->getAllBySoftware();
     }
 
     protected function getUrlPattern()

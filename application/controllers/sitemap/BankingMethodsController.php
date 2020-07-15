@@ -1,24 +1,18 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once("application/models/dao/sitemap/BankingSitemap.php");
+require_once("application/models/dao/BankingMethods.php");
 
 class BankingMethodsController extends AbstractSitemapController
 {
     private $dao;
-    private $rows;
     
     protected function init() {
-        $this->dao = new BankingSitemap($this->request->attributes("country")->id);
-        $this->rows = $this->dao->getBankingRows();
+        $this->dao = new BankingMethods();
     }
     
     protected function getItems()
     {
-        return array_keys($this->rows);
-    }
-    
-    protected function getLastMod() {
-        return array_values($this->rows);
+        return $this->dao->getAllByDate();
     }
 
     protected function getUrlPattern()

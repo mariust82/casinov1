@@ -1,11 +1,12 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once 'application/models/dao/sitemap/FeaturesSitemap.php';
+require_once 'application/models/dao/Casinos.php';
 class FeaturesController extends AbstractSitemapController
 {
     protected function getItems()
     {
-        return ["Ecogra Casinos"];
+        $dao = new Casinos();
+        return ["Ecogra Casinos"=>$dao->getLastModEcogra()];
     }
 
     protected function getUrlPattern()
@@ -17,10 +18,4 @@ class FeaturesController extends AbstractSitemapController
     {
         return "0.9";
     }
-
-    protected function getLastMod() {
-        $dao = new FeaturesSitemap($this->request->attributes("country")->id);
-        return $dao->getLastMod();
-    }
-
 }

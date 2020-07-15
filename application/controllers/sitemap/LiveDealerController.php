@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Liviu
- * Date: 23-Jul-19
- * Time: 11:20 AM
- */
-
 require_once("AbstractSitemapController.php");
 
 class LiveDealerController extends AbstractSitemapController
@@ -13,13 +6,12 @@ class LiveDealerController extends AbstractSitemapController
     public function run()
     {
         parent::run();
-        $this->response->attributes("pages", $this->AddPages($this->response->attributes("pages")));
+        $this->response->attributes("pages", $this->addLiveDealer($this->response->attributes("pages")));
     }
 
     protected function getItems()
     {
-        $items = ["Roulette","Blackjack","Baccarat","Craps"];
-        return $items;
+        return ["Roulette"=>date("Y-m-d"),"Blackjack"=>date("Y-m-d"),"Baccarat"=>date("Y-m-d"),"Craps"=>date("Y-m-d"),"Live Dealer"=>date("Y-m-d")];
     }
 
     protected function getUrlPattern()
@@ -37,19 +29,11 @@ class LiveDealerController extends AbstractSitemapController
         return "0.8";
     }
 
-    private function AddPages($pages)
+    private function addPages($pages)
     {
         $protocol = $this->request->getProtocol();
-        $items = ['Live Dealer'];
-        foreach ($items as $item) {
-            $pages[] =  $protocol."://".$this->request->getServer()->getName()."/".strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars($item), $this->getSecondaryUrl())));
-        }
-
+        $hostName = $this->request->getServer()->getName();
+        $pages[3]->loc = $protocol."://".$hostName."/".strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars("Live Dealer"), "features/(item)")));
         return $pages;
     }
-
-    protected function getLastMod() {
-        return date("Y-m-d");
-    }
-
 }
