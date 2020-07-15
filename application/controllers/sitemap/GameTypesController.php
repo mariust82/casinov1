@@ -6,20 +6,14 @@ class GameTypesController extends AbstractSitemapController
 {
     
     private $dao;
-    private $rows;
     
     protected function init() {
         $this->dao = new Games();
-        $this->rows = $this->dao->getAllByType();
     }
     
     protected function getItems()
     {
-        return array_keys($this->rows);
-    }
-    
-    protected function getLastMod() {
-        return array_values($this->rows);
+        return $this->dao->getAllByType();
     }
 
     protected function getUrlPattern()
