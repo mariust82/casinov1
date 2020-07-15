@@ -6,7 +6,7 @@ class LiveDealerController extends AbstractSitemapController
     public function run()
     {
         parent::run();
-        $this->response->attributes("pages", $this->addLiveDealer($this->response->attributes("pages")));
+        $this->response->attributes("sitemap", $this->addLiveDealer($this->response->attributes("sitemap")));
     }
 
     protected function getItems()
@@ -29,7 +29,7 @@ class LiveDealerController extends AbstractSitemapController
         return "0.8";
     }
 
-    private function addPages($pages)
+    private function addLiveDealer($pages)
     {
         $protocol = $this->request->getProtocol();
         $hostName = $this->request->getServer()->getName();
