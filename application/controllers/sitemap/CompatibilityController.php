@@ -1,11 +1,13 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once 'application/models/dao/sitemap/CompatibilitySitemap.php';
+require_once 'application/models/dao/Casinos.php';
+
 class CompatibilityController extends AbstractSitemapController
 {
     protected function getItems()
     {
-        return ["Mobile"];
+        $dao = new Casinos();
+        return ["Mobile"=>$dao->getLastModMobile()];
     }
 
     protected function getUrlPattern()
@@ -16,11 +18,6 @@ class CompatibilityController extends AbstractSitemapController
     protected function getPriority()
     {
         return "0.9";
-    }
-
-    protected function getLastMod() {
-        $dao = new CompatibilitySitemap($this->request->attributes("country")->id);
-        return $dao->getLastMod();
     }
 
 }

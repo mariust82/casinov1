@@ -12,7 +12,7 @@ class CasinosController extends AbstractSitemapController
 
     protected function getItems()
     {
-        return $this->dao->getAll();
+        return $this->dao->getAllByDate();
     }
 
     protected function getUrlPattern()
@@ -24,9 +24,4 @@ class CasinosController extends AbstractSitemapController
     {
         return "0.7";
     }
-
-    protected function getLastMod() {
-        return $this->dao->getDate();
-    }
-
 }

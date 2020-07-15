@@ -1,25 +1,19 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once("application/models/dao/sitemap/GameTypesSitemap.php");
+require_once("application/models/dao/Games.php");
 
 class GameTypesController extends AbstractSitemapController
 {
     
     private $dao;
-    private $rows;
     
     protected function init() {
-        $this->dao = new GameTypesSitemap($this->request->attributes("country")->id);
-        $this->rows = $this->dao->getGameTypesRows();
+        $this->dao = new Games();
     }
     
     protected function getItems()
     {
-        return array_keys($this->rows);
-    }
-    
-    protected function getLastMod() {
-        return array_values($this->rows);
+        return $this->dao->getAllByType();
     }
 
     protected function getUrlPattern()

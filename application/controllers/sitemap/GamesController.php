@@ -27,8 +27,4 @@ class GamesController extends AbstractSitemapController
         return "0.6";
     }
 
-    protected function getLastMod() {
-        return $this->dao->getGamesLastMod();
-    }
-
 }

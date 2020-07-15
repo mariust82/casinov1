@@ -17,15 +17,15 @@ abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
         $protocol = $this->getProtocol();
         $items = $this->getItems();
         $output = array();
-        foreach ($items as $name) {
+        foreach ($items as $name=>$lastMod) {
             $sitemap = new SitemapNode();
             if(strtolower($name) == "slots") {
-                $sitemap->loc = $protocol . "://" . $this->request->getServer()->getName() . "/" . strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars('classic-'.$name), $urlPattern)));
+                $sitemap->loc = $protocol."://" . $this->request->getServer()->getName() . "/" . strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars('classic-'.$name), $urlPattern)));
             }else
                 $sitemap->loc = $protocol."://".$this->request->getServer()->getName()."/".strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars($name), $urlPattern)));
             $sitemap->changefreq = 'daily' ;
             $sitemap->priority = $this->getPriority();
-            $sitemap->lastmod =  $this->getLastMod();
+            $sitemap->lastmod = date("Y-m-d", strtotime($lastMod));
             $output[] = $sitemap;
         }
         return $output;
@@ -36,8 +36,6 @@ abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
         $page = $this->request->getURI()->getPage();
         return (strpos($page, "sitemaps_ps/")===0?"https":"http");
     }
-    
-    abstract protected function getLastMod();
 
     abstract protected function getItems();
 
