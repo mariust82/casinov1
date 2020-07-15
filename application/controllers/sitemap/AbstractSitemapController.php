@@ -28,7 +28,6 @@ abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
             $sitemap->lastmod =  $this->getLastMod();
             $output[] = $sitemap;
         }
-
         return $output;
     }
 

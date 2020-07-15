@@ -5,10 +5,11 @@ require_once("application/models/dao/Games.php");
 class GamesController extends AbstractSitemapController
 {
     
-    private $dao;
+    private $rows;
     
     protected function init() {
-        $this->dao = new Games();
+        $dao = new Games();
+        $this->rows = $dao->getAllItems();
     }
     
     protected function getItems()
