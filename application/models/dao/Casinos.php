@@ -120,19 +120,30 @@ class Casinos implements FieldValidator
         SQL("UPDATE casinos SET clicks = clicks+1 WHERE id=:id", array(":id"=>$id));
     }
 
-    public function getAll()
+    public function getAllByDate()
     {
-        return SQL("SELECT name FROM casinos ORDER BY date_established DESC")->toColumn();
+        return SQL("SELECT name, date FROM casinos ORDER BY date DESC")->toMap("name", "date");
     }
     
-    public function getDate()
-    {
-        $output = [];
-        $res = SQL("SELECT date FROM casinos ORDER BY name ASC");
-        while ($row = $res->toRow()) {
-            $output[] = explode(' ', $row['date'])[0];
-        }
-        return $output;
+    public function getLastModNDB() {
+        return SQL("
+        SELECT MAX(t1.date) FROM casinos AS t1
+        INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id AND t4.bonus_type_id IN (3,4,5,6,11)
+        WHERE t1.is_open = 1")->toValue();
+    }
+    
+    public function getLastModMobile() {
+        return SQL("
+        SELECT MAX(t1.date) FROM casinos AS t1 
+        INNER JOIN casinos__play_versions AS t9 ON t1.id = t9.casino_id AND t9.play_version_id = (SELECT id FROM play_versions WHERE name = 'mobile')
+        WHERE t1.is_open = 1")->toValue();
+    }
+    
+    public function getLastModEcogra() {
+        return SQL("
+        SELECT MAX(t1.date) FROM casinos AS t1 
+        INNER JOIN casinos__certifications AS t6 ON t1.id = t6.casino_id AND t6.certification_id = (SELECT id FROM certifications WHERE name = 'ecogra')
+        WHERE t1.is_open = 1")->toValue();
     }
 
     public function getCasinoData($id)
@@ -150,5 +161,56 @@ class Casinos implements FieldValidator
             $logo =$logoDirPath."/no-logo-{$resolution}.png";
         }
         return $logo;
+    }
+    
+    public function getAllByLabels() {
+        $output = [];
+        $labels = ["Best", "New", "Popular", "Blacklisted Casinos", "Low Wagering", "No Account Casinos"];
+        foreach ($labels as $label) {
+            $order = 't1.priority DESC, t1.id DESC';
+            
+            if ($label == 'New') {
+                $now = date("Y-m-d");
+                $date = strtotime($now . ' -1 year');
+                $last = date('Y-m-d', $date);
+                $output[$label] = SQL("
+                SELECT MAX(t1.date) FROM casinos AS t1 
+                WHERE t1.is_open = 1 AND t1.date_established > '{$last}' 
+                ORDER BY t1.date_established DESC, t1.priority DESC, t1.id DESC")->toValue();
+            } else {
+                switch ($label) {
+                    case 'Best':
+                        $order = 'ORDER BY (t1.rating_total/t1.rating_votes)  DESC, t1.priority DESC, t1.id DESC ';
+                        break;
+                    case 'Low Wagering':
+                        $order = 'ORDER BY t5.id ASC ';
+                        break;
+                    case 'No Account Casinos':
+                        $order = 'ORDER BY t1.priority DESC, t1.date_established DESC, t1.id DESC';
+                        break;
+                    default:
+                        $order = 'ORDER BY t1.priority DESC, t1.id DESC ';
+                        break;
+                }
+                $output[$label] = SQL("
+                SELECT MAX(t1.date) FROM casinos AS t1 
+                INNER JOIN casinos__labels AS t5 ON t1.id = t5.casino_id AND t5.label_id = (SELECT id FROM casino_labels WHERE name = '{$label}')
+                WHERE t1.is_open = 1
+                {$order}")->toValue();
+            }
+        }
+        array_multisort($output, SORT_DESC);
+        return $output;
+    }
+    
+    public function getAllByCountries() {
+        return SQL("
+        SELECT MAX(t1.date) AS data, t3.name FROM casinos AS t1
+        INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id
+        INNER JOIN countries AS t3 ON t2.country_id = t3.id
+        WHERE t1.is_open = 1
+        GROUP BY t3.name
+        ORDER BY t3.name ASC
+        ")->toMap("name", "data");
     }
 }

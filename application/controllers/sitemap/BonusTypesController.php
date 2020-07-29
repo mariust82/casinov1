@@ -1,12 +1,13 @@
 <?php
 require_once("AbstractSitemapController.php");
-require_once 'application/models/dao/sitemap/BonusTypesSitemap.php';
+require_once 'application/models/dao/Casinos.php';
 
 class BonusTypesController extends AbstractSitemapController
 {
     protected function getItems()
     {
-        return ["No Deposit Bonus"];
+        $dao = new Casinos();
+        return ["No Deposit Bonus"=>$dao->getLastModNDB()];
     }
 
     protected function getUrlPattern()
@@ -20,8 +21,6 @@ class BonusTypesController extends AbstractSitemapController
     }
 
     protected function getLastMod() {
-        $dao = new BonusTypesSitemap($this->request->attributes("country")->id);
-        return $dao->getLastMod();
     }
 
 }

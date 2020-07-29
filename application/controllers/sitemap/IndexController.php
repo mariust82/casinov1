@@ -5,7 +5,7 @@ class IndexController extends AbstractSitemapController
 {
     protected function getItems()
     {
-        return [""];
+        return [""=>date("Y-m-d")];
     }
 
     protected function getUrlPattern()
@@ -17,9 +17,4 @@ class IndexController extends AbstractSitemapController
     {
         return "1.0";
     }
-
-    protected function getLastMod() {
-        return date("Y-m-d");
-    }
-
 }

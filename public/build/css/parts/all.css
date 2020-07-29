@@ -8570,6 +8570,18 @@ a:focus {
     -ms-word-break: break-word;
     word-break: break-word;
   }
+
+  .list-item-cell .btn-round:nth-child(even){
+    margin: 5px 0 0 0;
+    -ms-word-break: break-word;
+    word-break: break-word;
+  }
+}
+
+.button-wrapper{
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
 }
 
 .mobile-popup {
