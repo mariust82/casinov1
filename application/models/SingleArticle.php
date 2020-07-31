@@ -44,9 +44,9 @@ class SingleArticle extends ArticlesModel
             $titleImageDesktop = end($exp_titleImageDesktop);
             $titleImageMobile = end($exp_titleImageMobile);
             
-            $this->titleImageThumbnail = '/upload' . $folder . '/' . $thumbnail. "?".strtotime("now");
-            $this->titleImageDesktop = '/upload' . $folder . '/' . $titleImageDesktop. "?".strtotime("now");
-            $this->titleImageMobile = '/upload' . $folder . '/' . $titleImageMobile. "?".strtotime("now");
+            $this->titleImageThumbnail = '/upload' . $folder . '/' . $thumbnail;
+            $this->titleImageDesktop = '/upload' . $folder . '/' . $titleImageDesktop;
+            $this->titleImageMobile = '/upload' . $folder . '/' . $titleImageMobile;
         }
     }
     
