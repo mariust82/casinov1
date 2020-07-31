@@ -47,7 +47,7 @@ class ArticlesModel {
             $uploadsFolders[$item->id] = "/upload" . $this->uploadFodler;
             $exp = explode('/', $item->thumbnail);
             $img = end($exp);
-            $uploadsFolders[$item->id] .= "/" . $img . "?" . strtotime("now");
+            $uploadsFolders[$item->id] .= "/" . $img;
         }
         return $uploadsFolders;
     }

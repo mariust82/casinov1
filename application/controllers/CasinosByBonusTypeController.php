@@ -1,6 +1,7 @@
 <?php
 require_once("application/models/dao/BonusTypes.php");
 require_once("CasinosListController.php");
+
 /*
 * Casinos list by bonus type
 *
