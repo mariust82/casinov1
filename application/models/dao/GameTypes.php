@@ -21,7 +21,7 @@ class GameTypes
         INNER JOIN games__features AS t8 ON t1.id = t8.game_id AND t8.feature_id = {$this->feature_id} 
         WHERE t1.is_open = 1
         GROUP BY t3.id
-        ORDER BY counter DESC 
+        ORDER BY counter DESC, t3.id ASC
         ")->toMap("unit", "counter");
     }
 

@@ -14,7 +14,7 @@ class GameManufacturers implements CasinoCounter
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
         WHERE t3.is_open = 1
         GROUP BY t1.id
-        ORDER BY sort DESC, counter DESC 
+        ORDER BY sort DESC, counter DESC, t1.id DESC 
         ")->toMap("unit", "counter");
     }
 

@@ -29,6 +29,7 @@ class DateCacheableDriver extends \Lucinda\Framework\CacheableDriver
         }
 
         $this->last_modified_time =  $modifiedTime;
+        file_put_contents($modifiedTime.".log", $this->response->getOutputStream()->get(), \FILE_APPEND);
     }
     
     /**
