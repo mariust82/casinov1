@@ -57,9 +57,11 @@
                                     </a>
                                 <:else>
                                     <:if test="${key} == 'Slots'">
-                                        <:set var="key" val="classic-slots"/>
+                                        <:set var="type" val="classic-slots"/>
+                                        <a href="$[url]/${type}">
+                                    <:else>
+                                        <a href="$[url]/${normalize(${key})}">
                                     </:if>
-                                    <a href="$[url]/${normalize(${key})}">
 					<:if test="$[image]">
 						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>
 					</:if>
