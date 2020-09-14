@@ -56,7 +56,11 @@
 					<i class="icon-chevron-right"></i>
                                     </a>
                                 <:else>
-                                    <a href="$[url]/${normalize(${key})}">
+                                    <:if test="${key} == 'slots">
+                                        <a href="$[url]/classic-slots">
+                                    <:else>
+                                        <a href="$[url]/${normalize(${key})}">
+                                    </:if>
 					<:if test="$[image]">
 						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>
 					</:if>
