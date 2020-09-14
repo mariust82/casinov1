@@ -1034,6 +1034,7 @@ var SearchPanel = function (obj) {
             _searchButton.on(
                 'click',
                 function () {
+                    console.log('asdad'); return;
                     _ajaxRequestPopup('/search');
                     _resetPages();
                     return false;
