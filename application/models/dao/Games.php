@@ -20,8 +20,6 @@ class Games
 
     public function getAllItems(){
         $res =  SQL("SELECT name, date FROM games ORDER BY date_launched DESC, id DESC")->toColumn();
-        var_dump($res);
-        die();
         $output = [];
         foreach($res as $value){
             $arr = explode(' ', $value);
