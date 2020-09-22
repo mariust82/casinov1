@@ -58,6 +58,7 @@
                                 <:else>
                                     <:if test="${key} == 'Slots'">
                                         <:set var="type" val="classic-slots"/>
+                                        <:set var="key" val="Classic Slots"/>
                                         <a href="$[url]/${type}">
                                     <:else>
                                         <a href="$[url]/${normalize(${key})}">
