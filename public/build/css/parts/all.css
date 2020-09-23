@@ -3084,9 +3084,9 @@ a:focus {
   box-shadow:none;
 }
 
-.advanced-search-opened .header-search {
+/*.advanced-search-opened .header-search {
   height: auto !important;
-}
+}*/
 
 .advanced-search-opened .search-drop {
   display: none;
