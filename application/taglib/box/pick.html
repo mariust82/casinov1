@@ -22,7 +22,7 @@
                     </a>
                     <div class="pick-buttons">
                         <:if test="!empty(${result.bonus_free.amount})">
-                          <div class="btn-round ${(${data.is_mobile}?'':'js-tooltip-content')}" data-name="${result.name}" data-is-free="1">${checkForAbbr(${result.bonus_free.amount},${result.bonus_free.type})} ${getAbbreviation(${result.bonus_free.type}, checkForAbbr(${result.bonus_free.amount},${result.bonus_free.type}) )}</div>
+                          <div class="btn-round ${(${data.is_mobile}?'':'js-tooltip-content')}" data-name="${result.name}" data-is-free="1">${checkForAbbr(${result.bonus_free.amount})} ${getAbbreviation(${result.bonus_free.type}, checkForAbbr(${result.bonus_free.amount}) )}</div>
                         </:if>
                           <div class="btn-round ${(${data.is_mobile}?'':'js-tooltip-content')}" data-name="${result.name}" data-is-free="0">${checkForAbbr(${result.bonus_first_deposit.amount})}</div>
                     </div>

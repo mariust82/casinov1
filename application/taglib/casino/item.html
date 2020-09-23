@@ -74,7 +74,7 @@
 					</div>
 				</:if>
 
-				<:set var="fb_amount" val="checkForAbbr(${result.bonus_free.amount},${result.bonus_free.type})" />
+				<:set var="fb_amount" val="checkForAbbr(${result.bonus_free.amount})" />
 				<:set var="fb_abbreviation" val="getAbbreviation(${result.bonus_free.type}, ${fdb_amount})" />
 
 				<:if test="$[mobile]">

@@ -89,16 +89,22 @@
 						<i class="icon-icon_${(${result.withdraw_methods}?'available':'unavailable')}"></i>
 					</div>
 				</:if>
-				<:set var="fb_amount" val="checkForAbbr(${result.bonus_free.amount},${result.bonus_free.type})" />
+
+				<:set var="fb_amount" val="checkForAbbr(${result.bonus_free.amount})" />
 
 				<:set var="fb_abbreviation" val="getAbbreviation(${result.bonus_free.type}, ${fdb_amount})" />
-                                <div class="shay">${fb_amount} ${fb_abbreviation}</div>
+
 				<:if test="${data.is_mobile}">
 					<:if test="${is_low_wagering}">
 						<div class="btn-round-holder list-item-cell-bfnp">
 							<span class="btn-round" data-name="${result.name}" data-is-free="1"> ${fb_amount}
 								<:if test="${fb_abbreviation} != 'NDB'">
-									 <abbr title="${result.bonus_free.type}">${fb_abbreviation}
+                                                                        <:if test="${result.bonus_free.type} == 'Free Spins' && $empty({fb_abbreviation})">
+                                                                            <:set var="fs" val="FS" />
+                                                                        <:else>
+                                                                            <:set var="fs" val="" />
+                                                                        </:if> 
+									 <abbr title="${result.bonus_free.type}">${fb_abbreviation} ${fs}
 								</:if> 
 							</span>
 						</div>
@@ -110,7 +116,12 @@
 							<:if test="${fb_amount}">
 									<span class="btn-round" data-name="${result.name}" data-is-free="1">
 										${fb_amount}
-										<abbr title="${result.bonus_free.type}"> ${fb_abbreviation}
+                                                                                <:if test="${result.bonus_free.type} == 'Free Spins' && $empty({fb_abbreviation})">
+                                                                                    <:set var="fs" val="FS" />
+                                                                                <:else>
+                                                                                    <:set var="fs" val="" />
+                                                                                </:if> 
+										<abbr title="${result.bonus_free.type}"> ${fb_abbreviation} ${fs}
 									</span>
 							</:if>
 							<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
