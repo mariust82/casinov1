@@ -67,8 +67,8 @@ function getCasinoLogo($name, $width, $height)
     return $logo;
 }
 
-function checkForAbbr($amount) {
-    if (strpos($amount, 'FS') !== false) {
+function checkForAbbr($amount,$type="") {
+if (($type == 'Free Spins') || strpos($amount, 'FS') !== false) {
         return str_replace("FS",'<abbr title="Free Spins"> FS',$amount);
     }
     if (strpos($amount, 'NDB') !== false) {
