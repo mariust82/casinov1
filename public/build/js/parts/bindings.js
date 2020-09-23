@@ -1068,9 +1068,9 @@ var SearchPanel = function (obj) {
                     }
 
                     if (_searchInput.val() != '') {
-                        _searchAllButton.parent().fadeIn();
+                        _showAllButton();
                     } else {
-                        _searchAllButton.parent().fadeOut();
+                        _hideAllButton();
                     }
                 },
             });
@@ -1094,6 +1094,14 @@ var SearchPanel = function (obj) {
                     return false;
                 }
             );
+        },
+        _showAllButton = function() {
+            _searchAllButton.parent().fadeIn();
+            _searchAllButton.closest('.header-search').addClass('search-active');
+        },
+        _hideAllButton = function() {
+            _searchAllButton.parent().removeClass('search-active').fadeOut();
+            _searchAllButton.closest('.header-search').removeClass('search-active');
         },
         _closeSearch = function () {
             $('#site-content').html('').append(contentBeforeSearch);
@@ -1258,6 +1266,7 @@ var SearchPanel = function (obj) {
                 type: 'GET',
                 success: function (data) {
                     $('body').addClass('advanced-search-opened');
+                    _hideAllButton();
                     if (!_is_content_detached) {
                         contentBeforeSearch = $('#site-content .main, #site-content .promo').detach();
                     }
@@ -1482,7 +1491,7 @@ var SearchPanel = function (obj) {
             _searchCasinosContainer.parent().hide();
             _searchPagesContainer.parent().hide();
             _searchEmptyContainer.show();
-            _searchAllButton.parent().fadeOut();
+           _hideAllButton();
         },
         _hideEmptyMessage = function () {
             _searchListsContainer.parent().show();

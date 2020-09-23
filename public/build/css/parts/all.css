@@ -3084,7 +3084,7 @@ a:focus {
   box-shadow:none;
 }
 
-.advanced-search-opened .header-search {
+.advanced-search-opened .header-search:not(.search-active) {
   height: auto !important;
 }
 
