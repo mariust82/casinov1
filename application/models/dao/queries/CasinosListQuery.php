@@ -85,6 +85,7 @@ class CasinosListQuery
             } else {
                 if ($filter->getBonusType()) {
                     $sub_query = new Lucinda\Query\MySQLSelect("bonus_types");
+                    $sub_query->fields(["id"]);
                     $sub_query->where(["name" => "'".$filter->getBonusType()."'"]);
                     $condition->set("t4.bonus_type_id", "(" . $sub_query->toString() . ")");
                 }
