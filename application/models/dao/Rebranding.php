@@ -42,6 +42,10 @@ class Rebranding
                 $success= false;
             }
             $redirectURI = preg_replace("/\([^()]*\)/", ($newValue?strtolower(str_replace(" ", "-", $newValue)):$oldValue), $redirectURI, 1);
+
+            if($redirectURI == 'banking/paysafe-card'){
+                $success = false;
+            }
             ++ $i;
         }
         
@@ -59,6 +63,7 @@ class Rebranding
      */
     public function getRedirectURI()
     {
-        return $this->redirectURI;
+        var_dump($this->redirectURI); die;
+        return ($this->redirectURI == '/banking/paysafe-card') ? '/banking/paysafecard' : $this->redirectURI;
     }
 }
