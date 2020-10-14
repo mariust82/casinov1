@@ -80,7 +80,6 @@ class TopMenu
                 'PayPal Casinos' => '/banking/paypal',
                 'Bitcoin Casinos' => '/banking/bitcoin',
                 'EcoPayz EcoCard Casinos' => '/banking/ecopayz-ecocard',
-
                 'Paysafe Card' => '/banking/paysafecard',
                 'All Banking' => '/banking'
             ],
