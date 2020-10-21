@@ -3959,9 +3959,9 @@ a:focus {
   .low_wagering_list .list-item-cell-buttons {
     width: 13%;
   }
-  .list-item-cell-buttons .btn-small {
+/*  .list-item-cell-buttons .btn-small {
     display: none;
-  }
+  }*/
   .list-item-cell-buttons .btn-circle {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -4511,6 +4511,12 @@ a:focus {
 .btn-small {
   padding: 7px 16px 8px;
   margin: -2px 0 0 0;
+}
+
+@media screen and (max-width: 767px) {
+  .btn-small {
+    padding: 7px 7px 8px;
+  }
 }
 
 .btn-middle {
