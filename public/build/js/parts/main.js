@@ -409,27 +409,27 @@ var initImageLazyLoad = function () {
         var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
         return pattern.test(email);
     }
-
-    function determineCasinoPage(key) {
-        var page;
-        if (key === 'new') {
-            page = NEW_CURR_PAGE;
-        } else if (key === 'best') {
-            page = BEST_CURR_PAGE;
-        } else if (key === 'country') {
-            page = COUNTRY_CURR_PAGE;
-        }
-
-        return page;
-    }
-
-    function raiseCasinoPage(key) {
-        if (key === 'new') {
-            NEW_CURR_PAGE++;
-        } else if (key === 'best') {
-            BEST_CURR_PAGE++;
-        } else if (key === 'country') {
-            COUNTRY_CURR_PAGE++;
-        }
-    }
 })(jQuery);
+
+function determineCasinoPage(key) {
+    var page;
+    if (key === 'new') {
+        page = NEW_CURR_PAGE;
+    } else if (key === 'best') {
+        page = BEST_CURR_PAGE;
+    } else if (key === 'country') {
+        page = COUNTRY_CURR_PAGE;
+    }
+
+    return page;
+}
+
+function raiseCasinoPage(key) {
+    if (key === 'new') {
+        NEW_CURR_PAGE++;
+    } else if (key === 'best') {
+        BEST_CURR_PAGE++;
+    } else if (key === 'country') {
+        COUNTRY_CURR_PAGE++;
+    }
+}
