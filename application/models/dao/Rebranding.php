@@ -63,7 +63,6 @@ class Rebranding
      */
     public function getRedirectURI()
     {
-        var_dump($this->redirectURI); die;
         return ($this->redirectURI == '/banking/paysafe-card') ? '/banking/paysafecard' : $this->redirectURI;
     }
 }
