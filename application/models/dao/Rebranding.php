@@ -46,7 +46,7 @@ class Rebranding
             if($redirectURI == 'banking/paysafe-card'){
                 $success = false;
             }
-            if($redirectURI == 'banking/bitcoin-wallets'){
+            if($redirectURI == 'banking/bitcoin'){
                 $success = false;
             }
             ++ $i;
@@ -68,8 +68,9 @@ class Rebranding
     {
         if($this->redirectURI == '/banking/paysafe-card') {
             return '/banking/paysafecard';
-        }elseif($this->redirectURI == '/banking/bitcoin-wallets') {
-            return '/banking/bitcoin';
+        }
+        if($this->redirectURI == '/banking/bitcoin') {
+            return '/banking/bitcoin-wallets';
         }
         return $this->redirectURI;
     }
