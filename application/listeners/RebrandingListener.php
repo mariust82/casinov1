@@ -23,11 +23,14 @@ class RebrandingListener extends Lucinda\MVC\STDOUT\RequestListener
                     // attempt to rebrand
                     $tables = explode(",", (string) $route["rebrand_tables"]);
                     $ppv = new Rebranding($this->request->getValidator()->getPage());
-                    $success = $ppv->validate($tables, $this->request->getValidator()->parameters());
-                    if (!$success) {
-                        header("HTTP/1.1 301 Moved Permanently");
-                        header("Location: ".$ppv->getRedirectURI());
-                        exit();
+                    $bankingMethod = $this->request->getValidator()->parameters()['name'];
+                    if($bankingMethod !== 'paysafecard' && $bankingMethod !== 'bitcoin') {
+                        $success = $ppv->validate($tables, $this->request->getValidator()->parameters());
+                        if (!$success) {
+                            header("HTTP/1.1 301 Moved Permanently");
+                            header("Location: ".$ppv->getRedirectURI());
+                            exit();
+                        }
                     }
                 }
             }

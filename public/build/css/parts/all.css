@@ -3084,7 +3084,7 @@ a:focus {
   box-shadow:none;
 }
 
-.advanced-search-opened .header-search {
+.advanced-search-opened .header-search:not(.search-active) {
   height: auto !important;
 }
 
@@ -3959,9 +3959,7 @@ a:focus {
   .low_wagering_list .list-item-cell-buttons {
     width: 13%;
   }
-/*  .list-item-cell-buttons .btn-small {
-    display: none;
-  }*/
+
   .list-item-cell-buttons .btn-circle {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -9481,7 +9479,7 @@ html.no-scroll {
 
 .card-footer{
   padding: 10px;
-  height: 185px;
+  height: 195px;
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flex;

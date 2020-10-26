@@ -42,6 +42,13 @@ class Rebranding
                 $success= false;
             }
             $redirectURI = preg_replace("/\([^()]*\)/", ($newValue?strtolower(str_replace(" ", "-", $newValue)):$oldValue), $redirectURI, 1);
+
+            if($redirectURI == 'banking/paysafe-card'){
+                $success = false;
+            }
+            if($redirectURI == 'banking/bitcoin-wallets'){
+                $success = false;
+            }
             ++ $i;
         }
         
@@ -59,6 +66,12 @@ class Rebranding
      */
     public function getRedirectURI()
     {
+        if($this->redirectURI == '/banking/paysafe-card') {
+            return '/banking/paysafecard';
+        }
+        if($this->redirectURI == '/banking/bitcoin-wallets') {
+            return '/banking/bitcoin';
+        }
         return $this->redirectURI;
     }
 }

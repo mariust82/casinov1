@@ -78,9 +78,9 @@ class TopMenu
                 'Neteller Casinos' =>'/banking/neteller',
                 'Skrill Moneybookers Casinos' => '/banking/skrill-moneybookers',
                 'PayPal Casinos' => '/banking/paypal',
-                'Bitcoin Wallets Casinos' => '/banking/bitcoin-wallets',
+                'Bitcoin Casinos' => '/banking/bitcoin',
                 'EcoPayz EcoCard Casinos' => '/banking/ecopayz-ecocard',
-                'Paysafe Card' => '/banking/paysafe-card',
+                'Paysafe Card' => '/banking/paysafecard',
                 'All Banking' => '/banking'
             ],
         ],

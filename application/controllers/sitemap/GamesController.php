@@ -6,10 +6,11 @@ class GamesController extends AbstractSitemapController
 {
     
     private $rows;
-    
+    private $dao;
+
     protected function init() {
-        $dao = new Games();
-        $this->rows = $dao->getAllItems();
+        $this->dao = new Games();
+        $this->rows = $this->dao->getAllItems();
     }
     
     protected function getItems()

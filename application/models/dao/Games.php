@@ -25,7 +25,6 @@ class Games
             $arr = explode(' ', $value);
             $output[] = $arr[0];
         }
-
         return $output;
     }
     
