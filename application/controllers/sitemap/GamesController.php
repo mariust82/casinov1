@@ -14,8 +14,9 @@ class GamesController extends AbstractSitemapController
     }
     
     protected function getItems()
-    {
-        return $this->dao->getAll();
+    { 
+        $dao = new Games();
+        return $dao->getAll();
     }
 
     protected function getUrlPattern()

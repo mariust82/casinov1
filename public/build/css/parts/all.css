@@ -3959,9 +3959,7 @@ a:focus {
   .low_wagering_list .list-item-cell-buttons {
     width: 13%;
   }
-  /*.list-item-cell-buttons .btn-small {
-    display: none;
-  }*/
+
   .list-item-cell-buttons .btn-circle {
     display: -webkit-box;
     display: -ms-flexbox;
