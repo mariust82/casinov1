@@ -4514,6 +4514,27 @@ a:focus {
 @media screen and (max-width: 767px) {
   .btn-small {
     padding: 7px 7px 8px;
+    width:27px;
+    height:27px;
+    border-radius:50%;
+    text-indent:-9999px;
+    position:relative;
+  }
+
+  .btn-small:after{
+    display: block;
+    clear: both;
+    content: "";
+    position: absolute;
+    top: 39%;
+    left: 35%;
+    width: 5px;
+    height: 5px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-image: initial;
+    border-width: 2px 2px 0px 0px;
+    transform: rotate(45deg);
   }
 }
 
