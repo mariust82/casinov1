@@ -1288,12 +1288,17 @@ var SearchPanel = function (obj) {
             });
         },
         _ajaxRequestPopup = function (target, page) {
+            console.dir(target);
             if (checkIfIsMobileDevice()) {
                 lockScreen();
             }
             if (BUSY_REQUEST && (nr_requests_completed == nr_requests)) // if nr request completed = nr request sent
             {
                 return;
+            }
+            var method = 'GET';
+            if (target === '/search') {
+                method = 'POST';
             }
             BUSY_REQUEST = true;
             _request.abort();
@@ -1304,7 +1309,7 @@ var SearchPanel = function (obj) {
                     page: page
                 },
                 dataType: 'json',
-                type: 'GET',
+                type: method,
                 success: function (data) {
                     _hideLoading();
                     _loadData(data);
