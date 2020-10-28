@@ -119,7 +119,7 @@ var initImageLazyLoad = function () {
     $(document).ready(function () {
         //Load Defer Scripts and Binding
         $(document).on('scroll mousemove', function(){
-            loadScripts(['bindings', 'assets/tooltipster', 'assets/swiper', 'assets/jquery-select2']);
+            loadScripts(['bindings', 'assets/tooltipster', 'assets/swiper']);
             $(document).unbind("scroll mousemove");
 
             initSite();
@@ -138,6 +138,7 @@ var initImageLazyLoad = function () {
             new newsletter($('.subscribe'));
         });
 
+        loadScripts(['jquery-select2']);
         initExpandingText();
         menuHoverAction();
         setStyleProps();
