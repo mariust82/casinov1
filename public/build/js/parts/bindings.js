@@ -556,17 +556,6 @@ function strip(html) {
     return tmp.textContent || tmp.innerText || "";
 }
 
-function initCustomSelect() {
-    if(!$('.js-filter').length)  return;
-    var _filterOptions = $('.js-filter > option');
-    $('.js-filter').select2MultiCheckboxes({
-        templateSelection: function () {
-            return "Game software";
-        }
-    })
-    _filterOptions.prop("selected", false);
-}
-
 function checkStringLength(box, num) {
     $(box).each(function () {
         var child = $(this).find('.list-item-trun');

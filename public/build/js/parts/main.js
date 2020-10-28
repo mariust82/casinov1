@@ -106,6 +106,17 @@ function grayscaleIE() {
     }
 }
 
+function initCustomSelect() {
+    if(!$('.js-filter').length)  return;
+    var _filterOptions = $('.js-filter > option');
+    $('.js-filter').select2MultiCheckboxes({
+        templateSelection: function () {
+            return "Game software";
+        }
+    })
+    _filterOptions.prop("selected", false);
+}
+
 var initImageLazyLoad = function () {
     if (typeof imageDefer != "undefined") {
         imageDefer("lazy_loaded");
@@ -118,8 +129,9 @@ var initImageLazyLoad = function () {
 
     $(document).ready(function () {
         //Load Defer Scripts and Binding
+        loadScripts(['assets/jquery-select2']);
         $(document).on('scroll mousemove', function(){
-            loadScripts(['bindings', 'assets/tooltipster', 'assets/swiper', 'assets/jquery-select2']);
+            loadScripts(['bindings', 'assets/tooltipster', 'assets/swiper']);
             $(document).unbind("scroll mousemove");
 
             initSite();
@@ -137,7 +149,6 @@ var initImageLazyLoad = function () {
 
             new newsletter($('.subscribe'));
         });
-
         initExpandingText();
         menuHoverAction();
         setStyleProps();
