@@ -1295,18 +1295,21 @@ var SearchPanel = function (obj) {
             {
                 return;
             }
-            var value = _searchInput.val()
-            value =  value.replace(".", "&middot;");
+            var method = 'GET';
+            if (target === '/search') {
+                method = 'POST';
+            }
+            
             BUSY_REQUEST = true;
             _request.abort();
             _request = $.ajax({
                 url: target,
                 data: {
-                    value: value,
+                    value: _searchInput.val(),
                     page: page
                 },
                 dataType: 'json',
-                type: 'GET',
+                type: method,
                 success: function (data) {
                     _hideLoading();
                     _loadData(data);
