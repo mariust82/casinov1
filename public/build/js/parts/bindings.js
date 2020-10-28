@@ -1288,7 +1288,6 @@ var SearchPanel = function (obj) {
             });
         },
         _ajaxRequestPopup = function (target, page) {
-            console.dir(target);
             if (checkIfIsMobileDevice()) {
                 lockScreen();
             }
@@ -1296,20 +1295,18 @@ var SearchPanel = function (obj) {
             {
                 return;
             }
-            var method = 'GET';
-            if (target === '/search') {
-                method = 'POST';
-            }
+            var value = _searchInput.val()
+            value =  value.replace(".", "&#183;");
             BUSY_REQUEST = true;
             _request.abort();
             _request = $.ajax({
                 url: target,
                 data: {
-                    value: _searchInput.val(),
+                    value: value,
                     page: page
                 },
                 dataType: 'json',
-                type: method,
+                type: 'GET',
                 success: function (data) {
                     _hideLoading();
                     _loadData(data);
