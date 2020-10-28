@@ -1295,11 +1295,6 @@ var SearchPanel = function (obj) {
             {
                 return;
             }
-            var method = 'GET';
-            if (target === '/search') {
-                method = 'POST';
-            }
-            
             BUSY_REQUEST = true;
             _request.abort();
             _request = $.ajax({
@@ -1309,7 +1304,7 @@ var SearchPanel = function (obj) {
                     page: page
                 },
                 dataType: 'json',
-                type: method,
+                type: 'GET',
                 success: function (data) {
                     _hideLoading();
                     _loadData(data);
