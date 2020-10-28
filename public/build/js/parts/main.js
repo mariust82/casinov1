@@ -405,12 +405,11 @@ var initImageLazyLoad = function () {
         });
     }
 
-    function validateEmail(email) {
-        var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
-        return pattern.test(email);
-    }
 })(jQuery);
-
+function validateEmail(email) {
+    var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
+    return pattern.test(email);
+}
 function determineCasinoPage(key) {
     var page;
     if (key === 'new') {
