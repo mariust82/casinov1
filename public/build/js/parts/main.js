@@ -106,6 +106,17 @@ function grayscaleIE() {
     }
 }
 
+function initCustomSelect() {
+    if(!$('.js-filter').length)  return;
+    var _filterOptions = $('.js-filter > option');
+    $('.js-filter').select2MultiCheckboxes({
+        templateSelection: function () {
+            return "Game software";
+        }
+    })
+    _filterOptions.prop("selected", false);
+}
+
 var initImageLazyLoad = function () {
     if (typeof imageDefer != "undefined") {
         imageDefer("lazy_loaded");
@@ -248,17 +259,6 @@ var initImageLazyLoad = function () {
                 $('.expand-holder').removeClass('opened');
             })
         }
-    }
-
-    function initCustomSelect() {
-        if(!$('.js-filter').length)  return;
-        var _filterOptions = $('.js-filter > option');
-        $('.js-filter').select2MultiCheckboxes({
-            templateSelection: function () {
-                return "Game software";
-            }
-        })
-        _filterOptions.prop("selected", false);
     }
 
     function detectIsKeyboardOpened() {
