@@ -137,8 +137,7 @@ var initImageLazyLoad = function () {
 
             new newsletter($('.subscribe'));
         });
-
-        loadScripts(['jquery-select2']);
+        loadScripts(['assets/jquery-select2']);
         initExpandingText();
         menuHoverAction();
         setStyleProps();
