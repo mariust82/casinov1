@@ -1296,7 +1296,7 @@ var SearchPanel = function (obj) {
                 return;
             }
             var value = _searchInput.val()
-            value =  value.replace(".", "&#183;");
+            value =  value.replace(".", "&middot;");
             BUSY_REQUEST = true;
             _request.abort();
             _request = $.ajax({
