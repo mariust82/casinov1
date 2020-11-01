@@ -129,6 +129,9 @@ var initImageLazyLoad = function () {
 
     $(document).ready(function () {
         //Load Defer Scripts and Binding
+        if ($('.links-nav').length) {
+            loadScripts(['bindings', 'assets/swiper']);
+        }
         loadScripts(['assets/jquery-select2']);
         $(document).on('scroll mousemove', function(){
             loadScripts(['bindings', 'assets/tooltipster', 'assets/swiper']);
