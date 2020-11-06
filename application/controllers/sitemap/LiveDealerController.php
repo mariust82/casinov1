@@ -33,7 +33,7 @@ class LiveDealerController extends AbstractSitemapController
     {
         $protocol = $this->request->getProtocol();
         $hostName = $this->request->getServer()->getName();
-        $pages[3]->loc = $protocol."://".$hostName."/".strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars("Live Dealer"), "features/(item)")));
+        $pages[4]->loc = $protocol."://".$hostName."/".strtolower(str_replace(" ", "-", str_replace("(item)", htmlspecialchars("Live Dealer"), "features/(item)")));
         return $pages;
     }
 }
