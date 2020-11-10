@@ -263,7 +263,7 @@
         <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="bogdan__casinoslists_main" parent_schema="bogdan__casinoslists_admin" charset="utf8"/>
       </bogdan_local>
       <marius_local>
-        <server driver="mysql" host="localhost" port="3306" username="root" password="" schema="casinoslists_main" parent_schema="casinoslists_admin" charset="utf8"/>
+        <server driver="mysql" host="localhost" port="3306" username="root" password="your_root_password" schema="casinoslists_main" parent_schema="casinoslists_admin" charset="utf8"/>
       </marius_local>
     </sql>
     <nosql>
