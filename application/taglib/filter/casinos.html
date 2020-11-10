@@ -31,7 +31,7 @@
 				</div> 
 			</:if>
 
-			<:if test="!((${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering'))">
+			<:if test="!((${data.page_type} == 'label' && ${data.selected_entity} == 'Low Wagering') || (${data.page_type} == 'low_wagering')) && ${data.page_type} !== 'free_bonus'">
 				<div class="filter-check-item">
 					<div class="check">
 						<input type="checkbox" name="free_bonus" id="free">

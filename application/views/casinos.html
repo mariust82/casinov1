@@ -14,9 +14,9 @@
         </div>
 
         <:if test="isset(${data.currency})">
-        <filter:casinos id="${data.selected_entity}" name="${data.currency}" code="${data.language}" key="true"/>
+            <filter:casinos id="${data.selected_entity}" name="${data.currency}" code="${data.language}" key="true"/>
         <:else>
-        <filter:casinos id="${data.selected_entity}" name="${data.country.name}" code="${data.country.code}"  key="false"/>
+            <filter:casinos id="${data.selected_entity}" name="${data.country.name}" code="${data.country.code}"  key="false"/>
         </:if>
 
         <div class="data-container-holder">
