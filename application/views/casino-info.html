@@ -56,13 +56,18 @@
 				</div>
 
 				<div class="btn-group btn-group-mobile">
-					<div>
-						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
-						<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
+					<div class="mobile-group-btn">
+						<div>
+							<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
+						</div>
+						<div>
+							<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
+							<:if test="${data.casino.is_tc_link}">
+								<a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link tc-button-mobile">T&C applies</a>
+							</:if>
+						</div>
 					</div>
-					<:if test="${data.casino.is_tc_link}">
-						<a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link tc-button-mobile">T&C applies</a>
-					</:if>
+
 				</div>
 				<div class="casino-review-country casino-review-mobile">
 					<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="20" height="14">
