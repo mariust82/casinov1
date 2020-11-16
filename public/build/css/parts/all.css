@@ -6325,7 +6325,7 @@ a:focus {
     flex-direction: column;
   }
   .tc-button-mobile{
-    justify-content: flex-start !important;
+    justify-content: flex-end !important;
   }
 }
 
