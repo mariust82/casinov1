@@ -6327,6 +6327,9 @@ a:focus {
   .tc-button-mobile{
     margin: 0 !important;
   }
+  .list-rating-wrap{
+    border: none;
+  }
 }
 
 .section {
