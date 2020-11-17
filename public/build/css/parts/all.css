@@ -6330,7 +6330,7 @@ a:focus {
 }
 
 .list-rating-wrap{
-  border: none;
+  border: none !important;
 }
 .section {
   margin: 0 0 20px;
