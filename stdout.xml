@@ -11,5 +11,4 @@
     <geoip ref="xml/geoip"/>
     <gameplay ref="xml/gameplay"/>
     <hosts ref="xml/hosts"/>
-    <http_caching class="DefaultCacheableDriver" secret="b6@M|JS{ZzD9ClL"/>
 </xml>

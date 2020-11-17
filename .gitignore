@@ -9,6 +9,7 @@ xml/servers.xml
 xml/geoip.xml
 xml/gameplay.xml
 xml/reporters.xml
+xml/rest_api.xml
 xml/hosts.xml
 sync/stdout.xml
 index.php

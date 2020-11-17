@@ -20,7 +20,7 @@ class ViewLanguageRenderer extends \Lucinda\MVC\STDERR\ErrorRenderer implements 
         if ($response->getOutputStream()->isEmpty()) {
 
             // gets simplexml application object
-            $application = simplexml_load_file(dirname(dirname(__DIR__))."/stderr.xml")->application;
+            $application = $this->application->getTag("application");
 
             // gets view file
             $viewFile = $response->getView();
@@ -60,7 +60,7 @@ class ViewLanguageRenderer extends \Lucinda\MVC\STDERR\ErrorRenderer implements 
     }
 
     /**
-     * Handles errors by delegating to STDOUT MVC API
+     * Handles errors by delegating to default handler
      *
      * @param \Exception $exception Encapsulates error information.
      */
@@ -73,4 +73,3 @@ class ViewLanguageRenderer extends \Lucinda\MVC\STDERR\ErrorRenderer implements 
         $this->defaultErrorHandler->handle($exception);
     }
 }
-
