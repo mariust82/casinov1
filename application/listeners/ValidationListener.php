@@ -14,7 +14,7 @@ class ValidationListener extends \Lucinda\MVC\STDOUT\RequestListener
      */
     public function run()
     {
-        $binder = new Lucinda\Framework\ValidationBinder($this->request);
+        $binder = new Lucinda\Framework\ValidationBinder($this->request, "xml/routes.xml");
         if (!$binder->getResults()->hasPassed()) {
             throw new Lucinda\MVC\STDOUT\PathNotFoundException();
         }

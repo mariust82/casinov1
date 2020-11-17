@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<xml>
+    <reporters>
+        <ENVIRONMENT>
+            <reporter class="CLASS" auth_key="AUTH_KEY" host="HOSTNAME"/>
+        </ENVIRONMENT>
+    </reporters>
+</xml>

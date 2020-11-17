@@ -1,5 +1,5 @@
 <?php
-class RssRenderer implements \Lucinda\MVC\STDERR\ErrorRenderer
+class RssRenderer extends \Lucinda\MVC\STDERR\ErrorRenderer
 {
     public function render(\Lucinda\MVC\STDERR\Response $response)
     {
