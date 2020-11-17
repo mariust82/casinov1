@@ -4,7 +4,7 @@ require_once(dirname(dirname(__DIR__))."/vendor/lucinda/framework-engine/src/vie
 /**
  * STDERR MVC error renderer for HTML format using ViewLanguage templating.
  */
-class ViewLanguageRenderer implements \Lucinda\MVC\STDERR\ErrorRenderer, \Lucinda\MVC\STDERR\ErrorHandler
+class ViewLanguageRenderer extends \Lucinda\MVC\STDERR\ErrorRenderer implements \Lucinda\MVC\STDERR\ErrorHandler
 {
     /**
      * @var \Lucinda\MVC\STDERR\ErrorHandler
