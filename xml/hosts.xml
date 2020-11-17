@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE xml>
-<xml>
-    <hosts>
-        <dev>dev.casinoslists.com</dev>
-        <live>www.casinoslists.com</live>
-    </hosts>
-</xml>
