@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<xml>
+    <formats>
+        <format name="html" content_type="text/html" class="ViewLanguageResolver" charset="UTF-8"/>
+        <format name="json" content_type="application/json" class="JsonResolver" charset="UTF-8"/>
+        <format name="xml" content_type="text/xml" class="SitemapResolver" charset="UTF-8"/>
+        <format name="sitemap" content_type="text/xml" class="SitemapResolver" charset="UTF-8"/>
+        <format name="rss" content_type="application/rss+xml" class="RssResolver" charset="UTF-8"/>
+    </formats>
+</xml>

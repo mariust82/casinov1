@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<xml>
+    <rest_api auth_key="AUTH_KEY">
+        <ENVIRONMENT>HOSTNAME</ENVIRONMENT>
+    </rest_api>
+</xml>

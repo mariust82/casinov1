@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<xml>
+    <servers>
+        <sql>
+            <ENVIRONMENT>
+                <server driver="mysql" host="localhost" port="3306" username="USERNAME" password="PASSWORD"
+                        schema="SCHEMA" parent_schema="PARENT_SCHEMA" charset="utf8"/>
+            </ENVIRONMENT>
+        </sql>
+        <nosql>
+            <ENVIRONMENT>
+                <server driver="redis" host="localhost"/>
+            </ENVIRONMENT>
+        </nosql>
+    </servers>
+</xml>

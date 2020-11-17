@@ -5,6 +5,11 @@ vendor
 .buildpath
 hlis
 /public/src/images
+xml/servers.xml
+xml/geoip.xml
+xml/gameplay.xml
+xml/reporters.xml
+sync/stdout.xml
 index.php
 .htaccess
 robots.txt

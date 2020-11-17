@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<xml>
+      <rest_api auth_key="sG1MIIpMJwHKYVIuFQP8XUZeixTypXVSTH0YT6lH">
+        <dev>devapi.datamother.com</dev>
+        <live>api.datamother.com</live>
+    </rest_api>
+</xml>
