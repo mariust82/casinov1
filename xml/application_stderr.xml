@@ -11,7 +11,7 @@
             <tags>application/taglib</tags>
         </paths>
         <display_errors>
-            <dev>0</dev>
+            <dev>1</dev>
             <live>0</live>
         </display_errors>
     </application>
