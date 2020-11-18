@@ -1,5 +1,5 @@
 <?php
-class SitemapRenderer implements \Lucinda\MVC\STDERR\ErrorRenderer
+class SitemapRenderer extends \Lucinda\MVC\STDERR\ErrorRenderer
 {
     public function render(\Lucinda\MVC\STDERR\Response $response)
     {

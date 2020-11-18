@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<xml>
+    <application version="0.8.8.385" auto_routing="0" default_format="html" default_page="index" templates_extension="html">
+        <paths>
+            <controllers>application/controllers_frontend</controllers>
+            <cacheables>application/models/cacheables</cacheables>
+            <views>application/views</views>
+            <listeners>application/listeners</listeners>
+            <tags>application/taglib</tags>
+            <tms_variables>application/models/tms_variables</tms_variables>
+            <compilations>compilations</compilations>
+            <resolvers>application/resolvers</resolvers>
+        </paths>
+    </application>
+</xml>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<xml>
+    <application>
+        <environments>
+            <ENVIRONMENT>HOSTNAME</ENVIRONMENT>
+            <ENVIRONMENT>PATH</ENVIRONMENT>
+        </environments>
+    </application>
+    <servers>
+        <sql>
+            <ENVIRONMENT>
+                <server driver="mysql" host="localhost" port="3306" username="USERNAME" password="PASSWORD"
+                        schema="SCHEMA" parent_schema="PARENT_SCHEMA" charset="utf8"/>
+            </ENVIRONMENT>
+        </sql>
+        <nosql>
+            <ENVIRONMENT>
+                <server driver="redis" host="localhost"/>
+            </ENVIRONMENT>
+        </nosql>
+    </servers>
+    <images path="public/sync">
+        <image type="casino_logo_light">
+            <format width="124" height="82"/>
+            <format width="85" height="56"/>
+        </image>
+        <image type="game_ss">
+            <format width="136" height="100"/>
+            <format width="300" height="220"/>
+            <format width="960" height="720"/>
+        </image>
+        <image type="software_logo_light">
+            <format width="80" height="53"/>
+        </image>
+        <image type="banking_method_light">
+            <format width="68" height="39"/>
+        </image>
+    </images>
+    <rest_api auth_key="AUTH_KEY">
+        <ENVIRONMENT>HOSTNAME</ENVIRONMENT>
+    </rest_api>
+    <geoip>
+        <ENVIRONMENT>PATH</ENVIRONMENT>
+    </geoip>
+</xml>

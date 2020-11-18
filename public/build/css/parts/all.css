@@ -6325,10 +6325,13 @@ a:focus {
     flex-direction: column;
   }
   .tc-button-mobile{
-    justify-content: flex-end !important;
+    margin: 0 !important;
   }
 }
 
+.list-rating-wrap{
+  border: none !important;
+}
 .section {
   margin: 0 0 20px;
 }
@@ -10691,4 +10694,11 @@ abbr[title] {
 hr.widget{
   border:none;
   border-top:1px solid #E2E2E3;
+}
+
+.mobile-group-btn{
+  display: flex;
+  flex: auto;
+  justify-content: center;
+  text-align: center;
 }
