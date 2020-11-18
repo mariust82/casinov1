@@ -27,6 +27,7 @@
                     <:if test="${data.selected_entity} == 'New'">
                     <casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
                     <:elseif test="${data.selected_entity} == 'Low Wagering'">
+                        <casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
                      <:else>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
                     </:if>

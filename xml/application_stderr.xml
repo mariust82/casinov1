@@ -13,6 +13,7 @@
         <display_errors>
             <dev>1</dev>
             <live>0</live>
+            <bogdan_local>1</bogdan_local>
         </display_errors>
     </application>
 </xml>
