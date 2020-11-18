@@ -24,11 +24,10 @@ class BankingMethods implements CasinoCounter
     }
     
     public function getMethodName($name) {
-        $method = SQL("SELECT name FROM banking_methods WHERE name=:name", array(":name"=>$name))->toValue();
-        if($method == 'bitcoin wallets') $method = 'bitcoin';
-        else if($method == 'paysafe card') $method = 'paysafecard';
+        if($name == 'bitcoin') $name = 'Bitcoin Wallets';
+        else if($name == 'paysafecard') $name = 'Paysafe Card';
 
-        return $method;
+        return SQL("SELECT name FROM banking_methods WHERE name=:name", array(":name"=>$name))->toValue();
     }
 
     public function getAll()
