@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
-xml>
+<xml>
     <application ref="xml/application_stderr_frontend"/>
     <reporters ref="xml/reporters"/>
     <renderers ref="xml/renderers"/>
