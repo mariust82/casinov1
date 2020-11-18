@@ -1,9 +1,11 @@
 <?php
 namespace Hlis\Testing;
 
-require_once("hlis/unit_testing/src/SiteIntegrityChecker.php");
+require("vendor/autoload.php");
+require_once("hlis/unit_testing/SiteIntegrityChecker.php");
 
-new SiteIntegrityChecker((strpos(__DIR__, "dev/site")?"dev.casinoslists.com":"www.casinoslists.com"), new ConsoleUnitTestDisplay(), array(
+$domain = $argv && isset($argv[1]) ? $argv[1] : "build.casinoslists.com";
+new SiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), array(
         "index"  => "index",
         "banking/(name)" => "banking/neteller",
         "banking" => "banking",
