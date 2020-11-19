@@ -4,7 +4,10 @@ namespace Hlis\Testing;
 require("vendor/autoload.php");
 require_once("hlis/unit_testing/SiteIntegrityChecker.php");
 
-$domain = $argv && isset($argv[1]) ? $argv[1] : "build.casinoslists.com";
+$environment = $argv && isset($argv[1]) ? $argv[1] : "dev";
+$domain = $argv && isset($argv[2]) ? $argv[2] : "build.slotsmate.com";
+define("ENVIRONMENT", $environment);
+
 new SiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), array(
         "index"  => "index",
         "banking/(name)" => "banking/neteller",
