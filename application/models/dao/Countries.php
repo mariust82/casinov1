@@ -40,7 +40,7 @@ class Countries implements CasinoCounter
     public function getCasinosCount()
     {
         $result = SQL("
-        SELECT STRAIGHT_JOIN 
+        SELECT  
         t1.name AS unit, count(*) as counter
         FROM countries AS t1
         INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.country_id
