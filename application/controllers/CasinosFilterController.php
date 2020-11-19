@@ -37,8 +37,7 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         $object = new CasinosList($filter);
 
         $total = $object->getTotal();
-
-        $offset = $page * $this->limit;
+        $offset = ($page - 1) * $this->limit + 30;
 
         $this->response->attributes("filter", $filter->getCasinoLabel());
         $this->response->attributes("total_casinos", $total);
