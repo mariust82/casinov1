@@ -19,7 +19,7 @@ new SiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), array(
         "casinos/stay-away" => "casinos/stay-away",
         "casinos" => "casinos",
         "reviews/(name)-review" => "reviews/blighty-bingo-review",
-        "warn/(name)" => "warn/Vegas2Web-Casino",
+        "warn/(name)" => "warn/vegas2web-casino",
         "bonus-list/(name)" => "bonus-list/no-deposit-bonus",
         "countries-list/(name)" => "countries-list/romania",
         "countries" => "countries",
