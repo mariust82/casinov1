@@ -11,71 +11,15 @@
     <:set var="bonus_icon" val="icon-free-bonus-icon"/>
 </:if>
 
-<:if test="${data.is_mobile}">
-    <div class="mobile-popup js-mobile-pop">
-        <div class="mobile-popup-heading">
-            <a href="#" class="mobile-popup-close js-mobile-pop-close">
-                <i class="icon-arrow-left2"></i>
-            </a>
-            <a href="/visit/${normalize(${data.name})}" target="_blank" rel="nofollow" class="button">VISIT CASINO</a>
-        </div>
-        <div class="mobile-popup-title">${data.name} ${data.bonus.type}</div>
-        <div class="mobile-popup-body">
-            <div class="tooltip-content ${block_class}">
-                <div class="tooltip-templates-heading">
-                    <div class="tooltip-templates-title">${data.name} ${data.bonus.type}</div>
-                    <div class="tooltip-templates-button">
-                        <a href="/visit/${normalize(${data.name})}" target="_blank" rel="nofollow" class="btn btn-small">VISIT CASINO</a>
-                    </div>
-                </div>
-                <div class="tooltip-templates-body">
-                    <div class="bonus-box">
-                        <div class="bonus-box-heading">
-                            <span>${data.bonus.amount} ${bonus_type}</span>
-                        </div>
-                        <div class="bonus-box-body">
-                            <:set var="code_class" val=""/>
-                            <:if test="${data.bonus.code} != 'No code required'">
-                                <:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
-                            </:if>
-                            <div class="bonus-box-btn dashed ${code_class}" data-code="${data.bonus.code}">${data.bonus.code}</div>
-
-                            <ul class="bonus-box-list">
-                                <li>
-                                    <span class="bonus-box-list-label">Wagering</span>
-                                    <strong class="bonus-box-wagering">${data.bonus.wagering}</strong>
-                                </li>
-                                <li>
-                                    <span class="bonus-box-list-label">Min. deposit</span>
-                                    <:if test="${data.bonus.min_deposit} != ''">
-                                        <strong>${data.bonus.min_deposit}</strong>
-                                        <:else>
-                                            <strong class="success">Free</strong>
-                                    </:if>
-                                <li>
-                                    <span class="bonus-box-list-label">Games allowed</span>
-                                    <strong class="list-item-flex">
-                                        <span class="list-item-trun">${data.bonus.games_allowed}</span>
-                                    </strong>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="bonus-box-circle">
-                            <i class="${bonus_icon}"></i>
-                        </div>
-                    </div>
-                </div>
+<div class="tooltip-content ${block_class}">
+    <:if test="!${data.is_mobile}">
+        <div class="tooltip-templates-heading">
+            <div class="tooltip-templates-title">${data.name} ${data.bonus.type}</div>
+            <div class="tooltip-templates-button">
+                <a href="/visit/${normalize(${data.name})}" target="_blank" rel="nofollow" class="btn btn-small">VISIT CASINO</a>
             </div>
         </div>
-    </div>
-<:else>
-<div class="tooltip-content ${block_class}">
-    <div class="tooltip-templates-heading">
-        <div class="tooltip-templates-title">${data.name} ${data.bonus.type}</div>
-        <div class="tooltip-templates-button">
-            <a href="/visit/${normalize(${data.name})}" target="_blank" rel="nofollow" class="btn btn-small">VISIT CASINO</a>
-        </div>
-    </div>
+    </:if>
     <div class="tooltip-templates-body">
         <div class="bonus-box">
             <div class="bonus-box-heading">
@@ -117,4 +61,3 @@
         </div>
     </div>
 </div>
-</:if>

@@ -80,7 +80,7 @@
 				<:if test="$[mobile]">
 					<:if test="${is_low_wagering}">
 						<div class="btn-round-holder list-item-cell-bfnp">
-							<span class="btn-round" data-name="${result.name}" data-is-free="1"> ${fb_amount}
+							<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1"> ${fb_amount}
 								<:if test="${fb_abbreviation} != 'NDB'">
 									<:if test="${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
 									    <:set var="fs" val="FS" />
@@ -95,10 +95,10 @@
 							${result.bonus_free.wagering}
 						</div>
 					<:else>
-						<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
+						<div class="list-item-cell list-item-fd-bonus">
 							<:if test="${fb_amount}">
 								<div class="btn-round-holder">
-									<span class="btn-round" data-name="${result.name}" data-is-free="1">
+									<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1">
 										${fb_amount}
 										<:if test="${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
 										    <:set var="fs" val="FS" />
@@ -111,7 +111,7 @@
 							</:if>
 							<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
 								<div class="btn-round-holder">
-									<span class="btn-round" data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
+									<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
 								</div>
 							</:if>
 						</div>
@@ -129,7 +129,7 @@
 							${result.bonus_free.wagering}
 						</div>
 					<:else>
-						<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
+						<div class="list-item-cell list-item-fd-bonus">
 							<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
 								<span class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
 							</:if>

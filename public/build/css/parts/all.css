@@ -1454,16 +1454,6 @@ button.swiper-pagination-bullet {
   margin-bottom: 8px;
 }
 
-
-/* .tooltipster-content */
-
-.tooltipster-sidetip .tooltipster-content {
-  color: white;
-  line-height: 18px;
-  padding: 6px 14px;
-}
-
-
 /* .tooltipster-arrow : will keep only the zone of .tooltipster-arrow-uncropped that
 corresponds to the arrow we want to display */
 
@@ -5187,25 +5177,49 @@ a:focus {
   background: #fff;
   border: none;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 2px;
 }
+
+@media screen and (max-width: 767px) {
+  .tooltipster-sidetip .tooltipster-box {
+    /* background: none; */
+    /* box-shadow: none; */
+    border-radius: 6px;
+  }
+}
+
+/* .tooltipster-content */
 
 .tooltipster-sidetip .tooltipster-content {
   font-weight: 600;
   color: #60686A;
   font-size: 13px;
+  line-height: 18px;
   padding: 6px 10px;
   position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .tooltipster-sidetip .tooltipster-content {
+    padding: 0;
+  }
 }
 
 .tooltipster-sidetip .tooltipster-content .loader {
   display: block;
   position: relative;
-  padding: 150px 0;
-  width: 50px;
-  height: 50px;
+  width: 300px;
+  height: 230px;
   box-sizing: content-box;
   -webkit-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .tooltipster-sidetip .tooltipster-content .bonus-box-list-label {
@@ -5236,6 +5250,12 @@ a:focus {
   top: -1px;
 }
 
+@media screen and (max-width: 767px) {
+  .tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow {
+    display: none;
+  }
+}
+
 .tooltipster-sidetip.tooltipster-left .tooltipster-arrow-border {
   border-left-color: rgba(0, 0, 0, 0.09);
 }
@@ -5250,10 +5270,6 @@ a:focus {
 
 .tooltipster-sidetip.tooltipster-right .tooltipster-arrow-background {
   border-right-color: #fff;
-}
-
-.tooltipster-sidetip .tooltipster-box {
-  border-radius: 2px;
 }
 
 .tooltipster-sidetip .tooltipster-box .btn-small {
@@ -5275,6 +5291,12 @@ a:focus {
   -ms-flex-align: center;
   align-items: center;
   margin: 0 0 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .tooltip-templates-heading {
+    display: none;
+  }
 }
 
 .tooltip-templates-body {
@@ -5299,6 +5321,12 @@ a:focus {
 
 .tooltip-content {
   padding: 20px 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .tooltip-content {
+    padding: 0;
+  }
 }
 
 .tooltip-content .bonus-box {
@@ -5361,9 +5389,16 @@ a:focus {
   border-radius: 0 0 5px 5px;
 }
 
+@media screen and (max-width: 767px) {
+  .bonus-box-body {
+    background: #fff;
+    border-radius: 0 0 6px 6px;
+  }
+}
+
 @media screen and (max-width: 690px) {
   .bonus-box-body {
-    padding: 10px;
+    padding: 15px 20px;
   }
 }
 
@@ -5381,6 +5416,12 @@ a:focus {
   border-radius: 5px 5px 0 0;
   border-bottom-width: 2px;
   border-bottom-style: dashed;
+}
+
+@media screen and (max-width: 767px) {
+  .bonus-box-heading {
+    border-radius: 6px 6px 0 0;
+  }
 }
 
 .bonus-box-heading span {
