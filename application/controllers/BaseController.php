@@ -8,7 +8,6 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
     public function run()
     {
         $specificPage = $this->request->getURI()->getPage();
-        if($specificPage == 'games/slots') $this->response->redirect('/games/classic-slots');
         $country = $this->request->attributes("country");
         $this->response->attributes("country", $country);
         $menu = new TopMenu($this->request->getValidator()->getPage(), $specificPage, $country);
