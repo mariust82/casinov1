@@ -31,19 +31,27 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes("country", $this->request->attributes("country"));
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $sortCriteria = $this->getSortCriteria();
-
         $page = (integer)$this->request->getValidator()->parameters("page");
         $filter = new CasinoFilter($_GET, $this->request->attributes("country"));
         $object = new CasinosList($filter);
-
         $total = $object->getTotal();
-        $offset = $page == 0? 0:($page - 1) * $this->limit + 30;
-
+        $offset = $this->setOffset($page);
         $this->response->attributes("filter", $filter->getCasinoLabel());
         $this->response->attributes("total_casinos", $total);
         $this->response->attributes("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset, true));
         $this->response->attributes('page_type', $this->getPageType($filter));
         $this->response->attributes('selected_entity', $filter->getCasinoLabel());
+    }
+    
+     private function setOffset($page) {
+        $params = $this->request->parameters();
+        if (isset($params["live_dealer"])) {
+            $offset = $page == 0? 0:($page - 1) * $this->limit + 30;
+        } else {
+            $offset = $page == 0? 0:($page) * $this->limit;
+        }
+        
+        return $offset;
     }
 
     private function getSortCriteria()
