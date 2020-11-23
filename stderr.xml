@@ -2,7 +2,7 @@
 <!DOCTYPE xml>
 <xml>
     <application ref="xml/application_stderr"/>
-<!--    <reporters ref="xml/reporters"/>-->
+    <reporters ref="xml/reporters"/>
     <renderers ref="xml/renderers"/>
     <exceptions ref="xml/exceptions"/>
 </xml>
