@@ -2,13 +2,13 @@
 namespace Hlis\Testing;
 
 require("vendor/autoload.php");
-require_once("hlis/unit_testing/SiteIntegrityChecker.php");
+require_once("site_integrity_checker/CasinosListsSiteIntegrityChecker.php");
 
 $environment = $argv && isset($argv[1]) ? $argv[1] : "dev";
 $domain = $argv && isset($argv[2]) ? $argv[2] : "build.casinoslists.com";
 define("ENVIRONMENT", $environment);
 
-new SiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), array(
+new CasinosListsSiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), array(
         "index"  => "index",
         "banking/(name)" => "banking/neteller",
         "banking" => "banking",
