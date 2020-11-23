@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xml>
+<xml>
+    <renderers>
+        <renderer format="html" content_type="text/html" class="ViewLanguageRenderer" charset="UTF-8"/>
+        <renderer format="json" content_type="application/json" class="JsonRenderer" charset="UTF-8"/>
+        <renderer format="sitemap" content_type="text/xml" class="SitemapRenderer" charset="UTF-8"/>
+        <renderer format="rss" content_type="application/rss+xml" class="RssRenderer" charset="UTF-8"/>
+    </renderers>
+</xml>

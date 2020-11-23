@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<xml>
+    <listeners>
+        <listener class="AsyncListener"/>
+        <listener class="SQLDataSourceInjector"/>
+        <listener class="NoSQLDataSourceInjector"/>
+        <listener class="ErrorListener"/>
+        <listener class="RebrandingListener"/>
+        <listener class="IPDetectionListener"/>
+        <listener class="MobileDetectionListener"/>
+        <listener class="ValidationListener"/>
+        <listener class="HttpCachingListener"/>
+    </listeners>
+</xml>    

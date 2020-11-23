@@ -106,6 +106,17 @@ function grayscaleIE() {
     }
 }
 
+function initCustomSelect() {
+    if(!$('.js-filter').length)  return;
+    var _filterOptions = $('.js-filter > option');
+    $('.js-filter').select2MultiCheckboxes({
+        templateSelection: function () {
+            return "Game software";
+        }
+    })
+    _filterOptions.prop("selected", false);
+}
+
 var initImageLazyLoad = function () {
     if (typeof imageDefer != "undefined") {
         imageDefer("lazy_loaded");
@@ -118,8 +129,12 @@ var initImageLazyLoad = function () {
 
     $(document).ready(function () {
         //Load Defer Scripts and Binding
+        if ($('.links-nav').length) {
+            loadScripts(['bindings', 'assets/swiper']);
+        }
+        loadScripts(['assets/jquery-select2']);
         $(document).on('scroll mousemove', function(){
-            loadScripts(['bindings', 'assets/tooltipster', 'assets/swiper', 'assets/jquery-select2']);
+            loadScripts(['bindings', 'assets/tooltipster', 'assets/swiper']);
             $(document).unbind("scroll mousemove");
 
             initSite();
@@ -137,7 +152,6 @@ var initImageLazyLoad = function () {
 
             new newsletter($('.subscribe'));
         });
-
         initExpandingText();
         menuHoverAction();
         setStyleProps();
@@ -405,12 +419,11 @@ var initImageLazyLoad = function () {
         });
     }
 
-    function validateEmail(email) {
-        var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
-        return pattern.test(email);
-    }
 })(jQuery);
-
+function validateEmail(email) {
+    var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
+    return pattern.test(email);
+}
 function determineCasinoPage(key) {
     var page;
     if (key === 'new') {

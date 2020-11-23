@@ -14,9 +14,9 @@
         </div>
 
         <:if test="isset(${data.currency})">
-        <filter:casinos id="${data.selected_entity}" name="${data.currency}" code="${data.language}" key="true"/>
+            <filter:casinos id="${data.selected_entity}" name="${data.currency}" code="${data.language}" key="true"/>
         <:else>
-        <filter:casinos id="${data.selected_entity}" name="${data.country.name}" code="${data.country.code}"  key="false"/>
+            <filter:casinos id="${data.selected_entity}" name="${data.country.name}" code="${data.country.code}"  key="false"/>
         </:if>
 
         <div class="data-container-holder">
@@ -27,8 +27,8 @@
                     <:if test="${data.selected_entity} == 'New'">
                     <casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
                     <:elseif test="${data.selected_entity} == 'Low Wagering'">
-                    <casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
-                    <:else>
+                        <casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
+                     <:else>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
                     </:if>
                 </div>
