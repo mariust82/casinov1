@@ -156,7 +156,7 @@
                     <casino:list type="SOFTWARE" id="3" data="${data.country_casinos}" name="${data.country.name} ${data.software} Casinos"/>
                     <:else>
                     <div>
-                        <p>There are no ${data.software} Casinos available in your country. Please visit our <a class="missing" href="/countries-list/${normalize(${data.country.name})}">${data.country.name} Casinos List</a> page and discover our collection of gambling sites available in your country.</p>
+                        <p>There are no ${data.software} Casinos available in your country. Please visit our <a class="missing" href="/countries-list/${countryNormalize(${data.country.name})}">${data.country.name} Casinos List</a> page and discover our collection of gambling sites available in your country.</p>
                     </div>
                     </:if>
                 </div>

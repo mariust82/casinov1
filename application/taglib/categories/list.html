@@ -61,7 +61,11 @@
                                         <:set var="key" val="Classic Slots"/>
                                         <a href="$[url]/${type}">
                                     <:else>
-                                        <a href="$[url]/${normalize(${key})}">
+                                        <:if test="$[url] == '/countries-list'">
+                                            <a href="$[url]/${countryNormalize(${key})}">
+                                        <:else>
+                                            <a href="$[url]/${normalize(${key})}">
+                                        </:if>
                                     </:if>
 					<:if test="$[image]">
 						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>
