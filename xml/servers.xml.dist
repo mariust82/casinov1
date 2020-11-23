@@ -3,15 +3,15 @@
 <xml>
     <servers>
         <sql>
-            <bogdan_local>
-                <server driver="mysql" host="localhost" port="3306" username="root" password=""
-                        schema="bogdan__casinoslists_main" parent_schema="bogdan__casinoslists_admin" charset="utf8"/>
-            </bogdan_local>
+            <ENVIRONMENT>
+                <server driver="mysql" host="localhost" port="3306" username="USERNAME" password="PASSWORD"
+                        schema="SCHEMA" parent_schema="PARENT_SCHEMA" charset="utf8"/>
+            </ENVIRONMENT>
         </sql>
         <nosql>
-            <bogdan_local>
+            <ENVIRONMENT>
                 <server driver="redis" host="localhost"/>
-            </bogdan_local>
+            </ENVIRONMENT>
         </nosql>
     </servers>
 </xml>
