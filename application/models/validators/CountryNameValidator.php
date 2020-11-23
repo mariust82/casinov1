@@ -24,7 +24,7 @@ class CountryNameValidator extends \Lucinda\RequestValidator\ParameterValidator
                 $value = "cocos-(keeling)-islands";
                 break;
             case "falkland-islands-malvinas":
-                $value = "falkland-islands-malvinas";
+                $value = "falkland-islands-(malvinas)";
                 break;
             case "cote-divoire":
                 $value = "cote-d'ivoire";
