@@ -26,7 +26,7 @@ fs.readFile("resources.xml", function(error, data) {
                 for(var j in components) {
                     var dependencyFile = destinationFolder+"/"+components[j].$.name+"."+type;
                     if(!fs.existsSync(dependencyFile)) {
-                        console.error("ERROR: file " + dependencySourceFile + " not found");
+                        console.error("ERROR: file " + dependencyFile + " not found");
                         return;
                     }
                     contents += fs.readFileSync(dependencyFile)+"\n";
