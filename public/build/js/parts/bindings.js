@@ -23,6 +23,72 @@ copyTooltipConfig = {
     }
 };
 
+contentTooltipConfigPopup = {
+    trigger: 'click',
+    maxWidth: 460,
+    interactive: true,
+    contentAsHTML: true,
+    debug: false,
+    content: $('.loader'),
+    animation: 'fade',
+    contentCloning: false,
+    functionReady: function (origin, tooltip) {
+        $('body').addClass('shadow');
+        setTimeout(function () {
+            $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
+            contentTooltipConfigPopupActions($(tooltip.origin))
+        }, 500)
+    },
+    functionAfter: function () {
+        $('body').removeClass('shadow');
+    },
+    functionBefore: function (instance, helper) {
+        var $origin = $(helper.origin);
+
+        if ($origin.data('loaded') !== true) {
+            var _name = $origin.data('name');
+            var _is_free = $origin.data('is-free');
+            var _request = new XMLHttpRequest();
+            _request.abort();
+            _request = $.ajax({
+                url: "/casino/bonus-popup",
+                data: {
+                    casino: _name,
+                    is_free: _is_free,
+                },
+                dataType: 'html',
+                type: 'POST',
+                success: function (response) {
+                    instance.content(response);
+                    setTimeout(function () {
+                        contentTooltipConfigPopupActions($origin)
+                    }, 150)
+                    $origin.data('loaded', true);
+                }
+            });
+        }
+    }
+};
+
+function contentTooltipConfigPopupActions(origin) {
+    checkStringLength($('.bonus-box'), 15);
+    $('.bonus-info .content_popup').niceScroll({
+        cursorcolor: "#A8AEC8",
+        cursorwidth: "3px",
+        autohidemode: false,
+        cursorborder: "1px solid #A8AEC8",
+        railoffset: { top: 0, left: 20 },
+        horizrailenabled: false,
+    });
+    $('.js-tooltip').tooltipster(tooltipConfig);
+    $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+    copyToClipboard();
+
+    $('.close_btn').on('click',function(){
+        origin.tooltipster('hide');
+    });
+}
+
 contentTooltipConfig = {
     trigger: 'click',
     minWidth: 460,
@@ -489,6 +555,7 @@ function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+    $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
     initMobileBonusesPop(ww);
 }
 
@@ -571,6 +638,7 @@ function initTooltipseter() {
     $('.js-tooltip').tooltipster(tooltipConfig);
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+    $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
 }
 
 function bindButtons(){

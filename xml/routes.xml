@@ -156,6 +156,9 @@
         <route url="articles/(page)" controller="ArticlesByPageController" view="articles-by-page">
             <parameter name="page" validator="PositiveNumberValidator"/>
         </route>
+        <route url="casino/bonus-popup" controller="CasinoBonusPopUpController" view="bonus-popup-casino">
+            <parameter name="casino" validator="CasinoValidator"/>
+        </route>
         <route url="404" controller="PageNotFoundController" view="404"/>
         <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" format="sitemap"/>
         <route url="sitemap_cas_bon.php" controller="sitemap/BonusTypesController" format="sitemap"/>
