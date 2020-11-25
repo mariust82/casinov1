@@ -125,6 +125,7 @@ var initImageLazyLoad = function () {
 
 
 (function ($) {
+    console.dir("minify & bundle");
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
