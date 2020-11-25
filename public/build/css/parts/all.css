@@ -1245,6 +1245,13 @@ button.swiper-pagination-bullet {
   opacity: 1;
 }
 
+/* @media screen and (max-width: 375px) {
+  .tooltipster-base {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+} */
+
 
 /* grow */
 
@@ -1495,7 +1502,6 @@ corresponds to the arrow we want to display */
   margin-left: -10px;
   width: 20px;
 }
-
 
 /* common rules between .tooltipster-arrow-background and .tooltipster-arrow-border */
 

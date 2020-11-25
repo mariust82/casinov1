@@ -43,8 +43,18 @@ contentTooltipConfig = {
         $('.js-tooltip').tooltipster(tooltipConfig);
     },
     functionPosition: function(instance, helper, position){
-        if (ww < 768) {
+        if (ww < 768 && ww > 375) {
             position.coord.left += 20;
+            return position;
+        }
+
+        if (ww <= 375 && ww > 330) {
+            position.coord.left -= 35;
+            return position;
+        }
+
+        if (ww <= 330) {
+            position.coord.left -= 10;
             return position;
         }
     },
