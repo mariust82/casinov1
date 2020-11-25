@@ -124,7 +124,7 @@ class TopMenu
 
     private function setUserCountryInMenu()
     {
-        $country_url =   "/countries-list/".strtolower(str_replace(" ", "-", $this->userCountry->name));
+        $country_url =   "/countries-list/".strtolower(str_replace(" ", "-", str_replace(["(",")","'"],["","",""], $this->userCountry->name)));
         $countriesUrl = self::$entries['COUNTRIES']['sub_items'];
 
         $newMenuItem = [];
