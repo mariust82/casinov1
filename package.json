@@ -4,19 +4,12 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
+    "gulp-minify-css": "^1.2.4",
     "npm": "^6.10.2",
     "xml2js": "^0.4.23",
-    "yuicompressor": "^2.4.8"
-  },
-  "devDependencies": {
-    "gulp-concat": "^2.6.1",
-    "gulp-minify-css": "^1.2.4",
-    "gulp-uglify": "^3.0.2",
-    "xml2json": "^0.11.2",
-    "xmljson": "^0.2.0",
-    "gulp-run": "^1.7.1"
+    "gulp-uglify": "^3.0.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
