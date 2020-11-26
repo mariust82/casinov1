@@ -913,7 +913,7 @@ var Filters = function (obj) {
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
                 if (_url === '/casinos-filter/') {
-                    if (parseInt($('.qty-items').attr('data-load-total')) <= 100) {
+                    if (parseInt($('.qty-items').attr('data-load-total')) <= 30) {
                         $('.js-more-items').hide();
                     } else {
                         $('.js-more-items').show();
