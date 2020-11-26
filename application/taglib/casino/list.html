@@ -16,7 +16,9 @@
 				<div class="list-item-cell list-heading-title list-item-type">$[type]</div>
 			</:if>
 			<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
-			<div class="list-item-cell list-heading-title list-item-fd-bonus"><span>FIRST DEPOSIT</span> BONUS</div>
+			<:if test="${data.page_type} != 'banking_method'">
+				<div class="list-item-cell list-heading-title list-item-fd-bonus"><span>FIRST DEPOSIT</span> BONUS</div>
+			</:if>
 			<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
 		</:if>
 	</div>
