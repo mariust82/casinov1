@@ -3798,7 +3798,7 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   .list-item-cell-bfnp {
-    width: 26%;
+    width: 23%;
   }
   .list-heading-title.list-item-cell-bfnp span {
     display: none;
@@ -3817,7 +3817,7 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   .list-item-cell-wagering {
-    width: 14%;
+    width: 17%;
     margin: 0 !important;
   }
 }
