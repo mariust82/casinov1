@@ -7,6 +7,7 @@
 <div class="categories">
 	<div class="categories-list ${img_class}">
 		<:set var="index" val="0"/>
+                <:set var="url" val="$[url]"/>
 		<:foreach var="$[items]" key="key" val="result">
 			<div class="category ${img_class}">
                             <:if test="${key} == 'Mobile'">
@@ -61,7 +62,11 @@
                                         <:set var="key" val="Classic Slots"/>
                                         <a href="$[url]/${type}">
                                     <:else>
-                                        <a href="$[url]/${normalize(${key})}">
+                                       <:if test="${url} == '/countries-list'">
+                                            <a href="$[url]/${countryNormalize(${key})}">
+                                        <:else>
+                                            <a href="$[url]/${normalize(${key})}">
+                                        </:if>
                                     </:if>
 					<:if test="$[image]">
 						<site:logo name="${key}" type="$[type]" alt="${key}" index="${index}"/>

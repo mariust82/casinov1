@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE xml>
 <xml>
-    <application version="0.8.8.386" default_format="html" templates_extension="html">
+    <application version="APPLICATION_VERSION" default_format="html" templates_extension="html">
         <paths>
             <compilations>compilations</compilations>
             <controllers>application/controllers</controllers>
@@ -11,9 +11,7 @@
             <tags>application/taglib</tags>
         </paths>
         <display_errors>
-            <dev>0</dev>
-            <live>0</live>
-            <bogdan_local>1</bogdan_local>
+            <ENVIRONMENT>1</ENVIRONMENT>
         </display_errors>
     </application>
 </xml>

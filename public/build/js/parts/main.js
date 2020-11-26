@@ -123,6 +123,7 @@ var initImageLazyLoad = function () {
     }
 };
 
+
 (function ($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
@@ -140,7 +141,6 @@ var initImageLazyLoad = function () {
             initSite();
             initToggleMenu();
             initSearch();
-            initMobileBonusesPop(ww);
             initTooltipseter();
             bindButtons();
 

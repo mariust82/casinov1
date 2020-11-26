@@ -1,9 +1,14 @@
 <?php
 namespace Hlis\Testing;
 
-require_once("hlis/unit_testing/src/SiteIntegrityChecker.php");
+require("vendor/autoload.php");
+require_once("hlis/unit_testing/SiteIntegrityChecker.php");
 
-new SiteIntegrityChecker((strpos(__DIR__, "dev/site")?"dev.casinoslists.com":"www.casinoslists.com"), new ConsoleUnitTestDisplay(), array(
+$environment = $argv && isset($argv[1]) ? $argv[1] : "dev";
+$domain = $argv && isset($argv[2]) ? $argv[2] : "build.casinoslists.com";
+define("ENVIRONMENT", $environment);
+
+new SiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), array(
         "index"  => "index",
         "banking/(name)" => "banking/neteller",
         "banking" => "banking",
@@ -14,7 +19,7 @@ new SiteIntegrityChecker((strpos(__DIR__, "dev/site")?"dev.casinoslists.com":"ww
         "casinos/stay-away" => "casinos/stay-away",
         "casinos" => "casinos",
         "reviews/(name)-review" => "reviews/blighty-bingo-review",
-        "warn/(name)" => "warn/Vegas2Web-Casino",
+        "warn/(name)" => "warn/vegas2web-casino",
         "bonus-list/(name)" => "bonus-list/no-deposit-bonus",
         "countries-list/(name)" => "countries-list/romania",
         "countries" => "countries",

@@ -204,7 +204,7 @@ class Casinos implements FieldValidator
     }
     
     public function getAllByCountries() {
-        return SQL("
+        $res = SQL("
         SELECT MAX(t1.date) AS data, t3.name FROM casinos AS t1
         INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id
         INNER JOIN countries AS t3 ON t2.country_id = t3.id
@@ -212,5 +212,11 @@ class Casinos implements FieldValidator
         GROUP BY t3.name
         ORDER BY t3.name ASC
         ")->toMap("name", "data");
+        $output = [];
+        foreach ($res as $key => $value) {
+            $name = strtolower(str_replace(" ", "-", str_replace(["(",")","'"],["","",""], $key)));
+            $output[$name] = $value;
+        }
+        return $output;
     }
 }
