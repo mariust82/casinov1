@@ -4503,19 +4503,31 @@ a:focus {
   width:100%;
 }
 
-.btn-small {
+.btn-small, .btn-rest {
   padding: 7px 16px 8px;
   margin: -2px 0 0 0;
 }
 
 @media screen and (max-width: 767px) {
-  .btn-small {
+  .btn-small, .btn-rest {
     padding: 7px 7px 8px;
     width:27px;
     height:27px;
     border-radius:50%;
     text-indent:-9999px;
     position:relative;
+  }
+
+  .btn-rest:after {
+    position:absolute;
+    content: url(../../images/icons/map-marker-remove.svg);
+    width: 20px;
+    height: 20px;
+    left: 56%;
+    top: 58%;
+    transform: translate(-50%,-50%);
+    z-index: 100;
+    text-indent: initial;
   }
 
   .btn-small:after{
@@ -5278,7 +5290,7 @@ a:focus {
   border-right-color: #fff;
 }
 
-.tooltipster-sidetip .tooltipster-box .btn-small {
+.tooltipster-sidetip .tooltipster-box .btn-small .btn-rest {
   padding: 9px 23px 9px;
 }
 
@@ -10748,4 +10760,8 @@ hr.widget{
   flex: auto;
   justify-content: center;
   text-align: center;
+}
+
+.btn-rest, .btn-rest:hover {
+  background: #B5B5B5;
 }

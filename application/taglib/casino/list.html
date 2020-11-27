@@ -90,12 +90,11 @@
 					</div>
 				</:if>
 
-				<:if test="isset(${result.bonus_free.amount})">
 					<:set var="fb_amount" val="checkForAbbr(${result.bonus_free.amount})"/>
-				</:if>
-				<:if test="isset(${result.bonus_free.type})">
+
+
 					<:set var="fb_abbreviation" val="getAbbreviation(${result.bonus_free.type}, ${fdb_amount})"/>
-				</:if>
+
 
 				<:if test="${data.is_mobile}">
 					<:if test="${is_low_wagering}">
@@ -168,6 +167,10 @@
 						<:elseif test="${result.status}==2">
 							<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-wrn btn-err">
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><defs><style>.a{fill:#fff;}</style></defs><path class="a" d="M10.8,10.8H9.2V6h1.6m0,8H9.2V12.4h1.6M10,2a8,8,0,1,0,8,8,8,8,0,0,0-8-8Z" transform="translate(-2 -2)"/></svg>
+							</a>
+						<:elseif test="!${result.is_country_accepted}">
+							<a href="/visit/${normalize(${result.name})}" class="btn btn-rest" target="_blank" rel="nofollow">
+								REST
 							</a>
 						<:else>
 							<a href="/visit/${normalize(${result.name})}" class="btn btn-small" target="_blank" rel="nofollow">
