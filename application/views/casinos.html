@@ -1,7 +1,5 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casinos"/>
 
-<!-- for secondary navigation use: <div class="links-casinos"> site:links-carousel items="${data.menu_bottom}" </div> -->
-
 <div class="block">
     <div class="container">
         <div class="headeing">
@@ -28,7 +26,7 @@
                     <casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
                     <:elseif test="${data.selected_entity} == 'Low Wagering'">
                         <casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
-                     <:else>
+                    <:else>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
                     </:if>
                 </div>
@@ -36,7 +34,6 @@
             </div>
             <filter:reset/>
         </div>
-
 
         <:if test="${data.selected_entity} != 'Best'">
         <:if test="${data.total_casinos} > count(${data.casinos})">
