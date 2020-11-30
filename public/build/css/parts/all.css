@@ -9,6 +9,15 @@
   font-style: normal;
 }
 
+.svg-icon{
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
 .missing{
     color: #0052cc;
 }
@@ -4501,9 +4510,9 @@ a:focus {
   text-align: center;
   transition: all .3s;
   
-  display: -webkit-box !important;
-    display: -ms-flexbox !important;
-    display: flex !important;
+  display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -6240,7 +6249,7 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   .casino-review-heading-left .btn-group {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -6278,7 +6287,7 @@ a:focus {
 
 @media screen and (max-width: 767px) {
   .casino-review .btn-middle {
-    padding: 11px 22px 12px;
+    padding: 9px 22px 11px;
   }
 }
 
@@ -6352,6 +6361,12 @@ a:focus {
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin: 0 4px 0 0;
+}
+
+.casino-review-heading .btn-group{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .btn-group a {
@@ -10776,4 +10791,12 @@ hr.widget{
   flex: auto;
   justify-content: center;
   text-align: center;
+}
+
+.mobile-group-btn > div{
+  margin: 0 0 0 10px;
+}
+
+.mobile-group-btn > div:first-child{
+  margin: 0;
 }
