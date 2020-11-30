@@ -1,5 +1,6 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casino-info"/>
 	<:if test="${data.casino.status} == 'Blacklisted'">
+		<:set var="item_status" val="blacklisted"/>
 		<div class="container">
 			<div class="warn-box">
 				<div class="warn-box-title">BLACKLISTED</div>
@@ -7,18 +8,27 @@
 			</div>
 		</div>
 	<:elseif test="${data.casino.status} == 'Warning'">
+		<:set var="item_status" val="warning"/>
 		<div class="container">
 			<div class="warn-box warning">
 				<div class="warn-box-title">WARNING</div>
 				<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} does not have a collaborative agreement with www.casinoslists.com, and therefore we can not monitor the casino’s actions and reliability in order to provide the necessary support for our players. We strongly recommend that players avoid playing at this casino and choose another casino to play at.</div>
 			</div>
 		</div>
-	<:elseif test="${data.casino.note}">
+	<:else>
+		<:set var="item_status" val="default"/>
+		
+		<:if test="${data.casino.is_country_accepted} != 1">
+			<:set var="item_status" val="restricted"/>
+		</:if>
+		
+		<:if test="${data.casino.note}">
 			<div class="container">
 				<div class="warn-box note">
 					<div class="warn-box-body">${str_replace("thebigfreechiplist","casinoslists",${data.casino.note})}</div>
 				</div>
 			</div>
+		</:if>
 	</:if>
 
 	<div class="casino-review">
@@ -28,11 +38,20 @@
 					<h1 class="casino-review-title">${data.page_info.body_title}</h1>
 					<div class="btn-group">
 						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
-						<:if test="${data.casino.status} == 'Blacklisted' || ${data.casino.status} == 'Warning'">
-							<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" rel="nofollow">PLAY NOW</a>
-						<:else>
-							<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
-						</:if>
+						<a href="/visit/${normalize(${data.casino.name})}" 
+                            class="btn_play btn btn-middle btn-${item_status}" 
+                            rel="nofollow" 
+                            <:if test="${item_status} != 'blacklisted' && ${item_status} != 'warning' && ${item_status} != 'restricted'">
+                                target="_blank" 
+                            </:if>
+                        >
+                            <:if test="${item_status} == 'blacklisted' || ${item_status} == 'warning' || ${item_status} == 'restricted'">
+                                <svg class="svg-icon"><use xlink:href="#icon-${item_status}"></use></svg>
+                                ${item_status}
+                            <:else>
+                                PLAY NOW
+                            </:if>
+                        </a>
                         <:if test="${data.casino.is_tc_link}">
 							<a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
                         </:if>
@@ -61,7 +80,20 @@
 							<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
 						</div>
 						<div>
-							<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
+							<a href="/visit/${normalize(${data.casino.name})}" 
+								class="btn btn-middle btn-${item_status}" 
+								rel="nofollow" 
+								<:if test="${item_status} != 'blacklisted' && ${item_status} != 'warning' && ${item_status} != 'restricted'">
+									target="_blank" 
+								</:if>
+							>
+								<:if test="${item_status} == 'blacklisted' || ${item_status} == 'warning' || ${item_status} == 'restricted'">
+									<svg class="svg-icon"><use xlink:href="#icon-${item_status}"></use></svg>
+									${item_status}
+								<:else>
+									PLAY NOW
+								</:if>
+							</a>
 							<:if test="${data.casino.is_tc_link}">
 								<a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link tc-button-mobile">T&C applies</a>
 							</:if>

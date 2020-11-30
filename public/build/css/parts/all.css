@@ -3929,14 +3929,28 @@ a:focus {
 
 .btn-err svg {
   height: 18px;
+  font-size: 18px;
+  margin: 1px 0 0 0;
 }
 
-.btn-blk {
-  background: #020A13;
+.btn-blk,
+.btn.btn-blacklisted{
+    background:#020A13;
 }
 
-.btn-wrn {
-  background: #DB2424;
+.btn-wrn,
+.btn.btn-warning{
+    background: #DB2424;
+}
+
+.btn-rst,
+.btn.btn-restricted{
+    background: #b5b5b5;
+}
+.btn.btn-blacklisted,
+.btn.btn-warning,
+.btn.btn-restricted{
+    padding: 10px 22px 11px;
 }
 
 @media screen and (min-width: 1023px) {
@@ -4483,10 +4497,24 @@ a:focus {
   padding: 10px 30px;
   border-radius: 4px;
   font-weight: 600;
-  display: inline-block;
   border: none;
   text-align: center;
   transition: all .3s;
+  
+  display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.btn .svg-icon{
+  font-size: 18px;
+  margin: 0 10px 0 0;
 }
 
 @media screen and (min-width: 1023px) {
