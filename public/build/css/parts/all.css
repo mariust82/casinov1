@@ -4543,19 +4543,31 @@ a:focus {
   width:100%;
 }
 
-.btn-small {
+.btn-small, .btn-rest {
   padding: 7px 16px 8px;
   margin: -2px 0 0 0;
 }
 
 @media screen and (max-width: 767px) {
-  .btn-small {
+  .btn-small, .btn-rest {
     padding: 7px 7px 8px;
     width:27px;
     height:27px;
     border-radius:50%;
     text-indent:-9999px;
     position:relative;
+  }
+
+  .btn-rest:after {
+    position:absolute;
+    content: url(../../images/icons/map-marker-remove.svg);
+    width: 20px;
+    height: 20px;
+    left: 56%;
+    top: 58%;
+    transform: translate(-50%,-50%);
+    z-index: 100;
+    text-indent: initial;
   }
 
   .btn-small:after{
@@ -5318,7 +5330,7 @@ a:focus {
   border-right-color: #fff;
 }
 
-.tooltipster-sidetip .tooltipster-box .btn-small {
+.tooltipster-sidetip .tooltipster-box .btn-small .btn-rest {
   padding: 9px 23px 9px;
 }
 
@@ -10797,6 +10809,10 @@ hr.widget{
   text-align: center;
 }
 
+
+.btn-rest, .btn-rest:hover {
+  background: #B5B5B5;
+}
 .filter .view {
   /* padding-left: 30px; */
   display: flex;
@@ -11093,57 +11109,70 @@ hr.widget{
     font-weight: 600;
   }
 }
-@media (max-width: 696px){
+@media (max-width: 696px) {
   .list-view .slide-box .circle-btn {
-      position: absolute;
-      right: 39px;
-      bottom: 25px;
+    position: absolute;
+    right: 39px;
+    bottom: 25px;
   }
+
   .list-view .casinos-list .slide-box .row:nth-of-type(3) {
     width: 76%;
     margin: 0;
   }
+
   .list-view .casinos-list .slide-box .row:nth-of-type(3) {
     width: 76%;
     margin: 0;
   }
+
   .list-view .casinos-list .slide-box .row.edges {
     margin-top: 8px;
     justify-content: left;
   }
+
   .list-view .casinos-list .slide-box .row:last-of-type {
     position: absolute;
     right: 0;
     bottom: 25px;
   }
+
   .list-view .list-heading .list-item-cell:nth-child(1), .list-view .list-heading .list-item-cell:nth-child(2) {
     width: unset;
   }
+
   .list-view .list-rating-text, .list-view .list-heading .list-item-cell:nth-child(3) {
     display: none;
   }
+
   .list-view .list-heading .list-item-cell:nth-child(2) {
     display: block;
   }
+
   .list-view .list-heading .list-item-cell:nth-child(2):before {
     content: '/';
     margin-right: 5px;
   }
+
   .list-view .casinos-list .slide-box {
     flex-wrap: wrap;
     position: relative;
   }
+
   .list-view .casinos-list .slide-box .row.edges {
     margin-top: 8px;
     justify-content: left;
   }
+
   .list-view .casinos-list .rating_list_view {
     margin: 0 8px 0 0;
   }
-.mobile-group-btn > div{
-  margin: 0 0 0 10px;
-}
 
-.mobile-group-btn > div:first-child{
-  margin: 0;
+  .mobile-group-btn > div {
+    margin: 0 0 0 10px;
+  }
+
+  .mobile-group-btn > div:first-child {
+    margin: 0;
+  }
 }
