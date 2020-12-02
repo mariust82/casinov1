@@ -192,6 +192,10 @@
 									<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-wrn btn-err">
 										<svg class="svg-icon"><use xlink:href="#icon-warning"></use></svg>
 									</a>
+									<:elseif test="!${result.is_country_accepted}">
+										<a href="/visit/${normalize(${result.name})}" class="btn btn-rest" target="_blank" rel="nofollow">
+											REST
+										</a>
 									<:else>
 										<a href="/visit/${normalize(${result.name})}" class="btn btn-small" target="_blank" rel="nofollow">
 											Visit
