@@ -1,0 +1,94 @@
+<:set var="fdb_amount" val="${result.bonus_first_deposit.amount}"/>
+
+<div class="row edges">
+    <div class="flag">
+        <:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
+        <img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}">
+    </div>
+    <span class="casino_name_list_view">${result.name}</span>
+    <:set var="score_class" val="get_rating(${result.rating})"/>
+    <div class="rating_list_view list-rating ${normalize(${score_class})}">
+        <div class="list-rating-wrap">
+            <:if test="${result.rating} == 0">
+                ${score_class}
+                <span class="list-rating-score">-</span>
+                <div class=" list-rating-score list-rating-score-mobile">|</div>
+            <:else>
+                ${score_class}
+                <span class="list-rating-score">
+                    ${ceil(${result.rating})}
+                </span>
+            </:if>
+        </div>
+    </div>
+    <div class="circle-btn  tooltipstered js-tooltip-content-popup" data-name="${result.name}" data-is-free="">i</div>
+</div>
+<div class="row logo-casino">
+    <img src="/public/build/images/casino-logos/${strtolower(str_replace(' ','_',${result.name}))}.png" width="100" height="66" alt="${result.name}">
+</div>
+<div class="row">
+    <:if test="${result.bonus_free}">
+        <span class="slide-box-amount">${result.bonus_free.amount} ${result.bonus_free.type}</span>
+    <:else>
+        <span class="slide-box-amount">${fdb_amount}</span>
+    </:if>
+    <:if test="$[isNoDeposit]">
+        <div class="games_allowed">Games: 
+            <:if test="${result.bonus_free}">
+                ${gameNames(${result.bonus_free.games_allowed})}
+                <:set var="extra" val="count(gamesAllowed(${result.bonus_free.games_allowed}))-1"/>
+                <:if test="${extra} > 0">
+                    <span class="bubble bubble-long js-tooltip software_tooltip tooltipstered" title="${result.bonus_free.games_allowed}">
+                    More
+                    </span>
+                </:if>
+            <:else>
+                ${gameNames(${result.bonus_first_deposit.games_allowed})}
+                <:set var="extra" val="count(gamesAllowed(${result.bonus_first_deposit.games_allowed}))-1"/>
+                <:if test="${extra} > 0">
+                    <span class="bubble bubble-long js-tooltip software_tooltip tooltipstered" title="${result.bonus_first_deposit.games_allowed}">
+                    More
+                    </span>
+                </:if>
+            </:if>
+        </div>
+    <:else>
+        <div class="low_wagering_info">
+            Wagering: 0
+        </div>
+
+    </:if>
+</div>
+<:if test="${result.bonus_free}">
+    <:set var="code_class" val=""/>
+    <:set var="bonus_code" val=""/>
+    <:if test="strtolower(${result.bonus_free.code}) != 'no code required' && strtolower(${result.bonus_free.code}) != 'no code' && ${result.bonus_free.code} != ''">
+        <:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
+        <:set var="bonus_code" val="${result.bonus_free.code}"/>
+    <:else>
+        <:set var="code_class" val=""/>
+        <:set var="bonus_code" val="No code required"/>
+    </:if>
+    <div class="row dashed ${code_class}" data-code="${result.bonus_free.code}">
+        ${bonus_code}
+    <:unset var="code_class"/>
+    <:unset var="bonus_code"/>
+<:else>
+    <:set var="code_class" val=""/>
+    <:set var="bonus_code" val=""/>
+    <:if test="strtolower(${result.bonus_first_deposit.code}) != 'no code required' && strtolower(${result.bonus_first_deposit.code}) != 'no code'  && ${result.bonus_first_deposit.code} != ''">
+        <:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
+        <:set var="bonus_code" val="${result.bonus_first_deposit.code}"/>
+    <:else>
+        <:set var="code_class" val=""/>
+        <:set var="bonus_code" val="No code required"/>
+    </:if>
+    <div class="row dashed ${code_class}" data-code="${result.bonus_first_deposit.code}">
+        ${bonus_code}
+    <:unset var="code_class"/>
+    <:unset var="bonus_code"/>
+</:if>
+</div>
+<div class="row">
+    <a class="btn" href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank">PLAY FOR REAL</a>
+</div>

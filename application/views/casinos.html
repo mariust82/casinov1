@@ -1,7 +1,4 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casinos"/>
-<div class="links-casinos">
-    <site:links-carousel items="${data.menu_bottom}"/>
-</div>
 <div class="block">
     <div class="container">
         <div class="headeing">
@@ -18,8 +15,12 @@
         <:else>
             <filter:casinos id="${data.selected_entity}" name="${data.country.name}" code="${data.country.code}"  key="false"/>
         </:if>
-
-        <div class="data-container-holder">
+        <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
+            <:set var="grid_view_class" val="grid_view"/>
+        <:else>
+            <:set var="grid_view_class" val=""/>
+        </:if>
+        <div class="data-container-holder ${grid_view_class}">
             <div class="holder">
                 <:set var="low_wagering_class" val="(${data.selected_entity} == 'Low Wagering' ? 'low_wagering_list' : ''  )"/>
                 <div class="data-container ${low_wagering_class}" data-type="${data.page_type}" data-type-value="${data.selected_entity}">
@@ -28,7 +29,7 @@
                     <casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
                     <:elseif test="${data.selected_entity} == 'Low Wagering'">
                         <casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
-                     <:else>
+                    <:else>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
                     </:if>
                 </div>
@@ -36,7 +37,6 @@
             </div>
             <filter:reset/>
         </div>
-
 
         <:if test="${data.selected_entity} != 'Best'">
         <:if test="${data.total_casinos} > count(${data.casinos})">
