@@ -11176,3 +11176,12 @@ hr.widget{
     margin: 0;
   }
 }
+
+.grid_view .btn-rest{
+  border-radius: 4px;
+  padding: 10px 30px;
+  text-indent: initial;
+}
+.grid_view .btn-rest:after{
+  content:unset;
+}
