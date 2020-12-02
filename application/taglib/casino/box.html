@@ -90,5 +90,9 @@
 </:if>
 </div>
 <div class="row">
-    <a class="btn" href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank">PLAY FOR REAL</a>
+    <:if test="!${result.is_country_accepted}">
+        <a href="/visit/${normalize(${result.name})}" class="btn btn-rest" target="_blank" rel="nofollow">REST</a>
+    <:else>
+        <a class="btn" href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank">PLAY FOR REAL</a>
+    </:if>
 </div>
