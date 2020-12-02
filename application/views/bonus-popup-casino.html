@@ -1,0 +1,147 @@
+<:if test="${data.bonus_type}">
+    <:set var="popupType" val="green_box"/>
+    <:set var="icon" val="icon-icon_bonuses"/>
+<:else>
+    <:set var="popupType" val="orange_box"/>
+    <:set var="icon" val="icon-free-bonus-icon"/>
+</:if>
+<div class="bonus-info ${popupType}">
+    <div class="header_popup">
+        <span class="close_btn"></span>
+    </div>
+    <div class="content_popup">
+        <div class="row edges">
+            <span>${data.casino.name}</span>
+            <div class="list-rating ${normalize(get_rating(${data.casino.rating}))}">
+                <div class="list-rating-wrap">
+                    <:if test="${data.casino.rating} == 0">
+                        <div class="list-rating-score">-</div>
+                        <div class="list-rating-text">No score</div>
+                        <:else>
+                            <div class="list-rating-score">${ceil(${data.casino.rating})}</div>
+                            <div class="list-rating-text">${get_rating(${data.casino.rating})}</div>
+                    </:if>
+                </div>
+            </div>
+        </div>
+        <div class="cta_buttons">
+            <a href="/casino-reviews/${strtolower(str_replace(' ', '-',${data.casino.name}))}" class="cta_review">Full Casino Review</a>
+            <a href="/visit/${strtolower(str_replace(' ', '-',${data.casino.name}))}"  rel="nofollow" target=”_blank” class="cta_visit">Visit Casino</a>
+        </div>
+
+        <:if test="!empty(${data.casino.note})">
+            <div class="note">
+                <span class="important_icon">!</span>
+                <span class="note-title">Special note</span>
+                <p>${data.casino.note}</p>
+            </div>
+        </:if>
+
+        <div class="tooltip-templates-body">
+            <div class="bonus-box">
+                <div class="bonus-box-heading">
+                    <span>${data.bonus.amount} ${data.bonus.type}</span>
+                </div>
+                <div class="bonus-box-body">
+
+                    <:if test="strtolower(${data.bonus.code}) != 'no code required' && strtolower(${data.bonus.code}) != 'no code' && ${data.bonus.code} != ''">
+                        <div class="bonus-box-btn dashed js-copy-to-clip js-copy-tooltip" data-code="${data.bonus.code}">${data.bonus.code}</div>
+                    <:else>
+                        <div class="bonus-box-btn dashed">${data.bonus.code}</div>
+                    </:if>
+
+                    <ul class="bonus-box-list">
+                        <li>
+                            <span class="bonus-box-list-label">Wagering</span>
+                            <strong>${data.bonus.wagering}</strong>
+                        </li>
+                        <li>
+                            <span class="bonus-box-list-label">Games allowed</span>
+                            <strong class="list-item-flex">
+                                <span>${data.bonus.games_allowed}</span>
+                            </strong>
+                        </li>
+                        <li>
+                            <span class="bonus-box-list-label">Min. deposit</span>
+                            <:if test="${data.bonus.min_deposit} != ''">
+                                <strong>${data.bonus.min_deposit}</strong>
+                                <:else>
+                                    <strong class="success">Free</strong>
+                            </:if>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bonus-box-circle">
+                    <i class="${icon}"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="country-details-box">
+                <:if test="!${data.casino.is_country_accepted}">
+                    <span class="unavailable"></span>
+                    <span class="country-name">
+                        <span class="fixGrayFlagPos" style="display: inline-block; position: relative;">
+                        <svg xmlns="http://www.w3.org/2000/svg" id="svgroot" style="position: absolute;" viewBox="0 0 36 24" width="100%" height="100%"><defs>
+                            <filter id="gray"><feColorMatrix type="matrix" values="0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0" /></filter></defs>
+                            <image filter="url(&quot;#gray&quot;)" preserveAspectRatio="none meet" x="0" y="0" width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/public/build/images/flags/${data.country.country_code}.png" /></svg>
+                            <img width="20" height="15" class=" not-accepted grayscale" style="display: block; visibility: hidden;" alt="${data.country.country_code}" src="/public/build/images/flags/${data.country.country_code}.png">
+                        </span> ${data.country.country_name} not available
+                    </span>
+                <:else>
+                    <span class="checkmark">L</span>
+                    <span class="country-name"> <img class=" ${normalize(get_country_status(${data.casino.is_country_accepted}))}" src="/public/build/images/flags/${data.country.country_code}.png" width="20" height="15" alt="${data.country.country_code}"> ${data.country.country_name} available</span>
+                </:if>
+                
+                <span class="currency-name">
+                    <:if test="!${data.casino.is_currency_accepted}">
+                        <span class="unavailable"></span>
+                    <:else>
+                        <span class="checkmark">L</span>
+                    </:if>
+                    ${data.country.code} currency <:if test="!${data.casino.is_currency_accepted}">not available<:else>available </:if> 
+                </span>
+        </div>
+
+        <div class="providers-box">
+            <span class="cat_title">Software Providers</span>
+            <:foreach var="${data.casino.softwares}" key="key" val="software">
+                <:if test="${key}<3">
+                    <span class="soft_link list-item-trun" data-nr="${key+1}">
+                        <a class="list-title list_link" href="/software/${strtolower(str_replace(' ', '-',${software}))}">
+                            <img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
+                        </a>
+                    </span>
+                </:if>
+            </:foreach>
+            <:set var="extraSoftwares" val="count(${data.casino.softwares})-3"/>
+            <:if test="${extraSoftwares} > 0">
+                <span class="bubble bubble-long js-tooltip software_tooltip" title="${get_string(${data.casino.softwares}, 3)}">
+                +${extraSoftwares}
+                </span>
+            </:if>
+         </div>
+
+         <:if test="count(${data.casino.casino_deposit_methods}) > 0">
+            <div class="deposit-box">
+                <span class="cat_title">Deposit Methods</span>
+                <:set var="counter" val="0"/>
+                <:foreach var="${data.casino.casino_deposit_methods}" key="key" val="bank_method">
+                    <:if test="${counter}<3">
+                    <span class="soft_link list-item-trun">
+                        <img class="list-title list_link" src="${bank_method.logo}" alt="${key}">
+                    </span>
+                    </:if>
+                    <:set var="counter" val="${counter}+1"/>
+                </:foreach>
+                <:set var="extraMethods" val="count(${data.casino.casino_deposit_methods})-3"/>
+                <:if test="${extraMethods} > 0">
+                    <span class="bubble bubble-long js-tooltip software_tooltip nolink_tooltip" title="${getBankingTitles(${data.casino.casino_deposit_methods}, 3)}">
+                    +${extraMethods}
+                    </span>
+                </:if>
+            </div>
+         </:if>
+
+    </div>
+</div>
