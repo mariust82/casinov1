@@ -43,56 +43,66 @@
 		</div>
 	</div>
 	<:if test="${data.selected_entity} != 'Best'">
-	<div class="filter-sort">
-		<div class="filter-label">Sort by:</div>
-		<div class="filter-sort-buttons">
-            <:if test="$[id] == 'Best'">
-	            <input type="radio" name="sort" value="1" id="default">
-				<label for="default" class="first">
-					Default
-				</label>
+		<div class="filter-sort">
+			<div class="filter-label">Sort by:</div>
+			<div class="filter-sort-buttons">
+				<:if test="$[id] == 'Best'">
+					<input type="radio" name="sort" value="1" id="default">
+					<label for="default" class="first">
+						Default
+					</label>
 
-				<input checked type="radio" name="sort" value="2" id="top-rated">
-				<label for="top-rated">
-					Top rated
-				</label>
+					<input checked type="radio" name="sort" value="2" id="top-rated">
+					<label for="top-rated">
+						Top rated
+					</label>
 
-				<input type="radio" name="sort" value="3" id="newest">
-				<label for="newest">
-					Newest
-				</label>
-            <:elseif test="$[id] == 'New'">
-	            <input type="radio" name="sort" value="1" id="default">
-				<label for="default" class="first">
-					Default
-				</label>
+					<input type="radio" name="sort" value="3" id="newest">
+					<label for="newest">
+						Newest
+					</label>
+				<:elseif test="$[id] == 'New'">
+					<input type="radio" name="sort" value="1" id="default">
+					<label for="default" class="first">
+						Default
+					</label>
 
-				<input type="radio" name="sort" value="2" id="top-rated">
-				<label for="top-rated">
-					Top rated
-				</label>
+					<input type="radio" name="sort" value="2" id="top-rated">
+					<label for="top-rated">
+						Top rated
+					</label>
 
-				<input checked type="radio" name="sort" value="3" id="newest">
-				<label for="newest">
-					Newest
-				</label>
-            <:else>
-	            <input checked type="radio" name="sort" value="1" id="default">
-				<label for="default" class="first">
-					Default
-				</label>
+					<input checked type="radio" name="sort" value="3" id="newest">
+					<label for="newest">
+						Newest
+					</label>
+				<:else>
+					<input checked type="radio" name="sort" value="1" id="default">
+					<label for="default" class="first">
+						Default
+					</label>
 
-				<input type="radio" name="sort" value="2" id="top-rated">
-				<label for="top-rated">
-					Top rated
-				</label>
+					<input type="radio" name="sort" value="2" id="top-rated">
+					<label for="top-rated">
+						Top rated
+					</label>
 
-				<input type="radio" name="sort" value="3" id="newest">
-				<label for="newest">
-					Newest
-				</label>
-            </:if>
+					<input type="radio" name="sort" value="3" id="newest">
+					<label for="newest">
+						Newest
+					</label>
+				</:if>
+			</div>
 		</div>
-	</div>
+		<:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
+			<div class="view">
+				<div class="icon icon-box_view active">
+					<svg class="svg-icon"><use xlink:href="#icon-box-view"></use></svg>
+				</div>
+				<div class="icon icon-list_view">
+					<svg class="svg-icon"><use xlink:href="#icon-list-view"></use></svg>
+				</div>
+			</div>
+		</:if>
 	</:if>
 </div>
