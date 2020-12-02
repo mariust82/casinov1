@@ -130,6 +130,6 @@ class CasinosMenu
 
     private function generatePathParameter($name)
     {
-        return strtolower(str_replace(" ", "-", $name));
+        return strtolower(str_replace(" ", "-", str_replace(["(",")","'"],["","",""], $name)));
     }
 }

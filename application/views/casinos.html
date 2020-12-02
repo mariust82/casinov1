@@ -1,7 +1,4 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casinos"/>
-<div class="links-casinos">
-    <site:links-carousel items="${data.menu_bottom}"/>
-</div>
 <div class="block">
     <div class="container">
         <div class="headeing">
@@ -30,8 +27,8 @@
                     <div class="qty-items" data-load-total="${data.total_casinos}">${data.total_casinos} results</div>
                     <:if test="${data.selected_entity} == 'New'">
                     <casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
-                    <:elseif test="strtolower(${data.selected_entity}) == 'low wagering'">
-                    
+                    <:elseif test="${data.selected_entity} == 'Low Wagering'">
+                        <casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
                     <:else>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
                     </:if>
@@ -40,7 +37,6 @@
             </div>
             <filter:reset/>
         </div>
-
 
         <:if test="${data.selected_entity} != 'Best'">
         <:if test="${data.total_casinos} > count(${data.casinos})">
@@ -160,7 +156,7 @@
                     <casino:list type="SOFTWARE" id="3" data="${data.country_casinos}" name="${data.country.name} ${data.software} Casinos"/>
                     <:else>
                     <div>
-                        <p>There are no ${data.software} Casinos available in your country. Please visit our <a class="missing" href="/countries-list/${normalize(${data.country.name})}">${data.country.name} Casinos List</a> page and discover our collection of gambling sites available in your country.</p>
+                        <p>There are no ${data.software} Casinos available in your country. Please visit our <a class="missing" href="/countries-list/${countryNormalize(${data.country.name})}">${data.country.name} Casinos List</a> page and discover our collection of gambling sites available in your country.</p>
                     </div>
                     </:if>
                 </div>

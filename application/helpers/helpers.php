@@ -6,6 +6,11 @@ function normalize($name)
     return strtolower($str);
 }
 
+function countryNormalize($name)
+{
+   return strtolower(str_replace(" ", "-", str_replace(["(",")","'"],["","",""], $name)));
+}
+
 function parse_video($url)
 {
     return str_replace("youtu.be", "youtube.com/embed", $url);

@@ -146,6 +146,7 @@ function changeViewElements(filterView,container){
     
 }
 
+
 (function ($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
@@ -163,7 +164,6 @@ function changeViewElements(filterView,container){
             initSite();
             initToggleMenu();
             initSearch();
-            initMobileBonusesPop(ww);
             initTooltipseter();
             bindButtons();
 

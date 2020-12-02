@@ -9,6 +9,15 @@
   font-style: normal;
 }
 
+.svg-icon{
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
 .missing{
     color: #0052cc;
 }
@@ -1245,6 +1254,13 @@ button.swiper-pagination-bullet {
   opacity: 1;
 }
 
+/* @media screen and (max-width: 375px) {
+  .tooltipster-base {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+} */
+
 
 /* grow */
 
@@ -1454,16 +1470,6 @@ button.swiper-pagination-bullet {
   margin-bottom: 8px;
 }
 
-
-/* .tooltipster-content */
-
-.tooltipster-sidetip .tooltipster-content {
-  color: white;
-  line-height: 18px;
-  padding: 6px 14px;
-}
-
-
 /* .tooltipster-arrow : will keep only the zone of .tooltipster-arrow-uncropped that
 corresponds to the arrow we want to display */
 
@@ -1505,7 +1511,6 @@ corresponds to the arrow we want to display */
   margin-left: -10px;
   width: 20px;
 }
-
 
 /* common rules between .tooltipster-arrow-background and .tooltipster-arrow-border */
 
@@ -3805,7 +3810,7 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   .list-item-cell-bfnp {
-    width: 26%;
+    width: 23%;
   }
   .list-heading-title.list-item-cell-bfnp span {
     display: none;
@@ -3824,7 +3829,7 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   .list-item-cell-wagering {
-    width: 14%;
+    width: 17%;
     margin: 0 !important;
   }
 }
@@ -3936,14 +3941,28 @@ a:focus {
 
 .btn-err svg {
   height: 18px;
+  font-size: 18px;
+  margin: 1px 0 0 0;
 }
 
-.btn-blk {
-  background: #020A13;
+.btn-blk,
+.btn.btn-blacklisted{
+    background:#020A13;
 }
 
-.btn-wrn {
-  background: #DB2424;
+.btn-wrn,
+.btn.btn-warning{
+    background: #DB2424;
+}
+
+.btn-rst,
+.btn.btn-restricted{
+    background: #b5b5b5;
+}
+.btn.btn-blacklisted,
+.btn.btn-warning,
+.btn.btn-restricted{
+    padding: 10px 22px 11px;
 }
 
 @media screen and (min-width: 1023px) {
@@ -4490,10 +4509,24 @@ a:focus {
   padding: 10px 30px;
   border-radius: 4px;
   font-weight: 600;
-  display: inline-block;
   border: none;
   text-align: center;
   transition: all .3s;
+  
+  display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.btn .svg-icon{
+  font-size: 18px;
+  margin: 0 10px 0 0;
 }
 
 @media screen and (min-width: 1023px) {
@@ -5190,25 +5223,49 @@ a:focus {
   background: #fff;
   border: none;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 2px;
 }
+
+@media screen and (max-width: 767px) {
+  .tooltipster-sidetip .tooltipster-box {
+    /* background: none; */
+    /* box-shadow: none; */
+    border-radius: 6px;
+  }
+}
+
+/* .tooltipster-content */
 
 .tooltipster-sidetip .tooltipster-content {
   font-weight: 600;
   color: #60686A;
   font-size: 13px;
+  line-height: 18px;
   padding: 6px 10px;
   position: relative;
+}
+
+@media screen and (max-width: 767px) {
+  .tooltipster-sidetip .tooltipster-content {
+    padding: 0;
+  }
 }
 
 .tooltipster-sidetip .tooltipster-content .loader {
   display: block;
   position: relative;
-  padding: 150px 0;
-  width: 50px;
-  height: 50px;
+  width: 300px;
+  height: 230px;
   box-sizing: content-box;
   -webkit-transform: translate(-50%, 0);
   transform: translate(-50%, 0);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .tooltipster-sidetip .tooltipster-content .bonus-box-list-label {
@@ -5239,6 +5296,12 @@ a:focus {
   top: -1px;
 }
 
+@media screen and (max-width: 767px) {
+  .tooltipster-sidetip.tooltipster-bottom .tooltipster-arrow {
+    display: none;
+  }
+}
+
 .tooltipster-sidetip.tooltipster-left .tooltipster-arrow-border {
   border-left-color: rgba(0, 0, 0, 0.09);
 }
@@ -5253,10 +5316,6 @@ a:focus {
 
 .tooltipster-sidetip.tooltipster-right .tooltipster-arrow-background {
   border-right-color: #fff;
-}
-
-.tooltipster-sidetip .tooltipster-box {
-  border-radius: 2px;
 }
 
 .tooltipster-sidetip .tooltipster-box .btn-small {
@@ -5278,6 +5337,12 @@ a:focus {
   -ms-flex-align: center;
   align-items: center;
   margin: 0 0 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .tooltip-templates-heading {
+    display: none;
+  }
 }
 
 .tooltip-templates-body {
@@ -5302,6 +5367,12 @@ a:focus {
 
 .tooltip-content {
   padding: 20px 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .tooltip-content {
+    padding: 0;
+  }
 }
 
 .tooltip-content .bonus-box {
@@ -5364,9 +5435,16 @@ a:focus {
   border-radius: 0 0 5px 5px;
 }
 
+@media screen and (max-width: 767px) {
+  .bonus-box-body {
+    background: #fff;
+    border-radius: 0 0 6px 6px;
+  }
+}
+
 @media screen and (max-width: 690px) {
   .bonus-box-body {
-    padding: 10px;
+    padding: 15px 20px;
   }
 }
 
@@ -5384,6 +5462,12 @@ a:focus {
   border-radius: 5px 5px 0 0;
   border-bottom-width: 2px;
   border-bottom-style: dashed;
+}
+
+@media screen and (max-width: 767px) {
+  .bonus-box-heading {
+    border-radius: 6px 6px 0 0;
+  }
 }
 
 .bonus-box-heading span {
@@ -6169,7 +6253,7 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   .casino-review-heading-left .btn-group {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -6207,7 +6291,7 @@ a:focus {
 
 @media screen and (max-width: 767px) {
   .casino-review .btn-middle {
-    padding: 11px 22px 12px;
+    padding: 9px 22px 11px;
   }
 }
 
@@ -6281,6 +6365,12 @@ a:focus {
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin: 0 4px 0 0;
+}
+
+.casino-review-heading .btn-group{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .btn-group a {
@@ -10707,8 +10797,6 @@ hr.widget{
   text-align: center;
 }
 
-
-
 .filter .view {
   /* padding-left: 30px; */
   display: flex;
@@ -11052,4 +11140,10 @@ hr.widget{
   .list-view .casinos-list .rating_list_view {
     margin: 0 8px 0 0;
   }
+.mobile-group-btn > div{
+  margin: 0 0 0 10px;
+}
+
+.mobile-group-btn > div:first-child{
+  margin: 0;
 }

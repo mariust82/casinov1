@@ -1,5 +1,6 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casino-info"/>
 	<:if test="${data.casino.status} == 'Blacklisted'">
+		<:set var="item_status" val="blacklisted"/>
 		<div class="container">
 			<div class="warn-box">
 				<div class="warn-box-title">BLACKLISTED</div>
@@ -7,18 +8,27 @@
 			</div>
 		</div>
 	<:elseif test="${data.casino.status} == 'Warning'">
+		<:set var="item_status" val="warning"/>
 		<div class="container">
 			<div class="warn-box warning">
 				<div class="warn-box-title">WARNING</div>
 				<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} does not have a collaborative agreement with www.casinoslists.com, and therefore we can not monitor the casino’s actions and reliability in order to provide the necessary support for our players. We strongly recommend that players avoid playing at this casino and choose another casino to play at.</div>
 			</div>
 		</div>
-	<:elseif test="${data.casino.note}">
+	<:else>
+		<:set var="item_status" val="default"/>
+		
+		<:if test="${data.casino.is_country_accepted} != 1">
+			<:set var="item_status" val="restricted"/>
+		</:if>
+		
+		<:if test="${data.casino.note}">
 			<div class="container">
 				<div class="warn-box note">
 					<div class="warn-box-body">${str_replace("thebigfreechiplist","casinoslists",${data.casino.note})}</div>
 				</div>
 			</div>
+		</:if>
 	</:if>
 
 	<div class="casino-review">
@@ -27,14 +37,23 @@
 				<div class="casino-review-heading-left">
 					<h1 class="casino-review-title">${data.page_info.body_title}</h1>
 					<div class="btn-group">
-                                            <a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
-                                               <:if test="${data.casino.status} == 'Blacklisted' || ${data.casino.status} == 'Warning'">
-                                               <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" rel="nofollow">PLAY NOW</a>
-                                               <:else>
-                                               <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
-                                               </:if>
+						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
+						<a href="/visit/${normalize(${data.casino.name})}" 
+                            class="btn_play btn btn-middle btn-${item_status}" 
+                            rel="nofollow" 
+                            <:if test="${item_status} != 'blacklisted' && ${item_status} != 'warning' && ${item_status} != 'restricted'">
+                                target="_blank" 
+                            </:if>
+                        >
+                            <:if test="${item_status} == 'blacklisted' || ${item_status} == 'warning' || ${item_status} == 'restricted'">
+                                <svg class="svg-icon"><use xlink:href="#icon-${item_status}"></use></svg>
+                                ${item_status}
+                            <:else>
+                                PLAY NOW
+                            </:if>
+                        </a>
                         <:if test="${data.casino.is_tc_link}">
-	                    	<a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
+							<a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
                         </:if>
 					</div>
 				</div>
@@ -44,13 +63,13 @@
 					</div>
 					<:set var="score_class" val="get_rating(${data.casino.rating})"/>
 					<div class="list-rating ${normalize(${score_class})}">
-                                                    <:if test="${data.casino.rating} == 0">
-														No score
-                                                        <div class="list-rating-score">-</div>
-                                                    <:else>
-														${score_class}
-                                                        <span class="list-rating-score">${ceil(${data.casino.rating})}</span>
-                                                    </:if>
+							<:if test="${data.casino.rating} == 0">
+								No score
+								<div class="list-rating-score">-</div>
+							<:else>
+								${score_class}
+								<span class="list-rating-score">${ceil(${data.casino.rating})}</span>
+							</:if>
 						</div>
 					</div>
 				</div>
@@ -61,7 +80,20 @@
 							<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
 						</div>
 						<div>
-							<a href="/visit/${normalize(${data.casino.name})}" class="btn btn-middle" target="_blank" rel="nofollow">PLAY NOW</a>
+							<a href="/visit/${normalize(${data.casino.name})}" 
+								class="btn btn-middle btn-${item_status}" 
+								rel="nofollow" 
+								<:if test="${item_status} != 'blacklisted' && ${item_status} != 'warning' && ${item_status} != 'restricted'">
+									target="_blank" 
+								</:if>
+							>
+								<:if test="${item_status} == 'blacklisted' || ${item_status} == 'warning' || ${item_status} == 'restricted'">
+									<svg class="svg-icon"><use xlink:href="#icon-${item_status}"></use></svg>
+									${item_status}
+								<:else>
+									PLAY NOW
+								</:if>
+							</a>
 							<:if test="${data.casino.is_tc_link}">
 								<a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link tc-button-mobile">T&C applies</a>
 							</:if>
@@ -90,8 +122,8 @@
 								${data.country.name}
 								<:if test="${data.casino.is_country_accepted} == 1">
 									accepted
-									<:else>
-										not accepted
+								<:else>
+									not accepted
 								</:if>
 							</div>
 						</div>
@@ -101,7 +133,7 @@
 								<div class="def-list-val">
 									<:foreach var="${data.casino.languages}" key ="key" val="result">
 										<:if test="${result} == end(${data.casino.languages})">
-									      ${result}
+											${result}
 										<:else>
 											${result},&nbsp;
 										</:if>
@@ -114,9 +146,7 @@
 							<div class="def-list-item">
 								<div class="def-list-key">Currencies</div>
 								<div class="def-list-val">
-
 									<:foreach var="${data.casino.currencies}" key ="key" val="result">
-
 										<:if test="${result} == end(${data.casino.currencies})">
 											${result}
 											<:else>
@@ -137,17 +167,15 @@
 										<:else>
 											<a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>,
 										</:if>
-
 									</:foreach>
 								</div>
 							</div>
 						</:if>
 
 						<:if test="!empty(${data.casino.casino_game_types})">
-						<div class="def-list-item">
-							<div class="def-list-key">Game types</div>
-							<div class="def-list-val">
-
+							<div class="def-list-item">
+								<div class="def-list-key">Game types</div>
+								<div class="def-list-val">
 									<:foreach var="${data.casino.casino_game_types}" key ="key" val="value">
 										<:if test="${value} == end(${data.casino.casino_game_types})">
 											${value.name}
@@ -155,10 +183,9 @@
 											${value.name},&nbsp;
 										</:if>
 									</:foreach>
+								</div>
 							</div>
-						</div>
 						</:if>
-
 
 						<div class="def-list-item">
 							<div class="def-list-key">Live dealer</div>
@@ -171,25 +198,26 @@
 												<:else>
 													Live ${key},&nbsp;
 											</:if>
-											<:else>
-												<:if test ="${available} == true">
-													<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${key})}">Live ${key}</a>
-													<:else>
-														Live ${key}&nbsp;
-												</:if>
+										<:else>
+											<:if test ="${available} == true">
+												<a class="soft_link list-item-trun" href="/live-dealer/${normalize(${key})}">Live ${key}</a>
+												<:else>
+													Live ${key}&nbsp;
+											</:if>
 										</:if>
 									</:foreach>
-									<:else>No
+								<:else>
+									No
 								</:if>
 							</div>
 						</div>
 
-							<div class="def-list-item">
-								<div class="def-list-key">Established</div>
-								<div class="def-list-val">
-									${date("M d, Y",  strtotime(${data.casino.date_established}))}
-								</div>
+						<div class="def-list-item">
+							<div class="def-list-key">Established</div>
+							<div class="def-list-val">
+								${date("M d, Y",  strtotime(${data.casino.date_established}))}
 							</div>
+						</div>
 
 						<:if test="count(${data.casino.emails}) > 0">
 							<div class="def-list-item">
@@ -209,7 +237,7 @@
 								<div class="def-list-key">Phone</div>
 								<div class="def-list-val">
 									<:foreach var="${data.casino.phones}" key ="key" val="result">
-									      ${result} <br>
+										${result} <br>
 									</:foreach>
 								</div>
 							</div>
@@ -277,8 +305,8 @@
 								</div>
 							</div>
 						</div>
-						<:else>
-							<p class="no_welcome_bonuses"> No welcome bonuses</p>
+					<:else>
+						<p class="no_welcome_bonuses"> No welcome bonuses</p>
 					</:if>
 				</div>
 			</div>

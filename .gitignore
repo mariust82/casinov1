@@ -11,6 +11,10 @@ xml/gameplay.xml
 xml/reporters.xml
 xml/rest_api.xml
 xml/hosts.xml
+xml/application_stderr.xml
+xml/application_stderr_frontend.xml
+xml/application_stdout_frontend.xml
+xml/application_stdout.xml
 sync/stdout.xml
 index.php
 .htaccess
@@ -22,4 +26,7 @@ node_modules
 /compilations
 *.log
 *.lock
+/public/build/css/compilations/*
+/public/build/js/compilations/*
 /public/build/js/parts/global_js
+/.vscode
