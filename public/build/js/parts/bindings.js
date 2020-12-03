@@ -842,6 +842,10 @@ var Filters = function (obj) {
             _moreButton.off();
             _moreButton.on('click', function () {
                 _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add');
+                var totalBoxes = $('.loaded-item').length;
+                if(totalBoxes == parseInt($('.qty-items').attr('data-load-total'))){
+                    $('.js-more-items').hide();
+                }
                 return false;
             });
 
@@ -969,10 +973,7 @@ var Filters = function (obj) {
                         }
                     }, 1000)
                 }
-                var totalBoxes = $('.loaded-item').length;
-                if(totalBoxes == parseInt($('.qty-items').attr('data-load-total'))){
-                    $('.js-more-items').hide();
-                }
+               
                 _construct();
 
                 checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
