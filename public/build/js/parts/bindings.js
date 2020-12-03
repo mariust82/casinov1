@@ -973,6 +973,10 @@ var Filters = function (obj) {
                 _construct();
 
                 checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
+                var totalBoxes = $('.loaded-item').length;
+                if(totalBoxes == parseInt($('.qty-items').attr('data-load-total'))){
+                    $('.js-more-items').hide();
+                }
             },
             error: function (XMLHttpRequest) {
                 if (XMLHttpRequest.statusText != "abort") {
