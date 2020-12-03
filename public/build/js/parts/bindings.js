@@ -784,8 +784,7 @@ var Filters = function (obj) {
         _paramName = 'game_type';
     }
     if ($('.data-container').hasClass('low_wagering_list')){
-        _targetContainer = $('.data-container.low_wagering_list');
-        _targetAddContainer = $('.data-container.low_wagering_list').find('.casinos-list');
+        _targetContainer = $('.data-container.low_wagering_list').find('.casinos-list');
     }
     var _url = _obj.data('url');
     _defaultButton.prop('checked', true);
