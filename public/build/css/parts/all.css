@@ -11222,7 +11222,5 @@ hr.widget{
 }
 
 .data-add-container.low_wagering_list{
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  margin-top: 0 !important;
 }
