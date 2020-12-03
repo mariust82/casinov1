@@ -982,6 +982,10 @@ var Filters = function (obj) {
             complete: function () {
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
+                var totalBoxes = $('.loaded-item').length;
+                if(totalBoxes == parseInt($('.qty-items').attr('data-load-total'))){
+                    $('.js-more-items').hide();
+                }
                 if (_url === '/casinos-filter/') {
                     if (parseInt($('.qty-items').attr('data-load-total')) <= 30) {
                         $('.js-more-items').hide();
