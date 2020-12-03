@@ -41,6 +41,7 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset, true));
         $this->response->attributes('page_type', $this->getPageType($filter));
         $this->response->attributes('selected_entity', $filter->getCasinoLabel());
+        var_dump($this->response->attributes('selected_entity'));
     }
     
      private function setOffset($page) {
