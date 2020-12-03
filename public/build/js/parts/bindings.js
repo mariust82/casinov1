@@ -783,9 +783,7 @@ var Filters = function (obj) {
     if (typeof _paramName == 'undefined') {
         _paramName = 'game_type';
     }
-    if ($('.data-container').hasClass('low_wagering_list')){
-        _targetContainer = $('.data-container.low_wagering_list').find('.casinos-list');
-    }
+    
     var _url = _obj.data('url');
     _defaultButton.prop('checked', true);
 
