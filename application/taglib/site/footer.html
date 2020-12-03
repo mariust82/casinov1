@@ -2,27 +2,27 @@
 <site:css-loader/>
 <:if test="${data.use_bundle}">
     <:if if test="!empty(${data.page_type}) && ${data.page_type} == 'game_info'">
-        <script rel="preload" defer src="/public/build/js/compilations/gameplay.js?ver=${data.version}"></script>
+        <script defer src="/public/build/js/compilations/gameplay.js?ver=${data.version}"></script>
     <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'reviews'">
-        <script rel="preload" defer src="/public/build/js/compilations/casino_view.js?ver=${data.version}"></script>
+        <script defer src="/public/build/js/compilations/casino_view.js?ver=${data.version}"></script>
     <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'contact'">
-        <script rel="preload" defer src="/public/build/js/compilations/contact.js?ver=${data.version}"></script>
+        <script defer src="/public/build/js/compilations/contact.js?ver=${data.version}"></script>
     <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'blog'">
-        <script rel="preload" defer src="/public/build/js/compilations/blog.js?ver=${data.version}"></script>
+        <script defer src="/public/build/js/compilations/blog.js?ver=${data.version}"></script>
     <:else>
-        <script rel="preload" defer src="/public/build/js/compilations/main.js?ver=${data.version}"></script>
+        <script defer src="/public/build/js/compilations/main.js?ver=${data.version}"></script>
     </:if>
 <:else>
-    <script rel="preload" src="/public/build/js/compilations/bundle.js?ver=${data.version}"></script>
-    <script rel="preload" src="/public/build/js/parts/main.js?ver=${data.version}"></script>
-    <script rel="preload" src="/public/build/js/parts/vote.js?ver=${data.version}"></script>
+    <script src="/public/build/js/compilations/bundle.js?ver=${data.version}"></script>
+    <script src="/public/build/js/parts/main.js?ver=${data.version}"></script>
+    <script src="/public/build/js/parts/vote.js?ver=${data.version}"></script>
 
     <:if if test="!empty(${data.page_type}) && ${data.page_type} == 'game_info'">
-        <script rel="preload" src="/public/build/js/parts/gameplay.js?ver=${data.version}"></script>
+        <script src="/public/build/js/parts/gameplay.js?ver=${data.version}"></script>
     <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'reviews'">
-        <script rel="preload" src="/public/build/js/parts/casino_review.js?ver=${data.version}"></script>
+        <script src="/public/build/js/parts/casino_review.js?ver=${data.version}"></script>
     <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'contact'">
-        <script rel="preload" src="/public/build/js/parts/contact.js?ver=${data.version}"></script>
+        <script src="/public/build/js/parts/contact.js?ver=${data.version}"></script>
     </:if>
 </:if>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KT55QV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
