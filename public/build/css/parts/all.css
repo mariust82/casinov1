@@ -11190,6 +11190,17 @@ hr.widget{
 .grid_view .btn-rest:after{
   content:unset;
 }
+.low_wagering_info {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: normal normal 600 12px/18px Open Sans;
+  letter-spacing: 0px;
+  color: #A8AEC8;
+}
+.grid_view .low_wagering_info{
+  text-align: center;
+}
 @media (min-width: 900px){
   .slide-box .btn{
     min-width: 100px;
