@@ -11204,6 +11204,8 @@ hr.widget{
 @media (min-width: 900px){
   .slide-box .btn{
     min-width: 100px;
+  }
+  .list-view .slide-box .btn{
     max-width: 100px;
   }
 }
