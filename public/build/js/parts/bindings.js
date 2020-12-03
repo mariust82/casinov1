@@ -842,10 +842,6 @@ var Filters = function (obj) {
             _moreButton.off();
             _moreButton.on('click', function () {
                 _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add');
-                var totalBoxes = $('.loaded-item').length;
-                if(totalBoxes == parseInt($('.qty-items').attr('data-load-total'))){
-                    $('.js-more-items').hide();
-                }
                 return false;
             });
 
