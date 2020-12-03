@@ -3237,15 +3237,19 @@ a:focus {
   padding-bottom: 320px;
   position: relative;
   overflow: hidden;
-  background: url(../../images/text-header/home-img.jpg) no-repeat 50% 0;
 }
 
 @media screen and (max-width: 690px) {
   .promo-img {
     padding-bottom: 200px;
-    background: url(../../images/text-header/home-img-mobile.jpg) no-repeat 50% 0;
-    background-size: 100%;
   }
+}
+
+.promo-img img{
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
 }
 
 .promo-text {
