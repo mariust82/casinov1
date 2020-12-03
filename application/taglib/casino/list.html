@@ -35,7 +35,7 @@
 	<div class="list-body ${css_class}">
 		<:if test="${isLowWagering} || ${isNoDeposit}">
 			<:foreach var="$[data]" val="result" key="key">
-				<div class="slide-box" data-slide="${key+1}">
+				<div class="slide-box loaded-item" data-slide="${key+1}">
 					<casino:box isNoDeposit="${isNoDeposit}" isLowWagering=${isLowWagering} result="${result}"/>
 				</div>
 			</:foreach>
