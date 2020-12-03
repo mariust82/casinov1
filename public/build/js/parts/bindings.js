@@ -768,7 +768,7 @@ var Filters = function (obj) {
         _switchers = _obj.find('input[type=checkbox]'),
         _radios = _obj.find('input[type=radio]'),
         _selectFilter = _obj.find('select[name=soft]'),
-        _targetContainer,
+        _targetContainer = $('.data-container'),
         _targetAddContainer = $('.data-add-container'),
         _paramName = _targetContainer.data('type'),
         _paramValue = _targetContainer.data('type-value'),
@@ -779,16 +779,14 @@ var Filters = function (obj) {
         _defaultButton = $('#default'),
         _currentClick = 0,
         _request = new XMLHttpRequest();
-    if ($('.data-container').hasClass('low_wagering_list')){
-        _targetContainer = $('.data-container.low_wagering_list');
-        _targetAddContainer = $('.data-container.low_wagering_list');
-    }else{
-        _targetContainer = $('.data-container');
-    }
+
     if (typeof _paramName == 'undefined') {
         _paramName = 'game_type';
     }
-
+    if ($('.data-container').hasClass('low_wagering_list')){
+        _targetContainer = $('.data-container.low_wagering_list');
+        _targetAddContainer = $('.data-container.low_wagering_list').find('.casinos-list');
+    }
     var _url = _obj.data('url');
     _defaultButton.prop('checked', true);
 
