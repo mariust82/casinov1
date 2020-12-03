@@ -10822,7 +10822,7 @@ hr.widget{
 
 
 .btn-rest, .btn-rest:hover {
-  background: #B5B5B5;
+  background: #B5B5B5 !important;
 }
 .filter .view {
   /* padding-left: 30px; */
