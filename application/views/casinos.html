@@ -32,8 +32,9 @@
                     <:else>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
                     </:if>
+                    <div class="data-add-container ${low_wagering_class}" data-total="${data.total_casinos}"></div>
+
                 </div>
-                <div class="data-add-container ${low_wagering_class}" data-total="${data.total_casinos}"></div>
             </div>
             <filter:reset/>
         </div>
