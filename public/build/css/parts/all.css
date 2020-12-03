@@ -3248,8 +3248,15 @@ a:focus {
 .promo-img img{
   position:absolute;
   top:0;
-  left:0;
+  left:50%;
   width: 100%;
+  transform: translateX(-50%);
+}
+
+@media screen and (max-width: 800px) {
+  .promo-img img{
+    width: auto;;
+  }
 }
 
 .promo-text {
