@@ -11,6 +11,8 @@ use MongoDB\Driver\Query;
 
 class CasinosListQuery
 {
+    const CASINO_SCORE = 7.5;
+    const CASINO_MIN_VOTES = 10;
     private $query;
 
     public function __construct(CasinoFilter $filter, $columns, $sortBy=null, $limit= 0, $offset='')
@@ -29,7 +31,7 @@ class CasinosListQuery
         $this->setLimit($query, $filter, $limit, $offset);
         $this->query = $query->toString();
     }
-    
+
     private function setGroupBy(Lucinda\Query\MySQLSelect $query, CasinoFilter $filter,$limit) {
         if ($limit > 0 && $filter->getPlayVersion() == "Live Dealer") {
             $query->groupBy(['t1.id']);
@@ -168,6 +170,9 @@ class CasinosListQuery
             case 'New':
                 $where->set("t1.date_established", "'".date("Y-m-d", strtotime(date("Y-m-d")." -1 year"))."'", Lucinda\Query\ComparisonOperator::GREATER);
                 break;
+            case "Best":
+                $this->addBestCondition($where);
+                break;
         }
 
         if ($filter->getBankingMethod()) {
@@ -181,6 +186,21 @@ class CasinosListQuery
             $where->set("t11.is_live", 1);
             $where->set("t12.name", "'".$filter->getPlayVersionType()."'");
         }
+    }
+
+    /**
+     * Add the conditions for "Best Casinos page":
+     * Display open casinos that are not closed/ blacklisted/ warning (Brand Admin - Status)
+     * Display casinos that are on the market for at least 6 months (Brand Admin - Established)
+     * The casino score should be 7.5 and above, out of at least 10 votes
+     *
+     * @param \Lucinda\Query\Condition $where
+     */
+    private function addBestCondition(Lucinda\Query\Condition $where):void
+    {
+        $where->set("t1.date_established", "'" . date("Y-m-d", strtotime(date("Y-m-d") . " -6 months")) . "'", Lucinda\Query\ComparisonOperator::GREATER);
+        $where->set("t1.rating_votes", self::CASINO_MIN_VOTES, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
+        $where->set("(t1.rating_total/t1.rating_votes)", self::CASINO_SCORE, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
     }
 
     private function setOrderBy(Lucinda\Query\OrderBy $orderBy, CasinoFilter $filter, $sortBy)
