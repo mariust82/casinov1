@@ -11183,6 +11183,16 @@ hr.widget{
   padding: 10px 30px;
   text-indent: initial;
 }
+.grid_view .btn-rest,
+.list-view .btn-rest{
+  margin: 0 !important;
+}
 .grid_view .btn-rest:after{
   content:unset;
+}
+@media (min-width: 900px){
+  .slide-box .btn{
+    min-width: 100px;
+    max-width: 100px;
+  }
 }
