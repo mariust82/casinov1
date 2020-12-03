@@ -17,9 +17,9 @@
 
     <link rel="icon" type="image/png" href="/public/favicon.ico?ver=0.0.1"/>
     <:if test="${data.use_bundle}">
-        <link rel="preload" as="style" onload="this.rel='stylesheet'" type="text/css" href="/public/build/css/compilations/all.css?ver=${data.version}" media="all">
+        <link rel="stylesheet" type="text/css" href="/public/build/css/compilations/all.css?ver=${data.version}" media="all">
     <:else/>
-        <link rel="preload" as="style" onload="this.rel='stylesheet'" type="text/css" href="/public/build/css/parts/all.css?ver=${data.version}" media="all">
+        <link rel="stylesheet" type="text/css" href="/public/build/css/parts/all.css?ver=${data.version}" media="all">
     </:if>
 </head>
 <body>
