@@ -10995,9 +10995,9 @@ hr.widget{
   width: calc(78% - 346px);
   margin-right: 25px;
 }
-.list-item-cell:nth-child(3) {
+/* .list-item-cell:nth-child(3) {
   width: 18%;
-}
+} */
 .list-view .casinos-list .slide-box {
   margin-left: 0;
   width: 100%;
