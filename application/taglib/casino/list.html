@@ -3,9 +3,11 @@
 <:set var="isNoDeposit" val="(strtolower(${data.selected_entity}) == 'no deposit bonus')"/>
 <:set var="isLowWagering" val="(strtolower(${data.selected_entity}) == 'low wagering')"/>
 <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
-	<:set var="css_class" val="casinos-list"/>
-	<:else>
-		<:set var="css_class" val=""/>
+	<:set var="css_class" val="casinos-list data-add-container"/>
+	<:set var="data_total" val="${data.total_casinos}"/>
+<:else>
+	<:set var="css_class" val=""/>
+	<:set var="data_total" val=""/>
 </:if>
 <div class="list">
 	<div class="list-heading list-item">
@@ -13,30 +15,29 @@
 			<div class="list-item-cell list-heading-title">BONUS</div>
 			<div class="list-item-cell list-heading-title">CASINO</div>
 			<div class="list-item-cell list-heading-title">BONUS CODE</div>
+		<:else>
+			<div class="list-item-cell list-item-casino list-heading-title">CASINO</div>
+			<:if test="${is_low_wagering}">
+				<div class="list-item-cell list-heading-title list-item-cell-bfnp">BONUS <span>FOR NEW PLAYERS</span></div>
+				<div class="list-item-cell list-heading-title list-item-cell-wagering">WAGERING</div>
+				<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
 			<:else>
-				<div class="list-item-cell list-item-casino list-heading-title">CASINO</div>
-				<:if test="${is_low_wagering}">
-					<div class="list-item-cell list-heading-title list-item-cell-bfnp">BONUS <span>FOR NEW PLAYERS</span></div>
-					<div class="list-item-cell list-heading-title list-item-cell-wagering">WAGERING</div>
-					<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
-					<:else>
-						<:if test="${data.page_type} == 'banking_method'">
-							<div class="list-item-cell list-heading-title list-item-banking-dep">DEPOSIT</div>
-							<div class="list-item-cell list-heading-title list-item-banking-wit">WITHDRAWAL</div>
-							<:else>
-								<div class="list-item-cell list-heading-title list-item-type">$[type]</div>
-						</:if>
-						<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
-						<div class="list-item-cell list-heading-title list-item-fd-bonus ${(${data.page_type} == 'banking_method'?'desktop':'')}"><span>FIRST DEPOSIT</span> BONUS</div>
-						<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
+				<:if test="${data.page_type} == 'banking_method'">
+					<div class="list-item-cell list-heading-title list-item-banking-dep">DEPOSIT</div>
+					<div class="list-item-cell list-heading-title list-item-banking-wit">WITHDRAWAL</div>
+				<:else>
+					<div class="list-item-cell list-heading-title list-item-type">$[type]</div>
 				</:if>
+				<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
+				<div class="list-item-cell list-heading-title list-item-fd-bonus ${(${data.page_type} == 'banking_method'?'desktop':'')}"><span>FIRST DEPOSIT</span> BONUS</div>
+				<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
+			</:if>
 		</:if>
-
 	</div>
-	<div class="list-body ${css_class}">
+	<div class="list-body ${css_class}" data-total="${data_total}">
 		<:if test="${isLowWagering} || ${isNoDeposit}">
 			<:foreach var="$[data]" val="result" key="key">
-				<div class="slide-box" data-slide="${key+1}">
+				<div class="slide-box loaded-item" data-slide="${key+1}">
 					<casino:box isNoDeposit="${isNoDeposit}" isLowWagering=${isLowWagering} result="${result}"/>
 				</div>
 			</:foreach>
@@ -59,9 +60,9 @@
 										${score_class}
 										<span class="list-rating-score">-</span>
 										<div class=" list-rating-score list-rating-score-mobile">|</div>
-										<:else>
-											${score_class}
-											<span class="list-rating-score">
+									<:else>
+										${score_class}
+										<span class="list-rating-score">
 											${ceil(${result.rating})}
 										</span>
 									</:if>
@@ -86,28 +87,28 @@
 									<div class="list-item-flex">
 										<:if test="'$[type]' == 'ESTABLISHED'">
 											<span class="upper">${formatDate(${result.date_established})}</span>
-											<:else>
-												<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
-													${result.softwares.0}
-												</a>
+										<:else>
+											<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
+												${result.softwares.0}
+											</a>
 
-												<:set var="extra" val="count(${result.softwares})-1"/>
-												<:if test="${extra} > 0">
+											<:set var="extra" val="count(${result.softwares})-1"/>
+											<:if test="${extra} > 0">
 												<span class="bubble bubble-long js-tooltip software_tooltip" title="${result.all_softwares}">
 													+${extra}
 												</span>
-												</:if>
+											</:if>
 										</:if>
 									</div>
 								</div>
 							</:if>
-							<:else>
-								<div class="list-item-cell list-item-banking-dep">
-									<i class="icon-icon_${(${result.deposit_methods}?'available':'unavailable')}"></i>
-								</div>
-								<div class="list-item-cell list-item-banking-wit">
-									<i class="icon-icon_${(${result.withdraw_methods}?'available':'unavailable')}"></i>
-								</div>
+						<:else>
+							<div class="list-item-cell list-item-banking-dep">
+								<i class="icon-icon_${(${result.deposit_methods}?'available':'unavailable')}"></i>
+							</div>
+							<div class="list-item-cell list-item-banking-wit">
+								<i class="icon-icon_${(${result.withdraw_methods}?'available':'unavailable')}"></i>
+							</div>
 						</:if>
 
 						<:if test="isset(${result.bonus_free.amount})">
@@ -123,64 +124,63 @@
 									${result.bonus_free.wagering}
 								</div>
 								<div class="btn-round-holder list-item-cell-wagering">
-								<span class="btn-round" data-name="${result.name}" data-is-free="1"> ${fb_amount}
-									<:if test="${fb_abbreviation} != 'NDB'">
-										<:if test="${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
-											<:set var="fs" val="FS" />
-										<:else>
-											<:set var="fs" val="" />
+									<span class="btn-round" data-name="${result.name}" data-is-free="1"> ${fb_amount}
+										<:if test="${fb_abbreviation} != 'NDB'">
+											<:if test="${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
+												<:set var="fs" val="FS" />
+											<:else>
+												<:set var="fs" val="" />
+											</:if>
+											<abbr title="${result.bonus_free.type}">${fb_abbreviation} ${fs}</abbr>
 										</:if>
-										<abbr title="${result.bonus_free.type}">${fb_abbreviation} ${fs}</abbr>
-									</:if>
-								</span>
+									</span>
 								</div>
-								<:else>
-									<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
-										<:if test="isset(${fb_amount})">
-									<span class="btn-round" data-name="${result.name}" data-is-free="1">
-										${fb_amount}
-										<:if test="isset(${result.bonus_free.type}) && ${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
-											<:set var="fs" val="FS" />
-										<:else>
-											<:set var="fs" val="" />
-										</:if>
-                                                                                <:if test="isset(${result.bonus_free.type})">
-										<abbr title="${result.bonus_free.type}"> ${fb_abbreviation} ${fs}</abbr>
-                                                                                </:if> 
-									</span>
-										</:if>
-										<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
-											<span class="btn-round" data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
-										</:if>
-									</div>
-							</:if>
 							<:else>
-								<:if test="${is_low_wagering}">
-									<div class="list-item-cell list-item-cell-bfnp">
-										${result.bonus_free.wagering}
-									</div>
-									<div class="list-item-cell list-item-cell-wagering">
-								<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1"> ${fb_amount}
-								<:if test="${fb_abbreviation} != 'NDB'">
-									<abbr title="${result.bonus_free.type}">${fb_abbreviation}</abbr>
-								</:if>
-								</span>
-
-									</div>
-									<:else>
-										<div class="list-item-cell list-item-alt-bonus">
-											<:if test="${result.bonus_free}">
-									<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1">
-										${fb_amount}  <abbr title="${result.bonus_free.type}">${getAbbreviation(${result.bonus_free.type},${fb_amount})}</abbr>
+								<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
+									<:if test="isset(${fb_amount})">
+										<span class="btn-round" data-name="${result.name}" data-is-free="1">
+											${fb_amount}
+											<:if test="isset(${result.bonus_free.type}) && ${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
+												<:set var="fs" val="FS" />
+											<:else>
+												<:set var="fs" val="" />
+											</:if>
+											<:if test="isset(${result.bonus_free.type})">
+												<abbr title="${result.bonus_free.type}"> ${fb_abbreviation} ${fs}</abbr>
+											</:if> 
+										</span>
+									</:if>
+									<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
+										<span class="btn-round" data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
+									</:if>
+								</div>
+							</:if>
+						<:else>
+							<:if test="${is_low_wagering}">
+								<div class="list-item-cell list-item-cell-bfnp">
+									${result.bonus_free.wagering}
+								</div>
+								<div class="list-item-cell list-item-cell-wagering">
+									<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1"> ${fb_amount}
+										<:if test="${fb_abbreviation} != 'NDB'">
+											<abbr title="${result.bonus_free.type}">${fb_abbreviation}</abbr>
+										</:if>
 									</span>
-											</:if>
-										</div>
-										<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
-											<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
-												<span class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
-											</:if>
-										</div>
-								</:if>
+								</div>
+							<:else>
+								<div class="list-item-cell list-item-alt-bonus">
+									<:if test="${result.bonus_free}">
+										<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1">
+											${fb_amount}  <abbr title="${result.bonus_free.type}">${getAbbreviation(${result.bonus_free.type},${fb_amount})}</abbr>
+										</span>
+									</:if>
+								</div>
+								<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
+									<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
+										<span class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
+									</:if>
+								</div>
+							</:if>
 						</:if>
 
 						<div class="list-item-cell list-flex list-item-cell-buttons button-wrapper">
@@ -188,18 +188,18 @@
 								<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-blk btn-err">
 									<svg class="svg-icon"><use xlink:href="#icon-blacklisted"></use></svg>
 								</a>
-								<:elseif test="${result.status}==2">
-									<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-wrn btn-err">
-										<svg class="svg-icon"><use xlink:href="#icon-warning"></use></svg>
-									</a>
-									<:elseif test="!${result.is_country_accepted}">
-										<a href="/visit/${normalize(${result.name})}" class="btn btn-rest" target="_blank" rel="nofollow">
-											REST
-										</a>
-									<:else>
-										<a href="/visit/${normalize(${result.name})}" class="btn btn-small" target="_blank" rel="nofollow">
-											Visit
-										</a>
+							<:elseif test="${result.status}==2">
+								<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-wrn btn-err">
+									<svg class="svg-icon"><use xlink:href="#icon-warning"></use></svg>
+								</a>
+							<:elseif test="!${result.is_country_accepted}">
+								<a href="/visit/${normalize(${result.name})}" class="btn btn-rest" target="_blank" rel="nofollow">
+									REST
+								</a>
+							<:else>
+								<a href="/visit/${normalize(${result.name})}" class="btn btn-small" target="_blank" rel="nofollow">
+									Visit
+								</a>
 							</:if>
 						</div>
 					</div>
@@ -209,6 +209,6 @@
 				<:unset var="i"/>
 				<:unset var="result"/>
 		</:if>
-
+		
 	</div>
 </div>

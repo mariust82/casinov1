@@ -783,7 +783,7 @@ var Filters = function (obj) {
     if (typeof _paramName == 'undefined') {
         _paramName = 'game_type';
     }
-
+    
     var _url = _obj.data('url');
     _defaultButton.prop('checked', true);
 

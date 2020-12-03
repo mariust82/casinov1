@@ -32,8 +32,10 @@
                     <:else>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
                     </:if>
+                    <:if test="strtolower(${data.selected_entity}) !== 'no deposit bonus' && strtolower(${data.selected_entity}) !== 'low wagering'">
+                        <div class="data-add-container" data-total="${data.total_casinos}"></div>
+                    </:if>
                 </div>
-                <div class="data-add-container ${low_wagering_class}" data-total="${data.total_casinos}"></div>
             </div>
             <filter:reset/>
         </div>
