@@ -4,8 +4,8 @@
 <:set var="isLowWagering" val="(strtolower(${data.selected_entity}) == 'low wagering')"/>
 <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
 	<:set var="css_class" val="casinos-list"/>
-	<:else>
-		<:set var="css_class" val=""/>
+<:else>
+	<:set var="css_class" val=""/>
 </:if>
 <div class="list">
 	<div class="list-heading list-item">
@@ -13,25 +13,24 @@
 			<div class="list-item-cell list-heading-title">BONUS</div>
 			<div class="list-item-cell list-heading-title">CASINO</div>
 			<div class="list-item-cell list-heading-title">BONUS CODE</div>
+		<:else>
+			<div class="list-item-cell list-item-casino list-heading-title">CASINO</div>
+			<:if test="${is_low_wagering}">
+				<div class="list-item-cell list-heading-title list-item-cell-bfnp">BONUS <span>FOR NEW PLAYERS</span></div>
+				<div class="list-item-cell list-heading-title list-item-cell-wagering">WAGERING</div>
+				<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
 			<:else>
-				<div class="list-item-cell list-item-casino list-heading-title">CASINO</div>
-				<:if test="${is_low_wagering}">
-					<div class="list-item-cell list-heading-title list-item-cell-bfnp">BONUS <span>FOR NEW PLAYERS</span></div>
-					<div class="list-item-cell list-heading-title list-item-cell-wagering">WAGERING</div>
-					<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
+				<:if test="${data.page_type} == 'banking_method'">
+					<div class="list-item-cell list-heading-title list-item-banking-dep">DEPOSIT</div>
+					<div class="list-item-cell list-heading-title list-item-banking-wit">WITHDRAWAL</div>
 					<:else>
-						<:if test="${data.page_type} == 'banking_method'">
-							<div class="list-item-cell list-heading-title list-item-banking-dep">DEPOSIT</div>
-							<div class="list-item-cell list-heading-title list-item-banking-wit">WITHDRAWAL</div>
-							<:else>
-								<div class="list-item-cell list-heading-title list-item-type">$[type]</div>
-						</:if>
-						<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
-						<div class="list-item-cell list-heading-title list-item-fd-bonus ${(${data.page_type} == 'banking_method'?'desktop':'')}"><span>FIRST DEPOSIT</span> BONUS</div>
-						<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
+						<div class="list-item-cell list-heading-title list-item-type">$[type]</div>
 				</:if>
+				<div class="list-item-cell list-heading-title list-item-alt-bonus">${bonus} BONUS</div>
+				<div class="list-item-cell list-heading-title list-item-fd-bonus ${(${data.page_type} == 'banking_method'?'desktop':'')}"><span>FIRST DEPOSIT</span> BONUS</div>
+				<div class="list-item-cell list-heading-title list-item-cell-buttons">&nbsp;</div>
+			</:if>
 		</:if>
-
 	</div>
 	<div class="list-body ${css_class}">
 		<:if test="${isLowWagering} || ${isNoDeposit}">
@@ -188,18 +187,18 @@
 								<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-blk btn-err">
 									<svg class="svg-icon"><use xlink:href="#icon-blacklisted"></use></svg>
 								</a>
-								<:elseif test="${result.status}==2">
-									<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-wrn btn-err">
-										<svg class="svg-icon"><use xlink:href="#icon-warning"></use></svg>
-									</a>
-									<:elseif test="!${result.is_country_accepted}">
-										<a href="/visit/${normalize(${result.name})}" class="btn btn-rest" target="_blank" rel="nofollow">
-											REST
-										</a>
-									<:else>
-										<a href="/visit/${normalize(${result.name})}" class="btn btn-small" target="_blank" rel="nofollow">
-											Visit
-										</a>
+							<:elseif test="${result.status}==2">
+								<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-wrn btn-err">
+									<svg class="svg-icon"><use xlink:href="#icon-warning"></use></svg>
+								</a>
+							<:elseif test="!${result.is_country_accepted}">
+								<a href="/visit/${normalize(${result.name})}" class="btn btn-rest" target="_blank" rel="nofollow">
+									REST
+								</a>
+							<:else>
+								<a href="/visit/${normalize(${result.name})}" class="btn btn-small" target="_blank" rel="nofollow">
+									Visit
+								</a>
 							</:if>
 						</div>
 					</div>
