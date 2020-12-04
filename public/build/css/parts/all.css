@@ -3237,14 +3237,25 @@ a:focus {
   padding-bottom: 320px;
   position: relative;
   overflow: hidden;
-  background: url(../../images/text-header/home-img.jpg) no-repeat 50% 0;
 }
 
 @media screen and (max-width: 690px) {
   .promo-img {
     padding-bottom: 200px;
-    background: url(../../images/text-header/home-img-mobile.jpg) no-repeat 50% 0;
-    background-size: 100%;
+  }
+}
+
+.promo-img img{
+  position:absolute;
+  top:0;
+  left:50%;
+  width: 100%;
+  transform: translateX(-50%);
+}
+
+@media screen and (max-width: 800px) {
+  .promo-img img{
+    width: auto;;
   }
 }
 
@@ -10811,7 +10822,7 @@ hr.widget{
 
 
 .btn-rest, .btn-rest:hover {
-  background: #B5B5B5;
+  background: #B5B5B5 !important;
 }
 .filter .view {
   /* padding-left: 30px; */
@@ -10995,9 +11006,10 @@ hr.widget{
   width: calc(78% - 346px);
   margin-right: 25px;
 }
-.list-item-cell:nth-child(3) {
+/* .list-item-cell:nth-child(3) {
   width: 18%;
-}
+} */
+
 .list-view .casinos-list .slide-box {
   margin-left: 0;
   width: 100%;
@@ -11183,6 +11195,33 @@ hr.widget{
   padding: 10px 30px;
   text-indent: initial;
 }
+.grid_view .btn-rest,
+.list-view .btn-rest{
+  margin: 0 !important;
+}
 .grid_view .btn-rest:after{
   content:unset;
+}
+.low_wagering_info {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: normal normal 400 12px/18px Open Sans;
+  letter-spacing: 0px;
+  color: #A8AEC8;
+}
+.grid_view .low_wagering_info{
+  text-align: center;
+}
+@media (min-width: 900px){
+  .slide-box .btn{
+    min-width: 100px;
+  }
+  .list-view .slide-box .btn{
+    max-width: 100px;
+  }
+}
+
+.data-add-container.low_wagering_list{
+  margin-top: 0 !important;
 }

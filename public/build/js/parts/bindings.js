@@ -783,7 +783,7 @@ var Filters = function (obj) {
     if (typeof _paramName == 'undefined') {
         _paramName = 'game_type';
     }
-
+    
     var _url = _obj.data('url');
     _defaultButton.prop('checked', true);
 
@@ -969,7 +969,7 @@ var Filters = function (obj) {
                         }
                     }, 1000)
                 }
-
+               
                 _construct();
 
                 checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
