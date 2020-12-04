@@ -165,7 +165,7 @@ class Casinos implements FieldValidator
     
     public function getAllByLabels() {
         $output = [];
-        $labels = ["Best", "New", "Popular", "Blacklisted Casinos", "Low Wagering", "No Account Casinos"];
+        $labels = ["Best", "New", "Blacklisted Casinos", "Low Wagering", "No Account Casinos"];
         foreach ($labels as $label) {
             $order = 't1.priority DESC, t1.id DESC';
             
