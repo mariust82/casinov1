@@ -11054,6 +11054,7 @@ hr.widget{
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 90px;
 }
 .list-view .slide-box .flag {
   order: 1;
