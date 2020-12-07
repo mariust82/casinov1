@@ -9,6 +9,7 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
     {
         $specificPage = $this->request->getURI()->getPage();
 
+
         if($specificPage == 'casinos/popular') {
             $this->response->setStatus(301);
             $this->response->redirect('/casinos/best');
