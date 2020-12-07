@@ -198,7 +198,7 @@ class CasinosListQuery
      */
     private function addBestCondition(Lucinda\Query\Condition $where)
     {
-        $where->set("t1.date_established", "'" . date("Y-m-d", strtotime(date("Y-m-d") . " -6 months")) . "'", Lucinda\Query\ComparisonOperator::GREATER);
+        $where->set("t1.date_established", "'" . date("Y-m-d", strtotime(date("Y-m-d") . " -6 months")) . "'", Lucinda\Query\ComparisonOperator::LESSER_EQUALS);
         $where->set("t1.rating_votes", self::CASINO_MIN_VOTES, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
         $where->set("(t1.rating_total/t1.rating_votes)", self::CASINO_SCORE, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
     }
