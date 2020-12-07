@@ -23,7 +23,7 @@ require_once("application/models/dao/CasinosList.php");
 */
 class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
 {
-    protected $limit = 100;
+    protected $limit = 50;
 
     public function run()
     {
