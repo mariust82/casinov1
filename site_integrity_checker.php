@@ -15,7 +15,6 @@ new SiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), array(
     "banking/(name)" => "banking/neteller",
     "banking" => "banking",
     "casinos/best" => "casinos/best",
-    "casinos/popular" => "casinos/popular",
     "casinos/mobile" => "casinos/mobile",
     "casinos/new" => "casinos/new",
     "casinos/stay-away" => "casinos/stay-away",
