@@ -1,15 +1,13 @@
 {
   "name": "casinoslists",
   "version": "1.0.0",
-  "description": "",
+  "description": "Run bundles minification.",
   "main": "index.js",
   "dependencies": {
     "gulp": "^4.0.2",
     "gulp-clean-css": "^4.3.0",
-    "gulp-minify-css": "^1.2.4",
-    "npm": "^6.10.2",
-    "xml2js": "^0.4.23",
-    "gulp-uglify": "^3.0.2"
+    "gulp-uglify": "^3.0.2",
+    "xml2js": "^0.4.23"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
