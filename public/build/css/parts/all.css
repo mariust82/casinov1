@@ -11266,3 +11266,120 @@ hr.widget{
   margin-left: 5px;
   font-size: 7.5px;
 }
+
+.casino-info_box .title{
+  margin-bottom: 20px;
+}
+.casino-details_header {
+  display: flex;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.detail-box {
+  display: flex;
+  width: calc(25% - 3px);
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: #F9F9F9 0% 0% no-repeat padding-box;
+  border-radius: 2px;
+  padding: 20px 0 25px 0;
+}
+.detail-box:not(:first-of-type) {
+  margin-left: 2px;
+}
+.detail-title{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.row-details{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 17px;
+  font: normal normal 600 14px/20px Open Sans;
+  letter-spacing: 0px;
+  color: #465156;
+}
+.row-details i {
+  margin-right: 8px;
+}
+.info_list{
+  width: 49%;
+}
+.info_list-item{
+  display: flex;
+  justify-content: left;
+  margin-bottom: 13px;
+}
+.info_list-title{
+  text-align: left;
+  font: normal normal normal 13px/20px Open Sans;
+  letter-spacing: 0px;
+  color: #878CA4;
+  width: 35%;
+}
+.info_list-value{
+  text-align: left;
+  font: normal normal normal 13px/20px Open Sans;
+  letter-spacing: 0px;
+  color: #465156;
+}
+.casino-details-container{
+  border-bottom: 1px solid #E8EAF3;
+}
+.title-uppercase{
+  text-align: left;
+  font: normal normal 600 11px/18px Open Sans;
+  letter-spacing: 0px;
+  color: #465156;
+  text-transform: uppercase;
+  margin: 15px 0;
+  display: block;
+}
+.game-types_box{
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #E8EAF3;
+  border-radius: 2px;
+  /* padding-bottom: 15px; */
+  width: 50%;
+  /* height: 195px; */
+}
+.game-types_box .title-uppercase{
+  padding: 0 20px;
+}
+.row_info{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.game_types{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+.game-type_container{
+  width: 20%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.game-type_name{
+  font: normal normal normal 13px/20px Open Sans;
+  letter-spacing: 0px;
+  color: #878CA4;
+  margin-top: 10px;
+  margin-bottom: 18px;
+  display: block;
+  width: 100%;
+}
+.game-type_container.unavailable img{
+  opacity: 0.8;
+  filter: grayscale(1) brightness(70%) hue-rotate(90deg);
+}
