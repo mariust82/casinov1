@@ -4096,6 +4096,7 @@ a:focus {
     width: 30px !important;
     height: 19px !important;
     text-indent: initial !important;
+    line-height: 19px;
   }
 
   .list-rating.no-score .list-rating-score-mobile{
