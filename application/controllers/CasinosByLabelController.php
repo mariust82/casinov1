@@ -11,6 +11,8 @@ require_once("CasinosListController.php");
 */
 class CasinosByLabelController extends CasinosListController
 {
+    protected $limit = 50;
+
     protected function getSelectedEntity()
     {
         $parameter = $this->request->getValidator()->parameters("name");

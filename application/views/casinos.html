@@ -40,13 +40,11 @@
             <filter:reset/>
         </div>
 
-        <:if test="${data.selected_entity} != 'Best'">
         <:if test="${data.total_casinos} > count(${data.casinos})">
         <div class="btn-holder">
             <a href="#" class="btn-bordered load js-more-items">
                 LOAD MORE CASINOS</a>
         </div>
-        </:if>
         </:if>
         <:if test="isset(${data.recommended_games})">
             <:if test="count(${data.recommended_games}) > 0">
