@@ -6,6 +6,7 @@ require_once("CasinoCounter.php");
  */
 class Countries implements CasinoCounter
 {
+
     /**
      * Gets country ID based on ISO code.
      *
@@ -16,7 +17,7 @@ class Countries implements CasinoCounter
     {
         return SQL("SELECT id from countries WHERE code=:code", array(':code' => $code))->toValue();
     }
-    
+
     public function getCountryDetails($name)
     {
         $output = $this->getExceptions();
@@ -28,7 +29,7 @@ class Countries implements CasinoCounter
 
     public function getExceptions()
     {
-        $res =  SQL("SELECT t1.name from countries AS t1 WHERE t1.name LIKE '%-%'");
+        $res = SQL("SELECT t1.name from countries AS t1 WHERE t1.name LIKE '%-%'");
         $output = array();
         while ($row = $res->toRow()) {
             $output[] = $row['name'];
@@ -40,14 +41,17 @@ class Countries implements CasinoCounter
     public function getCasinosCount()
     {
         $result = SQL("
-        SELECT  
-        t1.name AS unit, count(*) as counter
-        FROM countries AS t1
-        INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.country_id
-        INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
-        WHERE t3.is_open = 1
-        GROUP BY t1.id 
-        ")->toMap("unit", "counter");
+        SELECT t1.name AS unit, cnt.nr as counter
+        FROM countries AS t1,
+             (SELECT t2.country_id, count(t2.casino_id) as nr
+              FROM casinos__countries_allowed AS t2
+                       INNER JOIN casinos AS t3
+                                  ON t2.casino_id = t3.id
+              WHERE t3.is_open = 1
+              GROUP BY t2.country_id) AS cnt
+        WHERE cnt.country_id = t1.id AND t1.code != '"
+            . Country::EXCLUDED_COUNTRY_CODE . "'"
+        )->toMap("unit", "counter");
         arsort($result);
         return $result;
     }
