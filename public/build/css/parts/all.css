@@ -11383,3 +11383,112 @@ hr.widget{
   opacity: 0.8;
   filter: grayscale(1) brightness(70%) hue-rotate(90deg);
 }
+
+@media(max-width: 890px){
+  .game-type_container {
+    width: 25%;
+  }
+  .game_types{
+    justify-content: left;
+  }
+  .game-type_container:nth-of-type(1){
+    order: 1;
+  }
+  .game-type_container:nth-of-type(2){
+    order: 2;
+  }
+  .game-type_container:nth-of-type(3){
+    order: 3;
+  }
+  .game-type_container:nth-of-type(4){
+    order: 4;
+  }
+  .game-type_container:nth-of-type(5){
+    order: 9;
+  }
+  .game-type_container:nth-of-type(6){
+    order: 5;
+  }
+  .game-type_container:nth-of-type(7){
+    order: 6;
+  }
+  .game-type_container:nth-of-type(8){
+    order: 7;
+  }
+  .game-type_container:nth-of-type(9){
+    order: 8;
+  }
+  .game-type_container:nth-of-type(10){
+    order: 10;
+    width: 26%;
+  }
+  .row-details{
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .row-details i{
+    margin: 0 0 8px 0 !important;
+    width: 100%;
+    text-align: center;
+  }
+}
+@media (max-width: 690px){
+  .casino-details_header{
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .detail-box{
+    padding: 15px;
+    margin-bottom: 2px;
+    width: 100%;
+    justify-content: left;
+  }
+  .detail-title{
+    width: 30%;
+    display: flex;
+    justify-content: left;
+    font-size: 13px;
+  }
+  .row-details{
+    font-size: 13px;
+    /* margin-top: 10px; */
+  }
+  .row-details i{
+    margin-bottom: 0 !important;
+    margin-right: 10px !important;
+    width: unset;
+    text-align: center;
+  }
+  .row_info{
+    flex-wrap: wrap;
+  }
+  .info_list{
+    width: 100%;
+    order: 2;
+    padding-top: 20px;
+  }
+  .game-types_box{
+    width: 100%;
+    border: none;
+    order: 1;
+    border-bottom: 1px solid #e8eaf3;
+  }
+  .game-types_box .title-uppercase{
+    padding: 0;
+    margin-top: 0;
+  }
+  .game_types{
+    justify-content: left;
+    margin: 0;
+    /* margin-left: -20px; */
+  }
+  .game-type_container:nth-of-type(1), .game-type_container:nth-of-type(6), .game-type_container:nth-of-type(5) {
+    text-align: left;
+    justify-content: left;
+    width: 20%;
+  
+  }
+  .info_list-title{
+    width: 28%;
+  }
+}

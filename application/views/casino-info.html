@@ -350,16 +350,20 @@
 				</div>
 				<div class="software_providers-section">
 					<span class="title-uppercase">Software Providers</span>
-					<:if test="count(${data.casino.softwares}) > 0">
-						<div class="tooltipster-content">
-							<:foreach var="${data.casino.softwares}" key ="key" val="value">
-								<:if test="${value} == end(${data.casino.softwares})">
-									<a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>
-								<:else>
-									<a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>,
-								</:if>
-							</:foreach>
-						</div>
+					<:foreach var="${data.casino.softwares}" key="key" val="software">
+						<:if test="${key}<8">
+							<span class="soft_link list-item-trun" data-nr="${key+1}">
+								<a class="list-title list_link" href="/softwares/${normalize(${software})}">
+									<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
+								</a>
+							</span>
+						</:if>
+					</:foreach>
+					<:set var="extraSoftwares" val="count(${data.casino.softwares})-8"/>
+					<:if test="${extraSoftwares} > 0">
+						<span class="bubble bubble-long js-tooltip software_tooltip" title="${get_string(${data.casino.softwares}, 8)}">
+						Show all (+${extraSoftwares})
+						</span>
 					</:if>
 				</div>
 			</div>
