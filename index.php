@@ -7,6 +7,8 @@ define("ENVIRONMENT", $environment);
 // load firewall
 if (ENVIRONMENT == "live") {
     require_once("hlis/firewall/Manager.php");
+    $firewall = new Hlis\Firewall\Manager($_SERVER["SERVER_NAME"], $_SERVER["REMOTE_ADDR"], $_SERVER["REQUEST_URI"], $_SERVER["REQUEST_METHOD"], getallheaders());
+    define("USER_TYPE", $firewall->getUserType());
 }
 
 // takes control of STDERR
