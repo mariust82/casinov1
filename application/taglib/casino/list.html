@@ -126,7 +126,7 @@
 								<div class="btn-round-holder list-item-cell-wagering">
 									<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1"> ${fb_amount}
 										<:if test="${fb_abbreviation} != 'NDB'">
-											<:if test="${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
+											<:if test="isset(${result.bonus_free.type}) && ${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
 												<:set var="fs" val="FS" />
 											<:else>
 												<:set var="fs" val="" />
