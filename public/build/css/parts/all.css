@@ -7281,88 +7281,6 @@ a:focus {
   display: none !important;
 }
 
-.rating-container {
-  width: 280px;
-  margin: 0 20px 0 0;
-}
-
-@media screen and (max-width: 690px) {
-  .rating-container {
-    width: 100%;
-    margin: 0;
-  }
-  .not-accepted .rating-container {
-    order: 2;
-  }
-}
-
-.rating-container.not-valid .br-widget a {
-  background: #DB2424;
-}
-
-.rating-container .br-widget {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.rating-container .br-widget a {
-  background: #E8EAF3;
-  width: 18px;
-  height: 18px;
-  margin: 0 0 0 12px;
-  border-radius: 50%;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.section.not-accepted .rating-container .br-widget a {
-  color: #f1f2f7;
-}
-
-.rating-container .br-widget a:first-child {
-  margin: 0;
-}
-
-.rating-container .br-widget a.br-selected,
-.rating-container .br-widget a.br-current,
-.rating-container .br-widget a.br-active {
-  background: #96CB00;
-}
-
-.rating-current {
-  font-size: 12px;
-  color: #465156;
-}
-
-.section.not-accepted .rating-current {
-  color: #d7d9da;
-}
-
-.section.not-accepted .rating-current-text {
-  display: none;
-}
-
-.rating-current-text.excellent {
-  color: #5DC916;
-}
-
-.rating-current-text.very-good {
-  color: #96CB00;
-}
-
-.rating-current-text.good {
-  color: #E9CA00;
-}
-
-.rating-current-text.poor {
-  color: #F17D0A;
-}
-
-.rating-current-text.terrible {
-  color: #DB2424;
-}
-
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11224,4 +11142,43 @@ hr.widget{
 
 .data-add-container.low_wagering_list{
   margin-top: 0 !important;
+}
+
+.rating-container{
+  width: 100%;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  background: #fff;
+  border: 1px solid #E8EAF3;
+  border-radius: 2px;
+}
+
+.rating-container-left {
+  width: 35%;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+.rating-container-score {
+  
+}
+.rating-container-voted {
+}
+.rating-container-right {
+  width: 55%;
+  -webkit-box-flex:1;
+  -ms-flex-positive:1;
+  flex-grow:1;
+}
+.rating-container-stats {
+}
+.rating-container-stats-row {
+}
+.rating-container-stats-label {
+}
+.rating-container-stats-line {
+}
+.rating-container-stats-bar {
+}
+.rating-container-stats-score {
 }
