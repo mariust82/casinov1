@@ -20,7 +20,7 @@ class CasinosListsRobotsValidator extends RobotsValidator
         $body = str_replace(array(" ", "\n", "\r"), "", $response->getBody());
         $test = "User-agent:*Disallow:/";
         if (ENVIRONMENT === "live") {
-            $test = "User-agent:*Disallow:/visit/*Disallow:/link/*";
+            $test = "User-agent:*Disallow:/visit/*";
         }
 
         return new Result($body == $test, $body == $test ? "" : "Invalid file body: '" . $body . "'");
