@@ -18,12 +18,14 @@ class CasinosListsSiteIntegrityChecker extends SiteIntegrityChecker
      * @param string $domainName Domain name of site (eg: dev.spinmybonus.com)
      * @param UnitTestDisplay $display Medium to display unit test results (eg: new ConsoleUnitTestDisplay())
      * @param string[string] Array of non-ajax related routes in site where key is route pattern and value is route example
+     * @param string $userAgent
      */
-    public function __construct(string $domainName, UnitTestDisplay $display, array $pages)
+    public function __construct(string $domainName, UnitTestDisplay $display, array $pages, string $userAgent = self::USER_AGENT)
     {
         if (strpos($domainName, "http")) die("Invalid domain name!");
         $this->domainName = $domainName;
         $this->display = $display;
+        $this->userAgent = $userAgent;
 
         $this->checkSimple(new HtaccessValidator(".htaccess"), ".htaccess");
         $this->checkSimple(new CasinosListsRobotsValidator("https://" . $this->domainName . "/robots.txt"), "robots.txt");
