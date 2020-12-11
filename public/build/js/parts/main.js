@@ -52,6 +52,14 @@ function loadScripts(_scripts) {
         }
     });
 }
+function loadStyles(_styles) {
+    var version = $('.controller_main').data("version");
+    $.each(_styles, function(index, style) {
+        if (!$("link[href='/public/build/js/compilations/"+style+".js?v="+version+"']").length) {
+            $("head").append($('<link rel="stylesheet" type="text/css" href="/public/build/css/compilations/'+style+'.css?v='+version+'" media="all">"'));
+        }
+    });
+}
 
 function getInternetExplorerVersion() {
     var rv = -1;
@@ -158,7 +166,8 @@ function changeViewElements(filterView,container){
         }
         loadScripts(['assets/jquery-select2']);
         $(document).on('scroll mousemove', function(){
-            loadScripts(['bindings', 'assets/tooltipster', 'assets/swiper']);
+            loadStyles(['ion.rangeSlider']);
+            loadScripts(['assets/ion.rangeSlider.min', 'assets/tooltipster', 'assets/swiper', 'bindings']);
             $(document).unbind("scroll mousemove");
 
             initSite();

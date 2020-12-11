@@ -1,5 +1,50 @@
 var ww = $(window).width();
 
+var Score = function (obj) {
+    var _obj = obj,
+        _name = _obj.name,
+        _score = _obj.value,
+        _request = new XMLHttpRequest;
+
+    var _init = function () {
+            _updateScore(_name, _score);
+        },
+        _updateScore = function (_name, _score) {
+            if (BUSY_REQUEST)
+                return;
+            BUSY_REQUEST = true;
+            _request.abort();
+
+            _request = $.ajax({
+                url: '/casino/rate',
+                data: {
+                    name: _name,
+                    value: _score
+                },
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    if (data.body['success'] == "Casino already rated!") {
+                        $(".icon-icon_available").toggleClass("icon-icon_unavailable");
+                        $(".icon-icon_unavailable").removeClass("icon-icon_available");
+                        $('.thanx').html(data.body['success']);
+                    }
+                    $('.rating-container').next('.action-field').show();
+                },
+                error: function (XMLHttpRequest) {
+                    if (XMLHttpRequest.statusText != "abort")
+                    {
+                        console.log('err');
+                    }
+                },
+                complete: function () {
+                    BUSY_REQUEST = false;
+                }
+            });
+        };
+    _init();
+};
+
 tooltipConfig = {
     trigger: 'click',
     maxWidth: 279,
@@ -69,6 +114,26 @@ contentTooltipConfigPopup = {
         }
     }
 };
+
+$(".js-drag-rate").ionRangeSlider({
+    min: 1,
+    max: 5,
+    step: 1,
+    grid: true,
+    values: ['Terrbile', 'Poor', 'Good', 'Very good', 'Excellent'],
+    skin: "round",
+    grid_snap: true,
+    hide_from_to: true,
+    hide_min_max: true,
+    onFinish: function (data) {
+        // fired on pointer release
+        
+        // new Score({
+        //     value: value,
+        //     name: container.data('casino-name')
+        // });
+    },
+});
 
 function contentTooltipConfigPopupActions(origin) {
     checkStringLength($('.bonus-box'), 15);
@@ -368,8 +433,6 @@ function initMobileMenu() {
             }
         });
         e.preventDefault();
-
-
     });
 }
 
@@ -508,6 +571,8 @@ function sliderInit() {
         }
     }
 }
+
+sliderInit();
 
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);

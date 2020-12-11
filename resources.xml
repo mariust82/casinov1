@@ -5,7 +5,6 @@
     <file name="casino_view">
         <file name="global_js/jquery-2.1.3.min" />
         <file name="global_js/image-defer" />
-        <file name="assets/jquery-bar"/>
         <file name="vote"/>
         <file name="main"/>
         <file name="casino_review"/>
@@ -13,7 +12,6 @@
     <file name="blog">
         <file name="global_js/jquery-2.1.3.min" />
         <file name="global_js/image-defer" />
-        <file name="assets/jquery-bar"/>
         <file name="vote"/>
         <file name="main"/>
     </file>
@@ -31,14 +29,12 @@
     <file name="main">
         <file name="global_js/jquery-2.1.3.min" />
         <file name="global_js/image-defer" />
-        <file name="assets/jquery-bar"/>
         <file name="main"/>
     </file>
     <!-- bundle used only for local dev -->
     <file name="bundle">
         <file name="global_js/jquery-2.1.3.min" />
         <file name="global_js/image-defer" />
-        <file name="assets/jquery-bar"/>
     </file>
 </js>
 <css source="public/build/css/parts" destination="public/build/css/compilations">
