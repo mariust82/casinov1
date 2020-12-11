@@ -13,6 +13,11 @@ class CasinosByLabelController extends CasinosListController
 {
     protected $limit = 50;
 
+    protected function init()
+    {
+        $this->response->attributes("limit_per_page", $this->limit);
+    }
+
     protected function getSelectedEntity()
     {
         $parameter = $this->request->getValidator()->parameters("name");
@@ -66,7 +71,6 @@ class CasinosByLabelController extends CasinosListController
             default:
                 $url = 'casinos/'.str_replace(" ", "-", $selectedEntity);
         }
-
         $this->response->attributes("page_info", $object->getInfoByURL($url, $this->response->attributes("selected_entity"), $casinoNumber));
     }
 }

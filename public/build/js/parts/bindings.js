@@ -918,6 +918,9 @@ var Filters = function (obj) {
         BUSY_REQUEST = true;
         _request.abort();
         var limit_items = (_url == '/games-filter/') ? 24 : 100;
+        if($('.data-container-holder').data('limit-per-page')){
+            limit_items = $('.data-container-holder').data('limit-per-page');
+        }
         if (location.pathname === '/casinos') {
             _url = 'load-all-casinos/';
         }
@@ -936,7 +939,7 @@ var Filters = function (obj) {
                     qty_items.attr('data-load-total', loadTotal);
                     $('.qty-items-quantity').text(loadTotal);
 
-                    if (cont.length === qty_items.attr('data-load-total')) {
+                    if (cont.length === parseInt(qty_items.attr('data-load-total'))) {
                         if (cont.length > 0) {
                             _loaderHolder.show();
                             _emptyContent.hide();
