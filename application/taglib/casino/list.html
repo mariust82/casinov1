@@ -137,7 +137,7 @@
 								</div>
 							<:else>
 								<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
-									<:if test="isset(${fb_amount})">
+									<:if test="isset(${fb_amount}) && ${result.bonus_free}">
 										<span class="btn-round" data-name="${result.name}" data-is-free="1">
 											${fb_amount}
 											<:if test="isset(${result.bonus_free.type}) && ${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
