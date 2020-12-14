@@ -39,6 +39,7 @@ class CasinoInfo
             $output->name = $row["name"];
             $output->code = $row["code"];
             $output->rating = ceil($row["average_rating"]);
+            $output->rating_votes = $row["rating_votes"];
             $output->live_dealers = $this->getAllLiveGameTypes($row["id"]);
             $output->is_available_in_site = $this->getIsAvailableInSite($output->live_dealers);
             $output->is_live_chat =  $row["is_live_chat"];

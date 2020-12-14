@@ -5,6 +5,7 @@ class Casino extends Entity
     public $name;
     public $code;
     public $rating;
+    public $rating_votes;
     public $softwares;
     public $languages;
     public $currencies;

@@ -514,7 +514,7 @@ function refresh() {
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
     $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
-    initMobileBonusesPop(ww);
+    // initMobileBonusesPop(ww);
 }
 
 function copyToClipboard() {
@@ -769,7 +769,6 @@ var Filters = function (obj) {
         _radios = _obj.find('input[type=radio]'),
         _selectFilter = _obj.find('select[name=soft]'),
         _targetContainer = $('.data-container'),
-        _targetAddContainer = $('.data-add-container'),
         _paramName = _targetContainer.data('type'),
         _paramValue = _targetContainer.data('type-value'),
         _emptyContent = $('.empty-filters'),
@@ -918,6 +917,9 @@ var Filters = function (obj) {
         BUSY_REQUEST = true;
         _request.abort();
         var limit_items = (_url == '/games-filter/') ? 24 : 100;
+        if($('.data-container-holder').data('limit-per-page')){
+            limit_items = $('.data-container-holder').data('limit-per-page');
+        }
         if (location.pathname === '/casinos') {
             _url = 'load-all-casinos/';
         }
@@ -927,6 +929,7 @@ var Filters = function (obj) {
             dataType: 'html',
             type: 'GET',
             success: function (data) {
+                _targetAddContainer = $('.data-add-container');
                 var cont = $(data).find('.loaded-item');
                 var loadTotal = $(data).filter('[data-load-total]').data('load-total');
                 var qty_items = $('.qty-items');
@@ -936,7 +939,7 @@ var Filters = function (obj) {
                     qty_items.attr('data-load-total', loadTotal);
                     $('.qty-items-quantity').text(loadTotal);
 
-                    if (cont.length === qty_items.attr('data-load-total')) {
+                    if (cont.length === parseInt(qty_items.attr('data-load-total'))) {
                         if (cont.length > 0) {
                             _loaderHolder.show();
                             _emptyContent.hide();
@@ -969,7 +972,6 @@ var Filters = function (obj) {
                         }
                     }, 1000)
                 }
-               
                 _construct();
 
                 checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
@@ -980,17 +982,18 @@ var Filters = function (obj) {
                 }
             },
             complete: function () {
+                console.log(parseInt($('.qty-items').attr('data-load-total')));
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
                 if (_url === '/casinos-filter/') {
-                    if (parseInt($('.qty-items').attr('data-load-total')) <= 30) {
+                    if (parseInt($('.qty-items').attr('data-load-total')) <= limit_items) {
                         $('.js-more-items').hide();
                     } else {
                         $('.js-more-items').show();
                     }
                 } else if (_url === '/games-filter/') {
 
-                    if (parseInt($('.qty-items-quantity').html()) <= 24) {
+                    if (parseInt($('.qty-items-quantity').html()) <= limit_items) {
                         $('.js-more-items').hide();
                     } else {
                         $('.js-more-items').show();

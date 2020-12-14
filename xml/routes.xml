@@ -186,5 +186,6 @@
         <route url="sitemaps_ps/sitemap_spec_games_ps.php" controller="sitemap/GamesController" format="sitemap"/>
         <route url="sitemaps_ps/sitemap_cas_live_dealer.php" controller="sitemap/LiveDealerController" format="sitemap"/>
         <route url="sitemaps_ps/sitemap_blog_ps.php" controller="sitemap/BlogCategoriesController" format="sitemap"/>
+        <route url="tracker" format="json"/>
     </routes>
 </xml>

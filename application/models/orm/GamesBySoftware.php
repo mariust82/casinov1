@@ -59,7 +59,7 @@ class GamesBySoftware
         if (!$this->results["total"]) {
             return;
         }
-        $offset =$page == 0 ? 0 : $page == 1 ? 4 : ($page*$limit-$limit) + 4;
+        $offset = ($page == 0 ? 0 : ($page == 1 ? 4 : ($page*$limit-$limit) + 4));
         $gld  = new \Hlis\GameListDAO(
                 new \CasinosLists\GamesBySoftwareQuery($fields, $condition, $orderBy,$offset , $limit),
             new \CasinosLists\GameLineProcessor()

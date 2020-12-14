@@ -3,7 +3,7 @@
 <div class="row edges">
     <div class="flag">
         <:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
-        <img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}">
+        <img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
     </div>
     <span class="casino_name_list_view">${result.name}</span>
     <:set var="score_class" val="get_rating(${result.rating})"/>
@@ -24,7 +24,7 @@
     <div class="circle-btn  tooltipstered js-tooltip-content-popup" data-name="${result.name}" data-is-free="">i</div>
 </div>
 <div class="row logo-casino">
-    <img src="/public/build/images/casino-logos/${strtolower(str_replace(' ','_',${result.name}))}.png" width="100" height="66" alt="${result.name}">
+    <img class="lazy_loaded" data-src="/public/build/images/casino-logos/${strtolower(str_replace(' ','_',${result.name}))}.png"  width="100" height="66" alt="${result.name}" data-alt="${result.name}">
 </div>
 <div class="row">
     <:if test="${result.bonus_free}">
