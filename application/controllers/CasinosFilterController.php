@@ -33,6 +33,9 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         $sortCriteria = $this->getSortCriteria();
         $page = (integer)$this->request->getValidator()->parameters("page");
         $filter = new CasinoFilter($_GET, $this->request->attributes("country"));
+        if ($filter->getCasinoLabel() === "Best") {
+            $this->limit = 50;
+        }
         $params = $this->request->parameters();
         $object = new CasinosList($filter);
         $total = $object->getTotal();
