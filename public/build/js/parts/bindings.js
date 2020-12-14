@@ -1001,6 +1001,7 @@ var Filters = function (obj) {
                 }
                 grayscaleIE();
                 initImageLazyLoad();
+                copyToClipboard();
             }
         });
 
