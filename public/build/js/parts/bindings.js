@@ -1510,7 +1510,7 @@ var initSite = function () {
     checkStringLength($('.list .bonus-box'), 21);
     checkStringLength($('.bonus-item .bonus-box'), 33);
     grayscaleIE();
-
+    initTooltipseter();
     initMobileMenu();
 
     $('.message .close').on('click', function (e) {
