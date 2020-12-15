@@ -122,7 +122,7 @@ var initImageLazyLoad = function () {
         imageDefer("lazy_loaded");
     }
 };
-function changeViewElements(filterView,container){
+function changeViewElements(filterView,container,gridClass,listClass){
     var boxView = filterView.find('.icon-box_view'),
     listView = filterView.find('.icon-list_view'),
     filterViewBtn = filterView.find('.icon');
@@ -133,13 +133,13 @@ function changeViewElements(filterView,container){
         if($this.hasClass('icon-box_view') && listView.hasClass('active')){
             listView.removeClass('active');
             $this.addClass('active');
-            container.removeClass('list-view');
-            container.addClass('grid_view');
+            container.removeClass(listClass);
+            container.addClass(gridClass);
         }else if($this.hasClass('icon-list_view') && boxView.hasClass('active')){
             boxView.removeClass('active');
             $this.addClass('active');
-            container.addClass('list-view');
-            container.removeClass('grid_view');
+            container.addClass(listClass);
+            container.removeClass(gridClass);
 
         }
     });
@@ -222,7 +222,27 @@ function changeViewElements(filterView,container){
 
         initImageLazyLoad();
         if($('.filter').find('.view').length > 0){
-            changeViewElements($('.filter .view'),$('.grid_view'));
+            changeViewElements($('.filter .view'),$('.data-container-holder'),'grid_view','list-view');
+        }
+        if($('.open-popup-spec').length > 0){
+            $('.open-popup-spec').click(function(){
+                $(".welcome_package-popup-trigger").closest('.wp-title').find('.welcome_package-popup').removeClass('active');
+                $(this).closest('.popup-spec').find('.popup-casino-spec').toggleClass('active');
+                $('.open-popup-spec').not(this).closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
+            });
+            $('.close-popup-spec').click(function(){
+                $('.popup-casino-spec').removeClass('active');
+            });
+        }
+        if($(".welcome_package-popup-trigger").length > 0){
+            $(".welcome_package-popup-trigger").click(function(){
+                $('.open-popup-spec').closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
+                $(this).closest('.wp-title').find('.welcome_package-popup').toggleClass('active');
+                $(".welcome_package-popup-trigger").not(this).closest('.wp-title').find('.welcome_package-popup').removeClass('active');
+            });
+            $('.close-popup-wp').click(function(){
+                $('.welcome_package-popup').removeClass('active');
+            });
         }
     });
 
