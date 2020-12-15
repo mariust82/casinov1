@@ -11271,10 +11271,10 @@ hr.widget{
     border-radius: 2px;
     padding: 10px 15px;
 }
-
+/* 
 .bonus-info .content_popup .checkmark{
     margin:0 12px 0 0;
-}
+} */
 
 .content_popup .row.edges>span:first-of-type{
     color: #465156;
