@@ -135,3 +135,13 @@ function getBankingTitles($name, $index)
     }
     return implode(", ", $items);
 }
+
+function get_string($name, $index)
+{
+    foreach ($name as $key => $item) {
+        if ($key > $index-1) {
+            $items[$key] = $item;
+        }
+    }
+    return implode(", ", $items);
+}
