@@ -1381,7 +1381,7 @@
                     if (self._$origin.hasClass('nolink_tooltip')) {
                         $content.append('<span class="list-title">'+data_arr[i]+'</span>'+comma);
                     } else {
-                        $content.append('<a href="/software/'+normal+'" class="soft_link list-title list_link">'+data_arr[i]+'</a>'+comma);
+                        $content.append('<a href="/softwares/'+normal+'" class="soft_link list-title list_link">'+data_arr[i]+'</a>'+comma);
                     }
                     // $('.tooltipster-content').append('<a class="soft_link" href="/softwares/'+normal+'">'+data_arr[i]+'</a>'+comma);
                 }
