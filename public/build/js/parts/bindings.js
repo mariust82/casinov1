@@ -60,9 +60,12 @@ contentTooltipConfigPopup = {
                 type: 'POST',
                 success: function (response) {
                     instance.content(response);
+                    console.log('test');
                     setTimeout(function () {
+                        console.log('test2');
+
                         contentTooltipConfigPopupActions($origin)
-                    }, 150)
+                    }, 150);
                     $origin.data('loaded', true);
                 }
             });
@@ -71,6 +74,8 @@ contentTooltipConfigPopup = {
 };
 
 function contentTooltipConfigPopupActions(origin) {
+    console.log('test3');
+
     checkStringLength($('.bonus-box'), 15);
     $('.bonus-info .content_popup').niceScroll({
         cursorcolor: "#A8AEC8",
@@ -513,6 +518,8 @@ function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+    console.log('test5');
+
     $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
     // initMobileBonusesPop(ww);
 }
@@ -557,6 +564,8 @@ function initTooltipseter() {
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
     $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
+    console.log('test6');
+
 }
 
 function bindButtons(){
@@ -1510,7 +1519,6 @@ var initSite = function () {
     checkStringLength($('.list .bonus-box'), 21);
     checkStringLength($('.bonus-item .bonus-box'), 33);
     grayscaleIE();
-    initTooltipseter();
     initMobileMenu();
 
     $('.message .close').on('click', function (e) {
