@@ -5255,12 +5255,6 @@ a:focus {
   border-radius: 2px;
 }
 
-/* @media screen and (max-width: 767px) {
-  .tooltipster-sidetip .tooltipster-box {
-    border-radius: 6px;
-  }
-} */
-
 /* .tooltipster-content */
 
 .tooltipster-sidetip .tooltipster-content {
@@ -5271,12 +5265,6 @@ a:focus {
   padding: 6px 10px;
   position: relative;
 }
-
-/* @media screen and (max-width: 767px) {
-  .tooltipster-sidetip .tooltipster-box .tooltipster-content {
-    padding: 0;
-  }
-} */
 
 .tooltipster-sidetip .tooltipster-content .loader {
   display: block;
