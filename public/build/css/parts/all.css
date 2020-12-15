@@ -45,7 +45,12 @@ blockquote.widget{
       padding-left: 20px;
   }
 }
-
+.nicescroll-rails{
+  width: 3px !important;
+  /*background-color: #E3E5F1;*/
+  background-color: none;
+  visibility: visible !important;
+}
 blockquote.widget p span{
     color: #60686A !important;
     font-size: 16px
@@ -11094,6 +11099,7 @@ hr.widget{
     color: transparent;
     padding: 0;
     position: relative;
+    min-width: 27px;
   }
   .list-view .casinos-list .row .btn:before {
     content: ' \203A';
@@ -11495,13 +11501,3 @@ hr.widget{
 
 
 
-@media (max-width: 450px){
-  .tooltipster-base{
-    left: 10px !important;
-    width: calc(100% - 20px) !important;
-  }
-  .tooltip-content .bonus-box{
-    max-width: 100%;
-    width: 100%;
-  }
-}
