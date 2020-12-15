@@ -11094,6 +11094,7 @@ hr.widget{
     color: transparent;
     padding: 0;
     position: relative;
+    min-width: 27px;
   }
   .list-view .casinos-list .row .btn:before {
     content: ' \203A';
