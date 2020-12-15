@@ -1556,7 +1556,7 @@ var SearchPanel = function (obj) {
 };
 
 var initSite = function () {
-
+    console.log('test here');
     copyToClipboard();
     checkStringLength($('.list .bonus-box'), 21);
     checkStringLength($('.bonus-item .bonus-box'), 33);
