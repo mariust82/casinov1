@@ -11454,9 +11454,9 @@ hr.widget{
 
 
 @media (max-width: 450px){
-  .tooltipster-base{
-    left: 10px;
-    width: calc(100% - 20px);
+  .tooltipster-base.tooltipster-show{
+    left: 10px !important;
+    width: calc(100% - 20px) !important;
   }
   .tooltip-content .bonus-box{
     max-width: 100%;
