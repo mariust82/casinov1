@@ -514,7 +514,7 @@ function refresh() {
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
     $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
-    // initMobileBonusesPop(ww);
+    initMobileBonusesPop(ww);
 }
 
 function copyToClipboard() {
