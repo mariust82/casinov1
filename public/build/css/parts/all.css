@@ -198,7 +198,7 @@ img {
   position: fixed!important;
   top: 0;
   left: 0;
-  z-index: 99999999;
+  z-index: 9999999;
 }
 
 .site__header_sticky {
@@ -11237,7 +11237,7 @@ hr.widget{
     background-color: #FFF;
     border-radius: 0px !important;
     padding: 0 !important;
-    z-index: 999999999;
+    z-index: 99999999;
   }
   .bonus-info .close_btn {
       display: block;
