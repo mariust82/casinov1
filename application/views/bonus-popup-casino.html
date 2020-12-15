@@ -25,8 +25,8 @@
             </div>
         </div>
         <div class="cta_buttons">
-            <a href="/casino-reviews/${strtolower(str_replace(' ', '-',${data.casino.name}))}" class="cta_review">Full Casino Review</a>
-            <a href="/visit/${strtolower(str_replace(' ', '-',${data.casino.name}))}"  rel="nofollow" target=”_blank” class="cta_visit">Visit Casino</a>
+            <a href="/casino-reviews/${normalize(${data.casino.name})}" class="cta_review">Full Casino Review</a>
+            <a href="/visit/${normalize(${data.casino.name})}"  rel="nofollow" target=”_blank” class="cta_visit">Visit Casino</a>
         </div>
 
         <:if test="!empty(${data.casino.note})">
@@ -65,8 +65,8 @@
                             <span class="bonus-box-list-label">Min. deposit</span>
                             <:if test="${data.bonus.min_deposit} != ''">
                                 <strong>${data.bonus.min_deposit}</strong>
-                                <:else>
-                                    <strong class="success">Free</strong>
+                            <:else>
+                                <strong class="success">Free</strong>
                             </:if>
                         </li>
                     </ul>
@@ -78,26 +78,26 @@
         </div>
 
         <div class="country-details-box">
+                <:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
                 <:if test="!${data.casino.is_country_accepted}">
-                    <span class="unavailable"></span>
+                    <i class="icon-icon_unavailable"></i>
                     <span class="country-name">
-                        <span class="fixGrayFlagPos" style="display: inline-block; position: relative;">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="svgroot" style="position: absolute;" viewBox="0 0 36 24" width="100%" height="100%"><defs>
-                            <filter id="gray"><feColorMatrix type="matrix" values="0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0" /></filter></defs>
-                            <image filter="url(&quot;#gray&quot;)" preserveAspectRatio="none meet" x="0" y="0" width="100%" height="100%" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/public/build/images/flags/${data.country.country_code}.png" /></svg>
-                            <img width="20" height="15" class=" not-accepted grayscale" style="display: block; visibility: hidden;" alt="${data.country.country_code}" src="/public/build/images/flags/${data.country.country_code}.png">
-                        </span> ${data.country.country_name} not available
+                        <img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
+                        ${data.country.country_name} not available
                     </span>
                 <:else>
-                    <span class="checkmark">L</span>
-                    <span class="country-name"> <img class=" ${normalize(get_country_status(${data.casino.is_country_accepted}))}" src="/public/build/images/flags/${data.country.country_code}.png" width="20" height="15" alt="${data.country.country_code}"> ${data.country.country_name} available</span>
+                    <i class="icon-icon_available"></i>
+                    <span class="country-name"> 
+                        <img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
+                        ${data.country.country_name} available
+                    </span>
                 </:if>
                 
                 <span class="currency-name">
                     <:if test="!${data.casino.is_currency_accepted}">
-                        <span class="unavailable"></span>
+                    <i class="icon-icon_unavailable"></i>
                     <:else>
-                        <span class="checkmark">L</span>
+                    <i class="icon-icon_available"></i>
                     </:if>
                     ${data.country.code} currency <:if test="!${data.casino.is_currency_accepted}">not available<:else>available </:if> 
                 </span>
