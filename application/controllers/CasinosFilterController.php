@@ -52,7 +52,7 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         if (isset($params["live_dealer"])) {
             $offset = $page == 0? 0:($page - 1) * $this->limit + 30;
         } else {
-            $offset = $page == 0? 0:($page) * $this->limit;
+            $offset = $page == 0? 0:($page - 1) * $this->limit + 52;
         }
         
         return $offset;
