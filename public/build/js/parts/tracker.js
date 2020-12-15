@@ -2,7 +2,7 @@ var trackCounter = 0;
 function tracker() {
     if (trackCounter>0) return;
     $.ajax({
-        url: '/tracker',
+        url: '/tracker?t='+(new Date()).getTime(),
         type: 'get',
         data: {},
     }).done(function (data) {
