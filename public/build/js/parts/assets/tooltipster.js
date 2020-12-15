@@ -1367,19 +1367,21 @@
                 $content = self._$tooltip.find('.tooltipster-content');
 //                console.dir(self._$origin.hasClass('software_tooltip'));
             if (self._$origin.hasClass('software_tooltip')) {
-                var data_str = self._$tooltip.find('.tooltipster-content').html();
+                var data_str = $content.html();
                 var data_arr = data_str.split(', ');
                 var comma = ", ";
-                $('.tooltipster-content').html("");
+                $content.html("");
+                // $content.parent().addClass('tooltipster-inner');
+                
                 for (var i = 0;i<data_arr.length;i++) {
                     var normal = data_arr[i].toLowerCase().replace(/\s/g, '-');
                     if (i == data_arr.length - 1) {
                         comma = "";
                     }
                     if (self._$origin.hasClass('nolink_tooltip')) {
-                        self._$tooltip.find('.tooltipster-content').append('<span class="list-title">'+data_arr[i]+'</span>'+comma);
+                        $content.append('<span class="list-title">'+data_arr[i]+'</span>'+comma);
                     } else {
-                        self._$tooltip.find('.tooltipster-content').append('<a href="/software/'+normal+'" class="soft_link list-title list_link">'+data_arr[i]+'</a>'+comma);
+                        $content.append('<a href="/software/'+normal+'" class="soft_link list-title list_link">'+data_arr[i]+'</a>'+comma);
                     }
                     // $('.tooltipster-content').append('<a class="soft_link" href="/softwares/'+normal+'">'+data_arr[i]+'</a>'+comma);
                 }

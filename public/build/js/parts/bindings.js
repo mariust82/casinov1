@@ -140,7 +140,6 @@ contentTooltipConfig = {
     },
     functionBefore: function (instance, helper) {
         var $origin = $(helper.origin);
-
         if ($origin.data('loaded') !== true) {
 
             var _name = $origin.data('name');
@@ -157,6 +156,14 @@ contentTooltipConfig = {
                 dataType: 'html',
                 type: 'GET',
                 success: function (response) {
+                    if (ww < 768) {
+                        $('.tooltipster-sidetip .tooltipster-box .tooltipster-content').css({
+                            padding: 0
+                        })
+                        $('.tooltipster-sidetip .tooltipster-box').css({
+                            borderRadius: '6px'
+                        })
+                    }
                     instance.content(response);
                     setTimeout(function () {
                         updateHandlers();
