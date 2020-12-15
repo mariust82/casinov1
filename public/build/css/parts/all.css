@@ -11488,3 +11488,8 @@ hr.widget{
 
 
 
+@media (max-width: 500px){
+  .tooltipster-sidetip .tooltipster-content{
+    padding: 0 !important;
+  }
+}
