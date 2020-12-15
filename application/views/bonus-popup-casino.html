@@ -78,7 +78,7 @@
         </div>
 
         <div class="country-details-box">
-                <:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
+                <:set var="accepted_class" val="(${data.casino.is_country_accepted} == 1?'accepted':'not-accepted')"/>
                 <:if test="!${data.casino.is_country_accepted}">
                     <i class="icon-icon_unavailable"></i>
                     <span class="country-name">
