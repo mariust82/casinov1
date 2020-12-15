@@ -258,7 +258,6 @@ function newsletter(obj) {
     _init();
 }
 function initMobileBonusesPop(e) {
-    console.log('test here');
 
     var s = $(".block .container")
       , t = $(".btn-round")
@@ -1562,7 +1561,7 @@ var initSite = function () {
     checkStringLength($('.list .bonus-box'), 21);
     checkStringLength($('.bonus-item .bonus-box'), 33);
     grayscaleIE();
-
+    refresh();
     initMobileMenu();
 
     $('.message .close').on('click', function (e) {
