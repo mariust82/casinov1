@@ -11241,8 +11241,11 @@ hr.widget{
 }
 .bonus-info .close_btn{
     display: block;
-    color: #A8A8A8;
     cursor: pointer;
+}
+.bonus-info .close_btn i {
+  color: #A8A8A8;
+  margin: 0;
 }
 /* .bonus-info .close_btn:before{
     content: "\00d7";
