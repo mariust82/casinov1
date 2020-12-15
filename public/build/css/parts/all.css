@@ -11237,7 +11237,7 @@ hr.widget{
     background-color: #FFF;
     border-radius: 0px !important;
     padding: 0 !important;
-    z-index: 9;
+    z-index: 999999999;
   }
   .bonus-info .close_btn {
       display: block;
