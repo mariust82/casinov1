@@ -112,7 +112,7 @@
             <:foreach var="${data.casino.softwares}" key="key" val="software">
                 <:if test="${key}<3">
                     <span class="soft_link list-item-trun" data-nr="${key+1}">
-                        <a class="list-title list_link" href="/software/${strtolower(str_replace(' ', '-',${software}))}">
+                        <a class="list-title list_link" href="/softwares/${strtolower(str_replace(' ', '-',${software}))}">
                             <img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
                         </a>
                     </span>
