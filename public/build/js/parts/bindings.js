@@ -112,8 +112,12 @@ contentTooltipConfig = {
     contentCloning: false,
     functionReady: function (instance, helper) {
         $('body').addClass('shadow');
-        checkStringLength($('.bonus-box'), 15);
-        $('.js-tooltip').tooltipster(tooltipConfig);
+        // checkStringLength($('.bonus-box'), 15);
+        // $('.js-tooltip').tooltipster(tooltipConfig);
+        setTimeout(function () {
+            $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
+            contentTooltipConfigPopupActions($(tooltip.origin))
+        }, 1000)
     },
     functionPosition: function(instance, helper, position){
         if (ww < 768 && ww > 375) {
@@ -133,6 +137,7 @@ contentTooltipConfig = {
     },
     functionAfter: function () {
         $('body').removeClass('shadow');
+        $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
     },
     functionBefore: function (instance, helper) {
         var $origin = $(helper.origin);
