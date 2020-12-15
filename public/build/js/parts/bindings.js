@@ -257,7 +257,58 @@ function newsletter(obj) {
 
     _init();
 }
-
+function initMobileBonusesPop(e) {
+    var s = $(".block .container")
+      , t = $(".btn-round")
+      , i = document.body.scrollTop;
+    if (e <= 690) {
+        t.off("click"),
+        t.on("click", function(e) {
+            var t, a, o, n;
+            return i = $(window).scrollTop(),
+            $(".overlay, .loader").fadeIn("fast"),
+            t = $(this),
+            a = t.closest(s),
+            o = t.data("name"),
+            n = t.data("is-free"),
+            (new XMLHttpRequest).abort(),
+            $.ajax({
+                url: "/casino/bonus",
+                data: {
+                    casino: o,
+                    is_free: n
+                },
+                dataType: "html",
+                type: "GET",
+                success: function(e) {
+                    var t = $(e).insertAfter(a);
+                    t.find(".js-tooltip").tooltipster(tooltipConfig),
+                    t.find(".js-copy-tooltip").tooltipster(copyTooltipConfig);
+                    var o = t.find(".js-mobile-pop-close");
+                    checkStringLength($(".bonus-box"), 21),
+                    copyToClipboard(),
+                    $(".overlay, .loader").fadeOut("fast"),
+                    t.fadeIn("fast").fadeIn("fast");
+                    var n = $("html, body").hasClass("site__header_sticky");
+                    n && $("html, body").removeClass("site__header_sticky"),
+                    lockScreen(),
+                    o.on("click", function(e) {
+                        return $("body").addClass("site__header_sticky"),
+                        t.fadeOut("fast").find(".mobile-popup-body").html(""),
+                        unlockScreen(),
+                        n && $("html, body").addClass("site__header_sticky"),
+                        $(".overlay, .loader").fadeOut("fast"),
+                        goToPosition(i),
+                        t.remove(),
+                        !1
+                    })
+                }
+            }),
+            $("body").removeClass("site__header_sticky"),
+            !1
+        })
+    }
+}
 function initSearch() {
     var _container = $('.header-search');
     var _btnOpen = $('.js-search-opener', _container);
