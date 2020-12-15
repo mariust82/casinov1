@@ -120,7 +120,7 @@
             </:foreach>
             <:set var="extraSoftwares" val="count(${data.casino.softwares})-3"/>
             <:if test="${extraSoftwares} > 0">
-                <span class="bubble bubble-long js-tooltip software_tooltip" title="${get_string(${data.casino.softwares}, 3)}">
+                <span class="bubble bubble-long  software_tooltip" title="${get_string(${data.casino.softwares}, 3)}">
                 +${extraSoftwares}
                 </span>
             </:if>
@@ -140,7 +140,7 @@
                 </:foreach>
                 <:set var="extraMethods" val="count(${data.casino.casino_deposit_methods})-3"/>
                 <:if test="${extraMethods} > 0">
-                    <span class="bubble bubble-long js-tooltip software_tooltip nolink_tooltip" title="${getBankingTitles(${data.casino.casino_deposit_methods}, 3)}">
+                    <span class="bubble bubble-long  software_tooltip nolink_tooltip" title="${getBankingTitles(${data.casino.casino_deposit_methods}, 3)}">
                     +${extraMethods}
                     </span>
                 </:if>

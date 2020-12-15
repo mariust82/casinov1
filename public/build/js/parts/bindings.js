@@ -41,6 +41,7 @@ contentTooltipConfigPopup = {
     },
     functionAfter: function () {
         $('body').removeClass('shadow');
+        $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
     },
     functionBefore: function (instance, helper) {
         var $origin = $(helper.origin);
@@ -63,6 +64,9 @@ contentTooltipConfigPopup = {
                     setTimeout(function () {
                         contentTooltipConfigPopupActions($origin)
                     }, 150)
+                    setTimeout(function () {
+                        $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
+                    }, 700)
                     $origin.data('loaded', true);
                 }
             });
