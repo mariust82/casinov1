@@ -11447,3 +11447,19 @@ hr.widget{
     flex-wrap: wrap;
     align-items: center;
 }
+
+
+
+
+
+
+@media (max-width: 450px){
+  .tooltipster-base{
+    left: 10px;
+    width: calc(100% - 20px);
+  }
+  .tooltip-content .bonus-box{
+    max-width: 100%;
+    width: 100%;
+  }
+}
