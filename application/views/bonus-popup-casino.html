@@ -84,12 +84,14 @@
                 <:if test="!${data.casino.is_country_accepted}">
                     <i class="icon-icon_unavailable"></i>
                     <span class="country-name">
+
                         <img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.country_code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
                         ${data.country.country_name} not available
                     </span>
                 <:else>
                     <i class="icon-icon_available"></i>
-                    <span class="country-name"> 
+                    <span class="country-name">
+
                         <img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.country_code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
                         ${data.country.country_name} available
                     </span>
