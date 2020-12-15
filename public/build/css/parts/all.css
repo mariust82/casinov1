@@ -45,7 +45,12 @@ blockquote.widget{
       padding-left: 20px;
   }
 }
-
+.nicescroll-rails{
+  width: 3px !important;
+  /*background-color: #E3E5F1;*/
+  background-color: none;
+  visibility: visible !important;
+}
 blockquote.widget p span{
     color: #60686A !important;
     font-size: 16px

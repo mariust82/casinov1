@@ -72,6 +72,16 @@ contentTooltipConfigPopup = {
 
 function contentTooltipConfigPopupActions(origin) {
     checkStringLength($('.bonus-box'), 15);
+    if ($(window).width() > 767) {
+        $('.bonus-info .content_popup').niceScroll({
+            cursorcolor: "#A8AEC8",
+            cursorwidth: "3px",
+            autohidemode: false,
+            cursorborder: "1px solid #A8AEC8",
+            railoffset: { top: 0, left: 20 },
+            horizrailenabled: false,
+        });
+    }
     $('.js-tooltip').tooltipster(tooltipConfig);
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     copyToClipboard();
