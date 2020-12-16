@@ -124,15 +124,15 @@ contentTooltipConfig = {
             return position;
         }
 
-        if (ww <= 375 && ww > 330) {
-            position.coord.left += 15;
-            return position;
-        }
+        // if (ww <= 375 && ww > 330) {
+        //     position.coord.left = ;
+        //     return position;
+        // }
 
-        if (ww <= 330) {
-            position.coord.left += 10;
-            return position;
-        }
+        // if (ww <= 330) {
+        //     position.coord.left += 5;
+        //     return position;
+        // }
     },
     functionAfter: function () {
         $('body').removeClass('shadow');
