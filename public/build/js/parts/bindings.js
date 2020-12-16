@@ -125,12 +125,12 @@ contentTooltipConfig = {
         }
 
         if (ww <= 375 && ww > 330) {
-            position.coord.left += 15;
+            position.coord.left += 5;
             return position;
         }
 
         if (ww <= 330) {
-            position.coord.left += 10;
+            position.coord.left += 5;
             return position;
         }
     },
