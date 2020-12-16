@@ -37,6 +37,7 @@ abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
         return (strpos($page, "sitemaps_ps/")===0?"https":"http");
     }
 
+
     abstract protected function getItems();
 
     abstract protected function getUrlPattern();

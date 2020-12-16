@@ -74,20 +74,21 @@
 					</div>
 				</:if>
 
-				<:set var="fb_amount" val="checkForAbbr(${result.bonus_free.amount})" />
-				<:set var="fb_abbreviation" val="getAbbreviation(${result.bonus_free.type}, ${fdb_amount})" />
-
+				<:if test="${result.bonus_free}">
+					<:set var="fb_amount" val="checkForAbbr(${result.bonus_free.amount})" />
+					<:set var="fb_abbreviation" val="getAbbreviation(${result.bonus_free.type}, ${fdb_amount})" />
+				</:if>
 				<:if test="$[mobile]">
 					<:if test="${is_low_wagering}">
 						<div class="btn-round-holder list-item-cell-bfnp">
-							<span class="btn-round" data-name="${result.name}" data-is-free="1"> ${fb_amount}
+							<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1"> ${fb_amount}
 								<:if test="${fb_abbreviation} != 'NDB'">
 									<:if test="isset(${result.bonus_free.type}) && ${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
-									    <:set var="fs" val="FS" />
+										<:set var="fs" val="FS" />
 									<:else>
-									    <:set var="fs" val="" />
+										<:set var="fs" val="" />
 									</:if> 
-									 <abbr title="${result.bonus_free.type}">${fb_abbreviation} ${fs}</abbr>
+									<abbr title="${result.bonus_free.type}">${fb_abbreviation} ${fs}</abbr>
 								</:if> 
 							</span>
 						</div>
@@ -95,15 +96,16 @@
 							${result.bonus_free.wagering}
 						</div>
 					<:else>
-						<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
-							<:if test="${fb_amount}">
+						<div class="list-item-cell list-item-fd-bonus">
+							<:if test="${result.bonus_free} && ${fb_amount}">
 								<div class="btn-round-holder">
-									<span class="btn-round" data-name="${result.name}" data-is-free="1">
+									<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1">
 										${fb_amount}
 										<:if test="isset(${result.bonus_free.type}) && ${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
+											<:set var="fs" val="FS" />
 										    <:set var="fs" val="FS" />
 										<:else>
-										    <:set var="fs" val="" />
+											<:set var="fs" val="" />
 										</:if> 
 										<abbr title="${result.bonus_free.type}"> ${fb_abbreviation} ${fs}</abbr>
 									</span>
@@ -111,7 +113,7 @@
 							</:if>
 							<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
 								<div class="btn-round-holder">
-									<span class="btn-round" data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
+									<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
 								</div>
 							</:if>
 						</div>
@@ -129,7 +131,7 @@
 							${result.bonus_free.wagering}
 						</div>
 					<:else>
-						<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
+						<div class="list-item-cell list-item-fd-bonus">
 							<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
 								<span class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
 							</:if>
@@ -147,11 +149,11 @@
 					<div class="list-flex">
 						<:if test="${result.status}==1">
 							<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-blk btn-err">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><defs><style>.a{fill:#fff;}</style></defs><path class="a" d="M10,2a8,8,0,1,0,8,8,8,8,0,0,0-8-8m4,8.8H6V9.2h8Z" transform="translate(-2 -2)"/></svg>
+								<svg class="svg-icon"><use xlink:href="#icon-blacklisted"></use></svg>
 							</a>
 						<:elseif test="${result.status}==2">
 							<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-wrn btn-err">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><defs><style>.a{fill:#fff;}</style></defs><path class="a" d="M10.8,10.8H9.2V6h1.6m0,8H9.2V12.4h1.6M10,2a8,8,0,1,0,8,8,8,8,0,0,0-8-8Z" transform="translate(-2 -2)"/></svg>
+								<svg class="svg-icon"><use xlink:href="#icon-warning"></use></svg>
 							</a>
 						<:else>
 							<a href="/visit/${normalize(${result.name})}" class="btn btn-small" target="_blank" rel="nofollow">

@@ -7,9 +7,11 @@
 			<:if test="!empty(${result.submenuItems})">
 				<ul class="expand-menu">
 					<:foreach var="${result.submenuItems}" val="info">
-						<li class="expand-menu__list">
-							<a class="expand-menu__list-item  ${(${info.is_active}?' active ':'')}" href="${info.url}">${info.title}</a>
-						</li>
+						<:if test="stristr(${info.title}, 'germany') === false">
+							<li class="expand-menu__list">
+								<a class="expand-menu__list-item  ${(${info.is_active}?' active ':'')}" href="${info.url}">${info.title}</a>
+							</li>
+						</:if>
 					</:foreach>
 				</ul>
 			</:if>

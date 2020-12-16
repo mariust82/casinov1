@@ -23,26 +23,123 @@ copyTooltipConfig = {
     }
 };
 
-contentTooltipConfig = {
+contentTooltipConfigPopup = {
     trigger: 'click',
-    minWidth: 460,
+    maxWidth: 460,
     interactive: true,
     contentAsHTML: true,
     debug: false,
     content: $('.loader'),
     animation: 'fade',
     contentCloning: false,
-    functionReady: function () {
+    functionReady: function (origin, tooltip) {
         $('body').addClass('shadow');
-        checkStringLength($('.bonus-box'), 15);
-        $('.js-tooltip').tooltipster(tooltipConfig);
+        setTimeout(function () {
+            $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
+            contentTooltipConfigPopupActions($(tooltip.origin))
+        }, 500)
     },
     functionAfter: function () {
         $('body').removeClass('shadow');
+        $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
     },
     functionBefore: function (instance, helper) {
         var $origin = $(helper.origin);
 
+        if ($origin.data('loaded') !== true) {
+            var _name = $origin.data('name');
+            var _is_free = $origin.data('is-free');
+            var _request = new XMLHttpRequest();
+            _request.abort();
+            _request = $.ajax({
+                url: "/casino/bonus-popup",
+                data: {
+                    casino: _name,
+                    is_free: _is_free,
+                },
+                dataType: 'html',
+                type: 'POST',
+                success: function (response) {
+                    instance.content(response);
+                    setTimeout(function () {
+                        contentTooltipConfigPopupActions($origin)
+                    }, 150)
+                    setTimeout(function () {
+                        $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
+                    }, 700)
+                    $origin.data('loaded', true);
+                }
+            });
+        }
+    }
+};
+
+function contentTooltipConfigPopupActions(origin) {
+    checkStringLength($('.bonus-box'), 15);
+    if ($(window).width() > 767) {
+        $('.bonus-info .content_popup').niceScroll({
+            cursorcolor: "#A8AEC8",
+            cursorwidth: "3px",
+            autohidemode: false,
+            cursorborder: "1px solid #A8AEC8",
+            railoffset: { top: 0, left: 20 },
+            horizrailenabled: false,
+        });
+    }
+    $('.js-tooltip').tooltipster(tooltipConfig);
+    $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+    copyToClipboard();
+
+    $('.close_btn').on('click',function(){
+        origin.tooltipster('hide');
+    });
+}
+
+var contentPopupWidth = 460;
+if (ww < 768) {
+    contentPopupWidth = 300;
+}
+
+contentTooltipConfig = {
+    trigger: 'click',
+    minWidth: contentPopupWidth,
+    interactive: true,
+    contentAsHTML: true,
+    debug: false,
+    content: $('.loader'),
+    animation: 'fade',
+    position: 'top',
+    contentCloning: false,
+    functionReady: function (instance, helper) {
+        $('body').addClass('shadow');
+        checkStringLength($('.bonus-box'), 15);
+        $('.js-tooltip').tooltipster(tooltipConfig);
+        setTimeout(function () {
+            $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
+        }, 500)
+    },
+    functionPosition: function(instance, helper, position){
+        if (ww < 768 && ww > 375) {
+            position.coord.left += 20;
+            return position;
+        }
+
+        if (ww <= 375 && ww > 330) {
+            position.coord.left += 15;
+            return position;
+        }
+
+        if (ww <= 330) {
+            position.coord.left += 10;
+            return position;
+        }
+    },
+    functionAfter: function () {
+        $('body').removeClass('shadow');
+        $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
+    },
+    functionBefore: function (instance, helper) {
+        var $origin = $(helper.origin);
         if ($origin.data('loaded') !== true) {
 
             var _name = $origin.data('name');
@@ -59,6 +156,14 @@ contentTooltipConfig = {
                 dataType: 'html',
                 type: 'GET',
                 success: function (response) {
+                    if (ww < 768) {
+                        $('.tooltipster-sidetip .tooltipster-box .tooltipster-content').css({
+                            padding: 0
+                        })
+                        $('.tooltipster-sidetip .tooltipster-box').css({
+                            borderRadius: '6px'
+                        })
+                    }
                     instance.content(response);
                     setTimeout(function () {
                         updateHandlers();
@@ -168,70 +273,6 @@ function newsletter(obj) {
         };
 
     _init();
-}
-
-function initMobileBonusesPop(_ww) {
-    var _container = $('.block .container');
-    var _btnOpen = $('.btn-round');
-    var _position = document.body.scrollTop;
-
-    if (_ww <= 690) {
-        _btnOpen.off('click');
-
-        function cloneContent(_this) {
-            var _contentHolder = _this.closest(_container);
-            var _name = _this.data('name');
-            var _is_free = _this.data('is-free');
-            var _request = new XMLHttpRequest();
-
-            _request.abort();
-            _request = $.ajax({
-                url: "/casino/bonus",
-                data: {
-                    casino: _name,
-                    is_free: _is_free,
-                },
-                dataType: 'html',
-                type: 'GET',
-                success: function (response) {
-                    var _mobilePop =  $(response).insertAfter(_contentHolder);
-                    _mobilePop.find('.js-tooltip').tooltipster(tooltipConfig);
-                    _mobilePop.find('.js-copy-tooltip').tooltipster(copyTooltipConfig);
-                    var _btnClose = _mobilePop.find('.js-mobile-pop-close');
-                    checkStringLength($('.bonus-box'), 21);
-                    copyToClipboard();
-
-                    $('.overlay, .loader').fadeOut('fast');
-                    _mobilePop.fadeIn('fast').fadeIn('fast');
-                    var headBar = $('html, body').hasClass('site__header_sticky');
-                    if(headBar) $('html, body').removeClass('site__header_sticky');
-                    lockScreen();
-                    _btnClose.on('click', function (e) {
-                        $('body').addClass('site__header_sticky');
-                        _mobilePop.fadeOut('fast')
-                            .find('.mobile-popup-body')
-                            .html('');
-                        unlockScreen();
-                        if(headBar)   $('html, body').addClass('site__header_sticky');
-
-                        $('.overlay, .loader').fadeOut('fast');
-
-                        goToPosition(_position);
-                        _mobilePop.remove();
-                        return false;
-                    });
-                }
-            });
-        }
-
-        _btnOpen.on('click', function (e) {
-            _position = $(window).scrollTop();
-            $('.overlay, .loader').fadeIn('fast');
-            cloneContent($(this));
-            $('body').removeClass('site__header_sticky');
-            return false;
-        });
-    }
 }
 
 function initSearch() {
@@ -489,64 +530,25 @@ function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
-    initMobileBonusesPop(ww);
+    $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
+    // initMobileBonusesPop(ww);
 }
 
 function copyToClipboard() {
-    window.Clipboard = (function (window, document, navigator) {
-        var textArea,
-            copy;
+    var btn = $('.js-copy-to-clip');
 
-        function isOS() {
-            return navigator.userAgent.match(/ipad|iphone/i);
-        }
-
-        function createTextArea(text, self) {
-            textArea = document.createElement('textArea');
-            if (isOS()) {
-                textArea.setAttribute('readonly', 'readonly');
-            }
-            textArea.value = text;
-            self.parent().append(textArea);
-        }
-
-        function selectText() {
-            var range,
-                selection;
-
-            if (isOS()) {
-                range = document.createRange();
-                range.selectNodeContents(textArea);
-                selection = window.getSelection();
-                selection.removeAllRanges();
-                selection.addRange(range);
-                textArea.setSelectionRange(0, 999999);
-            } else {
-                textArea.select();
-            }
-        }
-
-        function copyToClipboard(self) {
-            document.execCommand('copy');
-            self.parent().find(textArea).remove();
-        }
-
-        copy = function (text, self) {
-            var strippedText = strip(text);
-            createTextArea(strippedText, self);
-            selectText();
-            copyToClipboard(self);
-        };
-
-        return {
-            copy: copy
-        };
-    })(window, document, navigator);
-
-    $('.js-copy-to-clip').on('click touch', function (e) {
-        Clipboard.copy($(this).data('code'), $(this));
+    btn.on('click', function (e) {
+        initAction(this);
         e.preventDefault();
     });
+
+    function initAction(element) {
+        var $temp = $('<input readonly>');
+        $('body').append($temp);
+        $temp.val($(element).data('code')).select();
+        document.execCommand('copy');
+        $temp.remove();
+    }
 }
 
 //remove HTML tags from text
@@ -571,6 +573,7 @@ function initTooltipseter() {
     $('.js-tooltip').tooltipster(tooltipConfig);
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
+    $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
 }
 
 function bindButtons(){
@@ -743,7 +746,6 @@ var Filters = function (obj) {
         _radios = _obj.find('input[type=radio]'),
         _selectFilter = _obj.find('select[name=soft]'),
         _targetContainer = $('.data-container'),
-        _targetAddContainer = $('.data-add-container'),
         _paramName = _targetContainer.data('type'),
         _paramValue = _targetContainer.data('type-value'),
         _emptyContent = $('.empty-filters'),
@@ -757,7 +759,7 @@ var Filters = function (obj) {
     if (typeof _paramName == 'undefined') {
         _paramName = 'game_type';
     }
-
+    
     var _url = _obj.data('url');
     _defaultButton.prop('checked', true);
 
@@ -892,6 +894,9 @@ var Filters = function (obj) {
         BUSY_REQUEST = true;
         _request.abort();
         var limit_items = (_url == '/games-filter/') ? 24 : 100;
+        if($('.data-container-holder').data('limit-per-page')){
+            limit_items = $('.data-container-holder').data('limit-per-page');
+        }
         if (location.pathname === '/casinos') {
             _url = 'load-all-casinos/';
         }
@@ -901,6 +906,7 @@ var Filters = function (obj) {
             dataType: 'html',
             type: 'GET',
             success: function (data) {
+                _targetAddContainer = $('.data-add-container');
                 var cont = $(data).find('.loaded-item');
                 var loadTotal = $(data).filter('[data-load-total]').data('load-total');
                 var qty_items = $('.qty-items');
@@ -910,7 +916,7 @@ var Filters = function (obj) {
                     qty_items.attr('data-load-total', loadTotal);
                     $('.qty-items-quantity').text(loadTotal);
 
-                    if (cont.length === qty_items.attr('data-load-total')) {
+                    if (cont.length === parseInt(qty_items.attr('data-load-total'))) {
                         if (cont.length > 0) {
                             _loaderHolder.show();
                             _emptyContent.hide();
@@ -943,7 +949,6 @@ var Filters = function (obj) {
                         }
                     }, 1000)
                 }
-
                 _construct();
 
                 checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
@@ -954,17 +959,18 @@ var Filters = function (obj) {
                 }
             },
             complete: function () {
+                console.log(parseInt($('.qty-items').attr('data-load-total')));
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
                 if (_url === '/casinos-filter/') {
-                    if (parseInt($('.qty-items').attr('data-load-total')) <= 100) {
+                    if (parseInt($('.qty-items').attr('data-load-total')) <= limit_items) {
                         $('.js-more-items').hide();
                     } else {
                         $('.js-more-items').show();
                     }
                 } else if (_url === '/games-filter/') {
 
-                    if (parseInt($('.qty-items-quantity').html()) <= 24) {
+                    if (parseInt($('.qty-items-quantity').html()) <= limit_items) {
                         $('.js-more-items').hide();
                     } else {
                         $('.js-more-items').show();
@@ -972,6 +978,7 @@ var Filters = function (obj) {
                 }
                 grayscaleIE();
                 initImageLazyLoad();
+                copyToClipboard();
             }
         });
 
@@ -1515,6 +1522,7 @@ var SearchPanel = function (obj) {
 };
 
 var initSite = function () {
+
     copyToClipboard();
     checkStringLength($('.list .bonus-box'), 21);
     checkStringLength($('.bonus-item .bonus-box'), 33);

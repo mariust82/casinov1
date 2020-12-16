@@ -109,3 +109,39 @@ function formatDate($date)
         return $month_name.' '.$date_arr[2].', '.$date_arr[0];
     } return "None";
 }
+
+function gamesAllowed($games) {
+    return explode(",", $games);
+}
+function gameNames($games){
+    
+    $gamesArray = explode(",", $games);
+        if (count($gamesArray) > 1){
+            return substr($games,0, 14) . '...';
+        }elseif (strlen($games) > 22){
+            return substr($games,0, 22) . '...';
+        }else{
+            return $games;
+        }
+}
+function getBankingTitles($name, $index)
+{
+    $counter=0;
+    foreach ($name as $key => $item) {
+        if ($counter >= $index) {
+            $items[$key] = $key;
+        }
+        $counter++;
+    }
+    return implode(", ", $items);
+}
+
+function get_string($name, $index)
+{
+    foreach ($name as $key => $item) {
+        if ($key > $index-1) {
+            $items[$key] = $item;
+        }
+    }
+    return implode(", ", $items);
+}

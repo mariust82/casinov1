@@ -2,7 +2,6 @@
 <!DOCTYPE xml>
 <xml>
     <application ref="xml/application_stderr_frontend"/>
-    <reporters ref="xml/reporters"/>
     <renderers ref="xml/renderers"/>
     <exceptions ref="xml/exceptions"/>
 </xml>

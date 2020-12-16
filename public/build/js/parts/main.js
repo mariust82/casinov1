@@ -122,6 +122,30 @@ var initImageLazyLoad = function () {
         imageDefer("lazy_loaded");
     }
 };
+function changeViewElements(filterView,container){
+    var boxView = filterView.find('.icon-box_view'),
+    listView = filterView.find('.icon-list_view'),
+    filterViewBtn = filterView.find('.icon');
+    filterViewBtn.click(function(event) {
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        var $this = $(this);
+        if($this.hasClass('icon-box_view') && listView.hasClass('active')){
+            listView.removeClass('active');
+            $this.addClass('active');
+            container.removeClass('list-view');
+            container.addClass('grid_view');
+        }else if($this.hasClass('icon-list_view') && boxView.hasClass('active')){
+            boxView.removeClass('active');
+            $this.addClass('active');
+            container.addClass('list-view');
+            container.removeClass('grid_view');
+
+        }
+    });
+    
+}
+
 
 (function ($) {
     BUSY_REQUEST = false;
@@ -140,7 +164,6 @@ var initImageLazyLoad = function () {
             initSite();
             initToggleMenu();
             initSearch();
-            initMobileBonusesPop(ww);
             initTooltipseter();
             bindButtons();
 
@@ -198,6 +221,9 @@ var initImageLazyLoad = function () {
         }
 
         initImageLazyLoad();
+        if($('.filter').find('.view').length > 0){
+            changeViewElements($('.filter .view'),$('.grid_view'));
+        }
     });
 
     $(document).ajaxComplete(function() {

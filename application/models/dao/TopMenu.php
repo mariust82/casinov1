@@ -38,7 +38,6 @@ class TopMenu
                 "Low Wagering Casinos" => "/casinos/low-wagering",
                 "eCOGRA Casinos" => "/features/ecogra-casinos",
                 "Blacklisted Casinos" => "/casinos/stay-away",
-                "Popular Casinos" => "/casinos/popular",
                 "No Account Casinos" => "/casinos/no-account-casinos",
                 "All Casinos" => "/casinos"
             ]
@@ -64,7 +63,6 @@ class TopMenu
                 'USA Casinos' => '/countries-list/united-states',
                 'UK Casinos' => '/countries-list/united-kingdom',
                 'Australia Casinos' => '/countries-list/australia',
-                'Germany Casinos' => '/countries-list/germany',
                 'New Zealand Casinos' => '/countries-list/new-zealand',
                 'Netherlands Casinos' => '/countries-list/netherlands',
                 'Sweden Casinos' => '/countries-list/sweden',

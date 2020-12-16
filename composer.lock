@@ -1,0 +1,700 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "465c62c49c483640696a49c91a4481de",
+    "packages": [
+        {
+            "name": "lucinda/errors-mvc",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/errors-api.git",
+                "reference": "df45a6e4b2b96e2207668788716e4a7d252a2ba3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/errors-api/zipball/df45a6e4b2b96e2207668788716e4a7d252a2ba3",
+                "reference": "df45a6e4b2b96e2207668788716e4a7d252a2ba3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "MVC API for STDERR flow in PHP applications",
+            "homepage": "http://www.lucinda-framework.com/stderr-mvc",
+            "keywords": [
+                "errors",
+                "handling",
+                "mvc",
+                "stderr"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/errors-api/issues",
+                "source": "https://github.com/aherne/errors-api/tree/v1.4.0"
+            },
+            "time": "2020-10-16T04:53:37+00:00"
+        },
+        {
+            "name": "lucinda/framework-engine",
+            "version": "v1.4.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/lucinda-framework-engine.git",
+                "reference": "3d3ce8fe8e433704329fdceae0733f50af758db6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/lucinda-framework-engine/zipball/3d3ce8fe8e433704329fdceae0733f50af758db6",
+                "reference": "3d3ce8fe8e433704329fdceae0733f50af758db6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*",
+                "lucinda/errors-mvc": "~1.0",
+                "lucinda/http-caching": "~2.0",
+                "lucinda/internationalization": "~2.0",
+                "lucinda/logging": "~2.0",
+                "lucinda/mvc": "~2.0",
+                "lucinda/nosql-data-access": "~2.0",
+                "lucinda/oauth2-client": "~1.0",
+                "lucinda/request-validator": "~1.0",
+                "lucinda/security": "~2.0",
+                "lucinda/sql-data-access": "~2.0",
+                "lucinda/view-language": "~2.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Engine behind Lucinda Framework 2.0",
+            "homepage": "http://www.lucinda-framework.com/framework-engine",
+            "keywords": [
+                "engine",
+                "framework"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/lucinda-framework-engine/issues",
+                "source": "https://github.com/aherne/lucinda-framework-engine/tree/v1.4.5"
+            },
+            "time": "2020-11-27T08:28:59+00:00"
+        },
+        {
+            "name": "lucinda/http-caching",
+            "version": "v2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/http-caching-api.git",
+                "reference": "d4b301fef3fb07ba3ab2121152798fc248a32e36"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/http-caching-api/zipball/d4b301fef3fb07ba3ab2121152798fc248a32e36",
+                "reference": "d4b301fef3fb07ba3ab2121152798fc248a32e36",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Creates a communication platform where servers and browsers talk in language of caching",
+            "homepage": "http://www.lucinda-framework.com/http-caching",
+            "keywords": [
+                "caching",
+                "http"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/http-caching-api/issues",
+                "source": "https://github.com/aherne/http-caching-api/tree/v2.1.2"
+            },
+            "time": "2020-07-29T14:17:55+00:00"
+        },
+        {
+            "name": "lucinda/internationalization",
+            "version": "v2.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/php-internationalization-api.git",
+                "reference": "33b74ca5ea1235aeeccd135c0b8ff98338e7215e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/php-internationalization-api/zipball/33b74ca5ea1235aeeccd135c0b8ff98338e7215e",
+                "reference": "33b74ca5ea1235aeeccd135c0b8ff98338e7215e",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Light weight i18n API performing internationalization via JSON files",
+            "homepage": "http://www.lucinda-framework.com/internationalization",
+            "keywords": [
+                "i18n",
+                "internationalization",
+                "localization"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/php-internationalization-api/issues",
+                "source": "https://github.com/aherne/php-internationalization-api/tree/v2.0.6"
+            },
+            "time": "2019-11-17T10:25:42+00:00"
+        },
+        {
+            "name": "lucinda/logging",
+            "version": "v2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/php-logging-api.git",
+                "reference": "19f33c3a19fe2b2c65cff4c3b07baf2630c6a6e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/php-logging-api/zipball/19f33c3a19fe2b2c65cff4c3b07baf2630c6a6e9",
+                "reference": "19f33c3a19fe2b2c65cff4c3b07baf2630c6a6e9",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Light weight logging API built with performance and scalability in mind",
+            "homepage": "http://www.lucinda-framework.com/logging",
+            "keywords": [
+                "loggers",
+                "logging"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/php-logging-api/issues",
+                "source": "https://github.com/aherne/php-logging-api/tree/master"
+            },
+            "time": "2019-11-17T10:25:07+00:00"
+        },
+        {
+            "name": "lucinda/mvc",
+            "version": "v2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/php-servlets-api.git",
+                "reference": "7cde27832aa9455ab86709ad996299e8dc873071"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/php-servlets-api/zipball/7cde27832aa9455ab86709ad996299e8dc873071",
+                "reference": "7cde27832aa9455ab86709ad996299e8dc873071",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "MVC API for normal STDOUT flow in PHP applications",
+            "homepage": "http://www.lucinda-framework.com/stdout-mvc",
+            "keywords": [
+                "event listeners",
+                "mvc",
+                "servlets",
+                "stdout",
+                "view resolvers"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/php-servlets-api/issues",
+                "source": "https://github.com/aherne/php-servlets-api/tree/v2.2.1"
+            },
+            "time": "2020-10-16T08:33:39+00:00"
+        },
+        {
+            "name": "lucinda/nosql-data-access",
+            "version": "v2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/php-nosql-data-access-api.git",
+                "reference": "05d5a8ced54b0d3df35ea3b498155f2140b2b00a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/php-nosql-data-access-api/zipball/05d5a8ced54b0d3df35ea3b498155f2140b2b00a",
+                "reference": "05d5a8ced54b0d3df35ea3b498155f2140b2b00a",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Abstracts communication with NoSQL document databases through a PDO-like structure",
+            "homepage": "http://www.lucinda-framework.com/nosql-data-access",
+            "keywords": [
+                "apc",
+                "apcu",
+                "couchbase",
+                "driver",
+                "memcache",
+                "memcached",
+                "nosql",
+                "redis"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/php-nosql-data-access-api/issues",
+                "source": "https://github.com/aherne/php-nosql-data-access-api/tree/master"
+            },
+            "time": "2019-11-17T10:24:31+00:00"
+        },
+        {
+            "name": "lucinda/oauth2-client",
+            "version": "v1.6.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/oauth2client.git",
+                "reference": "30d1369ae3a5a0c97b4aeed0e185eec2d7299aa9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/oauth2client/zipball/30d1369ae3a5a0c97b4aeed0e185eec2d7299aa9",
+                "reference": "30d1369ae3a5a0c97b4aeed0e185eec2d7299aa9",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Flexible OAuth2 client driver built on top of OAuth2 specifications, hiding complexity of OAuth2 vendors on the market.",
+            "homepage": "http://www.lucinda-framework.com/oauth2-client",
+            "keywords": [
+                "client",
+                "oauth2"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/oauth2client/issues",
+                "source": "https://github.com/aherne/oauth2client/tree/master"
+            },
+            "time": "2019-11-17T10:26:27+00:00"
+        },
+        {
+            "name": "lucinda/queries",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/php-sql-statements-api.git",
+                "reference": "99b9486b2748be709b3cb5f8d45ec26f288cb2bb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/php-sql-statements-api/zipball/99b9486b2748be709b3cb5f8d45ec26f288cb2bb",
+                "reference": "99b9486b2748be709b3cb5f8d45ec26f288cb2bb",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generates SQL statements programmatically based on SQL standards or their vendor-specific derivation",
+            "homepage": "https://github.com/aherne/php-sql-statements-api",
+            "keywords": [
+                "generation",
+                "query",
+                "sql"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/php-sql-statements-api/issues",
+                "source": "https://github.com/aherne/php-sql-statements-api/tree/master"
+            },
+            "time": "2019-12-03T14:22:21+00:00"
+        },
+        {
+            "name": "lucinda/request-validator",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/php-request-validator.git",
+                "reference": "3b4cfcb21a330b519d21d7f7d2828b1d670c3664"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/php-request-validator/zipball/3b4cfcb21a330b519d21d7f7d2828b1d670c3664",
+                "reference": "3b4cfcb21a330b519d21d7f7d2828b1d670c3664",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Encapsulates path/request parameters validation",
+            "homepage": "http://www.lucinda-framework.com/request-validation",
+            "keywords": [
+                "path parameters",
+                "request parameters",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/php-request-validator/issues",
+                "source": "https://github.com/aherne/php-request-validator/tree/v1.1.1"
+            },
+            "time": "2019-12-04T08:06:06+00:00"
+        },
+        {
+            "name": "lucinda/rss",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/rss-generator.git",
+                "reference": "7bba64c0f6f6c546c67dde01165aabbd33d6bb3c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/rss-generator/zipball/7bba64c0f6f6c546c67dde01165aabbd33d6bb3c",
+                "reference": "7bba64c0f6f6c546c67dde01165aabbd33d6bb3c",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lucinda\\RSS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Gabriel Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com"
+                }
+            ],
+            "description": "Very light weight PHP API for RSS feed generation covering official version 2.0 specifications",
+            "homepage": "https://github.com/aherne/rss-generator",
+            "keywords": [
+                "feed",
+                "rss"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/rss-generator/issues",
+                "source": "https://github.com/aherne/rss-generator/tree/v1.0.3"
+            },
+            "time": "2020-08-24T13:46:15+00:00"
+        },
+        {
+            "name": "lucinda/security",
+            "version": "v2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/php-security-api.git",
+                "reference": "ad6b2e6a3b26b33fb6a937d839e9d0f9c4ce487b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/php-security-api/zipball/ad6b2e6a3b26b33fb6a937d839e9d0f9c4ce487b",
+                "reference": "ad6b2e6a3b26b33fb6a937d839e9d0f9c4ce487b",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Encapsulates web security operations on top of OWASP guidelines",
+            "homepage": "http://www.lucinda-framework.com/web-security",
+            "keywords": [
+                "Authentication",
+                "authorization",
+                "dao",
+                "jwt",
+                "oauth2",
+                "owasp",
+                "security",
+                "token",
+                "xml"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/php-security-api/issues",
+                "source": "https://github.com/aherne/php-security-api/tree/master"
+            },
+            "time": "2020-01-15T05:51:58+00:00"
+        },
+        {
+            "name": "lucinda/sql-data-access",
+            "version": "v2.1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/php-sql-data-access-api.git",
+                "reference": "894227e2cfccd79bd529e4a0f465d2e9ae0fb0fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/php-sql-data-access-api/zipball/894227e2cfccd79bd529e4a0f465d2e9ae0fb0fa",
+                "reference": "894227e2cfccd79bd529e4a0f465d2e9ae0fb0fa",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Abstracts all communication with SQL servers on top of PDO",
+            "homepage": "http://www.lucinda-framework.com/sql-data-access",
+            "keywords": [
+                "data access",
+                "sql"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/php-sql-data-access-api/issues",
+                "source": "https://github.com/aherne/php-sql-data-access-api/tree/v2.1.0.1"
+            },
+            "time": "2020-01-03T06:33:32+00:00"
+        },
+        {
+            "name": "lucinda/view-language",
+            "version": "v2.1.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/php-view-language-api.git",
+                "reference": "45c9cd57c912d239409de1204c242d2bebf75595"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/php-view-language-api/zipball/45c9cd57c912d239409de1204c242d2bebf75595",
+                "reference": "45c9cd57c912d239409de1204c242d2bebf75595",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "High performance templating API using tags & expressions inspired by Java JSTL and C Compiler",
+            "homepage": "http://www.lucinda-framework.com/view-language",
+            "keywords": [
+                "jstl",
+                "templating",
+                "views"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/php-view-language-api/issues",
+                "source": "https://github.com/aherne/php-view-language-api/tree/master"
+            },
+            "time": "2020-03-09T08:19:47+00:00"
+        }
+    ],
+    "packages-dev": [
+        {
+            "name": "lucinda/requester",
+            "version": "v1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/requester.git",
+                "reference": "cd4de37f5d7f9cbf31897dd4d9e7a2f1035cec00"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/requester/zipball/cd4de37f5d7f9cbf31897dd4d9e7a2f1035cec00",
+                "reference": "cd4de37f5d7f9cbf31897dd4d9e7a2f1035cec00",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "lucinda/unit-testing": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lucinda\\URL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Light weight complete object oriented cURL wrapper for HTTP/HTTPS requests",
+            "keywords": [
+                "curl",
+                "http",
+                "https",
+                "wrapper"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/requester/issues",
+                "source": "https://github.com/aherne/requester/tree/v1.0.5"
+            },
+            "time": "2020-11-08T07:40:48+00:00"
+        },
+        {
+            "name": "lucinda/unit-testing",
+            "version": "v1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/unit-testing.git",
+                "reference": "81c28f144b5e542df6486ce4a6c5c0753fe629d8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/unit-testing/zipball/81c28f144b5e542df6486ce4a6c5c0753fe629d8",
+                "reference": "81c28f144b5e542df6486ce4a6c5c0753fe629d8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-pdo": "*",
+                "ext-simplexml": "*",
+                "php": "^7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lucinda\\UnitTest\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Lightweight PHP7.1 library for unit testing with zero dependencies",
+            "homepage": "https://github.com/aherne/unit-testing",
+            "keywords": [
+                "unit testing"
+            ],
+            "support": {
+                "issues": "https://github.com/aherne/unit-testing/issues",
+                "source": "https://github.com/aherne/unit-testing/tree/v1.1.6"
+            },
+            "time": "2020-09-23T09:01:00+00:00"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}

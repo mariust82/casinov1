@@ -8,7 +8,7 @@ require_once("application/models/caching/CasinosListKey.php");
 
 abstract class CasinosListController extends BaseController
 {
-    protected $limit = 100;
+    protected $limit = 52;
 
     public function service()
     {
