@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="cta_buttons">
-            <a href="/casino-reviews/${normalize(${data.casino.name})}" class="cta_review">Full Casino Review</a>
+            <a href="/reviews/${normalize(${data.casino.name})}-review" class="cta_review">Full Casino Review</a>
             <a href="/visit/${normalize(${data.casino.name})}"  rel="nofollow" target=”_blank” class="cta_visit">Visit Casino</a>
         </div>
 
@@ -112,7 +112,7 @@
             <:foreach var="${data.casino.softwares}" key="key" val="software">
                 <:if test="${key}<3">
                     <span class="soft_link list-item-trun" data-nr="${key+1}">
-                        <a class="list-title list_link" href="/software/${strtolower(str_replace(' ', '-',${software}))}">
+                        <a class="list-title list_link" href="/softwares/${strtolower(str_replace(' ', '-',${software}))}">
                             <img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
                         </a>
                     </span>
@@ -120,7 +120,7 @@
             </:foreach>
             <:set var="extraSoftwares" val="count(${data.casino.softwares})-3"/>
             <:if test="${extraSoftwares} > 0">
-                <span class="bubble bubble-long js-tooltip software_tooltip  nolink_tooltip" title="${get_string(${data.casino.softwares}, 3)}">
+                <span class="bubble bubble-long js-tooltip software_tooltip" title="${get_string(${data.casino.softwares}, 3)}">
                 +${extraSoftwares}
                 </span>
             </:if>

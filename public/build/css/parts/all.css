@@ -11488,3 +11488,24 @@ hr.widget{
 
 
 
+@media (max-width: 500px){
+  .tooltipster-sidetip .tooltipster-content{
+    padding: 0 !important;
+  }
+}
+@media (max-width:690px){
+  .content_popup .list-rating{
+    text-indent: initial !important;
+    width: 80px !important;
+  }
+  
+  .content_popup .list-rating.no-score .list-rating-score{
+    display: block !important;
+    background: #a8aec8 !important;
+  }
+  .content_popup .list-rating.no-score,
+  .content_popup .list-rating.no-score .list-rating-wrap,
+  .content_popup .list-rating.no-score .list-rating-text{
+    background: transparent !important;
+  }
+}
