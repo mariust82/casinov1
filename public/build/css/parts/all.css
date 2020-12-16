@@ -11493,3 +11493,9 @@ hr.widget{
     padding: 0 !important;
   }
 }
+@media (max-width:690px){
+  .content_popup .list-rating{
+    text-indent: initial !important;
+    width: 80px !important;
+  }
+}
