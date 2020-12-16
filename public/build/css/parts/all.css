@@ -11498,4 +11498,14 @@ hr.widget{
     text-indent: initial !important;
     width: 80px !important;
   }
+  .content_popup .list-rating.no-score{
+    background: transparent !important;
+  }
+  .content_popup .list-rating.no-score .list-rating-wrap{
+    background: transparent !important;
+  }
+  .content_popup .list-rating.no-score .list-rating-score{
+    display: block !important;
+    background: #a8aec8 !important;
+  }
 }
