@@ -103,6 +103,7 @@
 										${fb_amount}
 										<:if test="isset(${result.bonus_free.type}) && ${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
 											<:set var="fs" val="FS" />
+										    <:set var="fs" val="FS" />
 										<:else>
 											<:set var="fs" val="" />
 										</:if> 

@@ -9,7 +9,6 @@ class BanckingMethodNameValidator extends \Lucinda\RequestValidator\ParameterVal
 
         $v =  str_replace("-", " ", $value);
         if($v == 'bitcoin') $v = 'bitcoin wallets';
-        else if($v == 'paysafecard') $v = 'paysafe card';
         $id =  SQL("SELECT id FROM banking_methods WHERE LCASE(name)=:name", array(":name"=>$v))->toValue();
 
         return !empty($id) ? $value : null;

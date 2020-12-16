@@ -3,18 +3,19 @@
 namespace Hlis\Testing;
 
 require("vendor/autoload.php");
-require_once("hlis/unit_testing/SiteIntegrityChecker.php");
+require_once("site_integrity_checker/CasinosListsSiteIntegrityChecker.php");
 
 $environment = $argv && isset($argv[1]) ? $argv[1] : "dev";
-$userAgent = $argv && isset($argv[2]) ? $argv[2] : SiteIntegrityChecker::USER_AGENT;
+$userAgent = $argv && isset($argv[2]) ? $argv[2] : CasinosListsSiteIntegrityChecker::USER_AGENT;
 $domain = $argv && isset($argv[3]) ? $argv[3] : "build.casinoslists.com";
 define("ENVIRONMENT", $environment);
 
-new SiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), array(
+new CasinosListsSiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), array(
     "index" => "index",
     "banking/(name)" => "banking/neteller",
     "banking" => "banking",
     "casinos/best" => "casinos/best",
+    "casinos/popular" => "casinos/popular",
     "casinos/mobile" => "casinos/mobile",
     "casinos/new" => "casinos/new",
     "casinos/stay-away" => "casinos/stay-away",
