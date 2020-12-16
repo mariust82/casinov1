@@ -125,7 +125,7 @@ contentTooltipConfig = {
         }
 
         if (ww <= 375 && ww > 330) {
-            position.coord.left += 5;
+            position.coord.left = '50%';
             return position;
         }
 
