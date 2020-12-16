@@ -15,7 +15,6 @@ new CasinosListsSiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), arra
     "banking/(name)" => "banking/neteller",
     "banking" => "banking",
     "casinos/best" => "casinos/best",
-    "casinos/popular" => "casinos/popular",
     "casinos/mobile" => "casinos/mobile",
     "casinos/new" => "casinos/new",
     "casinos/stay-away" => "casinos/stay-away",
