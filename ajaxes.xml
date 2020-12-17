@@ -36,9 +36,6 @@
         <route url="softwares/(?)">
             <route url="tracker" times="1"/>
         </route>
-        <route url="load-all-casinos/(?)">
-            <route url="tracker" times="1"/>
-        </route>
         <route url="softwares">
             <route url="tracker" times="1"/>
         </route>

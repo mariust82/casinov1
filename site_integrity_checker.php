@@ -21,7 +21,6 @@ new CasinosListsSiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), arra
     "countries" => "countries",
     "countries-list/(?)" => "countries-list/united-states",
     "reviews/(?)-review" => "reviews/betadonis-casino-review",
-    "load-all-casinos/(?)" => "load-all-casinos/rtg",
     "features" => "features",
     "features/(?)" => "features/live-dealer",
     "games" => "games",
