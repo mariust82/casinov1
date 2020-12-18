@@ -2,73 +2,60 @@
 <!DOCTYPE xml>
 <xml>
     <routes>
-       	<route url="tracker"/>
-       	
+        <route url="tracker"/>
         <route url="index">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="banking/(?)">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="banking">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="casinos/(?)">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="casinos">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="reviews/(?)-review">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="bonus-list/(?)">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="bonus-list">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="countries-list/(?)">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="countries">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="softwares/(?)">
-        	<route url="tracker" times="1"/>
-        </route>        
-        <route url="games-by-software/(?)">
-        	<route url="tracker" times="1"/>
-        </route>        
-        <route url="load-all-casinos/(?)">
-        	<route url="tracker" times="1"/>
-        </route>        
-        <route url="casinos-by-software/(?)">
-        	<route url="tracker" times="1"/>
-        </route>        
-        <route url="casinos-by-banking/(?)">
-        	<route url="tracker" times="1"/>
-        </route>            
+            <route url="tracker" times="1"/>
+        </route>
         <route url="softwares">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="games/(?)">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="games">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="play/(?)">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="features/(?)">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
         <route url="features">
-        	<route url="tracker" times="1"/>
-        </route>      
+            <route url="tracker" times="1"/>
+        </route>
         <route url="live-dealer/(?)">
-        	<route url="tracker" times="1"/>
-        </route>        
+            <route url="tracker" times="1"/>
+        </route>
     </routes>
 </xml>
