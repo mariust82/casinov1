@@ -3965,11 +3965,29 @@ a:focus {
 .btn-blk,
 .btn.btn-blacklisted{
     background:#020A13;
+    color:#fff;
+}
+
+@media screen and (max-width:767px) {
+  .btn-blk,
+  .btn.btn-blacklisted{
+      background:none;
+      color:#020A13;
+  }
 }
 
 .btn-wrn,
 .btn.btn-warning{
     background: #DB2424;
+    color:#fff;
+}
+
+@media screen and (max-width:767px) {
+  .btn-wrn,
+  .btn.btn-warning{
+      background: none;
+      color:#DB2424;
+  }
 }
 
 .btn-rst,
