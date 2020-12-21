@@ -151,13 +151,13 @@ class Articles
                     WHERE a.deleted = 0 AND a.is_draft = 0 AND a.type_id = 1")->toValue()
             ];
             $resultSet = SQL("
-            SELECT a.title,a.last_changed,at.value AS type 
+            SELECT a.title,a.url,a.last_changed,at.value AS type 
             FROM articles AS a 
             INNER JOIN article__types AS at ON a.type_id = at.id 
             WHERE a.deleted = 0 AND a.is_draft = 0
             ORDER BY a.id DESC");            
             while($row = $resultSet->toRow()) {
-                $output[$row['type'].'/'.strtolower(str_replace(' ','-',$row['title']))] = $row['last_changed'];
+                $output[$row['type'] . '/' . strtolower($row['url'])] = $row['last_changed'];
             }
             array_multisort($output, SORT_DESC);
             return $output;
