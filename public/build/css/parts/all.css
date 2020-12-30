@@ -6253,7 +6253,7 @@ a:focus {
 
 @media screen and (max-width: 767px) {
   .casino-review .btn-middle {
-    padding: 9px 22px 11px;
+    padding: 11px 22px 12px;
   }
 }
 
@@ -6352,6 +6352,8 @@ a:focus {
 @media screen and (max-width: 767px) {
   .btn-group a {
     font-size: 11px;
+    width:100% !important;
+    min-width:0 !important;
   }
 }
 
@@ -10791,6 +10793,7 @@ hr.widget{
 
   .mobile-group-btn > div {
     margin: 0 0 0 10px;
+    width:50%;
   }
 
   .mobile-group-btn > div:first-child {
