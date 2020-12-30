@@ -11283,6 +11283,8 @@ h1.title + .subtitle{
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  -ms-word-break:break-word;
+  word-break:break-word;
 }
 .subtitle a,
 .lower_pragraph a{
