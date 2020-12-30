@@ -10574,6 +10574,19 @@ hr.widget{
   font-size: 14px;
   text-align: center;
   font-weight: 700;
+  min-height:38px;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-align:center;
+  -ms-flex-align:center;
+  align-items:center;
+}
+@media screen and (max-width:767px) {
+  .slide-box-amount {
+    min-height:0;
+    display:block;
+  }
 }
 .games_allowed {
   width: 100%;
