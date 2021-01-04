@@ -16,7 +16,21 @@
         <div class="tooltip-templates-heading">
             <div class="tooltip-templates-title">${data.name} ${data.bonus.type}</div>
             <div class="tooltip-templates-button">
-                <a href="/visit/${normalize(${data.name})}" target="_blank" rel="nofollow" class="btn btn-small">VISIT CASINO</a>
+                <:if test="${data.casino.status}=='Blacklisted'">
+                    <a href="/visit/${normalize(${data.name})}" target="_blank" rel="nofollow" class="btn-blk btn-err">
+                        <svg class="svg-icon"><use xlink:href="#icon-blacklisted"></use></svg>
+                    </a>
+                <:elseif test="${data.casino.status}=='Warning'">
+                    <a href="/visit/${normalize(${data.name})}" target="_blank" rel="nofollow" class="btn-wrn btn-err">
+                        <svg class="svg-icon"><use xlink:href="#icon-warning"></use></svg>
+                    </a>
+                <:elseif test="!${data.casino.is_country_accepted}">
+                    <a href="/visit/${normalize(${data.name})}" class="btn btn-rest" target="_blank" rel="nofollow">
+                        RESTRICTED
+                    </a>
+                <:else>
+                    <a href="/visit/${normalize(${data.name})}" target="_blank" rel="nofollow" class="btn btn-small">VISIT CASINO</a>
+                </:if>
             </div>
         </div>
     </:if>
