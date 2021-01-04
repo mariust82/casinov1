@@ -219,9 +219,9 @@
 								${result.bonus_free.wagering}
 							</div>
 							<div class="btn-round-holder list-item-cell-wagering">
-								<span class="btn-round" data-name="${result.name}" data-is-free="1"> ${fb_amount}
+								<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1"> ${fb_amount}
 									<:if test="${fb_abbreviation} != 'NDB'">
-										<:if test="${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
+										<:if test="isset(${result.bonus_free.type}) && ${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
 											<:set var="fs" val="FS" />
 										<:else>
 											<:set var="fs" val="" />
@@ -231,9 +231,9 @@
 								</span>
 							</div>
 						<:else>
-							<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
+                            <div class="list-item-cell list-item-fd-bonus">
 								<:if test="isset(${fb_amount}) && ${result.bonus_free}">
-									<span class="btn-round" data-name="${result.name}" data-is-free="1">
+									<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1">
 										${fb_amount}
 										<:if test="isset(${result.bonus_free.type}) && ${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
 											<:set var="fs" val="FS" />
@@ -246,7 +246,7 @@
 									</span>
 								</:if>
 								<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
-									<span class="btn-round" data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
+                                    <span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
 								</:if>
 							</div>
 						</:if>
@@ -270,7 +270,7 @@
 									</span>
 								</:if>
 							</div>
-							<div class="list-item-cell list-item-fd-bonus js-mobile-pop-open">
+                            <div class="list-item-cell list-item-fd-bonus">
 								<:if test="!empty(${fdb_amount}) && strtoupper(${fdb_amount}) !== 'NONE'">
 									<span class="btn-round js-tooltip-content"  data-name="${result.name}" data-is-free="0">${fdb_amount}</span>
 								</:if>
@@ -292,7 +292,7 @@
 							</a>
 						<:elseif test="!${result.is_country_accepted}">
 							<a href="/visit/${normalize(${result.name})}" class="cta-btn btn btn-rest" target="_blank" rel="nofollow">
-								REST 1
+								REST
 							</a>
 						<:else>
 							<a href="/visit/${normalize(${result.name})}" class="cta-btn btn btn-small" target="_blank" rel="nofollow">
