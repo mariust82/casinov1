@@ -183,11 +183,11 @@
 						</:if>
 
 						<div class="list-item-cell list-flex list-item-cell-buttons button-wrapper">
-							<:if test="${result.status}==1">
+							<:if test="${result.status}=='Blacklisted'">
 								<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-blk btn-err">
 									<svg class="svg-icon"><use xlink:href="#icon-blacklisted"></use></svg>
 								</a>
-							<:elseif test="${result.status}==2">
+							<:elseif test="${result.status}=='Warning'">
 								<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="btn-wrn btn-err">
 									<svg class="svg-icon"><use xlink:href="#icon-warning"></use></svg>
 								</a>
