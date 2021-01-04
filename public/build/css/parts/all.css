@@ -11556,11 +11556,18 @@ h1.title + .subtitle{
     padding-bottom: 56%;
     min-height: auto;
   }
+
   .tooltipster-content .cta_buttons .btn-rest {text-indent: inherit; padding-left: 30px;}
   .tooltipster-content .cta_buttons .btn-rest:after {
     display: inline-block;
     left: 24%; top:50%;
   }
+}
+.btn-err-popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3px;
 }
 
 .plain-text .iframe-wrapper iframe,
