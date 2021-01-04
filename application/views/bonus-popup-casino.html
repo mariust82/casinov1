@@ -38,12 +38,10 @@
                 </a>
              <:elseif test="!${data.casino.is_country_accepted}">
                 <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-rest" target="_blank" rel="nofollow">
-                    REST 1
+                    RESTRICTED
                 </a>
              <:else>
-                <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-small" target="_blank" rel="nofollow">
-                    Visit Casino
-                </a>
+                 <a href="/visit/${normalize(${data.casino.name})}"  rel="nofollow" target=”_blank” class="cta_visit">Visit Casino</a>
             </:if>
         </div>
 
