@@ -65,9 +65,9 @@ class CasinoInfoController extends BaseController
 
         $pageInfo = $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("casino")["name"]);
         if(!empty($this->casinoInfo->bonus_free)) {
-            $pageInfo->head_description .= ' Sign up Bonus: '.$this->casinoInfo->bonus_free->amount.' '.$this->casinoInfo->bonus_free->type;
+            $pageInfo->head_description .= ' | Sign up Bonus: '.$this->casinoInfo->bonus_free->amount.' '.$this->casinoInfo->bonus_free->type;
         }elseif (!empty($this->casinoInfo->bonus_first_deposit)) {
-            $pageInfo->head_description .= ' Sign up Bonus: '.$this->casinoInfo->bonus_first_deposit->amount.' '.$this->casinoInfo->bonus_first_deposit->type;
+            $pageInfo->head_description .= ' | Sign up Bonus: '.$this->casinoInfo->bonus_first_deposit->amount.' '.$this->casinoInfo->bonus_first_deposit->type;
         }
 
         $this->response->attributes("page_type", $url);
