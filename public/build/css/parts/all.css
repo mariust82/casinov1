@@ -11837,7 +11837,9 @@ hr.widget{
   line-height: 12px;
   margin-right: 10px;
 }
-
+.game-type_container.unavailable{
+  margin-right: 0;
+}
 .content_popup .bonus-box-list .list-item-trun{
   font-weight: 600;
   color: #60686a;
