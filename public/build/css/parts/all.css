@@ -11594,6 +11594,10 @@ hr.widget{
   margin-left: 10px;
   font-size: 9px;
 }
+.show_all-button:hover{
+  color: #fff;
+  background: #0F4585;
+}
 @media (max-width: 550px){
   .show_all-button{
     width: 100%;
