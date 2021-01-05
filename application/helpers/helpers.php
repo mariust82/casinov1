@@ -15,15 +15,7 @@ function parse_video($url)
 {
     return str_replace("youtu.be", "youtube.com/embed", $url);
 }
-function get_string($name)
-{
-    foreach ($name as $key => $item) {
-        if ($key != 0) {
-            $items[$key] = $item;
-        }
-    }
-    return implode(", ", $items);
-}
+
 function get_rating($score)
 {
     if ($score == 0) {
