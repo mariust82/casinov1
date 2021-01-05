@@ -12328,3 +12328,17 @@ h1.title + .subtitle{
   width:100%;
   height:100%;
 }
+@media (max-width: 1024px){
+  .casino-review-heading-right .list-rating{
+    text-indent: unset !important;
+    width: 102px !important;
+    height: 26px !important;
+  }
+  .casino-review-heading-right .list-rating-score{
+    height: 25px !important;
+    width: 24px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
