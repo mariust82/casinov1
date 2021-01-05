@@ -166,7 +166,7 @@
 										</div>
 									</div>
 								</span>
-								<:if test="isset(${result.bonus_free})">
+								<:if test="isset(${result.bonus_free}) && ${result.bonus_free} !== null">
 								<span class="wp-bonus-title free">${result.bonus_free.amount} ${result.bonus_free.type}</span>
 								</:if>
 								<:if test="isset(${result.bonus_first_deposit})">

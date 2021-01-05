@@ -18,7 +18,7 @@
         <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
             <:set var="grid_view_class" val="grid_view"/>
         <:else>
-            <:set var="grid_view_class" val=""/>
+            <:set var="grid_view_class" val="list-view"/>
         </:if>
         <div class="data-container-holder ${grid_view_class}"
         <:if test="isset(${data.limit_per_page})">
