@@ -74,15 +74,16 @@
 					</div>
 				</:if>
 
-				<:set var="fb_amount" val="checkForAbbr(${result.bonus_free.amount})" />
-				<:set var="fb_abbreviation" val="getAbbreviation(${result.bonus_free.type}, ${fdb_amount})" />
-
+				<:if test="${result.bonus_free}">
+					<:set var="fb_amount" val="checkForAbbr(${result.bonus_free.amount})" />
+					<:set var="fb_abbreviation" val="getAbbreviation(${result.bonus_free.type}, ${fdb_amount})" />
+				</:if>
 				<:if test="$[mobile]">
 					<:if test="${is_low_wagering}">
 						<div class="btn-round-holder list-item-cell-bfnp">
 							<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1"> ${fb_amount}
 								<:if test="${fb_abbreviation} != 'NDB'">
-									<:if test="${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
+									<:if test="isset(${result.bonus_free.type}) && ${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
 										<:set var="fs" val="FS" />
 									<:else>
 										<:set var="fs" val="" />
@@ -96,12 +97,13 @@
 						</div>
 					<:else>
 						<div class="list-item-cell list-item-fd-bonus">
-							<:if test="${fb_amount}">
+							<:if test="${result.bonus_free} && ${fb_amount}">
 								<div class="btn-round-holder">
 									<span class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="1">
 										${fb_amount}
-										<:if test="${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
+										<:if test="isset(${result.bonus_free.type}) && ${result.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
 											<:set var="fs" val="FS" />
+										    <:set var="fs" val="FS" />
 										<:else>
 											<:set var="fs" val="" />
 										</:if> 

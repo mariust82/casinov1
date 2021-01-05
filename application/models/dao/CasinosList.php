@@ -19,7 +19,7 @@ class CasinosList
     public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "")
     {
         $output = array();
-        $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
+        $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
 
         $queryGenerator = new CasinosListQuery(
             $this->filter,
@@ -70,7 +70,7 @@ class CasinosList
         SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name , t1.bonus_type_id
         FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
-        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins','Free Play')
+        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins','Free Play','Bonus Spins')
         ";
         $resultSet = SQL($query);
         while ($row = $resultSet->toRow()) {
@@ -86,8 +86,10 @@ class CasinosList
             $bonus->type = $row["name"];
             if ($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins" || $row["name"]=="Free Play" || $row["name"]=="Bonus Spins") {
                 $output[$row["casino_id"]]->bonus_free = $bonus;
+                $output[$row["casino_id"]]->isFree = 1;
             } else {
                 $output[$row["casino_id"]]->bonus_first_deposit = $bonus;
+                $output[$row["casino_id"]]->isFree = 0;
             }
         }
 
@@ -114,7 +116,7 @@ class CasinosList
     }
 
     public function getTopPicks($country) {
-        $resultSet = SQL("SELECT t2.*, IF(t3.id IS NOT NULL, 1, 0) AS is_country_supported FROM `top_picks` AS `t1` 
+        $resultSet = SQL("SELECT t2.*, IF(t3.casino_id IS NOT NULL, 1, 0) AS is_country_supported FROM `top_picks` AS `t1` 
         INNER JOIN `casinos` AS `t2` ON (`t1`.`n_c_id` = `t2`.`id`) 
         LEFT JOIN casinos__countries_allowed AS t3 ON (t2.id = t3.casino_id) AND t3.country_id = {$country}
         WHERE `t1`.`date`='" . date("Y-m-01") . "'");
@@ -135,7 +137,7 @@ class CasinosList
         SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name , t1.bonus_type_id
         FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
-        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins','Free Play')
+        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins','Free Play','Bonus Spins')
         ";
         $resultSet = SQL($query);
         while ($row = $resultSet->toRow()) {

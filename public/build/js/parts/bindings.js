@@ -41,6 +41,7 @@ contentTooltipConfigPopup = {
     },
     functionAfter: function () {
         $('body').removeClass('shadow');
+        $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
     },
     functionBefore: function (instance, helper) {
         var $origin = $(helper.origin);
@@ -63,6 +64,9 @@ contentTooltipConfigPopup = {
                     setTimeout(function () {
                         contentTooltipConfigPopupActions($origin)
                     }, 150)
+                    setTimeout(function () {
+                        $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
+                    }, 700)
                     $origin.data('loaded', true);
                 }
             });
@@ -72,14 +76,16 @@ contentTooltipConfigPopup = {
 
 function contentTooltipConfigPopupActions(origin) {
     checkStringLength($('.bonus-box'), 15);
-    $('.bonus-info .content_popup').niceScroll({
-        cursorcolor: "#A8AEC8",
-        cursorwidth: "3px",
-        autohidemode: false,
-        cursorborder: "1px solid #A8AEC8",
-        railoffset: { top: 0, left: 20 },
-        horizrailenabled: false,
-    });
+    if ($(window).width() > 767) {
+        $('.bonus-info .content_popup').niceScroll({
+            cursorcolor: "#A8AEC8",
+            cursorwidth: "3px",
+            autohidemode: false,
+            cursorborder: "1px solid #A8AEC8",
+            railoffset: { top: 0, left: 20 },
+            horizrailenabled: false,
+        });
+    }
     $('.js-tooltip').tooltipster(tooltipConfig);
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     copyToClipboard();
@@ -108,6 +114,9 @@ contentTooltipConfig = {
         $('body').addClass('shadow');
         checkStringLength($('.bonus-box'), 15);
         $('.js-tooltip').tooltipster(tooltipConfig);
+        setTimeout(function () {
+            $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
+        }, 500)
     },
     functionPosition: function(instance, helper, position){
         if (ww < 768 && ww > 375) {
@@ -115,22 +124,22 @@ contentTooltipConfig = {
             return position;
         }
 
-        if (ww <= 375 && ww > 330) {
-            position.coord.left -= 35;
-            return position;
-        }
+        // if (ww <= 375 && ww > 330) {
+        //     position.coord.left = ;
+        //     return position;
+        // }
 
-        if (ww <= 330) {
-            position.coord.left -= 10;
-            return position;
-        }
+        // if (ww <= 330) {
+        //     position.coord.left += 5;
+        //     return position;
+        // }
     },
     functionAfter: function () {
         $('body').removeClass('shadow');
+        $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
     },
     functionBefore: function (instance, helper) {
         var $origin = $(helper.origin);
-
         if ($origin.data('loaded') !== true) {
 
             var _name = $origin.data('name');
@@ -147,6 +156,14 @@ contentTooltipConfig = {
                 dataType: 'html',
                 type: 'GET',
                 success: function (response) {
+                    if (ww < 768) {
+                        $('.tooltipster-sidetip .tooltipster-box .tooltipster-content').css({
+                            padding: 0
+                        })
+                        $('.tooltipster-sidetip .tooltipster-box').css({
+                            borderRadius: '6px'
+                        })
+                    }
                     instance.content(response);
                     setTimeout(function () {
                         updateHandlers();
@@ -518,60 +535,20 @@ function refresh() {
 }
 
 function copyToClipboard() {
-    window.Clipboard = (function (window, document, navigator) {
-        var textArea,
-            copy;
+    var btn = $('.js-copy-to-clip');
 
-        function isOS() {
-            return navigator.userAgent.match(/ipad|iphone/i);
-        }
-
-        function createTextArea(text, self) {
-            textArea = document.createElement('textArea');
-            if (isOS()) {
-                textArea.setAttribute('readonly', 'readonly');
-            }
-            textArea.value = text;
-            self.parent().append(textArea);
-        }
-
-        function selectText() {
-            var range,
-                selection;
-
-            if (isOS()) {
-                range = document.createRange();
-                range.selectNodeContents(textArea);
-                selection = window.getSelection();
-                selection.removeAllRanges();
-                selection.addRange(range);
-                textArea.setSelectionRange(0, 999999);
-            } else {
-                textArea.select();
-            }
-        }
-
-        function copyToClipboard(self) {
-            document.execCommand('copy');
-            self.parent().find(textArea).remove();
-        }
-
-        copy = function (text, self) {
-            var strippedText = strip(text);
-            createTextArea(strippedText, self);
-            selectText();
-            copyToClipboard(self);
-        };
-
-        return {
-            copy: copy
-        };
-    })(window, document, navigator);
-
-    $('.js-copy-to-clip').on('click touch', function (e) {
-        Clipboard.copy($(this).data('code'), $(this));
+    btn.on('click', function (e) {
+        initAction(this);
         e.preventDefault();
     });
+
+    function initAction(element) {
+        var $temp = $('<input readonly>');
+        $('body').append($temp);
+        $temp.val($(element).data('code')).select();
+        document.execCommand('copy');
+        $temp.remove();
+    }
 }
 
 //remove HTML tags from text
@@ -769,7 +746,6 @@ var Filters = function (obj) {
         _radios = _obj.find('input[type=radio]'),
         _selectFilter = _obj.find('select[name=soft]'),
         _targetContainer = $('.data-container'),
-        _targetAddContainer = $('.data-add-container'),
         _paramName = _targetContainer.data('type'),
         _paramValue = _targetContainer.data('type-value'),
         _emptyContent = $('.empty-filters'),
@@ -918,6 +894,9 @@ var Filters = function (obj) {
         BUSY_REQUEST = true;
         _request.abort();
         var limit_items = (_url == '/games-filter/') ? 24 : 100;
+        if($('.data-container-holder').data('limit-per-page')){
+            limit_items = $('.data-container-holder').data('limit-per-page');
+        }
         if (location.pathname === '/casinos') {
             _url = 'load-all-casinos/';
         }
@@ -927,6 +906,7 @@ var Filters = function (obj) {
             dataType: 'html',
             type: 'GET',
             success: function (data) {
+                _targetAddContainer = $('.data-add-container');
                 var cont = $(data).find('.loaded-item');
                 var loadTotal = $(data).filter('[data-load-total]').data('load-total');
                 var qty_items = $('.qty-items');
@@ -936,7 +916,7 @@ var Filters = function (obj) {
                     qty_items.attr('data-load-total', loadTotal);
                     $('.qty-items-quantity').text(loadTotal);
 
-                    if (cont.length === qty_items.attr('data-load-total')) {
+                    if (cont.length === parseInt(qty_items.attr('data-load-total'))) {
                         if (cont.length > 0) {
                             _loaderHolder.show();
                             _emptyContent.hide();
@@ -979,17 +959,18 @@ var Filters = function (obj) {
                 }
             },
             complete: function () {
+                console.log(parseInt($('.qty-items').attr('data-load-total')));
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
                 if (_url === '/casinos-filter/') {
-                    if (parseInt($('.qty-items').attr('data-load-total')) <= 30) {
+                    if (parseInt($('.qty-items').attr('data-load-total')) <= limit_items) {
                         $('.js-more-items').hide();
                     } else {
                         $('.js-more-items').show();
                     }
                 } else if (_url === '/games-filter/') {
 
-                    if (parseInt($('.qty-items-quantity').html()) <= 24) {
+                    if (parseInt($('.qty-items-quantity').html()) <= limit_items) {
                         $('.js-more-items').hide();
                     } else {
                         $('.js-more-items').show();
@@ -997,6 +978,7 @@ var Filters = function (obj) {
                 }
                 grayscaleIE();
                 initImageLazyLoad();
+                copyToClipboard();
             }
         });
 
@@ -1540,6 +1522,7 @@ var SearchPanel = function (obj) {
 };
 
 var initSite = function () {
+
     copyToClipboard();
     checkStringLength($('.list .bonus-box'), 21);
     checkStringLength($('.bonus-item .bonus-box'), 33);

@@ -86,7 +86,7 @@
 	<:if test="count(${data.recommended_casinos})>0">
 		<div class="block related">
 			<div class="container">
-				<div class="headeing">
+				<div class="heading">
 					<div class="title title-middle">Play this game for real money at these casinos</div>
 				</div>
 				<casino:list type="SOFTWARE" id="1" data="${data.recommended_casinos}"/>
@@ -97,7 +97,7 @@
 	<:if test="count(${data.recommended_games})>0">
 		<div class="block related">
 			<div class="container">
-				<div class="headeing">
+				<div class="heading">
 					<div class="title title-middle">Similar games</div>
 				</div>
 				<game:list data="${data.recommended_games}"/>

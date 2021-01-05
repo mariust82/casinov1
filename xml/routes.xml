@@ -39,19 +39,9 @@
         <route url="softwares/(name)" controller="CasinosBySoftwareController" view="casinos" rebrand_tables="game_manufacturers">
             <parameter name="name" validator="SoftwareNameValidator"/>
         </route>
-        <route url="games-by-software/(page)" controller="LoadMoreGamesBySoftwareController" view="game-item">
-            <parameter name="page" validator="IntegerValidator"/>
-        </route>
         <route url="load-all-casinos/(page)" controller="LoadAllCasinosController" view="casinos-list">
             <parameter name="page" validator="IntegerValidator"/>
         </route>
-        <route url="casinos-by-software/(page)" controller="LoadMoreCasinosBySoftwareController" view="casino-item">
-            <parameter name="page" validator="IntegerValidator"/>
-        </route>
-        <route url="casinos-by-banking/(page)" controller="LoadMoreCasinosByBankingController" view="casino-item">
-            <parameter name="page" validator="IntegerValidator"/>
-        </route>
-    
         <route url="softwares" controller="SoftwaresController" view="softwares"/>
         <route url="games/(type)" controller="GamesByTypeController" view="games">
             <parameter name="type" validator="GameTypeValidator"/>
@@ -157,7 +147,7 @@
             <parameter name="page" validator="PositiveNumberValidator"/>
         </route>
         <route url="casino/bonus-popup" controller="CasinoBonusPopUpController" view="bonus-popup-casino">
-            <parameter name="casino" validator="CasinoValidator"/>
+            <parameter name="casino" validator="CasinoNameValidator"/>
         </route>
         <route url="404" controller="PageNotFoundController" view="404"/>
         <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" format="sitemap"/>
@@ -186,5 +176,6 @@
         <route url="sitemaps_ps/sitemap_spec_games_ps.php" controller="sitemap/GamesController" format="sitemap"/>
         <route url="sitemaps_ps/sitemap_cas_live_dealer.php" controller="sitemap/LiveDealerController" format="sitemap"/>
         <route url="sitemaps_ps/sitemap_blog_ps.php" controller="sitemap/BlogCategoriesController" format="sitemap"/>
+        <route url="tracker" format="json"/>
     </routes>
 </xml>

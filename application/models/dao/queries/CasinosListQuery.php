@@ -101,7 +101,7 @@ class CasinosListQuery
             if ($filter->getCasinoLabel() == 'Blacklisted Casinos') {
                 $filter->setPromoted(false);
             }
-            if (($filter->getCasinoLabel() != "New") && ($filter->getCasinoLabel() != "all")) {
+            if (!in_array($filter->getCasinoLabel(), ["New", "all", "Best"])) {
                 $sub_query = new Lucinda\Query\MySQLSelect("casino_labels");
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name"=> "'". $filter->getCasinoLabel() . "'"]);
@@ -198,6 +198,7 @@ class CasinosListQuery
      */
     private function addBestCondition(Lucinda\Query\Condition $where)
     {
+        $where->setIn("t1.status_id", [0, 3]);
         $where->set("t1.date_established", "'" . date("Y-m-d", strtotime(date("Y-m-d") . " -6 months")) . "'", Lucinda\Query\ComparisonOperator::LESSER_EQUALS);
         $where->set("t1.rating_votes", self::CASINO_MIN_VOTES, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
         $where->set("(t1.rating_total/t1.rating_votes)", self::CASINO_SCORE, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);

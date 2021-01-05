@@ -1,20 +1,26 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="index"/>
-	<:if test="isset(${data.widgets.upper})">
-		<div style="border: 5px solid black; color:black; margin:0 0 30px;">
-			${implode("\n", ${data.widgets.upper})}
-		</div>
-	</:if>
+	<div class="subtitle">
+		<:if test="isset(${data.widgets.upper})">
+			<div style="border: 5px solid black; color:black; margin:0 0 30px;">
+				${implode("\n", ${data.widgets.upper})}
+			</div>
+		</:if>
+	</div>
 	<box:pick/>
 	<casino:carousel-container title="Top-Rated Casinos" url="/casinos/best" items="${data.best_casinos}" country="${data.country}" description="We invite you to browse through the best online casinos in the world, ranked and reviewed by real casino players. The list is constantly updated so make sure you check it from time to time to stay up to date with the latest rankings!"/>
-	<casino:list-container id="1" data="${data.country_casinos}" type="SOFTWARE" url="/countries-list/${countryNormalize(${data.country.name})}" button="${data.country.name} Casinos" name="${data.country.name} Casinos" description="You’d like to play at an online casino, but you’re not sure if it accepts players from your country of residence? Look no further, as we have already put together a list of online casinos which welcome players located in your country. You can browse by accessing our “Countries” section at the navigation bar. Currently, we host ${data.casinos_per_country} online casinos available for players from ${data.country.name}."/>
-	<casino:list-container id="2" data="${data.new_casinos}" type="ESTABLISHED" url="/casinos/new" button="Newest Casinos" name="New Casinos" description="The online gaming market is ever-growing and constantly reinventing itself. As new casinos pop up all the time, we decided to put all the newest casinos from the last 12 months on one list, so you can browse and find your new favorite place in no time. The websites on the page are sorted by newest first, so you’ll always be met with the latest updates. And don’t forget that, as a new player, you’re sometimes entitled to generous no deposit bonuses, all of which can be found on our New Online Casinos page."/>
-	<:if test="isset(${data.widgets.middle})">
-		<div style="background-color:#003300; color:white;">${implode("\n", ${data.widgets.middle})}</div>
+	<:if test="stristr(${data.country.name}, 'germany') === false">
+		<casino:list-container id="1" data="${data.country_casinos}" type="SOFTWARE" url="/countries-list/${countryNormalize(${data.country.name})}" button="${data.country.name} Casinos" name="${data.country.name} Casinos" description="You’d like to play at an online casino, but you’re not sure if it accepts players from your country of residence? Look no further, as we have already put together a list of online casinos which welcome players located in your country. You can browse by accessing our “Countries” section at the navigation bar. Currently, we host ${data.casinos_per_country} online casinos available for players from ${data.country.name}."/>
 	</:if>
+	<casino:list-container id="2" data="${data.new_casinos}" type="ESTABLISHED" url="/casinos/new" button="Newest Casinos" name="New Casinos" description="The online gaming market is ever-growing and constantly reinventing itself. As new casinos pop up all the time, we decided to put all the newest casinos from the last 12 months on one list, so you can browse and find your new favorite place in no time. The websites on the page are sorted by newest first, so you’ll always be met with the latest updates. And don’t forget that, as a new player, you’re sometimes entitled to generous no deposit bonuses, all of which can be found on our New Online Casinos page."/>
+	<div class="subtitle">
+		<:if test="isset(${data.widgets.middle})">
+			<div style="background-color:#003300; color:white;">${implode("\n", ${data.widgets.middle})}</div>
+		</:if>
+	</div>
 	<casino:list-container id="3" data="${data.no_deposit_casinos}" type="SOFTWARE" url="/bonus-list/no-deposit-bonus" button="No Deposit Casinos" name="No Deposit Casinos" description="These No Deposit Casinos offer free bonuses upon registration to their new players, which can either be free money, free spins or free play, allowing you to keep your winnings. This is a great way to explore the grounds of new casinos without risking your own money."/>
 	<game:list-container id="4" data="${data.new_games}" url="/games" button="Casino Games" name="New Games" description="Whether you are an amateur or an experienced player, on CasinosLists.com you’ll always find the newest game releases. Online Casino Games such as Video Slots, Blackjack, Roulette and more can be found here to play for fun! As the online gaming world is one of the most competitive domains, software developers are always racing to create the best games on the market. We make sure to always be up to date with the newest arrivals, so you can try them out for free!"/>
 	<:if test="isset(${data.widgets.lower})">
-		<div class="block">
+		<div class="block subtitle">
 			<div class="container">
 				${implode("\n", ${data.widgets.lower})}
 			</div>

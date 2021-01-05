@@ -6,10 +6,11 @@ class PageInfoDAO
     {
         $row = SQL("SELECT * FROM pages WHERE url=:url", array(":url"=>$url))->toRow();
         $object = new PageInfo();
-        $object->head_title = $this->feedValues($row["head_title"], $entity, $casinos_number);
-        $object->head_description = $this->feedValues($row["head_description"], $entity, $casinos_number);
-        $object->body_title = $this->feedValues($row["body_title"], $entity, $casinos_number);
-
+        if ($row) {
+            $object->head_title = $this->feedValues($row["head_title"], $entity, $casinos_number);
+            $object->head_description = $this->feedValues($row["head_description"], $entity, $casinos_number);
+            $object->body_title = $this->feedValues($row["body_title"], $entity, $casinos_number);
+        }
         return $object;
     }
 

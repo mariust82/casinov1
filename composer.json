@@ -29,10 +29,6 @@
         "lucinda/rss": "^1.0"
     },
     "require-dev": {
-        "codeception/codeception": "^4.1",
-        "codeception/module-phpbrowser": "^1.0.0",
-        "codeception/module-asserts": "^1.0.0",
-        "phing/phing": "^2.16",
         "lucinda/unit-testing": "^1.1",
         "lucinda/requester": "^1.0"
     }

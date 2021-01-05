@@ -21,10 +21,10 @@
             </:if>
         </div>
     </div>
-    <div class="circle-btn  tooltipstered js-tooltip-content-popup" data-name="${result.name}" data-is-free="">i</div>
+    <div class="circle-btn  tooltipstered js-tooltip-content-popup" data-name="${result.name}" data-is-free="${result.isFree}">i</div>
 </div>
 <div class="row logo-casino">
-    <img class="lazy_loaded" data-src="/public/build/images/casino-logos/${strtolower(str_replace(' ','_',${result.name}))}.png"  width="100" height="66" alt="${result.name}" data-alt="${result.name}">
+    <img class="lazy_loaded" data-src="/public/sync/casino_logo_light/100x66/${strtolower(str_replace(' ','_',${result.code}))}.png"  width="100" height="66" alt="${result.name}" data-alt="${result.name}">
 </div>
 <div class="row">
     <:if test="${result.bonus_free}">
@@ -38,7 +38,7 @@
                 ${gameNames(${result.bonus_free.games_allowed})}
                 <:set var="extra" val="count(gamesAllowed(${result.bonus_free.games_allowed}))-1"/>
                 <:if test="${extra} > 0">
-                    <span class="bubble bubble-long js-tooltip software_tooltip tooltipstered" title="${result.bonus_free.games_allowed}">
+                    <span class="bubble bubble-long js-tooltip software_tooltip nolink_tooltip tooltipstered" title="${result.bonus_free.games_allowed}">
                     More
                     </span>
                 </:if>
@@ -91,7 +91,7 @@
 </div>
 <div class="row">
     <:if test="!${result.is_country_accepted}">
-        <a href="/visit/${normalize(${result.name})}" class="btn btn-rest" target="_blank" rel="nofollow">REST</a>
+        <a href="/visit/${normalize(${result.name})}" class="btn btn-rest" target="_blank" rel="nofollow">RESTRICTED</a>
     <:else>
         <a class="btn" href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank">VISIT CASINO</a>
     </:if>
