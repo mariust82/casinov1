@@ -11837,7 +11837,9 @@ hr.widget{
   line-height: 12px;
   margin-right: 10px;
 }
-
+.software_image{
+  margin-right: 20px;
+}
 .game-type_container.unavailable{
   margin-right: 0;
 }
