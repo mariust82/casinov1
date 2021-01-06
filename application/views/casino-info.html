@@ -304,15 +304,20 @@
 								</:if>
 							</:foreach>
 
-							<:foreach var="${data.casino.all_game_types}" key ="key" val="value">
-								<:if test="in_array(${value}, ${data.casino.casino_game_types})">
-									<span>available</span>
-								<:else>
-									<span>unavailable</span>
-								</:if>
-							</:foreach>
+							
 
 							<div class="game_types">
+								<:foreach var="${data.casino.all_game_types}" key ="key" val="value">
+									<:if test="in_array(${value}, ${data.casino.casino_game_types})">
+										<:set var="game_type_class" val=""/>
+									<:else>
+										<:set var="game_type_class" val=""/>
+									</:if>
+									<div class="game-type_container ${game_type_class}">
+										<img src="/public/build/images/${value}.svg">
+										<span class="game-type_name">${value}</span>
+									</div>
+								</:foreach>
 								<div class="game-type_container unavailable">
 									<img src="/public/build/images/slots.svg">
 									<span class="game-type_name">Slots</span>
