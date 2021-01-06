@@ -8,4 +8,5 @@ class CasinoSortCriteria
     const WAGERING = 5;
     const NO_ACCOUNT = 6;
     const DATE_ADDED = 7;
+    const FAST_PAYOUT = 8;
 }

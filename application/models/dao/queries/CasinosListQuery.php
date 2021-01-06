@@ -110,7 +110,7 @@ class CasinosListQuery
                 $query->joinInner("casinos__withdraw_timeframes ", "t18")->on(["t1.id" => "t18.casino_id"])->set("t18.unit","'hour'")->set("t18.end",24,Lucinda\Query\ComparisonOperator::LESSER_EQUALS);
             }
             
-            if (!in_array($filter->getCasinoLabel(), ["New", "all", "Best"])) {
+            if (!in_array($filter->getCasinoLabel(), ["New", "all", "Best", 'Fast Payout'])) {
                 $sub_query = new Lucinda\Query\MySQLSelect("casino_labels");
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name"=> "'". $filter->getCasinoLabel() . "'"]);
@@ -248,6 +248,9 @@ class CasinosListQuery
                     $orderBy->add("t1.date_established", "DESC");
                     $orderBy->add("t1.id", "DESC");
                     break;
+                case CasinoSortCriteria::FAST_PAYOUT:
+                    $orderBy->add("t18.end", "ASC");
+                    $orderBy->add("t1.id", "DESC");
                 default:
                     $orderBy->add('complex_case', 'ASC');
                     $orderBy->add("t1.priority", "DESC");
