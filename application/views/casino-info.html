@@ -304,7 +304,7 @@
 										<:set var="game_type_class" val="unavailable"/>
 									</:if>
 									<div class="game-type_container ${game_type_class}">
-										<img src="/public/build/images/${strtolower(str_replace(' ','_',${value.name}))}.svg">
+										<img alt="${value.name}" src="/public/build/images/${strtolower(str_replace(' ','_',${value.name}))}.svg">
 										<span class="game-type_name">${value.name}</span>
 									</div>
 								</:if>
