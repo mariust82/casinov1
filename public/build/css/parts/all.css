@@ -11046,35 +11046,35 @@ hr.widget{
     justify-content: left;
   }
   .game-type_container:nth-of-type(1){
-    order: 1;
+    order: 5;
   }
   .game-type_container:nth-of-type(2){
-    order: 2;
+    order: 6;
   }
   .game-type_container:nth-of-type(3){
     order: 3;
   }
   .game-type_container:nth-of-type(4){
-    order: 4;
-  }
-  .game-type_container:nth-of-type(5){
     order: 9;
   }
+  .game-type_container:nth-of-type(5){
+    order: 7;
+  }
   .game-type_container:nth-of-type(6){
-    order: 5;
+    order: 2;
   }
   .game-type_container:nth-of-type(7){
-    order: 6;
+    order: 10;
+    width: 26%;
   }
   .game-type_container:nth-of-type(8){
-    order: 7;
+    order: 1;
   }
   .game-type_container:nth-of-type(9){
     order: 8;
   }
   .game-type_container:nth-of-type(10){
-    order: 10;
-    width: 26%;
+    order: 4;
   }
   .row-details{
     flex-wrap: wrap;
@@ -11136,11 +11136,20 @@ hr.widget{
     margin: 0;
     /* margin-left: -20px; */
   }
-  .game-type_container:nth-of-type(1), .game-type_container:nth-of-type(6), .game-type_container:nth-of-type(5) {
+  .game-type_container:nth-of-type(8), .game-type_container:nth-of-type(4), .game-type_container:nth-of-type(5) {
     text-align: left;
     justify-content: left;
     width: 20%;
 
+  }
+  .game-type_container:nth-of-type(4) {
+    order: 5;
+  }
+  .game-type_container:nth-of-type(1) {
+    order: 6;
+  }
+  .game-type_container:nth-of-type(5) {
+    order: 9;
   }
   .info_list-title{
     width: 26%;
