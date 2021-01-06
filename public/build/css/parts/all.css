@@ -547,15 +547,15 @@ figure {
 /**
  * Swiper 3.4.2
  * Most modern mobile touch slider and framework with hardware accelerated transitions
- * 
+ *
  * http://www.idangero.us/swiper/
- * 
+ *
  * Copyright 2017, Vladimir Kharlampidi
  * The iDangero.us
  * http://www.idangero.us/
- * 
+ *
  * Licensed under MIT
- * 
+ *
  * Released on: March 10, 2017
  */
 
@@ -1418,7 +1418,7 @@ button.swiper-pagination-bullet {
 
 /**
  * DEFAULT STYLE OF THE SIDETIP PLUGIN
- * 
+ *
  * All styles are "namespaced" with .tooltipster-sidetip to prevent
  * conflicts between plugins.
  */
@@ -11111,7 +11111,7 @@ hr.widget{
     text-align: left;
     justify-content: left;
     width: 20%;
-  
+
   }
   .info_list-title{
     width: 28%;
@@ -11123,7 +11123,7 @@ hr.widget{
   border-radius: 4px 0 0 4px;
 }
 .change_view .icon-box_view {
-    border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
 }
 
 .grid_view .casino_items-view {
@@ -11532,7 +11532,7 @@ hr.widget{
     width: calc(100vw - 20px);
     left: -10px;
   }
-  
+
 }
 @media screen and (max-width: 767px){
   .grid_view .casino_items-view .btn-rest, .grid_view .casino_items-view  .btn-small{
@@ -11670,7 +11670,7 @@ hr.widget{
     height: 14px;
     width: 14px;
     line-height: 14px;
-   
+
 } */
 .bonus-info .content_popup{
   height: 460px;
@@ -11691,7 +11691,7 @@ hr.widget{
   border-radius: 2px;
   padding: 10px 15px;
 }
-/* 
+/*
 .bonus-info .content_popup .checkmark{
     margin:0 12px 0 0;
 } */
