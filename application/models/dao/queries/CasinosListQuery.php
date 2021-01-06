@@ -53,6 +53,10 @@ class CasinosListQuery
                 $fields->add("t14.id", "has_wm");
             }
         }
+        
+        if ($filter->getCasinoLabel() == 'Fast Payout') {
+            $fields->add("t18.end");
+        }
     }
 
     private function setSelect(Lucinda\Query\MySQLSelect $query, CasinoFilter $filter)
@@ -101,6 +105,11 @@ class CasinosListQuery
             if ($filter->getCasinoLabel() == 'Blacklisted Casinos') {
                 $filter->setPromoted(false);
             }
+            
+            if ($filter->getCasinoLabel() == 'Fast Payout') {
+                $query->joinInner("casinos__withdraw_timeframes ", "t18")->on(["t1.id" => "t18.casino_id"])->set("t18.unit","'hour'")->set("t18.end",24,Lucinda\Query\ComparisonOperator::LESSER_EQUALS);
+            }
+            
             if (!in_array($filter->getCasinoLabel(), ["New", "all", "Best"])) {
                 $sub_query = new Lucinda\Query\MySQLSelect("casino_labels");
                 $sub_query->fields(["id"]);
