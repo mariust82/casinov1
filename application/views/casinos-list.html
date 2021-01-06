@@ -4,7 +4,9 @@
 	<div class="qty-items" data-load-total="${data.total_casinos}">${data.total_casinos} results</div>
 	<:if test="isset($_GET['label']) && $_GET['label'] == 'New'">
 		<casino:list type="ESTABLISHED" id="${data.casinos.0.id}" data="${data.casinos}"/>
-	<:else>
+        <:elseif test="${data.selected_entity} == 'Fast Payout'">
+                <casino:list type="WITHDRAWAL" id="${data.casinos.0.id}" data="${data.casinos}"/>
+        <:else>
 		<casino:list type="SOFTWARE" id="${data.casinos.0.id}" data="${data.casinos}"/>
 	</:if>
 	<div class="data-add-container" data-total="${data.total_casinos}"></div>
