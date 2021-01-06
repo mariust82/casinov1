@@ -11114,7 +11114,7 @@ hr.widget{
   
   }
   .info_list-title{
-    width: 28%;
+    width: 26%;
   }
 }
 
@@ -11838,12 +11838,34 @@ hr.widget{
   margin-right: 10px;
 }
 .software_image{
-  margin-right: 20px;
+  margin-right: 22px;
 }
 .game-type_container.unavailable{
   margin-right: 0;
 }
-
+.software_providers-section .software_tooltip {
+  padding: 4px 8px;
+  margin: 0;
+  display: inline-flex;
+  text-transform: capitalize;
+  font-size: 12px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #E8EAF3;
+}
+.software_providers-section .software_tooltip:after,
+.software_providers-section .software_tooltip:before {
+  content: unset;
+}
+.software_providers-section{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.software_providers-section .title-uppercase{
+  width: 100%;
+}
 .content_popup .bonus-box-list .list-item-trun{
   font-weight: 600;
   color: #60686a;
@@ -12352,3 +12374,4 @@ h1.title + .subtitle{
     justify-content: center;
   }
 }
+
