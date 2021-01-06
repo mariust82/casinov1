@@ -295,17 +295,6 @@
 						</div>
 						<div class="game-types_box">
 							<span class="title-uppercase">Game Types</span>
-							
-							<:foreach var="${data.casino.casino_game_types}" key ="key" val="value">
-								<:if test="${value} == end(${data.casino.casino_game_types})">
-									${value.name}
-									<:else>
-									${value.name},&nbsp;
-								</:if>
-							</:foreach>
-
-							
-
 							<div class="game_types">
 								<:foreach var="${data.casino.all_game_types}" key ="key" val="value">
 									<:if test="in_array(${value}, ${data.casino.casino_game_types})">
@@ -315,10 +304,9 @@
 									</:if>
 									<div class="game-type_container ${game_type_class}">
 										<img src="/public/build/images/.svg">
-										<span class="game-type_name">${game_type_class}</span>
+										<span class="game-type_name"></span>
 									</div>
 								</:foreach>
-								
 							</div>
 						</div>
 					</div>
