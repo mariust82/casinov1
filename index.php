@@ -6,9 +6,15 @@ define("ENVIRONMENT", $environment);
 
 // load firewall
 if (ENVIRONMENT == "live") {
-    require_once("hlis/firewall/Manager.php");
+    require_once("hlis/firewall_client/Manager.php");
     $firewall = new Hlis\Firewall\Manager($_SERVER["SERVER_NAME"], $_SERVER["REMOTE_ADDR"], $_SERVER["REQUEST_URI"], $_SERVER["REQUEST_METHOD"], getallheaders());
-    define("USER_TYPE", $firewall->getUserType());
+    if($userType = $firewall->getUserType()) {
+        define("USER_TYPE", $userType);
+    } else {
+        header("HTTP/1.1 400 Bad Request");
+        require_once "application/views/400.html";
+        exit();
+    }
 }
 
 // takes control of STDERR

@@ -11594,6 +11594,10 @@ hr.widget{
   margin-left: 10px;
   font-size: 9px;
 }
+.show_all-button:hover{
+  color: #fff;
+  background: #0F4585;
+}
 @media (max-width: 550px){
   .show_all-button{
     width: 100%;
@@ -11832,6 +11836,12 @@ hr.widget{
 .unavailable{
   line-height: 12px;
   margin-right: 10px;
+}
+.software_image{
+  margin-right: 20px;
+}
+.game-type_container.unavailable{
+  margin-right: 0;
 }
 
 .content_popup .bonus-box-list .list-item-trun{
