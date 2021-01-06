@@ -303,6 +303,15 @@
 									${value.name},&nbsp;
 								</:if>
 							</:foreach>
+
+							<:foreach var="${data.casino.all_game_types}" key ="key" val="value">
+								<:if test="in_array(${value}, ${data.casino.casino_game_types})">
+									available 
+								<:else>
+									unavailable ${value} = nume tip joc
+								</:if>
+							</:foreach>
+							
 							<div class="game_types">
 								<div class="game-type_container unavailable">
 									<img src="/public/build/images/slots.svg">
