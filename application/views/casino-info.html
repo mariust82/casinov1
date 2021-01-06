@@ -297,7 +297,7 @@
 							<span class="title-uppercase">Game Types</span>
 							<div class="game_types">
 								<:foreach var="${data.casino.all_game_types}" key ="key" val="value">
-								<:if test="strtolower(${value.name}) !== 'other' && strtolower(${value.name}) !== 'video slots'">
+								<:if test="(${value.name} !== 'Other') && (${value.name} !== 'Video Slots')">
 									<:if test="in_array(${value}, ${data.casino.casino_game_types})">
 										<:set var="game_type_class" val="available"/>
 									<:else>
