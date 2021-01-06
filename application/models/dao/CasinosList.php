@@ -49,7 +49,7 @@ class CasinosList
                 $object->withdraw_methods = $row["has_wm"];
             }
             if ($this->filter->getCasinoLabel() == 'Fast Payout') {
-                $object->withdrawal_timeframes = $row['end'];
+                $object->withdrawal_timeframes = $row['end'] == 0 ? "Instant" : "Up to ".$row['end']." hours";
             }
             $output[$row["id"]] = $object;
         }
