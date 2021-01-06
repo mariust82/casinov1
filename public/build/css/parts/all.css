@@ -11142,6 +11142,15 @@ hr.widget{
     width: 20%;
 
   }
+  .game-type_container:nth-of-type(4) {
+    order: 5;
+  }
+  .game-type_container:nth-of-type(1) {
+    order: 6;
+  }
+  .game-type_container:nth-of-type(5) {
+    order: 9;
+  }
   .info_list-title{
     width: 26%;
   }
