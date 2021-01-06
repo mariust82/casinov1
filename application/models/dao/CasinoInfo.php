@@ -72,6 +72,7 @@ class CasinoInfo
         $output->licenses = $this->getDerivedData("licenses", "license_id", $output->id);
         $output->certifiers = $this->getDerivedData("certifications", "certification_id", $output->id);
         $output->withdrawal_limits = $this->getWithdrawLimits($output->id, $primaryCurrencies);
+        $output->is_mobile = $this->isCasinoMobile($output->id);
         $output->withdrawal_timeframes = $this->getWithdrawTimeframes($output->id);
         $output->bonus_first_deposit = $this->getBonus($output->id, array("First Deposit Bonus"));
         $output->bonus_free = !empty($output->bonus_first_deposit) ? $this->getBonus($output->id, array("Free Spins","No Deposit Bonus","Free Play","Bonus Spins")) : null ;
@@ -86,6 +87,11 @@ class CasinoInfo
 
         $this->getCasinoDepositMethods($output->id);
         $this->result = $output;
+    }
+    
+    private function isCasinoMobile($id) {
+        $res = SQL("SELECT COUNT(id) FROM `casinos__play_versions` WHERE casino_id = {$id} AND play_version_id = 4")->toValue();
+        return $res > 0 ? TRUE : FALSE;
     }
 
     private function getAllLiveGameTypes($id)
