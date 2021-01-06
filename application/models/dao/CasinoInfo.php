@@ -82,6 +82,7 @@ class CasinoInfo
         $output->casino_deposit_methods =  $this->getCasinoDepositMethods($output->id);
         $output->casino_game_types = $this->getGameTypes($output->id);
         $this->appendCountryInfo($output, $countryId);
+        $output->all_game_types = $this->getAllGameTypes();
 
         $this->getCasinoDepositMethods($output->id);
         $this->result = $output;
@@ -387,5 +388,10 @@ class CasinoInfo
             $casino_deposit_methods_data[$value]['logo'] = '/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $value)).'.png';
         }
         return $casino_deposit_methods_data;
+    }
+
+    public function getAllGameTypes() {
+        $q ="SELECT t1.name FROM game_types AS t1";
+        return SQL($q)->toList();
     }
 }
