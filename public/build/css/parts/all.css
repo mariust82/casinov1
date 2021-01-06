@@ -11008,7 +11008,36 @@ hr.widget{
   opacity: 0.8;
   filter: grayscale(1) brightness(70%) hue-rotate(90deg);
 }
-
+.game-type_container:nth-of-type(1){
+  order: 6;
+}
+.game-type_container:nth-of-type(2){
+  order: 7;
+}
+.game-type_container:nth-of-type(3){
+  order: 3;
+}
+.game-type_container:nth-of-type(4){
+  order: 5;
+}
+.game-type_container:nth-of-type(5){
+  order: 8;
+}
+.game-type_container:nth-of-type(6){
+  order: 2;
+}
+.game-type_container:nth-of-type(7){
+  order: 10;
+}
+.game-type_container:nth-of-type(8){
+  order: 1;
+}
+.game-type_container:nth-of-type(9){
+  order: 9;
+}
+.game-type_container:nth-of-type(10){
+  order: 4;
+}
 @media(max-width: 890px){
   .game-type_container {
     width: 25%;
