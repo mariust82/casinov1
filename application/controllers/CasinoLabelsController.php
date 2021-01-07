@@ -41,6 +41,7 @@ class CasinoLabelsController extends CasinosCounterController
         $results = array();
         $results["total"] = $object->getTotal();
         $results["list"] = ($results["total"]>0 ? $object->getResults(CasinoSortCriteria::NONE, 1, $this->limit) : array());
+        $results['game_types'] = $object->getAllGameTypes();
         return $results;
     }
 }
