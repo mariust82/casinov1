@@ -329,21 +329,7 @@
 									<span class="open-popup-spec">Show all (10)</span>
 									<div class="popup-casino-spec">
 										<i class="icon-icon_unavailable close-popup-spec"></i>
-										<:if test="!empty(${data.all_game_types})">
-											<:foreach var="${data.all_game_types}" key ="key" val="value">
-												<:if test="(${value.name} !== 'Other') && (${value.name} !== 'Video Slots')">
-													<:if test="in_array(${value}, ${result.casino_game_types})">
-														<:set var="game_type_class" val="available"/>
-													<:else>
-														<:set var="game_type_class" val="unavailable"/>
-													</:if>
-													<div class="game-type-item ${game_type_class}">
-														<img alt="${value.name}" src="/public/build/images/${strtolower(str_replace(' ','_',${value.name}))}.svg">
-														<span class="game-type_name">${value.name}</span>
-													</div>
-												</:if>
-											</:foreach>
-										</:if>
+										
 										<div class="game-type-item unavailable">
 											<img src="/public/build/images/slots.svg">
 											<span class="game-type_name">Slots</span>
