@@ -24,7 +24,6 @@ abstract class CasinosListController extends BaseController
         $results = $this->getResults();
         $this->response->attributes("total_casinos", $results["total"]);
         $this->response->attributes("casinos", $results["list"]);
-        $this->response->attributes("all_game_types", $results["game_types"]);
         $this->response->attributes("page_type", $this->get_page_type());
         $this->response->attributes('bonus_free_type', $this->getAbbreviation($this->response->attributes('casinos')));
         $this->init();
@@ -46,7 +45,6 @@ abstract class CasinosListController extends BaseController
         $results = array();
         $results["total"] = $object->getTotal();
         $results["list"] = ($results["total"]>0 ? $object->getResults($this->response->attributes("sort_criteria"), 1, $this->limit) : array());
-        $results['game_types'] = $object->getAllGameTypes();
 
         return $results;
 
