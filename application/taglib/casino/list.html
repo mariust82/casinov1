@@ -7,7 +7,7 @@
 <:else>
 	<:set var="css_class" val="casino_items-view"/>
 </:if>
-<:if test="strtolower(${data.selected_entity}) !== 'index'">
+<:if test="strtolower(${data.page_type}) !== 'index' && strtolower(${data.page_type}) !== 'game_info'">
 	<:set var="data_total" val="${data.total_casinos}"/>
 <:else>
 	<:set var="data_total" val=""/>
