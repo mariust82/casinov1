@@ -10,6 +10,7 @@ class CasinosMenu
         "/casinos/best"=>"Best Casinos",
         "/casinos/mobile"=>"Mobile Casinos",
         "/casinos/low-wagering" => "Low Wagering Casinos",
+        "/casinos/fast-payout" => "Fast Payout Casinos",
         "/casinos/new"=>"New Casinos",
         "/casinos/stay-away"=>"Blacklisted Casinos",
         "/casinos/no-account-casinos" => "No Account Casinos",
