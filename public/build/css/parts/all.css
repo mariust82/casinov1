@@ -4210,6 +4210,10 @@ a:focus {
   }
 }
 
+.tooltipster-content .list-title{
+  font-weight:400;
+}
+
 .list-title-holder {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10555,10 +10559,13 @@ hr.widget{
   margin: 15px 0 10px 0;
   border-color: #a1acb1;
   max-height: 40px;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor:default;
+}
+.casinos-list .dashed.tooltipstered{
+  cursor: pointer;
 }
 .casinos-list .row .btn{
   width: 100%;
