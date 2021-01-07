@@ -3,11 +3,9 @@
 <:set var="isNoDeposit" val="(strtolower(${data.selected_entity}) == 'no deposit bonus')"/>
 <:set var="isLowWagering" val="(strtolower(${data.selected_entity}) == 'low wagering')"/>
 <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
-	<:set var="css_class" val="casinos-list data-add-container"/>
-	<:set var="data_total" val="${data.total_casinos}"/>
+	<:set var="css_class" val="casinos-list"/>
 <:else>
 	<:set var="css_class" val="casino_items-view"/>
-	<:set var="data_total" val=""/>
 </:if>
 <div class="list">
 	<div class="list-heading list-item">
@@ -34,7 +32,7 @@
 			</:if>
 		</:if>
 	</div>
-	<div class="list-body ${css_class}" data-total="${data_total}">
+	<div class="list-body ${css_class} data-add-container" data-total="${data.total_casinos}">
 		<:if test="${isLowWagering} || ${isNoDeposit}">
 			<:foreach var="$[data]" val="result" key="key">
 				<div class="slide-box loaded-item" data-slide="${key+1}">
