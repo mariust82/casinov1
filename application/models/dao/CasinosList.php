@@ -185,4 +185,9 @@ class CasinosList
         return array_values($output);
     }
 
+    public function getAllGameTypes() {
+        $q ="SELECT t1.name FROM game_types AS t1";
+        return SQL($q)->toList();
+    }
+
 }

@@ -186,6 +186,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
 
         detectIsKeyboardOpened();
         initMobileLayoutOfTable();
+        responsiveTables();
 
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
             $('html').addClass('ios-device');
@@ -321,7 +322,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
     }
 
     function initMobileLayoutOfTable() {
-        var _table = $('.plain-text table, .widget.table table');
+        var _table = $('.basic_table');
         var _tr = _table.find('tr');
         var _th = _table.find('th');
         var _isInited = false;
@@ -362,6 +363,74 @@ function changeViewElements(filterView,container,gridClass,listClass){
 
             $('.separate-table').remove();
             _isInited = false;
+        }
+    }
+
+    // if a table have more than 2 columns and the table has class ".advanced_table"
+    function responsiveTables(breakpoint) {
+        breakpoint = breakpoint || '800px';
+        if ($('.advanced_table').length > 0) {
+            $('.advanced_table').each(function(i) {
+                i++;
+                var className = 'jrt-instance-' + i;
+                var $this = $(this);
+                $this.addClass('jrt');
+                $this.addClass(className);
+                var respondHtml = '<style type="text/css">\n';
+                respondHtml +=
+                    '@media only screen and (max-width:' +
+                    breakpoint +
+                    ')  {\n';
+                if ($this.find('thead').length > 0) {
+                    $this.find('thead th').each(function(i) {
+                        var $tdText = $(this)
+                            .text()
+                            .replace(/\s+/g, ' ');
+                        i++;
+                        respondHtml +=
+                            '\t.' +
+                            className +
+                            '>tbody>tr>td.jrt-cell-' +
+                            i +
+                            ':before { content: "' +
+                            $tdText +
+                            '"; }\n';
+                    });
+                }
+                $this.find('tbody td').each(function(i) {
+                    $(this).wrapInner( "<em></em>" );
+                });
+                $this.find('tbody > tr').each(function(i) {
+                    var $this = $(this);
+                    i++;
+                    var arrColspan = [];
+                    var modIndex = [];
+                    $this.find('td').each(function(i, c, m) {
+                        var $this = $(this);
+                        i++;
+                        if (modIndex > 0) {
+                            modIndex[0];
+                            i++;
+                        }
+                        if (arrColspan > 0) {
+                            m = i + arrColspan.shift() - 1;
+                            modIndex.splice(0, 1);
+                            modIndex.push(m);
+                            i = m;
+                        }
+                        if ($this.is('[colspan]')) {
+                            c = parseInt($(this).prop('colspan'), 10);
+                            arrColspan.push(c);
+                        }
+                        $this.addClass('jrt-cell-' + i);
+                    });
+                });
+                if ($this.find('thead').length > 0) {
+                    respondHtml += '}\n';
+                    respondHtml += '</style>';
+                    $this.before(respondHtml);
+                }
+            });
         }
     }
 
