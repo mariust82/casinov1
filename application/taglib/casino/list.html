@@ -130,19 +130,25 @@
 								</:if>
 								<:if test="!empty(${result.bonus_first_deposit.min_deposit})">
 								<div class="row">
-									<span class="icon"></span>
+									<span class="icon">
+										<img src="/public/build/images/arrow-down-bold-circle.svg">
+									</span>
 									Minimum deposit: ${result.bonus_first_deposit.min_deposit}
 								</div>
 								</:if>
 								<:if test="!empty(${result.withdrawal_minimum})">
 								<div class="row">
-									<span class="icon"></span>
+									<span class="icon">
+										<img src="/public/build/images/arrow-up-bold-circle.svg">
+									</span>
 									Minimum withdrawal: ${result.withdrawal_minimum}
 								</div>
 								</:if>
 								<:if test="!empty(${result.withdrawal_timeframes})">
 								<div class="row">
-									<span class="icon"></span>
+									<span class="icon">
+										<img src="/public/build/images/timer_icon.svg">
+									</span>
 									Withdrawal timeframe: ${result.withdrawal_timeframes} 
 								</div>
 								</:if>

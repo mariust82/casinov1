@@ -11279,6 +11279,8 @@ hr.widget{
   border: 1px solid #E8EAF3;
   border-radius: 2px;
   padding: 15px 30px;
+  position: relative;
+  z-index: 3;
 }
 .wp-title,.spec-title{
   text-align: left;
