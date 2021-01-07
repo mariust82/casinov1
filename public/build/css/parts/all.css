@@ -12441,5 +12441,23 @@ h1.title + .subtitle{
     align-items: center;
     justify-content: center;
   }
+  .grid_view .casino_items-view .list-rating{
+    text-indent: unset !important;
+    width: 80px !important;
+    height: 20px !important;
+    font-size: 10px;
+    background: transparent !important;
+    color: #60686A !important;
+  }
+  .grid_view .casino_items-view  .list-rating-score{
+    width: 20px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    font-size: 12px;
+    color: #fff;
+  }
 }
+
 
