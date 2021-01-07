@@ -12481,3 +12481,63 @@ h1.title + .subtitle{
   color: #fff;
   transition: .3s ease;
 }
+
+@media only screen and (max-width: 800px) {
+     table.jrt{
+        opacity:1;
+        border:none;
+    }
+     table.jrt table,
+     table.jrt thead,
+     table.jrt tbody,
+     table.jrt th,
+     table.jrt td,
+     table.jrt tr {
+        display: block;
+        text-align: left;
+    }
+     table.jrt thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+     table.jrt tr {
+        margin:10px 0 0 0;
+        border:1px solid #e8eaf3;
+    }
+     table.jrt td {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        border: none;
+        padding:0;
+        background:none;
+        border:1px solid #e8eaf3;
+    }
+     table.jrt td:first-child {
+        margin:0;
+    }
+     table.jrt em {
+        padding: 14px 10px;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+    }
+     table.jrt td:before {
+        font-size:11px;
+        font-weight:bold;
+        text-transform:uppercase;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 28%;
+        padding: 14px 5px;
+        margin:0 2px 0 0;
+        background:#f5f5f5;
+        color:#60686a;
+    }
+}
