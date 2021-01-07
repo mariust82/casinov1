@@ -108,6 +108,17 @@ class CasinosList
         return array_values($output);
     }
     
+    private function getBankingMethodData($entity, $id)
+    {
+        return SQL("
+            SELECT
+            t2.name
+            FROM casinos__".$entity." AS t1
+            INNER JOIN banking_methods AS t2 ON t1.banking_method_id = t2.id
+            WHERE t1.casino_id = ".$id."
+        ")->toColumn();
+    }
+    
     private function getCasinoDepositMethods($casino_id)
     {
         $deposit_methods =  $this->getBankingMethodData("deposit_methods", $casino_id);
