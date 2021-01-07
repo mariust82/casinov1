@@ -36,6 +36,7 @@ class TopMenu
                 "Best Casinos" => "/casinos/best",
                 "Mobile Casinos" => "/casinos/mobile",
                 "Low Wagering Casinos" => "/casinos/low-wagering",
+                "Fast Payout Casinos" => " /casinos/fast-payout",
                 "eCOGRA Casinos" => "/features/ecogra-casinos",
                 "Blacklisted Casinos" => "/casinos/stay-away",
                 "No Account Casinos" => "/casinos/no-account-casinos",

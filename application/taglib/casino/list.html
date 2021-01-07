@@ -3,10 +3,13 @@
 <:set var="isNoDeposit" val="(strtolower(${data.selected_entity}) == 'no deposit bonus')"/>
 <:set var="isLowWagering" val="(strtolower(${data.selected_entity}) == 'low wagering')"/>
 <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
-	<:set var="css_class" val="casinos-list data-add-container"/>
-	<:set var="data_total" val="${data.total_casinos}"/>
+	<:set var="css_class" val="casinos-list"/>
 <:else>
 	<:set var="css_class" val="casino_items-view"/>
+</:if>
+<:if test="strtolower(${data.page_type}) !== 'index' && strtolower(${data.page_type}) !== 'game_info'">
+	<:set var="data_total" val="${data.total_casinos}"/>
+<:else>
 	<:set var="data_total" val=""/>
 </:if>
 <div class="list">
@@ -34,7 +37,7 @@
 			</:if>
 		</:if>
 	</div>
-	<div class="list-body ${css_class}" data-total="${data_total}">
+	<div class="list-body ${css_class} data-add-container" data-total="${data_total}">
 		<:if test="${isLowWagering} || ${isNoDeposit}">
 			<:foreach var="$[data]" val="result" key="key">
 				<div class="slide-box loaded-item" data-slide="${key+1}">
@@ -130,19 +133,25 @@
 								</:if>
 								<:if test="!empty(${result.bonus_first_deposit.min_deposit})">
 								<div class="row">
-									<span class="icon"></span>
+									<span class="icon">
+										<img src="/public/build/images/arrow-down-bold-circle.svg">
+									</span>
 									Minimum deposit: ${result.bonus_first_deposit.min_deposit}
 								</div>
 								</:if>
 								<:if test="!empty(${result.withdrawal_minimum})">
 								<div class="row">
-									<span class="icon"></span>
+									<span class="icon">
+										<img src="/public/build/images/arrow-up-bold-circle.svg">
+									</span>
 									Minimum withdrawal: ${result.withdrawal_minimum}
 								</div>
 								</:if>
 								<:if test="!empty(${result.withdrawal_timeframes})">
 								<div class="row">
-									<span class="icon"></span>
+									<span class="icon">
+										<img src="/public/build/images/timer_icon.svg">
+									</span>
 									Withdrawal timeframe: ${result.withdrawal_timeframes} 
 								</div>
 								</:if>
@@ -182,6 +191,8 @@
 								<div class="list-item-flex">
 									<:if test="'$[type]' == 'ESTABLISHED'">
 										<span class="upper">${formatDate(${result.date_established})}</span>
+                                                                        <:elseif test="'$[type]' == 'WITHDRAWAL'">
+										<span class="upper">${result.withdrawal_timeframes}</span>
 									<:else>
 										<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
 											${result.softwares.0}
@@ -280,7 +291,7 @@
 
 					<div class="list-item-cell list-flex list-item-cell-buttons button-wrapper">
 						<a class="cta-btn btn-reviews">
-							Player Reviews ()
+							Player Reviews <:if test="${result.comments} > 0">(${result.comments})</:if>
 						</a>
 						<:if test="${result.status}=='Blacklisted'">
 							<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="cta-btn btn-blk btn-err">
@@ -318,6 +329,21 @@
 									<span class="open-popup-spec">Show all (10)</span>
 									<div class="popup-casino-spec">
 										<i class="icon-icon_unavailable close-popup-spec"></i>
+										<:if test="!empty(${data.all_game_types})">
+											<:foreach var="${data.all_game_types}" key ="key" val="value">
+												<:if test="(${value.name} !== 'Other') && (${value.name} !== 'Video Slots')">
+													<:if test="in_array(${value}, ${result.casino_game_types})">
+														<:set var="game_type_class" val="available"/>
+													<:else>
+														<:set var="game_type_class" val="unavailable"/>
+													</:if>
+													<div class="game-type-item ${game_type_class}">
+														<img alt="${value.name}" src="/public/build/images/${strtolower(str_replace(' ','_',${value.name}))}.svg">
+														<span class="game-type_name">${value.name}</span>
+													</div>
+												</:if>
+											</:foreach>
+										</:if>
 										<div class="game-type-item unavailable">
 											<img src="/public/build/images/slots.svg">
 											<span class="game-type_name">Slots</span>

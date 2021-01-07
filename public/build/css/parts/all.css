@@ -11008,7 +11008,36 @@ hr.widget{
   opacity: 0.8;
   filter: grayscale(1) brightness(70%) hue-rotate(90deg);
 }
-
+.game-type_container:nth-of-type(1){
+  order: 6;
+}
+.game-type_container:nth-of-type(2){
+  order: 7;
+}
+.game-type_container:nth-of-type(3){
+  order: 3;
+}
+.game-type_container:nth-of-type(4){
+  order: 5;
+}
+.game-type_container:nth-of-type(5){
+  order: 8;
+}
+.game-type_container:nth-of-type(6){
+  order: 2;
+}
+.game-type_container:nth-of-type(7){
+  order: 10;
+}
+.game-type_container:nth-of-type(8){
+  order: 1;
+}
+.game-type_container:nth-of-type(9){
+  order: 9;
+}
+.game-type_container:nth-of-type(10){
+  order: 4;
+}
 @media(max-width: 890px){
   .game-type_container {
     width: 25%;
@@ -11017,35 +11046,35 @@ hr.widget{
     justify-content: left;
   }
   .game-type_container:nth-of-type(1){
-    order: 1;
+    order: 5;
   }
   .game-type_container:nth-of-type(2){
-    order: 2;
+    order: 6;
   }
   .game-type_container:nth-of-type(3){
     order: 3;
   }
   .game-type_container:nth-of-type(4){
-    order: 4;
-  }
-  .game-type_container:nth-of-type(5){
     order: 9;
   }
+  .game-type_container:nth-of-type(5){
+    order: 7;
+  }
   .game-type_container:nth-of-type(6){
-    order: 5;
+    order: 2;
   }
   .game-type_container:nth-of-type(7){
-    order: 6;
+    order: 10;
+    width: 26%;
   }
   .game-type_container:nth-of-type(8){
-    order: 7;
+    order: 1;
   }
   .game-type_container:nth-of-type(9){
     order: 8;
   }
   .game-type_container:nth-of-type(10){
-    order: 10;
-    width: 26%;
+    order: 4;
   }
   .row-details{
     flex-wrap: wrap;
@@ -11058,6 +11087,22 @@ hr.widget{
   }
 }
 @media (max-width: 690px){
+  .software_image {
+    margin-right: 0px;
+    width: calc(33% - 20px);
+  }
+  .software_image:not(:nth-of-type(3n+1)) {
+    margin-right: 20px;
+  }
+  .software_image img {
+    width: 100%;
+    height: auto;
+  }
+  .carousel .show_all-button {
+    max-width: calc(100% - 20px);
+    margin: auto;
+    margin-top: 10px;
+  }
   .casino-details_header{
     flex-wrap: wrap;
     margin-bottom: 20px;
@@ -11107,14 +11152,23 @@ hr.widget{
     margin: 0;
     /* margin-left: -20px; */
   }
-  .game-type_container:nth-of-type(1), .game-type_container:nth-of-type(6), .game-type_container:nth-of-type(5) {
+  .game-type_container:nth-of-type(8), .game-type_container:nth-of-type(4), .game-type_container:nth-of-type(5) {
     text-align: left;
     justify-content: left;
     width: 20%;
 
   }
+  .game-type_container:nth-of-type(4) {
+    order: 5;
+  }
+  .game-type_container:nth-of-type(1) {
+    order: 6;
+  }
+  .game-type_container:nth-of-type(5) {
+    order: 9;
+  }
   .info_list-title{
-    width: 28%;
+    width: 26%;
   }
 }
 
@@ -11225,6 +11279,8 @@ hr.widget{
   border: 1px solid #E8EAF3;
   border-radius: 2px;
   padding: 15px 30px;
+  position: relative;
+  z-index: 3;
 }
 .wp-title,.spec-title{
   text-align: left;
@@ -11262,8 +11318,20 @@ hr.widget{
   height: 16px;
   margin-right: 10px;
 }
+.grid_view .casino-info_container .row .icon img{
+  margin: 0;
+  width: 16px;
+  height: 16px;
+}
 .casino-info_container .row .icon{
   margin-right: 10px;
+  height: 16px;
+  width: 16px;
+  display: flex;
+  align-items: center;
+}
+.icon-box_view.active svg rect{
+  fill: #fff;
 }
 .casino-specifications{
   width: 100%;
@@ -11838,12 +11906,34 @@ hr.widget{
   margin-right: 10px;
 }
 .software_image{
-  margin-right: 20px;
+  margin-right: 22px;
 }
 .game-type_container.unavailable{
   margin-right: 0;
 }
-
+.software_providers-section .software_tooltip {
+  padding: 4px 8px;
+  margin: 0;
+  display: inline-flex;
+  text-transform: capitalize;
+  font-size: 12px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #E8EAF3;
+}
+.software_providers-section .software_tooltip:after,
+.software_providers-section .software_tooltip:before {
+  content: unset;
+}
+.software_providers-section{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.software_providers-section .title-uppercase{
+  width: 100%;
+}
 .content_popup .bonus-box-list .list-item-trun{
   font-weight: 600;
   color: #60686a;
@@ -12352,3 +12442,4 @@ h1.title + .subtitle{
     justify-content: center;
   }
 }
+

@@ -21,6 +21,7 @@ class Casino extends Entity
     public $affiliate_program;
     public $affiliate_link;
     public $tc_link;
+    public $comments;
     public $withdrawal_minimum;
     public $withdrawal_limits;
     public $withdrawal_timeframes;
@@ -41,5 +42,6 @@ class Casino extends Entity
     public $deposit_minimum;
     public $welcome_package;
     public $casino_deposit_methods;
+    public $is_mobile;
     public $casino_game_types;
 }

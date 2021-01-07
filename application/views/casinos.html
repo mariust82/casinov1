@@ -33,12 +33,12 @@
                     <casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
                     <:elseif test="${data.selected_entity} == 'Low Wagering'">
                         <casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
+                    <:elseif test="${data.selected_entity} == 'Fast Payout'">
+                        <casino:list type="WITHDRAWAL" id="1" data="${data.casinos}"/>
                     <:else>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
                     </:if>
-                    <:if test="strtolower(${data.selected_entity}) !== 'no deposit bonus' && strtolower(${data.selected_entity}) !== 'low wagering'">
-                        <div class="data-add-container" data-total="${data.total_casinos}"></div>
-                    </:if>
+                    
                 </div>
             </div>
             <filter:reset/>

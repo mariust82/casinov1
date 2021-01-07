@@ -43,9 +43,13 @@ class CasinosList
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->score_class = $this->helper->getScoreClass($object->rating);
+            $object->comments = $this->countCasinoComments($object->id);
             if ($this->filter->getBankingMethod()) {
                 $object->deposit_methods = $row["has_dm"];
                 $object->withdraw_methods = $row["has_wm"];
+            }
+            if ($this->filter->getCasinoLabel() == 'Fast Payout') {
+                $object->withdrawal_timeframes = $row['end'] == 0 ? "Instant" : "Up to ".$row['end']." hours";
             }
             $output[$row["id"]] = $object;
         }
@@ -112,6 +116,10 @@ class CasinosList
         $queryGenerator = new CasinosListQuery($this->filter, array($fields), null, 0, '', false);
         $query = $queryGenerator->getQuery();
         return SQL($query)->toValue();
+    }
+    
+    private function countCasinoComments($id) {
+        return SQL("SELECT COUNT(id) FROM `casinos__reviews` WHERE casino_id = {$id} AND status != 3")->toValue();
     }
 
     public function getManufacturers($sortBy, $limit = null, $offset = "") {
@@ -188,6 +196,11 @@ class CasinosList
 
         return array_values($output);
     }
+    public function getAllGameTypes() {
+        $q ="SELECT t1.name FROM game_types AS t1";
+        return SQL($q)->toList();
+    }
+
     public function getAllGameTypes() {
         $q ="SELECT t1.name FROM game_types AS t1";
         return SQL($q)->toList();
