@@ -115,7 +115,7 @@
 									</span>
 								</div>
 								</:if>
-								<:if test="isset(${result.is_currency_accepted})">
+								<:if test="!empty(${result.currencies})">
 								<div class="row">
 									<:if test="${result.is_currency_accepted} == 1">
 									<i class="icon icon-icon_available"></i>
@@ -191,7 +191,7 @@
 								<div class="list-item-flex">
 									<:if test="'$[type]' == 'ESTABLISHED'">
 										<span class="upper">${formatDate(${result.date_established})}</span>
-                                    <:elseif test="'$[type]' == 'WITHDRAWAL'">
+                                                                        <:elseif test="'$[type]' == 'WITHDRAWAL'">
 										<span class="upper">${result.withdrawal_timeframes}</span>
 									<:else>
 										<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
