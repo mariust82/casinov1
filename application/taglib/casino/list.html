@@ -335,11 +335,10 @@
 									<span class="open-popup-spec">Show all (10)</span>
 									<div class="popup-casino-spec">
 										<i class="icon-icon_unavailable close-popup-spec"></i>
-										<div class="test">${print_r(${result.casino_game_types})}</div>
 										<:if test="!empty(${data.all_game_types})">	
 											<:foreach var="${data.all_game_types}" key ="key" val="value">	
 												<:if test="(${value.name} !== 'Other') && (${value.name} !== 'Video Slots') && !empty(${result.casino_game_types})">	
-													<:if test="in_array(${value.name}, ${result.casino_game_types})">	
+													<:if test="in_array(strtolower(${value.name}), strtolower({result.casino_game_types}))">	
 														<:set var="game_type_class" val="available"/>	
 													<:else>	
 														<:set var="game_type_class" val="unavailable"/>	
