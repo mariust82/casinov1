@@ -200,10 +200,4 @@ class CasinosList
         $q ="SELECT t1.name FROM game_types AS t1";
         return SQL($q)->toList();
     }
-
-    public function getAllGameTypes() {
-        $q ="SELECT t1.name FROM game_types AS t1";
-        return SQL($q)->toList();
-    }
-
 }
