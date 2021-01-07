@@ -44,7 +44,7 @@ class CasinosList
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->score_class = $this->helper->getScoreClass($object->rating);
-            $object->casino_game_types = $this->getGameTypes($output->id);
+            $object->casino_game_types = $this->getGameTypes($object->id);
             $object->comments = $this->countCasinoComments($object->id);
             $object->casino_deposit_methods =  $this->getCasinoDepositMethods($object->id);
             $object->is_currency_accepted = $row['currency_supported'];
