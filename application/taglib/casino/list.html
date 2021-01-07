@@ -291,7 +291,7 @@
 
 					<div class="list-item-cell list-flex list-item-cell-buttons button-wrapper">
 						<a class="cta-btn btn-reviews">
-							Player Reviews (${result.comments})
+							Player Reviews <:if test="count(${result.comments}) > 0">(${result.comments})</:if>
 						</a>
 						<:if test="${result.status}=='Blacklisted'">
 							<a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="cta-btn btn-blk btn-err">
