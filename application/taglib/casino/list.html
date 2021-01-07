@@ -158,6 +158,7 @@
 							</div>
 							<div class="welcome_package-container">
 								<span class="wp-title">Welcome Package 
+									<:if test="(isset(${result.bonus_free}) && ${result.bonus_free} !== null) || (isset(${result.bonus_first_deposit}))">
 									<span class="welcome_package-popup-trigger">i</span>
 									<div class="welcome_package-popup">
 										<i class="icon-icon_unavailable close-popup-wp"></i>
@@ -174,12 +175,17 @@
 											</div>
 										</div>
 									</div>
+									</:if>
 								</span>
-								<:if test="isset(${result.bonus_free}) && ${result.bonus_free} !== null">
-								<span class="wp-bonus-title free">${result.bonus_free.amount} ${result.bonus_free.type}</span>
-								</:if>
-								<:if test="isset(${result.bonus_first_deposit})">
-								<span class="wp-bonus-title">${result.bonus_first_deposit.amount} ${result.bonus_first_deposit.type}</span>
+								<:if test="(isset(${result.bonus_free}) && ${result.bonus_free} !== null) || (isset(${result.bonus_first_deposit}))">
+									<:if test="isset(${result.bonus_free}) && ${result.bonus_free} !== null">
+									<span class="wp-bonus-title free">${result.bonus_free.amount} ${result.bonus_free.type}</span>
+									</:if>
+									<:if test="isset(${result.bonus_first_deposit})">
+									<span class="wp-bonus-title">${result.bonus_first_deposit.amount} ${result.bonus_first_deposit.type}</span>
+									</:if>
+								<:else>
+									<span class="wp-bonus-title">No welcome bonuses.</span>
 								</:if>
 							</div>
 						</div>
@@ -290,7 +296,7 @@
 					</:if>
 
 					<div class="list-item-cell list-flex list-item-cell-buttons button-wrapper">
-						<a class="cta-btn btn-reviews">
+						<a href="/reviews/${normalize(${result.name})}-review" class="cta-btn btn-reviews">
 							Player Reviews <:if test="${result.comments} > 0">(${result.comments})</:if>
 						</a>
 						<:if test="${result.status}=='Blacklisted'">
@@ -329,47 +335,22 @@
 									<span class="open-popup-spec">Show all (10)</span>
 									<div class="popup-casino-spec">
 										<i class="icon-icon_unavailable close-popup-spec"></i>
+										<:if test="!empty(${data.all_game_types})">	
+											<:foreach var="${data.all_game_types}" key ="key" val="value">	
+												<:if test="(${value.name} !== 'Other') && (${value.name} !== 'Video Slots') && !empty(${result.casino_game_types})">	
+													<:if test="in_array(${value.name}, ${result.casino_game_types})">	
+														<:set var="game_type_class" val="available"/>	
+													<:else>	
+														<:set var="game_type_class" val="unavailable"/>	
+													</:if>	
+													<div class="game-type-item ${game_type_class}">	
+														<img alt="${value.name}" src="/public/build/images/${strtolower(str_replace(' ','_',${value.name}))}.svg">	
+														<span class="game-type_name">${value.name}</span>	
+													</div>	
+												</:if>	
+											</:foreach>	
+										</:if>
 										
-										<div class="game-type-item unavailable">
-											<img src="/public/build/images/slots.svg">
-											<span class="game-type_name">Slots</span>
-										</div>
-										<div class="game-type-item">
-											<img src="/public/build/images/roulette.svg">
-											<span class="game-type_name">Roulette</span>
-										</div>
-										<div class="game-type-item">
-											<img src="/public/build/images/blackjack.svg">
-											<span class="game-type_name">Blackjack</span>
-										</div>
-										<div class="game-type-item">
-											<img src="/public/build/images/video_poker.svg">
-											<span class="game-type_name">Video Poker</span>
-										</div>
-										<div class="game-type-item">
-											<img src="/public/build/images/craps.svg">
-											<span class="game-type_name">Craps</span>
-										</div>
-										<div class="game-type-item">
-											<img src="/public/build/images/baccarat.svg">
-											<span class="game-type_name">Baccarat</span>
-										</div>
-										<div class="game-type-item">
-											<img src="/public/build/images/bingo.svg">
-											<span class="game-type_name">Bingo</span>
-										</div>
-										<div class="game-type-item">
-											<img src="/public/build/images/Keno.svg">
-											<span class="game-type_name">Keno</span>
-										</div>
-										<div class="game-type-item">
-											<img src="/public/build/images/table_games.svg">
-											<span class="game-type_name">Table Games</span>
-										</div>
-										<div class="game-type-item">
-											<img src="/public/build/images/scratch_cards.svg">
-											<span class="game-type_name">Scratch Cards</span>
-										</div>
 									</div>
 								</div>
 							</div>							
