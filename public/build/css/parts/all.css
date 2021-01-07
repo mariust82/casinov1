@@ -11087,6 +11087,22 @@ hr.widget{
   }
 }
 @media (max-width: 690px){
+  .software_image {
+    margin-right: 0px;
+    width: calc(33% - 20px);
+  }
+  .software_image:not(:nth-of-type(3n+1)) {
+    margin-right: 20px;
+  }
+  .software_image img {
+    width: 100%;
+    height: auto;
+  }
+  .carousel .show_all-button {
+    max-width: calc(100% - 20px);
+    margin: auto;
+    margin-top: 10px;
+  }
   .casino-details_header{
     flex-wrap: wrap;
     margin-bottom: 20px;
