@@ -11328,6 +11328,7 @@ hr.widget{
   height: 16px;
   width: 16px;
   display: flex;
+  align-items: center;
 }
 .icon-box_view.active svg rect{
   fill: #fff;
