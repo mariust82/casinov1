@@ -11510,12 +11510,39 @@ hr.widget{
   font-size: 13px;
   margin-bottom: 5px;
 }
+.popup-casino-spec:before {
+  content: "";
+  border-width: 0 12px 15px 12px!important;
+  border-color: rgba(0,0,0,.06) transparent rgba(0,0,0,.06);
+  right: 0;
+  left: 0;
+  position: absolute;
+  margin: auto;
+  bottom: 100%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+.popup-casino-spec:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 100%;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 11px 14px 11px;
+  border-color: transparent transparent #fff transparent;
+}
 @media(max-width:1250px){
   .popup-casino-spec{
     right: 0;
     left: unset;
     transform: translateX(0);
   }
+
 }
 @media(max-width: 988px){
   .grid_view .casino_items-view .list-item{

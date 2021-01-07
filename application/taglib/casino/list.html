@@ -158,6 +158,7 @@
 							</div>
 							<div class="welcome_package-container">
 								<span class="wp-title">Welcome Package 
+									<:if test="(isset(${result.bonus_free}) && ${result.bonus_free} !== null) || (isset(${result.bonus_first_deposit}))">
 									<span class="welcome_package-popup-trigger">i</span>
 									<div class="welcome_package-popup">
 										<i class="icon-icon_unavailable close-popup-wp"></i>
@@ -174,12 +175,17 @@
 											</div>
 										</div>
 									</div>
+									</:if>
 								</span>
-								<:if test="isset(${result.bonus_free}) && ${result.bonus_free} !== null">
-								<span class="wp-bonus-title free">${result.bonus_free.amount} ${result.bonus_free.type}</span>
-								</:if>
-								<:if test="isset(${result.bonus_first_deposit})">
-								<span class="wp-bonus-title">${result.bonus_first_deposit.amount} ${result.bonus_first_deposit.type}</span>
+								<:if test="(isset(${result.bonus_free}) && ${result.bonus_free} !== null) || (isset(${result.bonus_first_deposit}))">
+									<:if test="isset(${result.bonus_free}) && ${result.bonus_free} !== null">
+									<span class="wp-bonus-title free">${result.bonus_free.amount} ${result.bonus_free.type}</span>
+									</:if>
+									<:if test="isset(${result.bonus_first_deposit})">
+									<span class="wp-bonus-title">${result.bonus_first_deposit.amount} ${result.bonus_first_deposit.type}</span>
+									</:if>
+								<:else>
+									<span class="wp-bonus-title">No welcome bonuses.</span>
 								</:if>
 							</div>
 						</div>
@@ -290,7 +296,7 @@
 					</:if>
 
 					<div class="list-item-cell list-flex list-item-cell-buttons button-wrapper">
-						<a class="cta-btn btn-reviews">
+						<a href="/reviews/${normalize(${result.name})}-review" class="cta-btn btn-reviews">
 							Player Reviews <:if test="${result.comments} > 0">(${result.comments})</:if>
 						</a>
 						<:if test="${result.status}=='Blacklisted'">
