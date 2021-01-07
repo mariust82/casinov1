@@ -63,6 +63,8 @@ class CasinosListQuery
     {
         if ($filter->getCurrencyAccepted()) {
             $query->joinInner("casinos__currencies", "t15")->on(["t1.id" => "t15.casino_id","t15.currency_id" => $filter->currency_id."\n"]);
+        } else {
+            $query->joinLeft("casinos__currencies", "t15")->on(["t1.id" => "t15.casino_id","t15.currency_id" => $filter->currency_id."\n"]);
         }
 
         if ($filter->getLanguageAccepted()) {
