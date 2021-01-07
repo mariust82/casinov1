@@ -316,7 +316,7 @@
 								Visit
 							</a>
 						</:if>
-						
+						<:if test="strtolower(${data.page_type}) !== 'index' && strtolower(${data.page_type}) !== 'game_info'">
 						<div class="casino-specifications">
 							<span class="spec-title">Game Types</span>
 							<div class="spec-row">
@@ -428,6 +428,7 @@
 								</:if>
 							</div>
 						</div>
+						</:if>
 					</div>
 				</div>
 				<:set var="i" val="${i}+1"/>
