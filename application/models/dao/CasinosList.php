@@ -44,6 +44,7 @@ class CasinosList
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->score_class = $this->helper->getScoreClass($object->rating);
+            $object->comments = $this->countCasinoComments($object->id);
             if ($this->filter->getBankingMethod()) {
                 $object->deposit_methods = $row["has_dm"];
                 $object->withdraw_methods = $row["has_wm"];
@@ -116,6 +117,10 @@ class CasinosList
         $queryGenerator = new CasinosListQuery($this->filter, array($fields), null, 0, '', false);
         $query = $queryGenerator->getQuery();
         return SQL($query)->toValue();
+    }
+    
+    private function countCasinoComments($id) {
+        return SQL("SELECT COUNT(id) FROM `casinos__reviews` WHERE casino_id = {$id} AND status != 3")->toValue();
     }
 
     public function getTopPicks($country) {
