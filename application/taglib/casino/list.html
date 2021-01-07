@@ -338,7 +338,7 @@
 										<:if test="!empty(${data.all_game_types})">	
 											<:foreach var="${data.all_game_types}" key ="key" val="value">	
 												<:if test="(${value.name} !== 'Other') && (${value.name} !== 'Video Slots') && !empty(${result.casino_game_types})">	
-													<:if test="in_array(${value.name}, ${result.casino_game_types})">	
+													<:if test="in_array(${value}, ${result.casino_game_types})">	
 														<:set var="game_type_class" val="available"/>	
 													<:else>	
 														<:set var="game_type_class" val="unavailable"/>	
