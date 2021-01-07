@@ -20,11 +20,11 @@
         <:else>
             <:set var="grid_view_class" val="list-view"/>
         </:if>
-        <div class="data-container-holder ${grid_view_class}">
+        <div class="data-container-holder ${grid_view_class}"
         <:if test="isset(${data.limit_per_page})">
              data-limit-per-page="${data.limit_per_page}"
         </:if>
-        
+        >
             <div class="holder">
                 <:set var="low_wagering_class" val="(${data.selected_entity} == 'Low Wagering' ? 'low_wagering_list' : ''  )"/>
                 <div class="data-container ${low_wagering_class}" data-type="${data.page_type}" data-type-value="${data.selected_entity}">
@@ -38,7 +38,9 @@
                     <:else>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
                     </:if>
-                    
+                    <:if test="strtolower(${data.selected_entity}) !== 'no deposit bonus' && strtolower(${data.selected_entity}) !== 'low wagering'">
+                        <div class="data-add-container" data-total="${data.total_casinos}"></div>
+                    </:if>
                 </div>
             </div>
             <filter:reset/>
