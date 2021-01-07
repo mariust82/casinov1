@@ -70,6 +70,8 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
                 return CasinoSortCriteria::NEWEST;
             } elseif ($this->request->parameters("label") == "Low Wagering") {
                 return CasinoSortCriteria::WAGERING;
+            } elseif ($this->request->parameters("label") == "Fast Payout") {
+                return CasinoSortCriteria::FAST_PAYOUT;
             } elseif ($this->request->parameters("label") == "No Account Casinos") {
                 return CasinoSortCriteria::NO_ACCOUNT;
             } elseif (!empty($this->request->attributes('validation_results')->get('country'))) {
