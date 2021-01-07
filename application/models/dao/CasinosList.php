@@ -45,6 +45,7 @@ class CasinosList
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->score_class = $this->helper->getScoreClass($object->rating);
             $object->comments = $this->countCasinoComments($object->id);
+            $object->casino_deposit_methods =  $this->getCasinoDepositMethods($object->id);
             if ($this->filter->getBankingMethod()) {
                 $object->deposit_methods = $row["has_dm"];
                 $object->withdraw_methods = $row["has_wm"];
@@ -104,6 +105,21 @@ class CasinosList
         }
 
         return array_values($output);
+    }
+    
+    private function getCasinoDepositMethods($casino_id)
+    {
+        $deposit_methods =  $this->getBankingMethodData("deposit_methods", $casino_id);
+        $withdraw_methods =   $this->getBankingMethodData("withdraw_methods", $casino_id);
+        $casino_deposit_methods = array_merge($deposit_methods, $withdraw_methods);
+
+        $casino_deposit_methods_data = [];
+        foreach ($casino_deposit_methods as $key => $value) {
+            $casino_deposit_methods_data[$value]['deposit_methods'] = in_array($value, $deposit_methods);
+            $casino_deposit_methods_data[$value]['withdraw_methods'] = in_array($value, $withdraw_methods);
+            $casino_deposit_methods_data[$value]['logo'] = '/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $value)).'.png';
+        }
+        return $casino_deposit_methods_data;
     }
 
     public function getTotal()
