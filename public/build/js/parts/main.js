@@ -152,6 +152,8 @@ function changeViewElements(filterView,container,gridClass,listClass){
     var ww = $(window).width();
 
     $(document).ready(function () {
+
+
         //Load Defer Scripts and Binding
         if ($('.links-nav').length) {
             loadScripts(['bindings', 'assets/swiper']);
@@ -244,6 +246,32 @@ function changeViewElements(filterView,container,gridClass,listClass){
                 $('.welcome_package-popup').removeClass('active');
             });
         }
+
+      /*  if ($('#filters').length > 0) {
+            new Filters($('#filters'));
+        }*/
+
+        var filter = $('#filters').data('filter');
+        var entity = $('#filters').data('entity');
+
+        $.ajax({
+            url: '/filter-software',
+            type: 'GET',
+            data: {
+                filter: filter,
+                entity: entity
+            },
+            dataType: 'html'
+        })
+            .done(function (data) {
+                $('#filters .select.software').append(data);
+            })
+            .fail(function () {
+                // console.log("error");
+            })
+            .always(function () {
+                // console.log("complete");
+            });
     });
 
     $(document).ajaxComplete(function() {
@@ -492,3 +520,4 @@ function raiseCasinoPage(key) {
         COUNTRY_CURR_PAGE++;
     }
 }
+

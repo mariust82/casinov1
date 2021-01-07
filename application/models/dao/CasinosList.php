@@ -29,7 +29,6 @@ class CasinosList
             $offset
         );
         $query = $queryGenerator->getQuery();
-        // execute query
         $resultSet = SQL($query);
 
         while ($row = $resultSet->toRow()) {
@@ -115,6 +114,35 @@ class CasinosList
         return SQL($query)->toValue();
     }
 
+    public function getManufacturers($sortBy, $limit = null, $offset = "") {
+        $output = array();
+        $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
+
+        $queryGenerator = new CasinosListQuery(
+            $this->filter,
+            $fields,
+            $sortBy,
+            $limit,
+            $offset
+        );
+        $query = $queryGenerator->getQuery();
+       // var_dump($query); die;
+        $resultSet = SQL($query);
+        while ($row = $resultSet->toRow()) {
+            $output[] = $row["id"];
+        }
+
+        $query = " 
+                  SELECT t1.id, t1.name as unit, COUNT(t1.id) AS nr
+                  FROM game_manufacturers as t1
+                  INNER JOIN casinos__game_manufacturers AS t2 ON t1.id = t2.game_manufacturer_id AND t2.casino_id IN (".implode(",", array_values($output)).")
+                  WHERE t1.is_open = 1
+                  GROUP by t1.name
+                  ORDER By t1.priority DESC";
+
+        return SQL($query)->toList();
+    }
+
     public function getTopPicks($country) {
         $resultSet = SQL("SELECT t2.*, IF(t3.casino_id IS NOT NULL, 1, 0) AS is_country_supported FROM `top_picks` AS `t1` 
         INNER JOIN `casinos` AS `t2` ON (`t1`.`n_c_id` = `t2`.`id`) 
@@ -159,6 +187,10 @@ class CasinosList
         }
 
         return array_values($output);
+    }
+    public function getAllGameTypes() {
+        $q ="SELECT t1.name FROM game_types AS t1";
+        return SQL($q)->toList();
     }
 
 }
