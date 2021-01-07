@@ -19,7 +19,7 @@ class CasinosList
     public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "")
     {
         $output = array();
-        $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
+        $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported","IF(t15.id IS NOT NULL,1,0) AS currency_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
 
         $queryGenerator = new CasinosListQuery(
             $this->filter,
@@ -45,6 +45,7 @@ class CasinosList
             $object->score_class = $this->helper->getScoreClass($object->rating);
             $object->comments = $this->countCasinoComments($object->id);
             $object->casino_deposit_methods =  $this->getCasinoDepositMethods($object->id);
+            $object->is_currency_accepted = $row['currency_supported'];
             if ($this->filter->getBankingMethod()) {
                 $object->deposit_methods = $row["has_dm"];
                 $object->withdraw_methods = $row["has_wm"];
@@ -104,6 +105,17 @@ class CasinosList
         }
 
         return array_values($output);
+    }
+    
+    private function getBankingMethodData($entity, $id)
+    {
+        return SQL("
+            SELECT
+            t2.name
+            FROM casinos__".$entity." AS t1
+            INNER JOIN banking_methods AS t2 ON t1.banking_method_id = t2.id
+            WHERE t1.casino_id = ".$id."
+        ")->toColumn();
     }
     
     private function getCasinoDepositMethods($casino_id)
