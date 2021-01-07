@@ -11318,8 +11318,19 @@ hr.widget{
   height: 16px;
   margin-right: 10px;
 }
+.grid_view .casino-info_container .row .icon img{
+  margin: 0;
+  width: 16px;
+  height: 16px;
+}
 .casino-info_container .row .icon{
   margin-right: 10px;
+  height: 16px;
+  width: 16px;
+  display: flex;
+}
+.icon-box_view.active svg rect{
+  fill: #fff;
 }
 .casino-specifications{
   width: 100%;
