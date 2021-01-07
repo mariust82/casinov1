@@ -4,7 +4,6 @@
 <:set var="isLowWagering" val="(strtolower(${data.selected_entity}) == 'low wagering')"/>
 <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
 	<:set var="css_class" val="casinos-list"/>
-	<:set var="data_total" val="${data.total_casinos}"/>
 <:else>
 	<:set var="css_class" val="casino_items-view"/>
 </:if>
