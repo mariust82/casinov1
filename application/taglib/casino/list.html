@@ -115,6 +115,7 @@
 									</span>
 								</div>
 								</:if>
+								<:if test="!empty(${result.currencies})">
 								<div class="row">
 									<:if test="${result.is_currency_accepted} == 1">
 									<i class="icon icon-icon_available"></i>
@@ -129,6 +130,7 @@
 										</:if>
 									</span>
 								</div>
+								</:if>
 								<:if test="!empty(${result.bonus_first_deposit.min_deposit})">
 								<div class="row">
 									<span class="icon">
