@@ -3996,7 +3996,7 @@ a:focus {
   .grid_view .casino_items-view .list-rating{
     text-indent: unset !important;
     width: 80px !important;
-    height: 20px !important;
+    height: 21px !important;
     font-size: 10px;
     background: transparent !important;
     color: #60686A !important;
@@ -4011,7 +4011,7 @@ a:focus {
     color: #fff;
   }
   .grid_view .casino_items-view .list-rating-score-mobile {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -4029,6 +4029,9 @@ a:focus {
     width: 22px;
     height: 15px;
     line-height: 15px;
+  }
+  .grid_view .casino_items-view .list-rating-score-mobile {
+    display: none !important;
   }
 }
 
