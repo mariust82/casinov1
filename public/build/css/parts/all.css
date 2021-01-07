@@ -4010,9 +4010,19 @@ a:focus {
     font-size: 12px;
     color: #fff;
   }
+  .grid_view .casino_items-view .list-rating-score-mobile {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 690px) {
+  .grid_view .casino_items-view .list-rating .list-rating-score{
+    height: 20px !important;
+  }
+  .grid_view .casino_items-view .list-rating.no-score .list-rating-score{
+    display: block;
+    background: #a8aec8;
+  }
   .list-item .list-rating-score {
     font-size: 10px;
     padding: 0;
@@ -12463,3 +12473,8 @@ h1.title + .subtitle{
 }
 
 
+.cta-btn.btn-reviews:hover{
+  background-color: #2171ce;
+  color: #fff;
+  transition: .3s ease;
+}
