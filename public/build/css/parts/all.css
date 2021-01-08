@@ -11503,6 +11503,7 @@ hr.widget{
   bottom: calc(100% + 15px);
   padding: 15px 10px 25px 10px;
   z-index: 3;
+  left: -150px;
 }
 .welcome_package-popup.active{
   display: block;
@@ -11592,7 +11593,7 @@ hr.widget{
   }
   .welcome_package-popup{
     left: 0;
-    bottom: calc(100%);
+    bottom: calc(100% + 15px);
   }
   .grid_view .casino_items-view .list-item-cell-buttons{
     padding: 0 20px 20px 0;
