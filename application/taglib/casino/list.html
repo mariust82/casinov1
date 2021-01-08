@@ -316,7 +316,7 @@
 								Visit
 							</a>
 						</:if>
-						
+						<:if test="strtolower(${data.page_type}) !== 'index' && strtolower(${data.page_type}) !== 'game_info'">
 						<div class="casino-specifications">
 							<span class="spec-title">Game Types</span>
 							<:set var="games" val="checkGameAvailability(${result.casino_game_types})"/>
@@ -344,7 +344,8 @@
 										</:foreach>
 	   								</div>
 								</div>
-							</div>							
+							</div>
+							<:if test="count(${result.softwares}) > 0">				
 							<span class="spec-title">Software Providers</span>
 							<div class="spec-row">
 								<div class="spec-items">
@@ -356,7 +357,7 @@
 									</:if>
 									</:foreach>
 								</div>
-								<:set var="extraSoftwares" val="count(${result.softwares})-3"/>
+								<:set var="extraSoftwares" val="count(${result.softwares})-4"/>
 								<:if test="${extraSoftwares} > 0">
 								<div class="popup-spec">
 									<span class="open-popup-spec">Show all (+${extraSoftwares})</span>
@@ -366,7 +367,7 @@
 											<:foreach var="${result.softwares}" key="key" val="software">
 											<:if test="${key} > 3">
 												<a class="list-title list_link item-spec software" href="/softwares/${normalize(${software})}">
-													<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
+													<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software} Logo">
 													${software}
 												</a>
 											</:if>
@@ -376,21 +377,26 @@
 								</div>
 								</:if>
 							</div>
+							</:if>
+							<:if test="count(${result.casino_deposit_methods}) > 0">
 							<span class="spec-title">Banking</span>
 							<div class="spec-row">
 								<div class="spec-items">
-									<:foreach var="${result.softwares}" key="key" val="software">
-									<:if test="${key}<3">
-										<a class="list-title list_link banking" href="/softwares/${normalize(${software})}">
-											<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
+									<:set var="k" val="0"/>
+									<:foreach var="${result.casino_deposit_methods}" key="dep_method" val="dep_method_data">
+									<:if test="${k}<3">
+										<a class="list-title list_link banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
+											<img src="${dep_method_data.logo}" alt="${dep_method} Logo">
 										</a>
 									</:if>
+									<:set var="k" val="${k}+1"/>
 									</:foreach>
+									<:unset var="k"/>
 								</div>
-								<:set var="extraSoftwares" val="count(${result.softwares})-3"/>
-								<:if test="${extraSoftwares} > 0">
+								<:set var="extraMethods" val="count(${result.casino_deposit_methods})-4"/>
+								<:if test="${extraMethods} > 0">
 								<div class="popup-spec">
-									<span class="open-popup-spec">Show all (+${extraSoftwares})</span>
+									<span class="open-popup-spec">Show all (+${extraMethods})</span>
 									<div class="popup-casino-spec large">
 										<i class="icon-icon_unavailable close-popup-spec"></i>
 										<div class="list_scroll">
@@ -399,24 +405,37 @@
 												<span>Deposit</span>
 												<span>Withdrawal</span>
 											</div>
-											<:foreach var="${result.softwares}" key="key" val="software">
-											<:if test="${key} > 3">
+											<:set var="k" val="0"/>
+											<:foreach var="${result.casino_deposit_methods}" key="dep_method" val="dep_method_data">
+											<:if test="${k} > 3">
 											<div class="list-item-spec">
-												<a class="list-title list_link item-spec banking" href="/softwares/${normalize(${software})}">
-													<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
-													${software}
+												<a class="list-title list_link item-spec banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
+													<img src="${dep_method_data.logo}" alt="${dep_method} Logo">
+													${dep_method}
 												</a>
-												<span><i class="icon-icon_unavailable"></i></span>
-												<span><i class="icon-icon_available"></i></span>
+												<:if test="empty(${dep_method_data.deposit_methods})">
+													<span><i class="icon-icon_unavailable"></i></span>
+												<:else>
+													<span><i class="icon-icon_available"></i></span>
+												</:if>
+												<:if test="empty(${dep_method_data.withdraw_methods})">
+													<span><i class="icon-icon_unavailable"></i></span>
+												<:else>
+													<span><i class="icon-icon_available"></i></span>
+												</:if>
 											</div>
 											</:if>
+											<:set var="k" val="${k}+1"/>
 											</:foreach>
+											<:unset var="k"/>
 										</div>
 									</div>
 								</div>
 								</:if>
 							</div>
+							</:if>
 						</div>
+						</:if>
 					</div>
 				</div>
 				<:set var="i" val="${i}+1"/>

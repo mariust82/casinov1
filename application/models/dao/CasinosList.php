@@ -108,6 +108,7 @@ class CasinosList
 
         return array_values($output);
     }
+
     private function getGameTypes($casinoId)
     {
         $q =" SELECT
@@ -119,6 +120,7 @@ class CasinosList
         $data = SQL($q)->toList();
         return $data;
     }
+
     private function getBankingMethodData($entity, $id)
     {
         return SQL("
