@@ -156,6 +156,7 @@
 								</div>
 								</:if>
 							</div>
+							<:if test="strtolower(${data.page_type}) !== 'index' && strtolower(${data.page_type}) !== 'game_info'">
 							<div class="welcome_package-container">
 								<span class="wp-title">Welcome Package 
 									<:if test="(isset(${result.bonus_free}) && ${result.bonus_free} !== null) || (isset(${result.bonus_first_deposit}))">
@@ -189,6 +190,7 @@
 									<span class="wp-bonus-title">No welcome bonuses.</span>
 								</:if>
 							</div>
+							</:if>
 						</div>
 					</div>
 
