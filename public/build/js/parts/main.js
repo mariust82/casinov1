@@ -143,9 +143,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
 
         }
     });
-    
 }
-
 
 (function ($) {
     BUSY_REQUEST = false;
@@ -158,7 +156,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
         if ($('.links-nav').length) {
             loadScripts(['bindings', 'assets/swiper']);
         }
-        loadScripts(['assets/jquery-select2', 'jquery-select2-multi-checkboxes', 'filters']);
+        loadScripts(['assets/jquery-select2', 'filters']);
         $(document).on('scroll mousemove', function(){
             loadScripts(['bindings', 'assets/tooltipster', 'assets/swiper']);
             $(document).unbind("scroll mousemove");
@@ -173,6 +171,10 @@ function changeViewElements(filterView,container,gridClass,listClass){
 
             if ($('#filters').length > 0) {
                 new Filters($('#filters'));
+            }
+
+            if ($('.filter-filter').length > 0) {
+                new ListFilters($('#filters'));
             }
 
             new newsletter($('.subscribe'));
