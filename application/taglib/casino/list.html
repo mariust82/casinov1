@@ -350,7 +350,11 @@
 							<div class="spec-row">
 								<div class="spec-items">
 									<:foreach var="${result.softwares}" key="key" val="software">
-									<:if test="${key}<3">
+									<:if test="${key} < 3 && count(${result.softwares}) !== 4">
+										<a class="list-title list_link item-spec software" href="/softwares/${normalize(${software})}">
+											<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
+										</a>
+									<:else>
 										<a class="list-title list_link item-spec software" href="/softwares/${normalize(${software})}">
 											<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
 										</a>
