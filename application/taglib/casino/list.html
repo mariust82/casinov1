@@ -361,8 +361,8 @@
 									</:if>
 									</:foreach>
 								</div>
-								<:set var="extraSoftwares" val="count(${result.softwares})-5"/>
-								<:if test="${extraSoftwares} > 0">
+								<:set var="extraSoftwares" val="count(${result.softwares})-4"/>
+								<:if test="${extraSoftwares} > 0 && count(${result.softwares}) !== 4 ">
 								<div class="popup-spec">
 									<span class="open-popup-spec">Show all (${count(${result.softwares})})</span>
 									<div class="popup-casino-spec big">
