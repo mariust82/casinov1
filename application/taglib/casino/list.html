@@ -346,7 +346,7 @@
 								</div>
 							</div>
 							<:if test="count(${result.softwares}) > 0">				
-							<span class="spec-title">Software Providers</span>
+							<span class="spec-title">Software Providers ${count(${result.softwares})}</span>
 							<div class="spec-row">
 								<div class="spec-items">
 									<:foreach var="${result.softwares}" key="key" val="software">
@@ -354,14 +354,14 @@
 										<a class="list-title list_link item-spec software" href="/softwares/${normalize(${software})}">
 											<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
 										</a>
-									<:else>
+									<:elseif test="count(${result.softwares}) == 4">
 										<a class="list-title list_link item-spec software" href="/softwares/${normalize(${software})}">
 											<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
 										</a>
 									</:if>
 									</:foreach>
 								</div>
-								<:set var="extraSoftwares" val="count(${result.softwares})-4"/>
+								<:set var="extraSoftwares" val="count(${result.softwares})-5"/>
 								<:if test="${extraSoftwares} > 0">
 								<div class="popup-spec">
 									<span class="open-popup-spec">Show all (${count(${result.softwares})})</span>
