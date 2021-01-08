@@ -793,6 +793,7 @@ var Filters = function (obj) {
             _resetButton = $('.js-reset-items');
             _switchers.off();
             _switchers.on('click', function () {
+                console.log('795 _switchers.on');
                 _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
             });
 
@@ -900,6 +901,7 @@ var Filters = function (obj) {
         if (location.pathname === '/casinos') {
             _url = 'load-all-casinos/';
         }
+
         _request = $.ajax({
             url: _url + AJAX_CUR_PAGE,
             data: _ajaxDataParams,
