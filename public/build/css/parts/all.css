@@ -11471,8 +11471,11 @@ hr.widget{
 }
 .spec-items{
   display: flex;
-  justify-content: space-between;
   width: 65%;
+}
+.spec-items.g_types{
+  justify-content: space-between;
+
 }
 .popup-casino-spec{
   position: absolute;
@@ -11504,6 +11507,7 @@ hr.widget{
 .spec-items .banking img {
   width: 60px;
   height: 40px;
+  margin-right: 15px;
 }
 .welcome_package-popup{
   display: none;

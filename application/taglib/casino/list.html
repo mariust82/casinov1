@@ -322,7 +322,7 @@
 							<:set var="games" val="checkGameAvailability(${result.casino_game_types})"/>
 							<div class="spec-row">
 								<:set var="counter" val="0"/>
-								<div class="spec-items">
+								<div class="spec-items g_types">
 									<:foreach var="${games}" key="key" val="value">
 										<:if test="${counter} < 3">
 											<div class='game-type-item <:if test="${value}"> available <:else> unavailable </:if>'>
@@ -346,7 +346,7 @@
 								</div>
 							</div>
 							<:if test="count(${result.softwares}) > 0">				
-							<span class="spec-title">Software Providers ${count(${result.softwares})}</span>
+							<span class="spec-title">Software Providers</span>
 							<div class="spec-row">
 								<div class="spec-items">
 									<:foreach var="${result.softwares}" key="key" val="software">
@@ -386,7 +386,11 @@
 								<div class="spec-items">
 									<:set var="k" val="0"/>
 									<:foreach var="${result.casino_deposit_methods}" key="dep_method" val="dep_method_data">
-									<:if test="${k}<3">
+									<:if test="${k} < 3 && count(${result.casino_deposit_methods}) !== 4">
+										<a class="list-title list_link banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
+											<img src="${dep_method_data.logo}" alt="${dep_method} Logo">
+										</a>
+									<:elseif test="count(${result.casino_deposit_methods}) == 4">
 										<a class="list-title list_link banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
 											<img src="${dep_method_data.logo}" alt="${dep_method} Logo">
 										</a>
@@ -396,7 +400,7 @@
 									<:unset var="k"/>
 								</div>
 								<:set var="extraMethods" val="count(${result.casino_deposit_methods})-4"/>
-								<:if test="${extraMethods} > 0">
+								<:if test="${extraMethods} > 0 && count(${result.casino_deposit_methods}) !== 4">
 								<div class="popup-spec">
 									<span class="open-popup-spec">Show all (${count(${result.casino_deposit_methods})})</span>
 									<div class="popup-casino-spec large">
