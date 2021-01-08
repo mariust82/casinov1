@@ -11542,6 +11542,15 @@ hr.widget{
     left: unset;
     transform: translateX(0);
   }
+  .popup-casino-spec:after{
+    left: unset;
+    right: 25px;
+  }
+
+  .popup-casino-spec:before{
+    left: unset;
+    right: 24px;
+  }
 
 }
 @media(max-width: 988px){
@@ -11674,6 +11683,12 @@ hr.widget{
   .popup-casino-spec{
     width: calc(100vw - 18px) !important;
     right: -26px;
+  }
+  .popup-casino-spec:before{
+    right: 49px !important;
+  }
+  .popup-casino-spec:after{
+    right: 50px !important;
   }
 }
 .wp-title .welcome_package-popup-trigger{
