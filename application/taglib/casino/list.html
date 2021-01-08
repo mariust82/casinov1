@@ -326,7 +326,7 @@
 									<:foreach var="${games}" key="key" val="value">
 										<:if test="${counter} < 3">
 											<div class='game-type-item <:if test="${value}"> available <:else> unavailable </:if>'>
-												<img alt="${value.name}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg">
+												<img alt="${value}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg">
 											</div>
 										</:if>
 										<:set var="counter" val="${counter}+1"/>
