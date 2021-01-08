@@ -360,17 +360,15 @@
 								<:set var="extraSoftwares" val="count(${result.softwares})-4"/>
 								<:if test="${extraSoftwares} > 0">
 								<div class="popup-spec">
-									<span class="open-popup-spec">Show all (+${extraSoftwares})</span>
+									<span class="open-popup-spec">Show all (${count(${result.softwares})})</span>
 									<div class="popup-casino-spec big">
 										<i class="icon-icon_unavailable close-popup-spec"></i>
 										<div class="list_scroll">
 											<:foreach var="${result.softwares}" key="key" val="software">
-											<:if test="${key} > 3">
 												<a class="list-title list_link item-spec software" href="/softwares/${normalize(${software})}">
 													<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software} Logo">
 													${software}
 												</a>
-											</:if>
 											</:foreach>
 										</div>
 									</div>
@@ -396,7 +394,7 @@
 								<:set var="extraMethods" val="count(${result.casino_deposit_methods})-4"/>
 								<:if test="${extraMethods} > 0">
 								<div class="popup-spec">
-									<span class="open-popup-spec">Show all (+${extraMethods})</span>
+									<span class="open-popup-spec">Show all (${count(${result.casino_deposit_methods})})</span>
 									<div class="popup-casino-spec large">
 										<i class="icon-icon_unavailable close-popup-spec"></i>
 										<div class="list_scroll">
@@ -405,9 +403,7 @@
 												<span>Deposit</span>
 												<span>Withdrawal</span>
 											</div>
-											<:set var="k" val="0"/>
 											<:foreach var="${result.casino_deposit_methods}" key="dep_method" val="dep_method_data">
-											<:if test="${k} > 3">
 											<div class="list-item-spec">
 												<a class="list-title list_link item-spec banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
 													<img src="${dep_method_data.logo}" alt="${dep_method} Logo">
@@ -424,10 +420,7 @@
 													<span><i class="icon-icon_available"></i></span>
 												</:if>
 											</div>
-											</:if>
-											<:set var="k" val="${k}+1"/>
 											</:foreach>
-											<:unset var="k"/>
 										</div>
 									</div>
 								</div>
