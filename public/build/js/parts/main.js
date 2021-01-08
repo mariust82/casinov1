@@ -156,7 +156,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
         if ($('.links-nav').length) {
             loadScripts(['bindings', 'assets/swiper']);
         }
-        loadScripts(['assets/jquery-select2']);
+        loadScripts(['assets/jquery-select2', 'jquery-select2-multi-checkboxes', 'filters']);
         $(document).on('scroll mousemove', function(){
             loadScripts(['bindings', 'assets/tooltipster', 'assets/swiper']);
             $(document).unbind("scroll mousemove");

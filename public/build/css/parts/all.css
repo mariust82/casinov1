@@ -84,6 +84,11 @@ blockquote.widget p{
   color: #646464 !important;
 }
 
+.lower_pragraph .special_block_text h2, 
+.subtitle .special_block_text h2{
+  margin:0 0 10px;
+}
+
 blockquote p{
   padding-left: 16px;
 }
