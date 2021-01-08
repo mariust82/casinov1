@@ -11584,6 +11584,7 @@ hr.widget{
     width: -webkit-fill-available;
     margin-top: 10px;
     margin-left: 30px;
+    border-right: none;
   }
   .grid_view .casino_items-view .list-item-cell.list-item-casino{
     padding: 0;
@@ -12750,6 +12751,9 @@ h1.title + .subtitle{
     width: 100%;
   }
   .welcome_package-popup .bonuses-wp .bonus-item:first-of-type{
-    margin-bottom: 15px;
+    margin-bottom: 30px;
   }
+}
+.grid_view .casino_items-view .list-title-holder .list-small-text{
+  display: none;
 }
