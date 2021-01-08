@@ -1,685 +1,549 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casino-info"/>
-<:if test="${data.casino.status} == 'Blacklisted'">
-    <:set var="item_status" val="blacklisted"/>
-    <div class="container">
-        <div class="warn-box">
-            <div class="warn-box-title">BLACKLISTED</div>
-            <div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} has been warned and added to our illegitimate casinos Blacklist. This is due to the fact that they lost contact and got complaints from players that had trouble to cash out. All of our attempts to contact this casino were not fulfilled. We strongly advise that players will play at other casinos.</div>
-        </div>
-    </div>
-    <:elseif test="${data.casino.status} == 'Warning'">
-        <:set var="item_status" val="warning"/>
-        <div class="container">
-            <div class="warn-box warning">
-                <div class="warn-box-title">WARNING</div>
-                <div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} does not have a collaborative agreement with www.casinoslists.com, and therefore we can not monitor the casino’s actions and reliability in order to provide the necessary support for our players. We strongly recommend that players avoid playing at this casino and choose another casino to play at.</div>
-            </div>
-        </div>
-        <:else>
-            <:set var="item_status" val="default"/>
+	<:if test="${data.casino.status} == 'Blacklisted'">
+		<:set var="item_status" val="blacklisted"/>
+		<div class="container">
+			<div class="warn-box">
+				<div class="warn-box-title">BLACKLISTED</div>
+				<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} has been warned and added to our illegitimate casinos Blacklist. This is due to the fact that they lost contact and got complaints from players that had trouble to cash out. All of our attempts to contact this casino were not fulfilled. We strongly advise that players will play at other casinos.</div>
+			</div>
+		</div>
+	<:elseif test="${data.casino.status} == 'Warning'">
+		<:set var="item_status" val="warning"/>
+		<div class="container">
+			<div class="warn-box warning">
+				<div class="warn-box-title">WARNING</div>
+				<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} does not have a collaborative agreement with www.casinoslists.com, and therefore we can not monitor the casino’s actions and reliability in order to provide the necessary support for our players. We strongly recommend that players avoid playing at this casino and choose another casino to play at.</div>
+			</div>
+		</div>
+	<:else>
+		<:set var="item_status" val="default"/>
+		
+		<:if test="${data.casino.is_country_accepted} != 1">
+			<:set var="item_status" val="restricted"/>
+		</:if>
+		
+		<:if test="${data.casino.note}">
+			<div class="container">
+				<div class="warn-box note">
+					<div class="warn-box-body">${str_replace("thebigfreechiplist","casinoslists",${data.casino.note})}</div>
+				</div>
+			</div>
+		</:if>
+	</:if>
 
-            <:if test="${data.casino.is_country_accepted} != 1">
-                <:set var="item_status" val="restricted"/>
-            </:if>
-
-            <:if test="${data.casino.note}">
-                <div class="container">
-                    <div class="warn-box note">
-                        <div class="warn-box-body">${str_replace("thebigfreechiplist","casinoslists",${data.casino.note})}</div>
-                    </div>
-                </div>
-            </:if>
-</:if>
-
-<div class="casino-review">
-    <div class="container">
-        <div class="casino-review-heading">
-            <div class="casino-review-heading-left">
-                <h1 class="casino-review-title">${data.page_info.body_title}</h1>
-                <div class="btn-group">
-                    <a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
-                    <a href="/visit/${normalize(${data.casino.name})}"
-                       class="btn_play btn btn-middle btn-${item_status}"
-                       rel="nofollow"
-                    <:if test="${item_status} != 'blacklisted' && ${item_status} != 'warning' && ${item_status} != 'restricted'">
-                        target="_blank"
-                    </:if>
-                    >
-                    <:if test="${item_status} == 'blacklisted' || ${item_status} == 'warning' || ${item_status} == 'restricted'">
-                        <svg class="svg-icon"><use xlink:href="#icon-${item_status}"></use></svg>
-                        ${item_status}
-                        <:else>
-                            PLAY NOW
-                    </:if>
-                    </a>
-                    <:if test="${data.casino.is_tc_link}">
-                        <a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
-                    </:if>
-                </div>
-            </div>
-            <div class="casino-review-heading-right"  itemscope="" itemtype="http://schema.org/MediaObject">
-                <div class="casino-review-heading-img">
-                    <img class="lazy_loaded" data-src="${getCasinoLogo(${data.casino.code}, 124, 82)}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
-                </div>
-                <:set var="score_class" val="get_rating(${data.casino.rating})"/>
-                <div class="list-rating ${normalize(${score_class})}" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
-                    <:if test="${data.casino.rating} == 0">
-                        No score
-                        <div class="list-rating-score">-</div>
-                        <meta itemprop="ratingValue" content="1">
-                        <:else>
-                            ${score_class}
-                            <span class="list-rating-score">${ceil(${data.casino.rating})}</span>
-                            <meta itemprop="ratingValue" content="${ceil(${data.casino.rating})}">
-                    </:if>
-                    <meta itemprop="itemReviewed" content="${data.casino.name}">
-                    <meta itemprop="worstRating" content="1">
-                    <meta itemprop="bestRating" content="10">
-                    <:if test="isset(${data.casino.rating_votes}) && ${data.casino.rating_votes} > 0">
-                        <meta itemprop="ratingCount" content="${data.casino.rating_votes}"/>
-                        <:else>
-                            <meta itemprop="ratingCount" content="1"/>
-                    </:if>
-                </div>
-            </div>
-        </div>
-
-        <div class="btn-group btn-group-mobile">
-            <div class="mobile-group-btn">
-                <div>
-                    <a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
-                </div>
-                <div>
-                    <a href="/visit/${normalize(${data.casino.name})}"
-                       class="btn btn-middle btn-${item_status}"
-                       rel="nofollow"
-                    <:if test="${item_status} != 'blacklisted' && ${item_status} != 'warning' && ${item_status} != 'restricted'">
-                        target="_blank"
-                    </:if>
-                    >
-                    <:if test="${item_status} == 'blacklisted' || ${item_status} == 'warning' || ${item_status} == 'restricted'">
-                        <svg class="svg-icon"><use xlink:href="#icon-${item_status}"></use></svg>
-                        ${item_status}
-                        <:else>
-                            PLAY NOW
-                    </:if>
-                    </a>
-                    <:if test="${data.casino.is_tc_link}">
-                        <a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link tc-button-mobile">T&C applies</a>
-                    </:if>
-                </div>
-            </div>
-
-        </div>
-        <div class="casino-review-country casino-review-mobile">
-            <img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="20" height="14">
-            ${data.country.name}
-            ${data.country_status_text}
-        </div>
-    </div>
-</div>
-
-<div class="section">
-    <div class="container">
-        <div class="twocolumn">
-            <div class="box">
-                <div class="title title-small">Info</div>
-                <div class="def-list">
-                    <div class="def-list-item">
-                        <div class="def-list-key">Country</div>
-                        <div class="def-list-val">
-                            <img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="15" height="12">
-                            ${data.country.name}
-                            <:if test="${data.casino.is_country_accepted} == 1">
-                                accepted
-                                <:else>
-                                    not accepted
+	<div class="casino-review">
+		<div class="container">
+			<div class="casino-review-heading">
+				<div class="casino-review-heading-left">
+					<h1 class="casino-review-title">${data.page_info.body_title}</h1>
+					<div class="btn-group">
+						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
+						<a href="/visit/${normalize(${data.casino.name})}" 
+                            class="btn_play btn btn-middle btn-${item_status}" 
+                            rel="nofollow" 
+                            <:if test="${item_status} != 'blacklisted' && ${item_status} != 'warning' && ${item_status} != 'restricted'">
+                                target="_blank" 
                             </:if>
-                        </div>
-                    </div>
-                    <:if test="count(${data.casino.languages}) > 0">
-                        <div class="def-list-item">
-                            <div class="def-list-key">Languages</div>
-                            <div class="def-list-val">
-                                <:foreach var="${data.casino.languages}" key ="key" val="result">
-                                    <:if test="${result} == end(${data.casino.languages})">
-                                        ${result}
-                                        <:else>
-                                            ${result},&nbsp;
-                                    </:if>
-                                </:foreach>
-                            </div>
-                        </div>
-                    </:if>
-
-                    <:if test="count(${data.casino.currencies}) > 0">
-                        <div class="def-list-item">
-                            <div class="def-list-key">Currencies</div>
-                            <div class="def-list-val">
-                                <:foreach var="${data.casino.currencies}" key ="key" val="result">
-                                    <:if test="${result} == end(${data.casino.currencies})">
-                                        ${result}
-                                        <:else>
-                                            ${result},&nbsp;
-                                    </:if>
-                                </:foreach>
-                            </div>
-                        </div>
-                    </:if>
-
-                    <:if test="count(${data.casino.softwares}) > 0">
-                        <div class="def-list-item">
-                            <div class="def-list-key">Software</div>
-                            <div class="tooltipster-content">
-                                <:foreach var="${data.casino.softwares}" key ="key" val="value">
-                                    <:if test="${value} == end(${data.casino.softwares})">
-                                        <a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>
-                                        <:else>
-                                            <a class="soft_link list-item-trun" href="/softwares/${normalize(${value})}">${value}</a>,
-                                    </:if>
-                                </:foreach>
-                            </div>
-                        </div>
-                    </:if>
-
-                    <:if test="!empty(${data.casino.casino_game_types})">
-                        <div class="def-list-item">
-                            <div class="def-list-key">Game types</div>
-                            <div class="def-list-val">
-                                <:foreach var="${data.casino.casino_game_types}" key ="key" val="value">
-                                    <:if test="${value} == end(${data.casino.casino_game_types})">
-                                        ${value.name}
-                                        <:else>
-                                            ${value.name},&nbsp;
-                                    </:if>
-                                </:foreach>
-                            </div>
-                        </div>
-                    </:if>
-
-                    <div class="def-list-item">
-                        <div class="def-list-key">Live dealer</div>
-                        <div class="tooltipster-content">
-                            <:if test="${data.casino.live_dealers}">
-                                <:foreach var="${data.casino.is_available_in_site}" key="key" val="available">
-                                    <:if test="${key} != end(${data.casino.live_dealers})">
-                                        <:if test ="${available} == true">
-                                            <a class="soft_link list-item-trun" href="/live-dealer/${normalize(${key})}">Live ${key},</a>
-                                            <:else>
-                                                Live ${key},&nbsp;
-                                        </:if>
-                                        <:else>
-                                            <:if test ="${available} == true">
-                                                <a class="soft_link list-item-trun" href="/live-dealer/${normalize(${key})}">Live ${key}</a>
-                                                <:else>
-                                                    Live ${key}&nbsp;
-                                            </:if>
-                                    </:if>
-                                </:foreach>
-                                <:else>
-                                    No
+                        >
+                            <:if test="${item_status} == 'blacklisted' || ${item_status} == 'warning' || ${item_status} == 'restricted'">
+                                <svg class="svg-icon"><use xlink:href="#icon-${item_status}"></use></svg>
+                                ${item_status}
+                            <:else>
+                                PLAY NOW
                             </:if>
-                        </div>
-                    </div>
-
-                    <div class="def-list-item">
-                        <div class="def-list-key">Established</div>
-                        <div class="def-list-val">
-                            ${date("M d, Y",  strtotime(${data.casino.date_established}))}
-                        </div>
-                    </div>
-
-                    <:if test="count(${data.casino.emails}) > 0">
-                        <div class="def-list-item">
-                            <div class="def-list-key">Email</div>
-                            <div class="def-list-val">
-									<span class="wrapletters">
-										<:foreach var="${data.casino.emails}" key ="key" val="result">
-											${result} <br>
-										</:foreach>
-									</span>
-                            </div>
-                        </div>
-                    </:if>
-
-                    <:if test="count(${data.casino.phones}) > 0">
-                        <div class="def-list-item">
-                            <div class="def-list-key">Phone</div>
-                            <div class="def-list-val">
-                                <:foreach var="${data.casino.phones}" key ="key" val="result">
-                                    ${result} <br>
-                                </:foreach>
-                            </div>
-                        </div>
-                    </:if>
-
-                    <div class="def-list-item">
-                        <div class="def-list-key">Live chat</div>
-                        <div class="def-list-val">
-                            <:if test="${data.casino.is_live_chat}">Yes<:else>No</:if>
-                        </div>
-                    </div>
-
-                    <:if test="count(${data.casino.licenses}) > 0">
-                        <div class="def-list-item">
-                            <div class="def-list-key">Jurisdiction (license)</div>
-                            <div class="def-list-val">
-                                <:foreach var="${data.casino.licenses}" key ="key" val="result">
-                                    <:if test="${result} == end(${data.casino.licenses})">
-                                        ${result}
-                                        <:else>
-                                            ${result},&nbsp;
-                                    </:if>
-                                </:foreach>
-                            </div>
-                        </div>
-                    </:if>
-
-                    <:if test="count(${data.casino.certifiers}) > 0">
-                        <div class="def-list-item">
-                            <div class="def-list-key">Certified by</div>
-                            <div class="def-list-val">
-                                <:foreach var="${data.casino.certifiers}" key ="key" val="result">
-                                    <:if test="${result} == end(${data.casino.certifiers})">
-                                        ${result}
-                                        <:else>
-                                            ${result},&nbsp;
-                                    </:if>
-                                </:foreach>
-                            </div>
-                        </div>
-                    </:if>
-
-                    <:if test="${data.casino.affiliate_program} != ''">
-                        <div class="def-list-item">
-                            <div class="def-list-key">Affiliate program</div>
-                            <div class="def-list-val">${data.casino.affiliate_program}</div>
-                        </div>
-                    </:if>
-                </div>
-            </div>
-            <div class="box">
-                <div class="title title-small">Welcome package</div>
-                <:if test="!empty(${data.casino.bonus_first_deposit.amount})">
-                    <div class="bonus-holder">
-                        <:if test="!empty(${data.casino.bonus_free})">
-                            <div class="bonus-item">
-                                <div class="bonus-box bonus-free">
-                                    <box:bonus data="data.casino" modifier="bonus_free" heading="0" title="Free Deposit Bonus" icon="icon-icon_bonuses"/>
-                                </div>
-                            </div>
-                        </:if>
-                        <div class="bonus-item">
-                            <div class="bonus-box bonus-first">
-                                <box:bonus data="data.casino" modifier="bonus_first_deposit" heading="0" title="First Deposit Bonus" icon="icon-free-bonus-icon"/>
-                            </div>
-                        </div>
-                    </div>
-                    <:else>
-                        <p class="no_welcome_bonuses"> No welcome bonuses</p>
-                </:if>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--	<div class="section ${data.country_status}">-->
-<!--		<div class="container">-->
-<!--			<div class="box box-alt">-->
-<!--				<div class="title title-middle">-->
-<!--					${(${data.total_reviews} == 0)?'Be the first to write a review':'Reviews'}-->
-<!--					<div class="reviews-num">-->
-<!--						<span class="reviews-qty">${data.total_reviews}</span> ${(${data.total_reviews} == 1)?'Review':'Reviews'}-->
-<!--					</div>-->
-<!--				</div>-->
-<!--				<comment:list-container name="${data.user_score_class}" value="${normalize(${data.user_score_class})}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" />-->
-<!--			</div>-->
-<!--		</div>-->
-<!--	</div>-->
-
-<div class="section accepted">
-    <div class="container">
-        <div class="box box-alt">
-            <div class="title title-middle">Jackpot Capital Casino Player Rating &amp; Reviews</div>
-            <div id="reviews">
-                <div class="reviews-form review" id="reviews-form" data-img-dir="../images/flags/NL.png" data-country="NL" data-casino-id="8">
-                    <div class="form">
-                        <div class="form-row">
-                            <div class="rating-container" data-casino-name="" data-casino-rating="" data-user-rate="">
-                                <div class="rating-container-left">
-                                    <div class="rating-container-score-holder">
-                                        <div class="rating-container-score">
-                                            <span>${ceil(${data.user_score})} out of <span>10</span></span>
-                                            |
-                                            <strong class="${normalize(${data.user_score_class})}">${data.user_score_class}</strong>
-                                        </div>
-                                        <div class="rating-container-voted">(${data.total_reviews} people voted)</div>
-                                    </div>
-                                </div>
-                                <div class="rating-container-right">
-                                    <div class="rating-container-stats">
-                                        <div class="rating-container-stats-row">
-                                            <div class="rating-container-stats-label">Excellent</div>
-                                            <div class="rating-container-stats-line">
-                                                <div class="rating-container-stats-bar excellent" style="width: 10%;"></div>
-                                            </div>
-                                            <div class="rating-container-stats-score">
-                                                10%
-                                                <span>(23)</span>
-                                            </div>
-                                        </div>
-                                        <div class="rating-container-stats-row">
-                                            <div class="rating-container-stats-label">Very good</div>
-                                            <div class="rating-container-stats-line">
-                                                <div class="rating-container-stats-bar very-good" style="width: 50%;"></div>
-                                            </div>
-                                            <div class="rating-container-stats-score">
-                                                50%
-                                                <span>(110)</span>
-                                            </div>
-                                        </div>
-                                        <div class="rating-container-stats-row">
-                                            <div class="rating-container-stats-label">Good</div>
-                                            <div class="rating-container-stats-line">
-                                                <div class="rating-container-stats-bar good" style="width: 20%;"></div>
-                                            </div>
-                                            <div class="rating-container-stats-score">
-                                                20%
-                                                <span>(45)</span>
-                                            </div>
-                                        </div>
-                                        <div class="rating-container-stats-row">
-                                            <div class="rating-container-stats-label">Poor</div>
-                                            <div class="rating-container-stats-line">
-                                                <div class="rating-container-stats-bar poor" style="width: 15%;"></div>
-                                            </div>
-                                            <div class="rating-container-stats-score">
-                                                15%
-                                                <span>(30)</span>
-                                            </div>
-                                        </div>
-                                        <div class="rating-container-stats-row">
-                                            <div class="rating-container-stats-label">Terrible</div>
-                                            <div class="rating-container-stats-line">
-                                                <div class="rating-container-stats-bar terrible" style="width: 5%;"></div>
-                                            </div>
-                                            <div class="rating-container-stats-score">
-                                                5%
-                                                <span>(11)</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="action-field">
-                                <i class="icon-icon_available"></i>
-                                <span class="thanx">Thank you for rating UpTown Aces Casino2!</span>
-                            </div>
-
-                            <div class="drag-rate">
-                                <h2 class="drag-rate-title">How would you rate the casino?</h2>
-                                <div class="drag-rate-range">
-                                    <h3 class="drag-rate-range-heading">
-                                        Drag to rate
-                                        <span class="drag-rate-range-score">0/10</span>
-                                    </h3>
-                                    <input type="text" class="js-drag-rate"/>
-                                </div>
-                            </div>
-
-                            <label class="form-label">WRITE A REVIEW</label>
-                            <div class="textfield-holder" style="margin-bottom: 20px;">
-                                <input type="text" class="textfield" name="title" placeholder="Add a review title...">
-                            </div>
-                            <div class="textfield-holder">
-                                <textarea name="body" rows="5" class="textfield" placeholder="Write your review..."></textarea>
-                            </div>
-                        </div>
-                        <div class="form-row form-multicol">
-                            <div class="form-col">
-                                <div class="textfield-holder">
-                                    <input type="text" class="textfield" name="name" placeholder="Name">
-                                </div>
-                            </div>
-                            <div class="form-col">
-                                <div class="textfield-holder">
-                                    <input type="text" class="textfield" name="email" placeholder="Email (it won't be published)">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="review-submit-holder">
-                                <input class="btn" type="submit" name="submit" value="ADD REVIEW">
-                                <div class="errors-scope">
-                                    <div class="field-error-required not-valid action-field">
-                                        Please fill in the required fields.
-                                    </div>
-                                    <div class="field-error-rate not-valid action-field">
-                                        In order to post your review, please rate this casino.
-                                    </div>
-                                    <div class="field-success success action-field">
-                                        Thank You!
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Full Welcome Package -->
-    <div class="section">
-        <div class="container">
-            <div class="box box-alt2">
-                <div class="title title-middle">Full Welcome Package</div>
-                <:if test="!empty(${data.casino.welcome_package})">
-                    <div class="section-content">
-                        <table class="table table-package">
-                            <tr>
-                                <th>Valid On</th>
-                                <th>Bonus</th>
-                                <th>Min Deposit</th>
-                                <th>Wagering</th>
-                                <th>Games</th>
-                                <th>Bonus Code</th>
-                            </tr>
-                            <:foreach var="${data.casino.welcome_package}" key ="key" val="welcome_package_data">
-                                <tr>
-                                    <td>${welcome_package_data.valid_on}</td>
-                                    <td>${welcome_package_data.bonus}</td>
-                                    <td>
-                                        <:if test="${welcome_package_data.min_deposit} == 'Free'">
-                                            <span class="table-package_free_bonus">${welcome_package_data.min_deposit}</span>
-                                            <:else>
-                                                ${welcome_package_data.min_deposit}
-                                        </:if>
-                                    </td>
-                                    <td>
-                                        ${welcome_package_data.wagering}
-                                        <a href="#" class="table-package-opener js-table-package-opener">
-                                            <i class="icon-chevron-down"></i>
-                                        </a>
-                                    </td>
-                                    <td><strong class="table-mobile-visible">Games:</strong> ${welcome_package_data.games}</td>
-                                    <td>
-                                        <:set var="code_class" val=""/>
-                                        <:if test="${welcome_package_data.bonus_codes} != 'No code required'">
-                                            <:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
-                                        </:if>
-
-                                        <div class="dashed ${code_class}" data-code="${welcome_package_data.bonus_codes}">${welcome_package_data.bonus_codes}</div>
-                                    </td>
-                                </tr>
-                            </:foreach>
-                        </table>
-                    </div>
-                    <:else>
-                        <p class="no_welcome_bonuses"> No welcome bonuses</p>
-                </:if>
-            </div>
-        </div>
-    </div>
-    <!-- Full Welcome Package END -->
-
-    <div class="section">
-        <div class="container">
-            <div class="box box-alt2">
-                <div class="title title-middle">Banking</div>
-                <div class="twocolumn flex-reverse">
-                    <div class="section-sidebar">
-                        <div class="def-column">
-                            <div class="def-column-item">
-                                <div class="def-column-key">Minimum deposit</div>
-                                <div class="def-column-val">${data.casino.deposit_minimum}</div>
-                            </div>
-                            <div class="def-column-item">
-                                <div class="def-column-key">Minimum withdrawal</div>
-                                <div class="def-column-val">${data.casino.withdrawal_minimum}</div>
-                            </div>
-
-                            <:if test="count(${data.casino.withdrawal_limits}) > 0">
-                                <div class="def-column-item">
-                                    <div class="def-column-key">Withdrawal limits</div>
-                                    <div class="def-column-val">
-                                        <:foreach var="${data.casino.withdrawal_limits}" key ="key" val="result">
-                                            <p>${result}</p>
-                                        </:foreach>
-                                    </div>
-                                </div>
-                            </:if>
-
-                            <:if test="count(${data.casino.withdrawal_timeframes}) > 0">
-                                <div class="def-column-item">
-                                    <div class="def-column-key">Withdrawal pending time</div>
-                                    <div class="def-column-val">
-                                        <:foreach var="${data.casino.withdrawal_timeframes}" key ="key" val="result">
-                                            <p>${result}</p>
-                                        </:foreach>
-                                    </div>
-                                </div>
-                            </:if>
-                        </div>
-                    </div>
-                    <div class="section-content">
-                        <table class="table table-banking">
-                            <tr>
-                                <th>Method</th>
-                                <th>Deposit</th>
-                                <th>Withdrawal</th>
-                            </tr>
-
-                            <:foreach var="${data.casino.casino_deposit_methods}" key ="dep_method" val="dep_method_data">
-                                <tr>
-                                    <td >
-                                        <a href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
-                                            <div class="table-flex">
-                                                <img class="payment-logo lazy_loaded" data-src="${dep_method_data.logo}" width="60" height="40" alt="${dep_method} Logo">
-                                                <div class="table-desctop-visible">${dep_method}</div>
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td align="center">
-                                        <:if test="empty(${dep_method_data.deposit_methods})">
-                                            <i class="icon-icon_unavailable"></i>
-                                            <:else>
-                                                <i class="icon-icon_available2"></i>
-                                        </:if>
-                                    </td>
-                                    <td align="center">
-                                        <:if test="empty(${dep_method_data.withdraw_methods})">
-                                            <i class="icon-icon_unavailable"></i>
-                                            <:else>
-                                                <i class="icon-icon_available2"></i>
-                                        </:if>
-                                    </td>
-                                </tr>
-                            </:foreach>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="review-element review hidden" hidden  data-id="" data-img-dir="">
-        <div class="review-wrap">
-            <div class="review-info">
-                <div class="review-info-top">
-                    <div class="review-flag">
-                        <img src="" alt="" width="15" height="12">
-                    </div>
-                    <div class="review-info-body">
-                        <div class="review-name"></div>
-                        <div class="review-date"></div>
-                    </div>
-                </div>
-
-                <div class="list-rating">
-                    <div class="list-rating-wrap">
-                        <div class="list-rating-score"></div>
-                        <div class="list-rating-text"></div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="review-body">
-                <div class="review-text">
-                    <p></p>
-                </div>
-                <div class="review-underline">
-                    <a href="#" class="review-replies js-reply-btn">Reply</a>
-                    <div class="votes js-vote">
-                        <a href="#" class="votes-like vote-button" data-id="">
-                            <i class="icon-icon_likes"></i>
-                            <span class="bubble bubble-vote">0</span>
                         </a>
-                    </div>
-                </div>
-                <div class="review-form">
-                    <div class="form">
-                        <div class="form-row">
-                            <div class="textfield-holder">
-                                <textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>
-                            </div>
-                        </div>
-                        <div class="hidden js-expanding-textfields">
-                            <div class="form-row form-multicol">
-                                <div class="form-col">
-                                    <div class="textfield-holder error">
-                                        <input type="text" name="name" class="textfield" placeholder="Name">
-                                    </div>
-                                </div>
-                                <div class="form-col">
-                                    <div class="textfield-holder error">
-                                        <input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="review-submit-holder">
-                                    <input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">
-                                    <div>
-                                        <div class="field-error-required not-valid action-field">
-                                            Please fill in the required fields.
-                                        </div>
-                                        <div class="field-success success action-field">
-                                            Thank You!
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                        <:if test="${data.casino.is_tc_link}">
+							<a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
+                        </:if>
+					</div>
+				</div>
+				<div class="casino-review-heading-right"  itemscope="" itemtype="http://schema.org/MediaObject">
+					<div class="casino-review-heading-img">
+						<img class="lazy_loaded" data-src="${getCasinoLogo(${data.casino.code}, 124, 82)}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
+					</div>
+					<:set var="score_class" val="get_rating(${data.casino.rating})"/>
+					<div class="list-rating ${normalize(${score_class})}" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
+							<:if test="${data.casino.rating} == 0">
+								No score
+								<div class="list-rating-score">-</div>
+								<meta itemprop="ratingValue" content="1">
+							<:else>
+								${score_class}
+								<span class="list-rating-score">${ceil(${data.casino.rating})}</span>
+								<meta itemprop="ratingValue" content="${ceil(${data.casino.rating})}">
+							</:if>
+							<meta itemprop="itemReviewed" content="${data.casino.name}">
+							<meta itemprop="worstRating" content="1">
+							<meta itemprop="bestRating" content="10">
+							<:if test="isset(${data.casino.rating_votes}) && ${data.casino.rating_votes} > 0">
+								<meta itemprop="ratingCount" content="${data.casino.rating_votes}"/>
+							<:else>
+								<meta itemprop="ratingCount" content="1"/>
+							</:if>
+						</div>
+					</div>
+				</div>
 
-    <div class="reply-holder reply review hidden" hidden>
-        <div class="reply-data-holder"></div>
-    </div>
+				<div class="btn-group btn-group-mobile">
+					<div class="mobile-group-btn">
+						<div>
+							<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
+						</div>
+						<div>
+							<a href="/visit/${normalize(${data.casino.name})}" 
+								class="btn btn-middle btn-${item_status}" 
+								rel="nofollow" 
+								<:if test="${item_status} != 'blacklisted' && ${item_status} != 'warning' && ${item_status} != 'restricted'">
+									target="_blank" 
+								</:if>
+							>
+								<:if test="${item_status} == 'blacklisted' || ${item_status} == 'warning' || ${item_status} == 'restricted'">
+									<svg class="svg-icon"><use xlink:href="#icon-${item_status}"></use></svg>
+									${item_status}
+								<:else>
+									PLAY NOW
+								</:if>
+							</a>
+							<:if test="${data.casino.is_tc_link}">
+								<a href="/visit/${normalize(${data.casino.name})}-terms" target="_blank" rel="nofollow" class="additional-link tc-button-mobile">T&C applies</a>
+							</:if>
+						</div>
+					</div>
 
-    <site:bottom menu="${data.menu_top}"/>
+				</div>
+				<div class="casino-review-country casino-review-mobile">
+					<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="20" height="14">
+					${data.country.name}
+					${data.country_status_text}
+				</div>
+			</div>
+		</div>
+	<!-- Welcome Packages -->
+	<div class="section">
+		<div class="container">
+			<div class="welcome-package_box box">
+				<div class="title title-middle">Welcome package</div>
+				<:if test="!empty(${data.casino.bonus_first_deposit.amount})">
+					<div class="bonus-holder">
+						<:if test="!empty(${data.casino.bonus_free})">
+							<div class="bonus-item">
+								<div class="bonus-box bonus-free">
+									<box:bonus data="data.casino" modifier="bonus_free" heading="0" title="Free Deposit Bonus" icon="icon-icon_bonuses"/>
+								</div>
+							</div>
+						</:if>
+						<div class="bonus-item">
+							<div class="bonus-box bonus-first">
+								<box:bonus data="data.casino" modifier="bonus_first_deposit" heading="0" title="First Deposit Bonus" icon="icon-free-bonus-icon"/>
+							</div>
+						</div>
+					</div>
+					<a class="full-package-btn" href="#full_package">
+						View full welcome package
+						<i class="icon-chevron-down"></i>
+					</a>
+				<:else>
+					<p class="no_welcome_bonuses"> No welcome bonuses</p>
+				</:if>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="section ${data.country_status}">
+		<div class="container">
+			<div class="box box-alt">
+				<div class="title title-middle">
+					${(${data.total_reviews} == 0)?'Be the first to write a review':'Reviews'}
+					<div class="reviews-num">
+						<span class="reviews-qty">${data.total_reviews}</span> ${(${data.total_reviews} == 1)?'Review':'Reviews'}
+					</div>
+				</div>
+				<comment:list-container name="${data.user_score_class}" value="${normalize(${data.user_score_class})}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" />
+			</div>
+		</div>
+	</div>
+	<!-- Casino Info -->
+	<div class="section">
+		<div class="container">
+			<div class="casino-info_box box">
+				<h2 class="title title-middle">Casino Info</h2>
+				<div class="casino-details-container">
+					<div class="casino-details_header">
+						<div class="detail-box">
+							<span class="detail-title">Country</span>
+							<div class="row-details">
+								<:if test="${data.casino.is_country_accepted} == 1">
+								<i class="icon-icon_available"></i>
+								<:else>
+								<i class="icon-icon_unavailable"></i>
+								</:if>
+								<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+							</div>	
+						</div>
+						<div class="detail-box">
+							<span class="detail-title">Website language</span>
+							<div class="row-details">
+								<:if test="count(${data.casino.languages}) > 0">
+								<i class="icon-icon_available"></i>
+								${data.casino.languages.0} 
+								<:if test="count(${data.casino.languages}) > 1"> (+${count(${data.casino.languages})-1})</:if>
+								<:else>
+								<i class="icon-icon_unavailable"></i>
+								</:if>
+							</div>
+						</div>
+						<div class="detail-box">
+							<span class="detail-title">Currency</span>
+							<div class="row-details">
+								<:if test="count(${data.casino.currencies}) > 0">
+								<i class="icon-icon_available"></i>
+								${data.casino.currencies.0} 
+								<:if test="count(${data.casino.currencies}) > 1"> (+${count(${data.casino.currencies})-1})</:if>
+								<:else>
+								<i class="icon-icon_unavailable"></i>
+								</:if>
+							</div>
+						</div>
+						<div class="detail-box">
+							<span class="detail-title">Live Chat</span>
+							<div class="row-details">
+								<:if test="${data.casino.is_live_chat}">
+								<i class="icon-icon_available"></i> Available
+								<:else>
+								<i class="icon-icon_unavailable"></i> Not available
+								</:if>
+							</div>
+						</div>
+						<div class="detail-box">
+							<span class="detail-title">Mobile</span>
+							<div class="row-details">
+								<:if test="${data.casino.is_mobile}">
+								<i class="icon-icon_available"></i> Available
+								<:else>
+								<i class="icon-icon_unavailable"></i> Not available
+								</:if>
+							</div>
+						</div>
+					</div>
+					<div class="row_info">
+						<div class="info_list">
+							<:if test="${data.casino.date_established} !== ''">
+							<div class="info_list-item">
+								<div class="info_list-title">Establish date</div>
+								<div class="info_list-value">
+									${date("M d, Y",  strtotime(${data.casino.date_established}))}
+								</div>
+							</div>
+							</:if>
+							<:if test="count(${data.casino.licenses}) > 0">
+							<div class="info_list-item">
+								<div class="info_list-title">Jurisdiction (license)</div>
+								<div class="info_list-value">
+									<:foreach var="${data.casino.licenses}" key ="key" val="result">
+									<:if test="${result} == end(${data.casino.licenses})">
+										${result}
+									<:else>
+										${result},&nbsp;
+									</:if>
+									</:foreach>
+								</div>
+							</div>
+							</:if>
+							<:if test="count(${data.casino.certifiers}) > 0">
+							<div class="info_list-item">
+								<div class="info_list-title">Certified by</div>
+								<div class="info_list-value">
+									<:foreach var="${data.casino.certifiers}" key ="key" val="result">
+									<:if test="${result} == end(${data.casino.certifiers})">
+										${result}
+									<:else>
+										${result},&nbsp;
+									</:if>
+									</:foreach>
+								</div>
+							</div>
+							</:if>
+							<:if test="count(${data.casino.emails}) > 0">
+							<div class="info_list-item">
+								<div class="info_list-title">Email</div>
+								<div class="info_list-value">
+									<:foreach var="${data.casino.emails}" key ="key" val="result">
+										${result} <br>
+									</:foreach>
+								</div>
+							</div>
+							</:if>
+							<:if test="count(${data.casino.phones}) > 0">
+							<div class="info_list-item">
+								<div class="info_list-title">Phone</div>
+								<div class="info_list-value">
+									<:foreach var="${data.casino.phones}" key ="key" val="result">
+										${result} <br>
+									</:foreach>
+								</div>
+							</div>
+							</:if>
+							<:if test="${data.casino.affiliate_program} != ''">
+							<div class="info_list-item">
+								<div class="info_list-title">Affiliate Program</div>
+								<div class="info_list-value">
+									${data.casino.affiliate_program}
+								</div>
+							</div>
+							</:if>
+						</div>
+						<div class="game-types_box">
+							<span class="title-uppercase">Game Types</span>
+							<div class="game_types">
+								<:foreach var="${data.casino.all_game_types}" key ="key" val="value">
+								<:if test="(${value.name} !== 'Other') && (${value.name} !== 'Video Slots')">
+									<:if test="in_array(${value}, ${data.casino.casino_game_types})">
+										<:set var="game_type_class" val="available"/>
+									<:else>
+										<:set var="game_type_class" val="unavailable"/>
+									</:if>
+									<div class="game-type_container ${game_type_class}">
+										<img alt="${value.name}" src="/public/build/images/${strtolower(str_replace(' ','_',${value.name}))}.svg">
+										<span class="game-type_name">${value.name}</span>
+									</div>
+								</:if>
+								</:foreach>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="software_providers-section">
+					<span class="title-uppercase">Software Providers</span>
+					<:foreach var="${data.casino.softwares}" key="key" val="software">
+						<:if test="${key}<8">
+							<span class="soft_link list-item-trun software_image" data-nr="${key+1}">
+								<a class="list-title list_link" href="/softwares/${normalize(${software})}">
+									<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software} logo">
+								</a>
+							</span>
+						</:if>
+					</:foreach>
+					<:set var="extraSoftwares" val="count(${data.casino.softwares})-8"/>
+					<:if test="${extraSoftwares} > 0">
+						<span class="bubble bubble-long js-tooltip software_tooltip" title="${get_string(${data.casino.softwares}, 8)}">
+						Show all (${extraSoftwares})
+						</span>
+					</:if>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Full Welcome Package -->
+	<div id="full_package" class="section">
+			<div class="container">
+				<div class="box box-alt2">
+					<div class="title title-middle">Full Welcome Package</div>
+					<:if test="!empty(${data.casino.welcome_package})">
+						<div class="section-content">
+							<table class="table table-package">
+								<tr>
+									<th>Valid On</th>
+									<th>Bonus</th>
+									<th>Min Deposit</th>
+									<th>Wagering</th>
+									<th>Games</th>
+									<th>Bonus Code</th>
+								</tr>
+								<:foreach var="${data.casino.welcome_package}" key ="key" val="welcome_package_data">
+									<tr>
+										<td>${welcome_package_data.valid_on}</td>
+										<td>${welcome_package_data.bonus}</td>
+										<td>
+											<:if test="${welcome_package_data.min_deposit} == 'Free'">
+												<span class="table-package_free_bonus">${welcome_package_data.min_deposit}</span>
+												<:else>
+													${welcome_package_data.min_deposit}
+											</:if>
+										</td>
+										<td>
+											${welcome_package_data.wagering}
+											<a href="#" class="table-package-opener js-table-package-opener">
+												<i class="icon-chevron-down"></i>
+											</a>
+										</td>
+										<td><strong class="table-mobile-visible">Games:</strong> ${welcome_package_data.games}</td>
+										<td>
+											<:set var="code_class" val=""/>
+											<:if test="${welcome_package_data.bonus_codes} != 'No code required'">
+												<:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
+											</:if>
+
+											<div class="dashed ${code_class}" data-code="${welcome_package_data.bonus_codes}">${welcome_package_data.bonus_codes}</div>
+										</td>
+									</tr>
+								</:foreach>
+							</table>
+						</div>
+					<:else>
+						<p class="no_welcome_bonuses"> No welcome bonuses</p>
+					</:if>
+				</div>
+			</div>
+		</div>
+<!-- Full Welcome Package END -->
+
+	<div class="section">
+		<div class="container">
+			<div class="box box-alt2">
+				<div class="title title-middle">Banking</div>
+				<div class="twocolumn flex-reverse">
+					<div class="section-sidebar">
+						<div class="def-column">
+							<div class="def-column-item">
+								<div class="def-column-key">Minimum deposit</div>
+								<div class="def-column-val">${data.casino.deposit_minimum}</div>
+							</div>
+							<div class="def-column-item">
+								<div class="def-column-key">Minimum withdrawal</div>
+								<div class="def-column-val">${data.casino.withdrawal_minimum}</div>
+							</div>
+
+							<:if test="count(${data.casino.withdrawal_limits}) > 0">
+								<div class="def-column-item">
+									<div class="def-column-key">Withdrawal limits</div>
+									<div class="def-column-val">
+										<:foreach var="${data.casino.withdrawal_limits}" key ="key" val="result">
+											<p>${result}</p>
+										</:foreach>
+									</div>
+								</div>
+							</:if>
+
+							<:if test="count(${data.casino.withdrawal_timeframes}) > 0">
+								<div class="def-column-item">
+									<div class="def-column-key">Withdrawal pending time</div>
+									<div class="def-column-val">
+										<:foreach var="${data.casino.withdrawal_timeframes}" key ="key" val="result">
+											<p>${result}</p>
+										</:foreach>
+									</div>
+								</div>
+							</:if>
+						</div>
+					</div>
+					<div class="section-content">
+						<table class="table table-banking">
+							<tr>
+								<th>Method</th>
+								<th>Deposit</th>
+								<th>Withdrawal</th>
+							</tr>
+
+							<:foreach var="${data.casino.casino_deposit_methods}" key ="dep_method" val="dep_method_data">
+							<tr>
+								<td >
+									<a href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
+										<div class="table-flex">
+											<img class="payment-logo lazy_loaded" data-src="${dep_method_data.logo}" width="60" height="40" alt="${dep_method} Logo">
+											<div class="table-desctop-visible">${dep_method}</div>
+										</div>
+									</a>
+								</td>
+								<td align="center">
+									<:if test="empty(${dep_method_data.deposit_methods})">
+										<i class="icon-icon_unavailable"></i>
+										<:else>
+											<i class="icon-icon_available2"></i>
+									</:if>
+								</td>
+								<td align="center">
+									<:if test="empty(${dep_method_data.withdraw_methods})">
+										<i class="icon-icon_unavailable"></i>
+										<:else>
+											<i class="icon-icon_available2"></i>
+									</:if>
+								</td>
+							</tr>
+							</:foreach>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="review-element review hidden" hidden  data-id="" data-img-dir="">
+		<div class="review-wrap">
+			<div class="review-info">
+				<div class="review-info-top">
+					<div class="review-flag">
+						<img src="" alt="" width="15" height="12">
+					</div>
+					<div class="review-info-body">
+						<div class="review-name"></div>
+						<div class="review-date"></div>
+					</div>
+				</div>
+
+				<div class="list-rating">
+					<div class="list-rating-wrap">
+						<div class="list-rating-score"></div>
+						<div class="list-rating-text"></div>
+					</div>
+				</div>
+
+			</div>
+			<div class="review-body">
+				<div class="review-text">
+					<p></p>
+				</div>
+				<div class="review-underline">
+					<a href="#" class="review-replies js-reply-btn">Reply</a>
+					<div class="votes js-vote">
+						<a href="#" class="votes-like vote-button" data-id="">
+							<i class="icon-icon_likes"></i>
+							<span class="bubble bubble-vote">0</span>
+						</a>
+					</div>
+				</div>
+				<div class="review-form">
+					<div class="form">
+						<div class="form-row">
+							<div class="textfield-holder">
+								<textarea rows="5" class="expanding textfield" name="body" placeholder="Write your review..."></textarea>
+							</div>
+						</div>
+						<div class="hidden js-expanding-textfields">
+							<div class="form-row form-multicol">
+								<div class="form-col">
+									<div class="textfield-holder error">
+										<input type="text" name="name" class="textfield" placeholder="Name">
+									</div>
+								</div>
+								<div class="form-col">
+									<div class="textfield-holder error">
+										<input type="text" name="email" class="textfield" placeholder="Email (it won\'t be published)">
+									</div>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="review-submit-holder">
+									<input class="btn" name="submit" type="submit" value="ADD YOUR REPLY">
+									<div>
+										<div class="field-error-required not-valid action-field">
+											Please fill in the required fields.
+										</div>
+										<div class="field-success success action-field">
+											Thank You!
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+
+	<div class="reply-holder reply review hidden" hidden>
+		<div class="reply-data-holder"></div>
+	</div>
+
+	<site:bottom menu="${data.menu_top}"/>
