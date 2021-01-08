@@ -11584,6 +11584,7 @@ hr.widget{
     width: -webkit-fill-available;
     margin-top: 10px;
     margin-left: 30px;
+    border-right: none;
   }
   .grid_view .casino_items-view .list-item-cell.list-item-casino{
     padding: 0;
@@ -12712,4 +12713,47 @@ h1.title + .subtitle{
   display: inline-block!important;
   overflow: hidden;
   width: 155px!important;
+}
+
+.welcome_package-popup .bonuses-wp{
+  display: flex;
+  justify-content: space-around;
+}
+.welcome_package-popup .bonuses-wp .bonus-item{
+  width: 48%;
+  margin-top: 17px;
+}
+.welcome_package-popup .bonus-box-heading span{
+  font-size: 14px;
+  letter-spacing: 0px;
+  color: #FFFFFF !important;
+  text-transform: capitalize;
+}
+.welcome_package-popup .bonus-box-list-label{
+  width: 45%;
+  text-transform: capitalize;
+  font-weight: normal;
+  font-size: 13px;
+}
+.welcome_package-popup .bonus-box-list strong {
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: capitalize;
+}
+.welcome_package-popup .bonus-box-body{
+  padding: 15px 10px;
+}
+@media (max-width: 600px){
+  .welcome_package-popup .bonuses-wp {
+    display: block;
+  }
+  .welcome_package-popup .bonuses-wp .bonus-item {
+    width: 100%;
+  }
+  .welcome_package-popup .bonuses-wp .bonus-item:first-of-type{
+    margin-bottom: 30px;
+  }
+}
+.grid_view .casino_items-view .list-title-holder .list-small-text{
+  display: none;
 }
