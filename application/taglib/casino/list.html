@@ -319,39 +319,30 @@
 						
 						<div class="casino-specifications">
 							<span class="spec-title">Game Types</span>
+							<:set var="games" val="checkGameAvailability(${result.casino_game_types})"/>
 							<div class="spec-row">
+								<:set var="counter" val="0"/>
 								<div class="spec-items">
-									<div class="game-type-item">
-										<img src="/public/build/images/blackjack.svg">
-									</div>
-									<div class="game-type-item">
-										<img src="/public/build/images/roulette.svg">
-									</div>
-									<div class="game-type-item unavailable">
-										<img src="/public/build/images/slots.svg">
-									</div>
+									<:foreach var="${games}" key="key" val="value">
+										<:if test="${counter} < 3">
+											<div class='game-type-item <:if test="${value}"> available <:else> unavailable </:if>'>
+												<img alt="${value.name}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg">
+											</div>
+										</:if>
+										<:set var="counter" val="${counter}+1"/>
+									</:foreach>
 								</div>
 								<div class="popup-spec">
 									<span class="open-popup-spec">Show all (10)</span>
 									<div class="popup-casino-spec">
 										<i class="icon-icon_unavailable close-popup-spec"></i>
-										<:if test="!empty(${data.all_game_types})">	
-											<:foreach var="${data.all_game_types}" key ="key" val="value">	
-												<:if test="(${value.name} !== 'Other') && (${value.name} !== 'Video Slots') && !empty(${result.casino_game_types})">	
-													<:if test="in_array(${value.name}, ${result.casino_game_types})">	
-														<:set var="game_type_class" val="available"/>	
-													<:else>	
-														<:set var="game_type_class" val="unavailable"/>	
-													</:if>	
-													<div class="game-type-item ${game_type_class}">	
-														<img alt="${value.name}" src="/public/build/images/${strtolower(str_replace(' ','_',${value.name}))}.svg">	
-														<span class="game-type_name">${value.name}</span>	
-													</div>	
-												</:if>	
-											</:foreach>	
-										</:if>
-										
-									</div>
+										<:foreach var="${games}" key="key" val="value">
+											<div class='game-type-item <:if test="${value}"> available <:else> unavailable </:if>'>
+												<img alt="${value.name}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg">
+												<span class="game-type_name">${key}</span>
+											</div>
+										</:foreach>
+	   								</div>
 								</div>
 							</div>							
 							<span class="spec-title">Software Providers</span>
