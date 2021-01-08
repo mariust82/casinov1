@@ -19,7 +19,7 @@ class CasinosList
     public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "")
     {
         $output = array();
-        $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
+        $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported","IF(t15.id IS NOT NULL,1,0) AS currency_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
 
         $queryGenerator = new CasinosListQuery(
             $this->filter,
@@ -44,7 +44,10 @@ class CasinosList
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->score_class = $this->helper->getScoreClass($object->rating);
+            $object->casino_game_types = $this->getGameTypes($object->id);
             $object->comments = $this->countCasinoComments($object->id);
+            $object->casino_deposit_methods =  $this->getCasinoDepositMethods($object->id);
+            $object->is_currency_accepted = $row['currency_supported'];
             if ($this->filter->getBankingMethod()) {
                 $object->deposit_methods = $row["has_dm"];
                 $object->withdraw_methods = $row["has_wm"];
@@ -104,6 +107,44 @@ class CasinosList
         }
 
         return array_values($output);
+    }
+    
+    private function getGameTypes($casinoId)
+    {
+        $q =" SELECT
+            t2.name
+            FROM casinos__game_types AS t1
+            INNER JOIN game_types AS t2 ON t1.	game_type_id = t2.id
+            WHERE t1.casino_id =  $casinoId";
+
+        $data = SQL($q)->toList();
+        return $data;
+    }
+    
+    private function getBankingMethodData($entity, $id)
+    {
+        return SQL("
+            SELECT
+            t2.name
+            FROM casinos__".$entity." AS t1
+            INNER JOIN banking_methods AS t2 ON t1.banking_method_id = t2.id
+            WHERE t1.casino_id = ".$id."
+        ")->toColumn();
+    }
+    
+    private function getCasinoDepositMethods($casino_id)
+    {
+        $deposit_methods =  $this->getBankingMethodData("deposit_methods", $casino_id);
+        $withdraw_methods =   $this->getBankingMethodData("withdraw_methods", $casino_id);
+        $casino_deposit_methods = array_merge($deposit_methods, $withdraw_methods);
+
+        $casino_deposit_methods_data = [];
+        foreach ($casino_deposit_methods as $key => $value) {
+            $casino_deposit_methods_data[$value]['deposit_methods'] = in_array($value, $deposit_methods);
+            $casino_deposit_methods_data[$value]['withdraw_methods'] = in_array($value, $withdraw_methods);
+            $casino_deposit_methods_data[$value]['logo'] = '/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $value)).'.png';
+        }
+        return $casino_deposit_methods_data;
     }
 
     public function getTotal()

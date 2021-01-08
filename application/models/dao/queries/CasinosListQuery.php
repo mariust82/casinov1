@@ -63,6 +63,8 @@ class CasinosListQuery
     {
         if ($filter->getCurrencyAccepted()) {
             $query->joinInner("casinos__currencies", "t15")->on(["t1.id" => "t15.casino_id","t15.currency_id" => $filter->currency_id."\n"]);
+        } else {
+            $query->joinLeft("casinos__currencies", "t15")->on(["t1.id" => "t15.casino_id"]);
         }
 
         if ($filter->getLanguageAccepted()) {
@@ -146,7 +148,7 @@ class CasinosListQuery
                 $query->joinInner("casinos__play_versions", "t9")->on(["t1.id" => "t9.casino_id" , "t9.play_version_id" => "(" . $sub_query->toString()  . ")" ]);
                 if ($filter->getPlayVersion() == "Live Dealer") {
                     $query->joinInner("casinos__game_types", "t14")->on(["t14.casino_id" => "t1.id"])->set("t14.is_live", 1);
-                    $query->joinInner("game_types", "t15")->on(["t15.id" => "t14.game_type_id"]);
+                    $query->joinInner("game_types", "t19")->on(["t19.id" => "t14.game_type_id"]);
                 }
             }
         }
