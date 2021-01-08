@@ -50,12 +50,14 @@ function AddingReview(obj) {
         _storage_casino_id_reviewed = localStorage.getItem('casino_' + _casinoID + '_reviewed'),
         _storage_review_score = localStorage.getItem('casino_' + _casinoID + '_score'),
         _reviewID,
+        _field_title,
         _field_name,
         _field_email,
         _field_message,
         _contact_error_required,
         _contact_error_rate,
         _reviewHolder,
+        title,
         name,
         email,
         message,
@@ -67,6 +69,7 @@ function AddingReview(obj) {
 
     _prepReview = function (_self) {
         var parent = _self;
+        _field_title = parent.find('input[name=title]');
         _field_name = parent.find('input[name=name]');
         _field_email = parent.find('input[name=email]');
         _field_message = parent.find('textarea[name=body]');
@@ -161,6 +164,7 @@ function AddingReview(obj) {
         _prepAjaxData = function (_this) {
             var ajaxData = {
                 casino: casino_name,
+                title: title,
                 name: name,
                 email: email,
                 body: message,

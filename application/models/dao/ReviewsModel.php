@@ -11,6 +11,7 @@ class ReviewsModel
     public function saveComment()
     {
         $review = new CasinoReview();
+        $review->title = htmlspecialchars($this->reviewData['title']);
         $review->name = htmlspecialchars($this->reviewData['name']);
         $review->email = $this->reviewData['email'];
         $review->body = htmlspecialchars($this->reviewData['body']);
