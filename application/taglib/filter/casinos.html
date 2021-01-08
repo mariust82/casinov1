@@ -1,4 +1,4 @@
-<div class="filter" id="filters" data-url="/casinos-filter/">
+<div class="filter" id="filters" data-url="/casinos-filter/" data-filter="$[filter]"  data-entity="$[id]">
 	<div class="filter-filter">
 		<div class="filter-label">Filter by:</div>
 		<div class="filter-check">
@@ -127,6 +127,7 @@
 			<option value="342">Octavian Gaming|1</option>
 		</select>
 	</div>
+
 	<:if test="${data.selected_entity} != 'Best'">
 		<div class="filter-sort">
 			<div class="filter-label">Sort by:</div>
@@ -199,4 +200,5 @@
 			</div>
 		</:if>
 	</:if>
+
 </div>

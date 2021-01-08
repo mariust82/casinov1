@@ -319,53 +319,60 @@
 						<:if test="strtolower(${data.page_type}) !== 'index' && strtolower(${data.page_type}) !== 'game_info'">
 						<div class="casino-specifications">
 							<span class="spec-title">Game Types</span>
+							<:set var="games" val="checkGameAvailability(${result.casino_game_types})"/>
 							<div class="spec-row">
+								<:set var="counter" val="0"/>
 								<div class="spec-items">
-									<div class="game-type-item">
-										<img src="/public/build/images/blackjack.svg">
-									</div>
-									<div class="game-type-item">
-										<img src="/public/build/images/roulette.svg">
-									</div>
-									<div class="game-type-item unavailable">
-										<img src="/public/build/images/slots.svg">
-									</div>
+									<:foreach var="${games}" key="key" val="value">
+										<:if test="${counter} < 3">
+											<div class='game-type-item <:if test="${value}"> available <:else> unavailable </:if>'>
+												<img alt="${key}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg">
+											</div>
+										</:if>
+										<:set var="counter" val="${counter}+1"/>
+									</:foreach>
 								</div>
 								<div class="popup-spec">
 									<span class="open-popup-spec">Show all (10)</span>
 									<div class="popup-casino-spec">
 										<i class="icon-icon_unavailable close-popup-spec"></i>
-										
-										
-									</div>
+										<:foreach var="${games}" key="key" val="value">
+											<div class='game-type-item <:if test="${value}"> available <:else> unavailable </:if>'>
+												<img alt="${key}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg">
+												<span class="game-type_name">${key}</span>
+											</div>
+										</:foreach>
+	   								</div>
 								</div>
 							</div>
 							<:if test="count(${result.softwares}) > 0">				
-							<span class="spec-title">Software Providers</span>
+							<span class="spec-title">Software Providers ${count(${result.softwares})}</span>
 							<div class="spec-row">
 								<div class="spec-items">
 									<:foreach var="${result.softwares}" key="key" val="software">
-									<:if test="${key}<3">
+									<:if test="${key} < 3 && count(${result.softwares}) !== 4">
+										<a class="list-title list_link item-spec software" href="/softwares/${normalize(${software})}">
+											<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
+										</a>
+									<:elseif test="count(${result.softwares}) == 4">
 										<a class="list-title list_link item-spec software" href="/softwares/${normalize(${software})}">
 											<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
 										</a>
 									</:if>
 									</:foreach>
 								</div>
-								<:set var="extraSoftwares" val="count(${result.softwares})-4"/>
+								<:set var="extraSoftwares" val="count(${result.softwares})-5"/>
 								<:if test="${extraSoftwares} > 0">
 								<div class="popup-spec">
-									<span class="open-popup-spec">Show all (+${extraSoftwares})</span>
+									<span class="open-popup-spec">Show all (${count(${result.softwares})})</span>
 									<div class="popup-casino-spec big">
 										<i class="icon-icon_unavailable close-popup-spec"></i>
 										<div class="list_scroll">
 											<:foreach var="${result.softwares}" key="key" val="software">
-											<:if test="${key} > 3">
 												<a class="list-title list_link item-spec software" href="/softwares/${normalize(${software})}">
 													<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software} Logo">
 													${software}
 												</a>
-											</:if>
 											</:foreach>
 										</div>
 									</div>
@@ -391,7 +398,7 @@
 								<:set var="extraMethods" val="count(${result.casino_deposit_methods})-4"/>
 								<:if test="${extraMethods} > 0">
 								<div class="popup-spec">
-									<span class="open-popup-spec">Show all (+${extraMethods})</span>
+									<span class="open-popup-spec">Show all (${count(${result.casino_deposit_methods})})</span>
 									<div class="popup-casino-spec large">
 										<i class="icon-icon_unavailable close-popup-spec"></i>
 										<div class="list_scroll">
@@ -400,9 +407,7 @@
 												<span>Deposit</span>
 												<span>Withdrawal</span>
 											</div>
-											<:set var="k" val="0"/>
 											<:foreach var="${result.casino_deposit_methods}" key="dep_method" val="dep_method_data">
-											<:if test="${k} > 3">
 											<div class="list-item-spec">
 												<a class="list-title list_link item-spec banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
 													<img src="${dep_method_data.logo}" alt="${dep_method} Logo">
@@ -419,10 +424,7 @@
 													<span><i class="icon-icon_available"></i></span>
 												</:if>
 											</div>
-											</:if>
-											<:set var="k" val="${k}+1"/>
 											</:foreach>
-											<:unset var="k"/>
 										</div>
 									</div>
 								</div>

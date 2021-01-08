@@ -150,6 +150,8 @@ function changeViewElements(filterView,container,gridClass,listClass){
     var ww = $(window).width();
 
     $(document).ready(function () {
+
+
         //Load Defer Scripts and Binding
         if ($('.links-nav').length) {
             loadScripts(['bindings', 'assets/swiper']);
@@ -570,3 +572,4 @@ function gridViewBoxPopup(){
         });
     }
 }
+

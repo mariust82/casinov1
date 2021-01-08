@@ -11,9 +11,9 @@
         </div>
 
         <:if test="isset(${data.currency})">
-            <filter:casinos id="${data.selected_entity}" name="${data.currency}" code="${data.language}" key="true"/>
+            <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.currency}" code="${data.language}" softwares="${data.softwares}" key="true"/>
         <:else>
-            <filter:casinos id="${data.selected_entity}" name="${data.country.name}" code="${data.country.code}"  key="false"/>
+            <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.country.name}" code="${data.country.code}" softwares="${data.softwares}" key="false"/>
         </:if>
         <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
             <:set var="grid_view_class" val="grid_view"/>
