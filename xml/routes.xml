@@ -106,7 +106,6 @@
         <route url="casino/review-write" controller="CasinoReviewWriteController" method="POST" format="json">
             <parameter name="casino" validator="CasinoNameValidator"/>
             <parameter name="casino_id" validator="CasinoIdValidator"/>
-            <parameter name="title" validator="StringValidator"/>
             <parameter name="name" validator="StringValidator"/>
             <parameter name="email" validator="EmailValidator"/>
             <parameter name="body" validator="StringValidator"/>
