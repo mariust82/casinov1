@@ -12742,3 +12742,14 @@ h1.title + .subtitle{
 .welcome_package-popup .bonus-box-body{
   padding: 15px 10px;
 }
+@media (max-width: 600px){
+  .welcome_package-popup .bonuses-wp {
+    display: block;
+  }
+  .welcome_package-popup .bonuses-wp .bonus-item {
+    width: 100%;
+  }
+  .welcome_package-popup .bonuses-wp .bonus-item:first-of-type{
+    margin-bottom: 15px;
+  }
+}
