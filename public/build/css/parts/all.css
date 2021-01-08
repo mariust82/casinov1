@@ -1679,6 +1679,7 @@ corresponds to the arrow we want to display */
 
 .select2-results__option[aria-selected] {
   cursor: pointer;
+  position:relative;
 }
 
 .select2-container--open .select2-dropdown {
@@ -1712,9 +1713,9 @@ corresponds to the arrow we want to display */
   -webkit-appearance: none;
 }
 
-.select2-search--dropdown.select2-search--hide {
+/*.select2-search--dropdown.select2-search--hide {
   display: none;
-}
+}*/
 
 .select2-close-mask {
   border: 0;
@@ -1914,11 +1915,6 @@ corresponds to the arrow we want to display */
   outline: 0;
   box-shadow: none;
   -webkit-appearance: textfield;
-}
-
-.select2-container--default .select2-results>.select2-results__options {
-  max-height: 200px;
-  overflow-y: auto;
 }
 
 .select2-container--default .select2-results__option[role=group] {
@@ -5902,6 +5898,10 @@ a:focus {
   }
 }
 
+.filter-filter select{
+  max-width:185px;
+}
+
 .filter-select {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6063,6 +6063,7 @@ a:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin:0 15px 0 0;
 }
 
 .filter-check-item {
@@ -7875,6 +7876,8 @@ a:focus {
 
 .select2-container--default .select2-results>.select2-results__options {
   max-height: 445px;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 @media screen and (max-width: 690px) {
@@ -7883,8 +7886,12 @@ a:focus {
   }
 }
 
+.select2-container--default .select2-search + .select2-results .select2-results__options{
+  padding-top: 45px;
+}
+
 .select2-results__option {
-  padding: 12px 15px;
+  padding: 12px;
 }
 
 @media screen and (max-width: 690px) {
@@ -12618,4 +12625,87 @@ h1.title + .subtitle{
   width: 0;
   height: 0;
   border-style: solid;
+}
+
+.select2-search--dropdown, [class*=" icon-"], [class^=icon-] {
+  font-family: icomoon!important;
+  speak: none;
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.select2-search--dropdown {
+  position: absolute;
+  z-index: 5;
+  background-color: #fff;
+  padding: 0 10px 8px 10px;
+}
+
+.select2-search--dropdown:before {
+  content: "\e900";
+  position: absolute;
+  left: 20px;
+  top: 11px;
+  font-weight: 700;
+  color: #a8aec8;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  border: 1px solid #e8eaf3;
+  height: 36px;
+  font-family: open sans,Helvetica,Arial,sans-serif;
+  font-size: 13px;
+}
+
+.select2-search--dropdown .select2-search__field {
+  padding: 0 10px 0 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.select2-container--default .select2-results__option[aria-selected] .wrap {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  font-size: 13px;
+  padding-right: 20px;
+}
+
+.soft_count {
+  position: absolute;
+  color: #a8aec8;
+  right: 7%;
+}
+
+.select2-container--default .select2-results__option[aria-selected] .wrap {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  font-size: 13px;
+  padding-right: 20px;
+}
+
+.game-soft, .game-title, .list-item-trun, .select2-container .select2-selection--single .select2-selection__rendered, .select2-container--default .select2-results__option[aria-selected] .wrap, .select2-results__option, .wrap {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 768px){
+  .wrap {
+    display: inline-block!important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 165px!important;
+  }
+}
+.wrap {
+  display: inline-block!important;
+  overflow: hidden;
+  width: 155px!important;
 }

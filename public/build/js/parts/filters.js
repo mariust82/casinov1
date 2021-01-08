@@ -1,9 +1,9 @@
-var Filters = function (obj) {
+var ListFilters = function (obj) {
     var _obj = obj,
             _self = this,
             _switchers = _obj.find('input[type=checkbox]'),
             _radios = _obj.find('input[type=radio]'),
-            _selectFilter = _obj.find($('.select')),
+            _selectFilter = _obj.find($('.filter-filter .select')),
             _targetContainer = $('.data-container'),
             _targetAddContainer = $('.data-add-container'),
             _paramName = _targetContainer.data('type'),
@@ -446,7 +446,7 @@ function findObjectByKey(array, key, value) {
 var is_options_loaded = false;
 
 if ($.fn.select2) {
-    select2tags();
+    // select2tags();
 
     var ua = window.navigator.userAgent;
     var msie = ua.indexOf("MSIE");
@@ -775,8 +775,7 @@ function initCustomSelect() {
 
     });
 
-}
-;
+};
 
 
 var selectedItems = [];
