@@ -295,20 +295,16 @@
 						</div>
 						<div class="game-types_box">
 							<span class="title-uppercase">Game Types</span>
+							<:set var="games" val="checkGameAvailability(${data.casino.casino_game_types})"/>
+
 							<div class="game_types">
-								<:foreach var="${data.casino.all_game_types}" key ="key" val="value">
-								<:if test="(${value.name} !== 'Other') && (${value.name} !== 'Video Slots')">
-									<:if test="in_array(${value}, ${data.casino.casino_game_types})">
-										<:set var="game_type_class" val="available"/>
-									<:else>
-										<:set var="game_type_class" val="unavailable"/>
-									</:if>
-									<div class="game-type_container ${game_type_class}">
-										<img alt="${value.name}" src="/public/build/images/${strtolower(str_replace(' ','_',${value.name}))}.svg">
-										<span class="game-type_name">${value.name}</span>
+								<:foreach var="${games}" key="key" val="value">
+									<div class='game-type_container <:if test="${value}"> available <:else> unavailable </:if>'>
+										<img alt="${key}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg">
+										<span class="game-type_name">${key}</span>
 									</div>
-								</:if>
 								</:foreach>
+
 							</div>
 						</div>
 					</div>
