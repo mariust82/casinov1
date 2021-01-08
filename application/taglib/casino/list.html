@@ -339,7 +339,8 @@
 										
 									</div>
 								</div>
-							</div>							
+							</div>
+							<:if test="count(${result.softwares}) > 0">				
 							<span class="spec-title">Software Providers</span>
 							<div class="spec-row">
 								<div class="spec-items">
@@ -371,6 +372,8 @@
 								</div>
 								</:if>
 							</div>
+							</:if>
+							<:if test="count(${result.casino_deposit_methods}) > 0">
 							<span class="spec-title">Banking</span>
 							<div class="spec-row">
 								<div class="spec-items">
@@ -425,6 +428,7 @@
 								</div>
 								</:if>
 							</div>
+							</:if>
 						</div>
 						</:if>
 					</div>
