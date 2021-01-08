@@ -374,12 +374,14 @@
 							<span class="spec-title">Banking</span>
 							<div class="spec-row">
 								<div class="spec-items">
+									<:set var="k" val="0"/>
 									<:foreach var="${result.casino_deposit_methods}" key="dep_method" val="dep_method_data">
-									<:if test="${dep_method}<3">
+									<:if test="${k}<3">
 										<a class="list-title list_link banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
 											<img src="${dep_method_data.logo}" alt="${dep_method} Logo">
 										</a>
 									</:if>
+									<:set var="k" val="${k}+1"/>
 									</:foreach>
 								</div>
 								<:set var="extraMethods" val="count(${result.casino_deposit_methods})-3"/>
