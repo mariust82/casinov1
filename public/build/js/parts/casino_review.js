@@ -50,12 +50,14 @@ function AddingReview(obj) {
         _storage_casino_id_reviewed = localStorage.getItem('casino_' + _casinoID + '_reviewed'),
         _storage_review_score = localStorage.getItem('casino_' + _casinoID + '_score'),
         _reviewID,
+        _field_title,
         _field_name,
         _field_email,
         _field_message,
         _contact_error_required,
         _contact_error_rate,
         _reviewHolder,
+        title,
         name,
         email,
         message,
@@ -67,12 +69,14 @@ function AddingReview(obj) {
 
     _prepReview = function (_self) {
         var parent = _self;
+        _field_title = parent.find('input[name=title]');
         _field_name = parent.find('input[name=name]');
         _field_email = parent.find('input[name=email]');
         _field_message = parent.find('textarea[name=body]');
         _contact_error_required = parent.find('.field-error-required');
         _contact_error_rate = parent.find('.field-error-rate');
         _contact_error = parent.find('.field-error');
+        title = _field_title.val();
         name = _field_name.val();
         email = _field_email.val();
         message = _field_message.val();
@@ -105,6 +109,13 @@ function AddingReview(obj) {
         }
 
         console.log(_reviewID + 't');
+
+        if (title === '') {
+            _field_title.parent().addClass(_contact_error_class);
+            ok = false;
+        } else {
+            _field_title.parent().removeClass(_contact_error_class);
+        }
 
         if (name === '') {
             _field_name.parent().addClass(_contact_error_class);
@@ -161,6 +172,7 @@ function AddingReview(obj) {
         _prepAjaxData = function (_this) {
             var ajaxData = {
                 casino: casino_name,
+                title: title,
                 name: name,
                 email: email,
                 body: message,
