@@ -28,6 +28,7 @@ abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
             $sitemap->lastmod = date("Y-m-d", strtotime($lastMod));
             $output[] = $sitemap;
         }
+        usort($output, array( $this, 'sortObjectsByLastmod'));
         return $output;
     }
 
@@ -37,6 +38,9 @@ abstract class AbstractSitemapController extends Lucinda\MVC\STDOUT\Controller
         return (strpos($page, "sitemaps_ps/")===0?"https":"http");
     }
 
+    private function sortObjectsByLastmod($a, $b) {
+        return ($a->lastmod < $b->lastmod) ? 1 : -1;
+    }
 
     abstract protected function getItems();
 

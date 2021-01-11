@@ -25,6 +25,7 @@ class CasinoLabelsController extends CasinosCounterController
         $this->limit = 30;
         $results = $this->getCasinos();
         $this->response->attributes("total_casinos", $results["total"]);
+        $this->response->attributes("all_game_types", $results["game_types"]);
         $this->response->attributes("casinos", $results["list"]);
         $this->response->attributes("page_type", 'label');
         $this->response->attributes("selected_entity", "all");
@@ -40,6 +41,7 @@ class CasinoLabelsController extends CasinosCounterController
         $results = array();
         $results["total"] = $object->getTotal();
         $results["list"] = ($results["total"]>0 ? $object->getResults(CasinoSortCriteria::NONE, 1, $this->limit) : array());
+        $results['game_types'] = $object->getAllGameTypes();
         return $results;
     }
 }

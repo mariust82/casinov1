@@ -1,52 +1,96 @@
 <div class="form">
-	<div class="form-row">
-		<:if test="$[rating]">
-			<div class="flex-left">
-				<div class="rating-container" data-casino-name="$[name]" data-casino-rating="${ceil($[rate])}" data-user-rate="${ceil($[key])}">
-					<label class="form-label">
-						<span class="flex">
-							RATE CASINO
-							<span class="rating-current" data-rating-current="0">
-								<span class="rating-current-text $[value]">$[id]</span>
-								<span class="rating-current-value"><span>${ceil($[key])}</span>/10</span>
-							</span>
-						</span>
-					</label>
-					<select class="rating-bar" autocomplete="off">
-						<option value=""></option>
-						<option value="1">Terrible</option>
-						<option value="2">Terrible</option>
-						<option value="3">Poor</option>
-						<option value="4">Poor</option>
-						<option value="5">Good</option>
-						<option value="6">Good</option>
-						<option value="7">Very good</option>
-						<option value="8">Very good</option>
-						<option value="9">Excellent</option>
-						<option value="10">Excellent</option>
-					</select>
-				</div>
-				<div class="action-field">
-					<i class="icon-icon_available"></i>
-					<span class="thanx">Thank you for rating $[name]!</span>
-				</div>
-				<:if test="!${data.casino.is_country_accepted}">
-					<div class="info-message">
-						<div class="info-message-icon">
-							<i class="icon-icon_info"></i>
+		<div class="form-row">
+			<div class="rating-container" data-casino-name="$[name]" data-casino-rating="${ceil($[rate])}" data-user-rate="${ceil($[key])}">
+				<div class="rating-container-left">
+					<div class="rating-container-score-holder">
+						<div class="rating-container-score">
+							<span>${ceil($[key])} out of <span>10</span></span>
+							|
+							<strong class="$[value]">$[id]</strong>
 						</div>
-						<div class="info-message-body">This casino does not accept your country, therefore you cannot rate or add a review.</div>
+						<div class="rating-container-voted">(${data.total_reviews} people voted)</div>
 					</div>
-				</:if>
+				</div>
+				<div class="rating-container-right">
+					<div class="rating-container-stats">
+						<div class="rating-container-stats-row">
+							<div class="rating-container-stats-label">Excellent</div>
+							<div class="rating-container-stats-line">
+								<div class="rating-container-stats-bar excellent" style="width: 10%;"></div>
+							</div>
+							<div class="rating-container-stats-score">
+								10%
+								<span>(23)</span>
+							</div>
+						</div>
+						<div class="rating-container-stats-row">
+							<div class="rating-container-stats-label">Very good</div>
+							<div class="rating-container-stats-line">
+								<div class="rating-container-stats-bar very-good" style="width: 50%;"></div>
+							</div>
+							<div class="rating-container-stats-score">
+								50%
+								<span>(110)</span>
+							</div>
+						</div>
+						<div class="rating-container-stats-row">
+							<div class="rating-container-stats-label">Good</div>
+							<div class="rating-container-stats-line">
+								<div class="rating-container-stats-bar good" style="width: 20%;"></div>
+							</div>
+							<div class="rating-container-stats-score">
+								20%
+								<span>(45)</span>
+							</div>
+						</div>
+						<div class="rating-container-stats-row">
+							<div class="rating-container-stats-label">Poor</div>
+							<div class="rating-container-stats-line">
+								<div class="rating-container-stats-bar poor" style="width: 15%;"></div>
+							</div>
+							<div class="rating-container-stats-score">
+								15%
+								<span>(30)</span>
+							</div>
+						</div>
+						<div class="rating-container-stats-row">
+							<div class="rating-container-stats-label">Terrible</div>
+							<div class="rating-container-stats-line">
+								<div class="rating-container-stats-bar terrible" style="width: 5%;"></div>
+							</div>
+							<div class="rating-container-stats-score">
+								5%
+								<span>(11)</span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<label class="form-label">ADD REVIEW</label>
-		</:if>
 
-		<div class="textfield-holder">
-			<textarea name="body" rows="5" class="expanding textfield" placeholder="Write your review..."></textarea>
+			<div class="action-field">
+				<i class="icon-icon_available"></i>
+				<span class="thanx">Thank you for rating ${data.casino.name}!</span>
+			</div>
+
+			<div class="drag-rate">
+				<h2 class="drag-rate-title">How would you rate the casino?</h2>
+				<div class="drag-rate-range">
+					<h3 class="drag-rate-range-heading">
+						Drag to rate
+						<span class="drag-rate-range-score">0/10</span>
+					</h3>
+					<input type="text" class="js-drag-rate"/>
+				</div>
+			</div>
+
+			<label class="form-label">WRITE A REVIEW</label>
+			<div class="textfield-holder" style="margin-bottom: 20px;">
+				<input type="text" class="textfield" name="title" placeholder="Add a review title...">
+			</div>
+			<div class="textfield-holder">
+				<textarea name="body" rows="5" class="textfield" placeholder="Write your review..."></textarea>
+			</div>
 		</div>
-	</div>
-	<div class="hidden js-expanding-textfields">
 		<div class="form-row form-multicol">
 			<div class="form-col">
 				<div class="textfield-holder">
@@ -63,17 +107,16 @@
 			<div class="review-submit-holder">
 				<input class="btn" type="submit" name="submit" value="ADD REVIEW">
 				<div class="errors-scope">
-				    <div class="field-error-required not-valid action-field">
-				        Please fill in the required fields.
-				    </div>
-				    <div class="field-error-rate not-valid action-field">
-				        In order to post your review, please rate this casino.
-				    </div>
-				    <div class="field-success success action-field">
-				        Thank You!
-				    </div>
+					<div class="field-error-required not-valid action-field">
+						Please fill in the required fields.
+					</div>
+					<div class="field-error-rate not-valid action-field">
+						In order to post your review, please rate this casino.
+					</div>
+					<div class="field-success success action-field">
+						Thank You!
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>

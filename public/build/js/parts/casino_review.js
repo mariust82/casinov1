@@ -1,4 +1,3 @@
-initBarRating();
 initReviewForm();
 initReplies();
 initTexfieldsLabels();
@@ -9,51 +8,6 @@ initAddReview();
 getWebName = function (name) {
     return name.replace(/\s/g, '-').toLowerCase();
 }
-
-var Score = function (obj) {
-    var _obj = obj,
-        _name = _obj.name,
-        _score = _obj.value,
-        _request = new XMLHttpRequest;
-
-    var _init = function () {
-            _updateScore(_name, _score);
-        },
-        _updateScore = function (_name, _score) {
-            if (BUSY_REQUEST)
-                return;
-            BUSY_REQUEST = true;
-            _request.abort();
-
-            _request = $.ajax({
-                url: '/casino/rate',
-                data: {
-                    name: _name,
-                    value: _score
-                },
-                dataType: 'json',
-                type: 'post',
-                success: function (data) {
-                    if (data.body['success'] == "Casino already rated!") {
-                        $(".icon-icon_available").toggleClass("icon-icon_unavailable");
-                        $(".icon-icon_unavailable").removeClass("icon-icon_available");
-                        $('.thanx').html(data.body['success']);
-                    }
-                    $('.rating-container').next('.action-field').show();
-                },
-                error: function (XMLHttpRequest) {
-                    if (XMLHttpRequest.statusText != "abort")
-                    {
-                        console.log('err');
-                    }
-                },
-                complete: function () {
-                    BUSY_REQUEST = false;
-                }
-            });
-        };
-    _init();
-};
 
 function _getCurrDate() {
     var today = new Date();
@@ -96,12 +50,14 @@ function AddingReview(obj) {
         _storage_casino_id_reviewed = localStorage.getItem('casino_' + _casinoID + '_reviewed'),
         _storage_review_score = localStorage.getItem('casino_' + _casinoID + '_score'),
         _reviewID,
+        _field_title,
         _field_name,
         _field_email,
         _field_message,
         _contact_error_required,
         _contact_error_rate,
         _reviewHolder,
+        title,
         name,
         email,
         message,
@@ -113,12 +69,14 @@ function AddingReview(obj) {
 
     _prepReview = function (_self) {
         var parent = _self;
+        _field_title = parent.find('input[name=title]');
         _field_name = parent.find('input[name=name]');
         _field_email = parent.find('input[name=email]');
         _field_message = parent.find('textarea[name=body]');
         _contact_error_required = parent.find('.field-error-required');
         _contact_error_rate = parent.find('.field-error-rate');
         _contact_error = parent.find('.field-error');
+        title = _field_title.val();
         name = _field_name.val();
         email = _field_email.val();
         message = _field_message.val();
@@ -151,6 +109,13 @@ function AddingReview(obj) {
         }
 
         console.log(_reviewID + 't');
+
+        if (title === '') {
+            _field_title.parent().addClass(_contact_error_class);
+            ok = false;
+        } else {
+            _field_title.parent().removeClass(_contact_error_class);
+        }
 
         if (name === '') {
             _field_name.parent().addClass(_contact_error_class);
@@ -207,6 +172,7 @@ function AddingReview(obj) {
         _prepAjaxData = function (_this) {
             var ajaxData = {
                 casino: casino_name,
+                title: title,
                 name: name,
                 email: email,
                 body: message,
@@ -332,7 +298,6 @@ function AddingReview(obj) {
 
             $('.review-rating', formContainer).addClass('active');
             $('textarea', formContainer).addClass('disabled');
-            $('.rating-bar').barrating('set', _storage_review_score);
             $('.rating-current-value span').text(_storage_review_score);
             $('textarea[name=body]', formContainer).attr('placeholder', 'You have already reviewed');
         },
@@ -477,50 +442,6 @@ function initReplies() {
 
         return false;
     });
-}
-
-function initBarRating() {
-    var container = $('.rating-container');
-    var user_rate = container.attr('data-user-rate');
-    var ratingParams = {
-        showSelectedRating: false,
-        onSelect: function (value, text, event) {
-            if (typeof event != 'undefined') {
-                var _this = $(event.currentTarget);
-                var _classes = 'terrible poor good very-good excellent';
-
-                $('.br-widget').children().each(function () {
-                    $(this).unbind("mouseenter mouseleave mouseover click");
-                    if (parseInt($(this).data('rating-value')) <= parseInt(user_rate)) {
-                        $(this).addClass('br-active');
-                    }
-                });
-                $('.br-widget').unbind("mouseenter mouseleave mouseover click");
-
-                _this
-                    .closest(container)
-                    .find('.rating-current-text')
-                    .text(text)
-                    .removeClass(_classes)
-                    .attr("class", "rating-current-text " + getWebName(text));
-                _this
-                    .closest(container)
-                    .find('.rating-current-value span')
-                    .text(value);
-                _this
-                    .closest(container)
-                    .find('.rating-current')
-                    .attr('data-rating-current', value);
-                new Score({
-                    value: value,
-                    name: container.data('casino-name')
-                });
-            }
-        }
-    };
-    if ($().barrating) {
-        $('.rating-bar', container).barrating('show', ratingParams);
-    }
 }
 
 function initTableOpen() {
