@@ -135,7 +135,8 @@ class CasinoReviews
           email = :email,
           body = :body,
           parent_id = :parent,
-          status = :status
+          status = :status,
+          title = :title
         ", array(
             ":casino"=>$casinoID,
             ":ip"=>$review->ip,
@@ -144,7 +145,8 @@ class CasinoReviews
             ":email"=>$review->email,
             ":body"=>$review->body,
             ":parent"=>$review->parent,
-            ":status" => $review->status
+            ":status" => $review->status,
+            ":title" => $review->title
         ))->getInsertId();
     }
 
