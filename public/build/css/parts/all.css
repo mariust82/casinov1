@@ -12224,7 +12224,7 @@ h1.title + .subtitle{
 @media screen and (max-width:500px) {
   .lower_pragraph img,
   .subtitle img{
-    width:100%;
+    width:100% !important;
   }
 }
 .index-page p {
