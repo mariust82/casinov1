@@ -12121,8 +12121,8 @@ h1.title + .subtitle{
   text-transform:none;
   margin:15px 0;
 }
-.subtitle p,
-.lower_pragraph p{
+.heading .subtitle .js-condense p,
+.heading .lower_pragraph .js-condense p{
   margin:15px 0;
 }
 
@@ -12397,7 +12397,6 @@ h1.title + .subtitle{
 
 .plain-text table,
 .widget.table table {
-  width: 100%!important;
   border-collapse: collapse;
   table-layout: fixed;
   border-radius:2px;
