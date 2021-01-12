@@ -38,7 +38,6 @@ class Casino extends Entity
     public $new;
     public $score_class;
     public $all_softwares;
-    public $all_game_types;
     public $deposit_minimum;
     public $welcome_package;
     public $casino_deposit_methods;
