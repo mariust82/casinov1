@@ -12918,3 +12918,286 @@ h1.title + .subtitle{
   top: 0;
   height: 6px ;
 }
+
+
+.similar_casinos-container{
+  border: 1px solid #E8EAF3;
+  display: flex;
+}
+.similar_casinos-header{
+  width: 15%;
+  font: normal normal 600 11px/18px Open Sans;
+  letter-spacing: 0px;
+  color: #465156;
+  text-transform: uppercase;
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 89px;
+  align-content: flex-end;
+  border-right: 1px solid #E8EAF3;
+
+}
+.similar_casinos-header span {
+  display: block;
+  margin-left: 20px;
+  width: 100%;
+}
+
+.similar_casinos-header span:not(:last-of-type){
+  margin-bottom: 30px;
+}
+.similar_casinos-header span:first-of-type{
+  margin-bottom: 27px;
+}
+.similar_casinos-header span:nth-of-type(2){
+  margin-bottom: 23px;
+}
+.similar_casino-box{
+  min-width: 200px;
+  width: 22%;
+  padding: 0 15px;
+  border-left: 1px solid #E8EAF3;
+  border-right: 1px solid #E8EAF3;
+  position: relative;
+}
+.similar_casino-box.blacklisted-box:after {
+  position: absolute;
+  top: 16px;
+  left: -19px;
+  content: 'BLACKLISTED';
+  border-bottom: 16px solid #020A13;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  height: 0;
+  width: 52px;
+  color: #fff;
+  font-size: 11px;
+  text-align: -moz-left;
+  font-stretch: condensed;
+  font-weight: 700;
+  font-family: "Open Sans Condensed";
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotateZ(315deg);
+}
+.blacklisted-box .play_button,
+.blacklisted-box .play_button:hover {
+  background: #020A13;
+}
+.warning-box .play_button,
+.warning-box .play_button:hover {
+  background: #DB2424;
+}
+.play_button .svg-icon{
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+.similar_casino-box.warning-box:after {
+  position: absolute;
+  top: 16px;
+  left: -19px;
+  content: 'WARNING';
+  border-bottom: 16px solid #DB2424;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  height: 0;
+  width: 52px;
+  color: #fff;
+  font-size: 11px;
+  text-align: -moz-left;
+  font-stretch: condensed;
+  font-weight: 700;
+  font-family: "Open Sans Condensed";
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotateZ(315deg);
+}
+.similar_casinos-slider {
+  display: flex;
+  width: 85%;
+  overflow: scroll;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none; 
+}
+.similar_casinos-slider::-webkit-scrollbar{
+  display: none;
+}
+.play_button{
+  /* width: calc(100% - 30px); */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto 25px auto;
+  background: #2171CE 0% 0% no-repeat padding-box;
+  border-radius: 4px;
+  height: 40px;
+  text-align: center;
+  font: normal normal 600 11px/15px Open Sans;
+  letter-spacing: 0.55px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+.similar_casino-logo {
+  width: 100px;
+  height: auto;
+  margin: 15px auto 8px auto;
+}
+.similar_casino-name{
+  text-align: center;
+  font: normal normal bold 13px/28px Open Sans;
+  letter-spacing: 0px;
+  margin-bottom: 20px;
+  display: block;
+  color: #2171CE;
+}
+.similar_casino-name.current_casino,
+.similar_casino-name:hover{
+  color: #465156;
+}
+.similar_casino-box .list-rating,
+.similar_casino-box .votes{
+  display: inline-flex;
+}
+.similar_casino-box .votes{
+  text-align: left;
+  font: normal normal normal 12px/19px Open Sans;
+  letter-spacing: 0px;
+  color: #465156;
+}
+.similar-row {
+  margin: 20px 0;
+  text-align: left;
+  font: normal normal normal 13px/28px Open Sans;
+  letter-spacing: 0px;
+  color: #465156;
+  display: flex;
+  align-items: center;
+}
+.similar-row i{
+  margin-right: 10px;
+}
+.play_button:hover{
+  color: #fff;
+  background: #0657b5;
+}
+.similar_casinos-header span.fb{
+  margin-top: 6px;
+  margin-bottom: 32px;
+}
+.similar_casinos-header span.fbd{
+  margin-bottom: 36px;
+}
+.similar-row.fb{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.similar-row.fdb{
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.votes .hide-mobile{
+  margin-left: 2px;
+}
+@media (max-width: 890px){
+  .similar_casinos-header{
+    width: 20%;
+  }
+}
+@media (max-width: 725px){
+  .similar_casinos-header{
+    width: 25%;
+  }
+}
+@media (max-width: 690px){
+  .hide-mobile{
+    display: none
+  }
+  .similar_casinos-header span:first-of-type {
+    margin-bottom: 23px;
+  }
+  .similar-row.fb{
+    margin-top: 23px;
+  }
+}
+@media (max-width: 573px){
+  .similar_casinos-header{
+    width: 30%;
+  }
+}
+.similar_casinos-header span:last-of-type.show-mobile{
+  text-indent: -9999px;
+  height: 0;
+  margin: 0;
+}
+@media (max-width: 504px){
+  .similar_casinos-header{
+    width: 40%;
+    padding-bottom: 80px;
+  }
+  .similar_casinos-header span{
+    margin-left: 10px;
+  }
+  .similar_casino-box{
+    min-width: 157px;
+  }
+  .similar_casinos-header span:last-of-type{
+    text-indent: -9999px;
+  }
+  .similar_casinos-header span:last-of-type.show-mobile{
+    text-indent: initial;
+    height: unset;
+    margin-top: -18px;
+  }
+  .similar_casino-name{
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .similar-row{
+    margin: 13px 0;
+  }
+  .similar-row.fb,
+  .similar-row.fdb{
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  .play_button{
+    margin: 12px auto 22px auto;
+  }
+  
+  .similar_casinos-header span:not(:last-of-type) {
+    margin-bottom: 22px;
+  }
+  
+  .similar_casinos-header span:first-of-type {
+    margin-bottom: 12px;
+  }
+  .similar_casinos-header span:nth-of-type(2) {
+    margin-bottom: 20px;
+  }
+  .similar_casinos-header span.fbd {
+    margin-bottom: 30px;
+  }
+  .similar_casinos-header span.fb{
+    margin-bottom: 30px ;
+  }
+
+}
+@media (max-width: 418px){
+  .similar_casinos-header{
+    width: 45%;
+  }
+  
+}
+@media screen and (max-width: 1023px){
+  .similar_casino-box .list-rating{
+    width: unset!important;
+    text-indent: initial!important;
+    min-width: 82px;
+  }
+  .similar_casino-box .list-rating .list-rating-score{
+    width: 21px!important;
+  }
+}
