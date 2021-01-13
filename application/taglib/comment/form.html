@@ -5,7 +5,7 @@
 			<div class="rating-container-left">
 				<div class="rating-container-score-holder">
 					<div class="rating-container-score">
-						<span>${ceilValue} out of <span>10</span></span>
+						<span><span class="rating-container-score-value">${ceilValue}</span> out of <span>10</span></span>
 						|
 						<strong class="$[value]">$[id]</strong>
 					</div>
@@ -82,7 +82,7 @@
 			<div class="drag-rate-range">
 				<h3 class="drag-rate-range-heading">
 					Drag to rate
-					<span class="drag-rate-range-score">0/10</span>
+					<span class="drag-rate-range-score">${ceilValue}/10</span>
 				</h3>
 				<input type="text" class="js-drag-rate"/>
 			</div>
