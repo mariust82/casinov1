@@ -4,7 +4,8 @@ var Score = function (obj) {
     var _obj = obj,
         _name = _obj.name,
         _score = _obj.value,
-        _request = new XMLHttpRequest;
+        _request = new XMLHttpRequest,
+        _info = new RatingInfo(_score);
 
     var _init = function () {
             _updateScore(_name, _score);
@@ -19,7 +20,7 @@ var Score = function (obj) {
                 url: '/casino/rate',
                 data: {
                     name: _name,
-                    value: _score
+                    value: _info.getScore()
                 },
                 dataType: 'json',
                 type: 'post',
@@ -30,6 +31,13 @@ var Score = function (obj) {
                         $('.thanx').html(data.body['success']);
                     }
                     $('.rating-container').next('.action-field').show();
+
+                    $('.drag-rate-range-score').text(_info.getScore()+'/10');
+                    $('.rating-container-score-value').text(_info.getScore());
+                    $('.rating-container-score-grade')
+                    .removeClass('terrbile, poor, good, very-good, excellent')
+                    .addClass(_info.getGrade().class)
+                    .text(_info.getGrade().text);
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.statusText != "abort")
@@ -119,10 +127,108 @@ contentTooltipConfigPopup = {
     }
 };
 
+var RatingInfo = function(score) {
+    this.current = (typeof score != 'undefined')?score:$('.rating-container').data('user-rate');
+
+    this.getScore = function() {
+        var score = null;
+
+        switch(this.current) {
+            case 0:
+                score = this.randomScore(1, 2);
+                break;
+            case 1:
+                score = this.randomScore(3, 4);
+                break;
+            case 2:
+                score = this.randomScore(5, 6);
+                break;
+            case 3:
+                score = this.randomScore(7, 8);
+                break;
+            case 4:
+                score = this.randomScore(9, 10);
+                break;
+        }
+
+        return score;
+    }
+
+    this.getGrade = function() {
+        var result = '';
+
+        switch(this.getScore()) {
+            case 1:
+            case 2:
+                result['text'] = 'Terrbile';
+                result['class'] = 'terrbile';
+                break;
+            case 3:
+            case 4:
+                result['text'] = 'Poor';
+                result['class'] = 'poor';
+                break;
+            case 5:
+            case 6:
+                result['text'] = 'Good';
+                result['class'] = 'good';
+                break;
+            case 7:
+            case 8:
+                result['text'] = 'Very good';
+                result['class'] = 'very-good';
+                break;
+            case 9:
+            case 10:
+                result['text'] = 'Excellent';
+                result['class'] = 'excellent';
+                break;
+        }
+
+        return result;
+    }
+
+    this.getNumberBasedOnScore = function() {
+        var num = null;
+
+        switch(this.current) {
+            case 1:
+            case 2:
+                num = 0;
+                break;
+            case 3:
+            case 4:
+                num = 1;
+                break;
+            case 5:
+            case 6:
+                num = 2;
+                break;
+            case 7:
+            case 8:
+                num = 3;
+                break;
+            case 9:
+            case 10:
+                num = 4;
+                break;
+        }
+
+        return num;
+    }
+
+    this.randomScore = function(min, max){
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+}
+
+var ratingInfo = new RatingInfo();
+
 $(".js-drag-rate").ionRangeSlider({
     min: 1,
     max: 10,
     step: 1,
+    from: ratingInfo.getNumberBasedOnScore(),
     grid: true,
     values: ['Terrbile', 'Poor', 'Good', 'Very good', 'Excellent'],
     skin: "round",
@@ -132,9 +238,8 @@ $(".js-drag-rate").ionRangeSlider({
     onFinish: function (data) {
         // fired on pointer release
         var container = $('.rating-container');
-        console.log(data);
         new Score({
-            value: data.to,
+            value: data.from,
             name: container.data('casino-name')
         });
     },
