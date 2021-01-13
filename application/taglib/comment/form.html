@@ -1,10 +1,11 @@
 <div class="form">
 		<div class="form-row">
-			<div class="rating-container" data-casino-name="$[name]" data-casino-rating="${ceil($[rate])}" data-user-rate="${ceil($[key])}">
+			<:set var="ceilValue" val="ceil($[key])"/>
+			<div class="rating-container" data-casino-name="$[name]" data-casino-rating="" data-user-rate="${ceilValue}">
 				<div class="rating-container-left">
 					<div class="rating-container-score-holder">
 						<div class="rating-container-score">
-							<span>${ceil($[key])} out of <span>10</span></span>
+							<span>${ceilValue} out of <span>10</span></span>
 							|
 							<strong class="$[value]">$[id]</strong>
 						</div>

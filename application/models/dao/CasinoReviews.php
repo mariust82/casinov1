@@ -58,6 +58,7 @@ class CasinoReviews
         while ($row = $resultSet->toRow()) {
             $object = new CasinoReview();
             $object->id = $row["id"];
+            $object->title = $row["title"];
             $object->name = $row["name"];
             $object->email = $row["email"];
             $object->body = $row["body"];
@@ -94,6 +95,7 @@ class CasinoReviews
                 while ($row = $res->toRow()) {
                     $object = new CasinoReview();
                     $object->id = $row["id"];
+                    $object->title = $row["title"];
                     $object->name = $row["name"];
                     $object->email = $row["email"];
                     $object->body = $row["body"];
