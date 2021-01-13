@@ -167,3 +167,8 @@ function checkGameAvailability($casinoGameTypes) {
     }
     return $games;
 }
+
+function setVotePercents($vote, $total_votes){
+    $percent  = round( ( $vote / $total_votes ) * 100);
+    return $percent . '%';
+}

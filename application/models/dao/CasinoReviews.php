@@ -11,7 +11,11 @@ class CasinoReviews
     {
         return SQL("SELECT COUNT(id) AS nr FROM casinos__reviews WHERE casinos__reviews.status != 3 AND casino_id = :casino_id AND parent_id = 0", array(":casino_id"=>$casinoID))->toValue();
     }
-    
+
+    public function getAllVotes($casinoID){
+        return SQL("SELECT COUNT(value) from casinos__ratings WHERE casino_id = :casino_id", array(":casino_id" => $casinoID))->toValue();
+    }
+
     public function getMoreReplies($page, $parentID)
     {
         $output = array();
