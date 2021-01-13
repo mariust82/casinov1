@@ -134,7 +134,7 @@ $(".js-drag-rate").ionRangeSlider({
         var container = $('.rating-container');
 
         new Score({
-            value: value,
+            value: data.to,
             name: container.data('casino-name')
         });
     },
