@@ -9,6 +9,7 @@ var Score = function (obj) {
     var _init = function () {
             _updateScore(_name, _score);
         },
+        
         _updateScore = function (_name, _score) {
             if (_score == 0) return;
             if (BUSY_REQUEST) return;
@@ -36,9 +37,9 @@ var Score = function (obj) {
                     $('.drag-rate-range-score').text(_score+'/10');
                     $('.rating-container-score-value').text(_score);
                     $('.rating-container-score-grade')
-                    .removeClass('terrible poor good very-good excellent')
-                    .addClass(getGrade(data.from).class)
-                    .text(getGrade(data.from).text);
+                    .removeClass('terrible poor good very-good excellent no-score')
+                    .addClass(getGrade(_score).class)
+                    .text(getGrade(_score).text);
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.statusText != "abort")

@@ -183,7 +183,7 @@ img {
 }
 
 .site__header_sticky {
-  padding-top: 40px;
+  padding-top: 73px;
 }
 
 img,
@@ -3387,6 +3387,9 @@ a:focus {
 }
 .rating-container-stats-bar.excellent{
   background: #4AB802;
+}
+.excellent{
+  color:#4AB802;
 }
 .very-good{
   color: #96CB00;
@@ -6676,6 +6679,7 @@ a:focus {
   -webkit-box-pack:center;
   -ms-flex-pack:center;
   justify-content:center;
+  text-align:center;
 }
 
 @media screen and (max-width: 690px) {
@@ -9424,7 +9428,10 @@ html.no-scroll {
 }
 
 .form-row .info-message {
-  margin: 0 0 0 40px;
+  margin: 0 0 40px;
+  -webkit-box-pack:center;
+  -ms-flex-pack:center;
+  justify-content:center;
 }
 
 @media screen and (max-width: 768px) {
@@ -9455,12 +9462,6 @@ html.no-scroll {
     font-size: 20px;
     margin: 0 15px 0 0;
   }
-}
-
-.info-message-body {
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
 }
 
 .no_welcome_bonuses {
