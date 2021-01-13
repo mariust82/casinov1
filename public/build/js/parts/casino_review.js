@@ -236,7 +236,7 @@ function AddingReview(obj) {
                 }
 
 
-                function setComment(review_element, element_class, name, data_id, imgDir, countryCode, message ){
+                function setComment(review_element, element_class, name, data_id, imgDir, countryCode, message, title ){
                     $(review_element).removeClass('review-element');
                     $(review_element).removeClass('hidden');
                     $(review_element).removeAttr('hidden');
