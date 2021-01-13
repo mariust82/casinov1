@@ -6684,7 +6684,7 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   #reviews-form .action-field {
-    margin: 0 0 10px;
+    margin: 15px 0 0 0;
   }
 }
 
@@ -12953,6 +12953,11 @@ h1.title + .subtitle{
   margin: 0 0 25px;
   color: #465156;
   text-align: center;
+  font-weight:600;
+}
+
+.drag-rate-title.error{
+  color:#db2424;
 }
 
 @media screen and (max-width:767px) {
@@ -13011,6 +13016,7 @@ h1.title + .subtitle{
 .drag-rate-range .irs--round .irs-grid-text{
   font-size: 12px;
   color: #A8AEC8;
+  visibility:visible !important;
 }
 
 .drag-rate-range .irs--round .irs-line{

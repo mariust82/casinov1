@@ -9,7 +9,7 @@ var Score = function (obj) {
     var _init = function () {
             _updateScore(_name, _score);
         },
-        
+
         _updateScore = function (_name, _score) {
             if (_score == 0) return;
             if (BUSY_REQUEST) return;
@@ -25,7 +25,6 @@ var Score = function (obj) {
                 dataType: 'json',
                 type: 'post',
                 success: function (data) {
-                    console.log('test');
                     if (data.body['success'] == "Casino already rated!") {
                         $(".icon-icon_available").toggleClass("icon-icon_unavailable");
                         $(".icon-icon_unavailable").removeClass("icon-icon_available");
@@ -36,6 +35,7 @@ var Score = function (obj) {
 
                     $('.drag-rate-range-score').text(_score+'/10');
                     $('.rating-container-score-value').text(_score);
+
                     $('.rating-container-score-grade')
                     .removeClass('terrible poor good very-good excellent no-score')
                     .addClass(getGrade(_score).class)
@@ -166,12 +166,6 @@ function getGrade(score) {
     return result;
 }
 
-function setRatingDefaults() {
-    $('.drag-rate-range')
-    .removeClass('terrible poor good very-good excellent')
-    .addClass(getGrade().class);
-}
-
 $(".js-drag-rate").ionRangeSlider({
     min: 0,
     max: 10,
@@ -183,9 +177,6 @@ $(".js-drag-rate").ionRangeSlider({
     grid_snap: true,
     hide_from_to: true,
     hide_min_max: true,
-    onStart: function() {
-        setRatingDefaults()
-    },
     onChange: function (data) {
         $('.drag-rate-range-score').text(data.from+'/10');
         $('.drag-rate-range')
@@ -921,7 +912,7 @@ var Filters = function (obj) {
             _resetButton = $('.js-reset-items');
             _switchers.off();
             _switchers.on('click', function () {
-                console.log('795 _switchers.on');
+                // console.log('795 _switchers.on');
                 _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
             });
 
@@ -1089,7 +1080,7 @@ var Filters = function (obj) {
                 }
             },
             complete: function () {
-                console.log(parseInt($('.qty-items').attr('data-load-total')));
+                // console.log(parseInt($('.qty-items').attr('data-load-total')));
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
                 if (_url === '/casinos-filter/') {
