@@ -4,15 +4,14 @@ var Score = function (obj) {
     var _obj = obj,
         _name = _obj.name,
         _score = _obj.value,
-        _request = new XMLHttpRequest,
-        _info = new RatingInfo(_score);
+        _request = new XMLHttpRequest;
 
     var _init = function () {
             _updateScore(_name, _score);
         },
         _updateScore = function (_name, _score) {
-            if (BUSY_REQUEST)
-                return;
+            if (_score == 0) return;
+            if (BUSY_REQUEST) return;
             BUSY_REQUEST = true;
             _request.abort();
 
@@ -20,24 +19,26 @@ var Score = function (obj) {
                 url: '/casino/rate',
                 data: {
                     name: _name,
-                    value: _info.getScore()
+                    value: _score
                 },
                 dataType: 'json',
                 type: 'post',
                 success: function (data) {
+                    console.log('test');
                     if (data.body['success'] == "Casino already rated!") {
                         $(".icon-icon_available").toggleClass("icon-icon_unavailable");
                         $(".icon-icon_unavailable").removeClass("icon-icon_available");
                         $('.thanx').html(data.body['success']);
                     }
-                    $('.rating-container').next('.action-field').show();
 
-                    $('.drag-rate-range-score').text(_info.getScore()+'/10');
-                    $('.rating-container-score-value').text(_info.getScore());
+                    $('.drag-rate').find('.action-field').show();
+
+                    $('.drag-rate-range-score').text(_score+'/10');
+                    $('.rating-container-score-value').text(_score);
                     $('.rating-container-score-grade')
-                    .removeClass('terrbile, poor, good, very-good, excellent')
-                    .addClass(_info.getGrade().class)
-                    .text(_info.getGrade().text);
+                    .removeClass('terrible poor good very-good excellent')
+                    .addClass(getGrade(data.from).class)
+                    .text(getGrade(data.from).text);
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.statusText != "abort")
@@ -49,6 +50,7 @@ var Score = function (obj) {
                     BUSY_REQUEST = false;
                 }
             });
+
         };
     _init();
 };
@@ -127,114 +129,68 @@ contentTooltipConfigPopup = {
     }
 };
 
-var RatingInfo = function(score) {
-    this.current = (typeof score != 'undefined')?score:$('.rating-container').data('user-rate');
 
-    this.getScore = function() {
-        var score = null;
+function getGrade(score) {
+    var current = (typeof score != 'undefined')?score:$('.rating-container').data('user-rate');
+    var result = {};
 
-        switch(this.current) {
-            case 0:
-                score = this.randomScore(1, 2);
-                break;
-            case 1:
-                score = this.randomScore(3, 4);
-                break;
-            case 2:
-                score = this.randomScore(5, 6);
-                break;
-            case 3:
-                score = this.randomScore(7, 8);
-                break;
-            case 4:
-                score = this.randomScore(9, 10);
-                break;
-        }
-
-        return score;
+    switch(current) {
+        case 1:
+        case 2:
+            result['text'] = 'Terrible';
+            result['class'] = 'terrible';
+            break;
+        case 3:
+        case 4:
+            result['text'] = 'Poor';
+            result['class'] = 'poor';
+            break;
+        case 5:
+        case 6:
+            result['text'] = 'Good';
+            result['class'] = 'good';
+            break;
+        case 7:
+        case 8:
+            result['text'] = 'Very good';
+            result['class'] = 'very-good';
+            break;
+        case 9:
+        case 10:
+            result['text'] = 'Excellent';
+            result['class'] = 'excellent';
+            break;
     }
 
-    this.getGrade = function() {
-        var result = '';
-
-        switch(this.getScore()) {
-            case 1:
-            case 2:
-                result['text'] = 'Terrbile';
-                result['class'] = 'terrbile';
-                break;
-            case 3:
-            case 4:
-                result['text'] = 'Poor';
-                result['class'] = 'poor';
-                break;
-            case 5:
-            case 6:
-                result['text'] = 'Good';
-                result['class'] = 'good';
-                break;
-            case 7:
-            case 8:
-                result['text'] = 'Very good';
-                result['class'] = 'very-good';
-                break;
-            case 9:
-            case 10:
-                result['text'] = 'Excellent';
-                result['class'] = 'excellent';
-                break;
-        }
-
-        return result;
-    }
-
-    this.getNumberBasedOnScore = function() {
-        var num = null;
-
-        switch(this.current) {
-            case 1:
-            case 2:
-                num = 0;
-                break;
-            case 3:
-            case 4:
-                num = 1;
-                break;
-            case 5:
-            case 6:
-                num = 2;
-                break;
-            case 7:
-            case 8:
-                num = 3;
-                break;
-            case 9:
-            case 10:
-                num = 4;
-                break;
-        }
-
-        return num;
-    }
-
-    this.randomScore = function(min, max){
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    return result;
 }
 
-var ratingInfo = new RatingInfo();
+function setRatingDefaults() {
+    $('.drag-rate-range')
+    .removeClass('terrible poor good very-good excellent')
+    .addClass(getGrade().class);
+}
 
 $(".js-drag-rate").ionRangeSlider({
-    min: 1,
+    min: 0,
     max: 10,
     step: 1,
-    from: ratingInfo.getNumberBasedOnScore(),
+    from: $('.rating-container').data('user-rate'),
     grid: true,
-    values: ['Terrbile', 'Poor', 'Good', 'Very good', 'Excellent'],
+    values: ['&nbsp;','Terrible','&nbsp;', 'Poor','&nbsp;', 'Good','&nbsp;', 'Very good','&nbsp;', 'Excellent','&nbsp;'],
     skin: "round",
     grid_snap: true,
     hide_from_to: true,
     hide_min_max: true,
+    onStart: function() {
+        setRatingDefaults()
+    },
+    onChange: function (data) {
+        $('.drag-rate-range-score').text(data.from+'/10');
+        $('.drag-rate-range')
+        .removeClass('terrible poor good very-good excellent')
+        .addClass(getGrade(data.from).class);
+    },
     onFinish: function (data) {
         // fired on pointer release
         var container = $('.rating-container');

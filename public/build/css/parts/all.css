@@ -6673,6 +6673,9 @@ a:focus {
 
 #reviews-form .action-field {
   margin: 17px 0 0 0;
+  -webkit-box-pack:center;
+  -ms-flex-pack:center;
+  justify-content:center;
 }
 
 @media screen and (max-width: 690px) {
@@ -12912,6 +12915,15 @@ h1.title + .subtitle{
   height: 100%;
 }
 
+.drag-rate-range .irs--round .irs-grid{
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-pack:justify;
+  -ms-flex-pack:justify;
+  justify-content:space-between;
+}
+
 .js-drag-rate,
 .drag-rate .irs-grid-pol{
   display: none;
@@ -12972,12 +12984,21 @@ h1.title + .subtitle{
 .drag-rate-range .irs-grid{
   width: 100% !important;
   left: 0 !important;
+  top:20px;
 }
 
-.drag-rate-range .js-grid-text-0{
+.drag-rate-range .irs-grid-text{
+  position:static !important;
+  margin:0 !important;
+  transform:translateX(0) !important;
+}
+
+.drag-rate-range .js-grid-text-0,
+.drag-rate-range .js-grid-text-10{
   left: 0 !important;
   margin: 0 !important;
   padding: 0;
+  display: none;
 }
 
 .drag-rate-range .irs--round .irs-grid-text:last-child{
@@ -13009,6 +13030,26 @@ h1.title + .subtitle{
   background: #2171CE;
   top: 0;
   height: 6px ;
+}
+
+.drag-rate-range.terrible .irs--round .irs-bar{
+  background: #DB2424;
+}
+
+.drag-rate-range.poor .irs--round .irs-bar{
+  background: #F17D0A;
+}
+
+.drag-rate-range.good .irs--round .irs-bar{
+  background: #E9CA00;
+}
+
+.drag-rate-range.very-good .irs--round .irs-bar{
+  background: #96CB00;
+}
+
+.drag-rate-range.excellent .irs--round .irs-bar{
+  background: #5DC916;
 }
 
 
