@@ -132,7 +132,7 @@ $(".js-drag-rate").ionRangeSlider({
     onFinish: function (data) {
         // fired on pointer release
         var container = $('.rating-container');
-
+        console.log(data);
         new Score({
             value: data.to,
             name: container.data('casino-name')
