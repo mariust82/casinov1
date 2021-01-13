@@ -246,6 +246,7 @@ function AddingReview(obj) {
                     $(review_element).attr('data-id', data_id);
                     $(review_element).find('.review-flag img').attr('src', imgDir);
                     $(review_element).find('.review-flag img').attr('alt', countryCode);
+                    $(review_element).find('.review-title').removeClass('hidden');
                     $(review_element).find('.review-title').text(title);
                     $(review_element).find('.review-name').text(name);
                     $(review_element).find('.review-date').text(_getCurrDate());
