@@ -11248,6 +11248,10 @@ hr.widget{
   justify-content: center;
   height: 100%;
 }
+.grid_view .list-item-casino-logo img{
+  width: 110px;
+  height: auto;
+}
 .grid_view .casino_items-view .list-item-cell.list-item-casino{
   width: 42%;
   padding: 25px 24px 25px 24px;
@@ -11320,12 +11324,16 @@ hr.widget{
   width: 16px;
   height: 16px;
 }
+.grid_view .list-title{
+  font: normal normal bold 16px/22px Open Sans;
+}
 .casino-info_container .row .icon{
   margin-right: 10px;
   height: 16px;
   width: 16px;
   display: flex;
   align-items: center;
+  font-size: 16px;
 }
 .icon-box_view.active svg rect{
   fill: #fff;
@@ -11389,7 +11397,7 @@ hr.widget{
 }
 .item-spec img {
   width: 60px;
-  height: 40px;
+  height: auto;
   margin-right: 15px;
 }
 .close-popup-spec ,
@@ -11409,14 +11417,18 @@ hr.widget{
   border: 1px solid #E8EAF3;
   padding: 2px 3px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .popup-spec{
   margin-left: auto;
   position: relative;
+  width: 75px;
 }
 .game-type-item img{
   height: 36px;
-  width: 44px;
+  width: auto;
 }
 .spec-row {
   display: flex;
@@ -11460,7 +11472,7 @@ hr.widget{
 .spec-items .software img,
 .spec-items .banking img {
   width: 60px;
-  height: 40px;
+  height: auto;
   margin-right: 15px;
 }
 .welcome_package-popup{
@@ -11669,8 +11681,8 @@ hr.widget{
   display: inline-flex;
   margin-left: 9px;
   text-transform: lowercase;
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   text-align: center;
   font-size: 10px;
@@ -11686,6 +11698,11 @@ hr.widget{
 .popup-casino-spec .list_scroll{
   max-height: 380px;
   overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none
+}
+.popup-casino-spec .list_scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .show_all-button {
