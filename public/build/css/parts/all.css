@@ -1580,6 +1580,7 @@ corresponds to the arrow we want to display */
   margin: 0;
   position: relative;
   vertical-align: middle;
+  width: 208px;
 }
 
 .select2-container .select2-selection--single {
@@ -1655,7 +1656,7 @@ corresponds to the arrow we want to display */
   position: absolute;
   left: -100000px;
   width: 100%;
-  z-index: 1051;
+  z-index: 98;
 }
 
 .select2-results {
@@ -5907,15 +5908,20 @@ a:focus {
 
 @media screen and (max-width: 1023px) {
   .filter-filter {
-    display: block;
+    flex-wrap: wrap;
+    width: calc(100% - 10px);
+  }
+  .filter-filter>div:first-child {
+    flex: 0 1 100%;
   }
 }
-
 @media screen and (max-width: 690px) {
   .filter-filter {
     margin: 0 0 20px;
+    width: 100%;
   }
 }
+
 
 .filter-filter select {
   width: 185px;
@@ -7726,6 +7732,7 @@ a:focus {
 @media screen and (max-width: 690px) {
   .select2-container {
     width: 100% !important;
+    margin-top: 15px;
   }
 }
 
@@ -7738,7 +7745,7 @@ a:focus {
 .select2-dropdown {
   border: none;
   position: relative;
-  padding: 10px 0;
+  padding: 10px 4px 15px 10px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.16);
   margin: 15px 0 0 0;
 }
@@ -7821,22 +7828,25 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   .select2-container--default .select2-results>.select2-results__options {
-    max-height: 222px;
+    max-height: 280px;
   }
 }
 
 .select2-container--default .select2-search + .select2-results .select2-results__options{
-  padding-top: 45px;
+  padding-top: 50px;
 }
 
 .select2-results__option {
-  padding: 12px;
+  padding-bottom: 12px;
 }
 
 @media screen and (max-width: 690px) {
   .select2-results__option {
     float: left;
-    width: 50%;
+    width: 100%;
+  }
+  .select2-search--dropdown {
+    width: calc(100% - 10px);
   }
 }
 
@@ -8164,6 +8174,9 @@ a:focus {
   .contact .social {
     margin: 0;
     display: block;
+  }
+  .select2-dropdown {
+    margin: 0;
   }
 }
 
@@ -12084,6 +12097,7 @@ h1.title + .subtitle{
   .subtitle p {
     line-height:24px
   }
+
 }
 .subtitle h2,
 .lower_pragraph h2{
@@ -12605,7 +12619,7 @@ h1.title + .subtitle{
   position: absolute;
   z-index: 5;
   background-color: #fff;
-  padding: 0 10px 8px 10px;
+  padding: 0 20px 8px 5px;
 }
 
 .select2-search--dropdown:before {
@@ -12625,7 +12639,7 @@ h1.title + .subtitle{
 }
 
 .select2-search--dropdown .select2-search__field {
-  padding: 0 10px 0 30px;
+  padding: 0 10px 0 35px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -12664,6 +12678,9 @@ h1.title + .subtitle{
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 165px!important;
+  }
+  .select2-container--open .select2-dropdown--below {
+    width: auto!important;
   }
 }
 .wrap {
@@ -12995,6 +13012,17 @@ h1.title + .subtitle{
 }
 
 
+.clearFilter {
+    margin: 5px 7px 8px 7px;
+    font-size: 13px;
+    color: #658ae8;
+    cursor: pointer;
+    width: calc(100% - 28px);
+    background-color: #fff;
+    top: 59px;
+    left: 15px;
+    z-index: 5;
+ }
 .list_scroll .list-title {
   font: normal normal normal 12px/20px Open Sans;
 }
