@@ -15,7 +15,11 @@
 			<div class="rating-container-right">
 				<div class="rating-container-stats">
 							<:foreach var="${data.casino.user_votes}" val="value" key="type">
-								<:set var="percents" val="setVotePercents(${value}, ${data.total_votes})" />
+								<:if test="${data.total_votes} > 0">
+									<:set var="percents" val="setVotePercents(${value}, ${data.total_votes})" />
+								<:else>
+									<:set var="percents" val="0" />
+								</:if>
 								<div class="rating-container-stats-row">
 									<div class="rating-container-stats-label">${type}</div>
 									<div class="rating-container-stats-line">
