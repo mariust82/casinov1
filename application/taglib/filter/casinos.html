@@ -99,25 +99,26 @@
 				</:if>
 			</div>
 		</div>
-		<:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
-			<div class="view">
-				<div class="icon icon-box_view active">
-					<svg class="svg-icon"><use xlink:href="#icon-box-view"></use></svg>
-				</div>
-				<div class="icon icon-list_view">
-					<svg class="svg-icon"><use xlink:href="#icon-list-view"></use></svg>
-				</div>
+		
+	</:if>
+	<:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
+		<div class="view">
+			<div class="icon icon-box_view active">
+				<svg class="svg-icon"><use xlink:href="#icon-box-view"></use></svg>
 			</div>
-		<:else>
-			<div class="view change_view">
-				<div class="icon icon-list_view active">
-					<svg class="svg-icon"><use xlink:href="#icon-list-view"></use></svg>
-				</div>
-				<div class="icon icon-box_view">
-					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30"><defs><clipPath id="a"><rect width="15" height="15" fill="none"/></clipPath></defs><g transform="translate(-30)"><g transform="translate(53 23) rotate(180)" clip-path="url(#a)"><g transform="translate(-1389 -329)"><rect width="15" height="6" rx="1" transform="translate(1389 329)" fill="#c1c9cf"/></g><g transform="translate(-1389 -320)"><rect width="15" height="6" rx="1" transform="translate(1389 329)" fill="#c1c9cf"/></g></g></g></svg>
-				</div>
+			<div class="icon icon-list_view">
+				<svg class="svg-icon"><use xlink:href="#icon-list-view"></use></svg>
 			</div>
-		</:if>
+		</div>
+	<:else>
+		<div class="view change_view">
+			<div class="icon icon-list_view active">
+				<svg class="svg-icon"><use xlink:href="#icon-list-view"></use></svg>
+			</div>
+			<div class="icon icon-box_view">
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30"><defs><clipPath id="a"><rect width="15" height="15" fill="none"/></clipPath></defs><g transform="translate(-30)"><g transform="translate(53 23) rotate(180)" clip-path="url(#a)"><g transform="translate(-1389 -329)"><rect width="15" height="6" rx="1" transform="translate(1389 329)" fill="#c1c9cf"/></g><g transform="translate(-1389 -320)"><rect width="15" height="6" rx="1" transform="translate(1389 329)" fill="#c1c9cf"/></g></g></g></svg>
+			</div>
+		</div>
 	</:if>
 
 </div>
