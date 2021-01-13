@@ -121,7 +121,7 @@ contentTooltipConfigPopup = {
 
 $(".js-drag-rate").ionRangeSlider({
     min: 1,
-    max: 5,
+    max: 10,
     step: 1,
     grid: true,
     values: ['Terrbile', 'Poor', 'Good', 'Very good', 'Excellent'],
