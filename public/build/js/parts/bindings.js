@@ -131,11 +131,12 @@ $(".js-drag-rate").ionRangeSlider({
     hide_min_max: true,
     onFinish: function (data) {
         // fired on pointer release
-        
-        // new Score({
-        //     value: value,
-        //     name: container.data('casino-name')
-        // });
+        var container = $('.rating-container');
+
+        new Score({
+            value: value,
+            name: container.data('casino-name')
+        });
     },
 });
 
