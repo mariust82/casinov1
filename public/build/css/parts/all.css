@@ -6688,6 +6688,15 @@ a:focus {
   }
 }
 
+#reviews-form .textfield,
+#reviews-form .textfield,
+#reviews-form input[type=submit].btn {
+  pointer-events:none;
+  opacity:.7;
+}
+
+input[type=submit]
+
 .review.review-parent {
   position: relative;
 }
@@ -7095,8 +7104,12 @@ a:focus {
   }
 }
 
-#reviews-form .review-submit-holder .errors-scope .action-field {
+#reviews-form .errors-scope .action-field {
   margin: 0;
+  -webkit-box-pack:start;
+  -ms-flex-pack:start;
+  justify-content:flex-start;
+  text-align:left;
 }
 
 .review-rating {
@@ -13073,4 +13086,24 @@ h1.title + .subtitle{
  }
 .list_scroll .list-title {
   font: normal normal normal 12px/20px Open Sans;
+}
+
+.plain-link{
+  color:#60686A;
+  text-decoration:underline;
+  font-size:13px;
+}
+.plain-link:hover{
+  text-decoration:none;
+}
+
+.review-submit-holder .plain-link{
+  margin:0 0 0 20px;
+}
+
+@media screen and (max-width:767px) {
+  .review-submit-holder .plain-link{
+    margin:10px 0 0 0;
+    display:inline-block;
+  }
 }
