@@ -33,9 +33,6 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         $sortCriteria = $this->getSortCriteria();
         $page = (integer)$this->request->getValidator()->parameters("page");
         $filter = new CasinoFilter($_GET, $this->request->attributes("country"));
-        if ($filter->getCasinoLabel() === "Best") {
-            $this->limit = 50;
-        }
         $params = $this->request->parameters();
         $object = new CasinosList($filter);
         $total = $object->getTotal();
@@ -51,8 +48,10 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         $params = $this->request->parameters();
         if (isset($params["live_dealer"])) {
             $offset = $page == 0? 0:($page - 1) * $this->limit + 30;
-        } else {
+        } elseif (isset($params["free_bonus"])) {
             $offset = $page == 0? 0:($page - 1) * $this->limit + 52;
+        } else {
+            $offset = $page == 0? 0:($page - 1) * $this->limit + 50;
         }
         
         return $offset;
