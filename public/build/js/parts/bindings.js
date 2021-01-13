@@ -121,7 +121,7 @@ contentTooltipConfigPopup = {
 
 $(".js-drag-rate").ionRangeSlider({
     min: 1,
-    max: 5,
+    max: 10,
     step: 1,
     grid: true,
     values: ['Terrbile', 'Poor', 'Good', 'Very good', 'Excellent'],
@@ -131,11 +131,12 @@ $(".js-drag-rate").ionRangeSlider({
     hide_min_max: true,
     onFinish: function (data) {
         // fired on pointer release
-        
-        // new Score({
-        //     value: value,
-        //     name: container.data('casino-name')
-        // });
+        var container = $('.rating-container');
+        console.log(data);
+        new Score({
+            value: data.to,
+            name: container.data('casino-name')
+        });
     },
 });
 

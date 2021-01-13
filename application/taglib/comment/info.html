@@ -1,6 +1,10 @@
 <div class="review $[class] ${normalize(${result.name})}" data-id="${result.id}">
 	<div class="review-wrap">
-		<div class="review-name">${result.title}</div>
+		<:if test="!empty(${result.title})">
+			<div class="review-title">${result.title}</div>
+		<:else>
+			<div class="review-title hidden">${result.title}</div>
+		</:if>
 		<div class="review-info">
 			<div class="review-info-top">
 				<div class="review-flag">
