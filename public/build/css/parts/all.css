@@ -12936,3 +12936,8 @@ h1.title + .subtitle{
   top: 0;
   height: 6px ;
 }
+
+
+.list_scroll .list-title {
+  font: normal normal normal 12px/20px Open Sans;
+}
