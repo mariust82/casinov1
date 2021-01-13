@@ -6972,7 +6972,8 @@ a:focus {
   padding: 20px 0 0 0;
 }
 
-.review-name {
+.review-name,
+.review-title{
   color: #465156;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6982,7 +6983,8 @@ a:focus {
 }
 
 @media screen and (max-width: 690px) {
-  .review-name {
+  .review-name,
+  .review-title{
     font-size: 14px;
     margin: 0 0 3px;
     line-height: 1;
