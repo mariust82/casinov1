@@ -68,10 +68,14 @@
 				</div>
 			</div>
 
-			<div class="action-field">
-				<i class="icon-icon_available"></i>
-				<span class="thanx">Thank you for rating ${data.casino.name}!</span>
-			</div>
+			<:if test="!${data.casino.is_country_accepted}">
+				<div class="info-message">
+					<div class="info-message-icon">
+						<i class="icon-icon_info"></i>
+					</div>
+					<div class="info-message-body">This casino does not accept your country, therefore you cannot rate or add a review.</div>
+				</div>
+			</:if>
 
 			<div class="drag-rate">
 				<h2 class="drag-rate-title">How would you rate the casino?</h2>
@@ -82,6 +86,12 @@
 					</h3>
 					<input type="text" class="js-drag-rate"/>
 				</div>
+			</div>
+
+
+			<div class="action-field">
+				<i class="icon-icon_available"></i>
+				<span class="thanx">Thank you for rating ${data.casino.name}!</span>
 			</div>
 
 			<label class="form-label">WRITE A REVIEW</label>
