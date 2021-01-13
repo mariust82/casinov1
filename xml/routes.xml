@@ -11,7 +11,7 @@
         <route url="casinos/(name)" controller="CasinosByLabelController" view="casinos">
             <parameter name="name" validator="CasinoLabelValidator"/>
         </route>
-        <route url="filter-software" controller="GameManufactureFilterController" view="filter-software" method="GET"/>
+        <route url="filter-software" controller="GameManufacturerFilterController" view="filter-software" method="GET"/>
         <route url="casinos" controller="CasinoLabelsController" view="casino-labels"/>
         <route url="reviews/(name)-review" controller="CasinoInfoController" view="casino-info" rebrand_tables="casinos">
             <parameter name="name" validator="CasinoNameValidator"/>

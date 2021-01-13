@@ -32,6 +32,7 @@ class CasinoFilter
     private $certification;
     private $bonus_types = [];
     private $play_version_type;
+    private $softwares;
 
     public function __construct($requestParameters, Country $detectedCountry)
     {
@@ -42,16 +43,19 @@ class CasinoFilter
             $this->currency_id = $result[0]['c_id'];
             $this->language_id = $result[0]['l_id'];
         }
+        if (isset($requestParameters['softwares'])) {
+                $this->softwares = $requestParameters['softwares'];
+        }
         $booleans = array("country_accepted","currency_accepted","lang_accepted","free_bonus", "promoted");
         foreach ($booleans as $item) {
             $this->$item =  !empty($requestParameters[$item]);
         }
 
+
         $strings = array("banking_method", "label", "bonus_type", "country", "software", "game");
         foreach ($strings as $item) {
             $this->$item =  (!empty($requestParameters[$item])?preg_replace("/[^a-zA-Z0-9\ \.\@\-\(\)]/", "", $requestParameters[$item]):"");
         }
-        
 
         if (!empty($requestParameters["compatibility"])) {
             $compatibility = strtolower($requestParameters["compatibility"]);
@@ -296,5 +300,15 @@ class CasinoFilter
     public function setPlayVersionType($data)
     {
         $this->play_version_type = $data;
+    }
+
+    public function getSoftwares()
+    {
+        return $this->softwares;
+    }
+
+    public function setSoftwares($data)
+    {
+        $this->softwares = $data;
     }
 }

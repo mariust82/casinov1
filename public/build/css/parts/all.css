@@ -5917,8 +5917,8 @@ a:focus {
   }
 }
 
-.filter-filter select{
-  max-width:185px;
+.filter-filter select {
+  width: 185px;
 }
 
 .filter-select {

@@ -1,4 +1,5 @@
 var ListFilters = function (obj) {
+
     var _obj = obj,
             _self = this,
             _switchers = _obj.find('input[type=checkbox]'),
@@ -48,6 +49,7 @@ var ListFilters = function (obj) {
 
         _selectFilter.off();
         _selectFilter.on('change', function () {
+            console.log('weqe');
             processCheckboxes(this);
             if (typeof resetGameItemsCounter === "function") {
                 resetGameItemsCounter();
@@ -72,6 +74,7 @@ var ListFilters = function (obj) {
     },
     
     _getAjaxParams = function (_paramName, _paramValue, _action, _this) {
+
         var _ajaxDataParams = {};
         $.each(_switchers, function (index, el) {
             if ($(el).is(':checked')) {
@@ -103,6 +106,8 @@ var ListFilters = function (obj) {
         _ajaxDataParams[_paramName] = _paramValue;
         $.each(_selectFilter, function (index, el) {
             if ($(el).val() != 'undefined' && $(el).val() != null) {
+               /* console.log($(el).attr('name'));
+                console.log($(el).val().join());*/
                 _ajaxDataParams[$(el).attr('name')] = $(el).val().join();
             }
         });
@@ -124,32 +129,31 @@ var ListFilters = function (obj) {
         }
 
         if (typeof AJAX_CUR_PAGE == "undefined")
-            AJAX_CUR_PAGE = 1;
+            AJAX_CUR_PAGE = 0;
         AJAX_CUR_PAGE++;
         if (_action != 'add' || _action == 'reset') {
-            AJAX_CUR_PAGE = 1;
+            AJAX_CUR_PAGE = 0;
         }
 
-        if (sortMode != _ajaxDataParams['sort']) {
+       /* if (sortMode != _ajaxDataParams['sort']) {
             if (typeof resetGameItemsCounter === "function") {
                 resetGameItemsCounter();
             }
         }
 
-
         if (path === '/best-online-slots')
-            gameItemsBoxCounter = 5;
+            gameItemsBoxCounter = 5; */
 
         return _ajaxDataParams;
     },
     
     _ajaxRequestCasinos = function (_ajaxDataParams, _action, _this) {
-        if (allGameItemsReceived) {
+       /* if (allGameItemsReceived) {
             if (typeof updateGameItemsCounters === "function") {
                 updateGameItemsCounters();
             }
             return;
-        }
+        }*/
 
         $('.overlay, .loader').fadeIn('fast');
 
@@ -158,9 +162,9 @@ var ListFilters = function (obj) {
         BUSY_REQUEST = true;
         _request.abort();
 
-        if (typeof getGameInfoTypeCol == 'function') {
+       /* if (typeof getGameInfoTypeCol == 'function') {
             _ajaxDataParams['gameInfoTypeCol'] = getGameInfoTypeCol();
-        }
+        }*/
         var theme = window.location.pathname.split('themes/');
         if (typeof _ajaxDataParams['themes'] == 'undefined') {
             if (theme.length == 2)
@@ -171,7 +175,7 @@ var ListFilters = function (obj) {
             _ajaxDataParams['themes'] = _themesArray.join(',');
         }
         _ajaxDataParams['url'] = window.location.pathname;
-        sortMode = _ajaxDataParams['sort'];
+        //sortMode = _ajaxDataParams['sort'];
         // console.log(_ajaxDataParams);
         _request = $.ajax({
             url: _url + AJAX_CUR_PAGE,
@@ -233,7 +237,7 @@ var ListFilters = function (obj) {
                         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                         $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
                     }
-                    initMoboleBonusesPop(ww);
+                    //initMoboleBonusesPop(ww);
 
                 } else {
                     if (_action == 'replace') {
@@ -287,7 +291,7 @@ var ListFilters = function (obj) {
                         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                         $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
                     }
-                    initMoboleBonusesPop(ww);
+                    //initMoboleBonusesPop(ww);
 
                     checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
 
@@ -295,8 +299,10 @@ var ListFilters = function (obj) {
                     if (loadTotal <= itemsNumberLoaded) {
                         if (path === '/real-money-slots')
                             _moreButton.hide();
-                        else
-                            allGameItemsReceived = true;
+                        else{
+                           // allGameItemsReceived = true;
+                        }
+
                     }
                     gameItemsTotalResult = parseInt($('.qty-items span').text());
 
@@ -304,7 +310,7 @@ var ListFilters = function (obj) {
                         updateGameData();
                     }
                 }
-                imageDefer("lazy_loaded");
+                //imageDefer("lazy_loaded");
                 if ($.fn.tooltipster) {
                     $('.js-tooltip').tooltipster(tooltipConfig);
                     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
@@ -496,6 +502,7 @@ function UpdateSelectFilter(_this) {
 
         if (typeof selected_software === 'undefined' && $(_this).attr('name') != 'software') {
 
+
             $.ajax({
                 url: '/filter-software',
                 type: 'GET',
@@ -517,7 +524,9 @@ function UpdateSelectFilter(_this) {
                 // console.log("complete");
             });
         }
-        if (selected_feature === '' && $(_this).attr('name') != 'features') {
+
+
+        /*if (selected_feature === '' && $(_this).attr('name') != 'features') {
             $.ajax({
                 url: '/filter-features',
                 type: 'GET',
@@ -562,7 +571,7 @@ function UpdateSelectFilter(_this) {
             .always(function () {
                 // console.log("complete");
             });
-        }
+        }*/
     }
 
 }
@@ -580,29 +589,32 @@ function prepareSelectFilter() {
         var software = $('.data-container').data('software');
         var pageNewSlots = window.location.pathname === '/new-online-slots'? 1:0;
 
+        var filter = $('#filters').data('filter');
+        var entity = $('#filters').data('entity');
 
-       //  console.dir(type);
-        $.ajax({
-            url: '/filter-software',
-            type: 'GET',
-            data: {
-                type: type,
-                theme: theme,
-                pageNewSlots: pageNewSlots
-            },
-            dataType: 'html'
-        })
-        .done(function (data) {
-            $('#filters .select.software').append(data);
-        })
-        .fail(function () {
-            // console.log("error");
-        })
-        .always(function () {
-            // console.log("complete");
-        });
+       if(filter != undefined) {
+           //  console.dir(type);
+           $.ajax({
+               url: '/filter-software',
+               type: 'GET',
+               data: {
+                   filter: filter,
+                   entity: entity
+               },
+               dataType: 'html'
+           })
+               .done(function (data) {
+                   $('#filters .select.software').append(data);
+               })
+               .fail(function () {
+                   // console.log("error");
+               })
+               .always(function () {
+                   // console.log("complete");
+               });
+       }
 
-        $.ajax({
+    /*    $.ajax({
             url: '/filter-features',
             type: 'GET',
             data: {
@@ -642,7 +654,7 @@ function prepareSelectFilter() {
         })
         .always(function () {
             // console.log("complete");
-        });
+        });*/
     }
 
 }
