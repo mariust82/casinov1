@@ -11079,11 +11079,7 @@ hr.widget{
     width: 100%;
     height: auto;
   }
-  .carousel .show_all-button {
-    max-width: calc(100% - 20px);
-    margin: auto;
-    margin-top: 10px;
-  }
+  
   .casino-details_header{
     flex-wrap: wrap;
     margin-bottom: 20px;
@@ -11724,35 +11720,8 @@ hr.widget{
   display: none;
 }
 
-.show_all-button {
-  background: #2171CE 0% 0% no-repeat padding-box;
-  box-shadow: 0px 0px 3px #00000029;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 300px;
-  height: 45px;
-  color: #fff;
-  margin: 21px auto 0 auto;
-  text-align: center;
-  font: normal normal 600 11px/15px Open Sans;
-  letter-spacing: 0.55px;
-  text-transform: uppercase;
-}
-.show_all-button i{
-  margin-left: 10px;
-  font-size: 9px;
-}
-.show_all-button:hover{
-  color: #fff;
-  background: #0F4585;
-}
-@media (max-width: 550px){
-  .show_all-button{
-    width: 100%;
-  }
-}
+
+
 
 /* bonus popup */
 @media (max-width:696px){
