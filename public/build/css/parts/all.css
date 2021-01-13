@@ -11596,10 +11596,29 @@ hr.widget{
   }
   .grid_view .list-item-casino-logo img{
     width: 80px;
-    height: 52px;
+    height: auto;
   }
+  .grid_view .list-title{
+    font: normal normal bold 14px/20px Open Sans;
+  }
+  .casino-info_container .row .icon{
+    font-size: 12px;
+  }
+  
 }
 @media(max-width:690px){
+  .wp-bonus-title{
+    font-size: 13px;
+  }
+  .game-type-item img{
+    height: 30px;
+  }
+  .spec-items .banking img, .spec-items .software img{
+    width: 50px;
+  }
+  .grid_view .list-rating{
+    line-height: 21px;
+  }
   .grid_view .casino_items-view .list-item{
     display: block;
     width: 100%;
