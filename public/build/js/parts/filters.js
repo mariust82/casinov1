@@ -769,7 +769,10 @@ function resetFilter(_select) {
 
     $select.val(null).trigger('change').select2('close');
     $('.select2-results__options').children().attr('aria-selected', false);
-    $('.' + selectName + '+.select2 .select2-selection__rendered').html(window[selectName + '_placeholder']);
+
+    $('.select2-selection__rendered').text('Softwares');
+   // $('.' + selectName + '+.select2 .select2-selection__rendered').html(window[selectName + '_placeholder']);
+
 }
 
 function initCustomSelect() {
