@@ -25,7 +25,6 @@ class CasinoLabelsController extends CasinosCounterController
         $this->limit = 30;
         $results = $this->getCasinos();
         $this->response->attributes("total_casinos", $results["total"]);
-        $this->response->attributes("all_game_types", $results["game_types"]);
         $this->response->attributes("casinos", $results["list"]);
         $this->response->attributes("page_type", 'label');
         $this->response->attributes("selected_entity", "all");

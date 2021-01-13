@@ -164,6 +164,9 @@ class CasinosListQuery
             $sub_query->where(["name" => "'" . $filter->getSoftware() . "'"]);
             $query->joinInner("casinos__game_manufacturers", "t10")->on(["t1.id" => "t10.casino_id", "t10.game_manufacturer_id" => "(" . $sub_query->toString() . ")" ]);
         }
+        if ($filter->getSoftwares()) {
+            $query->joinInner("casinos__game_manufacturers", "t10")->on(["t1.id" => "t10.casino_id"])->setIn("t10.game_manufacturer_id", [$filter->getSoftwares()]);
+        }
     }
 
     private function setWhere(Lucinda\Query\Condition $where, CasinoFilter $filter)
