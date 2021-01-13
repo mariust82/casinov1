@@ -7,7 +7,7 @@
 					<div class="rating-container-score">
 						<span><span class="rating-container-score-value">${ceilValue}</span> out of <span>10</span></span>
 						|
-						<strong class="$[value]">$[id]</strong>
+						<strong class="rating-container-score-grade $[value]">$[id]</strong>
 					</div>
 					<div class="rating-container-voted">(${data.total_votes} people voted)</div>
 				</div>
@@ -53,11 +53,11 @@
 				</h3>
 				<input type="text" class="js-drag-rate"/>
 			</div>
-		</div>
 
-		<div class="action-field">
-			<i class="icon-icon_available"></i>
-			<span class="thanx">Thank you for rating ${data.casino.name}!</span>
+			<div id="successful-rated" class="action-field">
+				<i class="icon-icon_available"></i>
+				<span class="thanx">Thank you for rating ${data.casino.name}!</span>
+			</div>
 		</div>
 
 		<label class="form-label">WRITE A REVIEW</label>

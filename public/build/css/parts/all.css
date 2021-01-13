@@ -183,7 +183,7 @@ img {
 }
 
 .site__header_sticky {
-  padding-top: 40px;
+  padding-top: 73px;
 }
 
 img,
@@ -3387,6 +3387,9 @@ a:focus {
 }
 .rating-container-stats-bar.excellent{
   background: #4AB802;
+}
+.excellent{
+  color:#4AB802;
 }
 .very-good{
   color: #96CB00;
@@ -6673,11 +6676,15 @@ a:focus {
 
 #reviews-form .action-field {
   margin: 17px 0 0 0;
+  -webkit-box-pack:center;
+  -ms-flex-pack:center;
+  justify-content:center;
+  text-align:center;
 }
 
 @media screen and (max-width: 690px) {
   #reviews-form .action-field {
-    margin: 0 0 10px;
+    margin: 15px 0 0 0;
   }
 }
 
@@ -9421,7 +9428,10 @@ html.no-scroll {
 }
 
 .form-row .info-message {
-  margin: 0 0 0 40px;
+  margin: 0 0 40px;
+  -webkit-box-pack:center;
+  -ms-flex-pack:center;
+  justify-content:center;
 }
 
 @media screen and (max-width: 768px) {
@@ -9452,12 +9462,6 @@ html.no-scroll {
     font-size: 20px;
     margin: 0 15px 0 0;
   }
-}
-
-.info-message-body {
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
 }
 
 .no_welcome_bonuses {
@@ -12912,6 +12916,15 @@ h1.title + .subtitle{
   height: 100%;
 }
 
+.drag-rate-range .irs--round .irs-grid{
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-pack:justify;
+  -ms-flex-pack:justify;
+  justify-content:space-between;
+}
+
 .js-drag-rate,
 .drag-rate .irs-grid-pol{
   display: none;
@@ -12940,6 +12953,11 @@ h1.title + .subtitle{
   margin: 0 0 25px;
   color: #465156;
   text-align: center;
+  font-weight:600;
+}
+
+.drag-rate-title.error{
+  color:#db2424;
 }
 
 @media screen and (max-width:767px) {
@@ -12972,12 +12990,21 @@ h1.title + .subtitle{
 .drag-rate-range .irs-grid{
   width: 100% !important;
   left: 0 !important;
+  top:20px;
 }
 
-.drag-rate-range .js-grid-text-0{
+.drag-rate-range .irs-grid-text{
+  position:static !important;
+  margin:0 !important;
+  transform:translateX(0) !important;
+}
+
+.drag-rate-range .js-grid-text-0,
+.drag-rate-range .js-grid-text-10{
   left: 0 !important;
   margin: 0 !important;
   padding: 0;
+  display: none;
 }
 
 .drag-rate-range .irs--round .irs-grid-text:last-child{
@@ -12989,6 +13016,7 @@ h1.title + .subtitle{
 .drag-rate-range .irs--round .irs-grid-text{
   font-size: 12px;
   color: #A8AEC8;
+  visibility:visible !important;
 }
 
 .drag-rate-range .irs--round .irs-line{
@@ -13009,6 +13037,26 @@ h1.title + .subtitle{
   background: #2171CE;
   top: 0;
   height: 6px ;
+}
+
+.drag-rate-range.terrible .irs--round .irs-bar{
+  background: #DB2424;
+}
+
+.drag-rate-range.poor .irs--round .irs-bar{
+  background: #F17D0A;
+}
+
+.drag-rate-range.good .irs--round .irs-bar{
+  background: #E9CA00;
+}
+
+.drag-rate-range.very-good .irs--round .irs-bar{
+  background: #96CB00;
+}
+
+.drag-rate-range.excellent .irs--round .irs-bar{
+  background: #5DC916;
 }
 
 
