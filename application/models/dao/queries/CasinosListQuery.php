@@ -167,7 +167,7 @@ class CasinosListQuery
             $query->joinInner("casinos__game_manufacturers", "t10")->on(["t1.id" => "t10.casino_id", "t10.game_manufacturer_id" => "(" . $sub_query->toString() . ")" ]);
         }
         if ($filter->getSoftwares()) {
-            $query->joinInner("casinos__game_manufacturers", "t10")->on(["t1.id" => "t10.casino_id"])->setIn("t10.game_manufacturer_id", [$filter->getSoftwares()]);
+            $query->joinInner("casinos__game_manufacturers", "t20")->on(["t1.id" => "t20.casino_id"])->setIn("t20.game_manufacturer_id", [$filter->getSoftwares()]);
         }
         if ($filter->getCasinoLabel() && $filter->getCasinoLabel() === "Low Minimum Deposit") {
             $query->joinInner("casinos__currencies", "cc")->on(["t1.id" => "cc.casino_id"]);

@@ -1,4 +1,4 @@
-var AJAX_CUR_PAGE = 1;
+var AJAX_CUR_PAGE = 0;
 var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
@@ -165,6 +165,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
             loadScripts(['bindings', 'assets/swiper']);
         }
         loadScripts(['assets/jquery-select2', 'filters']);
+
         $(document).on('scroll mousemove', function(){
             loadStyles(['ion.rangeSlider']);
             loadScripts(['assets/ion.rangeSlider.min', 'assets/tooltipster', 'assets/swiper', 'bindings']);
