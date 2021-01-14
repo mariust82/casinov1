@@ -50,7 +50,7 @@ var ListFilters = function (obj) {
 
         _selectFilter.off();
         _selectFilter.on('change', function () {
-            console.log('weqe');
+            console.log('_selectFilter');
             processCheckboxes(this);
             if (typeof resetGameItemsCounter === "function") {
                 resetGameItemsCounter();
@@ -269,12 +269,13 @@ var ListFilters = function (obj) {
                             _loaderHolder.show();
                             _emptyContent.hide();
                         }
+                        _targetAddContainer = $('.data-container .list-body');
                     } else {
 
                         if ($('.games-list').hasClass('list-view')) {
                             _targetAddContainer.addClass('list-view');
                         }
-                        _targetAddContainer = $('.data-container .list-body');
+
                         _targetAddContainer.append(cont);
                     }
 
@@ -315,7 +316,7 @@ var ListFilters = function (obj) {
                         updateGameData();
                     }
                 }
-                console.log(totalItems + " " + _targetAddContainer.children().length)
+                console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
                 if(_targetAddContainer.children().length >= totalItems) {
                     _moreButton.hide();
                 }
