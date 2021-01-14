@@ -2,6 +2,7 @@
 require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once 'entities/FullWelcomePackage.php';
+require_once 'application/models/CasinoScore.php';
 
 class CasinoInfo
 {
@@ -58,6 +59,10 @@ class CasinoInfo
             return;
         }
 
+        $casino_score = new CasinoScore();
+        $votes = $this->getUserVotes($output->id);
+        $output->user_votes = $casino_score->setVotesByType($votes);
+
         // detect primary currencies & append to withdrawal minimum
         $primaryCurrencies = implode("/", $this->getPrimaryCurrencies($output->id));
         $output->withdrawal_minimum = !empty($output->withdrawal_minimum) ? $primaryCurrencies.$output->withdrawal_minimum : 0;
@@ -104,6 +109,10 @@ class CasinoInfo
         } else {
             return $results;
         }
+    }
+
+    private function getUserVotes($casino_id){
+        return SQL("SELECT value from casinos__ratings WHERE casino_id = :casino_id", array(":casino_id" => $casino_id));
     }
 
     private function getIsAvailableInSite($data)

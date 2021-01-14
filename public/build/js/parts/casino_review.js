@@ -108,7 +108,7 @@ function AddingReview(obj) {
             _reviewHolder = $('#review-data-holder');
         }
 
-        console.log(_reviewID + 't');
+        // console.log(_reviewID + 't');
 
         if (title === '') {
             _field_title.parent().addClass(_contact_error_class);
@@ -135,6 +135,14 @@ function AddingReview(obj) {
         } else {
             _field_message.parent().removeClass(_contact_error_class);
         }
+
+        if ($('.drag-rate-range-score').text() == '0/10') {
+            $('.drag-rate-title').addClass('error');
+            ok = false;
+        } else {
+            $('.drag-rate-title').removeClass('error');
+        }
+
         if (!ok) {
             _contact_error_required.show();
         } else {
@@ -298,7 +306,7 @@ function AddingReview(obj) {
         _doIfReviewedAlready = function () {
             var formContainer = $('#reviews-form');
 
-            $('.review-rating', formContainer).addClass('active');
+            $(formContainer).addClass('reviewed');
             $('textarea', formContainer).addClass('disabled');
             $('.rating-current-value span').text(_storage_review_score);
             $('textarea[name=body]', formContainer).attr('placeholder', 'You have already reviewed');

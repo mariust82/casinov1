@@ -9,9 +9,10 @@ var Score = function (obj) {
     var _init = function () {
             _updateScore(_name, _score);
         },
+
         _updateScore = function (_name, _score) {
-            if (BUSY_REQUEST)
-                return;
+            if (_score == 0) return;
+            if (BUSY_REQUEST) return;
             BUSY_REQUEST = true;
             _request.abort();
 
@@ -29,7 +30,16 @@ var Score = function (obj) {
                         $(".icon-icon_unavailable").removeClass("icon-icon_available");
                         $('.thanx').html(data.body['success']);
                     }
-                    $('.rating-container').next('.action-field').show();
+
+                    $('.drag-rate').find('.action-field').show();
+
+                    $('.drag-rate-range-score').text(_score+'/10');
+                    $('.rating-container-score-value').text(_score);
+
+                    $('.rating-container-score-grade')
+                    .removeClass('terrible poor good very-good excellent no-score')
+                    .addClass(getGrade(_score).class)
+                    .text(getGrade(_score).text);
                 },
                 error: function (XMLHttpRequest) {
                     if (XMLHttpRequest.statusText != "abort")
@@ -41,6 +51,7 @@ var Score = function (obj) {
                     BUSY_REQUEST = false;
                 }
             });
+
         };
     _init();
 };
@@ -119,22 +130,64 @@ contentTooltipConfigPopup = {
     }
 };
 
+
+function getGrade(score) {
+    var current = (typeof score != 'undefined')?score:$('.rating-container').data('user-rate');
+    var result = {};
+
+    switch(current) {
+        case 1:
+        case 2:
+            result['text'] = 'Terrible';
+            result['class'] = 'terrible';
+            break;
+        case 3:
+        case 4:
+            result['text'] = 'Poor';
+            result['class'] = 'poor';
+            break;
+        case 5:
+        case 6:
+            result['text'] = 'Good';
+            result['class'] = 'good';
+            break;
+        case 7:
+        case 8:
+            result['text'] = 'Very good';
+            result['class'] = 'very-good';
+            break;
+        case 9:
+        case 10:
+            result['text'] = 'Excellent';
+            result['class'] = 'excellent';
+            break;
+    }
+
+    return result;
+}
+
 $(".js-drag-rate").ionRangeSlider({
-    min: 1,
+    min: 0,
     max: 10,
     step: 1,
+    from: $('.rating-container').data('user-rate'),
     grid: true,
-    values: ['Terrbile', 'Poor', 'Good', 'Very good', 'Excellent'],
+    values: ['&nbsp;','Terrible','&nbsp;', 'Poor','&nbsp;', 'Good','&nbsp;', 'Very good','&nbsp;', 'Excellent','&nbsp;'],
     skin: "round",
     grid_snap: true,
     hide_from_to: true,
     hide_min_max: true,
+    onChange: function (data) {
+        $('.drag-rate-range-score').text(data.from+'/10');
+        $('.drag-rate-range')
+        .removeClass('terrible poor good very-good excellent')
+        .addClass(getGrade(data.from).class);
+    },
     onFinish: function (data) {
         // fired on pointer release
         var container = $('.rating-container');
-        console.log(data);
         new Score({
-            value: data.to,
+            value: data.from,
             name: container.data('casino-name')
         });
     },
@@ -859,7 +912,7 @@ var Filters = function (obj) {
             _resetButton = $('.js-reset-items');
             _switchers.off();
             _switchers.on('click', function () {
-                console.log('795 _switchers.on');
+                // console.log('795 _switchers.on');
                 _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
             });
 
@@ -1027,7 +1080,7 @@ var Filters = function (obj) {
                 }
             },
             complete: function () {
-                console.log(parseInt($('.qty-items').attr('data-load-total')));
+                // console.log(parseInt($('.qty-items').attr('data-load-total')));
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
                 if (_url === '/casinos-filter/') {
