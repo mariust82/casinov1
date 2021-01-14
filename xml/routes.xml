@@ -8,6 +8,7 @@
             <parameter name="name" validator="BanckingMethodNameValidator"/>
         </route>
         <route url="banking" controller="BankingMethodsController" view="banking-methods"/>
+        <route url="casinos/low-minimum-deposit" controller="CasinosByLowMinimumDepositController" view="casinos"/>
         <route url="casinos/(name)" controller="CasinosByLabelController" view="casinos">
             <parameter name="name" validator="CasinoLabelValidator"/>
         </route>

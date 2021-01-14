@@ -27,7 +27,6 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
 
     public function run()
     {
-
         $this->response->attributes("country", $this->request->attributes("country"));
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $sortCriteria = $this->getSortCriteria();
@@ -39,6 +38,7 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         $offset = $this->setOffset($page);
         $this->response->attributes("filter", $filter->getCasinoLabel());
         $this->response->attributes("total_casinos", $total);
+        $this->response->attributes("total_casinos_left", $total - $offset);
         $this->response->attributes("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset, true));
         $this->response->attributes('page_type', $this->getPageType($filter));
         $this->response->attributes('selected_entity', isset($params['free_bonus']) ? $params['free_bonus'] : $filter->getCasinoLabel());
@@ -50,6 +50,8 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
             $offset = $page == 0? 0:($page - 1) * $this->limit + 30;
         } elseif (isset($params["free_bonus"])) {
             $offset = $page == 0? 0:($page - 1) * $this->limit + 52;
+        } elseif (isset($params["label"]) && $params["label"] == "Low Minimum Deposit") {
+            $offset = $page == 0? 0:($page - 1) * $this->limit + 100;
         } else {
             $offset = $page == 0? 0:($page - 1) * $this->limit + 50;
         }
@@ -73,6 +75,8 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
                 return CasinoSortCriteria::FAST_PAYOUT;
             } elseif ($this->request->parameters("label") == "No Account Casinos") {
                 return CasinoSortCriteria::NO_ACCOUNT;
+            } elseif ($this->request->parameters("label") == "Low Minimum Deposit") {
+                return CasinoSortCriteria::MINIMUM_DEPOSIT;
             } elseif (!empty($this->request->attributes('validation_results')->get('country'))) {
                 return CasinoSortCriteria::POPULARITY;
             }

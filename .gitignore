@@ -25,7 +25,7 @@ node_modules
 /npm-debug.log
 /compilations
 *.log
-/public/build/css/compilations/
-/public/build/js/compilations/
+/public/build/css/compilations
+/public/build/js/compilations
 /public/build/js/parts/global_js
 /.vscode

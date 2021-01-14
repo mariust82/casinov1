@@ -35,10 +35,11 @@
                         <casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
                     <:elseif test="${data.selected_entity} == 'Fast Payout'">
                         <casino:list type="WITHDRAWAL" id="1" data="${data.casinos}"/>
+                    <:elseif test="${data.selected_entity} == 'Low Minimum Deposit'">
+                        <casino:list type="MINIMUM DEPOSIT" id="1" data="${data.casinos}"/>
                     <:else>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
                     </:if>
-                    
                 </div>
             </div>
             <filter:reset/>
@@ -46,8 +47,13 @@
 
         <:if test="${data.total_casinos} > count(${data.casinos})">
         <div class="btn-holder">
-            <a href="#" class="btn-bordered load js-more-items">
-                LOAD MORE CASINOS</a>
+            <:if test="${data.selected_entity} == 'Low Minimum Deposit'">
+                <a href="#" class="btn-bordered load js-more-items">
+                    LOAD [${data.total_casinos_left}] MORE CASINOS</a>
+            <:else>
+                <a href="#" class="btn-bordered load js-more-items">
+                    LOAD MORE CASINOS</a>
+            </:if>
         </div>
         </:if>
         <:if test="isset(${data.recommended_games})">
