@@ -306,7 +306,7 @@ function AddingReview(obj) {
         _doIfReviewedAlready = function () {
             var formContainer = $('#reviews-form');
 
-            $('.review-rating', formContainer).addClass('active');
+            $(formContainer).addClass('reviewed');
             $('textarea', formContainer).addClass('disabled');
             $('.rating-current-value span').text(_storage_review_score);
             $('textarea[name=body]', formContainer).attr('placeholder', 'You have already reviewed');
