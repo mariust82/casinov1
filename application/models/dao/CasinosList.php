@@ -176,7 +176,6 @@ class CasinosList
             $offset
         );
         $query = $queryGenerator->getQuery();
-       // var_dump($query); die;
         $resultSet = SQL($query);
         while ($row = $resultSet->toRow()) {
             $output[] = $row["id"];
