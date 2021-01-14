@@ -6,7 +6,7 @@ var ListFilters = function (obj) {
             _radios = _obj.find('input[type=radio]'),
             _selectFilter = _obj.find($('.filter-filter .select')),
             _targetContainer = $('.data-container'),
-            _targetAddContainer = $('.data-add-container'),
+            _targetAddContainer = $('.list-body'),
             _paramName = _targetContainer.data('type'),
             _paramValue = _targetContainer.data('type-value'),
             _ajaxContent = $('.aj-content'),
@@ -16,6 +16,7 @@ var ListFilters = function (obj) {
             _resetButton,
             _itemsPerPage = 25,
             _request = new XMLHttpRequest();
+
 
     if (typeof _paramName == 'undefined') {
         _paramName = 'game_type';
@@ -70,7 +71,6 @@ var ListFilters = function (obj) {
 
             return false;
         });
-
     },
     
     _getAjaxParams = function (_paramName, _paramValue, _action, _this) {
@@ -128,6 +128,9 @@ var ListFilters = function (obj) {
             _ajaxDataParams['software'] = $('.data-container').data('software');
         }
 
+        _ajaxDataParams['offset'] = _action == 'add' ? $('.list-body').children().length : 0;
+
+
         if (typeof AJAX_CUR_PAGE == "undefined")
             AJAX_CUR_PAGE = 0;
         AJAX_CUR_PAGE++;
@@ -154,7 +157,7 @@ var ListFilters = function (obj) {
             }
             return;
         }*/
-
+        console.log(_action);
         $('.overlay, .loader').fadeIn('fast');
 
         if (BUSY_REQUEST)
@@ -186,10 +189,12 @@ var ListFilters = function (obj) {
                 var scrollPos = $(document).scrollTop();
                 var cont = $(data).find('.loaded-item');
                 var loadTotal = $(data).filter('[data-load-total]').data('load-total');
+                var totalItems = $(data).find('.qty-items').data('load-total');
+
                 if (_url === '/tournaments-filter/') {
                     cont = $(data).find('.list-item-tournament');
 
-                    if (AJAX_CUR_PAGE > 1) {
+                    if (_action == "add") {
                         $('.list-body').append(data);
                     } else {
                         $('.list-body').html(data);
@@ -210,7 +215,7 @@ var ListFilters = function (obj) {
                 } else if (_url === '/no-deposit-slots-filter/') {
                     var total = $('.qty-items').data('load-total');
                     cont = $(data).find('.edges');
-                    if (AJAX_CUR_PAGE > 1) {
+                    if (_action == "add") {
                         $('.casinos-list').append(data);
                     } else {
                         $('.holder').html(data);
@@ -241,8 +246,10 @@ var ListFilters = function (obj) {
 
                 } else {
                     if (_action == 'replace') {
+                        _targetContainer.html('');
                         _targetContainer.html(data);
-                        _targetAddContainer.html('');
+                        //_targetAddContainer.html('');
+
                         if (_ajaxDataParams['game_type'] == "Best" && loadTotal > 100) {
                             $('.qty-items span').text(100);
                         } else {
@@ -263,14 +270,12 @@ var ListFilters = function (obj) {
                             _emptyContent.hide();
                         }
                     } else {
+
                         if ($('.games-list').hasClass('list-view')) {
                             _targetAddContainer.addClass('list-view');
                         }
+                        _targetAddContainer = $('.data-container .list-body');
                         _targetAddContainer.append(cont);
-
-                        /*if( _ajaxDataParams['total_items_loaded'] >= datatotal){
-                            return false;
-                            }*/
                     }
 
                     if (_url === '/slots-filter/') {
@@ -309,6 +314,10 @@ var ListFilters = function (obj) {
                     if (typeof updateGameData == 'function') {
                         updateGameData();
                     }
+                }
+                console.log(totalItems + " " + _targetAddContainer.children().length)
+                if(_targetAddContainer.children().length >= totalItems) {
+                    _moreButton.hide();
                 }
                 //imageDefer("lazy_loaded");
                 if ($.fn.tooltipster) {

@@ -27,7 +27,6 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
 
     public function run()
     {
-
         $this->response->attributes("country", $this->request->attributes("country"));
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $sortCriteria = $this->getSortCriteria();
@@ -36,7 +35,7 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         $params = $this->request->parameters();
         $object = new CasinosList($filter);
         $total = $object->getTotal();
-        $offset = $this->setOffset($page);
+        $offset = isset($params['offset']) ? $params['offset'] : $this->setOffset($page);
         $this->response->attributes("filter", $filter->getCasinoLabel());
         $this->response->attributes("total_casinos", $total);
         $this->response->attributes("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset, true));
@@ -44,7 +43,7 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes('selected_entity', isset($params['free_bonus']) ? $params['free_bonus'] : $filter->getCasinoLabel());
     }
     
-     private function setOffset($page) {
+    private function setOffset($page) {
         $params = $this->request->parameters();
         if (isset($params["live_dealer"])) {
             $offset = $page == 0? 0:($page - 1) * $this->limit + 30;
