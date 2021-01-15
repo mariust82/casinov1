@@ -12176,9 +12176,14 @@ h1.title + .subtitle{
 }
 
 .subtitle .widget.featured_box {
-  max-width:99%;
-  margin-left:auto;
-  margin-right:auto;
+  max-width:100%;
+  border-radius:4px;
+  padding:25px 20px;
+  border:2px solid #658AE8;
+}
+
+.subtitle .widget.featured_box p{
+  line-height:34px;
 }
 
 @media screen and (max-width:767px) {
@@ -12190,6 +12195,14 @@ h1.title + .subtitle{
     font-size:15px;
     line-height:30px;
     margin:25px 0;
+  }
+
+  .subtitle .widget.featured_box {
+    padding:20px 15px;
+  }
+
+  .subtitle .widget.featured_box p{
+    line-height:28px;
   }
 }
 
@@ -12254,17 +12267,9 @@ h1.title + .subtitle{
   .subtitle img{
     display:block;
     float:none !important;
-    margin-left:auto !important;
-    margin-right:auto !important;
   }
 }
 
-@media screen and (max-width:500px) {
-  .lower_pragraph img,
-  .subtitle img{
-    width:100% !important;
-  }
-}
 .index-page p {
   float:left;
   /*max-width: 770px;*/
