@@ -185,9 +185,13 @@
 							<span class="detail-title">Website language</span>
 							<div class="row-details">
 								<:if test="count(${data.casino.languages}) > 0">
-								<i class="icon-icon_available"></i>
-								${data.casino.languages.0} 
-								<:if test="count(${data.casino.languages}) > 1"> (+${count(${data.casino.languages})-1})</:if>
+									<i class="icon-icon_available"></i>
+									${data.casino.languages.0}
+									<:if test="count(${data.casino.languages}) > 1">
+										<span class="js-tooltip language_tooltip" title="${get_string(${data.casino.languages}, 1)}">
+											(+${count(${data.casino.languages})-1})
+										</span>
+									</:if>
 								<:else>
 								<i class="icon-icon_unavailable"></i>
 								</:if>
@@ -197,9 +201,13 @@
 							<span class="detail-title">Currency</span>
 							<div class="row-details">
 								<:if test="count(${data.casino.currencies}) > 0">
-								<i class="icon-icon_available"></i>
-								${data.casino.currencies.0} 
-								<:if test="count(${data.casino.currencies}) > 1"> (+${count(${data.casino.currencies})-1})</:if>
+									<i class="icon-icon_available"></i>
+									${data.casino.currencies.0}
+									<:if test="count(${data.casino.currencies}) > 1">
+										<span class="js-tooltip currency_tooltip" title="${get_string(${data.casino.currencies}, 1)}">
+											(+${count(${data.casino.currencies})-1})
+										</span>
+									</:if>
 								<:else>
 								<i class="icon-icon_unavailable"></i>
 								</:if>

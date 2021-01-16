@@ -10906,6 +10906,10 @@ hr.widget{
 .casino-info_box .title{
   margin-bottom: 20px;
 }
+.casino-info_box .language_tooltip, .currency_tooltip {
+  cursor: pointer;
+  margin-left: 8px;
+}
 .casino-details_header {
   display: flex;
   width: 100%;
