@@ -6320,6 +6320,10 @@ a:focus {
   .casino-review .btn-middle {
     padding: 12px 22px;
   }
+  .casino-review .btn-restricted {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 .casino-review .list-rating {
