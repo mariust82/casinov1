@@ -258,6 +258,21 @@ function changeViewElements(filterView,container,gridClass,listClass){
             $this.data('scrollTimeout', setTimeout(callback, timeout));
         });
     };
+    
+    $(".list-item-flex").on('click',function(){     
+        var id = $(this).data('id');
+        $.ajax({    
+            url: '/timeframe-tooltip',
+            type: 'POST',
+            data: {
+                id: id              
+            },
+            dataType: 'html'
+        })
+        .done(function (data) {
+           
+        });
+    });
 
     var windowToBottom = 0;
 

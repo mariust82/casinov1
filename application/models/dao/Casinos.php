@@ -29,6 +29,30 @@ class Casinos implements FieldValidator
     {
         return SQL("SELECT tc_link FROM casinos WHERE id=:id", [":id"=>$id])->toValue();
     }
+    
+    public function getWithdrawTimeframes($id)
+    {
+        $output = array();
+        $query = new Lucinda\Query\MySQLSelect("casinos__withdraw_timeframes", "t1");
+        $query->fields(["t1.start, t1.end, t1.unit, t2.name"]);
+        $query->joinLeft("banking_method_types","t2")->on(["t1.banking_method_type_id"=>"t2.id"]);
+        $query->where()->set("casino_id", ":id");
+        $query->orderBy(["t2.position","t2.name"]);
+        
+        $resultSet = SQL($query->toString(),[":id"=>$id]);
+        while ($row = $resultSet->toRow()) {
+            if ($row["end"]==0) {
+                $output[$row["name"]] = "immediate";
+            } elseif ($row["end"]==1) {
+                $output[$row["name"]] = "up to 1 ".($row["unit"]=="hour"?"hour":"business day");
+            } elseif ($row["start"]==0) {
+                $output[$row["name"]] = "up to ".$row["end"]." ".($row["unit"]=="hour"?"hours":"business days");
+            } else {
+                $output[$row["name"]] = "".$row["start"]."-".$row["end"]." ".($row["unit"]=="hour"?"hours":"business days");
+            }
+        }
+        return $output;
+    }
 
     public function getBasicInfo($id)
     {
