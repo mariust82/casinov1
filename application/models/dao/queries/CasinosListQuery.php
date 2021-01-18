@@ -121,6 +121,7 @@ class CasinosListQuery
                 $query->joinInner("casinos__labels", "t5")->on(["t1.id" => "t5.casino_id", "t5.label_id" =>  "(" . $sub_query->toString() . ")" ]);
             }
         }
+        $query->joinLeft("casino_statuses", "cs")->on(["t1.status_id" => "cs.id"]);
         if ($filter->getCertification()) {
             $sub_query = new Lucinda\Query\MySQLSelect("certifications");
             $sub_query->fields(["id"]);

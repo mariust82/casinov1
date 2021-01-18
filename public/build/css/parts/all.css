@@ -3937,7 +3937,7 @@ a:focus {
 
 @media screen and (max-width:767px) {
   .btn-blk,
-  .btn.btn-blacklisted{
+  .list-body .btn.btn-blacklisted{
     background:none;
     color:#020A13;
   }
