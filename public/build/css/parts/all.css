@@ -6688,9 +6688,8 @@ a:focus {
   }
 }
 
-#reviews-form .textfield,
-#reviews-form .textfield,
-#reviews-form input[type=submit].btn {
+#reviews-form.reviewed .textfield,
+#reviews-form.reviewed input[type=submit].btn {
   pointer-events:none;
   opacity:.7;
 }
@@ -7105,7 +7104,7 @@ input[type=submit]
 }
 
 #reviews-form .errors-scope .action-field {
-  margin: 0;
+  margin: 5px 0 0 0;
   -webkit-box-pack:start;
   -ms-flex-pack:start;
   justify-content:flex-start;
