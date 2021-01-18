@@ -60,8 +60,7 @@ var ListFilters = function (obj) {
 
         _moreButton.off();
         _moreButton.on('click', function () {
-            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add', this);
-
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add', this), 'add', this);
             return false;
         });
 
@@ -120,16 +119,19 @@ var ListFilters = function (obj) {
                 _ajaxDataParams['features'] = '';
                 _ajaxDataParams['themes'] = '';
             }
-            if (typeof _ajaxDataParams['software'] === 'undefined' && typeof $('.data-container').data('software') !== 'undefined')
+            /*if (typeof _ajaxDataParams['software'] === 'undefined' && typeof $('.data-container').data('software') !== 'undefined')
             {
                 _ajaxDataParams['software'] = $('.data-container').data('software');
-            }
-        } else {
+            }*/
+        } /*else {
             _ajaxDataParams['software'] = $('.data-container').data('software');
-        }
+        }*/
 
-        _ajaxDataParams['offset'] = _action == 'add' ? $('.list-body').children().length : 0;
+        _targetAddContainer = $(_this).closest('.container').find('.data-add-container:first');
 
+        _ajaxDataParams['offset'] = _action == 'add' ? $(_targetAddContainer).children().length : 0;
+
+       // console.log(_ajaxDataParams);
 
         if (typeof AJAX_CUR_PAGE == "undefined")
             AJAX_CUR_PAGE = 0;
@@ -157,7 +159,9 @@ var ListFilters = function (obj) {
             }
             return;
         }*/
-        console.log(_action);
+
+       // console.log();
+
         $('.overlay, .loader').fadeIn('fast');
 
         if (BUSY_REQUEST)
@@ -165,10 +169,7 @@ var ListFilters = function (obj) {
         BUSY_REQUEST = true;
         _request.abort();
 
-       /* if (typeof getGameInfoTypeCol == 'function') {
-            _ajaxDataParams['gameInfoTypeCol'] = getGameInfoTypeCol();
-        }*/
-        var theme = window.location.pathname.split('themes/');
+/*        var theme = window.location.pathname.split('themes/');
         if (typeof _ajaxDataParams['themes'] == 'undefined') {
             if (theme.length == 2)
                 _ajaxDataParams['themes'] = theme[1];
@@ -176,16 +177,17 @@ var ListFilters = function (obj) {
             var _themesArray = _ajaxDataParams['themes'].split(',');
             _themesArray.push(theme[1]);
             _ajaxDataParams['themes'] = _themesArray.join(',');
-        }
+        }*/
         _ajaxDataParams['url'] = window.location.pathname;
         //sortMode = _ajaxDataParams['sort'];
-        // console.log(_ajaxDataParams);
+
         _request = $.ajax({
             url: _url + AJAX_CUR_PAGE,
             data: _ajaxDataParams,
             dataType: 'html',
             type: 'GET',
             success: function (data) {
+              //  _targetAddContainer = $(_this).closest('.container').find('.data-add-container:first');
                 var scrollPos = $(document).scrollTop();
                 var cont = $(data).find('.loaded-item');
                 var loadTotal = $(data).filter('[data-load-total]').data('load-total');
@@ -245,6 +247,8 @@ var ListFilters = function (obj) {
                     //initMoboleBonusesPop(ww);
 
                 } else {
+
+
                     if (_action == 'replace') {
                         _targetContainer.html('');
                         _targetContainer.html(data);
@@ -269,9 +273,8 @@ var ListFilters = function (obj) {
                             _loaderHolder.show();
                             _emptyContent.hide();
                         }
-                        _targetAddContainer = $('.data-container .list-body');
                     } else {
-
+                     //   console.log(_this);
                         if ($('.games-list').hasClass('list-view')) {
                             _targetAddContainer.addClass('list-view');
                         }
