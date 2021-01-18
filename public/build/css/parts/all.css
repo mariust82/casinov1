@@ -1581,6 +1581,7 @@ corresponds to the arrow we want to display */
   position: relative;
   vertical-align: middle;
   width: 208px;
+  z-index: 4;
 }
 
 .select2-container .select2-selection--single {
