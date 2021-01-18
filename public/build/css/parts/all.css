@@ -67,12 +67,12 @@ blockquote.widget p{
 
 .software-tooltipster{
     position: absolute;
-    top: -21px;
+    bottom: 13px;
     left: 0;
 }
 
 .software-tooltipster .tooltipster-arrow {
-    margin-left: 0px !important;
+    margin-left: 10px !important;
 }
 
 @media screen and (max-width: 767px) {
