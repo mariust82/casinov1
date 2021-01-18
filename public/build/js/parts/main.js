@@ -261,6 +261,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
     
     $(".list-item-flex").on('click',function(){     
         var id = $(this).data('id');
+        var _this = $(this);
         $.ajax({    
             url: '/timeframe-tooltip',
             type: 'POST',
@@ -270,7 +271,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
             dataType: 'html'
         })
         .done(function (data) {
-           
+           _this.append(data);
         });
     });
 

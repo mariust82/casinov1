@@ -61,6 +61,20 @@ blockquote.widget p{
   font-size: 16px !important;
 }
 
+.list-item-type{
+    position: relative;
+}
+
+.software-tooltipster{
+    position: absolute;
+    top: -21px;
+    left: 0;
+}
+
+.software-tooltipster .tooltipster-arrow {
+    margin-left: 0px !important;
+}
+
 @media screen and (max-width: 767px) {
   .article-single{
     padding:0 5px;
