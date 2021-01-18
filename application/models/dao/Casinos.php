@@ -33,13 +33,13 @@ class Casinos implements FieldValidator
     public function getWithdrawTimeframes($id)
     {
         $output = array();
-        $query = new Lucinda\Query\MySQLSelect("casinos__withdraw_timeframes", "t1");
-        $query->fields(["t1.start, t1.end, t1.unit, t2.name"]);
-        $query->joinLeft("banking_method_types","t2")->on(["t1.banking_method_type_id"=>"t2.id"]);
-        $query->where()->set("casino_id", ":id");
-        $query->orderBy(["t2.position","t2.name"]);
-        
-        $resultSet = SQL($query->toString(),[":id"=>$id]);
+        $resultSet = SQL("
+        SELECT t1.start, t1.end, t1.unit, t2.name 
+        FROM casinos__withdraw_timeframes AS t1
+        LEFT JOIN banking_method_types AS t2 ON t1.banking_method_type_id = t2.id
+        WHERE casino_id = ".$id."
+        ORDER BY t2.position ASC
+        ");
         while ($row = $resultSet->toRow()) {
             if ($row["end"]==0) {
                 $output[$row["name"]] = "immediate";
