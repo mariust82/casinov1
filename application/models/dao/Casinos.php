@@ -29,6 +29,30 @@ class Casinos implements FieldValidator
     {
         return SQL("SELECT tc_link FROM casinos WHERE id=:id", [":id"=>$id])->toValue();
     }
+    
+    public function getWithdrawTimeframes($id)
+    {
+        $output = array();
+        $resultSet = SQL("
+        SELECT t1.start, t1.end, t1.unit, t2.name 
+        FROM casinos__withdraw_timeframes AS t1
+        LEFT JOIN banking_method_types AS t2 ON t1.banking_method_type_id = t2.id
+        WHERE casino_id = ".$id."
+        ORDER BY t2.position ASC
+        ");
+        while ($row = $resultSet->toRow()) {
+            if ($row["end"]==0) {
+                $output[$row["name"]] = "immediate";
+            } elseif ($row["end"]==1) {
+                $output[$row["name"]] = "up to 1 ".($row["unit"]=="hour"?"hour":"business day");
+            } elseif ($row["start"]==0) {
+                $output[$row["name"]] = "up to ".$row["end"]." ".($row["unit"]=="hour"?"hours":"business days");
+            } else {
+                $output[$row["name"]] = "".$row["start"]."-".$row["end"]." ".($row["unit"]=="hour"?"hours":"business days");
+            }
+        }
+        return $output;
+    }
 
     public function getBasicInfo($id)
     {

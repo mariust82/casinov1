@@ -129,7 +129,7 @@
             <parameter name="TYPE" validator="LiveDealerValidator"/>
         </route>
         <route url="blog" controller="ArticlesController" view="articles"/>
-     
+        <route url="timeframe-tooltip" controller="FastPayoutTooltipController" view="tmf-tooltip"/>
         <route url="blog/(category)" controller="ArticlesByTypeController" view="articles">
             <parameter name="category" validator="ArticleCategoryValidator"/>
         </route>

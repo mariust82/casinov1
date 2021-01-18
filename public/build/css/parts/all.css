@@ -61,6 +61,20 @@ blockquote.widget p{
   font-size: 16px !important;
 }
 
+.list-item-type{
+    position: relative;
+}
+
+.software-tooltipster{
+    position: absolute;
+    bottom: 13px;
+    left: 0;
+}
+
+.software-tooltipster .tooltipster-arrow {
+    margin-left: 10px !important;
+}
+
 @media screen and (max-width: 767px) {
   .article-single{
     padding:0 5px;
@@ -1581,6 +1595,7 @@ corresponds to the arrow we want to display */
   position: relative;
   vertical-align: middle;
   width: 208px;
+  z-index: 4;
 }
 
 .select2-container .select2-selection--single {
@@ -3923,7 +3938,7 @@ a:focus {
 
 @media screen and (max-width:767px) {
   .btn-blk,
-  .btn.btn-blacklisted{
+  .list-body .btn.btn-blacklisted{
     background:none;
     color:#020A13;
   }
@@ -6692,9 +6707,8 @@ a:focus {
   }
 }
 
-#reviews-form .textfield,
-#reviews-form .textfield,
-#reviews-form input[type=submit].btn {
+#reviews-form.reviewed .textfield,
+#reviews-form.reviewed input[type=submit].btn {
   pointer-events:none;
   opacity:.7;
 }
@@ -7109,7 +7123,7 @@ input[type=submit]
 }
 
 #reviews-form .errors-scope .action-field {
-  margin: 0;
+  margin: 5px 0 0 0;
   -webkit-box-pack:start;
   -ms-flex-pack:start;
   justify-content:flex-start;
