@@ -260,21 +260,22 @@ function changeViewElements(filterView,container,gridClass,listClass){
     };
     
     $(".list-item-flex").on('click',function(){     
-        console.dir(window.location.href);
-//        if (window.location.href === 'casinos/fast-payout')
-        var id = $(this).data('id');
-        var _this = $(this);
-        $.ajax({    
-            url: '/timeframe-tooltip',
-            type: 'POST',
-            data: {
-                id: id              
-            },
-            dataType: 'html'
-        })
-        .done(function (data) {
-           _this.append(data);
-        });
+        console.dir(window.location.pathname);
+        if (window.location.pathname === '/casinos/fast-payout') {
+            var id = $(this).data('id');
+            var _this = $(this);
+            $.ajax({    
+                url: '/timeframe-tooltip',
+                type: 'POST',
+                data: {
+                    id: id              
+                },
+                dataType: 'html'
+            })
+            .done(function (data) {
+               _this.append(data);
+            });
+        }
     });
 
     var windowToBottom = 0;
