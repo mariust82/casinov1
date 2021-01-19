@@ -133,7 +133,6 @@ class Casinos implements FieldValidator
             $affectedRows = SQL("
               UPDATE casinos__ratings SET 
                 value = :value
-                ON DUPLICATE KEY UPDATE value = :value
                 WHERE ip = :ip AND casino_id = :casino
               ", array(":casino"=>$casinoID, ":ip"=>$ip, ":value"=>$value))->getAffectedRows();
         }
