@@ -9,7 +9,16 @@
             </div>
             </:if>
         </div>
-
+        <!-- if page is software  -->
+        <div class="block">
+            <div class="container best-software-casinos">
+                <:if test="${data.best_casinos_total} > 0">
+                <casino:carousel-best title="Best ${data.software} Casinos" url="/casinos/best" items="${data.best_casinos_total}" country="${data.country}" description="asd"/>
+                </:if>
+            </div>
+        </div>
+        <h2 class="title title-middle">All ${data.software} Online Casinos</h2>
+        <!-- /if page is software  -->
         <:if test="isset(${data.currency})">
             <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.currency}" code="${data.language}" softwares="${data.softwares}" key="true"/>
         <:else>
