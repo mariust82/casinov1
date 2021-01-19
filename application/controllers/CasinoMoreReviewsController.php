@@ -27,7 +27,7 @@ class CasinoMoreReviewsController extends Lucinda\MVC\STDOUT\Controller
         $type = $this->request->parameters("type");
 
         $casino_score = new CasinoScore();
-        $votes = $this->getUserVotes($casinoID);
+        $votes = $object->getUserVotes($casinoID);
 
         if ($type == 'review') {
             $this->response->attributes("reviews", $object->getAll($casinoID, (integer) $this->request->getValidator()->parameters("page"), (integer) $this->request->parameters("id")));
