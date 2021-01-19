@@ -204,7 +204,7 @@
                                                                         <:elseif test="'$[type]' == 'WITHDRAWAL'">
 										<span class="upper">${result.withdrawal_timeframes}</span>
 									<:elseif test="'$[type]' == 'MINIMUM DEPOSIT'">
-										<span class="upper">${formatDate(${result.date_established})} ${result.currencies} ${result.deposit_minimum}</span>
+										<span class="upper">${result.currencies} ${result.deposit_minimum}</span>
 									<:else>
 										<a class="soft_link list-item-trun" href="/softwares/${normalize(${result.softwares.0})}">
 											${result.softwares.0}
