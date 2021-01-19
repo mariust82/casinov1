@@ -13130,3 +13130,17 @@ h1.title + .subtitle{
     display:inline-block;
   }
 }
+
+@media (max-width: 340px){
+  .game-type_container:nth-of-type(10){
+    width: auto;
+    margin-left: -20px;
+  }
+  .info_list-title {
+    width: 34%;
+  }
+  .game-type_container:nth-of-type(4),
+  .game-type_container:nth-of-type(9) {
+    width: 30%;
+  }
+}
