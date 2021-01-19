@@ -71,6 +71,15 @@ blockquote.widget p{
     left: 0;
 }
 
+.close_tf_popup{
+    display: block;
+    text-align: right;
+}
+
+.close_tf_popup i {
+    color: #60686a !important;
+}
+
 .software-tooltipster .tooltipster-arrow {
     margin-left: 10px !important;
 }
