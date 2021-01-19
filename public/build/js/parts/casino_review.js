@@ -82,7 +82,7 @@ function AddingReview(obj) {
         message = _field_message.val();
 
         casino_name = $('.rating-container').data('casino-name');
-        _rate_slider_result = $('.rating-current-value span').text();
+        _rate_slider_result = $('.rating-container-score-value').text();
         _reviewID = 0;
         ok = true;
         if (parent.data('id') != undefined) {
@@ -136,7 +136,7 @@ function AddingReview(obj) {
             _field_message.parent().removeClass(_contact_error_class);
         }
 
-        if ($('.drag-rate-range-score').text() == '0/10') {
+        if ($('.drag-rate-range-score').html() == '0/10') {
             $('.drag-rate-title').addClass('error');
             ok = false;
         } else {

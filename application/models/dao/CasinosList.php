@@ -19,7 +19,7 @@ class CasinosList
     public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "")
     {
         $output = array();
-        $fields = array( "DISTINCT  t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported","IF(t15.id IS NOT NULL,1,0) AS currency_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
+        $fields = array( "DISTINCT  t1.id", "t1.deposit_minimum", "t1.status_id", "cs.name AS status", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported","IF(t15.id IS NOT NULL,1,0) AS currency_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
 
         $queryGenerator = new CasinosListQuery(
             $this->filter,
@@ -39,7 +39,8 @@ class CasinosList
             $object->rating = ceil($row["average_rating"]);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
-            $object->status = $row["status_id"];
+            $object->status = $row["status"];
+            $object->deposit_minimum = $row["deposit_minimum"];
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->score_class = $this->helper->getScoreClass($object->rating);
@@ -47,6 +48,7 @@ class CasinosList
             $object->comments = $this->countCasinoComments($object->id);
             $object->casino_deposit_methods =  $this->getCasinoDepositMethods($object->id);
             $object->is_currency_accepted = $row['currency_supported'];
+            $object->currencies = $this->getPrimaryCurrencySymbols($row["id"]);
             if ($this->filter->getBankingMethod()) {
                 $object->deposit_methods = $row["has_dm"];
                 $object->withdraw_methods = $row["has_wm"];
@@ -131,6 +133,16 @@ class CasinosList
             WHERE t1.casino_id = ".$id."
         ")->toColumn();
     }
+    private function getPrimaryCurrencySymbols($id)
+    {
+        return SQL("
+                SELECT
+                GROUP_CONCAT(IF(t2.symbol<>'',  t2.symbol, t2.code) SEPARATOR '/')
+                FROM casinos__currencies AS t1
+                INNER JOIN currencies AS t2 ON t1.currency_id = t2.id
+                WHERE t1.casino_id = ".$id." AND t1.is_primary = 1 AND t2.is_crypto is false")
+            ->toValue();
+    }
     
     private function getCasinoDepositMethods($casino_id)
     {
@@ -176,7 +188,6 @@ class CasinosList
             $offset
         );
         $query = $queryGenerator->getQuery();
-       // var_dump($query); die;
         $resultSet = SQL($query);
         while ($row = $resultSet->toRow()) {
             $output[] = $row["id"];

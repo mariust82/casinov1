@@ -61,6 +61,20 @@ blockquote.widget p{
   font-size: 16px !important;
 }
 
+.list-item-type{
+    position: relative;
+}
+
+.software-tooltipster{
+    position: absolute;
+    bottom: 13px;
+    left: 0;
+}
+
+.software-tooltipster .tooltipster-arrow {
+    margin-left: 10px !important;
+}
+
 @media screen and (max-width: 767px) {
   .article-single{
     padding:0 5px;
@@ -1581,6 +1595,7 @@ corresponds to the arrow we want to display */
   position: relative;
   vertical-align: middle;
   width: 208px;
+  z-index: 4;
 }
 
 .select2-container .select2-selection--single {
@@ -3923,7 +3938,7 @@ a:focus {
 
 @media screen and (max-width:767px) {
   .btn-blk,
-  .btn.btn-blacklisted{
+  .list-body .btn.btn-blacklisted{
     background:none;
     color:#020A13;
   }
@@ -5912,7 +5927,7 @@ a:focus {
 @media screen and (max-width: 1023px) {
   .filter-filter {
     flex-wrap: wrap;
-    width: calc(100% - 10px);
+    width: 400px;
   }
   .filter-filter>div:first-child {
     flex: 0 1 100%;
@@ -6688,9 +6703,8 @@ a:focus {
   }
 }
 
-#reviews-form .textfield,
-#reviews-form .textfield,
-#reviews-form input[type=submit].btn {
+#reviews-form.reviewed .textfield,
+#reviews-form.reviewed input[type=submit].btn {
   pointer-events:none;
   opacity:.7;
 }
@@ -7105,7 +7119,7 @@ input[type=submit]
 }
 
 #reviews-form .errors-scope .action-field {
-  margin: 0;
+  margin: 5px 0 0 0;
   -webkit-box-pack:start;
   -ms-flex-pack:start;
   justify-content:flex-start;
@@ -10906,6 +10920,10 @@ hr.widget{
 .casino-info_box .title{
   margin-bottom: 20px;
 }
+.casino-info_box .language_tooltip, .currency_tooltip {
+  cursor: pointer;
+  margin-left: 8px;
+}
 .casino-details_header {
   display: flex;
   width: 100%;
@@ -12176,9 +12194,14 @@ h1.title + .subtitle{
 }
 
 .subtitle .widget.featured_box {
-  max-width:99%;
-  margin-left:auto;
-  margin-right:auto;
+  max-width:100%;
+  border-radius:4px;
+  padding:25px 20px;
+  border:2px solid #658AE8;
+}
+
+.subtitle .widget.featured_box p{
+  line-height:34px;
 }
 
 @media screen and (max-width:767px) {
@@ -12190,6 +12213,14 @@ h1.title + .subtitle{
     font-size:15px;
     line-height:30px;
     margin:25px 0;
+  }
+
+  .subtitle .widget.featured_box {
+    padding:20px 15px;
+  }
+
+  .subtitle .widget.featured_box p{
+    line-height:28px;
   }
 }
 
@@ -12254,17 +12285,9 @@ h1.title + .subtitle{
   .subtitle img{
     display:block;
     float:none !important;
-    margin-left:auto !important;
-    margin-right:auto !important;
   }
 }
 
-@media screen and (max-width:500px) {
-  .lower_pragraph img,
-  .subtitle img{
-    width:100% !important;
-  }
-}
 .index-page p {
   float:left;
   /*max-width: 770px;*/

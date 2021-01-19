@@ -8,6 +8,7 @@
             <parameter name="name" validator="BanckingMethodNameValidator"/>
         </route>
         <route url="banking" controller="BankingMethodsController" view="banking-methods"/>
+        <route url="casinos/low-minimum-deposit" controller="CasinosByLowMinimumDepositController" view="casinos"/>
         <route url="casinos/(name)" controller="CasinosByLabelController" view="casinos">
             <parameter name="name" validator="CasinoLabelValidator"/>
         </route>
@@ -128,7 +129,7 @@
             <parameter name="TYPE" validator="LiveDealerValidator"/>
         </route>
         <route url="blog" controller="ArticlesController" view="articles"/>
-     
+        <route url="timeframe-tooltip" controller="FastPayoutTooltipController" view="tmf-tooltip"/>
         <route url="blog/(category)" controller="ArticlesByTypeController" view="articles">
             <parameter name="category" validator="ArticleCategoryValidator"/>
         </route>

@@ -6,7 +6,7 @@ var ListFilters = function (obj) {
             _radios = _obj.find('input[type=radio]'),
             _selectFilter = _obj.find($('.filter-filter .select')),
             _targetContainer = $('.data-container'),
-            _targetAddContainer = $('.data-add-container'),
+            _targetAddContainer = $('.list-body'),
             _paramName = _targetContainer.data('type'),
             _paramValue = _targetContainer.data('type-value'),
             _ajaxContent = $('.aj-content'),
@@ -16,6 +16,7 @@ var ListFilters = function (obj) {
             _resetButton,
             _itemsPerPage = 25,
             _request = new XMLHttpRequest();
+
 
     if (typeof _paramName == 'undefined') {
         _paramName = 'game_type';
@@ -49,7 +50,7 @@ var ListFilters = function (obj) {
 
         _selectFilter.off();
         _selectFilter.on('change', function () {
-            console.log('weqe');
+            console.log('_selectFilter');
             processCheckboxes(this);
             if (typeof resetGameItemsCounter === "function") {
                 resetGameItemsCounter();
@@ -59,8 +60,7 @@ var ListFilters = function (obj) {
 
         _moreButton.off();
         _moreButton.on('click', function () {
-            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add', this);
-
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add', this), 'add', this);
             return false;
         });
 
@@ -70,7 +70,6 @@ var ListFilters = function (obj) {
 
             return false;
         });
-
     },
     
     _getAjaxParams = function (_paramName, _paramValue, _action, _this) {
@@ -120,13 +119,19 @@ var ListFilters = function (obj) {
                 _ajaxDataParams['features'] = '';
                 _ajaxDataParams['themes'] = '';
             }
-            if (typeof _ajaxDataParams['software'] === 'undefined' && typeof $('.data-container').data('software') !== 'undefined')
+            /*if (typeof _ajaxDataParams['software'] === 'undefined' && typeof $('.data-container').data('software') !== 'undefined')
             {
                 _ajaxDataParams['software'] = $('.data-container').data('software');
-            }
-        } else {
+            }*/
+        } /*else {
             _ajaxDataParams['software'] = $('.data-container').data('software');
-        }
+        }*/
+
+        _targetAddContainer = $(_this).closest('.container').find('.data-add-container:first');
+
+        _ajaxDataParams['offset'] = _action == 'add' ? $(_targetAddContainer).children().length : 0;
+
+       // console.log(_ajaxDataParams);
 
         if (typeof AJAX_CUR_PAGE == "undefined")
             AJAX_CUR_PAGE = 0;
@@ -155,6 +160,8 @@ var ListFilters = function (obj) {
             return;
         }*/
 
+       // console.log();
+
         $('.overlay, .loader').fadeIn('fast');
 
         if (BUSY_REQUEST)
@@ -162,10 +169,7 @@ var ListFilters = function (obj) {
         BUSY_REQUEST = true;
         _request.abort();
 
-       /* if (typeof getGameInfoTypeCol == 'function') {
-            _ajaxDataParams['gameInfoTypeCol'] = getGameInfoTypeCol();
-        }*/
-        var theme = window.location.pathname.split('themes/');
+/*        var theme = window.location.pathname.split('themes/');
         if (typeof _ajaxDataParams['themes'] == 'undefined') {
             if (theme.length == 2)
                 _ajaxDataParams['themes'] = theme[1];
@@ -173,23 +177,26 @@ var ListFilters = function (obj) {
             var _themesArray = _ajaxDataParams['themes'].split(',');
             _themesArray.push(theme[1]);
             _ajaxDataParams['themes'] = _themesArray.join(',');
-        }
+        }*/
         _ajaxDataParams['url'] = window.location.pathname;
         //sortMode = _ajaxDataParams['sort'];
-        // console.log(_ajaxDataParams);
+
         _request = $.ajax({
             url: _url + AJAX_CUR_PAGE,
             data: _ajaxDataParams,
             dataType: 'html',
             type: 'GET',
             success: function (data) {
+              //  _targetAddContainer = $(_this).closest('.container').find('.data-add-container:first');
                 var scrollPos = $(document).scrollTop();
                 var cont = $(data).find('.loaded-item');
                 var loadTotal = $(data).filter('[data-load-total]').data('load-total');
+                var totalItems = $(data).find('.qty-items').data('load-total');
+
                 if (_url === '/tournaments-filter/') {
                     cont = $(data).find('.list-item-tournament');
 
-                    if (AJAX_CUR_PAGE > 1) {
+                    if (_action == "add") {
                         $('.list-body').append(data);
                     } else {
                         $('.list-body').html(data);
@@ -210,7 +217,7 @@ var ListFilters = function (obj) {
                 } else if (_url === '/no-deposit-slots-filter/') {
                     var total = $('.qty-items').data('load-total');
                     cont = $(data).find('.edges');
-                    if (AJAX_CUR_PAGE > 1) {
+                    if (_action == "add") {
                         $('.casinos-list').append(data);
                     } else {
                         $('.holder').html(data);
@@ -240,9 +247,13 @@ var ListFilters = function (obj) {
                     //initMoboleBonusesPop(ww);
 
                 } else {
+
+
                     if (_action == 'replace') {
+                        _targetContainer.html('');
                         _targetContainer.html(data);
-                        _targetAddContainer.html('');
+                        //_targetAddContainer.html('');
+
                         if (_ajaxDataParams['game_type'] == "Best" && loadTotal > 100) {
                             $('.qty-items span').text(100);
                         } else {
@@ -263,14 +274,12 @@ var ListFilters = function (obj) {
                             _emptyContent.hide();
                         }
                     } else {
+                     //   console.log(_this);
                         if ($('.games-list').hasClass('list-view')) {
                             _targetAddContainer.addClass('list-view');
                         }
-                        _targetAddContainer.append(cont);
 
-                        /*if( _ajaxDataParams['total_items_loaded'] >= datatotal){
-                            return false;
-                            }*/
+                        _targetAddContainer.append(cont);
                     }
 
                     if (_url === '/slots-filter/') {
@@ -309,6 +318,11 @@ var ListFilters = function (obj) {
                     if (typeof updateGameData == 'function') {
                         updateGameData();
                     }
+                    gridViewBoxPopup();
+                }
+                console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
+                if(_targetAddContainer.children().length >= totalItems) {
+                    _moreButton.hide();
                 }
                 //imageDefer("lazy_loaded");
                 if ($.fn.tooltipster) {

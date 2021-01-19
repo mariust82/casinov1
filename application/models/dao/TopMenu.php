@@ -34,6 +34,7 @@ class TopMenu
            "item_url" => "/casinos",
             "sub_items" => [
                 "Best Casinos" => "/casinos/best",
+                "Low Minimum Deposit Casinos" => "/casinos/low-minimum-deposit",
                 "Mobile Casinos" => "/casinos/mobile",
                 "Low Wagering Casinos" => "/casinos/low-wagering",
                 "Fast Payout Casinos" => " /casinos/fast-payout",

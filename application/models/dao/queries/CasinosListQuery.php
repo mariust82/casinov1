@@ -13,6 +13,8 @@ class CasinosListQuery
 {
     const CASINO_SCORE = 7.5;
     const CASINO_MIN_VOTES = 10;
+    const CASINO_MINIMUM_DEPOSIT_MIN = 1;
+    const CASINO_MINIMUM_DEPOSIT_MAX = 5;
     private $query;
 
     public function __construct(CasinoFilter $filter, $columns, $sortBy=null, $limit= 0, $offset='')
@@ -112,13 +114,14 @@ class CasinosListQuery
                 $query->joinInner("casinos__withdraw_timeframes ", "t18")->on(["t1.id" => "t18.casino_id"])->set("t18.unit","'hour'")->set("t18.end",24,Lucinda\Query\ComparisonOperator::LESSER_EQUALS);
             }
             
-            if (!in_array($filter->getCasinoLabel(), ["New", "all", "Best", 'Fast Payout'])) {
+            if (!in_array($filter->getCasinoLabel(), ["New", "all", "Best", "Fast Payout", "Low Minimum Deposit"])) {
                 $sub_query = new Lucinda\Query\MySQLSelect("casino_labels");
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name"=> "'". $filter->getCasinoLabel() . "'"]);
                 $query->joinInner("casinos__labels", "t5")->on(["t1.id" => "t5.casino_id", "t5.label_id" =>  "(" . $sub_query->toString() . ")" ]);
             }
         }
+        $query->joinLeft("casino_statuses", "cs")->on(["t1.status_id" => "cs.id"]);
         if ($filter->getCertification()) {
             $sub_query = new Lucinda\Query\MySQLSelect("certifications");
             $sub_query->fields(["id"]);
@@ -165,7 +168,11 @@ class CasinosListQuery
             $query->joinInner("casinos__game_manufacturers", "t10")->on(["t1.id" => "t10.casino_id", "t10.game_manufacturer_id" => "(" . $sub_query->toString() . ")" ]);
         }
         if ($filter->getSoftwares()) {
-            $query->joinInner("casinos__game_manufacturers", "t10")->on(["t1.id" => "t10.casino_id"])->setIn("t10.game_manufacturer_id", [$filter->getSoftwares()]);
+            $query->joinInner("casinos__game_manufacturers", "t20")->on(["t1.id" => "t20.casino_id"])->setIn("t20.game_manufacturer_id", [$filter->getSoftwares()]);
+        }
+        if ($filter->getCasinoLabel() && $filter->getCasinoLabel() === "Low Minimum Deposit") {
+            $query->joinInner("casinos__currencies", "cc")->on(["t1.id" => "cc.casino_id"]);
+            $query->joinInner("currencies", "c")->on(["c.id" => "cc.currency_id"]);
         }
     }
 
@@ -186,6 +193,9 @@ class CasinosListQuery
                 break;
             case "Best":
                 $this->addBestCondition($where);
+                break;
+            case "Low Minimum Deposit":
+                $this->addLowMinimumDepositCondition($where);
                 break;
         }
 
@@ -216,6 +226,16 @@ class CasinosListQuery
         $where->set("t1.date_established", "'" . date("Y-m-d", strtotime(date("Y-m-d") . " -6 months")) . "'", Lucinda\Query\ComparisonOperator::LESSER_EQUALS);
         $where->set("t1.rating_votes", self::CASINO_MIN_VOTES, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
         $where->set("(t1.rating_total/t1.rating_votes)", self::CASINO_SCORE, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
+    }
+
+    /**
+     * @param \Lucinda\Query\Condition $where
+     */
+    private function addLowMinimumDepositCondition(Lucinda\Query\Condition $where)
+    {
+        $where->setBetween("t1.deposit_minimum", self::CASINO_MINIMUM_DEPOSIT_MIN, self::CASINO_MINIMUM_DEPOSIT_MAX);
+        $where->set("cc.is_primary", 1, Lucinda\Query\ComparisonOperator::EQUALS);
+        $where->set("c.is_crypto", 0, Lucinda\Query\ComparisonOperator::EQUALS);
     }
 
     private function setOrderBy(Lucinda\Query\OrderBy $orderBy, CasinoFilter $filter, $sortBy)
@@ -256,6 +276,11 @@ class CasinosListQuery
                 case CasinoSortCriteria::FAST_PAYOUT:
                     $orderBy->add("t18.end", "ASC");
                     $orderBy->add("t1.priority", "DESC");
+                    break;
+                case CasinoSortCriteria::MINIMUM_DEPOSIT:
+                    $orderBy->add("t1.deposit_minimum", "ASC");
+                    $orderBy->add("t1.priority", "DESC");
+                    $orderBy->add("t1.name", "ASC");
                     break;
                 default:
                     $orderBy->add('complex_case', 'ASC');

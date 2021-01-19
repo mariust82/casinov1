@@ -1,4 +1,4 @@
-var AJAX_CUR_PAGE = 1;
+var AJAX_CUR_PAGE = 0;
 var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
@@ -165,6 +165,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
             loadScripts(['bindings', 'assets/swiper']);
         }
         loadScripts(['assets/jquery-select2', 'filters']);
+
         $(document).on('scroll mousemove', function(){
             loadStyles(['ion.rangeSlider']);
             loadScripts(['assets/ion.rangeSlider.min', 'assets/tooltipster', 'assets/swiper', 'bindings']);
@@ -257,6 +258,24 @@ function changeViewElements(filterView,container,gridClass,listClass){
             $this.data('scrollTimeout', setTimeout(callback, timeout));
         });
     };
+    
+    $(".list-item-flex").on('click',function(){     
+        console.dir(window.location.href);
+//        if (window.location.href === 'casinos/fast-payout')
+        var id = $(this).data('id');
+        var _this = $(this);
+        $.ajax({    
+            url: '/timeframe-tooltip',
+            type: 'POST',
+            data: {
+                id: id              
+            },
+            dataType: 'html'
+        })
+        .done(function (data) {
+           _this.append(data);
+        });
+    });
 
     var windowToBottom = 0;
 
