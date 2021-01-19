@@ -260,7 +260,6 @@ function changeViewElements(filterView,container,gridClass,listClass){
     };
     
     $(".list-item-flex").on('click',function(){     
-        console.dir(window.location.pathname);
         if (window.location.pathname === '/casinos/fast-payout') {
             var id = $(this).data('id');
             var _this = $(this);
@@ -277,6 +276,10 @@ function changeViewElements(filterView,container,gridClass,listClass){
                _this.append(data);
             });
         }
+    });
+    
+    $('.close_tf_popup').on('click',function(){
+        $(this).parent().parent().parent().parent().remove();
     });
 
     var windowToBottom = 0;
