@@ -18,6 +18,7 @@ function parse_video($url)
 
 function get_rating($score)
 {
+    $string = "";
     if ($score == 0) {
         $string = 'No score';
     } elseif ($score >= 1 && $score <= 2.99) {
