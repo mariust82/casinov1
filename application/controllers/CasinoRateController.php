@@ -30,9 +30,9 @@ class CasinoRateController extends Lucinda\MVC\STDOUT\Controller
                 $object = new BestCasinoLabel();
                 $object->checkRatedCasino($casinoID);
             }
-            if (!$success) {
-                throw new UserOperationFailedException("Casino already rated!");
-            }
+//            if (!$success) {
+//                throw new UserOperationFailedException("Casino already rated!");
+//            }
         } else { // if country is not accepted by casino, here, the exception is throed.
             throw new UserOperationFailedException("Your country is not supported!");
         }

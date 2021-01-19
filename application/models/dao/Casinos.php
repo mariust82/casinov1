@@ -119,6 +119,7 @@ class Casinos implements FieldValidator
             return null;
         }
         $count = SQL("SELECT COUNT(id) FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip", array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
+        $extra_query = '';
         if ($count == 0) {
             $affectedRows = SQL("
               INSERT INTO casinos__ratings SET 
@@ -127,16 +128,24 @@ class Casinos implements FieldValidator
                 value = :value
                 ON DUPLICATE KEY UPDATE value = :value
               ", array(":casino"=>$casinoID, ":ip"=>$ip, ":value"=>$value))->getAffectedRows();
-            if ($affectedRows>0) {
-                SQL(
-                    "UPDATE casinos SET rating_total=rating_total+:value, rating_votes=rating_votes+1 WHERE id=:casino",
-                    array(":casino"=>$casinoID, ":value"=>$value)
-                );
-            }
-            return $affectedRows;
+            $extra_query = ', rating_votes=rating_votes+1 ';
         } else {
-            return "Casino already rated!";
+            $affectedRows = SQL("
+              UPDATE casinos__ratings SET 
+                value = :value
+                ON DUPLICATE KEY UPDATE value = :value
+                WHERE ip = :ip AND casino_id = :casino
+              ", array(":casino"=>$casinoID, ":ip"=>$ip, ":value"=>$value))->getAffectedRows();
         }
+
+        if ($affectedRows>0) {
+            SQL(
+                "UPDATE casinos SET rating_total=rating_total+:value" . $extra_query . " WHERE id=:casino",
+                array(":casino"=>$casinoID, ":value"=>$value)
+            );
+        }
+
+        return $affectedRows;
     }
 
     public function click($id)
