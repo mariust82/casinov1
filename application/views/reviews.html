@@ -1,8 +1,8 @@
 <:foreach var="${data.reviews}" val="result">
 	<:if test="isset($_GET['type']) && $_GET['type'] == 'review'">
-		<comment:info class="review-parent" votes="${data.user_votes}"/>
+		<comment:info class="review-parent"/>
 	<:else>
-		<comment:info class="review-child" votes="${data.user_votes}"/>
+		<comment:info class="review-child"/>
 	</:if>
 	<comment:reply total="${result.total_children}"/>
 </:foreach>
