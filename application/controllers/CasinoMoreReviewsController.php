@@ -1,6 +1,7 @@
 <?php
 require_once("application/models/dao/CasinoReviews.php");
 require_once("application/models/dao/Casinos.php");
+require_once("application/models/CasinoScore.php");
 
 /*
 * Gets more reviews/replies on a casino.
