@@ -273,6 +273,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
                 dataType: 'html'
             })
             .done(function (data) {
+                $(".software-tooltipster").remove();
                _this.append(data);
             });
         }
