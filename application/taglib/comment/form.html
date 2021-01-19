@@ -14,7 +14,7 @@
 			</div>
 			<div class="rating-container-right">
 				<div class="rating-container-stats">
-							<:foreach var="${data.casino.user_votes}" val="value" key="type">
+							<:foreach var="$[votes]" val="value" key="type">
 								<:if test="${data.total_votes} > 0">
 									<:set var="percents" val="setVotePercents(${value}, ${data.total_votes})" />
 								<:else>
