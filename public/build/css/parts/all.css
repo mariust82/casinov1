@@ -6689,6 +6689,11 @@ a:focus {
   margin: 0;
 }
 
+.reviews-form{
+  padding-bottom:40px;
+  border-bottom:1px solid #E8EAF3;
+}
+
 #reviews-form .action-field {
   margin: 17px 0 0 0;
   -webkit-box-pack:center;
@@ -6701,6 +6706,12 @@ a:focus {
   #reviews-form .action-field {
     margin: 15px 0 0 0;
   }
+}
+
+#reviews-form .action-field.field-error-required{
+  margin:5px 0 0 0;
+  display:block;
+  text-align:left;
 }
 
 #reviews-form.reviewed .textfield,
@@ -6796,6 +6807,21 @@ input[type=submit]
   .review-list {
     margin-left: -10px;
     margin-right: -10px;
+  }
+}
+
+.review-list-title{
+  font-size:18px;
+  line-height:26px;
+  color: #465156;
+  margin:0 0 12px;
+}
+
+@media screen and (max-width:690px) {
+  .review-list-title{
+    font-size:16px;
+    line-height:22px;
+    margin:0 0 12px;
   }
 }
 

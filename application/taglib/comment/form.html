@@ -67,12 +67,12 @@
 			</div>
 		</:if>
 
-		<label class="form-label">WRITE A REVIEW</label>
+		<h2 class="form-label">${(${data.total_reviews}>0)?'WRITE A REVIEW':'BE THE FIRST TO WRITE A REVIEW'}</h2>
 		<div class="textfield-holder" style="margin-bottom: 20px;">
 			<input type="text" class="textfield" name="title" placeholder="Add a review title...">
 		</div>
 		<div class="textfield-holder">
-			<textarea name="body" rows="5" class="textfield" placeholder="Write your review..."></textarea>
+			<textarea name="body" rows="5" class="textfield" placeholder="Write your review (minimum 50 characters)"></textarea>
 		</div>
 	</div>
 
@@ -95,13 +95,12 @@
 	<div class="form-row">
 		<div class="review-submit-holder">
 			<input class="btn" type="submit" name="submit" value="ADD REVIEW">
-			<a class="plain-link" href="/blog/guides">Review Posting Guidelines</a>
+			<:if test="${data.casino.is_country_accepted}">
+				<a class="plain-link" href="/blog/guides">Review Posting Guidelines</a>
+			</:if>
 		</div>
 		
 		<div class="errors-scope">
-			<div class="field-error-required not-valid action-field">
-				Please fill in the required fields.
-			</div>
 			<div class="field-error-rate not-valid action-field">
 				In order to post your review, please rate this casino.
 			</div>
