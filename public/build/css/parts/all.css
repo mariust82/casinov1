@@ -7060,15 +7060,23 @@ input[type=submit]
   display: flex;
   font-weight: 600;
   margin: 0 0 5px;
+  font-size:14px;
+}
+
+.review-title{
+  font-size:15px;
+  font-weight:700;
 }
 
 @media screen and (max-width: 690px) {
   .review-name,
   .review-title{
-    font-size: 14px;
+    font-size: 13px;
     margin: 0 0 3px;
     line-height: 1;
   }
+
+
 }
 
 .review-date {
