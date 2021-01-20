@@ -28,8 +28,8 @@ var ListFilters = function (obj) {
     
     var CloseTFPopup = function () {
         $('.close_tf_wrap').on('click', function () {
-            console.dir($(this).parent().parent().parent().parent());
-            $(this).parent().parent().parent().parent().remove();
+            console.dir($(this).parent().parent().parent());
+            $(this).parent().parent().parent().remove();
         });
     }
 

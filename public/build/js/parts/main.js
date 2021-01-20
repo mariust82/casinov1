@@ -278,9 +278,8 @@ function changeViewElements(filterView,container,gridClass,listClass){
     });
     
     $(".close_tf_wrap").on('click',function(){
-        console.dir('shaydadon');
-        console.dir($(this).parent().parent().parent().parent());
-        $(this).parent().parent().parent().parent().remove();
+        console.dir($(this).parent().parent().parent());
+        $(this).parent().parent().parent().remove();
     });
 
     var windowToBottom = 0;
@@ -334,8 +333,8 @@ function changeViewElements(filterView,container,gridClass,listClass){
     
     function CloseTFPopup() {
         $('.close_tf_wrap').on('click', function () {
-            console.dir($(this).parent().parent().parent().parent());
-            $(this).parent().parent().parent().parent().remove();
+            console.dir($(this).parent().parent().parent());
+            $(this).parent().parent().parent().remove();
         });
     }
 
