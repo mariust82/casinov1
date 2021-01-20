@@ -76,6 +76,10 @@ blockquote.widget p{
     position: absolute;
 }
 
+.tf_flex{
+    cursor: pointer;
+}
+
 .close_tf_popup i {
     color: #60686a !important;
 }
