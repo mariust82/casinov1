@@ -273,6 +273,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
             .done(function (data) {
                 $(".software-tooltipster").remove();
                _this.append(data);
+                CloseTFPopup();
             });
     });
     
@@ -329,6 +330,13 @@ function changeViewElements(filterView,container,gridClass,listClass){
                 $('.expand-holder').removeClass('opened');
             })
         }
+    }
+    
+    function CloseTFPopup() {
+        $('.close_tf_wrap').on('click', function () {
+            console.dir($(this).parent().parent().parent().parent());
+            $(this).parent().parent().parent().parent().remove();
+        });
     }
 
     function detectIsKeyboardOpened() {
