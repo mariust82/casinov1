@@ -9866,9 +9866,15 @@ html.no-scroll {
 
 .vote-block-title {
   color: #313536;
-  font-size: 24px;
   margin: 0 0 20px;
   text-align: center;
+  text-transform: none;
+  font-size: 19px;
+}
+
+.vote-block-num{
+ flex-grow: 0;
+ -webkit-box-flex: 0;
 }
 
 .vote-block-holder {
