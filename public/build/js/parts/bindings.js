@@ -1084,12 +1084,15 @@ var Filters = function (obj) {
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
                 if (_url === '/casinos-filter/') {
+                    
                     if (parseInt($('.qty-items').attr('data-load-total')) <= limit_items) {
                         $('.js-more-items').hide();
                     } else {
                         $('.js-more-items').show();
                     }
                     gridViewBoxPopup();
+                    ShowTFPopup();
+                    CloseTFPopup();
                 } else if (_url === '/games-filter/') {
 
                     if (parseInt($('.qty-items-quantity').html()) <= limit_items) {
@@ -1660,5 +1663,33 @@ var initSite = function () {
     $('.js-history-back').on('click', function (e) {
         window.history.back();
         e.preventDefault();
+    });
+}
+
+var CloseTFPopup = function() {
+     $('.close_tf_popup i').on('click',function(){
+        console.dir($(this).parent().parent().parent().parent());
+        $(this).parent().parent().parent().parent().remove();
+    });
+}
+
+var ShowTFPopup = function() {
+    $(".list-item-flex").on('click',function(){     
+        if (window.location.pathname === '/casinos/fast-payout') {
+            var id = $(this).data('id');
+            var _this = $(this);
+            $.ajax({    
+                url: '/timeframe-tooltip',
+                type: 'POST',
+                data: {
+                    id: id              
+                },
+                dataType: 'html'
+            })
+            .done(function (data) {
+                $(".software-tooltipster").remove();
+               _this.append(data);
+            });
+        }
     });
 }
