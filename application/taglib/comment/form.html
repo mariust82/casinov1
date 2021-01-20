@@ -21,22 +21,22 @@
 							<:set var="userVotes" val="${data.casino.user_votes}"/>
 						</:if>
 						<:foreach var="${userVotes}" val="value" key="type">
-									<:if test="${data.total_votes} > 0">
-										<:set var="percents" val="setVotePercents(${value}, ${data.total_votes})" />
-									<:else>
-										<:set var="percents" val="0%" />
-									</:if>
-									<div class="rating-container-stats-row">
-										<div class="rating-container-stats-label">${type}</div>
-										<div class="rating-container-stats-line">
-											<div class="rating-container-stats-bar ${strtolower(${type})}" style="width: ${percents};"></div>
-										</div>
-										<div class="rating-container-stats-score">
-											${percents}
-											<span>(${value})</span>
-										</div>
-									</div>
-								</:foreach>
+							<:if test="${data.total_votes} > 0">
+								<:set var="percents" val="setVotePercents(${value}, ${data.total_votes})" />
+							<:else>
+								<:set var="percents" val="0%" />
+							</:if>
+							<div class="rating-container-stats-row">
+								<div class="rating-container-stats-label">${type}</div>
+								<div class="rating-container-stats-line">
+									<div class="rating-container-stats-bar ${str_replace(' ','-',${strtolower(${type})}" style="width: ${percents};"></div>
+								</div>
+								<div class="rating-container-stats-score">
+									${percents}
+									<span>(${value})</span>
+								</div>
+							</div>
+						</:foreach>
 					</div>
 				</div>
 			</div>
