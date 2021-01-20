@@ -276,11 +276,6 @@ function changeViewElements(filterView,container,gridClass,listClass){
                 CloseTFPopup();
             });
     });
-    
-    $(".close_tf_wrap").on('click',function(){
-        console.dir($(this).parent().parent().parent());
-        $(this).parent().parent().parent().remove();
-    });
 
     var windowToBottom = 0;
 
