@@ -278,7 +278,8 @@ function changeViewElements(filterView,container,gridClass,listClass){
         }
     });
     
-    $('.close_tf_popup').on('click',function(){
+    $('.close_tf_popup').on('click',function(){\
+        console.dir($(this).parent().parent().parent().parent());
         $(this).parent().parent().parent().parent().remove();
     });
 
