@@ -25,7 +25,7 @@ class CasinoMoreReviewsController extends Lucinda\MVC\STDOUT\Controller
         $object = new CasinoReviews();
         $total_votes = $object->getAllVotes($casinoID);
         $type = $this->request->parameters("type");
-
+        $total = $object->getAllTotal($casinoID);
         $casino_score = new CasinoScore();
         $votes = $object->getUserVotes($casinoID);
 
@@ -34,6 +34,7 @@ class CasinoMoreReviewsController extends Lucinda\MVC\STDOUT\Controller
         } else {
             $this->response->attributes("reviews", $object->getMoreReplies((integer) $this->request->getValidator()->parameters("page"), (integer) $this->request->parameters("id")));
         }
+        $this->response->attributes("total_reviews", $total);
         $this->response->attributes("total_votes", $total_votes);
         $this->response->attributes("user_votes", $casino_score->setVotesByType($votes));
     }
