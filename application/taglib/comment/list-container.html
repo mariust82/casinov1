@@ -3,6 +3,7 @@
 		<comment:form name="${data.casino.name}" key="$[key]" rate="${data.casino.rating}" id="$[name]" value="$[value]" rating="true"/>
 	</div>
 	<div class="review-list">
+		<h3 class="review-list-title">Player Reviews</h3>
 		<div id="review-data-holder">
 			<:if test="$[total] > 0">
 				<:if  test = "$[total] > ${data.reviews_limit}">

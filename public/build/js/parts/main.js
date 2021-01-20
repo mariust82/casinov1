@@ -259,22 +259,26 @@ function changeViewElements(filterView,container,gridClass,listClass){
         });
     };
     
-    $(".list-item-flex").on('click',function(){     
-        console.dir(window.location.href);
-//        if (window.location.href === 'casinos/fast-payout')
-        var id = $(this).data('id');
-        var _this = $(this);
-        $.ajax({    
-            url: '/timeframe-tooltip',
-            type: 'POST',
-            data: {
-                id: id              
-            },
-            dataType: 'html'
-        })
-        .done(function (data) {
-           _this.append(data);
-        });
+    $(".tf_flex").on('click',function() {     
+            var id = $(this).data('id');
+            var _this = $(this);
+            $.ajax({    
+                url: '/timeframe-tooltip',
+                type: 'POST',
+                data: {
+                    id: id              
+                },
+                dataType: 'html'
+            })
+            .done(function (data) {
+                $(".software-tooltipster").remove();
+               _this.append(data);
+            });
+    });
+    
+    $('.close_tf_popup i').on('click',function(){
+        console.dir($(this).parent().parent().parent().parent());
+        $(this).parent().parent().parent().parent().remove();
     });
 
     var windowToBottom = 0;

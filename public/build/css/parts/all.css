@@ -71,6 +71,15 @@ blockquote.widget p{
     left: 0;
 }
 
+.close_tf_popup{
+    display: block;
+    text-align: right;
+}
+
+.close_tf_popup i {
+    color: #60686a !important;
+}
+
 .software-tooltipster .tooltipster-arrow {
     margin-left: 10px !important;
 }
@@ -3938,7 +3947,7 @@ a:focus {
 
 @media screen and (max-width:767px) {
   .btn-blk,
-  .btn.btn-blacklisted{
+  .list-body .btn.btn-blacklisted{
     background:none;
     color:#020A13;
   }
@@ -6689,6 +6698,11 @@ a:focus {
   margin: 0;
 }
 
+.reviews-form{
+  padding-bottom:40px;
+  border-bottom:1px solid #E8EAF3;
+}
+
 #reviews-form .action-field {
   margin: 17px 0 0 0;
   -webkit-box-pack:center;
@@ -6701,6 +6715,12 @@ a:focus {
   #reviews-form .action-field {
     margin: 15px 0 0 0;
   }
+}
+
+#reviews-form .action-field.field-error-required{
+  margin:5px 0 0 0;
+  display:block;
+  text-align:left;
 }
 
 #reviews-form.reviewed .textfield,
@@ -6796,6 +6816,21 @@ input[type=submit]
   .review-list {
     margin-left: -10px;
     margin-right: -10px;
+  }
+}
+
+.review-list-title{
+  font-size:18px;
+  line-height:26px;
+  color: #465156;
+  margin:0 0 12px;
+}
+
+@media screen and (max-width:690px) {
+  .review-list-title{
+    font-size:16px;
+    line-height:22px;
+    margin:0 0 12px;
   }
 }
 
@@ -13128,5 +13163,19 @@ h1.title + .subtitle{
   .review-submit-holder .plain-link{
     margin:10px 0 0 0;
     display:inline-block;
+  }
+}
+
+@media (max-width: 340px){
+  .game-type_container:nth-of-type(10){
+    width: auto;
+    margin-left: -20px;
+  }
+  .info_list-title {
+    width: 34%;
+  }
+  .game-type_container:nth-of-type(4),
+  .game-type_container:nth-of-type(9) {
+    width: 30%;
   }
 }

@@ -1,6 +1,7 @@
 <?php
 require_once("application/models/dao/CasinoReviews.php");
 require_once("application/models/dao/Casinos.php");
+require_once("application/models/CasinoScore.php");
 
 /*
 * Gets more reviews/replies on a casino.
@@ -22,11 +23,18 @@ class CasinoMoreReviewsController extends Lucinda\MVC\STDOUT\Controller
 
         // get reviews
         $object = new CasinoReviews();
+        $total_votes = $object->getAllVotes($casinoID);
         $type = $this->request->parameters("type");
+
+        $casino_score = new CasinoScore();
+        $votes = $object->getUserVotes($casinoID);
+
         if ($type == 'review') {
             $this->response->attributes("reviews", $object->getAll($casinoID, (integer) $this->request->getValidator()->parameters("page"), (integer) $this->request->parameters("id")));
         } else {
             $this->response->attributes("reviews", $object->getMoreReplies((integer) $this->request->getValidator()->parameters("page"), (integer) $this->request->parameters("id")));
         }
+        $this->response->attributes("total_votes", $total_votes);
+        $this->response->attributes("user_votes", $casino_score->setVotesByType($votes));
     }
 }

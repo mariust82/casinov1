@@ -318,6 +318,7 @@ var ListFilters = function (obj) {
                     if (typeof updateGameData == 'function') {
                         updateGameData();
                     }
+                    gridViewBoxPopup();
                 }
                 console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
                 if(_targetAddContainer.children().length >= totalItems) {

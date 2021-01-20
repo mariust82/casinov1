@@ -111,29 +111,45 @@ function AddingReview(obj) {
         // console.log(_reviewID + 't');
 
         if (title === '') {
-            _field_title.parent().addClass(_contact_error_class);
+            var errorMessage = $('<div class="field-error-required not-valid action-field">Please fill in a title for your review</div>')
+            var container = _field_title.parent();
+            container.find('.action-field')
+            .remove();
+            container.append(errorMessage);
             ok = false;
         } else {
-            _field_title.parent().removeClass(_contact_error_class);
+            _field_title.parent().find('.field-error-required').remove();
         }
 
         if (name === '') {
-            _field_name.parent().addClass(_contact_error_class);
+            var errorMessage = $('<div class="field-error-required not-valid action-field">Please fill in your name</div>')
+            var container = _field_name.parent();
+            container.find('.action-field')
+            .remove();
+            container.append(errorMessage);
             ok = false;
         } else {
-            _field_name.parent().removeClass(_contact_error_class);
+            _field_name.parent().find('.field-error-required').remove();
         }
         if (email === '' || !validateEmail(email)) {
-            _field_email.parent().addClass(_contact_error_class);
+            var errorMessage = $('<div class="field-error-required not-valid action-field">Please fill in a valid email address</div>')
+            var container = _field_email.parent();
+            container.find('.action-field')
+            .remove();
+            container.append(errorMessage);
             ok = false;
         } else {
-            _field_email.parent().removeClass(_contact_error_class);
+            _field_email.parent().find('.field-error-required').remove();
         }
-        if (message === '') {
-            _field_message.parent().addClass(_contact_error_class);
+        if (message === '' || message.trim().length < 50) {
+            var errorMessage = $('<div class="field-error-required not-valid action-field">The review must contain at least 50 characters</div>')
+            var container = _field_message.parent();
+            container.find('.action-field')
+            .remove();
+            container.append(errorMessage);
             ok = false;
         } else {
-            _field_message.parent().removeClass(_contact_error_class);
+            _field_message.parent().find('.field-error-required').remove();
         }
 
         if ($('.drag-rate-range-score').html() == '0/10') {
