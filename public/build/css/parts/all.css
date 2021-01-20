@@ -72,8 +72,8 @@ blockquote.widget p{
 }
 
 .close_tf_popup{
-    display: block;
-    text-align: right;
+    right: 0;
+    position: absolute;
 }
 
 .close_tf_popup i {
