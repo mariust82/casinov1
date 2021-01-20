@@ -72,8 +72,12 @@ blockquote.widget p{
 }
 
 .close_tf_popup{
-    display: block;
-    text-align: right;
+    right: 0;
+    position: absolute;
+}
+
+.tf_flex{
+    cursor: pointer;
 }
 
 .close_tf_popup i {
@@ -3418,7 +3422,8 @@ a:focus {
 .very-good{
   color: #96CB00;
 }
-.rating-container-stats-bar.very-good{
+.rating-container-stats-bar.very-good,
+.rating-container-stats-bar.very.good{
   background: #96CB00;
 }
 .carousel-slide-rating.very-good {

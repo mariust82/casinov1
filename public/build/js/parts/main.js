@@ -273,12 +273,8 @@ function changeViewElements(filterView,container,gridClass,listClass){
             .done(function (data) {
                 $(".software-tooltipster").remove();
                _this.append(data);
+                CloseTFPopup();
             });
-    });
-    
-    $('.close_tf_popup i').on('click',function(){
-        console.dir($(this).parent().parent().parent().parent());
-        $(this).parent().parent().parent().parent().remove();
     });
 
     var windowToBottom = 0;
@@ -328,6 +324,13 @@ function changeViewElements(filterView,container,gridClass,listClass){
                 $('.expand-holder').removeClass('opened');
             })
         }
+    }
+    
+    function CloseTFPopup() {
+        $('.close_tf_wrap').on('click', function () {
+            console.dir($(this).parent().parent().parent());
+            $(this).parent().parent().parent().remove();
+        });
     }
 
     function detectIsKeyboardOpened() {
