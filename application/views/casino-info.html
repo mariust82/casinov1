@@ -156,7 +156,7 @@
 	<div class="section ${data.country_status}">
 		<div class="container">
 			<div class="box box-alt">
-				<div class="title title-middle">${data.casino.name} Player Rating &amp; Reviews</div>
+				<h2 class="title title-middle">${data.casino.name} Player Rating &amp; Reviews</h2>
 				<comment:list-container name="${data.user_score_class}" value="${normalize(${data.user_score_class})}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" />
 			</div>
 		</div>
