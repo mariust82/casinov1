@@ -118,9 +118,10 @@ class Casinos implements FieldValidator
         if (!$casinoID) {
             return null;
         }
-        $count = SQL("SELECT COUNT(id) FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip", array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
+        $currentVote = SQL("SELECT value FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip", array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
         $extra_query = '';
-        if ($count == 0) {
+        if (empty($currentVote)) {
+
             $affectedRows = SQL("
               INSERT INTO casinos__ratings SET 
                 casino_id = :casino,
@@ -139,8 +140,8 @@ class Casinos implements FieldValidator
 
         if ($affectedRows>0) {
             SQL(
-                "UPDATE casinos SET rating_total=rating_total+:value" . $extra_query . " WHERE id=:casino",
-                array(":casino"=>$casinoID, ":value"=>$value)
+                "UPDATE casinos SET rating_total=rating_total - :currentVote + :value" . $extra_query . " WHERE id=:casino",
+                array(":casino"=>$casinoID, ":value"=>$value, ":currentVote" => $currentVote)
             );
         }
 
