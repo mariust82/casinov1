@@ -29,7 +29,9 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
     {
         $this->response->attributes("country", $this->request->attributes("country"));
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
+
         $sortCriteria = $this->getSortCriteria();
+
         $page = (integer)$this->request->getValidator()->parameters("page");
         $filter = new CasinoFilter($_GET, $this->request->attributes("country"));
         $params = $this->request->parameters();
@@ -61,8 +63,12 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
 
     private function getSortCriteria()
     {
+        if ($this->request->parameters("label") == "Best") {
+            return CasinoSortCriteria::TOP_RATED;
+        }
+
         $sort_criteria = $this->request->attributes('validation_results')->get('sort');
-        if (empty($sort_criteria)|| $sort_criteria==null) {
+        if (empty($sort_criteria) || $sort_criteria==null) {
             return CasinoSortCriteria::NONE;
         }
 
