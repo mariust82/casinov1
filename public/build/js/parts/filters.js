@@ -272,9 +272,6 @@ var ListFilters = function (obj) {
                         $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
                     }
                     //initMoboleBonusesPop(ww);
-                } else if (_url === '/casinos-filter/') {
-                    ShowTFPopup();
-                    CloseTFPopup();
                 } else {
 
 
@@ -349,6 +346,12 @@ var ListFilters = function (obj) {
                     }
                     gridViewBoxPopup();
                 }
+                
+                 if (_url === '/casinos-filter/') {
+                    ShowTFPopup();
+                    CloseTFPopup();
+                }
+                
                 console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
                 if(_targetAddContainer.children().length >= totalItems) {
                     _moreButton.hide();
