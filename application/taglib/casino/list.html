@@ -75,8 +75,11 @@
 							<div class="list-title-holder">
 								<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
 									${result.name}
-									<:if test="('$[type]' == 'ESTABLISHED' || '$[type]' == 'WITHDRAWAL')  && ${data.is_mobile}">
+									<:if test="'$[type]' == 'ESTABLISHED' && ${data.is_mobile}">
 										<div class="list-small-text upper">${formatDate(${result.date_established})}</div>
+									</:if>
+                                                                        <:if test="'$[type]' == 'WITHDRAWAL' && ${data.is_mobile}">
+										<div class="list-small-text upper">${result.withdrawal_timeframes}</div>
 									</:if>
 								</a>
 								<:if test="${result.is_tc_link}">
