@@ -9869,7 +9869,7 @@ html.no-scroll {
   }
 }
 
-.vote-block-title {
+.subtitle .vote-block-title {
   color: #313536;
   margin: 0 0 20px;
   text-align: center;
@@ -9877,7 +9877,7 @@ html.no-scroll {
   font-size: 19px;
 }
 
-.vote-block-num{
+.subtitle .vote-block-num{
  flex-grow: 0;
  -webkit-box-flex: 0;
 }
