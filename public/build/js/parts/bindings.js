@@ -1674,8 +1674,7 @@ var CloseTFPopup = function() {
 }
 
 var ShowTFPopup = function() {
-    $(".list-item-flex").on('click',function(){     
-        if (window.location.pathname === '/casinos/fast-payout') {
+    $(".tf_flex").on('click',function(){     
             var id = $(this).data('id');
             var _this = $(this);
             $.ajax({    
@@ -1690,6 +1689,5 @@ var ShowTFPopup = function() {
                 $(".software-tooltipster").remove();
                _this.append(data);
             });
-        }
     });
 }

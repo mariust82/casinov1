@@ -198,7 +198,11 @@
 					<:if test="${data.page_type} != 'banking_method'">
 						<:if test="!${is_low_wagering}">
 							<div class="list-item-cell list-item-type">
-								<div class="list-item-flex" data-id="${result.id}">
+                                                                <:set var="tf_class" val=""/>
+                                                                <:if test="'$[type]' == 'ESTABLISHED'">
+                                                                    <:set var="tf_class" val="tf_flex"/>
+                                                                </:if>
+								<div class="list-item-flex ${tf_class}" data-id="${result.id}">
 									<:if test="'$[type]' == 'ESTABLISHED'">
 										<span class="upper">${formatDate(${result.date_established})}</span>
                                                                         <:elseif test="'$[type]' == 'WITHDRAWAL'">
