@@ -6703,6 +6703,12 @@ a:focus {
   border-bottom:1px solid #E8EAF3;
 }
 
+@media screen and (max-width:690px) {
+  .reviews-form{
+    padding-bottom:17 px;
+  }
+}
+
 #reviews-form .action-field {
   margin: 17px 0 0 0;
   -webkit-box-pack:center;
@@ -6820,10 +6826,12 @@ input[type=submit]
 }
 
 .review-list-title{
-  font-size:18px;
-  line-height:26px;
+  font-size: 18px;
+  line-height: 26px;
   color: #465156;
-  margin:0 0 12px;
+  margin: 0 0 8px;
+  font-weight: 600;
+  padding: 17px 29px 0;
 }
 
 @media screen and (max-width:690px) {
@@ -6831,6 +6839,7 @@ input[type=submit]
     font-size:16px;
     line-height:22px;
     margin:0 0 12px;
+    padding: 15px 8px 0;
   }
 }
 
