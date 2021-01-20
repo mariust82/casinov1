@@ -25,6 +25,33 @@ var ListFilters = function (obj) {
     _url = _obj.data('url');
 
     _switchers.prop('checked', false);
+    
+    var CloseTFPopup = function () {
+        $('.close_tf_popup i').on('click', function () {
+            console.dir($(this).parent().parent().parent().parent());
+            $(this).parent().parent().parent().parent().remove();
+        });
+    }
+
+    var ShowTFPopup = function () {
+        console.dir('shay');
+        $(".tf_flex").on('click', function () {
+            var id = $(this).data('id');
+            var _this = $(this);
+            $.ajax({
+                url: '/timeframe-tooltip',
+                type: 'POST',
+                data: {
+                    id: id
+                },
+                dataType: 'html'
+            })
+                    .done(function (data) {
+                        $(".software-tooltipster").remove();
+                        _this.append(data);
+                    });
+        });
+    }
 
     var _onEvent = function () {
         _moreButton = $('.js-more-items');
@@ -245,7 +272,9 @@ var ListFilters = function (obj) {
                         $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
                     }
                     //initMoboleBonusesPop(ww);
-
+                } else if (_url === '/casinos-filter/') {
+                    ShowTFPopup();
+                    CloseTFPopup();
                 } else {
 
 

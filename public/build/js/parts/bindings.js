@@ -905,33 +905,6 @@ var Filters = function (obj) {
                 });
     }
 
-    var CloseTFPopup = function () {
-        $('.close_tf_popup i').on('click', function () {
-            console.dir($(this).parent().parent().parent().parent());
-            $(this).parent().parent().parent().parent().remove();
-        });
-    }
-
-    var ShowTFPopup = function () {
-        console.dir('shay');
-        $(".tf_flex").on('click', function () {
-            var id = $(this).data('id');
-            var _this = $(this);
-            $.ajax({
-                url: '/timeframe-tooltip',
-                type: 'POST',
-                data: {
-                    id: id
-                },
-                dataType: 'html'
-            })
-                    .done(function (data) {
-                        $(".software-tooltipster").remove();
-                        _this.append(data);
-                    });
-        });
-    }
-
 
     var _onEvent = function () {
         _moreButton = $('.js-more-items');
@@ -1117,8 +1090,6 @@ var Filters = function (obj) {
                         $('.js-more-items').show();
                     }
                     gridViewBoxPopup();
-                    ShowTFPopup();
-                    CloseTFPopup();
                 } else if (_url === '/games-filter/') {
 
                     if (parseInt($('.qty-items-quantity').html()) <= limit_items) {
