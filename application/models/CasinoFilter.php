@@ -51,6 +51,10 @@ class CasinoFilter
             $this->$item =  !empty($requestParameters[$item]);
         }
 
+        if (isset($requestParameters['label']) && stristr($requestParameters['label'], "mobile") !== false) {
+            $this->play_version = "mobile";
+            unset($requestParameters['label']);
+        }
 
         $strings = array("banking_method", "label", "bonus_type", "country", "software", "game");
         foreach ($strings as $item) {

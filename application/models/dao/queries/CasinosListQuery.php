@@ -112,6 +112,7 @@ class CasinosListQuery
             
             if ($filter->getCasinoLabel() == 'Fast Payout') {
                 $query->joinInner("casinos__withdraw_timeframes ", "t18")->on(["t1.id" => "t18.casino_id"])->set("t18.unit","'hour'")->set("t18.end",24,Lucinda\Query\ComparisonOperator::LESSER_EQUALS);
+                $filter->setPromoted(TRUE);
             }
             
             if (!in_array($filter->getCasinoLabel(), ["New", "all", "Best", "Fast Payout", "Low Minimum Deposit"])) {
