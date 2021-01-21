@@ -27,9 +27,11 @@ var ListFilters = function (obj) {
     _switchers.prop('checked', false);
     
     var CloseTFPopup = function () {
-        $('.close_tf_wrap').on('click', function () {
+        $('.close_tf_wrap').on('click', function (e) {
             console.dir($(this).parent().parent().parent());
             $(this).parent().parent().parent().remove();
+            e.stopPropagation();
+
         });
     }
 

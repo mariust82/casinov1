@@ -13212,6 +13212,7 @@ h1.title + .subtitle{
 
 .tf_flex .software-tooltipster{
   width: 304px;
+  z-index: 9;
 }
 .tf_flex .software-tooltipster .tooltipster-box{
   padding: 15px;
@@ -13243,14 +13244,12 @@ h1.title + .subtitle{
   line-height: 22px;
   font-weight: normal;
 }
-/* @media (max-width: 690px){
-  .list-item-cell.list-item-type.tf_class{
-    display: flex;
-    position: absolute;
+@media (max-width: 690px){
+  .tf_flex .software-tooltipster .tooltipster-box {
+    margin-bottom: 30px;
+  }
+  .tf_flex .tooltipster-sidetip.tooltipster-top .tooltipster-arrow {
+    bottom: 20px;
     left: 80px;
-    margin-top: 15px;
   }
-  .list-title-holder.tf_class .list-title{
-    margin-bottom: 15px;
-  }
-} */
+}
