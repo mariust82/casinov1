@@ -198,7 +198,7 @@ class Casinos implements FieldValidator
     
     public function getAllByLabels() {
         $output = [];
-        $labels = ["Best", "Low Minimum Deposit", "New", "Blacklisted Casinos", "Low Wagering", "No Account Casinos"];
+        $labels = ["Best", "Low Minimum Deposit", "New", "Blacklisted Casinos", "Low Wagering", "No Account Casinos", "Fast Payout"];
         foreach ($labels as $label) {
             $order = 't1.priority DESC, t1.id DESC';
             
@@ -218,6 +218,8 @@ class Casinos implements FieldValidator
                 WHERE t1.is_open = 1 AND t1.deposit_minimum BETWEEN 1 AND 5
                 AND cc.is_primary = 1 AND c.is_crypto = 0
                 ORDER BY t1.deposit_minimum ASC, t1.priority DESC, t1.name ASC")->toValue();
+            } elseif ($label == 'Fast Payout') {
+                $output[$label] = SQL("SELECT  MAX(t1.date) FROM casinos AS t1 LEFT OUTER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id LEFT OUTER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = 25 INNER JOIN casinos__withdraw_timeframes AS t18 ON t1.id = t18.casino_id AND t18.unit = 'hour' AND t18.end <= 24 LEFT OUTER JOIN casino_statuses AS cs ON t1.status_id = cs.id WHERE t1.is_open = 1 ORDER BY t18.end ASC, t1.priority DESC")->toValue();
             } else {
                 switch ($label) {
                     case 'Best':
