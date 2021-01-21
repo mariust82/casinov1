@@ -11199,7 +11199,7 @@ hr.widget{
   }
   .row-details{
     flex-wrap: wrap;
-    margin-top: 10px;
+    margin-top: 0;
   }
   .row-details i{
     margin: 0 0 8px 0 !important;
