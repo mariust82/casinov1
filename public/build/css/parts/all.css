@@ -74,6 +74,7 @@ blockquote.widget p{
 .close_tf_popup{
     right: 0;
     position: absolute;
+    width: 14px;
 }
 
 .tf_flex{
@@ -13207,3 +13208,49 @@ h1.title + .subtitle{
     width: 30%;
   }
 }
+
+
+.tf_flex .software-tooltipster{
+  width: 304px;
+}
+.tf_flex .software-tooltipster .tooltipster-box{
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.tf_flex .tooltipster-sidetip.tooltipster-top .tooltipster-arrow{
+  bottom: 5px;
+}
+.tf_flex .software-tooltipster .tooltipster-content{
+  padding: 0;
+}
+.tf_flex .close_tf_wrap span:first-of-type{
+  font-size: 15px;
+  line-height: 22px;
+  color: #433f42;
+  font-weight: 600;
+}
+.tf_flex .close_tf_wrap{
+  padding: 0 0 10px;
+  border-bottom: 1px solid #e3e3e3;
+  margin: 0 0 20px;
+}
+.tf_flex div>.time-frame-work-tag-content-column:first-of-type {
+  width: 49%;
+  display: inline-block;
+}
+.tf_flex .time-frame-work-tag-content-column {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: normal;
+}
+/* @media (max-width: 690px){
+  .list-item-cell.list-item-type.tf_class{
+    display: flex;
+    position: absolute;
+    left: 80px;
+    margin-top: 15px;
+  }
+  .list-title-holder.tf_class .list-title{
+    margin-bottom: 15px;
+  }
+} */
