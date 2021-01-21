@@ -126,7 +126,7 @@
 									<i class="icon icon-icon_unavailable"></i>
 									</:if>
 									<span>
-										${result.currencies.0} <:if test="${result.is_currency_accepted} == 1">
+										${mb_substr(${result.currencies}, 0, 1, "UTF-8")} <:if test="${result.is_currency_accepted} == 1">
 										accepted
 										<:else>
 										not accepted
