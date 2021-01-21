@@ -13192,12 +13192,14 @@ h1.title + .subtitle{
   
 }
 @media screen and (max-width: 1023px){
-  .similar_casino-box .list-rating{
+  .similar_casino-box .list-rating,
+  .carousel-grid-casinos .list-rating{
     width: unset!important;
     text-indent: initial!important;
     min-width: 82px;
   }
-  .similar_casino-box .list-rating .list-rating-score{
+  .similar_casino-box .list-rating .list-rating-score,
+  .carousel-grid-casinos .list-rating .list-rating-score{
     width: 21px!important;
   }
 }
@@ -13218,8 +13220,9 @@ h1.title + .subtitle{
 .carousel-box-container .swiper-slide {
   width: 24% !important;
   height: 319px !important;
-  min-width: 24%;
+  min-width: 230px;
   min-height: 319px;
+  margin-right: 10.5px !important;
 }
 .carousel-box-container .casino-name{
   text-align: center;
@@ -13231,6 +13234,7 @@ h1.title + .subtitle{
 .carousel-box-container .btn-full-width{
   height: 40px;
   min-height: 40px;
+  cursor:pointer;
 }
 .carousel-box-container .list-rating{
   width: 90px;
@@ -13281,7 +13285,29 @@ h1.title + .subtitle{
   position: relative;
   font: normal normal 600 12px/18px Open Sans;
   letter-spacing: 0px;
+  cursor:pointer;
 }
 .carousel-box-container .bonus-wrap-container .free{
   color: #529724;
+}
+.bonus-wrap-container .bonus{
+  width: 100%;
+}
+.country-details-wrap {
+  margin-bottom: 10px;
+  font: normal normal normal 13px/28px Open Sans;
+}
+.country-details-wrap i {
+  margin-right: 10px;
+}
+.country-details-wrap span:first-child {
+  margin-right: 15px;
+}
+@media screen and (max-width: 1000px){
+  .carousel-grid-casinos, .carousel-grid-casinos .container{
+    padding: 0 !important;
+  }
+  .carousel-box-container .swiper-slide{
+    min-width: 232.5px;
+  }
 }
