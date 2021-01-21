@@ -36,7 +36,7 @@
 								</:if>
 							</a>
                                                         <:if test="'$[type]' == 'WITHDRAWAL' && ${data.is_mobile}">
-                                                                        <div class="list-small-text upper tf_flex">${result.withdrawal_timeframes}</div>
+                                                                        <div class="list-small-text upper tf_flex" data-id="${result.id}">${result.withdrawal_timeframes}</div>
                                                         </:if>
 							<:if test="${result.is_tc_link}">
 								<a href="/visit/${normalize(${result.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
