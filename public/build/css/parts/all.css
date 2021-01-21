@@ -31,11 +31,11 @@
 }
 
 blockquote.widget{
-  line-height:28px;
   color:#60686A;
   position: relative;
   padding-left: 34px;
   border-left: 4px solid #658AE8;
+  font-style:italic;
 }
 
 @media screen and (max-width: 767px) {
@@ -52,13 +52,14 @@ blockquote.widget{
 }
 blockquote.widget p span{
   color: #60686A !important;
-  font-size: 16px !important;
+  font-size: 18px !important;
   font-family: 'Open Sans';
 }
 
 blockquote.widget p{
   padding:0;
-  font-size: 16px !important;
+  font-size: 18px !important;
+  line-height:34px !important;
 }
 
 .list-item-type{
@@ -12369,7 +12370,7 @@ h1.title + .subtitle{
 .lower_pragraph img,
 .subtitle img{
   max-width:100%;
-  height:auto;
+  height:auto !important;
   margin:10px 0;
 }
 @media screen and (max-width:767px) {
@@ -12378,6 +12379,16 @@ h1.title + .subtitle{
     display:block;
     float:none !important;
   }
+}
+
+.lower_pragraph img[style*="left"],
+.subtitle img[style*="left"]{
+  margin-right:20px;
+}
+
+.lower_pragraph img[style*="right"],
+.subtitle img[style*="right"]{
+  margin-left:20px;
 }
 
 .index-page p {
@@ -12521,6 +12532,19 @@ h1.title + .subtitle{
   .lower_pragraph ol,
   .lower_pragraph ul{
     padding: 0;
+  }
+}
+.subtitle ol,
+.lower_pragraph ol{
+  list-style-type:decimal;
+  padding:0 0 0 30px;
+}
+
+@media screen and (max-width:690px) {
+  .subtitle ol,
+  .lower_pragraph ol{
+    list-style-type:decimal;
+    padding:0 0 0 15px;
   }
 }
 
