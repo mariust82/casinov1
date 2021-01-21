@@ -327,9 +327,10 @@ function changeViewElements(filterView,container,gridClass,listClass){
     }
     
     function CloseTFPopup() {
-        $('.close_tf_wrap').on('click', function () {
+        $('.close_tf_wrap').on('click', function (e) {
             console.dir($(this).parent().parent().parent());
             $(this).parent().parent().parent().remove();
+            e.stopPropagation();
         });
     }
 
