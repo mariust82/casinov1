@@ -12390,6 +12390,17 @@ h1.title + .subtitle{
 .subtitle img[style*="right"]{
   margin-left:20px;
 }
+@media screen and (max-width:690px) {
+  .lower_pragraph img[style*="left"],
+  .subtitle img[style*="left"]{
+    margin-right:0;
+  }
+
+  .lower_pragraph img[style*="right"],
+  .subtitle img[style*="right"]{
+    margin-left:0;
+  }
+}
 
 .index-page p {
   float:left;
