@@ -1,4 +1,4 @@
-var AJAX_CUR_PAGE = 0;
+var AJAX_CUR_PAGE = 1;
 var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
