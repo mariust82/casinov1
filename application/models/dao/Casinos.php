@@ -118,8 +118,10 @@ class Casinos implements FieldValidator
         if (!$casinoID) {
             return null;
         }
-        $count = SQL("SELECT COUNT(id) FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip", array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
-        if ($count == 0) {
+        $currentVote = SQL("SELECT value FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip", array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
+        $extra_query = '';
+        if (empty($currentVote)) {
+
             $affectedRows = SQL("
               INSERT INTO casinos__ratings SET 
                 casino_id = :casino,
@@ -127,16 +129,23 @@ class Casinos implements FieldValidator
                 value = :value
                 ON DUPLICATE KEY UPDATE value = :value
               ", array(":casino"=>$casinoID, ":ip"=>$ip, ":value"=>$value))->getAffectedRows();
-            if ($affectedRows>0) {
-                SQL(
-                    "UPDATE casinos SET rating_total=rating_total+:value, rating_votes=rating_votes+1 WHERE id=:casino",
-                    array(":casino"=>$casinoID, ":value"=>$value)
-                );
-            }
-            return $affectedRows;
+            $extra_query = ', rating_votes=rating_votes+1 ';
         } else {
-            return "Casino already rated!";
+            $affectedRows = SQL("
+              UPDATE casinos__ratings SET 
+                value = :value
+                WHERE ip = :ip AND casino_id = :casino
+              ", array(":casino"=>$casinoID, ":ip"=>$ip, ":value"=>$value))->getAffectedRows();
         }
+
+        if ($affectedRows>0) {
+            SQL(
+                "UPDATE casinos SET rating_total=rating_total - :currentVote + :value" . $extra_query . " WHERE id=:casino",
+                array(":casino"=>$casinoID, ":value"=>$value, ":currentVote" => $currentVote)
+            );
+        }
+
+        return $affectedRows;
     }
 
     public function click($id)
@@ -189,7 +198,7 @@ class Casinos implements FieldValidator
     
     public function getAllByLabels() {
         $output = [];
-        $labels = ["Best", "Low Minimum Deposit", "New", "Blacklisted Casinos", "Low Wagering", "No Account Casinos"];
+        $labels = ["Best", "Low Minimum Deposit", "New", "Blacklisted Casinos", "Low Wagering", "No Account Casinos", "Fast Payout"];
         foreach ($labels as $label) {
             $order = 't1.priority DESC, t1.id DESC';
             
@@ -209,6 +218,8 @@ class Casinos implements FieldValidator
                 WHERE t1.is_open = 1 AND t1.deposit_minimum BETWEEN 1 AND 5
                 AND cc.is_primary = 1 AND c.is_crypto = 0
                 ORDER BY t1.deposit_minimum ASC, t1.priority DESC, t1.name ASC")->toValue();
+            } elseif ($label == 'Fast Payout') {
+                $output[$label] = SQL("SELECT  MAX(t1.date) FROM casinos AS t1 LEFT OUTER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id LEFT OUTER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = 25 INNER JOIN casinos__withdraw_timeframes AS t18 ON t1.id = t18.casino_id AND t18.unit = 'hour' AND t18.end <= 24 LEFT OUTER JOIN casino_statuses AS cs ON t1.status_id = cs.id WHERE t1.is_open = 1 ORDER BY t18.end ASC, t1.priority DESC")->toValue();
             } else {
                 switch ($label) {
                     case 'Best':

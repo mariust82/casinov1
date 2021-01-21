@@ -25,6 +25,37 @@ var ListFilters = function (obj) {
     _url = _obj.data('url');
 
     _switchers.prop('checked', false);
+    
+    var CloseTFPopup = function () {
+        $('.close_tf_wrap').on('click', function (e) {
+            console.dir($(this).parent().parent().parent());
+            $(this).parent().parent().parent().remove();
+            e.stopPropagation();
+
+        });
+    }
+
+    var ShowTFPopup = function () {
+        console.dir('shay');
+        $(".tf_flex").on('click', function () {
+            var id = $(this).data('id');
+            var _this = $(this);
+            $.ajax({
+                url: '/timeframe-tooltip',
+                type: 'POST',
+                data: {
+                    id: id
+                },
+                dataType: 'html'
+            })
+                    .done(function (data) {
+                        $(".software-tooltipster").remove();
+                        _this.append(data);
+                        CloseTFPopup();
+
+                    });
+        });
+    }
 
     var _onEvent = function () {
         _moreButton = $('.js-more-items');
@@ -245,7 +276,6 @@ var ListFilters = function (obj) {
                         $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
                     }
                     //initMoboleBonusesPop(ww);
-
                 } else {
 
 
@@ -318,9 +348,16 @@ var ListFilters = function (obj) {
                     if (typeof updateGameData == 'function') {
                         updateGameData();
                     }
+                    gridViewBoxPopup();
                 }
+                
+                 if (_url === '/casinos-filter/') {
+                    ShowTFPopup();
+                    CloseTFPopup();
+                }
+                
                 console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
-                if(_targetAddContainer.children().length >= totalItems) {
+                if($('.list-body').children().length >= totalItems) {
                     _moreButton.hide();
                 }
                 //imageDefer("lazy_loaded");

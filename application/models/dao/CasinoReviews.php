@@ -13,7 +13,11 @@ class CasinoReviews
     }
 
     public function getAllVotes($casinoID){
-        return SQL("SELECT COUNT(value) from casinos__ratings WHERE casino_id = :casino_id", array(":casino_id" => $casinoID))->toValue();
+        return SQL("SELECT COUNT(value) from casinos__ratings WHERE casino_id = :casino_id and status != 3", array(":casino_id" => $casinoID))->toValue();
+    }
+
+    public function getUserVotes($casino_id){
+        return SQL("SELECT value from casinos__ratings WHERE casino_id = :casino_id", array(":casino_id" => $casino_id));
     }
 
     public function getMoreReplies($page, $parentID)

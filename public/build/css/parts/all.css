@@ -71,6 +71,20 @@ blockquote.widget p{
     left: 0;
 }
 
+.close_tf_popup{
+    right: 0;
+    position: absolute;
+    width: 14px;
+}
+
+.tf_flex{
+    cursor: pointer;
+}
+
+.close_tf_popup i {
+    color: #60686a !important;
+}
+
 .software-tooltipster .tooltipster-arrow {
     margin-left: 10px !important;
 }
@@ -3409,7 +3423,8 @@ a:focus {
 .very-good{
   color: #96CB00;
 }
-.rating-container-stats-bar.very-good{
+.rating-container-stats-bar.very-good,
+.rating-container-stats-bar.very.good{
   background: #96CB00;
 }
 .carousel-slide-rating.very-good {
@@ -4570,6 +4585,18 @@ a:focus {
   }
   .btn-round:hover {
     background: #d6d7dd;
+  }
+}
+
+.review-submit-holder .btn{
+  width:160px;
+  height:50px;
+}
+
+@media screen and (max-width:690px) {
+  .review-submit-holder .btn{
+    width:130px;
+    height:40px;
   }
 }
 
@@ -6693,6 +6720,17 @@ a:focus {
   margin: 0;
 }
 
+.reviews-form{
+  padding-bottom:40px;
+  border-bottom:1px solid #E8EAF3;
+}
+
+@media screen and (max-width:690px) {
+  .reviews-form{
+    padding-bottom:17 px;
+  }
+}
+
 #reviews-form .action-field {
   margin: 17px 0 0 0;
   -webkit-box-pack:center;
@@ -6705,6 +6743,13 @@ a:focus {
   #reviews-form .action-field {
     margin: 15px 0 0 0;
   }
+}
+
+#reviews-form .action-field.field-error-required{
+  margin:5px 0 0 0;
+  display:block;
+  text-align:left;
+  font-size:12px;
 }
 
 #reviews-form.reviewed .textfield,
@@ -6801,6 +6846,39 @@ input[type=submit]
     margin-left: -10px;
     margin-right: -10px;
   }
+}
+
+.review-list-title{
+  font-size: 18px;
+  line-height: 26px;
+  color: #465156;
+  margin: 0 0 8px;
+  font-weight: 600;
+  padding: 17px 29px 0;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-align:center;
+  -ms-flex-align:center;
+  align-items:center;
+  -webkit-box-pack:justify;
+  -ms-flex-pack:justify;
+  justify-content:space-between;
+}
+
+@media screen and (max-width:690px) {
+  .review-list-title{
+    font-size:16px;
+    line-height:22px;
+    margin:0 0 12px;
+    padding: 15px 8px 0;
+  }
+}
+
+.review-list-title span{
+  font-size:13px;
+  line-height:20px;
+  color:#60686A;
 }
 
 .review-list .list-rating {
@@ -7020,15 +7098,23 @@ input[type=submit]
   display: flex;
   font-weight: 600;
   margin: 0 0 5px;
+  font-size:14px;
+}
+
+.review-title{
+  font-size:15px;
+  font-weight:700;
 }
 
 @media screen and (max-width: 690px) {
   .review-name,
   .review-title{
-    font-size: 14px;
+    font-size: 13px;
     margin: 0 0 3px;
     line-height: 1;
   }
+
+
 }
 
 .review-date {
@@ -9816,11 +9902,17 @@ html.no-scroll {
   }
 }
 
-.vote-block-title {
+.subtitle .vote-block-title {
   color: #313536;
-  font-size: 24px;
   margin: 0 0 20px;
   text-align: center;
+  text-transform: none;
+  font-size: 19px;
+}
+
+.subtitle .vote-block-num{
+ flex-grow: 0;
+ -webkit-box-flex: 0;
 }
 
 .vote-block-holder {
@@ -11111,7 +11203,7 @@ hr.widget{
   }
   .row-details{
     flex-wrap: wrap;
-    margin-top: 10px;
+    margin-top: 0;
   }
   .row-details i{
     margin: 0 0 8px 0 !important;
@@ -13132,5 +13224,72 @@ h1.title + .subtitle{
   .review-submit-holder .plain-link{
     margin:10px 0 0 0;
     display:inline-block;
+  }
+}
+
+@media (max-width: 340px){
+  .game-type_container:nth-of-type(10){
+    width: auto;
+    margin-left: -20px;
+  }
+  .info_list-title {
+    width: 34%;
+  }
+  .game-type_container:nth-of-type(4),
+  .game-type_container:nth-of-type(9) {
+    width: 30%;
+  }
+}
+
+
+.tf_flex .software-tooltipster{
+  width: 304px;
+  z-index: 9;
+}
+.tf_flex .software-tooltipster .tooltipster-box{
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.tf_flex .tooltipster-sidetip.tooltipster-top .tooltipster-arrow{
+  bottom: 5px;
+}
+.tf_flex .software-tooltipster .tooltipster-content{
+  padding: 0;
+}
+.tf_flex .close_tf_wrap span:first-of-type{
+  font-size: 15px;
+  line-height: 22px;
+  color: #433f42;
+  font-weight: 600;
+}
+.tf_flex .close_tf_wrap{
+  padding: 0 0 10px;
+  border-bottom: 1px solid #e3e3e3;
+  margin: 0 0 20px;
+}
+.tf_flex div>.time-frame-work-tag-content-column:first-of-type {
+  width: 49%;
+  display: inline-block;
+}
+.tf_flex .time-frame-work-tag-content-column {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: normal;
+}
+@media (max-width: 690px){
+  .tf_flex .software-tooltipster .tooltipster-box {
+    margin-bottom: 30px;
+  }
+  .tf_flex .tooltipster-sidetip.tooltipster-top .tooltipster-arrow {
+    bottom: 20px;
+    left: 80px;
+  }
+}
+
+@media (max-width: 340px){
+  .info_list-value {
+    overflow-wrap: anywhere;
+    max-width: 62%;
+    word-break: break-all;
   }
 }

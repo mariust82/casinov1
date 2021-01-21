@@ -1,4 +1,4 @@
-var AJAX_CUR_PAGE = 0;
+var AJAX_CUR_PAGE = 1;
 var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
@@ -259,22 +259,22 @@ function changeViewElements(filterView,container,gridClass,listClass){
         });
     };
     
-    $(".list-item-flex").on('click',function(){     
-        console.dir(window.location.href);
-//        if (window.location.href === 'casinos/fast-payout')
-        var id = $(this).data('id');
-        var _this = $(this);
-        $.ajax({    
-            url: '/timeframe-tooltip',
-            type: 'POST',
-            data: {
-                id: id              
-            },
-            dataType: 'html'
-        })
-        .done(function (data) {
-           _this.append(data);
-        });
+    $(".tf_flex").on('click',function() {     
+            var id = $(this).data('id');
+            var _this = $(this);
+            $.ajax({    
+                url: '/timeframe-tooltip',
+                type: 'POST',
+                data: {
+                    id: id              
+                },
+                dataType: 'html'
+            })
+            .done(function (data) {
+                $(".software-tooltipster").remove();
+               _this.append(data);
+                CloseTFPopup();
+            });
     });
 
     var windowToBottom = 0;
@@ -324,6 +324,14 @@ function changeViewElements(filterView,container,gridClass,listClass){
                 $('.expand-holder').removeClass('opened');
             })
         }
+    }
+    
+    function CloseTFPopup() {
+        $('.close_tf_wrap').on('click', function (e) {
+            console.dir($(this).parent().parent().parent());
+            $(this).parent().parent().parent().remove();
+            e.stopPropagation();
+        });
     }
 
     function detectIsKeyboardOpened() {
