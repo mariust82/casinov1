@@ -357,7 +357,7 @@ var ListFilters = function (obj) {
                 }
                 
                 console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
-                if(_targetAddContainer.children().length >= totalItems) {
+                if($('.list-body').children().length >= totalItems) {
                     _moreButton.hide();
                 }
                 //imageDefer("lazy_loaded");

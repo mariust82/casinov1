@@ -13305,3 +13305,11 @@ h1.title + .subtitle{
     left: 80px;
   }
 }
+
+@media (max-width: 340px){
+  .info_list-value {
+    overflow-wrap: anywhere;
+    max-width: 62%;
+    word-break: break-all;
+  }
+}
