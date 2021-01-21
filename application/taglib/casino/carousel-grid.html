@@ -1,0 +1,33 @@
+<div class="carousel carousel-box-container">
+    <div class="container ">
+        <div class="heading">
+            <h2 class="title title-middle">
+                <span>$[title]</span>
+            </h2>
+            <div class="subtitle index-page">
+                <p>
+                    $[description]
+                </p>
+            </div>
+        </div>
+    </div>
+	<div class="container">
+        <div class="swiper-container casinos-list" id="$[id]">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <:if test="$[section] == 'top'">
+                    <casino:carousel-boxes items="$[items]"/>
+                    <:else>
+                    <casino:carousel-gridbox items="$[items]"/>
+                    </:if>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-next">
+            <i class="icon-chevron-right"></i>
+        </div>
+        <div class="carousel-prev">
+            <i class="icon-chevron-left"></i>
+        </div>
+    </div>
+</div>
