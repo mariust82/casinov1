@@ -51,6 +51,8 @@ var ListFilters = function (obj) {
                     .done(function (data) {
                         $(".software-tooltipster").remove();
                         _this.append(data);
+                        CloseTFPopup();
+
                     });
         });
     }
