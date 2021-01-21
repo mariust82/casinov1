@@ -9129,6 +9129,7 @@ input[type=submit]
 
 .data-container-holder {
   position: relative;
+  margin-bottom: 40px;
 }
 
 #search-empty {
