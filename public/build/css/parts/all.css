@@ -12898,6 +12898,10 @@ h1.title + .subtitle{
 .grid_view .casino_items-view .list-title-holder .list-small-text {
   display: none;
 }
+.grid_view .casino_items-view .list-item-cell.list-item-banking-wit,
+.grid_view .casino_items-view .list-item-cell.list-item-banking-dep{
+  display: none;
+}
 .rating-container{
   font-family: 'Open Sans';
   width: 100%;
