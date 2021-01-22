@@ -14,6 +14,15 @@
         </route>
         <route url="filter-software" controller="GameManufacturerFilterController" view="filter-software" method="GET"/>
         <route url="casinos" controller="CasinoLabelsController" view="casino-labels"/>
+        <route url="games-by-software/(page)" controller="LoadMoreGamesBySoftwareController" view="game-item">
+            <parameter name="page" validator="IntegerValidator"/>
+        </route>
+        <route url="casinos-by-software/(page)" controller="LoadMoreCasinosBySoftwareController" view="casino-item">
+            <parameter name="page" validator="IntegerValidator"/>
+        </route>
+        <route url="casinos-by-banking/(page)" controller="LoadMoreCasinosByBankingController" view="casino-item">
+            <parameter name="page" validator="IntegerValidator"/>
+        </route>
         <route url="reviews/(name)-review" controller="CasinoInfoController" view="casino-info" rebrand_tables="casinos">
             <parameter name="name" validator="CasinoNameValidator"/>
         </route>
