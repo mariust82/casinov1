@@ -734,7 +734,7 @@ function bindButtons() {
                 setTimeout(function () {
                     self.removeClass('loading');
                     refresh();
-                }, 1000);
+                }, 100);
                 GAME_CURR_PAGE++;
                 $('.games-list').append(data);
                 if ($(self).data('total') === $('.games-list').children().length) {
@@ -770,7 +770,7 @@ function bindButtons() {
                 setTimeout(function () {
                     self.removeClass('loading');
                     refresh();
-                }, 1000);
+                }, 100);
                 raiseCasinoPage(key);
                 $(self).parent().prev().find('.list-body').append(data);
                 if ($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
@@ -804,7 +804,7 @@ function bindButtons() {
                 setTimeout(function () {
                     self.removeClass('loading');
                     refresh();
-                }, 1000);
+                }, 100);
                 BEST_BANKING_PAGE++;
                 $(self).parent().prev().find('.list-body').append(data);
                 if ($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
