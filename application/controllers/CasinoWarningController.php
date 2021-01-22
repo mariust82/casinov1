@@ -34,6 +34,7 @@ class CasinoWarningController extends BaseController
         // get recommended casinos
         $object = new CasinosList(new CasinoFilter(array("software"=>$result->softwares, "country_accepted"=>true,"promoted"=>true), $this->request->attributes("country")));
         $this->response->attributes("recommended_casinos", $object->getResults(CasinoSortCriteria::NONE, 0, 5));
+        $this->response->attributes("total_casinos", $object->getTotal());
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $this->response->attributes("page_type", "warning");
         $this->response->attributes("selected_entity", "warning");
