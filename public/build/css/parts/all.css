@@ -12975,9 +12975,7 @@ h1.title + .subtitle{
     font-size: 16px;
   }
 }
-.rating-container-score strong{
-  
-}
+
 .rating-container-voted {
   font-size: 13px;
   line-height: 22px;
@@ -13324,6 +13322,9 @@ h1.title + .subtitle{
     height: 33px;
     display: flex;
     align-items: center;
+  }
+  .wp-title .welcome_package-popup-trigger{
+    padding-left: 1px;
   }
 }
 
