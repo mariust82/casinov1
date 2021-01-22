@@ -13315,6 +13315,12 @@ h1.title + .subtitle{
     bottom: 20px;
     left: 80px;
   }
+  .data-container .qty-items{
+    margin-bottom: 0px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+  }
 }
 
 @media (max-width: 340px){
