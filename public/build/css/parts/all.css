@@ -12612,11 +12612,6 @@ h1.title + .subtitle{
   background: #fff;
   color: #646464
 }
-.tms_iframe{
-  position:relative;
-  height:0;
-  padding-bottom:57%;
-}
 .plain-text .tms_iframe iframe,
 .subtitle .tms_iframe iframe{
   position:absolute;
