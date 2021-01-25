@@ -118,7 +118,7 @@ function gameNames($games){
     
     $gamesArray = explode(",", $games);
         if (count($gamesArray) > 1){
-            return substr($games,0, 14) . '...';
+            return substr($games,0, 12) . '...';
         }elseif (strlen($games) > 22){
             return substr($games,0, 22) . '...';
         }else{
