@@ -1,9 +1,11 @@
 <?php
 namespace CasinosLists;
 
+require_once("vendor/lucinda/queries/plugins/MySQL/MySQLSelect.php");
+
 class GamesRecommendedQuery extends \Hlis\GameListRangeQuery
 {
-    public function __construct(GameFields $fields, GameCondition $condition, GameSort $sort, $offset, $limit) {
+    public function __construct(\Hlis\GameFields $fields, \Hlis\GameCondition $condition, \Hlis\GameSort $sort, $offset, $limit) {
         $this->fields = $fields->getCriteria();
         $this->condition = $condition->getCriteria();
         $this->sort = $sort->getCriteria();
