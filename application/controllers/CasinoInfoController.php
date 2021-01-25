@@ -15,6 +15,8 @@ require_once("BaseController.php");
 */
 class CasinoInfoController extends BaseController
 {
+    private $casinoInfo;
+
     public function service()
     {
         $this->response->attributes("country", $this->request->attributes("country"));
@@ -26,6 +28,7 @@ class CasinoInfoController extends BaseController
             throw new Lucinda\MVC\STDOUT\PathNotFoundException();
         }
 
+        $this->casinoInfo = $info;
         $this->response->attributes("casino", (array) $info);
         $this->response->attributes(
             "user_score",
@@ -35,18 +38,20 @@ class CasinoInfoController extends BaseController
             ) == false ? 0: $object->getUserVote($info->id, $this->request->attributes('ip'))
         );
         $this->response->attributes('user_score_class', $object->getScoreClass($this->response->attributes('user_score')));
-
         // get reviews
         $object = new CasinoReviews();
         $total = $object->getAllTotal($info->id);
+        $total_votes = $object->getAllVotes($info->id);
         $this->response->attributes("reviews_limit", $object::LIMIT);
         $this->response->attributes("replies_limit", $object::LIMIT_REPLIES);
 
         if ($total>0) {
             $this->response->attributes("total_reviews", $total);
+            $this->response->attributes("total_votes", $total_votes);
             $this->response->attributes("reviews", $object->getAll($info->id, 0, 0));
         } else {
             $this->response->attributes("total_reviews", 0);
+            $this->response->attributes("total_votes", 0);
             $this->response->attributes("reviews", array());
         }
         $this->response->attributes('country_status', $this->get_country_status($info->is_country_accepted));
@@ -61,8 +66,15 @@ class CasinoInfoController extends BaseController
         $position = strpos($_SERVER["REQUEST_URI"], "/", 1);
         $url = ($position?substr($_SERVER["REQUEST_URI"], 1, $position-1):$_SERVER["REQUEST_URI"]);
 
+        $pageInfo = $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("casino")["name"]);
+        if(!empty($this->casinoInfo->bonus_free)) {
+            $pageInfo->head_description .= ' | Sign up Bonus: '.$this->casinoInfo->bonus_free->amount.' '.$this->casinoInfo->bonus_free->type;
+        }elseif (!empty($this->casinoInfo->bonus_first_deposit)) {
+            $pageInfo->head_description .= ' | Sign up Bonus: '.$this->casinoInfo->bonus_first_deposit->amount.' '.$this->casinoInfo->bonus_first_deposit->type;
+        }
+
         $this->response->attributes("page_type", $url);
-        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->response->attributes("casino")["name"]));
+        $this->response->attributes("page_info", $pageInfo);
     }
 
     private function get_country_status($name)

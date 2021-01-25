@@ -20,9 +20,7 @@ class SearchAdvancedController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes("value", $this->request->attributes('validation_results')->get('value'));
 
         $lists = new ListsSearch($this->request->attributes('validation_results')->get('value'));
-
-        $result = $lists->getResults();
-        $result = $this->fixListsGamesBug($result);
+        $result = $this->fixListsGamesBug($lists->getResults());
         $this->response->attributes("index", count($result) > 5 ? 5:  count($result));
         $this->response->attributes("lists", $result);
         $this->response->attributes("total_lists", count($result));

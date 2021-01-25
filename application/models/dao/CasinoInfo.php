@@ -2,6 +2,7 @@
 require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once 'entities/FullWelcomePackage.php';
+require_once 'application/models/CasinoScore.php';
 
 class CasinoInfo
 {
@@ -58,6 +59,10 @@ class CasinoInfo
             return;
         }
 
+        $casino_score = new CasinoScore();
+        $votes = $this->getUserVotes($output->id);
+        $output->user_votes = $casino_score->setVotesByType($votes);
+
         // detect primary currencies & append to withdrawal minimum
         $primaryCurrencies = implode("/", $this->getPrimaryCurrencies($output->id));
         $output->withdrawal_minimum = !empty($output->withdrawal_minimum) ? $primaryCurrencies.$output->withdrawal_minimum : 0;
@@ -72,6 +77,7 @@ class CasinoInfo
         $output->licenses = $this->getDerivedData("licenses", "license_id", $output->id);
         $output->certifiers = $this->getDerivedData("certifications", "certification_id", $output->id);
         $output->withdrawal_limits = $this->getWithdrawLimits($output->id, $primaryCurrencies);
+        $output->is_mobile = $this->isCasinoMobile($output->id);
         $output->withdrawal_timeframes = $this->getWithdrawTimeframes($output->id);
         $output->bonus_first_deposit = $this->getBonus($output->id, array("First Deposit Bonus"));
         $output->bonus_free = !empty($output->bonus_first_deposit) ? $this->getBonus($output->id, array("Free Spins","No Deposit Bonus","Free Play","Bonus Spins")) : null ;
@@ -82,9 +88,13 @@ class CasinoInfo
         $output->casino_deposit_methods =  $this->getCasinoDepositMethods($output->id);
         $output->casino_game_types = $this->getGameTypes($output->id);
         $this->appendCountryInfo($output, $countryId);
-
         $this->getCasinoDepositMethods($output->id);
         $this->result = $output;
+    }
+    
+    private function isCasinoMobile($id) {
+        $res = SQL("SELECT COUNT(id) FROM `casinos__play_versions` WHERE casino_id = {$id} AND play_version_id = 4")->toValue();
+        return $res > 0 ? TRUE : FALSE;
     }
 
     private function getAllLiveGameTypes($id)
@@ -99,6 +109,10 @@ class CasinoInfo
         } else {
             return $results;
         }
+    }
+
+    private function getUserVotes($casino_id){
+        return SQL("SELECT value from casinos__ratings WHERE casino_id = :casino_id and status != 3", array(":casino_id" => $casino_id));
     }
 
     private function getIsAvailableInSite($data)

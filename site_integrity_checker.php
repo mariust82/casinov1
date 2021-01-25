@@ -18,6 +18,8 @@ new CasinosListsSiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), arra
     "bonus-list/(?)" => "bonus-list/free-spins",
     "casinos" => "casinos",
     "casinos/(?)" => "casinos/best",
+    "casinos/(low-minimum-deposit)" => "casinos/low-minimum-deposit",
+    "casinos/(fast-payout)" => "casinos/fast-payout",
     "countries" => "countries",
     "countries-list/(?)" => "countries-list/united-states",
     "reviews/(?)-review" => "reviews/betadonis-casino-review",

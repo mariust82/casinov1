@@ -41,6 +41,8 @@ class CasinosByLabelController extends CasinosListController
         switch ($this->response->attributes("selected_entity")) {
             case 'New':
                 return CasinoSortCriteria::NEWEST;
+             case 'Fast Payout':
+                return CasinoSortCriteria::FAST_PAYOUT;
             case 'Best':
                 return CasinoSortCriteria::TOP_RATED;
             case 'Low Wagering':

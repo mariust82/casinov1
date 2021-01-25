@@ -18,6 +18,7 @@ function parse_video($url)
 
 function get_rating($score)
 {
+    $string = "";
     if ($score == 0) {
         $string = 'No score';
     } elseif ($score >= 1 && $score <= 2.99) {
@@ -144,4 +145,31 @@ function get_string($name, $index)
         }
     }
     return implode(", ", $items);
+}
+
+function checkGameAvailability($casinoGameTypes) {
+    $games = [
+        "Blackjack" => 0,
+        "Roulette" => 0,
+        "Slots" => 0,
+        "Video Poker" => 0,
+        "Craps" => 0,
+        "Baccarat" => 0,
+        "Bingo" => 0,
+        "Keno" => 0,
+        "Table Games" => 0,
+        "Scratch Cards" => 0
+    ];
+
+    if(!empty($casinoGameTypes)) {
+        foreach ($casinoGameTypes as $type) {
+            $games[$type['name']] = in_array($type['name'], $games) ? 1 : 0;
+        }
+    }
+    return $games;
+}
+
+function setVotePercents($vote, $total_votes){
+    $percent  = round( ( $vote / $total_votes ) * 100);
+    return $percent . '%';
 }

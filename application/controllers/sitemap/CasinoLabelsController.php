@@ -13,7 +13,8 @@ class CasinoLabelsController extends AbstractSitemapController
     
     protected function getItems()
     {
-        return $this->dao->getAllByLabels();
+        $country = $this->request->attributes("country")->id;
+        return $this->dao->getAllByLabels($country);
     }
 
     protected function getUrlPattern()

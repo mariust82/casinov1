@@ -13,7 +13,7 @@ require_once("CasinosListController.php");
 
 class CasinoLiveDealerController extends CasinosListController
 {
-    protected $limit = 30;
+    protected $limit = 50;
 
     protected function getSelectedEntity()
     {
