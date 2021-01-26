@@ -41,7 +41,7 @@ var Score = function (obj) {
 
                         $( ".rating-container-stats-row" ).each(function( index ) {
                             var percents = setVotePercents(data.body['votes'][index], totalVotes);
-                            $(this).find('.rating-container-stats-bar').style('width', percents);
+                            $(this).find('.rating-container-stats-bar').css('width', percents);
                             $(this).find('.rating-container-stats-score').html( percents + "<span>(" + data.body['votes'][index] + ")</span>");
                         });
 
