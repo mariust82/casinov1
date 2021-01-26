@@ -13206,7 +13206,8 @@ h1.title + .subtitle{
 
 
 
-.carousel-box-container .carousel-slide{
+.carousel-box-container .carousel-slide
+{
   width: 100%;
   height: 100%;
   padding: 15px;
@@ -13309,5 +13310,82 @@ h1.title + .subtitle{
   }
   .carousel-box-container .swiper-slide{
     min-width: 232.5px;
+  }
+}
+
+
+.carousel-option-container .carousel-slide{
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  align-items: center;
+}
+.carousel-option-container .swiper-slide {
+  width: 150px !important;
+  height: 169px !important;
+  min-width: 150px;
+  min-height: 169px;
+  margin-right: 12px !important;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 6px #00000029;
+  border-radius: 2px;
+}
+.option-box .image-container{
+  display: flex;
+  width: 100%;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+.option-box .image-container img{
+  width: 98px;
+  height: auto;
+  margin: auto;
+}
+.option-box .option-info{
+  background: #F7F7F7 0% 0% no-repeat padding-box;
+  border-radius: 0px 0px 4px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 69px;
+  max-height: 69px;
+  width: 100%;
+  text-align: center;
+  font: normal normal 600 13px/18px Open Sans;
+  letter-spacing: 0px;
+  color: #465156;
+  flex-wrap: wrap;
+  padding: 16px 0;
+}
+.option-box .casinos-count{
+  width: 100%;
+  font: normal normal 600 12px/18px Open Sans;
+  letter-spacing: 0px;
+  color: #2171CE;
+}
+
+@media (max-width: 690px){
+  .carousel-option-container .swiper-slide {
+    width: 130px !important;
+    height: 149px !important;
+    min-width: 130px;
+    min-height: 149px;
+    margin-right: 10px !important;
+  }
+  .option-box .image-container img{
+    width: 85px;
+  }
+  .option-box .image-container{
+    height: 88px;
+  }
+  .option-box .option-info{
+    height: 61px;
+    max-height: 61px;
+    font: normal normal 600 12px/15px Open Sans;
+    padding: 14px 0;
+  }
+  .option-box .casinos-count{
+    font: normal normal 600 11px/18px Open Sans;
   }
 }
