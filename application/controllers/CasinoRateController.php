@@ -2,6 +2,7 @@
 require_once("application/models/dao/Casinos.php");
 require_once("application/models/dao/BestCasinoLabel.php");
 require_once("application/models/UserOperationFailedException.php");
+require_once 'application/models/CasinoScore.php';
 
 /*
 * Rates a casino.
