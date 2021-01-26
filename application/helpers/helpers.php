@@ -114,6 +114,7 @@ function formatDate($date)
 function gamesAllowed($games) {
     return explode(",", $games);
 }
+
 function gameNames($games){
     
     $gamesArray = explode(",", $games);
@@ -125,6 +126,7 @@ function gameNames($games){
             return $games;
         }
 }
+
 function getBankingTitles($name, $index)
 {
     $counter=0;
