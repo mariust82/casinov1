@@ -30,6 +30,7 @@ class CasinoRateController extends Lucinda\MVC\STDOUT\Controller
             $casino_score = new CasinoScore();
             $votes = $object->getUserVotes($casinoID);
             $this->response->attributes("votes",$casino_score->setVotesByType($votes));
+            $this->response->attributes("total_votes",$casino_score->getAllVotes($casinoID));
 
             if ($success) {
                 $object = new BestCasinoLabel();

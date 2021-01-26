@@ -26,7 +26,7 @@ var Score = function (obj) {
                     dataType: 'json',
                     type: 'post',
                     success: function (data) {
-                        var totalVotes = parseInt($('.count-value').text()) + 1;
+                        var types_array = ['Excellent', 'Very good', 'Good', 'Poor', 'Terrible'];
                         if (data.body['success'] == "Casino already rated!") {
                             $(".icon-icon_available").toggleClass("icon-icon_unavailable");
                             $(".icon-icon_unavailable").removeClass("icon-icon_available");
@@ -37,12 +37,12 @@ var Score = function (obj) {
 
                         $('.drag-rate-range-score').text(_score + '/10');
                         $('.rating-container-score-value').text(_score);
-                        $('.count-value').text(totalVotes);
+                        $('.count-value').text(data.body['total_votes']);
 
                         $( ".rating-container-stats-row" ).each(function( index ) {
-                            var percents = setVotePercents(data.body['votes'][index], totalVotes);
+                            var percents = setVotePercents(data.body['votes'][types_array[index]], data.body['total_votes']);
                             $(this).find('.rating-container-stats-bar').css('width', percents);
-                            $(this).find('.rating-container-stats-score').html( percents + "<span>(" + data.body['votes'][index] + ")</span>");
+                            $(this).find('.rating-container-stats-score').html( percents + "<span>(" + data.body['votes'][types_array[index]] + ")</span>");
                         });
 
                         $('.rating-container-score-grade')
