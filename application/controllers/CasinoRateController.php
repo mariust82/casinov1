@@ -27,14 +27,15 @@ class CasinoRateController extends Lucinda\MVC\STDOUT\Controller
                 $this->request->attributes('validation_results')->get('value')
             );
             $this->response->attributes("success", $success);
+            $casino_score = new CasinoScore();
+            $votes = $object->getUserVotes($casinoID);
+            $this->response->attributes("votes",$casino_score->setVotesByType($votes));
+            
             if ($success) {
                 $object = new BestCasinoLabel();
                 $object->checkRatedCasino($casinoID);
             }
 
-            $casino_score = new CasinoScore();
-            $votes = $object->getUserVotes($casinoID);
-            $this->response->attributes("votes",$casino_score->setVotesByType($votes));
         } else { // if country is not accepted by casino, here, the exception is throed.
             throw new UserOperationFailedException("Your country is not supported!");
         }
