@@ -26,6 +26,7 @@ var Score = function (obj) {
                     dataType: 'json',
                     type: 'post',
                     success: function (data) {
+                        var totalVotes = parseInt($('.count-value').text()) + 1;
                         if (data.body['success'] == "Casino already rated!") {
                             $(".icon-icon_available").toggleClass("icon-icon_unavailable");
                             $(".icon-icon_unavailable").removeClass("icon-icon_available");
@@ -36,6 +37,13 @@ var Score = function (obj) {
 
                         $('.drag-rate-range-score').text(_score + '/10');
                         $('.rating-container-score-value').text(_score);
+                        $('.count-value').text(totalVotes);
+
+                        $( ".rating-container-stats-row" ).each(function( index ) {
+                            var percents = setVotePercents(data.body['votes'][index], totalVotes);
+                            $(this).find('.rating-container-stats-bar').style('width', percents);
+                            $(this).find('.rating-container-stats-score').html( percents + "<span>(" + data.body['votes'][index] + ")</span>");
+                        });
 
                         $('.rating-container-score-grade')
                                 .removeClass('terrible poor good very-good excellent no-score')
@@ -165,6 +173,11 @@ function getGrade(score) {
     }
 
     return result;
+}
+
+function setVotePercents(vote, total_votes){
+    var percent  = Math.round( ( vote / total_votes ) * 100);
+    return percent + '%';
 }
 
 $(".js-drag-rate").ionRangeSlider({
