@@ -2,6 +2,7 @@
 require_once("application/models/dao/Casinos.php");
 require_once("application/models/dao/BestCasinoLabel.php");
 require_once("application/models/UserOperationFailedException.php");
+require_once 'application/models/CasinoScore.php';
 
 /*
 * Rates a casino.
@@ -26,13 +27,16 @@ class CasinoRateController extends Lucinda\MVC\STDOUT\Controller
                 $this->request->attributes('validation_results')->get('value')
             );
             $this->response->attributes("success", $success);
+            $casino_score = new CasinoScore();
+            $votes = $object->getUserVotes($casinoID);
+            $this->response->attributes("total_votes",$object->getAllVotes($casinoID));
+            $this->response->attributes("votes",$casino_score->setVotesByType($votes));
+
             if ($success) {
                 $object = new BestCasinoLabel();
                 $object->checkRatedCasino($casinoID);
             }
-            if (!$success) {
-                throw new UserOperationFailedException("Casino already rated!");
-            }
+
         } else { // if country is not accepted by casino, here, the exception is throed.
             throw new UserOperationFailedException("Your country is not supported!");
         }
