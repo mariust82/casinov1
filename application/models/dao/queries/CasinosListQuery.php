@@ -35,7 +35,7 @@ class CasinosListQuery
     }
 
     private function setGroupBy(Lucinda\Query\MySQLSelect $query, CasinoFilter $filter,$limit) {
-        if ($limit > 0 && $filter->getPlayVersion() == "Live Dealer") {
+        if ($limit > 0 && ($filter->getPlayVersion() == "Live Dealer" || $filter->getCasinoLabel() == "Fast Payout")) {
             $query->groupBy(['t1.id']);
         }
     }

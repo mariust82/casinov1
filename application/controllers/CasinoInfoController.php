@@ -44,14 +44,13 @@ class CasinoInfoController extends BaseController
         $total_votes = $object->getAllVotes($info->id);
         $this->response->attributes("reviews_limit", $object::LIMIT);
         $this->response->attributes("replies_limit", $object::LIMIT_REPLIES);
+        $this->response->attributes("total_votes", $total_votes);
 
         if ($total>0) {
             $this->response->attributes("total_reviews", $total);
-            $this->response->attributes("total_votes", $total_votes);
             $this->response->attributes("reviews", $object->getAll($info->id, 0, 0));
         } else {
             $this->response->attributes("total_reviews", 0);
-            $this->response->attributes("total_votes", 0);
             $this->response->attributes("reviews", array());
         }
         $this->response->attributes('country_status', $this->get_country_status($info->is_country_accepted));

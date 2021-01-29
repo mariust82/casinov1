@@ -18,8 +18,7 @@ class SearchController extends Lucinda\MVC\STDOUT\Controller
     {
         $lists = new ListsSearch($this->request->parameters("value"));
         $casinos = new CasinosSearch($this->request->parameters("value"));
-        $result = array_slice($lists->getResults(), 0, 3);
-        $this->response->attributes("lists", $result);
+        $this->response->attributes("lists", $lists->getResults(0, 3));
         $this->response->attributes("casinos", $casinos->getResults(self::LIMIT, 0));
             
 

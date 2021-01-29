@@ -1,5 +1,6 @@
 <?php
 require_once("vendor/lucinda/queries/src/Select.php");
+require_once("ListSearchResults.php");
 
 class ListsSearch
 {
@@ -9,19 +10,29 @@ class ListsSearch
         $this->value = $value;
     }
     
-    public function getResults()
+    public function getResults($offset=0, $limit=0)
     {
         if ($this->value == "") {
             return $this->setData($this->getSoftwares());
         }
-        $caisnos = $this->getCasinos();
-        $softwares = $this->getSoftwares();
-        $bonuses = $this->getBonuses();
-        $countries = $this->getCountries();
-        $banking = $this->getBanking();
-        $games = $this->getGames();
-        $results = array_merge($caisnos, $softwares, $bonuses, $countries, $games, $banking);
-        return $this->setData($results);
+        $results = new ListSearchResults($offset, $limit);
+        $continue = $results->add($this->getCasinos());
+        if ($continue) {
+            $continue = $results->add($this->getSoftwares());
+        }
+        if ($continue) {
+            $continue = $results->add($this->getBonuses());
+        }
+        if ($continue) {
+            $continue = $results->add($this->getCountries());
+        }
+        if ($continue) {
+            $continue = $results->add($this->getBanking());
+        }
+        if ($continue) {
+            $continue = $results->add($this->getGames());
+        }
+        return $this->setData($results->get());
     }
     
     public function setData($arr)
