@@ -1,4 +1,9 @@
-<:set var="bonus_type" val="${data.bonus.type}"/>
+<:set var="bonus_type" val=""/>
+<:set var="b_type" val=""/>
+<:if test="isset(${data.bonus.type})">
+    <:set var="bonus_type" val="${data.bonus.type}"/>
+    <:set var="b_type" val="${data.bonus.type}"/>
+</:if>
 <:if test="${bonus_type} == 'Free Play'">
     <:set var="bonus_type" val="Free Bonus"/>
 </:if>
@@ -14,7 +19,7 @@
 <div class="tooltip-content ${block_class}">
     <:if test="!${data.is_mobile}">
         <div class="tooltip-templates-heading">
-            <div class="tooltip-templates-title">${data.name} ${data.bonus.type}</div>
+            <div class="tooltip-templates-title">${data.name} ${b_type}</div>
             <div class="tooltip-templates-button">
                 <:if test="${data.casino.status}=='Blacklisted'">
                     <a href="/visit/${normalize(${data.name})}" target="_blank" rel="nofollow" class="btn-blk btn-err btn-err-popup">
