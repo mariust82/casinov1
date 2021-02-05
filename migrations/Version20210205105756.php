@@ -15,6 +15,8 @@ class Version20210205105756 implements \Hlis\Migration\Script
         ) Engine=INNODB;
         INSERT INTO casino_statuses_extended VALUES
         (1, 0), (2, 3), (3, 2), (4, 1)");
+        SQL("INSERT INTO casino_statuses_extended VALUES
+        (1, 0), (2, 3), (3, 2), (4, 1)");
     }
     
     /**
