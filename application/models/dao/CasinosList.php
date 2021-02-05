@@ -276,7 +276,7 @@ class CasinosList
         $query = " 
                   SELECT t1.id, t1.name as unit, COUNT(t1.id) AS nr
                   FROM game_manufacturers as t1
-                  INNER JOIN casinos__game_manufacturers AS t2 ON t1.id = t2.game_manufacturer_id AND t2.casino_id IN (".implode(",", array_values($output)).")
+                  INNER JOIN casinos__game_manufacturers AS t2 ON t1.id = t2.game_manufacturer_id AND t2.casino_id IN (".implode(",", array_unique(array_values($output))).")
                   WHERE t1.is_open = 1
                   GROUP by t1.name
                   ORDER By t1.priority DESC";
