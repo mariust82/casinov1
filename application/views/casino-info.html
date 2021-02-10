@@ -45,9 +45,12 @@
                                 target="_blank" 
                             </:if>
                         >
-                            <:if test="${item_status} == 'blacklisted' || ${item_status} == 'warning' || ${item_status} == 'restricted'">
+                            <:if test="${item_status} == 'blacklisted' || ${item_status} == 'warning'">
                                 <svg class="svg-icon"><use xlink:href="#icon-${item_status}"></use></svg>
-                                ${item_status}
+								${item_status}
+							<:elseif test="${item_status} == 'restricted'">
+								<svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" width="15.47" height="14.853" viewBox="0 0 15.47 14.853"><defs><style>.a{fill:#fff;}</style></defs><path class="a" d="M7.2,2A5.2,5.2,0,0,0,2,7.2c0,3.9,5.2,9.655,5.2,9.655S12.4,11.1,12.4,7.2A5.2,5.2,0,0,0,7.2,2m0,3.342A1.857,1.857,0,1,1,5.342,7.2,1.857,1.857,0,0,1,7.2,5.342m5.629,5.689-1.047,1.055,1.79,1.8-1.79,1.79,1.047,1.047,1.8-1.79,1.79,1.79,1.055-1.047-1.8-1.79,1.8-1.8-1.055-1.055-1.79,1.8" transform="translate(-2 -2)"/></svg>
+								${item_status}
                             <:else>
                                 PLAY NOW
                             </:if>
@@ -153,16 +156,13 @@
 	<div class="section ${data.country_status}">
 		<div class="container">
 			<div class="box box-alt">
-				<div class="title title-middle">
-					${(${data.total_reviews} == 0)?'Be the first to write a review':'Reviews'}
-					<div class="reviews-num">
-						<span class="reviews-qty">${data.total_reviews}</span> ${(${data.total_reviews} == 1)?'Review':'Reviews'}
-					</div>
-				</div>
+				<h2 class="title title-middle">${data.casino.name} Player Rating &amp; Reviews</h2>
 				<comment:list-container name="${data.user_score_class}" value="${normalize(${data.user_score_class})}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" />
 			</div>
 		</div>
 	</div>
+
+
 	<!-- Casino Info -->
 	<div class="section">
 		<div class="container">
@@ -182,12 +182,16 @@
 							</div>	
 						</div>
 						<div class="detail-box">
-							<span class="detail-title">Website language</span>
+							<span class="detail-title">Language</span>
 							<div class="row-details">
 								<:if test="count(${data.casino.languages}) > 0">
-								<i class="icon-icon_available"></i>
-								${data.casino.languages.0} 
-								<:if test="count(${data.casino.languages}) > 1"> (+${count(${data.casino.languages})-1})</:if>
+									<i class="icon-icon_available"></i>
+									${data.casino.languages.0}
+									<:if test="count(${data.casino.languages}) > 1">
+										<span class="js-tooltip language_tooltip" title="${get_string(${data.casino.languages}, 1)}">
+											(+${count(${data.casino.languages})-1})
+										</span>
+									</:if>
 								<:else>
 								<i class="icon-icon_unavailable"></i>
 								</:if>
@@ -197,9 +201,13 @@
 							<span class="detail-title">Currency</span>
 							<div class="row-details">
 								<:if test="count(${data.casino.currencies}) > 0">
-								<i class="icon-icon_available"></i>
-								${data.casino.currencies.0} 
-								<:if test="count(${data.casino.currencies}) > 1"> (+${count(${data.casino.currencies})-1})</:if>
+									<i class="icon-icon_available"></i>
+									${data.casino.currencies.0}
+									<:if test="count(${data.casino.currencies}) > 1">
+										<span class="js-tooltip currency_tooltip" title="${get_string(${data.casino.currencies}, 1)}">
+											(+${count(${data.casino.currencies})-1})
+										</span>
+									</:if>
 								<:else>
 								<i class="icon-icon_unavailable"></i>
 								</:if>
@@ -295,20 +303,16 @@
 						</div>
 						<div class="game-types_box">
 							<span class="title-uppercase">Game Types</span>
+							<:set var="games" val="checkGameAvailability(${data.casino.casino_game_types})"/>
+
 							<div class="game_types">
-								<:foreach var="${data.casino.all_game_types}" key ="key" val="value">
-								<:if test="(${value.name} !== 'Other') && (${value.name} !== 'Video Slots')">
-									<:if test="in_array(${value}, ${data.casino.casino_game_types})">
-										<:set var="game_type_class" val="available"/>
-									<:else>
-										<:set var="game_type_class" val="unavailable"/>
-									</:if>
-									<div class="game-type_container ${game_type_class}">
-										<img src="/public/build/images/${strtolower(str_replace(' ','_',${value.name}))}.svg">
-										<span class="game-type_name">${value.name}</span>
+								<:foreach var="${games}" key="key" val="value">
+									<div class='game-type_container <:if test="${value}"> available <:else> unavailable </:if>'>
+										<img alt="${key}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg">
+										<span class="game-type_name">${key}</span>
 									</div>
-								</:if>
 								</:foreach>
+
 							</div>
 						</div>
 					</div>
@@ -319,7 +323,7 @@
 						<:if test="${key}<8">
 							<span class="soft_link list-item-trun software_image" data-nr="${key+1}">
 								<a class="list-title list_link" href="/softwares/${normalize(${software})}">
-									<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
+									<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software} logo">
 								</a>
 							</span>
 						</:if>

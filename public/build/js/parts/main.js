@@ -52,6 +52,14 @@ function loadScripts(_scripts) {
         }
     });
 }
+function loadStyles(_styles) {
+    var version = $('.controller_main').data("version");
+    $.each(_styles, function(index, style) {
+        if (!$("link[href='/public/build/js/compilations/"+style+".js?v="+version+"']").length) {
+            $("head").append($('<link rel="stylesheet" type="text/css" href="/public/build/css/compilations/'+style+'.css?v='+version+'" media="all">"'));
+        }
+    });
+}
 
 function getInternetExplorerVersion() {
     var rv = -1;
@@ -143,22 +151,24 @@ function changeViewElements(filterView,container,gridClass,listClass){
 
         }
     });
-    
 }
-
 
 (function ($) {
     BUSY_REQUEST = false;
     var ww = $(window).width();
 
     $(document).ready(function () {
+
+
         //Load Defer Scripts and Binding
         if ($('.links-nav').length) {
             loadScripts(['bindings', 'assets/swiper']);
         }
-        loadScripts(['assets/jquery-select2']);
+        loadScripts(['assets/jquery-select2', 'filters']);
+
         $(document).on('scroll mousemove', function(){
-            loadScripts(['bindings', 'assets/tooltipster', 'assets/swiper']);
+            loadStyles(['ion.rangeSlider']);
+            loadScripts(['assets/ion.rangeSlider.min', 'assets/tooltipster', 'assets/swiper', 'bindings']);
             $(document).unbind("scroll mousemove");
 
             initSite();
@@ -171,6 +181,10 @@ function changeViewElements(filterView,container,gridClass,listClass){
 
             if ($('#filters').length > 0) {
                 new Filters($('#filters'));
+            }
+
+            if ($('.filter-filter').length > 0) {
+                new ListFilters($('#filters'));
             }
 
             new newsletter($('.subscribe'));
@@ -186,6 +200,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
 
         detectIsKeyboardOpened();
         initMobileLayoutOfTable();
+        responsiveTables();
 
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
             $('html').addClass('ios-device');
@@ -224,26 +239,9 @@ function changeViewElements(filterView,container,gridClass,listClass){
         if($('.filter').find('.view').length > 0){
             changeViewElements($('.filter .view'),$('.data-container-holder'),'grid_view','list-view');
         }
-        if($('.open-popup-spec').length > 0){
-            $('.open-popup-spec').click(function(){
-                $(".welcome_package-popup-trigger").closest('.wp-title').find('.welcome_package-popup').removeClass('active');
-                $(this).closest('.popup-spec').find('.popup-casino-spec').toggleClass('active');
-                $('.open-popup-spec').not(this).closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
-            });
-            $('.close-popup-spec').click(function(){
-                $('.popup-casino-spec').removeClass('active');
-            });
-        }
-        if($(".welcome_package-popup-trigger").length > 0){
-            $(".welcome_package-popup-trigger").click(function(){
-                $('.open-popup-spec').closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
-                $(this).closest('.wp-title').find('.welcome_package-popup').toggleClass('active');
-                $(".welcome_package-popup-trigger").not(this).closest('.wp-title').find('.welcome_package-popup').removeClass('active');
-            });
-            $('.close-popup-wp').click(function(){
-                $('.welcome_package-popup').removeClass('active');
-            });
-        }
+        gridViewBoxPopup();
+        
+            
     });
 
     $(document).ajaxComplete(function() {
@@ -260,6 +258,24 @@ function changeViewElements(filterView,container,gridClass,listClass){
             $this.data('scrollTimeout', setTimeout(callback, timeout));
         });
     };
+    
+    $(".tf_flex").on('click',function() {     
+            var id = $(this).data('id');
+            var _this = $(this);
+            $.ajax({    
+                url: '/timeframe-tooltip',
+                type: 'POST',
+                data: {
+                    id: id              
+                },
+                dataType: 'html'
+            })
+            .done(function (data) {
+                $(".software-tooltipster").remove();
+               _this.append(data);
+                CloseTFPopup();
+            });
+    });
 
     var windowToBottom = 0;
 
@@ -309,6 +325,14 @@ function changeViewElements(filterView,container,gridClass,listClass){
             })
         }
     }
+    
+    function CloseTFPopup() {
+        $('.close_tf_wrap').on('click', function (e) {
+            console.dir($(this).parent().parent().parent());
+            $(this).parent().parent().parent().remove();
+            e.stopPropagation();
+        });
+    }
 
     function detectIsKeyboardOpened() {
         $(document).on('focus', 'input, textarea', function () {
@@ -321,7 +345,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
     }
 
     function initMobileLayoutOfTable() {
-        var _table = $('.plain-text table, .widget.table table');
+        var _table = $('.basic_table');
         var _tr = _table.find('tr');
         var _th = _table.find('th');
         var _isInited = false;
@@ -362,6 +386,74 @@ function changeViewElements(filterView,container,gridClass,listClass){
 
             $('.separate-table').remove();
             _isInited = false;
+        }
+    }
+
+    // if a table have more than 2 columns and the table has class ".advanced_table"
+    function responsiveTables(breakpoint) {
+        breakpoint = breakpoint || '800px';
+        if ($('.advanced_table').length > 0) {
+            $('.advanced_table').each(function(i) {
+                i++;
+                var className = 'jrt-instance-' + i;
+                var $this = $(this);
+                $this.addClass('jrt');
+                $this.addClass(className);
+                var respondHtml = '<style type="text/css">\n';
+                respondHtml +=
+                    '@media only screen and (max-width:' +
+                    breakpoint +
+                    ')  {\n';
+                if ($this.find('thead').length > 0) {
+                    $this.find('thead th').each(function(i) {
+                        var $tdText = $(this)
+                            .text()
+                            .replace(/\s+/g, ' ');
+                        i++;
+                        respondHtml +=
+                            '\t.' +
+                            className +
+                            '>tbody>tr>td.jrt-cell-' +
+                            i +
+                            ':before { content: "' +
+                            $tdText +
+                            '"; }\n';
+                    });
+                }
+                $this.find('tbody td').each(function(i) {
+                    $(this).wrapInner( "<em></em>" );
+                });
+                $this.find('tbody > tr').each(function(i) {
+                    var $this = $(this);
+                    i++;
+                    var arrColspan = [];
+                    var modIndex = [];
+                    $this.find('td').each(function(i, c, m) {
+                        var $this = $(this);
+                        i++;
+                        if (modIndex > 0) {
+                            modIndex[0];
+                            i++;
+                        }
+                        if (arrColspan > 0) {
+                            m = i + arrColspan.shift() - 1;
+                            modIndex.splice(0, 1);
+                            modIndex.push(m);
+                            i = m;
+                        }
+                        if ($this.is('[colspan]')) {
+                            c = parseInt($(this).prop('colspan'), 10);
+                            arrColspan.push(c);
+                        }
+                        $this.addClass('jrt-cell-' + i);
+                    });
+                });
+                if ($this.find('thead').length > 0) {
+                    respondHtml += '}\n';
+                    respondHtml += '</style>';
+                    $this.before(respondHtml);
+                }
+            });
         }
     }
 
@@ -492,3 +584,27 @@ function raiseCasinoPage(key) {
         COUNTRY_CURR_PAGE++;
     }
 }
+
+function gridViewBoxPopup(){
+    if($('.open-popup-spec').length > 0){
+        $('.open-popup-spec').click(function(){
+            $(".welcome_package-popup-trigger").closest('.wp-title').find('.welcome_package-popup').removeClass('active');
+            $(this).closest('.popup-spec').find('.popup-casino-spec').toggleClass('active');
+            $('.open-popup-spec').not(this).closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
+        });
+        $('.close-popup-spec').click(function(){
+            $('.popup-casino-spec').removeClass('active');
+        });
+    }
+    if($(".welcome_package-popup-trigger").length > 0){
+        $(".welcome_package-popup-trigger").click(function(){
+            $('.open-popup-spec').closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
+            $(this).closest('.wp-title').find('.welcome_package-popup').toggleClass('active');
+            $(".welcome_package-popup-trigger").not(this).closest('.wp-title').find('.welcome_package-popup').removeClass('active');
+        });
+        $('.close-popup-wp').click(function(){
+            $('.welcome_package-popup').removeClass('active');
+        });
+    }
+}
+

@@ -13,6 +13,8 @@ class CasinosListQuery
 {
     const CASINO_SCORE = 7.5;
     const CASINO_MIN_VOTES = 10;
+    const CASINO_MINIMUM_DEPOSIT_MIN = 1;
+    const CASINO_MINIMUM_DEPOSIT_MAX = 5;
     private $query;
 
     public function __construct(CasinoFilter $filter, $columns, $sortBy=null, $limit= 0, $offset='')
@@ -33,7 +35,7 @@ class CasinosListQuery
     }
 
     private function setGroupBy(Lucinda\Query\MySQLSelect $query, CasinoFilter $filter,$limit) {
-        if ($limit > 0 && $filter->getPlayVersion() == "Live Dealer") {
+        if ($limit > 0 && ($filter->getPlayVersion() == "Live Dealer" || $filter->getCasinoLabel() == "Fast Payout")) {
             $query->groupBy(['t1.id']);
         }
     }
@@ -41,24 +43,26 @@ class CasinosListQuery
     private function setFields(Lucinda\Query\MySQLSelect $query, $columns, CasinoFilter $filter)
     {
         $fields = $query->fields($columns);
-        $fields->add('(CASE
-                 WHEN t1.status_id = 0  THEN 1
-                 WHEN t1.status_id = 3  THEN 2
-                 WHEN t1.status_id = 2  THEN 3
-                 WHEN t1.status_id = 1  THEN 4
-                 END)', 'complex_case');
+        $fields->add('t19.id', 'complex_case');
         if ($filter->getBankingMethod()) {
             if (sizeof($columns) > 1) {
                 $fields->add("t3.id", "has_dm");
                 $fields->add("t14.id", "has_wm");
             }
         }
+        
+        if ($filter->getCasinoLabel() == 'Fast Payout') {
+            $fields->add("t18.end");
+        }
     }
 
     private function setSelect(Lucinda\Query\MySQLSelect $query, CasinoFilter $filter)
     {
+        $query->joinInner("casino_statuses_extended", "t19")->on(["t1.status_id", "t19.status_id"]);
         if ($filter->getCurrencyAccepted()) {
             $query->joinInner("casinos__currencies", "t15")->on(["t1.id" => "t15.casino_id","t15.currency_id" => $filter->currency_id."\n"]);
+        } else {
+            $query->joinLeft("casinos__currencies", "t15")->on(["t1.id" => "t15.casino_id"]);
         }
 
         if ($filter->getLanguageAccepted()) {
@@ -101,13 +105,20 @@ class CasinosListQuery
             if ($filter->getCasinoLabel() == 'Blacklisted Casinos') {
                 $filter->setPromoted(false);
             }
-            if (!in_array($filter->getCasinoLabel(), ["New", "all", "Best"])) {
+            
+            if ($filter->getCasinoLabel() == 'Fast Payout') {
+                $query->joinInner("casinos__withdraw_timeframes ", "t18")->on(["t1.id" => "t18.casino_id"])->set("t18.unit","'hour'")->set("t18.end",24,Lucinda\Query\ComparisonOperator::LESSER_EQUALS);
+                $filter->setPromoted(TRUE);
+            }
+            
+            if (!in_array($filter->getCasinoLabel(), ["New", "all", "Best", "Fast Payout", "Low Minimum Deposit"])) {
                 $sub_query = new Lucinda\Query\MySQLSelect("casino_labels");
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name"=> "'". $filter->getCasinoLabel() . "'"]);
                 $query->joinInner("casinos__labels", "t5")->on(["t1.id" => "t5.casino_id", "t5.label_id" =>  "(" . $sub_query->toString() . ")" ]);
             }
         }
+        $query->joinLeft("casino_statuses", "cs")->on(["t1.status_id" => "cs.id"]);
         if ($filter->getCertification()) {
             $sub_query = new Lucinda\Query\MySQLSelect("certifications");
             $sub_query->fields(["id"]);
@@ -135,10 +146,6 @@ class CasinosListQuery
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name" => "'" . $filter->getPlayVersion() . "'"]);
                 $query->joinInner("casinos__play_versions", "t9")->on(["t1.id" => "t9.casino_id" , "t9.play_version_id" => "(" . $sub_query->toString()  . ")" ]);
-                if ($filter->getPlayVersion() == "Live Dealer") {
-                    $query->joinInner("casinos__game_types", "t14")->on(["t14.casino_id" => "t1.id"])->set("t14.is_live", 1);
-                    $query->joinInner("game_types", "t15")->on(["t15.id" => "t14.game_type_id"]);
-                }
             }
         }
         if ($filter->getSoftware()) {
@@ -152,6 +159,13 @@ class CasinosListQuery
             $sub_query->fields(["id"]);
             $sub_query->where(["name" => "'" . $filter->getSoftware() . "'"]);
             $query->joinInner("casinos__game_manufacturers", "t10")->on(["t1.id" => "t10.casino_id", "t10.game_manufacturer_id" => "(" . $sub_query->toString() . ")" ]);
+        }
+        if ($filter->getSoftwares()) {
+            $query->joinInner("casinos__game_manufacturers", "t20")->on(["t1.id" => "t20.casino_id"])->setIn("t20.game_manufacturer_id", [$filter->getSoftwares()]);
+        }
+        if ($filter->getCasinoLabel() && $filter->getCasinoLabel() === "Low Minimum Deposit") {
+            $query->joinInner("casinos__currencies", "cc")->on(["t1.id" => "cc.casino_id"]);
+            $query->joinInner("currencies", "c")->on(["c.id" => "cc.currency_id"]);
         }
     }
 
@@ -173,6 +187,9 @@ class CasinosListQuery
             case "Best":
                 $this->addBestCondition($where);
                 break;
+            case "Low Minimum Deposit":
+                $this->addLowMinimumDepositCondition($where);
+                break;
         }
 
         if ($filter->getBankingMethod()) {
@@ -185,6 +202,14 @@ class CasinosListQuery
         if (!empty($filter->getPlayVersionType())) {
             $where->set("t11.is_live", 1);
             $where->set("t12.name", "'".$filter->getPlayVersionType()."'");
+        }
+        
+        if ($filter->getPlayVersion() == "Live Dealer") {
+            //SELECT casino_id FROM `casinos__game_types` WHERE `is_live` = 1
+            $sub_query = new Lucinda\Query\MySQLSelect("casinos__game_types");
+            $sub_query->fields(["casino_id"]);
+            $sub_query->where(["is_live" => "1"]);
+            $where->setIn("t1.id", $sub_query);
         }
     }
 
@@ -202,6 +227,16 @@ class CasinosListQuery
         $where->set("t1.date_established", "'" . date("Y-m-d", strtotime(date("Y-m-d") . " -6 months")) . "'", Lucinda\Query\ComparisonOperator::LESSER_EQUALS);
         $where->set("t1.rating_votes", self::CASINO_MIN_VOTES, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
         $where->set("(t1.rating_total/t1.rating_votes)", self::CASINO_SCORE, Lucinda\Query\ComparisonOperator::GREATER_EQUALS);
+    }
+
+    /**
+     * @param \Lucinda\Query\Condition $where
+     */
+    private function addLowMinimumDepositCondition(Lucinda\Query\Condition $where)
+    {
+        $where->setBetween("t1.deposit_minimum", self::CASINO_MINIMUM_DEPOSIT_MIN, self::CASINO_MINIMUM_DEPOSIT_MAX);
+        $where->set("cc.is_primary", 1, Lucinda\Query\ComparisonOperator::EQUALS);
+        $where->set("c.is_crypto", 0, Lucinda\Query\ComparisonOperator::EQUALS);
     }
 
     private function setOrderBy(Lucinda\Query\OrderBy $orderBy, CasinoFilter $filter, $sortBy)
@@ -238,6 +273,15 @@ class CasinosListQuery
                     $orderBy->add("t1.priority", "DESC");
                     $orderBy->add("t1.date_established", "DESC");
                     $orderBy->add("t1.id", "DESC");
+                    break;
+                case CasinoSortCriteria::FAST_PAYOUT:
+                    $orderBy->add("t18.end", "ASC");
+                    $orderBy->add("t1.priority", "DESC");
+                    break;
+                case CasinoSortCriteria::MINIMUM_DEPOSIT:
+                    $orderBy->add("t1.deposit_minimum", "ASC");
+                    $orderBy->add("t1.priority", "DESC");
+                    $orderBy->add("t1.name", "ASC");
                     break;
                 default:
                     $orderBy->add('complex_case', 'ASC');

@@ -29,6 +29,30 @@ class Casinos implements FieldValidator
     {
         return SQL("SELECT tc_link FROM casinos WHERE id=:id", [":id"=>$id])->toValue();
     }
+    
+    public function getWithdrawTimeframes($id)
+    {
+        $output = array();
+        $resultSet = SQL("
+        SELECT t1.start, t1.end, t1.unit, t2.name 
+        FROM casinos__withdraw_timeframes AS t1
+        LEFT JOIN banking_method_types AS t2 ON t1.banking_method_type_id = t2.id
+        WHERE casino_id = ".$id."
+        ORDER BY t2.position ASC
+        ");
+        while ($row = $resultSet->toRow()) {
+            if ($row["end"]==0) {
+                $output[$row["name"]] = "immediate";
+            } elseif ($row["end"]==1) {
+                $output[$row["name"]] = "up to 1 ".($row["unit"]=="hour"?"hour":"business day");
+            } elseif ($row["start"]==0) {
+                $output[$row["name"]] = "up to ".$row["end"]." ".($row["unit"]=="hour"?"hours":"business days");
+            } else {
+                $output[$row["name"]] = "".$row["start"]."-".$row["end"]." ".($row["unit"]=="hour"?"hours":"business days");
+            }
+        }
+        return $output;
+    }
 
     public function getBasicInfo($id)
     {
@@ -66,7 +90,7 @@ class Casinos implements FieldValidator
         SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name 
         FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
-        WHERE t1.casino_id = $casinoID AND t2.name IN (".($isFree?"'No Deposit Bonus','Free Spins','Free Play'":"'First Deposit Bonus'").")
+        WHERE t1.casino_id = $casinoID AND t2.name IN (".($isFree?"'No Deposit Bonus','Free Spins','Free Play','Bonus Spins'":"'First Deposit Bonus'").")
         ";
         $resultSet = SQL($query);
         while ($row = $resultSet->toRow()) {
@@ -94,8 +118,10 @@ class Casinos implements FieldValidator
         if (!$casinoID) {
             return null;
         }
-        $count = SQL("SELECT COUNT(id) FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip", array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
-        if ($count == 0) {
+        $currentVote = SQL("SELECT value FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip", array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
+        $extra_query = '';
+        if (empty($currentVote)) {
+
             $affectedRows = SQL("
               INSERT INTO casinos__ratings SET 
                 casino_id = :casino,
@@ -103,16 +129,23 @@ class Casinos implements FieldValidator
                 value = :value
                 ON DUPLICATE KEY UPDATE value = :value
               ", array(":casino"=>$casinoID, ":ip"=>$ip, ":value"=>$value))->getAffectedRows();
-            if ($affectedRows>0) {
-                SQL(
-                    "UPDATE casinos SET rating_total=rating_total+:value, rating_votes=rating_votes+1 WHERE id=:casino",
-                    array(":casino"=>$casinoID, ":value"=>$value)
-                );
-            }
-            return $affectedRows;
+            $extra_query = ', rating_votes=rating_votes+1 ';
         } else {
-            return "Casino already rated!";
+            $affectedRows = SQL("
+              UPDATE casinos__ratings SET 
+                value = :value
+                WHERE ip = :ip AND casino_id = :casino
+              ", array(":casino"=>$casinoID, ":ip"=>$ip, ":value"=>$value))->getAffectedRows();
         }
+
+        if ($affectedRows>0) {
+            SQL(
+                "UPDATE casinos SET rating_total=rating_total - :currentVote + :value" . $extra_query . " WHERE id=:casino",
+                array(":casino"=>$casinoID, ":value"=>$value, ":currentVote" => $currentVote)
+            );
+        }
+
+        return $affectedRows;
     }
 
     public function click($id)
@@ -163,9 +196,9 @@ class Casinos implements FieldValidator
         return $logo;
     }
     
-    public function getAllByLabels() {
+    public function getAllByLabels($countryID) {
         $output = [];
-        $labels = ["Best", "New", "Blacklisted Casinos", "Low Wagering", "No Account Casinos"];
+        $labels = ["Best", "Low Minimum Deposit", "New", "Blacklisted Casinos", "Low Wagering", "No Account Casinos", "Fast Payout"];
         foreach ($labels as $label) {
             $order = 't1.priority DESC, t1.id DESC';
             
@@ -177,6 +210,16 @@ class Casinos implements FieldValidator
                 SELECT MAX(t1.date) FROM casinos AS t1 
                 WHERE t1.is_open = 1 AND t1.date_established > '{$last}' 
                 ORDER BY t1.date_established DESC, t1.priority DESC, t1.id DESC")->toValue();
+            } elseif ($label == "Low Minimum Deposit") {
+                $output[$label] = SQL("
+                SELECT MAX(t1.date) FROM casinos AS t1 
+                INNER JOIN casinos__currencies AS cc ON t1.id = cc.casino_id
+                INNER JOIN currencies AS c ON c.id = cc.currency_id
+                WHERE t1.is_open = 1 AND t1.deposit_minimum BETWEEN 1 AND 5
+                AND cc.is_primary = 1 AND c.is_crypto = 0
+                ORDER BY t1.deposit_minimum ASC, t1.priority DESC, t1.name ASC")->toValue();
+            } elseif ($label == 'Fast Payout') {
+                $output[$label] = SQL("SELECT  MAX(t1.date) FROM casinos AS t1 LEFT OUTER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id LEFT OUTER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$countryID} INNER JOIN casinos__withdraw_timeframes AS t18 ON t1.id = t18.casino_id AND t18.unit = 'hour' AND t18.end <= 24 LEFT OUTER JOIN casino_statuses AS cs ON t1.status_id = cs.id WHERE t1.is_open = 1 ORDER BY t18.end ASC, t1.priority DESC")->toValue();
             } else {
                 switch ($label) {
                     case 'Best':
@@ -218,5 +261,13 @@ class Casinos implements FieldValidator
             $output[$name] = $value;
         }
         return $output;
+    }
+
+    public function getUserVotes($casino_id){
+        return SQL("SELECT value from casinos__ratings WHERE casino_id = :casino_id and status != 3", array(":casino_id" => $casino_id));
+    }
+
+    public function getAllVotes($casinoID){
+        return SQL("SELECT COUNT(value) from casinos__ratings WHERE casino_id = :casino_id and status != 3", array(":casino_id" => $casinoID))->toValue();
     }
 }

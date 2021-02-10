@@ -18,6 +18,6 @@ class SearchMoreListsController extends Lucinda\MVC\STDOUT\Controller
     {
         $page = (integer) $this->request->getValidator()->parameters("page");
         $object = new ListsSearch($_GET["value"]);
-        $this->response->attributes("results", array_slice($object->getResults(), self::LIMIT *$page, self::LIMIT));
+        $this->response->attributes("results", $object->getResults(self::LIMIT *$page, self::LIMIT));
     }
 }

@@ -2,6 +2,7 @@
 require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once 'entities/FullWelcomePackage.php';
+require_once 'application/models/CasinoScore.php';
 
 class CasinoInfo
 {
@@ -58,6 +59,10 @@ class CasinoInfo
             return;
         }
 
+        $casino_score = new CasinoScore();
+        $votes = $this->getUserVotes($output->id);
+        $output->user_votes = $casino_score->setVotesByType($votes);
+
         // detect primary currencies & append to withdrawal minimum
         $primaryCurrencies = implode("/", $this->getPrimaryCurrencies($output->id));
         $output->withdrawal_minimum = !empty($output->withdrawal_minimum) ? $primaryCurrencies.$output->withdrawal_minimum : 0;
@@ -83,8 +88,6 @@ class CasinoInfo
         $output->casino_deposit_methods =  $this->getCasinoDepositMethods($output->id);
         $output->casino_game_types = $this->getGameTypes($output->id);
         $this->appendCountryInfo($output, $countryId);
-        $output->all_game_types = $this->getAllGameTypes();
-
         $this->getCasinoDepositMethods($output->id);
         $this->result = $output;
     }
@@ -106,6 +109,10 @@ class CasinoInfo
         } else {
             return $results;
         }
+    }
+
+    private function getUserVotes($casino_id){
+        return SQL("SELECT value from casinos__ratings WHERE casino_id = :casino_id and status != 3", array(":casino_id" => $casino_id));
     }
 
     private function getIsAvailableInSite($data)
@@ -394,10 +401,5 @@ class CasinoInfo
             $casino_deposit_methods_data[$value]['logo'] = '/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $value)).'.png';
         }
         return $casino_deposit_methods_data;
-    }
-
-    public function getAllGameTypes() {
-        $q ="SELECT t1.name FROM game_types AS t1";
-        return SQL($q)->toList();
     }
 }

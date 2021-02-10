@@ -861,6 +861,7 @@
                 }
 
                 this.$results.append($options);
+                processCheckboxes(this.$element);
             };
 
             Results.prototype.position = function ($results, $dropdown) {

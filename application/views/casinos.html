@@ -11,9 +11,9 @@
         </div>
 
         <:if test="isset(${data.currency})">
-            <filter:casinos id="${data.selected_entity}" name="${data.currency}" code="${data.language}" key="true"/>
+            <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.currency}" code="${data.language}" softwares="${data.softwares}" key="true"/>
         <:else>
-            <filter:casinos id="${data.selected_entity}" name="${data.country.name}" code="${data.country.code}"  key="false"/>
+            <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.country.name}" code="${data.country.code}" softwares="${data.softwares}" key="false"/>
         </:if>
         <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
             <:set var="grid_view_class" val="grid_view"/>
@@ -33,11 +33,12 @@
                     <casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
                     <:elseif test="${data.selected_entity} == 'Low Wagering'">
                         <casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
+                    <:elseif test="${data.selected_entity} == 'Fast Payout'">
+                        <casino:list type="WITHDRAWAL" id="1" data="${data.casinos}"/>
+                    <:elseif test="${data.selected_entity} == 'Low Minimum Deposit'">
+                        <casino:list type="MINIMUM DEPOSIT" id="1" data="${data.casinos}"/>
                     <:else>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
-                    </:if>
-                    <:if test="strtolower(${data.selected_entity}) !== 'no deposit bonus' && strtolower(${data.selected_entity}) !== 'low wagering'">
-                        <div class="data-add-container" data-total="${data.total_casinos}"></div>
                     </:if>
                 </div>
             </div>
@@ -46,8 +47,13 @@
 
         <:if test="${data.total_casinos} > count(${data.casinos})">
         <div class="btn-holder">
-            <a href="#" class="btn-bordered load js-more-items">
-                LOAD MORE CASINOS</a>
+            <:if test="${data.selected_entity} == 'Low Minimum Deposit'">
+                <a href="#" class="btn-bordered load js-more-items">
+                    LOAD ${data.total_casinos_left} MORE CASINOS</a>
+            <:else>
+                <a href="#" class="btn-bordered load js-more-items">
+                    LOAD MORE CASINOS</a>
+            </:if>
         </div>
         </:if>
         <:if test="isset(${data.recommended_games})">

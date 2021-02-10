@@ -1,4 +1,4 @@
-<div class="filter" id="filters" data-url="/casinos-filter/">
+<div class="filter" id="filters" data-url="/casinos-filter/" data-filter="$[filter]"  data-entity="$[id]">
 	<div class="filter-filter">
 		<div class="filter-label">Filter by:</div>
 		<div class="filter-check">
@@ -41,7 +41,12 @@
 				</div>
 			</:if>
 		</div>
+
+		<select class="select software" name="softwares" data-name="Software" multiple="" tabindex="-1" aria-hidden="true" style="">
+
+		</select>
 	</div>
+
 	<:if test="${data.selected_entity} != 'Best'">
 		<div class="filter-sort">
 			<div class="filter-label">Sort by:</div>
@@ -94,24 +99,26 @@
 				</:if>
 			</div>
 		</div>
-		<:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
-			<div class="view">
-				<div class="icon icon-box_view active">
-					<svg class="svg-icon"><use xlink:href="#icon-box-view"></use></svg>
-				</div>
-				<div class="icon icon-list_view">
-					<svg class="svg-icon"><use xlink:href="#icon-list-view"></use></svg>
-				</div>
-			</div>
-		<:else>
-			<div class="view change_view">
-				<div class="icon icon-list_view active">
-					<svg class="svg-icon"><use xlink:href="#icon-list-view"></use></svg>
-				</div>
-				<div class="icon icon-box_view">
-					<svg class="svg-icon"><use xlink:href="#icon-box-view"></use></svg>
-				</div>
-			</div>
-		</:if>
+		
 	</:if>
+	<:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
+		<div class="view">
+			<div class="icon icon-box_view active">
+				<svg class="svg-icon"><use xlink:href="#icon-box-view"></use></svg>
+			</div>
+			<div class="icon icon-list_view">
+				<svg class="svg-icon"><use xlink:href="#icon-list-view"></use></svg>
+			</div>
+		</div>
+	<:else>
+		<div class="view change_view">
+			<div class="icon icon-list_view active">
+				<svg class="svg-icon"><use xlink:href="#icon-list-view"></use></svg>
+			</div>
+			<div class="icon icon-box_view">
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30"><defs><clipPath id="a"><rect width="15" height="15" fill="none"/></clipPath></defs><g transform="translate(-30)"><g transform="translate(53 23) rotate(180)" clip-path="url(#a)"><g transform="translate(-1389 -329)"><rect width="15" height="6" rx="1" transform="translate(1389 329)" fill="#c1c9cf"/></g><g transform="translate(-1389 -320)"><rect width="15" height="6" rx="1" transform="translate(1389 329)" fill="#c1c9cf"/></g></g></g></svg>
+			</div>
+		</div>
+	</:if>
+
 </div>
