@@ -9232,6 +9232,7 @@ input[type=submit]
 
 .js-condense {
   overflow: hidden;
+  display:none;
 }
 
 .js-condense>span {
