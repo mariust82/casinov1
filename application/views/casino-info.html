@@ -37,8 +37,12 @@
 				<div class="casino-review-heading-left">
 					<h1 class="casino-review-title">${data.page_info.body_title}</h1>
 					<div class="btn-group">
-						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS</a>
-						<a href="/visit/${normalize(${data.casino.name})}" 
+						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS
+							<:if test="${data.total_reviews} > 0">
+								(${kFormater(${data.total_reviews})})
+							</:if>
+						</a>
+						<a href="/visit/${normalize(${data.casino.name})}"
                             class="btn_play btn btn-middle btn-${item_status}" 
                             rel="nofollow" 
                             <:if test="${item_status} != 'blacklisted' && ${item_status} != 'warning' && ${item_status} != 'restricted'">
@@ -391,6 +395,60 @@
 			</div>
 		</div>
 <!-- Full Welcome Package END -->
+
+<!-- Match Bonuses Package -->
+<div id="full_package" class="section">
+	<div class="container">
+		<div class="box box-alt2">
+			<div class="title title-middle">Match Bonuses</div>
+			<:if test="!empty(${data.casino.match_bonuses})">
+				<div class="section-content">
+					<table class="table table-package">
+						<tr>
+							<th>Valid On</th>
+							<th>Bonus</th>
+							<th>Min Deposit</th>
+							<th>Wagering</th>
+							<th>Games</th>
+							<th>Bonus Code</th>
+						</tr>
+						<:foreach var="${data.casino.match_bonuses}" key ="key" val="match_bonus_data">
+							<tr>
+								<td>${match_bonus_data.valid_on}</td>
+								<td>${match_bonus_data.bonus}</td>
+								<td>
+									<:if test="${welcome_package_data.min_deposit} == 'Free'">
+										<span class="table-package_free_bonus">${match_bonus_data.min_deposit}</span>
+										<:else>
+											${match_bonus_data.min_deposit}
+									</:if>
+								</td>
+								<td>
+									${match_bonus_data.wagering}
+									<a href="#" class="table-package-opener js-table-package-opener">
+										<i class="icon-chevron-down"></i>
+									</a>
+								</td>
+								<td><strong class="table-mobile-visible">Games:</strong> ${match_bonus_data.games}</td>
+								<td>
+									<:set var="code_class" val=""/>
+									<:if test="${match_bonus_data.bonus_codes} != 'No code required'">
+										<:set var="code_class" val="js-copy-to-clip js-copy-tooltip"/>
+									</:if>
+
+									<div class="dashed ${code_class}" data-code="${match_bonus_data.bonus_codes}">${match_bonus_data.bonus_codes}</div>
+								</td>
+							</tr>
+						</:foreach>
+					</table>
+				</div>
+				<:else>
+					<p class="no_welcome_bonuses"> No match bonuses</p>
+			</:if>
+		</div>
+	</div>
+</div>
+<!-- Match Bonuses Package END -->
 
 	<div class="section">
 		<div class="container">
