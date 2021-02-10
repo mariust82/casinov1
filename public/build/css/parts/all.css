@@ -9543,6 +9543,7 @@ html.no-scroll {
 }
 
 .table-package th {
+  text-align: left;
   padding: 0 0 15px;
 }
 
