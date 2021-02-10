@@ -4669,7 +4669,7 @@ a:focus {
     color: #fff;
   }
   .btn.btn-warning:hover{
-    background: inherit;
+    background: #db2424;
     color: #fff;
   }
   .btn-round:hover {
