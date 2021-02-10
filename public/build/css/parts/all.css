@@ -4668,6 +4668,10 @@ a:focus {
     background: #0E4585;
     color: #fff;
   }
+  .btn.btn-warning:hover{
+    background: initial;
+    color: #fff;
+  }
   .btn-round:hover {
     background: #d6d7dd;
   }
