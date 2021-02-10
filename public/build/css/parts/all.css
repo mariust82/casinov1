@@ -11719,7 +11719,8 @@ hr.widget{
 }
 .welcome_package-popup{
   display: none;
-  width: 605px;
+  /* width: 605px; */
+  width: auto;
   min-height: 302px;
   position: absolute;
   background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -11727,7 +11728,9 @@ hr.widget{
   bottom: calc(100% + 15px);
   padding: 15px 10px 25px 10px;
   z-index: 3;
-  left: -150px;
+  /* left: -150px; */
+  left: 50%;
+  transform: translateX(-50%);
 }
 .welcome_package-popup.active{
   display: block;
@@ -11819,6 +11822,7 @@ hr.widget{
   .welcome_package-popup{
     left: 0;
     bottom: calc(100% + 15px);
+    transform: translateX(0);
   }
   .grid_view .casino_items-view .list-item-cell-buttons{
     padding: 0 20px 20px 0;
@@ -12968,6 +12972,7 @@ h1.title + .subtitle{
 .welcome_package-popup .bonuses-wp .bonus-item{
   width: 48%;
   margin-top: 17px;
+  min-width: 280.8px;
 }
 .welcome_package-popup .bonus-box-heading span{
   font-size: 14px;
@@ -12990,6 +12995,9 @@ h1.title + .subtitle{
   padding: 15px 10px;
 }
 @media (max-width: 600px){
+  .welcome_package-popup .bonuses-wp .bonus-item + .bonus-item{
+    margin-left: 10px;
+  }
   .welcome_package-popup .bonuses-wp {
     display: block;
   }
