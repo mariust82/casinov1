@@ -87,7 +87,7 @@ function AddingReview(obj) {
         ok = true;
         if (parent.data('id') != undefined) {
             _reviewID = parent.data('id');
-            console.log(_reviewID + 'ttt');
+            // console.log(_reviewID + 'ttt');
             _is_child = true;
 
             if (parent.next().find('.reply-data-holder').length > 0) {
@@ -102,7 +102,7 @@ function AddingReview(obj) {
             _childReplies = parent.find('.js-reply-btn span');
 
 
-            console.log(_reviewID + 't4');
+            // console.log(_reviewID + 't4');
         } else {
             _is_child = false;
             _reviewHolder = $('#review-data-holder');
@@ -210,7 +210,7 @@ function AddingReview(obj) {
                 return;
             BUSY_REQUEST = true;
             _request.abort();
-            console.log(ajaxData);
+            // console.log(ajaxData);
             _request = $.ajax({
                 url: "/casino/review-write",
                 data: ajaxData,

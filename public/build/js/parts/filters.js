@@ -81,7 +81,6 @@ var ListFilters = function (obj) {
 
         _selectFilter.off();
         _selectFilter.on('change', function () {
-            console.log('_selectFilter');
             processCheckboxes(this);
             if (typeof resetGameItemsCounter === "function") {
                 resetGameItemsCounter();
@@ -356,7 +355,7 @@ var ListFilters = function (obj) {
                     CloseTFPopup();
                 }
                 
-                console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
+                // console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
                 if($('.list-body').children().length >= totalItems) {
                     _moreButton.hide();
                 }

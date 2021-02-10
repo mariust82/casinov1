@@ -586,7 +586,6 @@ function raiseCasinoPage(key) {
 }
 
 function gridViewBoxPopup(){
-    console.log('testing');
     if($('.open-popup-spec').length > 0){
         $('.open-popup-spec').click(function(){
             $(".welcome_package-popup-trigger").closest('.wp-title').find('.welcome_package-popup').removeClass('active');
