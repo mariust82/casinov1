@@ -1,7 +1,7 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casinos"/>
 <div class="block">
     <div class="container">
-        <div class="headeing">
+        <div class="heading">
             <h1 class="title">${data.page_info.body_title}</h1>
             <:if test="isset(${data.widgets.upper})">
             <div class="subtitle plain-text">
@@ -11,14 +11,14 @@
         </div>
 
         <:if test="isset(${data.currency})">
-            <filter:casinos id="${data.selected_entity}" name="${data.currency}" code="${data.language}" key="true"/>
+            <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.currency}" code="${data.language}" softwares="${data.softwares}" key="true"/>
         <:else>
-            <filter:casinos id="${data.selected_entity}" name="${data.country.name}" code="${data.country.code}"  key="false"/>
+            <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.country.name}" code="${data.country.code}" softwares="${data.softwares}" key="false"/>
         </:if>
         <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
             <:set var="grid_view_class" val="grid_view"/>
         <:else>
-            <:set var="grid_view_class" val=""/>
+            <:set var="grid_view_class" val="list-view"/>
         </:if>
         <div class="data-container-holder ${grid_view_class}"
         <:if test="isset(${data.limit_per_page})">
@@ -33,11 +33,12 @@
                     <casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
                     <:elseif test="${data.selected_entity} == 'Low Wagering'">
                         <casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
+                    <:elseif test="${data.selected_entity} == 'Fast Payout'">
+                        <casino:list type="WITHDRAWAL" id="1" data="${data.casinos}"/>
+                    <:elseif test="${data.selected_entity} == 'Low Minimum Deposit'">
+                        <casino:list type="MINIMUM DEPOSIT" id="1" data="${data.casinos}"/>
                     <:else>
                     <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
-                    </:if>
-                    <:if test="strtolower(${data.selected_entity}) !== 'no deposit bonus' && strtolower(${data.selected_entity}) !== 'low wagering'">
-                        <div class="data-add-container" data-total="${data.total_casinos}"></div>
                     </:if>
                 </div>
             </div>
@@ -46,8 +47,13 @@
 
         <:if test="${data.total_casinos} > count(${data.casinos})">
         <div class="btn-holder">
-            <a href="#" class="btn-bordered load js-more-items">
-                LOAD MORE CASINOS</a>
+            <:if test="${data.selected_entity} == 'Low Minimum Deposit'">
+                <a href="#" class="btn-bordered load js-more-items">
+                    LOAD ${data.total_casinos_left} MORE CASINOS</a>
+            <:else>
+                <a href="#" class="btn-bordered load js-more-items">
+                    LOAD MORE CASINOS</a>
+            </:if>
         </div>
         </:if>
         <:if test="isset(${data.recommended_games})">
@@ -55,11 +61,11 @@
                 <div class="block related">
                     <div class="container">
                         <:if test="${data.total_casinos} > count(${data.casinos})">
-                        <div class="headeing">
+                        <div class="heading">
                             <div class="title title-middle">Newest Games By ${data.software}</div>
                         </div>
                         <:else>
-                        <div class="headeing no_button">
+                        <div class="heading no_button">
                             <div class="title title-middle">Newest Games By ${data.software}</div>
                         </div>
                         </:if>
@@ -90,7 +96,7 @@
             <:if test="${data.total_casinos} > 100">
             <div class="block">
                 <div class="container">
-                    <div class="headeing">
+                    <div class="heading">
                         <div class="title title-middle">New ${data.software} Casinos</div>
                     </div>
                     <:if test="${data.new_casinos_total} > 0">
@@ -118,7 +124,7 @@
 
             <div class="block">
                 <div class="container">
-                    <div class="headeing">
+                    <div class="heading">
                         <div class="title title-middle">Best ${data.software} Casinos</div>
                     </div>
                     <:if test="${data.best_casinos_total} > 0">
@@ -146,7 +152,7 @@
 
             <div class="block">
                 <div class="container">
-                    <div class="headeing">
+                    <div class="heading">
                         <div class="title title-middle">${data.country.name} ${data.software} Casinos</div>
                     </div>
                     <:if test="${data.country_casinos_total} > 0">
@@ -177,7 +183,7 @@
             <:if test="${data.total_casinos} > 100">
             <div class="block">
                 <div class="container block_pad">
-                    <div class="headeing">
+                    <div class="heading">
                         <div class="title title-middle">Best ${data.banking} Casinos for ${data.country.name}</div>
                     </div>
                     <:if test="${data.best_banking_total} > 0">
@@ -210,7 +216,7 @@
                 <div class="block no_padd">
             </:if>
                 <div class="container block_pad">
-                    <div class="headeing">
+                    <div class="heading">
                         <div class="title title-middle">Other Popular Casino Banking Methods</div>
                         <:if test="isset(${data.widgets.pop_banking})">
                             <div class="subtitle plain-text">

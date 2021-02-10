@@ -28,7 +28,21 @@
         </div>
         <div class="cta_buttons">
             <a href="/reviews/${normalize(${data.casino.name})}-review" class="cta_review">Full Casino Review</a>
-            <a href="/visit/${normalize(${data.casino.name})}"  rel="nofollow" target=”_blank” class="cta_visit">Visit Casino</a>
+            <:if test="${data.casino.status}=='Blacklisted'">
+                <a href="/visit/${normalize(${data.casino.name})}" target="_blank" rel="nofollow" class="btn-blk btn-err">
+                    <svg class="svg-icon"><use xlink:href="#icon-blacklisted"></use></svg>
+                </a>
+            <:elseif test="${data.casino.status}=='Warning'">
+                <a href="/visit/${normalize(${data.casino.name})}" target="_blank" rel="nofollow" class="btn-wrn btn-err">
+                    <svg class="svg-icon"><use xlink:href="#icon-warning"></use></svg>
+                </a>
+             <:elseif test="!${data.casino.is_country_accepted}">
+                <a href="/visit/${normalize(${data.casino.name})}" class="btn btn-rest" target="_blank" rel="nofollow">
+                    RESTRICTED
+                </a>
+             <:else>
+                 <a href="/visit/${normalize(${data.casino.name})}"  rel="nofollow" target=”_blank” class="cta_visit">Visit Casino</a>
+            </:if>
         </div>
 
         <:if test="!empty(${data.casino.note})">

@@ -1,4 +1,3 @@
-initBarRating();
 initReviewForm();
 initReplies();
 initTexfieldsLabels();
@@ -9,51 +8,6 @@ initAddReview();
 getWebName = function (name) {
     return name.replace(/\s/g, '-').toLowerCase();
 }
-
-var Score = function (obj) {
-    var _obj = obj,
-        _name = _obj.name,
-        _score = _obj.value,
-        _request = new XMLHttpRequest;
-
-    var _init = function () {
-            _updateScore(_name, _score);
-        },
-        _updateScore = function (_name, _score) {
-            if (BUSY_REQUEST)
-                return;
-            BUSY_REQUEST = true;
-            _request.abort();
-
-            _request = $.ajax({
-                url: '/casino/rate',
-                data: {
-                    name: _name,
-                    value: _score
-                },
-                dataType: 'json',
-                type: 'post',
-                success: function (data) {
-                    if (data.body['success'] == "Casino already rated!") {
-                        $(".icon-icon_available").toggleClass("icon-icon_unavailable");
-                        $(".icon-icon_unavailable").removeClass("icon-icon_available");
-                        $('.thanx').html(data.body['success']);
-                    }
-                    $('.rating-container').next('.action-field').show();
-                },
-                error: function (XMLHttpRequest) {
-                    if (XMLHttpRequest.statusText != "abort")
-                    {
-                        console.log('err');
-                    }
-                },
-                complete: function () {
-                    BUSY_REQUEST = false;
-                }
-            });
-        };
-    _init();
-};
 
 function _getCurrDate() {
     var today = new Date();
@@ -96,12 +50,14 @@ function AddingReview(obj) {
         _storage_casino_id_reviewed = localStorage.getItem('casino_' + _casinoID + '_reviewed'),
         _storage_review_score = localStorage.getItem('casino_' + _casinoID + '_score'),
         _reviewID,
+        _field_title,
         _field_name,
         _field_email,
         _field_message,
         _contact_error_required,
         _contact_error_rate,
         _reviewHolder,
+        title,
         name,
         email,
         message,
@@ -113,18 +69,20 @@ function AddingReview(obj) {
 
     _prepReview = function (_self) {
         var parent = _self;
+        _field_title = parent.find('input[name=title]');
         _field_name = parent.find('input[name=name]');
         _field_email = parent.find('input[name=email]');
         _field_message = parent.find('textarea[name=body]');
         _contact_error_required = parent.find('.field-error-required');
         _contact_error_rate = parent.find('.field-error-rate');
         _contact_error = parent.find('.field-error');
+        title = _field_title.val();
         name = _field_name.val();
         email = _field_email.val();
         message = _field_message.val();
 
         casino_name = $('.rating-container').data('casino-name');
-        _rate_slider_result = $('.rating-current-value span').text();
+        _rate_slider_result = $('.rating-container-score-value').text();
         _reviewID = 0;
         ok = true;
         if (parent.data('id') != undefined) {
@@ -150,26 +108,57 @@ function AddingReview(obj) {
             _reviewHolder = $('#review-data-holder');
         }
 
-        console.log(_reviewID + 't');
+        // console.log(_reviewID + 't');
+
+        if (title === '') {
+            var errorMessage = $('<div class="field-error-required not-valid action-field">Please fill in a title for your review</div>')
+            var container = _field_title.parent();
+            container.find('.action-field')
+            .remove();
+            container.append(errorMessage);
+            ok = false;
+        } else {
+            _field_title.parent().find('.field-error-required').remove();
+        }
 
         if (name === '') {
-            _field_name.parent().addClass(_contact_error_class);
+            var errorMessage = $('<div class="field-error-required not-valid action-field">Please fill in your name</div>')
+            var container = _field_name.parent();
+            container.find('.action-field')
+            .remove();
+            container.append(errorMessage);
             ok = false;
         } else {
-            _field_name.parent().removeClass(_contact_error_class);
+            _field_name.parent().find('.field-error-required').remove();
         }
         if (email === '' || !validateEmail(email)) {
-            _field_email.parent().addClass(_contact_error_class);
+            var errorMessage = $('<div class="field-error-required not-valid action-field">Please fill in a valid email address</div>')
+            var container = _field_email.parent();
+            container.find('.action-field')
+            .remove();
+            container.append(errorMessage);
             ok = false;
         } else {
-            _field_email.parent().removeClass(_contact_error_class);
+            _field_email.parent().find('.field-error-required').remove();
         }
-        if (message === '') {
-            _field_message.parent().addClass(_contact_error_class);
+        if (message === '' || message.trim().length < 50) {
+            var errorMessage = $('<div class="field-error-required not-valid action-field">The review must contain at least 50 characters</div>')
+            var container = _field_message.parent();
+            container.find('.action-field')
+            .remove();
+            container.append(errorMessage);
             ok = false;
         } else {
-            _field_message.parent().removeClass(_contact_error_class);
+            _field_message.parent().find('.field-error-required').remove();
         }
+
+        if ($('.drag-rate-range-score').html() == '0/10') {
+            $('.drag-rate-title').addClass('error');
+            ok = false;
+        } else {
+            $('.drag-rate-title').removeClass('error');
+        }
+
         if (!ok) {
             _contact_error_required.show();
         } else {
@@ -207,6 +196,7 @@ function AddingReview(obj) {
         _prepAjaxData = function (_this) {
             var ajaxData = {
                 casino: casino_name,
+                title: title,
                 name: name,
                 email: email,
                 body: message,
@@ -263,14 +253,14 @@ function AddingReview(obj) {
                     var review_element = $('.review-element').clone();
 
                     if (_is_child) {
-                        return setComment(review_element, 'review-child',  name, data.body.id, _imgDir, _countryCode, message);
+                        return setComment(review_element, 'review-child',  name, data.body.id, _imgDir, _countryCode, message, title);
                     } else {
-                        return setComment(review_element, 'review-parent', name, data.body.id, _imgDir, _countryCode, message);
+                        return setComment(review_element, 'review-parent', name, data.body.id, _imgDir, _countryCode, message, title);
                     }
                 }
 
 
-                function setComment(review_element, element_class, name, data_id, imgDir, countryCode, message ){
+                function setComment(review_element, element_class, name, data_id, imgDir, countryCode, message, title ){
                     $(review_element).removeClass('review-element');
                     $(review_element).removeClass('hidden');
                     $(review_element).removeAttr('hidden');
@@ -280,6 +270,8 @@ function AddingReview(obj) {
                     $(review_element).attr('data-id', data_id);
                     $(review_element).find('.review-flag img').attr('src', imgDir);
                     $(review_element).find('.review-flag img').attr('alt', countryCode);
+                    $(review_element).find('.review-title').removeClass('hidden');
+                    $(review_element).find('.review-title').text(title);
                     $(review_element).find('.review-name').text(name);
                     $(review_element).find('.review-date').text(_getCurrDate());
                     $(review_element).find('.review-text').html(message);
@@ -330,9 +322,8 @@ function AddingReview(obj) {
         _doIfReviewedAlready = function () {
             var formContainer = $('#reviews-form');
 
-            $('.review-rating', formContainer).addClass('active');
+            $(formContainer).addClass('reviewed');
             $('textarea', formContainer).addClass('disabled');
-            $('.rating-bar').barrating('set', _storage_review_score);
             $('.rating-current-value span').text(_storage_review_score);
             $('textarea[name=body]', formContainer).attr('placeholder', 'You have already reviewed');
         },
@@ -477,50 +468,6 @@ function initReplies() {
 
         return false;
     });
-}
-
-function initBarRating() {
-    var container = $('.rating-container');
-    var user_rate = container.attr('data-user-rate');
-    var ratingParams = {
-        showSelectedRating: false,
-        onSelect: function (value, text, event) {
-            if (typeof event != 'undefined') {
-                var _this = $(event.currentTarget);
-                var _classes = 'terrible poor good very-good excellent';
-
-                $('.br-widget').children().each(function () {
-                    $(this).unbind("mouseenter mouseleave mouseover click");
-                    if (parseInt($(this).data('rating-value')) <= parseInt(user_rate)) {
-                        $(this).addClass('br-active');
-                    }
-                });
-                $('.br-widget').unbind("mouseenter mouseleave mouseover click");
-
-                _this
-                    .closest(container)
-                    .find('.rating-current-text')
-                    .text(text)
-                    .removeClass(_classes)
-                    .attr("class", "rating-current-text " + getWebName(text));
-                _this
-                    .closest(container)
-                    .find('.rating-current-value span')
-                    .text(value);
-                _this
-                    .closest(container)
-                    .find('.rating-current')
-                    .attr('data-rating-current', value);
-                new Score({
-                    value: value,
-                    name: container.data('casino-name')
-                });
-            }
-        }
-    };
-    if ($().barrating) {
-        $('.rating-bar', container).barrating('show', ratingParams);
-    }
 }
 
 function initTableOpen() {

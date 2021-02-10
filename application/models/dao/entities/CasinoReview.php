@@ -3,6 +3,7 @@ class CasinoReview extends Entity
 {
     public $id;
     public $parent_id;
+    public $title;
     public $name;
     public $email;
     public $body;
