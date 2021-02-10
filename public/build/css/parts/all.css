@@ -4691,6 +4691,10 @@ a:focus {
     position:relative;
   }
 
+  .btn-rest{
+    height:35px;
+  }
+
   .btn-rest:after {
     position:absolute;
     content: url(../../images/icons/map-marker-remove.svg);
