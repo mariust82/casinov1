@@ -4260,7 +4260,7 @@ a:focus {
   height: 35px;
   position: absolute;
   margin-right: 20px;
-  z-index: 2;
+  z-index: 1;
   -ms-transform: rotateZ(315deg);
   -webkit-transform: rotateZ(315deg);
   transform: rotateZ(315deg);
