@@ -102,7 +102,7 @@
 										</:if>
 									</span>
 								</div>
-								<:if test="!empty(${result.languages}) && ${result.is_country_accepted} == 1">
+								<:if test="!empty(${result.languages})">
 								<div class="row">
 									<:if test="${result.is_language_accepted} == 1">
 									<i class="icon icon-icon_available"></i>
@@ -118,7 +118,7 @@
 									</span>
 								</div>
 								</:if>
-								<:if test="!empty(${result.currencies})">
+								<:if test="!empty(${result.currencies}) && ${result.is_country_accepted} == 1">
 								<div class="row">
 									<:if test="${result.is_currency_accepted} == 1">
 									<i class="icon icon-icon_available"></i>
