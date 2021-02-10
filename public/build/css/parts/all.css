@@ -13455,3 +13455,9 @@ h1.title + .subtitle{
   height:0;
   padding-bottom:57%;
 }
+
+@media (max-width: 350px){
+  .spec-items .banking img, .spec-items .software img {
+    margin-right: 7px;
+  }
+}
