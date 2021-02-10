@@ -1306,6 +1306,13 @@ button.swiper-pagination-bullet {
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
 }
 
+@media screen and (max-width:690px) {
+  .tooltipster-grow.tooltipster-show:not(.tooltipster-popup) {
+    -webkit-transform: scale(1, 1023) translateX(-10px);
+    transform: scale(1, 1) translateX(-10px);
+  }
+}
+
 
 /* swing */
 
@@ -1537,6 +1544,12 @@ corresponds to the arrow we want to display */
   height: 10px;
   margin-left: -10px;
   width: 20px;
+}
+
+@media screen and (max-width:690px) {
+  .tooltipster-sidetip.tooltipster-top .tooltipster-arrow {
+    transform: translateX(10px);
+  }
 }
 
 /* common rules between .tooltipster-arrow-background and .tooltipster-arrow-border */
@@ -12244,10 +12257,11 @@ hr.widget{
 }
 
 @media (max-width: 500px){
-  .tooltipster-sidetip .tooltipster-content{
+  .tooltipster-sidetip.tooltipster-popup .tooltipster-content{
     padding: 0 !important;
   }
 }
+
 @media (max-width:690px){
   .content_popup .list-rating{
     text-indent: initial !important;

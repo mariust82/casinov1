@@ -97,6 +97,7 @@ contentTooltipConfigPopup = {
     content: $('.loader'),
     animation: 'fade',
     contentCloning: false,
+    theme: 'tooltipster-popup',
     functionReady: function (origin, tooltip) {
         $('body').addClass('shadow');
         setTimeout(function () {
