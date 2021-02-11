@@ -37,7 +37,7 @@
 				<div class="casino-review-heading-left">
 					<h1 class="casino-review-title">${data.page_info.body_title}</h1>
 					<div class="btn-group">
-						<a href="#reviews" class="btn-bordered">PLAYER REVIEWS
+						<a href="#reviews-section" class="btn-bordered">PLAYER REVIEWS
 							<:if test="${data.total_reviews} > 0">
 								(${kFormater(${data.total_reviews})})
 							</:if>
@@ -157,7 +157,7 @@
 		</div>
 	</div>
 
-	<div class="section ${data.country_status}">
+	<div id="reviews-section" class="section ${data.country_status}">
 		<div class="container">
 			<div class="box box-alt">
 				<h2 class="title title-middle">${data.casino.name} Player Rating &amp; Reviews</h2>

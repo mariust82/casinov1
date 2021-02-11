@@ -204,15 +204,16 @@ img {
   border: 0;
 }
 
-.site__header_sticky .header {
+.header {
   position: fixed!important;
   top: 0;
   left: 0;
   z-index: 9999999;
+  transition:transform .1s linear;
 }
 
-.site__header_sticky {
-  padding-top: 73px;
+.site__header_hidden .header{
+    transform:translateY(-100%);
 }
 
 img,
@@ -2549,11 +2550,13 @@ body {
   color: #60686A;
   background: #fff;
   min-width: 320px;
+  padding-top: 73px;
 }
 
 @media screen and (max-width: 690px) {
   body {
     font-size: 13px;
+    padding-top: 49px;
   }
 }
 
