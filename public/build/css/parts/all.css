@@ -13472,7 +13472,7 @@ h1.title + .subtitle{
   width: 16px;
   height: 16px;
   border-radius: 8px;
-  background: #E1E1E1 url(/images/close.svg) no-repeat;
+  background: #E1E1E1 url(../../images/close.svg) no-repeat;
   background-size: 8px 8px;
   background-position: center center;
 }
