@@ -9,9 +9,9 @@
                     ${score_class}
                     <span class="list-rating-score">-</span>
                     <div class=" list-rating-score list-rating-score-mobile">|</div>
-                <:else>
-                    ${score_class}
-                    <span class="list-rating-score">
+                    <:else>
+                        ${score_class}
+                        <span class="list-rating-score">
                         ${ceil(${result.rating})}
                     </span>
                 </:if>
@@ -28,11 +28,11 @@
             <!-- if usd or english are available-->
             <span>
                 <i alt="Available" class="icon-icon_available"></i>
-                USD
+                ${result.currencies}
             </span>
             <span>
                 <i alt="Available" class="icon-icon_available"></i>
-                English
+                ${result.languages}
             </span>
             <!-- end if-->
         </div>
@@ -44,8 +44,8 @@
         </div>
         <:if test="!${result.is_country_accepted}">
             <a href="/visit/${normalize(${result.name})}" class="btn btn-full-width btn-rest" target="_blank" rel="nofollow">RESTRICTED</a>
-        <:else>
-            <a class="btn btn-full-width" href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank">VISIT CASINO</a>
+            <:else>
+                <a class="btn btn-full-width" href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank">VISIT CASINO</a>
         </:if>
     </div>
 </:foreach>
