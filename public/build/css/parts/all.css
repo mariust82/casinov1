@@ -11524,7 +11524,8 @@ hr.widget{
   border-radius: 2px;
   padding: 15px 30px;
   position: relative;
-  z-index: 9;
+  /* z-index: 9; */
+  z-index: 1;
 }
 .wp-title,.spec-title{
   text-align: left;
@@ -12996,9 +12997,6 @@ h1.title + .subtitle{
   padding: 15px 10px;
 }
 @media (max-width: 600px){
-  .welcome_package-popup .bonuses-wp .bonus-item + .bonus-item{
-    margin-left: 10px;
-  }
   .welcome_package-popup .bonuses-wp {
     display: block;
   }
@@ -13460,4 +13458,10 @@ h1.title + .subtitle{
   .spec-items .banking img, .spec-items .software img {
     margin-right: 7px;
   }
+}
+
+@media (min-width: 600px ){
+  .bonus-item+.bonus-item {
+    margin-left: 15px;
+}
 }
