@@ -6,7 +6,8 @@ require_once("CasinoCounter.php");
  */
 class Countries implements CasinoCounter
 {
-
+    const EXCLUDED_COUNTRY_CODE = "DE";
+    
     /**
      * Gets country ID based on ISO code.
      *
@@ -16,6 +17,17 @@ class Countries implements CasinoCounter
     public function getIDByCode($code)
     {
         return SQL("SELECT id from countries WHERE code=:code", array(':code' => $code))->toValue();
+    }
+    
+    public function getLanguages($countryID)
+    {
+        return SQL("
+        SELECT
+        t2.name
+        FROM countries__languages AS t1
+        INNER JOIN languages AS t2 ON t1.language_id = t2.id
+        WHERE t1.country_id=:country 
+        ", [":country"=>$countryID])->toColumn();
     }
 
     public function getCountryDetails($name)
@@ -50,7 +62,7 @@ class Countries implements CasinoCounter
               WHERE t3.is_open = 1
               GROUP BY t2.country_id) AS cnt
         WHERE cnt.country_id = t1.id AND t1.code != '"
-            . Country::EXCLUDED_COUNTRY_CODE . "'"
+            . self::EXCLUDED_COUNTRY_CODE . "'"
         )->toMap("unit", "counter");
         arsort($result);
         return $result;

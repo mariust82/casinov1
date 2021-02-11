@@ -2,9 +2,13 @@
 class CasinoInfoController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
         $this->response->attributes("country", array (
-  'id' => '43',
-  'code' => 'RO',
-  'name' => 'Romania',
+  'id' => '34',
+  'code' => 'US',
+  'name' => 'United States',
+  'languages' => 
+  array (
+    0 => 'English',
+  ),
 ));
 $this->response->attributes("menu_top", array (
   0 => 
@@ -106,6 +110,16 @@ $this->response->attributes("menu_top", array (
       ),
       1 => 
       array (
+        'title' => 'Low Minimum Deposit Casinos',
+        'url' => '/casinos/low-minimum-deposit',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      2 => 
+      array (
         'title' => 'Mobile Casinos',
         'url' => '/casinos/mobile',
         'is_active' => false,
@@ -114,7 +128,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      2 => 
+      3 => 
       array (
         'title' => 'Low Wagering Casinos',
         'url' => '/casinos/low-wagering',
@@ -124,7 +138,17 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      3 => 
+      4 => 
+      array (
+        'title' => 'Fast Payout Casinos',
+        'url' => ' /casinos/fast-payout',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      5 => 
       array (
         'title' => 'eCOGRA Casinos',
         'url' => '/features/ecogra-casinos',
@@ -134,7 +158,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
+      6 => 
       array (
         'title' => 'Blacklisted Casinos',
         'url' => '/casinos/stay-away',
@@ -144,17 +168,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      5 => 
-      array (
-        'title' => 'Popular Casinos',
-        'url' => '/casinos/popular',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      6 => 
+      7 => 
       array (
         'title' => 'No Account Casinos',
         'url' => '/casinos/no-account-casinos',
@@ -164,7 +178,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      7 => 
+      8 => 
       array (
         'title' => 'All Casinos',
         'url' => '/casinos',
@@ -286,16 +300,6 @@ $this->response->attributes("menu_top", array (
     array (
       0 => 
       array (
-        'title' => 'Romania Casinos',
-        'url' => '/countries-list/romania',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      1 => 
-      array (
         'title' => 'USA Casinos',
         'url' => '/countries-list/united-states',
         'is_active' => false,
@@ -304,7 +308,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      2 => 
+      1 => 
       array (
         'title' => 'UK Casinos',
         'url' => '/countries-list/united-kingdom',
@@ -314,7 +318,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      3 => 
+      2 => 
       array (
         'title' => 'Australia Casinos',
         'url' => '/countries-list/australia',
@@ -324,17 +328,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
-      array (
-        'title' => 'Germany Casinos',
-        'url' => '/countries-list/germany',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      5 => 
+      3 => 
       array (
         'title' => 'New Zealand Casinos',
         'url' => '/countries-list/new-zealand',
@@ -344,7 +338,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      6 => 
+      4 => 
       array (
         'title' => 'Netherlands Casinos',
         'url' => '/countries-list/netherlands',
@@ -354,7 +348,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      7 => 
+      5 => 
       array (
         'title' => 'Sweden Casinos',
         'url' => '/countries-list/sweden',
@@ -364,7 +358,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      8 => 
+      6 => 
       array (
         'title' => 'All Countries',
         'url' => '/countries ',
@@ -416,8 +410,8 @@ $this->response->attributes("menu_top", array (
       ),
       3 => 
       array (
-        'title' => 'Bitcoin Wallets Casinos',
-        'url' => '/banking/bitcoin-wallets',
+        'title' => 'Bitcoin Casinos',
+        'url' => '/banking/bitcoin',
         'is_active' => false,
         'submenuItems' => 
         array (
@@ -437,7 +431,7 @@ $this->response->attributes("menu_top", array (
       5 => 
       array (
         'title' => 'Paysafe Card',
-        'url' => '/banking/paysafe-card',
+        'url' => '/banking/paysafecard',
         'is_active' => false,
         'submenuItems' => 
         array (
@@ -639,136 +633,137 @@ $this->response->attributes("menu_top", array (
   ),
 ));
 $this->response->attributes("casino", array (
-  'id' => '492',
-  'name' => 'VegasBerry Casino',
-  'code' => 'vegas_berry_casino',
-  'rating' => 7,
+  'id' => '2246',
+  'name' => 'DuckyLuck Casino',
+  'code' => 'ducky_luck_casino',
+  'rating' => 8,
+  'rating_votes' => '37',
   'softwares' => 
   array (
-    0 => 'NetEnt',
-    1 => 'RCT Gaming',
-    2 => 'Quickfire',
-    3 => 'Oryx Gaming',
-    4 => 'MicroGaming',
-    5 => '1X2 Gaming',
+    0 => 'Rival',
+    1 => 'DragonGaming',
+    2 => 'Felix Gaming',
+    3 => 'Fugaso',
+    4 => 'Spinomenal',
+    5 => 'Tom Horn Gaming',
+    6 => 'Arrows Edge',
+    7 => 'Saucify',
+    8 => 'BetSoft',
   ),
   'languages' => 
   array (
     0 => 'English',
+    1 => 'French',
   ),
   'currencies' => 
   array (
     0 => 'USD',
     1 => 'EUR',
     2 => 'GBP',
+    3 => 'AUD',
+    4 => 'CAD',
+    5 => 'ZAR',
   ),
   'bonus_first_deposit' => 
   array (
-    'amount' => '150%',
-    'min_deposit' => '$/€/£20',
+    'amount' => '500% + 150 FS',
+    'min_deposit' => '£/€/$25',
     'wagering' => '30x(D+B)',
-    'games_allowed' => 'Slots',
+    'games_allowed' => 'All games (FS - Mystic Wolf, Golden Gorilla, Five Times Wins)',
     'code' => 'No code required',
     'type' => 'First Deposit Bonus',
     'bonus_type_Abbreviation' => NULL,
   ),
-  'bonus_free' => 
+  'bonus_free' => NULL,
+  'live_dealers' => 
   array (
-    'amount' => '10',
-    'min_deposit' => '',
-    'wagering' => '0',
-    'games_allowed' => 'Piggy Riches,Starburst &Twin Spins',
-    'code' => 'LUCINDA',
-    'type' => 'Free Spins',
-    'bonus_type_Abbreviation' => NULL,
+    0 => 'Blackjack',
+    1 => 'Roulette',
+    2 => 'Table Games',
+    3 => 'Baccarat',
+    4 => 'Craps',
   ),
-  'live_dealers' => NULL,
-  'date_established' => '2014-01-01',
+  'date_established' => '2020-08-03',
   'emails' => 
   array (
-    0 => 'support@vegasberry.com',
-    1 => 'cashier@vegasberry.com',
+    0 => 'None',
   ),
   'phones' => 
   array (
+    0 => 'None',
   ),
   'is_live_chat' => '1',
   'licenses' => 
   array (
-    0 => 'Curacao',
   ),
   'certifiers' => 
   array (
   ),
-  'affiliate_program' => 'BerryPartners',
+  'affiliate_program' => 'OnlineCasinoShare',
   'affiliate_link' => NULL,
   'tc_link' => NULL,
-  'withdrawal_minimum' => '$/€/£20',
+  'comments' => NULL,
+  'withdrawal_minimum' => '$/€/£25',
   'withdrawal_limits' => 
   array (
-    0 => '$/€/£2000 per week',
-    1 => '$/€/£5000 per month',
+    0 => '$/€/£2500 per week',
   ),
   'withdrawal_timeframes' => 
   array (
-    0 => 'Ewallets - up to 24 hours',
-    1 => 'Wire Transfer - 2-3 business days',
-    2 => 'Credit cards - 7-10 business days',
+    0 => 'Ewallets - 48-72 hours',
+    1 => 'Bitcoin Wallet - 48-72 hours',
+    2 => 'Wire Transfer - 48-72 hours',
+    3 => 'Credit cards - 48-72 hours',
+    4 => 'Cheques - 48-72 hours',
   ),
   'deposit_methods' => NULL,
   'withdraw_methods' => NULL,
   'is_country_accepted' => '1',
-  'is_language_accepted' => '0',
+  'is_language_accepted' => '1',
   'email_link' => NULL,
-  'is_currency_accepted' => '0',
+  'is_currency_accepted' => '1',
   'note' => NULL,
   'is_tc_link' => '0',
-  'logo_big' => '/public/sync/casino_logo_light/124x82/vegas_berry_casino.png',
-  'logo_small' => '/public/sync/casino_logo_light/85x56/vegas_berry_casino.png',
+  'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
+  'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
   'new' => NULL,
-  'score_class' => 'Good',
+  'score_class' => 'Excellent',
   'all_softwares' => NULL,
-  'deposit_minimum' => '$/€/£20',
+  'deposit_minimum' => '$/€/£25',
   'welcome_package' => 
   array (
     0 => 
     array (
-      'valid_on' => 'On sign-up',
-      'bonus' => '10 FS',
-      'min_deposit' => 'Free',
-      'wagering' => '0',
-      'games' => 'Piggy Riches,Starburst &Twin Spins',
-      'bonus_codes' => 'LUCINDA',
+      'valid_on' => '1st Deposit',
+      'bonus' => '500% + 150 FS',
+      'min_deposit' => '£/€/$25',
+      'wagering' => '30x(D+B)',
+      'games' => 'All games (FS - Mystic Wolf, Golden Gorilla, Five Times Wins)',
+      'bonus_codes' => 'No code required',
     ),
     1 => 
     array (
-      'valid_on' => '1st Deposit',
-      'bonus' => '150%',
-      'min_deposit' => '$/€/£20',
-      'wagering' => '30x(D+B)',
-      'games' => 'Slots',
+      'valid_on' => '1st BTC Deposit',
+      'bonus' => '600% + 150 FS',
+      'min_deposit' => '£/€/$25',
+      'wagering' => '30x(D+B)	',
+      'games' => 'All games (FS - Mystic Wolf, Golden Gorilla, Five Times Wins)',
       'bonus_codes' => 'No code required',
     ),
   ),
   'casino_deposit_methods' => 
   array (
-    'Dotpay' => 
-    array (
-      'deposit_methods' => true,
-      'withdraw_methods' => false,
-      'logo' => '/public/sync/banking_method_light/68x39/dotpay.png',
-    ),
-    'MULTIBANCO' => 
-    array (
-      'deposit_methods' => true,
-      'withdraw_methods' => false,
-      'logo' => '/public/sync/banking_method_light/68x39/multibanco.png',
-    ),
     'MasterCard' => 
     array (
       'deposit_methods' => true,
       'withdraw_methods' => false,
       'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+    ),
+    'Neosurf' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => false,
+      'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
     ),
     'Neteller' => 
     array (
@@ -776,59 +771,29 @@ $this->response->attributes("casino", array (
       'withdraw_methods' => true,
       'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
     ),
-    'Paysafe Card' => 
+    'POLi' => 
     array (
       'deposit_methods' => true,
       'withdraw_methods' => false,
-      'logo' => '/public/sync/banking_method_light/68x39/paysafe_card.png',
+      'logo' => '/public/sync/banking_method_light/68x39/poli.png',
     ),
-    'QIWI' => 
+    'paysafecard' => 
     array (
       'deposit_methods' => true,
       'withdraw_methods' => false,
-      'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
+      'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
     ),
-    'SOFORT Banking' => 
-    array (
-      'deposit_methods' => true,
-      'withdraw_methods' => false,
-      'logo' => '/public/sync/banking_method_light/68x39/sofort_banking.png',
-    ),
-    'Skrill Moneybookers' => 
+    'Skrill' => 
     array (
       'deposit_methods' => true,
       'withdraw_methods' => true,
-      'logo' => '/public/sync/banking_method_light/68x39/skrill_moneybookers.png',
-    ),
-    'TrustPay' => 
-    array (
-      'deposit_methods' => true,
-      'withdraw_methods' => false,
-      'logo' => '/public/sync/banking_method_light/68x39/trustpay.png',
-    ),
-    'Trustly' => 
-    array (
-      'deposit_methods' => true,
-      'withdraw_methods' => false,
-      'logo' => '/public/sync/banking_method_light/68x39/trustly.png',
+      'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
     ),
     'Visa' => 
     array (
       'deposit_methods' => true,
-      'withdraw_methods' => true,
-      'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-    ),
-    'Visa Electron' => 
-    array (
-      'deposit_methods' => true,
-      'withdraw_methods' => true,
-      'logo' => '/public/sync/banking_method_light/68x39/visa_electron.png',
-    ),
-    'WebMoney' => 
-    array (
-      'deposit_methods' => true,
       'withdraw_methods' => false,
-      'logo' => '/public/sync/banking_method_light/68x39/webmoney.png',
+      'logo' => '/public/sync/banking_method_light/68x39/visa.png',
     ),
     'Wire Transfer' => 
     array (
@@ -836,45 +801,104 @@ $this->response->attributes("casino", array (
       'withdraw_methods' => true,
       'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
     ),
-    'giropay' => 
+    'Bitcoin Wallets' => 
     array (
-      'deposit_methods' => true,
-      'withdraw_methods' => false,
-      'logo' => '/public/sync/banking_method_light/68x39/giropay.png',
+      'deposit_methods' => false,
+      'withdraw_methods' => true,
+      'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
     ),
-    'iDEAL' => 
+    'UPayCard' => 
     array (
-      'deposit_methods' => true,
-      'withdraw_methods' => false,
-      'logo' => '/public/sync/banking_method_light/68x39/ideal.png',
+      'deposit_methods' => false,
+      'withdraw_methods' => true,
+      'logo' => '/public/sync/banking_method_light/68x39/upaycard.png',
     ),
   ),
+  'is_mobile' => true,
   'casino_game_types' => 
   array (
+    0 => 
+    array (
+      'name' => 'Slots',
+    ),
+    1 => 
+    array (
+      'name' => 'Video Poker',
+    ),
+    2 => 
+    array (
+      'name' => 'Scratch Cards',
+    ),
+    3 => 
+    array (
+      'name' => 'Keno',
+    ),
+    4 => 
+    array (
+      'name' => 'Bingo',
+    ),
+    5 => 
+    array (
+      'name' => 'Blackjack',
+    ),
+    6 => 
+    array (
+      'name' => 'Roulette',
+    ),
+    7 => 
+    array (
+      'name' => 'Table Games',
+    ),
+    8 => 
+    array (
+      'name' => 'Baccarat',
+    ),
+    9 => 
+    array (
+      'name' => 'Craps',
+    ),
   ),
-  'is_available_in_site' => NULL,
+  'is_available_in_site' => 
+  array (
+    'Blackjack' => true,
+    'Roulette' => true,
+    'Table Games' => false,
+    'Baccarat' => true,
+    'Craps' => true,
+  ),
   'status' => NULL,
+  'user_votes' => 
+  array (
+    'Excellent' => 2,
+    'Very good' => 33,
+    'Good' => 0,
+    'Poor' => 0,
+    'Terrible' => 1,
+  ),
+  'match_bonuses' => 
+  array (
+  ),
 ));
-$this->response->attributes("user_score", '1');
-$this->response->attributes("user_score_class", 'Poor');
+$this->response->attributes("user_score", 0);
+$this->response->attributes("user_score_class", 'No score');
 $this->response->attributes("reviews_limit", 5);
 $this->response->attributes("replies_limit", 5);
+$this->response->attributes("total_votes", '36');
 $this->response->attributes("total_reviews", 0);
 $this->response->attributes("reviews", array (
 ));
 $this->response->attributes("country_status", 'accepted');
-$this->response->attributes("add_text", 11);
+$this->response->attributes("add_text", 10);
 $this->response->attributes("country_status_text", 'accepted');
+$this->response->attributes("page_type", 'reviews');
 $this->response->attributes("page_info", array (
-  'head_title' => 'VegasBerry Casino Review with Authentic Players Reviews & Ratings!',
-  'head_description' => ' Complete VegasBerry Casino Review | Go through authentic and transparent real players reviews about VegasBerry Casino and user-based Ratings at CasinosLists.com',
-  'body_title' => 'VegasBerry Casino Review',
+  'head_title' => 'DuckyLuck Casino Review 2021 | Authentic Ratings & Player Reviews!',
+  'head_description' => 'DuckyLuck Casino Review & Bonus Codes (2021 Updated) | Read Real Reviews left by CasinosLists.com\'s Members | Sign up Bonus: 500% + 150 FS First Deposit Bonus',
+  'body_title' => 'DuckyLuck Casino Review',
 ));
 $this->response->attributes("is_mobile", false);
-$this->response->attributes("version", '0.8.8.9129');
-$this->response->attributes("use_bundle", true);
-$this->response->attributes("tms", array (
-));
+$this->response->attributes("version", '1.0.0');
+$this->response->attributes("use_bundle", false);
 $this->response->attributes("widgets", array (
 ));
 

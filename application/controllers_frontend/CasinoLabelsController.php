@@ -2,9 +2,13 @@
 class CasinoLabelsController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
         $this->response->attributes("country", array (
-  'id' => '43',
-  'code' => 'RO',
-  'name' => 'Romania',
+  'id' => '34',
+  'code' => 'US',
+  'name' => 'United States',
+  'languages' => 
+  array (
+    0 => 'English',
+  ),
 ));
 $this->response->attributes("menu_top", array (
   0 => 
@@ -106,6 +110,16 @@ $this->response->attributes("menu_top", array (
       ),
       1 => 
       array (
+        'title' => 'Low Minimum Deposit Casinos',
+        'url' => '/casinos/low-minimum-deposit',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      2 => 
+      array (
         'title' => 'Mobile Casinos',
         'url' => '/casinos/mobile',
         'is_active' => false,
@@ -114,7 +128,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      2 => 
+      3 => 
       array (
         'title' => 'Low Wagering Casinos',
         'url' => '/casinos/low-wagering',
@@ -124,7 +138,17 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      3 => 
+      4 => 
+      array (
+        'title' => 'Fast Payout Casinos',
+        'url' => ' /casinos/fast-payout',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      5 => 
       array (
         'title' => 'eCOGRA Casinos',
         'url' => '/features/ecogra-casinos',
@@ -134,7 +158,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
+      6 => 
       array (
         'title' => 'Blacklisted Casinos',
         'url' => '/casinos/stay-away',
@@ -144,17 +168,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      5 => 
-      array (
-        'title' => 'Popular Casinos',
-        'url' => '/casinos/popular',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      6 => 
+      7 => 
       array (
         'title' => 'No Account Casinos',
         'url' => '/casinos/no-account-casinos',
@@ -164,7 +178,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      7 => 
+      8 => 
       array (
         'title' => 'All Casinos',
         'url' => '/casinos',
@@ -286,16 +300,6 @@ $this->response->attributes("menu_top", array (
     array (
       0 => 
       array (
-        'title' => 'Romania Casinos',
-        'url' => '/countries-list/romania',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      1 => 
-      array (
         'title' => 'USA Casinos',
         'url' => '/countries-list/united-states',
         'is_active' => false,
@@ -304,7 +308,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      2 => 
+      1 => 
       array (
         'title' => 'UK Casinos',
         'url' => '/countries-list/united-kingdom',
@@ -314,7 +318,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      3 => 
+      2 => 
       array (
         'title' => 'Australia Casinos',
         'url' => '/countries-list/australia',
@@ -324,17 +328,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
-      array (
-        'title' => 'Germany Casinos',
-        'url' => '/countries-list/germany',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      5 => 
+      3 => 
       array (
         'title' => 'New Zealand Casinos',
         'url' => '/countries-list/new-zealand',
@@ -344,7 +338,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      6 => 
+      4 => 
       array (
         'title' => 'Netherlands Casinos',
         'url' => '/countries-list/netherlands',
@@ -354,7 +348,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      7 => 
+      5 => 
       array (
         'title' => 'Sweden Casinos',
         'url' => '/countries-list/sweden',
@@ -364,7 +358,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      8 => 
+      6 => 
       array (
         'title' => 'All Countries',
         'url' => '/countries ',
@@ -416,8 +410,8 @@ $this->response->attributes("menu_top", array (
       ),
       3 => 
       array (
-        'title' => 'Bitcoin Wallets Casinos',
-        'url' => '/banking/bitcoin-wallets',
+        'title' => 'Bitcoin Casinos',
+        'url' => '/banking/bitcoin',
         'is_active' => false,
         'submenuItems' => 
         array (
@@ -437,7 +431,7 @@ $this->response->attributes("menu_top", array (
       5 => 
       array (
         'title' => 'Paysafe Card',
-        'url' => '/banking/paysafe-card',
+        'url' => '/banking/paysafecard',
         'is_active' => false,
         'submenuItems' => 
         array (
@@ -640,166 +634,5869 @@ $this->response->attributes("menu_top", array (
 ));
 $this->response->attributes("results", array (
   'Best' => '50',
-  'Live Dealer' => '19',
-  'Mobile' => '957',
-  'Low Wagering' => '175',
-  'eCOGRA' => '140',
-  'Blacklisted Casinos' => '44',
-  'Popular' => '28',
-  'No Account Casinos' => '13',
+  'Live Dealer' => '990',
+  'Mobile' => '1453',
+  'Low Wagering' => '74',
+  'eCOGRA' => '198',
+  'Blacklisted Casinos' => '89',
+  'No Account Casinos' => '53',
 ));
+$this->response->attributes("total_casinos", '1191');
+$this->response->attributes("casinos", array (
+  0 => 
+  array (
+    'id' => '2417',
+    'name' => 'Vesper Casino',
+    'code' => 'vesper_casino',
+    'rating' => 7,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'NextGen Gaming',
+      2 => 'MicroGaming',
+      3 => 'BetSoft',
+      4 => 'IGT',
+      5 => 'Yggdrasil Gaming',
+      6 => 'Thunderkick',
+      7 => 'Evolution Gaming',
+      8 => 'Quickspin',
+      9 => 'Ezugi',
+      10 => 'Vivo Gaming',
+      11 => '2By2 Gaming',
+      12 => 'Playson',
+      13 => 'Igrosoft',
+      14 => 'Play n GO',
+      15 => 'Endorphina',
+      16 => 'BGaming',
+      17 => 'ELK Studios',
+      18 => 'Big Time Gaming',
+      19 => 'Rabcat',
+      20 => 'Habanero',
+      21 => 'Blueprint Gaming',
+      22 => 'GameArt',
+      23 => 'Amatic Industries',
+      24 => 'Lightning Box Games',
+      25 => 'Pragmatic Play',
+      26 => 'EGT',
+      27 => 'Tom Horn Gaming',
+      28 => 'Evoplay',
+      29 => 'Spinomenal',
+      30 => 'Casino Technology',
+      31 => 'Skillzz Gaming',
+      32 => 'Fugaso',
+      33 => 'Booongo',
+      34 => 'Red Rake Gaming',
+      35 => 'Red Tiger Gaming',
+      36 => 'Platipus Gaming',
+      37 => 'Just For The Win',
+      38 => 'Fantasma Games',
+      39 => 'Spinmatic',
+      40 => 'Revolver Gaming',
+      41 => 'Reel NRG',
+      42 => 'TrueLab',
+    ),
+    'languages' => NULL,
+    'currencies' => '€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '150% + 100 FS',
+      'min_deposit' => '€10',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'All except selected games',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2020-08-15',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '€40',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Good',
+    'all_softwares' => 'NextGen Gaming, MicroGaming, BetSoft, IGT, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, Ezugi, Vivo Gaming, 2By2 Gaming, Playson, Igrosoft, Play n GO, Endorphina, BGaming, ELK Studios, Big Time Gaming, Rabcat, Habanero, Blueprint Gaming, GameArt, Amatic Industries, Lightning Box Games, Pragmatic Play, EGT, Tom Horn Gaming, Evoplay, Spinomenal, Casino Technology, Skillzz Gaming, Fugaso, Booongo, Red Rake Gaming, Red Tiger Gaming, Platipus Gaming, Just For The Win, Fantasma Games, Spinmatic, Revolver Gaming, Reel NRG, TrueLab',
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'Maestro' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'QIWI' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+      'Ethereum' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ethereum.png',
+      ),
+      'Litecoin' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/litecoin.png',
+      ),
+      'Bitcoin Cash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
+      ),
+      'Dash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/dash.png',
+      ),
+      'Tether Wallet' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/tether_wallet.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      8 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      9 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  1 => 
+  array (
+    'id' => '2406',
+    'name' => 'Casitsu Casino',
+    'code' => 'casitsu_casino',
+    'rating' => 9,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'BetSoft',
+      1 => 'NetEnt',
+      2 => 'Yggdrasil Gaming',
+      3 => 'Thunderkick',
+      4 => 'Evolution Gaming',
+      5 => 'Quickfire',
+      6 => 'Play n GO',
+      7 => 'Endorphina',
+      8 => 'BGaming',
+      9 => 'Relax Gaming',
+      10 => 'Pragmatic Play',
+      11 => 'EGT',
+    ),
+    'languages' => NULL,
+    'currencies' => '$/€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100%',
+      'min_deposit' => '$/€20',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'All except selected games',
+      'code' => 'SHODAN',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2021-01-04',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '$/€20',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'NetEnt, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickfire, Play n GO, Endorphina, BGaming, Relax Gaming, Pragmatic Play, EGT',
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'Maestro' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'WebMoney' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/webmoney.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+      'Yandex.Money' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/yandex.money.png',
+      ),
+      'iDebit' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/idebit.png',
+      ),
+      'Ethereum' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ethereum.png',
+      ),
+      'Litecoin' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/litecoin.png',
+      ),
+      'Bitcoin Cash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
+      ),
+      'Instadebit' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/instadebit.png',
+      ),
+      'Interac' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+      ),
+      'Tether Wallet' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/tether_wallet.png',
+      ),
+      'Zimpler' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      7 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  2 => 
+  array (
+    'id' => '2397',
+    'name' => 'Regals Casino',
+    'code' => 'regals_casino',
+    'rating' => 1,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'iSoftBet',
+      2 => 'BetSoft',
+      3 => 'Wazdan',
+      4 => 'Yggdrasil Gaming',
+      5 => 'Thunderkick',
+      6 => 'Evolution Gaming',
+      7 => 'Quickspin',
+      8 => '1X2 Gaming',
+      9 => 'Ezugi',
+      10 => 'Push Gaming',
+      11 => 'Playson',
+      12 => 'Play n GO',
+      13 => 'Endorphina',
+      14 => 'ELK Studios',
+      15 => 'Big Time Gaming',
+      16 => 'High 5 Games',
+      17 => 'Habanero',
+      18 => 'Blueprint Gaming',
+      19 => 'GameArt',
+      20 => 'Pariplay',
+      21 => 'Relax Gaming',
+      22 => 'Amatic Industries',
+      23 => 'Booming Games',
+      24 => 'Pragmatic Play',
+      25 => 'Tom Horn Gaming',
+      26 => 'Evoplay',
+      27 => 'Spinomenal',
+      28 => 'Booongo',
+      29 => 'Red Rake Gaming',
+      30 => 'Nolimit City',
+      31 => 'Mascot Gaming',
+      32 => 'NetGame',
+      33 => 'August Gaming',
+    ),
+    'languages' => NULL,
+    'currencies' => '€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100% + 100 FS',
+      'min_deposit' => '€20',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'Slots (FS - Book of Sun)',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2020-12-21',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '€20',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Poor',
+    'all_softwares' => 'iSoftBet, BetSoft, Wazdan, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, 1X2 Gaming, Ezugi, Push Gaming, Playson, Play n GO, Endorphina, ELK Studios, Big Time Gaming, High 5 Games, Habanero, Blueprint Gaming, GameArt, Pariplay, Relax Gaming, Amatic Industries, Booming Games, Pragmatic Play, Tom Horn Gaming, Evoplay, Spinomenal, Booongo, Red Rake Gaming, Nolimit City, Mascot Gaming, NetGame, August Gaming',
+    'deposit_minimum' => '20',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Zimpler' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+      ),
+      'Interac' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      8 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      9 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  3 => 
+  array (
+    'id' => '2322',
+    'name' => 'Yoju Casino',
+    'code' => 'yoju_casino',
+    'rating' => 6,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'iSoftBet',
+      2 => 'Playtech',
+      3 => 'BetSoft',
+      4 => 'Wazdan',
+      5 => 'IGT',
+      6 => 'Leander Games',
+      7 => 'Yggdrasil Gaming',
+      8 => 'Thunderkick',
+      9 => 'Evolution Gaming',
+      10 => 'Quickspin',
+      11 => '1X2 Gaming',
+      12 => 'Ezugi',
+      13 => 'Vivo Gaming',
+      14 => 'Playson',
+      15 => 'Igrosoft',
+      16 => 'Play n GO',
+      17 => 'Endorphina',
+      18 => 'BGaming',
+      19 => 'ELK Studios',
+      20 => 'Habanero',
+      21 => 'Belatra Games',
+      22 => 'Blueprint Gaming',
+      23 => 'GameArt',
+      24 => 'Merkur Gaming',
+      25 => 'Relax Gaming',
+      26 => 'Amatic Industries',
+      27 => 'Booming Games',
+      28 => 'Pragmatic Play',
+      29 => 'Tom Horn Gaming',
+      30 => 'Evoplay',
+      31 => 'Spinomenal',
+      32 => 'Iron Dog Studio',
+      33 => 'Casino Technology',
+      34 => 'MrSlotty Games',
+      35 => 'Betgames TV',
+      36 => 'Fugaso',
+      37 => 'LuckyStreak',
+      38 => 'Booongo',
+      39 => 'Red Tiger Gaming',
+      40 => 'Platipus Gaming',
+      41 => 'Nolimit City',
+      42 => 'August Gaming',
+    ),
+    'languages' => NULL,
+    'currencies' => '€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100% + 120 FS',
+      'min_deposit' => '€20',
+      'wagering' => '40xB',
+      'games_allowed' => 'All (FS - BGaming Slots)',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '20',
+      'min_deposit' => '',
+      'wagering' => '50xB',
+      'games_allowed' => 'West Town, Azteck Magic Delux & Book of Cats ',
+      'code' => 'No code required',
+      'type' => 'Free Spins',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '2020-10-07',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '€20',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Good',
+    'all_softwares' => 'iSoftBet, Playtech, BetSoft, Wazdan, IGT, Leander Games, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, 1X2 Gaming, Ezugi, Vivo Gaming, Playson, Igrosoft, Play n GO, Endorphina, BGaming, ELK Studios, Habanero, Belatra Games, Blueprint Gaming, GameArt, Merkur Gaming, Relax Gaming, Amatic Industries, Booming Games, Pragmatic Play, Tom Horn Gaming, Evoplay, Spinomenal, Iron Dog Studio, Casino Technology, MrSlotty Games, Betgames TV, Fugaso, LuckyStreak, Booongo, Red Tiger Gaming, Platipus Gaming, Nolimit City, August Gaming',
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'Maestro' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'Siru Mobile' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/siru_mobile.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'iDebit' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/idebit.png',
+      ),
+      'Bitcoin Cash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
+      ),
+      'Interac' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+      'Instadebit' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/instadebit.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      8 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+  4 => 
+  array (
+    'id' => '2294',
+    'name' => 'NewVegas Casino',
+    'code' => 'newvegas_casino',
+    'rating' => 8,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'Rival',
+      1 => 'BetSoft',
+      2 => 'Saucify',
+      3 => 'Arrows Edge',
+      4 => 'Tom Horn Gaming',
+      5 => 'Spinomenal',
+      6 => 'Fugaso',
+      7 => 'Booongo',
+      8 => 'Felix Gaming',
+      9 => 'Betixon',
+    ),
+    'languages' => NULL,
+    'currencies' => '$/€/£',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '300% + 50 FS',
+      'min_deposit' => '$/€/£50',
+      'wagering' => '35xB',
+      'games_allowed' => 'All',
+      'code' => '300LISTS',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '35',
+      'min_deposit' => '',
+      'wagering' => '35xB',
+      'games_allowed' => 'All',
+      'code' => '35CAS',
+      'type' => 'Free Spins',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '2020-09-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => '1',
+    'withdrawal_minimum' => '$/€/£100',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'BetSoft, Saucify, Arrows Edge, Tom Horn Gaming, Spinomenal, Fugaso, Booongo, Felix Gaming, Betixon',
+    'deposit_minimum' => '25',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'POLi' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/poli.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Keno',
+      ),
+      6 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      7 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      8 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+  5 => 
+  array (
+    'id' => '2246',
+    'name' => 'DuckyLuck Casino',
+    'code' => 'ducky_luck_casino',
+    'rating' => 8,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'Rival',
+      1 => 'BetSoft',
+      2 => 'Saucify',
+      3 => 'Arrows Edge',
+      4 => 'Tom Horn Gaming',
+      5 => 'Spinomenal',
+      6 => 'Fugaso',
+      7 => 'Felix Gaming',
+      8 => 'DragonGaming',
+    ),
+    'languages' => NULL,
+    'currencies' => '$/€/£',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '500% + 150 FS',
+      'min_deposit' => '£/€/$25',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'All games (FS - Mystic Wolf, Golden Gorilla, Five Times Wins)',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2020-08-03',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '$/€/£25',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'BetSoft, Saucify, Arrows Edge, Tom Horn Gaming, Spinomenal, Fugaso, Felix Gaming, DragonGaming',
+    'deposit_minimum' => '25',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'POLi' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/poli.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'UPayCard' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/upaycard.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      2 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      3 => 
+      array (
+        'name' => 'Keno',
+      ),
+      4 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      5 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      6 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      7 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      8 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      9 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  6 => 
+  array (
+    'id' => '2230',
+    'name' => 'SlottyWay Casino',
+    'code' => 'slottyway_casino',
+    'rating' => 8,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'MicroGaming',
+      1 => 'World Match',
+      2 => 'iSoftBet',
+      3 => 'BetSoft',
+      4 => 'Wazdan',
+      5 => 'NetEnt',
+      6 => 'Leander Games',
+      7 => 'Yggdrasil Gaming',
+      8 => 'Thunderkick',
+      9 => 'Evolution Gaming',
+      10 => 'OMI Gaming',
+      11 => '1X2 Gaming',
+      12 => 'Ezugi',
+      13 => 'Push Gaming',
+      14 => 'Playson',
+      15 => 'Igrosoft',
+      16 => 'Play n GO',
+      17 => 'BGaming',
+      18 => 'ELK Studios',
+      19 => 'Big Time Gaming',
+      20 => 'Habanero',
+      21 => 'Belatra Games',
+      22 => 'Blueprint Gaming',
+      23 => 'GameArt',
+      24 => 'Pariplay',
+      25 => 'Merkur Gaming',
+      26 => 'Amatic Industries',
+      27 => 'Booming Games',
+      28 => 'Lightning Box Games',
+      29 => 'Pragmatic Play',
+      30 => 'Kiron Interactive',
+      31 => 'Tom Horn Gaming',
+      32 => 'Evoplay',
+      33 => 'Chance Interactive',
+      34 => 'Iron Dog Studio',
+      35 => 'Gamomat',
+      36 => 'Fugaso',
+      37 => 'LuckyStreak',
+      38 => 'Red Tiger Gaming',
+      39 => 'Platipus Gaming',
+      40 => 'Kalamba Games',
+      41 => 'Nolimit City',
+      42 => 'Felix Gaming',
+      43 => 'Betixon',
+      44 => 'August Gaming',
+      45 => 'Mobilots',
+      46 => 'OneTouch',
+    ),
+    'languages' => NULL,
+    'currencies' => '$/€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '200%',
+      'min_deposit' => '$30',
+      'wagering' => '40xB',
+      'games_allowed' => 'All',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '60',
+      'min_deposit' => '',
+      'wagering' => '40xB',
+      'games_allowed' => 'Jumanji',
+      'code' => 'No code required',
+      'type' => 'Free Spins',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '2020-06-10',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => '1',
+    'withdrawal_minimum' => '$/€10',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'World Match, iSoftBet, BetSoft, Wazdan, NetEnt, Leander Games, Yggdrasil Gaming, Thunderkick, Evolution Gaming, OMI Gaming, 1X2 Gaming, Ezugi, Push Gaming, Playson, Igrosoft, Play n GO, BGaming, ELK Studios, Big Time Gaming, Habanero, Belatra Games, Blueprint Gaming, GameArt, Pariplay, Merkur Gaming, Amatic Industries, Booming Games, Lightning Box Games, Pragmatic Play, Kiron Interactive, Tom Horn Gaming, Evoplay, Chance Interactive, Iron Dog Studio, Gamomat, Fugaso, LuckyStreak, Red Tiger Gaming, Platipus Gaming, Kalamba Games, Nolimit City, Felix Gaming, Betixon, August Gaming, Mobilots, OneTouch',
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Zimpler' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      8 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      9 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+  7 => 
+  array (
+    'id' => '2216',
+    'name' => 'Casino Rocket',
+    'code' => 'casino_rocket',
+    'rating' => 0,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'iSoftBet',
+      2 => 'Playtech',
+      3 => 'BetSoft',
+      4 => 'Wazdan',
+      5 => 'Yggdrasil Gaming',
+      6 => 'Thunderkick',
+      7 => 'Evolution Gaming',
+      8 => 'Quickspin',
+      9 => '1X2 Gaming',
+      10 => 'Vivo Gaming',
+      11 => 'Playson',
+      12 => 'Igrosoft',
+      13 => 'Endorphina',
+      14 => 'BGaming',
+      15 => 'ELK Studios',
+      16 => 'Big Time Gaming',
+      17 => 'Habanero',
+      18 => 'Belatra Games',
+      19 => 'Relax Gaming',
+      20 => 'Amatic Industries',
+      21 => 'Booming Games',
+      22 => 'Pragmatic Play',
+      23 => 'Tom Horn Gaming',
+      24 => 'Iron Dog Studio',
+      25 => 'Casino Technology',
+      26 => 'MrSlotty Games',
+      27 => 'Fugaso',
+      28 => 'LuckyStreak',
+      29 => 'Booongo',
+      30 => 'Platipus Gaming',
+      31 => 'Nolimit City',
+      32 => 'Felix Gaming',
+      33 => 'Fantasma Games',
+      34 => 'August Gaming',
+      35 => 'Nucleus Gaming',
+      36 => '4ThePlayer',
+    ),
+    'languages' => NULL,
+    'currencies' => '€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100% + 50 FS',
+      'min_deposit' => '€20',
+      'wagering' => '45xB',
+      'games_allowed' => 'All except selected games (FS - Aztec Magic Deluxe)',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2020-04-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '€20',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'No score',
+    'all_softwares' => 'iSoftBet, Playtech, BetSoft, Wazdan, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, 1X2 Gaming, Vivo Gaming, Playson, Igrosoft, Endorphina, BGaming, ELK Studios, Big Time Gaming, Habanero, Belatra Games, Relax Gaming, Amatic Industries, Booming Games, Pragmatic Play, Tom Horn Gaming, Iron Dog Studio, Casino Technology, MrSlotty Games, Fugaso, LuckyStreak, Booongo, Platipus Gaming, Nolimit City, Felix Gaming, Fantasma Games, August Gaming, Nucleus Gaming, 4ThePlayer',
+    'deposit_minimum' => '20',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      8 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      9 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  8 => 
+  array (
+    'id' => '2133',
+    'name' => 'Play Croco Casino',
+    'code' => 'play_croco_casino',
+    'rating' => 7,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'RTG',
+    ),
+    'languages' => NULL,
+    'currencies' => 'AU$',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '200%',
+      'min_deposit' => '$20',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'All except selected games',
+      'code' => 'PLAYCROCO',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '$10',
+      'min_deposit' => '',
+      'wagering' => '60xB',
+      'games_allowed' => 'All except selected games',
+      'code' => '10FREE',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '2020-04-21',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => 'AU$100',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Good',
+    'all_softwares' => NULL,
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Bitcoin Cash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Keno',
+      ),
+      6 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      7 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+  9 => 
+  array (
+    'id' => '1940',
+    'name' => 'SportsandCasino.com',
+    'code' => 'sportsandcasino_com',
+    'rating' => 8,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'Rival',
+      1 => 'BetSoft',
+      2 => 'Saucify',
+      3 => 'DragonGaming',
+    ),
+    'languages' => NULL,
+    'currencies' => '$/€/£/R',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '500% + 100 FS',
+      'min_deposit' => '$25',
+      'wagering' => '40x(D+B)',
+      'games_allowed' => 'Casino games (No Live Dealer, Craps or Progressives)',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2019-09-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => '2',
+    'withdrawal_minimum' => '$/€/£/R25',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'BetSoft, Saucify, DragonGaming',
+    'deposit_minimum' => '25',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'POLi' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/poli.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Western Union' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/western_union.png',
+      ),
+      'Bitcoin Cash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
+      ),
+      'UPayCard' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/upaycard.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      4 => 
+      array (
+        'name' => 'Keno',
+      ),
+      5 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      6 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      7 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  10 => 
+  array (
+    'id' => '1927',
+    'name' => 'Fastpay Casino',
+    'code' => 'fastpay_casino',
+    'rating' => 8,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'MicroGaming',
+      2 => 'iSoftBet',
+      3 => 'Playtech',
+      4 => 'BetSoft',
+      5 => 'Wazdan',
+      6 => 'IGT',
+      7 => 'Leander Games',
+      8 => 'Yggdrasil Gaming',
+      9 => 'Thunderkick',
+      10 => 'Evolution Gaming',
+      11 => 'Quickspin',
+      12 => 'Push Gaming',
+      13 => 'Playson',
+      14 => 'Igrosoft',
+      15 => 'Play n GO',
+      16 => 'Endorphina',
+      17 => 'BGaming',
+      18 => 'ELK Studios',
+      19 => 'Big Time Gaming',
+      20 => 'Habanero',
+      21 => 'Belatra Games',
+      22 => 'Blueprint Gaming',
+      23 => 'GameArt',
+      24 => 'Merkur Gaming',
+      25 => 'Relax Gaming',
+      26 => 'Amatic Industries',
+      27 => 'Booming Games',
+      28 => 'Pragmatic Play',
+      29 => 'EGT',
+      30 => 'Tom Horn Gaming',
+      31 => 'Evoplay',
+      32 => 'Spinomenal',
+      33 => 'Casino Technology',
+      34 => 'Fugaso',
+      35 => 'Booongo',
+      36 => 'Red Tiger Gaming',
+      37 => 'Platipus Gaming',
+      38 => 'Nolimit City',
+      39 => 'Nucleus Gaming',
+    ),
+    'languages' => NULL,
+    'currencies' => '€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '110% + 100 FS',
+      'min_deposit' => '€20',
+      'wagering' => '50xB',
+      'games_allowed' => 'All except selected games',
+      'code' => 'FASTPAY100',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2018-06-19',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '€20',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'MicroGaming, iSoftBet, Playtech, BetSoft, Wazdan, IGT, Leander Games, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, Push Gaming, Playson, Igrosoft, Play n GO, Endorphina, BGaming, ELK Studios, Big Time Gaming, Habanero, Belatra Games, Blueprint Gaming, GameArt, Merkur Gaming, Relax Gaming, Amatic Industries, Booming Games, Pragmatic Play, EGT, Tom Horn Gaming, Evoplay, Spinomenal, Casino Technology, Fugaso, Booongo, Red Tiger Gaming, Platipus Gaming, Nolimit City, Nucleus Gaming',
+    'deposit_minimum' => '20',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'AstroPay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/astropay.png',
+      ),
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'QIWI' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
+      ),
+      'Siru Mobile' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/siru_mobile.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'UPayCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/upaycard.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'WebMoney' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/webmoney.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+      'Yandex.Money' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/yandex.money.png',
+      ),
+      'Zimpler' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+      ),
+      'iDebit' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/idebit.png',
+      ),
+      'Ethereum' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ethereum.png',
+      ),
+      'Litecoin' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/litecoin.png',
+      ),
+      'Dogecoin' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/dogecoin.png',
+      ),
+      'Bitcoin Cash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
+      ),
+      'Interac' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+      ),
+      'Instadebit' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/instadebit.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      8 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      9 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  11 => 
+  array (
+    'id' => '1863',
+    'name' => 'Fortune Legends Casino',
+    'code' => 'fortune_legends_casino',
+    'rating' => 8,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'NYX Interactive',
+      2 => 'MicroGaming',
+      3 => 'Thunderkick',
+      4 => 'Evolution Gaming',
+      5 => 'Quickspin',
+      6 => 'Play n GO',
+      7 => 'ELK Studios',
+      8 => 'Big Time Gaming',
+      9 => 'Pragmatic Play',
+      10 => 'Scientific Games',
+      11 => 'Red Tiger Gaming',
+      12 => 'Nolimit City',
+    ),
+    'languages' => NULL,
+    'currencies' => '$/€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '150 BS',
+      'min_deposit' => '$/€150',
+      'wagering' => '0',
+      'games_allowed' => 'Razor Shark',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2019-05-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => '1',
+    'withdrawal_minimum' => '$/€50',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'NYX Interactive, MicroGaming, Thunderkick, Evolution Gaming, Quickspin, Play n GO, ELK Studios, Big Time Gaming, Pragmatic Play, Scientific Games, Red Tiger Gaming, Nolimit City',
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'AstroPay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/astropay.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'SOFORT Banking' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/sofort_banking.png',
+      ),
+      'SafetyPay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/safetypay.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Trustly' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/trustly.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+      'Zimpler' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      8 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  12 => 
+  array (
+    'id' => '2431',
+    'name' => 'Casobet Casino',
+    'code' => 'casobet_casino',
+    'rating' => 7,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'BetSoft',
+      1 => 'RTG',
+      2 => 'Yggdrasil Gaming',
+      3 => 'Thunderkick',
+      4 => 'Evolution Gaming',
+      5 => 'Quickspin',
+      6 => '1X2 Gaming',
+      7 => 'Ezugi',
+      8 => 'Vivo Gaming',
+      9 => 'Push Gaming',
+      10 => 'Playson',
+      11 => 'BGaming',
+      12 => 'ELK Studios',
+      13 => 'Habanero',
+      14 => 'Blueprint Gaming',
+      15 => 'Pragmatic Play',
+      16 => 'PlayPearls',
+      17 => 'Tom Horn Gaming',
+      18 => 'Iron Dog Studio',
+      19 => 'Booongo',
+      20 => 'Red Tiger Gaming',
+      21 => 'Platipus Gaming',
+      22 => 'Kalamba Games',
+      23 => 'Nolimit City',
+      24 => 'NetGame',
+      25 => 'OneTouch',
+    ),
+    'languages' => NULL,
+    'currencies' => '$/€/£',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '120%',
+      'min_deposit' => '$/€/£10',
+      'wagering' => '35x(D+B)',
+      'games_allowed' => 'All except selected games',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2021-02-03',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => '2',
+    'withdrawal_minimum' => '$/€/£50',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Good',
+    'all_softwares' => 'RTG, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, 1X2 Gaming, Ezugi, Vivo Gaming, Push Gaming, Playson, BGaming, ELK Studios, Habanero, Blueprint Gaming, Pragmatic Play, PlayPearls, Tom Horn Gaming, Iron Dog Studio, Booongo, Red Tiger Gaming, Platipus Gaming, Kalamba Games, Nolimit City, NetGame, OneTouch',
+    'deposit_minimum' => '1',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'Boleto Bancario' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/boleto_bancario.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'QIWI' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
+      ),
+      'SafetyPay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/safetypay.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'WebMoney' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/webmoney.png',
+      ),
+      'Ethereum' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ethereum.png',
+      ),
+      'Litecoin' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/litecoin.png',
+      ),
+      'Dogecoin' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/dogecoin.png',
+      ),
+      'Bitcoin Cash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
+      ),
+      'Dash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/dash.png',
+      ),
+      'Monero' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/monero.png',
+      ),
+      'Tether Wallet' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/tether_wallet.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      8 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      9 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  13 => 
+  array (
+    'id' => '2418',
+    'name' => 'MadMax Casino',
+    'code' => 'madmax_casino',
+    'rating' => 9,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'NextGen Gaming',
+      2 => 'MicroGaming',
+      3 => 'iSoftBet',
+      4 => 'BetSoft',
+      5 => 'IGT',
+      6 => 'Yggdrasil Gaming',
+      7 => 'Thunderkick',
+      8 => 'Evolution Gaming',
+      9 => 'Quickspin',
+      10 => 'Ezugi',
+      11 => 'Vivo Gaming',
+      12 => 'Push Gaming',
+      13 => '2By2 Gaming',
+      14 => 'Playson',
+      15 => 'Igrosoft',
+      16 => 'Play n GO',
+      17 => 'Endorphina',
+      18 => 'BGaming',
+      19 => 'ELK Studios',
+      20 => 'Big Time Gaming',
+      21 => 'Rabcat',
+      22 => 'Habanero',
+      23 => 'Belatra Games',
+      24 => 'Blueprint Gaming',
+      25 => 'GameArt',
+      26 => 'Pariplay',
+      27 => 'Relax Gaming',
+      28 => 'Amatic Industries',
+      29 => 'Lightning Box Games',
+      30 => 'Pragmatic Play',
+      31 => 'EGT',
+      32 => 'Tom Horn Gaming',
+      33 => 'Evoplay',
+      34 => 'Spinomenal',
+      35 => 'Iron Dog Studio',
+      36 => 'Casino Technology',
+      37 => 'Gamomat',
+      38 => 'Betgames TV',
+      39 => 'Skillzz Gaming',
+      40 => 'Fugaso',
+      41 => 'Booongo',
+      42 => 'Red Rake Gaming',
+      43 => 'Red Tiger Gaming',
+      44 => 'Platipus Gaming',
+      45 => 'Kalamba Games',
+      46 => 'Nolimit City',
+      47 => 'Just For The Win',
+      48 => 'Fantasma Games',
+      49 => 'Revolver Gaming',
+      50 => 'StakeLogic',
+      51 => 'TrueLab',
+    ),
+    'languages' => NULL,
+    'currencies' => '€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '130% + 77 FS',
+      'min_deposit' => '€20',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'All except selected games',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2020-10-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '€40',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'NextGen Gaming, MicroGaming, iSoftBet, BetSoft, IGT, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, Ezugi, Vivo Gaming, Push Gaming, 2By2 Gaming, Playson, Igrosoft, Play n GO, Endorphina, BGaming, ELK Studios, Big Time Gaming, Rabcat, Habanero, Belatra Games, Blueprint Gaming, GameArt, Pariplay, Relax Gaming, Amatic Industries, Lightning Box Games, Pragmatic Play, EGT, Tom Horn Gaming, Evoplay, Spinomenal, Iron Dog Studio, Casino Technology, Gamomat, Betgames TV, Skillzz Gaming, Fugaso, Booongo, Red Rake Gaming, Red Tiger Gaming, Platipus Gaming, Kalamba Games, Nolimit City, Just For The Win, Fantasma Games, Revolver Gaming, StakeLogic, TrueLab',
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'Maestro' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'QIWI' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+      'Ethereum' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ethereum.png',
+      ),
+      'Litecoin' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/litecoin.png',
+      ),
+      'Bitcoin Cash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
+      ),
+      'Dash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/dash.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      8 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      9 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  14 => 
+  array (
+    'id' => '2407',
+    'name' => 'CosmicSlot Casino',
+    'code' => 'cosmic_slot_casino',
+    'rating' => 10,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'Yggdrasil Gaming',
+      1 => 'BetSoft',
+      2 => 'Thunderkick',
+      3 => 'Vivo Gaming',
+      4 => 'Playson',
+      5 => 'Endorphina',
+      6 => 'BGaming',
+      7 => 'Habanero',
+      8 => 'Tom Horn Gaming',
+      9 => 'Evoplay',
+      10 => 'Spinomenal',
+      11 => 'Casino Technology',
+      12 => 'Booongo',
+      13 => 'Red Rake Gaming',
+      14 => 'Platipus Gaming',
+      15 => 'Ganapati',
+      16 => 'Mascot Gaming',
+      17 => 'NetGame',
+      18 => 'Revolver Gaming',
+      19 => 'Reel NRG',
+      20 => 'OneTouch',
+      21 => 'TrueLab',
+    ),
+    'languages' => NULL,
+    'currencies' => '€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100% + 100 FS',
+      'min_deposit' => '€20',
+      'wagering' => '35x(D+B)',
+      'games_allowed' => 'Slots',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2020-12-25',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '€20',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'BetSoft, Thunderkick, Vivo Gaming, Playson, Endorphina, BGaming, Habanero, Tom Horn Gaming, Evoplay, Spinomenal, Casino Technology, Booongo, Red Rake Gaming, Platipus Gaming, Ganapati, Mascot Gaming, NetGame, Revolver Gaming, Reel NRG, OneTouch, TrueLab',
+    'deposit_minimum' => '20',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'SOFORT Banking' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/sofort_banking.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Zimpler' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+      ),
+      'giropay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/giropay.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      5 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  15 => 
+  array (
+    'id' => '2315',
+    'name' => 'Las Atlantis Casino',
+    'code' => 'las_atlantis_casino',
+    'rating' => 8,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'RTG',
+    ),
+    'languages' => NULL,
+    'currencies' => '$',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '260% + 40 FS',
+      'min_deposit' => '$10',
+      'wagering' => '35x(D+B)',
+      'games_allowed' => 'Slots, Keno, Scratch Cards & Board Games (FS - 5 Wishes)',
+      'code' => 'LASATLANTIS',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '$45',
+      'min_deposit' => '',
+      'wagering' => '50xB',
+      'games_allowed' => 'Slots, Keno, Scratch Cards & Board Games',
+      'code' => '45LISTS',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '2020-10-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '$150',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Excellent',
+    'all_softwares' => NULL,
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'POLi' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/poli.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Keno',
+      ),
+      6 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      7 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      8 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+  16 => 
+  array (
+    'id' => '2304',
+    'name' => 'TurboVegas Casino',
+    'code' => 'turbovegas_casino',
+    'rating' => 0,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'NYX Interactive',
+      2 => 'NextGen Gaming',
+      3 => 'MicroGaming',
+      4 => 'iSoftBet',
+      5 => 'BetSoft',
+      6 => 'Yggdrasil Gaming',
+      7 => 'Thunderkick',
+      8 => 'Evolution Gaming',
+      9 => 'Quickspin',
+      10 => 'Quickfire',
+      11 => 'Push Gaming',
+      12 => 'Playson',
+      13 => 'Endorphina',
+      14 => 'ELK Studios',
+      15 => 'Big Time Gaming',
+      16 => 'Blueprint Gaming',
+      17 => 'Relax Gaming',
+      18 => 'Booming Games',
+      19 => 'Lightning Box Games',
+      20 => 'Pragmatic Play',
+      21 => 'Scientific Games',
+      22 => 'Iron Dog Studio',
+      23 => 'Gamomat',
+      24 => 'Inspired',
+      25 => 'Red Tiger Gaming',
+      26 => 'Kalamba Games',
+      27 => 'Ganapati',
+      28 => 'Just For The Win',
+      29 => 'Fantasma Games',
+    ),
+    'languages' => NULL,
+    'currencies' => '€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100%',
+      'min_deposit' => '€30',
+      'wagering' => '50xB',
+      'games_allowed' => 'All except selected games',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2018-12-20',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '€30',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '1',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'No score',
+    'all_softwares' => 'NYX Interactive, NextGen Gaming, MicroGaming, iSoftBet, BetSoft, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, Quickfire, Push Gaming, Playson, Endorphina, ELK Studios, Big Time Gaming, Blueprint Gaming, Relax Gaming, Booming Games, Lightning Box Games, Pragmatic Play, Scientific Games, Iron Dog Studio, Gamomat, Inspired, Red Tiger Gaming, Kalamba Games, Ganapati, Just For The Win, Fantasma Games',
+    'deposit_minimum' => '30',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Trustly' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/trustly.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Zimpler' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      4 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      5 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  17 => 
+  array (
+    'id' => '2289',
+    'name' => 'Pokie Place Casino',
+    'code' => 'pokie_place',
+    'rating' => 8,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'GameArt',
+      1 => 'iSoftBet',
+      2 => 'Wazdan',
+      3 => 'IGT',
+      4 => 'Evolution Gaming',
+      5 => 'Quickspin',
+      6 => 'Habanero',
+      7 => 'Booming Games',
+      8 => 'Tom Horn Gaming',
+      9 => 'SlotVision',
+      10 => 'Nucleus Gaming',
+    ),
+    'languages' => NULL,
+    'currencies' => '$/€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '150% + 50 FS',
+      'min_deposit' => '$20',
+      'wagering' => '20x(D+B)',
+      'games_allowed' => 'All (FS - Titan Thunder Wrath of Hades) ',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '50',
+      'min_deposit' => '',
+      'wagering' => '20x(D+B)',
+      'games_allowed' => 'Chili Desert, Farm Ville, Sheriff\'s Justice, Alchemy Book, Wolf\'s Quest',
+      'code' => 'No code required',
+      'type' => 'Free Spins',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '2020-08-26',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '$/€50',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'iSoftBet, Wazdan, IGT, Evolution Gaming, Quickspin, Habanero, Booming Games, Tom Horn Gaming, SlotVision, Nucleus Gaming',
+    'deposit_minimum' => '20',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Maestro' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Keno',
+      ),
+      6 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      7 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+  18 => 
+  array (
+    'id' => '2214',
+    'name' => 'Cobra Casino',
+    'code' => 'cobra_casino',
+    'rating' => 7,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'BetSoft',
+      1 => 'iSoftBet',
+      2 => 'Playtech',
+      3 => 'Wazdan',
+      4 => 'NetEnt',
+      5 => 'Yggdrasil Gaming',
+      6 => 'Thunderkick',
+      7 => 'Evolution Gaming',
+      8 => 'Quickspin',
+      9 => '1X2 Gaming',
+      10 => 'Ezugi',
+      11 => 'Vivo Gaming',
+      12 => 'Push Gaming',
+      13 => 'Playson',
+      14 => 'Play n GO',
+      15 => 'Endorphina',
+      16 => 'BGaming',
+      17 => 'ELK Studios',
+      18 => 'Habanero',
+      19 => 'Belatra Games',
+      20 => 'GameArt',
+      21 => 'Relax Gaming',
+      22 => 'Amatic Industries',
+      23 => 'Booming Games',
+      24 => 'Pragmatic Play',
+      25 => 'EGT',
+      26 => 'Evoplay',
+      27 => 'Spinomenal',
+      28 => 'Iron Dog Studio',
+      29 => 'Casino Technology',
+      30 => 'MrSlotty Games',
+      31 => 'Booongo',
+      32 => 'Platipus Gaming',
+      33 => 'Felix Gaming',
+      34 => 'Fantasma Games',
+      35 => 'August Gaming',
+    ),
+    'languages' => NULL,
+    'currencies' => '€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100% + 250 FS',
+      'min_deposit' => '€20',
+      'wagering' => '40xB',
+      'games_allowed' => 'All except selected games (FS - Dead or Alive, Space Wars, Deep Sea & Platinum Lightning Deluxe)',
+      'code' => 'COBRA100',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2020-08-07',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '€20',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Good',
+    'all_softwares' => 'iSoftBet, Playtech, Wazdan, NetEnt, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, 1X2 Gaming, Ezugi, Vivo Gaming, Push Gaming, Playson, Play n GO, Endorphina, BGaming, ELK Studios, Habanero, Belatra Games, GameArt, Relax Gaming, Amatic Industries, Booming Games, Pragmatic Play, EGT, Evoplay, Spinomenal, Iron Dog Studio, Casino Technology, MrSlotty Games, Booongo, Platipus Gaming, Felix Gaming, Fantasma Games, August Gaming',
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'Maestro' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'QIWI' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
+      ),
+      'Siru Mobile' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/siru_mobile.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Yandex.Money' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/yandex.money.png',
+      ),
+      'iDebit' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/idebit.png',
+      ),
+      'Ethereum' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ethereum.png',
+      ),
+      'Litecoin' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/litecoin.png',
+      ),
+      'Bitcoin Cash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
+      ),
+      'Interac' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+      ),
+      'PurplePay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/purplepay.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+      'Instadebit' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/instadebit.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      4 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      5 => 
+      array (
+        'name' => 'Keno',
+      ),
+      6 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      7 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  19 => 
+  array (
+    'id' => '2161',
+    'name' => 'Ozwin Casino',
+    'code' => 'ozwin_casino',
+    'rating' => 8,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'RTG',
+    ),
+    'languages' => NULL,
+    'currencies' => 'AU$',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '200% + 50 FS',
+      'min_deposit' => '$20',
+      'wagering' => '30x(D+B)/20xB',
+      'games_allowed' => 'All selected games (FS - Bubble Bubble 2)',
+      'code' => 'OZWELCOME-B',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => 'AU$15',
+      'min_deposit' => '',
+      'wagering' => '60xB',
+      'games_allowed' => 'Slots, Keno & Scratch Cards',
+      'code' => 'CHIPY15',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '2020-05-26',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => 'AU$100',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => true,
+    'score_class' => 'Excellent',
+    'all_softwares' => NULL,
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'POLi' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/poli.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      8 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+  20 => 
+  array (
+    'id' => '2054',
+    'name' => 'Arcanebet Casino',
+    'code' => 'arcanebet_casino',
+    'rating' => 5,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'MicroGaming',
+      2 => 'BetSoft',
+      3 => 'Evolution Gaming',
+      4 => 'Quickspin',
+      5 => 'Playson',
+      6 => 'Play n GO',
+      7 => 'ELK Studios',
+      8 => 'Big Time Gaming',
+      9 => 'Blueprint Gaming',
+      10 => 'Pariplay',
+      11 => 'Relax Gaming',
+      12 => 'Pragmatic Play',
+      13 => 'EGT',
+      14 => 'Spigo',
+      15 => 'Gamevy',
+      16 => 'Gamomat',
+      17 => 'Betgames TV',
+      18 => 'Skillzz Gaming',
+      19 => 'Red Tiger Gaming',
+    ),
+    'languages' => NULL,
+    'currencies' => '$/€/£',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100% + 50 FS',
+      'min_deposit' => '$/€/£10',
+      'wagering' => '17.5x(D+B)',
+      'games_allowed' => 'All except selected games',
+      'code' => 'LISTS50',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2020-01-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '$/€/£10',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Good',
+    'all_softwares' => 'MicroGaming, BetSoft, Evolution Gaming, Quickspin, Playson, Play n GO, ELK Studios, Big Time Gaming, Blueprint Gaming, Pariplay, Relax Gaming, Pragmatic Play, EGT, Spigo, Gamevy, Gamomat, Betgames TV, Skillzz Gaming, Red Tiger Gaming',
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'iDebit' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/idebit.png',
+      ),
+      'Interac' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      4 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      5 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  21 => 
+  array (
+    'id' => '2015',
+    'name' => 'Spinamba Casino',
+    'code' => 'spinamba_casino',
+    'rating' => 8,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'NextGen Gaming',
+      1 => 'MicroGaming',
+      2 => 'Novomatic',
+      3 => 'iSoftBet',
+      4 => 'BetSoft',
+      5 => 'Wazdan',
+      6 => 'NetEnt',
+      7 => 'Thunderkick',
+      8 => 'Evolution Gaming',
+      9 => 'Quickspin',
+      10 => '1X2 Gaming',
+      11 => 'Ezugi',
+      12 => 'Playson',
+      13 => 'Igrosoft',
+      14 => 'Play n GO',
+      15 => 'Endorphina',
+      16 => 'BGaming',
+      17 => 'ELK Studios',
+      18 => 'Habanero',
+      19 => 'Blueprint Gaming',
+      20 => 'GameArt',
+      21 => 'Amatic Industries',
+      22 => 'Lightning Box Games',
+      23 => 'Pragmatic Play',
+      24 => 'Tom Horn Gaming',
+      25 => 'Spinomenal',
+      26 => 'Chance Interactive',
+      27 => 'Iron Dog Studio',
+      28 => 'Fugaso',
+      29 => 'Booongo',
+      30 => 'Red Tiger Gaming',
+      31 => 'Felix Gaming',
+      32 => 'Fantasma Games',
+      33 => 'Mobilots',
+      34 => 'BF Games',
+      35 => 'Revolver Gaming',
+    ),
+    'languages' => NULL,
+    'currencies' => '$',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '50% + 50 FS',
+      'min_deposit' => '$30',
+      'wagering' => '40xB',
+      'games_allowed' => 'All (FS-Starburst)',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '50',
+      'min_deposit' => '',
+      'wagering' => '45xB',
+      'games_allowed' => 'Dead or Alive 2 (25FS), Gonzo\'s Quest(25FS)',
+      'code' => 'No code required',
+      'type' => 'Free Spins',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '2019-12-12',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '$10',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'MicroGaming, Novomatic, iSoftBet, BetSoft, Wazdan, NetEnt, Thunderkick, Evolution Gaming, Quickspin, 1X2 Gaming, Ezugi, Playson, Igrosoft, Play n GO, Endorphina, BGaming, ELK Studios, Habanero, Blueprint Gaming, GameArt, Amatic Industries, Lightning Box Games, Pragmatic Play, Tom Horn Gaming, Spinomenal, Chance Interactive, Iron Dog Studio, Fugaso, Booongo, Red Tiger Gaming, Felix Gaming, Fantasma Games, Mobilots, BF Games, Revolver Gaming',
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'QIWI' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'WebMoney' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/webmoney.png',
+      ),
+      'Yandex.Money' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/yandex.money.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      8 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      9 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+  22 => 
+  array (
+    'id' => '1965',
+    'name' => 'Aussie Play Casino',
+    'code' => 'aussie_play_casino',
+    'rating' => 7,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'RTG',
+    ),
+    'languages' => NULL,
+    'currencies' => '$/€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '225% + 50 FS',
+      'min_deposit' => '$10',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'Slots, Keno, Scratch Cards & Board Games (FS - Cash Bandits 2)',
+      'code' => 'AUSSIEPLAY',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '30',
+      'min_deposit' => '',
+      'wagering' => '50xB',
+      'games_allowed' => 'Mermaids Pearls',
+      'code' => '30PEARLS',
+      'type' => 'Free Spins',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '2019-10-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '$/€150',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Good',
+    'all_softwares' => NULL,
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'MST Gift Card' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/mst_gift_card.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Keno',
+      ),
+      6 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      7 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      8 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+  23 => 
+  array (
+    'id' => '1755',
+    'name' => 'Casiplay Casino',
+    'code' => 'casiplay_casino',
+    'rating' => 9,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'MicroGaming',
+      1 => 'NYX Interactive',
+      2 => 'NextGen Gaming',
+      3 => 'NeoGames',
+      4 => 'iSoftBet',
+      5 => 'BetSoft',
+      6 => 'NetEnt',
+      7 => 'WMS Gaming',
+      8 => 'Aristocrat',
+      9 => 'Thunderkick',
+      10 => 'Evolution Gaming',
+      11 => 'Quickspin',
+      12 => 'Quickfire',
+      13 => 'Play n GO',
+      14 => 'ELK Studios',
+      15 => 'Bally',
+      16 => 'Blueprint Gaming',
+      17 => 'Realistic Games',
+      18 => 'Barcrest Games',
+      19 => 'Lightning Box Games',
+      20 => 'Skillzz Gaming',
+    ),
+    'languages' => NULL,
+    'currencies' => '€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100% +30 FS',
+      'min_deposit' => ' ‎€20',
+      'wagering' => '35xB',
+      'games_allowed' => 'All( FS - Starburst)',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2019-01-22',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '€10',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '1',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'NYX Interactive, NextGen Gaming, NeoGames, iSoftBet, BetSoft, NetEnt, WMS Gaming, Aristocrat, Thunderkick, Evolution Gaming, Quickspin, Quickfire, Play n GO, ELK Studios, Bally, Blueprint Gaming, Realistic Games, Barcrest Games, Lightning Box Games, Skillzz Gaming',
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bancontact Payconiq' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/bancontact_payconiq.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'EntroPay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/entropay.png',
+      ),
+      'Euteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/euteller.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'POLi' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/poli.png',
+      ),
+      'SOFORT Banking' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/sofort_banking.png',
+      ),
+      'Siru Mobile' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/siru_mobile.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Ticket Premium' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/ticket_premium.png',
+      ),
+      'Trustly' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/trustly.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+      'Zimpler' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+      ),
+      'giropay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/giropay.png',
+      ),
+      'iDEAL' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/ideal.png',
+      ),
+      'Interac' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      8 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  24 => 
+  array (
+    'id' => '1477',
+    'name' => 'West Casino',
+    'code' => 'west_casino',
+    'rating' => 8,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'NYX Interactive',
+      2 => 'Oryx Gaming',
+      3 => 'BetSoft',
+      4 => 'Wazdan',
+      5 => 'IGT',
+      6 => 'Leander Games',
+      7 => 'Yggdrasil Gaming',
+      8 => 'Thunderkick',
+      9 => 'Evolution Gaming',
+      10 => 'OMI Gaming',
+      11 => 'Portomaso Gaming',
+      12 => 'Quickspin',
+      13 => '1X2 Gaming',
+      14 => 'Push Gaming',
+      15 => 'Multislot',
+      16 => 'Playson',
+      17 => 'Play n GO',
+      18 => 'Endorphina',
+      19 => 'Eyecon',
+      20 => 'Habanero',
+      21 => 'Pariplay',
+      22 => 'Relax Gaming',
+      23 => 'Genii',
+      24 => 'Booming Games',
+      25 => 'Pragmatic Play',
+      26 => 'Tom Horn Gaming',
+      27 => 'Spigo',
+      28 => 'Spinomenal',
+      29 => 'Gamevy',
+      30 => 'MrSlotty Games',
+      31 => 'Red Rake Gaming',
+    ),
+    'languages' => NULL,
+    'currencies' => '$/€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100% + 100 FS',
+      'min_deposit' => '$/€20',
+      'wagering' => '35x(D+B)',
+      'games_allowed' => 'All except selected games (FS - Guns N Roses)',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '15',
+      'min_deposit' => '',
+      'wagering' => '40xB',
+      'games_allowed' => 'Thats Rich',
+      'code' => '15WEST',
+      'type' => 'Free Spins',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '2017-12-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '$/€20',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'NYX Interactive, Oryx Gaming, BetSoft, Wazdan, IGT, Leander Games, Yggdrasil Gaming, Thunderkick, Evolution Gaming, OMI Gaming, Portomaso Gaming, Quickspin, 1X2 Gaming, Push Gaming, Multislot, Playson, Play n GO, Endorphina, Eyecon, Habanero, Pariplay, Relax Gaming, Genii, Booming Games, Pragmatic Play, Tom Horn Gaming, Spigo, Spinomenal, Gamevy, MrSlotty Games, Red Rake Gaming',
+    'deposit_minimum' => '20',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'AstroPay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/astropay.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'QIWI' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
+      ),
+      'SOFORT Banking' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/sofort_banking.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Trustly' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/trustly.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'WebMoney' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/webmoney.png',
+      ),
+      'Zimpler' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+  25 => 
+  array (
+    'id' => '1038',
+    'name' => 'King Billy Casino',
+    'code' => 'king_billy_casino',
+    'rating' => 8,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'BetSoft',
+      1 => 'NYX Interactive',
+      2 => 'NextGen Gaming',
+      3 => 'MicroGaming',
+      4 => 'iSoftBet',
+      5 => 'Playtech',
+      6 => 'Wazdan',
+      7 => 'NetEnt',
+      8 => 'IGT',
+      9 => 'Yggdrasil Gaming',
+      10 => 'Thunderkick',
+      11 => 'Evolution Gaming',
+      12 => 'Quickspin',
+      13 => 'Quickfire',
+      14 => 'Ezugi',
+      15 => 'Playson',
+      16 => 'Play n GO',
+      17 => 'Endorphina',
+      18 => 'BGaming',
+      19 => 'ELK Studios',
+      20 => 'Big Time Gaming',
+      21 => 'Rabcat',
+      22 => 'Habanero',
+      23 => 'Blueprint Gaming',
+      24 => 'GameArt',
+      25 => 'Relax Gaming',
+      26 => 'Amatic Industries',
+      27 => 'Booming Games',
+      28 => 'Pragmatic Play',
+      29 => 'Tom Horn Gaming',
+      30 => 'Ainsworth',
+      31 => 'Spinomenal',
+      32 => 'Fugaso',
+      33 => 'Booongo',
+      34 => 'Red Tiger Gaming',
+      35 => 'Nolimit City',
+      36 => 'Felix Gaming',
+      37 => 'Nucleus Gaming',
+    ),
+    'languages' => NULL,
+    'currencies' => '€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100% + 300 FS',
+      'min_deposit' => '€10',
+      'wagering' => '29xB',
+      'games_allowed' => 'All except selected games (FS - Berryburst or Fruit Zen)',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2017-03-23',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '€20',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Excellent',
+    'all_softwares' => 'NYX Interactive, NextGen Gaming, MicroGaming, iSoftBet, Playtech, Wazdan, NetEnt, IGT, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, Quickfire, Ezugi, Playson, Play n GO, Endorphina, BGaming, ELK Studios, Big Time Gaming, Rabcat, Habanero, Blueprint Gaming, GameArt, Relax Gaming, Amatic Industries, Booming Games, Pragmatic Play, Tom Horn Gaming, Ainsworth, Spinomenal, Fugaso, Booongo, Red Tiger Gaming, Nolimit City, Felix Gaming, Nucleus Gaming',
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'AstroPay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/astropay.png',
+      ),
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'Entercash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/entercash.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neosurf' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'QIWI' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
+      ),
+      'SOFORT Banking' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/sofort_banking.png',
+      ),
+      'Siru Mobile' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/siru_mobile.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Trustly' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/trustly.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'WebMoney' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/webmoney.png',
+      ),
+      'Yandex.Money' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/yandex.money.png',
+      ),
+      'Zimpler' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+      ),
+      'giropay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/giropay.png',
+      ),
+      'iDEAL' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/ideal.png',
+      ),
+      'iDebit' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/idebit.png',
+      ),
+      'Ethereum' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ethereum.png',
+      ),
+      'Litecoin' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/litecoin.png',
+      ),
+      'Instadebit' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/instadebit.png',
+      ),
+      'Interac' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+      ),
+      'PurplePay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/purplepay.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      8 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      9 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  26 => 
+  array (
+    'id' => '830',
+    'name' => 'Diamond Reels Casino',
+    'code' => 'diamond_reels_casino',
+    'rating' => 7,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'RTG',
+    ),
+    'languages' => NULL,
+    'currencies' => '$',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '250%',
+      'min_deposit' => '$25',
+      'wagering' => '40x(D+B)',
+      'games_allowed' => 'All',
+      'code' => 'NEWONE',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '75',
+      'min_deposit' => '',
+      'wagering' => '40xB',
+      'games_allowed' => 'Kung Fu Rooster',
+      'code' => 'LISTS75K',
+      'type' => 'Free Spins',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '2015-09-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '$100',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Good',
+    'all_softwares' => NULL,
+    'deposit_minimum' => '25',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'American Express' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/american_express.png',
+      ),
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Keno',
+      ),
+      6 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      7 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+  27 => 
+  array (
+    'id' => '426',
+    'name' => 'Vegas Crest Casino',
+    'code' => 'vegas_crest_casino',
+    'rating' => 7,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'BetSoft',
+      1 => 'Rival',
+      2 => 'Saucify',
+      3 => 'GameArt',
+      4 => 'VistaGaming',
+      5 => 'Booming Games',
+      6 => 'Booongo',
+      7 => 'Concept Gaming',
+      8 => 'Mobilots',
+    ),
+    'languages' => NULL,
+    'currencies' => '$',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '200% + 30 FS',
+      'min_deposit' => '$25',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'All (FS - Yak, Yeti & Roll)',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '50',
+      'min_deposit' => '',
+      'wagering' => '99xB',
+      'games_allowed' => 'Yak, Yeti and Roll',
+      'code' => 'No Code Required',
+      'type' => 'Free Spins',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '2014-06-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => '3',
+    'withdrawal_minimum' => '$100',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Good',
+    'all_softwares' => 'Rival, Saucify, GameArt, VistaGaming, Booming Games, Booongo, Concept Gaming, Mobilots',
+    'deposit_minimum' => '25',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Bitcoin Wallets' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+      'Cheque' => 
+      array (
+        'deposit_methods' => false,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/cheque.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      2 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      3 => 
+      array (
+        'name' => 'Keno',
+      ),
+      4 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      5 => 
+      array (
+        'name' => 'Craps',
+      ),
+      6 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      7 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      8 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      9 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+  28 => 
+  array (
+    'id' => '308',
+    'name' => 'Slot Planet Casino',
+    'code' => 'amsterdams_casino',
+    'rating' => 7,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'NetEnt',
+      1 => 'NYX Interactive',
+      2 => 'MicroGaming',
+      3 => 'Wazdan',
+      4 => 'IGT',
+      5 => 'WMS Gaming',
+      6 => 'Leander Games',
+      7 => 'Thunderkick',
+      8 => 'Evolution Gaming',
+      9 => 'Quickspin',
+      10 => '1X2 Gaming',
+      11 => 'Push Gaming',
+      12 => '2By2 Gaming',
+      13 => 'Cayetano Gaming',
+      14 => 'Play n GO',
+      15 => 'ELK Studios',
+      16 => 'Genesis Gaming',
+      17 => 'Big Time Gaming',
+      18 => 'Rabcat',
+      19 => 'High 5 Games',
+      20 => 'Eyecon',
+      21 => 'Bally',
+      22 => 'Blueprint Gaming',
+      23 => 'Endemol Games',
+      24 => 'Realistic Games',
+      25 => 'Merkur Gaming',
+      26 => 'Barcrest Games',
+      27 => 'Relax Gaming',
+      28 => 'Lightning Box Games',
+      29 => 'Scientific Games',
+      30 => 'Ainsworth',
+      31 => 'Felt Gaming',
+      32 => 'Chance Interactive',
+      33 => 'Core Gaming',
+      34 => 'Iron Dog Studio',
+      35 => 'Betdigital',
+      36 => 'Side City Studios',
+      37 => 'Games Warehouse',
+      38 => 'Inspired',
+      39 => 'Concept Gaming',
+      40 => 'Red Tiger Gaming',
+      41 => 'Foxium',
+      42 => 'Kalamba Games',
+      43 => 'Nolimit City',
+      44 => 'Just For The Win',
+      45 => 'Fantasma Games',
+      46 => 'StakeLogic',
+    ),
+    'languages' => NULL,
+    'currencies' => '€',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100% + 22 BS',
+      'min_deposit' => '€20',
+      'wagering' => '35xB',
+      'games_allowed' => 'All except selected games (FS - Starburst)',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => '2005-09-01',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '€20',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Good',
+    'all_softwares' => 'NYX Interactive, MicroGaming, Wazdan, IGT, WMS Gaming, Leander Games, Thunderkick, Evolution Gaming, Quickspin, 1X2 Gaming, Push Gaming, 2By2 Gaming, Cayetano Gaming, Play n GO, ELK Studios, Genesis Gaming, Big Time Gaming, Rabcat, High 5 Games, Eyecon, Bally, Blueprint Gaming, Endemol Games, Realistic Games, Merkur Gaming, Barcrest Games, Relax Gaming, Lightning Box Games, Scientific Games, Ainsworth, Felt Gaming, Chance Interactive, Core Gaming, Iron Dog Studio, Betdigital, Side City Studios, Games Warehouse, Inspired, Concept Gaming, Red Tiger Gaming, Foxium, Kalamba Games, Nolimit City, Just For The Win, Fantasma Games, StakeLogic',
+    'deposit_minimum' => '20',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Boku' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/boku.png',
+      ),
+      'Maestro' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'SOFORT Banking' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/sofort_banking.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Trustly' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/trustly.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+      'giropay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/giropay.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      5 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      6 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      7 => 
+      array (
+        'name' => 'Table Games',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 0,
+  ),
+  29 => 
+  array (
+    'id' => '305',
+    'name' => '888 Casino',
+    'code' => 'casino_888',
+    'rating' => 7,
+    'rating_votes' => NULL,
+    'softwares' => 
+    array (
+      0 => 'Playtech',
+      1 => 'NextGen Gaming',
+      2 => 'Cryptologic',
+      3 => 'NetEnt',
+      4 => 'IGT',
+      5 => '888 Software',
+      6 => 'Blueprint Gaming',
+      7 => 'Electracade',
+      8 => 'Endemol Games',
+    ),
+    'languages' => NULL,
+    'currencies' => '$/€/£',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '100%',
+      'min_deposit' => ' $/€/£20',
+      'wagering' => '30xB',
+      'games_allowed' => 'All',
+      'code' => 'Welcome1',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '$/€5',
+      'min_deposit' => '',
+      'wagering' => '30xB',
+      'games_allowed' => 'DaVinci Diamond',
+      'code' => 'No code required',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => '1996-12-29',
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => '$/€/£15',
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '0',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => false,
+    'score_class' => 'Good',
+    'all_softwares' => 'NextGen Gaming, Cryptologic, NetEnt, IGT, 888 Software, Blueprint Gaming, Electracade, Endemol Games',
+    'deposit_minimum' => '10',
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+      'Abaqoos' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/abaqoos.png',
+      ),
+      'AstroPay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/astropay.png',
+      ),
+      'Boleto Bancario' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/boleto_bancario.png',
+      ),
+      'Diners Club' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/diners_club.png',
+      ),
+      'EcoPayz' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+      ),
+      'Instant Banking By Citadel' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/instant_banking_by_citadel.png',
+      ),
+      'MasterCard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+      ),
+      'Moneta.ru' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/moneta.ru.png',
+      ),
+      'Neteller' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+      ),
+      'POLi' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/poli.png',
+      ),
+      'PayPal' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/paypal.png',
+      ),
+      'paysafecard' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+      ),
+      'Przelewy24' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/przelewy24.png',
+      ),
+      'QIWI' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
+      ),
+      'SOFORT Banking' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/sofort_banking.png',
+      ),
+      'Skrill' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      ),
+      'Todito Cash' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/todito_cash.png',
+      ),
+      'Trustly' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/trustly.png',
+      ),
+      'Visa' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+      ),
+      'Visa Electron' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/visa_electron.png',
+      ),
+      'WebMoney' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/webmoney.png',
+      ),
+      'Wire Transfer' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => true,
+        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      ),
+      'Yandex.Money' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/yandex.money.png',
+      ),
+      'eCheck' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/echeck.png',
+      ),
+      'eKonto' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/ekonto.png',
+      ),
+      'iDebit' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/idebit.png',
+      ),
+      'Instadebit' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/instadebit.png',
+      ),
+      'Interac' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+      ),
+      'PurplePay' => 
+      array (
+        'deposit_methods' => true,
+        'withdraw_methods' => false,
+        'logo' => '/public/sync/banking_method_light/68x39/purplepay.png',
+      ),
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => 
+    array (
+      0 => 
+      array (
+        'name' => 'Slots',
+      ),
+      1 => 
+      array (
+        'name' => 'Blackjack',
+      ),
+      2 => 
+      array (
+        'name' => 'Roulette',
+      ),
+      3 => 
+      array (
+        'name' => 'Video Poker',
+      ),
+      4 => 
+      array (
+        'name' => 'Table Games',
+      ),
+      5 => 
+      array (
+        'name' => 'Scratch Cards',
+      ),
+      6 => 
+      array (
+        'name' => 'Keno',
+      ),
+      7 => 
+      array (
+        'name' => 'Baccarat',
+      ),
+      8 => 
+      array (
+        'name' => 'Bingo',
+      ),
+      9 => 
+      array (
+        'name' => 'Craps',
+      ),
+    ),
+    'status' => NULL,
+    'isFree' => 1,
+  ),
+));
+$this->response->attributes("page_type", 'label');
+$this->response->attributes("selected_entity", 'all');
 $this->response->attributes("page_info", array (
   'head_title' => ' Online Casinos Categories - CasinosLists.com',
   'head_description' => 'Complete List of Online Casinos Categories | Check out various types of Online Gaming Sites including Best Casinos, Live Casinos or Mobile-Friendly platforms',
   'body_title' => 'Online Casinos Categories',
 ));
 $this->response->attributes("is_mobile", false);
-$this->response->attributes("version", '0.8.8.9129');
-$this->response->attributes("use_bundle", true);
-$this->response->attributes("tms", array (
-  'upper_text' => 'test',
-  'lower_text' => '<p>adrthywrh wrt hsrthsrtdgh stdgh fgh szfghjs xtghswt srfghxfg hyjsxrtfgyj srfgyj dertyujdfgj dhfxj sdxfyj dfyhjdfgyhtj dghj dytj dtyj yjdtyghj dhyutkid gyjghdj dghjk dyke tyu jh test test test test test test test test test test test test test test test test test test test test test test </p>
-
-<ol>
-	<li>test 1</li>
-</ol>
-
-<ul>
-	<li>test</li>
-</ul>
-
-<p><img height="582" src="https://dev.casinoslists.com/upload/tms/dracaena-cinnabari.jpg" width="880" /></p>
-',
-));
+$this->response->attributes("version", '1.0.0');
+$this->response->attributes("use_bundle", false);
 $this->response->attributes("widgets", array (
   'upper' => 
   array (
-    0 => '<p>test upper 1</p>
+    0 => '<p>How to choose an online casino? What are the most important criteria you should consider before embarking on the gambling arena? And who else better than us to guide you through this strategic choice? We at CasinosLists.com reveal what counts in a decision that it should not have anything to chance! Games library, bonuses, license - all points that we check for each of the casinos presented in our listing. It may be tempting to choose the first casino you see in the search engine, but it can be a serious mistake, that&rsquo;s why you need to know exactly what you are looking for at an online casino. We are up to date with all the&nbsp;<a href="https://www.casinoslists.com/casinos/new">New Online Casinos</a> out there, so you can be tuned in with all the new bonuses and promotions.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus est pellentesque elit ullamcorper. Nunc scelerisque viverra mauris in aliquam sem. Quam pellentesque nec nam aliquam. Nulla malesuada pellentesque elit eget gravida cum. Nisl condimentum id venenatis a condimentum vitae sapien pellentesque. Ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia. Venenatis a condimentum vitae sapien pellentesque habitant morbi tristique. Convallis convallis tellus id interdum velit laoreet id donec ultrices. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Purus in mollis nunc sed id semper risus in. Urna id volutpat lacus laoreet. Faucibus pulvinar elementum integer enim neque volutpat. Morbi leo urna molestie at.</p>
+<p>Of all these casinos, which one will be your favourite? To find that out...test them all. Sign up, make a deposit if required, test the demos and enjoy the bonuses: it&#39;s the best way to make an informed choice. Scroll away through our list of <a href="https://www.casinoslists.com/casinos/best">Best Online Casinos</a>, read the reviews and comments and decide upon the online casino that meets your expectations. The second step is to play only at <a href="https://www.casinoslists.com/features/ecogra-casinos">eCOGRA Online Casinos</a>, an institution aimed at regulating and ensuring online gambling operators. Its goal is to control players in the online gaming market and protect users. Online gaming operators with eCOGRA approval stamp must adhere to strict standards of behavior. On the opposite, you should avoid casinos that were blacklisted for one reason or another. In this regard, CasinosLists.com will help you do so by providing you with the <a href="https://www.casinoslists.com/casinos/stay-away">Stay Away Online Casinos</a>.</p>
 
-<p>Velit egestas dui id ornare. Magnis dis parturient montes nascetur ridiculus mus. Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque. Semper viverra nam libero justo laoreet sit amet cursus. Massa tincidunt dui ut ornare lectus sit. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat. Sit amet justo donec enim diam vulputate. Faucibus vitae aliquet nec ullamcorper sit amet risus nullam. Netus et malesuada fames ac turpis egestas. Pretium lectus quam id leo. In ante metus dictum at tempor commodo ullamcorper. Morbi leo urna molestie at. Ultricies tristique nulla aliquet enim tortor at auctor urna nunc. At tempor commodo ullamcorper a lacus vestibulum. Sed libero enim sed faucibus turpis in eu mi. Dictum at tempor commodo ullamcorper a. Malesuada nunc vel risus commodo viverra maecenas accumsan. Sollicitudin ac orci phasellus egestas tellus. Lobortis elementum nibh tellus molestie.</p>
+<p>&nbsp;</p>
 
-<p>Elementum tempus egestas sed sed risus pretium. Maecenas sed enim ut sem. Tellus at urna condimentum mattis. Enim nec dui nunc mattis enim ut tellus elementum. Faucibus in ornare quam viverra orci sagittis eu volutpat odio. Sagittis vitae et leo duis. Eget duis at tellus at. Feugiat scelerisque varius morbi enim nunc faucibus. Vulputate eu scelerisque felis imperdiet. Aliquam eleifend mi in nulla. Scelerisque purus semper eget duis at tellus at. Sit amet consectetur adipiscing elit ut aliquam purus sit. Velit egestas dui id ornare arcu odio. Nisi lacus sed viverra tellus in hac habitasse platea dictumst. Luctus accumsan tortor posuere ac ut. Ornare lectus sit amet est placerat in egestas. Neque laoreet suspendisse interdum consectetur libero. Malesuada fames ac turpis egestas sed tempus. Netus et malesuada fames ac. Nunc id cursus metus aliquam eleifend.</p>
-
-<p>Auctor eu augue ut lectus arcu bibendum at. Aliquet lectus proin nibh nisl condimentum id venenatis a condimentum. Non arcu risus quis varius quam quisque id diam. Purus viverra accumsan in nisl. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Ullamcorper eget nulla facilisi etiam dignissim. Massa sapien faucibus et molestie ac feugiat sed lectus. Non pulvinar neque laoreet suspendisse. In aliquam sem fringilla ut. Morbi tristique senectus et netus et. Adipiscing diam donec adipiscing tristique risus nec feugiat. Odio facilisis mauris sit amet massa. Mauris rhoncus aenean vel elit.</p>
-
-<p>Adipiscing elit pellentesque habitant morbi tristique. In dictum non consectetur a erat nam at lectus. Tincidunt vitae semper quis lectus. Tincidunt tortor aliquam nulla facilisi cras fermentum. Ac ut consequat semper viverra nam libero justo laoreet. Quisque non tellus orci ac auctor. Velit laoreet id donec ultrices tincidunt arcu non sodales neque. Pulvinar mattis nunc sed blandit libero. Enim praesent elementum facilisis leo vel fringilla. Tortor aliquam nulla facilisi cras fermentum odio eu feugiat. Morbi leo urna molestie at elementum eu facilisis. Tincidunt augue interdum velit euismod in. Ultrices in iaculis nunc sed augue lacus viverra vitae. Tellus pellentesque eu tincidunt tortor aliquam nulla. Gravida in fermentum et sollicitudin ac orci. Hendrerit gravida rutrum quisque non tellus orci ac auctor. A condimentum vitae sapien pellentesque habitant morbi. Tellus pellentesque eu tincidunt tortor. Aliquam sem fringilla ut morbi.</p>
-
-<p>At erat pellentesque adipiscing commodo elit at imperdiet dui. Magna ac placerat vestibulum lectus mauris. Et odio pellentesque diam volutpat commodo sed egestas egestas. Cras semper auctor neque vitae tempus quam. Purus sit amet volutpat consequat mauris nunc. Praesent elementum facilisis leo vel fringilla. Ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper. Sodales neque sodales ut etiam. Curabitur vitae nunc sed velit dignissim. Nunc aliquet bibendum enim facilisis gravida neque convallis a.</p>
-
-<p>Aliquam sem et tortor consequat id porta. Sed vulputate odio ut enim blandit volutpat maecenas. Feugiat scelerisque varius morbi enim nunc. Eros in cursus turpis massa tincidunt dui ut. Cum sociis natoque penatibus et magnis dis parturient. Est pellentesque elit ullamcorper dignissim cras tincidunt. Sed sed risus pretium quam vulputate. Malesuada pellentesque elit eget gravida cum sociis. Ligula ullamcorper malesuada proin libero. Eu turpis egestas pretium aenean pharetra magna ac. Integer malesuada nunc vel risus commodo. Vitae sapien pellentesque habitant morbi tristique senectus et netus et. Rhoncus dolor purus non enim praesent. Sed felis eget velit aliquet sagittis id consectetur purus ut. Massa tempor nec feugiat nisl. Nisi quis eleifend quam adipiscing vitae. Vulputate ut pharetra sit amet aliquam id diam maecenas.</p>
-
-<p>Arcu dictum varius duis at consectetur. Feugiat vivamus at augue eget. Diam quis enim lobortis scelerisque fermentum. A iaculis at erat pellentesque. Ut lectus arcu bibendum at varius vel pharetra vel turpis. Massa eget egestas purus viverra. Non odio euismod lacinia at quis risus sed vulputate. Neque aliquam vestibulum morbi blandit cursus. Urna neque viverra justo nec. Suspendisse faucibus interdum posuere lorem ipsum dolor. Fermentum et sollicitudin ac orci phasellus. Ac placerat vestibulum lectus mauris. In fermentum et sollicitudin ac orci phasellus egestas tellus rutrum.</p>
-
-<p>Massa enim nec dui nunc mattis enim ut. Posuere sollicitudin aliquam ultrices sagittis orci. Mi bibendum neque egestas congue quisque egestas diam in arcu. Sed egestas egestas fringilla phasellus faucibus. Platea dictumst quisque sagittis purus. Consectetur lorem donec massa sapien faucibus et. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Rutrum tellus pellentesque eu tincidunt tortor aliquam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit eget. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Rhoncus dolor purus non enim praesent elementum. Ut porttitor leo a diam. Viverra mauris in aliquam sem fringilla ut.</p>
-
-<p>Sit amet nisl purus in mollis nunc. In pellentesque massa placerat duis ultricies lacus sed. Eget nunc scelerisque viverra mauris in aliquam sem. Nec ullamcorper sit amet risus nullam eget felis eget. Massa enim nec dui nunc mattis enim ut tellus. Nisi lacus sed viverra tellus. Nam libero justo laoreet sit amet. Eget nunc scelerisque viverra mauris in aliquam sem fringilla ut. Blandit turpis cursus in hac habitasse platea dictumst quisque sagittis. Pellentesque eu tincidunt tortor aliquam. Fusce ut placerat orci nulla pellentesque. Vitae congue mauris rhoncus aenean vel elit. Sagittis eu volutpat odio facilisis mauris sit amet massa vitae. Sed viverra ipsum nunc aliquet bibendum enim. Ut sem viverra aliquet eget sit amet tellus cras. Risus in hendrerit gravida rutrum quisque non tellus orci ac. Viverra tellus in hac habitasse platea dictumst vestibulum. Consequat interdum varius sit amet mattis vulputate enim nulla aliquet. Diam donec adipiscing tristique risus nec feugiat in fermentum.</p>
-',
-  ),
-  'lower' => 
-  array (
-    0 => '<p>test lower 1</p>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Odio eu feugiat pretium nibh ipsum consequat nisl vel pretium. Venenatis cras sed felis eget velit. Sed libero enim sed faucibus turpis. Nunc pulvinar sapien et ligula ullamcorper malesuada proin libero nunc. Lectus magna fringilla urna porttitor. Et malesuada fames ac turpis egestas maecenas pharetra. Mattis vulputate enim nulla aliquet. Sed adipiscing diam donec adipiscing tristique risus. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. Lobortis feugiat vivamus at augue eget. Placerat duis ultricies lacus sed turpis tincidunt id aliquet. Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Morbi tempus iaculis urna id volutpat. Nibh praesent tristique magna sit amet purus gravida quis blandit. Nec feugiat nisl pretium fusce id velit ut tortor. Facilisi cras fermentum odio eu feugiat pretium. Lorem donec massa sapien faucibus et molestie ac feugiat sed.</p>
-
-<p>Porta non pulvinar neque laoreet. Quam elementum pulvinar etiam non quam lacus suspendisse faucibus. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim. Justo eget magna fermentum iaculis eu non diam phasellus vestibulum. Arcu ac tortor dignissim convallis aenean et tortor at. Parturient montes nascetur ridiculus mus mauris vitae ultricies. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Sit amet dictum sit amet justo donec enim. Feugiat nibh sed pulvinar proin gravida hendrerit lectus a. Cum sociis natoque penatibus et magnis dis parturient montes nascetur. Diam quam nulla porttitor massa id neque. Quis commodo odio aenean sed adipiscing diam donec adipiscing tristique. Sapien pellentesque habitant morbi tristique. Vel facilisis volutpat est velit egestas dui id ornare. Nibh venenatis cras sed felis eget velit. Tincidunt tortor aliquam nulla facilisi cras fermentum odio eu feugiat. Quam quisque id diam vel quam elementum pulvinar etiam. Ac tincidunt vitae semper quis lectus.</p>
-
-<p>Tristique et egestas quis ipsum suspendisse. Tortor at risus viverra adipiscing at in tellus. Vel turpis nunc eget lorem dolor sed viverra. Quis commodo odio aenean sed adipiscing. Sed vulputate odio ut enim blandit volutpat. Eu sem integer vitae justo eget magna fermentum iaculis eu. Dignissim suspendisse in est ante in. Faucibus vitae aliquet nec ullamcorper sit amet risus. Augue ut lectus arcu bibendum at varius. Dictum sit amet justo donec enim diam vulputate ut. Amet massa vitae tortor condimentum lacinia quis vel eros donec. Purus ut faucibus pulvinar elementum integer enim neque volutpat ac. Eu ultrices vitae auctor eu. Magna sit amet purus gravida quis blandit turpis. Scelerisque varius morbi enim nunc faucibus a pellentesque sit. Feugiat sed lectus vestibulum mattis. Netus et malesuada fames ac turpis egestas. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere. Egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien. In massa tempor nec feugiat.</p>
-
-<p>Bibendum ut tristique et egestas. Euismod in pellentesque massa placerat duis ultricies. Donec ultrices tincidunt arcu non sodales neque sodales. Sed risus ultricies tristique nulla aliquet enim tortor at. Aliquam purus sit amet luctus venenatis lectus magna fringilla. Eu augue ut lectus arcu. Dignissim convallis aenean et tortor at risus viverra adipiscing. Nec ullamcorper sit amet risus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames. Faucibus turpis in eu mi bibendum neque egestas congue. Ultrices dui sapien eget mi proin sed libero enim. Enim facilisis gravida neque convallis a cras. In mollis nunc sed id. Arcu bibendum at varius vel. Amet dictum sit amet justo donec enim diam vulputate. Adipiscing at in tellus integer feugiat.</p>
-
-<p>Malesuada pellentesque elit eget gravida cum. Pretium nibh ipsum consequat nisl vel pretium lectus. Scelerisque viverra mauris in aliquam. Tincidunt nunc pulvinar sapien et. Netus et malesuada fames ac turpis egestas. Est velit egestas dui id. Non nisi est sit amet facilisis magna etiam. Phasellus egestas tellus rutrum tellus pellentesque eu. In hac habitasse platea dictumst quisque. Pellentesque diam volutpat commodo sed egestas egestas fringilla. Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis. Massa ultricies mi quis hendrerit dolor.</p>
-
-<p>Adipiscing tristique risus nec feugiat in fermentum. Ut eu sem integer vitae. Ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Turpis egestas integer eget aliquet nibh praesent tristique magna. Erat velit scelerisque in dictum non. Sit amet cursus sit amet dictum sit amet. Nisl suscipit adipiscing bibendum est ultricies integer quis auctor elit. Et netus et malesuada fames ac turpis egestas integer eget. Lectus urna duis convallis convallis tellus id interdum. Nisl pretium fusce id velit ut tortor. Proin nibh nisl condimentum id venenatis a. Integer enim neque volutpat ac tincidunt vitae semper quis. Amet purus gravida quis blandit. Id diam maecenas ultricies mi eget mauris pharetra et ultrices. Adipiscing diam donec adipiscing tristique risus nec feugiat in fermentum. Rutrum tellus pellentesque eu tincidunt. Nisi lacus sed viverra tellus in hac. Non tellus orci ac auctor augue mauris.</p>
-
-<p>Velit ut tortor pretium viverra suspendisse. Egestas erat imperdiet sed euismod nisi porta lorem mollis aliquam. Tellus cras adipiscing enim eu turpis egestas. Nunc eget lorem dolor sed viverra ipsum. Viverra maecenas accumsan lacus vel facilisis volutpat. Sed turpis tincidunt id aliquet risus feugiat. Adipiscing commodo elit at imperdiet dui. Sit amet facilisis magna etiam tempor orci. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit aliquam. Diam sit amet nisl suscipit adipiscing.</p>
-
-<p>At varius vel pharetra vel. Tellus elementum sagittis vitae et leo duis ut diam quam. Non arcu risus quis varius. Tristique nulla aliquet enim tortor at auctor urna. Lacus luctus accumsan tortor posuere. Sit amet volutpat consequat mauris nunc. Sit amet massa vitae tortor condimentum lacinia quis. Proin nibh nisl condimentum id venenatis a condimentum. Fusce ut placerat orci nulla pellentesque dignissim. Diam volutpat commodo sed egestas egestas fringilla. Sagittis orci a scelerisque purus semper eget. Ut tellus elementum sagittis vitae et leo duis. Lorem ipsum dolor sit amet consectetur adipiscing elit ut. Montes nascetur ridiculus mus mauris vitae ultricies leo integer malesuada.</p>
-
-<p>Aliquam id diam maecenas ultricies mi eget. Sit amet risus nullam eget felis eget. Gravida in fermentum et sollicitudin ac orci. Quam id leo in vitae turpis massa sed elementum. Aliquam ultrices sagittis orci a scelerisque purus semper. Turpis egestas maecenas pharetra convallis posuere morbi leo urna. Justo eget magna fermentum iaculis eu non diam phasellus vestibulum. Urna nunc id cursus metus aliquam eleifend mi in. Etiam sit amet nisl purus in mollis nunc sed id. Aliquet bibendum enim facilisis gravida neque convallis a. Et ultrices neque ornare aenean euismod elementum nisi quis. Amet mattis vulputate enim nulla aliquet. Augue mauris augue neque gravida. Morbi quis commodo odio aenean sed adipiscing diam donec adipiscing. Amet facilisis magna etiam tempor orci eu lobortis. Morbi non arcu risus quis varius quam quisque. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Et malesuada fames ac turpis egestas maecenas pharetra convallis posuere. Est ante in nibh mauris cursus mattis molestie a.</p>
-
-<p>Fames ac turpis egestas sed tempus urna et pharetra. Rhoncus urna neque viverra justo nec ultrices. Cum sociis natoque penatibus et magnis dis parturient montes. Sit amet facilisis magna etiam tempor orci. Placerat vestibulum lectus mauris ultrices eros in cursus. Pulvinar etiam non quam lacus suspendisse faucibus. Cursus in hac habitasse platea dictumst. Elit duis tristique sollicitudin nibh. Diam vel quam elementum pulvinar. Dictumst quisque sagittis purus sit amet. Tristique senectus et netus et. Quis commodo odio aenean sed adipiscing diam donec adipiscing. Vel eros donec ac odio tempor orci. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue.</p>
-
-<p>Consectetur a erat nam at lectus urna. A arcu cursus vitae congue mauris rhoncus aenean. Convallis posuere morbi leo urna molestie at. Vitae tempus quam pellentesque nec nam aliquam. Montes nascetur ridiculus mus mauris vitae ultricies leo integer. Morbi tempus iaculis urna id volutpat. Habitant morbi tristique senectus et netus et malesuada fames ac. Ullamcorper eget nulla facilisi etiam dignissim diam quis enim. Risus commodo viverra maecenas accumsan lacus vel. Vitae auctor eu augue ut lectus arcu bibendum at. Eu feugiat pretium nibh ipsum consequat nisl. Et odio pellentesque diam volutpat commodo sed egestas egestas.</p>
-
-<p>Non nisi est sit amet facilisis magna etiam tempor orci. Elit duis tristique sollicitudin nibh sit amet commodo nulla facilisi. Nam at lectus urna duis convallis convallis tellus id interdum. Viverra suspendisse potenti nullam ac tortor vitae purus. Est placerat in egestas erat imperdiet sed euismod nisi. Bibendum neque egestas congue quisque egestas diam in arcu cursus. Cursus euismod quis viverra nibh cras pulvinar. Posuere urna nec tincidunt praesent semper. Sit amet dictum sit amet justo donec enim diam. Duis at tellus at urna condimentum mattis pellentesque id nibh. Gravida cum sociis natoque penatibus et. Nulla at volutpat diam ut venenatis tellus in metus vulputate. Cursus risus at ultrices mi tempus imperdiet. Interdum velit euismod in pellentesque massa placerat.</p>
-
-<p>Enim blandit volutpat maecenas volutpat blandit aliquam etiam erat. Leo urna molestie at elementum eu facilisis sed odio morbi. Aliquam vestibulum morbi blandit cursus risus at ultrices. Eu sem integer vitae justo eget magna fermentum. Commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Venenatis urna cursus eget nunc scelerisque viverra mauris in aliquam. Ullamcorper morbi tincidunt ornare massa eget. Felis eget nunc lobortis mattis. Imperdiet dui accumsan sit amet. Massa vitae tortor condimentum lacinia. Id semper risus in hendrerit gravida rutrum quisque non tellus.</p>
-
-<p>Hac habitasse platea dictumst vestibulum rhoncus. Gravida neque convallis a cras semper auctor neque vitae tempus. Pharetra diam sit amet nisl suscipit adipiscing bibendum. Faucibus vitae aliquet nec ullamcorper sit. Magna etiam tempor orci eu lobortis elementum nibh tellus molestie. Augue eget arcu dictum varius duis at. Lobortis scelerisque fermentum dui faucibus in. Et malesuada fames ac turpis egestas sed tempus urna. Viverra orci sagittis eu volutpat odio facilisis. Orci ac auctor augue mauris augue. Nec tincidunt praesent semper feugiat nibh. Nisi quis eleifend quam adipiscing vitae proin. Mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et. Malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit. Amet consectetur adipiscing elit pellentesque.</p>
-
-<p>Ipsum suspendisse ultrices gravida dictum fusce ut placerat. Lobortis elementum nibh tellus molestie nunc. Et netus et malesuada fames ac turpis egestas sed. Elit at imperdiet dui accumsan sit. Pretium viverra suspendisse potenti nullam ac tortor vitae purus faucibus. Ornare lectus sit amet est placerat in egestas erat. Sed faucibus turpis in eu mi bibendum. Penatibus et magnis dis parturient montes nascetur. Id consectetur purus ut faucibus pulvinar. Commodo elit at imperdiet dui accumsan sit. Nec sagittis aliquam malesuada bibendum arcu vitae. Facilisis sed odio morbi quis commodo odio aenean. Quis commodo odio aenean sed adipiscing. Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis. Scelerisque mauris pellentesque pulvinar pellentesque. Bibendum at varius vel pharetra vel turpis nunc eget. Luctus venenatis lectus magna fringilla urna porttitor. Ac placerat vestibulum lectus mauris ultrices.</p>
-
-<p>Convallis tellus id interdum velit laoreet id. Nulla porttitor massa id neque aliquam vestibulum. Massa enim nec dui nunc mattis enim ut tellus elementum. Sed elementum tempus egestas sed sed risus pretium quam. Tellus cras adipiscing enim eu turpis egestas pretium. Enim neque volutpat ac tincidunt vitae semper quis lectus. Non quam lacus suspendisse faucibus interdum posuere. Ultricies mi eget mauris pharetra et ultrices neque ornare. Orci nulla pellentesque dignissim enim sit amet venenatis urna cursus. Magna sit amet purus gravida quis blandit turpis. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus. Libero nunc consequat interdum varius sit amet mattis vulputate. Enim sit amet venenatis urna cursus eget nunc scelerisque viverra. Tincidunt id aliquet risus feugiat. Orci a scelerisque purus semper. Odio ut enim blandit volutpat maecenas volutpat. Massa sapien faucibus et molestie. Sapien nec sagittis aliquam malesuada bibendum.</p>
-
-<p>Risus nullam eget felis eget nunc lobortis mattis. Phasellus egestas tellus rutrum tellus. Vitae et leo duis ut diam. Venenatis cras sed felis eget velit. Massa tincidunt dui ut ornare lectus. Metus aliquam eleifend mi in nulla posuere sollicitudin. Enim eu turpis egestas pretium aenean pharetra. Viverra justo nec ultrices dui sapien eget mi proin. At imperdiet dui accumsan sit amet nulla facilisi morbi tempus. Cursus turpis massa tincidunt dui ut ornare lectus. Malesuada bibendum arcu vitae elementum curabitur vitae nunc. Netus et malesuada fames ac turpis egestas. Egestas erat imperdiet sed euismod nisi porta. Aliquam vestibulum morbi blandit cursus risus at ultrices mi. Aenean euismod elementum nisi quis eleifend quam adipiscing vitae. Est ultricies integer quis auctor elit sed. Cras fermentum odio eu feugiat pretium nibh. Maecenas pharetra convallis posuere morbi leo urna molestie at.</p>
-
-<p>Mauris nunc congue nisi vitae suscipit tellus mauris a. Cursus mattis molestie a iaculis at erat. Cras adipiscing enim eu turpis egestas pretium aenean pharetra. Luctus venenatis lectus magna fringilla urna. Id eu nisl nunc mi ipsum faucibus vitae aliquet. Morbi blandit cursus risus at ultrices. Malesuada nunc vel risus commodo viverra maecenas accumsan. Aliquam ut porttitor leo a diam sollicitudin tempor. Mattis pellentesque id nibh tortor id aliquet lectus proin. At volutpat diam ut venenatis tellus in metus. Egestas maecenas pharetra convallis posuere.</p>
-
-<p>Auctor eu augue ut lectus arcu bibendum. Velit laoreet id donec ultrices tincidunt. Gravida in fermentum et sollicitudin ac orci phasellus. Sed risus ultricies tristique nulla aliquet enim. Nunc mattis enim ut tellus elementum sagittis. Magnis dis parturient montes nascetur ridiculus. Non pulvinar neque laoreet suspendisse interdum consectetur libero. Quis vel eros donec ac odio tempor orci dapibus ultrices. Massa id neque aliquam vestibulum morbi. Feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam. Mattis enim ut tellus elementum sagittis vitae et. Tempus egestas sed sed risus pretium quam vulputate dignissim suspendisse. Elementum eu facilisis sed odio morbi quis commodo odio aenean. Arcu ac tortor dignissim convallis aenean. Lectus arcu bibendum at varius vel pharetra vel turpis nunc. Bibendum neque egestas congue quisque egestas diam in. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Mauris rhoncus aenean vel elit scelerisque. Lectus mauris ultrices eros in. Ut etiam sit amet nisl purus in mollis.</p>
-
-<p>Amet venenatis urna cursus eget nunc scelerisque viverra. Massa sapien faucibus et molestie ac feugiat sed lectus vestibulum. Gravida cum sociis natoque penatibus et magnis dis. Ornare arcu odio ut sem nulla pharetra diam. In vitae turpis massa sed elementum tempus egestas sed. Sagittis orci a scelerisque purus semper eget duis at. In hac habitasse platea dictumst quisque sagittis purus sit amet. Ultricies lacus sed turpis tincidunt id aliquet. Tortor posuere ac ut consequat semper. Nisl condimentum id venenatis a condimentum vitae sapien pellentesque. Id semper risus in hendrerit gravida rutrum quisque. Nibh tellus molestie nunc non. Nunc mattis enim ut tellus elementum. Vel pretium lectus quam id. Semper eget duis at tellus. Arcu non sodales neque sodales ut etiam sit. Amet nisl purus in mollis nunc. Aenean sed adipiscing diam donec adipiscing tristique risus nec feugiat. Metus vulputate eu scelerisque felis imperdiet proin fermentum leo vel.</p>
-
-<p>Nec ullamcorper sit amet risus nullam eget. Scelerisque eu ultrices vitae auctor. Pulvinar elementum integer enim neque volutpat. Aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. Amet risus nullam eget felis eget nunc lobortis mattis aliquam. Egestas tellus rutrum tellus pellentesque eu tincidunt. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Aliquam ut porttitor leo a diam sollicitudin tempor. Lectus mauris ultrices eros in. Amet risus nullam eget felis eget. Ac orci phasellus egestas tellus rutrum tellus pellentesque eu. Nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper sit. Ridiculus mus mauris vitae ultricies. Sed turpis tincidunt id aliquet risus feugiat in ante metus. Commodo ullamcorper a lacus vestibulum sed. In tellus integer feugiat scelerisque varius morbi enim nunc.</p>
-
-<p>Praesent elementum facilisis leo vel fringilla est ullamcorper eget nulla. Fringilla urna porttitor rhoncus dolor purus. Sit amet consectetur adipiscing elit ut aliquam. Viverra orci sagittis eu volutpat odio facilisis mauris sit amet. Vel facilisis volutpat est velit egestas dui id ornare. Elementum eu facilisis sed odio morbi quis commodo. Ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Vivamus at augue eget arcu dictum varius duis at. Leo vel orci porta non pulvinar. Nisl condimentum id venenatis a condimentum. Fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar mattis nunc sed blandit libero volutpat. Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet. Libero justo laoreet sit amet. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla. Penatibus et magnis dis parturient montes nascetur. Dictum at tempor commodo ullamcorper a lacus. Felis eget nunc lobortis mattis aliquam faucibus. Fringilla est ullamcorper eget nulla facilisi.</p>
-
-<p>Metus aliquam eleifend mi in. Vulputate sapien nec sagittis aliquam. In fermentum et sollicitudin ac orci phasellus egestas. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Morbi non arcu risus quis varius quam. Amet venenatis urna cursus eget nunc scelerisque viverra mauris in. A pellentesque sit amet porttitor eget dolor morbi. Neque ornare aenean euismod elementum nisi. Nam libero justo laoreet sit amet. Commodo viverra maecenas accumsan lacus vel facilisis volutpat est velit. Viverra aliquet eget sit amet tellus cras adipiscing enim eu. Sapien et ligula ullamcorper malesuada.</p>
-
-<p>Sit amet cursus sit amet. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat. Hac habitasse platea dictumst quisque sagittis. Cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Odio eu feugiat pretium nibh. Sit amet commodo nulla facilisi nullam. Ut pharetra sit amet aliquam id diam. Turpis massa sed elementum tempus egestas sed sed risus pretium. Tincidunt vitae semper quis lectus. Nunc lobortis mattis aliquam faucibus purus in. At lectus urna duis convallis convallis. Tortor dignissim convallis aenean et tortor at. Diam sollicitudin tempor id eu nisl. Id interdum velit laoreet id donec ultrices tincidunt. Sed egestas egestas fringilla phasellus faucibus scelerisque. Imperdiet sed euismod nisi porta lorem. Imperdiet sed euismod nisi porta lorem. Tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-
-<p>Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Luctus venenatis lectus magna fringilla urna. Id porta nibh venenatis cras sed felis eget velit aliquet. Urna porttitor rhoncus dolor purus non enim praesent elementum facilisis. Urna porttitor rhoncus dolor purus. Accumsan in nisl nisi scelerisque. Ultrices neque ornare aenean euismod elementum nisi quis. Laoreet non curabitur gravida arcu ac tortor dignissim. Sed ullamcorper morbi tincidunt ornare massa eget egestas purus viverra. Semper risus in hendrerit gravida rutrum. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu. Duis ultricies lacus sed turpis tincidunt. Amet consectetur adipiscing elit ut. Dignissim diam quis enim lobortis scelerisque fermentum dui. Orci sagittis eu volutpat odio facilisis mauris. Elit duis tristique sollicitudin nibh. Aliquam sem et tortor consequat id porta nibh venenatis. Condimentum lacinia quis vel eros. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada.</p>
-
-<p>Aliquam ultrices sagittis orci a scelerisque purus semper. Sodales ut eu sem integer. Tortor dignissim convallis aenean et tortor at risus viverra adipiscing. Aliquam ultrices sagittis orci a scelerisque. Neque egestas congue quisque egestas diam in. Accumsan lacus vel facilisis volutpat est velit. Morbi tempus iaculis urna id volutpat. Nec sagittis aliquam malesuada bibendum. Nunc non blandit massa enim nec dui. Ante metus dictum at tempor commodo ullamcorper a lacus vestibulum. Pellentesque habitant morbi tristique senectus et netus. Faucibus vitae aliquet nec ullamcorper sit amet risus nullam eget. Malesuada pellentesque elit eget gravida cum sociis natoque penatibus. Suspendisse potenti nullam ac tortor vitae. Vitae auctor eu augue ut lectus arcu. Vitae suscipit tellus mauris a diam maecenas sed enim ut.</p>
-
-<p>Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Gravida cum sociis natoque penatibus et. Proin nibh nisl condimentum id venenatis a condimentum vitae. Volutpat diam ut venenatis tellus in metus. Sit amet nisl purus in mollis nunc sed. In ornare quam viverra orci sagittis eu. Nullam non nisi est sit amet facilisis magna etiam tempor. Fusce id velit ut tortor pretium viverra. Ipsum nunc aliquet bibendum enim. Molestie nunc non blandit massa enim nec dui nunc mattis. Volutpat est velit egestas dui. Senectus et netus et malesuada fames ac turpis egestas sed.</p>
-
-<p>Mauris nunc congue nisi vitae suscipit tellus mauris. Dolor magna eget est lorem ipsum dolor. Non pulvinar neque laoreet suspendisse interdum consectetur. Orci dapibus ultrices in iaculis nunc sed augue lacus viverra. Maecenas ultricies mi eget mauris pharetra et ultrices. Hac habitasse platea dictumst vestibulum. Etiam non quam lacus suspendisse faucibus. Nunc congue nisi vitae suscipit tellus mauris a. Integer vitae justo eget magna fermentum. Dui faucibus in ornare quam viverra orci. Arcu bibendum at varius vel pharetra. In arcu cursus euismod quis viverra nibh cras pulvinar mattis. Sem integer vitae justo eget magna fermentum iaculis eu non. Enim lobortis scelerisque fermentum dui faucibus in. Volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque in. Neque laoreet suspendisse interdum consectetur libero id faucibus. Nibh cras pulvinar mattis nunc sed blandit libero. Risus sed vulputate odio ut enim blandit volutpat maecenas volutpat. Augue ut lectus arcu bibendum at varius vel.</p>
-
-<p>Vestibulum sed arcu non odio euismod lacinia at. Sit amet est placerat in. Egestas tellus rutrum tellus pellentesque eu. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar elementum. Tortor consequat id porta nibh venenatis. Fringilla est ullamcorper eget nulla. Orci ac auctor augue mauris. Ultrices neque ornare aenean euismod elementum nisi quis. Cum sociis natoque penatibus et magnis dis. A pellentesque sit amet porttitor eget dolor morbi. Fermentum leo vel orci porta non pulvinar neque laoreet suspendisse. Et malesuada fames ac turpis egestas sed tempus. Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique. Vitae suscipit tellus mauris a diam maecenas sed enim ut.</p>
-
-<p>Varius sit amet mattis vulputate enim nulla aliquet porttitor. Velit egestas dui id ornare. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit. Et pharetra pharetra massa massa. Elit eget gravida cum sociis. In metus vulputate eu scelerisque felis imperdiet. Adipiscing bibendum est ultricies integer quis auctor elit. Sit amet purus gravida quis. Nisi porta lorem mollis aliquam. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar. Facilisis volutpat est velit egestas dui id. Turpis nunc eget lorem dolor sed. Consequat semper viverra nam libero justo laoreet sit amet cursus. Justo eget magna fermentum iaculis. Velit aliquet sagittis id consectetur purus ut. Risus quis varius quam quisque. Integer quis auctor elit sed vulputate mi sit amet. Tempor orci eu lobortis elementum nibh. Placerat duis ultricies lacus sed turpis tincidunt.</p>
-
-<p>Sapien pellentesque habitant morbi tristique. Quam nulla porttitor massa id neque aliquam vestibulum morbi blandit. Ut eu sem integer vitae justo eget. Enim diam vulputate ut pharetra sit amet aliquam. Purus non enim praesent elementum facilisis leo. Et sollicitudin ac orci phasellus egestas tellus rutrum. Commodo odio aenean sed adipiscing diam. Sem nulla pharetra diam sit amet nisl suscipit. Est ultricies integer quis auctor elit sed vulputate mi. Non nisi est sit amet facilisis magna etiam tempor. Nunc id cursus metus aliquam eleifend mi in. Nibh tellus molestie nunc non. Mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Eu sem integer vitae justo eget magna fermentum. Viverra nibh cras pulvinar mattis. Integer malesuada nunc vel risus commodo. Ac odio tempor orci dapibus ultrices in. Est placerat in egestas erat imperdiet sed euismod. Nisl condimentum id venenatis a condimentum vitae.</p>
-
-<p>Ipsum nunc aliquet bibendum enim. Erat imperdiet sed euismod nisi porta lorem mollis aliquam. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Quisque sagittis purus sit amet volutpat. Odio euismod lacinia at quis risus sed vulputate odio. Vitae nunc sed velit dignissim sodales ut eu sem. Id eu nisl nunc mi ipsum faucibus vitae aliquet. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Gravida dictum fusce ut placerat orci nulla pellentesque. Gravida cum sociis natoque penatibus et. Dolor purus non enim praesent elementum facilisis leo vel fringilla. Duis at consectetur lorem donec massa sapien faucibus. Erat velit scelerisque in dictum non consectetur a erat. Amet consectetur adipiscing elit ut aliquam purus sit amet luctus. Integer feugiat scelerisque varius morbi enim. Netus et malesuada fames ac turpis egestas integer eget aliquet. Sit amet consectetur adipiscing elit ut. Lectus quam id leo in vitae turpis massa sed elementum. Nibh nisl condimentum id venenatis a condimentum vitae sapien.</p>
-
-<p>Eu tincidunt tortor aliquam nulla facilisi cras fermentum. Ut tellus elementum sagittis vitae et leo duis ut diam. Vitae proin sagittis nisl rhoncus mattis rhoncus. Ut placerat orci nulla pellentesque dignissim enim sit. Elit at imperdiet dui accumsan. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing. Risus at ultrices mi tempus imperdiet nulla malesuada. Elit duis tristique sollicitudin nibh sit amet commodo. Quis commodo odio aenean sed adipiscing diam donec. Cursus mattis molestie a iaculis at erat. Nunc faucibus a pellentesque sit amet porttitor. Urna condimentum mattis pellentesque id nibh.</p>
-
-<p>Libero volutpat sed cras ornare arcu. Vivamus arcu felis bibendum ut tristique et egestas quis. Tincidunt eget nullam non nisi est sit amet facilisis magna. Velit aliquet sagittis id consectetur purus ut. Orci phasellus egestas tellus rutrum tellus. Tempor commodo ullamcorper a lacus vestibulum sed arcu. Id aliquet risus feugiat in ante metus dictum. Duis ultricies lacus sed turpis tincidunt id aliquet. Malesuada fames ac turpis egestas. Nam libero justo laoreet sit amet cursus sit amet dictum. Bibendum ut tristique et egestas quis ipsum suspendisse ultrices. Elit at imperdiet dui accumsan sit amet nulla. Sed sed risus pretium quam vulputate dignissim suspendisse. Mattis molestie a iaculis at erat pellentesque adipiscing. Tortor dignissim convallis aenean et tortor at. Placerat duis ultricies lacus sed.</p>
-
-<p>Massa tincidunt nunc pulvinar sapien et ligula ullamcorper. Ut etiam sit amet nisl purus in mollis. Non pulvinar neque laoreet suspendisse interdum consectetur. Sed nisi lacus sed viverra. Lorem donec massa sapien faucibus et molestie ac feugiat. Pellentesque habitant morbi tristique senectus. Massa placerat duis ultricies lacus sed. Ipsum suspendisse ultrices gravida dictum. Quis risus sed vulputate odio ut enim. Eu facilisis sed odio morbi quis. Varius quam quisque id diam vel quam elementum. Dui vivamus arcu felis bibendum ut tristique et. Id semper risus in hendrerit. Quam id leo in vitae turpis massa. Facilisi nullam vehicula ipsum a arcu. Leo urna molestie at elementum eu facilisis sed odio morbi. Massa sapien faucibus et molestie ac feugiat. Dictum varius duis at consectetur lorem donec massa sapien.</p>
-
-<p>Mollis aliquam ut porttitor leo a diam sollicitudin tempor id. Lobortis mattis aliquam faucibus purus in massa tempor nec. Nisl nunc mi ipsum faucibus vitae aliquet. Neque vitae tempus quam pellentesque nec. Adipiscing commodo elit at imperdiet dui accumsan sit amet nulla. In tellus integer feugiat scelerisque varius morbi enim nunc. Nunc id cursus metus aliquam eleifend mi in nulla. Ut ornare lectus sit amet est placerat. In massa tempor nec feugiat nisl pretium fusce. Elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Posuere sollicitudin aliquam ultrices sagittis orci. Adipiscing tristique risus nec feugiat in fermentum. Lacus sed turpis tincidunt id aliquet risus feugiat in.</p>
-
-<p>Ornare suspendisse sed nisi lacus sed viverra tellus. Sollicitudin tempor id eu nisl nunc mi. Et netus et malesuada fames. Nunc pulvinar sapien et ligula ullamcorper malesuada proin libero nunc. Ultricies mi eget mauris pharetra et ultrices neque ornare. Pulvinar pellentesque habitant morbi tristique. Elit ut aliquam purus sit. Et egestas quis ipsum suspendisse ultrices gravida. Netus et malesuada fames ac turpis egestas sed tempus. Lacus sed turpis tincidunt id. Duis ut diam quam nulla porttitor massa id neque. Cras ornare arcu dui vivamus arcu. Malesuada fames ac turpis egestas maecenas pharetra. Tempus quam pellentesque nec nam aliquam sem. Sed adipiscing diam donec adipiscing tristique risus nec.</p>
-
-<p>A arcu cursus vitae congue mauris rhoncus aenean. Risus at ultrices mi tempus. Commodo elit at imperdiet dui accumsan sit. Vulputate mi sit amet mauris commodo quis imperdiet massa. Tristique senectus et netus et malesuada fames. Dictum non consectetur a erat nam at. Ut tortor pretium viverra suspendisse potenti nullam ac tortor. Semper auctor neque vitae tempus quam pellentesque nec nam aliquam. Ullamcorper velit sed ullamcorper morbi tincidunt. Nisi vitae suscipit tellus mauris a diam. Diam phasellus vestibulum lorem sed risus.</p>
-
-<p>Ut porttitor leo a diam sollicitudin. Tellus at urna condimentum mattis pellentesque id nibh tortor. Quis enim lobortis scelerisque fermentum dui faucibus in. Risus in hendrerit gravida rutrum quisque non. Sit amet tellus cras adipiscing enim eu turpis egestas. Viverra mauris in aliquam sem fringilla ut. Integer quis auctor elit sed vulputate. Phasellus egestas tellus rutrum tellus pellentesque eu tincidunt. A lacus vestibulum sed arcu non odio. Dictum sit amet justo donec. Malesuada proin libero nunc consequat interdum varius sit.</p>
-
-<p>Faucibus in ornare quam viverra. Et sollicitudin ac orci phasellus egestas tellus. Nec tincidunt praesent semper feugiat nibh sed. Amet massa vitae tortor condimentum lacinia quis vel eros donec. Malesuada fames ac turpis egestas integer eget aliquet nibh. Convallis a cras semper auctor. Enim diam vulputate ut pharetra sit amet aliquam id diam. Est velit egestas dui id ornare arcu odio ut sem. Libero id faucibus nisl tincidunt eget. Pretium vulputate sapien nec sagittis. Dui nunc mattis enim ut. Risus viverra adipiscing at in tellus integer.</p>
-
-<p>Feugiat in fermentum posuere urna nec tincidunt praesent semper. Elit eget gravida cum sociis natoque penatibus et magnis dis. Viverra ipsum nunc aliquet bibendum enim facilisis. Gravida quis blandit turpis cursus. Enim diam vulputate ut pharetra sit amet aliquam id. Aliquam sem fringilla ut morbi. Elementum curabitur vitae nunc sed velit dignissim sodales ut. Feugiat sed lectus vestibulum mattis ullamcorper velit. Tincidunt lobortis feugiat vivamus at augue eget arcu. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt lobortis. Curabitur vitae nunc sed velit dignissim sodales ut eu. Vitae turpis massa sed elementum tempus egestas. Duis at consectetur lorem donec. Dolor purus non enim praesent elementum. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare. Mattis enim ut tellus elementum sagittis vitae et. Sed risus ultricies tristique nulla aliquet. Massa tincidunt dui ut ornare. Ut sem viverra aliquet eget sit amet tellus cras adipiscing. Vulputate dignissim suspendisse in est ante in nibh mauris.</p>
-
-<p>Bibendum est ultricies integer quis auctor elit sed vulputate mi. Aliquet enim tortor at auctor. Feugiat nibh sed pulvinar proin gravida hendrerit lectus. Nunc sed velit dignissim sodales. Commodo sed egestas egestas fringilla phasellus. Non quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor. Enim ut sem viverra aliquet eget sit amet tellus cras. At tellus at urna condimentum. Vestibulum lorem sed risus ultricies tristique nulla. Vitae justo eget magna fermentum iaculis eu non diam. Ornare aenean euismod elementum nisi quis eleifend quam adipiscing vitae.</p>
-
-<p>Faucibus et molestie ac feugiat sed lectus vestibulum mattis. Consequat interdum varius sit amet mattis vulputate enim nulla aliquet. Proin sed libero enim sed faucibus turpis. Pretium aenean pharetra magna ac placerat. Porttitor lacus luctus accumsan tortor posuere ac ut consequat semper. Tempus urna et pharetra pharetra massa massa. Fusce id velit ut tortor pretium. Id interdum velit laoreet id donec ultrices tincidunt arcu non. Maecenas volutpat blandit aliquam etiam. Orci nulla pellentesque dignissim enim. Risus quis varius quam quisque. In vitae turpis massa sed elementum tempus egestas sed. Molestie at elementum eu facilisis sed odio morbi quis commodo. In egestas erat imperdiet sed euismod nisi porta.</p>
-
-<p>Ullamcorper morbi tincidunt ornare massa eget egestas. Vel facilisis volutpat est velit egestas dui id ornare. Amet justo donec enim diam vulputate ut pharetra. Elementum integer enim neque volutpat ac tincidunt vitae semper quis. In nisl nisi scelerisque eu. Ornare massa eget egestas purus. Sem viverra aliquet eget sit. Id cursus metus aliquam eleifend mi in nulla posuere. Tincidunt dui ut ornare lectus sit amet est placerat in. Ut etiam sit amet nisl purus in mollis nunc sed. Quis eleifend quam adipiscing vitae proin sagittis nisl. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Ac turpis egestas sed tempus urna et pharetra. Augue neque gravida in fermentum et sollicitudin ac. Et ligula ullamcorper malesuada proin libero nunc consequat. Ut tortor pretium viverra suspendisse potenti nullam. Amet aliquam id diam maecenas ultricies mi eget. Lorem sed risus ultricies tristique nulla. Tincidunt ornare massa eget egestas purus viverra accumsan in nisl. Velit aliquet sagittis id consectetur.</p>
-
-<p>Velit scelerisque in dictum non consectetur a erat nam at. Pharetra diam sit amet nisl suscipit adipiscing bibendum. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Pulvinar proin gravida hendrerit lectus. Magna fringilla urna porttitor rhoncus. In metus vulputate eu scelerisque felis imperdiet. Risus viverra adipiscing at in tellus integer feugiat scelerisque. Cras semper auctor neque vitae tempus. Consequat ac felis donec et odio pellentesque diam. Purus in mollis nunc sed. Facilisis sed odio morbi quis commodo odio aenean sed adipiscing. Id eu nisl nunc mi. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate. Quis ipsum suspendisse ultrices gravida dictum. Orci porta non pulvinar neque laoreet suspendisse. Penatibus et magnis dis parturient. Vitae aliquet nec ullamcorper sit amet risus nullam eget.</p>
-
-<p>Vestibulum mattis ullamcorper velit sed ullamcorper morbi. Sapien et ligula ullamcorper malesuada proin. Nisi scelerisque eu ultrices vitae auctor eu augue. Phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet enim. Et sollicitudin ac orci phasellus egestas tellus rutrum. Ultricies lacus sed turpis tincidunt. Consequat nisl vel pretium lectus quam id. Blandit turpis cursus in hac habitasse platea dictumst quisque. Eros donec ac odio tempor orci dapibus ultrices. Cras fermentum odio eu feugiat pretium. Vitae suscipit tellus mauris a diam maecenas. Libero id faucibus nisl tincidunt eget. Montes nascetur ridiculus mus mauris vitae. Maecenas sed enim ut sem viverra aliquet eget. Massa eget egestas purus viverra accumsan. Tincidunt eget nullam non nisi est sit amet. Dictum fusce ut placerat orci nulla pellentesque dignissim.</p>
-
-<p>Ac ut consequat semper viverra nam libero justo. Nulla aliquet enim tortor at auctor urna. Enim nec dui nunc mattis enim. Commodo quis imperdiet massa tincidunt nunc pulvinar. Arcu odio ut sem nulla pharetra diam sit amet. Commodo ullamcorper a lacus vestibulum sed. Tincidunt tortor aliquam nulla facilisi cras. Malesuada pellentesque elit eget gravida. Proin nibh nisl condimentum id venenatis. Dui id ornare arcu odio ut sem. Feugiat scelerisque varius morbi enim nunc faucibus a. Massa tempor nec feugiat nisl pretium fusce id velit ut. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Est lorem ipsum dolor sit. Ultricies mi eget mauris pharetra et ultrices neque ornare. Ipsum a arcu cursus vitae congue mauris. Magna etiam tempor orci eu. Morbi tristique senectus et netus et malesuada fames ac.</p>
-
-<p>Facilisi nullam vehicula ipsum a arcu cursus vitae congue mauris. Vulputate enim nulla aliquet porttitor lacus luctus. Ut eu sem integer vitae justo eget. Donec ultrices tincidunt arcu non sodales neque. Praesent elementum facilisis leo vel fringilla est. Lacus luctus accumsan tortor posuere ac. Nullam eget felis eget nunc lobortis mattis aliquam faucibus. Congue quisque egestas diam in arcu cursus euismod quis. Maecenas volutpat blandit aliquam etiam erat velit scelerisque in. Adipiscing elit pellentesque habitant morbi tristique senectus et netus. Ultrices tincidunt arcu non sodales. Nisi vitae suscipit tellus mauris. Eu nisl nunc mi ipsum faucibus vitae aliquet. Rhoncus urna neque viverra justo nec ultrices dui. Egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate. Mauris cursus mattis molestie a. Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant.</p>
-
-<p>Hendrerit gravida rutrum quisque non tellus orci. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Amet dictum sit amet justo donec enim. Cras semper auctor neque vitae tempus quam pellentesque nec. At consectetur lorem donec massa sapien faucibus et. Arcu ac tortor dignissim convallis. Odio ut sem nulla pharetra diam. Purus viverra accumsan in nisl nisi. Volutpat maecenas volutpat blandit aliquam etiam erat. Risus quis varius quam quisque. A condimentum vitae sapien pellentesque habitant morbi. Eget nunc lobortis mattis aliquam faucibus purus. Ornare quam viverra orci sagittis eu. Quis viverra nibh cras pulvinar mattis nunc sed.</p>
-
-<p>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque sit. Adipiscing elit pellentesque habitant morbi tristique. Faucibus scelerisque eleifend donec pretium vulputate sapien nec. Ac odio tempor orci dapibus ultrices in iaculis. A condimentum vitae sapien pellentesque habitant morbi. Sapien nec sagittis aliquam malesuada. In egestas erat imperdiet sed euismod nisi porta lorem. Praesent tristique magna sit amet purus gravida quis blandit turpis. Libero justo laoreet sit amet cursus sit. Consectetur adipiscing elit ut aliquam purus sit amet.</p>
+<p>Our <a href="https://www.casinoslists.com/features/live-dealer">Live Dealer Casinos</a> and <a href="https://www.casinoslists.com/casinos/best">Popular Casinos</a> lists will offer you a preview of the most popular options in the online gaming market. Players participate in the action through video streaming and often place their bets via their mobile devices. You should check CasinosLists&rsquo; <a href="https://www.casinoslists.com/casinos/mobile">Mobile Casinos</a> page to find out which online gambling sites are compatible with your operating system. Softwares like RTG or Microgaming even allow gamblers to chat with each other or chat with the dealer via the Live Chat feature. There are plenty of options, so don&rsquo;t hold back and give them a try! Good luck!</p>
 ',
   ),
 ));
