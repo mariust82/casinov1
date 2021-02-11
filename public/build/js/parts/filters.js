@@ -912,13 +912,13 @@ function processCheckboxes(_this) {
         });
 
         $('.select2-search__field').off("keyup").on('keyup', function () {
-            checkIds();
-            if (!searchIDs.length) {
-                clearButtonSelector.hide();
-            } else {
-                printClearButtonText(searchIDs.length);
-                clearButtonSelector.show();
-            }
+            // checkIds();
+            // if (!searchIDs.length) {
+            //     clearButtonSelector.hide();
+            // } else {
+            //     printClearButtonText(searchIDs.length);
+            //     clearButtonSelector.show();
+            // }
         });
 
         // function showHideClearButton() {
