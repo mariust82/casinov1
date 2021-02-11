@@ -8,6 +8,7 @@ class CasinosMenu
         "/{page}"=>"{entity} Casinos",
         "/bonus-list/no-deposit-bonus"=>"No Deposit Casinos",
         "/casinos/best"=>"Best Casinos",
+        "/casinos/low-minimum-deposit"=>"Low Minimum Deposit Casinos",
         "/casinos/mobile"=>"Mobile Casinos",
         "/casinos/low-wagering" => "Low Wagering Casinos",
         "/casinos/fast-payout" => "Fast Payout Casinos",

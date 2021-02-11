@@ -861,6 +861,7 @@
                 }
 
                 this.$results.append($options);
+                // processCheckboxes(this.$element);
             };
 
             Results.prototype.position = function ($results, $dropdown) {
@@ -1031,6 +1032,8 @@
                     if (container.isOpen()) {
                         self.setClasses();
                         self.highlightFirstItem();
+
+                        processCheckboxes(this.$element, this.$results);
                     }
                 });
 
@@ -1275,9 +1278,9 @@
                 nextOffset -= $highlighted.outerHeight(false) * 2;
 
                 if (currentIndex <= 2) {
-                    this.$results.scrollTop(0);
+                    // this.$results.scrollTop(0);
                 } else if (offsetDelta > this.$results.outerHeight() || offsetDelta < 0) {
-                    this.$results.scrollTop(nextOffset);
+                    // this.$results.scrollTop(nextOffset);
                 }
             };
 

@@ -1,11 +1,12 @@
 var ListFilters = function (obj) {
+
     var _obj = obj,
             _self = this,
             _switchers = _obj.find('input[type=checkbox]'),
             _radios = _obj.find('input[type=radio]'),
             _selectFilter = _obj.find($('.filter-filter .select')),
             _targetContainer = $('.data-container'),
-            _targetAddContainer = $('.data-add-container'),
+            _targetAddContainer = $('.list-body'),
             _paramName = _targetContainer.data('type'),
             _paramValue = _targetContainer.data('type-value'),
             _ajaxContent = $('.aj-content'),
@@ -16,6 +17,7 @@ var ListFilters = function (obj) {
             _itemsPerPage = 25,
             _request = new XMLHttpRequest();
 
+
     if (typeof _paramName == 'undefined') {
         _paramName = 'game_type';
     }
@@ -23,6 +25,37 @@ var ListFilters = function (obj) {
     _url = _obj.data('url');
 
     _switchers.prop('checked', false);
+    
+    var CloseTFPopup = function () {
+        $('.close_tf_wrap').on('click', function (e) {
+            console.dir($(this).parent().parent().parent());
+            $(this).parent().parent().parent().remove();
+            e.stopPropagation();
+
+        });
+    }
+
+    var ShowTFPopup = function () {
+        console.dir('shay');
+        $(".tf_flex").on('click', function () {
+            var id = $(this).data('id');
+            var _this = $(this);
+            $.ajax({
+                url: '/timeframe-tooltip',
+                type: 'POST',
+                data: {
+                    id: id
+                },
+                dataType: 'html'
+            })
+                    .done(function (data) {
+                        $(".software-tooltipster").remove();
+                        _this.append(data);
+                        CloseTFPopup();
+
+                    });
+        });
+    }
 
     var _onEvent = function () {
         _moreButton = $('.js-more-items');
@@ -57,8 +90,7 @@ var ListFilters = function (obj) {
 
         _moreButton.off();
         _moreButton.on('click', function () {
-            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add', this);
-
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add', this), 'add', this);
             return false;
         });
 
@@ -68,10 +100,10 @@ var ListFilters = function (obj) {
 
             return false;
         });
-
     },
     
     _getAjaxParams = function (_paramName, _paramValue, _action, _this) {
+
         var _ajaxDataParams = {};
         $.each(_switchers, function (index, el) {
             if ($(el).is(':checked')) {
@@ -103,6 +135,8 @@ var ListFilters = function (obj) {
         _ajaxDataParams[_paramName] = _paramValue;
         $.each(_selectFilter, function (index, el) {
             if ($(el).val() != 'undefined' && $(el).val() != null) {
+               /* console.log($(el).attr('name'));
+                console.log($(el).val().join());*/
                 _ajaxDataParams[$(el).attr('name')] = $(el).val().join();
             }
         });
@@ -115,41 +149,48 @@ var ListFilters = function (obj) {
                 _ajaxDataParams['features'] = '';
                 _ajaxDataParams['themes'] = '';
             }
-            if (typeof _ajaxDataParams['software'] === 'undefined' && typeof $('.data-container').data('software') !== 'undefined')
+            /*if (typeof _ajaxDataParams['software'] === 'undefined' && typeof $('.data-container').data('software') !== 'undefined')
             {
                 _ajaxDataParams['software'] = $('.data-container').data('software');
-            }
-        } else {
+            }*/
+        } /*else {
             _ajaxDataParams['software'] = $('.data-container').data('software');
-        }
+        }*/
+
+        _targetAddContainer = $(_this).closest('.container').find('.data-add-container:first');
+
+        _ajaxDataParams['offset'] = _action == 'add' ? $(_targetAddContainer).children().length : 0;
+
+       // console.log(_ajaxDataParams);
 
         if (typeof AJAX_CUR_PAGE == "undefined")
-            AJAX_CUR_PAGE = 1;
+            AJAX_CUR_PAGE = 0;
         AJAX_CUR_PAGE++;
         if (_action != 'add' || _action == 'reset') {
-            AJAX_CUR_PAGE = 1;
+            AJAX_CUR_PAGE = 0;
         }
 
-        if (sortMode != _ajaxDataParams['sort']) {
+       /* if (sortMode != _ajaxDataParams['sort']) {
             if (typeof resetGameItemsCounter === "function") {
                 resetGameItemsCounter();
             }
         }
 
-
         if (path === '/best-online-slots')
-            gameItemsBoxCounter = 5;
+            gameItemsBoxCounter = 5; */
 
         return _ajaxDataParams;
     },
     
     _ajaxRequestCasinos = function (_ajaxDataParams, _action, _this) {
-        if (allGameItemsReceived) {
+       /* if (allGameItemsReceived) {
             if (typeof updateGameItemsCounters === "function") {
                 updateGameItemsCounters();
             }
             return;
-        }
+        }*/
+
+       // console.log();
 
         $('.overlay, .loader').fadeIn('fast');
 
@@ -158,10 +199,7 @@ var ListFilters = function (obj) {
         BUSY_REQUEST = true;
         _request.abort();
 
-        if (typeof getGameInfoTypeCol == 'function') {
-            _ajaxDataParams['gameInfoTypeCol'] = getGameInfoTypeCol();
-        }
-        var theme = window.location.pathname.split('themes/');
+/*        var theme = window.location.pathname.split('themes/');
         if (typeof _ajaxDataParams['themes'] == 'undefined') {
             if (theme.length == 2)
                 _ajaxDataParams['themes'] = theme[1];
@@ -169,23 +207,26 @@ var ListFilters = function (obj) {
             var _themesArray = _ajaxDataParams['themes'].split(',');
             _themesArray.push(theme[1]);
             _ajaxDataParams['themes'] = _themesArray.join(',');
-        }
+        }*/
         _ajaxDataParams['url'] = window.location.pathname;
-        sortMode = _ajaxDataParams['sort'];
-        // console.log(_ajaxDataParams);
+        //sortMode = _ajaxDataParams['sort'];
+
         _request = $.ajax({
             url: _url + AJAX_CUR_PAGE,
             data: _ajaxDataParams,
             dataType: 'html',
             type: 'GET',
             success: function (data) {
+              //  _targetAddContainer = $(_this).closest('.container').find('.data-add-container:first');
                 var scrollPos = $(document).scrollTop();
                 var cont = $(data).find('.loaded-item');
                 var loadTotal = $(data).filter('[data-load-total]').data('load-total');
+                var totalItems = $(data).find('.qty-items').data('load-total');
+
                 if (_url === '/tournaments-filter/') {
                     cont = $(data).find('.list-item-tournament');
 
-                    if (AJAX_CUR_PAGE > 1) {
+                    if (_action == "add") {
                         $('.list-body').append(data);
                     } else {
                         $('.list-body').html(data);
@@ -206,7 +247,7 @@ var ListFilters = function (obj) {
                 } else if (_url === '/no-deposit-slots-filter/') {
                     var total = $('.qty-items').data('load-total');
                     cont = $(data).find('.edges');
-                    if (AJAX_CUR_PAGE > 1) {
+                    if (_action == "add") {
                         $('.casinos-list').append(data);
                     } else {
                         $('.holder').html(data);
@@ -233,12 +274,15 @@ var ListFilters = function (obj) {
                         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                         $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
                     }
-                    initMoboleBonusesPop(ww);
-
+                    //initMoboleBonusesPop(ww);
                 } else {
+
+
                     if (_action == 'replace') {
+                        _targetContainer.html('');
                         _targetContainer.html(data);
-                        _targetAddContainer.html('');
+                        //_targetAddContainer.html('');
+
                         if (_ajaxDataParams['game_type'] == "Best" && loadTotal > 100) {
                             $('.qty-items span').text(100);
                         } else {
@@ -259,14 +303,12 @@ var ListFilters = function (obj) {
                             _emptyContent.hide();
                         }
                     } else {
+                     //   console.log(_this);
                         if ($('.games-list').hasClass('list-view')) {
                             _targetAddContainer.addClass('list-view');
                         }
-                        _targetAddContainer.append(cont);
 
-                        /*if( _ajaxDataParams['total_items_loaded'] >= datatotal){
-                            return false;
-                            }*/
+                        _targetAddContainer.append(cont);
                     }
 
                     if (_url === '/slots-filter/') {
@@ -287,7 +329,7 @@ var ListFilters = function (obj) {
                         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                         $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
                     }
-                    initMoboleBonusesPop(ww);
+                    //initMoboleBonusesPop(ww);
 
                     checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
 
@@ -295,16 +337,29 @@ var ListFilters = function (obj) {
                     if (loadTotal <= itemsNumberLoaded) {
                         if (path === '/real-money-slots')
                             _moreButton.hide();
-                        else
-                            allGameItemsReceived = true;
+                        else{
+                           // allGameItemsReceived = true;
+                        }
+
                     }
                     gameItemsTotalResult = parseInt($('.qty-items span').text());
 
                     if (typeof updateGameData == 'function') {
                         updateGameData();
                     }
+                    gridViewBoxPopup();
                 }
-                imageDefer("lazy_loaded");
+                
+                 if (_url === '/casinos-filter/') {
+                    ShowTFPopup();
+                    CloseTFPopup();
+                }
+                
+                // console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
+                if($('.list-body').children().length >= totalItems) {
+                    _moreButton.hide();
+                }
+                //imageDefer("lazy_loaded");
                 if ($.fn.tooltipster) {
                     $('.js-tooltip').tooltipster(tooltipConfig);
                     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
@@ -496,6 +551,7 @@ function UpdateSelectFilter(_this) {
 
         if (typeof selected_software === 'undefined' && $(_this).attr('name') != 'software') {
 
+
             $.ajax({
                 url: '/filter-software',
                 type: 'GET',
@@ -517,7 +573,9 @@ function UpdateSelectFilter(_this) {
                 // console.log("complete");
             });
         }
-        if (selected_feature === '' && $(_this).attr('name') != 'features') {
+
+
+        /*if (selected_feature === '' && $(_this).attr('name') != 'features') {
             $.ajax({
                 url: '/filter-features',
                 type: 'GET',
@@ -562,7 +620,7 @@ function UpdateSelectFilter(_this) {
             .always(function () {
                 // console.log("complete");
             });
-        }
+        }*/
     }
 
 }
@@ -580,29 +638,32 @@ function prepareSelectFilter() {
         var software = $('.data-container').data('software');
         var pageNewSlots = window.location.pathname === '/new-online-slots'? 1:0;
 
+        var filter = $('#filters').data('filter');
+        var entity = $('#filters').data('entity');
 
-       //  console.dir(type);
-        $.ajax({
-            url: '/filter-software',
-            type: 'GET',
-            data: {
-                type: type,
-                theme: theme,
-                pageNewSlots: pageNewSlots
-            },
-            dataType: 'html'
-        })
-        .done(function (data) {
-            $('#filters .select.software').append(data);
-        })
-        .fail(function () {
-            // console.log("error");
-        })
-        .always(function () {
-            // console.log("complete");
-        });
+       if(filter != undefined) {
+           //  console.dir(type);
+           $.ajax({
+               url: '/filter-software',
+               type: 'GET',
+               data: {
+                   filter: filter,
+                   entity: entity
+               },
+               dataType: 'html'
+           })
+               .done(function (data) {
+                   $('#filters .select.software').append(data);
+               })
+               .fail(function () {
+                   // console.log("error");
+               })
+               .always(function () {
+                   // console.log("complete");
+               });
+       }
 
-        $.ajax({
+    /*    $.ajax({
             url: '/filter-features',
             type: 'GET',
             data: {
@@ -642,7 +703,7 @@ function prepareSelectFilter() {
         })
         .always(function () {
             // console.log("complete");
-        });
+        });*/
     }
 
 }
@@ -757,7 +818,10 @@ function resetFilter(_select) {
 
     $select.val(null).trigger('change').select2('close');
     $('.select2-results__options').children().attr('aria-selected', false);
-    $('.' + selectName + '+.select2 .select2-selection__rendered').html(window[selectName + '_placeholder']);
+
+    $('.select2-selection__rendered').text('Software');
+   // $('.' + selectName + '+.select2 .select2-selection__rendered').html(window[selectName + '_placeholder']);
+
 }
 
 function initCustomSelect() {
@@ -818,6 +882,10 @@ function processCheckboxes(_this) {
         addingClass.addClass("qwerty");
 
         $('.select2-search__field').prop('focus', false);
+
+        selectedItems.length = 0;
+
+        checkIds();
 
         $('.select2-results__option').off("click").on("click", function () {
 

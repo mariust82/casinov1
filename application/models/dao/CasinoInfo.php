@@ -2,6 +2,8 @@
 require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once 'entities/FullWelcomePackage.php';
+require_once 'entities/MatchBonus.php';
+require_once 'application/models/CasinoScore.php';
 
 class CasinoInfo
 {
@@ -58,6 +60,10 @@ class CasinoInfo
             return;
         }
 
+        $casino_score = new CasinoScore();
+        $votes = $this->getUserVotes($output->id);
+        $output->user_votes = $casino_score->setVotesByType($votes);
+
         // detect primary currencies & append to withdrawal minimum
         $primaryCurrencies = implode("/", $this->getPrimaryCurrencies($output->id));
         $output->withdrawal_minimum = !empty($output->withdrawal_minimum) ? $primaryCurrencies.$output->withdrawal_minimum : 0;
@@ -79,12 +85,11 @@ class CasinoInfo
         // $output->bonus_type_Abbreviation = $this->getAbbreviation($output->bonus_free);
 
         $output->welcome_package = !empty($output->bonus_first_deposit) ? $this->getWelcomePackage($output->id) : [];
+        $output->match_bonuses = $this->getMatchBonuses($output->id) ;
 
         $output->casino_deposit_methods =  $this->getCasinoDepositMethods($output->id);
         $output->casino_game_types = $this->getGameTypes($output->id);
         $this->appendCountryInfo($output, $countryId);
-        $output->all_game_types = $this->getAllGameTypes();
-
         $this->getCasinoDepositMethods($output->id);
         $this->result = $output;
     }
@@ -106,6 +111,10 @@ class CasinoInfo
         } else {
             return $results;
         }
+    }
+
+    private function getUserVotes($casino_id){
+        return SQL("SELECT value from casinos__ratings WHERE casino_id = :casino_id and status != 3", array(":casino_id" => $casino_id));
     }
 
     private function getIsAvailableInSite($data)
@@ -369,6 +378,36 @@ class CasinoInfo
         return  $w_packages_data;
     }
 
+    public function getMatchBonuses($casino_id)
+    {
+        $q = "
+                 SELECT
+            t1.*, t2.name as bonus_type_name
+            FROM casinos__bonuses AS t1 
+            INNER JOIN bonus_types as t2 ON t1.bonus_type_id = t2.id
+            WHERE t2.name IN ('Match Bonus') AND t1.casino_id = ".$casino_id."
+        ";
+        $match_bonuses = SQL($q)->toList();
+
+        if (empty($match_bonuses)) {
+            return [];
+        }
+
+        $match_bonuses_data = [];
+        foreach ($match_bonuses as  $m_bonus) {
+            $match_bonus_package = new MatchBonus();
+            $match_bonus_package->valid_on =$m_bonus['availability'];
+            $match_bonus_package->bonus = $m_bonus['amount'];
+            $match_bonus_package->min_deposit = $m_bonus['deposit_minimum'];
+            $match_bonus_package->wagering = $m_bonus['wagering'];
+            $match_bonus_package->games = $m_bonus['games'];
+            $match_bonus_package->bonus_codes = $m_bonus['codes'];
+
+            $match_bonuses_data[] = $match_bonus_package;
+        }
+        return  $match_bonuses_data;
+    }
+
     public function getGameTypes($casinoId)
     {
         $q =" SELECT
@@ -394,10 +433,5 @@ class CasinoInfo
             $casino_deposit_methods_data[$value]['logo'] = '/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $value)).'.png';
         }
         return $casino_deposit_methods_data;
-    }
-
-    public function getAllGameTypes() {
-        $q ="SELECT t1.name FROM game_types AS t1";
-        return SQL($q)->toList();
     }
 }

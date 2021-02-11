@@ -8,7 +8,7 @@ require_once("application/models/caching/CasinosListKey.php");
 
 abstract class CasinosListController extends BaseController
 {
-    protected $limit = 52;
+    protected $limit = 48;
 
     public function service()
     {
@@ -23,9 +23,8 @@ abstract class CasinosListController extends BaseController
 
         $results = $this->getResults();
         $this->response->attributes("total_casinos", $results["total"]);
+        $this->response->attributes("total_casinos_left", $results["total"] - $this->limit);
         $this->response->attributes("casinos", $results["list"]);
-      // var_dump($results["list"]);
-       // $this->response->attributes("all_game_types", $results["game_types"]);
         $this->response->attributes("page_type", $this->get_page_type());
         $this->response->attributes('bonus_free_type', $this->getAbbreviation($this->response->attributes('casinos')));
         $this->init();
@@ -33,7 +32,7 @@ abstract class CasinosListController extends BaseController
     
     protected function init() {}
 
-    private function getResults()
+    protected function getResults()
     {
         $filter = new CasinoFilter(
             array($this->response->attributes("filter") => $this->response->attributes("selected_entity")),

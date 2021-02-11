@@ -165,6 +165,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
             loadScripts(['bindings', 'assets/swiper']);
         }
         loadScripts(['assets/jquery-select2', 'filters']);
+
         $(document).on('scroll mousemove', function(){
             loadStyles(['ion.rangeSlider']);
             loadScripts(['assets/ion.rangeSlider.min', 'assets/tooltipster', 'assets/swiper', 'bindings']);
@@ -257,6 +258,24 @@ function changeViewElements(filterView,container,gridClass,listClass){
             $this.data('scrollTimeout', setTimeout(callback, timeout));
         });
     };
+    
+    $(".tf_flex").on('click',function() {     
+            var id = $(this).data('id');
+            var _this = $(this);
+            $.ajax({    
+                url: '/timeframe-tooltip',
+                type: 'POST',
+                data: {
+                    id: id              
+                },
+                dataType: 'html'
+            })
+            .done(function (data) {
+                $(".software-tooltipster").remove();
+               _this.append(data);
+                CloseTFPopup();
+            });
+    });
 
     var windowToBottom = 0;
 
@@ -305,6 +324,14 @@ function changeViewElements(filterView,container,gridClass,listClass){
                 $('.expand-holder').removeClass('opened');
             })
         }
+    }
+    
+    function CloseTFPopup() {
+        $('.close_tf_wrap').on('click', function (e) {
+            console.dir($(this).parent().parent().parent());
+            $(this).parent().parent().parent().remove();
+            e.stopPropagation();
+        });
     }
 
     function detectIsKeyboardOpened() {
@@ -467,8 +494,9 @@ function changeViewElements(filterView,container,gridClass,listClass){
                     buttonclass = settings.baseclass + settings.classspecific + "_button",
                     wrapcss = settings.baseclass + settings.classspecific + "_wrapper",
                     wrapjs = settings.basejsclass + settings.classspecific + "_wrapper",
-                    wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs).css({'max-width': element.css('width')}),
-                    linescount = singleline * settings.linecount;
+                    wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs).css({'max-width': element.css('width')});
+                    singleline = (singleline / 1.6) + parseFloat(element.css("font-size"));
+                    var linescount = singleline * settings.linecount;
 
                 element.wrap(wrapper);
 
@@ -501,9 +529,10 @@ function changeViewElements(filterView,container,gridClass,listClass){
                         });
 
                         element.after(moreLinesButton);
-
                     }
                 }
+
+                element.fadeIn();
             });
 
             return this;
@@ -559,7 +588,6 @@ function raiseCasinoPage(key) {
 }
 
 function gridViewBoxPopup(){
-    console.log('testing');
     if($('.open-popup-spec').length > 0){
         $('.open-popup-spec').click(function(){
             $(".welcome_package-popup-trigger").closest('.wp-title').find('.welcome_package-popup').removeClass('active');

@@ -27,32 +27,38 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
 
     public function run()
     {
-
         $this->response->attributes("country", $this->request->attributes("country"));
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
+
         $sortCriteria = $this->getSortCriteria();
+
         $page = (integer)$this->request->getValidator()->parameters("page");
         $filter = new CasinoFilter($_GET, $this->request->attributes("country"));
-        if ($filter->getCasinoLabel() === "Best") {
-            $this->limit = 50;
+        if ($filter->getCasinoLabel() == "Fast Payout") {
+            $filter->setPromoted(TRUE);
         }
         $params = $this->request->parameters();
         $object = new CasinosList($filter);
         $total = $object->getTotal();
-        $offset = $this->setOffset($page);
+        $offset = isset($params['offset']) ? $params['offset'] : $this->setOffset($page);
         $this->response->attributes("filter", $filter->getCasinoLabel());
         $this->response->attributes("total_casinos", $total);
+        $this->response->attributes("total_casinos_left", $total - $offset);
         $this->response->attributes("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset, true));
         $this->response->attributes('page_type', $this->getPageType($filter));
         $this->response->attributes('selected_entity', isset($params['free_bonus']) ? $params['free_bonus'] : $filter->getCasinoLabel());
     }
     
-     private function setOffset($page) {
+    private function setOffset($page) {
         $params = $this->request->parameters();
         if (isset($params["live_dealer"])) {
             $offset = $page == 0? 0:($page - 1) * $this->limit + 30;
-        } else {
+        } elseif (isset($params["free_bonus"])) {
             $offset = $page == 0? 0:($page - 1) * $this->limit + 52;
+        } elseif (isset($params["label"]) && $params["label"] == "Low Minimum Deposit") {
+            $offset = $page == 0? 0:($page - 1) * $this->limit + 100;
+        } else {
+            $offset = $page == 0? 0:($page - 1) * $this->limit + 50;
         }
         
         return $offset;
@@ -60,8 +66,12 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
 
     private function getSortCriteria()
     {
+        if ($this->request->parameters("label") == "Best") {
+            return CasinoSortCriteria::TOP_RATED;
+        }
+
         $sort_criteria = $this->request->attributes('validation_results')->get('sort');
-        if (empty($sort_criteria)|| $sort_criteria==null) {
+        if (empty($sort_criteria) || $sort_criteria==null) {
             return CasinoSortCriteria::NONE;
         }
 
@@ -74,6 +84,8 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
                 return CasinoSortCriteria::FAST_PAYOUT;
             } elseif ($this->request->parameters("label") == "No Account Casinos") {
                 return CasinoSortCriteria::NO_ACCOUNT;
+            } elseif ($this->request->parameters("label") == "Low Minimum Deposit") {
+                return CasinoSortCriteria::MINIMUM_DEPOSIT;
             } elseif (!empty($this->request->attributes('validation_results')->get('country'))) {
                 return CasinoSortCriteria::POPULARITY;
             }

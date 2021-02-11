@@ -27,6 +27,7 @@ class CasinoInfoController extends BaseController
         if (empty($info)) {
             throw new Lucinda\MVC\STDOUT\PathNotFoundException();
         }
+
         $this->casinoInfo = $info;
         $this->response->attributes("casino", (array) $info);
         $this->response->attributes(
@@ -40,8 +41,10 @@ class CasinoInfoController extends BaseController
         // get reviews
         $object = new CasinoReviews();
         $total = $object->getAllTotal($info->id);
+        $total_votes = $object->getAllVotes($info->id);
         $this->response->attributes("reviews_limit", $object::LIMIT);
         $this->response->attributes("replies_limit", $object::LIMIT_REPLIES);
+        $this->response->attributes("total_votes", $total_votes);
 
         if ($total>0) {
             $this->response->attributes("total_reviews", $total);

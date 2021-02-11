@@ -2,46 +2,66 @@ var ww = $(window).width();
 
 var Score = function (obj) {
     var _obj = obj,
-        _name = _obj.name,
-        _score = _obj.value,
-        _request = new XMLHttpRequest;
+            _name = _obj.name,
+            _score = _obj.value,
+            _request = new XMLHttpRequest;
 
     var _init = function () {
-            _updateScore(_name, _score);
-        },
-        _updateScore = function (_name, _score) {
-            if (BUSY_REQUEST)
-                return;
-            BUSY_REQUEST = true;
-            _request.abort();
+        _updateScore(_name, _score);
+    },
+            _updateScore = function (_name, _score) {
+                if (_score == 0)
+                    return;
+                if (BUSY_REQUEST)
+                    return;
+                BUSY_REQUEST = true;
+                _request.abort();
 
-            _request = $.ajax({
-                url: '/casino/rate',
-                data: {
-                    name: _name,
-                    value: _score
-                },
-                dataType: 'json',
-                type: 'post',
-                success: function (data) {
-                    if (data.body['success'] == "Casino already rated!") {
-                        $(".icon-icon_available").toggleClass("icon-icon_unavailable");
-                        $(".icon-icon_unavailable").removeClass("icon-icon_available");
-                        $('.thanx').html(data.body['success']);
+                _request = $.ajax({
+                    url: '/casino/rate',
+                    data: {
+                        name: _name,
+                        value: _score
+                    },
+                    dataType: 'json',
+                    type: 'post',
+                    success: function (data) {
+                        var types_array = ['Excellent', 'Very good', 'Good', 'Poor', 'Terrible'];
+                        if (data.body['success'] == "Casino already rated!") {
+                            $(".icon-icon_available").toggleClass("icon-icon_unavailable");
+                            $(".icon-icon_unavailable").removeClass("icon-icon_available");
+                            $('.thanx').html(data.body['success']);
+                        }
+
+                        $('.drag-rate').find('.action-field').show();
+
+                        $('.drag-rate-range-score').text(_score + '/10');
+                        $('.rating-container-score-value').text(_score);
+                        $('.count-value').text(data.body['total_votes']);
+
+                        $( ".rating-container-stats-row" ).each(function( index ) {
+                            var percents = setVotePercents(data.body['votes'][types_array[index]], data.body['total_votes']);
+                            $(this).find('.rating-container-stats-bar').css('width', percents);
+                            $(this).find('.rating-container-stats-score').html( percents + "<span>(" + data.body['votes'][types_array[index]] + ")</span>");
+                        });
+
+                        $('.rating-container-score-grade')
+                                .removeClass('terrible poor good very-good excellent no-score')
+                                .addClass(getGrade(_score).class)
+                                .text(getGrade(_score).text);
+                    },
+                    error: function (XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != "abort")
+                        {
+                            console.log('err');
+                        }
+                    },
+                    complete: function () {
+                        BUSY_REQUEST = false;
                     }
-                    $('.rating-container').next('.action-field').show();
-                },
-                error: function (XMLHttpRequest) {
-                    if (XMLHttpRequest.statusText != "abort")
-                    {
-                        console.log('err');
-                    }
-                },
-                complete: function () {
-                    BUSY_REQUEST = false;
-                }
-            });
-        };
+                });
+
+            };
     _init();
 };
 
@@ -77,6 +97,7 @@ contentTooltipConfigPopup = {
     content: $('.loader'),
     animation: 'fade',
     contentCloning: false,
+    theme: 'tooltipster-popup',
     functionReady: function (origin, tooltip) {
         $('body').addClass('shadow');
         setTimeout(function () {
@@ -119,23 +140,71 @@ contentTooltipConfigPopup = {
     }
 };
 
+
+function getGrade(score) {
+    var current = (typeof score != 'undefined') ? score : $('.rating-container').data('user-rate');
+    var result = {};
+
+    switch (current) {
+        case 1:
+        case 2:
+            result['text'] = 'Terrible';
+            result['class'] = 'terrible';
+            break;
+        case 3:
+        case 4:
+            result['text'] = 'Poor';
+            result['class'] = 'poor';
+            break;
+        case 5:
+        case 6:
+            result['text'] = 'Good';
+            result['class'] = 'good';
+            break;
+        case 7:
+        case 8:
+            result['text'] = 'Very good';
+            result['class'] = 'very-good';
+            break;
+        case 9:
+        case 10:
+            result['text'] = 'Excellent';
+            result['class'] = 'excellent';
+            break;
+    }
+
+    return result;
+}
+
+function setVotePercents(vote, total_votes){
+    var percent  = Math.round( ( vote / total_votes ) * 100);
+    return percent + '%';
+}
+
 $(".js-drag-rate").ionRangeSlider({
-    min: 1,
-    max: 5,
+    min: 0,
+    max: 10,
     step: 1,
+    from: $('.rating-container').data('user-rate'),
     grid: true,
-    values: ['Terrbile', 'Poor', 'Good', 'Very good', 'Excellent'],
+    values: ['&nbsp;', 'Terrible', '&nbsp;', 'Poor', '&nbsp;', 'Good', '&nbsp;', 'Very good', '&nbsp;', 'Excellent', '&nbsp;'],
     skin: "round",
     grid_snap: true,
     hide_from_to: true,
     hide_min_max: true,
+    onChange: function (data) {
+        $('.drag-rate-range-score').text(data.from + '/10');
+        $('.drag-rate-range')
+                .removeClass('terrible poor good very-good excellent')
+                .addClass(getGrade(data.from).class);
+    },
     onFinish: function (data) {
         // fired on pointer release
-        
-        // new Score({
-        //     value: value,
-        //     name: container.data('casino-name')
-        // });
+        var container = $('.rating-container');
+        new Score({
+            value: data.from,
+            name: container.data('casino-name')
+        });
     },
 });
 
@@ -147,7 +216,7 @@ function contentTooltipConfigPopupActions(origin) {
             cursorwidth: "3px",
             autohidemode: false,
             cursorborder: "1px solid #A8AEC8",
-            railoffset: { top: 0, left: 20 },
+            railoffset: {top: 0, left: 20},
             horizrailenabled: false,
         });
     }
@@ -155,7 +224,7 @@ function contentTooltipConfigPopupActions(origin) {
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     copyToClipboard();
 
-    $('.close_btn').on('click',function(){
+    $('.close_btn').on('click', function () {
         origin.tooltipster('hide');
     });
 }
@@ -183,7 +252,7 @@ contentTooltipConfig = {
             $(".tooltipster-fade.tooltipster-show").css("opacity", "1");
         }, 500)
     },
-    functionPosition: function(instance, helper, position){
+    functionPosition: function (instance, helper, position) {
         if (ww < 768 && ww > 375) {
             position.coord.left += 20;
             return position;
@@ -261,13 +330,13 @@ function lockScreen() {
 
 function newsletter(obj) {
     var _wrap = obj,
-        _field_email = _wrap.find('.news-email'),
-        _send_btn = _wrap.find('.news-btn'),
-        _contact_success = $('#news-success'),
-        _contact_error = $('#news-note'),
-        _contact_error_class = 'not-valid',
-        email,
-        _request = new XMLHttpRequest();
+            _field_email = _wrap.find('.news-email'),
+            _send_btn = _wrap.find('.news-btn'),
+            _contact_success = $('#news-success'),
+            _contact_error = $('#news-note'),
+            _contact_error_class = 'not-valid',
+            email,
+            _request = new XMLHttpRequest();
 
     _prepMessage = function () {
         email = _field_email.val();
@@ -288,54 +357,53 @@ function newsletter(obj) {
 
         return ok;
     },
-        _sendNews = function (email) {
-            _request.abort();
-            _request = $.ajax({
-                url: "/newsletter/subscribe",
-                data: {
-                    email: email,
-                },
-                dataType: 'json',
-                timeout: 20000,
-                type: 'POST',
-                success: function (response) {
-                    if (response.status == "ok") {
-                        _contact_success.show();
-                        _contact_error.hide();
-                        _send_btn.prop('disabled', true);
-                        _field_email.val('');
-                        _onEvents();
-                    }
-                    else if (response.status == "error") {
-                        var arr = JSON.parse(response.body);
+            _sendNews = function (email) {
+                _request.abort();
+                _request = $.ajax({
+                    url: "/newsletter/subscribe",
+                    data: {
+                        email: email,
+                    },
+                    dataType: 'json',
+                    timeout: 20000,
+                    type: 'POST',
+                    success: function (response) {
+                        if (response.status == "ok") {
+                            _contact_success.show();
+                            _contact_error.hide();
+                            _send_btn.prop('disabled', true);
+                            _field_email.val('');
+                            _onEvents();
+                        } else if (response.status == "error") {
+                            var arr = JSON.parse(response.body);
 
-                        $('.action-added').remove();
-                        $.each(arr, function (index, val) {
-                            var $msg = '<div class="action-field action-added not-valid ">' + val + '</div>';
-                            $('.review-submit-holder .msg-holder').append($msg);
-                        });
+                            $('.action-added').remove();
+                            $.each(arr, function (index, val) {
+                                var $msg = '<div class="action-field action-added not-valid ">' + val + '</div>';
+                                $('.review-submit-holder .msg-holder').append($msg);
+                            });
+                        }
+                    },
+                    error: function (XMLHttpRequest) {
+                        console.error("Could not send message!");
                     }
-                },
-                error: function (XMLHttpRequest) {
-                    console.error("Could not send message!");
-                }
-            });
-        },
-        _onEvents = function () {
-            _send_btn.on({
-                'click': function (e) {
-                    var error = _prepMessage();
-                    if (error === false) {
-                        e.stopPropagation();
-                    } else {
-                        _sendNews(email);
+                });
+            },
+            _onEvents = function () {
+                _send_btn.on({
+                    'click': function (e) {
+                        var error = _prepMessage();
+                        if (error === false) {
+                            e.stopPropagation();
+                        } else {
+                            _sendNews(email);
+                        }
                     }
-                }
-            });
-        },
-        _init = function () {
-            _onEvents();
-        };
+                });
+            },
+            _init = function () {
+                _onEvents();
+            };
 
     _init();
 }
@@ -359,9 +427,9 @@ function initSearch() {
 
         $(document).on('click touchstart', function (e) {
             if ($(e.target).closest(_drop).length == 0
-                && $(e.target).closest(_input).length == 0
-                && $(e.target).closest(_btnMobileOpen).length == 0
-                && $(e.target).closest(_btnOpen).length == 0) {
+                    && $(e.target).closest(_input).length == 0
+                    && $(e.target).closest(_btnMobileOpen).length == 0
+                    && $(e.target).closest(_btnOpen).length == 0) {
                 _input.val("");
                 searchDropClose(_drop);
             }
@@ -463,7 +531,7 @@ function initToggleMenu() {
         targetNode.addEventListener(eventL, function (e) {
 
             var that = this, currentOpened,
-                currentTarget = e.target;
+                    currentTarget = e.target;
             while (currentTarget != that) {
                 if (currentTarget.classList.contains('expand-holder')) {
                     currentOpened = document.querySelector('.expand-holder.opened');
@@ -471,8 +539,7 @@ function initToggleMenu() {
                         if (e.target.className !== 'expand-menu') {
                             currentOpened.classList.remove('opened');
                         }
-                    }
-                    else {
+                    } else {
                         if (currentOpened) {
                             if (e.target.className !== 'expand-menu') {
                                 currentOpened.classList.remove('opened');
@@ -480,15 +547,13 @@ function initToggleMenu() {
                             setTimeout(function () {
                                 currentTarget.classList.add('opened');
                             }, 400);
-                        }
-                        else {
+                        } else {
                             currentTarget.classList.add('opened');
                         }
                     }
 
                     break;
-                }
-                else {
+                } else {
                     currentTarget = currentTarget.parentNode;
                 }
             }
@@ -641,12 +706,14 @@ function initTooltipseter() {
     $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
 }
 
-function bindButtons(){
+function bindButtons() {
     $('.search_input').on({
-        blur: function(e){
+        blur: function (e) {
             var search_val = $(this).val().trim();
-            if(isSearchResultEvent) return;
-            if($('.search-tag-manager').length  && $(this).val().trim() == search_val) return;
+            if (isSearchResultEvent)
+                return;
+            if ($('.search-tag-manager').length && $(this).val().trim() == search_val)
+                return;
             if (search_val.length > 2 && search_val != searched_value) {
                 searched_value = search_val;
                 loadScripts(['assets/search-tracker']);
@@ -656,10 +723,10 @@ function bindButtons(){
     });
 
     $('#search-all').on({
-        mousedown: function(){
+        mousedown: function () {
             isSearchResultEvent = true;
         },
-        mouseup: function(){
+        mouseup: function () {
             isSearchResultEvent = false;
         }
     });
@@ -681,7 +748,7 @@ function bindButtons(){
                 setTimeout(function () {
                     self.removeClass('loading');
                     refresh();
-                }, 1000);
+                }, 100);
                 GAME_CURR_PAGE++;
                 $('.games-list').append(data);
                 if ($(self).data('total') === $('.games-list').children().length) {
@@ -717,7 +784,7 @@ function bindButtons(){
                 setTimeout(function () {
                     self.removeClass('loading');
                     refresh();
-                }, 1000);
+                }, 100);
                 raiseCasinoPage(key);
                 $(self).parent().prev().find('.list-body').append(data);
                 if ($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
@@ -751,7 +818,7 @@ function bindButtons(){
                 setTimeout(function () {
                     self.removeClass('loading');
                     refresh();
-                }, 1000);
+                }, 100);
                 BEST_BANKING_PAGE++;
                 $(self).parent().prev().find('.list-body').append(data);
                 if ($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
@@ -806,25 +873,25 @@ function bindButtons(){
 
 var Filters = function (obj) {
     var _obj = obj,
-        _self = this,
-        _switchers = _obj.find('input[type=checkbox]'),
-        _radios = _obj.find('input[type=radio]'),
-        _selectFilter = _obj.find('select[name=soft]'),
-        _targetContainer = $('.data-container'),
-        _paramName = _targetContainer.data('type'),
-        _paramValue = _targetContainer.data('type-value'),
-        _emptyContent = $('.empty-filters'),
-        _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
-        _moreButton,
-        _resetButton,
-        _defaultButton = $('#default'),
-        _currentClick = 0,
-        _request = new XMLHttpRequest();
+            _self = this,
+            _switchers = _obj.find('input[type=checkbox]'),
+            _radios = _obj.find('input[type=radio]'),
+            _selectFilter = _obj.find('select[name=soft]'),
+            _targetContainer = $('.data-container'),
+            _paramName = _targetContainer.data('type'),
+            _paramValue = _targetContainer.data('type-value'),
+            _emptyContent = $('.empty-filters'),
+            _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
+            _moreButton,
+            _resetButton,
+            _defaultButton = $('#default'),
+            _currentClick = 0,
+            _request = new XMLHttpRequest();
 
     if (typeof _paramName == 'undefined') {
         _paramName = 'game_type';
     }
-    
+
     var _url = _obj.data('url');
     _defaultButton.prop('checked', true);
 
@@ -841,112 +908,112 @@ var Filters = function (obj) {
         });
 
         dataContainerMutationObserver.observe($('.data-container').get(0),
-            {
-                childList: true,
-                subtree: true,
-            });
+                {
+                    childList: true,
+                    subtree: true,
+                });
         dataContainerMutationObserver.observe($('.data-add-container').get(0),
-            {
-                childList: true,
-                subtree: true,
-            });
+                {
+                    childList: true,
+                    subtree: true,
+                });
     }
 
 
     var _onEvent = function () {
-            _moreButton = $('.js-more-items');
-            _resetButton = $('.js-reset-items');
-            _switchers.off();
-            _switchers.on('click', function () {
-                console.log('795 _switchers.on');
-                _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
-            });
+        _moreButton = $('.js-more-items');
+        _resetButton = $('.js-reset-items');
+        _switchers.off();
+        _switchers.on('click', function () {
+            // console.log('795 _switchers.on');
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+        });
 
-            _radios.off();
-            _radios.on('click', function () {
-                _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
-            });
+        _radios.off();
+        _radios.on('click', function () {
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+        });
 
-            $('.js-filter > option').on('click', function () {
-                var counter = 0;
-                $('.js-filter > option').each(function (index, el) {
-                    if ($(this).prop("selected")) {
-                        counter++;
+        $('.js-filter > option').on('click', function () {
+            var counter = 0;
+            $('.js-filter > option').each(function (index, el) {
+                if ($(this).prop("selected")) {
+                    counter++;
+                }
+            });
+        });
+
+        _selectFilter.off();
+        _selectFilter.on('change', function () {
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
+        });
+
+        _moreButton.off();
+        _moreButton.on('click', function () {
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add');
+            return false;
+        });
+
+        _resetButton.off();
+        _resetButton.on('click', function () {
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset'), 'add');
+
+            return false;
+        });
+
+    },
+            _getAjaxParams = function (_paramName, _paramValue, _action) {
+
+                var _ajaxDataParams = {};
+                $.each(_switchers, function (index, el) {
+                    if ($(el).is(':checked')) {
+                        _ajaxDataParams[$(el).attr('name')] = 1;
+                    }
+
+                    if (_action == 'reset') {
+                        _ajaxDataParams[$(el).attr('name')] = '';
+                        $(el).prop('checked', false);
                     }
                 });
-            });
 
-            _selectFilter.off();
-            _selectFilter.on('change', function () {
-                _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
-            });
+                $.each(_radios, function (index, el) {
+                    if ($(el).is(':checked')) {
+                        _ajaxDataParams[$(el).attr('name')] = $(el).attr('value');
+                    }
 
-            _moreButton.off();
-            _moreButton.on('click', function () {
-                _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'add'), 'add');
-                return false;
-            });
+                    if (_action == 'reset') {
+                        _ajaxDataParams[$(el).attr('name')] = 1;
+                        if (index == 0) {
+                            $(el).prop('checked', true);
+                        }
+                    }
+                });
 
-            _resetButton.off();
-            _resetButton.on('click', function () {
-                _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset'), 'add');
+                _ajaxDataParams[_paramName] = _paramValue;
 
-                return false;
-            });
+                if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
+                    _ajaxDataParams['software'] = _selectFilter.val().join();
 
-        },
-        _getAjaxParams = function (_paramName, _paramValue, _action) {
+                    if (_action == 'reset') {
+                        _ajaxDataParams['software'] = '';
 
-            var _ajaxDataParams = {};
-            $.each(_switchers, function (index, el) {
-                if ($(el).is(':checked')) {
-                    _ajaxDataParams[$(el).attr('name')] = 1;
-                }
-
-                if (_action == 'reset') {
-                    _ajaxDataParams[$(el).attr('name')] = '';
-                    $(el).prop('checked', false);
-                }
-            });
-
-            $.each(_radios, function (index, el) {
-                if ($(el).is(':checked')) {
-                    _ajaxDataParams[$(el).attr('name')] = $(el).attr('value');
-                }
-
-                if (_action == 'reset') {
-                    _ajaxDataParams[$(el).attr('name')] = 1;
-                    if (index == 0) {
-                        $(el).prop('checked', true);
                     }
                 }
-            });
 
-            _ajaxDataParams[_paramName] = _paramValue;
+                if (typeof AJAX_CUR_PAGE == "undefined")
+                    AJAX_CUR_PAGE = 1;
 
-            if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
-                _ajaxDataParams['software'] = _selectFilter.val().join();
-
-                if (_action == 'reset') {
-                    _ajaxDataParams['software'] = '';
-
+                if (_action != 'add' || _action == 'reset') {
+                    AJAX_CUR_PAGE = 0;
                 }
+
+                if (_ajaxDataParams["label"] != undefined && _ajaxDataParams["label"] == "Mobile") {
+                    _ajaxDataParams["compatibility"] = "mobile";
+                    delete _ajaxDataParams.label;
+                }
+
+                return _ajaxDataParams;
             }
-
-            if (typeof AJAX_CUR_PAGE == "undefined")
-                AJAX_CUR_PAGE = 1;
-
-            if (_action != 'add' || _action == 'reset') {
-                AJAX_CUR_PAGE = 0;
-            }
-
-            if (_ajaxDataParams["label"] != undefined && _ajaxDataParams["label"] == "Mobile") {
-                _ajaxDataParams["compatibility"] = "mobile";
-                delete _ajaxDataParams.label;
-            }
-
-            return _ajaxDataParams;
-        }
 
     _ajaxRequestCasinos = function (_ajaxDataParams, _action) {
         if (_action == 'add') {
@@ -960,7 +1027,7 @@ var Filters = function (obj) {
         BUSY_REQUEST = true;
         _request.abort();
         var limit_items = (_url == '/games-filter/') ? 24 : 100;
-        if($('.data-container-holder').data('limit-per-page')){
+        if ($('.data-container-holder').data('limit-per-page')) {
             limit_items = $('.data-container-holder').data('limit-per-page');
         }
         if (location.pathname === '/casinos') {
@@ -1026,10 +1093,11 @@ var Filters = function (obj) {
                 }
             },
             complete: function () {
-                console.log(parseInt($('.qty-items').attr('data-load-total')));
+                // console.log(parseInt($('.qty-items').attr('data-load-total')));
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
                 if (_url === '/casinos-filter/') {
+
                     if (parseInt($('.qty-items').attr('data-load-total')) <= limit_items) {
                         $('.js-more-items').hide();
                     } else {
@@ -1057,89 +1125,89 @@ var Filters = function (obj) {
             clearTimeout(loadDelay);
         }
     },
-        _loadData = function (data) {
+            _loadData = function (data) {
 
-        },
-        _construct = function () {
-            _onEvent();
-            _obj[0].obj = _self;
-        };
+            },
+            _construct = function () {
+                _onEvent();
+                _obj[0].obj = _self;
+            };
 
     _construct();
 };
 
 var SearchPanel = function (obj) {
     var _obj = obj,
-        _self = this,
-        _searchButton = _obj.find('.js-trigger-search'),
-        _searchAllButton = _obj.find('#search-all'),
-        _searchContainer = _obj.find('#search'),
-        _searchForm = _obj.find('#search-form'),
-        _searchInput = _searchForm.find('input'),
-        _searchUpdate = _searchForm.find('.js-mobile-search-clear'), // clear text
-        _searchCasinosContainer = _searchContainer.find('#search-casinos ul'),
-        _searchListsContainer = _searchContainer.find('#search-lists ul'),
-        _searchPagesContainer = _searchContainer.find('#search-pages ul'),
-        _searchEmptyContainer = _searchContainer.find('#search-empty'),
-        _loadNewContent = true,
-        _loadMoreContent = false,
-        _is_content_detached = false,
-        _showMoreNum = 5,
-        _fromCasinos = 1,
-        _fromLists = 1,
-        _fromPages = 1,
-        _request = new XMLHttpRequest();
+            _self = this,
+            _searchButton = _obj.find('.js-trigger-search'),
+            _searchAllButton = _obj.find('#search-all'),
+            _searchContainer = _obj.find('#search'),
+            _searchForm = _obj.find('#search-form'),
+            _searchInput = _searchForm.find('input'),
+            _searchUpdate = _searchForm.find('.js-mobile-search-clear'), // clear text
+            _searchCasinosContainer = _searchContainer.find('#search-casinos ul'),
+            _searchListsContainer = _searchContainer.find('#search-lists ul'),
+            _searchPagesContainer = _searchContainer.find('#search-pages ul'),
+            _searchEmptyContainer = _searchContainer.find('#search-empty'),
+            _loadNewContent = true,
+            _loadMoreContent = false,
+            _is_content_detached = false,
+            _showMoreNum = 5,
+            _fromCasinos = 1,
+            _fromLists = 1,
+            _fromPages = 1,
+            _request = new XMLHttpRequest();
     window.contentBeforeSearch;
     var nr_requests; // nr requests sent
     var nr_requests_completed; // nr requests completed
 
     var _onEvent = function () {
 
-            _searchButton.on(
+        _searchButton.on(
                 'click',
                 function () {
-                    console.log('asdad'); return;
+                    return;
                     _ajaxRequestPopup('/search');
                     _resetPages();
                     return false;
                 });
 
-            _searchInput.on({
-                'focus': function () {
-                    nr_requests = 0;
-                    nr_requests_completed = 0;
+        _searchInput.on({
+            'focus': function () {
+                nr_requests = 0;
+                nr_requests_completed = 0;
+                _ajaxRequestPopup('/search');
+                _resetPages();
+            },
+            'keyup': function (e) {
+                if (e.keyCode == 27) {
+                    _hidePanel();
+                    _resetPages();
+                } else if (e.keyCode == 13) {
+                    isSearchResultEvent = true;
+                    if (_searchInput.val() != '') {
+                        _ajaxRequestAdvanced();
+                        _searchInput.blur();
+                    }
+                    _resetPages();
+                } else {
+                    isSearchResultEvent = false;
+                    var searchPopup = _obj.find('#search__popup');
+                    searchPopup.addClass('load');
+                    nr_requests++;
                     _ajaxRequestPopup('/search');
                     _resetPages();
-                },
-                'keyup': function (e) {
-                    if (e.keyCode == 27) {
-                        _hidePanel();
-                        _resetPages();
-                    } else if (e.keyCode == 13) {
-                        isSearchResultEvent = true;
-                        if (_searchInput.val() != '') {
-                            _ajaxRequestAdvanced();
-                            _searchInput.blur();
-                        }
-                        _resetPages();
-                    } else {
-                        isSearchResultEvent = false;
-                        var searchPopup = _obj.find('#search__popup');
-                        searchPopup.addClass('load');
-                        nr_requests++;
-                        _ajaxRequestPopup('/search');
-                        _resetPages();
-                    }
+                }
 
-                    if (_searchInput.val() != '') {
-                        _showAllButton();
-                    } else {
-                        _hideAllButton();
-                    }
-                },
-            });
+                if (_searchInput.val() != '') {
+                    _showAllButton();
+                } else {
+                    _hideAllButton();
+                }
+            },
+        });
 
-            _searchUpdate.on(
+        _searchUpdate.on(
                 'click',
                 function () {
                     _searchInput.val('').focus();
@@ -1147,9 +1215,9 @@ var SearchPanel = function (obj) {
                     _resetPages();
                     return false;
                 }
-            );
+        );
 
-            _searchAllButton.on(
+        _searchAllButton.on(
                 'click',
                 function () {
                     if (_searchInput.val() != '') {
@@ -1157,431 +1225,431 @@ var SearchPanel = function (obj) {
                     }
                     return false;
                 }
-            );
-        },
-        _showAllButton = function() {
-            _searchAllButton.parent().fadeIn();
-            _searchAllButton.closest('.header-search').addClass('search-active');
-        },
-        _hideAllButton = function() {
-            _searchAllButton.parent().removeClass('search-active').fadeOut();
-            _searchAllButton.closest('.header-search').removeClass('search-active');
-        },
-        _closeSearch = function () {
-            $('#site-content').html('').append(contentBeforeSearch);
-            $('.js-search-drop').show();
-            $('body').removeClass('advanced-search-opened');
-            _searchInput.blur();
-            setTimeout(function () {
-                initSite();
-            }, 1000);
-        },
-        _initMoreButtons = function () {
-            var _searchMoreLists = $('#js-search-more-lists');
-            var _searchMoreListsNumHolder = $('.more-lists', _searchMoreLists);
-            var _searchMoreListsNum = _searchMoreListsNumHolder.data('total-casinos');
+        );
+    },
+            _showAllButton = function () {
+                _searchAllButton.parent().fadeIn();
+                _searchAllButton.closest('.header-search').addClass('search-active');
+            },
+            _hideAllButton = function () {
+                _searchAllButton.parent().removeClass('search-active').fadeOut();
+                _searchAllButton.closest('.header-search').removeClass('search-active');
+            },
+            _closeSearch = function () {
+                $('#site-content').html('').append(contentBeforeSearch);
+                $('.js-search-drop').show();
+                $('body').removeClass('advanced-search-opened');
+                _searchInput.blur();
+                setTimeout(function () {
+                    initSite();
+                }, 1000);
+            },
+            _initMoreButtons = function () {
+                var _searchMoreLists = $('#js-search-more-lists');
+                var _searchMoreListsNumHolder = $('.more-lists', _searchMoreLists);
+                var _searchMoreListsNum = _searchMoreListsNumHolder.data('total-casinos');
 
 
-            var _searchMoreCasinos = $('#js-search-more-casinos');
-            var _searchMoreCasinosNumHolder = $('.more-num', _searchMoreCasinos);
-            var _searchMoreCasinosNum = _searchMoreCasinosNumHolder.data('total-casinos');
+                var _searchMoreCasinos = $('#js-search-more-casinos');
+                var _searchMoreCasinosNumHolder = $('.more-num', _searchMoreCasinos);
+                var _searchMoreCasinosNum = _searchMoreCasinosNumHolder.data('total-casinos');
 
-            var _searchMorePages = $('#js-search-more-pages');
-            var _searchMorePagesNumHolder = $('.more-num', _searchMorePages);
-            var _searchMorePagesNum = _searchMorePagesNumHolder.data('total-games');
+                var _searchMorePages = $('#js-search-more-pages');
+                var _searchMorePagesNumHolder = $('.more-num', _searchMorePages);
+                var _searchMorePagesNum = _searchMorePagesNumHolder.data('total-games');
 
-            var _clicksLists = Math.floor(_searchMoreListsNum / _showMoreNum);
-            var _clicksCasinos = Math.floor(_searchMoreCasinosNum / _showMoreNum);
-            var _clicksPages = Math.floor(_searchMorePagesNum / _showMoreNum);
+                var _clicksLists = Math.floor(_searchMoreListsNum / _showMoreNum);
+                var _clicksCasinos = Math.floor(_searchMoreCasinosNum / _showMoreNum);
+                var _clicksPages = Math.floor(_searchMorePagesNum / _showMoreNum);
 
-            var _remainderLists = _searchMoreListsNum % _showMoreNum;
-            var _remainderCasinos = _searchMoreCasinosNum % _showMoreNum;
-            var _remainderPages = _searchMorePagesNum % _showMoreNum;
+                var _remainderLists = _searchMoreListsNum % _showMoreNum;
+                var _remainderCasinos = _searchMoreCasinosNum % _showMoreNum;
+                var _remainderPages = _searchMorePagesNum % _showMoreNum;
 
-            if (_remainderLists < _showMoreNum && _clicksLists == 1) {
-                _searchMoreListsNumHolder.text(_remainderLists);
-            }
-
-            if (_remainderCasinos < _showMoreNum && _clicksCasinos == 1) {
-                _searchMoreCasinosNumHolder.text(_remainderCasinos);
-            }
-
-            if (_remainderPages < _showMoreNum && _clicksPages == 1) {
-                _searchMorePagesNumHolder.text(_remainderPages);
-            }
-
-            _searchMoreLists.on(
-                'click',
-                function () {
-                    _ajaxMore('/search/more-lists/' + _fromLists, $('.search-title span').text(), $('#all-lists-container'), 'lists');
-
-                    if (_fromLists >= _clicksLists) {
-                        _searchMoreLists.fadeOut();
-                    } else {
-                        _searchMoreLists.fadeIn();
-                    }
-
-                    if (_fromLists >= _clicksLists - 1 && _remainderLists > 0) {
-                        _searchMoreListsNumHolder.text(_remainderLists);
-                    }
-
-                    _fromLists++;
-
-                    return false;
+                if (_remainderLists < _showMoreNum && _clicksLists == 1) {
+                    _searchMoreListsNumHolder.text(_remainderLists);
                 }
-            );
 
-            _searchMoreCasinos.on(
-                'click',
-                function () {
-                    _ajaxMore('/search/more-casinos/' + _fromCasinos, $('.search-title span').text(), $('#all-casinos-container'), 'casinos');
-
-                    if (_fromCasinos >= _clicksCasinos) {
-                        _searchMoreCasinos.fadeOut();
-                    } else {
-                        _searchMoreCasinos.fadeIn();
-                    }
-
-                    if (_fromCasinos >= _clicksCasinos - 1 && _remainderCasinos > 0) {
-                        _searchMoreCasinosNumHolder.text(_remainderCasinos);
-                    }
-
-                    _fromCasinos++;
-
-                    return false;
+                if (_remainderCasinos < _showMoreNum && _clicksCasinos == 1) {
+                    _searchMoreCasinosNumHolder.text(_remainderCasinos);
                 }
-            );
 
-            _searchMorePages.on(
-                'click',
-                function () {
-                    _ajaxMore('/search/more-games/' + _fromPages, $('.search-title span').text(), $('#all-games-container'), 'games');
-                    // _loadMoreContent = true;
-
-                    if (_fromPages >= _clicksPages) {
-                        _searchMorePages.fadeOut();
-                    } else {
-                        _searchMorePages.fadeIn();
-                    }
-
-                    if (_fromPages >= _clicksPages - 1 && _remainderPages > 0) {
-                        _searchMorePagesNumHolder.text(_remainderPages);
-                    }
-
-                    _fromPages++;
-                    return false;
+                if (_remainderPages < _showMoreNum && _clicksPages == 1) {
+                    _searchMorePagesNumHolder.text(_remainderPages);
                 }
-            );
-        },
-        _clearSearchBody = function () {
-            _searchListsContainer.empty();
-            _searchCasinosContainer.empty();
-            _searchPagesContainer.empty();
-        },
-        _ajaxMore = function (target, val, container, type) {
-            if (BUSY_REQUEST)
-                return;
-            BUSY_REQUEST = true;
-            _request.abort();
-            _request = $.ajax({
-                url: target,
-                data: {
-                    value: val
-                },
-                dataType: 'json',
-                type: 'GET',
-                success: function (data) {
-                    _hideLoading();
-                    _loadMoreData(data, container, type);
-                },
-                error: function (XMLHttpRequest) {
-                    if (XMLHttpRequest.statusText != "abort") {
-                        _hideLoading();
-                        console.log('err');
-                        _showEmptyMessage();
-                    }
-                },
-                complete: function () {
-                    _hideLoading();
-                    BUSY_REQUEST = false;
-                }
-            });
 
-            var loadDelay = setTimeout(function () {
-            }, 300);
+                _searchMoreLists.on(
+                        'click',
+                        function () {
+                            _ajaxMore('/search/more-lists/' + _fromLists, $('.search-title span').text(), $('#all-lists-container'), 'lists');
 
-            _hideLoading = function () {
-                clearTimeout(loadDelay);
-            }
-        },
-        _ajaxRequestAdvanced = function () {
-            window.scrollTo(0, 0);
-            var _response_container = $('#site-content');
-            if (BUSY_REQUEST)
-                return;
-            BUSY_REQUEST = true;
-            _request.abort();
-            _request = $.ajax({
-                url: '/search/advanced',
-                data: {
-                    value: _searchInput.val(),
-                },
-                dataType: 'HTML',
-                type: 'GET',
-                success: function (data) {
-                    $('body').addClass('advanced-search-opened');
-                    _hideAllButton();
-                    if (!_is_content_detached) {
-                        contentBeforeSearch = $('#site-content .main, #site-content .promo').detach();
-                    }
-                    _is_content_detached = true;
-                    _response_container.html(data);
-                    _hidePopup();
-                    _initMoreButtons();
-                    unlockScreen();
-
-                    _response_container.find('#js-search-back').each(function () {
-                        $(this).on({
-                            click: function () {
-                                _closeSearch();
+                            if (_fromLists >= _clicksLists) {
+                                _searchMoreLists.fadeOut();
+                            } else {
+                                _searchMoreLists.fadeIn();
                             }
-                        })
-                    });
 
-                    $('.js-mobile-search-close').on('click', function () {
-                        _closeSearch();
-                    });
-                },
-                error: function (XMLHttpRequest) {
-                    if (XMLHttpRequest.statusText != "abort") {
-                        console.log('err');
-                    }
-                },
-                complete: function () {
-                    BUSY_REQUEST = false;
-                }
-            });
-        },
-        _ajaxRequestPopup = function (target, page) {
-            if (checkIfIsMobileDevice()) {
-                lockScreen();
-            }
-            if (BUSY_REQUEST && (nr_requests_completed == nr_requests)) // if nr request completed = nr request sent
-            {
-                return;
-            }
-            BUSY_REQUEST = true;
-            _request.abort();
-            _request = $.ajax({
-                url: target,
-                data: {
-                    value: _searchInput.val(),
-                    page: page
-                },
-                dataType: 'json',
-                type: 'GET',
-                success: function (data) {
-                    _hideLoading();
-                    _loadData(data);
+                            if (_fromLists >= _clicksLists - 1 && _remainderLists > 0) {
+                                _searchMoreListsNumHolder.text(_remainderLists);
+                            }
 
-                },
-                error: function (XMLHttpRequest) {
-                    if (XMLHttpRequest.statusText != "abort") {
+                            _fromLists++;
+
+                            return false;
+                        }
+                );
+
+                _searchMoreCasinos.on(
+                        'click',
+                        function () {
+                            _ajaxMore('/search/more-casinos/' + _fromCasinos, $('.search-title span').text(), $('#all-casinos-container'), 'casinos');
+
+                            if (_fromCasinos >= _clicksCasinos) {
+                                _searchMoreCasinos.fadeOut();
+                            } else {
+                                _searchMoreCasinos.fadeIn();
+                            }
+
+                            if (_fromCasinos >= _clicksCasinos - 1 && _remainderCasinos > 0) {
+                                _searchMoreCasinosNumHolder.text(_remainderCasinos);
+                            }
+
+                            _fromCasinos++;
+
+                            return false;
+                        }
+                );
+
+                _searchMorePages.on(
+                        'click',
+                        function () {
+                            _ajaxMore('/search/more-games/' + _fromPages, $('.search-title span').text(), $('#all-games-container'), 'games');
+                            // _loadMoreContent = true;
+
+                            if (_fromPages >= _clicksPages) {
+                                _searchMorePages.fadeOut();
+                            } else {
+                                _searchMorePages.fadeIn();
+                            }
+
+                            if (_fromPages >= _clicksPages - 1 && _remainderPages > 0) {
+                                _searchMorePagesNumHolder.text(_remainderPages);
+                            }
+
+                            _fromPages++;
+                            return false;
+                        }
+                );
+            },
+            _clearSearchBody = function () {
+                _searchListsContainer.empty();
+                _searchCasinosContainer.empty();
+                _searchPagesContainer.empty();
+            },
+            _ajaxMore = function (target, val, container, type) {
+                if (BUSY_REQUEST)
+                    return;
+                BUSY_REQUEST = true;
+                _request.abort();
+                _request = $.ajax({
+                    url: target,
+                    data: {
+                        value: val
+                    },
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (data) {
                         _hideLoading();
-                        console.log('err');
-                        _showEmptyMessage();
+                        _loadMoreData(data, container, type);
+                    },
+                    error: function (XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != "abort") {
+                            _hideLoading();
+                            console.log('err');
+                            _showEmptyMessage();
+                        }
+                    },
+                    complete: function () {
+                        _hideLoading();
+                        BUSY_REQUEST = false;
                     }
-                },
-                complete: function (data) {
-                    _hideLoading();
-                    nr_requests_completed++;
-                    BUSY_REQUEST = false;
+                });
+
+                var loadDelay = setTimeout(function () {
+                }, 300);
+
+                _hideLoading = function () {
+                    clearTimeout(loadDelay);
                 }
-            });
+            },
+            _ajaxRequestAdvanced = function () {
+                window.scrollTo(0, 0);
+                var _response_container = $('#site-content');
+                if (BUSY_REQUEST)
+                    return;
+                BUSY_REQUEST = true;
+                _request.abort();
+                _request = $.ajax({
+                    url: '/search/advanced',
+                    data: {
+                        value: _searchInput.val(),
+                    },
+                    dataType: 'HTML',
+                    type: 'GET',
+                    success: function (data) {
+                        $('body').addClass('advanced-search-opened');
+                        _hideAllButton();
+                        if (!_is_content_detached) {
+                            contentBeforeSearch = $('#site-content .main, #site-content .promo').detach();
+                        }
+                        _is_content_detached = true;
+                        _response_container.html(data);
+                        _hidePopup();
+                        _initMoreButtons();
+                        unlockScreen();
 
-            var loadDelay = setTimeout(function () {
-            }, 300);
+                        _response_container.find('#js-search-back').each(function () {
+                            $(this).on({
+                                click: function () {
+                                    _closeSearch();
+                                }
+                            })
+                        });
 
-            _hideLoading = function () {
-                clearTimeout(loadDelay);
-            }
-        },
-        getWebName = function (name) {
-            return name.replace(/\s/g, '-').toLowerCase();
-        },
-        getItemPattern = function (itemData) {
-            var pattern = '<li>\
+                        $('.js-mobile-search-close').on('click', function () {
+                            _closeSearch();
+                        });
+                    },
+                    error: function (XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != "abort") {
+                            console.log('err');
+                        }
+                    },
+                    complete: function () {
+                        BUSY_REQUEST = false;
+                    }
+                });
+            },
+            _ajaxRequestPopup = function (target, page) {
+                if (checkIfIsMobileDevice()) {
+                    lockScreen();
+                }
+                if (BUSY_REQUEST && (nr_requests_completed == nr_requests)) // if nr request completed = nr request sent
+                {
+                    return;
+                }
+                BUSY_REQUEST = true;
+                _request.abort();
+                _request = $.ajax({
+                    url: target,
+                    data: {
+                        value: _searchInput.val(),
+                        page: page
+                    },
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (data) {
+                        _hideLoading();
+                        _loadData(data);
+
+                    },
+                    error: function (XMLHttpRequest) {
+                        if (XMLHttpRequest.statusText != "abort") {
+                            _hideLoading();
+                            console.log('err');
+                            _showEmptyMessage();
+                        }
+                    },
+                    complete: function (data) {
+                        _hideLoading();
+                        nr_requests_completed++;
+                        BUSY_REQUEST = false;
+                    }
+                });
+
+                var loadDelay = setTimeout(function () {
+                }, 300);
+
+                _hideLoading = function () {
+                    clearTimeout(loadDelay);
+                }
+            },
+            getWebName = function (name) {
+                return name.replace(/\s/g, '-').toLowerCase();
+            },
+            getItemPattern = function (itemData) {
+                var pattern = '<li>\
                     <a class="search-results-label" href="/' + itemData.link.replace("/games/", "") + '">\
                         ' + itemData.name + '\
                     </a>\
                 </li>';
 
-            return pattern;
-        },
-        _loadMoreData = function (data, container, type) {
-            var items = data.body.results;
-            var link;
-            if (type === 'lists') {
-                for (var i = 0; i < items.length; i++) {
-                    var _item = getItemPattern({
-                        link: items[i]['url'],
-                        name: items[i]['title']
-                    });
+                return pattern;
+            },
+            _loadMoreData = function (data, container, type) {
+                var items = data.body.results;
+                var link;
+                if (type === 'lists') {
+                    for (var i = 0; i < items.length; i++) {
+                        var _item = getItemPattern({
+                            link: items[i]['url'],
+                            name: items[i]['title']
+                        });
 
-                    container.append(_item);
-                }
-            } else {
-                for (var item in items) {
-                    if (type == 'games') {
-                        link = 'play/' + getWebName(items[item]);
-                    } else if (type == 'casinos') {
-                        link = 'reviews/' + getWebName(items[item]) + '-review';
-                    }
-
-                    var _item = getItemPattern({
-                        link: link,
-                        name: items[item]
-                    });
-
-                    container.append(_item);
-                }
-            }
-        },
-        _loadData = function (data) {
-
-            var lists = data.body.lists;
-            var casinos = data.body.casinos;
-            var pages = data.body.games;
-
-            if (!_loadMoreContent) {
-                _clearSearchBody();
-            }
-
-            if ($.isEmptyObject(lists) && $.isEmptyObject(casinos) && $.isEmptyObject(pages)) {
-                _showEmptyMessage();
-            } else {
-                _hideEmptyMessage();
-
-                if (!$.isEmptyObject(lists)) {
-                    _searchListsContainer
-                        .parent()
-                        .show()
-                        .next()
-                        .removeClass('single');
-                    if (!(data.body.total_lists > 3 && Math.ceil(data.body.total_lists / 3) > _fromLists)) {
-                        _fromLists = 1;
-                    }
-
-                } else {
-                    _searchListsContainer
-                        .parent()
-                        .hide()
-                        .next()
-                        .addClass('single');
-                }
-
-                if (!$.isEmptyObject(casinos)) {
-                    _searchCasinosContainer
-                        .parent()
-                        .show()
-                        .next()
-                        .removeClass('single');
-
-                    if (!(data.body.total_casinos > 3 && Math.ceil(data.body.total_casinos / 3) > _fromCasinos)) {
-                        _fromCasinos = 1;
-                    }
-
-                } else {
-                    _searchCasinosContainer
-                        .parent()
-                        .hide()
-                        .next()
-                        .addClass('single');
-                }
-
-                if (!$.isEmptyObject(pages)) {
-                    _searchPagesContainer
-                        .parent()
-                        .show()
-                        .prev()
-                        .removeClass('single');
-                    if (!(data.body.total_pages > 3 && Math.ceil(data.body.total_casinos / 3) > _fromPages)) {
-                        _fromPages = 1;
+                        container.append(_item);
                     }
                 } else {
-                    _searchPagesContainer
-                        .parent()
-                        .hide()
-                        .prev()
-                        .addClass('single');
+                    for (var item in items) {
+                        if (type == 'games') {
+                            link = 'play/' + getWebName(items[item]);
+                        } else if (type == 'casinos') {
+                            link = 'reviews/' + getWebName(items[item]) + '-review';
+                        }
+
+                        var _item = getItemPattern({
+                            link: link,
+                            name: items[item]
+                        });
+
+                        container.append(_item);
+                    }
                 }
-                _searchListsContainer.html("");
-                for (var i = 0; i < lists.length; i++) {
-                    var _item = getItemPattern({
-                        link: (lists[i]['url']),
-                        name: lists[i]['title']
+            },
+            _loadData = function (data) {
+
+                var lists = data.body.lists;
+                var casinos = data.body.casinos;
+                var pages = data.body.games;
+
+                if (!_loadMoreContent) {
+                    _clearSearchBody();
+                }
+
+                if ($.isEmptyObject(lists) && $.isEmptyObject(casinos) && $.isEmptyObject(pages)) {
+                    _showEmptyMessage();
+                } else {
+                    _hideEmptyMessage();
+
+                    if (!$.isEmptyObject(lists)) {
+                        _searchListsContainer
+                                .parent()
+                                .show()
+                                .next()
+                                .removeClass('single');
+                        if (!(data.body.total_lists > 3 && Math.ceil(data.body.total_lists / 3) > _fromLists)) {
+                            _fromLists = 1;
+                        }
+
+                    } else {
+                        _searchListsContainer
+                                .parent()
+                                .hide()
+                                .next()
+                                .addClass('single');
+                    }
+
+                    if (!$.isEmptyObject(casinos)) {
+                        _searchCasinosContainer
+                                .parent()
+                                .show()
+                                .next()
+                                .removeClass('single');
+
+                        if (!(data.body.total_casinos > 3 && Math.ceil(data.body.total_casinos / 3) > _fromCasinos)) {
+                            _fromCasinos = 1;
+                        }
+
+                    } else {
+                        _searchCasinosContainer
+                                .parent()
+                                .hide()
+                                .next()
+                                .addClass('single');
+                    }
+
+                    if (!$.isEmptyObject(pages)) {
+                        _searchPagesContainer
+                                .parent()
+                                .show()
+                                .prev()
+                                .removeClass('single');
+                        if (!(data.body.total_pages > 3 && Math.ceil(data.body.total_casinos / 3) > _fromPages)) {
+                            _fromPages = 1;
+                        }
+                    } else {
+                        _searchPagesContainer
+                                .parent()
+                                .hide()
+                                .prev()
+                                .addClass('single');
+                    }
+                    _searchListsContainer.html("");
+                    for (var i = 0; i < lists.length; i++) {
+                        var _item = getItemPattern({
+                            link: (lists[i]['url']),
+                            name: lists[i]['title']
+                        });
+                        _searchListsContainer.append(_item);
+                    }
+
+                    for (var casino in casinos) {
+                        var _item = getItemPattern({
+                            link: 'reviews/' + getWebName(casinos[casino]) + '-review',
+                            name: casinos[casino]
+                        });
+                        _searchCasinosContainer.append(_item);
+                    }
+
+                    for (var page in pages) {
+
+                        var _item = getItemPattern({
+                            link: 'play/' + getWebName(pages[page]),
+                            name: pages[page]
+                        });
+
+                        _searchPagesContainer.append(_item);
+                    }
+                    if (_searchInput.val() != '') {
+                        _illumination();
+                    }
+                }
+            },
+            _resetPages = function () {
+                _fromPages = 1;
+                _fromCasinos = 1;
+            },
+            _showEmptyMessage = function () {
+                _searchListsContainer.parent().hide();
+                _searchCasinosContainer.parent().hide();
+                _searchPagesContainer.parent().hide();
+                _searchEmptyContainer.show();
+                _hideAllButton();
+            },
+            _hideEmptyMessage = function () {
+                _searchListsContainer.parent().show();
+                _searchCasinosContainer.parent().show();
+                _searchPagesContainer.parent().show();
+                _searchEmptyContainer.hide();
+            },
+            _hidePopup = function () {
+                searchDropClose($('.js-search-drop'));
+                _loadNewContent = true;
+            },
+            _hidePanel = function () {
+                _hidePopup();
+            },
+            _illumination = function () {
+                var searchItems = _obj.find('.search-results-label');
+                searchItems.each(function () {
+                    $(this).html(function (_, html) {
+                        return html.replace(new RegExp(_searchInput.val().toLowerCase(), 'i\g'), '<b>$&</b>')
                     });
-                    _searchListsContainer.append(_item);
-                }
-
-                for (var casino in casinos) {
-                    var _item = getItemPattern({
-                        link: 'reviews/' + getWebName(casinos[casino]) + '-review',
-                        name: casinos[casino]
-                    });
-                    _searchCasinosContainer.append(_item);
-                }
-
-                for (var page in pages) {
-
-                    var _item = getItemPattern({
-                        link: 'play/' + getWebName(pages[page]),
-                        name: pages[page]
-                    });
-
-                    _searchPagesContainer.append(_item);
-                }
-                if (_searchInput.val() != '') {
-                    _illumination();
-                }
-            }
-        },
-        _resetPages = function () {
-            _fromPages = 1;
-            _fromCasinos = 1;
-        },
-        _showEmptyMessage = function () {
-            _searchListsContainer.parent().hide();
-            _searchCasinosContainer.parent().hide();
-            _searchPagesContainer.parent().hide();
-            _searchEmptyContainer.show();
-           _hideAllButton();
-        },
-        _hideEmptyMessage = function () {
-            _searchListsContainer.parent().show();
-            _searchCasinosContainer.parent().show();
-            _searchPagesContainer.parent().show();
-            _searchEmptyContainer.hide();
-        },
-        _hidePopup = function () {
-            searchDropClose($('.js-search-drop'));
-            _loadNewContent = true;
-        },
-        _hidePanel = function () {
-            _hidePopup();
-        },
-        _illumination = function () {
-            var searchItems = _obj.find('.search-results-label');
-            searchItems.each(function () {
-                $(this).html(function (_, html) {
-                    return html.replace(new RegExp(_searchInput.val().toLowerCase(), 'i\g'), '<b>$&</b>')
                 });
-            });
-        },
-        _construct = function () {
-            _onEvent();
-            _obj[0].obj = _self;
-        };
+            },
+            _construct = function () {
+                _onEvent();
+                _obj[0].obj = _self;
+            };
     _self.close = function () {
         _hidePanel();
     };

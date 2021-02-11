@@ -3,24 +3,32 @@
 <div class="wrapper">
 	<header class="header">
 		<div class="container">
-			<a href="#" class="mobile-menu" id="js-mobile-menu-opener">
-				<i class="icon-menu_icon"></i>
-			</a>
 			<div class="header-logo">
 				<a href="/" class="logo">
-					<i class="icon-logo"><i class="path1"></i><i class="path2"></i></i>
+					<i class="icon-logo"><i class="path1"></i><i class="path2"></i><i class="icon-crown"></i></i>
 				</a>
 			</div>
 			<a href="#" class="header-search-mobile js-mobile-search-opener js-trigger-search">
 				<i class="icon-search"></i>
+				<span>Search on CasinosLists</span>
+			</a>
+			<a href="#" class="mobile-menu" id="js-mobile-menu-opener">
+				<!-- <i class="icon-menu_icon"></i> -->
+				<svg class="svg-icon">
+					<use xlink:href="#icon-mobile-menu"></use>
+				</svg>
 			</a>
 			<nav class="header-menu">
 				<a href="#" class="mobile-menu-close" id="js-mobile-menu-close">
 					<i class="icon-arrow-left2"></i>
+					<span>Categories</span>
 				</a>
 				<ul class="header-menu__list-holder">
 					<li class="mobile">
-						<a href="/" class="${('$[page]'=='index'?'active':'')} header-menu__item">HOMEPAGE</a>
+						<a href="/" class="${('$[page]'=='index'?'active':'')} header-menu__item">
+							<i class="icon-crown"></i>
+							HOMEPAGE
+						</a>
 					</li>
 
 					<site:menu items="$[menu]"/>

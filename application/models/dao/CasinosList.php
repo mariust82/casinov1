@@ -19,7 +19,7 @@ class CasinosList
     public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "")
     {
         $output = array();
-        $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported","IF(t15.id IS NOT NULL,1,0) AS currency_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
+        $fields = array( "DISTINCT  t1.id","t1.withdraw_minimum", "t1.deposit_minimum", "t1.status_id", "cs.name AS status", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported","IF(t15.id IS NOT NULL,1,0) AS currency_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
 
         $queryGenerator = new CasinosListQuery(
             $this->filter,
@@ -36,16 +36,15 @@ class CasinosList
             $object->id = $row["id"];
             $object->name = $row["name"];
             $object->code = $row["code"];
+            $object->withdrawal_minimum = $row['withdraw_minimum'];
             $object->rating = ceil($row["average_rating"]);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
-            $object->status = $row["status_id"];
+            $object->status = $row["status"];
+            $object->deposit_minimum = $row["deposit_minimum"];
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->score_class = $this->helper->getScoreClass($object->rating);
-            $object->casino_game_types = $this->getGameTypes($object->id);
-            $object->comments = $this->countCasinoComments($object->id);
-            $object->casino_deposit_methods =  $this->getCasinoDepositMethods($object->id);
             $object->is_currency_accepted = $row['currency_supported'];
             if ($this->filter->getBankingMethod()) {
                 $object->deposit_methods = $row["has_dm"];
@@ -59,24 +58,122 @@ class CasinosList
         if (empty($output)) {
             return array();
         }
+        $allowedIds = implode(",", array_keys($output));
+        $this->appendPrimaryCurrencySymbols($output, $allowedIds);
+        $this->appendCountCasinoComments($output, $allowedIds);
+        $this->appendGameTypes($output, $allowedIds);
+        $this->appendSoftwares($output, $allowedIds);
+        $this->appendBonuses($output, $allowedIds);
+        $this->appendBankingMethods($output, $allowedIds);
 
+        foreach ($output as $arg) {
+            if (sizeof($arg->softwares)>1) {
+                $arg->all_softwares = $this->helper->get_string($arg->softwares);
+            }
+        }
+
+
+        return array_values($output);
+    }
+
+    /**
+     * Append primary currency symbols which belongs to casino.
+     *
+     * @param array $output
+     * @param string $allowedIds
+     *
+     * @return void
+     *
+     * @throws \Lucinda\SQL\ConnectionException
+     * @throws \Lucinda\SQL\StatementException
+     */
+    private function appendPrimaryCurrencySymbols(array &$output, string $allowedIds): void
+    {
+        $result = SQL(
+            "SELECT t1.casino_id, GROUP_CONCAT(IF(t2.symbol<>'',  t2.symbol, t2.code) SEPARATOR '/') AS symbol
+                FROM casinos__currencies AS t1
+                INNER JOIN currencies AS t2 ON t1.currency_id = t2.id
+            WHERE t1.is_primary = 1 AND t2.is_crypto IS FALSE AND t1.casino_id IN (" . $allowedIds . ") 
+            GROUP BY t1.casino_id"
+        );
+
+        while ($row = $result->toRow()) {
+            $output[$row["casino_id"]]->currencies = $row["symbol"];
+        }
+    }
+
+    /**
+     * Append count casino comments.
+     *
+     * @param array $output
+     * @param string $allowedIds
+     *
+     * @return void
+     *
+     * @throws \Lucinda\SQL\ConnectionException
+     * @throws \Lucinda\SQL\StatementException
+     */
+    private function appendCountCasinoComments(array &$output, string $allowedIds):void
+    {
+        $result = SQL(
+            "SELECT casino_id, COUNT(id) AS ctn FROM casinos__reviews 
+                WHERE casino_id IN (" . $allowedIds . ") AND status != 3
+                GROUP BY casino_id"
+        );
+
+        while ($row = $result->toRow()) {
+            $output[$row["casino_id"]]->comments = $row["ctn"];
+        }
+    }
+
+    /**
+     * Append count casino comments.
+     *
+     * @param array $output
+     * @param string $allowedIds
+     *
+     * @return void
+     *
+     * @throws \Lucinda\SQL\ConnectionException
+     * @throws \Lucinda\SQL\StatementException
+     */
+    private function appendGameTypes(array &$output, string $allowedIds):void
+    {
+        $result = SQL(
+            "SELECT t1.casino_id, t2.name FROM casinos__game_types AS t1
+                INNER JOIN game_types AS t2 ON t1.	game_type_id = t2.id
+            WHERE t1.casino_id IN (" . $allowedIds . ")"
+        );
+
+        while ($row = $result->toRow()) {
+            $output[$row["casino_id"]]->casino_game_types[] = ["name" => $row["name"]];
+        }
+    }
+    
+    private function appendSoftwares(array &$output, $allowedIds)
+    {
+        
         // append softwares
         $query = "
-        SELECT t1.casino_id, t2.name 
+        SELECT t1.casino_id, t2.name
         FROM casinos__game_manufacturers AS t1
         INNER JOIN game_manufacturers AS t2 ON t1.game_manufacturer_id = t2.id
-        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") ORDER BY t1.is_primary DESC;
+        WHERE t1.casino_id IN (".$allowedIds.") ORDER BY t1.is_primary DESC;
         ";
         $resultSet = SQL($query);
         while ($row=$resultSet->toRow()) {
             $output[$row["casino_id"]]->softwares[] = $row["name"];
         }
+    }
+    
+    private function appendBonuses(array &$output, $allowedIds)
+    {
         // append bonuses
         $query = "
         SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name , t1.bonus_type_id
         FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
-        WHERE t1.casino_id IN (".implode(",", array_keys($output)).") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins','Free Play','Bonus Spins')
+        WHERE t1.casino_id IN (".$allowedIds.") AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins','Free Play','Bonus Spins')
         ";
         $resultSet = SQL($query);
         while ($row = $resultSet->toRow()) {
@@ -98,53 +195,52 @@ class CasinosList
                 $output[$row["casino_id"]]->isFree = 0;
             }
         }
-
-        foreach ($output as $arg) {
-            if (sizeof($arg->softwares)>1) {
-                $arg->all_softwares = $this->helper->get_string($arg->softwares);
-            }
-        }
-
-
-        return array_values($output);
-    }
-
-    private function getGameTypes($casinoId)
-    {
-        $q =" SELECT
-            t2.name
-            FROM casinos__game_types AS t1
-            INNER JOIN game_types AS t2 ON t1.	game_type_id = t2.id
-            WHERE t1.casino_id =  $casinoId";
-
-        $data = SQL($q)->toList();
-        return $data;
-    }
-
-    private function getBankingMethodData($entity, $id)
-    {
-        return SQL("
-            SELECT
-            t2.name
-            FROM casinos__".$entity." AS t1
-            INNER JOIN banking_methods AS t2 ON t1.banking_method_id = t2.id
-            WHERE t1.casino_id = ".$id."
-        ")->toColumn();
     }
     
-    private function getCasinoDepositMethods($casino_id)
+    private function appendBankingMethods(array &$output, $allowedIds)
     {
-        $deposit_methods =  $this->getBankingMethodData("deposit_methods", $casino_id);
-        $withdraw_methods =   $this->getBankingMethodData("withdraw_methods", $casino_id);
-        $casino_deposit_methods = array_merge($deposit_methods, $withdraw_methods);
-
-        $casino_deposit_methods_data = [];
-        foreach ($casino_deposit_methods as $key => $value) {
-            $casino_deposit_methods_data[$value]['deposit_methods'] = in_array($value, $deposit_methods);
-            $casino_deposit_methods_data[$value]['withdraw_methods'] = in_array($value, $withdraw_methods);
-            $casino_deposit_methods_data[$value]['logo'] = '/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $value)).'.png';
+        $deposit_methods =  $this->getBankingMethodData("deposit_methods", $allowedIds);
+        foreach($deposit_methods as $casinoId=>$list) {
+            foreach($list as $bankingMethodName) {
+                $output[$casinoId]->casino_deposit_methods[$bankingMethodName] = [
+                    'deposit_methods'=>true,
+                    'withdraw_methods'=>false,
+                    'logo'=>'/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $bankingMethodName)).'.png'
+                ];
+            }
+        }        
+        
+        $withdraw_methods =   $this->getBankingMethodData("withdraw_methods", $allowedIds);
+        foreach($withdraw_methods as $casinoId=>$list) {
+            foreach($list as $bankingMethodName) {
+                if (isset($output[$casinoId]->casino_deposit_methods[$bankingMethodName])) {
+                    $output[$casinoId]->casino_deposit_methods[$bankingMethodName]['withdraw_methods'] = true;
+                } else {
+                    $output[$casinoId]->casino_deposit_methods[$bankingMethodName] = [
+                        'deposit_methods'=>false,
+                        'withdraw_methods'=>true,
+                        'logo'=>'/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $bankingMethodName)).'.png'
+                    ];
+                }
+            }
         }
-        return $casino_deposit_methods_data;
+        
+    }
+
+    private function getBankingMethodData($entity, $allowedIds)
+    {
+        $output = [];
+        $resultSet = SQL("
+            SELECT
+            t1.casino_id, t2.name
+            FROM casinos__".$entity." AS t1
+            INNER JOIN banking_methods AS t2 ON t1.banking_method_id = t2.id
+            WHERE t1.casino_id IN (".$allowedIds.")
+        ");
+        while($row = $resultSet->toRow()) {
+            $output[$row["casino_id"]][] = $row["name"];
+        }
+        return $output;
     }
 
     public function getTotal()
@@ -153,15 +249,11 @@ class CasinosList
         if ($this->filter->getPlayVersion() == "Live Dealer") {
             $fields = "COUNT(DISTINCT t1.id) AS nr";
         } else {
-            $fields = "COUNT(t1.id) AS nr";
+            $fields = "COUNT(DISTINCT t1.id) AS nr";
         }
         $queryGenerator = new CasinosListQuery($this->filter, array($fields), null, 0, '', false);
         $query = $queryGenerator->getQuery();
         return SQL($query)->toValue();
-    }
-    
-    private function countCasinoComments($id) {
-        return SQL("SELECT COUNT(id) FROM `casinos__reviews` WHERE casino_id = {$id} AND status != 3")->toValue();
     }
 
     public function getManufacturers($sortBy, $limit = null, $offset = "") {
@@ -176,7 +268,6 @@ class CasinosList
             $offset
         );
         $query = $queryGenerator->getQuery();
-       // var_dump($query); die;
         $resultSet = SQL($query);
         while ($row = $resultSet->toRow()) {
             $output[] = $row["id"];
@@ -185,7 +276,7 @@ class CasinosList
         $query = " 
                   SELECT t1.id, t1.name as unit, COUNT(t1.id) AS nr
                   FROM game_manufacturers as t1
-                  INNER JOIN casinos__game_manufacturers AS t2 ON t1.id = t2.game_manufacturer_id AND t2.casino_id IN (".implode(",", array_values($output)).")
+                  INNER JOIN casinos__game_manufacturers AS t2 ON t1.id = t2.game_manufacturer_id AND t2.casino_id IN (".implode(",", array_unique(array_values($output))).")
                   WHERE t1.is_open = 1
                   GROUP by t1.name
                   ORDER By t1.priority DESC";
