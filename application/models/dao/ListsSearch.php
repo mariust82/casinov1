@@ -189,7 +189,7 @@ class ListsSearch
         $select->joinInner('casinos', 't3')->on(['t2.casino_id' => 't3.id']);
         $where =  $select->where();
         $where->set('t3.is_open', 1);
-        $where->set('t1.code', "'" . Country::EXCLUDED_COUNTRY_CODE . "'", Lucinda\Query\ComparisonOperator::DIFFERS);
+        $where->set('t1.code', "'" . Countries::EXCLUDED_COUNTRY_CODE . "'", Lucinda\Query\ComparisonOperator::DIFFERS);
         $where->setLike('t1.name', "'%".$this->value."%'");
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);

@@ -98,7 +98,9 @@ class CasinosList
         );
 
         while ($row = $result->toRow()) {
+            $object = $output[$row["casino_id"]];
             $output[$row["casino_id"]]->currencies = $row["symbol"];
+            $output[$row["casino_id"]]->withdrawal_minimum = ($object->withdrawal_minimum?$row["symbol"].$object->withdrawal_minimum:"");
         }
     }
 
