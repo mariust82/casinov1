@@ -819,7 +819,7 @@ function resetFilter(_select) {
     $select.val(null).trigger('change').select2('close');
     $('.select2-results__options').children().attr('aria-selected', false);
 
-    $('.select2-selection__rendered').text('Softwares');
+    $('.select2-selection__rendered').text('Software');
    // $('.' + selectName + '+.select2 .select2-selection__rendered').html(window[selectName + '_placeholder']);
 
 }
@@ -883,6 +883,10 @@ function processCheckboxes(_this) {
 
         $('.select2-search__field').prop('focus', false);
 
+        selectedItems.length = 0;
+
+        checkIds();
+
         $('.select2-results__option').off("click").on("click", function () {
 
             selectedItems.length = 0;
@@ -908,13 +912,13 @@ function processCheckboxes(_this) {
         });
 
         $('.select2-search__field').off("keyup").on('keyup', function () {
-            checkIds();
-            if (!searchIDs.length) {
-                clearButtonSelector.hide();
-            } else {
-                printClearButtonText(searchIDs.length);
-                clearButtonSelector.show();
-            }
+            // checkIds();
+            // if (!searchIDs.length) {
+            //     clearButtonSelector.hide();
+            // } else {
+            //     printClearButtonText(searchIDs.length);
+            //     clearButtonSelector.show();
+            // }
         });
 
         // function showHideClearButton() {

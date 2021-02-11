@@ -4260,7 +4260,7 @@ a:focus {
   height: 35px;
   position: absolute;
   margin-right: 20px;
-  z-index: 2;
+  z-index: 1;
   -ms-transform: rotateZ(315deg);
   -webkit-transform: rotateZ(315deg);
   transform: rotateZ(315deg);
@@ -7916,27 +7916,27 @@ input[type=submit]
   }
 }
 
-.select2-container--focus.select2-container--default .select2-selection--single .select2-selection__rendered {
+/* .select2-container--focus.select2-container--default .select2-selection--single .select2-selection__rendered {
   color: #fff;
   background: #2171CE;
 }
 
 .select2-container--focus.select2-container--default .select2-selection--single .select2-selection__arrow b:before {
   color: #fff;
-}
+} */
 
-@media screen and (max-width: 480px) {
+/* @media screen and (max-width: 480px) { */
   .select2-container--default.select2-container--open .select2-selection--single .select2-selection__rendered {
     color: #fff;
     background: #2171CE;
   }
-}
+/* } */
 
-@media screen and (max-width: 480px) {
+/* @media screen and (max-width: 480px) { */
   .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b:before {
     color: #fff !important;
   }
-}
+/* } */
 
 .select2-container--default .select2-selection--single .select2-selection__clear {
   display: none;
@@ -11529,7 +11529,8 @@ hr.widget{
   border-radius: 2px;
   padding: 15px 30px;
   position: relative;
-  z-index: 9;
+  /* z-index: 9; */
+  z-index: 1;
 }
 .wp-title,.spec-title{
   text-align: left;
@@ -13001,9 +13002,6 @@ h1.title + .subtitle{
   padding: 15px 10px;
 }
 @media (max-width: 600px){
-  .welcome_package-popup .bonuses-wp .bonus-item + .bonus-item{
-    margin-left: 10px;
-  }
   .welcome_package-popup .bonuses-wp {
     display: block;
   }
@@ -13465,4 +13463,21 @@ h1.title + .subtitle{
   .spec-items .banking img, .spec-items .software img {
     margin-right: 7px;
   }
+}
+
+@media (min-width: 600px ){
+  .bonus-item+.bonus-item {
+    margin-left: 15px;
+}
+}
+
+
+.select2-search__field::-webkit-search-cancel-button{
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background: #E1E1E1 url(../../images/close.svg) no-repeat;
+  background-size: 8px 8px;
+  background-position: center center;
 }
