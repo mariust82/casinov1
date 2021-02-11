@@ -110,7 +110,7 @@
 									<i class="icon icon-icon_unavailable"></i>
 									</:if>
 									<span>
-										data.country.language <:if test="${result.is_language_accepted} == 1">
+										${data.country.languages.0} <:if test="${result.is_language_accepted} == 1">
 										available
 										<:else>
 										not available
