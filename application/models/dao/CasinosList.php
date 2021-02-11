@@ -19,7 +19,20 @@ class CasinosList
     public function getResults($sortBy, $page = 1, $limit = self::LIMIT, $offset = "")
     {
         $output = array();
-        $fields = array( "DISTINCT  t1.id","t1.withdraw_minimum", "t1.deposit_minimum", "t1.status_id", "cs.name AS status", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported","IF(t15.id IS NOT NULL,1,0) AS currency_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
+        $fields = array( 
+            "t1.id",
+            "t1.withdraw_minimum", 
+            "t1.deposit_minimum", 
+            "t1.status_id", 
+            "cs.name AS status", 
+            "t1.name", 
+            "t1.code", 
+            "(t1.rating_total/t1.rating_votes) AS average_rating", 
+            "t1.date_established", 
+            "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported",
+            "IF(t15.id IS NOT NULL,1,0) AS is_currency_supported",
+            "IF(t13.id IS NOT NULL,1,0) AS is_language_supported", 
+            "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
 
         $queryGenerator = new CasinosListQuery(
             $this->filter,
@@ -45,7 +58,8 @@ class CasinosList
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->score_class = $this->helper->getScoreClass($object->rating);
-            $object->is_currency_accepted = $row['currency_supported'];
+            $object->is_currency_accepted = $row['is_currency_supported'];
+            $object->is_language_accepted = $row['is_language_supported'];
             if ($this->filter->getBankingMethod()) {
                 $object->deposit_methods = $row["has_dm"];
                 $object->withdraw_methods = $row["has_wm"];
@@ -71,8 +85,7 @@ class CasinosList
                 $arg->all_softwares = $this->helper->get_string($arg->softwares);
             }
         }
-
-
+        
         return array_values($output);
     }
 

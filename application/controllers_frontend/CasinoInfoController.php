@@ -633,43 +633,76 @@ $this->response->attributes("menu_top", array (
   ),
 ));
 $this->response->attributes("casino", array (
-  'id' => '2246',
-  'name' => 'DuckyLuck Casino',
-  'code' => 'ducky_luck_casino',
-  'rating' => 8,
-  'rating_votes' => '37',
+  'id' => '2431',
+  'name' => 'Casobet Casino',
+  'code' => 'casobet_casino',
+  'rating' => 7,
+  'rating_votes' => '7',
   'softwares' => 
   array (
-    0 => 'Rival',
-    1 => 'DragonGaming',
-    2 => 'Felix Gaming',
-    3 => 'Fugaso',
-    4 => 'Spinomenal',
-    5 => 'Tom Horn Gaming',
-    6 => 'Arrows Edge',
-    7 => 'Saucify',
-    8 => 'BetSoft',
+    0 => 'BetSoft',
+    1 => 'OneTouch',
+    2 => 'NetGame',
+    3 => 'Nolimit City',
+    4 => 'Kalamba Games',
+    5 => 'Platipus Gaming',
+    6 => 'Red Tiger Gaming',
+    7 => 'Booongo',
+    8 => 'Iron Dog Studio',
+    9 => 'Tom Horn Gaming',
+    10 => 'PlayPearls',
+    11 => 'Pragmatic Play',
+    12 => 'Blueprint Gaming',
+    13 => 'Habanero',
+    14 => 'ELK Studios',
+    15 => 'BGaming',
+    16 => 'Playson',
+    17 => 'Push Gaming',
+    18 => 'Vivo Gaming',
+    19 => 'Ezugi',
+    20 => '1X2 Gaming',
+    21 => 'Quickspin',
+    22 => 'Evolution Gaming',
+    23 => 'Thunderkick',
+    24 => 'Yggdrasil Gaming',
+    25 => 'RTG',
   ),
   'languages' => 
   array (
     0 => 'English',
-    1 => 'French',
+    1 => 'Spanish',
+    2 => 'German',
+    3 => 'Russian',
+    4 => 'Swedish',
+    5 => 'Turkish',
+    6 => 'Norwegian',
+    7 => 'Finnish',
+    8 => 'Polish',
+    9 => 'French',
+    10 => 'Italian',
   ),
   'currencies' => 
   array (
     0 => 'USD',
     1 => 'EUR',
     2 => 'GBP',
-    3 => 'AUD',
-    4 => 'CAD',
-    5 => 'ZAR',
+    3 => 'BTC',
+    4 => 'LTC',
+    5 => 'BCH',
+    6 => 'DOG',
+    7 => 'ETH',
+    8 => 'DASH',
+    9 => 'ZEC',
+    10 => 'TRX',
+    11 => 'XRP',
+    12 => 'USDT',
   ),
   'bonus_first_deposit' => 
   array (
-    'amount' => '500% + 150 FS',
-    'min_deposit' => '£/€/$25',
-    'wagering' => '30x(D+B)',
-    'games_allowed' => 'All games (FS - Mystic Wolf, Golden Gorilla, Five Times Wins)',
+    'amount' => '120%',
+    'min_deposit' => '$/€/£10',
+    'wagering' => '35x(D+B)',
+    'games_allowed' => 'All except selected games',
     'code' => 'No code required',
     'type' => 'First Deposit Bonus',
     'bonus_type_Abbreviation' => NULL,
@@ -683,10 +716,10 @@ $this->response->attributes("casino", array (
     3 => 'Baccarat',
     4 => 'Craps',
   ),
-  'date_established' => '2020-08-03',
+  'date_established' => '2021-02-03',
   'emails' => 
   array (
-    0 => 'None',
+    0 => 'support@casobet.com',
   ),
   'phones' => 
   array (
@@ -695,26 +728,29 @@ $this->response->attributes("casino", array (
   'is_live_chat' => '1',
   'licenses' => 
   array (
+    0 => 'Curacao',
   ),
   'certifiers' => 
   array (
+    0 => 'GamCare',
+    1 => 'Gamblers Anonymous',
   ),
-  'affiliate_program' => 'OnlineCasinoShare',
+  'affiliate_program' => 'Casobet Affiliates',
   'affiliate_link' => NULL,
   'tc_link' => NULL,
   'comments' => NULL,
-  'withdrawal_minimum' => '$/€/£25',
+  'withdrawal_minimum' => '$/€/£50',
   'withdrawal_limits' => 
   array (
-    0 => '$/€/£2500 per week',
+    0 => '$/€/£1000 per day',
+    1 => '$/€/£4000 per week',
+    2 => '$/€/£10000 per month',
   ),
   'withdrawal_timeframes' => 
   array (
-    0 => 'Ewallets - 48-72 hours',
-    1 => 'Bitcoin Wallet - 48-72 hours',
-    2 => 'Wire Transfer - 48-72 hours',
-    3 => 'Credit cards - 48-72 hours',
-    4 => 'Cheques - 48-72 hours',
+    0 => 'Ewallets - up to 24 hours',
+    1 => 'Bitcoin Wallet - up to 24 hours',
+    2 => 'Credit cards - 4-5 business days',
   ),
   'deposit_methods' => NULL,
   'withdraw_methods' => NULL,
@@ -727,32 +763,116 @@ $this->response->attributes("casino", array (
   'logo_big' => '/public/sync/casino_logo_light/124x82/no-logo-124x82.png',
   'logo_small' => '/public/sync/casino_logo_light/85x56/no-logo-85x56.png',
   'new' => NULL,
-  'score_class' => 'Excellent',
+  'score_class' => 'Good',
   'all_softwares' => NULL,
-  'deposit_minimum' => '$/€/£25',
+  'deposit_minimum' => '$/€/£1',
   'welcome_package' => 
   array (
     0 => 
     array (
       'valid_on' => '1st Deposit',
-      'bonus' => '500% + 150 FS',
-      'min_deposit' => '£/€/$25',
-      'wagering' => '30x(D+B)',
-      'games' => 'All games (FS - Mystic Wolf, Golden Gorilla, Five Times Wins)',
+      'bonus' => '120%',
+      'min_deposit' => '$/€/£10',
+      'wagering' => '35x(D+B)',
+      'games' => 'All except selected games',
       'bonus_codes' => 'No code required',
     ),
     1 => 
     array (
-      'valid_on' => '1st BTC Deposit',
-      'bonus' => '600% + 150 FS',
-      'min_deposit' => '£/€/$25',
-      'wagering' => '30x(D+B)	',
-      'games' => 'All games (FS - Mystic Wolf, Golden Gorilla, Five Times Wins)',
+      'valid_on' => '2nd Deposit',
+      'bonus' => '50%',
+      'min_deposit' => '$/€/£10',
+      'wagering' => '35x(D+B)',
+      'games' => 'All except selected games',
+      'bonus_codes' => 'No code required',
+    ),
+    2 => 
+    array (
+      'valid_on' => '3rd Deposit',
+      'bonus' => '50%',
+      'min_deposit' => '$/€/£10',
+      'wagering' => '35x(D+B)',
+      'games' => 'All except selected games',
+      'bonus_codes' => 'No code required',
+    ),
+    3 => 
+    array (
+      'valid_on' => '4th Deposit',
+      'bonus' => '70%',
+      'min_deposit' => '$/€/£10',
+      'wagering' => '35x(D+B)',
+      'games' => 'All except selected games',
+      'bonus_codes' => 'No code required',
+    ),
+    4 => 
+    array (
+      'valid_on' => '5th Deposit',
+      'bonus' => '30%',
+      'min_deposit' => '$/€/£10',
+      'wagering' => '35x(D+B)',
+      'games' => 'All except selected games',
+      'bonus_codes' => 'No code required',
+    ),
+    5 => 
+    array (
+      'valid_on' => '6th Deposit',
+      'bonus' => '30%',
+      'min_deposit' => '$/€/£10',
+      'wagering' => '35x(D+B)',
+      'games' => 'All except selected games',
+      'bonus_codes' => 'No code required',
+    ),
+    6 => 
+    array (
+      'valid_on' => '7th Deposit',
+      'bonus' => '40%',
+      'min_deposit' => '$/€/£10',
+      'wagering' => '35x(D+B)',
+      'games' => 'All except selected games',
+      'bonus_codes' => 'No code required',
+    ),
+    7 => 
+    array (
+      'valid_on' => '8th Deposit',
+      'bonus' => '40%',
+      'min_deposit' => '$/€/£10',
+      'wagering' => '35x(D+B)',
+      'games' => 'All except selected games',
+      'bonus_codes' => 'No code required',
+    ),
+    8 => 
+    array (
+      'valid_on' => '9th Deposit',
+      'bonus' => '50%',
+      'min_deposit' => '$/€/£10',
+      'wagering' => '35x(D+B)',
+      'games' => 'All except selected games',
+      'bonus_codes' => 'No code required',
+    ),
+    9 => 
+    array (
+      'valid_on' => '10th Deposit',
+      'bonus' => '60%',
+      'min_deposit' => '$/€/£10',
+      'wagering' => '35x(D+B)',
+      'games' => 'All except selected games',
       'bonus_codes' => 'No code required',
     ),
   ),
   'casino_deposit_methods' => 
   array (
+    'Bitcoin Wallets' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => true,
+      'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+    ),
+    'Boleto Bancario' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => false,
+      'logo' => '/public/sync/banking_method_light/68x39/boleto_bancario.png',
+    ),
     'MasterCard' => 
     array (
       'deposit_methods' => true,
@@ -765,29 +885,17 @@ $this->response->attributes("casino", array (
       'withdraw_methods' => false,
       'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
     ),
-    'Neteller' => 
-    array (
-      'deposit_methods' => true,
-      'withdraw_methods' => true,
-      'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-    ),
-    'POLi' => 
+    'QIWI' => 
     array (
       'deposit_methods' => true,
       'withdraw_methods' => false,
-      'logo' => '/public/sync/banking_method_light/68x39/poli.png',
+      'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
     ),
-    'paysafecard' => 
+    'SafetyPay' => 
     array (
       'deposit_methods' => true,
       'withdraw_methods' => false,
-      'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
-    ),
-    'Skrill' => 
-    array (
-      'deposit_methods' => true,
-      'withdraw_methods' => true,
-      'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+      'logo' => '/public/sync/banking_method_light/68x39/safetypay.png',
     ),
     'Visa' => 
     array (
@@ -795,23 +903,53 @@ $this->response->attributes("casino", array (
       'withdraw_methods' => false,
       'logo' => '/public/sync/banking_method_light/68x39/visa.png',
     ),
-    'Wire Transfer' => 
+    'WebMoney' => 
     array (
       'deposit_methods' => true,
       'withdraw_methods' => true,
-      'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+      'logo' => '/public/sync/banking_method_light/68x39/webmoney.png',
     ),
-    'Bitcoin Wallets' => 
+    'Ethereum' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => true,
+      'logo' => '/public/sync/banking_method_light/68x39/ethereum.png',
+    ),
+    'Litecoin' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => true,
+      'logo' => '/public/sync/banking_method_light/68x39/litecoin.png',
+    ),
+    'Dogecoin' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => true,
+      'logo' => '/public/sync/banking_method_light/68x39/dogecoin.png',
+    ),
+    'Bitcoin Cash' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => true,
+      'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
+    ),
+    'Dash' => 
+    array (
+      'deposit_methods' => true,
+      'withdraw_methods' => true,
+      'logo' => '/public/sync/banking_method_light/68x39/dash.png',
+    ),
+    'Monero' => 
     array (
       'deposit_methods' => false,
       'withdraw_methods' => true,
-      'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+      'logo' => '/public/sync/banking_method_light/68x39/monero.png',
     ),
-    'UPayCard' => 
+    'Tether Wallet' => 
     array (
       'deposit_methods' => false,
       'withdraw_methods' => true,
-      'logo' => '/public/sync/banking_method_light/68x39/upaycard.png',
+      'logo' => '/public/sync/banking_method_light/68x39/tether_wallet.png',
     ),
   ),
   'is_mobile' => true,
@@ -823,31 +961,31 @@ $this->response->attributes("casino", array (
     ),
     1 => 
     array (
-      'name' => 'Video Poker',
+      'name' => 'Blackjack',
     ),
     2 => 
     array (
-      'name' => 'Scratch Cards',
+      'name' => 'Roulette',
     ),
     3 => 
     array (
-      'name' => 'Keno',
+      'name' => 'Video Poker',
     ),
     4 => 
     array (
-      'name' => 'Bingo',
+      'name' => 'Table Games',
     ),
     5 => 
     array (
-      'name' => 'Blackjack',
+      'name' => 'Scratch Cards',
     ),
     6 => 
     array (
-      'name' => 'Roulette',
+      'name' => 'Keno',
     ),
     7 => 
     array (
-      'name' => 'Table Games',
+      'name' => 'Bingo',
     ),
     8 => 
     array (
@@ -869,10 +1007,10 @@ $this->response->attributes("casino", array (
   'status' => NULL,
   'user_votes' => 
   array (
-    'Excellent' => 2,
-    'Very good' => 33,
+    'Excellent' => 4,
+    'Very good' => 1,
     'Good' => 0,
-    'Poor' => 0,
+    'Poor' => 1,
     'Terrible' => 1,
   ),
   'match_bonuses' => 
@@ -883,18 +1021,58 @@ $this->response->attributes("user_score", 0);
 $this->response->attributes("user_score_class", 'No score');
 $this->response->attributes("reviews_limit", 5);
 $this->response->attributes("replies_limit", 5);
-$this->response->attributes("total_votes", '36');
-$this->response->attributes("total_reviews", 0);
+$this->response->attributes("total_votes", '7');
+$this->response->attributes("total_reviews", '2');
 $this->response->attributes("reviews", array (
+  0 => 
+  array (
+    'id' => '568',
+    'parent_id' => 0,
+    'title' => 'horrible and bad support',
+    'name' => 'NomNomNom',
+    'email' => 'leroyjansen-@hotmail.com',
+    'body' => 'Very bad bonus terms, almost a non existent support department. No info on owner of casino and licenses. Avoid this casino if you can.',
+    'likes' => '0',
+    'ip' => NULL,
+    'country' => 'NL',
+    'rating' => 1,
+    'date' => '2021-02-05 01:21:59',
+    'parent' => NULL,
+    'children' => 
+    array (
+    ),
+    'total_children' => 0,
+    'status' => NULL,
+  ),
+  1 => 
+  array (
+    'id' => '567',
+    'parent_id' => 0,
+    'title' => 'Beware you must play with bonus',
+    'name' => 'Diana',
+    'email' => 'dmeyers63@hotmail.com',
+    'body' => 'Understand that you HAVE to play with the bonus! For the first 10 deposits the bonus will be added automatically. I played all night and didn\'t get even to 50% . It\'s also extremely confusing that they have a long, long list of restricted games. It makes you worry constantly that you are playing a restricted game accidentally and your deposit is in vain. On the bright side, USA players ARE allowed. ',
+    'likes' => '0',
+    'ip' => NULL,
+    'country' => 'US',
+    'rating' => 3,
+    'date' => '2021-02-04 09:19:01',
+    'parent' => NULL,
+    'children' => 
+    array (
+    ),
+    'total_children' => 0,
+    'status' => NULL,
+  ),
 ));
 $this->response->attributes("country_status", 'accepted');
-$this->response->attributes("add_text", 10);
+$this->response->attributes("add_text", 8);
 $this->response->attributes("country_status_text", 'accepted');
 $this->response->attributes("page_type", 'reviews');
 $this->response->attributes("page_info", array (
-  'head_title' => 'DuckyLuck Casino Review 2021 | Authentic Ratings & Player Reviews!',
-  'head_description' => 'DuckyLuck Casino Review & Bonus Codes (2021 Updated) | Read Real Reviews left by CasinosLists.com\'s Members | Sign up Bonus: 500% + 150 FS First Deposit Bonus',
-  'body_title' => 'DuckyLuck Casino Review',
+  'head_title' => 'Casobet Casino Review 2021 | Authentic Ratings & Player Reviews!',
+  'head_description' => 'Casobet Casino Review & Bonus Codes (2021 Updated) | Read Real Reviews left by CasinosLists.com\'s Members | Sign up Bonus: 120% First Deposit Bonus',
+  'body_title' => 'Casobet Casino Review',
 ));
 $this->response->attributes("is_mobile", false);
 $this->response->attributes("version", '1.0.0');

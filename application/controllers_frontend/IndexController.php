@@ -989,7 +989,7 @@ $this->response->attributes("best_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -1146,7 +1146,7 @@ $this->response->attributes("best_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -1303,7 +1303,7 @@ $this->response->attributes("best_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -1529,7 +1529,7 @@ $this->response->attributes("best_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '0',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -1765,7 +1765,7 @@ $this->response->attributes("best_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -1973,7 +1973,7 @@ $this->response->attributes("best_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -2061,874 +2061,6 @@ $this->response->attributes("best_casinos", array (
     'status' => NULL,
     'isFree' => 0,
   ),
-  6 => 
-  array (
-    'id' => '1765',
-    'name' => 'Gudar Casino',
-    'code' => 'gudar_casino',
-    'rating' => 9,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'GameArt',
-      1 => 'MicroGaming',
-      2 => 'iSoftBet',
-      3 => 'BetSoft',
-      4 => 'NetEnt',
-      5 => 'Evolution Gaming',
-      6 => 'Quickspin',
-      7 => 'Ezugi',
-      8 => 'Play n GO',
-      9 => 'Endorphina',
-      10 => 'Rabcat',
-      11 => 'Habanero',
-      12 => 'Pariplay',
-      13 => 'Pragmatic Play',
-      14 => 'Betgames TV',
-      15 => 'Fugaso',
-      16 => 'Foxium',
-    ),
-    'languages' => NULL,
-    'currencies' => '€',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100% + 100 FS',
-      'min_deposit' => '€25',
-      'wagering' => '40x(D+B)',
-      'games_allowed' => 'Slots (FS- Vikings)',
-      'code' => ' GUDAR1',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => NULL,
-    'live_dealers' => NULL,
-    'date_established' => '2019-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => '€25',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Excellent',
-    'all_softwares' => 'MicroGaming, iSoftBet, BetSoft, NetEnt, Evolution Gaming, Quickspin, Ezugi, Play n GO, Endorphina, Rabcat, Habanero, Pariplay, Pragmatic Play, Betgames TV, Fugaso, Foxium',
-    'deposit_minimum' => '20',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'AstroPay' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/astropay.png',
-      ),
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'EcoPayz' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neosurf' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'paysafecard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      6 => 
-      array (
-        'name' => 'Bingo',
-      ),
-      7 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 0,
-  ),
-  7 => 
-  array (
-    'id' => '1546',
-    'name' => 'JellyBean Casino',
-    'code' => 'jellybean_casino',
-    'rating' => 9,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'NetEnt',
-      1 => 'MicroGaming',
-      2 => 'BetSoft',
-      3 => 'Wazdan',
-      4 => 'Rival',
-      5 => 'Thunderkick',
-      6 => '1X2 Gaming',
-      7 => 'Ezugi',
-      8 => 'Vivo Gaming',
-      9 => 'Playson',
-      10 => 'BGaming',
-      11 => 'ELK Studios',
-      12 => 'Big Time Gaming',
-      13 => 'Habanero',
-      14 => 'Blueprint Gaming',
-      15 => 'Booming Games',
-      16 => 'Pragmatic Play',
-      17 => 'PlayPearls',
-      18 => 'Evoplay',
-      19 => 'Iron Dog Studio',
-      20 => 'MrSlotty Games',
-      21 => 'MGA',
-      22 => 'Fugaso',
-      23 => 'LuckyStreak',
-      24 => 'Booongo',
-      25 => 'Kalamba Games',
-      26 => 'Nolimit City',
-      27 => 'SA Gaming',
-      28 => 'Felix Gaming',
-      29 => 'Betixon',
-      30 => 'Xplosive',
-      31 => 'Ruby Play',
-      32 => 'Nucleus Gaming',
-      33 => 'Revolver Gaming',
-      34 => 'Salsa Techonology',
-    ),
-    'languages' => NULL,
-    'currencies' => '€',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '300% + 50 FS',
-      'min_deposit' => '€20',
-      'wagering' => '33x(D+B)',
-      'games_allowed' => 'All except selected games (FS - Betsoft games)',
-      'code' => '300JB',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => NULL,
-    'live_dealers' => NULL,
-    'date_established' => '2018-04-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => '€100',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Excellent',
-    'all_softwares' => 'MicroGaming, BetSoft, Wazdan, Rival, Thunderkick, 1X2 Gaming, Ezugi, Vivo Gaming, Playson, BGaming, ELK Studios, Big Time Gaming, Habanero, Blueprint Gaming, Booming Games, Pragmatic Play, PlayPearls, Evoplay, Iron Dog Studio, MrSlotty Games, MGA, Fugaso, LuckyStreak, Booongo, Kalamba Games, Nolimit City, SA Gaming, Felix Gaming, Betixon, Xplosive, Ruby Play, Nucleus Gaming, Revolver Gaming, Salsa Techonology',
-    'deposit_minimum' => '20',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'EcoPayz' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
-      ),
-      'EntroPay' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/entropay.png',
-      ),
-      'Maestro' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neosurf' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'paysafecard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
-      ),
-      'Postepay' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/postepay.png',
-      ),
-      'SOFORT Banking' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/sofort_banking.png',
-      ),
-      'Siru Mobile' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/siru_mobile.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Visa Electron' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa_electron.png',
-      ),
-      'Western Union' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/western_union.png',
-      ),
-      'giropay' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/giropay.png',
-      ),
-      'iDEAL' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/ideal.png',
-      ),
-      'Interac' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      6 => 
-      array (
-        'name' => 'Keno',
-      ),
-      7 => 
-      array (
-        'name' => 'Bingo',
-      ),
-      8 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      9 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 0,
-  ),
-  8 => 
-  array (
-    'id' => '1938',
-    'name' => 'White Lion Bets Casino',
-    'code' => 'white_lion_casino',
-    'rating' => 9,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'NetEnt',
-      1 => 'MicroGaming',
-      2 => 'BetSoft',
-      3 => 'Wazdan',
-      4 => 'Rival',
-      5 => 'Thunderkick',
-      6 => 'Evolution Gaming',
-      7 => '1X2 Gaming',
-      8 => 'Ezugi',
-      9 => 'Vivo Gaming',
-      10 => 'Playson',
-      11 => 'BGaming',
-      12 => 'ELK Studios',
-      13 => 'Big Time Gaming',
-      14 => 'Habanero',
-      15 => 'Blueprint Gaming',
-      16 => 'Booming Games',
-      17 => 'Pragmatic Play',
-      18 => 'PlayPearls',
-      19 => 'Evoplay',
-      20 => 'Iron Dog Studio',
-      21 => 'MrSlotty Games',
-      22 => 'Betgames TV',
-      23 => 'MGA',
-      24 => 'Fugaso',
-      25 => 'LuckyStreak',
-      26 => 'Booongo',
-      27 => 'Kalamba Games',
-      28 => 'Nolimit City',
-      29 => 'SA Gaming',
-      30 => 'Felix Gaming',
-      31 => 'Betixon',
-      32 => 'Xplosive',
-      33 => 'Ruby Play',
-      34 => 'Nucleus Gaming',
-      35 => 'Revolver Gaming',
-      36 => 'Salsa Techonology',
-    ),
-    'languages' => NULL,
-    'currencies' => '€',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '200%',
-      'min_deposit' => '€20',
-      'wagering' => '35x(D+B)',
-      'games_allowed' => 'All except selected games',
-      'code' => 'FIRST',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => NULL,
-    'live_dealers' => NULL,
-    'date_established' => '2019-05-15',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => '€100',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Excellent',
-    'all_softwares' => 'MicroGaming, BetSoft, Wazdan, Rival, Thunderkick, Evolution Gaming, 1X2 Gaming, Ezugi, Vivo Gaming, Playson, BGaming, ELK Studios, Big Time Gaming, Habanero, Blueprint Gaming, Booming Games, Pragmatic Play, PlayPearls, Evoplay, Iron Dog Studio, MrSlotty Games, Betgames TV, MGA, Fugaso, LuckyStreak, Booongo, Kalamba Games, Nolimit City, SA Gaming, Felix Gaming, Betixon, Xplosive, Ruby Play, Nucleus Gaming, Revolver Gaming, Salsa Techonology',
-    'deposit_minimum' => '20',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'EcoPayz' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
-      ),
-      'Maestro' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'POLi' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/poli.png',
-      ),
-      'paysafecard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
-      ),
-      'Postepay' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/postepay.png',
-      ),
-      'SOFORT Banking' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/sofort_banking.png',
-      ),
-      'Siru Mobile' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/siru_mobile.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Visa Electron' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa_electron.png',
-      ),
-      'Western Union' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/western_union.png',
-      ),
-      'giropay' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/giropay.png',
-      ),
-      'iDEAL' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/ideal.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      6 => 
-      array (
-        'name' => 'Keno',
-      ),
-      7 => 
-      array (
-        'name' => 'Bingo',
-      ),
-      8 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      9 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 0,
-  ),
-  9 => 
-  array (
-    'id' => '1724',
-    'name' => 'Montecryptos Casino',
-    'code' => 'montecryptos_casino',
-    'rating' => 9,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'NetEnt',
-      1 => 'Oryx Gaming',
-      2 => 'MicroGaming',
-      3 => 'iSoftBet',
-      4 => 'BetSoft',
-      5 => 'Wazdan',
-      6 => 'IGT',
-      7 => 'Yggdrasil Gaming',
-      8 => 'Evolution Gaming',
-      9 => 'Quickspin',
-      10 => '1X2 Gaming',
-      11 => 'Ezugi',
-      12 => 'Push Gaming',
-      13 => 'Play n GO',
-      14 => 'Endorphina',
-      15 => 'ELK Studios',
-      16 => 'Big Time Gaming',
-      17 => 'Habanero',
-      18 => 'GameArt',
-      19 => 'Pariplay',
-      20 => 'Relax Gaming',
-      21 => 'Booming Games',
-      22 => 'Pragmatic Play',
-      23 => 'Kiron Interactive',
-      24 => 'Tom Horn Gaming',
-      25 => 'Evoplay',
-      26 => 'Spinomenal',
-      27 => 'Felt Gaming',
-      28 => 'Iron Dog Studio',
-      29 => 'Gamomat',
-      30 => 'Betgames TV',
-      31 => 'Fugaso',
-      32 => 'LuckyStreak',
-      33 => 'Red Tiger Gaming',
-      34 => 'Nolimit City',
-      35 => 'Betixon',
-      36 => 'Ganapati',
-    ),
-    'languages' => NULL,
-    'currencies' => '$/€/£',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '120%',
-      'min_deposit' => ' $/€/£10',
-      'wagering' => '35x(D+B)',
-      'games_allowed' => 'All',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => NULL,
-    'live_dealers' => NULL,
-    'date_established' => '2018-11-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => '$/€/£25',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Excellent',
-    'all_softwares' => 'Oryx Gaming, MicroGaming, iSoftBet, BetSoft, Wazdan, IGT, Yggdrasil Gaming, Evolution Gaming, Quickspin, 1X2 Gaming, Ezugi, Push Gaming, Play n GO, Endorphina, ELK Studios, Big Time Gaming, Habanero, GameArt, Pariplay, Relax Gaming, Booming Games, Pragmatic Play, Kiron Interactive, Tom Horn Gaming, Evoplay, Spinomenal, Felt Gaming, Iron Dog Studio, Gamomat, Betgames TV, Fugaso, LuckyStreak, Red Tiger Gaming, Nolimit City, Betixon, Ganapati',
-    'deposit_minimum' => '10',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'AstroPay' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/astropay.png',
-      ),
-      'EcoPayz' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neosurf' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'paysafecard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
-      ),
-      'Siru Mobile' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/siru_mobile.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-      'Zimpler' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      6 => 
-      array (
-        'name' => 'Keno',
-      ),
-      7 => 
-      array (
-        'name' => 'Bingo',
-      ),
-      8 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      9 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 0,
-  ),
 ));
 $this->response->attributes("country_casinos", array (
   0 => 
@@ -2981,7 +2113,7 @@ $this->response->attributes("country_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3143,7 +2275,7 @@ $this->response->attributes("country_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3305,7 +2437,7 @@ $this->response->attributes("country_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3431,7 +2563,7 @@ $this->response->attributes("country_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3545,7 +2677,7 @@ $this->response->attributes("country_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '0',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3630,31 +2762,31 @@ $this->response->attributes("new_casinos", array (
     'softwares' => 
     array (
       0 => 'BetSoft',
-      1 => 'RTG',
-      2 => 'Yggdrasil Gaming',
-      3 => 'Thunderkick',
-      4 => 'Evolution Gaming',
-      5 => 'Quickspin',
-      6 => '1X2 Gaming',
-      7 => 'Ezugi',
-      8 => 'Vivo Gaming',
-      9 => 'Push Gaming',
-      10 => 'Playson',
-      11 => 'BGaming',
-      12 => 'ELK Studios',
-      13 => 'Habanero',
-      14 => 'Blueprint Gaming',
-      15 => 'Pragmatic Play',
-      16 => 'PlayPearls',
+      1 => 'NetGame',
+      2 => 'Ezugi',
+      3 => '1X2 Gaming',
+      4 => 'Quickspin',
+      5 => 'Evolution Gaming',
+      6 => 'Thunderkick',
+      7 => 'Yggdrasil Gaming',
+      8 => 'RTG',
+      9 => 'Vivo Gaming',
+      10 => 'PlayPearls',
+      11 => 'Nolimit City',
+      12 => 'Kalamba Games',
+      13 => 'Platipus Gaming',
+      14 => 'Red Tiger Gaming',
+      15 => 'Booongo',
+      16 => 'Iron Dog Studio',
       17 => 'Tom Horn Gaming',
-      18 => 'Iron Dog Studio',
-      19 => 'Booongo',
-      20 => 'Red Tiger Gaming',
-      21 => 'Platipus Gaming',
-      22 => 'Kalamba Games',
-      23 => 'Nolimit City',
-      24 => 'NetGame',
-      25 => 'OneTouch',
+      18 => 'OneTouch',
+      19 => 'Pragmatic Play',
+      20 => 'Blueprint Gaming',
+      21 => 'Habanero',
+      22 => 'ELK Studios',
+      23 => 'BGaming',
+      24 => 'Playson',
+      25 => 'Push Gaming',
     ),
     'languages' => NULL,
     'currencies' => '$/€/£',
@@ -3686,7 +2818,7 @@ $this->response->attributes("new_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3695,7 +2827,7 @@ $this->response->attributes("new_casinos", array (
     'logo_small' => NULL,
     'new' => true,
     'score_class' => 'Good',
-    'all_softwares' => 'RTG, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, 1X2 Gaming, Ezugi, Vivo Gaming, Push Gaming, Playson, BGaming, ELK Studios, Habanero, Blueprint Gaming, Pragmatic Play, PlayPearls, Tom Horn Gaming, Iron Dog Studio, Booongo, Red Tiger Gaming, Platipus Gaming, Kalamba Games, Nolimit City, NetGame, OneTouch',
+    'all_softwares' => 'NetGame, Ezugi, 1X2 Gaming, Quickspin, Evolution Gaming, Thunderkick, Yggdrasil Gaming, RTG, Vivo Gaming, PlayPearls, Nolimit City, Kalamba Games, Platipus Gaming, Red Tiger Gaming, Booongo, Iron Dog Studio, Tom Horn Gaming, OneTouch, Pragmatic Play, Blueprint Gaming, Habanero, ELK Studios, BGaming, Playson, Push Gaming',
     'deposit_minimum' => '1',
     'welcome_package' => NULL,
     'casino_deposit_methods' => 
@@ -3848,16 +2980,16 @@ $this->response->attributes("new_casinos", array (
     'softwares' => 
     array (
       0 => 'NetEnt',
-      1 => 'NYX Interactive',
-      2 => 'NextGen Gaming',
-      3 => 'IGT',
-      4 => 'WMS Gaming',
-      5 => 'Thunderkick',
-      6 => '888 Software',
-      7 => 'Eyecon',
-      8 => 'Pariplay',
-      9 => 'Dragonfish',
-      10 => 'Skillzz Gaming',
+      1 => 'Dragonfish',
+      2 => 'Skillzz Gaming',
+      3 => 'Pariplay',
+      4 => 'Eyecon',
+      5 => '888 Software',
+      6 => 'Thunderkick',
+      7 => 'WMS Gaming',
+      8 => 'IGT',
+      9 => 'NextGen Gaming',
+      10 => 'NYX Interactive',
     ),
     'languages' => NULL,
     'currencies' => '€/£',
@@ -3889,7 +3021,7 @@ $this->response->attributes("new_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3898,7 +3030,7 @@ $this->response->attributes("new_casinos", array (
     'logo_small' => NULL,
     'new' => true,
     'score_class' => 'Excellent',
-    'all_softwares' => 'NYX Interactive, NextGen Gaming, IGT, WMS Gaming, Thunderkick, 888 Software, Eyecon, Pariplay, Dragonfish, Skillzz Gaming',
+    'all_softwares' => 'Dragonfish, Skillzz Gaming, Pariplay, Eyecon, 888 Software, Thunderkick, WMS Gaming, IGT, NextGen Gaming, NYX Interactive',
     'deposit_minimum' => '10',
     'welcome_package' => NULL,
     'casino_deposit_methods' => 
@@ -3959,39 +3091,39 @@ $this->response->attributes("new_casinos", array (
     'softwares' => 
     array (
       0 => 'NetEnt',
-      1 => 'MicroGaming',
-      2 => 'iSoftBet',
-      3 => 'Playtech',
-      4 => 'BetSoft',
-      5 => 'Wazdan',
-      6 => 'Yggdrasil Gaming',
-      7 => 'Thunderkick',
-      8 => 'Evolution Gaming',
+      1 => 'Evolution Gaming',
+      2 => 'Habanero',
+      3 => 'ELK Studios',
+      4 => 'Endorphina',
+      5 => 'Play n GO',
+      6 => 'Push Gaming',
+      7 => 'Ezugi',
+      8 => '1X2 Gaming',
       9 => 'Quickspin',
-      10 => '1X2 Gaming',
-      11 => 'Ezugi',
-      12 => 'Push Gaming',
-      13 => 'Play n GO',
-      14 => 'Endorphina',
-      15 => 'ELK Studios',
-      16 => 'Habanero',
-      17 => 'Blueprint Gaming',
-      18 => 'GameArt',
-      19 => 'Pariplay',
-      20 => 'Relax Gaming',
-      21 => 'Amatic Industries',
-      22 => 'Booming Games',
-      23 => 'Pragmatic Play',
-      24 => 'EGT',
-      25 => 'Tom Horn Gaming',
+      10 => 'GameArt',
+      11 => 'Thunderkick',
+      12 => 'Yggdrasil Gaming',
+      13 => 'Wazdan',
+      14 => 'BetSoft',
+      15 => 'Playtech',
+      16 => 'iSoftBet',
+      17 => 'MicroGaming',
+      18 => 'Tom Horn Gaming',
+      19 => 'August Gaming',
+      20 => 'NetGame',
+      21 => 'Nolimit City',
+      22 => 'Red Tiger Gaming',
+      23 => 'Red Rake Gaming',
+      24 => 'Booongo',
+      25 => 'Spinomenal',
       26 => 'Evoplay',
-      27 => 'Spinomenal',
-      28 => 'Booongo',
-      29 => 'Red Rake Gaming',
-      30 => 'Red Tiger Gaming',
-      31 => 'Nolimit City',
-      32 => 'NetGame',
-      33 => 'August Gaming',
+      27 => 'Blueprint Gaming',
+      28 => 'EGT',
+      29 => 'Pragmatic Play',
+      30 => 'Booming Games',
+      31 => 'Amatic Industries',
+      32 => 'Relax Gaming',
+      33 => 'Pariplay',
     ),
     'languages' => NULL,
     'currencies' => '€',
@@ -4023,7 +3155,7 @@ $this->response->attributes("new_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '0',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -4032,7 +3164,7 @@ $this->response->attributes("new_casinos", array (
     'logo_small' => NULL,
     'new' => true,
     'score_class' => 'No score',
-    'all_softwares' => 'MicroGaming, iSoftBet, Playtech, BetSoft, Wazdan, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, 1X2 Gaming, Ezugi, Push Gaming, Play n GO, Endorphina, ELK Studios, Habanero, Blueprint Gaming, GameArt, Pariplay, Relax Gaming, Amatic Industries, Booming Games, Pragmatic Play, EGT, Tom Horn Gaming, Evoplay, Spinomenal, Booongo, Red Rake Gaming, Red Tiger Gaming, Nolimit City, NetGame, August Gaming',
+    'all_softwares' => 'Evolution Gaming, Habanero, ELK Studios, Endorphina, Play n GO, Push Gaming, Ezugi, 1X2 Gaming, Quickspin, GameArt, Thunderkick, Yggdrasil Gaming, Wazdan, BetSoft, Playtech, iSoftBet, MicroGaming, Tom Horn Gaming, August Gaming, NetGame, Nolimit City, Red Tiger Gaming, Red Rake Gaming, Booongo, Spinomenal, Evoplay, Blueprint Gaming, EGT, Pragmatic Play, Booming Games, Amatic Industries, Relax Gaming, Pariplay',
     'deposit_minimum' => '20',
     'welcome_package' => NULL,
     'casino_deposit_methods' => 
@@ -4169,378 +3301,6 @@ $this->response->attributes("new_casinos", array (
     'status' => NULL,
     'isFree' => 0,
   ),
-  3 => 
-  array (
-    'id' => '2422',
-    'name' => 'Casino Dome',
-    'code' => 'casino_dome',
-    'rating' => 10,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'NetEnt',
-      1 => 'NYX Interactive',
-      2 => 'NextGen Gaming',
-      3 => 'Oryx Gaming',
-      4 => 'MicroGaming',
-      5 => 'iSoftBet',
-      6 => 'Wazdan',
-      7 => 'Yggdrasil Gaming',
-      8 => 'Evolution Gaming',
-      9 => 'Quickspin',
-      10 => 'Ezugi',
-      11 => 'Push Gaming',
-      12 => '2By2 Gaming',
-      13 => 'Cayetano Gaming',
-      14 => 'Play n GO',
-      15 => 'ELK Studios',
-      16 => 'Genesis Gaming',
-      17 => 'Big Time Gaming',
-      18 => 'Rabcat',
-      19 => 'Realistic Games',
-      20 => 'Relax Gaming',
-      21 => 'Lightning Box Games',
-      22 => 'Pragmatic Play',
-      23 => 'Gamomat',
-      24 => 'Skillzz Gaming',
-      25 => 'Red Tiger Gaming',
-      26 => 'Foxium',
-      27 => 'Kalamba Games',
-      28 => 'Skywind Group',
-      29 => 'Fantasma Games',
-      30 => 'Crazy Tooth Studio',
-    ),
-    'languages' => NULL,
-    'currencies' => '$/€/£',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100% + 21 FS',
-      'min_deposit' => '$/€/£10',
-      'wagering' => '40xB',
-      'games_allowed' => 'All except selected games (FS - Starburst, Gonzos Quest, Twin Spin & Reel Rush)',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '20',
-      'min_deposit' => '',
-      'wagering' => '40xB',
-      'games_allowed' => 'Starburst, Gonzos Quest, Twin Spin & Reel Rush',
-      'code' => 'No code required',
-      'type' => 'Free Spins',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2021-01-27',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => '$/€/£10',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '1',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => true,
-    'score_class' => 'Excellent',
-    'all_softwares' => 'NYX Interactive, NextGen Gaming, Oryx Gaming, MicroGaming, iSoftBet, Wazdan, Yggdrasil Gaming, Evolution Gaming, Quickspin, Ezugi, Push Gaming, 2By2 Gaming, Cayetano Gaming, Play n GO, ELK Studios, Genesis Gaming, Big Time Gaming, Rabcat, Realistic Games, Relax Gaming, Lightning Box Games, Pragmatic Play, Gamomat, Skillzz Gaming, Red Tiger Gaming, Foxium, Kalamba Games, Skywind Group, Fantasma Games, Crazy Tooth Studio',
-    'deposit_minimum' => '10',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'AstroPay' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/astropay.png',
-      ),
-      'Diners Club' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/diners_club.png',
-      ),
-      'EcoPayz' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
-      ),
-      'Maestro' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'paysafecard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'Trustly' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/trustly.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Visa Electron' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa_electron.png',
-      ),
-      'Interac' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      4 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      5 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  4 => 
-  array (
-    'id' => '2419',
-    'name' => 'Wheelz Casino',
-    'code' => 'wheelz_casino',
-    'rating' => 0,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'NetEnt',
-      1 => 'MicroGaming',
-      2 => 'iSoftBet',
-      3 => 'Leander Games',
-      4 => 'Yggdrasil Gaming',
-      5 => 'Thunderkick',
-      6 => 'Evolution Gaming',
-      7 => 'Quickspin',
-      8 => '1X2 Gaming',
-      9 => 'Ezugi',
-      10 => 'Push Gaming',
-      11 => 'Play n GO',
-      12 => 'ELK Studios',
-      13 => 'Big Time Gaming',
-      14 => 'Relax Gaming',
-      15 => 'Booming Games',
-      16 => 'Pragmatic Play',
-      17 => 'Iron Dog Studio',
-      18 => 'Gamomat',
-      19 => 'Inspired',
-      20 => 'Red Rake Gaming',
-      21 => 'Red Tiger Gaming',
-      22 => 'Foxium',
-      23 => 'Kalamba Games',
-      24 => 'Nolimit City',
-      25 => 'Fantasma Games',
-      26 => 'StakeLogic',
-      27 => 'Swintt',
-      28 => 'Spearhead Studios',
-    ),
-    'languages' => NULL,
-    'currencies' => '€',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '100% + 100 FS',
-      'min_deposit' => '€20',
-      'wagering' => '35xB',
-      'games_allowed' => 'All except selected games',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '20',
-      'min_deposit' => '',
-      'wagering' => '35xB',
-      'games_allowed' => 'Slots',
-      'code' => 'No code required',
-      'type' => 'Free Spins',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2021-01-13',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => '€20',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => true,
-    'score_class' => 'No score',
-    'all_softwares' => 'MicroGaming, iSoftBet, Leander Games, Yggdrasil Gaming, Thunderkick, Evolution Gaming, Quickspin, 1X2 Gaming, Ezugi, Push Gaming, Play n GO, ELK Studios, Big Time Gaming, Relax Gaming, Booming Games, Pragmatic Play, Iron Dog Studio, Gamomat, Inspired, Red Rake Gaming, Red Tiger Gaming, Foxium, Kalamba Games, Nolimit City, Fantasma Games, StakeLogic, Swintt, Spearhead Studios',
-    'deposit_minimum' => '20',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'EcoPayz' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'paysafecard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Bingo',
-      ),
-      6 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      7 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
 ));
 $this->response->attributes("no_deposit_casinos", array (
   0 => 
@@ -4595,7 +3355,7 @@ $this->response->attributes("no_deposit_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -4725,7 +3485,7 @@ $this->response->attributes("no_deposit_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -4870,7 +3630,7 @@ $this->response->attributes("no_deposit_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -5020,7 +3780,7 @@ $this->response->attributes("no_deposit_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -5189,7 +3949,7 @@ $this->response->attributes("no_deposit_casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '0',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
