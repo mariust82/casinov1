@@ -256,6 +256,88 @@ class CasinosList
         return SQL($query)->toValue();
     }
 
+    public function getBestCasinosByCountry($id) {
+        $output = [];
+        $date = date("Y-m-d", strtotime(date("Y-m-d") . " -6 months"));
+        $res = SQL("SELECT DISTINCT t1.id, t1.name,t1.tc_link , t1.code, t16.code AS currency , t18.name AS lang , (t1.rating_total/t1.rating_votes) AS average_rating, IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported, IF(t15.id IS NOT NULL,1,0) AS currency_supported, IF(t1.tc_link<>'', 1, 0) AS is_tc_link, t19.id AS complex_case 
+                    FROM casinos AS t1 INNER JOIN casino_statuses_extended AS t19 ON 0 = t1.status_id AND 1 = t19.status_id 
+                    LEFT OUTER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id 
+                    INNER JOIN currencies AS t16 ON (t16.id = t15.currency_id)
+                    LEFT OUTER JOIN casinos__languages AS t17 ON t1.id = t17.casino_id INNER JOIN languages AS t18 ON (t18.id = t17.language_id)
+                    INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$id} 
+                    LEFT OUTER JOIN casino_statuses AS cs ON t1.status_id = cs.id WHERE t1.is_open = 1 AND t1.status_id IN (0,3)
+                    AND t1.date_established <= '{$date}' AND t1.rating_votes >= 10 AND (t1.rating_total/t1.rating_votes) >= 7.5 
+                    GROUP BY t1.id ORDER BY complex_case ASC, average_rating DESC, t1.priority DESC, t1.id DESC");
+        while ($row = $res->toRow()) {
+            $object = new Casino();
+            $object->id = $row['id'];
+            $object->name = $row["name"];
+            $object->code = $row["code"];
+            $object->currencies = $row['currency'];
+            $object->languages = $row['lang'];
+            $object->rating = $row['average_rating'];
+            $object->is_country_accepted = $row["is_country_supported"];
+            $object->is_currency_accepted = $row['currency_supported'];
+            $object->is_tc_link = $row['is_tc_link'];
+            $object->tc_link = $row['tc_link'];
+            $output[$row["id"]] = $object;
+        }
+        $allowedIds = implode(",", array_keys($output));
+        $this->appendBonuses($output, $allowedIds);
+
+        return $output;
+    }
+
+    public function getNewestCasinosByCountry($id) {
+        $output = [];
+        $date = date("Y-m-d", strtotime(date("Y-m-d") . " -1 year"));
+        $res = SQL("SELECT DISTINCT  t1.id, t1.status_id, cs.name AS status, t1.name, t1.code, t1.date_established, IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported, t19.id AS complex_case
+                    FROM casinos AS t1
+                    INNER JOIN casino_statuses_extended AS t19 ON 0 = t1.status_id AND 1 = t19.status_id
+                    LEFT OUTER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id
+                    INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$id}
+                    INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id AND t4.bonus_type_id IN (3,4,5,6,11)
+                    LEFT OUTER JOIN casino_statuses AS cs ON t1.status_id = cs.id
+                    WHERE t1.is_open = 1 AND t1.date_established > '{$date}'
+                    ORDER BY t1.date_established DESC, t1.priority DESC, t1.id DESC");
+        while ($row = $res->toRow()) {
+            $object = new Casino();
+            $object->id = $row['id'];
+            $object->name = $row["name"];
+            $object->code = $row["code"];
+            $object->is_country_accepted = $row["is_country_supported"];
+            $output[$row["id"]] = $object;
+        }
+        $allowedIds = implode(",", array_keys($output));
+        $this->appendBonuses($output, $allowedIds);
+
+        return $output;
+    }
+
+    public function countNewestCasinosByCountry($id) {
+        $date = date("Y-m-d", strtotime(date("Y-m-d") . " -1 year"));
+        return SQL("SELECT COUNT(DISTINCT  t1.id) FROM casinos AS t1
+                    INNER JOIN casino_statuses_extended AS t19 ON 0 = t1.status_id AND 1 = t19.status_id
+                    LEFT OUTER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id
+                    INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$id}
+                    INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id AND t4.bonus_type_id IN (3,4,5,6,11)
+                    LEFT OUTER JOIN casino_statuses AS cs ON t1.status_id = cs.id
+                    WHERE t1.is_open = 1 AND t1.date_established > '{$date}'")->toValue();
+    }
+
+
+    public function countBestCasinosByCountry($id) {
+        $date = date("Y-m-d", strtotime(date("Y-m-d") . " -6 months"));
+        return SQL("SELECT COUNT(DISTINCT t1.id) 
+                    FROM casinos AS t1 INNER JOIN casino_statuses_extended AS t19 ON 0 = t1.status_id AND 1 = t19.status_id 
+                    LEFT OUTER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id 
+                    INNER JOIN currencies AS t16 ON (t16.id = t15.currency_id)
+                    LEFT OUTER JOIN casinos__languages AS t17 ON t1.id = t17.casino_id INNER JOIN languages AS t18 ON (t18.id = t17.language_id)
+                    INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$id} 
+                    LEFT OUTER JOIN casino_statuses AS cs ON t1.status_id = cs.id WHERE t1.is_open = 1 AND t1.status_id IN (0,3)
+                    AND t1.date_established <= '{$date}' AND t1.rating_votes >= 10 AND (t1.rating_total/t1.rating_votes) >= 7.5")->toValue();
+    }
+
     public function getManufacturers($sortBy, $limit = null, $offset = "") {
         $output = array();
         $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
