@@ -10816,6 +10816,13 @@ hr.widget{
   color: #a8aec8;
   font: normal normal 600 12px/18px Open Sans;
   font-weight: 400;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-pack:center;
+  -ms-flex-pack:center;
+  justify-content:center;
+  white-space:nowrap;
 }
 .games_allowed .bubble{
   font-size: 11px !important;
