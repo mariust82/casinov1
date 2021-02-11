@@ -510,7 +510,8 @@ function changeViewElements(filterView,container,gridClass,listClass){
                     buttonclass = settings.baseclass + settings.classspecific + "_button",
                     wrapcss = settings.baseclass + settings.classspecific + "_wrapper",
                     wrapjs = settings.basejsclass + settings.classspecific + "_wrapper",
-                    wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs).css({'max-width': element.css('width')});
+                    // wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs).css({'max-width': element.css('width')});
+                    wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs);
                     singleline = (singleline / 1.6) + parseFloat(element.css("font-size"));
                     var linescount = singleline * settings.linecount;
 

@@ -204,14 +204,6 @@ img {
   border: 0;
 }
 
-.header {
-  position: fixed!important;
-  top: 0;
-  left: 0;
-  z-index: 9999999;
-  transition:transform .1s linear;
-}
-
 .site__header_hidden .header{
     transform:translateY(-100%);
 }
@@ -2664,12 +2656,16 @@ a:focus {
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
-
 .header {
+  position: fixed!important;
+  top: 0;
+  left: 0;
+  z-index: 9999999;
+  transition:transform .1s linear;
   background: #2171CE;
   box-shadow: 0 2px 6px rgba(14, 69, 133, 0.24);
   position: relative;
-  z-index: 11;
+  z-index:101;
 }
 
 @media screen and (max-width: 1023px) {
@@ -3813,7 +3809,7 @@ a:focus {
   -webkit-box-pack: start;
   -ms-flex-pack: start;
   justify-content: flex-start;
-  padding: 10px 0 10px 10px;
+  padding: 10px 0;
   border-bottom: 1px solid #E8EAF3;
 }
 
@@ -3830,9 +3826,9 @@ a:focus {
     padding: 10px;
     width: auto;
   }
-  .list-view .list-item{
+  /*.list-view .list-item{
     margin: 0 !important;
-  }
+  }*/
   .low_wagering_list .list-item .list-rating {
     display: none;
   }
@@ -3871,20 +3867,16 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   .list-item-cell.list-item-casino {
-    width: 54%;
+    width: 53%;
   }
   .low_wagering_list .list-item-cell.list-item-casino {
     width: 47%;
   }
 }
 
-.list-heading .list-item-cell.list-item-casino {
-  text-indent: -10px;
-}
-
 @media screen and (max-width: 690px) {
   .list-heading .list-item-cell.list-item-casino {
-    text-indent: 0;
+    text-indent: 10px;
   }
 }
 
@@ -4080,6 +4072,7 @@ a:focus {
   .list-item-cell-buttons {
     width: 10%;
   }
+
   .low_wagering_list .list-item-cell-buttons {
     width: 13%;
   }
@@ -4707,17 +4700,18 @@ a:focus {
 }
 
 @media screen and (max-width: 767px) {
-  .btn-small, .btn-rest {
+  .btn-rest{
+    height:35px;
+  }
+
+  .list-item-cell-buttons .btn-small, 
+  .list-item-cell-buttons .btn-rest {
     padding: 7px 7px 8px;
     width:27px;
     height:27px;
     border-radius:50%;
     text-indent:-9999px;
     position:relative;
-  }
-
-  .btn-rest{
-    height:35px;
   }
 
   .btn-rest:after {
@@ -6322,12 +6316,6 @@ a:focus {
 .btn-bordered.load {
   min-width: 300px;
   border-radius: 2px;
-}
-
-@media screen and (max-width: 375px) {
-  .btn-bordered.load {
-    min-width: 100%;
-  }
 }
 
 .btn-bordered.load.loading {
@@ -13662,6 +13650,12 @@ h1.title + .subtitle{
   .review-submit-holder .plain-link{
     margin:10px 0 0 0;
     display:inline-block;
+  }
+
+  .similar_casino-box .list-rating,
+  .carousel-grid-casinos .list-rating{
+    text-indent: -1000px!important;
+    min-width: 0;
   }
 }
 
