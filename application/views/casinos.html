@@ -9,6 +9,25 @@
             </div>
             </:if>
         </div>
+        <!-- if page is software or country  -->
+        <div class="block">
+            <div class="container carousel-grid-casinos">
+                <!-- if page is software -->
+                    <:if test="${data.best_casinos_total} > 0">
+                        <casino:carousel-grid section="top" id="best-software" title="Best ${data.software} Casinos"  items="${data.best_casinos_total}" country="${data.country}" description="asd"/>
+                    </:if>
+            </div>
+        </div>
+        <h2 class="title title-middle">All ${data.software} Online Casinos</h2>
+                <!-- else if page is country -->
+                    <:if test="${data.best_casinos_total} > 0">
+                        <casino:carousel-grid section="top" id="best-country" title="Best ${data.country} Online Casinos"  items="${data.best_casinos_total}" country="${data.country}" description="asd"/>
+                    </:if>
+            <!-- </div>
+        </div> -->
+        <h2 class="title title-middle">All ${data.country} Online Casinos</h2>
+        <!-- end if -->
+        <!-- /end if page is software or country -->
 
         <:if test="isset(${data.currency})">
             <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.currency}" code="${data.language}" softwares="${data.softwares}" key="true"/>
@@ -92,6 +111,21 @@
                 </:if>
             </:if>
         </:if>
+        <!-- if page is software or country-->
+        <div class="block">
+            <div class="container carousel-grid-casinos">
+                <!-- if page is software -->
+                <:if test="${data.best_casinos_total} > 0">
+                    <casino:carousel-grid section="bottom" id="ndb-software" title="${data.software} No Deposit Casinos"  items="${data.best_casinos_total}" country="${data.country}" description="asd"/>
+                </:if>
+                <!--else if page is country -->
+                <:if test="${data.best_casinos_total} > 0">
+                    <casino:carousel-grid section="bottom" id="ndb-country" title="New ${data.country} No Deposit Casinos"  items="${data.best_casinos_total}" country="${data.country}" description="asd"/>
+                </:if>
+                <!--end if-->
+            </div>
+        </div>
+        <!-- end  if -->
         <:if test="isset(${data.recommended_games})">
             <:if test="${data.total_casinos} > 100">
             <div class="block">
