@@ -4672,6 +4672,11 @@ a:focus {
     background: #db2424;
     color: #fff;
   }
+
+  .btn.btn-blacklisted:hover{
+    background: #020a13;
+    color: #fff;
+  }
   .btn-round:hover {
     background: #d6d7dd;
   }
