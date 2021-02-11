@@ -819,7 +819,7 @@ function resetFilter(_select) {
     $select.val(null).trigger('change').select2('close');
     $('.select2-results__options').children().attr('aria-selected', false);
 
-    $('.select2-selection__rendered').text('Softwares');
+    $('.select2-selection__rendered').text('Software');
    // $('.' + selectName + '+.select2 .select2-selection__rendered').html(window[selectName + '_placeholder']);
 
 }
@@ -882,6 +882,10 @@ function processCheckboxes(_this) {
         addingClass.addClass("qwerty");
 
         $('.select2-search__field').prop('focus', false);
+
+        selectedItems.length = 0;
+
+        checkIds();
 
         $('.select2-results__option').off("click").on("click", function () {
 
