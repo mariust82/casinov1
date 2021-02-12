@@ -7,22 +7,6 @@
                 <:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
                 <img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
             </div>
-            <span class="casino_name_list_view">${result.name}</span>
-            <:set var="score_class" val="get_rating(${result.rating})"/>
-            <div class="rating_list_view list-rating ${normalize(${score_class})}">
-                <div class="list-rating-wrap">
-                    <:if test="${result.rating} == 0">
-                        ${score_class}
-                        <span class="list-rating-score">-</span>
-                        <div class=" list-rating-score list-rating-score-mobile">|</div>
-                        <:else>
-                            ${score_class}
-                            <span class="list-rating-score">
-                        ${ceil(${result.rating})}
-                    </span>
-                    </:if>
-                </div>
-            </div>
             <div class="circle-btn  tooltipstered js-tooltip-content-popup" data-name="${result.name}" data-is-free="${result.isFree}">i</div>
         </div>
         <div class="row logo-casino">
