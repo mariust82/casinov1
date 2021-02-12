@@ -1,5 +1,5 @@
 <?php
-require_once("vendor/lucinda/queries/src/Select.php");
+require_once("vendor/lucinda/queries/plugins/MySQL/MySQLSelect.php");
 require_once("ListSearchResults.php");
 
 class ListsSearch
@@ -182,13 +182,14 @@ class ListsSearch
     
     public function getCountries()
     {
-        $select  = new Lucinda\Query\Select("countries", "t1");
+        $select  = new Lucinda\Query\MySQLSelect("countries", "t1");
+        $select->setStraightJoin();
         $select->fields(['t1.name AS unit', 'count(t1.id) as counter']);
         $select->joinInner('casinos__countries_allowed', 't2')->on(['t1.id' => 't2.country_id']);
         $select->joinInner('casinos', 't3')->on(['t2.casino_id' => 't3.id']);
         $where =  $select->where();
         $where->set('t3.is_open', 1);
-        $where->set('t1.code', "'" . Country::EXCLUDED_COUNTRY_CODE . "'", Lucinda\Query\ComparisonOperator::DIFFERS);
+        $where->set('t1.code', "'" . Countries::EXCLUDED_COUNTRY_CODE . "'", Lucinda\Query\ComparisonOperator::DIFFERS);
         $where->setLike('t1.name', "'%".$this->value."%'");
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);

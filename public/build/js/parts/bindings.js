@@ -97,6 +97,7 @@ contentTooltipConfigPopup = {
     content: $('.loader'),
     animation: 'fade',
     contentCloning: false,
+    theme: 'tooltipster-popup',
     functionReady: function (origin, tooltip) {
         $('body').addClass('shadow');
         setTimeout(function () {
@@ -573,9 +574,9 @@ function searchDropClose(_drop) {
     }, 300);
 }
 
-function sliderInit() {
-    var swiperMain = new Swiper('#main-carousel', {
-        slidesPerView: 6,
+function sliderInit(container, slidesNo) {
+    var swiperMain = new Swiper(container, {
+        slidesPerView: slidesNo,
         spaceBetween: 5,
         navigation: {
             nextEl: '.carousel-next',
@@ -653,7 +654,7 @@ function sliderInit() {
     }
 }
 
-sliderInit();
+sliderInit('#main-carousel', 6);
 
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
@@ -1165,7 +1166,6 @@ var SearchPanel = function (obj) {
         _searchButton.on(
                 'click',
                 function () {
-                    console.log('asdad');
                     return;
                     _ajaxRequestPopup('/search');
                     _resetPages();

@@ -81,7 +81,6 @@ var ListFilters = function (obj) {
 
         _selectFilter.off();
         _selectFilter.on('change', function () {
-            console.log('_selectFilter');
             processCheckboxes(this);
             if (typeof resetGameItemsCounter === "function") {
                 resetGameItemsCounter();
@@ -356,7 +355,7 @@ var ListFilters = function (obj) {
                     CloseTFPopup();
                 }
                 
-                console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
+                // console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
                 if($('.list-body').children().length >= totalItems) {
                     _moreButton.hide();
                 }
@@ -820,7 +819,7 @@ function resetFilter(_select) {
     $select.val(null).trigger('change').select2('close');
     $('.select2-results__options').children().attr('aria-selected', false);
 
-    $('.select2-selection__rendered').text('Softwares');
+    $('.select2-selection__rendered').text('Software');
    // $('.' + selectName + '+.select2 .select2-selection__rendered').html(window[selectName + '_placeholder']);
 
 }
@@ -883,6 +882,10 @@ function processCheckboxes(_this) {
         addingClass.addClass("qwerty");
 
         $('.select2-search__field').prop('focus', false);
+
+        selectedItems.length = 0;
+
+        checkIds();
 
         $('.select2-results__option').off("click").on("click", function () {
 

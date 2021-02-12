@@ -1379,7 +1379,8 @@
                         comma = "";
                     }
                     if (self._$origin.hasClass('nolink_tooltip')) {
-                        $content.append('<span class="list-title">'+data_arr[i]+'</span>'+comma);
+                        // $content.append('<span class="list-title">'+data_arr[i]+'</span>'+comma);
+                        $content.append('<a href="/banking/'+normal+'" class="soft_link list-title list_link">'+data_arr[i]+'</a>'+comma);
                     } else {
                         $content.append('<a href="/softwares/'+normal+'" class="soft_link list-title list_link">'+data_arr[i]+'</a>'+comma);
                     }

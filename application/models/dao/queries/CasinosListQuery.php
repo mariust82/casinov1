@@ -25,6 +25,7 @@ class CasinosListQuery
     private function setQuery(CasinoFilter $filter, $columns, $sortBy, $limit= 0, $offset)
     {
         $query = new Lucinda\Query\MySQLSelect("casinos", "t1");
+        $query->distinct();
         $this->setFields($query, $columns, $filter);
         $this->setSelect($query, $filter);
         $this->setWhere($query->where(), $filter);
@@ -43,12 +44,7 @@ class CasinosListQuery
     private function setFields(Lucinda\Query\MySQLSelect $query, $columns, CasinoFilter $filter)
     {
         $fields = $query->fields($columns);
-        $fields->add('(CASE
-                 WHEN t1.status_id = 0  THEN 1
-                 WHEN t1.status_id = 3  THEN 2
-                 WHEN t1.status_id = 2  THEN 3
-                 WHEN t1.status_id = 1  THEN 4
-                 END)', 'complex_case');
+        $fields->add('t19.id', 'complex_case');
         if ($filter->getBankingMethod()) {
             if (sizeof($columns) > 1) {
                 $fields->add("t3.id", "has_dm");
@@ -63,16 +59,20 @@ class CasinosListQuery
 
     private function setSelect(Lucinda\Query\MySQLSelect $query, CasinoFilter $filter)
     {
+        $query->joinInner("casino_statuses_extended", "t19")->on(["t1.status_id", "t19.status_id"]);
         if ($filter->getCurrencyAccepted()) {
-            $query->joinInner("casinos__currencies", "t15")->on(["t1.id" => "t15.casino_id","t15.currency_id" => $filter->currency_id."\n"]);
+            $query->joinInner("casinos__currencies", "t15")->on(["t1.id" => "t15.casino_id","t15.currency_id" => $filter->currency_id]);
         } else {
             $query->joinLeft("casinos__currencies", "t15")->on(["t1.id" => "t15.casino_id"]);
         }
 
         if ($filter->getLanguageAccepted()) {
-            $query->joinInner("casinos__languages", "t16")->on(["t1.id" => "t16.casino_id","t16.language_id" => $filter->language_id."\n"]);
+            $query->joinInner("casinos__languages", "t16")->on(["t1.id" => "t16.casino_id","t16.language_id" => $filter->language_id]);
+        } else {
+            $query->joinLeft("casinos__languages", "t16")->on(["t1.id" => "t16.casino_id"]);
         }
-
+        $query->joinLeft("countries__languages", "t13")->on(["t13.country_id"=>$filter->getDetectedCountry()->id, "t13.language_id"=>"t16.language_id"]);
+        
         if ($filter->getCountryAccepted()) {
             $query->joinInner("casinos__countries_allowed", "t2")->on(["t1.id" => "t2.casino_id","t2.country_id"=>$filter->getDetectedCountry()->id . "\n"]);
         } else {
@@ -150,10 +150,6 @@ class CasinosListQuery
                 $sub_query->fields(["id"]);
                 $sub_query->where(["name" => "'" . $filter->getPlayVersion() . "'"]);
                 $query->joinInner("casinos__play_versions", "t9")->on(["t1.id" => "t9.casino_id" , "t9.play_version_id" => "(" . $sub_query->toString()  . ")" ]);
-                if ($filter->getPlayVersion() == "Live Dealer") {
-                    $query->joinInner("casinos__game_types", "t14")->on(["t14.casino_id" => "t1.id"])->set("t14.is_live", 1);
-                    $query->joinInner("game_types", "t19")->on(["t19.id" => "t14.game_type_id"]);
-                }
             }
         }
         if ($filter->getSoftware()) {
@@ -210,6 +206,14 @@ class CasinosListQuery
         if (!empty($filter->getPlayVersionType())) {
             $where->set("t11.is_live", 1);
             $where->set("t12.name", "'".$filter->getPlayVersionType()."'");
+        }
+        
+        if ($filter->getPlayVersion() == "Live Dealer") {
+            //SELECT casino_id FROM `casinos__game_types` WHERE `is_live` = 1
+            $sub_query = new Lucinda\Query\MySQLSelect("casinos__game_types");
+            $sub_query->fields(["casino_id"]);
+            $sub_query->where(["is_live" => "1"]);
+            $where->setIn("t1.id", $sub_query);
         }
     }
 

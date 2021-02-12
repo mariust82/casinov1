@@ -2,9 +2,13 @@
 class BankingMethodsController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
         $this->response->attributes("country", array (
-  'id' => '43',
-  'code' => 'RO',
-  'name' => 'Romania',
+  'id' => '34',
+  'code' => 'US',
+  'name' => 'United States',
+  'languages' => 
+  array (
+    0 => 'English',
+  ),
 ));
 $this->response->attributes("menu_top", array (
   0 => 
@@ -106,6 +110,16 @@ $this->response->attributes("menu_top", array (
       ),
       1 => 
       array (
+        'title' => 'Low Minimum Deposit Casinos',
+        'url' => '/casinos/low-minimum-deposit',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      2 => 
+      array (
         'title' => 'Mobile Casinos',
         'url' => '/casinos/mobile',
         'is_active' => false,
@@ -114,7 +128,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      2 => 
+      3 => 
       array (
         'title' => 'Low Wagering Casinos',
         'url' => '/casinos/low-wagering',
@@ -124,7 +138,17 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      3 => 
+      4 => 
+      array (
+        'title' => 'Fast Payout Casinos',
+        'url' => ' /casinos/fast-payout',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      5 => 
       array (
         'title' => 'eCOGRA Casinos',
         'url' => '/features/ecogra-casinos',
@@ -134,7 +158,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
+      6 => 
       array (
         'title' => 'Blacklisted Casinos',
         'url' => '/casinos/stay-away',
@@ -144,17 +168,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      5 => 
-      array (
-        'title' => 'Popular Casinos',
-        'url' => '/casinos/popular',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      6 => 
+      7 => 
       array (
         'title' => 'No Account Casinos',
         'url' => '/casinos/no-account-casinos',
@@ -164,7 +178,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      7 => 
+      8 => 
       array (
         'title' => 'All Casinos',
         'url' => '/casinos',
@@ -286,16 +300,6 @@ $this->response->attributes("menu_top", array (
     array (
       0 => 
       array (
-        'title' => 'Romania Casinos',
-        'url' => '/countries-list/romania',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      1 => 
-      array (
         'title' => 'USA Casinos',
         'url' => '/countries-list/united-states',
         'is_active' => false,
@@ -304,7 +308,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      2 => 
+      1 => 
       array (
         'title' => 'UK Casinos',
         'url' => '/countries-list/united-kingdom',
@@ -314,7 +318,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      3 => 
+      2 => 
       array (
         'title' => 'Australia Casinos',
         'url' => '/countries-list/australia',
@@ -324,17 +328,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
-      array (
-        'title' => 'Germany Casinos',
-        'url' => '/countries-list/germany',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      5 => 
+      3 => 
       array (
         'title' => 'New Zealand Casinos',
         'url' => '/countries-list/new-zealand',
@@ -344,7 +338,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      6 => 
+      4 => 
       array (
         'title' => 'Netherlands Casinos',
         'url' => '/countries-list/netherlands',
@@ -354,7 +348,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      7 => 
+      5 => 
       array (
         'title' => 'Sweden Casinos',
         'url' => '/countries-list/sweden',
@@ -364,7 +358,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      8 => 
+      6 => 
       array (
         'title' => 'All Countries',
         'url' => '/countries ',
@@ -416,8 +410,8 @@ $this->response->attributes("menu_top", array (
       ),
       3 => 
       array (
-        'title' => 'Bitcoin Wallets Casinos',
-        'url' => '/banking/bitcoin-wallets',
+        'title' => 'Bitcoin Casinos',
+        'url' => '/banking/bitcoin',
         'is_active' => false,
         'submenuItems' => 
         array (
@@ -437,7 +431,7 @@ $this->response->attributes("menu_top", array (
       5 => 
       array (
         'title' => 'Paysafe Card',
-        'url' => '/banking/paysafe-card',
+        'url' => '/banking/paysafecard',
         'is_active' => false,
         'submenuItems' => 
         array (
@@ -639,126 +633,119 @@ $this->response->attributes("menu_top", array (
   ),
 ));
 $this->response->attributes("results", array (
-  'Visa' => '1031',
-  'MasterCard' => '993',
-  'Neteller' => '911',
-  'Skrill Moneybookers' => '791',
-  'Paysafe Card' => '750',
-  'Wire Transfer' => '724',
-  'Visa Electron' => '591',
-  'Maestro' => '524',
-  'EcoPayz EcoCard' => '348',
-  'SOFORT Banking' => '290',
-  'Trustly' => '279',
-  'EntroPay' => '250',
-  'Cheque' => '241',
-  'giropay' => '238',
-  'iDEAL' => '238',
-  'PayPal' => '188',
-  'POLi' => '173',
-  'QIWI' => '173',
-  'WebMoney' => '168',
-  'Moneta.ru' => '137',
-  'Wirecard' => '134',
-  'Euteller' => '133',
-  'Bitcoin Wallets' => '133',
-  'Przelewy24' => '123',
-  'MULTIBANCO' => '112',
-  'iDebit' => '110',
-  'UseMyServices' => '103',
-  'TrustPay' => '87',
-  'Zimpler' => '82',
-  'Neosurf' => '82',
-  'Postepay' => '81',
-  'American Express' => '80',
-  'eCheck' => '80',
-  'eKonto' => '77',
-  'Yandex.Money' => '75',
-  'Abaqoos' => '74',
-  'Diners Club' => '73',
-  'Instant Banking By Citadel' => '71',
-  'Boleto Bancario' => '66',
-  'Boku' => '65',
-  'Dotpay' => '61',
-  'PugglePay' => '57',
-  'AstroPay' => '53',
-  'Ticket Premium' => '52',
-  'FundSend' => '50',
-  'EWIRE' => '44',
-  'Bancontact Mister Cash' => '43',
-  'Ezi Pay' => '41',
-  'UPayCard' => '41',
-  'Todito Cash' => '38',
-  'Teleingreso' => '33',
-  'ClickandBuy' => '32',
-  'PayU' => '31',
-  'Nexi' => '30',
-  'Siru Mobile' => '30',
-  'Sporopay' => '28',
+  'Visa' => '1415',
+  'MasterCard' => '1386',
+  'Neteller' => '1160',
+  'Skrill' => '1115',
+  'Wire Transfer' => '1056',
+  'paysafecard' => '1047',
+  'EcoPayz' => '808',
+  'Maestro' => '634',
+  'Trustly' => '563',
+  'Bitcoin Wallets' => '505',
+  'SOFORT Banking' => '466',
+  'PayPal' => '428',
+  'Zimpler' => '410',
+  'Interac' => '409',
+  'giropay' => '353',
+  'Neosurf' => '351',
+  'Visa Electron' => '348',
+  'QIWI' => '312',
+  'Euteller' => '247',
+  'WebMoney' => '241',
+  'Instadebit' => '225',
+  'AstroPay' => '222',
+  'iDebit' => '212',
+  'iDEAL' => '184',
+  'Bitcoin Cash' => '177',
+  'Yandex.Money' => '166',
+  'Cheque' => '153',
+  'Ethereum' => '146',
+  'Litecoin' => '146',
+  'PayviaPhone' => '125',
+  'MULTIBANCO' => '122',
+  'Siru Mobile' => '114',
+  'Postepay' => '109',
+  'Boleto Bancario' => '101',
+  'Instant Banking By Citadel' => '101',
+  'American Express' => '99',
+  'POLi' => '99',
+  'EasyEFT' => '93',
+  'Moneta.ru' => '74',
+  'Przelewy24' => '73',
+  'Boku' => '70',
+  'TrustPay' => '70',
+  'Diners Club' => '67',
+  'Wirecard' => '64',
+  'eCheck' => '62',
+  'UseMyServices' => '60',
+  'eKonto' => '54',
+  'UPayCard' => '53',
+  'Dogecoin' => '52',
+  'ecoVoucher' => '49',
+  'Abaqoos' => '46',
+  'SafetyPay' => '42',
+  'Entercash' => '40',
+  'Ticket Premium' => '40',
+  'Pago Facil' => '39',
+  'Discover' => '36',
+  'Bancontact Payconiq' => '33',
+  'Todito Cash' => '33',
+  'JCB' => '30',
   'Kalibra Card' => '28',
-  'SafetyPay' => '23',
-  'Entercash' => '23',
-  'ePay.bg' => '21',
-  'Epro' => '16',
-  'Discover' => '16',
-  'JCB' => '14',
-  'AGMO' => '12',
-  'Speedcard' => '12',
-  'OKPAY' => '12',
-  'Western Union' => '11',
-  'Money Order' => '11',
-  'Lottomaticard' => '10',
-  'Wallet One' => '10',
-  'swiff' => '10',
-  'Dankort' => '10',
-  'EURO 6000' => '10',
-  'EasyEFT' => '10',
-  'LiqPay' => '10',
-  'Carte Bleue' => '8',
-  'INPAY' => '8',
-  'Money@Mail.ru' => '8',
-  'eNETS' => '8',
-  'Page en Efectivo' => '7',
-  'Direct Money' => '7',
-  'Payforit' => '7',
-  'Transfer Money' => '7',
-  'Interkassa' => '7',
+  'Sporopay' => '27',
+  'Tether Wallet' => '27',
+  'EWIRE' => '26',
+  'Dash' => '26',
+  'PurplePay' => '23',
+  'Epro' => '20',
+  'Monero' => '20',
+  'Dotpay' => '18',
+  'Teleingreso' => '18',
+  'Western Union' => '15',
+  'ePay.bg' => '15',
+  'Players Rewards Card' => '15',
+  'Dankort' => '14',
+  'EntroPay' => '14',
+  'Nexi' => '13',
+  'PayU' => '12',
+  'Lottomaticard' => '11',
+  'ClickandBuy' => '7',
+  'FundSend' => '7',
+  'Switch' => '7',
+  'Euroset' => '6',
+  'INPAY' => '6',
   'MST Gift Card' => '6',
-  'PaySpark' => '6',
-  'Intercash' => '6',
-  'Phone Bill' => '6',
-  'OchaPay' => '6',
-  'Paybox' => '5',
-  'Paytrail' => '5',
-  'CASHU' => '5',
-  'SID' => '4',
-  'iBANQ' => '4',
-  'Switch' => '4',
-  'eCard' => '4',
-  'Ethereum' => '4',
-  'Pago Facil' => '3',
-  '4B' => '3',
-  'Cuenta Digital' => '3',
-  'Allied Wallet' => '3',
+  'SID' => '6',
+  'EURO 6000' => '4',
+  'PayFast' => '4',
+  'PaySpark' => '4',
+  'Paytrail' => '4',
+  'Speedcard' => '4',
+  'Interkassa' => '3',
   'MoneyGram' => '3',
-  'Privat24' => '3',
-  'Kalixa' => '3',
-  'Vanilla Card' => '3',
-  'Euroset' => '2',
-  'PayNearMe' => '2',
-  'Cirrus Card' => '2',
-  'William Hill CASHDIRECT' => '2',
-  'Bestmoney' => '2',
-  'AsiaPay' => '2',
+  'PayNearMe' => '3',
+  'Paybox' => '3',
+  'PugglePay' => '3',
+  'Wallet One' => '3',
+  '4B' => '2',
+  'AGMO' => '2',
   'Insta Cash' => '2',
-  'ELV' => '2',
-  'easydebit' => '2',
+  'Intercash' => '2',
+  'LiqPay' => '2',
+  'Privat24' => '2',
+  'eNETS' => '2',
+  'Cuenta Digital' => '1',
+  'ELV' => '1',
+  'Ezi Pay' => '1',
   'GoCash' => '1',
-  'TEST - Payment' => '1',
-  'banking2' => '1',
-  'MyMonedero' => '1',
-  'BT Landlines' => '1',
-  'PPRO' => '1',
+  'Money@Mail.ru' => '1',
+  'OKPAY' => '1',
+  'OchaPay' => '1',
+  'Pay2Card' => '1',
+  'Vanilla Card' => '1',
+  'William Hill CASHDIRECT' => '1',
+  'eCard' => '1',
 ));
 $this->response->attributes("page_info", array (
   'head_title' => 'Full List of Online Casinos Payment Methods - CasinosLists.com',
@@ -766,20 +753,16 @@ $this->response->attributes("page_info", array (
   'body_title' => 'Online Casino Banking Methods',
 ));
 $this->response->attributes("is_mobile", false);
-$this->response->attributes("version", '0.8.8.9129');
-$this->response->attributes("use_bundle", true);
-$this->response->attributes("tms", array (
-  'upper_text' => '<p>Banking -  update</p>
-
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-',
-));
+$this->response->attributes("version", '1.0.0');
+$this->response->attributes("use_bundle", false);
 $this->response->attributes("widgets", array (
   'upper' => 
   array (
-    0 => '<p>Banking -&nbsp; update</p>
+    0 => '<p>When you want to play online casinos for real money, it is obviously essential to credit your account before anything else. To do this, online casinos use a large number of banking methods that allow users to perform their transactions quickly, efficiently and above all secure. If one always turns to the classic bank transfer or credit cards like <a href="https://www.casinoslists.com/banking/visa">Visa</a> or <a href="https://www.casinoslists.com/banking/mastercard">Mastercard</a>, the electronic wallets like <a href="https://www.casinoslists.com/banking/paypal">PayPal</a> or <a href="https://www.casinoslists.com/banking/neteller">Neteller</a> appear as an innovative alternative. In this regard, CasinosLists.com has gathered below all the payment methods used by online gambling sites to make things easier for you.</p>
 
-<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#39;Content here, content here&#39;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#39;lorem ipsum&#39; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+<p>&nbsp;</p>
+
+<p>Payment solutions such as deposits and withdrawals available on online casino sites offer the possibility of making financial transactions on the global offer of various gambling sites, without having to specify you personal information. Each page will take you to a complete list of casinos that accept that certain banking method, which you can sort out by taking advantage of our filters. Check if they accept your country of residence, what kind of bonuses do they offer, what&rsquo;s the minimum amount you can cash out, and what withdrawal pending time they have.</p>
 ',
   ),
 ));

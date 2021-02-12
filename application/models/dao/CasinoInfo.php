@@ -2,6 +2,7 @@
 require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once 'entities/FullWelcomePackage.php';
+require_once 'entities/MatchBonus.php';
 require_once 'application/models/CasinoScore.php';
 
 class CasinoInfo
@@ -84,6 +85,7 @@ class CasinoInfo
         // $output->bonus_type_Abbreviation = $this->getAbbreviation($output->bonus_free);
 
         $output->welcome_package = !empty($output->bonus_first_deposit) ? $this->getWelcomePackage($output->id) : [];
+        $output->match_bonuses = $this->getMatchBonuses($output->id) ;
 
         $output->casino_deposit_methods =  $this->getCasinoDepositMethods($output->id);
         $output->casino_game_types = $this->getGameTypes($output->id);
@@ -374,6 +376,36 @@ class CasinoInfo
             $w_packages_data[] = $full_welcome_package;
         }
         return  $w_packages_data;
+    }
+
+    public function getMatchBonuses($casino_id)
+    {
+        $q = "
+                 SELECT
+            t1.*, t2.name as bonus_type_name
+            FROM casinos__bonuses AS t1 
+            INNER JOIN bonus_types as t2 ON t1.bonus_type_id = t2.id
+            WHERE t2.name IN ('Match Bonus') AND t1.casino_id = ".$casino_id."
+        ";
+        $match_bonuses = SQL($q)->toList();
+
+        if (empty($match_bonuses)) {
+            return [];
+        }
+
+        $match_bonuses_data = [];
+        foreach ($match_bonuses as  $m_bonus) {
+            $match_bonus_package = new MatchBonus();
+            $match_bonus_package->valid_on =$m_bonus['availability'];
+            $match_bonus_package->bonus = $m_bonus['amount'];
+            $match_bonus_package->min_deposit = $m_bonus['deposit_minimum'];
+            $match_bonus_package->wagering = $m_bonus['wagering'];
+            $match_bonus_package->games = $m_bonus['games'];
+            $match_bonus_package->bonus_codes = $m_bonus['codes'];
+
+            $match_bonuses_data[] = $match_bonus_package;
+        }
+        return  $match_bonuses_data;
     }
 
     public function getGameTypes($casinoId)
