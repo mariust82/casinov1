@@ -11731,6 +11731,7 @@ hr.widget{
 }
 .welcome_package-popup{
   display: none;
+  max-width: -webkit-fill-available;
   /* width: 605px; */
   width: auto;
   min-height: 302px;
