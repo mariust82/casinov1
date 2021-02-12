@@ -2,8 +2,16 @@
 <:set var="items" val="$[items]"/>
 <:if test="${section} == 'index'">
     <:set var="title_class" val="title-underlined"/>
-    <:else>
-        <:set var="title_class" val="title-middle"/>
+    <:set var="nextClass" val="cn4"/>
+    <:set var="prevClass" val="cp4"/>
+<:elseif test="${section} == 'top'">
+    <:set var="title_class" val="title-middle"/>
+    <:set var="nextClass" val="cn2"/>
+    <:set var="prevClass" val="cp2"/>
+<:else>
+    <:set var="title_class" val="title-middle"/>
+    <:set var="nextClass" val="cn3"/>
+    <:set var="prevClass" val="cp3"/>
 </:if>
 <div class="carousel carousel-box-container">
     <div class="container">
@@ -28,10 +36,10 @@
                 </:if>
             </div>
         </div>
-        <div class="carousel-next">
+        <div class="carousel-next ${nextClass}">
             <i class="icon-chevron-right"></i>
         </div>
-        <div class="carousel-prev">
+        <div class="carousel-prev ${prevClass}">
             <i class="icon-chevron-left"></i>
         </div>
     </div>

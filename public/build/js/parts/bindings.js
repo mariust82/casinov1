@@ -574,13 +574,13 @@ function searchDropClose(_drop) {
     }, 300);
 }
 
-function sliderInit(container, slidesNo,space) {
+function sliderInit(container, slidesNo, nextClass, prevClass) {
     var swiperMain = new Swiper(container, {
         slidesPerView: slidesNo,
-        spaceBetween: space,
+        spaceBetween: 5,
         navigation: {
-            nextEl: '.carousel-next',
-            prevEl: '.carousel-prev',
+            nextEl: nextClass,
+            prevEl: prevClass,
         },
         breakpoints: {
             1024: {
@@ -654,11 +654,11 @@ function sliderInit(container, slidesNo,space) {
     }
 }
 
-sliderInit('#main-carousel', 6, 5);
-sliderInit('#best-country', 4, 4);
-sliderInit('#best-software', 4, 4);
-sliderInit('#ndb-software', 4, 4);
-sliderInit('#ndb-country', 4, 4);
+sliderInit('#main-carousel', 6, '.cn1', '.cp1');
+sliderInit('#best-country', 4, '.cn2', '.cp2');
+sliderInit('#best-software', 4, '.cn2', '.cp2');
+sliderInit('#ndb-software', 4, '.cn3', '.cp3');
+sliderInit('#ndb-country', 4, '.cn3', '.cp3');
 
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
