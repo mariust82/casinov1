@@ -13699,7 +13699,7 @@ h1.title + .subtitle{
 }
 .carousel-box-container .swiper-slide {
   width: 24% !important;
-  height: 319px !important;
+  height: 332px !important;
   min-width: 230px;
   min-height: 319px;
   margin-right: 10.5px !important;
@@ -13754,6 +13754,7 @@ h1.title + .subtitle{
 }
 .carousel-box-container .bonus-wrap-container{
   height: 90px;
+  min-height: 90px;
   margin-bottom: 10px;
   background: #F9F9F9;
   padding: 14px 10px;
