@@ -574,10 +574,10 @@ function searchDropClose(_drop) {
     }, 300);
 }
 
-function sliderInit(container, slidesNo) {
+function sliderInit(container, slidesNo,space) {
     var swiperMain = new Swiper(container, {
         slidesPerView: slidesNo,
-        spaceBetween: 5,
+        spaceBetween: space,
         navigation: {
             nextEl: '.carousel-next',
             prevEl: '.carousel-prev',
@@ -654,8 +654,8 @@ function sliderInit(container, slidesNo) {
     }
 }
 
-sliderInit('#main-carousel', 6);
-sliderInit('.swiper-container.casinos-list', 5);
+sliderInit('#main-carousel', 6, 5);
+sliderInit('.swiper-container.casinos-list', 5, 4);
 
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
