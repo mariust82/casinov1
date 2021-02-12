@@ -1,4 +1,5 @@
 <:foreach var="$[items]" val="result" key="key">
+<div class="swiper-slide">
     <div class="carousel-slide">
         <a href="/reviews/${normalize(${result.name})}-review" class="casino-name">${result.name}</a>
         <img class="lazy_loaded casino-img-logo" data-src="/public/sync/casino_logo_light/100x66/${strtolower(str_replace(' ','_',${result.code}))}.png"  width="100" height="66" alt="${result.name} Logo" data-alt="${result.name} Logo">
@@ -48,4 +49,6 @@
                 <a class="btn btn-full-width" href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank">VISIT CASINO</a>
         </:if>
     </div>
+</div>
+
 </:foreach>

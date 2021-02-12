@@ -21,13 +21,11 @@
     <div class="container">
         <div class="swiper-container casinos-list" id="$[id]">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <:if test="${section} == 'top'">
-                        <casino:carousel-boxes items="${items}"/>
-                    <:else>
-                        <casino:carousel-gridbox items="${items}"/>
-                    </:if>
-                </div>
+                <:if test="${section} == 'top'">
+                    <casino:carousel-boxes items="${items}"/>
+                <:else>
+                    <casino:carousel-gridbox items="${items}"/>
+                </:if>
             </div>
         </div>
         <div class="carousel-next">

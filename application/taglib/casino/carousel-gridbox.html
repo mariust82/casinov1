@@ -1,4 +1,5 @@
 <:foreach var="$[items]" val="result" key="key">
+<div class="swiper-slide">
     <div class="carousel-slide">
         <:set var="fdb_amount" val="${result.bonus_first_deposit.amount}"/>
         <div class="row edges">
@@ -99,5 +100,6 @@
         </:if>
     </div>
     </div>
+</div>
 </:foreach>
 
