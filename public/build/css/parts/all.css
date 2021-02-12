@@ -11729,9 +11729,11 @@ hr.widget{
   height: auto;
   margin-right: 15px;
 }
+.welcome-package_box .bonuses-wp{
+  max-width: -webkit-fill-available;
+}
 .welcome_package-popup{
   display: none;
-  max-width: -webkit-fill-available;
   /* width: 605px; */
   width: auto;
   min-height: 302px;
