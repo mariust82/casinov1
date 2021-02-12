@@ -655,7 +655,10 @@ function sliderInit(container, slidesNo,space) {
 }
 
 sliderInit('#main-carousel', 6, 5);
-sliderInit('.swiper-container.casinos-list', 4, 4);
+sliderInit('#best-country', 4, 4);
+sliderInit('#best-software', 4, 4);
+sliderInit('#ndb-software', 4, 4);
+sliderInit('#ndb-country', 4, 4);
 
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
