@@ -13961,3 +13961,32 @@ h1.title + .subtitle{
   background-position: center center;
 
 }
+
+
+.gridbox-bottom .carousel-slide .row.edges{
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+}
+.gridbox-bottom .slide-box-amount{
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.gridbox-bottom .logo-casino + .row{
+  flex-wrap: wrap;
+}
+.gridbox-bottom .row{
+  width: 100%;
+}
+.gridbox-bottom .row .btn {
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gridbox-bottom{
+  height: 274px!important;
+  min-height: 274px;
+}
