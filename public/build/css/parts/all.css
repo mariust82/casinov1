@@ -6460,6 +6460,10 @@ a:focus {
   .casino-review .btn-middle {
     padding: 12px 22px;
   }
+  .casino-review .btn-restricted {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 }
 
 .casino-review .list-rating {
@@ -9232,6 +9236,7 @@ input[type=submit]
 
 .data-container-holder {
   position: relative;
+  margin-bottom: 40px;
 }
 
 #search-empty {
