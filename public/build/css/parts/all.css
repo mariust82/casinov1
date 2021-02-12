@@ -13989,7 +13989,7 @@ h1.title + .subtitle{
   justify-content: center;
   align-items: center;
 }
-.gridbox-bottom{
+.swiper-slide.gridbox-bottom{
   height: 274px!important;
   min-height: 274px;
 }
