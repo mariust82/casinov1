@@ -11729,7 +11729,7 @@ hr.widget{
   height: auto;
   margin-right: 15px;
 }
-.welcome-package_box .bonuses-wp{
+.welcome_package-popup .bonuses-wp{
   max-width: -webkit-fill-available;
 }
 .welcome_package-popup{
