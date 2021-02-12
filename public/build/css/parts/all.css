@@ -13756,7 +13756,7 @@ h1.title + .subtitle{
   height: 90px;
   margin-bottom: 10px;
   background: #F9F9F9;
-  padding: 7px;
+  padding: 14px 10px;
   border-radius: 2px;
   display: flex;
   align-items: center;
@@ -13766,6 +13766,7 @@ h1.title + .subtitle{
   font: normal normal 600 12px/18px Open Sans;
   letter-spacing: 0px;
   cursor:pointer;
+  text-align: center;
 }
 .carousel-box-container .bonus-wrap-container .free{
   color: #529724;
