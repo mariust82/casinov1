@@ -574,9 +574,9 @@ function searchDropClose(_drop) {
     }, 300);
 }
 
-function sliderInit() {
-    var swiperMain = new Swiper('#main-carousel', {
-        slidesPerView: 6,
+function sliderInit(container, slidesNo) {
+    var swiperMain = new Swiper(container, {
+        slidesPerView: slidesNo,
         spaceBetween: 5,
         navigation: {
             nextEl: '.carousel-next',
@@ -654,7 +654,7 @@ function sliderInit() {
     }
 }
 
-sliderInit();
+sliderInit('#main-carousel');
 
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
