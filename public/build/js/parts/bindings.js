@@ -654,7 +654,7 @@ function sliderInit(container, slidesNo) {
     }
 }
 
-sliderInit('#main-carousel');
+sliderInit('#main-carousel', 6);
 
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
