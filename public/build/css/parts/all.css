@@ -13993,3 +13993,14 @@ h1.title + .subtitle{
   height: 274px!important;
   min-height: 274px;
 }
+
+@media (max-width: 960px){
+  .carousel-box-container .swiper-container{
+    width: calc(100% + 20px);
+  }
+}
+@media (max-width: 767px){
+  .carousel-box-container .swiper-container{
+    width: calc(100% + 10px);
+  }
+}
