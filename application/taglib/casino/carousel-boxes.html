@@ -50,6 +50,9 @@
             <:else>
                 <a class="btn btn-full-width" href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank">VISIT CASINO</a>
         </:if>
+        <:if test="${result.is_tc_link}">
+            <a href="/visit/${normalize(${result.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
+        </:if>
     </div>
 </div>
 
