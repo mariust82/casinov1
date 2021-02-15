@@ -18,27 +18,25 @@
                 </:if>
             </div>
         </div>
-        <!-- if page is software -->
         <:if test="isset(${data.software})">
-        <div class="country-wrap">
-            <img class="not-accepted lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
-            <i class="icon-icon_unavailable"></i>
-            Not accepted
-        </div>
+            <div class="country-wrap">
+                <img class="not-accepted lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
+                <i class="icon-icon_unavailable"></i>
+                Not accepted
+            </div>
         <:elseif test="isset(${data.user_country})">
-        <!-- else if page is country-->
-        <div class="country-details-wrap">
-            <!-- if usd or english are available-->
-            <span>
-                <i alt="Available" class="icon-icon_available"></i>
-                ${result.currencies}
-            </span>
-            <span>
-                <i alt="Available" class="icon-icon_available"></i>
-                ${result.languages}
-            </span>
-            <!-- end if-->
-        </div>
+            <div class="country-details-wrap">
+                <:if test="${result.is_currency_accepted} == 1 || ${result.is_language_accepted} == 1">
+                    <span>
+                        <i alt="Available" class="icon-icon_available"></i>
+                        ${result.currencies}
+                    </span>
+                    <span>
+                        <i alt="Available" class="icon-icon_available"></i>
+                        ${result.languages}
+                    </span>
+                </:if>
+            </div>
         </:if>
         <div class="bonus-wrap-container js-bonus-trigger" data-casino-id="">
             <span alt="Info" class="info-icon">i</span>
