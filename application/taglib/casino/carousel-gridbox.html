@@ -1,26 +1,11 @@
 <:foreach var="$[items]" val="result" key="key">
+<div class="swiper-slide gridbox-bottom">
     <div class="carousel-slide">
         <:set var="fdb_amount" val="${result.bonus_first_deposit.amount}"/>
         <div class="row edges">
             <div class="flag">
                 <:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
                 <img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
-            </div>
-            <span class="casino_name_list_view">${result.name}</span>
-            <:set var="score_class" val="get_rating(${result.rating})"/>
-            <div class="rating_list_view list-rating ${normalize(${score_class})}">
-                <div class="list-rating-wrap">
-                    <:if test="${result.rating} == 0">
-                        ${score_class}
-                        <span class="list-rating-score">-</span>
-                        <div class=" list-rating-score list-rating-score-mobile">|</div>
-                        <:else>
-                            ${score_class}
-                            <span class="list-rating-score">
-                        ${ceil(${result.rating})}
-                    </span>
-                    </:if>
-                </div>
             </div>
             <div class="circle-btn  tooltipstered js-tooltip-content-popup" data-name="${result.name}" data-is-free="${result.isFree}">i</div>
         </div>
@@ -33,33 +18,27 @@
                 <:else>
                     <span class="slide-box-amount">${fdb_amount}</span>
             </:if>
-            <:set var="isNoDeposit" val="$[isNoDeposit]"/>
-            <:if test="${isNoDeposit}">
-                <div class="games_allowed">Games:
-                    <:if test="${result.bonus_free}">
-                        ${gameNames(${result.bonus_free.games_allowed})}
-                        <:set var="extra" val="count(gamesAllowed(${result.bonus_free.games_allowed}))-1"/>
-                        <:if test="${extra} > 0">
-                        <span class="bubble bubble-long js-tooltip software_tooltip nolink_tooltip tooltipstered" title="${result.bonus_free.games_allowed}">
-                        More
-                        </span>
-                        </:if>
-                        <:else>
-                            ${gameNames(${result.bonus_first_deposit.games_allowed})}
-                            <:set var="extra" val="count(gamesAllowed(${result.bonus_first_deposit.games_allowed}))-1"/>
-                            <:if test="${extra} > 0">
-                        <span class="bubble bubble-long js-tooltip software_tooltip tooltipstered" title="${result.bonus_first_deposit.games_allowed}">
-                        More
-                        </span>
-                            </:if>
+            
+            <div class="games_allowed">Games:
+                <:if test="${result.bonus_free}">
+                    ${gameNames(${result.bonus_free.games_allowed})}
+                    <:set var="extra" val="count(gamesAllowed(${result.bonus_free.games_allowed}))-1"/>
+                    <:if test="${extra} > 0">
+                    <span class="bubble bubble-long js-tooltip software_tooltip nolink_tooltip tooltipstered" title="${result.bonus_free.games_allowed}">
+                    More
+                    </span>
                     </:if>
-                </div>
-                <:else>
-                    <div class="low_wagering_info">
-                        Wagering: 0
-                    </div>
-
-            </:if>
+                    <:else>
+                        ${gameNames(${result.bonus_first_deposit.games_allowed})}
+                        <:set var="extra" val="count(gamesAllowed(${result.bonus_first_deposit.games_allowed}))-1"/>
+                        <:if test="${extra} > 0">
+                    <span class="bubble bubble-long js-tooltip software_tooltip tooltipstered" title="${result.bonus_first_deposit.games_allowed}">
+                    More
+                    </span>
+                        </:if>
+                </:if>
+            </div>
+                
         </div>
         <:if test="${result.bonus_free}">
             <:set var="code_class" val=""/>
@@ -99,5 +78,6 @@
         </:if>
     </div>
     </div>
+</div>
 </:foreach>
 

@@ -158,7 +158,9 @@ function changeViewElements(filterView,container,gridClass,listClass){
     var ww = $(window).width();
 
     $(document).ready(function () {
-
+        if($('.js-bonus-trigger').length > 0 ){
+            showCasinoBonuses();
+        }
 
         //Load Defer Scripts and Binding
         if ($('.links-nav').length) {
@@ -609,4 +611,61 @@ function gridViewBoxPopup(){
         });
     }
 }
+function closeCasinoPopup(container){
+    $('.bonus-popup').find('.close_popup-wp').click(function(e){
+        e.stopPropagation();
+        $('.bonus-popup').remove();
+    });
+}
+function showCasinoBonuses(){
 
+    $('.js-bonus-trigger').click(function(e){
+        e.stopPropagation();
+
+        var _this = $(this);
+        var _buttonPosition = _this.offset();
+        if(_this.find('.bonus').length > 0){
+            if($('body').find('.bonus-popup').hasClass('active')){
+                $('.bonus-popup').remove();
+            }else{
+                var _request = new XMLHttpRequest();
+                _request.abort();
+                _request = $.ajax( {
+                    url: "/casino-bonuses-popup",
+                    data: {
+                        id: _this.data('casino-id')
+                    },
+                    dataType: 'html',
+                    timeout: 20000,
+                    type: 'GET',
+                    success: function ( data ) {
+                        if($('.bonus-popup').length > 0){
+                            $('.bonus-popup').remove();
+                        }
+
+                        $('body').append(data);
+                        closeBonusPopup(_this);
+                        $('.bonus-popup')
+                        .addClass('active')
+                        .css({
+                            top: _buttonPosition.top + _this.height(),
+                            left: _buttonPosition.left + _this.width()/2
+                        });
+
+                        copyToClipboard();
+                    },
+                    error: function ( jqXHR ) {
+    
+                    }
+                });
+            }
+
+            $('body').on('click', function(e) {
+                if ($(e.target).closest('.bonus-popup').length == 0) {
+                    $('.bonus-popup').remove();
+                }
+            });
+        }
+        
+    });
+}

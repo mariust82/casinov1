@@ -574,13 +574,13 @@ function searchDropClose(_drop) {
     }, 300);
 }
 
-function sliderInit() {
-    var swiperMain = new Swiper('#main-carousel', {
-        slidesPerView: 6,
+function sliderInit(container, slidesNo, nextClass, prevClass) {
+    var swiperMain = new Swiper(container, {
+        slidesPerView: slidesNo,
         spaceBetween: 5,
         navigation: {
-            nextEl: '.carousel-next',
-            prevEl: '.carousel-prev',
+            nextEl: nextClass,
+            prevEl: prevClass,
         },
         breakpoints: {
             1024: {
@@ -654,7 +654,11 @@ function sliderInit() {
     }
 }
 
-sliderInit();
+sliderInit('#main-carousel', 6, '.cn1', '.cp1');
+sliderInit('#best-country', 4, '.cn2', '.cp2');
+sliderInit('#best-software', 4, '.cn2', '.cp2');
+sliderInit('#ndb-software', 4, '.cn3', '.cp3');
+sliderInit('#ndb-country', 4, '.cn3', '.cp3');
 
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
