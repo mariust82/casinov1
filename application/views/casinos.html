@@ -13,8 +13,8 @@
         <div class="block">
             <div class="container carousel-grid-casinos">
                 <:if test="isset(${data.software})">
-                    <:if test="${data.best_casinos_total} > 0">
-                        <casino:carousel-grid section="top" id="best-software" title="Best ${data.software} Casinos"  items="${data.best_casinos}" country="${data.user_country}" description="asd"/>
+                    <:if test="${data.best_software_casinos_total} > 0">
+                        <casino:carousel-grid section="top" id="best-software" title="Best ${data.software} Casinos"  items="${data.best_software_casinos}" country="${data.user_country}" description="asd"/>
                     </:if>
             </div>
         </div>
