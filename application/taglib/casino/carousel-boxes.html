@@ -19,11 +19,13 @@
             </div>
         </div>
         <!-- if page is software -->
+        <:if test="isset(${data.software})">
         <div class="country-wrap">
             <img class="not-accepted lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
             <i class="icon-icon_unavailable"></i>
             Not accepted
         </div>
+        <:elseif test="isset(${data.user_country})">
         <!-- else if page is country-->
         <div class="country-details-wrap">
             <!-- if usd or english are available-->
@@ -37,7 +39,7 @@
             </span>
             <!-- end if-->
         </div>
-        <!-- end if-->
+        </:if>
         <div class="bonus-wrap-container js-bonus-trigger" data-casino-id="">
             <span alt="Info" class="info-icon">i</span>
             <span class="bonus free">50 Free Spins</span>
