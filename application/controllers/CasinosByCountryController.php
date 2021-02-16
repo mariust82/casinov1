@@ -31,7 +31,8 @@ class CasinosByCountryController extends CasinosListController
         $this->response->attributes("best_casinos", $dao->getBestCasinosByCountry($id));
         $this->response->attributes("new_casinos_total", $dao->countNewestCasinosByCountry($id));
         $this->response->attributes("new_casinos", $dao->getNewestCasinosByCountry($id));
-
+        $this->response->attributes("country_page", $name);
+        $this->response->attributes("currency", $code);
         $this->response->attributes("language", $language);
 
         return $name;

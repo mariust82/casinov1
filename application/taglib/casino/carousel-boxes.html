@@ -29,11 +29,11 @@
                 <:if test="${result.is_currency_accepted} == 1 || ${result.is_language_accepted} == 1">
                     <span>
                         <i alt="Available" class="icon-icon_available"></i>
-                        ${result.currencies}
+                        ${data.currency}
                     </span>
                     <span>
                         <i alt="Available" class="icon-icon_available"></i>
-                        ${result.languages}
+                        ${data.language}
                     </span>
                 </:if>
             </div>
