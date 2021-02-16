@@ -329,7 +329,7 @@ class CasinosList
         return $output;
     }
 
-    public function countNewestCasinosByCountry($id,$currency_id,$lang_id,) {
+    public function countNewestCasinosByCountry($id) {
         $date = date("Y-m-d", strtotime(date("Y-m-d") . " -1 year"));
         return SQL("SELECT COUNT(DISTINCT  t1.id) FROM casinos AS t1
                     LEFT OUTER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id
