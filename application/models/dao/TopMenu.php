@@ -76,10 +76,10 @@ class TopMenu
             "item_url" =>"/banking",
             "sub_items"=>[
                 'Neteller Casinos' =>'/banking/neteller',
-                'Skrill Moneybookers Casinos' => '/banking/skrill-moneybookers',
+                'Skrill Moneybookers Casinos' => '/banking/skrill',
                 'PayPal Casinos' => '/banking/paypal',
                 'Bitcoin Casinos' => '/banking/bitcoin',
-                'EcoPayz EcoCard Casinos' => '/banking/ecopayz-ecocard',
+                'EcoPayz EcoCard Casinos' => '/banking/ecopayz',
                 'Paysafe Card' => '/banking/paysafecard',
                 'All Banking' => '/banking'
             ],
