@@ -14004,3 +14004,8 @@ h1.title + .subtitle{
     width: calc(100% + 10px);
   }
 }
+
+.country-details-wrap.empty{
+  visibility: hidden;
+  height: 28px;
+}
