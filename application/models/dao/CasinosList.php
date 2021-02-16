@@ -275,7 +275,7 @@ class CasinosList
     public function getBestCasinosByCountry($id,$limit=5,$offset=0) {
         $output = [];
         $date = date("Y-m-d", strtotime(date("Y-m-d") . " -6 months"));
-        $res = SQL("SELECT DISTINCT t1.id, t1.name,t1.tc_link , t1.code , (t1.rating_total/t1.rating_votes) AS average_rating, IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported, IF(t15.id IS NOT NULL,1,0) AS currency_supported, IF(t17.id IS NOT NULL,1,0) AS language_accepted, IF(t1.tc_link<>'', 1, 0) AS is_tc_link, t19.id AS complex_case 
+        $res = SQL("SELECT DISTINCT t1.id, t1.name,t1.tc_link , t1.code , (t1.rating_total/t1.rating_votes) AS average_rating, IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported, IF(t15.casino_id IS NOT NULL,1,0) AS currency_supported, IF(t17.casino_id IS NOT NULL,1,0) AS language_accepted, IF(t1.tc_link<>'', 1, 0) AS is_tc_link, t19.id AS complex_case 
                     FROM casinos AS t1 
                     INNER JOIN casino_statuses_extended AS t19 ON t1.status_id = t19.status_id 
                     LEFT OUTER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id 
