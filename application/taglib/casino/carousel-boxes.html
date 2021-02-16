@@ -25,18 +25,20 @@
                 Not accepted
             </div>
         <:elseif test="isset(${data.user_country})">
-            <div class="country-details-wrap">
-                <:if test="${result.is_currency_accepted} == 1 || ${result.is_language_accepted} == 1">
+                <:if test="${result.is_currency_accepted} == 1 && ${result.is_language_accepted} == 1">
+                <div class="country-details-wrap">
                     <span>
                         <i alt="Available" class="icon-icon_available"></i>
-                        ${result.currencies}
+                        ${data.currency}
                     </span>
                     <span>
                         <i alt="Available" class="icon-icon_available"></i>
-                        ${result.languages}
+                        ${data.language}
                     </span>
+                </div>
+                <:else>
+                <div class="country-details-wrap empty"></div>
                 </:if>
-            </div>
         </:if>
         <div class="bonus-wrap-container js-bonus-trigger" data-casino-id="">
             <span alt="Info" class="info-icon">i</span>
