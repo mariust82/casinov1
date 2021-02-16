@@ -804,10 +804,7 @@ function customSelectFunc() {
                 // return modifiedData;
                 return data;
             }
-            if (!params.term || params.term.trim() === '' || data.text.indexOf(params.term) > -1) {
-                console.log('test' + data);
-                return data;
-            }
+            
             // Return `null` if the term should not be displayed
             return null;
         }
