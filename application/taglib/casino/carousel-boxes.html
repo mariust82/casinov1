@@ -26,7 +26,7 @@
             </div>
         <:elseif test="isset(${data.user_country})">
             <div class="country-details-wrap">
-                <:if test="${result.is_currency_accepted} == 1 || ${result.is_language_accepted} == 1">
+                <:if test="${result.is_currency_accepted} == 1 && ${result.is_language_accepted} == 1">
                     <span>
                         <i alt="Available" class="icon-icon_available"></i>
                         ${data.currency}
