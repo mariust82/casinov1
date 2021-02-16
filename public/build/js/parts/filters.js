@@ -783,7 +783,6 @@ function customSelectFunc() {
         }
 
         function matchCustom(params, data) {
-            console.log('testing here');
             // If there are no search terms, return all of the data
             if ($.trim(params.term) === '') {
                 return data;
@@ -805,7 +804,10 @@ function customSelectFunc() {
                 // return modifiedData;
                 return data;
             }
-
+            if (!params.term || params.term.trim() === '' || data.text.indexOf(params.term) > -1) {
+                console.log('test' + data);
+                return data;
+            }
             // Return `null` if the term should not be displayed
             return null;
         }
