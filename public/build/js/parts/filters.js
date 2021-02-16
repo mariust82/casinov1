@@ -783,6 +783,7 @@ function customSelectFunc() {
         }
 
         function matchCustom(params, data) {
+            console.log('testing here');
             // If there are no search terms, return all of the data
             if ($.trim(params.term) === '') {
                 return data;
