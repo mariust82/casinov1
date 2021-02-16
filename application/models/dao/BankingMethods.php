@@ -24,7 +24,6 @@ class BankingMethods implements CasinoCounter
     }
     
     public function getMethodName($name) {
-        if($name == 'bitcoin') $name = 'Bitcoin Wallets';
         return SQL("SELECT name FROM banking_methods WHERE name=:name", array(":name"=>$name))->toValue();
     }
 

@@ -16,8 +16,6 @@ class PageInfoDAO
 
     private function feedValues($string, $entity, $casinos_number)
     {
-        if($entity == 'Bitcoin Wallets') $entity = 'Bitcoin';
-        else if($entity == 'Paysafe Card') $entity = 'Paysafecard';
         return str_replace(array("(name)","(year)","(month)" ,"(casinosNumber)"), array($entity, date("Y"), date("F"), $casinos_number), $string);
     }
 }
