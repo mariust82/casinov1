@@ -660,20 +660,22 @@ sliderInit('#best-software', 4, '.cn2', '.cp2');
 sliderInit('#ndb-software', 4, '.cn3', '.cp3');
 sliderInit('#ndb-country', 4, '.cn3', '.cp3');
 
-$('.swiper-button-disabled').click(function () {
+$('.carousel-next').click(function () {
     console.dir('shay');
 
-    var loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length,
+    var _this = $(this),
+        loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length,
         totalBoxes = $(this).data('total'),
         boxesToLoad = totalBoxes - loadedBoxes;
         
     console.log(boxesToLoad);
 
-    if (boxesToLoad > 0) {
-        $(this).addClass('loading');
-        var type = $(this).data('type');
-        var self = $(this);
-        var software_id = $(this).data('id');
+    if ( boxesToLoad > 0 ) {
+        console.log($(this));
+        _this.addClass('loading');
+        var type = _this.data('type');
+        var self = _this;
+        var software_id = _this.data('id');
         _request = $.ajax({
             url: '/casinos-by-software/' + determineCasinoPage(type),
             data: {
