@@ -23,7 +23,7 @@ class LoadMoreCasinosByCountrySliderController extends Lucinda\MVC\STDOUT\Contro
         $page = $this->request->parameters("page");
         $id = $this->request->parameters("id");
         $offset = ($page * self::LIMIT - self::LIMIT) + 5;
-        $dao = new CasinosList(new CasinoFilter());
+        $dao = new CasinosList(new CasinoFilter([],$this->request->attributes("country")));
         if ($type == 'best') {
             require_once("application/models/dao/Countries.php");
             $object = new Countries();
