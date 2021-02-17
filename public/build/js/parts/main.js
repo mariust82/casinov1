@@ -2,6 +2,7 @@ var AJAX_CUR_PAGE = 1;
 var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
+var NDB_CURR_PAGE = 1;
 var COUNTRY_CURR_PAGE = 1;
 var BEST_BANKING_PAGE = 1;
 var searched_value = '';
@@ -572,6 +573,8 @@ function determineCasinoPage(key) {
         page = NEW_CURR_PAGE;
     } else if (key === 'best') {
         page = BEST_CURR_PAGE;
+     } else if (key === 'ndb') {
+        page = NDB_CURR_PAGE;
     } else if (key === 'country') {
         page = COUNTRY_CURR_PAGE;
     }
@@ -584,6 +587,8 @@ function raiseCasinoPage(key) {
         NEW_CURR_PAGE++;
     } else if (key === 'best') {
         BEST_CURR_PAGE++;
+    } else if (key === 'ndb') {
+        NDB_CURR_PAGE++;
     } else if (key === 'country') {
         COUNTRY_CURR_PAGE++;
     }

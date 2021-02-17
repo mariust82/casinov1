@@ -28,6 +28,7 @@ class CasinosByCountryController extends CasinosListController
         );
         $dao = new CasinosList($filter);
         $id = $this->request->attributes("country")->id;
+        $this->response->attributes("country_id",$country_id);
         $this->response->attributes("user_country",$this->request->attributes("country")->name);
         $this->response->attributes("best_casinos_total", $dao->countBestCasinosByCountry($id));
         $this->response->attributes("best_casinos", $dao->getBestCasinosByCountry($id,$currency_id,$lang_id));
