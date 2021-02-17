@@ -665,7 +665,9 @@ $('.carousel-next').click(function () {
     loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length;
     totalBoxes = $(this).data('total');
     boxesToLoad = totalBoxes - loadedBoxes;
+    console.log(boxesToLoad);
     if ($(this).hasClass("swiper-button-disabled") && boxesToLoad > 0) {
+        console.log('test here');
         $(this).addClass('loading');
         var type = $(this).data('type');
         var self = $(this);
