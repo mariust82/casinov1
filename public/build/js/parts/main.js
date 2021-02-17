@@ -194,7 +194,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
             new SearchPanel($('.header'));
 
             if ($('#filters').length > 0) {
-                new Filters($('#filters'));
+                new ListFilters($('#filters'));
             }
 
             if ($('.filter-filter').length > 0) {
