@@ -660,7 +660,7 @@ sliderInit('#best-software', 4, '.cn2', '.cp2');
 sliderInit('#ndb-software', 4, '.cn3', '.cp3');
 sliderInit('#ndb-country', 4, '.cn3', '.cp3');
 
-$('.carousel-next').click(function () {
+$('.swiper-button-disabled').click(function () {
     console.dir('shay');
 
     var loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length,
@@ -669,8 +669,7 @@ $('.carousel-next').click(function () {
         
     console.log(boxesToLoad);
 
-    if ($(this).hasClass("swiper-button-disabled") && boxesToLoad > 0) {
-        console.log($(this));
+    if (boxesToLoad > 0) {
         $(this).addClass('loading');
         var type = $(this).data('type');
         var self = $(this);
