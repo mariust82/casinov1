@@ -702,6 +702,7 @@ $('.carousel-next').click(function () {
                     // }, 100);
                     raiseCasinoPage(type);
                     $(self).prev().find('.swiper-wrapper').append(data);
+                    $(self).removeClass("swiper-button-disabled");
                 },
                 error: function (XMLHttpRequest) {
                     var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
