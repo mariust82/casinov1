@@ -4,6 +4,55 @@ require_once("FieldValidator.php");
 
 class GameManufacturers implements CasinoCounter
 {
+    public function getTopProviders($countryID, $limit)
+    {
+        // gets all banking methods accepted by country sorted by priority
+        $software = [];
+        $resultSet = SQL("
+        (
+        SELECT t1.id, t1.name, t1.priority
+        FROM game_manufacturers AS t1
+        LEFT JOIN game_manufacturers__countries AS t2 ON t1.id = t2.game_manufacturer_id
+        WHERE t1.is_open = 1 AND t2.id IS NULL
+            
+        UNION
+            
+        SELECT t1.id, t1.name, t1.priority
+        FROM game_manufacturers AS t1
+        INNER JOIN game_manufacturers__countries AS t2 ON t1.id = t2.game_manufacturer_id AND t2.country_id = :country AND is_allowed = 1
+        WHERE t1.is_open = 1
+            
+        UNION
+            
+        SELECT t1.id, t1.name, t1.priority
+        FROM game_manufacturers AS t1
+        INNER JOIN game_manufacturers__countries AS t2 ON t1.id = t2.game_manufacturer_id AND t2.is_allowed = 0
+        LEFT JOIN game_manufacturers__countries AS t3 ON t2.id = t3.id AND t3.country_id = :country AND t3.is_allowed = 0
+        WHERE t1.is_open = 1 AND t3.id IS NULL
+        )
+        ORDER BY priority DESC
+        LIMIT ".$limit, [":country"=>$countryID]);
+        while($row = $resultSet->toRow()) {
+            $software[$row["id"]] = [
+                "name"=>$row["name"],
+                "casinos"=>0
+            ];
+        }
+        
+        // get number of casinos for above
+        $resultSet = SQL("
+        SELECT COUNT(casino_id) AS nr, game_manufacturer_id
+        FROM casinos__game_manufacturers
+        WHERE game_manufacturer_id IN (".implode(",", array_keys($software)).")
+        GROUP BY game_manufacturer_id
+        ");
+        while($row = $resultSet->toRow()) {
+            $software[$row["game_manufacturer_id"]] = $row["nr"];
+        }
+        
+        return $software;
+    }
+    
     public function getCasinosCount()
     {
         return SQL("
