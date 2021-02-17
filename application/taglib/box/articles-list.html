@@ -1,4 +1,4 @@
-<:if test="'$[section]' == 'index'">
+<:if test="$[section] == 'index'">
     <:set var="title_class" val="title-underlined"/>
 <:else>
     <:set var="title_class" val="title-middle"/>
@@ -18,7 +18,7 @@
         <div class="cards-list-wrapper">
             <box:article-item data="$[data]" folder="$[folder]"/>
         </div>
-        <:if test="'$[section]' == 'index'">
+        <:if test="$[section] == 'index'">
         <a href="$[url]" class="show_all-button">
             $[button]
             <i class="icon-chevron-right"></i>
