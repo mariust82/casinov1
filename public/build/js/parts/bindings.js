@@ -660,6 +660,46 @@ sliderInit('#best-software', 4, '.cn2', '.cp2');
 sliderInit('#ndb-software', 4, '.cn3', '.cp3');
 sliderInit('#ndb-country', 4, '.cn3', '.cp3');
 
+$('.carousel-next').click(function () {
+    console.dir('shay');
+    if ($(this).hasClass("swiper-button-disabled")) {
+        $(this).addClass('loading');
+        var type = $(this).data('type');
+        var self = $(this);
+        var software_id = $(this).data('id');
+        _request = $.ajax({
+            url: '/casinos-by-software/' + determineCasinoPage(type),
+            data: {
+                page: determineCasinoPage(type),
+                type: type,
+                software: software_id
+            },
+            dataType: 'html',
+            type: 'post',
+            success: function (data) {
+                setTimeout(function () {
+                    self.removeClass('loading');
+                    refresh();
+                }, 100);
+                raiseCasinoPage(type);
+                $(self).parent().prev().find('.list-body').append(data);
+                if ($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
+                    $(self).hide();
+                }
+            },
+            error: function (XMLHttpRequest) {
+                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                if (XMLHttpRequest.statusText != "abort") {
+                    console.log('err');
+                }
+            },
+            complete: function () {
+                BUSY_REQUEST = false;
+            }
+        });
+    }
+});
+
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
@@ -807,45 +847,7 @@ function bindButtons() {
         });
     });
 
-    $('.carousel-next').click(function () {
-            console.dir('shay');
-            if ($(this).hasClass("swiper-button-disabled")) {
-                $(this).addClass('loading');
-                var type = $(this).data('type');
-                var self = $(this);
-                var software_id = $(this).data('id');
-                _request = $.ajax({
-                    url: '/casinos-by-software/' + determineCasinoPage(type),
-                    data: {
-                        page: determineCasinoPage(type),
-                        type: type,
-                        software: software_id
-                    },
-                    dataType: 'html',
-                    type: 'post',
-                    success: function (data) {
-                        setTimeout(function () {
-                            self.removeClass('loading');
-                            refresh();
-                        }, 100);
-                        raiseCasinoPage(type);
-                        $(self).parent().prev().find('.list-body').append(data);
-                        if ($(self).data('total') === $(self).parent().prev().find('.list-body').children().length) {
-                            $(self).hide();
-                        }
-                    },
-                    error: function (XMLHttpRequest) {
-                        var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
-                        if (XMLHttpRequest.statusText != "abort") {
-                            console.log('err');
-                        }
-                    },
-                    complete: function () {
-                        BUSY_REQUEST = false;
-                    }
-                });
-            }
-    });
+    
 
     $('.js-more-banking').click(function () {
         $(this).addClass('loading');
