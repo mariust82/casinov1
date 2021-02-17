@@ -9,7 +9,7 @@
             <h2 class="title ${title_class}">
                 <span>$[title]</span>
             </h2>
-            <:if test="$[description] !== null">
+            <:if test="isset($[description])">
             <div class="subtitle index-page">
                 <p>
                     $[description]
