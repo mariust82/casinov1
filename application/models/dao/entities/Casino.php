@@ -32,6 +32,7 @@ class Casino extends Entity
     public $email_link;
     public $is_currency_accepted;
     public $note;
+    public $status;
     public $is_tc_link;
     public $logo_big;
     public $logo_small;

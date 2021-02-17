@@ -59,7 +59,7 @@ class CasinosListQuery
 
     private function setSelect(Lucinda\Query\MySQLSelect $query, CasinoFilter $filter)
     {
-        $query->joinInner("casino_statuses_extended", "t19")->on(["t1.status_id", "t19.status_id"]);
+        $query->joinInner("casino_statuses_extended", "t19")->on(["t1.status_id" => "t19.status_id"]);
         if ($filter->getCurrencyAccepted()) {
             $query->joinInner("casinos__currencies", "t15")->on(["t1.id" => "t15.casino_id","t15.currency_id" => $filter->currency_id]);
         } else {

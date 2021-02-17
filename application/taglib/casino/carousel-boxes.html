@@ -18,27 +18,29 @@
                 </:if>
             </div>
         </div>
-        <!-- if page is software -->
-        <div class="country-wrap">
-            <img class="not-accepted lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
-            <i class="icon-icon_unavailable"></i>
-            Not accepted
-        </div>
-        <!-- else if page is country-->
-        <div class="country-details-wrap">
-            <!-- if usd or english are available-->
-            <span>
-                <i alt="Available" class="icon-icon_available"></i>
-                ${result.currencies}
-            </span>
-            <span>
-                <i alt="Available" class="icon-icon_available"></i>
-                ${result.languages}
-            </span>
-            <!-- end if-->
-        </div>
-        <!-- end if-->
-        <div class="bonus-wrap-container">
+        <:if test="isset(${data.software})">
+            <div class="country-wrap">
+                <img class="not-accepted lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
+                <i class="icon-icon_unavailable"></i>
+                Not accepted
+            </div>
+        <:elseif test="isset(${data.user_country})">
+                <:if test="${result.is_currency_accepted} == 1 && ${result.is_language_accepted} == 1">
+                <div class="country-details-wrap">
+                    <span>
+                        <i alt="Available" class="icon-icon_available"></i>
+                        ${data.currency}
+                    </span>
+                    <span>
+                        <i alt="Available" class="icon-icon_available"></i>
+                        ${data.language}
+                    </span>
+                </div>
+                <:else>
+                <div class="country-details-wrap empty"></div>
+                </:if>
+        </:if>
+        <div class="bonus-wrap-container js-bonus-trigger" data-casino-id="">
             <span alt="Info" class="info-icon">i</span>
             <span class="bonus free">50 Free Spins</span>
             <span class="bonus">200% First Deposit Bonus</span>
@@ -47,6 +49,9 @@
             <a href="/visit/${normalize(${result.name})}" class="btn btn-full-width btn-rest" target="_blank" rel="nofollow">RESTRICTED</a>
             <:else>
                 <a class="btn btn-full-width" href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank">VISIT CASINO</a>
+        </:if>
+        <:if test="${result.is_tc_link}">
+            <a href="/visit/${normalize(${result.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
         </:if>
     </div>
 </div>

@@ -11729,6 +11729,9 @@ hr.widget{
   height: auto;
   margin-right: 15px;
 }
+.welcome_package-popup .bonuses-wp{
+  max-width: -webkit-fill-available;
+}
 .welcome_package-popup{
   display: none;
   /* width: 605px; */
@@ -13699,7 +13702,7 @@ h1.title + .subtitle{
 }
 .carousel-box-container .swiper-slide {
   width: 24% !important;
-  height: 319px !important;
+  height: 332px !important;
   min-width: 230px;
   min-height: 319px;
   margin-right: 10.5px !important;
@@ -13754,6 +13757,7 @@ h1.title + .subtitle{
 }
 .carousel-box-container .bonus-wrap-container{
   height: 90px;
+  min-height: 90px;
   margin-bottom: 10px;
   background: #F9F9F9;
   padding: 14px 10px;
@@ -13959,4 +13963,54 @@ h1.title + .subtitle{
   background-size: 8px 8px;
   background-position: center center;
 
+}
+
+
+.gridbox-bottom .carousel-slide .row.edges{
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+}
+.gridbox-bottom .slide-box-amount{
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.gridbox-bottom .logo-casino + .row{
+  flex-wrap: wrap;
+}
+.gridbox-bottom .row{
+  width: 100%;
+}
+.gridbox-bottom .row .btn {
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide.gridbox-bottom{
+  height: 274px!important;
+  min-height: 274px;
+}
+
+@media (max-width: 960px){
+  .carousel-box-container .swiper-container{
+    width: calc(100% + 20px);
+  }
+}
+@media (max-width: 767px){
+  .carousel-box-container .swiper-container{
+    width: calc(100% + 10px);
+  }
+}
+
+.country-details-wrap.empty{
+  visibility: hidden;
+  height: 28px;
+}
+
+.swiper-button-disabled.loading{
+  pointer-events: all;
+  opacity: 1;
 }
