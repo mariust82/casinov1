@@ -662,9 +662,7 @@ sliderInit('#ndb-country', 4, '.cn3', '.cp3');
 
 
 $('.carousel-next').click(function () {
-    console.dir('hello');
     if($(this).hasClass('swiper-button-disabled')){
-        console.dir('bye');
         var loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length,
             totalBoxes = $(this).data('total'),	        
             boxesToLoad = totalBoxes - loadedBoxes;
@@ -684,7 +682,7 @@ $('.carousel-next').click(function () {
                             type: type,
                             software: id
                 };
-            } else if (page === ' country') {
+            } else if (page === 'country') {
                 _url = '/casinos-by-country/';
                 _data = {
                     page: determineCasinoPage(type),
