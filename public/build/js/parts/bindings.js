@@ -662,8 +662,8 @@ sliderInit('#ndb-country', 4, '.cn3', '.cp3');
 
 $('.carousel-next').click(function () {
 
-    var _this = $(this),
-        loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length,
+   
+    var loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length,
         totalBoxes = $(this).data('total'),
         boxesToLoad = totalBoxes - loadedBoxes;
         
@@ -711,11 +711,9 @@ $('.carousel-next').click(function () {
                 if (XMLHttpRequest.statusText != "abort") {
                     console.log('err');
                 }
-            },
-            complete: function () {
-                BUSY_REQUEST = false;
             }
         });
+        
     }else{
         $(this).removeClass('loading');
     }
