@@ -14,16 +14,16 @@ class BankingMethods implements CasinoCounter
         FROM banking_methods AS t1
         LEFT JOIN banking_methods__countries AS t2 ON t1.id = t2.banking_method_id
         WHERE t1.is_open = 1 AND t2.id IS NULL 
-        
-        UNION
-        
+        )        
+        UNION        
+        (
         SELECT t1.id, t1.name, t1.priority
         FROM banking_methods AS t1
         INNER JOIN banking_methods__countries AS t2 ON t1.id = t2.banking_method_id AND t2.country_id = :country AND is_allowed = 1
         WHERE t1.is_open = 1
-        
-        UNION
-        
+        )        
+        UNION        
+        (
         SELECT t1.id, t1.name, t1.priority
         FROM banking_methods AS t1
         INNER JOIN banking_methods__countries AS t2 ON t1.id = t2.banking_method_id AND t2.is_allowed = 0
