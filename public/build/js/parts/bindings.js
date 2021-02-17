@@ -660,15 +660,16 @@ sliderInit('#best-software', 4, '.cn2', '.cp2');
 sliderInit('#ndb-software', 4, '.cn3', '.cp3');
 sliderInit('#ndb-country', 4, '.cn3', '.cp3');
 
-if($('.carousel-next').hasClass('swiper-button-disabled')){
-    var loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length,
-        totalBoxes = $(this).data('total'),	        
-        boxesToLoad = totalBoxes - loadedBoxes;
-    if ( boxesToLoad > 0 ) {
-        console.log($(this));
-        _this.addClass('loading');
-        $(this).click(function () {
-        
+$('.carousel-next').click(function () {
+
+    if($(this).hasClass('swiper-button-disabled')){
+        var loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length,
+            totalBoxes = $(this).data('total'),	        
+            boxesToLoad = totalBoxes - loadedBoxes;
+        if ( boxesToLoad > 0 ) {
+            console.log($(this));
+            $(this).addClass('loading');
+            
             var type = $(this).data('type');
             var page = $(this).data('page');
             var self = $(this);
@@ -711,11 +712,11 @@ if($('.carousel-next').hasClass('swiper-button-disabled')){
                 }
             });
 
-        });
-    }else{
-        $(this).removeClass('loading');
+        }else{
+            $(this).removeClass('loading');
+        }
     }
-}
+});
 
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
