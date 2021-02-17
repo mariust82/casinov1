@@ -177,7 +177,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
             initSite();
             initToggleMenu();
             initSearch();
-            initTooltipseter();
+            // initTooltipseter();
             bindButtons();
 
             new SearchPanel($('.header'));
