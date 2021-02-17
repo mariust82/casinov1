@@ -662,18 +662,19 @@ sliderInit('#ndb-country', 4, '.cn3', '.cp3');
 
 $('.carousel-next').click(function () {
     console.dir('shay');
-    var _this = $(this);
-    var loadedBoxes = _this.closest('.carousel-box-container').find('.swiper-slide').length,
-        totalBoxes = _this.data('total'),
+
+    var loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length,
+        totalBoxes = $(this).data('total'),
         boxesToLoad = totalBoxes - loadedBoxes;
         
-    console.log(boxesToLoad + ' this: ' + _this);
+    console.log(boxesToLoad);
 
-    if (_this.hasClass("swiper-button-disabled") && boxesToLoad > 0) {
-        _this.addClass('loading');
-        var type = _this.data('type');
-        var self = _this;
-        var software_id = _this.data('id');
+    if ($(this).hasClass("swiper-button-disabled") && boxesToLoad > 0) {
+        console.log($(this));
+        $(this).addClass('loading');
+        var type = $(this).data('type');
+        var self = $(this);
+        var software_id = $(this).data('id');
         _request = $.ajax({
             url: '/casinos-by-software/' + determineCasinoPage(type),
             data: {
