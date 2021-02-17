@@ -662,7 +662,10 @@ sliderInit('#ndb-country', 4, '.cn3', '.cp3');
 
 $('.carousel-next').click(function () {
     console.dir('shay');
-    if ($(this).hasClass("swiper-button-disabled")) {
+    loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length;
+    totalBoxes = $(this).data('total');
+    boxesToLoad = totalBoxes - loadedBoxes;
+    if ($(this).hasClass("swiper-button-disabled") && boxesToLoad > 0) {
         $(this).addClass('loading');
         var type = $(this).data('type');
         var self = $(this);
@@ -697,6 +700,8 @@ $('.carousel-next').click(function () {
                 BUSY_REQUEST = false;
             }
         });
+    }else{
+        $(this).removeClass('loading');
     }
 });
 

@@ -14009,3 +14009,8 @@ h1.title + .subtitle{
   visibility: hidden;
   height: 28px;
 }
+
+.swiper-button-disabled.loading{
+  pointer-events: all;
+  opacity: 1;
+}
