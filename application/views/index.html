@@ -11,7 +11,7 @@
 <:if test="stristr(${data.country.name}, 'germany') === false">
 	<casino:list-container id="1" data="${data.country_casinos}" type="SOFTWARE" url="/countries-list/${countryNormalize(${data.country.name})}" name="${data.country.name} Casinos" description="You’d like to play at an online casino, but you’re not sure if it accepts players from your country of residence? Look no further, as we have already put together a list of online casinos which welcome players located in your country. You can browse by accessing our “Countries” section at the navigation bar. Currently, we host ${data.casinos_per_country} online casinos available for players from ${data.country.name}."/>
 </:if>
-<box:articles-list button="All Blog Articles" section="index" data="${data.latest_blog_articles}"  url="/blog" title="Latest Blog Articles" description="description"/>
+<box:articles-list button="All Blog Articles" section="index" data="${data.latest_blog_articles}"  url="/blog" title="Latest Blog Articles" description=""/>
 <casino:list-container id="2" data="${data.new_casinos}" type="ESTABLISHED" url="/casinos/new" name="New Casinos" description="The online gaming market is ever-growing and constantly reinventing itself. As new casinos pop up all the time, we decided to put all the newest casinos from the last 12 months on one list, so you can browse and find your new favorite place in no time. The websites on the page are sorted by newest first, so you’ll always be met with the latest updates. And don’t forget that, as a new player, you’re sometimes entitled to generous no deposit bonuses, all of which can be found on our New Online Casinos page."/>
 <div class="subtitle">
 	<:if test="isset(${data.widgets.middle})">
