@@ -27,7 +27,15 @@ class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller 
             $page_type = "ESTABLISHED";
             $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::NEWEST, self::LIMIT,$offset,'New')['result']);
         } elseif ($type == 'best') {
-            $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::TOP_RATED, self::LIMIT,$offset,'Best')['result']);
+            $limit = 5;
+            $offset = ($page * $limit - $limit) + 5;
+            $this->response->attributes("casinos", $this->getCasinos([], CasinoSortCriteria::TOP_RATED, $limit,$offset,'Best')['result']);
+            $this->response->setView('casino-carousel-box');
+        } elseif ($type == "ndb") {
+            $limit = 5;
+            $offset = ($page * $limit - $limit) + 5;
+            $this->response->attributes("casinos", $this->getCasinos(array("bonus_type"=>"no deposit bonus"), CasinoSortCriteria::DATE_ADDED, $limit, $offset)['result']);
+            $this->response->setView('casino-carousel-gridbox');
         } else {
             $this->response->attributes("casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::POPULARITY, self::LIMIT,$offset)['result']);
         }
