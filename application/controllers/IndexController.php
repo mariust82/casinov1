@@ -8,10 +8,12 @@ require_once("application/models/dao/TopMenu.php");
 require_once("application/models/dao/PageInfoDAO.php");
 require_once("application/models/dao/BankingMethods.php");
 require_once("application/models/dao/GameManufacturers.php");
+require_once "application/models/dao/Articles.php";
 require_once("application/controllers/BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
 require_once("application/models/orm/GamesFeaturedList.php");
 require_once("application/models/caching/GamesListKey.php");
+require_once "application/models/ArticlesModel.php";
 require_once("hlis/widgets/src/ContentManager.php");
 require_once("hlis/user_preferences/TraitsFinder.php");
 
@@ -38,6 +40,7 @@ class IndexController extends BaseController
         $this->response->attributes("new_casinos", $this->getCasinos([], CasinoSortCriteria::NEWEST, 5));
         $this->response->attributes("popular_banking_options", $this->getPopularBankingOptions(20));
         $this->response->attributes("top_software_providers", $this->getTopSoftwareProviders(20));
+        $this->setLatestBlogArticles(3);
         $this->response->attributes("no_deposit_casinos", $this->getCasinos(
             array("bonus_type"=>"no deposit bonus"),
             CasinoSortCriteria::DATE_ADDED,
@@ -59,6 +62,15 @@ class IndexController extends BaseController
     {
         $object = new GameManufacturers();
         return $object->getTopProviders($this->request->attributes("country")->id, $limit);
+    }
+    
+    private function setLatestBlogArticles($limit)
+    {
+        $object = new Articles($this->application->attributes('parent_schema'));
+        $items = $object->getList([], 0, $limit);
+        $this->response->attributes("latest_blog_articles", $items["results"]);
+        $upload = new ArticlesModel();
+        $this->response->attributes("uploadsFolders", $upload->getUploadsFolders($items));
     }
     
     private function getTotalCasinos() {
