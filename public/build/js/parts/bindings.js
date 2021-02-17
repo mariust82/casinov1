@@ -659,9 +659,8 @@ sliderInit('#best-country', 4, '.cn2', '.cp2');
 sliderInit('#best-software', 4, '.cn2', '.cp2');
 sliderInit('#ndb-software', 4, '.cn3', '.cp3');
 sliderInit('#ndb-country', 4, '.cn3', '.cp3');
-
-$('.carousel-next').click(function () {
-    if($(this).hasClass('swiper-button-disabled')){
+if($('.carousel-next').hasClass('swiper-button-disabled')){
+$(this).click(function () {
     if ( boxesToLoad > 0 ) {
         console.log($(this));
         _this.addClass('loading');
@@ -710,8 +709,9 @@ $('.carousel-next').click(function () {
         }else{
             $(this).removeClass('loading');
         }
-    }
-});
+
+    });
+}
 
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
