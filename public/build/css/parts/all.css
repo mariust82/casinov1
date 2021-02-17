@@ -3629,7 +3629,7 @@ a:focus {
 }
 
 .heading {
-  margin: 0 0 23px;
+  margin: 40px 0 23px;
 }
 
 .heading .title {
@@ -6286,7 +6286,7 @@ a:focus {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  margin: 40px 0;
+  margin: 40px 10px;
 }
 
 @media screen and (max-width: 1023px) {
@@ -9196,7 +9196,7 @@ input[type=submit]
   }
 
   .btn-games{
-    margin-bottom: 80px !important;
+    margin-bottom: 40px !important;
   }
 }
 
