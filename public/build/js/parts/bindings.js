@@ -661,7 +661,9 @@ sliderInit('#ndb-software', 4, '.cn3', '.cp3');
 sliderInit('#ndb-country', 4, '.cn3', '.cp3');
 
 $('.carousel-next').click(function () {
+    console.dir('shay');
     if($(this).hasClass('swiper-button-disabled')){
+    console.dir('dadon');
     if ( boxesToLoad > 0 ) {
         console.log($(this));
         _this.addClass('loading');
