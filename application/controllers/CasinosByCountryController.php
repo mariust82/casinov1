@@ -15,7 +15,6 @@ class CasinosByCountryController extends CasinosListController
     {
         $object = new Countries();
         $country_id =  $this->request->attributes('validation_results')->get('name');
-
         $result = $object->getCountryInfo($country_id);
         $code = !empty($result[0]['code']) ? $result[0]['code'] : '';
         $language = !empty($result[0]['name']) ? $result[0]['name'] : '';
@@ -27,13 +26,12 @@ class CasinosByCountryController extends CasinosListController
             $this->request->attributes("country")
         );
         $dao = new CasinosList($filter);
-        $id = $this->request->attributes("country")->id;
         $this->response->attributes("country_id",$country_id);
         $this->response->attributes("user_country",$this->request->attributes("country")->name);
-        $this->response->attributes("best_casinos_total", $dao->countBestCasinosByCountry($id));
-        $this->response->attributes("best_casinos", $dao->getBestCasinosByCountry($id,$currency_id,$lang_id));
-        $this->response->attributes("new_casinos_total", $dao->countNewestCasinosByCountry($id));
-        $this->response->attributes("new_casinos", $dao->getNewestCasinosByCountry($id));
+        $this->response->attributes("best_casinos_total", $dao->countBestCasinosByCountry($country_id));
+        $this->response->attributes("best_casinos", $dao->getBestCasinosByCountry($country_id,$currency_id,$lang_id));
+        $this->response->attributes("new_casinos_total", $dao->countNewestCasinosByCountry($country_id));
+        $this->response->attributes("new_casinos", $dao->getNewestCasinosByCountry($country_id));
         $this->response->attributes("country_page", $name);
         $this->response->attributes("currency", $code);
         $this->response->attributes("language", $language);
