@@ -267,6 +267,11 @@ class Casinos implements FieldValidator
         return SQL("SELECT value from casinos__ratings WHERE casino_id = :casino_id and status != 3", array(":casino_id" => $casino_id));
     }
 
+    public function getCasinoScore($casinoID)
+    {
+        return SQL("SELECT SUM(value) / COUNT(value) AS average FROM casinos__ratings WHERE casino_id = {$casinoID}")->toValue();
+    }
+
     public function getAllVotes($casinoID){
         return SQL("SELECT COUNT(value) from casinos__ratings WHERE casino_id = :casino_id and status != 3", array(":casino_id" => $casinoID))->toValue();
     }
