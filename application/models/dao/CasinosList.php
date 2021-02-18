@@ -152,7 +152,7 @@ class CasinosList
         $row = SQL($query)->toRow();
         $output = [];
         $bonus = new CasinoBonus();
-        $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
+        $bonus->amount = ($row["bonus_type_id"]==5?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
         $bonus->min_deposit = $row["deposit_minimum"];
         if ($row["wagering"] == '') {
             $row["wagering"] = 0;
@@ -161,7 +161,7 @@ class CasinosList
         $bonus->games_allowed = $row["games"];
         $bonus->code = $row["codes"];
         $bonus->type = $row["name"];
-        if ($row["name"]=="No Deposit Bonus" || $row["name"]=="Free Spins" || $row["name"]=="Free Play" || $row["name"]=="Bonus Spins") {
+        if ($row["bonus_type_id"]==6 || $row["bonus_type_id"]==5 || $row["bonus_type_id"]==4 || $row["bonus_type_id"]==11) {
             $output[$row["casino_id"]]["bonus_free"] = $bonus;
         } else {
             $output[$row["casino_id"]]["bonus_first_deposit"] = $bonus;
