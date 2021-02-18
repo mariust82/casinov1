@@ -1,12 +1,13 @@
 <div class="form">
 	<div class="form-row">
 		<:if test="$[rating]">
-			<:set var="ceilValue" val="ceil($[key])"/>
-			<div class="rating-container" data-casino-name="$[name]" data-casino-rating="" data-user-rate="${ceilValue}">
+			<:set var="userScore" val="ceil($[score])"/>
+			<:set var="casinoScore" val="ceil($[key])"/>
+			<div class="rating-container" data-casino-name="$[name]" data-casino-rating="" data-user-rate="${userScore}">
 				<div class="rating-container-left">
 					<div class="rating-container-score-holder">
 						<div class="rating-container-score">
-							<span><span class="rating-container-score-value">${ceilValue}</span> out of <span>10</span></span>
+							<span><span class="rating-container-score-value">${casinoScore}</span> out of <span>10</span></span>
 							|
 							<strong class="rating-container-score-grade $[value]">$[id]</strong>
 						</div>
@@ -55,7 +56,7 @@
 				<div class="drag-rate-range">
 					<h3 class="drag-rate-range-heading">
 						Drag to rate
-						<span class="drag-rate-range-score">${ceilValue}/10</span>
+						<span class="drag-rate-range-score">${userScore}/10</span>
 					</h3>
 					<input type="text" class="js-drag-rate"/>
 				</div>
