@@ -9,6 +9,8 @@ class CasinoSliderPopupController extends Lucinda\MVC\STDOUT\Controller
     {
         $id = $this->request->parameters("id");
         $dao = new CasinosList(new CasinoFilter([],$this->request->attributes("country")));
+        var_dump($dao->getBonusCasinosPopup($id));
+        die();
         $this->response->attributes("bonus",$dao->getBonusCasinosPopup($id));
     }
 }
