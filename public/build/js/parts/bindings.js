@@ -1557,7 +1557,7 @@ var SearchPanel = function (obj) {
                     _request = $.ajax({
                         url: '/search-suggestions',
                         data: {},
-                        dataType: 'json',
+                        dataType: 'html',
                         type: 'GET',
                         success: function (data) {
                             _hideLoading();
