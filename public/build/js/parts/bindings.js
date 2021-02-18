@@ -1556,10 +1556,7 @@ var SearchPanel = function (obj) {
                 if(_searchInput.val() == ''){
                     _request = $.ajax({
                         url: '/search-suggestions',
-                        data: {
-                            value: _searchInput.val(),
-                            page: page
-                        },
+                        data: {},
                         dataType: 'json',
                         type: 'GET',
                         success: function (data) {

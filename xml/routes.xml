@@ -97,7 +97,7 @@
         <route url="search" controller="SearchController" format="json">
             <parameter name="value" validator="SearchValidator"/>
         </route>
-        <route url="search-sugestions" controller="SearchSuggestionsController" view="search-suggestions" />
+        <route url="search-suggestions" controller="SearchSuggestionsController" view="search-suggestions" />
         <route url="search/advanced" controller="SearchAdvancedController" view="search">
             <parameter name="value" validator="SearchValidator"/>
         </route>
