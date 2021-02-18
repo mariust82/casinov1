@@ -1,5 +1,6 @@
 <?php
 require_once("application/models/dao/CasinosList.php");
+require_once("application/models/CasinoFilter.php");
 
 class CasinoSliderPopupController extends Lucinda\MVC\STDOUT\Controller
 {
