@@ -1562,6 +1562,10 @@ var SearchPanel = function (obj) {
                         success: function (data) {
                             _hideLoading();
                             $('.search-results').append(data);
+                            $('#search-suggestions').show();
+                            $('.search-lists').hide();
+                            $('.search-casinos').hide();
+                            $('.search-pages').hide();
                         },
                         error: function (XMLHttpRequest) {
                             if (XMLHttpRequest.statusText != "abort") {
@@ -1587,6 +1591,10 @@ var SearchPanel = function (obj) {
                         type: 'GET',
                         success: function (data) {
                             _hideLoading();
+                            $('#search-suggestions').hide();
+                            $('.search-lists').show();
+                            $('.search-casinos').show();
+                            $('.search-pages').show();
                             _loadData(data);
 
                         },
