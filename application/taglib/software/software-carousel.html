@@ -3,9 +3,13 @@
 <:else>
     <:set var="title_class" val="title-middle"/>
 </:if>
+<:if test="'$[type]' == 'software'">
+    <:set var="nextClass" val="cn5"/>
+    <:set var="prevClass" val="cp5"/>
+<:else>
     <:set var="nextClass" val="cn6"/>
     <:set var="prevClass" val="cp6"/>
-
+</:if>
 
 <div class="block">
     <div class="carousel carousel-option-container">
