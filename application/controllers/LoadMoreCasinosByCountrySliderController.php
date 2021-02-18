@@ -31,6 +31,7 @@ class LoadMoreCasinosByCountrySliderController extends Lucinda\MVC\STDOUT\Contro
         $currency_id = !empty($result[0]['currency_id']) ? $result[0]['currency_id'] : '';
         $c_code = !empty($result[0]['c_code']) ? $result[0]['c_code'] : '';
         $this->response->attributes("country_code", $c_code);
+        $this->response->attributes("flag",$c_code);
         if ($type == 'best') {
             $this->response->attributes("casinos", $dao->getBestCasinosByCountry($id,$currency_id,$lang_id,self::LIMIT,$offset));
             $this->response->setView('casino-carousel-box');

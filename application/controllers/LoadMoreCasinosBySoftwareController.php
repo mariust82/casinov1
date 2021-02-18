@@ -44,6 +44,7 @@ class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller 
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $this->response->attributes("selected_entity", $this->request->parameters("software"));
         $this->response->attributes("country", $this->request->attributes("country"));
+        $this->response->attributes("flag", $this->request->attributes("country")->code);
         
     }
 
