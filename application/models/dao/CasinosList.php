@@ -221,7 +221,7 @@ class CasinosList
                 $output[$casinoId]->casino_deposit_methods[$bankingMethodName] = [
                     'deposit_methods'=>true,
                     'withdraw_methods'=>false,
-                    'logo'=>'/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $bankingMethodName)).'.png'
+                    'logo'=>$bankingMethodName
                 ];
             }
         }        
@@ -235,7 +235,7 @@ class CasinosList
                     $output[$casinoId]->casino_deposit_methods[$bankingMethodName] = [
                         'deposit_methods'=>false,
                         'withdraw_methods'=>true,
-                        'logo'=>'/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $bankingMethodName)).'.png'
+                        'logo'=>$bankingMethodName
                     ];
                 }
             }
