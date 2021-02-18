@@ -1548,32 +1548,60 @@ var SearchPanel = function (obj) {
                 }
                 BUSY_REQUEST = true;
                 _request.abort();
-                _request = $.ajax({
-                    url: target,
-                    data: {
-                        value: _searchInput.val(),
-                        page: page
-                    },
-                    dataType: 'json',
-                    type: 'GET',
-                    success: function (data) {
-                        _hideLoading();
-                        _loadData(data);
-
-                    },
-                    error: function (XMLHttpRequest) {
-                        if (XMLHttpRequest.statusText != "abort") {
+                if(_searchInput.val() == ''){
+                    _request = $.ajax({
+                        url: target,
+                        data: {
+                            value: _searchInput.val(),
+                            page: page
+                        },
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function (data) {
                             _hideLoading();
-                            console.log('err');
-                            _showEmptyMessage();
+                            $('.search-results').append(data);
+                        },
+                        error: function (XMLHttpRequest) {
+                            if (XMLHttpRequest.statusText != "abort") {
+                                _hideLoading();
+                                console.log('err');
+                                _showEmptyMessage();
+                            }
+                        },
+                        complete: function (data) {
+                            _hideLoading();
+                            nr_requests_completed++;
+                            BUSY_REQUEST = false;
                         }
-                    },
-                    complete: function (data) {
-                        _hideLoading();
-                        nr_requests_completed++;
-                        BUSY_REQUEST = false;
-                    }
-                });
+                    });
+                }else{
+                    _request = $.ajax({
+                        url: target,
+                        data: {
+                            value: _searchInput.val(),
+                            page: page
+                        },
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function (data) {
+                            _hideLoading();
+                            _loadData(data);
+
+                        },
+                        error: function (XMLHttpRequest) {
+                            if (XMLHttpRequest.statusText != "abort") {
+                                _hideLoading();
+                                console.log('err');
+                                _showEmptyMessage();
+                            }
+                        },
+                        complete: function (data) {
+                            _hideLoading();
+                            nr_requests_completed++;
+                            BUSY_REQUEST = false;
+                        }
+                    });
+                }
 
                 var loadDelay = setTimeout(function () {
                 }, 300);

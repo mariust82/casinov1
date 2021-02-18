@@ -227,4 +227,18 @@ class ListsSearch
         $output = $this->loop($res, "games/(type)");
         return $output;
     }
+
+    public function getSearchSuggestions(){
+        return array(
+            'No Deposit Casinos' => '',
+            'New Casinos' => '',
+            'USA Casinos for US players' => '',
+            'Low Wagering Casinos' => '',
+            'Live Dealer Casinos' => '',
+            'RTG Casinos' => '',
+            'NetEnt Casinos' => '',
+            'BetSoft Casinos' => '',
+            'Rival Casinos' => '',
+            'MicroGaming Casinos' => '');
+    }
 }

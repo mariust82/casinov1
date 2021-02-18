@@ -1,0 +1,9 @@
+<ul>
+    <li>
+        <:foreach var="${data.suggestions}" key="name" val="url">
+            <a class="search-results-label" href="${url}">
+                ${name}
+            </a>
+        </:foreach>
+    </li>
+</ul>
