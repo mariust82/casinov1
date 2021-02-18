@@ -1555,9 +1555,9 @@ var SearchPanel = function (obj) {
                 _request.abort();
                 if(_searchInput.val() == ''){
                     _request = $.ajax({
-                        url: target,
+                        url: '/search-suggestions',
                         data: {
-                            value: '/search-suggestions',
+                            value: _searchInput.val(),
                             page: page
                         },
                         dataType: 'json',
