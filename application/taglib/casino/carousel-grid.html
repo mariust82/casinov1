@@ -30,9 +30,9 @@
         <div class="swiper-container casinos-list" id="$[id]">
             <div class="swiper-wrapper">
                 <:if test="${section} == 'top'">
-                    <casino:carousel-boxes items="${items}" country="$[country]"/>
+                    <casino:carousel-boxes items="${items}" flag="$[flag]"/>
                 <:else>
-                    <casino:carousel-gridbox items="${items}"/>
+                    <casino:carousel-gridbox items="${items}" flag="$[flag]"/>
                 </:if>
             </div>
         </div>
