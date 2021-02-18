@@ -36,7 +36,7 @@ var Score = function (obj) {
                         $('.drag-rate').find('.action-field').show();
 
                         $('.drag-rate-range-score').text(_score + '/10');
-                        $('.rating-container-score-value').text(Math.ceil(_score));
+                        $('.rating-container-score-value').text(data.body['total_score']);
                         $('.count-value').text(data.body['total_votes']);
 
                         $( ".rating-container-stats-row" ).each(function( index ) {
@@ -47,8 +47,8 @@ var Score = function (obj) {
 
                         $('.rating-container-score-grade')
                                 .removeClass('terrible poor good very-good excellent no-score')
-                                .addClass(getGrade(_score).class)
-                                .text(getGrade(_score).text);
+                                .addClass(getGrade(data.body['total_score']).class)
+                                .text(getGrade(data.body['total_score']).text);
                     },
                     error: function (XMLHttpRequest) {
                         if (XMLHttpRequest.statusText != "abort")
