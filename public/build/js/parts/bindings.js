@@ -659,6 +659,10 @@ sliderInit('#best-country', 4, '.cn2', '.cp2');
 sliderInit('#best-software', 4, '.cn2', '.cp2');
 sliderInit('#ndb-software', 4, '.cn3', '.cp3');
 sliderInit('#ndb-country', 4, '.cn3', '.cp3');
+sliderInit('#no-deposit-casinos', 4, '.cn4', '.cp4');
+sliderInit('#top-banking', 6, '.cn5', '.cp5');
+sliderInit('#top-software', 6, '.cn6', '.cp6');
+
 
 
 $('.carousel-next').click(function () {

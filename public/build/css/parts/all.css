@@ -3629,7 +3629,7 @@ a:focus {
 }
 
 .heading {
-  margin: 40px 0 23px;
+  margin: 0 0 23px;
 }
 
 .heading .title {
@@ -9236,7 +9236,7 @@ input[type=submit]
 
 .data-container-holder {
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 #search-empty {
@@ -14013,4 +14013,48 @@ h1.title + .subtitle{
 .swiper-button-disabled.loading{
   pointer-events: all;
   opacity: 1;
+}
+
+.block.container {
+  margin: 0 auto !important;
+}
+
+@media (max-width: 690px){
+.carousel .show_all-button {
+    max-width: calc(100%);
+    width: calc(100%);
+    margin: auto;
+    margin-top: 10px;
+  }
+
+}
+@media (max-width: 550px){
+  .show_all-button{
+    width: 100%;
+  }
+}
+
+.show_all-button {
+  background: #2171CE 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 3px #00000029;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 45px;
+  color: #fff;
+  margin: 21px auto 0 auto;
+  text-align: center;
+  font: normal normal 600 11px/15px Open Sans;
+  letter-spacing: 0.55px;
+  text-transform: uppercase;
+}
+.show_all-button i{
+  margin-left: 10px;
+  font-size: 9px;
+}
+.show_all-button:hover{
+  color: #fff;
+  background: #0F4585;
 }

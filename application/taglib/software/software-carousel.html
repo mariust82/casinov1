@@ -1,7 +1,14 @@
-<:if test="$[section] == 'index'">
+<:if test="'$[section]' == 'index'">
     <:set var="title_class" val="title-underlined"/>
 <:else>
     <:set var="title_class" val="title-middle"/>
+</:if>
+<:if test="'$[id]' == 'top-banking'">
+    <:set var="nextClass" val="cn6"/>
+    <:set var="prevClass" val="cp6"/>
+<:else>
+    <:set var="nextClass" val="cn5"/>
+    <:set var="prevClass" val="cp5"/>
 </:if>
 <div class="block">
     <div class="carousel carousel-option-container">
@@ -10,7 +17,7 @@
                 <h2 class="title ${title_class}">
                     <span>$[title]</span>
                 </h2>
-                <div class="subtitle index-page">
+                <div class="subtitle">
                     <p>
                         $[description]
                     </p>
@@ -23,20 +30,28 @@
                     <div class="swiper-slide">
                         <:foreach var="$[items]" val="result" key="key">
                             <div class="carousel-slide">
-                                <software:software-box result="${result}" key="${key}"/>
+                                <div class="option-box">
+                                    <div class="image-container">
+                                        <img src="" alt="${result.name} Logo">
+                                    </div>
+                                    <div class="option-info">
+                                        <span>${result.name}</span>
+                                        <span class="casinos-count">${result.casinos} casinos</span>
+                                    </div>
+                                </div>
                             </div>
                         </:foreach>
                     </div>
                 </div>
             </div>
-            <div class="carousel-next cn3">
+            <div class="carousel-next ${nextClass}">
                 <i class="icon-chevron-right"></i>
             </div>
-            <div class="carousel-prev cp3">
+            <div class="carousel-prev ${prevClass}">
                 <i class="icon-chevron-left"></i>
             </div>
         </div>
-        <:if test="$[section] == 'index'">
+        <:if test="'$[section]' == 'index'">
         <a href="$[url]" class="show_all-button">
             $[button]
             <i class="icon-chevron-right"></i>
