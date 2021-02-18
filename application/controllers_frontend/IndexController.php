@@ -3103,26 +3103,106 @@ $this->response->attributes("popular_banking_options", array (
   ),
 ));
 $this->response->attributes("top_software_providers", array (
-  17 => '1253',
-  38 => '1344',
-  31 => '267',
-  51 => '59',
-  210 => '764',
-  42 => '160',
-  40 => '181',
-  26 => '109',
-  119 => '697',
-  204 => '448',
-  160 => '334',
-  45 => '263',
-  10 => '600',
-  33 => '801',
-  134 => '580',
-  37 => '470',
-  154 => '528',
-  189 => '274',
-  63 => '668',
-  109 => '568',
+  17 => 
+  array (
+    'name' => 'MicroGaming',
+    'casinos' => '1253',
+  ),
+  38 => 
+  array (
+    'name' => 'NetEnt',
+    'casinos' => '1344',
+  ),
+  31 => 
+  array (
+    'name' => 'Playtech',
+    'casinos' => '267',
+  ),
+  51 => 
+  array (
+    'name' => 'Saucify',
+    'casinos' => '59',
+  ),
+  210 => 
+  array (
+    'name' => 'Pragmatic Play',
+    'casinos' => '764',
+  ),
+  42 => 
+  array (
+    'name' => 'RTG',
+    'casinos' => '160',
+  ),
+  40 => 
+  array (
+    'name' => 'Rival',
+    'casinos' => '181',
+  ),
+  26 => 
+  array (
+    'name' => 'Novomatic',
+    'casinos' => '109',
+  ),
+  119 => 
+  array (
+    'name' => 'Play n GO',
+    'casinos' => '697',
+  ),
+  204 => 
+  array (
+    'name' => 'Booming Games',
+    'casinos' => '448',
+  ),
+  160 => 
+  array (
+    'name' => 'Pariplay',
+    'casinos' => '334',
+  ),
+  45 => 
+  array (
+    'name' => 'WMS Gaming',
+    'casinos' => '263',
+  ),
+  10 => 
+  array (
+    'name' => 'NextGen Gaming',
+    'casinos' => '600',
+  ),
+  33 => 
+  array (
+    'name' => 'BetSoft',
+    'casinos' => '801',
+  ),
+  134 => 
+  array (
+    'name' => 'Big Time Gaming',
+    'casinos' => '580',
+  ),
+  37 => 
+  array (
+    'name' => 'Wazdan',
+    'casinos' => '470',
+  ),
+  154 => 
+  array (
+    'name' => 'Blueprint Gaming',
+    'casinos' => '528',
+  ),
+  189 => 
+  array (
+    'name' => 'Amatic Industries',
+    'casinos' => '274',
+  ),
+  63 => 
+  array (
+    'name' => 'Quickspin',
+    'casinos' => '668',
+  ),
+  109 => 
+  array (
+    'name' => 'Playson',
+    'casinos' => '568',
+  ),
 ));
 $this->response->attributes("latest_blog_articles", array (
   0 => 
