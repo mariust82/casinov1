@@ -3,7 +3,6 @@
 <:else>
     <:set var="title_class" val="title-middle"/>
 </:if>
-
     <:set var="nextClass" val="cn6"/>
     <:set var="prevClass" val="cp6"/>
 
@@ -25,8 +24,8 @@
         <div class="container">
             <div class="swiper-container options-list" id="$[id]">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <:foreach var="$[items]" val="result" key="key">
+                    <:foreach var="$[items]" val="result" key="key">
+                        <div class="swiper-slide">
                             <div class="carousel-slide">
                                 <div class="option-box">
                                     <div class="image-container">
@@ -38,8 +37,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </:foreach>
-                    </div>
+                        </div>
+                    </:foreach>
                 </div>
             </div>
             <div class="carousel-next ${nextClass}">
