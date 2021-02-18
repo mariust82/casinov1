@@ -14016,7 +14016,7 @@ h1.title + .subtitle{
 }
 
 .block.container {
-  margin: 0 !important;
+  margin: 0 auto !important;
 }
 
 @media (max-width: 690px){
