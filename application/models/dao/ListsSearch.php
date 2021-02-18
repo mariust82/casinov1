@@ -5,7 +5,7 @@ require_once("ListSearchResults.php");
 class ListsSearch
 {
     private $value;
-    public function __construct($value)
+    public function __construct($value = '')
     {
         $this->value = $value;
     }
