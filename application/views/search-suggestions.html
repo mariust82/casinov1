@@ -1,9 +1,11 @@
-<ul>
-    <li>
+<div class="search-list-block" id="search-suggestions">
+    <ul>
         <:foreach var="${data.suggestions}" key="name" val="url">
-            <a class="search-results-label" href="${url}">
-                ${name}
-            </a>
+            <li>
+                <a class="search-results-label" href="${url}">
+                    ${name}
+                </a>
+            </li>
         </:foreach>
-    </li>
-</ul>
+    </ul>
+</div>
