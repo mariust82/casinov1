@@ -14015,10 +14015,14 @@ h1.title + .subtitle{
   opacity: 1;
 }
 
+.block.container {
+  margin: 0 !important;
+}
 
 @media (max-width: 690px){
 .carousel .show_all-button {
-    max-width: calc(100% - 20px);
+    max-width: calc(100%);
+    width: calc(100%);
     margin: auto;
     margin-top: 10px;
   }
