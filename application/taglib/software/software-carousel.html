@@ -23,7 +23,15 @@
                     <div class="swiper-slide">
                         <:foreach var="$[items]" val="result" key="key">
                             <div class="carousel-slide">
-                                <software:software-box result="${result}" key="${key}"/>
+                                <div class="option-box">
+                                    <div class="image-container">
+                                        <img src="" alt="${result.name} Logo">
+                                    </div>
+                                    <div class="option-info">
+                                        <span>${result.name}</span>
+                                        <span class="casinos-count">${result.casinos} casinos</span>
+                                    </div>
+                                </div>
                             </div>
                         </:foreach>
                     </div>
