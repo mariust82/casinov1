@@ -219,6 +219,7 @@ function AddingReview(obj) {
                 type: 'POST',
                 success: function (data) {
                     _loadData(data, _this);
+                    _field_title.val('');
                     _field_name.val('');
                     _field_email.val('');
                     _field_message.val('').addClass('expanding');
@@ -343,7 +344,7 @@ function AddingReview(obj) {
         },
         _onEvents = function () {
             if (_storage_casino_id_reviewed) {
-                _doIfReviewedAlready();
+               // _doIfReviewedAlready();
                 _initForms();
             } else {
                 _initForms();

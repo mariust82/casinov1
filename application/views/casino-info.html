@@ -161,7 +161,7 @@
 	<div class="container">
 		<div class="box box-alt">
 			<h2 class="title title-middle">${data.casino.name} Player Rating &amp; Reviews</h2>
-			<comment:list-container name="${data.user_score_class}" value="${normalize(${data.user_score_class})}" total="${data.total_reviews}" key="${data.user_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" />
+			<comment:list-container name="${data.casino_score_class}" value="${normalize(${data.casino_score_class})}" total="${data.total_reviews}" key="${data.casino_score}" code="${data.country.code}" id="${data.casino.id}" items="${data.reviews}" />
 		</div>
 	</div>
 </div>
@@ -543,6 +543,7 @@
 
 <div class="review-element review hidden" hidden  data-id="" data-img-dir="">
 	<div class="review-wrap">
+		<div class="review-title"></div>
 		<div class="review-info">
 			<div class="review-info-top">
 				<div class="review-flag">

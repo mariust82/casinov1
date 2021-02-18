@@ -14,9 +14,10 @@ class CasinoInfo
         $this->setResult($id, $countryId);
     }
     
-    public function getUserVote($casinoID, $ip)
+    public function getCasinoScore($casinoID)
     {
-        return SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = $casinoID", array(":ip"=>$ip))->toValue();
+        return SQL("SELECT SUM(value) / COUNT(value) AS average FROM casinos__ratings WHERE casino_id = {$casinoID}")->toValue();
+            //SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = $casinoID", array(":ip"=>$ip))->toValue();
     }
 
     private function setResult($id, $countryId)
