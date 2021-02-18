@@ -659,6 +659,8 @@ sliderInit('#best-country', 4, '.cn2', '.cp2');
 sliderInit('#best-software', 4, '.cn2', '.cp2');
 sliderInit('#ndb-software', 4, '.cn3', '.cp3');
 sliderInit('#ndb-country', 4, '.cn3', '.cp3');
+sliderInit('#no-deposit-casinos', 4, '.cn4', '.cp4');
+
 
 
 $('.carousel-next').click(function () {
