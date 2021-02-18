@@ -30,14 +30,8 @@ class CasinoInfoController extends BaseController
 
         $this->casinoInfo = $info;
         $this->response->attributes("casino", (array) $info);
-        $this->response->attributes(
-            "user_score",
-            $object->getUserVote(
-                $info->id,
-                $this->request->attributes('ip')
-            ) == false ? 0: $object->getUserVote($info->id, $this->request->attributes('ip'))
-        );
-        $this->response->attributes('user_score_class', $object->getScoreClass($this->response->attributes('user_score')));
+        $this->response->attributes("casino_score", $object->getCasinoScore($info->id) == false ? 0: $object->getCasinoScore($info->id));
+        $this->response->attributes('casino_score_class', $object->getScoreClass($this->response->attributes('casino_score')));
         // get reviews
         $object = new CasinoReviews();
         $total = $object->getAllTotal($info->id);
