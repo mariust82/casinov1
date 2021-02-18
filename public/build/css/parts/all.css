@@ -14067,3 +14067,8 @@ h1.title + .subtitle{
     max-width: calc(100% - 30px);
   }
 }
+
+.option-info span:first-child {
+  max-height: 18px;
+  overflow: hidden;
+}
