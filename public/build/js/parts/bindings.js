@@ -719,14 +719,19 @@ sliderInit({
     container: '#best-software',
     sledesPerViw: 4,
     nextClass: '.cn2',
-    prevClass: '.cp2'
+    prevClass: '.cp2',
+    hasLazySlides: true,
+    lazySlidesUrl: '/casinos-by-software/',
 });
 
 sliderInit({
     container: '#ndb-software',
     sledesPerViw: 4,
     nextClass: '.cn3',
-    prevClass: '.cp3'
+    prevClass: '.cp3',
+    hasLazySlides: true,
+    lazySlidesUrl: '/casinos-by-software/',
+    callBack: ndbActions
 });
 
 sliderInit({
@@ -735,8 +740,8 @@ sliderInit({
     nextClass: '.cn3',
     prevClass: '.cp3',
     hasLazySlides: true,
-    lazySlidesUrl: '/casinos-by-software/',
-    callBack: ndbCountryActions
+    lazySlidesUrl: '/casinos-by-country/',
+    callBack: ndbActions
 });
 
 sliderInit({
@@ -760,7 +765,7 @@ sliderInit({
     prevClass: '.cp6'
 });
 
-function ndbCountryActions() {
+function ndbActions() {
     refresh();
 }
 
@@ -1548,32 +1553,67 @@ var SearchPanel = function (obj) {
                 }
                 BUSY_REQUEST = true;
                 _request.abort();
-                _request = $.ajax({
-                    url: target,
-                    data: {
-                        value: _searchInput.val(),
-                        page: page
-                    },
-                    dataType: 'json',
-                    type: 'GET',
-                    success: function (data) {
-                        _hideLoading();
-                        _loadData(data);
-
-                    },
-                    error: function (XMLHttpRequest) {
-                        if (XMLHttpRequest.statusText != "abort") {
-                            _hideLoading();
-                            console.log('err');
-                            _showEmptyMessage();
-                        }
-                    },
-                    complete: function (data) {
-                        _hideLoading();
-                        nr_requests_completed++;
-                        BUSY_REQUEST = false;
+                if(_searchInput.val() == ''){
+                    if($('#search-suggestions').length <= 0){
+                        _request = $.ajax({
+                            url: '/search-suggestions',
+                            data: {},
+                            dataType: 'html',
+                            type: 'GET',
+                            success: function (data) {
+                                _hideLoading();
+                                $('.search-results').append(data);
+                                $('#search-suggestions').show();
+                                $('#search-lists').hide();
+                                $('#search-casinos').hide();
+                                $('#search-pages').hide();
+                            },
+                            error: function (XMLHttpRequest) {
+                                if (XMLHttpRequest.statusText != "abort") {
+                                    _hideLoading();
+                                    console.log('err');
+                                    _showEmptyMessage();
+                                }
+                            },
+                            complete: function (data) {
+                                _hideLoading();
+                                nr_requests_completed++;
+                                BUSY_REQUEST = false;
+                            }
+                        });
                     }
-                });
+                }else{
+                    _request = $.ajax({
+                        url: target,
+                        data: {
+                            value: _searchInput.val(),
+                            page: page
+                        },
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function (data) {
+                            _hideLoading();
+                            $('#search-suggestions').remove();
+                            $('.search-lists').show();
+                            $('.search-casinos').show();
+                            $('.search-pages').show();
+                            _loadData(data);
+
+                        },
+                        error: function (XMLHttpRequest) {
+                            if (XMLHttpRequest.statusText != "abort") {
+                                _hideLoading();
+                                console.log('err');
+                                _showEmptyMessage();
+                            }
+                        },
+                        complete: function (data) {
+                            _hideLoading();
+                            nr_requests_completed++;
+                            BUSY_REQUEST = false;
+                        }
+                    });
+                }
 
                 var loadDelay = setTimeout(function () {
                 }, 300);
