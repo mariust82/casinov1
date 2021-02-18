@@ -719,14 +719,19 @@ sliderInit({
     container: '#best-software',
     sledesPerViw: 4,
     nextClass: '.cn2',
-    prevClass: '.cp2'
+    prevClass: '.cp2',
+    hasLazySlides: true,
+    lazySlidesUrl: '/casinos-by-software/',
 });
 
 sliderInit({
     container: '#ndb-software',
     sledesPerViw: 4,
     nextClass: '.cn3',
-    prevClass: '.cp3'
+    prevClass: '.cp3',
+    hasLazySlides: true,
+    lazySlidesUrl: '/casinos-by-software/',
+    callBack: ndbActions
 });
 
 sliderInit({
@@ -735,8 +740,8 @@ sliderInit({
     nextClass: '.cn3',
     prevClass: '.cp3',
     hasLazySlides: true,
-    lazySlidesUrl: '/casinos-by-software/',
-    callBack: ndbCountryActions
+    lazySlidesUrl: '/casinos-by-country/',
+    callBack: ndbActions
 });
 
 sliderInit({
@@ -760,7 +765,7 @@ sliderInit({
     prevClass: '.cp6'
 });
 
-function ndbCountryActions() {
+function ndbActions() {
     refresh();
 }
 

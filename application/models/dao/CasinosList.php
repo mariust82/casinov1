@@ -298,7 +298,9 @@ class CasinosList
             $output[$row["id"]] = $object;
         }
         $allowedIds = implode(",", array_keys($output));
-        $this->appendBonuses($output, $allowedIds);
+        if (!empty($allowedIds)) {
+            $this->appendBonuses($output, $allowedIds);
+        }
 
         return $output;
     }
@@ -324,7 +326,9 @@ class CasinosList
             $output[$row["id"]] = $object;
         }
         $allowedIds = implode(",", array_keys($output));
-        $this->appendBonuses($output, $allowedIds);
+        if (!empty($allowedIds)) {
+            $this->appendBonuses($output, $allowedIds);
+        }
 
         return $output;
     }

@@ -21,6 +21,7 @@ class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller 
     public function run() {
         $type = $this->request->parameters("type");
         $page = $this->request->parameters("page");
+        $software = $this->request->parameters("id");
         $offset = ($page * self::LIMIT - self::LIMIT) + 5;
         $page_type = "SOFTWARE";
         if ($type == 'new') {
@@ -45,6 +46,7 @@ class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller 
         $this->response->attributes("selected_entity", $this->request->parameters("software"));
         $this->response->attributes("country", $this->request->attributes("country"));
         $this->response->attributes("flag", $this->request->attributes("country")->code);
+        $this->response->attributes("software", $software);
         
     }
 
