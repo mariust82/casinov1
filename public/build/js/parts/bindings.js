@@ -1557,7 +1557,7 @@ var SearchPanel = function (obj) {
                     _request = $.ajax({
                         url: target,
                         data: {
-                            value: 'search-suggestions',
+                            value: '/search-suggestions',
                             page: page
                         },
                         dataType: 'json',
