@@ -27,9 +27,11 @@ class LoadMoreCasinosByCountrySliderController extends Lucinda\MVC\STDOUT\Contro
         $dao = new CasinosList(new CasinoFilter([],$this->request->attributes("country")));
         $object = new Countries();
         $result = $object->getCountryInfo($id);
+        var_dump($result);
         $lang_id = !empty($result[0]['lang_id']) ? $result[0]['lang_id'] : '';
         $currency_id = !empty($result[0]['currency_id']) ? $result[0]['currency_id'] : '';
         $c_code = !empty($result[0]['c_code']) ? $result[0]['c_code'] : '';
+        var_dump($c_code);
         $this->response->attributes("country_code", $c_code);
         $this->response->attributes("flag",$c_code);
         if ($type == 'best') {
