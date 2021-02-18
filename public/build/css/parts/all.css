@@ -14023,20 +14023,8 @@ h1.title + .subtitle{
   margin: 0 auto !important;
 }
 
-@media (max-width: 690px){
-.carousel .show_all-button {
-    max-width: calc(100%);
-    width: calc(100%);
-    margin: auto;
-    margin-top: 10px;
-  }
 
-}
-@media (max-width: 550px){
-  .show_all-button{
-    width: 100%;
-  }
-}
+
 
 .show_all-button {
   background: #2171CE 0% 0% no-repeat padding-box;
@@ -14064,3 +14052,26 @@ h1.title + .subtitle{
 }
 
 
+@media (max-width: 690px){
+
+  .show_all-button{
+    width: 100%;
+  }
+  .carousel .show_all-button {
+    max-width: calc(100%);
+    width: calc(100%);
+    margin: auto;
+    margin-top: 10px;
+  }
+  .index-carousel .show_all-button, .carousel-option-container .show_all-button {
+    max-width: calc(100% - 30px);
+  }
+  .box-carousel{
+    padding-right: 0 !important;
+  }
+}
+
+.option-info span:first-child {
+  max-height: 18px;
+  overflow: hidden;
+}

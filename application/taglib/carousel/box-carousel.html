@@ -6,9 +6,11 @@
 <:if test="'$[type]' == 'software'">
     <:set var="nextClass" val="cn5"/>
     <:set var="prevClass" val="cp5"/>
+    <:set var="imgSrc" val="/public/sync/software_logo_light/80x53"/>
 <:else>
     <:set var="nextClass" val="cn6"/>
     <:set var="prevClass" val="cp6"/>
+    <:set var="imgSrc" val="/public/sync/banking_method_light/68x39"/>
 </:if>
 
 <div class="block">
@@ -25,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container box-carousel">
             <div class="swiper-container options-list" id="$[id]">
                 <div class="swiper-wrapper">
                     <:foreach var="$[items]" val="result" key="key">
@@ -33,7 +35,7 @@
                             <div class="carousel-slide">
                                 <div class="option-box">
                                     <div class="image-container">
-                                        <img src="" alt="${result.name} Logo">
+                                        <img src="${imgSrc}/${strtolower(str_replace(' ', '_',${result.name}))}.png" alt="${result.name} Logo">
                                     </div>
                                     <div class="option-info">
                                         <span>${result.name}</span>

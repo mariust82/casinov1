@@ -431,7 +431,7 @@ class CasinoInfo
         foreach ($casino_deposit_methods as $key => $value) {
             $casino_deposit_methods_data[$value]['deposit_methods'] = in_array($value, $deposit_methods);
             $casino_deposit_methods_data[$value]['withdraw_methods'] = in_array($value, $withdraw_methods);
-            $casino_deposit_methods_data[$value]['logo'] = '/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $value)).'.png';
+            $casino_deposit_methods_data[$value]['logo'] = $value;
         }
         return $casino_deposit_methods_data;
     }
