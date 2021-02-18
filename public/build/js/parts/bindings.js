@@ -1554,7 +1554,7 @@ var SearchPanel = function (obj) {
                 BUSY_REQUEST = true;
                 _request.abort();
                 if(_searchInput.val() == ''){
-                    if($('#search-suggestions').length > 0){
+                    if($('#search-suggestions').length <= 0){
                         _request = $.ajax({
                             url: '/search-suggestions',
                             data: {},
@@ -1564,9 +1564,9 @@ var SearchPanel = function (obj) {
                                 _hideLoading();
                                 $('.search-results').append(data);
                                 $('#search-suggestions').show();
-                                $('.search-lists').hide();
-                                $('.search-casinos').hide();
-                                $('.search-pages').hide();
+                                $('#search-lists').hide();
+                                $('#search-casinos').hide();
+                                $('#search-pages').hide();
                             },
                             error: function (XMLHttpRequest) {
                                 if (XMLHttpRequest.statusText != "abort") {
