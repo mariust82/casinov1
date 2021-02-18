@@ -142,7 +142,7 @@ class CasinosList
         }
     }
 
-    public function bonusCasinosPopup($id) {
+    public function getBonusCasinosPopup($id) {
         $query = "
         SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name , t1.bonus_type_id
         FROM casinos__bonuses AS t1
