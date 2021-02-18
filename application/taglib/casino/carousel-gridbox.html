@@ -5,7 +5,7 @@
         <div class="row edges">
             <div class="flag">
                 <:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
-                <img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
+                <img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/$[flag].png" width="20" height="15" alt="${data.country.code}" data-alt="${data.country.code}">
             </div>
             <div class="circle-btn  tooltipstered js-tooltip-content-popup" data-name="${result.name}" data-is-free="${result.isFree}">i</div>
         </div>
