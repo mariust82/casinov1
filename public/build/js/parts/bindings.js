@@ -1554,32 +1554,34 @@ var SearchPanel = function (obj) {
                 BUSY_REQUEST = true;
                 _request.abort();
                 if(_searchInput.val() == ''){
-                    _request = $.ajax({
-                        url: '/search-suggestions',
-                        data: {},
-                        dataType: 'html',
-                        type: 'GET',
-                        success: function (data) {
-                            _hideLoading();
-                            $('.search-results').append(data);
-                            $('#search-suggestions').show();
-                            $('.search-lists').hide();
-                            $('.search-casinos').hide();
-                            $('.search-pages').hide();
-                        },
-                        error: function (XMLHttpRequest) {
-                            if (XMLHttpRequest.statusText != "abort") {
+                    if($('#search-suggestions').length <= 0){
+                        _request = $.ajax({
+                            url: '/search-suggestions',
+                            data: {},
+                            dataType: 'html',
+                            type: 'GET',
+                            success: function (data) {
                                 _hideLoading();
-                                console.log('err');
-                                _showEmptyMessage();
+                                $('.search-results').append(data);
+                                $('#search-suggestions').show();
+                                $('#search-lists').hide();
+                                $('#search-casinos').hide();
+                                $('#search-pages').hide();
+                            },
+                            error: function (XMLHttpRequest) {
+                                if (XMLHttpRequest.statusText != "abort") {
+                                    _hideLoading();
+                                    console.log('err');
+                                    _showEmptyMessage();
+                                }
+                            },
+                            complete: function (data) {
+                                _hideLoading();
+                                nr_requests_completed++;
+                                BUSY_REQUEST = false;
                             }
-                        },
-                        complete: function (data) {
-                            _hideLoading();
-                            nr_requests_completed++;
-                            BUSY_REQUEST = false;
-                        }
-                    });
+                        });
+                    }
                 }else{
                     _request = $.ajax({
                         url: target,
@@ -1591,7 +1593,7 @@ var SearchPanel = function (obj) {
                         type: 'GET',
                         success: function (data) {
                             _hideLoading();
-                            $('#search-suggestions').hide();
+                            $('#search-suggestions').remove();
                             $('.search-lists').show();
                             $('.search-casinos').show();
                             $('.search-pages').show();
