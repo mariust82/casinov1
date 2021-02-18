@@ -17,6 +17,7 @@ class CasinosByCountryController extends CasinosListController
         $country_id =  $this->request->attributes('validation_results')->get('name');
         $result = $object->getCountryInfo($country_id);
         $code = !empty($result[0]['code']) ? $result[0]['code'] : '';
+        $c_code = !empty($result[0]['c_code']) ? $result[0]['c_code'] : '';
         $language = !empty($result[0]['name']) ? $result[0]['name'] : '';
         $name =  !empty($result[0]['c_name']) ? $result[0]['c_name'] : '';
         $lang_id = !empty($result[0]['lang_id']) ? $result[0]['lang_id'] : '';
@@ -34,6 +35,8 @@ class CasinosByCountryController extends CasinosListController
         $this->response->attributes("new_casinos", $dao->getNewestCasinosByCountry($country_id));
         $this->response->attributes("country_page", $name);
         $this->response->attributes("currency", $code);
+        $this->response->attributes("country_code", $c_code);
+
         $this->response->attributes("language", $language);
 
         return $name;

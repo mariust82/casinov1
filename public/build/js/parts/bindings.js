@@ -659,59 +659,68 @@ sliderInit('#best-country', 4, '.cn2', '.cp2');
 sliderInit('#best-software', 4, '.cn2', '.cp2');
 sliderInit('#ndb-software', 4, '.cn3', '.cp3');
 sliderInit('#ndb-country', 4, '.cn3', '.cp3');
-if($('.carousel-next').hasClass('swiper-button-disabled')){
-$(this).click(function () {
-    if ( boxesToLoad > 0 ) {
-        console.log($(this));
-        _this.addClass('loading');
-        var type = $(this).data('type');
-        var page = $(this).data('page');
-        var self = $(this);
-        var id = $(this).data('id');
-        var _url;
-        var _data;
-        if (page === 'software') {
-            _url = '/casinos-by-software/';
-            _data = {
-                        page: determineCasinoPage(type),
-                        type: type,
-                        software: id
-            };
-        } else if (page === ' country') {
-            _url = '/casinos-by-country/';
-            _data = {
-                page: determineCasinoPage(type),
-                type: type,
-                id: id
-            };
-        }
-        _request = $.ajax({
-            url: _url + determineCasinoPage(type),
-            data: _data,
-            dataType: 'html',
-            type: 'post',
-            success: function (data) {
-                setTimeout(function () {
-                    self.removeClass('loading');
-                    refresh();
-                }, 100);
-                raiseCasinoPage(type);
-                $(self).prev().find('.swiper-wrapper').append(data);
-            },
-            error: function (XMLHttpRequest) {
-                var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
-                if (XMLHttpRequest.statusText != "abort") {
-                    console.log('err');
-                }
+sliderInit('#no-deposit-casinos', 4, '.cn4', '.cp4');
+sliderInit('#top-software', 6, '.cn5', '.cp5');
+sliderInit('#top-banking', 6, '.cn6', '.cp6');
+
+
+
+$('.carousel-next').click(function () {
+    if($(this).hasClass('swiper-button-disabled')){
+        var loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length,
+            totalBoxes = $(this).data('total'),	        
+            boxesToLoad = totalBoxes - loadedBoxes;
+        if ( boxesToLoad > 0 ) {
+            console.log($(this));
+            $(this).addClass('loading');
+            var type = $(this).data('type');
+            var page = $(this).data('page');
+            var self = $(this);
+            var id = $(this).data('id');
+            var _url;
+            var _data;
+            if (page === 'software') {
+                _url = '/casinos-by-software/';
+                _data = {
+                            page: determineCasinoPage(type),
+                            type: type,
+                            software: id
+                };
+            } else if (page === 'country') {
+                _url = '/casinos-by-country/';
+                _data = {
+                    page: determineCasinoPage(type),
+                    type: type,
+                    id: id
+                };
             }
-        });
+            _request = $.ajax({
+                url: _url + determineCasinoPage(type),
+                data: _data,
+                dataType: 'html',
+                type: 'post',
+                success: function (data) {
+                    // setTimeout(function () {
+                    //     self.removeClass('loading');
+                    //     refresh();
+                    // }, 100);
+                    raiseCasinoPage(type);
+                    $(self).prev().find('.swiper-wrapper').append(data);
+                    $(self).removeClass("swiper-button-disabled");
+                },
+                error: function (XMLHttpRequest) {
+                    var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
+                    if (XMLHttpRequest.statusText != "abort") {
+                        console.log('err');
+                    }
+                }
+            });
 
         }else{
             $(this).removeClass('loading');
         }
-
-    });
-}
+    }
+});
 
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);

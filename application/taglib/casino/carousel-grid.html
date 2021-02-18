@@ -19,7 +19,7 @@
             <h2 class="title ${title_class}">
                 <span>$[title]</span>
             </h2>
-            <div class="subtitle index-page">
+            <div class="subtitle">
                 <p>
                     $[description]
                 </p>
@@ -30,9 +30,9 @@
         <div class="swiper-container casinos-list" id="$[id]">
             <div class="swiper-wrapper">
                 <:if test="${section} == 'top'">
-                    <casino:carousel-boxes items="${items}"/>
+                    <casino:carousel-boxes items="${items}" flag="$[flag]"/>
                 <:else>
-                    <casino:carousel-gridbox items="${items}"/>
+                    <casino:carousel-gridbox items="${items}" flag="$[flag]"/>
                 </:if>
             </div>
         </div>
