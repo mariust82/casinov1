@@ -36,7 +36,7 @@ var Score = function (obj) {
                         $('.drag-rate').find('.action-field').show();
 
                         $('.drag-rate-range-score').text(_score + '/10');
-                        $('.rating-container-score-value').text(_score);
+                        $('.rating-container-score-value').text(Math.ceil(_score));
                         $('.count-value').text(data.body['total_votes']);
 
                         $( ".rating-container-stats-row" ).each(function( index ) {
@@ -1555,12 +1555,9 @@ var SearchPanel = function (obj) {
                 _request.abort();
                 if(_searchInput.val() == ''){
                     _request = $.ajax({
-                        url: target,
-                        data: {
-                            value: _searchInput.val(),
-                            page: page
-                        },
-                        dataType: 'json',
+                        url: '/search-suggestions',
+                        data: {},
+                        dataType: 'html',
                         type: 'GET',
                         success: function (data) {
                             _hideLoading();
