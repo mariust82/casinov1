@@ -47,7 +47,7 @@ class GameManufacturers implements CasinoCounter
         GROUP BY game_manufacturer_id
         ");
         while($row = $resultSet->toRow()) {
-            $software[$row["game_manufacturer_id"]] = $row["nr"];
+            $software[$row["game_manufacturer_id"]]["casinos"] = $row["nr"];
         }
         
         return $software;
