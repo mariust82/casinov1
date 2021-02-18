@@ -26,7 +26,7 @@ class SoftwaresController extends CasinosCounterController
         $logo = array();
         $index =0;
         foreach ($logo_name as $key => $value) {
-            $logo[$index++] = "/public/sync/software_logo_light/80x53/".strtolower(str_replace(" ", "_", $key)).".png";
+            $logo[$index++] = $key;
         }
         return $logo;
     }

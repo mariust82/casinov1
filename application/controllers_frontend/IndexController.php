@@ -710,55 +710,55 @@ $this->response->attributes("best_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'EcoPayz' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+        'logo' => 'EcoPayz',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Neosurf' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+        'logo' => 'Neosurf',
       ),
       'Neteller' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+        'logo' => 'Neteller',
       ),
       'paysafecard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+        'logo' => 'paysafecard',
       ),
       'Skrill' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+        'logo' => 'Skrill',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'Zimpler' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+        'logo' => 'Zimpler',
       ),
     ),
     'is_mobile' => NULL,
@@ -867,43 +867,43 @@ $this->response->attributes("best_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'EasyEFT' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/easyeft.png',
+        'logo' => 'EasyEFT',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Neteller' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+        'logo' => 'Neteller',
       ),
       'Skrill' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+        'logo' => 'Skrill',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'Interac' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+        'logo' => 'Interac',
       ),
     ),
     'is_mobile' => NULL,
@@ -1024,109 +1024,109 @@ $this->response->attributes("best_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/bancontact_payconiq.png',
+        'logo' => 'Bancontact Payconiq',
       ),
       'EcoPayz' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+        'logo' => 'EcoPayz',
       ),
       'EntroPay' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/entropay.png',
+        'logo' => 'EntroPay',
       ),
       'Euteller' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/euteller.png',
+        'logo' => 'Euteller',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Neteller' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+        'logo' => 'Neteller',
       ),
       'POLi' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/poli.png',
+        'logo' => 'POLi',
       ),
       'SOFORT Banking' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/sofort_banking.png',
+        'logo' => 'SOFORT Banking',
       ),
       'Siru Mobile' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/siru_mobile.png',
+        'logo' => 'Siru Mobile',
       ),
       'Skrill' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+        'logo' => 'Skrill',
       ),
       'Ticket Premium' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/ticket_premium.png',
+        'logo' => 'Ticket Premium',
       ),
       'Trustly' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/trustly.png',
+        'logo' => 'Trustly',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'Wire Transfer' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+        'logo' => 'Wire Transfer',
       ),
       'Zimpler' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+        'logo' => 'Zimpler',
       ),
       'giropay' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/giropay.png',
+        'logo' => 'giropay',
       ),
       'iDEAL' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/ideal.png',
+        'logo' => 'iDEAL',
       ),
       'Interac' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+        'logo' => 'Interac',
       ),
     ),
     'is_mobile' => NULL,
@@ -1250,91 +1250,91 @@ $this->response->attributes("best_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+        'logo' => 'EcoPayz',
       ),
       'Maestro' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
+        'logo' => 'Maestro',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Neosurf' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+        'logo' => 'Neosurf',
       ),
       'Neteller' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+        'logo' => 'Neteller',
       ),
       'paysafecard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+        'logo' => 'paysafecard',
       ),
       'QIWI' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
+        'logo' => 'QIWI',
       ),
       'Skrill' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+        'logo' => 'Skrill',
       ),
       'Trustly' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/trustly.png',
+        'logo' => 'Trustly',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'Wire Transfer' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+        'logo' => 'Wire Transfer',
       ),
       'Zimpler' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+        'logo' => 'Zimpler',
       ),
       'iDebit' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/idebit.png',
+        'logo' => 'iDebit',
       ),
       'Instadebit' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/instadebit.png',
+        'logo' => 'Instadebit',
       ),
       'Interac' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+        'logo' => 'Interac',
       ),
     ),
     'is_mobile' => NULL,
@@ -1486,85 +1486,85 @@ $this->response->attributes("best_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+        'logo' => 'EcoPayz',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Neteller' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+        'logo' => 'Neteller',
       ),
       'paysafecard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+        'logo' => 'paysafecard',
       ),
       'SOFORT Banking' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/sofort_banking.png',
+        'logo' => 'SOFORT Banking',
       ),
       'Skrill' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+        'logo' => 'Skrill',
       ),
       'Trustly' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/trustly.png',
+        'logo' => 'Trustly',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'Visa Electron' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa_electron.png',
+        'logo' => 'Visa Electron',
       ),
       'Wire Transfer' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+        'logo' => 'Wire Transfer',
       ),
       'Zimpler' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+        'logo' => 'Zimpler',
       ),
       'iDebit' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/idebit.png',
+        'logo' => 'iDebit',
       ),
       'Instadebit' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/instadebit.png',
+        'logo' => 'Instadebit',
       ),
       'Interac' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+        'logo' => 'Interac',
       ),
     ),
     'is_mobile' => NULL,
@@ -1694,31 +1694,31 @@ $this->response->attributes("best_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/astropay.png',
+        'logo' => 'AstroPay',
       ),
       'Bitcoin Wallets' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'EcoPayz' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+        'logo' => 'EcoPayz',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
     ),
     'is_mobile' => NULL,
@@ -1834,55 +1834,55 @@ $this->response->attributes("country_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/american_express.png',
+        'logo' => 'American Express',
       ),
       'Bitcoin Wallets' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Neteller' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+        'logo' => 'Neteller',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'Visa Electron' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa_electron.png',
+        'logo' => 'Visa Electron',
       ),
       'Wire Transfer' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+        'logo' => 'Wire Transfer',
       ),
       'Players Rewards Card' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/players_rewards_card.png',
+        'logo' => 'Players Rewards Card',
       ),
       'Cheque' => 
       array (
         'deposit_methods' => false,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/cheque.png',
+        'logo' => 'Cheque',
       ),
     ),
     'is_mobile' => NULL,
@@ -1996,55 +1996,55 @@ $this->response->attributes("country_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/american_express.png',
+        'logo' => 'American Express',
       ),
       'Bitcoin Wallets' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Neteller' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+        'logo' => 'Neteller',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'Visa Electron' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa_electron.png',
+        'logo' => 'Visa Electron',
       ),
       'Players Rewards Card' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/players_rewards_card.png',
+        'logo' => 'Players Rewards Card',
       ),
       'Cheque' => 
       array (
         'deposit_methods' => false,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/cheque.png',
+        'logo' => 'Cheque',
       ),
       'Wire Transfer' => 
       array (
         'deposit_methods' => false,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+        'logo' => 'Wire Transfer',
       ),
     ),
     'is_mobile' => NULL,
@@ -2158,31 +2158,31 @@ $this->response->attributes("country_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'WebMoney' => 
       array (
         'deposit_methods' => false,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/webmoney.png',
+        'logo' => 'WebMoney',
       ),
       'Western Union' => 
       array (
         'deposit_methods' => false,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/western_union.png',
+        'logo' => 'Western Union',
       ),
     ),
     'is_mobile' => NULL,
@@ -2284,19 +2284,19 @@ $this->response->attributes("country_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'Litecoin' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/litecoin.png',
+        'logo' => 'Litecoin',
       ),
       'Bitcoin Cash' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
+        'logo' => 'Bitcoin Cash',
       ),
     ),
     'is_mobile' => NULL,
@@ -2398,31 +2398,31 @@ $this->response->attributes("country_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/american_express.png',
+        'logo' => 'American Express',
       ),
       'Bitcoin Wallets' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Neosurf' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+        'logo' => 'Neosurf',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
     ),
     'is_mobile' => NULL,
@@ -2551,37 +2551,37 @@ $this->response->attributes("new_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+        'logo' => 'EcoPayz',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Neteller' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+        'logo' => 'Neteller',
       ),
       'paysafecard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+        'logo' => 'paysafecard',
       ),
       'Skrill' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+        'logo' => 'Skrill',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
     ),
     'is_mobile' => NULL,
@@ -2704,37 +2704,37 @@ $this->response->attributes("new_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'paysafecard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+        'logo' => 'paysafecard',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'Neteller' => 
       array (
         'deposit_methods' => false,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+        'logo' => 'Neteller',
       ),
       'Skrill' => 
       array (
         'deposit_methods' => false,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+        'logo' => 'Skrill',
       ),
       'Wire Transfer' => 
       array (
         'deposit_methods' => false,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+        'logo' => 'Wire Transfer',
       ),
     ),
     'is_mobile' => NULL,
@@ -2850,115 +2850,115 @@ $this->response->attributes("new_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+        'logo' => 'EcoPayz',
       ),
       'Maestro' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
+        'logo' => 'Maestro',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Neosurf' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+        'logo' => 'Neosurf',
       ),
       'Neteller' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+        'logo' => 'Neteller',
       ),
       'paysafecard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
+        'logo' => 'paysafecard',
       ),
       'Skrill' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
+        'logo' => 'Skrill',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'WebMoney' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/webmoney.png',
+        'logo' => 'WebMoney',
       ),
       'Wire Transfer' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+        'logo' => 'Wire Transfer',
       ),
       'Yandex.Money' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/yandex.money.png',
+        'logo' => 'Yandex.Money',
       ),
       'iDebit' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/idebit.png',
+        'logo' => 'iDebit',
       ),
       'Ethereum' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ethereum.png',
+        'logo' => 'Ethereum',
       ),
       'Litecoin' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/litecoin.png',
+        'logo' => 'Litecoin',
       ),
       'Bitcoin Cash' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
+        'logo' => 'Bitcoin Cash',
       ),
       'Instadebit' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/instadebit.png',
+        'logo' => 'Instadebit',
       ),
       'Interac' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/interac.png',
+        'logo' => 'Interac',
       ),
       'Tether Wallet' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/tether_wallet.png',
+        'logo' => 'Tether Wallet',
       ),
       'Zimpler' => 
       array (
         'deposit_methods' => false,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/zimpler.png',
+        'logo' => 'Zimpler',
       ),
     ),
     'is_mobile' => NULL,
@@ -3485,31 +3485,31 @@ $this->response->attributes("no_deposit_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/american_express.png',
+        'logo' => 'American Express',
       ),
       'Bitcoin Wallets' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'Wire Transfer' => 
       array (
         'deposit_methods' => false,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+        'logo' => 'Wire Transfer',
       ),
     ),
     'is_mobile' => NULL,
@@ -3615,37 +3615,37 @@ $this->response->attributes("no_deposit_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Neosurf' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+        'logo' => 'Neosurf',
       ),
       'POLi' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/poli.png',
+        'logo' => 'POLi',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'Wire Transfer' => 
       array (
         'deposit_methods' => false,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+        'logo' => 'Wire Transfer',
       ),
     ),
     'is_mobile' => NULL,
@@ -3760,43 +3760,43 @@ $this->response->attributes("no_deposit_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/american_express.png',
+        'logo' => 'American Express',
       ),
       'Bitcoin Wallets' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Neosurf' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
+        'logo' => 'Neosurf',
       ),
       'POLi' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/poli.png',
+        'logo' => 'POLi',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
       'Wire Transfer' => 
       array (
         'deposit_methods' => false,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
+        'logo' => 'Wire Transfer',
       ),
     ),
     'is_mobile' => NULL,
@@ -3910,37 +3910,37 @@ $this->response->attributes("no_deposit_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/american_express.png',
+        'logo' => 'American Express',
       ),
       'Bitcoin Wallets' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'Diners Club' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/diners_club.png',
+        'logo' => 'Diners Club',
       ),
       'JCB' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/jcb.png',
+        'logo' => 'JCB',
       ),
       'MasterCard' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
+        'logo' => 'MasterCard',
       ),
       'Visa' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
+        'logo' => 'Visa',
       ),
     ),
     'is_mobile' => NULL,
@@ -4078,49 +4078,49 @@ $this->response->attributes("no_deposit_casinos", array (
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
+        'logo' => 'Bitcoin Wallets',
       ),
       'EcoPayz' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
+        'logo' => 'EcoPayz',
       ),
       'INPAY' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/inpay.png',
+        'logo' => 'INPAY',
       ),
       'Neteller' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
+        'logo' => 'Neteller',
       ),
       'QIWI' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/qiwi.png',
+        'logo' => 'QIWI',
       ),
       'Yandex.Money' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/yandex.money.png',
+        'logo' => 'Yandex.Money',
       ),
       'Ethereum' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ethereum.png',
+        'logo' => 'Ethereum',
       ),
       'Litecoin' => 
       array (
         'deposit_methods' => true,
         'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/litecoin.png',
+        'logo' => 'Litecoin',
       ),
     ),
     'is_mobile' => NULL,
