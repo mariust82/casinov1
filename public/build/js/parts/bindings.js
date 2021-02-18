@@ -1593,7 +1593,7 @@ var SearchPanel = function (obj) {
                         type: 'GET',
                         success: function (data) {
                             _hideLoading();
-                            $('#search-suggestions').hide();
+                            $('#search-suggestions').remove();
                             $('.search-lists').show();
                             $('.search-casinos').show();
                             $('.search-pages').show();
