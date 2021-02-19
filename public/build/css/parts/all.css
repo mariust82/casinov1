@@ -9882,6 +9882,7 @@ html.no-scroll {
   margin-right: 10px;
   padding-right: 10px;
   position: relative;
+  color: #A1AEB8;
 }
 
 .info-list .item:after{
@@ -9895,7 +9896,7 @@ html.no-scroll {
   width: 4px;
   height: 4px;
   border-radius: 4px;
-  background-color: #878CA4;
+  background-color: #A1AEB8;
 }
 
 .info-list .item:last-child:after{
