@@ -7,10 +7,13 @@
     <:set var="nextClass" val="cn5"/>
     <:set var="prevClass" val="cp5"/>
     <:set var="imgSrc" val="/public/sync/software_logo_light/80x53"/>
+    <:set var="href" val="/softwares/${strtolower(str_replace(' ', '-',${result.name}))}"/>
+
 <:else>
     <:set var="nextClass" val="cn6"/>
     <:set var="prevClass" val="cp6"/>
     <:set var="imgSrc" val="/public/sync/banking_method_light/68x39"/>
+    <:set var="href" val="/banking/${strtolower(str_replace(' ', '-',${result.name}))}"/>
 </:if>
 
 <div class="block">
@@ -33,7 +36,7 @@
                     <:foreach var="$[items]" val="result" key="key">
                         <div class="swiper-slide">
                             <div class="carousel-slide">
-                                <div class="option-box">
+                                <a href="${href}" class="option-box">
                                     <div class="image-container">
                                         <img src="${imgSrc}/${strtolower(str_replace(' ', '_',${result.name}))}.png" alt="${result.name} Logo">
                                     </div>
@@ -41,7 +44,7 @@
                                         <span>${result.name}</span>
                                         <span class="casinos-count">${result.casinos} casinos</span>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </:foreach>
