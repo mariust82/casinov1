@@ -31,16 +31,17 @@
             <div class="swiper-container options-list" id="$[id]">
                 <div class="swiper-wrapper">
                     <:foreach var="$[items]" val="result" key="key">
+
                     <:if test="'$[type]' == 'software'">
-                    <:set var="href" val="/softwares/${strtolower(str_replace(' ', '-',${result.name}))}"/>
+                    <:set var="href" val="/softwares"/>
                     <:else>
-                    <:set var="href" val="/banking/${strtolower(str_replace(' ', '-',${result.name}))}"/>
+                    <:set var="href" val="/banking"/>
                     </:if>
 
 
                         <div class="swiper-slide">
                             <div class="carousel-slide">
-                                <a href="${href}" class="option-box">
+                                <a href="${href}/${strtolower(str_replace(' ', '-',${result.name}))}" class="option-box">
                                     <div class="image-container">
                                         <img src="${imgSrc}/${strtolower(str_replace(' ', '_',${result.name}))}.png" alt="${result.name} Logo">
                                     </div>
