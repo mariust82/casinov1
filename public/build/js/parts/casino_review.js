@@ -282,7 +282,7 @@ function AddingReview(obj) {
                         var user_rate_slider_result = _rate_slider_result.split("/")[0];
                         $(review_element).find('.list-rating').addClass(getWebName(get_rating(user_rate_slider_result)));
                         $(review_element).find('.list-rating-score').text(user_rate_slider_result);
-                        $(review_element).find('.list-rating-text').text(getWebName(get_rating(user_rate_slider_result)));
+                        $(review_element).find('.list-rating-text').text(get_rating(user_rate_slider_result));
                     }else{
                         $(review_element).find('.list-rating').remove();
                         $(review_element).attr('data-img-dir', _imgDir);
