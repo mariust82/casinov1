@@ -31,7 +31,6 @@ class CasinosListQuery
         $this->setOrderBy($query->orderBy(), $filter, $sortBy);
         $this->setGroupBy($query,$filter,$limit);
         $this->setLimit($query, $filter, $limit, $offset);       
-        die($query->toString());
         $this->query = $query->toString();
     }
 
