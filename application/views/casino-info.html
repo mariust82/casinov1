@@ -672,12 +672,13 @@
 							<img class="${data.country_status} country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
 						</div> 
 						<div class="similar-row">
-							<:if test="count(${data.casino.currencies}) > 0">
-							<i class="icon-icon_available"></i>
-							${data.casino.currencies.0} 
-							<:if test="count(${data.casino.currencies}) > 1"> (+${count(${data.casino.currencies})-1})</:if>
-							<:else>
-							<i class="icon-icon_unavailable"></i>
+							<:if test="!empty(${data.country.currency})">
+								<:if test="${data.casino.is_currency_accepted} == 1">
+								<i class="icon-icon_available"></i>
+								<:else>
+								<i class="icon-icon_unavailable"></i>
+								</:if>
+								${data.country.currency} 
 							</:if>
 						</div>
 						<div class="similar-row">
@@ -768,7 +769,14 @@
 							<img class="${data.country_status} country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
 						</div> 
 						<div class="similar-row">
-							
+							<:if test="!empty(${data.country.currency})">
+								<:if test="${data.casino.is_currency_accepted} == 1">
+								<i class="icon-icon_available"></i>
+								<:else>
+								<i class="icon-icon_unavailable"></i>
+								</:if>
+								${data.country.currency} 
+							</:if>
 						</div>
 						<div class="similar-row">
 							<:if test="count(${data.country.languages}) > 0">
