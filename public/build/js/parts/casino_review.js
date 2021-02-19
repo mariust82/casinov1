@@ -23,13 +23,13 @@ function _getCurrDate() {
 }
 
 function get_rating($name) {
-    if ($name > 8) {
+    if ($name >= 9) {
         $string = 'Excellent';
-    } else if ($name > 6 && $name <= 8) {
+    } else if ($name >= 7 && $name < 9) {
         $string = 'Very good';
-    } else if ($name > 4 && $name <= 6) {
+    } else if ($name >= 5 && $name < 7) {
         $string = 'Good';
-    } else if ($name > 2 && $name <= 4) {
+    } else if ($name >= 3 && $name < 5) {
         $string = 'Poor';
     } else {
         $string = 'Terrible';
@@ -82,7 +82,7 @@ function AddingReview(obj) {
         message = _field_message.val();
 
         casino_name = $('.rating-container').data('casino-name');
-        _rate_slider_result = $('.rating-container-score-value').text();
+        _rate_slider_result = $('.drag-rate-range-score').text();
         _reviewID = 0;
         ok = true;
         if (parent.data('id') != undefined) {
@@ -278,10 +278,11 @@ function AddingReview(obj) {
                     $(review_element).find('.review-text').html(message);
                     review_element.find('.js-vote .votes-like').attr('data-id', data_id);
 
-                    if(element_class === 'review-parent'){
-                        $(review_element).find('.list-rating').addClass(getWebName(get_rating(_rate_slider_result)));
-                        $(review_element).find('.list-rating-score').text(_rate_slider_result);
-                        $(review_element).find('.list-rating-text').text(getWebName(get_rating(_rate_slider_result)));
+                    if(element_class === 'review-parent') {
+                        var user_rate_slider_result = _rate_slider_result.split("/")[0];
+                        $(review_element).find('.list-rating').addClass(getWebName(get_rating(user_rate_slider_result)));
+                        $(review_element).find('.list-rating-score').text(user_rate_slider_result);
+                        $(review_element).find('.list-rating-text').text(get_rating(user_rate_slider_result));
                     }else{
                         $(review_element).find('.list-rating').remove();
                         $(review_element).attr('data-img-dir', _imgDir);
