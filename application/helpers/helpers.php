@@ -182,3 +182,9 @@ function kFormater($number){
     }
     return $number;
 }
+
+function get_bonus_from_code($code)
+{
+    $code = ucwords(str_replace('_', ' ', $code)) . ' Bonus';
+    return $code;
+}
