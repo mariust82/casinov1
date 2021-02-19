@@ -14,10 +14,15 @@ class CasinoInfo
         $this->setResult($id, $countryId);
     }
     
-    public function getUserVote($casinoID, $ip)
+    public function getCasinoScore($casinoID)
     {
-        return SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = $casinoID", array(":ip"=>$ip))->toValue();
+        return SQL("SELECT SUM(value) / COUNT(value) AS average FROM casinos__ratings WHERE casino_id = {$casinoID}")->toValue();
     }
+    public function getUserScore($casinoID, $ip)
+    {
+        return  SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = {$casinoID}", array(":ip"=>$ip))->toValue();
+    }
+
 
     private function setResult($id, $countryId)
     {
@@ -293,11 +298,15 @@ class CasinoInfo
     {
         if ($score == 0) {
             return 'No score';
-        } elseif ($score >= 1 && $score <= 4.99) {
+        } elseif ($score >= 1 && $score <= 2.99) {
+            return  'Terrible';
+        } elseif ($score >= 3 && $score <= 4.99) {
             return  'Poor';
-        } elseif ($score >= 5 && $score <= 7.99) {
+        } elseif ($score >= 5 && $score <= 6.99) {
             return  'Good';
-        } elseif ($score >= 8 && $score <= 10) {
+        } elseif ($score >= 7 && $score <= 8.99) {
+            return  'Very good';
+        } elseif ($score >= 9 && $score <= 10) {
             return 'Excellent';
         }
     }

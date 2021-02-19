@@ -142,6 +142,37 @@ class CasinosList
         }
     }
 
+    public function getBonusCasinosPopup($id)
+    {
+        $query = "
+        SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name , t1.bonus_type_id
+        FROM casinos__bonuses AS t1
+        INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
+        WHERE t1.casino_id = {$id} AND t2.name IN ('No Deposit Bonus','First Deposit Bonus','Free Spins','Free Play','Bonus Spins')
+        ";
+        $casino = new Casino();
+        $casino->id = $id;
+        $resultSet = SQL($query);
+        while ($row = $resultSet->toRow()) {
+            $bonus = new CasinoBonus();
+            $bonus->amount = ($row["name"] == "Free Spins" ? trim(str_replace("FS", "", $row["amount"])) : $row["amount"]);
+            $bonus->min_deposit = $row["deposit_minimum"];
+            if ($row["wagering"] == '') {
+                $row["wagering"] = 0;
+            }
+            $bonus->wagering = $row["wagering"];
+            $bonus->games_allowed = $row["games"];
+            $bonus->code = $row["codes"];
+            $bonus->type = $row["name"];
+            if ($row["name"] == "No Deposit Bonus" || $row["name"] == "Free Spins" || $row["name"] == "Free Play" || $row["name"] == "Bonus Spins") {
+                $casino->bonus_free = $bonus;
+            } else {
+                $casino->bonus_first_deposit = $bonus;
+            }
+        }
+        return $casino;
+    }
+
     /**
      * Append count casino comments.
      *
@@ -298,7 +329,9 @@ class CasinosList
             $output[$row["id"]] = $object;
         }
         $allowedIds = implode(",", array_keys($output));
-        $this->appendBonuses($output, $allowedIds);
+        if (!empty($allowedIds)) {
+            $this->appendBonuses($output, $allowedIds);
+        }
 
         return $output;
     }
@@ -324,7 +357,9 @@ class CasinosList
             $output[$row["id"]] = $object;
         }
         $allowedIds = implode(",", array_keys($output));
-        $this->appendBonuses($output, $allowedIds);
+        if (!empty($allowedIds)) {
+            $this->appendBonuses($output, $allowedIds);
+        }
 
         return $output;
     }

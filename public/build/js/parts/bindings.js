@@ -36,7 +36,7 @@ var Score = function (obj) {
                         $('.drag-rate').find('.action-field').show();
 
                         $('.drag-rate-range-score').text(_score + '/10');
-                        $('.rating-container-score-value').text(_score);
+                        $('.rating-container-score-value').text(data.body['total_score']);
                         $('.count-value').text(data.body['total_votes']);
 
                         $( ".rating-container-stats-row" ).each(function( index ) {
@@ -47,8 +47,8 @@ var Score = function (obj) {
 
                         $('.rating-container-score-grade')
                                 .removeClass('terrible poor good very-good excellent no-score')
-                                .addClass(getGrade(_score).class)
-                                .text(getGrade(_score).text);
+                                .addClass(getGrade(data.body['total_score']).class)
+                                .text(getGrade(data.body['total_score']).text);
                     },
                     error: function (XMLHttpRequest) {
                         if (XMLHttpRequest.statusText != "abort")
@@ -574,21 +574,66 @@ function searchDropClose(_drop) {
     }, 300);
 }
 
-function sliderInit(container, slidesNo, nextClass, prevClass) {
-    var swiperMain = new Swiper(container, {
-        slidesPerView: slidesNo,
+function sliderInit(params) {
+    var swiperMain = new Swiper(params.container, {
+        slidesPerView: params.sledesPerViw,
         spaceBetween: 5,
         navigation: {
-            nextEl: nextClass,
-            prevEl: prevClass,
+            nextEl: params.nextClass,
+            prevEl: params.prevClass,
         },
         breakpoints: {
             1024: {
                 freeMode: true,
                 slidesPerView: 'auto'
             },
+        },
+        on: {
+          reachEnd: function(e) {
+            if (params.hasLazySlides) {
+              getMoreSlides({
+                  url: params.lazySlidesUrl,
+                  container: params.container,
+                  self: swiperMain,
+                  callback: params.callBack,
+                  // page: slideSwiper.navPage
+              });
+            }
+
+          }
         }
     });
+
+    var slidePage = 1;
+    function getMoreSlides(obj) {
+        if (obj.self) {
+            var container = $(obj.container).parent();
+            var dataObject = {};
+
+            dataObject['id'] = container.find('.carousel-next').data('id');
+            dataObject['type'] = container.find('.carousel-next').data('type');
+            dataObject['page'] = slidePage;
+
+            $.ajax({
+                url: obj.url + slidePage,
+                type: 'POST',
+                dataType: 'html',
+                data: dataObject,
+            })
+            .done(function(data) {
+                obj.self.appendSlide(data);
+                obj.self.update();
+                slidePage++;
+
+                if (obj.callback) {
+                    obj.callback();
+                }
+            })
+            .fail(function() {
+                console.log("error");
+            });
+        }
+    }
 
     var linksSwiperParams = {
         slidesPerView: 'auto',
@@ -654,73 +699,75 @@ function sliderInit(container, slidesNo, nextClass, prevClass) {
     }
 }
 
-sliderInit('#main-carousel', 6, '.cn1', '.cp1');
-sliderInit('#best-country', 4, '.cn2', '.cp2');
-sliderInit('#best-software', 4, '.cn2', '.cp2');
-sliderInit('#ndb-software', 4, '.cn3', '.cp3');
-sliderInit('#ndb-country', 4, '.cn3', '.cp3');
-sliderInit('#no-deposit-casinos', 4, '.cn4', '.cp4');
-sliderInit('#top-software', 6, '.cn5', '.cp5');
-sliderInit('#top-banking', 6, '.cn6', '.cp6');
-
-
-
-$('.carousel-next').click(function () {
-    if($(this).hasClass('swiper-button-disabled')){
-        var loadedBoxes = $(this).closest('.carousel-box-container').find('.swiper-slide').length,
-            totalBoxes = $(this).data('total'),	        
-            boxesToLoad = totalBoxes - loadedBoxes;
-        if ( boxesToLoad > 0 ) {
-            console.log($(this));
-            $(this).addClass('loading');
-            var type = $(this).data('type');
-            var page = $(this).data('page');
-            var self = $(this);
-            var id = $(this).data('id');
-            var _url;
-            var _data;
-            if (page === 'software') {
-                _url = '/casinos-by-software/';
-                _data = {
-                            page: determineCasinoPage(type),
-                            type: type,
-                            software: id
-                };
-            } else if (page === 'country') {
-                _url = '/casinos-by-country/';
-                _data = {
-                    page: determineCasinoPage(type),
-                    type: type,
-                    id: id
-                };
-            }
-            _request = $.ajax({
-                url: _url + determineCasinoPage(type),
-                data: _data,
-                dataType: 'html',
-                type: 'post',
-                success: function (data) {
-                    // setTimeout(function () {
-                    //     self.removeClass('loading');
-                    //     refresh();
-                    // }, 100);
-                    raiseCasinoPage(type);
-                    $(self).prev().find('.swiper-wrapper').append(data);
-                    $(self).removeClass("swiper-button-disabled");
-                },
-                error: function (XMLHttpRequest) {
-                    var msg = jQuery.parseJSON(XMLHttpRequest.responseJSON.body.message)[0];
-                    if (XMLHttpRequest.statusText != "abort") {
-                        console.log('err');
-                    }
-                }
-            });
-
-        }else{
-            $(this).removeClass('loading');
-        }
-    }
+sliderInit({
+    container: '#main-carousel',
+    sledesPerViw: 6,
+    nextClass: '.cn1',
+    prevClass: '.cp1'
 });
+
+sliderInit({
+    container: '#best-country',
+    sledesPerViw: 4,
+    nextClass: '.cn2',
+    prevClass: '.cp2',
+    hasLazySlides: true,
+    lazySlidesUrl: '/casinos-by-country/'
+});
+
+sliderInit({
+    container: '#best-software',
+    sledesPerViw: 4,
+    nextClass: '.cn2',
+    prevClass: '.cp2',
+    hasLazySlides: true,
+    lazySlidesUrl: '/casinos-by-software/',
+});
+
+sliderInit({
+    container: '#ndb-software',
+    sledesPerViw: 4,
+    nextClass: '.cn3',
+    prevClass: '.cp3',
+    hasLazySlides: true,
+    lazySlidesUrl: '/casinos-by-software/',
+    callBack: ndbActions
+});
+
+sliderInit({
+    container: '#ndb-country',
+    sledesPerViw: 4,
+    nextClass: '.cn3',
+    prevClass: '.cp3',
+    hasLazySlides: true,
+    lazySlidesUrl: '/casinos-by-country/',
+    callBack: ndbActions
+});
+
+sliderInit({
+    container: '#no-deposit-casinos',
+    sledesPerViw: 4,
+    nextClass: '.cn4',
+    prevClass: '.cp4'
+});
+
+sliderInit({
+    container: '#top-software',
+    sledesPerViw: 6,
+    nextClass: '.cn5',
+    prevClass: '.cp5'
+});
+
+sliderInit({
+    container: '#top-banking',
+    sledesPerViw: 6,
+    nextClass: '.cn6',
+    prevClass: '.cp6'
+});
+
+function ndbActions() {
+    refresh();
+}
 
 function refresh() {
     $('.js-tooltip').tooltipster(tooltipConfig);
@@ -1506,32 +1553,67 @@ var SearchPanel = function (obj) {
                 }
                 BUSY_REQUEST = true;
                 _request.abort();
-                _request = $.ajax({
-                    url: target,
-                    data: {
-                        value: _searchInput.val(),
-                        page: page
-                    },
-                    dataType: 'json',
-                    type: 'GET',
-                    success: function (data) {
-                        _hideLoading();
-                        _loadData(data);
-
-                    },
-                    error: function (XMLHttpRequest) {
-                        if (XMLHttpRequest.statusText != "abort") {
-                            _hideLoading();
-                            console.log('err');
-                            _showEmptyMessage();
-                        }
-                    },
-                    complete: function (data) {
-                        _hideLoading();
-                        nr_requests_completed++;
-                        BUSY_REQUEST = false;
+                if(_searchInput.val() == ''){
+                    if($('#search-suggestions').length <= 0){
+                        _request = $.ajax({
+                            url: '/search-suggestions',
+                            data: {},
+                            dataType: 'html',
+                            type: 'GET',
+                            success: function (data) {
+                                _hideLoading();
+                                $('.search-results').append(data);
+                                $('#search-suggestions').show();
+                                $('#search-lists').hide();
+                                $('#search-casinos').hide();
+                                $('#search-pages').hide();
+                            },
+                            error: function (XMLHttpRequest) {
+                                if (XMLHttpRequest.statusText != "abort") {
+                                    _hideLoading();
+                                    console.log('err');
+                                    _showEmptyMessage();
+                                }
+                            },
+                            complete: function (data) {
+                                _hideLoading();
+                                nr_requests_completed++;
+                                BUSY_REQUEST = false;
+                            }
+                        });
                     }
-                });
+                }else{
+                    _request = $.ajax({
+                        url: target,
+                        data: {
+                            value: _searchInput.val(),
+                            page: page
+                        },
+                        dataType: 'json',
+                        type: 'GET',
+                        success: function (data) {
+                            _hideLoading();
+                            $('#search-suggestions').remove();
+                            $('.search-lists').show();
+                            $('.search-casinos').show();
+                            $('.search-pages').show();
+                            _loadData(data);
+
+                        },
+                        error: function (XMLHttpRequest) {
+                            if (XMLHttpRequest.statusText != "abort") {
+                                _hideLoading();
+                                console.log('err');
+                                _showEmptyMessage();
+                            }
+                        },
+                        complete: function (data) {
+                            _hideLoading();
+                            nr_requests_completed++;
+                            BUSY_REQUEST = false;
+                        }
+                    });
+                }
 
                 var loadDelay = setTimeout(function () {
                 }, 300);

@@ -5,7 +5,7 @@ require_once("ListSearchResults.php");
 class ListsSearch
 {
     private $value;
-    public function __construct($value)
+    public function __construct($value = '')
     {
         $this->value = $value;
     }
@@ -226,5 +226,19 @@ class ListsSearch
         $res = SQL($select->toString());
         $output = $this->loop($res, "games/(type)");
         return $output;
+    }
+
+    public function getSearchSuggestions(){
+        return array(
+            'No Deposit Casinos' => '',
+            'New Casinos' => '',
+            'USA Casinos for US players' => '',
+            'Low Wagering Casinos' => '',
+            'Live Dealer Casinos' => '',
+            'RTG Casinos' => '',
+            'NetEnt Casinos' => '',
+            'BetSoft Casinos' => '',
+            'Rival Casinos' => '',
+            'MicroGaming Casinos' => '');
     }
 }

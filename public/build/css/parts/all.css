@@ -13692,7 +13692,7 @@ h1.title + .subtitle{
 {
   width: 100%;
   height: 100%;
-  padding: 15px;
+  padding: 15px 15px 10px 15px;
   align-items: center;
 }
 .carousel-box-container .carousel-slide .casino-img-logo{
@@ -13702,7 +13702,7 @@ h1.title + .subtitle{
 }
 .carousel-box-container .swiper-slide {
   width: 24% !important;
-  height: 332px !important;
+  height: 350px !important;
   min-width: 230px;
   min-height: 319px;
   margin-right: 10.5px !important;
@@ -14023,20 +14023,8 @@ h1.title + .subtitle{
   margin: 0 auto !important;
 }
 
-@media (max-width: 690px){
-.carousel .show_all-button {
-    max-width: calc(100%);
-    width: calc(100%);
-    margin: auto;
-    margin-top: 10px;
-  }
 
-}
-@media (max-width: 550px){
-  .show_all-button{
-    width: 100%;
-  }
-}
+
 
 .show_all-button {
   background: #2171CE 0% 0% no-repeat padding-box;
@@ -14064,3 +14052,26 @@ h1.title + .subtitle{
 }
 
 
+@media (max-width: 690px){
+
+  .show_all-button{
+    width: 100%;
+  }
+  .carousel .show_all-button {
+    max-width: calc(100%);
+    width: calc(100%);
+    margin: auto;
+    margin-top: 10px;
+  }
+  .index-carousel .show_all-button, .carousel-option-container .show_all-button {
+    max-width: calc(100% - 30px);
+  }
+  .box-carousel{
+    padding-right: 0 !important;
+  }
+}
+
+.option-info span:first-child {
+  max-height: 18px;
+  overflow: hidden;
+}

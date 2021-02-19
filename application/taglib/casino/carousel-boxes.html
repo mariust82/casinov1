@@ -40,10 +40,18 @@
                 <div class="country-details-wrap empty"></div>
                 </:if>
         </:if>
-        <div class="bonus-wrap-container js-bonus-trigger" data-casino-id="">
+        <div class="bonus-wrap-container js-bonus-trigger" data-casino-id="${result.id}">
             <span alt="Info" class="info-icon">i</span>
-            <span class="bonus free">50 Free Spins</span>
-            <span class="bonus">200% First Deposit Bonus</span>
+            <:if test="(isset(${result.bonuses.no_deposit})) || (isset(${result.bonuses.first_deposit}) && strtolower(${result.bonuses.first_deposit.amount}) != 'none')">
+                <:if test="isset(${result.bonuses.no_deposit})">
+                    <span class="bonus free">${result.bonuses.no_deposit.amount} ${get_bonus_from_code(${result.bonuses.no_deposit.bonus_type})}</span>
+                </:if>
+                <:if test="isset(${result.bonuses.first_deposit}) && strtolower(${result.bonuses.first_deposit.amount}) != 'none'">
+                    <span class="bonus">${result.bonuses.first_deposit.amount} First deposit bonus</span>
+                </:if>
+            <:else>
+                <span>No welcome pack bonuses.</span>
+            </:if>
         </div>
         <:if test="!${result.is_country_accepted}">
             <a href="/visit/${normalize(${result.name})}" class="btn btn-full-width btn-rest" target="_blank" rel="nofollow">RESTRICTED</a>
