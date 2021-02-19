@@ -690,7 +690,34 @@
 							</:if>
 						</div>
 						<div class="similar-row">${date("M d, Y",  strtotime(${data.casino.date_established}))}</div>
-						
+						<:if test="!empty(${data.casino.bonus_first_deposit.amount})">
+							<:set var="empty_class" val="empty_class"/>
+						</:if>
+						<div class="similar-row fb ${empty_class}">
+							<:if test="!empty(${data.casino.bonus_first_deposit.amount})">
+								<:set var="fdb_amount" val="checkForAbbr(${data.casino.bonus_first_deposit.amount})"/>
+								<:set var="fb_amount" val="checkForAbbr(${data.casino.bonus_free.amount})" />
+								<:set var="fb_abbreviation" val="getAbbreviation(${data.casino.bonus_free.type}, ${fdb_amount})" />
+								<span class="btn-round js-tooltip-content" data-name="${data.casino.name}" data-is-free="1">
+									${fb_amount}
+									<:if test="isset(${data.casino.bonus_free.type}) && ${data.casino.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
+										<:set var="fs" val="FS" />
+									<:else>
+										<:set var="fs" val="" />
+									</:if> 
+									<abbr title="${data.casino.bonus_free.type}"> ${fb_abbreviation} ${fs}</abbr>
+								</span>
+							<:else>
+							-
+							</:if>
+						</div>
+						<div class="similar-row fdb ${empty_class}">
+							<:if test="!empty(${data.casino.bonus_first_deposit.amount})">
+								<span class="btn-round js-tooltip-content" data-name="${data.casino.name}" data-is-free="0">${fdb_amount}</span>
+							<:else>
+							-	
+							</:if>
+						</div>
 						<div class="similar-row">${data.casino.deposit_minimum}</div>
 						<div class="similar-row">${data.casino.withdrawal_minimum}</div>
 						<a href="/visit/${normalize(${data.casino.name})}"
@@ -708,7 +735,7 @@
 							</:if>
 						</a>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
