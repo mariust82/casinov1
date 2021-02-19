@@ -13771,6 +13771,7 @@ h1.title + .subtitle{
   letter-spacing: 0px;
   cursor:pointer;
   text-align: center;
+  width: 100%;
 }
 .carousel-box-container .bonus-wrap-container .free{
   color: #529724;

@@ -7,7 +7,7 @@
 			<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} has been warned and added to our illegitimate casinos Blacklist. This is due to the fact that they lost contact and got complaints from players that had trouble to cash out. All of our attempts to contact this casino were not fulfilled. We strongly advise that players will play at other casinos.</div>
 		</div>
 	</div>
-	<:elseif test="${data.casino.status} == 'Warning'">
+<:elseif test="${data.casino.status} == 'Warning'">
 		<:set var="item_status" val="warning"/>
 		<div class="container">
 			<div class="warn-box warning">
@@ -640,9 +640,91 @@
 					<span>Min withdrawal <span class="show-mobile">min wdrl</span></span>
 				</div>
 				<div class="similar_casinos-slider">
-					<!-- foreach -->
-					<!-- set var="box_type_class" which has val="blacklisted-box" (if casino's blacklisted), val="warning-box" (if casino's warning) else empty  -->
-					<!-- end foreach -->
+					<:if test="${data.casino.status} == 'Blacklisted'">
+						<:set var="box_type_class" val="blacklisted-box"/>
+					<:elseif test="${data.casino.status} == 'Warning'">
+						<:set var="box_type_class" val="warning-box"/>
+					<:else>
+						<:set var="box_type_class" val=""/>
+					</:if>
+					<div class="similar_casino-box ${box_type_class}">
+						<img class="lazy_loaded similar_casino-logo" data-src="${getCasinoLogo(${data.casino.code}, 124, 82)}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
+						<a href="" class="similar_casino-name current_casino">${data.casino.name}</a>
+						<div class="list-rating ${normalize(${score_class})}">
+						<:if test="${data.casino.rating} == 0">
+							${score_class}
+							<span class="list-rating-score">-</span>
+							<div class=" list-rating-score list-rating-score-mobile">|</div>
+						<:else>
+							${score_class}
+							<span class="list-rating-score">
+								${ceil(${data.casino.rating})}
+							</span>
+						</:if>
+						</div>
+						<span class="votes">(${data.casino.rating_votes}<span class="hide-mobile">votes</span>)</span>
+						<div class="similar-row">
+							<:if test="${data.casino.is_country_accepted} == 1">
+								<i class="icon-icon_available"></i>
+							<:else>
+								<i class="icon-icon_unavailable"></i>
+							</:if>
+							<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+						</div> 
+						<div class="similar-row">
+							<:if test="count(${data.casino.currencies}) > 0">
+							<i class="icon-icon_available"></i>
+							${data.casino.currencies.0} 
+							<:if test="count(${data.casino.currencies}) > 1"> (+${count(${data.casino.currencies})-1})</:if>
+							<:else>
+							<i class="icon-icon_unavailable"></i>
+							</:if>
+						</div>
+						<div class="similar-row">
+							<:if test="count(${data.casino.languages}) > 0">
+							<i class="icon-icon_available"></i>
+							${data.casino.languages.0} 
+							<:if test="count(${data.casino.languages}) > 1"> (+${count(${data.casino.languages})-1})</:if>
+							<:else>
+							<i class="icon-icon_unavailable"></i>
+							</:if>
+						</div>
+						<div class="similar-row">${date("M d, Y",  strtotime(${data.casino.date_established}))}</div>
+						<div class="similar-row fb">
+							<:set var="fdb_amount" val="checkForAbbr(${data.casino.bonus_first_deposit.amount})"/>
+							<:set var="fb_amount" val="checkForAbbr(${data.casino.bonus_free.amount})" />
+							<:set var="fb_abbreviation" val="getAbbreviation(${data.casino.bonus_free.type}, ${fdb_amount})" />
+							<span class="btn-round js-tooltip-content" data-name="${data.casino.name}" data-is-free="1">
+								${fb_amount}
+								<:if test="isset(${data.casino.bonus_free.type}) && ${data.casino.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
+									<:set var="fs" val="FS" />
+								<:else>
+									<:set var="fs" val="" />
+								</:if> 
+								<abbr title="${data.casino.bonus_free.type}"> ${fb_abbreviation} ${fs}</abbr>
+							</span>
+						</div>
+						<div class="similar-row fdb">
+							<span class="btn-round js-tooltip-content" data-name="${data.casino.name}" data-is-free="0">${fdb_amount}</span>
+						</div>
+						<div class="similar-row">$10</div>
+						<div class="similar-row">$1000</div>
+						<a href="/visit/${normalize(${data.casino.name})}"
+							class="play_button btn-${item_status}"
+							rel="nofollow"
+							<:if test="${item_status} != 'blacklisted' && ${item_status} != 'warning' && ${item_status} != 'restricted'">
+								target="_blank"
+							</:if>
+							>
+							<:if test="${item_status} == 'blacklisted' || ${item_status} == 'warning' || ${item_status} == 'restricted'">
+								<svg class="svg-icon"><use xlink:href="#icon-${item_status}"></use></svg>
+								${item_status}
+							<:else>
+								PLAY NOW
+							</:if>
+						</a>
+					</div>
+					
 				</div>
 			</div>
 		</div>
