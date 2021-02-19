@@ -163,33 +163,33 @@ function changeViewElements(filterView,container,gridClass,listClass){
             showCasinoBonuses();
         }
 
-        // if($('.similar_casinos-slider').length > 0){
-        //     var slider = document.querySelector('.similar_casinos-slider');
-        //     var isDown = false;
-        //     var startX;
-        //     var scrollLeft;
-        //     slider.addEventListener('mousedown', (e) => {
-        //     isDown = true;
-        //     slider.classList.add('active');
-        //     startX = e.pageX - slider.offsetLeft;
-        //     scrollLeft = slider.scrollLeft;
-        //     });
-        //     slider.addEventListener('mouseleave', () => {
-        //     isDown = false;
-        //     slider.classList.remove('active');
-        //     });
-        //     slider.addEventListener('mouseup', () => {
-        //     isDown = false;
-        //     slider.classList.remove('active');
-        //     });
-        //     slider.addEventListener('mousemove', (e) => {
-        //     if(!isDown) return;
-        //     e.preventDefault();
-        //     var x = e.pageX - slider.offsetLeft;
-        //     var walk = (x - startX) * 1;
-        //     slider.scrollLeft = scrollLeft - walk;
-        //     });
-        // }
+        if($('.similar_casinos-slider').length > 0){
+            const similarSlider = document.querySelector('.similar_casinos-slider');
+            var isDown = false;
+            var startX,
+                scrollLeft;
+            similarSlider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            similarSlider.classList.add('active');
+            startX = e.pageX - similarSlider.offsetLeft;
+            scrollLeft = similarSlider.scrollLeft;
+            });
+            similarSlider.addEventListener('mouseleave', () => {
+            isDown = false;
+            similarSlider.classList.remove('active');
+            });
+            similarSlider.addEventListener('mouseup', () => {
+            isDown = false;
+            similarSlider.classList.remove('active');
+            });
+            similarSlider.addEventListener('mousemove', (e) => {
+            if(!isDown) return;
+            e.preventDefault();
+            var xAxis = e.pageX - similarSlider.offsetLeft;
+            var walk = (xAxis - startX) * 1;
+            similarSlider.scrollLeft = scrollLeft - walk;
+            });
+        }
         //Load Defer Scripts and Binding
         if ($('.links-nav').length) {
             loadScripts(['bindings', 'assets/swiper']);
