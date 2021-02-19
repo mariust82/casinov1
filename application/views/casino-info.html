@@ -709,11 +709,7 @@
 								</span>
 							</:if>
 						</div>
-						<div class="similar-row fdb ${empty_class}">
-							<:if test="!empty(${data.casino.bonus_first_deposit.amount})">
-								<span class="btn-round js-tooltip-content" data-name="${data.casino.name}" data-is-free="0">${fdb_amount}</span>
-							</:if>
-						</div>
+						
 						<div class="similar-row">$10</div>
 						<div class="similar-row">$1000</div>
 						<a href="/visit/${normalize(${data.casino.name})}"
