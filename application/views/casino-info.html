@@ -739,6 +739,61 @@
 						</a>
 					</div>
 
+
+					<:foreach var="${data.compare_list}" val="item">
+					<div class="similar_casino-box">
+						<img class="lazy_loaded similar_casino-logo" data-src="${getCasinoLogo(${item.code}, 124, 82)}" width="124" height="82" alt="${item.name} Logo" title="${item.name}">
+						<a href="/reviews/${normalize(${item.name})}-review" class="similar_casino-name">${item.name}</a>
+						<:set var="score" val="get_rating(${data.casino.rating})"/>
+						<div class="list-rating ${normalize(${score})}">
+						<:if test="${item.rating} == 0">
+							${score}
+							<span class="list-rating-score">-</span>
+							<div class=" list-rating-score list-rating-score-mobile">|</div>
+						<:else>
+							${score}
+							<span class="list-rating-score">
+								${ceil(${item.rating})}
+							</span>
+						</:if>
+						</div>
+						<span class="votes">(${item.rating_votes}<span class="hide-mobile">votes</span>)</span>
+						<div class="similar-row">
+							<:if test="${item.is_country_accepted} == 1">
+								<i class="icon-icon_available"></i>
+							<:else>
+								<i class="icon-icon_unavailable"></i>
+							</:if>
+							<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+						</div> 
+						<div class="similar-row">
+							<:if test="count(${item.currencies}) > 0">
+							<i class="icon-icon_available"></i>
+							${item.currencies.0} 
+							<:if test="count(${item.currencies}) > 1"> (+${count(${item.currencies})-1})</:if>
+							<:else>
+							<i class="icon-icon_unavailable"></i>
+							</:if>
+						</div>
+						<div class="similar-row">
+							<:if test="count(${item.languages}) > 0">
+							<i class="icon-icon_available"></i>
+							${item.languages.0} 
+							<:if test="count(${item.languages}) > 1"> (+${count(${item.languages})-1})</:if>
+							<:else>
+							<i class="icon-icon_unavailable"></i>
+							</:if>
+						</div>
+						<div class="similar-row">${date("M d, Y",  strtotime(${item.date_established}))}</div>
+						
+						<div class="similar-row">${item.deposit_minimum}</div>
+						<div class="similar-row">${item.withdrawal_minimum}</div>
+						<a href="/visit/${normalize(${item.name})}" class="play_button" rel="nofollow" target="_blank">
+							PLAY NOW
+						</a>
+					</div>
+
+					</:foreach>
 				</div>
 			</div>
 		</div>
