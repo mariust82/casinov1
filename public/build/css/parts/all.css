@@ -10790,6 +10790,7 @@ hr.widget{
   justify-content: center;
   align-items: center;
   cursor:default;
+  background: #FCFCFC;
 }
 .casinos-list .dashed.tooltipstered{
   cursor: pointer;
