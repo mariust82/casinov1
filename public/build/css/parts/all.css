@@ -14085,6 +14085,10 @@ h1.title + .subtitle{
   height: 28px;
 }
 
+.play_button.btn-restricted,
+.play_button.btn-restricted:hover{
+  background: #b5b5b5 !important;
+}
 @media (max-width: 690px){
   .similar-row.empty_class {
     height: 38px;
