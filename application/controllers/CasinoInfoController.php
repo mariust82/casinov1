@@ -1,4 +1,5 @@
 <?php
+require_once("application/models/dao/Casinos.php");
 require_once("application/models/dao/CasinoInfo.php");
 require_once("application/models/dao/CasinoReviews.php");
 require_once("application/models/dao/CasinosMenu.php");
@@ -56,6 +57,10 @@ class CasinoInfoController extends BaseController
         $this->response->attributes('country_status', $this->get_country_status($info->is_country_accepted));
         $this->response->attributes('add_text', $this->containsCasino($info->name));
         $this->response->attributes('country_status_text', $object->getCountryStatusText($this->response->attributes('country_status')));
+        
+        // get compare list (CASLI-1685)
+        $object = new Casinos();
+        $this->response->attributes("compare_list", $object->getCompareList($info, $this->request->attributes("country")->id, 5));
     }
 
     protected function pageInfo()

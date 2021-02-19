@@ -270,4 +270,95 @@ class Casinos implements FieldValidator
     public function getAllVotes($casinoID){
         return SQL("SELECT COUNT(value) from casinos__ratings WHERE casino_id = :casino_id and status != 3", array(":casino_id" => $casinoID))->toValue();
     }
+    
+    public function getCompareList(Casino $casino, $countryID, $limit) 
+    {
+        $output = [];
+        
+        // get casinos
+        $resultSet = SQL("
+        SELECT 
+        t1.id, t1.name, t1.code, (t1.rating_total/t1.rating_votes) AS average_rating, t1.rating_votes, t1.deposit_minimum, t1.withdraw_minimum, t1.date_established, IF(t1.tc_link<>'',1,0) AS is_tc_link, t4.amount, t5.name AS bonus_type_name
+        FROM casinos AS t1
+        INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = :country
+        INNER JOIN casinos__game_manufacturers AS t3 ON t1.id = t3.casino_id AND t3.game_manufacturer_id = (SELECT id FROM game_manufacturers WHERE name = :software)
+        INNER JOIN casinos__bonuses AS t4 ON t1.id = t4.casino_id
+        INNER JOIN bonus_types AS t5 ON t4.bonus_type_id = t5.id
+        WHERE t1.id <> :id AND t1.status_id IN (0,1) AND t5.name IN ('Free Spins', 'No Deposit Bonus', 'Free Play', 'Bonus Spins') AND t4.amount NOT IN ('none', '')
+        ORDER BY t1.priority DESC, t1.id DESC
+        LIMIT ".$limit, [
+            ":country"=>$countryID,
+            ":software"=>$casino->softwares[0],
+            ":id"=>$casino->id
+        ]);
+        while ($row = $resultSet->toRow()) {
+            $bonus = new CasinoBonus();
+            $bonus->amount = $row["amount"];
+            $bonus->type = $row["bonus_type_name"];
+
+            $object = new Casino();
+            $object->id = $row["id"];
+            $object->name = $row["name"];
+            $object->code = $row["code"];
+            $object->rating = ceil($row["average_rating"]);
+            $object->rating_votes = $row["rating_votes"];
+            $object->date_established = $row["date_established"];
+            $object->deposit_minimum = $row["deposit_minimum"];
+            $object->withdrawal_minimum = $row["withdraw_minimum"];
+            $object->is_tc_link = $row["is_tc_link"];
+            $object->logo_big = $this->getCasinoLogo($row["code"], "124x82");
+            $object->logo_small = $this->getCasinoLogo($row["code"], "85x56");
+            $object->is_country_accepted = true;
+            $object->bonus_free = $bonus;
+            $output[$row["id"]] = $object;
+        }
+        if (!$output) {
+            return $output;
+        }
+        $ids = implode(",", array_keys($output));
+                
+        // append if country currency is accepted for casinos
+        $resultSet = SQL("
+        SELECT
+        t1.casino_id
+        FROM casinos__countries_allowed AS t1
+        INNER JOIN casinos__currencies AS t4 ON t1.casino_id = t4.casino_id
+        INNER JOIN countries AS t2 ON t1.country_id = t2.id AND t2.currency_id = t4.currency_id
+        WHERE t1.casino_id IN (".$ids.") AND t1.country_id = ".$countryID."
+        GROUP BY t1.casino_id
+        ");
+        while ($row=$resultSet->toRow()) {
+            $output[$row["casino_id"]]->is_currency_accepted = true;
+        }
+        
+        // append if country language is accepted for casinos
+        $resultSet = SQL("
+        SELECT
+        t1.casino_id
+        FROM casinos__countries_allowed AS t1
+        INNER JOIN casinos__languages AS t4 ON t1.casino_id = t4.casino_id
+        INNER JOIN countries AS t2 ON t1.country_id = t2.id
+        INNER JOIN countries__languages AS t5 ON t2.id = t5.country_id AND t5.language_id = t4.language_id
+        WHERE t1.casino_id IN (".$ids.") AND t1.country_id = ".$countryID."
+        GROUP BY t1.casino_id
+        ");
+        while ($row=$resultSet->toRow()) {
+            $output[$row["casino_id"]]->is_language_accepted = true;
+        }
+        
+        // append free bonuses
+        $resultSet = SQL("
+        SELECT t1.casino_id, t1.amount, t2.name FROM casinos__bonuses AS t1
+        INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
+        WHERE t1.casino_id IN (".$ids.") AND t2.name IN ('First Deposit Bonus') AND t1.amount NOT IN ('none', '')
+        GROUP BY t1.casino_id");
+        while($row = $resultSet->toRow()) {
+            $object = new CasinoBonus();
+            $object->amount = $row["amount"];
+            $object->type = $row["name"];
+            $output[$row["casino_id"]]->bonus_first_deposit = $object;
+        }
+        
+        return $output;
+    }
 }
