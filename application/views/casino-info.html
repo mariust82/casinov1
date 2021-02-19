@@ -669,7 +669,7 @@
 							<:else>
 								<i class="icon-icon_unavailable"></i>
 							</:if>
-							<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+							<img class="${data.country_status} country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
 						</div> 
 						<div class="similar-row">
 							<:if test="count(${data.casino.currencies}) > 0">
@@ -681,12 +681,13 @@
 							</:if>
 						</div>
 						<div class="similar-row">
-							<:if test="count(${data.casino.languages}) > 0">
-							<i class="icon-icon_available"></i>
-							${data.casino.languages.0} 
-							<:if test="count(${data.casino.languages}) > 1"> (+${count(${data.casino.languages})-1})</:if>
-							<:else>
-							<i class="icon-icon_unavailable"></i>
+							<:if test="count(${data.country.languages}) > 0">
+								<:if test="${data.casino.is_language_accepted} == 1">
+								<i class="icon-icon_available"></i>
+								<:else>
+								<i class="icon-icon_unavailable"></i>
+								</:if>
+							${data.country.languages.0} 
 							</:if>
 						</div>
 						<div class="similar-row">${date("M d, Y",  strtotime(${data.casino.date_established}))}</div>
@@ -764,42 +765,49 @@
 							<:else>
 								<i class="icon-icon_unavailable"></i>
 							</:if>
-							<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+							<img class="${data.country_status} country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
 						</div> 
 						<div class="similar-row">
 							
 						</div>
 						<div class="similar-row">
-							
+							<:if test="count(${data.country.languages}) > 0">
+								<:if test="${data.casino.is_language_accepted} == 1">
+								<i class="icon-icon_available"></i>
+								<:else>
+								<i class="icon-icon_unavailable"></i>
+								</:if>
+							${data.country.languages.0} 
+							</:if>
 						</div>
 						<div class="similar-row">${date("M d, Y",  strtotime(${item.date_established}))}</div>
-						<:if test="!empty(${data.casino.bonus_first_deposit.amount})">
+						<:if test="!empty(${item.bonus_first_deposit.amount})">
 							<:set var="empty_class" val="empty_class"/>
 						</:if>
-						<:if test="!empty(${data.casino.bonus_first_deposit.amount})">
-							<:set var="fdb_amount" val="checkForAbbr(${data.casino.bonus_first_deposit.amount})"/>
+						<:if test="!empty(${item.bonus_first_deposit.amount})">
+							<:set var="fdb_amount" val="checkForAbbr(${item.bonus_first_deposit.amount})"/>
 						</:if>
 
 						<div class="similar-row fb ${empty_class}">
-							<:if test="!empty(${data.casino.bonus_free.amount})">
-								<:set var="fb_amount" val="checkForAbbr(${data.casino.bonus_free.amount})" />
-								<:set var="fb_abbreviation" val="getAbbreviation(${data.casino.bonus_free.type}, ${fdb_amount})" />
-								<span class="btn-round js-tooltip-content" data-name="${data.casino.name}" data-is-free="1">
+							<:if test="!empty(${item.bonus_free.amount})">
+								<:set var="fb_amount" val="checkForAbbr(${item.bonus_free.amount})" />
+								<:set var="fb_abbreviation" val="getAbbreviation(${item.bonus_free.type}, ${fdb_amount})" />
+								<span class="btn-round js-tooltip-content" data-name="${item.name}" data-is-free="1">
 									${fb_amount}
-									<:if test="isset(${data.casino.bonus_free.type}) && ${data.casino.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
+									<:if test="isset(${item.bonus_free.type}) && ${item.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
 										<:set var="fs" val="FS" />
 									<:else>
 										<:set var="fs" val="" />
 									</:if> 
-									<abbr title="${data.casino.bonus_free.type}"> ${fb_abbreviation} ${fs}</abbr>
+									<abbr title="${item.bonus_free.type}"> ${fb_abbreviation} ${fs}</abbr>
 								</span>
 							<:else>
 							-
 							</:if>
 						</div>
 						<div class="similar-row fdb ${empty_class}">
-							<:if test="!empty(${data.casino.bonus_first_deposit.amount})">
-								<span class="btn-round js-tooltip-content" data-name="${data.casino.name}" data-is-free="0">${fdb_amount}</span>
+							<:if test="!empty(${item.bonus_first_deposit.amount})">
+								<span class="btn-round js-tooltip-content" data-name="${item.name}" data-is-free="0">${fdb_amount}</span>
 							<:else>
 							-	
 							</:if>

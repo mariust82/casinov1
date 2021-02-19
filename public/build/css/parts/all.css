@@ -14084,3 +14084,17 @@ h1.title + .subtitle{
 .similar-row:nth-of-type(3){
   height: 28px;
 }
+
+.play_button.btn-restricted,
+.play_button.btn-restricted:hover{
+  background: #b5b5b5 !important;
+}
+@media (max-width: 690px){
+  .similar-row.empty_class {
+    height: 38px;
+  }
+  .similar_row.country-flg{
+    height: 18px;
+    width:24px;
+  }
+}
