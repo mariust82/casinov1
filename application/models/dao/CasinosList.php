@@ -7,8 +7,8 @@ require_once("application/helpers/CasinoHelper.php");
 class CasinosList
 {
     const LIMIT = 100;
-    private $filter;
-    private $helper;
+    protected $filter;
+    protected $helper;
 
     public function __construct(CasinoFilter $filter)
     {
@@ -87,7 +87,7 @@ class CasinosList
         return array_values($output);
     }
     
-    private function appendAcceptedCountry(array &$output, string $allowedIds): void
+    protected function appendAcceptedCountry(array &$output, string $allowedIds): void
     {
         // append if country currency is accepted for casinos
         $resultSet = SQL("
@@ -101,16 +101,15 @@ class CasinosList
         }
     }
     
-    private function appendAcceptedCurrency(array &$output, string $allowedIds): void
+    protected function appendAcceptedCurrency(array &$output, string $allowedIds): void
     {
         // append if country currency is accepted for casinos
         $resultSet = SQL("
         SELECT
         t1.casino_id
-        FROM casinos__countries_allowed AS t1
-        INNER JOIN casinos__currencies AS t4 ON t1.casino_id = t4.casino_id
-        INNER JOIN countries AS t2 ON t1.country_id = t2.id AND t2.currency_id = t4.currency_id
-        WHERE t1.casino_id IN (".$allowedIds.") AND t1.country_id = ".$this->filter->getDetectedCountry()->id."
+        FROM casinos__currencies AS t1
+        INNER JOIN currencies AS t2 ON t1.currency_id = t2.id
+        WHERE casino_id IN (".$allowedIds.") AND t2.code = '".$this->filter->getDetectedCountry()->currency."'
         GROUP BY t1.casino_id
         ");
         while ($row=$resultSet->toRow()) {
@@ -118,16 +117,14 @@ class CasinosList
         }
     }
     
-    private function appendAcceptedLanguage(array &$output, string $allowedIds): void
+    protected function appendAcceptedLanguage(array &$output, string $allowedIds): void
     {
         $resultSet = SQL("
         SELECT
         t1.casino_id
-        FROM casinos__countries_allowed AS t1
-        INNER JOIN casinos__languages AS t4 ON t1.casino_id = t4.casino_id
-        INNER JOIN countries AS t2 ON t1.country_id = t2.id
-        INNER JOIN countries__languages AS t5 ON t2.id = t5.country_id AND t5.language_id = t4.language_id
-        WHERE t1.casino_id IN (".$allowedIds.") AND t1.country_id = ".$this->filter->getDetectedCountry()->id."
+        FROM casinos__languages AS t1
+        INNER JOIN languages AS t2 ON t1.language_id = t2.id
+        WHERE t1.casino_id IN (".$allowedIds.") AND t2.name IN ('".implode("', '", $this->filter->getDetectedCountry()->languages)."')
         GROUP BY t1.casino_id
         ");
         while ($row=$resultSet->toRow()) {
@@ -135,7 +132,7 @@ class CasinosList
         }
     }
     
-    private function appendBankingMethodSupported(array &$output, string $allowedIds): void
+    protected function appendBankingMethodSupported(array &$output, string $allowedIds): void
     {
         $correspondences = ["casinos__deposit_methods"=>"deposit_methods", "casinos__withdraw_methods"=>"withdraw_methods"];
         foreach ($correspondences as $tableName=>$fieldName) {
@@ -157,7 +154,7 @@ class CasinosList
      * @throws \Lucinda\SQL\ConnectionException
      * @throws \Lucinda\SQL\StatementException
      */
-    private function appendPrimaryCurrencySymbols(array &$output, string $allowedIds): void
+    protected function appendPrimaryCurrencySymbols(array &$output, string $allowedIds): void
     {
         $result = SQL(
             "SELECT t1.casino_id, GROUP_CONCAT(IF(t2.symbol<>'',  t2.symbol, t2.code) SEPARATOR '/') AS symbol
@@ -185,7 +182,7 @@ class CasinosList
      * @throws \Lucinda\SQL\ConnectionException
      * @throws \Lucinda\SQL\StatementException
      */
-    private function appendCountCasinoComments(array &$output, string $allowedIds):void
+    protected function appendCountCasinoComments(array &$output, string $allowedIds):void
     {
         $result = SQL(
             "SELECT casino_id, COUNT(id) AS ctn FROM casinos__reviews 
@@ -240,7 +237,7 @@ class CasinosList
      * @throws \Lucinda\SQL\ConnectionException
      * @throws \Lucinda\SQL\StatementException
      */
-    private function appendGameTypes(array &$output, string $allowedIds):void
+    protected function appendGameTypes(array &$output, string $allowedIds):void
     {
         $result = SQL(
             "SELECT t1.casino_id, t2.name FROM casinos__game_types AS t1
@@ -253,7 +250,7 @@ class CasinosList
         }
     }
     
-    private function appendSoftwares(array &$output, $allowedIds)
+    protected function appendSoftwares(array &$output, $allowedIds)
     {
         
         // append softwares
@@ -269,7 +266,7 @@ class CasinosList
         }
     }
     
-    private function appendBonuses(array &$output, $allowedIds)
+    protected function appendBonuses(array &$output, $allowedIds)
     {
         // append bonuses
         $query = "
@@ -300,7 +297,7 @@ class CasinosList
         }
     }
     
-    private function appendBankingMethods(array &$output, $allowedIds)
+    protected function appendBankingMethods(array &$output, $allowedIds)
     {
         $deposit_methods =  $this->getBankingMethodData("deposit_methods", $allowedIds);
         foreach($deposit_methods as $casinoId=>$list) {
@@ -330,7 +327,7 @@ class CasinosList
         
     }
 
-    private function getBankingMethodData($entity, $allowedIds)
+    protected function getBankingMethodData($entity, $allowedIds)
     {
         $output = [];
         $resultSet = SQL("
