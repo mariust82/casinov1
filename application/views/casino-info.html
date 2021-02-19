@@ -671,42 +671,7 @@
 							</:if>
 							<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
 						</div> 
-						<div class="similar-row">
-							<:if test="count(${data.casino.currencies}) > 0">
-							<i class="icon-icon_available"></i>
-							${data.casino.currencies.0} 
-							<:if test="count(${data.casino.currencies}) > 1"> (+${count(${data.casino.currencies})-1})</:if>
-							<:else>
-							<i class="icon-icon_unavailable"></i>
-							</:if>
-						</div>
-						<div class="similar-row">
-							<:if test="count(${data.casino.languages}) > 0">
-							<i class="icon-icon_available"></i>
-							${data.casino.languages.0} 
-							<:if test="count(${data.casino.languages}) > 1"> (+${count(${data.casino.languages})-1})</:if>
-							<:else>
-							<i class="icon-icon_unavailable"></i>
-							</:if>
-						</div>
-						<div class="similar-row">${date("M d, Y",  strtotime(${data.casino.date_established}))}</div>
-						<div class="similar-row fb">
-							<:set var="fdb_amount" val="checkForAbbr(${data.casino.bonus_first_deposit.amount})"/>
-							<:set var="fb_amount" val="checkForAbbr(${data.casino.bonus_free.amount})" />
-							<:set var="fb_abbreviation" val="getAbbreviation(${data.casino.bonus_free.type}, ${fdb_amount})" />
-							<span class="btn-round js-tooltip-content" data-name="${data.casino.name}" data-is-free="1">
-								${fb_amount}
-								<:if test="isset(${data.casino.bonus_free.type}) && ${data.casino.bonus_free.type} == 'Free Spins' && empty(${fb_abbreviation})">
-									<:set var="fs" val="FS" />
-								<:else>
-									<:set var="fs" val="" />
-								</:if> 
-								<abbr title="${data.casino.bonus_free.type}"> ${fb_abbreviation} ${fs}</abbr>
-							</span>
-						</div>
-						<div class="similar-row fdb">
-							<span class="btn-round js-tooltip-content" data-name="${data.casino.name}" data-is-free="0">${fdb_amount}</span>
-						</div>
+						
 						<div class="similar-row">$10</div>
 						<div class="similar-row">$1000</div>
 						<a href="/visit/${normalize(${data.casino.name})}"
