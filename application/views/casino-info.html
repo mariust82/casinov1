@@ -767,22 +767,10 @@
 							<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
 						</div> 
 						<div class="similar-row">
-							<:if test="count(${item.currencies}) > 0">
-							<i class="icon-icon_available"></i>
-							${item.currencies.0} 
-							<:if test="count(${item.currencies}) > 1"> (+${count(${item.currencies})-1})</:if>
-							<:else>
-							<i class="icon-icon_unavailable"></i>
-							</:if>
+							
 						</div>
 						<div class="similar-row">
-							<:if test="count(${item.languages}) > 0">
-							<i class="icon-icon_available"></i>
-							${item.languages.0} 
-							<:if test="count(${item.languages}) > 1"> (+${count(${item.languages})-1})</:if>
-							<:else>
-							<i class="icon-icon_unavailable"></i>
-							</:if>
+							
 						</div>
 						<div class="similar-row">${date("M d, Y",  strtotime(${item.date_established}))}</div>
 						
