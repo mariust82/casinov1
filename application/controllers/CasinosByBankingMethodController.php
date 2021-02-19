@@ -12,18 +12,29 @@ require_once("CasinosListController.php");
 */
 class CasinosByBankingMethodController extends CasinosListController
 {
+    private $bankingMethod;
+    
+    protected function pageInfo()
+    {
+        // get page info
+        $object = new PageInfoDAO();
+        $total_casinos = !empty($this->response->attributes("total_casinos")) ? $this->response->attributes("total_casinos") : '';
+        $this->response->attributes("page_info", $object->getInfoByURL($this->request->getValidator()->getPage(), $this->bankingMethod->name, $total_casinos));
+    }
+        
     protected function getSelectedEntity()
     {
         $parameter = $this->request->getValidator()->parameters("name");
         $name = str_replace("-", " ", $parameter);
         $banking = new BankingMethods();
-        return $banking->getMethodName($name);
+        $this->bankingMethod = $banking->getInfo($name);
+        return $this->bankingMethod->id;
     }
     
     private function getCasinos($filter, $sortBy, $limit)
     {
         $casinoFilter = new CasinoFilter($filter, $this->request->attributes("country"));
-        $casinoFilter->setBankingMethod($this->getSelectedEntity());
+        $casinoFilter->setBankingMethod($this->bankingMethod->id);
         $casinoFilter->setPromoted(TRUE);
         $casinoFilter->setCountryAccepted(TRUE);
         $object = new CasinosList($casinoFilter);
@@ -34,12 +45,18 @@ class CasinosByBankingMethodController extends CasinosListController
     }
     
     protected function init() {
+        $parameter = $this->request->getValidator()->parameters("name");
+        $name = str_replace("-", " ", $parameter);
+        $banking = new BankingMethods();
+        $this->bankingMethod = $banking->getInfo($name);
+                
         $casinos = $this->getCasinos([], CasinoSortCriteria::TOP_RATED, 5);
         $banking = new BankingMethods();
-        $this->response->attributes("banking", $this->getSelectedEntity());
+        $this->response->attributes("banking", $this->bankingMethod->name);
         $this->response->attributes("best_banking", $casinos['result']);
         $this->response->attributes("best_banking_total", $casinos['total']);
-        $this->response->attributes("pop_banking", $banking->getPopularBankingCasinosCount($this->getSelectedEntity()));
+        $this->response->attributes("pop_banking", $banking->getPopularBankingCasinosCount($this->bankingMethod->id));
+        
         
     }
 

@@ -61,10 +61,6 @@ class CasinosList
             $object->score_class = $this->helper->getScoreClass($object->rating);
             $object->is_currency_accepted = $row['is_currency_supported'];
             $object->is_language_accepted = $row['is_language_supported'];
-            if ($this->filter->getBankingMethod()) {
-                $object->deposit_methods = $row["has_dm"];
-                $object->withdraw_methods = $row["has_wm"];
-            }
             if ($this->filter->getCasinoLabel() == 'Fast Payout') {
                 $object->withdrawal_timeframes = $row['end'] == 0 ? "Instant" : "Up to ".$row['end']." hours";
             }
@@ -74,6 +70,9 @@ class CasinosList
             return array();
         }
         $allowedIds = implode(",", array_keys($output));
+        if ($this->filter->getBankingMethod()) {
+            $this->appendBankingMethodSupported($output, $allowedIds);
+        }
         $this->appendPrimaryCurrencySymbols($output, $allowedIds);
         $this->appendCountCasinoComments($output, $allowedIds);
         $this->appendGameTypes($output, $allowedIds);
@@ -88,6 +87,17 @@ class CasinosList
         }
         
         return array_values($output);
+    }
+    
+    private function appendBankingMethodSupported(array &$output, string $allowedIds): void
+    {
+        $correspondences = ["casinos__deposit_methods"=>"deposit_methods", "casinos__withdraw_methods"=>"withdraw_methods"];
+        foreach ($correspondences as $tableName=>$fieldName) {
+            $resultSet = SQL("SELECT casino_id FROM ".$tableName." WHERE casino_id IN (".$allowedIds.") AND banking_method_id = ".$this->filter->getBankingMethod());
+            while($row = $resultSet->toRow()) {
+                $output[$row["casino_id"]]->$fieldName = 1;
+            }
+        }
     }
 
     /**
