@@ -5,4 +5,5 @@ class Country extends Entity
     public $code;
     public $name;
     public $languages=[];
+    public $currency;
 }

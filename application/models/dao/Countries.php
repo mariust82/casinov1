@@ -29,6 +29,17 @@ class Countries implements CasinoCounter
         WHERE t1.country_id=:country 
         ", [":country"=>$countryID])->toColumn();
     }
+    
+    public function getCurrency($countryID)
+    {
+        return SQL("
+        SELECT
+        t2.code
+        FROM countries AS t1
+        INNER JOIN currencies AS t2 ON t1.currency_id = t2.id
+        WHERE t1.id=:country
+        ", [":country"=>$countryID])->toValue();
+    }
 
     public function getCountryDetails($name)
     {
