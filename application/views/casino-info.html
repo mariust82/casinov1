@@ -649,7 +649,7 @@
 					</:if>
 					<div class="similar_casino-box ${box_type_class}">
 						<img class="lazy_loaded similar_casino-logo" data-src="${getCasinoLogo(${data.casino.code}, 124, 82)}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
-						<a href="/reviews/${normalize(${data.casino.name}-review)}" class="similar_casino-name current_casino">${data.casino.name}</a>
+						<a href="/reviews/${normalize(${data.casino.name})}-review" class="similar_casino-name current_casino">${data.casino.name}</a>
 						<div class="list-rating ${normalize(${score_class})}">
 						<:if test="${data.casino.rating} == 0">
 							${score_class}
