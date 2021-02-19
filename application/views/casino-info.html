@@ -694,7 +694,7 @@
 							<:set var="empty_class" val="empty_class"/>
 						</:if>
 						<div class="similar-row fb ${empty_class}">
-							<:if test="!empty(${data.casino.bonus_first_deposit.amount})">
+							<:if test="!empty(${data.casino.bonus_first_deposit.amount}) && !empty(${data.casino.bonus_free.amount})">
 								<:set var="fdb_amount" val="checkForAbbr(${data.casino.bonus_first_deposit.amount})"/>
 								<:set var="fb_amount" val="checkForAbbr(${data.casino.bonus_free.amount})" />
 								<:set var="fb_abbreviation" val="getAbbreviation(${data.casino.bonus_free.type}, ${fdb_amount})" />
