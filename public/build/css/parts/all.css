@@ -14076,3 +14076,11 @@ h1.title + .subtitle{
   max-height: 18px;
   overflow: hidden;
 }
+
+
+.similar-row.empty_class {
+  height: 40px;
+}
+.similar-row:nth-of-type(3){
+  height: 28px;
+}
