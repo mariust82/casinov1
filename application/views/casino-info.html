@@ -671,6 +671,25 @@
 							</:if>
 							<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
 						</div> 
+						<div class="similar-row">
+							<:if test="count(${data.casino.currencies}) > 0">
+							<i class="icon-icon_available"></i>
+							${data.casino.currencies.0} 
+							<:if test="count(${data.casino.currencies}) > 1"> (+${count(${data.casino.currencies})-1})</:if>
+							<:else>
+							<i class="icon-icon_unavailable"></i>
+							</:if>
+						</div>
+						<div class="similar-row">
+							<:if test="count(${data.casino.languages}) > 0">
+							<i class="icon-icon_available"></i>
+							${data.casino.languages.0} 
+							<:if test="count(${data.casino.languages}) > 1"> (+${count(${data.casino.languages})-1})</:if>
+							<:else>
+							<i class="icon-icon_unavailable"></i>
+							</:if>
+						</div>
+						<div class="similar-row">${date("M d, Y",  strtotime(${data.casino.date_established}))}</div>
 						
 						<div class="similar-row">$10</div>
 						<div class="similar-row">$1000</div>
