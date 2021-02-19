@@ -1,14 +1,12 @@
 <?php
-
 require_once("vendor/lucinda/queries/plugins/MySQL/MySQLSelect.php");
-require_once("vendor/lucinda/queries/plugins/MySQL/MySQLSelectGroup.php");
+require_once("MariaDBSelectGroup.php");
 require_once("application/models/dao/BestCasinoLabel.php");
 
 use Lucinda\Query\MySQLComparisonOperator;
 use Lucinda\Query\MySQLCondition;
 use Lucinda\Query\MySQLSelect;
 use Lucinda\Query\Select;
-use MongoDB\Driver\Query;
 
 class CasinosListQuery
 {
@@ -32,7 +30,8 @@ class CasinosListQuery
         $this->setWhere($query->where(), $filter);
         $this->setOrderBy($query->orderBy(), $filter, $sortBy);
         $this->setGroupBy($query,$filter,$limit);
-        $this->setLimit($query, $filter, $limit, $offset);
+        $this->setLimit($query, $filter, $limit, $offset);       
+        die($query->toString());
         $this->query = $query->toString();
     }
 
@@ -187,7 +186,7 @@ class CasinosListQuery
         }
         
         if ($filter->getBankingMethod()) {
-            $group = new Lucinda\Query\SelectGroup();
+            $group = new MariaDBSelectGroup();
             $tables = ["casinos__deposit_methods", "casinos__withdraw_methods"];
             foreach($tables as $table) {
                 $one = new Lucinda\Query\Select($table);
