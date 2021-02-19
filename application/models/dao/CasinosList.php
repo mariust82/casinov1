@@ -29,9 +29,6 @@ class CasinosList
             "t1.code", 
             "(t1.rating_total/t1.rating_votes) AS average_rating", 
             "t1.date_established", 
-            "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported",
-            "IF(t15.id IS NOT NULL,1,0) AS is_currency_supported",
-            "IF(t13.id IS NOT NULL,1,0) AS is_language_supported", 
             "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
 
         $queryGenerator = new CasinosListQuery(
@@ -42,6 +39,7 @@ class CasinosList
             $offset
         );
         $query = $queryGenerator->getQuery();
+        
 //        echo $query;
         $resultSet = SQL($query);
 
@@ -52,15 +50,12 @@ class CasinosList
             $object->code = $row["code"];
             $object->withdrawal_minimum = $row['withdraw_minimum'];
             $object->rating = ceil($row["average_rating"]);
-            $object->is_country_accepted = $row["is_country_supported"];
             $object->date_established = $row["date_established"];
             $object->status = $row["status"];
             $object->deposit_minimum = $row["deposit_minimum"];
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->score_class = $this->helper->getScoreClass($object->rating);
-            $object->is_currency_accepted = $row['is_currency_supported'];
-            $object->is_language_accepted = $row['is_language_supported'];
             if ($this->filter->getCasinoLabel() == 'Fast Payout') {
                 $object->withdrawal_timeframes = $row['end'] == 0 ? "Instant" : "Up to ".$row['end']." hours";
             }
@@ -73,6 +68,9 @@ class CasinosList
         if ($this->filter->getBankingMethod()) {
             $this->appendBankingMethodSupported($output, $allowedIds);
         }
+        $this->appendAcceptedCountry($output, $allowedIds);
+        $this->appendAcceptedCurrency($output, $allowedIds);
+        $this->appendAcceptedLanguage($output, $allowedIds);
         $this->appendPrimaryCurrencySymbols($output, $allowedIds);
         $this->appendCountCasinoComments($output, $allowedIds);
         $this->appendGameTypes($output, $allowedIds);
@@ -87,6 +85,54 @@ class CasinosList
         }
         
         return array_values($output);
+    }
+    
+    private function appendAcceptedCountry(array &$output, string $allowedIds): void
+    {
+        // append if country currency is accepted for casinos
+        $resultSet = SQL("
+        SELECT
+        casino_id
+        FROM casinos__countries_allowed
+        WHERE casino_id IN (".$allowedIds.") AND country_id = ".$this->filter->getDetectedCountry()->id."
+        ");
+        while ($row=$resultSet->toRow()) {
+            $output[$row["casino_id"]]->is_country_accepted = true;
+        }
+    }
+    
+    private function appendAcceptedCurrency(array &$output, string $allowedIds): void
+    {
+        // append if country currency is accepted for casinos
+        $resultSet = SQL("
+        SELECT
+        t1.casino_id
+        FROM casinos__countries_allowed AS t1
+        INNER JOIN casinos__currencies AS t4 ON t1.casino_id = t4.casino_id
+        INNER JOIN countries AS t2 ON t1.country_id = t2.id AND t2.currency_id = t4.currency_id
+        WHERE t1.casino_id IN (".$allowedIds.") AND t1.country_id = ".$this->filter->getDetectedCountry()->id."
+        GROUP BY t1.casino_id
+        ");
+        while ($row=$resultSet->toRow()) {
+            $output[$row["casino_id"]]->is_currency_accepted = true;
+        }
+    }
+    
+    private function appendAcceptedLanguage(array &$output, string $allowedIds): void
+    {
+        $resultSet = SQL("
+        SELECT
+        t1.casino_id
+        FROM casinos__countries_allowed AS t1
+        INNER JOIN casinos__languages AS t4 ON t1.casino_id = t4.casino_id
+        INNER JOIN countries AS t2 ON t1.country_id = t2.id
+        INNER JOIN countries__languages AS t5 ON t2.id = t5.country_id AND t5.language_id = t4.language_id
+        WHERE t1.casino_id IN (".$allowedIds.") AND t1.country_id = ".$this->filter->getDetectedCountry()->id."
+        GROUP BY t1.casino_id
+        ");
+        while ($row=$resultSet->toRow()) {
+            $output[$row["casino_id"]]->is_language_accepted = true;
+        }
     }
     
     private function appendBankingMethodSupported(array &$output, string $allowedIds): void

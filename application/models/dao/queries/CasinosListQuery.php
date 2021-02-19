@@ -30,7 +30,7 @@ class CasinosListQuery
         $this->setWhere($query->where(), $filter);
         $this->setOrderBy($query->orderBy(), $filter, $sortBy);
         $this->setGroupBy($query,$filter,$limit);
-        $this->setLimit($query, $filter, $limit, $offset);       
+        $this->setLimit($query, $filter, $limit, $offset);  
         $this->query = $query->toString();
     }
 
@@ -53,24 +53,20 @@ class CasinosListQuery
     private function setSelect(Lucinda\Query\MySQLSelect $query, CasinoFilter $filter)
     {
         $query->joinInner("casino_statuses_extended", "t19")->on(["t1.status_id" => "t19.status_id"]);
+        $query->joinLeft("casino_statuses", "cs")->on(["t1.status_id" => "cs.id"]);
+        
         if ($filter->getCurrencyAccepted()) {
             $query->joinInner("casinos__currencies", "t15")->on(["t1.id" => "t15.casino_id","t15.currency_id" => $filter->currency_id]);
-        } else {
-            $query->joinLeft("casinos__currencies", "t15")->on(["t1.id" => "t15.casino_id"]);
         }
 
         if ($filter->getLanguageAccepted()) {
             $query->joinInner("casinos__languages", "t16")->on(["t1.id" => "t16.casino_id","t16.language_id" => $filter->language_id]);
-        } else {
-            $query->joinLeft("casinos__languages", "t16")->on(["t1.id" => "t16.casino_id"]);
         }
-        $query->joinLeft("countries__languages", "t13")->on(["t13.country_id"=>$filter->getDetectedCountry()->id, "t13.language_id"=>"t16.language_id"]);
         
         if ($filter->getCountryAccepted()) {
             $query->joinInner("casinos__countries_allowed", "t2")->on(["t1.id" => "t2.casino_id","t2.country_id"=>$filter->getDetectedCountry()->id . "\n"]);
-        } else {
-            $query->joinLeft("casinos__countries_allowed", "t2")->on(["t1.id" => "t2.casino_id","t2.country_id" => $filter->getDetectedCountry()->id . "\n"]);
         }
+        
         if ($filter->getBonusType() || $filter->getFreeBonus()) {
             $condition =  $query->joinInner("casinos__bonuses", "t4")->on();
             $condition->set("t1.id", "t4.casino_id");
@@ -110,7 +106,6 @@ class CasinosListQuery
                 $query->joinInner("casinos__labels", "t5")->on(["t1.id" => "t5.casino_id", "t5.label_id" =>  "(" . $sub_query->toString() . ")" ]);
             }
         }
-        $query->joinLeft("casino_statuses", "cs")->on(["t1.status_id" => "cs.id"]);
         if ($filter->getCertification()) {
             $sub_query = new Lucinda\Query\MySQLSelect("certifications");
             $sub_query->fields(["id"]);
