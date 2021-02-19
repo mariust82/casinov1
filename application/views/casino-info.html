@@ -681,12 +681,13 @@
 							</:if>
 						</div>
 						<div class="similar-row">
-							<:if test="count(${data.casino.languages}) > 0">
-							<i class="icon-icon_available"></i>
-							${data.casino.languages.0} 
-							<:if test="count(${data.casino.languages}) > 1"> (+${count(${data.casino.languages})-1})</:if>
-							<:else>
-							<i class="icon-icon_unavailable"></i>
+							<:if test="count(${data.country.languages}) > 0">
+								<:if test="${data.casino.is_language_accepted} == 1">
+								<i class="icon-icon_available"></i>
+								<:else>
+								<i class="icon-icon_unavailable"></i>
+								</:if>
+							${data.country.languages.0} 
 							</:if>
 						</div>
 						<div class="similar-row">${date("M d, Y",  strtotime(${data.casino.date_established}))}</div>
@@ -770,7 +771,14 @@
 							
 						</div>
 						<div class="similar-row">
-							
+							<:if test="count(${data.country.languages}) > 0">
+								<:if test="${data.casino.is_language_accepted} == 1">
+								<i class="icon-icon_available"></i>
+								<:else>
+								<i class="icon-icon_unavailable"></i>
+								</:if>
+							${data.country.languages.0} 
+							</:if>
 						</div>
 						<div class="similar-row">${date("M d, Y",  strtotime(${item.date_established}))}</div>
 						<:if test="!empty(${item.bonus_first_deposit.amount})">
