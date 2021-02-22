@@ -11748,6 +11748,7 @@ hr.widget{
   /* left: -150px; */
   left: 50%;
   transform: translateX(-50%);
+  max-width: 625px;
 }
 .welcome_package-popup.active{
   display: block;
@@ -14099,4 +14100,11 @@ h1.title + .subtitle{
     height: 18px;
     width:24px;
   }
+}
+
+.welcome_package-popup .close_popup-wp{
+  color: #A8A8A8;
+}
+.welcome_package-popup .close_popup-wp:before{
+  font-size: 13px;
 }
