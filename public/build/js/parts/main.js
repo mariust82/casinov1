@@ -698,6 +698,8 @@ function showCasinoBonuses(){
                         pop.addClass('active').css(popPosition);
 
                         copyToClipboard();
+                        $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+
                     },
                     error: function ( jqXHR ) {
     
