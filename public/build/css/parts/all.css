@@ -14130,8 +14130,8 @@ h1.title + .subtitle{
 #ndb-software .swiper-slide.gridbox-bottom{
   max-width: 228.75px;
 }
-#ndb-country .carousel-box-container .swiper-slide,
-#ndb-software .carousel-box-container .swiper-slide{
+#ndb-country .swiper-slide,
+#ndb-software .swiper-slide{
   margin-right: 15.25px!important;
 }
 @media (max-width: 690px){
@@ -14148,8 +14148,8 @@ h1.title + .subtitle{
     max-width: 266px;
     min-width: 266px;
   }
-  #ndb-country .carousel-box-container .swiper-slide,
-  #ndb-software .carousel-box-container .swiper-slide{
+  #ndb-country .swiper-slide,
+  #ndb-software .swiper-slide{
     margin-right: 10px!important;
   }
   #ndb-country .btn-rest,
