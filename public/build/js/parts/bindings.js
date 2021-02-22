@@ -777,6 +777,9 @@ function refresh() {
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
     $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
     // initMobileBonusesPop(ww);
+    if($('.js-bonus-trigger').length > 0){
+        showCasinoBonuses();
+    }
 }
 
 function copyToClipboard() {
