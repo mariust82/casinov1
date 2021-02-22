@@ -14181,3 +14181,7 @@ h1.title + .subtitle{
 }
 
 
+.similar-row .btn-round{
+  max-height: 40px;
+  overflow: hidden;
+}
