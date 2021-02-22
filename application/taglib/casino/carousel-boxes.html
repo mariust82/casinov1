@@ -42,13 +42,16 @@
         </:if>
         <div class="bonus-wrap-container js-bonus-trigger" data-casino-id="${result.id}">
             <span alt="Info" class="info-icon">i</span>
-                <:if test="isset(${result.bonuses.no_deposit})">
-                    <span class="bonus free">${result.bonuses.no_deposit.amount} ${get_bonus_from_code(${result.bonuses.no_deposit.bonus_type})}</span>
+            <:if test="(isset(${result.bonus_free})) || (isset(${result.bonus_first_deposit}) && strtolower(${result.bonus_first_deposit.amount}) != 'none')">
+                <:if test="isset(${result.bonus_free})">
+                    <span class="bonus free">${result.bonus_free.amount} ${result.bonus_free.type}</span>
                 </:if>
-                <:if test="isset(${result.bonuses.first_deposit}) && strtolower(${result.bonuses.first_deposit.amount}) != 'none'">
-                    <span class="bonus">${result.bonuses.first_deposit.amount} First deposit bonus</span>
+                <:if test="isset(${result.bonus_first_deposit}) && strtolower(${result.bonus_first_deposit.amount}) != 'none'">
+                    <span class="bonus">${result.bonus_first_deposit.amount} ${result.bonus_first_deposit.type}</span>
                 </:if>
-           
+            <:else>
+                <span>No welcome pack bonuses.</span>
+            </:if>
         </div>
         <:if test="!${result.is_country_accepted}">
             <a href="/visit/${normalize(${result.name})}" class="btn btn-full-width btn-rest" target="_blank" rel="nofollow">RESTRICTED</a>
