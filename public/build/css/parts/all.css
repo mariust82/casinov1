@@ -12874,13 +12874,15 @@ h1.title + .subtitle{
   left: 0;
   right: 0;
   margin: auto;
-  bottom: unset;
-  top: 100%;
+  /* bottom: unset; */
+  /* top: 100%; */
   width: 0;
   height: 0;
   border-style: solid;
   border-width: 10px 10px 0px 10px;
   border-color: #fff transparent transparent transparent;
+  bottom: 100%;
+  transform: rotate(180deg);
 }
 .welcome_package-popup:before {
   content: "";
@@ -12890,11 +12892,19 @@ h1.title + .subtitle{
   left: 0;
   position: absolute;
   margin: auto;
-  bottom: unset;
-  top: 100%;
+  /* bottom: unset;
+  top: 100%; */
+  bottom: 100%;
+  transform: rotate(180deg);
   width: 0;
   height: 0;
   border-style: solid;
+}
+.welcome_package-popup.above:before,
+.welcome_package-popup.above:after{
+  transform: rotate(0deg);
+   bottom: unset;
+  top: 100%;
 }
 
 .select2-search--dropdown, [class*=" icon-"], [class^=icon-] {
