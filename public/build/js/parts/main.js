@@ -676,7 +676,7 @@ function showCasinoBonuses(){
                         }
 
                         $('body').append(data);
-                        closeBonusPopup(_this);
+                        closeCasinoPopup(_this);
                         $('.bonus-popup')
                         .addClass('active')
                         .css({
