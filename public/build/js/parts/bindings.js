@@ -780,6 +780,7 @@ function refresh() {
     if($('.js-bonus-trigger').length > 0){
         showCasinoBonuses();
     }
+    copyToClipboard();
 }
 
 function copyToClipboard() {
