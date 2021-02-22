@@ -678,7 +678,7 @@ function showCasinoBonuses(){
                         $('body').append(data);
                         closeCasinoPopup(_this);
 
-                        var popPositionTop = _buttonPosition.top + _this.height();
+                        var popPositionTop = _buttonPosition.top + 100;
                         var popPositionLeft = _buttonPosition.left + _this.width()/2;
                         var pop = $('.bonus-popup');
                         var popHeight = pop.height();
@@ -689,7 +689,7 @@ function showCasinoBonuses(){
                         };
 
                         if (popPositionTop + popHeight - $(window).scrollTop() > $(window).height()) {
-                            popPosition['top'] = _buttonPosition.top - _this.height() - popHeight;
+                            popPosition['top'] = _buttonPosition.top - 100 - popHeight;
                             pop.addClass('above');
                         } else {
                             pop.removeClass('above');
