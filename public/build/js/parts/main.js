@@ -677,12 +677,25 @@ function showCasinoBonuses(){
 
                         $('body').append(data);
                         closeCasinoPopup(_this);
-                        $('.bonus-popup')
-                        .addClass('active')
-                        .css({
-                            top: _buttonPosition.top + _this.height(),
-                            left: _buttonPosition.left + _this.width()/2
-                        });
+
+                        var popPositionTop = _buttonPosition.top + _this.height();
+                        var popPositionLeft = _buttonPosition.left + _this.width()/2;
+                        var pop = $('.bonus-popup');
+                        var popHeight = pop.height();
+
+                        var popPosition = {
+                            top: popPositionTop,
+                            left: popPositionLeft
+                        };
+
+                        if (popPositionTop + popHeight - $(window).scrollTop() > $(window).height()) {
+                            popPosition['top'] = _buttonPosition.top - _this.height() - popHeight;
+                            pop.addClass('above');
+                        } else {
+                            pop.removeClass('above');
+                        }
+
+                        pop.addClass('active').css(popPosition);
 
                         copyToClipboard();
                     },
