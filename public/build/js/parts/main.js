@@ -163,6 +163,33 @@ function changeViewElements(filterView,container,gridClass,listClass){
             showCasinoBonuses();
         }
 
+        if($('.similar_casinos-slider').length > 0){
+            var similarSlider = document.querySelector('.similar_casinos-slider');
+            var isDown = false;
+            var startX,
+                scrollLeft;
+            // similarSlider.addEventListener('mousedown', (e) => {
+            // isDown = true;
+            // similarSlider.classList.add('active');
+            // startX = e.pageX - similarSlider.offsetLeft;
+            // scrollLeft = similarSlider.scrollLeft;
+            // });
+            // similarSlider.addEventListener('mouseleave', () => {
+            // isDown = false;
+            // similarSlider.classList.remove('active');
+            // });
+            // similarSlider.addEventListener('mouseup', () => {
+            // isDown = false;
+            // similarSlider.classList.remove('active');
+            // });
+            // similarSlider.addEventListener('mousemove', (e) => {
+            // if(!isDown) return;
+            // e.preventDefault();
+            // var xAxis = e.pageX - similarSlider.offsetLeft;
+            // var walk = (xAxis - startX) * 1;
+            // similarSlider.scrollLeft = scrollLeft - walk;
+            // });
+        }
         //Load Defer Scripts and Binding
         if ($('.links-nav').length) {
             loadScripts(['bindings', 'assets/swiper']);
@@ -693,32 +720,6 @@ function showCasinoBonuses(){
 
 
 
-if($('.similar_casinos-slider').length > 0){
-    // var similarSlider = document.querySelector('.similar_casinos-slider');
-    var isDown = false;
-    var startX,
-        scrollLeft;
-    document.querySelector('.similar_casinos-slider').addEventListener('mousedown', (e) => {
-    isDown = true;
-    document.querySelector('.similar_casinos-slider').classList.add('active');
-    startX = e.pageX - document.querySelector('.similar_casinos-slider').offsetLeft;
-    scrollLeft = document.querySelector('.similar_casinos-slider').scrollLeft;
-    });
-    document.querySelector('.similar_casinos-slider').addEventListener('mouseleave', () => {
-    isDown = false;
-    document.querySelector('.similar_casinos-slider').classList.remove('active');
-    });
-    document.querySelector('.similar_casinos-slider').addEventListener('mouseup', () => {
-    isDown = false;
-    document.querySelector('.similar_casinos-slider').classList.remove('active');
-    });
-    document.querySelector('.similar_casinos-slider').addEventListener('mousemove', (e) => {
-    if(!isDown) return;
-    e.preventDefault();
-    var xAxis = e.pageX - document.querySelector('.similar_casinos-slider').offsetLeft;
-    var walk = (xAxis - startX) * 1;
-    document.querySelector('.similar_casinos-slider').scrollLeft = scrollLeft - walk;
-    });
-}
+
 
     
