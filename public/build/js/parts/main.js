@@ -164,32 +164,6 @@ function changeViewElements(filterView,container,gridClass,listClass){
         }
 
         if($('.similar_casinos-slider').length > 0){
-            // var similarSlider = document.querySelector('.similar_casinos-slider');
-            // var isDown = false;
-            // var startX,
-            //     scrollLeft;
-            // similarSlider.addEventListener('mousedown', (e) => {
-            // isDown = true;
-            // similarSlider.classList.add('active');
-            // startX = e.pageX - similarSlider.offsetLeft;
-            // scrollLeft = similarSlider.scrollLeft;
-            // });
-            // similarSlider.addEventListener('mouseleave', () => {
-            // isDown = false;
-            // similarSlider.classList.remove('active');
-            // });
-            // similarSlider.addEventListener('mouseup', () => {
-            // isDown = false;
-            // similarSlider.classList.remove('active');
-            // });
-            // similarSlider.addEventListener('mousemove', (e) => {
-            // if(!isDown) return;
-            // e.preventDefault();
-            // var xAxis = e.pageX - similarSlider.offsetLeft;
-            // var walk = (xAxis - startX) * 1;
-            // similarSlider.scrollLeft = scrollLeft - walk;
-            // });
-
             var similarSlider = $('.similar_casinos-slider');
             var isDown = false;
             var startX,
