@@ -11933,7 +11933,9 @@ hr.widget{
   }
   .welcome_package-popup{
     width: calc(100vw - 20px);
-    left: -10px;
+    left: 10px !important;
+    max-height: 355px;
+    overflow: scroll;
   }
 
 }
@@ -14174,3 +14176,5 @@ h1.title + .subtitle{
     margin: 0;
   }
 }
+
+
