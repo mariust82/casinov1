@@ -712,7 +712,8 @@ sliderInit({
     nextClass: '.cn2',
     prevClass: '.cp2',
     hasLazySlides: true,
-    lazySlidesUrl: '/casinos-by-country/'
+    lazySlidesUrl: '/casinos-by-country/',
+    callBack: ndbActions
 });
 
 sliderInit({
@@ -722,6 +723,7 @@ sliderInit({
     prevClass: '.cp2',
     hasLazySlides: true,
     lazySlidesUrl: '/casinos-by-software/',
+    callBack: ndbActions
 });
 
 sliderInit({

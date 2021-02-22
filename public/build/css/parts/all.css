@@ -14104,9 +14104,13 @@ h1.title + .subtitle{
 
 .welcome_package-popup .close_popup-wp{
   color: #A8A8A8;
+  width: 100%;
+  text-align: right;
+  display: block;
 }
 .welcome_package-popup .close_popup-wp:before{
   font-size: 13px;
+  cursor: pointer;
 }
 
 .carousel-box-container .heading,
