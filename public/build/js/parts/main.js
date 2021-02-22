@@ -164,10 +164,10 @@ function changeViewElements(filterView,container,gridClass,listClass){
         }
 
         if($('.similar_casinos-slider').length > 0){
-            var similarSlider = document.querySelector('.similar_casinos-slider');
-            var isDown = false;
-            var startX,
-                scrollLeft;
+            // var similarSlider = document.querySelector('.similar_casinos-slider');
+            // var isDown = false;
+            // var startX,
+            //     scrollLeft;
             // similarSlider.addEventListener('mousedown', (e) => {
             // isDown = true;
             // similarSlider.classList.add('active');
@@ -189,6 +189,35 @@ function changeViewElements(filterView,container,gridClass,listClass){
             // var walk = (xAxis - startX) * 1;
             // similarSlider.scrollLeft = scrollLeft - walk;
             // });
+
+            var similarSlider = $('.similar_casinos-slider');
+            var isDown = false;
+            var startX,
+                scrollL;
+
+            similarSlider
+            .mousedown(function(e) {
+                isDown = true;
+                $(this).addClass('active');
+                startX = e.pageX - $(this).offset().left;
+                scrollL = $(this).scrollLeft();
+            })
+            .mouseleave(function(){
+                isDown = false;
+                $(this).removeClass('active');
+            })
+            .mouseup(function(){
+                isDown = false;
+                $(this).removeClass('active');
+            })
+            .mousemove(function (e) {
+                if(!isDown) return;
+                e.preventDefault();
+                var xAxis = e.pageX - $(this).offset().left;
+                var walk = (xAxis - startX) * 1;
+                $(this).scrollLeft(scrollL - walk);
+            });
+            
         }
         //Load Defer Scripts and Binding
         if ($('.links-nav').length) {
