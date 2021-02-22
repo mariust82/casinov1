@@ -689,7 +689,7 @@ function showCasinoBonuses(){
                         };
 
                         if (popPositionTop + popHeight - $(window).scrollTop() > $(window).height()) {
-                            popPosition['top'] = _buttonPosition.top - _this.height() - popHeight + 25;
+                            popPosition['top'] = _buttonPosition.top - _this.height() - popHeight + 10;
                             pop.addClass('above');
                         } else {
                             pop.removeClass('above');
