@@ -42,11 +42,11 @@
         </:if>
         <div class="bonus-wrap-container js-bonus-trigger" data-casino-id="${result.id}">
             <span alt="Info" class="info-icon">i</span>
-            <:if test="(isset(${result.bonus_free})) || (isset(${result.bonus_first_deposit}) && strtolower(${result.bonus_first_deposit.amount}) != 'none')">
-                <:if test="isset(${result.bonus_free})">
+            <:if test="(!empty(${result.bonus_free})) || (!empty(${result.bonus_first_deposit}) && strtolower(${result.bonus_first_deposit.amount}) != 'none')">
+                <:if test="!empty(${result.bonus_free})">
                     <span class="bonus free">${result.bonus_free.amount} ${result.bonus_free.type}</span>
                 </:if>
-                <:if test="isset(${result.bonus_first_deposit}) && strtolower(${result.bonus_first_deposit.amount}) != 'none'">
+                <:if test="!empty(${result.bonus_first_deposit}) && strtolower(${result.bonus_first_deposit.amount}) != 'none'">
                     <span class="bonus">${result.bonus_first_deposit.amount} ${result.bonus_first_deposit.type}</span>
                 </:if>
             <:else>
