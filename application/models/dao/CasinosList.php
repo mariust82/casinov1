@@ -439,7 +439,7 @@ class CasinosList
 
     public function getManufacturers($sortBy, $limit = null, $offset = "") {
         $output = array();
-        $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
+        $fields = array( "t1.id" , "t1.status_id", "t1.name", "t1.code", "(t1.rating_total/t1.rating_votes) AS average_rating", "t1.date_established", "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
 
         $queryGenerator = new CasinosListQuery(
             $this->filter,
