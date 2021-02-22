@@ -14108,3 +14108,55 @@ h1.title + .subtitle{
 .welcome_package-popup .close_popup-wp:before{
   font-size: 13px;
 }
+
+.carousel-box-container .heading,
+.carousel-box-container .subtitle {
+  margin: 0 0 20px;
+}
+
+.carousel-next, .carousel-prev{
+  width: 46px;
+  height: 46px;
+}
+.btn-holder{
+  margin-bottom: 60px;
+}
+#ndb-country,
+#ndb-software{
+  padding: 10px 10px;
+  margin: -10px -15px 0;
+}
+#ndb-country .swiper-slide.gridbox-bottom,
+#ndb-software .swiper-slide.gridbox-bottom{
+  max-width: 228.75px;
+}
+#ndb-country .carousel-box-container .swiper-slide,
+#ndb-software .carousel-box-container .swiper-slide{
+  margin-right: 15.25px!important;
+}
+@media (max-width: 690px){
+  .btn-holder{
+    margin-bottom: 40px;
+  }
+  #ndb-country,
+  #ndb-software{
+    padding: 10px 0px;
+    margin: -10px 0 0;
+  }
+  #ndb-country .swiper-slide.gridbox-bottom,
+  #ndb-software .swiper-slide.gridbox-bottom{
+    max-width: 266px;
+    min-width: 266px;
+  }
+  #ndb-country .carousel-box-container .swiper-slide,
+  #ndb-software .carousel-box-container .swiper-slide{
+    margin-right: 10px!important;
+  }
+  #ndb-country .btn-rest,
+  #ndb-software .btn-rest{
+    border-radius: 4px;
+    text-indent: unset;
+    position: unset;
+    margin: 0;
+  }
+}
