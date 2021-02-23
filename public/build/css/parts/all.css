@@ -13639,13 +13639,13 @@ h1.title + .subtitle{
 }
 @media screen and (max-width: 1023px){
   .similar_casino-box .list-rating,
-  .carousel-grid-casinos .list-rating{
+  .swiper-container .list-rating{
     width: unset!important;
     text-indent: initial!important;
     min-width: 82px;
   }
   .similar_casino-box .list-rating .list-rating-score,
-  .carousel-grid-casinos .list-rating .list-rating-score{
+  .swiper-container .list-rating .list-rating-score{
     width: 21px!important;
   }
 }
@@ -14211,10 +14211,10 @@ h1.title + .subtitle{
   display: none;
 }
 
-@media screen and (max-width: 1023px){
+/* @media screen and (max-width: 1023px){
   .data-container-holder.list-view .carousel-grid-casinos .list-rating{
     width: unset!important;
     text-indent: -99999px !important;
     min-width: unset;
   }
-}
+} */
