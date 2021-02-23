@@ -435,7 +435,7 @@ figure {
   display:none;
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width:1023px) {
   .icon-logo .path1,
   .icon-logo .path2 {
     display:none;
@@ -2732,11 +2732,6 @@ a:focus {
 @media screen and (max-width: 1023px) {
   .header-search {
     padding: 0 0 5px;
-  }
-}
-
-@media screen and (max-width: 690px) {
-  .header-search {
     display: block;
     position: fixed;
     left: 0;
@@ -2766,12 +2761,6 @@ a:focus {
 
 @media screen and (max-width: 1023px) {
   .header-search-btn {
-    font-size: 18px;
-  }
-}
-
-@media screen and (max-width: 690px) {
-  .header-search-btn {
     display: none;
   }
 }
@@ -2793,7 +2782,7 @@ a:focus {
   display:block;
 }
 
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 1023px) {
   .header-search-input {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2869,7 +2858,7 @@ a:focus {
   display:none;
 }
 
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 1023px) {
   .header-search-mobile {
     -webkit-box-flex:1;
     -ms-flex-positive:1;
@@ -2880,7 +2869,7 @@ a:focus {
   }
 
   .header-search-mobile.js-trigger-search{
-    margin:0 18px;
+    margin:0 12%;
     padding:10px 15px;
     background:#0E4585;
     border-radius:18px;
@@ -2902,6 +2891,12 @@ a:focus {
   }
 }
 
+@media screen and (max-width:690px) {
+  .header-search-mobile.js-trigger-search{
+    margin:0 5%;
+  }
+}
+
 .header-search-mobile.icon-search {
   margin: 0 0 0 10px;
 }
@@ -2919,7 +2914,7 @@ a:focus {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
 }
 
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 1023px) {
   .search-drop {
     display: block;
     position: static;
@@ -3276,12 +3271,6 @@ a:focus {
 @media screen and (max-width: 1023px) {
   .logo {
     top: -1px;
-    font-size: 29px;
-  }
-}
-
-@media screen and (max-width: 690px) {
-  .logo {
     font-size: 17px;
     width:auto;
   }
@@ -3298,14 +3287,14 @@ a:focus {
 @media screen and (max-width: 1023px) {
   .main,
   .search {
-    padding: 20px 0 60px;
+    padding: 0 0 60px;
   }
 }
 
 @media screen and (max-width: 690px) {
   .main,
   .search {
-    padding: 20px 0 50px;
+    padding: 0 0 50px;
   }
 }
 
@@ -3346,9 +3335,9 @@ a:focus {
   transform: translateX(-50%);
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1024px) {
   .promo-img img{
-    width: auto;;
+    width: auto;
   }
 }
 
