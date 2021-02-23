@@ -3332,7 +3332,11 @@ a:focus {
   top:0;
   left:50%;
   width: 100%;
-  transform: translateX(-50%);
+  -webkit-transform:translateX(-50%);
+  -moz-transform:translateX(-50%);
+  -ms-transform:translateX(-50%);
+  -o-transform:translateX(-50%);
+  transform:translateX(-50%);
 }
 
 @media screen and (max-width: 1024px) {
@@ -13313,6 +13317,10 @@ h1.title + .subtitle{
 .drag-rate-range .irs-grid-text{
   position:static !important;
   margin:0 !important;
+  -webkit-transform:translateX(0) !important;
+  -moz-transform:translateX(0) !important;
+  -ms-transform:translateX(0) !important;
+  -o-transform:translateX(0) !important;
   transform:translateX(0) !important;
 }
 
