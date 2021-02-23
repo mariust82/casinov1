@@ -3629,17 +3629,29 @@ a:focus {
 }
 
 .heading .title {
+  margin: 40px 0 15px;
+}
+
+.promo .heading .title{
   margin: 0 0 15px;
 }
 
 @media screen and (max-width: 690px) {
   .heading .title {
+    margin: 20px 0 10px;
+  }
+
+  .promo .heading .title{
     margin: 0 0 10px;
   }
 }
 
 @media screen and (max-width: 690px) {
   .heading {
+    margin: 10px 0 20px;
+  }
+
+  .promo .heading .title{
     margin: 0 0 20px;
   }
 }
@@ -11056,6 +11068,7 @@ hr.widget{
 .grid_view .btn-rest,
 .list-view .btn-rest{
   margin: 0 !important;
+  height:27px;
 }
 .grid_view .btn-rest:after{
   content:unset;
