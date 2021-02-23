@@ -14210,3 +14210,11 @@ h1.title + .subtitle{
 .welcome_package-popup .bonuses-wp::-webkit-scrollbar{
   display: none;
 }
+
+@media screen and (max-width: 1023px){
+  .data-container-holder.list-view .carousel-grid-casinos .list-rating{
+    width: unset!important;
+    text-indent: -99999px !important;
+    min-width: unset;
+  }
+}
