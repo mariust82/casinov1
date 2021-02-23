@@ -2896,6 +2896,9 @@ a:focus {
 
   .header-search-mobile.js-trigger-search .icon-search {
     margin: 0 15px 0 0;
+    font-size: 14px;
+    top: 1px;
+    position: relative;
   }
 }
 
@@ -11736,16 +11739,13 @@ hr.widget{
 }
 .welcome_package-popup{
   display: none;
-  /* width: 605px; */
   width: auto;
   min-height: 302px;
   position: absolute;
   background: #FFFFFF 0% 0% no-repeat padding-box;
   box-shadow: 0px 1px 6px #00000029;
-  bottom: calc(100% + 15px);
   padding: 15px 10px 25px 10px;
   z-index: 3;
-  /* left: -150px; */
   left: 50%;
   transform: translateX(-50%);
 }
@@ -11838,8 +11838,6 @@ hr.widget{
   }
   .welcome_package-popup{
     left: 0;
-    bottom: calc(100% + 15px);
-    /*transform: translateX(0);*/
   }
   .grid_view .casino_items-view .list-item-cell-buttons{
     padding: 0 20px 20px 0;
@@ -11933,11 +11931,8 @@ hr.widget{
   .welcome_package-popup{
     width: calc(100vw - 20px);
     left: 10px !important;
-    max-height: 355px;
-    overflow: scroll;
     transform: translateX(0);
   }
-
 }
 @media screen and (max-width: 767px){
   .grid_view .casino_items-view .btn-rest, .grid_view .casino_items-view  .btn-small{
@@ -13052,6 +13047,8 @@ h1.title + .subtitle{
 @media (max-width: 600px){
   .welcome_package-popup .bonuses-wp {
     display: block;
+    max-height: 355px;
+    overflow:auto;
   }
   .welcome_package-popup .bonuses-wp .bonus-item {
     width: 100%;
