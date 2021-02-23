@@ -13052,6 +13052,7 @@ h1.title + .subtitle{
   }
   .welcome_package-popup .bonuses-wp .bonus-item {
     width: 100%;
+    min-width: unset;
   }
   .welcome_package-popup .bonuses-wp .bonus-item:first-of-type{
     margin-bottom: 30px;
@@ -14203,4 +14204,12 @@ h1.title + .subtitle{
 .similar-row .btn-round{
   max-height: 40px;
   overflow: hidden;
+}
+
+.welcome_package-popup .bonuses-wp{
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}
+.welcome_package-popup .bonuses-wp::-webkit-scrollbar{
+  display: none;
 }
