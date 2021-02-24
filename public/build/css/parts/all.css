@@ -14234,3 +14234,12 @@ h1.title + .subtitle{
   text-indent: initial !important;
   position: unset !important;
 }
+.carousel-slide .additional-link{
+  line-height: 17px;
+}
+@media (max-width: 690px){
+  .welcome_package-popup{
+    max-height: 354px;
+    overflow: auto;
+  }
+}
