@@ -71,6 +71,26 @@
             LOAD MORE CASINOS</a>
     </div>
 </:if>
+
+
+<!-- if page is software or country-->
+<div class="block">
+    <div class="container carousel-grid-casinos">
+        <:if test="isset(${data.software})">
+            <:if test="${data.no_deposit_casinos_total} > 0">
+                <:set var="desc" val="isset(${data.widgets.ndb_software}) ? implode('\n', ${data.widgets.ndb_software}) : ''"/>
+                <casino:carousel-grid flag="${data.country.code}" page="software" total="${data.no_deposit_casinos_total}" value="${data.software}" section="bottom" id="ndb-software" type="ndb" title="${data.software} No Deposit Casinos"  items="${data.no_deposit_casinos}" country="${data.country.code}" description="${desc}"/>
+            </:if>
+            <:elseif test="isset(${data.country_page})">
+                <:if test="${data.new_casinos_total} > 0">
+                    <:set var="desc" val="isset(${data.widgets.ndb_country}) ? implode('\n', ${data.widgets.ndb_country}) : ''"/>
+                    <casino:carousel-grid flag="${data.country_code}" page="country" total="${data.new_casinos_total}" value="${data.country_id}" section="bottom" id="ndb-country" type="ndb" title="New ${data.country_page} No Deposit Casinos"  items="${data.new_casinos}" country="${data.country_page}" description="${desc}"/>
+                </:if>
+        </:if>
+    </div>
+</div>
+<!-- end  if -->
+
 <:if test="isset(${data.recommended_games})">
     <:if test="count(${data.recommended_games}) > 0">
         <div class="block related">
@@ -107,23 +127,7 @@
         </:if>
     </:if>
 </:if>
-<!-- if page is software or country-->
-<div class="block">
-    <div class="container carousel-grid-casinos">
-        <:if test="isset(${data.software})">
-            <:if test="${data.no_deposit_casinos_total} > 0">
-                <:set var="desc" val="isset(${data.widgets.ndb_software}) ? implode('\n', ${data.widgets.ndb_software}) : ''"/>
-                <casino:carousel-grid flag="${data.country.code}" page="software" total="${data.no_deposit_casinos_total}" value="${data.software}" section="bottom" id="ndb-software" type="ndb" title="${data.software} No Deposit Casinos"  items="${data.no_deposit_casinos}" country="${data.country.code}" description="${desc}"/>
-            </:if>
-            <:elseif test="isset(${data.country_page})">
-                <:if test="${data.new_casinos_total} > 0">
-                    <:set var="desc" val="isset(${data.widgets.ndb_country}) ? implode('\n', ${data.widgets.ndb_country}) : ''"/>
-                    <casino:carousel-grid flag="${data.country_code}" page="country" total="${data.new_casinos_total}" value="${data.country_id}" section="bottom" id="ndb-country" type="ndb" title="New ${data.country_page} No Deposit Casinos"  items="${data.new_casinos}" country="${data.country_page}" description="${desc}"/>
-                </:if>
-        </:if>
-    </div>
-</div>
-<!-- end  if -->
+
 <:if test="isset(${data.recommended_games})">
     <:if test="${data.total_casinos} > 100">
         <div class="block">
