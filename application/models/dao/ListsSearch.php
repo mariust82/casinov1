@@ -228,17 +228,17 @@ class ListsSearch
         return $output;
     }
 
-    public function getSearchSuggestions(){
+    public function getSearchSuggestions($user_country){
         return array(
-            'No Deposit Casinos' => '',
-            'New Casinos' => '',
-            'USA Casinos for US players' => '',
-            'Low Wagering Casinos' => '',
-            'Live Dealer Casinos' => '',
-            'RTG Casinos' => '',
-            'NetEnt Casinos' => '',
-            'BetSoft Casinos' => '',
-            'Rival Casinos' => '',
-            'MicroGaming Casinos' => '');
+            'No Deposit Casinos' => '/bonus-list/no-deposit-bonus',
+            'New Casinos' => '/casinos/new',
+             $user_country . ' Casinos for '. $user_country . ' players' => '/countries-list/'  . strtolower($user_country),
+            'Low Wagering Casinos' => '/casinos/low-wagering',
+            'Live Dealer Casinos' => '/features/live-dealer',
+            'RTG Casinos' => '/softwares/rtg',
+            'NetEnt Casinos' => '/softwares/netent',
+            'BetSoft Casinos' => '/softwares/betsoft',
+            'Rival Casinos' => '/softwares/rival',
+            'MicroGaming Casinos' => '/softwares/microgaming');
     }
 }
