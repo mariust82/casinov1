@@ -682,6 +682,9 @@ function showCasinoBonuses(){
                         closeCasinoPopup(_this);
 
                         var popPositionTop = _buttonPosition.top + 105;
+                        if($(window).width() < 450){
+                            var popPositionTop = popPositionTop + 32;
+                        }
                         var popPositionLeft = _buttonPosition.left + _this.width()/2;
                         var pop = $('.bonus-popup');
                         var popHeight = pop.height();
