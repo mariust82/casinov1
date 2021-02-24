@@ -1081,58 +1081,58 @@ var Filters = function (obj) {
         });
 
     },
-            _getAjaxParams = function (_paramName, _paramValue, _action) {
+    _getAjaxParams = function (_paramName, _paramValue, _action) {
 
-                var _ajaxDataParams = {};
-                $.each(_switchers, function (index, el) {
-                    if ($(el).is(':checked')) {
-                        _ajaxDataParams[$(el).attr('name')] = 1;
-                    }
-
-                    if (_action == 'reset') {
-                        _ajaxDataParams[$(el).attr('name')] = '';
-                        $(el).prop('checked', false);
-                    }
-                });
-
-                $.each(_radios, function (index, el) {
-                    if ($(el).is(':checked')) {
-                        _ajaxDataParams[$(el).attr('name')] = $(el).attr('value');
-                    }
-
-                    if (_action == 'reset') {
-                        _ajaxDataParams[$(el).attr('name')] = 1;
-                        if (index == 0) {
-                            $(el).prop('checked', true);
-                        }
-                    }
-                });
-
-                _ajaxDataParams[_paramName] = _paramValue;
-
-                if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
-                    _ajaxDataParams['software'] = _selectFilter.val().join();
-
-                    if (_action == 'reset') {
-                        _ajaxDataParams['software'] = '';
-
-                    }
-                }
-
-                if (typeof AJAX_CUR_PAGE == "undefined")
-                    AJAX_CUR_PAGE = 1;
-
-                if (_action != 'add' || _action == 'reset') {
-                    AJAX_CUR_PAGE = 0;
-                }
-
-                if (_ajaxDataParams["label"] != undefined && _ajaxDataParams["label"] == "Mobile") {
-                    _ajaxDataParams["compatibility"] = "mobile";
-                    delete _ajaxDataParams.label;
-                }
-
-                return _ajaxDataParams;
+        var _ajaxDataParams = {};
+        $.each(_switchers, function (index, el) {
+            if ($(el).is(':checked')) {
+                _ajaxDataParams[$(el).attr('name')] = 1;
             }
+
+            if (_action == 'reset') {
+                _ajaxDataParams[$(el).attr('name')] = '';
+                $(el).prop('checked', false);
+            }
+        });
+
+        $.each(_radios, function (index, el) {
+            if ($(el).is(':checked')) {
+                _ajaxDataParams[$(el).attr('name')] = $(el).attr('value');
+            }
+
+            if (_action == 'reset') {
+                _ajaxDataParams[$(el).attr('name')] = 1;
+                if (index == 0) {
+                    $(el).prop('checked', true);
+                }
+            }
+        });
+
+        _ajaxDataParams[_paramName] = _paramValue;
+
+        if (_selectFilter.val() != 'undefined' && _selectFilter.val() != null) {
+            _ajaxDataParams['software'] = _selectFilter.val().join();
+
+            if (_action == 'reset') {
+                _ajaxDataParams['software'] = '';
+
+            }
+        }
+
+        if (typeof AJAX_CUR_PAGE == "undefined")
+            AJAX_CUR_PAGE = 1;
+
+        if (_action != 'add' || _action == 'reset') {
+            AJAX_CUR_PAGE = 0;
+        }
+
+        if (_ajaxDataParams["label"] != undefined && _ajaxDataParams["label"] == "Mobile") {
+            _ajaxDataParams["compatibility"] = "mobile";
+            delete _ajaxDataParams.label;
+        }
+
+        return _ajaxDataParams;
+    }
 
     _ajaxRequestCasinos = function (_ajaxDataParams, _action) {
         if (_action == 'add') {
