@@ -163,8 +163,8 @@ function changeViewElements(filterView,container,gridClass,listClass){
             showCasinoBonuses();
         }
 
-        if($('.similar_casinos-slider').length > 0){
-            var similarSlider = $('.similar_casinos-slider');
+        if($('.similar_casinos-container').length > 0){
+            var similarSlider = $('.similar_casinos-container');
             var isDown = false;
             var startX,
                 scrollL;

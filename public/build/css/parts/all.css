@@ -13512,6 +13512,8 @@ h1.title + .subtitle{
   margin-bottom: 20px;
   display: block;
   color: #2171CE;
+  max-height: 28px;
+  overflow: hidden;
 }
 .similar_casino-name.current_casino,
 .similar_casino-name:hover{
@@ -14216,8 +14218,11 @@ h1.title + .subtitle{
 
 
 .similar-row .btn-round{
-  max-height: 40px;
+  max-height: 30px;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .welcome_package-popup .bonuses-wp{
