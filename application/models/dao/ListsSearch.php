@@ -232,7 +232,7 @@ class ListsSearch
         return array(
             'No Deposit Casinos' => '/bonus-list/no-deposit-bonus',
             'New Casinos' => '/casinos/new',
-             $user_country . ' Casinos for US players' => '/countries-list/'  . strtolower($user_country),
+             $user_country . ' Casinos for '. $user_country . ' players' => '/countries-list/'  . strtolower($user_country),
             'Low Wagering Casinos' => '/casinos/low-wagering',
             'Live Dealer Casinos' => '/features/live-dealer',
             'RTG Casinos' => '/softwares/rtg',
