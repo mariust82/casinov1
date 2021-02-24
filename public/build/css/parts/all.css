@@ -4707,13 +4707,15 @@ a:focus {
   width:100%;
 }
 
-.btn-small, .btn-rest {
+.list-item-cell-buttons .btn-small, 
+.list-item-cell-buttons .btn-rest {
   padding: 7px 16px 8px;
   margin: -2px 0 0 0;
 }
 
 @media screen and (max-width: 767px) {
-  .btn-small, .btn-rest {
+  .list-item-cell-buttons .btn-small, 
+  .list-item-cell-buttons .btn-rest {
     padding: 7px 7px 8px;
     width:27px;
     height:27px;
@@ -14045,6 +14047,11 @@ h1.title + .subtitle{
   display: flex;
   justify-content: center;
   align-items: center;
+  -webkit-border-radius:4px;
+  -moz-border-radius:4px;
+  border-radius:4px;
+  text-indent:0;
+  margin:0;
 }
 .swiper-slide.gridbox-bottom{
   height: 274px!important;
