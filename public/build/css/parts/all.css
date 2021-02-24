@@ -4046,6 +4046,17 @@ a:focus {
     background:none;
     color:#020A13;
   }
+
+  .btn-err {
+    padding: 0;
+    height: 27px;
+    background: none;
+    text-align: right;
+  }
+  .btn-err svg {
+    width: 27px;
+    height: 27px;
+  }
 }
 
 .btn-wrn,
@@ -4093,16 +4104,6 @@ a:focus {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-  }
-  .btn-err {
-    padding: 0;
-    height: 27px;
-    background: none;
-    text-align: right;
-  }
-  .btn-err svg {
-    width: 27px;
-    height: 27px;
   }
   .btn-wrn path {
     fill: #DB2424;
