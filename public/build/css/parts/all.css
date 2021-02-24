@@ -11760,6 +11760,7 @@ hr.widget{
 }
 .welcome_package-popup.active{
   display: block;
+  z-index: 9999;
 }
 .close-popup-wp{
   font-size: 13px;
@@ -14259,13 +14260,13 @@ h1.title + .subtitle{
   line-height: 17px;
 }
 @media (max-width: 690px){
-  .welcome_package-popup{
-    max-height: 354px;
+  .welcome_package-popup .bonuses-wp{
+    max-height: 325px;
     overflow: auto;
   }
-  .welcome_package-popup.above:after, .welcome_package-popup.above:before{
+  /* .welcome_package-popup.above:after, .welcome_package-popup.above:before{
     display: none;
-  }
+  } */
 }
 
 @media (max-width: 504px){
