@@ -20,16 +20,18 @@
         </div>
         <:if test="isset(${data.software})">
             <:if test="!${result.is_country_accepted}">
-                <:set var="cssClass" val="accepted"/>
-                <:set var="iconClass" val="available"/>
-            <:else>
                 <:set var="cssClass" val="not-accepted"/>
                 <:set var="iconClass" val="unavailable"/>
+                <:set var="text" val="Not accepted"/>
+            <:else>
+                <:set var="cssClass" val="accepted"/>
+                <:set var="iconClass" val="available"/>
+                <:set var="text" val="Accepted"/>
             </:if>
             <div class="country-wrap">
                 <img class="${cssClass} lazy_loaded flag-spacing" data-src="/public/build/images/flags/$[flag].png" width="20" height="15" alt="$[country]" data-alt="$[country]">
                 <i class="icon-icon_${iconClass}"></i>
-                Not accepted
+                ${text}
             </div>
         <:elseif test="isset(${data.user_country})">
                 <:if test="${result.is_currency_accepted} == 1 && ${result.is_language_accepted} == 1">

@@ -14224,10 +14224,13 @@ h1.title + .subtitle{
   display: none;
 }
 
-/* @media screen and (max-width: 1023px){
-  .data-container-holder.list-view .carousel-grid-casinos .list-rating{
-    width: unset!important;
-    text-indent: -99999px !important;
-    min-width: unset;
-  }
-} */
+.carousel-box-container .swiper-slide .btn-full-width {
+  height: 40px !important;
+  min-height: 40px !important;
+  cursor: pointer;
+  width: 100% !important;
+  border-radius: 4px !important;
+  margin: 0 !important;
+  text-indent: initial !important;
+  position: unset !important;
+}
