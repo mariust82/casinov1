@@ -628,18 +628,19 @@
 		<div class="box">
 			<h2 class="title title-middle">Compare with similar casinos</h2>
 			<div class="similar_casinos-container">
-				<div class="similar_casinos-header">
-					<span>Rating</span>
-					<span>Country</span>
-					<span>Currency</span>
-					<span>Language</span>
-					<span>Established</span>
-					<span class="fb">Free bonus</span>
-					<span class="fbd">First deposit</span>
-					<span>Min deposit</span>
-					<span>Min withdrawal <span class="show-mobile">min wdrl</span></span>
-				</div>
+				
 				<div class="similar_casinos-slider">
+					<div class="similar_casinos-header">
+						<span>Rating</span>
+						<span>Country</span>
+						<span>Currency</span>
+						<span>Language</span>
+						<span>Established</span>
+						<span class="fb">Free bonus</span>
+						<span class="fbd">First deposit</span>
+						<span>Min deposit</span>
+						<span>Min withdrawal <span class="show-mobile">min wdrl</span></span>
+					</div>
 					<:if test="${data.casino.status} == 'Blacklisted'">
 						<:set var="box_type_class" val="blacklisted-box"/>
 					<:elseif test="${data.casino.status} == 'Warning'">
@@ -758,7 +759,7 @@
 					<div class="similar_casino-box">
 						<img class="lazy_loaded similar_casino-logo" data-src="${getCasinoLogo(${item.code}, 124, 82)}" width="124" height="82" alt="${item.name} Logo" title="${item.name}">
 						<a href="/reviews/${normalize(${item.name})}-review" class="similar_casino-name">${item.name}</a>
-						<:set var="score" val="get_rating(${data.casino.rating})"/>
+						<:set var="score" val="get_rating(${item.rating})"/>
 						<div class="list-rating ${normalize(${score})}">
 						<:if test="${item.rating} == 0">
 							${score}
@@ -775,10 +776,11 @@
 						<div class="similar-row">
 							<:if test="${item.is_country_accepted} == 1">
 								<i class="icon-icon_available"></i>
+								<img class="accepted country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
 							<:else>
 								<i class="icon-icon_unavailable"></i>
+								<img class="not-accepted country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
 							</:if>
-							<img class="${data.country_status} country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
 						</div> 
 						<div class="similar-row">
 							<:if test="!empty(${data.country.currency})">
