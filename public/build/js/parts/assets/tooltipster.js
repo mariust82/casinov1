@@ -1378,8 +1378,10 @@
                     if (i == data_arr.length - 1) {
                         comma = "";
                     }
-                    if (self._$origin.hasClass('nolink_tooltip')) {
-                        // $content.append('<span class="list-title">'+data_arr[i]+'</span>'+comma);
+                    if (self._$origin.hasClass('game_tooltip')) {
+                        $content.append('<span class="list-title">'+data_arr[i]+'</span>'+comma);
+                    }
+                    else if (self._$origin.hasClass('nolink_tooltip')) {
                         $content.append('<a href="/banking/'+normal+'" class="soft_link list-title list_link">'+data_arr[i]+'</a>'+comma);
                     } else {
                         $content.append('<a href="/softwares/'+normal+'" class="soft_link list-title list_link">'+data_arr[i]+'</a>'+comma);

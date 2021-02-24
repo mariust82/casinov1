@@ -24,7 +24,7 @@
                     ${gameNames(${result.bonus_free.games_allowed})}
                     <:set var="extra" val="count(gamesAllowed(${result.bonus_free.games_allowed}))-1"/>
                     <:if test="${extra} > 0">
-                    <span class="bubble bubble-long js-tooltip software_tooltip nolink_tooltip tooltipstered" title="${result.bonus_free.games_allowed}">
+                    <span class="bubble bubble-long js-tooltip software_tooltip nolink_tooltip game_tooltip tooltipstered" title="${result.bonus_free.games_allowed}">
                     More
                     </span>
                     </:if>
@@ -32,9 +32,9 @@
                         ${gameNames(${result.bonus_first_deposit.games_allowed})}
                         <:set var="extra" val="count(gamesAllowed(${result.bonus_first_deposit.games_allowed}))-1"/>
                         <:if test="${extra} > 0">
-                    <span class="bubble bubble-long js-tooltip software_tooltip tooltipstered" title="${result.bonus_first_deposit.games_allowed}">
-                    More
-                    </span>
+                        <span class="bubble bubble-long js-tooltip software_tooltip tooltipstered" title="${result.bonus_first_deposit.games_allowed}">
+                        More
+                        </span>
                         </:if>
                 </:if>
             </div>
