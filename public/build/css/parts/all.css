@@ -3415,7 +3415,7 @@ a:focus {
 }
 
 .carousel {
-  margin: 0 0 45px;
+  margin: 0 0 48.5px;
 }
 
 @media screen and (max-width: 690px) {
@@ -13826,6 +13826,7 @@ h1.title + .subtitle{
   cursor:pointer;
   text-align: center;
   width: 100%;
+  color: #465156;
 }
 .carousel-box-container .bonus-wrap-container .free{
   color: #529724;
