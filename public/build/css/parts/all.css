@@ -14266,3 +14266,10 @@ h1.title + .subtitle{
     display: none;
   }
 }
+
+@media (max-width: 504px){
+  .similar_casinos-header{
+    max-width: 96px;
+    min-width: 96px;
+  }
+}
