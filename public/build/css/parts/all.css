@@ -13386,6 +13386,7 @@ h1.title + .subtitle{
 }
 .similar_casinos-header{
   width: 15%;
+  min-width: 133px;
   font: normal normal 600 11px/18px Open Sans;
   letter-spacing: 0px;
   color: #465156;
@@ -13476,7 +13477,7 @@ h1.title + .subtitle{
 }
 .similar_casinos-slider {
   display: flex;
-  width: 85%;
+  width: 100%;
   overflow: scroll;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none; 
