@@ -628,18 +628,19 @@
 		<div class="box">
 			<h2 class="title title-middle">Compare with similar casinos</h2>
 			<div class="similar_casinos-container">
-				<div class="similar_casinos-header">
-					<span>Rating</span>
-					<span>Country</span>
-					<span>Currency</span>
-					<span>Language</span>
-					<span>Established</span>
-					<span class="fb">Free bonus</span>
-					<span class="fbd">First deposit</span>
-					<span>Min deposit</span>
-					<span>Min withdrawal <span class="show-mobile">min wdrl</span></span>
-				</div>
+				
 				<div class="similar_casinos-slider">
+					<div class="similar_casinos-header">
+						<span>Rating</span>
+						<span>Country</span>
+						<span>Currency</span>
+						<span>Language</span>
+						<span>Established</span>
+						<span class="fb">Free bonus</span>
+						<span class="fbd">First deposit</span>
+						<span>Min deposit</span>
+						<span>Min withdrawal <span class="show-mobile">min wdrl</span></span>
+					</div>
 					<:if test="${data.casino.status} == 'Blacklisted'">
 						<:set var="box_type_class" val="blacklisted-box"/>
 					<:elseif test="${data.casino.status} == 'Warning'">
