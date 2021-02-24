@@ -14267,6 +14267,9 @@ h1.title + .subtitle{
   /* .welcome_package-popup.above:after, .welcome_package-popup.above:before{
     display: none;
   } */
+  .welcome_package-popup.bonus-popup.above {
+    max-height: 354px;
+  }
 }
 
 @media (max-width: 504px){
