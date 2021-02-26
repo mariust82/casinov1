@@ -1,14 +1,10 @@
 <?php
 require_once("vendor/lucinda/queries/plugins/MySQL/MySQLSelect.php");
 require_once("ListSearchResults.php");
+require_once("AbstractSearch.php");
 
-class ListsSearch
+class ListsSearch extends AbstractSearch
 {
-    private $value;
-    public function __construct($value = '')
-    {
-        $this->value = $value;
-    }
     
     public function getResults($offset=0, $limit=0)
     {
@@ -52,7 +48,7 @@ class ListsSearch
     public function getSoftwares()
     {
         if ($this->value == "") {
-            $select = new Lucinda\Query\Select("game_manufacturers", "t1");
+            $select = new Lucinda\Query\MySQLSelect("game_manufacturers", "t1");
             $select->fields([
                 ' t1.name AS unit',
                 'count(t1.id) as counter'
@@ -98,7 +94,7 @@ class ListsSearch
     
     public function getBonuses()
     {
-        $select = new Lucinda\Query\Select("bonus_types", "t1");
+        $select = new Lucinda\Query\MySQLSelect("bonus_types", "t1");
         $select->fields([
            ' t1.name AS unit',
             'count(t1.id) as counter'
@@ -108,25 +104,25 @@ class ListsSearch
         $where =  $select->where();
         $where->setIn('t1.name', ['"Free Play"', '"Free Spins"', '"No Deposit Bonus"']);
         $where->set('t3.is_open', 1);
-        $where->setLike('t1.name', ':search_value');
-        $res = SQL($select->toString(), [':search_value' => $this->value ]);
+        $where->setLike('t1.name', "'%".$this->value."%'");
+        $res = SQL($select->toString());
         $output = $this->loop($res, "bonus-list/(name)");
         return $output;
     }
 
     public function getCasinos()
     {
-        $select = new Lucinda\Query\Select("casino_labels", "t1");
+        $select = new Lucinda\Query\MySQLSelect("casino_labels", "t1");
         $select->fields(['t1.name AS unit', 'count(t1.id) as counter']);
         $select->joinInner('casinos__labels', 't2')->on(['t1.id' => 't2.label_id']);
         $select->joinInner('casinos', 't3')->on(['t2.casino_id' => 't3.id']);
         $where =  $select->where();
         $where->set('t3.is_open', 1);
         $where->set('t1.id', 8, Lucinda\Query\ComparisonOperator::DIFFERS);
-        $where->setLike('t1.name', ':search_value');
+        $where->setLike('t1.name', "'%".$this->value."%'");
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);
-        $res = SQL($select->toString(), [':search_value' => $this->value ]);
+        $res = SQL($select->toString());
 
         $labels = $this->loop($res, "casinos/(name)");
 
@@ -200,7 +196,7 @@ class ListsSearch
     
     public function getBanking()
     {
-        $select  = new Lucinda\Query\Select("banking_methods", "t1");
+        $select  = new Lucinda\Query\MySQLSelect("banking_methods", "t1");
         $select->fields(['t1.name AS unit', 'count(t1.id) as counter']);
         $select->joinInner('casinos__deposit_methods', 't2')->on(['t1.id' => 't2.banking_method_id']);
         $select->joinInner('casinos', 't3')->on(['t2.casino_id' => 't3.id']);
@@ -216,7 +212,7 @@ class ListsSearch
     
     public function getGames()
     {
-        $select  = new Lucinda\Query\Select("game_types", "t1");
+        $select  = new Lucinda\Query\MySQLSelect("game_types", "t1");
         $select->fields(['t1.name AS unit', 'count(t1.id) as counter']);
         $select->joinInner('games', 't2')->on(['t1.id' => 't2.game_type_id']);
         $where =  $select->where();
@@ -240,5 +236,16 @@ class ListsSearch
             'BetSoft Casinos' => '/softwares/betsoft',
             'Rival Casinos' => '/softwares/rival',
             'MicroGaming Casinos' => '/softwares/microgaming');
+    }    
+    
+    protected function setCondition(\Lucinda\Query\MySQLCondition $condition, $search, $column, $className) {
+        if ($search) {
+            $object = new $className($search);
+            if ($object->isMatchAgainst()) {
+                $condition->setMatchAgainst([$column], "'".$object->getPattern()."'", \Lucinda\Query\MySQLMatchType::BOOLEAN);
+            } else {
+                $condition->setLike($column, "'".$object->getPattern()."'");
+            }
+        }
     }
 }
