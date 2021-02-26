@@ -9,7 +9,7 @@ class AbstractSearch
     }
     
     protected function getLike($column, $className) {
-        $condition = "";
+        $condition = "1";
         if ($this->value) {
             $object = new $className($this->value);
             if ($object->isMatchAgainst()) {
