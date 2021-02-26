@@ -453,6 +453,9 @@ class CasinosList
         while ($row = $resultSet->toRow()) {
             $output[] = $row["id"];
         }
+        if (empty($output)) {
+            return [];
+        }
 
         $query = " 
                   SELECT t1.id, t1.name as unit, COUNT(t1.id) AS nr
