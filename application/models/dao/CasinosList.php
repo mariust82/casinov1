@@ -367,7 +367,7 @@ class CasinosList
                     INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$id} 
                     LEFT OUTER JOIN casino_statuses AS cs ON t1.status_id = cs.id WHERE t1.is_open = 1 AND t1.status_id IN (0,3)
                     AND t1.date_established <= '{$date}' AND t1.rating_votes >= 10 AND (t1.rating_total/t1.rating_votes) >= 7.5 
-                    GROUP BY t1.id ORDER BY complex_case ASC, average_rating DESC, t1.priority DESC, t1.id DESC LIMIT {$limit} OFFSET {$offset}");
+                    GROUP BY t1.id ORDER BY average_rating DESC, t1.priority DESC, t1.id DESC LIMIT {$limit} OFFSET {$offset}");
         while ($row = $res->toRow()) {
             $object = new Casino();
             $object->id = $row['id'];
