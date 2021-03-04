@@ -11067,6 +11067,7 @@ hr.widget{
   border-radius: 4px;
   padding: 10px 30px;
   text-indent: initial;
+  height: 35px !important;
 }
 .grid_view .btn-rest,
 .list-view .btn-rest{
