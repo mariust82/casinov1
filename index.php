@@ -1,4 +1,6 @@
 <?php
+require "vendor/autoload.php";
+
 // performs environment detection
 $environment = getenv("ENVIRONMENT");
 if(!$environment) die("Value of environment variable 'ENVIRONMENT' could not be detected!");

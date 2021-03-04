@@ -15,6 +15,7 @@ xml/application_stderr.xml
 xml/application_stderr_frontend.xml
 xml/application_stdout_frontend.xml
 xml/application_stdout.xml
+xml/file_db.xml
 sync/stdout.xml
 index.php
 .htaccess
