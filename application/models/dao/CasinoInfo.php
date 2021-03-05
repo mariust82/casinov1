@@ -14,10 +14,15 @@ class CasinoInfo
         $this->setResult($id, $countryId);
     }
     
-    public function getUserVote($casinoID, $ip)
+    public function getCasinoScore($casinoID)
     {
-        return SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = $casinoID", array(":ip"=>$ip))->toValue();
+        return SQL("SELECT SUM(value) / COUNT(value) AS average FROM casinos__ratings WHERE casino_id = {$casinoID}")->toValue();
     }
+    public function getUserScore($casinoID, $ip)
+    {
+        return  SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = {$casinoID}", array(":ip"=>$ip))->toValue();
+    }
+
 
     private function setResult($id, $countryId)
     {
@@ -293,11 +298,15 @@ class CasinoInfo
     {
         if ($score == 0) {
             return 'No score';
-        } elseif ($score >= 1 && $score <= 4.99) {
+        } elseif ($score >= 1 && $score < 3) {
+            return  'Terrible';
+        } elseif ($score >= 3 && $score < 5) {
             return  'Poor';
-        } elseif ($score >= 5 && $score <= 7.99) {
+        } elseif ($score >= 5 && $score < 7) {
             return  'Good';
-        } elseif ($score >= 8 && $score <= 10) {
+        } elseif ($score >= 7 && $score < 9) {
+            return  'Very good';
+        } elseif ($score >= 9 && $score <= 10) {
             return 'Excellent';
         }
     }
@@ -430,7 +439,7 @@ class CasinoInfo
         foreach ($casino_deposit_methods as $key => $value) {
             $casino_deposit_methods_data[$value]['deposit_methods'] = in_array($value, $deposit_methods);
             $casino_deposit_methods_data[$value]['withdraw_methods'] = in_array($value, $withdraw_methods);
-            $casino_deposit_methods_data[$value]['logo'] = '/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $value)).'.png';
+            $casino_deposit_methods_data[$value]['logo'] = $value;
         }
         return $casino_deposit_methods_data;
     }

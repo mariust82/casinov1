@@ -2,6 +2,7 @@ var AJAX_CUR_PAGE = 1;
 var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
+var NDB_CURR_PAGE = 1;
 var COUNTRY_CURR_PAGE = 1;
 var BEST_BANKING_PAGE = 1;
 var searched_value = '';
@@ -172,8 +173,40 @@ function changeViewElements(filterView,container,gridClass,listClass){
     var ww = $(window).width();
 
     $(document).ready(function () {
+        if($('.js-bonus-trigger').length > 0 ){
+            showCasinoBonuses();
+        }
 
+        if($('.similar_casinos-slider').length > 0){
+            var similarSlider = $('.similar_casinos-slider');
+            var isDown = false;
+            var startX,
+                scrollL;
 
+            similarSlider
+            .mousedown(function(e) {
+                isDown = true;
+                $(this).addClass('active');
+                startX = e.pageX - $(this).offset().left;
+                scrollL = $(this).scrollLeft();
+            })
+            .mouseleave(function(){
+                isDown = false;
+                $(this).removeClass('active');
+            })
+            .mouseup(function(){
+                isDown = false;
+                $(this).removeClass('active');
+            })
+            .mousemove(function (e) {
+                if(!isDown) return;
+                e.preventDefault();
+                var xAxis = e.pageX - $(this).offset().left;
+                var walk = (xAxis - startX) * 1;
+                $(this).scrollLeft(scrollL - walk);
+            });
+            
+        }
         //Load Defer Scripts and Binding
         if ($('.links-nav').length) {
             loadScripts(['bindings', 'assets/swiper']);
@@ -587,6 +620,8 @@ function determineCasinoPage(key) {
         page = NEW_CURR_PAGE;
     } else if (key === 'best') {
         page = BEST_CURR_PAGE;
+     } else if (key === 'ndb') {
+        page = NDB_CURR_PAGE;
     } else if (key === 'country') {
         page = COUNTRY_CURR_PAGE;
     }
@@ -599,6 +634,8 @@ function raiseCasinoPage(key) {
         NEW_CURR_PAGE++;
     } else if (key === 'best') {
         BEST_CURR_PAGE++;
+    } else if (key === 'ndb') {
+        NDB_CURR_PAGE++;
     } else if (key === 'country') {
         COUNTRY_CURR_PAGE++;
     }
@@ -626,4 +663,103 @@ function gridViewBoxPopup(){
         });
     }
 }
+function closeCasinoPopup(container){
+    $('.bonus-popup').find('.close_popup-wp').click(function(e){
+        e.stopPropagation();
+        $('.bonus-popup').remove();
+    });
+}
+function showCasinoBonuses(){
 
+    $('.js-bonus-trigger').click(function(e){
+        e.stopPropagation();
+
+        var _this = $(this);
+        var _buttonPosition = _this.offset();
+        if(_this.find('.bonus').length > 0){
+            if($('body').find('.bonus-popup').hasClass('active')){
+                $('.bonus-popup').remove();
+            }else{
+                var _request = new XMLHttpRequest();
+                _request.abort();
+                _request = $.ajax( {
+                    url: "/casino-bonuses-popup",
+                    data: {
+                        id: _this.data('casino-id')
+                    },
+                    dataType: 'html',
+                    timeout: 20000,
+                    type: 'GET',
+                    success: function ( data ) {
+                        if($('.bonus-popup').length > 0){
+                            $('.bonus-popup').remove();
+                        }
+
+                        $('body').append(data);
+                        closeCasinoPopup(_this);
+
+                        var popPositionTop = _buttonPosition.top + 105;
+                        var popPositionLeft = _buttonPosition.left + _this.width()/2;
+                        var pop = $('.bonus-popup');
+                        var popHeight = pop.height();
+                        var popWidth = pop.width();
+                        var buttonWidth = _this.width();
+
+                        var popPosition = {
+                            top: popPositionTop,
+                            left: popPositionLeft
+                        };
+
+                        if (popPositionTop + popHeight - $(window).scrollTop() > $(window).height()) {
+                            if($(window).width() < 450){
+                                popPosition['top'] = _buttonPosition.top - _this.height() - popHeight + 44;
+                            }else{
+                                popPosition['top'] = _buttonPosition.top - _this.height() - popHeight + 10;
+                            }
+                            pop.addClass('above');
+                        } else {
+                            pop.removeClass('above');
+                        }
+
+                        if (popPositionLeft - (popWidth/2) < 0) {
+                            popPosition['left'] = _buttonPosition.left;
+                            pop.addClass('on-right');
+                        } else {
+                            pop.removeClass('on-right');
+                        }
+
+                        if (popPositionLeft + (popWidth/2) > $(window).width()) {
+                            popPosition['left'] = _buttonPosition.left + buttonWidth - popWidth;
+                            pop.addClass('on-left');
+                        } else {
+                            pop.removeClass('on-left');
+                        }
+
+                        pop.addClass('active').css(popPosition);
+
+                        copyToClipboard();
+                        $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
+
+                    },
+                    error: function ( jqXHR ) {
+    
+                    }
+                });
+            }
+
+            $('body').on('click', function(e) {
+                if ($(e.target).closest('.bonus-popup').length == 0) {
+                    $('.bonus-popup').remove();
+                }
+            });
+        }
+        
+    });
+}
+
+
+
+
+
+
+    

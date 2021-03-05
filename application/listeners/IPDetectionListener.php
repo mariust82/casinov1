@@ -32,6 +32,7 @@ class IPDetectionListener extends Lucinda\MVC\STDOUT\RequestListener
         }
         $country->id = $countries->getIDByCode($country->code);
         $country->languages = $countries->getLanguages($country->id);
+        $country->currency = $countries->getCurrency($country->id);
         $this->request->attributes('country', $country);
 
         // detects and saves ip

@@ -1,23 +1,18 @@
 <?php
-class GamesSearch
+require_once("AbstractSearch.php");
+require_once("hlis/search/Search.php");
+
+class GamesSearch extends AbstractSearch
 {
-    private $value;
-
-    public function __construct($value)
-    {
-        $this->value = $value;
-    }
-
     public function getResults($limit, $offset)
     {
         return SQL(
             "
             SELECT name
             FROM games
-            WHERE name LIKE :name
+            WHERE ".$this->getLike("name", \Hlis\Search::class)."
             ORDER BY id DESC, name ASC
-            LIMIT ".$limit." OFFSET ".$offset,
-            array(":name"=>"%".$this->value."%")
+            LIMIT ".$limit." OFFSET ".$offset
         )->toColumn();
     }
 
@@ -26,8 +21,7 @@ class GamesSearch
         // build query
         return (integer) SQL(
             "
-            SELECT COUNT(id) AS nr FROM games WHERE name LIKE :name",
-            array(":name"=>"%".$this->value."%")
+            SELECT COUNT(id) AS nr FROM games WHERE ".$this->getLike("name", \Hlis\Search::class)
         )->toValue();
     }
 }

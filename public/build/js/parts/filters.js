@@ -793,16 +793,18 @@ function customSelectFunc() {
 
             // `params.term` should be the term that is used for searching
             // `data.text` is the text that is displayed for the data object
-            if (data.text.toLowerCase().indexOf(params.term.toLowerCase()) > -1 || data.selected) {
-                var modifiedData = $.extend({}, data, true);
-                modifiedData.text;
+            // if (data.text.toLowerCase().indexOf(params.term.toLowerCase()) > -1 || data.selected) {
+            //     var modifiedData = $.extend({}, data, true);
+            //     modifiedData.text;
 
-                // You can return modified objects from here
-                // This includes matching the `children` how you want in nested data sets
-                // return modifiedData;
+            //     // You can return modified objects from here
+            //     // This includes matching the `children` how you want in nested data sets
+            //     // return modifiedData;
+            //     return data;
+            // }
+            if (!params.term || params.term.trim() === '' || data.text.indexOf(params.term) > -1) {
                 return data;
             }
-
             // Return `null` if the term should not be displayed
             return null;
         }
@@ -910,15 +912,15 @@ function processCheckboxes(_this) {
             }
         });
 
-        // $('.select2-search__field').off("keyup").on('keyup', function () {
-        //     checkIds();
-        //     if (!searchIDs.length) {
-        //         clearButtonSelector.hide();
-        //     } else {
-        //         printClearButtonText(searchIDs.length);
-        //         clearButtonSelector.show();
-        //     }
-        // });
+        $('.select2-search__field').off("keyup").on('keyup', function () {
+            checkIds();
+            if (!searchIDs.length) {
+                clearButtonSelector.hide();
+            } else {
+                printClearButtonText(searchIDs.length);
+                clearButtonSelector.show();
+            }
+        });
 
         // function showHideClearButton() {
         //     if (!searchIDs.length) {

@@ -1,7 +1,9 @@
 <?php
+require_once("application/models/dao/CasinosCompareList.php");
 require_once("application/models/dao/CasinoInfo.php");
 require_once("application/models/dao/CasinoReviews.php");
 require_once("application/models/dao/CasinosMenu.php");
+require_once("application/models/CasinoFilter.php");
 require_once("BaseController.php");
 
 
@@ -30,14 +32,10 @@ class CasinoInfoController extends BaseController
 
         $this->casinoInfo = $info;
         $this->response->attributes("casino", (array) $info);
-        $this->response->attributes(
-            "user_score",
-            $object->getUserVote(
-                $info->id,
-                $this->request->attributes('ip')
-            ) == false ? 0: $object->getUserVote($info->id, $this->request->attributes('ip'))
+        $this->response->attributes("casino_score", $object->getCasinoScore($info->id) == false ? 0: $object->getCasinoScore($info->id));
+        $this->response->attributes('casino_score_class', $object->getScoreClass($this->response->attributes('casino_score')));
+        $this->response->attributes("user_score", $object->getUserScore($info->id,$this->request->attributes('ip')) == false ? 0: $object->getUserScore($info->id, $this->request->attributes('ip'))
         );
-        $this->response->attributes('user_score_class', $object->getScoreClass($this->response->attributes('user_score')));
         // get reviews
         $object = new CasinoReviews();
         $total = $object->getAllTotal($info->id);
@@ -56,6 +54,11 @@ class CasinoInfoController extends BaseController
         $this->response->attributes('country_status', $this->get_country_status($info->is_country_accepted));
         $this->response->attributes('add_text', $this->containsCasino($info->name));
         $this->response->attributes('country_status_text', $object->getCountryStatusText($this->response->attributes('country_status')));
+        
+        // get compare list (CASLI-1685)
+        $filter = new CasinoFilter([], $this->request->attributes("country"));
+        $object = new CasinosCompareList($filter);
+        $this->response->attributes("compare_list", $object->getList($info, 5));
     }
 
     protected function pageInfo()

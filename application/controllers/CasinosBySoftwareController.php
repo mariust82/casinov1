@@ -44,14 +44,25 @@ class CasinosBySoftwareController extends CasinosListController
         $results = $gfl->getResults();
         $this->response->attributes("recommended_games", $results['list']);
         $this->response->attributes("total_games", $results["total"]);
-        $this->response->attributes("new_casinos", $this->getCasinos([], CasinoSortCriteria::NEWEST, 5,'New')['result']);
-        $this->response->attributes("new_casinos_total", $this->getCasinos([], CasinoSortCriteria::NEWEST, 5,'New')['total']);
-        $this->response->attributes("best_casinos", $this->getCasinos([], CasinoSortCriteria::TOP_RATED, 5,'Best')['result']);
-        $this->response->attributes("best_casinos_total", $this->getCasinos([], CasinoSortCriteria::TOP_RATED, 5,'Best')['total']);
-        $this->response->attributes("country_casinos", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::NONE, 5)['result']);
-        $this->response->attributes("country_casinos_total", $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::NONE, 5)['total']);
+        $new_casinos = $this->getCasinos([], CasinoSortCriteria::NEWEST, 5,'New');
+        $best_casinos = $this->getCasinos([], CasinoSortCriteria::TOP_RATED, 5,'Best');
+        $ndp_casinos = $this->getCasinos(array("bonus_type"=>"no deposit bonus"), CasinoSortCriteria::DATE_ADDED, 5);
+        $country_casinos = $this->getCasinos(array("country_accepted"=>1), CasinoSortCriteria::NONE, 5);
+        $this->response->attributes("new_casinos", $new_casinos['result']);
+        $this->response->attributes("new_casinos_total", $new_casinos['total']);
+        $this->response->attributes("best_casinos", $best_casinos['result']);
+        $this->response->attributes("best_casinos_total", $best_casinos['total']);
+        $this->response->attributes("no_deposit_casinos", $ndp_casinos['result']);
+        $this->response->attributes("no_deposit_casinos_total", $ndp_casinos['total']);
+        $this->response->attributes("country_casinos", $country_casinos['result']);
+        $this->response->attributes("country_casinos_total", $country_casinos['total']);
         $this->response->attributes("software_id", $id);
         $this->response->attributes("software", $name);
+        $filter = new CasinoFilter(
+            array($this->response->attributes("filter") => $this->response->attributes("selected_entity")),
+            $this->request->attributes("country")
+        );
+        $dao = new CasinosList($filter);
     }
 
     protected function getFilter()

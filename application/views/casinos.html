@@ -14,18 +14,20 @@
             <div class="container carousel-grid-casinos">
                 <:if test="isset(${data.software})">
                     <:if test="${data.best_casinos_total} > 0">
-                        <casino:carousel-grid section="top" id="best-software" title="Best ${data.software} Casinos"  items="${data.best_casinos}" country="${data.user_country}" description="asd"/>
+                        <:set var="desc" val="isset(${data.widgets.best}) ? implode('\n', ${data.widgets.best}) : ''"/>
+                        <casino:carousel-grid flag="${data.country.code}" page="software" total="${data.best_casinos_total}" value="${data.software}" section="top" type="best" id="best-software" title="Best ${data.software} Casinos"  items="${data.best_casinos}" country="${data.country.code}" description="${desc}"/>
                     </:if>
             </div>
         </div>
         <h2 class="title title-middle">All ${data.software} Online Casinos</h2>
-        <:elseif test="isset(${data.user_country})">
+        <:elseif test="isset(${data.country_page})">
             <:if test="${data.best_casinos_total} > 0">
-                <casino:carousel-grid section="top" id="best-country" title="Best ${data.user_country} Online Casinos"  items="${data.best_casinos}" country="${data.user_country}" description="asd"/>
+                <:set var="desc" val="isset(${data.widgets.best}) ? implode('\n', ${data.widgets.best}) : ''"/>
+                <casino:carousel-grid flag="${data.country_code}" page="country" total="${data.best_casinos_total}" value="${data.country_id}" section="top" id="best-country" type="best" title="Best ${data.country_page} Online Casinos"  items="${data.best_casinos}" country="${data.country_page}" description="${desc}"/>
             </:if>
     </div>
 </div>
-<h2 class="title title-middle">All ${data.user_country} Online Casinos</h2>
+<h2 class="title title-middle">All ${data.country_page} Online Casinos</h2>
 </:if>
 <!-- end if -->
 <!-- /end if page is software or country -->
@@ -61,7 +63,7 @@
     </div>
 </div>
 <filter:reset/>
-</div>
+
 
 <:if test="${data.total_casinos} > count(${data.casinos})">
     <div class="btn-holder">
@@ -69,6 +71,26 @@
             LOAD MORE CASINOS</a>
     </div>
 </:if>
+
+
+<!-- if page is software or country-->
+<div class="block">
+    <div class="container carousel-grid-casinos">
+        <:if test="isset(${data.software})">
+            <:if test="${data.no_deposit_casinos_total} > 0">
+                <:set var="desc" val="isset(${data.widgets.ndb_software}) ? implode('\n', ${data.widgets.ndb_software}) : ''"/>
+                <casino:carousel-grid flag="${data.country.code}" page="software" total="${data.no_deposit_casinos_total}" value="${data.software}" section="bottom" id="ndb-software" type="ndb" title="${data.software} No Deposit Casinos"  items="${data.no_deposit_casinos}" country="${data.country.code}" description="${desc}"/>
+            </:if>
+            <:elseif test="isset(${data.country_page})">
+                <:if test="${data.new_casinos_total} > 0">
+                    <:set var="desc" val="isset(${data.widgets.ndb_country}) ? implode('\n', ${data.widgets.ndb_country}) : ''"/>
+                    <casino:carousel-grid flag="${data.country_code}" page="country" total="${data.new_casinos_total}" value="${data.country_id}" section="bottom" id="ndb-country" type="ndb" title="New ${data.country_page} No Deposit Casinos"  items="${data.new_casinos}" country="${data.country_page}" description="${desc}"/>
+                </:if>
+        </:if>
+    </div>
+</div>
+<!-- end  if -->
+
 <:if test="isset(${data.recommended_games})">
     <:if test="count(${data.recommended_games}) > 0">
         <div class="block related">
@@ -105,21 +127,7 @@
         </:if>
     </:if>
 </:if>
-<!-- if page is software or country-->
-<div class="block">
-    <div class="container carousel-grid-casinos">
-        <:if test="isset(${data.software})">
-            <:if test="${data.new_casinos_total} > 0">
-                <casino:carousel-grid section="bottom" id="ndb-software" title="${data.software} No Deposit Casinos"  items="${data.new_casinos}" country="${data.user_country}" description="asd"/>
-            </:if>
-            <:elseif test="isset(${data.user_country})">
-                <:if test="${data.new_casinos_total} > 0">
-                    <casino:carousel-grid section="bottom" id="ndb-country" title="New ${data.user_country} No Deposit Casinos"  items="${data.new_casinos}" country="${data.user_country}" description="asd"/>
-                </:if>
-        </:if>
-    </div>
-</div>
-<!-- end  if -->
+
 <:if test="isset(${data.recommended_games})">
     <:if test="${data.total_casinos} > 100">
         <div class="block">
@@ -149,35 +157,6 @@
                 </div>
             </:if>
         </div>
-
-        <div class="block">
-            <div class="container">
-                <div class="heading">
-                    <div class="title title-middle">Best ${data.software} Casinos</div>
-                </div>
-                <:if test="${data.best_casinos_total} > 0">
-                    <:if test="isset(${data.widgets.best})">
-                        <div class="subtitle plain-text">
-                            <div>
-                                <span>${implode("\n", ${data.widgets.best})}</span>
-                            </div>
-                        </div>
-                    </:if>
-                    <casino:list type="SOFTWARE" id="2" data="${data.best_casinos}" name="Best ${data.software} Casinos"/>
-                    <:else>
-                        <div>
-                            <p>There are no ${data.software} Casinos that comply with our criteria for Best Casinos. Please visit our <a class="missing" href="/casinos/best">Best Online Casinos</a> page and discover the top rated gambling sites.</p>
-                        </div>
-                </:if>
-            </div>
-            <:if test="${data.best_casinos_total} > 5">
-                <div class="btn-holder">
-                    <a class="btn-bordered load js-more-casinos" data-software="${data.software}" data-total="${data.best_casinos_total}" data-key="best">
-                        LOAD MORE CASINOS</a>
-                </div>
-            </:if>
-        </div>
-
         <div class="block">
             <div class="container">
                 <div class="heading">

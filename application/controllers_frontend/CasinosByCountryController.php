@@ -632,7 +632,1042 @@ $this->response->attributes("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes("currency", 'USD');
+$this->response->attributes("user_country", 'United States');
+$this->response->attributes("best_casinos_total", '8');
+$this->response->attributes("best_casinos", array (
+  2077 => 
+  array (
+    'id' => '2077',
+    'name' => 'Rich Palms Casino',
+    'code' => 'rich_palms_casino',
+    'rating' => '8.1176',
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => 'English',
+    'currencies' => 'USD',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '300% + 50 FS',
+      'min_deposit' => '$25',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'Slots, Keno, Bingo, Scratch Cards & Board Games (FS - Secret Jungle)',
+      'code' => 'SECRET300',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '$40',
+      'min_deposit' => '',
+      'wagering' => '50xB',
+      'games_allowed' => 'Slots, Keno, Bingo, Scratch Cards & Board Games',
+      'code' => 'SECRET40',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => '',
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+  1947 => 
+  array (
+    'id' => '1947',
+    'name' => 'Mega7s Casino',
+    'code' => 'mega7s_casino',
+    'rating' => '8.0741',
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => 'English',
+    'currencies' => 'USD',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '200%',
+      'min_deposit' => '$25',
+      'wagering' => '40x(D+B)',
+      'games_allowed' => 'All',
+      'code' => 'MEGA1',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => '',
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 0,
+  ),
+  2155 => 
+  array (
+    'id' => '2155',
+    'name' => 'Juicy Vegas Casino',
+    'code' => 'juicy_vegas_casino',
+    'rating' => '7.8649',
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => 'English',
+    'currencies' => 'USD',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '300%',
+      'min_deposit' => '$20',
+      'wagering' => '20x(D+B)',
+      'games_allowed' => 'All except selected games',
+      'code' => 'JVLISTS300',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '50',
+      'min_deposit' => '',
+      'wagering' => '25xB',
+      'games_allowed' => 'Asgard',
+      'code' => 'JVLISTS50',
+      'type' => 'Free Spins',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => '',
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+  2246 => 
+  array (
+    'id' => '2246',
+    'name' => 'DuckyLuck Casino',
+    'code' => 'ducky_luck_casino',
+    'rating' => '7.8378',
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => 'English',
+    'currencies' => 'USD',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '500% + 150 FS',
+      'min_deposit' => '£/€/$25',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'All games (FS - Mystic Wolf, Golden Gorilla, Five Times Wins)',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => '',
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 0,
+  ),
+  2161 => 
+  array (
+    'id' => '2161',
+    'name' => 'Ozwin Casino',
+    'code' => 'ozwin_casino',
+    'rating' => '7.6136',
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => 'English',
+    'currencies' => 'AUD',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '200% + 50 FS',
+      'min_deposit' => '$20',
+      'wagering' => '30x(D+B)/20xB',
+      'games_allowed' => 'All selected games (FS - Bubble Bubble 2)',
+      'code' => 'OZWELCOME-B',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => 'AU$15',
+      'min_deposit' => '',
+      'wagering' => '60xB',
+      'games_allowed' => 'Slots, Keno & Scratch Cards',
+      'code' => 'CHIPY15',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => '',
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+  1784 => 
+  array (
+    'id' => '1784',
+    'name' => 'Red Dog Casino',
+    'code' => 'red_dog_casino',
+    'rating' => '7.6102',
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => 'English',
+    'currencies' => 'USD',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '300%',
+      'min_deposit' => '$10',
+      'wagering' => '35x(D+B)',
+      'games_allowed' => 'Slots, Keno & Scratch Cards',
+      'code' => 'COME2WIN',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '$30',
+      'min_deposit' => '',
+      'wagering' => '50xB',
+      'games_allowed' => 'Slots, Keno, Scratch Cards & Board Games',
+      'code' => '30GIFT',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => '',
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+  691 => 
+  array (
+    'id' => '691',
+    'name' => 'Casino Adrenaline',
+    'code' => 'casino_adrenaline',
+    'rating' => '7.6044',
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => 'English',
+    'currencies' => 'USD',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '150% + 100 FS',
+      'min_deposit' => '$/€20',
+      'wagering' => '50xB',
+      'games_allowed' => 'All except selected games',
+      'code' => 'LISTS150',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '30',
+      'min_deposit' => '',
+      'wagering' => '40xB',
+      'games_allowed' => 'Fruit Zen',
+      'code' => 'LISTS30',
+      'type' => 'Free Spins',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => '',
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+  2224 => 
+  array (
+    'id' => '2224',
+    'name' => 'Betflip Casino',
+    'code' => 'betflip_casino',
+    'rating' => '7.5714',
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => 'English',
+    'currencies' => 'USD',
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '111% + 100 FS',
+      'min_deposit' => '$/€10',
+      'wagering' => '45x(D+B)',
+      'games_allowed' => 'All except selected games',
+      'code' => 'No code required',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => NULL,
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => '',
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => '1',
+    'note' => NULL,
+    'is_tc_link' => '0',
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 0,
+  ),
+));
+$this->response->attributes("new_casinos_total", '8');
+$this->response->attributes("new_casinos", array (
+  2315 => 
+  array (
+    'id' => '2315',
+    'name' => 'Las Atlantis Casino',
+    'code' => 'las_atlantis_casino',
+    'rating' => NULL,
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '260% + 40 FS',
+      'min_deposit' => '$10',
+      'wagering' => '35x(D+B)',
+      'games_allowed' => 'Slots, Keno, Scratch Cards & Board Games (FS - 5 Wishes)',
+      'code' => 'LASATLANTIS',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '$45',
+      'min_deposit' => '',
+      'wagering' => '50xB',
+      'games_allowed' => 'Slots, Keno, Scratch Cards & Board Games',
+      'code' => '45LISTS',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'is_tc_link' => NULL,
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+  2306 => 
+  array (
+    'id' => '2306',
+    'name' => 'Lucky Tiger Casino',
+    'code' => 'lucky_tiger_casino',
+    'rating' => NULL,
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '280% + 50 FS',
+      'min_deposit' => '$25',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'Slots, Keno, Bingo, Scratch Cards & Board Games (FS - Wild Hog Luau)',
+      'code' => 'WILD280',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '$55',
+      'min_deposit' => '',
+      'wagering' => '50xB',
+      'games_allowed' => 'Slots, Keno, Bingo, Scratch Cards & Board Games',
+      'code' => 'WILD55',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'is_tc_link' => NULL,
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+  2294 => 
+  array (
+    'id' => '2294',
+    'name' => 'NewVegas Casino',
+    'code' => 'newvegas_casino',
+    'rating' => NULL,
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '300% + 50 FS',
+      'min_deposit' => '$/€/£50',
+      'wagering' => '35xB',
+      'games_allowed' => 'All',
+      'code' => '300LISTS',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '35',
+      'min_deposit' => '',
+      'wagering' => '35xB',
+      'games_allowed' => 'All',
+      'code' => '35CAS',
+      'type' => 'Free Spins',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'is_tc_link' => NULL,
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+  2161 => 
+  array (
+    'id' => '2161',
+    'name' => 'Ozwin Casino',
+    'code' => 'ozwin_casino',
+    'rating' => NULL,
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '200% + 50 FS',
+      'min_deposit' => '$20',
+      'wagering' => '30x(D+B)/20xB',
+      'games_allowed' => 'All selected games (FS - Bubble Bubble 2)',
+      'code' => 'OZWELCOME-B',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => 'AU$15',
+      'min_deposit' => '',
+      'wagering' => '60xB',
+      'games_allowed' => 'Slots, Keno & Scratch Cards',
+      'code' => 'CHIPY15',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'is_tc_link' => NULL,
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+  2420 => 
+  array (
+    'id' => '2420',
+    'name' => 'Bobby Casino',
+    'code' => 'bobby_casino',
+    'rating' => NULL,
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '400%',
+      'min_deposit' => '$/€30',
+      'wagering' => '30xB',
+      'games_allowed' => 'All except selected games',
+      'code' => 'LISTS400',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '$225',
+      'min_deposit' => '',
+      'wagering' => '30xB',
+      'games_allowed' => 'All except selected games',
+      'code' => 'LISTS225',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'is_tc_link' => NULL,
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+  2133 => 
+  array (
+    'id' => '2133',
+    'name' => 'Play Croco Casino',
+    'code' => 'play_croco_casino',
+    'rating' => NULL,
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '200%',
+      'min_deposit' => '$20',
+      'wagering' => '30x(D+B)',
+      'games_allowed' => 'All except selected games',
+      'code' => 'PLAYCROCO',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '$10',
+      'min_deposit' => '',
+      'wagering' => '60xB',
+      'games_allowed' => 'All except selected games',
+      'code' => '10FREE',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'is_tc_link' => NULL,
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+  2068 => 
+  array (
+    'id' => '2068',
+    'name' => 'Yabby Casino',
+    'code' => 'yabby_casino',
+    'rating' => NULL,
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '200% + 50 FS',
+      'min_deposit' => ' $/€10',
+      'wagering' => '40x(D+B)',
+      'games_allowed' => 'All except selected games (FS - Tiger Treasures)',
+      'code' => 'LISTS200',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '$77',
+      'min_deposit' => '',
+      'wagering' => '40xB',
+      'games_allowed' => 'All except selected games',
+      'code' => 'LISTS77',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'is_tc_link' => NULL,
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+  2056 => 
+  array (
+    'id' => '2056',
+    'name' => 'El Royale Casino',
+    'code' => 'el_royale_casino',
+    'rating' => NULL,
+    'rating_votes' => NULL,
+    'softwares' => NULL,
+    'languages' => NULL,
+    'currencies' => NULL,
+    'bonus_first_deposit' => 
+    array (
+      'amount' => '240% + 40 FS',
+      'min_deposit' => '$10',
+      'wagering' => '35x(D+B)',
+      'games_allowed' => 'Slots, Keno, Scratch Cards & Board Games (FS - Bubble Bubble 2)',
+      'code' => 'TRUEROYAL',
+      'type' => 'First Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'bonus_free' => 
+    array (
+      'amount' => '$35',
+      'min_deposit' => '',
+      'wagering' => '50xB',
+      'games_allowed' => 'Slots, Keno, Scratch Cards & Board Games',
+      'code' => '35ROYALECHIP',
+      'type' => 'No Deposit Bonus',
+      'bonus_type_Abbreviation' => NULL,
+    ),
+    'live_dealers' => NULL,
+    'date_established' => NULL,
+    'emails' => NULL,
+    'phones' => NULL,
+    'is_live_chat' => NULL,
+    'licenses' => NULL,
+    'certifiers' => NULL,
+    'affiliate_program' => NULL,
+    'affiliate_link' => NULL,
+    'tc_link' => NULL,
+    'comments' => NULL,
+    'withdrawal_minimum' => NULL,
+    'withdrawal_limits' => NULL,
+    'withdrawal_timeframes' => NULL,
+    'deposit_methods' => NULL,
+    'withdraw_methods' => NULL,
+    'is_country_accepted' => '1',
+    'is_language_accepted' => NULL,
+    'email_link' => NULL,
+    'is_currency_accepted' => NULL,
+    'note' => NULL,
+    'is_tc_link' => NULL,
+    'logo_big' => NULL,
+    'logo_small' => NULL,
+    'new' => NULL,
+    'score_class' => NULL,
+    'all_softwares' => NULL,
+    'deposit_minimum' => NULL,
+    'welcome_package' => NULL,
+    'casino_deposit_methods' => 
+    array (
+    ),
+    'is_mobile' => NULL,
+    'casino_game_types' => NULL,
+    'isFree' => 1,
+  ),
+));
 $this->response->attributes("language", 'English');
 $this->response->attributes("selected_entity", 'United States');
 $this->response->attributes("is_mobile", false);
@@ -803,7 +1838,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -965,7 +2000,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -1127,7 +2162,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -1253,7 +2288,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -1367,7 +2402,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '0',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -1489,7 +2524,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -1626,7 +2661,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '0',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -1774,7 +2809,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -1918,7 +2953,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -2084,7 +3119,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '0',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -2220,7 +3255,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -2399,7 +3434,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -2549,7 +3584,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -2711,7 +3746,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -2882,7 +3917,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '0',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3032,7 +4067,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3174,7 +4209,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '0',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3324,7 +4359,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3458,7 +4493,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3614,7 +4649,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3753,7 +4788,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -3902,7 +4937,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '0',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -4052,7 +5087,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -4225,7 +5260,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -4379,7 +5414,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -4521,7 +5556,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -4673,7 +5708,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -4829,7 +5864,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -4973,7 +6008,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -5131,7 +6166,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -5300,7 +6335,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -5448,7 +6483,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '1',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -5619,7 +6654,7 @@ $this->response->attributes("casinos", array (
     'deposit_methods' => NULL,
     'withdraw_methods' => NULL,
     'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
+    'is_language_accepted' => '0',
     'email_link' => NULL,
     'is_currency_accepted' => '1',
     'note' => NULL,
@@ -5706,2347 +6741,6 @@ $this->response->attributes("casinos", array (
       6 => 
       array (
         'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  33 => 
-  array (
-    'id' => '190',
-    'name' => 'Slots of Vegas',
-    'code' => 'slots_of_vegas',
-    'rating' => 7,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => '$',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '300%',
-      'min_deposit' => '$30',
-      'wagering' => '5x(D+B)',
-      'games_allowed' => 'Slots & Keno',
-      'code' => 'CASINOLISTS1ST',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '25',
-      'min_deposit' => '',
-      'wagering' => '5xB',
-      'games_allowed' => 'Lucha Libre',
-      'code' => 'LIBRE25',
-      'type' => 'Free Spins',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2004-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => '1',
-    'withdrawal_minimum' => '$100',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => NULL,
-    'deposit_minimum' => '30',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'American Express' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/american_express.png',
-      ),
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Visa Electron' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa_electron.png',
-      ),
-      'Players Rewards Card' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/players_rewards_card.png',
-      ),
-      'Cheque' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/cheque.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      6 => 
-      array (
-        'name' => 'Keno',
-      ),
-      7 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      8 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  34 => 
-  array (
-    'id' => '340',
-    'name' => 'Exclusive Casino',
-    'code' => 'exclusive_casino',
-    'rating' => 7,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => '$',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '250%',
-      'min_deposit' => '$30',
-      'wagering' => '0',
-      'games_allowed' => 'Slots & Keno',
-      'code' => 'CHIPY250',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$50',
-      'min_deposit' => '',
-      'wagering' => '50xB',
-      'games_allowed' => 'All except Baccarat, Craps, Roulette, Sic Bo, War & Pai Gow Poker',
-      'code' => 'CHIPY50S',
-      'type' => 'No Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2012-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => '$100',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => NULL,
-    'deposit_minimum' => '25',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      2 => 
-      array (
-        'name' => 'Keno',
-      ),
-      3 => 
-      array (
-        'name' => 'Craps',
-      ),
-      4 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      5 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      6 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      7 => 
-      array (
-        'name' => 'Bingo',
-      ),
-      8 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  35 => 
-  array (
-    'id' => '949',
-    'name' => 'Casino Extreme',
-    'code' => 'casino_extreme',
-    'rating' => 6,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => '$/€',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '150%',
-      'min_deposit' => '$/€20',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'Non Progressive Slots, Video Poker & Keno',
-      'code' => 'LISTS150',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€60',
-      'min_deposit' => '',
-      'wagering' => '50xB',
-      'games_allowed' => 'Non Progressive Slots, Video Poker & Keno',
-      'code' => 'LISTSNDB',
-      'type' => 'No Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2000-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => '$/€20',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => NULL,
-    'deposit_minimum' => '10',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'EcoPayz' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neosurf' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'paysafecard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'UPayCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/upaycard.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Ethereum' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/ethereum.png',
-      ),
-      'Bitcoin Cash' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
-      ),
-      'Dash' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/dash.png',
-      ),
-      'Monero' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/monero.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Keno',
-      ),
-      6 => 
-      array (
-        'name' => 'Bingo',
-      ),
-      7 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      8 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  36 => 
-  array (
-    'id' => '56',
-    'name' => 'Silver Oak Casino',
-    'code' => 'silver_oak_casino',
-    'rating' => 6,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => '$',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '300%',
-      'min_deposit' => '$30',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'Slots,Keno,Scratch Cards,Bingo,Blackjack & Video Poker',
-      'code' => 'CHIPY300',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$100',
-      'min_deposit' => '',
-      'wagering' => '30xB',
-      'games_allowed' => 'Slots,Keno,Scratch Cards,Video Poker & Blackjack',
-      'code' => 'FREE100SOAK',
-      'type' => 'No Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2009-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => '1',
-    'withdrawal_minimum' => '$50',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => NULL,
-    'deposit_minimum' => '30',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'American Express' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/american_express.png',
-      ),
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Cheque' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/cheque.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      6 => 
-      array (
-        'name' => 'Keno',
-      ),
-      7 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      8 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  37 => 
-  array (
-    'id' => '2133',
-    'name' => 'Play Croco Casino',
-    'code' => 'play_croco_casino',
-    'rating' => 7,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => 'AU$',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '200%',
-      'min_deposit' => '$20',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'All except selected games',
-      'code' => 'PLAYCROCO',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$10',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'All except selected games',
-      'code' => '10FREE',
-      'type' => 'No Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2020-04-21',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => 'AU$100',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => true,
-    'score_class' => 'Good',
-    'all_softwares' => NULL,
-    'deposit_minimum' => '10',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neosurf' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Bitcoin Cash' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Keno',
-      ),
-      6 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      7 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  38 => 
-  array (
-    'id' => '166',
-    'name' => 'Golden Lady Casino',
-    'code' => 'golden_lady_casino',
-    'rating' => 7,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => '$/€/£',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '600%',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '35x(D+B)',
-      'games_allowed' => 'Slots',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€/£222',
-      'min_deposit' => '',
-      'wagering' => '0.2xB',
-      'games_allowed' => 'Slots',
-      'code' => 'No code required',
-      'type' => 'Free Play',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2013-11-30',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => '1',
-    'withdrawal_minimum' => '$/€/£100',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => NULL,
-    'deposit_minimum' => '25',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neosurf' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'paysafecard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      6 => 
-      array (
-        'name' => 'Keno',
-      ),
-      7 => 
-      array (
-        'name' => 'Bingo',
-      ),
-      8 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      9 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  39 => 
-  array (
-    'id' => '122',
-    'name' => 'Superior Casino',
-    'code' => 'superior_casino',
-    'rating' => 7,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'Rival',
-      1 => 'BetSoft',
-      2 => 'Saucify',
-      3 => 'Vivo Gaming',
-      4 => 'Tom Horn Gaming',
-      5 => 'Spinomenal',
-    ),
-    'languages' => NULL,
-    'currencies' => '$/€/£',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '270% + 50 FS',
-      'min_deposit' => '$/€/£25',
-      'wagering' => '50x(D+B)',
-      'games_allowed' => 'Slots & Specialty Games (FS - Party Parrot)',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$30',
-      'min_deposit' => '',
-      'wagering' => '50xB',
-      'games_allowed' => 'Slots',
-      'code' => 'No code required',
-      'type' => 'No Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2005-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => '3',
-    'withdrawal_minimum' => '$/€/£25',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => 'BetSoft, Saucify, Vivo Gaming, Tom Horn Gaming, Spinomenal',
-    'deposit_minimum' => '25',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'paysafecard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      6 => 
-      array (
-        'name' => 'Keno',
-      ),
-      7 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      8 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  40 => 
-  array (
-    'id' => '1058',
-    'name' => 'Jackpot Wheel Casino',
-    'code' => 'jackpot_wheel_casino',
-    'rating' => 6,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'BetSoft',
-      1 => 'Rival',
-      2 => 'Saucify',
-    ),
-    'languages' => NULL,
-    'currencies' => '$',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '300%',
-      'min_deposit' => '$20',
-      'wagering' => '60xB',
-      'games_allowed' => 'All except selected games',
-      'code' => 'LISTS300',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '50',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'Big Game',
-      'code' => '50LISTS',
-      'type' => 'Free Spins',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2016-07-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => '1',
-    'withdrawal_minimum' => '$100',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => 'Rival, Saucify',
-    'deposit_minimum' => '20',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'EcoPayz' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'UPayCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/upaycard.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Cheque' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/cheque.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      6 => 
-      array (
-        'name' => 'Keno',
-      ),
-      7 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  41 => 
-  array (
-    'id' => '1182',
-    'name' => 'Casino Brango',
-    'code' => 'casino_brango',
-    'rating' => 5,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => '$/€',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '150%',
-      'min_deposit' => '$/€20',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'Non Progressive Slots, Video Poker & Keno',
-      'code' => 'LISTS150',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$/€60',
-      'min_deposit' => '',
-      'wagering' => '50xB',
-      'games_allowed' => 'Non Progressive Slots, Video Poker & Keno',
-      'code' => 'LISTSNDB',
-      'type' => 'No Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2017-05-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => '2',
-    'withdrawal_minimum' => '$/€20',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => NULL,
-    'deposit_minimum' => '10',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'EcoPayz' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neosurf' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'paysafecard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/paysafecard.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'UPayCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/upaycard.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Ethereum' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/ethereum.png',
-      ),
-      'Bitcoin Cash' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
-      ),
-      'Dash' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/dash.png',
-      ),
-      'Monero' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/monero.png',
-      ),
-      'Tether Wallet' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/tether_wallet.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Keno',
-      ),
-      6 => 
-      array (
-        'name' => 'Bingo',
-      ),
-      7 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      8 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  42 => 
-  array (
-    'id' => '830',
-    'name' => 'Diamond Reels Casino',
-    'code' => 'diamond_reels_casino',
-    'rating' => 7,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => '$',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '250%',
-      'min_deposit' => '$25',
-      'wagering' => '40x(D+B)',
-      'games_allowed' => 'All',
-      'code' => 'NEWONE',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '75',
-      'min_deposit' => '',
-      'wagering' => '40xB',
-      'games_allowed' => 'Kung Fu Rooster',
-      'code' => 'LISTS75K',
-      'type' => 'Free Spins',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2015-09-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => '$100',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => NULL,
-    'deposit_minimum' => '25',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'American Express' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/american_express.png',
-      ),
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Keno',
-      ),
-      6 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      7 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  43 => 
-  array (
-    'id' => '426',
-    'name' => 'Vegas Crest Casino',
-    'code' => 'vegas_crest_casino',
-    'rating' => 7,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'BetSoft',
-      1 => 'Rival',
-      2 => 'Saucify',
-      3 => 'GameArt',
-      4 => 'VistaGaming',
-      5 => 'Booming Games',
-      6 => 'Booongo',
-      7 => 'Concept Gaming',
-      8 => 'Mobilots',
-    ),
-    'languages' => NULL,
-    'currencies' => '$',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '200% + 30 FS',
-      'min_deposit' => '$25',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'All (FS - Yak, Yeti & Roll)',
-      'code' => 'No code required',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '50',
-      'min_deposit' => '',
-      'wagering' => '99xB',
-      'games_allowed' => 'Yak, Yeti and Roll',
-      'code' => 'No Code Required',
-      'type' => 'Free Spins',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2014-06-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => '3',
-    'withdrawal_minimum' => '$100',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => 'Rival, Saucify, GameArt, VistaGaming, Booming Games, Booongo, Concept Gaming, Mobilots',
-    'deposit_minimum' => '25',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-      'Cheque' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/cheque.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      2 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      3 => 
-      array (
-        'name' => 'Keno',
-      ),
-      4 => 
-      array (
-        'name' => 'Bingo',
-      ),
-      5 => 
-      array (
-        'name' => 'Craps',
-      ),
-      6 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      7 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      8 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      9 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  44 => 
-  array (
-    'id' => '1155',
-    'name' => 'BoVegas Casino',
-    'code' => 'bovegas_casino',
-    'rating' => 7,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => '$',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '320%',
-      'min_deposit' => '$25',
-      'wagering' => '30x(D+B)',
-      'games_allowed' => 'Slots,Video Poker & Specialty games',
-      'code' => 'LISTS320',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '$33',
-      'min_deposit' => '',
-      'wagering' => '50xB',
-      'games_allowed' => 'Slots,Video Poker & Specialty games',
-      'code' => '33LISTS',
-      'type' => 'No Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2017-03-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => '$100',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => NULL,
-    'deposit_minimum' => '25',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'Maestro' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/maestro.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neosurf' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'ecoVoucher' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/ecovoucher.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      2 => 
-      array (
-        'name' => 'Keno',
-      ),
-      3 => 
-      array (
-        'name' => 'Craps',
-      ),
-      4 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      5 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      6 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      7 => 
-      array (
-        'name' => 'Bingo',
-      ),
-      8 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  45 => 
-  array (
-    'id' => '2161',
-    'name' => 'Ozwin Casino',
-    'code' => 'ozwin_casino',
-    'rating' => 8,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'RTG',
-    ),
-    'languages' => NULL,
-    'currencies' => 'AU$',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '200% + 50 FS',
-      'min_deposit' => '$20',
-      'wagering' => '30x(D+B)/20xB',
-      'games_allowed' => 'All selected games (FS - Bubble Bubble 2)',
-      'code' => 'OZWELCOME-B',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => 'AU$15',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'Slots, Keno & Scratch Cards',
-      'code' => 'CHIPY15',
-      'type' => 'No Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2020-05-26',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => 'AU$100',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => true,
-    'score_class' => 'Excellent',
-    'all_softwares' => NULL,
-    'deposit_minimum' => '10',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neosurf' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/neosurf.png',
-      ),
-      'POLi' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/poli.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      6 => 
-      array (
-        'name' => 'Keno',
-      ),
-      7 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-      8 => 
-      array (
-        'name' => 'Craps',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  46 => 
-  array (
-    'id' => '380',
-    'name' => 'Jupiter Club Casino',
-    'code' => 'jupiter_club_casino',
-    'rating' => 6,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'Saucify',
-      1 => 'BetSoft',
-      2 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => '$',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '300%',
-      'min_deposit' => '$20',
-      'wagering' => '60xB',
-      'games_allowed' => 'All except selected games',
-      'code' => 'LISTS300',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '50',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'Big Game',
-      'code' => '50LISTS',
-      'type' => 'Free Spins',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2001-04-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => NULL,
-    'withdrawal_minimum' => '$150',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => 'BetSoft, Rival',
-    'deposit_minimum' => '20',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'American Express' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/american_express.png',
-      ),
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'EcoPayz' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/ecopayz.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Visa Electron' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa_electron.png',
-      ),
-      'Bitcoin Cash' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
-      ),
-      'Cheque' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/cheque.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      6 => 
-      array (
-        'name' => 'Keno',
-      ),
-      7 => 
-      array (
-        'name' => 'Baccarat',
-      ),
-    ),
-    'status' => NULL,
-    'isFree' => 1,
-  ),
-  47 => 
-  array (
-    'id' => '382',
-    'name' => 'Lake Palace Casino',
-    'code' => 'lake_palace_casino',
-    'rating' => 6,
-    'rating_votes' => NULL,
-    'softwares' => 
-    array (
-      0 => 'Saucify',
-      1 => 'BetSoft',
-      2 => 'Rival',
-    ),
-    'languages' => NULL,
-    'currencies' => '$',
-    'bonus_first_deposit' => 
-    array (
-      'amount' => '300%',
-      'min_deposit' => '$20',
-      'wagering' => '60xB',
-      'games_allowed' => 'All except selected games',
-      'code' => 'LISTS300',
-      'type' => 'First Deposit Bonus',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'bonus_free' => 
-    array (
-      'amount' => '50',
-      'min_deposit' => '',
-      'wagering' => '60xB',
-      'games_allowed' => 'Big Game',
-      'code' => '50LISTS',
-      'type' => 'Free Spins',
-      'bonus_type_Abbreviation' => NULL,
-    ),
-    'live_dealers' => NULL,
-    'date_established' => '2001-01-01',
-    'emails' => NULL,
-    'phones' => NULL,
-    'is_live_chat' => NULL,
-    'licenses' => NULL,
-    'certifiers' => NULL,
-    'affiliate_program' => NULL,
-    'affiliate_link' => NULL,
-    'tc_link' => NULL,
-    'comments' => '1',
-    'withdrawal_minimum' => '$100',
-    'withdrawal_limits' => NULL,
-    'withdrawal_timeframes' => NULL,
-    'deposit_methods' => NULL,
-    'withdraw_methods' => NULL,
-    'is_country_accepted' => '1',
-    'is_language_accepted' => NULL,
-    'email_link' => NULL,
-    'is_currency_accepted' => '1',
-    'note' => NULL,
-    'is_tc_link' => '0',
-    'logo_big' => NULL,
-    'logo_small' => NULL,
-    'new' => false,
-    'score_class' => 'Good',
-    'all_softwares' => 'BetSoft, Rival',
-    'deposit_minimum' => '20',
-    'welcome_package' => NULL,
-    'casino_deposit_methods' => 
-    array (
-      'American Express' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/american_express.png',
-      ),
-      'Bitcoin Wallets' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_wallets.png',
-      ),
-      'MasterCard' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/mastercard.png',
-      ),
-      'Neteller' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/neteller.png',
-      ),
-      'Skrill' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/skrill.png',
-      ),
-      'Visa' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/visa.png',
-      ),
-      'Visa Electron' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/visa_electron.png',
-      ),
-      'Bitcoin Cash' => 
-      array (
-        'deposit_methods' => true,
-        'withdraw_methods' => false,
-        'logo' => '/public/sync/banking_method_light/68x39/bitcoin_cash.png',
-      ),
-      'Cheque' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/cheque.png',
-      ),
-      'Wire Transfer' => 
-      array (
-        'deposit_methods' => false,
-        'withdraw_methods' => true,
-        'logo' => '/public/sync/banking_method_light/68x39/wire_transfer.png',
-      ),
-    ),
-    'is_mobile' => NULL,
-    'casino_game_types' => 
-    array (
-      0 => 
-      array (
-        'name' => 'Slots',
-      ),
-      1 => 
-      array (
-        'name' => 'Blackjack',
-      ),
-      2 => 
-      array (
-        'name' => 'Roulette',
-      ),
-      3 => 
-      array (
-        'name' => 'Video Poker',
-      ),
-      4 => 
-      array (
-        'name' => 'Table Games',
-      ),
-      5 => 
-      array (
-        'name' => 'Scratch Cards',
-      ),
-      6 => 
-      array (
-        'name' => 'Keno',
-      ),
-      7 => 
-      array (
-        'name' => 'Baccarat',
       ),
     ),
     'status' => NULL,
@@ -8088,21 +6782,6 @@ $this->response->attributes("bonus_free_type", array (
   30 => 'FS',
   31 => 'FP',
   32 => 'NDB',
-  33 => 'FS',
-  34 => 'NDB',
-  35 => 'NDB',
-  36 => 'NDB',
-  37 => 'NDB',
-  38 => 'FP',
-  39 => 'NDB',
-  40 => 'FS',
-  41 => 'NDB',
-  42 => 'FS',
-  43 => 'FS',
-  44 => 'NDB',
-  45 => 'NDB',
-  46 => 'FS',
-  47 => 'FS',
 ));
 $this->response->attributes("page_info", array (
   'head_title' => ' Online Casinos Available for Players from United States',
