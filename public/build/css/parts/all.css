@@ -13721,15 +13721,17 @@ h1.title + .subtitle{
 }
 
 @media screen and (max-width:767px) {
-  .review-submit-holder .plain-link{
-    margin:10px 0 0 0;
-    display:inline-block;
-  }
-
   .similar_casino-box .list-rating,
   .carousel-grid-casinos .list-rating{
     text-indent: -1000px!important;
     min-width: 0;
+  }
+}
+
+@media screen and (max-width:690px) {
+  .review-submit-holder .plain-link{
+    margin:10px 0 0 0;
+    display:inline-block;
   }
 }
 
