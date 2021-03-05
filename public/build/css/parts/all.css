@@ -14260,10 +14260,17 @@ h1.title + .subtitle{
 .carousel-slide .additional-link{
   line-height: 17px;
 }
+.search{
+  padding-top: 30px;
+}
 @media (max-width: 690px){
   .welcome_package-popup .bonuses-wp{
     max-height: 325px;
     overflow: auto;
+    
+  }
+  .search{
+    padding-top: 20px;
   }
   /* .welcome_package-popup.above:after, .welcome_package-popup.above:before{
     display: none;
