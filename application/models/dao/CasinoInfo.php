@@ -298,13 +298,13 @@ class CasinoInfo
     {
         if ($score == 0) {
             return 'No score';
-        } elseif ($score >= 1 && $score <= 2.99) {
+        } elseif ($score >= 1 && $score < 3) {
             return  'Terrible';
-        } elseif ($score >= 3 && $score <= 4.99) {
+        } elseif ($score >= 3 && $score < 5) {
             return  'Poor';
-        } elseif ($score >= 5 && $score <= 6.99) {
+        } elseif ($score >= 5 && $score < 7) {
             return  'Good';
-        } elseif ($score >= 7 && $score <= 8.99) {
+        } elseif ($score >= 7 && $score < 9) {
             return  'Very good';
         } elseif ($score >= 9 && $score <= 10) {
             return 'Excellent';
