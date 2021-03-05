@@ -9250,6 +9250,10 @@ input[type=submit]
   display: block;
 }
 
+.js-condense_readmore_wrapper{
+  max-width:100%;
+}
+
 .js-condense_readmore_button {
   color: #2171CE;
   cursor: pointer;
