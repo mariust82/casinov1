@@ -14287,11 +14287,11 @@ h1.title + .subtitle{
   }
 }
 
-.warn-box {
+.casino-info-rev{
   margin-top: 40px;
 }
 @media (max-width: 690px){
-  .warn-box {
+  .casino-info-rev {
     margin-top: 20px;
   }
 }

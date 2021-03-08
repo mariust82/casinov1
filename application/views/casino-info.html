@@ -1,35 +1,36 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casino-info"/>
-<:if test="${data.casino.status} == 'Blacklisted'">
-	<:set var="item_status" val="blacklisted"/>
-	<div class="container">
-		<div class="warn-box">
-			<div class="warn-box-title">BLACKLISTED</div>
-			<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} has been warned and added to our illegitimate casinos Blacklist. This is due to the fact that they lost contact and got complaints from players that had trouble to cash out. All of our attempts to contact this casino were not fulfilled. We strongly advise that players will play at other casinos.</div>
-		</div>
-	</div>
-<:elseif test="${data.casino.status} == 'Warning'">
-		<:set var="item_status" val="warning"/>
+<div class="casino-info-rev">
+	<:if test="${data.casino.status} == 'Blacklisted'">
+		<:set var="item_status" val="blacklisted"/>
 		<div class="container">
-			<div class="warn-box warning">
-				<div class="warn-box-title">WARNING</div>
-				<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} does not have a collaborative agreement with www.casinoslists.com, and therefore we can not monitor the casino’s actions and reliability in order to provide the necessary support for our players. We strongly recommend that players avoid playing at this casino and choose another casino to play at.</div>
+			<div class="warn-box">
+				<div class="warn-box-title">BLACKLISTED</div>
+				<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} has been warned and added to our illegitimate casinos Blacklist. This is due to the fact that they lost contact and got complaints from players that had trouble to cash out. All of our attempts to contact this casino were not fulfilled. We strongly advise that players will play at other casinos.</div>
 			</div>
 		</div>
-		<:else>
-			<:set var="item_status" val="default"/>
-
-			<:if test="${data.casino.is_country_accepted} != 1">
-				<:set var="item_status" val="restricted"/>
-			</:if>
-
-			<:if test="${data.casino.note}">
-				<div class="container">
-					<div class="warn-box note">
-						<div class="warn-box-body">${str_replace("thebigfreechiplist","casinoslists",${data.casino.note})}</div>
-					</div>
+	<:elseif test="${data.casino.status} == 'Warning'">
+			<:set var="item_status" val="warning"/>
+			<div class="container">
+				<div class="warn-box warning">
+					<div class="warn-box-title">WARNING</div>
+					<div class="warn-box-body">${data.casino.name} ${(${data.add_text})?'':'Casino'} does not have a collaborative agreement with www.casinoslists.com, and therefore we can not monitor the casino’s actions and reliability in order to provide the necessary support for our players. We strongly recommend that players avoid playing at this casino and choose another casino to play at.</div>
 				</div>
-			</:if>
-</:if>
+			</div>
+			<:else>
+				<:set var="item_status" val="default"/>
+
+				<:if test="${data.casino.is_country_accepted} != 1">
+					<:set var="item_status" val="restricted"/>
+				</:if>
+
+				<:if test="${data.casino.note}">
+					<div class="container">
+						<div class="warn-box note">
+							<div class="warn-box-body">${str_replace("thebigfreechiplist","casinoslists",${data.casino.note})}</div>
+						</div>
+					</div>
+				</:if>
+	</:if>
 
 <div class="casino-review">
 	<div class="container">
@@ -859,5 +860,5 @@
 		</div>
 	</div>
 </div>
-
+</div>
 <site:bottom menu="${data.menu_top}"/>
