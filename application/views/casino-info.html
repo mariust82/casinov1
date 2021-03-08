@@ -1,8 +1,8 @@
 <site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="casino-info"/>
 <div class="casino-info-rev">
+	<:set var="empty_class" val=""/>
 	<:if test="${data.casino.status} == 'Blacklisted'">
 		<:set var="item_status" val="blacklisted"/>
-		<:set var="empty_class" val=""/>
 		<div class="container">
 			<div class="warn-box">
 				<div class="warn-box-title">BLACKLISTED</div>
