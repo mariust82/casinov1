@@ -2,16 +2,16 @@
 	<div class="container">
 		<div class="heading">
 			<div class="title title-underlined">$[name]</div>
-			<div class="subtitle index-page">
+			<div class="subtitle">
 				<p>$[description]</p>
-				<div class="heading-btn desktop">
-					<a href="$[url]" class="button">Show all <i class="icon-chevron-right"></i></a>
-				</div>
 			</div>
 		</div>
 		<casino:list type="$[type]" id="$[id]" data="$[data]" name="$[name]"/>
-		<div class="mobile btn-holder">
-			<a href="$[url]" class="btn btn-big">SHOW ALL<i class="icon-chevron-right"></i></a>
-		</div>
+
+		<a href="$[url]" class="show_all-button">
+			$[button]
+			<i class="icon-chevron-right"></i>
+		</a>
+
 	</div>
 </div>

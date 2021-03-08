@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "465c62c49c483640696a49c91a4481de",
+    "content-hash": "ef72f402b5090a87ae3574e91c6cddaa",
     "packages": [
+        {
+            "name": "lucinda/db",
+            "version": "v2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/lucinda_db.git",
+                "reference": "2142a7b6377abd628165a1779405d9abf799dcbe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/lucinda_db/zipball/2142a7b6377abd628165a1779405d9abf799dcbe",
+                "reference": "2142a7b6377abd628165a1779405d9abf799dcbe",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*",
+                "ext-spl": "*",
+                "ext-xml": "*",
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "lucinda/unit-testing": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lucinda\\DB\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Lucinda DB: Pure PHP Tag-Based Key-Value Store",
+            "keywords": [
+                "Key-Value Store",
+                "database",
+                "nosql"
+            ],
+            "time": "2020-12-04T10:24:01+00:00"
+        },
         {
             "name": "lucinda/errors-mvc",
             "version": "v1.4.0",
@@ -344,16 +392,16 @@
         },
         {
             "name": "lucinda/queries",
-            "version": "v1.0.6",
+            "version": "v1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/php-sql-statements-api.git",
-                "reference": "99b9486b2748be709b3cb5f8d45ec26f288cb2bb"
+                "reference": "85c6933f018af299bab70d84cbd6328a9ea7e02d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/php-sql-statements-api/zipball/99b9486b2748be709b3cb5f8d45ec26f288cb2bb",
-                "reference": "99b9486b2748be709b3cb5f8d45ec26f288cb2bb",
+                "url": "https://api.github.com/repos/aherne/php-sql-statements-api/zipball/85c6933f018af299bab70d84cbd6328a9ea7e02d",
+                "reference": "85c6933f018af299bab70d84cbd6328a9ea7e02d",
                 "shasum": ""
             },
             "type": "library",
@@ -375,11 +423,7 @@
                 "query",
                 "sql"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/php-sql-statements-api/issues",
-                "source": "https://github.com/aherne/php-sql-statements-api/tree/master"
-            },
-            "time": "2019-12-03T14:22:21+00:00"
+            "time": "2021-02-25T08:52:44+00:00"
         },
         {
             "name": "lucinda/request-validator",
@@ -425,16 +469,16 @@
         },
         {
             "name": "lucinda/rss",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/rss-generator.git",
-                "reference": "7bba64c0f6f6c546c67dde01165aabbd33d6bb3c"
+                "reference": "6780322ccfb4249d8d86cf457b9d088882696ee9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/rss-generator/zipball/7bba64c0f6f6c546c67dde01165aabbd33d6bb3c",
-                "reference": "7bba64c0f6f6c546c67dde01165aabbd33d6bb3c",
+                "url": "https://api.github.com/repos/aherne/rss-generator/zipball/6780322ccfb4249d8d86cf457b9d088882696ee9",
+                "reference": "6780322ccfb4249d8d86cf457b9d088882696ee9",
                 "shasum": ""
             },
             "type": "library",
@@ -459,11 +503,7 @@
                 "feed",
                 "rss"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/rss-generator/issues",
-                "source": "https://github.com/aherne/rss-generator/tree/v1.0.3"
-            },
-            "time": "2020-08-24T13:46:15+00:00"
+            "time": "2021-02-25T11:30:10+00:00"
         },
         {
             "name": "lucinda/security",
@@ -590,6 +630,48 @@
     ],
     "packages-dev": [
         {
+            "name": "lucinda/console",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aherne/console_table.git",
+                "reference": "8666998ca1f2d20cfca1472eff95e6bbb3efb747"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aherne/console_table/zipball/8666998ca1f2d20cfca1472eff95e6bbb3efb747",
+                "reference": "8666998ca1f2d20cfca1472eff95e6bbb3efb747",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lucinda\\Console\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lucian Popescu",
+                    "email": "lucian.gabriel.popescu@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Lucinda Console Table: API able to draw tables in UNIX consoles or windows command prompt",
+            "keywords": [
+                "command prompt",
+                "tables",
+                "unix console"
+            ],
+            "time": "2021-02-20T10:09:18+00:00"
+        },
+        {
             "name": "lucinda/requester",
             "version": "v1.0.5",
             "source": {
@@ -642,22 +724,23 @@
         },
         {
             "name": "lucinda/unit-testing",
-            "version": "v1.1.6",
+            "version": "v1.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/unit-testing.git",
-                "reference": "81c28f144b5e542df6486ce4a6c5c0753fe629d8"
+                "reference": "4054420054e36fbc7e7235259addc6cd47d8a4fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/unit-testing/zipball/81c28f144b5e542df6486ce4a6c5c0753fe629d8",
-                "reference": "81c28f144b5e542df6486ce4a6c5c0753fe629d8",
+                "url": "https://api.github.com/repos/aherne/unit-testing/zipball/4054420054e36fbc7e7235259addc6cd47d8a4fb",
+                "reference": "4054420054e36fbc7e7235259addc6cd47d8a4fb",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-pdo": "*",
                 "ext-simplexml": "*",
+                "lucinda/console": "~1.0",
                 "php": "^7.1"
             },
             "type": "library",
@@ -682,11 +765,7 @@
             "keywords": [
                 "unit testing"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/unit-testing/issues",
-                "source": "https://github.com/aherne/unit-testing/tree/v1.1.6"
-            },
-            "time": "2020-09-23T09:01:00+00:00"
+            "time": "2021-02-20T10:53:43+00:00"
         }
     ],
     "aliases": [],
@@ -696,5 +775,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "1.1.0"
 }

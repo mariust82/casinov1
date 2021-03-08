@@ -1,35 +1,27 @@
 <?php
-class CasinosSearch
+require_once("AbstractSearch.php");
+require_once("hlis/search/CasinoSearch.php");
+
+class CasinosSearch extends AbstractSearch
 {
-    private $value;
-
-    public function __construct($value)
-    {
-        $this->value = $value;
-    }
-
     public function getResults($limit, $offset)
     {
-        return SQL(
-            "
+        return SQL("
             SELECT name
             FROM casinos
-            WHERE name LIKE :name AND is_open=1
+            WHERE ".$this->getLike("name", Hlis\CasinoSearch::class)." AND is_open=1
             ORDER BY date_established DESC, name ASC
-            LIMIT ".$limit." OFFSET ".$offset,
-            array(":name"=>"%".$this->value."%")
+            LIMIT ".$limit." OFFSET ".$offset
         )->toColumn();
     }
 
     public function getTotal()
     {
-        // build query
         return (integer) SQL(
             "
             SELECT COUNT(id) AS nr 
             FROM casinos 
-            WHERE name LIKE :name AND is_open=1",
-            array(":name"=>"%".$this->value."%")
+            WHERE ".$this->getLike("name", Hlis\CasinoSearch::class)." AND is_open=1"
         )->toValue();
     }
 }

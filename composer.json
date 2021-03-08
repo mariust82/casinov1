@@ -26,7 +26,8 @@
         "lucinda/errors-mvc": "~1.0",
         "lucinda/request-validator": "~1.0",
         "lucinda/queries": "~1.0",
-        "lucinda/rss": "^1.0"
+        "lucinda/rss": "^1.0",
+        "lucinda/db": "^2.0"
     },
     "require-dev": {
         "lucinda/unit-testing": "^1.1",

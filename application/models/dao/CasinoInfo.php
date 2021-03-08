@@ -2,6 +2,7 @@
 require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once 'entities/FullWelcomePackage.php';
+require_once 'entities/MatchBonus.php';
 require_once 'application/models/CasinoScore.php';
 
 class CasinoInfo
@@ -13,10 +14,15 @@ class CasinoInfo
         $this->setResult($id, $countryId);
     }
     
-    public function getUserVote($casinoID, $ip)
+    public function getCasinoScore($casinoID)
     {
-        return SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = $casinoID", array(":ip"=>$ip))->toValue();
+        return SQL("SELECT SUM(value) / COUNT(value) AS average FROM casinos__ratings WHERE casino_id = {$casinoID}")->toValue();
     }
+    public function getUserScore($casinoID, $ip)
+    {
+        return  SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = {$casinoID}", array(":ip"=>$ip))->toValue();
+    }
+
 
     private function setResult($id, $countryId)
     {
@@ -84,6 +90,7 @@ class CasinoInfo
         // $output->bonus_type_Abbreviation = $this->getAbbreviation($output->bonus_free);
 
         $output->welcome_package = !empty($output->bonus_first_deposit) ? $this->getWelcomePackage($output->id) : [];
+        $output->match_bonuses = $this->getMatchBonuses($output->id) ;
 
         $output->casino_deposit_methods =  $this->getCasinoDepositMethods($output->id);
         $output->casino_game_types = $this->getGameTypes($output->id);
@@ -291,11 +298,15 @@ class CasinoInfo
     {
         if ($score == 0) {
             return 'No score';
-        } elseif ($score >= 1 && $score <= 4.99) {
+        } elseif ($score >= 1 && $score < 3) {
+            return  'Terrible';
+        } elseif ($score >= 3 && $score < 5) {
             return  'Poor';
-        } elseif ($score >= 5 && $score <= 7.99) {
+        } elseif ($score >= 5 && $score < 7) {
             return  'Good';
-        } elseif ($score >= 8 && $score <= 10) {
+        } elseif ($score >= 7 && $score < 9) {
+            return  'Very good';
+        } elseif ($score >= 9 && $score <= 10) {
             return 'Excellent';
         }
     }
@@ -376,6 +387,36 @@ class CasinoInfo
         return  $w_packages_data;
     }
 
+    public function getMatchBonuses($casino_id)
+    {
+        $q = "
+                 SELECT
+            t1.*, t2.name as bonus_type_name
+            FROM casinos__bonuses AS t1 
+            INNER JOIN bonus_types as t2 ON t1.bonus_type_id = t2.id
+            WHERE t2.name IN ('Match Bonus') AND t1.casino_id = ".$casino_id."
+        ";
+        $match_bonuses = SQL($q)->toList();
+
+        if (empty($match_bonuses)) {
+            return [];
+        }
+
+        $match_bonuses_data = [];
+        foreach ($match_bonuses as  $m_bonus) {
+            $match_bonus_package = new MatchBonus();
+            $match_bonus_package->valid_on =$m_bonus['availability'];
+            $match_bonus_package->bonus = $m_bonus['amount'];
+            $match_bonus_package->min_deposit = $m_bonus['deposit_minimum'];
+            $match_bonus_package->wagering = $m_bonus['wagering'];
+            $match_bonus_package->games = $m_bonus['games'];
+            $match_bonus_package->bonus_codes = $m_bonus['codes'];
+
+            $match_bonuses_data[] = $match_bonus_package;
+        }
+        return  $match_bonuses_data;
+    }
+
     public function getGameTypes($casinoId)
     {
         $q =" SELECT
@@ -398,7 +439,7 @@ class CasinoInfo
         foreach ($casino_deposit_methods as $key => $value) {
             $casino_deposit_methods_data[$value]['deposit_methods'] = in_array($value, $deposit_methods);
             $casino_deposit_methods_data[$value]['withdraw_methods'] = in_array($value, $withdraw_methods);
-            $casino_deposit_methods_data[$value]['logo'] = '/public/sync/banking_method_light/68x39/'.strtolower(str_replace(' ', '_', $value)).'.png';
+            $casino_deposit_methods_data[$value]['logo'] = $value;
         }
         return $casino_deposit_methods_data;
     }

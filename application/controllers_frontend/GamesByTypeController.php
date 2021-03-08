@@ -2,9 +2,13 @@
 class GamesByTypeController extends Lucinda\MVC\STDOUT\Controller {
     public function run() {
         $this->response->attributes("country", array (
-  'id' => '43',
-  'code' => 'RO',
-  'name' => 'Romania',
+  'id' => '34',
+  'code' => 'US',
+  'name' => 'United States',
+  'languages' => 
+  array (
+    0 => 'English',
+  ),
 ));
 $this->response->attributes("menu_top", array (
   0 => 
@@ -106,6 +110,16 @@ $this->response->attributes("menu_top", array (
       ),
       1 => 
       array (
+        'title' => 'Low Minimum Deposit Casinos',
+        'url' => '/casinos/low-minimum-deposit',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      2 => 
+      array (
         'title' => 'Mobile Casinos',
         'url' => '/casinos/mobile',
         'is_active' => false,
@@ -114,7 +128,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      2 => 
+      3 => 
       array (
         'title' => 'Low Wagering Casinos',
         'url' => '/casinos/low-wagering',
@@ -124,7 +138,17 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      3 => 
+      4 => 
+      array (
+        'title' => 'Fast Payout Casinos',
+        'url' => ' /casinos/fast-payout',
+        'is_active' => false,
+        'submenuItems' => 
+        array (
+        ),
+        'have_submenu' => false,
+      ),
+      5 => 
       array (
         'title' => 'eCOGRA Casinos',
         'url' => '/features/ecogra-casinos',
@@ -134,7 +158,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
+      6 => 
       array (
         'title' => 'Blacklisted Casinos',
         'url' => '/casinos/stay-away',
@@ -144,17 +168,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      5 => 
-      array (
-        'title' => 'Popular Casinos',
-        'url' => '/casinos/popular',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      6 => 
+      7 => 
       array (
         'title' => 'No Account Casinos',
         'url' => '/casinos/no-account-casinos',
@@ -164,7 +178,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      7 => 
+      8 => 
       array (
         'title' => 'All Casinos',
         'url' => '/casinos',
@@ -286,16 +300,6 @@ $this->response->attributes("menu_top", array (
     array (
       0 => 
       array (
-        'title' => 'Romania Casinos',
-        'url' => '/countries-list/romania',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      1 => 
-      array (
         'title' => 'USA Casinos',
         'url' => '/countries-list/united-states',
         'is_active' => false,
@@ -304,7 +308,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      2 => 
+      1 => 
       array (
         'title' => 'UK Casinos',
         'url' => '/countries-list/united-kingdom',
@@ -314,7 +318,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      3 => 
+      2 => 
       array (
         'title' => 'Australia Casinos',
         'url' => '/countries-list/australia',
@@ -324,17 +328,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      4 => 
-      array (
-        'title' => 'Germany Casinos',
-        'url' => '/countries-list/germany',
-        'is_active' => false,
-        'submenuItems' => 
-        array (
-        ),
-        'have_submenu' => false,
-      ),
-      5 => 
+      3 => 
       array (
         'title' => 'New Zealand Casinos',
         'url' => '/countries-list/new-zealand',
@@ -344,7 +338,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      6 => 
+      4 => 
       array (
         'title' => 'Netherlands Casinos',
         'url' => '/countries-list/netherlands',
@@ -354,7 +348,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      7 => 
+      5 => 
       array (
         'title' => 'Sweden Casinos',
         'url' => '/countries-list/sweden',
@@ -364,7 +358,7 @@ $this->response->attributes("menu_top", array (
         ),
         'have_submenu' => false,
       ),
-      8 => 
+      6 => 
       array (
         'title' => 'All Countries',
         'url' => '/countries ',
@@ -416,8 +410,8 @@ $this->response->attributes("menu_top", array (
       ),
       3 => 
       array (
-        'title' => 'Bitcoin Wallets Casinos',
-        'url' => '/banking/bitcoin-wallets',
+        'title' => 'Bitcoin Casinos',
+        'url' => '/banking/bitcoin',
         'is_active' => false,
         'submenuItems' => 
         array (
@@ -437,7 +431,7 @@ $this->response->attributes("menu_top", array (
       5 => 
       array (
         'title' => 'Paysafe Card',
-        'url' => '/banking/paysafe-card',
+        'url' => '/banking/paysafecard',
         'is_active' => false,
         'submenuItems' => 
         array (
@@ -468,7 +462,7 @@ $this->response->attributes("menu_top", array (
       array (
         'title' => 'Video Slots',
         'url' => '/games/video-slots',
-        'is_active' => true,
+        'is_active' => false,
         'submenuItems' => 
         array (
         ),
@@ -488,7 +482,7 @@ $this->response->attributes("menu_top", array (
       array (
         'title' => 'Video Poker',
         'url' => '/games/video-poker',
-        'is_active' => false,
+        'is_active' => true,
         'submenuItems' => 
         array (
         ),
@@ -638,13 +632,13 @@ $this->response->attributes("menu_top", array (
     'have_submenu' => true,
   ),
 ));
-$this->response->attributes("selected_entity", 'Video Slots');
+$this->response->attributes("selected_entity", 'Video Poker');
 $this->response->attributes("menu_bottom", array (
   0 => 
   array (
     'title' => 'Video Slots',
     'url' => '/games/video-slots',
-    'is_active' => true,
+    'is_active' => false,
     'submenuItems' => 
     array (
     ),
@@ -652,8 +646,8 @@ $this->response->attributes("menu_bottom", array (
   ),
   1 => 
   array (
-    'title' => 'Video Poker',
-    'url' => '/games/video-poker',
+    'title' => 'Classic Slots',
+    'url' => '/games/classic-slots',
     'is_active' => false,
     'submenuItems' => 
     array (
@@ -662,9 +656,9 @@ $this->response->attributes("menu_bottom", array (
   ),
   2 => 
   array (
-    'title' => 'Classic Slots',
-    'url' => '/games/classic-slots',
-    'is_active' => false,
+    'title' => 'Video Poker',
+    'url' => '/games/video-poker',
+    'is_active' => true,
     'submenuItems' => 
     array (
     ),
@@ -682,8 +676,8 @@ $this->response->attributes("menu_bottom", array (
   ),
   4 => 
   array (
-    'title' => 'Blackjack',
-    'url' => '/games/blackjack',
+    'title' => 'Other',
+    'url' => '/games/other',
     'is_active' => false,
     'submenuItems' => 
     array (
@@ -692,8 +686,8 @@ $this->response->attributes("menu_bottom", array (
   ),
   5 => 
   array (
-    'title' => 'Other',
-    'url' => '/games/other',
+    'title' => 'Blackjack',
+    'url' => '/games/blackjack',
     'is_active' => false,
     'submenuItems' => 
     array (
@@ -722,8 +716,8 @@ $this->response->attributes("menu_bottom", array (
   ),
   8 => 
   array (
-    'title' => 'Keno',
-    'url' => '/games/keno',
+    'title' => 'Bingo',
+    'url' => '/games/bingo',
     'is_active' => false,
     'submenuItems' => 
     array (
@@ -732,8 +726,8 @@ $this->response->attributes("menu_bottom", array (
   ),
   9 => 
   array (
-    'title' => 'Baccarat',
-    'url' => '/games/baccarat',
+    'title' => 'Keno',
+    'url' => '/games/keno',
     'is_active' => false,
     'submenuItems' => 
     array (
@@ -742,8 +736,8 @@ $this->response->attributes("menu_bottom", array (
   ),
   10 => 
   array (
-    'title' => 'Bingo',
-    'url' => '/games/bingo',
+    'title' => 'Baccarat',
+    'url' => '/games/baccarat',
     'is_active' => false,
     'submenuItems' => 
     array (
@@ -762,97 +756,56 @@ $this->response->attributes("menu_bottom", array (
   ),
 ));
 $this->response->attributes("software", array (
-  0 => 'RTG',
-  1 => 'Rival',
-  2 => 'NetEnt',
-  3 => 'Pragmatic Play1',
-  4 => 'Playtech',
-  5 => 'NuWorks',
-  6 => 'NYX Interactive',
-  7 => 'Leander Games',
-  8 => 'Skill On Net',
-  9 => 'Slotland Entertainment',
-  10 => 'GameScale',
-  11 => 'Play n GO',
-  12 => 'Novomatic',
-  13 => 'Yggdrasil Gaming',
-  14 => 'Barcrest Games',
-  15 => 'Aristocrat',
-  16 => '1X2 Gaming',
-  17 => 'Big Time Gaming',
-  18 => 'Endorphina',
-  19 => 'Wazdan',
-  20 => 'BetSoft',
-  21 => 'Euro Games Technology',
-  22 => 'MicroGaming',
-  23 => 'Merkur Gaming',
-  24 => 'Nektan',
-  25 => 'WMS Gaming',
-  26 => 'Amaya Gaming',
-  27 => 'Games Warehouse',
-  28 => 'Portomaso Gaming',
-  29 => 'iGaming2Go',
-  30 => 'PlayPearls',
-  31 => 'IGT',
-  32 => 'Amatic Industries',
-  33 => 'GameArt',
-  34 => 'Booming Games',
-  35 => 'Ainsworth',
-  36 => 'Quickspin',
-  37 => 'World Match',
-  38 => 'Pariplay',
-  39 => 'Capecod Gaming',
-  40 => 'Spinomenal',
-  41 => 'Gamevy',
-  42 => 'SoftSwiss',
-  43 => 'Multislot',
-  44 => 'Zeus Services',
-  45 => 'Saucify',
-  46 => 'Espresso Games',
-  47 => 'ELK Studios',
-  48 => 'Habanero',
-  49 => 'Chance Interactive',
-  50 => 'Thunderkick',
-  51 => 'NeoGames',
-  52 => 'Realistic Games',
-  53 => 'Eyecon',
-  54 => 'Genesis Gaming',
-  55 => 'Pragmatic Play',
-  56 => 'Core Gaming',
-  57 => 'Incredible Technologies',
-  58 => 'Iron Dog Studio',
-  59 => 'Join Games',
-  60 => 'JVH Gaming',
-  61 => 'Eurocoin Interactive',
-  62 => 'Astra Games',
-  63 => 'GreenTube',
-  64 => 'Xatronic Software',
-  65 => 'Casino Technology',
-  66 => 'Oryx Gaming',
-  67 => 'Gamomat',
-  68 => 'Igrosoft',
-  69 => 'Evoplay',
-  70 => 'Relax Gaming',
-  71 => 'Cayetano Gaming',
-  72 => 'GAMING1',
-  73 => 'OpenBet',
-  74 => 'Playson',
-  75 => 'Betdigital',
-  76 => 'Holland Power Gaming',
-  77 => 'Viaden',
-  78 => 'Push Gaming',
-  79 => 'WGS',
-  80 => 'iSoftBet',
+  0 => 'BetSoft',
+  1 => 'RTG',
+  2 => 'MicroGaming',
+  3 => 'Playtech',
+  4 => 'Slotland Entertainment',
+  5 => 'Play n GO',
+  6 => '1X2 Gaming',
+  7 => 'Wazdan',
+  8 => 'Rival',
+  9 => 'Espresso Games',
+  10 => 'Habanero',
+  11 => 'Pragmatic Play',
+  12 => 'IGT',
+  13 => 'iSoftBet',
+  14 => 'Tom Horn Gaming',
+  15 => 'Multislot',
+  16 => 'SkillOnNet',
+  17 => 'BGaming',
+  18 => 'World Match',
+  19 => 'WGS',
+  20 => 'Saucify',
+  21 => 'Arrows Edge',
+  22 => 'NeoGames',
+  23 => 'Intouch Games',
+  24 => 'Cayetano Gaming',
+  25 => 'NetEnt',
+  26 => 'Spadegaming',
+  27 => 'R.Franco',
+  28 => 'Red Rake Gaming',
+  29 => 'Mascot Gaming',
+  30 => 'Novomatic',
+  31 => 'Betdigital',
+  32 => 'Core Gaming',
+  33 => 'Mobilots',
+  34 => 'KA Gaming',
+  35 => 'FAZI',
+  36 => 'AllWaySpin',
+  37 => 'OneTouch',
+  38 => 'Gamzix',
+  39 => 'Red Tiger Gaming',
 ));
-$this->response->attributes("total_games", 3079);
+$this->response->attributes("total_games", 266);
 $this->response->attributes("games", array (
   0 => 
   array (
-    'id' => '7268',
-    'manufacturer' => 'Booming Games',
+    'id' => '13727',
+    'manufacturer' => 'Red Tiger Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Exotic Fruit Deluxe',
+    'name' => 'Sylvan Spirits',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -863,6 +816,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -883,16 +837,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '160',
-    'logo' => '/public/sync/game_ss/300x220/Exotic_Fruit_Deluxe_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '1',
+    'logo' => '/public/sync/game_ss/300x220/Sylvan_Spirits_ss.jpg',
   ),
   1 => 
   array (
-    'id' => '7085',
-    'manufacturer' => 'World Match',
+    'id' => '13533',
+    'manufacturer' => 'Gamzix',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'World Match Xcalibur',
+    'name' => 'The Hottest Game',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -903,6 +872,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -923,16 +893,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '18',
-    'logo' => '/public/sync/game_ss/300x220/World_Match_Xcalibur_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '4',
+    'logo' => '/public/sync/game_ss/300x220/The_Hottest_Game_ss.jpg',
   ),
   2 => 
   array (
-    'id' => '7288',
-    'manufacturer' => 'NetEnt',
+    'id' => '12876',
+    'manufacturer' => 'OneTouch',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Majestic Sea',
+    'name' => 'OneTouch Russian Poker',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -943,6 +928,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -963,16 +949,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Majestic_Sea_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '9',
+    'logo' => '/public/sync/game_ss/300x220/OneTouch_Russian_Poker_ss.jpg',
   ),
   3 => 
   array (
-    'id' => '7283',
-    'manufacturer' => 'RTG',
+    'id' => '12661',
+    'manufacturer' => 'AllWaySpin',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'test tan3',
+    'name' => 'Feng Shen',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -983,6 +984,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1003,16 +1005,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
     'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/test_tan3_ss.jpg',
+    'logo' => '/public/sync/game_ss/300x220/Feng_Shen_ss.jpg',
   ),
   4 => 
   array (
-    'id' => '7282',
-    'manufacturer' => 'RTG',
+    'id' => '12465',
+    'manufacturer' => 'Wazdan',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'test tan 2',
+    'name' => 'Carribean Beach Poker',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1023,6 +1040,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1043,16 +1061,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
     'times_played' => '2',
-    'logo' => '/public/sync/game_ss/300x220/test_tan_2_ss.jpg',
+    'logo' => '/public/sync/game_ss/300x220/Carribean_Beach_Poker_ss.jpg',
   ),
   5 => 
   array (
-    'id' => '7084',
-    'manufacturer' => 'World Match',
+    'id' => '11517',
+    'manufacturer' => 'FAZI',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'World Match Touch Down',
+    'name' => 'Jolly Poker',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1063,6 +1096,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1083,16 +1117,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/World_Match_Touch_Down_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '6',
+    'logo' => '/public/sync/game_ss/300x220/Jolly_Poker_ss.jpg',
   ),
   6 => 
   array (
-    'id' => '7082',
-    'manufacturer' => 'Skill On Net',
+    'id' => '11410',
+    'manufacturer' => 'KA Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Skill On Net Le Chocolatier',
+    'name' => 'Super Video Poker',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1103,6 +1152,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1123,16 +1173,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Skill_On_Net_Le_Chocolatier_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '1',
+    'logo' => '/public/sync/game_ss/300x220/Super_Video_Poker_ss.jpg',
   ),
   7 => 
   array (
-    'id' => '6888',
-    'manufacturer' => 'Betdigital',
+    'id' => '11056',
+    'manufacturer' => 'Mobilots',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Valhalla',
+    'name' => 'Mobilots Deuces Wild',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1143,6 +1208,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1163,16 +1229,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Valhalla_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '14',
+    'logo' => '/public/sync/game_ss/300x220/Mobilots_Deuces_Wild_ss.jpg',
   ),
   8 => 
   array (
-    'id' => '6666',
-    'manufacturer' => 'NeoGames',
+    'id' => '11055',
+    'manufacturer' => 'Mobilots',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Fruity Friends',
+    'name' => 'Mobilots Jacks or Better',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1183,6 +1264,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1203,16 +1285,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Fruity_Friends_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '7',
+    'logo' => '/public/sync/game_ss/300x220/Mobilots_Jacks_or_Better_ss.jpg',
   ),
   9 => 
   array (
-    'id' => '6654',
-    'manufacturer' => 'NeoGames',
+    'id' => '11054',
+    'manufacturer' => 'Mobilots',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Egyptian Magic',
+    'name' => 'Mobilots Tens or Better',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1223,6 +1320,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1243,16 +1341,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Egyptian_Magic_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '14',
+    'logo' => '/public/sync/game_ss/300x220/Mobilots_Tens_or_Better_ss.jpg',
   ),
   10 => 
   array (
-    'id' => '6637',
-    'manufacturer' => 'NeoGames',
+    'id' => '10914',
+    'manufacturer' => 'Core Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Chic Boutique',
+    'name' => 'Core Gaming Video Poker',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1263,6 +1376,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1283,16 +1397,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Chic_Boutique_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '9',
+    'logo' => '/public/sync/game_ss/300x220/Core_Gaming_Video_Poker_ss.jpg',
   ),
   11 => 
   array (
-    'id' => '6626',
-    'manufacturer' => 'NeoGames',
+    'id' => '10851',
+    'manufacturer' => 'Betdigital',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Auto Show',
+    'name' => 'Multihand Video Poker',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1303,6 +1432,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1323,16 +1453,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Auto_Show_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '12',
+    'logo' => '/public/sync/game_ss/300x220/Multihand_Video_Poker_ss.jpg',
   ),
   12 => 
   array (
-    'id' => '6625',
-    'manufacturer' => 'NeoGames',
+    'id' => '10717',
+    'manufacturer' => 'Novomatic',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'NeoGames Atlantis',
+    'name' => 'Roaring Wilds',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1343,6 +1488,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1363,16 +1509,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/NeoGames_Atlantis_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '1',
+    'logo' => '/public/sync/game_ss/300x220/Roaring_Wilds_ss.jpg',
   ),
   13 => 
   array (
-    'id' => '6624',
-    'manufacturer' => 'NeoGames',
+    'id' => '10583',
+    'manufacturer' => 'Mascot Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Astrodice',
+    'name' => 'Mascot Games Casino Holdem',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1383,6 +1544,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1403,16 +1565,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Astrodice_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '17',
+    'logo' => '/public/sync/game_ss/300x220/Mascot_Games_Casino_Holdem_ss.jpg',
   ),
   14 => 
   array (
-    'id' => '6622',
-    'manufacturer' => 'NeoGames',
+    'id' => '10336',
+    'manufacturer' => 'Red Rake Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Adventure Jack',
+    'name' => 'Triple Bonus Poker',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1423,6 +1600,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1443,16 +1621,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
     'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Adventure_Jack_ss.jpg',
+    'logo' => '/public/sync/game_ss/300x220/Triple_Bonus_Poker_ss.jpg',
   ),
   15 => 
   array (
-    'id' => '6619',
-    'manufacturer' => 'NeoGames',
+    'id' => '10335',
+    'manufacturer' => 'Red Rake Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => '5th Avenue',
+    'name' => 'Sequential Royal',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1463,6 +1656,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1483,16 +1677,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
     'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/5th_Avenue_ss.jpg',
+    'logo' => '/public/sync/game_ss/300x220/Sequential_Royal_ss.jpg',
   ),
   16 => 
   array (
-    'id' => '6615',
-    'manufacturer' => 'Viaden',
+    'id' => '10334',
+    'manufacturer' => 'Red Rake Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Viaden Deep Blue',
+    'name' => 'Royal Court',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1503,6 +1712,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1523,16 +1733,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Viaden_Deep_Blue_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '2',
+    'logo' => '/public/sync/game_ss/300x220/Royal_Court_ss.jpg',
   ),
   17 => 
   array (
-    'id' => '6614',
-    'manufacturer' => 'Viaden',
+    'id' => '10333',
+    'manufacturer' => 'Red Rake Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Vanilla Cocktails',
+    'name' => 'Red Rake Gaming Five Aces',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1543,6 +1768,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1563,16 +1789,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
     'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Vanilla_Cocktails_ss.jpg',
+    'logo' => '/public/sync/game_ss/300x220/Red_Rake_Gaming_Five_Aces_ss.jpg',
   ),
   18 => 
   array (
-    'id' => '6613',
-    'manufacturer' => 'Viaden',
+    'id' => '10332',
+    'manufacturer' => 'Red Rake Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'The Legend of Unicorn',
+    'name' => 'Faces and Deuces',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1583,6 +1824,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1603,16 +1845,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/The_Legend_of_Unicorn_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '1',
+    'logo' => '/public/sync/game_ss/300x220/Faces_and_Deuces_ss.jpg',
   ),
   19 => 
   array (
-    'id' => '6612',
-    'manufacturer' => 'Viaden',
+    'id' => '10331',
+    'manufacturer' => 'Red Rake Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Sign of Luck',
+    'name' => 'Double Aces and Faces',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1623,6 +1880,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1643,16 +1901,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Sign_of_Luck_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '1',
+    'logo' => '/public/sync/game_ss/300x220/Double_Aces_and_Faces_ss.jpg',
   ),
   20 => 
   array (
-    'id' => '6611',
-    'manufacturer' => 'Viaden',
+    'id' => '10330',
+    'manufacturer' => 'Red Rake Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Maya Pyramid',
+    'name' => 'Red Rake Gaming Bonus Deuces Wild',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1663,6 +1936,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1683,16 +1957,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Maya_Pyramid_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '4',
+    'logo' => '/public/sync/game_ss/300x220/Red_Rake_Gaming_Bonus_Deuces_Wild_ss.jpg',
   ),
   21 => 
   array (
-    'id' => '6610',
-    'manufacturer' => 'Viaden',
+    'id' => '10329',
+    'manufacturer' => 'Red Rake Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Luxor Valley',
+    'name' => 'Red Rake Gaming Aces and Eights',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1703,6 +1992,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1723,16 +2013,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Luxor_Valley_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '2',
+    'logo' => '/public/sync/game_ss/300x220/Red_Rake_Gaming_Aces_and_Eights_ss.jpg',
   ),
   22 => 
   array (
-    'id' => '6609',
-    'manufacturer' => 'Viaden',
+    'id' => '10328',
+    'manufacturer' => 'Red Rake Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Enigma',
+    'name' => 'Aces and Deuces Bonus Poker',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1743,6 +2048,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1763,16 +2069,31 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Enigma_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '2',
+    'logo' => '/public/sync/game_ss/300x220/Aces_and_Deuces_Bonus_Poker_ss.jpg',
   ),
   23 => 
   array (
-    'id' => '6608',
-    'manufacturer' => 'Viaden',
+    'id' => '10327',
+    'manufacturer' => 'Red Rake Gaming',
     'type' => NULL,
     'quality' => NULL,
-    'name' => 'Dice Express',
+    'name' => 'Red Rake Gaming Tens or Better',
     'paylines' => NULL,
     'reels' => NULL,
     'rtp' => NULL,
@@ -1783,6 +2104,7 @@ $this->response->attributes("games", array (
     'max_cs' => NULL,
     'priority' => NULL,
     'themes' => NULL,
+    'volatility' => NULL,
     'date_launched' => '',
     'date_modified' => NULL,
     'is_open' => NULL,
@@ -1803,66 +2125,60 @@ $this->response->attributes("games", array (
     'is_vegas' => NULL,
     'is_mobile' => NULL,
     'is_desktop' => NULL,
-    'times_played' => '0',
-    'logo' => '/public/sync/game_ss/300x220/Dice_Express_ss.jpg',
+    'is_cascading_reels' => NULL,
+    'is_win_both_ways' => NULL,
+    'is_expanding_wilds' => NULL,
+    'is_shifting_wilds' => NULL,
+    'is_stacked_wilds' => NULL,
+    'is_sticky_wilds' => NULL,
+    'is_transferring_wilds' => NULL,
+    'is_random_wilds' => NULL,
+    'is_walking_wilds' => NULL,
+    'is_split_symbol' => NULL,
+    'is_reel_respins' => NULL,
+    'is_rotating_reels' => NULL,
+    'is_retriggering' => NULL,
+    'is_slots_hold' => NULL,
+    'is_gamble_feature' => NULL,
+    'times_played' => '3',
+    'logo' => '/public/sync/game_ss/300x220/Red_Rake_Gaming_Tens_or_Better_ss.jpg',
   ),
 ));
 $this->response->attributes("filter", array (
-  'game_type' => 'Video Slots',
+  'game_type' => 'Video Poker',
 ));
 $this->response->attributes("is_mobile", false);
 $this->response->attributes("page_info", array (
-  'head_title' => ' Play Video Slots Games for Free | Full List at CasinosLists.com',
-  'head_description' => 'Play 3079 Video Slots Games for free at CasinosLists.com | Catch up with all Video Slots games releases from major online casino software developers.',
-  'body_title' => 'Free Online Video Slots Games',
+  'head_title' => ' Play Video Poker Games for Free | Full List at CasinosLists.com',
+  'head_description' => 'Play 266 Video Poker Games for free at CasinosLists.com | Catch up with all Video Poker games releases from major online casino software developers.',
+  'body_title' => 'Free Online Video Poker Games',
 ));
-$this->response->attributes("version", '0.8.8.9129');
-$this->response->attributes("use_bundle", true);
-$this->response->attributes("tms", array (
-  'upper_text' => '<p>Total number of gamess on site : 6296</p>
-
-<p>Total number of games in the current list: 3079</p>
-
-<p>Newest game on site  :  Majestic Sea</p>
-
-<p>Newest game in the current list : Majestic Sea</p>
-
-<p>Software of the newest game on site : NetEnt</p>
-
-<p>Software of the newest game in the current list : NetEnt</p>
-
-<p>Most popular game on site : Exotic Fruit Deluxe</p>
-
-<p>Most popular game in the current list: Exotic Fruit Deluxe</p>
-
-<p>Software of the most popular game on site : Booming Games</p>
-
-<p>Software of the most popular game in the current list : Booming Games</p>
-
-<ol>
-	<li>test</li>
-	<li>list</li>
-	<li>test</li>
-</ol>
-
-<ul>
-	<li>test</li>
-	<li>list</li>
-	<li>test</li>
-</ul>
-
-<p> </p>
-<div class="tms_iframe" data-width="935" data-height="528" data-src="https://www.youtube.com/embed/tacMdPlpdDE" data-frameborder="0" data-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></div>
-
-<p><div class="tms_iframe" data-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" data-frameborder="0" data-height="800" data-src="https://www.youtube.com/embed/W9CLdkkNn20" data-width="1903"></div></p>
-
-<p><div class="tms_iframe" data-width="1903" data-height="1204" data-src="https://www.youtube.com/embed/W9CLdkkNn20" data-frameborder="0" data-allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></div></p>
-',
-));
+$this->response->attributes("version", '1.0.0');
+$this->response->attributes("use_bundle", false);
 $this->response->attributes("widgets", array (
   'upper' => 
   array (
-    0 => '<p>testing video slots</p>
+    0 => '<p>Poker is probably the most popular table game in history, requiring a mixture of luck and strategy to win. That&rsquo;s why, with the advancement of technology, virtual versions of this game started taking over online casinos. However, unlike multiplayer Poker games such as Texas Hold&rsquo;em, Video poker is played only against the computer.</p>
+
+<p>&nbsp;</p>
+
+<h2><span style="font-size:16px;"><strong>Types of Video Poker</strong></span></h2>
+
+<p>We&#39;ve listed below the most popular variants of online video poker games:</p>
+
+<ul>
+	<li><strong>Jacks or Better:</strong> it is basically the simplest video poker type, where any card starting bigger or equal to Jacks ensures a payout. The rules are similar to those of classic poker and that makes it good for players who want to get used to the game.<br />
+	&nbsp;</li>
+	<li><strong>All American:</strong> the winning combinations for this type of video poker are many, starting with a pair of Jacks to win up to 5 credits, followed by a double pair, three of a kind, flush, square, straight flush, and the royal flush pinnacle. The last one will earn you a superb jackpot of more than 1000 times, especially if you manage to make good choices via the different features of the game.<br />
+	&nbsp;</li>
+	<li><strong>Deuces Wild:</strong> in Deuces Wild, the five cards placed in your hands will allow you to win two prizes. The first is for the three strongest cards, achieving to make a set or even a suite, and the other, for the five cards combined. The combinations are much more numerous. From three of a kind to a royal flush, cards marked as &ldquo;Wild&rdquo; will earn more money from the bettors. Thus, the strategy will be in place, with a new deal for gamblers seeking more to opt for marked cards and those that will lead you to a more winning hand.<br />
+	&nbsp;</li>
+	<li><strong>Bonus Poker:</strong> by jumping on the title presented in the video poker section, the game board will first show the amount you can win according to your hands. Make a set to unlock your first bonus points. From there, the path is more traditional, although, again, some surprises might occur. This is particularly the case with the victory of a square of 7 which increases the prize to 1000 times your bet. The most profitable combination is certainly the Royal Flush.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>Our page shines the spotlight on no less than <span class="dyna-var" id="foo">266</span>&nbsp;video poker games from various software developers, each one with its own particularities. You can sort them by either Newest or Top rated and use the Software filter for even more accurate results. Each of the games on our list can be played on our website for free and without requiring any sort of registration, so you&rsquo;re free to experience and have fun as much as you want!</p>
 ',
   ),
 ));

@@ -1,0 +1,72 @@
+<:if test="'$[section]' == 'index'">
+    <:set var="title_class" val="title-underlined"/>
+<:else>
+    <:set var="title_class" val="title-middle"/>
+</:if>
+<:if test="'$[type]' == 'software'">
+    <:set var="nextClass" val="cn5"/>
+    <:set var="prevClass" val="cp5"/>
+    <:set var="imgSrc" val="/public/sync/software_logo_light/80x53"/>
+<:else>
+    <:set var="nextClass" val="cn6"/>
+    <:set var="prevClass" val="cp6"/>
+    <:set var="imgSrc" val="/public/sync/banking_method_light/68x39"/>
+</:if>
+
+<div class="block">
+    <div class="carousel carousel-option-container">
+        <div class="container">
+            <div class="heading">
+                <h2 class="title ${title_class}">
+                    <span>$[title]</span>
+                </h2>
+                <div class="subtitle">
+                    <p>
+                        $[description]
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="container box-carousel">
+            <div class="swiper-container options-list" id="$[id]">
+                <div class="swiper-wrapper">
+                    <:foreach var="$[items]" val="result" key="key">
+
+                    <:if test="'$[type]' == 'software'">
+                    <:set var="href" val="/softwares"/>
+                    <:else>
+                    <:set var="href" val="/banking"/>
+                    </:if>
+
+
+                        <div class="swiper-slide">
+                            <div class="carousel-slide">
+                                <a href="${href}/${strtolower(str_replace(' ', '-',${result.name}))}" class="option-box">
+                                    <div class="image-container">
+                                        <img src="${imgSrc}/${strtolower(str_replace(' ', '_',${result.name}))}.png" alt="${result.name} Logo">
+                                    </div>
+                                    <div class="option-info">
+                                        <span>${result.name}</span>
+                                        <span class="casinos-count">${result.casinos} casinos</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </:foreach>
+                </div>
+            </div>
+            <div class="carousel-next ${nextClass}">
+                <i class="icon-chevron-right"></i>
+            </div>
+            <div class="carousel-prev ${prevClass}">
+                <i class="icon-chevron-left"></i>
+            </div>
+        </div>
+        <:if test="'$[section]' == 'index'">
+        <a href="$[url]" class="show_all-button">
+            $[button]
+            <i class="icon-chevron-right"></i>
+        </a>
+        </:if>
+    </div>
+</div>

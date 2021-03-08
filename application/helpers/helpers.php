@@ -175,3 +175,16 @@ function setVotePercents($vote, $total_votes){
     $percent  = round( ( $vote / $total_votes ) * 100);
     return $percent . '%';
 }
+
+function kFormater($number){
+    if ($number >= 1000) {
+        return round($number/ 1000, 1) . 'K';
+    }
+    return $number;
+}
+
+function get_bonus_from_code($code)
+{
+    $code = ucwords(str_replace('_', ' ', $code)) . ' Bonus';
+    return $code;
+}

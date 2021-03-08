@@ -32,6 +32,7 @@ class Casino extends Entity
     public $email_link;
     public $is_currency_accepted;
     public $note;
+    public $status;
     public $is_tc_link;
     public $logo_big;
     public $logo_small;
@@ -43,6 +44,4 @@ class Casino extends Entity
     public $casino_deposit_methods = [];
     public $is_mobile;
     public $casino_game_types;
-    public $votes_by_type;
-    public $votes_percents;
 }

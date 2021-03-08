@@ -3,6 +3,7 @@
 <xml>
     <listeners>
         <listener class="AsyncListener"/>
+        <listener class="FileCachingListener"/>
         <listener class="SQLDataSourceInjector"/>
         <listener class="NoSQLDataSourceInjector"/>
         <listener class="ErrorListener"/>
