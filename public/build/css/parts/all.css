@@ -10835,6 +10835,8 @@ hr.widget{
   .slide-box-amount {
     min-height:0;
     display:block;
+    max-height: 19px;
+    overflow: hidden;
   }
 }
 .games_allowed {
@@ -14293,5 +14295,12 @@ h1.title + .subtitle{
 @media (max-width: 690px){
   .casino-info-rev {
     margin-top: 20px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .swiper-slide.gridbox-bottom {
+    height: 260px!important;
+    min-height: 260px;
   }
 }
