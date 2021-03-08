@@ -14286,3 +14286,7 @@ h1.title + .subtitle{
     min-width: 96px;
   }
 }
+
+.warn-box {
+  margin-top: 20px;
+}
