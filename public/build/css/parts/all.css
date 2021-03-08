@@ -14288,5 +14288,10 @@ h1.title + .subtitle{
 }
 
 .warn-box {
-  margin-top: 20px;
+  margin-top: 40px;
+}
+@media (max-width: 690px){
+  .warn-box {
+    margin-top: 20px;
+  }
 }
