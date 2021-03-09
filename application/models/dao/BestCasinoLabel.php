@@ -18,7 +18,7 @@ class BestCasinoLabel
     public function __construct($sync = false)
     {
         $this->filter = new BestLabelFilter();
-        $this->filter->min_score = 8;
+        $this->filter->min_score = 7.5;
         $this->filter->is_open = 1;
         $this->filter->status_id = 0;
         $this->filter->min_vote = 1;
@@ -32,10 +32,14 @@ class BestCasinoLabel
     {
         $order_by = implode(' , ', $this->filter->sort_by);
 
-        $query = "SELECT id , (rating_total/rating_votes) as score
-        FROM casinos WHERE is_open = ".$this->filter->is_open." AND status_id = ".$this->filter->status_id." AND (rating_total/rating_votes) >= ".$this->filter->min_score. " 
-        ORDER BY " . $order_by . " 
-        LIMIT " . self::BEST_CASINO_LIMIT ;
+        $query = "SELECT DISTINCT id , (rating_total/rating_votes) as score
+        FROM casinos WHERE is_open = ".$this->filter->is_open." AND status_id IN(0,3) AND (rating_total/rating_votes) >= ".$this->filter->min_score. "
+        AND date_established <= '". date("Y-m-d", strtotime(date("Y-m-d")." -6 month")). "' AND rating_votes >= 10
+        ORDER BY " . $order_by;
+
+        if (!$this->from_sync) {
+            $query .= " LIMIT " . self::BEST_CASINO_LIMIT;
+        }
 
         return $query;
     }
