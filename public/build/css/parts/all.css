@@ -14322,3 +14322,7 @@ h1.title + .subtitle{
     width: unset;
   }
 }
+.grid_view .cta-btn.btn-blk.btn-err {
+  background: black;
+  color: #fff;
+}
