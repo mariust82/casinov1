@@ -14309,3 +14309,16 @@ h1.title + .subtitle{
   overflow: hidden;
   max-height: 18px;
 }
+
+
+@media (min-width: 690px) and (max-width: 1023px){
+  .filter-sort{
+    width: 323px;
+  }
+  .select2-container{
+    width: 118px !important;
+  }
+  .filter-filter{
+    width: unset;
+  }
+}
