@@ -14304,3 +14304,8 @@ h1.title + .subtitle{
     min-height: 260px;
   }
 }
+
+.carousel-box-container .games_allowed{
+  overflow: hidden;
+  max-height: 18px;
+}
