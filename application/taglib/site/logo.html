@@ -1,10 +1,10 @@
 <:if test="'$[type]' == 'game'">
     <span class="category-img">
-        <img class="lazy_loaded" data-src="${data.software_logo_small.$[index]}" alt="$[alt] Logo" width="136" height="100">
+        <img class="lazy_loaded" data-src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${data.software_logo_small.$[index]}))}.png" alt="$[alt] Logo" width="136" height="100">
     </span>
 <:elseif test="'$[type]' == 'software'">
-    <span class="software-img">
-        <img class="lazy_loaded" data-src="${data.software_logo_small.$[index]}" alt="$[alt] Logo" width="80" height="53">
+    <span class="software-img">s
+        <img class="lazy_loaded" data-src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${data.software_logo_small.$[index]}))}.png" alt="$[alt] Logo" width="80" height="53">
     </span>
 <:elseif test="'$[type]' == 'game_type'">
     <span class="category-img">
