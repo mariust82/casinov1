@@ -314,12 +314,14 @@
                             Player Reviews <:if test="${result.comments} > 0">(${result.comments})</:if>
                         </a>
                         <:if test="${result.status}=='Blacklisted'">
-                            <a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="cta-btn btn-blk btn-err">
+                            <a href="/visit/${normalize(${result.name})}" class="cta-btn btn-blk btn-err" target="_blank" rel="nofollow">
                                 <svg class="svg-icon"><use xlink:href="#icon-blacklisted"></use></svg>
+                                <span>Blacklisted</span>
                             </a>
                         <:elseif test="${result.status}=='Warning'">
-                            <a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="cta-btn btn-wrn btn-err">
+                            <a href="/visit/${normalize(${result.name})}" class="cta-btn btn-wrn btn-err" target="_blank" rel="nofollow">
                                 <svg class="svg-icon"><use xlink:href="#icon-warning"></use></svg>
+                                <span>Warning</span>
                             </a>
                         <:elseif test="!${result.is_country_accepted}">
                             <a href="/visit/${normalize(${result.name})}" class="cta-btn btn btn-rest" target="_blank" rel="nofollow">

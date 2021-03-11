@@ -11516,6 +11516,16 @@ hr.widget{
   letter-spacing: 0.55px;
   margin-top: 0;
 }
+.grid_view .cta-btn .svg-icon{
+  margin:0 10px 0 0;
+}
+.list-view .cta-btn span{
+  display:none;
+}
+.grid_view .cta-btn span{
+  display:inline-block;
+}
+
 .cta-btn.btn-reviews{
   background: #FFFFFF 0% 0% no-repeat padding-box;
   border: 2px solid #2171CE;
