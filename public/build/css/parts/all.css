@@ -10829,6 +10829,8 @@ hr.widget{
   .slide-box-amount {
     min-height:0;
     display:block;
+    max-height: 19px;
+    overflow: hidden;
   }
 }
 .games_allowed {
@@ -11939,6 +11941,7 @@ hr.widget{
   }
   .grid_view .casino_items-view .btn-blk, .grid_view .casino_items-view  .btn.btn-blacklisted {
     background: #020a13;
+    color: #fff;
   }
   .welcome_package-popup{
     width: calc(100vw - 20px);
@@ -14293,5 +14296,21 @@ h1.title + .subtitle{
   .similar_casinos-header{
     max-width: 96px;
     min-width: 96px;
+  }
+}
+
+.casino-info-rev{
+  margin-top: 40px;
+}
+@media (max-width: 690px){
+  .casino-info-rev {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  .swiper-slide.gridbox-bottom {
+    height: 260px!important;
+    min-height: 260px;
   }
 }

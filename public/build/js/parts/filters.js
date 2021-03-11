@@ -802,7 +802,7 @@ function customSelectFunc() {
             //     // return modifiedData;
             //     return data;
             // }
-            if (!params.term || params.term.trim() === '' || data.text.indexOf(params.term) > -1) {
+            if (!params.term.toLowerCase() || params.term.toLowerCase().trim() === '' || data.text.toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
                 return data;
             }
             // Return `null` if the term should not be displayed
