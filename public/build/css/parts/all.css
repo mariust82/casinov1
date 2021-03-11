@@ -11940,6 +11940,7 @@ hr.widget{
   }
   .grid_view .casino_items-view .btn-blk, .grid_view .casino_items-view  .btn.btn-blacklisted {
     background: #020a13;
+    color: #fff;
   }
   .welcome_package-popup{
     width: calc(100vw - 20px);
