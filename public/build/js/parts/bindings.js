@@ -244,6 +244,7 @@ contentTooltipConfig = {
     animation: 'fade',
     position: 'top',
     contentCloning: false,
+    theme: 'tooltipster-bonus',
     functionReady: function (instance, helper) {
         $('body').addClass('shadow');
         checkStringLength($('.bonus-box'), 15);
@@ -291,9 +292,6 @@ contentTooltipConfig = {
                 type: 'GET',
                 success: function (response) {
                     if (ww < 768) {
-                        $('.tooltipster-sidetip .tooltipster-box .tooltipster-content').css({
-                            padding: 0
-                        })
                         $('.tooltipster-sidetip .tooltipster-box').css({
                             borderRadius: '6px'
                         })
