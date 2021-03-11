@@ -179,7 +179,7 @@ class CasinosListQuery
                 break;
         }
         
-        if ($filter->getBankingMethod()) {
+        if ($filter->getBankingMethod() || $filter->getBankingMethod() === 0) {
             $group = new MariaDBSelectGroup();
             $tables = ["casinos__deposit_methods", "casinos__withdraw_methods"];
             foreach($tables as $table) {
