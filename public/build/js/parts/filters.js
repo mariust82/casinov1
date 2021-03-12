@@ -876,7 +876,9 @@ function processCheckboxes(_this) {
 
     if ($this.hasClass('select2-container--open')) {
         if ($(_this).val() && $(_this).val() != '') {
-            textHolder.html($(_this).val().join(', '));
+            if (window.location.pathname.indexOf('games/') > -1) {
+                textHolder.html($(_this).val().join(', '));
+            }
             printClearButtonText($(_this).val().length);
         }
 
@@ -901,7 +903,9 @@ function processCheckboxes(_this) {
 
             } else {
                 printClearButtonText(searchIDs.length);
-                // textHolder.html(searchIDs.join(', '));
+                if (window.location.pathname.indexOf('games/') == -1) {
+                    textHolder.html(searchIDs.join(', '));
+                }
                 clearButtonSelector.show();
                 if ($(window).width() <= 690) {
                     // parent.css("maxHeight", "256px");
