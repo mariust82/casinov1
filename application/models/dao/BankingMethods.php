@@ -108,4 +108,11 @@ class BankingMethods implements CasinoCounter
         GROUP BY t1.name
         ORDER BY sort_criteria DESC, t1.id DESC")->toMap("name", "sort_criteria");
     }
+
+    public function getIdByName($name)
+    {
+        $value = SQL('SELECT id FROM banking_methods WHERE name = :name', [':name' => $name])->toValue();
+
+        return $value ? $value : 0;
+    }
 }
