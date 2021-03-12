@@ -314,12 +314,14 @@
                             Player Reviews <:if test="${result.comments} > 0">(${result.comments})</:if>
                         </a>
                         <:if test="${result.status}=='Blacklisted'">
-                            <a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="cta-btn btn-blk btn-err">
+                            <a href="/visit/${normalize(${result.name})}" class="cta-btn btn-blk btn-err" target="_blank" rel="nofollow">
                                 <svg class="svg-icon"><use xlink:href="#icon-blacklisted"></use></svg>
+                                <span>Blacklisted</span>
                             </a>
                         <:elseif test="${result.status}=='Warning'">
-                            <a href="/visit/${normalize(${result.name})}" target="_blank" rel="nofollow" class="cta-btn btn-wrn btn-err">
+                            <a href="/visit/${normalize(${result.name})}" class="cta-btn btn-wrn btn-err" target="_blank" rel="nofollow">
                                 <svg class="svg-icon"><use xlink:href="#icon-warning"></use></svg>
+                                <span>Warning</span>
                             </a>
                         <:elseif test="!${result.is_country_accepted}">
                             <a href="/visit/${normalize(${result.name})}" class="cta-btn btn btn-rest" target="_blank" rel="nofollow">
@@ -402,11 +404,11 @@
                                     <:foreach var="${result.casino_deposit_methods}" key="dep_method" val="dep_method_data">
                                     <:if test="${k} < 3 && count(${result.casino_deposit_methods}) !== 4">
                                         <a class="list-title list_link banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
-                                            <img src="${dep_method_data.logo}" alt="${dep_method} Logo">
+                                            <img src="/public/sync/banking_method_light/68x39/${strtolower(str_replace(' ', '_',${dep_method_data.logo}))}.png" alt="${dep_method} Logo">
                                         </a>
                                     <:elseif test="count(${result.casino_deposit_methods}) == 4">
                                         <a class="list-title list_link banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
-                                            <img src="${dep_method_data.logo}" alt="${dep_method} Logo">
+                                            <img src="/public/sync/banking_method_light/68x39/${strtolower(str_replace(' ', '_',${dep_method_data.logo}))}.png" alt="${dep_method} Logo">
                                         </a>
                                     </:if>
                                     <:set var="k" val="${k}+1"/>
@@ -428,7 +430,7 @@
                                             <:foreach var="${result.casino_deposit_methods}" key="dep_method" val="dep_method_data">
                                             <div class="list-item-spec">
                                                 <a class="list-title list_link item-spec banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
-                                                    <img src="${dep_method_data.logo}" alt="${dep_method} Logo">
+                                                    <img src="/public/sync/banking_method_light/68x39/${strtolower(str_replace(' ', '_',${dep_method_data.logo}))}.png" alt="${dep_method} Logo">
                                                     ${dep_method}
                                                 </a>
                                                 <:if test="empty(${dep_method_data.deposit_methods})">
