@@ -335,7 +335,7 @@ var ListFilters = function (obj) {
 
 
                     if (loadTotal <= itemsNumberLoaded) {
-                        if (path === '/real-money-slots')
+                        if (_url === '/real-money-slots')
                             _moreButton.hide();
                         else{
                            // allGameItemsReceived = true;
@@ -355,7 +355,6 @@ var ListFilters = function (obj) {
                     CloseTFPopup();
                 }
                 
-                // console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
                 if($('.list-body').children().length >= totalItems) {
                     _moreButton.hide();
                 }
@@ -874,10 +873,11 @@ function processCheckboxes(_this) {
         });
     }
 
+
     if ($this.hasClass('select2-container--open')) {
         if ($(_this).val() && $(_this).val() != '') {
-            printClearButtonText($(_this).val().length);
             textHolder.html($(_this).val().join(', '));
+            printClearButtonText($(_this).val().length);
         }
 
         addingClass.addClass("qwerty");
@@ -901,7 +901,7 @@ function processCheckboxes(_this) {
 
             } else {
                 printClearButtonText(searchIDs.length);
-                textHolder.html(searchIDs.join(', '));
+                // textHolder.html(searchIDs.join(', '));
                 clearButtonSelector.show();
                 if ($(window).width() <= 690) {
                     // parent.css("maxHeight", "256px");
