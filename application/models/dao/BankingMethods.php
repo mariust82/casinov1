@@ -32,6 +32,7 @@ class BankingMethods implements CasinoCounter
         WHERE t1.is_open = 1 AND t3.id IS NULL
         )
         ORDER BY priority DESC
+        ORDER BY t1.id DESC
         LIMIT ".$limit, [":country"=>$countryID]);
         while($row = $resultSet->toRow()) {
             $bankingMethods[$row["id"]] = [
