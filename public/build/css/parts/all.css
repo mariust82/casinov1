@@ -13700,20 +13700,45 @@ h1.title + .subtitle{
   background: #DB2424;
 }
 
+.drag-rate-range.terrible .drag-rate-range-score span{
+  font-weight:bold;
+  color: #DB2424;
+}
+
 .drag-rate-range.poor .irs--round .irs-bar{
   background: #F17D0A;
+}
+
+.drag-rate-range.poor .drag-rate-range-score span{
+  font-weight:bold;
+  color: #F17D0A;
 }
 
 .drag-rate-range.good .irs--round .irs-bar{
   background: #E9CA00;
 }
 
+.drag-rate-range.good .drag-rate-range-score span{
+  font-weight:bold;
+  color: #E9CA00;
+}
+
 .drag-rate-range.very-good .irs--round .irs-bar{
   background: #96CB00;
 }
 
+.drag-rate-range.very-good .drag-rate-range-score span{
+  font-weight:bold;
+  color: #96CB00;
+}
+
 .drag-rate-range.excellent .irs--round .irs-bar{
   background: #5DC916;
+}
+
+.drag-rate-range.excellent .drag-rate-range-score span{
+  font-weight:bold;
+  color: #5DC916;
 }
 
 
