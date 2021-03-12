@@ -10,6 +10,7 @@ $userAgent = $argv && isset($argv[2]) ? $argv[2] : CasinosListsSiteIntegrityChec
 $domain = $argv && isset($argv[3]) ? $argv[3] : "build.casinoslists.com";
 define("ENVIRONMENT", $environment);
 
+\Hlis\Testing\PageSpeedValidator::$tolerance = 400;
 new CasinosListsSiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), array(
     "index" => "index",
     "banking" => "banking",

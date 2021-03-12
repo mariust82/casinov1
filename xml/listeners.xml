@@ -11,6 +11,7 @@
         <listener class="IPDetectionListener"/>
         <listener class="MobileDetectionListener"/>
         <listener class="ValidationListener"/>
+        <listener class="MinificationListener"/>
         <listener class="HttpCachingListener"/>
     </listeners>
 </xml>    
