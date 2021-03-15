@@ -14594,3 +14594,23 @@ h1.title + .subtitle{
   }
 
 }
+
+
+
+@media (min-width: 690px) and (max-width: 850px) and (orientation: landscape){
+  .list-heading .list-item-cell.list-item-alt-bonus{
+    width: 16%;
+  }
+  .list-heading .list-item-cell.list-heading-title.list-item-cell-buttons{
+    display: none;
+  }
+  .list-body.casino_items-view .list-item-cell.list-item-fd-bonus {
+    width: 35%;
+    flex-wrap: nowrap;
+    display: flex;
+  }
+  .first-tooltip {
+    width: 50%;
+    margin-right: 10px;
+  }
+}
