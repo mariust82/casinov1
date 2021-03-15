@@ -14380,6 +14380,21 @@ h1.title + .subtitle{
     width: unset;
   }
 }
+@media (min-width: 690px) and (max-width: 900px){
+  .filter-sort {
+    width: auto !important;
+  }
+  .filter-sort-buttons label{
+    padding: 5px 0;
+    width: 93px;
+    text-align: center;
+  }
+}
+@media (min-width: 690px) and (max-width: 710px){
+  .filter-sort-buttons label{
+    width: 88px !important;
+  }
+}
 .grid_view .cta-btn.btn-blk.btn-err {
   background: #020a13;
   color: #fff;
