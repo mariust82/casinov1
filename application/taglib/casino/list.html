@@ -207,8 +207,8 @@
 								<div class="list-item-flex ${tf_class}" data-id="${result.id}">
 									<:if test="'$[type]' == 'ESTABLISHED'">
 										<span class="upper">${formatDate(${result.date_established})}</span>
-                                                                        <:elseif test="'$[type]' == 'WITHDRAWAL'">
-										<span class="upper">${result.withdrawal_timeframes}</span>
+                                    <:elseif test="'$[type]' == 'WITHDRAWAL'">
+										<span class="upper bank_link">${result.withdrawal_timeframes}</span>
 									<:elseif test="'$[type]' == 'MINIMUM DEPOSIT'">
 										<span class="upper">${result.currencies} ${result.deposit_minimum}</span>
 									<:else>
