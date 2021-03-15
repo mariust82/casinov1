@@ -57,7 +57,7 @@ class CasinosList
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->score_class = $this->helper->getScoreClass($object->rating);
             if ($this->filter->getCasinoLabel() == 'Fast Payout') {
-                $object->withdrawal_timeframes = $row['end'] == 0 ? "Instant" : "Up to ".$row['end']." hours";
+                $object->withdrawal_timeframes = $row['end'] == 0 ? "immediate" : "Up to ".$row['end']." hours";
             }
             $output[$row["id"]] = $object;
         }
