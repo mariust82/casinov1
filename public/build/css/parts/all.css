@@ -14381,7 +14381,7 @@ h1.title + .subtitle{
   }
 }
 .grid_view .cta-btn.btn-blk.btn-err {
-  background: black;
+  background: #020a13;
   color: #fff;
 }
 .cl-lightbox {
