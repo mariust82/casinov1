@@ -18,6 +18,11 @@
   fill: currentColor;
 }
 
+.bank_link{
+  color: #2171ce !important;
+  font-weight: 400 !important;
+}
+
 .missing{
   color: #0052cc;
 }
