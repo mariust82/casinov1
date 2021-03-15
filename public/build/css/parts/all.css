@@ -14362,6 +14362,28 @@ h1.title + .subtitle{
   }
 }
 
+
+.carousel-box-container .games_allowed{
+  overflow: hidden;
+  max-height: 18px;
+}
+
+
+@media (min-width: 690px) and (max-width: 1023px){
+  .filter-sort{
+    width: 323px;
+  }
+  .select2-container{
+    width: 118px !important;
+  }
+  .filter-filter{
+    width: unset;
+  }
+}
+.grid_view .cta-btn.btn-blk.btn-err {
+  background: black;
+  color: #fff;
+}
 .cl-lightbox {
   position:fixed;
   left:0;
@@ -14550,4 +14572,5 @@ h1.title + .subtitle{
   .cl-lightbox .cl-lightbox-slide{
     width:274px;
   }
+
 }
