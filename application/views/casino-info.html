@@ -365,7 +365,7 @@
 									<td>${welcome_package_data.valid_on}</td>
 									<td>${welcome_package_data.bonus}</td>
 									<td>
-										<:if test="${welcome_package_data.min_deposit} == 'Free'">
+										<:if test="isset(${welcome_package_data.min_deposit}) && ${welcome_package_data.min_deposit} == 'Free'">
 											<span class="table-package_free_bonus">${welcome_package_data.min_deposit}</span>
 											<:else>
 												${welcome_package_data.min_deposit}
@@ -419,7 +419,7 @@
 									<td>${match_bonus_data.valid_on}</td>
 									<td>${match_bonus_data.bonus}</td>
 									<td>
-										<:if test="${welcome_package_data.min_deposit} == 'Free'">
+										<:if test="isset(${welcome_package_data.min_deposit}) && ${welcome_package_data.min_deposit} == 'Free'">
 											<span class="table-package_free_bonus">${match_bonus_data.min_deposit}</span>
 											<:else>
 												${match_bonus_data.min_deposit}

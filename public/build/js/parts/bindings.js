@@ -35,7 +35,7 @@ var Score = function (obj) {
 
                         $('.drag-rate').find('.action-field').show();
 
-                        $('.drag-rate-range-score').text(_score + '/10');
+                        $('.drag-rate-range-score').html('<span>' + _score + '</span>' + '/10 ' + '<span>' + getGrade(_score).text + '</span>');
                         $('.rating-container-score-value').text(data.body['total_score']);
                         $('.count-value').text(data.body['total_votes']);
 
@@ -171,6 +171,9 @@ function getGrade(score) {
             result['text'] = 'Excellent';
             result['class'] = 'excellent';
             break;
+        default:
+            result['text'] = '';
+            result['class'] = '';
     }
 
     return result;
@@ -193,14 +196,16 @@ $(".js-drag-rate").ionRangeSlider({
     hide_from_to: true,
     hide_min_max: true,
     onChange: function (data) {
-        $('.drag-rate-range-score').text(data.from + '/10');
+        $('.drag-rate-range-score').html('<span>' + data.from + '</span>' + '/10 ' + '<span>' + getGrade(data.from).text + '</span>');
         $('.drag-rate-range')
                 .removeClass('terrible poor good very-good excellent')
                 .addClass(getGrade(data.from).class);
     },
     onFinish: function (data) {
         // fired on pointer release
-        var container = $('.rating-container');
+        var container = $('[data-casino-name]');
+        $('.drag-rate-range-title').text('Your review');
+        console.log(container);
         new Score({
             value: data.from,
             name: container.data('casino-name')
@@ -244,6 +249,7 @@ contentTooltipConfig = {
     animation: 'fade',
     position: 'top',
     contentCloning: false,
+    theme: 'tooltipster-bonus',
     functionReady: function (instance, helper) {
         $('body').addClass('shadow');
         checkStringLength($('.bonus-box'), 15);
@@ -291,9 +297,6 @@ contentTooltipConfig = {
                 type: 'GET',
                 success: function (response) {
                     if (ww < 768) {
-                        $('.tooltipster-sidetip .tooltipster-box .tooltipster-content').css({
-                            padding: 0
-                        })
                         $('.tooltipster-sidetip .tooltipster-box').css({
                             borderRadius: '6px'
                         })

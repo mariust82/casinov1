@@ -31,7 +31,7 @@ class BankingMethods implements CasinoCounter
         LEFT JOIN banking_methods__countries AS t3 ON t2.id = t3.id AND t3.country_id = :country AND t3.is_allowed = 0
         WHERE t1.is_open = 1 AND t3.id IS NULL
         )
-        ORDER BY priority DESC
+        ORDER BY priority DESC, id DESC
         LIMIT ".$limit, [":country"=>$countryID]);
         while($row = $resultSet->toRow()) {
             $bankingMethods[$row["id"]] = [
@@ -107,5 +107,12 @@ class BankingMethods implements CasinoCounter
         WHERE t3.is_open = 1
         GROUP BY t1.name
         ORDER BY sort_criteria DESC, t1.id DESC")->toMap("name", "sort_criteria");
+    }
+
+    public function getIdByName($name)
+    {
+        $value = SQL('SELECT id FROM banking_methods WHERE name = :name', [':name' => $name])->toValue();
+
+        return $value ? $value : 0;
     }
 }

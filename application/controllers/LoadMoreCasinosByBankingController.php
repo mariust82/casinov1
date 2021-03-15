@@ -2,6 +2,7 @@
 require_once("application/models/CasinoSortCriteria.php");
 require_once("application/models/CasinoFilter.php");
 require_once("application/models/dao/CasinosList.php");
+require_once("application/models/dao/BankingMethods.php");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,7 +34,7 @@ class LoadMoreCasinosByBankingController extends Lucinda\MVC\STDOUT\Controller {
 private function getCasinos($filter, $sortBy, $limit,$offset)
     {
         $casinoFilter = new CasinoFilter($filter, $this->request->attributes("country"));
-        $casinoFilter->setBankingMethod($this->request->parameters("banking"));
+        $casinoFilter->setBankingMethod($this->getBankingMethodId());
         $casinoFilter->setPromoted(TRUE);
         $casinoFilter->setCountryAccepted(TRUE);
         $object = new CasinosList($casinoFilter);
@@ -41,6 +42,11 @@ private function getCasinos($filter, $sortBy, $limit,$offset)
         $total = $object->getTotal();
         $return = ['total'=>$total,'result'=>$results];
         return $return;
+    }
+
+    private function getBankingMethodId()
+    {
+        return (new BankingMethods())->getIdByName($this->request->parameters("banking"));
     }
 
 }
