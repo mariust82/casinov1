@@ -1,5 +1,19 @@
 var ww = $(window).width();
 
+$('body').on('click', '.cl-lightbox-close', closeClLightbox);
+
+$('body').on('keyup', function(e) {
+    if (e.keyCode == 27) {
+        closeClLightbox();
+    }
+});
+
+function closeClLightbox() {
+    $('.cl-lightbox').fadeOut('fast', function() {
+        $(this).remove();
+    });
+}
+
 var Score = function (obj) {
     var _obj = obj,
             _name = _obj.name,
@@ -1833,5 +1847,3 @@ var initSite = function () {
         e.preventDefault();
     });
 }
-
-
