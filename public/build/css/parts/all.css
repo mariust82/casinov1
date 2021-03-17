@@ -14619,4 +14619,7 @@ h1.title + .subtitle{
   .select2-container .select2-dropdown{
     min-width: 208px;
   }
+  .select2-dropdown:after, .select2-dropdown:before{
+    left: 60px;
+  }
 }
