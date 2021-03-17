@@ -7,7 +7,7 @@ if(!$environment) die("Value of environment variable 'ENVIRONMENT' could not be 
 define("ENVIRONMENT", $environment);
 
 // load firewall
-if (ENVIRONMENT == "live") {
+if (ENVIRONMENT == "live" && strpos(__DIR__, "/live/site")) {
     require_once("hlis/firewall_client/Manager.php");
     $firewall = new Hlis\Firewall\Manager($_SERVER["SERVER_NAME"], $_SERVER["REMOTE_ADDR"], $_SERVER["REQUEST_URI"], $_SERVER["REQUEST_METHOD"], getallheaders());
     if($userType = $firewall->getUserType()) {
