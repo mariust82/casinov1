@@ -514,12 +514,18 @@ if ($.fn.select2) {
     setTimeout(function () {
         $(".player iframe ").css("opacity", "1");
     }, 1500);
-
-    $(document).on('mousemove touchstart', function (event) {
+    
+    if ($(window).width() < 1025) {
         if (!is_options_loaded) {
             prepareSelectFilter();
         }
-    });
+    } else {
+        $(document).on('mousemove touchstart', function () {
+            if (!is_options_loaded) {
+                prepareSelectFilter();
+            }
+        });
+    }
 }
 
 var options = ['software', 'features', 'themes'];
