@@ -3,6 +3,7 @@ ini_set("display_errors", 1);
 require("vendor/autoload.php");
 require_once("hlis/unit_testing/ConsoleWrapper.php");
 
+\Hlis\Testing\PageSpeedValidator::$tolerance = 900;
 $wrapper = new \Hlis\Testing\ConsoleWrapper($argv, "casinoslists");
 $wrapper->run([
     "index" => "index",
