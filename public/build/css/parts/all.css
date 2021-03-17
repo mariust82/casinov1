@@ -14614,3 +14614,9 @@ h1.title + .subtitle{
     margin-right: 10px;
   }
 }
+
+@media (min-width: 690px) and (max-width: 1024px){
+  .select2-container .select2-dropdown{
+    min-width: 208px;
+  }
+}
