@@ -271,6 +271,7 @@ class CasinosListQuery
                 case CasinoSortCriteria::FAST_PAYOUT:
                     $orderBy->add("t18.end", "ASC");
                     $orderBy->add("t1.priority", "DESC");
+                    $orderBy->add("t1.id", "DESC");
                     break;
                 case CasinoSortCriteria::MINIMUM_DEPOSIT:
                     $orderBy->add("t1.deposit_minimum", "ASC");
