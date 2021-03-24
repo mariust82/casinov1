@@ -46,7 +46,7 @@ function AddingReview(obj) {
         _send_btn = _wrap.find('input[name=submit]'),
         _qty = $('.reviews-qty'),
         _contact_error_class = 'not-valid',
-        _casinoID = $('.reviews-form').data('casino-id'),
+        _casinoID = _wrap.data('casino-id'),
         _storage_casino_id_reviewed = localStorage.getItem('casino_' + _casinoID + '_reviewed'),
         _storage_review_score = localStorage.getItem('casino_' + _casinoID + '_score'),
         _reviewID,
@@ -182,177 +182,194 @@ function AddingReview(obj) {
         }
         return ok;
     },
-        _setReviewerName = function (parent) {
-            var name = parent.find('.review-name').text();
-            var pattern = '<strong>@' + name + '</strong> ';
+    
+    _setReviewerName = function (parent) {
+        var name = parent.find('.review-name').text();
+        var pattern = '<strong>@' + name + '</strong> ';
 
-            message = pattern + _field_message.val().substr(name.length + 1);
-        },
-        _changeName = function () {
-            $('#reviews-form input[name=name]').on('keyup', function () {
-                $('#reviews-form .review-name').text($(this).val());
-            });
-        },
-        _prepAjaxData = function (_this) {
-            var ajaxData = {
-                casino: casino_name,
-                title: title,
-                name: name,
-                email: email,
-                body: message,
-                parent: _reviewID,
-                casino_id: $('.reviews-form').attr('data-casino-id')
-            };
-            _sendReview(ajaxData, _this);
-        },
-        _sendReview = function (ajaxData, _this) {
-            if (BUSY_REQUEST)
-                return;
-            BUSY_REQUEST = true;
-            _request.abort();
-            // console.log(ajaxData);
-            _request = $.ajax({
-                url: "/casino/review-write",
-                data: ajaxData,
-                dataType: 'json',
-                timeout: 20000,
-                type: 'POST',
-                success: function (data) {
-                    _loadData(data, _this);
-                    _field_title.val('');
-                    _field_name.val('');
-                    _field_email.val('');
-                    _field_message.val('').addClass('expanding');
-                    _onEvents();
-                    $('.form .js-expanding-textfields').slideUp();
-                },
-                error: function (jqXHR) {
-                    _errors_found = $.parseJSON(jqXHR.responseText);
-                    console.error("Could not send message!");
-                    console.log(_errors_found.body.message);
-                },
-                complete: function () {
-                    BUSY_REQUEST = false;
-                }
-            });
-        },
-        _showEmptyMessage = function () {
+        message = pattern + _field_message.val().substr(name.length + 1);
+    },
+    
+    _changeName = function () {
+        $('#reviews-form input[name=name]').on('keyup', function () {
+            $('#reviews-form .review-name').text($(this).val());
+        });
+    },
+    
+    _prepAjaxData = function (_this) {
+        var ajaxData = {
+            casino: casino_name,
+            title: title,
+            name: name,
+            email: email,
+            body: message,
+            parent: _reviewID,
+            casino_id: _this.data('casino-id')
+        };
+        _sendReview(ajaxData, _this);
+    },
+    
+    _sendReview = function (ajaxData, _this) {
+        if (BUSY_REQUEST)
+            return;
+        BUSY_REQUEST = true;
+        _request.abort();
+        // console.log(ajaxData);
+        _request = $.ajax({
+            url: "/casino/review-write",
+            data: ajaxData,
+            dataType: 'json',
+            timeout: 20000,
+            type: 'POST',
+            success: function (data) {
+                _loadData(data, _this);
+                _field_title.val('');
+                _field_name.val('');
+                _field_email.val('');
+                _field_message.val('').addClass('expanding');
+                _onEvents();
+                $('.form .js-expanding-textfields').slideUp();
+            },
+            error: function (jqXHR) {
+                _errors_found = $.parseJSON(jqXHR.responseText);
+                console.error("Could not send message!");
+                console.log(_errors_found.body.message);
+            },
+            complete: function () {
+                BUSY_REQUEST = false;
+            }
+        });
+    },
+    
+    _showEmptyMessage = function () {
         _searchListsContainer.parent().hide();
         _searchCasinosContainer.parent().hide();
         _searchPagesContainer.parent().hide();
         _searchEmptyContainer.show();
         _searchAllButton.parent().fadeOut();
     },
-        _loadData = function (data, _this) {
+    
+    _loadData = function (data, _this) {
 
-            if ($.isEmptyObject(data)) {
-                _showEmptyMessage();
-            } else {
-
-
-                function getItemPattern() {
-                    var review_element = $('.review-element').clone();
-
-                    if (_is_child) {
-                        return setComment(review_element, 'review-child',  name, data.body.id, _imgDir, _countryCode, message, title);
-                    } else {
-                        return setComment(review_element, 'review-parent', name, data.body.id, _imgDir, _countryCode, message, title);
-                    }
-                }
+        if ($.isEmptyObject(data)) {
+            _showEmptyMessage();
+        } else {
 
 
-                function setComment(review_element, element_class, name, data_id, imgDir, countryCode, message, title ){
-                    $(review_element).removeClass('review-element');
-                    $(review_element).removeClass('hidden');
-                    $(review_element).removeAttr('hidden');
-                    $(review_element).addClass(element_class);
-                    $(review_element).addClass(name.toLowerCase());
-                    $(review_element).addClass('review-parent');
-                    $(review_element).attr('data-id', data_id);
-                    $(review_element).find('.review-flag img').attr('src', imgDir);
-                    $(review_element).find('.review-flag img').attr('alt', countryCode);
-                    $(review_element).find('.review-title').removeClass('hidden');
-                    $(review_element).find('.review-title').text(title);
-                    $(review_element).find('.review-name').text(name);
-                    $(review_element).find('.review-date').text(_getCurrDate());
-                    $(review_element).find('.review-text').html(message);
-                    review_element.find('.js-vote .votes-like').attr('data-id', data_id);
+            function getItemPattern() {
+                var review_element = $('.review-element').clone();
 
-                    if(element_class === 'review-parent') {
-                        var user_rate_slider_result = _rate_slider_result.split("/")[0];
-                        $(review_element).find('.list-rating').addClass(getWebName(get_rating(user_rate_slider_result)));
-                        $(review_element).find('.list-rating-score').text(user_rate_slider_result);
-                        $(review_element).find('.list-rating-text').text(get_rating(user_rate_slider_result));
-                    }else{
-                        $(review_element).find('.list-rating').remove();
-                        $(review_element).attr('data-img-dir', _imgDir);
-                    }
-
-                    return review_element;
-                }
-
-                if (_is_child_of_child) {
-                    $(getItemPattern()).insertAfter(_this);
+                if (_is_child) {
+                    return setComment(review_element, 'review-child',  name, data.body.id, _imgDir, _countryCode, message, title);
                 } else {
-                    _reviewHolder.prepend($('.to-clone').clone());
-                    _reviewHolder.prepend(getItemPattern());
+                    return setComment(review_element, 'review-parent', name, data.body.id, _imgDir, _countryCode, message, title);
                 }
-                _refreshData();
             }
-        },
-        _refreshData = function () {
-            if (!_is_child) {
-                _qty.text(parseInt(_qty.text()) + 1);
-                localStorage.setItem('casino_' + _casinoID + '_reviewed', 1);
-                localStorage.setItem('casino_' + _casinoID + '_score', _rate_slider_result);
-            }
-            if (_is_child)
-                _childReplies.text(parseInt(_childReplies.text()) + 1);
 
-            $('.review-form').slideUp();
-            initReviewForm();
-            initTexfieldsLabels();
 
-            new Vote($('.js-vote'));
+            function setComment(review_element, element_class, name, data_id, imgDir, countryCode, message, title ){
+                $(review_element).removeClass('review-element');
+                $(review_element).removeClass('hidden');
+                $(review_element).removeAttr('hidden');
+                $(review_element).addClass(element_class);
+                $(review_element).addClass(name.toLowerCase());
+                $(review_element).addClass('review-parent');
+                $(review_element).attr('data-id', data_id);
+                $(review_element).find('.review-flag img').attr('src', imgDir);
+                $(review_element).find('.review-flag img').attr('alt', countryCode);
+                $(review_element).find('.review-title').removeClass('hidden');
+                $(review_element).find('.review-title').text(title);
+                $(review_element).find('.review-name').text(name);
+                $(review_element).find('.review-date').text(_getCurrDate());
+                $(review_element).find('.review-text').html(message);
+                review_element.find('.js-vote .votes-like').attr('data-id', data_id);
 
-            $('.review, .reply').each(function () {
-                new AddingReview($(this));
-            });
-
-            grayscaleIE();
-        },
-        _doIfReviewedAlready = function () {
-            var formContainer = $('#reviews-form');
-
-            $(formContainer).addClass('reviewed');
-            $('textarea', formContainer).addClass('disabled');
-            $('.rating-current-value span').text(_storage_review_score);
-            $('textarea[name=body]', formContainer).attr('placeholder', 'You have already reviewed');
-        },
-        _initForms = function () {
-            _send_btn.off();
-            _send_btn.on({
-                'click': function (e) {
-                    var error = _prepReview(_wrap);
-
-                    if (error === false) {
-                        e.stopPropagation();
-                    } else {
-                        _prepAjaxData(_wrap);
-                    }
+                if(element_class === 'review-parent') {
+                    var user_rate_slider_result = _rate_slider_result.split("/")[0];
+                    $(review_element).find('.list-rating').addClass(getWebName(get_rating(user_rate_slider_result)));
+                    $(review_element).find('.list-rating-score').text(user_rate_slider_result);
+                    $(review_element).find('.list-rating-text').text(get_rating(user_rate_slider_result));
+                }else{
+                    $(review_element).find('.list-rating').remove();
+                    $(review_element).attr('data-img-dir', _imgDir);
                 }
-            });
-        },
-        _onEvents = function () {
-            if (_storage_casino_id_reviewed) {
-               // _doIfReviewedAlready();
-                _initForms();
+
+                return review_element;
+            }
+
+            if (_is_child_of_child) {
+                $(getItemPattern()).insertAfter(_this);
             } else {
-                _initForms();
-                _changeName();
+                _reviewHolder.prepend($('.to-clone').clone());
+                _reviewHolder.prepend(getItemPattern());
             }
-        },
-        _onEvents();
+            _refreshData();
+        }
+    },
+    
+    _refreshData = function () {
+        if (!_is_child) {
+            _qty.text(parseInt(_qty.text()) + 1);
+            localStorage.setItem('casino_' + _casinoID + '_reviewed', 1);
+            localStorage.setItem('casino_' + _casinoID + '_score', _rate_slider_result);
+        }
+        if (_is_child)
+            _childReplies.text(parseInt(_childReplies.text()) + 1);
+
+        $('.review-form').slideUp();
+        initReviewForm();
+        initTexfieldsLabels();
+
+        if ($('.js-vote').length > 0) {
+            new Vote($('.js-vote'));
+        }
+        
+        if ($('.cl-lightbox').length > 0) {
+            feedbackPopupNextStep(3);
+        }
+
+        $('.review, .reply').each(function () {
+            new AddingReview($(this));
+        });
+
+        grayscaleIE();
+    },
+    
+    _doIfReviewedAlready = function () {
+        var formContainer = $('#reviews-form');
+
+        $(formContainer).addClass('reviewed');
+        $('textarea', formContainer).addClass('disabled');
+        $('.rating-current-value span').text(_storage_review_score);
+        $('textarea[name=body]', formContainer).attr('placeholder', 'You have already reviewed');
+    },
+    
+    _initForms = function () {
+        _send_btn.off();
+        _send_btn.on({
+            'click': function (e) {
+                var error = _prepReview(_wrap);
+
+                if (error === false) {
+                    e.stopPropagation();
+                } else {
+                    _prepAjaxData(_wrap);
+                }
+            }
+        });
+    },
+    
+    _onEvents = function () {
+        if (_storage_casino_id_reviewed) {
+            // _doIfReviewedAlready();
+            _initForms();
+        } else {
+            _initForms();
+            _changeName();
+        }
+    },
+    
+    _onEvents();
 }
 
 function showMoreReviews() {

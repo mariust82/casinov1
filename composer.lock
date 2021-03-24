@@ -52,6 +52,10 @@
                 "database",
                 "nosql"
             ],
+            "support": {
+                "issues": "https://github.com/aherne/lucinda_db/issues",
+                "source": "https://github.com/aherne/lucinda_db/tree/v2.0.3"
+            },
             "time": "2020-12-04T10:24:01+00:00"
         },
         {
@@ -391,6 +395,10 @@
                 "query",
                 "sql"
             ],
+            "support": {
+                "issues": "https://github.com/aherne/php-sql-statements-api/issues",
+                "source": "https://github.com/aherne/php-sql-statements-api/tree/v1.0.8"
+            },
             "time": "2021-02-25T08:52:44+00:00"
         },
         {
@@ -467,6 +475,10 @@
                 "feed",
                 "rss"
             ],
+            "support": {
+                "issues": "https://github.com/aherne/rss-generator/issues",
+                "source": "https://github.com/aherne/rss-generator/tree/v1.0.4"
+            },
             "time": "2021-02-25T11:30:10+00:00"
         },
         {
@@ -621,6 +633,10 @@
                 "tables",
                 "unix console"
             ],
+            "support": {
+                "issues": "https://github.com/aherne/console_table/issues",
+                "source": "https://github.com/aherne/console_table/tree/v1.0.1"
+            },
             "time": "2021-02-20T10:09:18+00:00"
         },
         {
@@ -713,6 +729,10 @@
             "keywords": [
                 "unit testing"
             ],
+            "support": {
+                "issues": "https://github.com/aherne/unit-testing/issues",
+                "source": "https://github.com/aherne/unit-testing/tree/v1.1.9"
+            },
             "time": "2021-02-20T10:53:43+00:00"
         }
     ],
@@ -723,5 +743,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }

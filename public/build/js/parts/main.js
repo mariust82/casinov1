@@ -177,10 +177,9 @@ function changeViewElements(filterView,container,gridClass,listClass){
             showCasinoBonuses();
         }
 
-        $('.btn_visit').click(function(){
+        $('body').on('click', '.btn_visit', function(){
             feedbackPopup($(this));
         });
-
 
         if($('.similar_casinos-slider').length > 0){
             var similarSlider = $('.similar_casinos-slider');
@@ -216,6 +215,10 @@ function changeViewElements(filterView,container,gridClass,listClass){
         if ($('.links-nav').length) {
             loadScripts(['bindings', 'assets/swiper']);
         }
+        if (!$('.casino-review').length && $('.btn_visit').length) {
+            loadScripts(['casino_review']);
+        }
+        
         loadScripts(['assets/jquery-select2', 'filters']);
 
         $(document).on('scroll mousemove', function(){
@@ -325,7 +328,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
             })
             .done(function (data) {
                 $(".software-tooltipster").remove();
-               _this.append(data);
+                _this.append(data);
                 CloseTFPopup();
             });
     });
@@ -537,7 +540,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
                     currentclass = "section",
                     singleline = parseFloat(element.css("line-height")),
                     auto = 1,
-                    fullheight = element.innerHeight(),
+                    fullheight = element.innerHeight() - (parseInt($("p",  $(this)).first().css("margin-top")) * 2),
                     settings = $.extend({
                         linecount: auto,
                         baseclass: baseclass,
@@ -627,7 +630,7 @@ function determineCasinoPage(key) {
         page = NEW_CURR_PAGE;
     } else if (key === 'best') {
         page = BEST_CURR_PAGE;
-     } else if (key === 'ndb') {
+    } else if (key === 'ndb') {
         page = NDB_CURR_PAGE;
     } else if (key === 'country') {
         page = COUNTRY_CURR_PAGE;
@@ -765,7 +768,6 @@ function showCasinoBonuses(){
 }
 
 function feedbackPopup(_this) {
-
     var _request = new XMLHttpRequest();
     _request.abort();
     _request = $.ajax({
@@ -778,14 +780,21 @@ function feedbackPopup(_this) {
         type: 'POST',
         cache: false,
         success: function (data) {
-            if($(data).data('show-popup') == 1) {
-                // write JS code for feedback popup here
+            if($(data).filter('.cl-lightbox').data('show-popup') == 1) {
+                $('body').append(data);
+                $(".js-drag-rate").ionRangeSlider(rangeRatingConfig);
             }
         },
         error: function (jqXHR) {
             console.log(jqXHR);
         }
     });
+}
+
+function feedbackPopupNextStep(step) {
+    var slides = $('.cl-lightbox-slide');
+    slides.hide();
+    slides.eq(step - 1).show();
 }
 
 
