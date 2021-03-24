@@ -93,6 +93,6 @@
     <:if test="!${result.is_country_accepted}">
         <a href="/visit/${normalize(${result.name})}" class="btn btn-rest" target="_blank" rel="nofollow">RESTRICTED</a>
     <:else>
-        <a class="btn" href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank">VISIT CASINO</a>
+        <a class="btn_visit btn" href="/visit/${normalize(${result.name})}" data-casino-id="${result.id}" rel="nofollow" target="_blank">VISIT CASINO</a>
     </:if>
 </div>

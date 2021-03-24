@@ -177,6 +177,11 @@ function changeViewElements(filterView,container,gridClass,listClass){
             showCasinoBonuses();
         }
 
+        $('.btn_visit').click(function(){
+            feedbackPopup($(this));
+        });
+
+
         if($('.similar_casinos-slider').length > 0){
             var similarSlider = $('.similar_casinos-slider');
             var isDown = false;
@@ -205,7 +210,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
                 var walk = (xAxis - startX) * 1;
                 $(this).scrollLeft(scrollL - walk);
             });
-            
+
         }
         //Load Defer Scripts and Binding
         if ($('.links-nav').length) {
@@ -288,8 +293,8 @@ function changeViewElements(filterView,container,gridClass,listClass){
             changeViewElements($('.filter .view'),$('.data-container-holder'),'grid_view','list-view');
         }
         gridViewBoxPopup();
-        
-            
+
+
     });
 
     $(document).ajaxComplete(function() {
@@ -306,15 +311,15 @@ function changeViewElements(filterView,container,gridClass,listClass){
             $this.data('scrollTimeout', setTimeout(callback, timeout));
         });
     };
-    
-    $(".tf_flex").on('click',function() {     
+
+    $(".tf_flex").on('click',function() {
             var id = $(this).data('id');
             var _this = $(this);
-            $.ajax({    
+            $.ajax({
                 url: '/timeframe-tooltip',
                 type: 'POST',
                 data: {
-                    id: id              
+                    id: id
                 },
                 dataType: 'html'
             })
@@ -325,10 +330,13 @@ function changeViewElements(filterView,container,gridClass,listClass){
             });
     });
 
-    var windowToBottom = 5;
+
+
+
+        var windowToBottom = 5;
 
     $(window).on('scroll', function () {
-        
+
         if (windowToBottom < $(window).scrollTop()) {
             //scroll down
             $('body').addClass('site__header_hidden');
@@ -374,7 +382,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
             })
         }
     }
-    
+
     function CloseTFPopup() {
         $('.close_tf_wrap').on('click', function (e) {
             console.dir($(this).parent().parent().parent());
@@ -741,7 +749,7 @@ function showCasinoBonuses(){
 
                     },
                     error: function ( jqXHR ) {
-    
+
                     }
                 });
             }
@@ -752,7 +760,31 @@ function showCasinoBonuses(){
                 }
             });
         }
-        
+
+    });
+}
+
+function feedbackPopup(_this) {
+
+    var _request = new XMLHttpRequest();
+    _request.abort();
+    _request = $.ajax({
+        url: "/casino/feedback-popup",
+        data: {
+            id: _this.data('casino-id')
+        },
+        dataType: 'JSON',
+        timeout: 20000,
+        type: 'POST',
+        cache: false,
+        success: function (data) {
+            if($(data).data('show-popup') == 1) {
+                // write JS code for feedback popup here
+            }
+        },
+        error: function (jqXHR) {
+            console.log(jqXHR);
+        }
     });
 }
 
@@ -761,4 +793,6 @@ function showCasinoBonuses(){
 
 
 
-    
+
+
+
