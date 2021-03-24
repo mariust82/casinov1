@@ -204,7 +204,7 @@ function AddingReview(obj) {
             email: email,
             body: message,
             parent: _reviewID,
-            casino_id: _casinoID
+            casino_id: _this.data('casino-id')
         };
         _sendReview(ajaxData, _this);
     },
