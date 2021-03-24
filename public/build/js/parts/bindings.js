@@ -21,7 +21,6 @@ var rangeRatingConfig = {
         // fired on pointer release
         var container = $('[data-casino-name]');
         $('.drag-rate-range-title').text('Your review');
-        console.log(container);
         new Score({
             value: data.from,
             name: container.data('casino-name')
@@ -616,18 +615,18 @@ function sliderInit(params) {
             },
         },
         on: {
-          reachEnd: function(e) {
+            reachEnd: function(e) {
             if (params.hasLazySlides) {
-              getMoreSlides({
-                  url: params.lazySlidesUrl,
-                  container: params.container,
-                  self: swiperMain,
-                  callback: params.callBack,
-                  // page: slideSwiper.navPage
-              });
+                getMoreSlides({
+                    url: params.lazySlidesUrl,
+                    container: params.container,
+                    self: swiperMain,
+                    callback: params.callBack,
+                    // page: slideSwiper.navPage
+                });
             }
 
-          }
+            }
         }
     });
 
