@@ -11,7 +11,7 @@ class FeedbackPopup
         $casino = new Casinos();
         if(empty($casino->checkDailyFeedback($ip))) {
             if(empty($casino->checkCasinoVisit($ip, $casinoID))) {
-                $casino->saveCasinoVisit($ip, $casinoID);
+               // $casino->saveCasinoVisit($ip, $casinoID);
                 return 1;
              }
         }
