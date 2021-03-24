@@ -536,7 +536,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
                     currentclass = "section",
                     singleline = parseFloat(element.css("line-height")),
                     auto = 1,
-                    fullheight = element.innerHeight(),
+                    fullheight = element.innerHeight() - (parseInt($("p",  $(this)).first().css("margin-top")) * 2),
                     settings = $.extend({
                         linecount: auto,
                         baseclass: baseclass,
@@ -777,7 +777,7 @@ function feedbackPopup(_this) {
         cache: false,
         success: function (data) {
             console.log($(data).filter('.cl-lightbox').data('show-popup'));
-            
+
             if($(data).data('show-popup') == 1) {
                 // write JS code for feedback popup here
             }
