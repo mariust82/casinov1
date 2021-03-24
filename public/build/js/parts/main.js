@@ -540,7 +540,7 @@ function changeViewElements(filterView,container,gridClass,listClass){
                     currentclass = "section",
                     singleline = parseFloat(element.css("line-height")),
                     auto = 1,
-                    fullheight = element.innerHeight(),
+                    fullheight = element.innerHeight() - (parseInt($("p",  $(this)).first().css("margin-top")) * 2),
                     settings = $.extend({
                         linecount: auto,
                         baseclass: baseclass,
