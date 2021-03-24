@@ -26,6 +26,11 @@ var rangeRatingConfig = {
             name: container.data('casino-name')
         });
     },
+    onStart: function (data) {
+        $(data.slider)
+            .find('.irs-handle.single')
+            .attr('id', 'gtm_rating');
+    }
 }
 
 $('body').on('click', '.cl-lightbox-close', closeClLightbox);

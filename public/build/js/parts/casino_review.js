@@ -325,7 +325,7 @@ function AddingReview(obj) {
         }
         
         if ($('.cl-lightbox').length > 0) {
-            feedbackPopupNextStep(3);
+            feedbackPopupNextStep(3, true);
         }
 
         $('.review, .reply').each(function () {
