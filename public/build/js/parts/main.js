@@ -791,17 +791,14 @@ function feedbackPopup(_this) {
     });
 }
 
-function feedbackPopupNextStep(step) {
+function feedbackPopupNextStep(step, isFinal) {
     var slides = $('.cl-lightbox-slide');
     slides.hide();
     slides.eq(step - 1).show();
+    
+    if (isFinal) {
+        setTimeout(function() {
+            closeClLightbox();
+        }, 3000);
+    }
 }
-
-
-
-
-
-
-
-
-
