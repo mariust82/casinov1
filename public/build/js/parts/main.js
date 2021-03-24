@@ -776,6 +776,8 @@ function feedbackPopup(_this) {
         type: 'POST',
         cache: false,
         success: function (data) {
+            console.log($(data).filter('.cl-lightbox').data('show-popup'));
+            
             if($(data).data('show-popup') == 1) {
                 // write JS code for feedback popup here
             }
