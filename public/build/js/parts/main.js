@@ -773,7 +773,7 @@ function feedbackPopup(_this) {
         data: {
             id: _this.data('casino-id')
         },
-        dataType: 'JSON',
+        dataType: 'HTML',
         timeout: 20000,
         type: 'POST',
         cache: false,
