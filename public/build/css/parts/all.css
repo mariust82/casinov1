@@ -12540,6 +12540,9 @@ h1.title + .subtitle{
   height:auto !important;
   margin:10px 0;
 }
+.subtitle h4 img{
+  margin-right: 20px;
+}
 @media screen and (max-width:767px) {
   .lower_pragraph img,
   .subtitle img{
