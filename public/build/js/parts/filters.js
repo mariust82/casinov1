@@ -4,7 +4,7 @@ var ListFilters = function (obj) {
             _self = this,
             _switchers = _obj.find('input[type=checkbox]'),
             _radios = _obj.find('input[type=radio]'),
-            _selectFilter = _obj.find($('.filter-filter .select')),
+            _selectFilter = _obj.find($('.filter-filter .select, .filter-select-holder .select')),
             _targetContainer = $('.data-container'),
             _targetAddContainer = $('.list-body'),
             _paramName = _targetContainer.data('type'),
@@ -316,7 +316,7 @@ var ListFilters = function (obj) {
                         $(data).insertAfter('#filters');
                     }
 
-                    if (_url === '/games-filter/' || _url === '/software-filter/') {
+                    if (_url === '/software-filter/') {
                         is_options_loaded = false;
                         UpdateSelectFilter(_this);
                     }
@@ -335,7 +335,7 @@ var ListFilters = function (obj) {
 
 
                     if (loadTotal <= itemsNumberLoaded) {
-                        if (path === '/real-money-slots')
+                        if (_url === '/real-money-slots')
                             _moreButton.hide();
                         else{
                            // allGameItemsReceived = true;
@@ -355,7 +355,6 @@ var ListFilters = function (obj) {
                     CloseTFPopup();
                 }
                 
-                // console.log('total = ' + totalItems + " / " + 'loaded = ' + _targetAddContainer.children().length);
                 if($('.list-body').children().length >= totalItems) {
                     _moreButton.hide();
                 }
@@ -515,12 +514,18 @@ if ($.fn.select2) {
     setTimeout(function () {
         $(".player iframe ").css("opacity", "1");
     }, 1500);
-
-    $(document).on('mousemove touchstart', function (event) {
+    
+    if ($(window).width() < 1025) {
         if (!is_options_loaded) {
             prepareSelectFilter();
         }
-    });
+    } else {
+        $(document).on('mousemove touchstart', function () {
+            if (!is_options_loaded) {
+                prepareSelectFilter();
+            }
+        });
+    }
 }
 
 var options = ['software', 'features', 'themes'];
@@ -550,8 +555,6 @@ function UpdateSelectFilter(_this) {
         var pageNewSlots = window.location.pathname === '/new-online-slots'? 1:0;
 
         if (typeof selected_software === 'undefined' && $(_this).attr('name') != 'software') {
-
-
             $.ajax({
                 url: '/filter-software',
                 type: 'GET',
@@ -804,7 +807,7 @@ function customSelectFunc() {
             //     // return modifiedData;
             //     return data;
             // }
-            if (!params.term || params.term.trim() === '' || data.text.indexOf(params.term) > -1) {
+            if (!params.term.toLowerCase() || params.term.toLowerCase().trim() === '' || data.text.toLowerCase().indexOf(params.term.toLowerCase()) > -1) {
                 return data;
             }
             // Return `null` if the term should not be displayed
@@ -849,7 +852,7 @@ function processCheckboxes(_this) {
     var block = $(_this).parent();
     var $this = block.find(".select2");
     var parent = block.find(".select2-results");
-    var childs = $(".select2-results__options");
+    var children = $(".select2-results__options");
     var child = $(".select2-results__option");
     var addingClass = block.find(".select2-container--open");
     var textHolder = block.find('.select2-selection__rendered');
@@ -857,7 +860,7 @@ function processCheckboxes(_this) {
     var $clearButton = $("<li class='clearFilter'></li>");
 
     if ($('.clearFilter').length < 1) {
-        childs.prepend($clearButton);
+        children.prepend($clearButton);
     }
 
     clearSelectFilters();
@@ -876,8 +879,12 @@ function processCheckboxes(_this) {
         });
     }
 
+
     if ($this.hasClass('select2-container--open')) {
         if ($(_this).val() && $(_this).val() != '') {
+            if (window.location.pathname.indexOf('games/') > -1) {
+                textHolder.html($(_this).val().join(', '));
+            }
             printClearButtonText($(_this).val().length);
         }
 
@@ -889,13 +896,12 @@ function processCheckboxes(_this) {
 
         checkIds();
 
+
         $('.select2-results__option').off("click").on("click", function () {
 
             selectedItems.length = 0;
 
             checkIds();
-
-            textHolder.html(searchIDs.join(', '));
 
             if (!searchIDs.length) {
                 textHolder.html($(_this).data('name'));
@@ -903,6 +909,9 @@ function processCheckboxes(_this) {
 
             } else {
                 printClearButtonText(searchIDs.length);
+                if (window.location.pathname.indexOf('games/') == -1) {
+                    textHolder.html(searchIDs.join(', '));
+                }
                 clearButtonSelector.show();
                 if ($(window).width() <= 690) {
                     // parent.css("maxHeight", "256px");

@@ -210,7 +210,7 @@ class CasinoInfo
         ");
         while ($row = $resultSet->toRow()) {
             if ($row["end"]==0) {
-                $output[] = $row["name"]." - immediate";
+                $output[] = $row["name"]." - instant";
             } elseif ($row["end"]==1) {
                 $output[] = $row["name"]." - up to 1 ".($row["unit"]=="hour"?"hour":"business day");
             } elseif ($row["start"]==0) {
@@ -298,13 +298,13 @@ class CasinoInfo
     {
         if ($score == 0) {
             return 'No score';
-        } elseif ($score >= 1 && $score <= 2.99) {
+        } elseif ($score >= 1 && $score < 3) {
             return  'Terrible';
-        } elseif ($score >= 3 && $score <= 4.99) {
+        } elseif ($score >= 3 && $score < 5) {
             return  'Poor';
-        } elseif ($score >= 5 && $score <= 6.99) {
+        } elseif ($score >= 5 && $score < 7) {
             return  'Good';
-        } elseif ($score >= 7 && $score <= 8.99) {
+        } elseif ($score >= 7 && $score < 9) {
             return  'Very good';
         } elseif ($score >= 9 && $score <= 10) {
             return 'Excellent';

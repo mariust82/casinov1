@@ -1,16 +1,11 @@
 <?php
-
-namespace Hlis\Testing;
-
+ini_set("display_errors", 1);
 require("vendor/autoload.php");
-require_once("site_integrity_checker/CasinosListsSiteIntegrityChecker.php");
+require_once("hlis/unit_testing/ConsoleWrapper.php");
 
-$environment = $argv && isset($argv[1]) ? $argv[1] : "dev";
-$userAgent = $argv && isset($argv[2]) ? $argv[2] : CasinosListsSiteIntegrityChecker::USER_AGENT;
-$domain = $argv && isset($argv[3]) ? $argv[3] : "build.casinoslists.com";
-define("ENVIRONMENT", $environment);
-
-new CasinosListsSiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), array(
+\Hlis\Testing\PageSpeedValidator::$tolerance = 900;
+$wrapper = new \Hlis\Testing\ConsoleWrapper($argv, "casinoslists");
+$wrapper->run([
     "index" => "index",
     "banking" => "banking",
     "banking/(?)" => "banking/paypal",
@@ -31,4 +26,6 @@ new CasinosListsSiteIntegrityChecker($domain, new ConsoleUnitTestDisplay(), arra
     "softwares/(?)" => "softwares/rtg",
     "play/(?)" => "play/espresso",
     "live-dealer/(?)" => "live-dealer/roulette",
-), $userAgent);
+], [
+    "/visit/*"
+]);

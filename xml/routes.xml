@@ -118,6 +118,9 @@
             <parameter name="name" validator="CasinoNameValidator"/>
             <parameter name="value" validator="IntegerValidator"/>
         </route>
+        <route url="casino/feedback-popup" controller="CasinoFeedbackPopupController" view="feedback-popup">
+            <parameter name="id" validator="CasinoIdValidator"/>
+        </route>
         <route url="casino/review-write" controller="CasinoReviewWriteController" method="POST" format="json">
             <parameter name="casino" validator="CasinoNameValidator"/>
             <parameter name="casino_id" validator="CasinoIdValidator"/>
