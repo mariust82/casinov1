@@ -275,4 +275,24 @@ class Casinos implements FieldValidator
     public function getAllVotes($casinoID){
         return SQL("SELECT COUNT(value) from casinos__ratings WHERE casino_id = :casino_id and status != 3", array(":casino_id" => $casinoID))->toValue();
     }
+
+    public function checkDailyFeedback($ip)
+    {
+        return SQL("
+            SELECT id FROM casinos__visits as t1 
+            WHERE t1.user_ip=:ip AND `date_time` BETWEEN '".date('Y-m-d')." 00:00:00' AND '".date('Y-m-d')." 23:59:59'",
+            array(':ip' => $ip))->toValue();
+    }
+
+    public function checkCasinoVisit($ip, $casinoID)
+    {
+        return SQL("
+            SELECT id FROM casinos__visits as t1 WHERE t1.user_ip=:ip AND t1.casino_id=:casinoID",
+            array(':ip' => $ip, ':casinoID' => $casinoID))->toValue();
+    }
+
+    public function saveCasinoVisit($ip, $casinoID)
+    {
+        SQL('INSERT INTO casinos__visits (`user_ip`, `casino_id`) VALUES ("'.$ip.'","'.$casinoID.'")');
+    }
 }
