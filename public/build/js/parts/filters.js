@@ -135,7 +135,7 @@ var ListFilters = function (obj) {
         _ajaxDataParams[_paramName] = _paramValue;
         $.each(_selectFilter, function (index, el) {
             if ($(el).val() != 'undefined' && $(el).val() != null) {
-               /* console.log($(el).attr('name'));
+                /* console.log($(el).attr('name'));
                 console.log($(el).val().join());*/
                 _ajaxDataParams[$(el).attr('name')] = $(el).val().join();
             }
@@ -170,7 +170,7 @@ var ListFilters = function (obj) {
             AJAX_CUR_PAGE = 0;
         }
 
-       /* if (sortMode != _ajaxDataParams['sort']) {
+        /* if (sortMode != _ajaxDataParams['sort']) {
             if (typeof resetGameItemsCounter === "function") {
                 resetGameItemsCounter();
             }
@@ -183,7 +183,7 @@ var ListFilters = function (obj) {
     },
     
     _ajaxRequestCasinos = function (_ajaxDataParams, _action, _this) {
-       /* if (allGameItemsReceived) {
+        /* if (allGameItemsReceived) {
             if (typeof updateGameItemsCounters === "function") {
                 updateGameItemsCounters();
             }
@@ -350,7 +350,7 @@ var ListFilters = function (obj) {
                     gridViewBoxPopup();
                 }
                 
-                 if (_url === '/casinos-filter/') {
+                if (_url === '/casinos-filter/') {
                     ShowTFPopup();
                     CloseTFPopup();
                 }
@@ -644,27 +644,27 @@ function prepareSelectFilter() {
         var filter = $('#filters').data('filter');
         var entity = $('#filters').data('entity');
 
-       if(filter != undefined) {
-           //  console.dir(type);
-           $.ajax({
-               url: '/filter-software',
-               type: 'GET',
-               data: {
-                   filter: filter,
-                   entity: entity
-               },
-               dataType: 'html'
-           })
-               .done(function (data) {
-                   $('#filters .select.software').append(data);
-               })
-               .fail(function () {
-                   // console.log("error");
-               })
-               .always(function () {
-                   // console.log("complete");
-               });
-       }
+        if(filter != undefined) {
+            //  console.dir(type);
+            $.ajax({
+                url: '/filter-software',
+                type: 'GET',
+                data: {
+                    filter: filter,
+                    entity: entity
+                },
+                dataType: 'html'
+            })
+            .done(function (data) {
+                $('#filters .select.software').append(data);
+            })
+            .fail(function () {
+                // console.log("error");
+            })
+            .always(function () {
+                // console.log("complete");
+            });
+        }
 
     /*    $.ajax({
             url: '/filter-features',
