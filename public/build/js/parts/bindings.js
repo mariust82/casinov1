@@ -1,5 +1,34 @@
 var ww = $(window).width();
 
+var rangeRatingConfig = {
+    min: 0,
+    max: 10,
+    step: 1,
+    from: $('.rating-container').data('user-rate'),
+    grid: true,
+    values: ['&nbsp;', 'Terrible', '&nbsp;', 'Poor', '&nbsp;', 'Good', '&nbsp;', 'Very good', '&nbsp;', 'Excellent', '&nbsp;'],
+    skin: "round",
+    grid_snap: true,
+    hide_from_to: true,
+    hide_min_max: true,
+    onChange: function (data) {
+        $('.drag-rate-range-score').html('<span>' + data.from + '</span>' + '/10 ' + '<span>' + getGrade(data.from).text + '</span>');
+        $('.drag-rate-range')
+                .removeClass('terrible poor good very-good excellent')
+                .addClass(getGrade(data.from).class);
+    },
+    onFinish: function (data) {
+        // fired on pointer release
+        var container = $('[data-casino-name]');
+        $('.drag-rate-range-title').text('Your review');
+        console.log(container);
+        new Score({
+            value: data.from,
+            name: container.data('casino-name')
+        });
+    },
+}
+
 $('body').on('click', '.cl-lightbox-close', closeClLightbox);
 
 $('body').on('keyup', function(e) {
@@ -16,66 +45,74 @@ function closeClLightbox() {
 
 var Score = function (obj) {
     var _obj = obj,
-            _name = _obj.name,
-            _score = _obj.value,
-            _request = new XMLHttpRequest;
+        _name = _obj.name,
+        _score = _obj.value,
+        _request = new XMLHttpRequest;
 
     var _init = function () {
         _updateScore(_name, _score);
     },
-            _updateScore = function (_name, _score) {
-                if (_score == 0)
-                    return;
-                if (BUSY_REQUEST)
-                    return;
-                BUSY_REQUEST = true;
-                _request.abort();
+    _updateScore = function (_name, _score) {
+        if (_score == 0)
+            return;
+        if (BUSY_REQUEST)
+            return;
+        BUSY_REQUEST = true;
+        _request.abort();
 
-                _request = $.ajax({
-                    url: '/casino/rate',
-                    data: {
-                        name: _name,
-                        value: _score
-                    },
-                    dataType: 'json',
-                    type: 'post',
-                    success: function (data) {
-                        var types_array = ['Excellent', 'Very good', 'Good', 'Poor', 'Terrible'];
-                        if (data.body['success'] == "Casino already rated!") {
-                            $(".icon-icon_available").toggleClass("icon-icon_unavailable");
-                            $(".icon-icon_unavailable").removeClass("icon-icon_available");
-                            $('.thanx').html(data.body['success']);
-                        }
+        _request = $.ajax({
+            url: '/casino/rate',
+            data: {
+                name: _name,
+                value: _score
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                var types_array = ['Excellent', 'Very good', 'Good', 'Poor', 'Terrible'];
+                if (data.body['success'] == "Casino already rated!") {
+                    $(".icon-icon_available").toggleClass("icon-icon_unavailable");
+                    $(".icon-icon_unavailable").removeClass("icon-icon_available");
+                    $('.thanx').html(data.body['success']);
+                }
 
-                        $('.drag-rate').find('.action-field').show();
+                $('.drag-rate').find('.action-field').show();
 
-                        $('.drag-rate-range-score').html('<span>' + _score + '</span>' + '/10 ' + '<span>' + getGrade(_score).text + '</span>');
-                        $('.rating-container-score-value').text(data.body['total_score']);
-                        $('.count-value').text(data.body['total_votes']);
+                $('.drag-rate-range-score').html('<span>' + _score + '</span>' + '/10 ' + '<span>' + getGrade(_score).text + '</span>');
+                $('.rating-container-score-value').text(data.body['total_score']);
+                $('.count-value').text(data.body['total_votes']);
 
-                        $( ".rating-container-stats-row" ).each(function( index ) {
-                            var percents = setVotePercents(data.body['votes'][types_array[index]], data.body['total_votes']);
-                            $(this).find('.rating-container-stats-bar').css('width', percents);
-                            $(this).find('.rating-container-stats-score').html( percents + "<span>(" + data.body['votes'][types_array[index]] + ")</span>");
-                        });
-
-                        $('.rating-container-score-grade')
-                                .removeClass('terrible poor good very-good excellent no-score')
-                                .addClass(getGrade(data.body['total_score']).class)
-                                .text(getGrade(data.body['total_score']).text);
-                    },
-                    error: function (XMLHttpRequest) {
-                        if (XMLHttpRequest.statusText != "abort")
-                        {
-                            console.log('err');
-                        }
-                    },
-                    complete: function () {
-                        BUSY_REQUEST = false;
-                    }
+                $( ".rating-container-stats-row" ).each(function( index ) {
+                    var percents = setVotePercents(data.body['votes'][types_array[index]], data.body['total_votes']);
+                    $(this).find('.rating-container-stats-bar').css('width', percents);
+                    $(this).find('.rating-container-stats-score').html( percents + "<span>(" + data.body['votes'][types_array[index]] + ")</span>");
                 });
 
-            };
+                $('.rating-container-score-grade')
+                        .removeClass('terrible poor good very-good excellent no-score')
+                        .addClass(getGrade(data.body['total_score']).class)
+                        .text(getGrade(data.body['total_score']).text);
+                        
+                if ($('.cl-lightbox').length > 0) {
+                    setTimeout(function() {
+                        feedbackPopupNextStep(2);
+                        $('.form.cl-lightbox-slide').each(function () {
+                            new AddingReview($(this));
+                        });
+                    }, 2000);
+                }
+            },
+            error: function (XMLHttpRequest) {
+                if (XMLHttpRequest.statusText != "abort")
+                {
+                    console.log('err');
+                }
+            },
+            complete: function () {
+                BUSY_REQUEST = false;
+            }
+        });
+    };
     _init();
 };
 
@@ -198,34 +235,7 @@ function setVotePercents(vote, total_votes){
     return percent + '%';
 }
 
-$(".js-drag-rate").ionRangeSlider({
-    min: 0,
-    max: 10,
-    step: 1,
-    from: $('.rating-container').data('user-rate'),
-    grid: true,
-    values: ['&nbsp;', 'Terrible', '&nbsp;', 'Poor', '&nbsp;', 'Good', '&nbsp;', 'Very good', '&nbsp;', 'Excellent', '&nbsp;'],
-    skin: "round",
-    grid_snap: true,
-    hide_from_to: true,
-    hide_min_max: true,
-    onChange: function (data) {
-        $('.drag-rate-range-score').html('<span>' + data.from + '</span>' + '/10 ' + '<span>' + getGrade(data.from).text + '</span>');
-        $('.drag-rate-range')
-                .removeClass('terrible poor good very-good excellent')
-                .addClass(getGrade(data.from).class);
-    },
-    onFinish: function (data) {
-        // fired on pointer release
-        var container = $('[data-casino-name]');
-        $('.drag-rate-range-title').text('Your review');
-        console.log(container);
-        new Score({
-            value: data.from,
-            name: container.data('casino-name')
-        });
-    },
-});
+$(".js-drag-rate").ionRangeSlider(rangeRatingConfig);
 
 function contentTooltipConfigPopupActions(origin) {
     checkStringLength($('.bonus-box'), 15);

@@ -215,6 +215,10 @@ function changeViewElements(filterView,container,gridClass,listClass){
         if ($('.links-nav').length) {
             loadScripts(['bindings', 'assets/swiper']);
         }
+        if (!$('.casino-review').length && $('.btn_visit').length) {
+            loadScripts(['casino_review']);
+        }
+        
         loadScripts(['assets/jquery-select2', 'filters']);
 
         $(document).on('scroll mousemove', function(){
@@ -776,16 +780,21 @@ function feedbackPopup(_this) {
         type: 'POST',
         cache: false,
         success: function (data) {
-            console.log($(data).filter('.cl-lightbox').data('show-popup'));
-            
-            if($(data).data('show-popup') == 1) {
-                // write JS code for feedback popup here
+            if($(data).filter('.cl-lightbox').data('show-popup') == 1) {
+                $('body').append(data);
+                $(".js-drag-rate").ionRangeSlider(rangeRatingConfig);
             }
         },
         error: function (jqXHR) {
             console.log(jqXHR);
         }
     });
+}
+
+function feedbackPopupNextStep(step) {
+    var slides = $('.cl-lightbox-slide');
+    slides.hide();
+    slides.eq(step - 1).show();
 }
 
 

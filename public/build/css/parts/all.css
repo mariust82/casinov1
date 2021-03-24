@@ -14495,6 +14495,7 @@ h1.title + .subtitle{
   padding:0 0 20px;
   border:none;
   width:500px;
+  display: block;
 }
 
 @media screen and (max-width:767px) {
@@ -14592,10 +14593,24 @@ h1.title + .subtitle{
   .cl-lightbox .cl-lightbox-slide{
     width:274px;
   }
-
 }
 
+.cl-lightbox .action-field{
+  display: block;
+  font-size: 12px;
+  line-height: 17px;
+  margin: 3px 0 0 0;
+}
 
+@media screen and (max-width: 767px) {
+  .cl-lightbox .action-field{
+    font-size: 11px;
+  }
+}
+
+.cl-lightbox .textfield{
+  display: block;
+}
 
 @media (min-width: 690px) and (max-width: 850px) and (orientation: landscape){
   .list-view .list-heading .list-item-cell.list-item-alt-bonus{
