@@ -7,7 +7,7 @@
             </h2>
         </div>
         <div class="pick-list">
-            <:foreach var="${data.picks}" val="result">
+            <:foreach var="${data.picks}" key="key" val="result">
             <div class="pick">
                 <a href="/reviews/${normalize(${result.name})}-review" class="pick-header">
                     <span class="pick-flag">
@@ -26,7 +26,7 @@
                         </:if>
                           <div class="btn-round js-tooltip-content" data-name="${result.name}" data-is-free="0">${checkForAbbr(${result.bonus_first_deposit.amount})}</div>
                     </div>
-                    <a href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank" class="btn btn-full-width"><span>VISIT</span></a>
+                    <a href="/visit/${normalize(${result.name})}" rel="nofollow" target="_blank" data-casino-id="${key}" class="btn_visit btn btn-full-width"><span>VISIT</span></a>
                 </div>
              </div>
             </:foreach>
