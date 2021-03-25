@@ -8205,7 +8205,7 @@ input[type=submit]
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  margin: 0 0 15px;
+  margin: 40px 0 15px;
 }
 
 @media screen and (max-width: 690px) {
