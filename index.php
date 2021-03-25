@@ -2,7 +2,7 @@
 require "vendor/autoload.php";
 // load benchmark
 require "hlis/Benchmark.php";
-$benchmark = new \Hlis\Benchmark("pages.log", 0.0000025);
+$benchmark = new \Hlis\Benchmark("pages.log", 0.25);
 
 // performs environment detection
 $environment = getenv("ENVIRONMENT");
