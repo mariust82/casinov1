@@ -5417,9 +5417,12 @@ a:focus {
   font-weight: 600;
   color: #60686A;
   font-size: 13px;
-  line-height: 18px;
-  padding: 6px 10px;
+  /* line-height: 18px; */
+  /* padding: 6px 10px; */
+  padding: 8px;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width:767px) {
