@@ -57,7 +57,7 @@ class CasinosList
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->score_class = $this->helper->getScoreClass($object->rating);
             if ($this->filter->getCasinoLabel() == 'Fast Payout') {
-                $object->withdrawal_timeframes = $row['end'] == 0 ? "Instant" : "Up to ".$row['end']." hours";
+                $object->withdrawal_timeframes = $row['end'] == 0 ? "instant" : "Up to ".$row['end']." hours";
             }
             $output[$row["id"]] = $object;
         }
@@ -476,6 +476,7 @@ class CasinosList
 
         while ($row = $resultSet->toRow()) {
             $object = new Casino();
+            $object->id = $row["id"];
             $object->name = $row["name"];
             $object->is_country_accepted = $row["is_country_supported"];
             $object->logo_small = $this->helper->getCasinoLogo($object->code = $row["code"], "85x56");//   $object->logo_small = "/public/sync/casino_logo_light/85x56/".strtolower(str_replace(" ", "_", $object->code)).".png";

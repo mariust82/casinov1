@@ -96,7 +96,6 @@ class CasinosListQuery
             
             if ($filter->getCasinoLabel() == 'Fast Payout') {
                 $query->joinInner("casinos__withdraw_timeframes ", "t18")->on(["t1.id" => "t18.casino_id"])->set("t18.unit","'hour'")->set("t18.end",24,Lucinda\Query\ComparisonOperator::LESSER_EQUALS);
-                $filter->setPromoted(TRUE);
             }
             
             if (!in_array($filter->getCasinoLabel(), ["New", "all", "Best", "Fast Payout", "Low Minimum Deposit"])) {
@@ -165,6 +164,10 @@ class CasinosListQuery
         }
         if ($filter->getPromoted()) {
             $where->set("t1.status_id", 0);
+        }
+
+        if ($filter->getCasinoLabel() == "Fast Payout") {
+            $where->set("t1.status_id",1, Lucinda\Query\ComparisonOperator::DIFFERS);
         }
 
         switch ($filter->getCasinoLabel()) {
@@ -268,6 +271,7 @@ class CasinosListQuery
                 case CasinoSortCriteria::FAST_PAYOUT:
                     $orderBy->add("t18.end", "ASC");
                     $orderBy->add("t1.priority", "DESC");
+                    $orderBy->add("t1.id", "DESC");
                     break;
                 case CasinoSortCriteria::MINIMUM_DEPOSIT:
                     $orderBy->add("t1.deposit_minimum", "ASC");

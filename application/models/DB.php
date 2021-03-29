@@ -1,6 +1,6 @@
 <?php
 require_once("dao/entities/Entity.php");
-        
+
 /**
  * Automates SQL query execution.
  *
@@ -12,14 +12,11 @@ require_once("dao/entities/Entity.php");
  */
 function SQL($query, $boundParameters = array())
 {
-    $start = microtime(true);
+    $benchmark = new Hlis\Benchmark("queries.log", 0.1);
     $preparedStatement = Lucinda\SQL\ConnectionSingleton::getInstance()->createPreparedStatement();
     $preparedStatement->prepare($query);
     $result = $preparedStatement->execute($boundParameters);
-    $end = microtime(true);
-    if (($end-$start)>=0.1) {
-        error_log(json_encode(["duration"=>($end-$start), "url"=>$_SERVER["REQUEST_URI"], "query"=>$query, "parameters"=>$boundParameters])."\n", 3, "queries.log");
-    }
+    $benchmark->run(["query" => $query, "parameters" => $boundParameters]);
     return $result;
 }
 

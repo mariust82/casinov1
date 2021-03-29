@@ -26,16 +26,15 @@ class CasinosListsSiteIntegrityChecker extends SiteIntegrityChecker
         $this->domainName = $domainName;
         $this->display = $display;
         $this->userAgent = $userAgent;
-
+        
         $this->checkSimple(new HtaccessValidator(".htaccess"), ".htaccess");
-        $this->checkSimple(new CasinosListsRobotsValidator("https://" . $this->domainName . "/robots.txt"), "robots.txt");
-
+        $this->checkSimple(new CasinosListsRobotsValidator("https://" . $this->domainName . "/robots.txt?t=".uniqid()), "robots.txt");
+        
         $responses = $this->setResponses($pages);
-        $this->checkMulti(new HttpStatusValidator($responses), $pages, $responses);
-        $this->checkMulti(new HttpLinksValidator($responses), $pages, $responses);
-        $this->checkMulti(new LastModifiedHeaderValidator($responses), $pages, $responses);
-        $this->checkMulti(new PageSpeedValidator($responses), $pages, $responses);
-        $this->checkMulti(new SeoValidator($responses), $pages, $responses);
+        $this->checkMulti(new HttpLinksValidator($responses), $pages);
+        $this->checkMulti(new SeoValidator($responses), $pages);
+        $this->checkMulti(new HttpStatusValidator($responses), $pages);
+        $this->checkMulti(new PageSpeedValidator($responses), $pages);
     }
 
 }
