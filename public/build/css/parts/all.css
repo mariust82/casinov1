@@ -14018,6 +14018,7 @@ h1.title + .subtitle{
 }
 .tf_flex .software-tooltipster .tooltipster-content{
   padding: 0;
+  display: block !important;
 }
 .tf_flex .close_tf_wrap span:first-of-type{
   font-size: 15px;
