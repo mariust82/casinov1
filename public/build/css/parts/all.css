@@ -14647,3 +14647,10 @@ h1.title + .subtitle{
     left: 60px;
   }
 }
+
+@media (max-width: 767px){
+  .carousel-slide .rating_list_view.list-rating {
+    text-indent: unset !important;
+    min-width: 82px !important;
+  }
+}
