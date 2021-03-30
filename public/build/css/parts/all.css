@@ -5417,9 +5417,12 @@ a:focus {
   font-weight: 600;
   color: #60686A;
   font-size: 13px;
-  line-height: 18px;
-  padding: 6px 10px;
+  /* line-height: 18px; */
+  /* padding: 6px 10px; */
+  padding: 8px;
   position: relative;
+  /* display: flex;
+  align-items: center; */
 }
 
 @media screen and (max-width:767px) {
@@ -14015,6 +14018,7 @@ h1.title + .subtitle{
 }
 .tf_flex .software-tooltipster .tooltipster-content{
   padding: 0;
+  display: block !important;
 }
 .tf_flex .close_tf_wrap span:first-of-type{
   font-size: 15px;
@@ -14417,7 +14421,7 @@ h1.title + .subtitle{
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index:1;
+  z-index:10;
 }
 .cl-lightbox-close {
   position:absolute;
