@@ -142,6 +142,22 @@ copyTooltipConfig = {
             ');
     }
 };
+copyTooltipConfigGames = {
+    trigger: 'click',
+    maxWidth: 260,
+    minWidth: 260,
+    animation: 'grow',
+    contentAsHTML: true,
+    debug: false,
+    functionBefore: function (instance, helper) {
+        console.log(instance);
+        instance.content('\
+                <div class="centered">\
+                     Code copied to clipboard\
+                </div>\
+            ');
+    }
+};
 
 contentTooltipConfigPopup = {
     trigger: 'click',
@@ -329,6 +345,7 @@ contentTooltipConfig = {
                             borderRadius: '6px'
                         })
                     }
+
                     instance.content(response);
                     setTimeout(function () {
                         updateHandlers();
@@ -347,6 +364,7 @@ contentTooltipConfig = {
             $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
             copyToClipboard();
             checkStringLength($('.bonus-box'), 15);
+            checkStringLength($('.bonus-box-list'), 15);
         }
     }
 };
@@ -850,7 +868,7 @@ function checkStringLength(box, num) {
 }
 
 function initTooltipseter() {
-    $('.js-tooltip').tooltipster(tooltipConfig);
+   $('.js-tooltip').tooltipster(tooltipConfig);
     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
     $('.js-tooltip-content').tooltipster(contentTooltipConfig);
     $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
