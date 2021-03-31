@@ -210,7 +210,7 @@ class CasinoInfo
         ");
         while ($row = $resultSet->toRow()) {
             if ($row["end"]==0) {
-                $output[] = $row["name"]." - immediate";
+                $output[] = $row["name"]." - Instant";
             } elseif ($row["end"]==1) {
                 $output[] = $row["name"]." - up to 1 ".($row["unit"]=="hour"?"hour":"business day");
             } elseif ($row["start"]==0) {

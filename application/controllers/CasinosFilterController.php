@@ -34,9 +34,6 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
 
         $page = (integer)$this->request->getValidator()->parameters("page");
         $filter = new CasinoFilter($_GET, $this->request->attributes("country"));
-        if ($filter->getCasinoLabel() == "Fast Payout") {
-            $filter->setPromoted(TRUE);
-        }
         $params = $this->request->parameters();
         $object = new CasinosList($filter);
         $total = $object->getTotal();

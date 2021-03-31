@@ -1,0 +1,52 @@
+<:if test="${data.showPopup}">
+    <div class="cl-lightbox" data-show-popup="${data.showPopup}">
+        <div class="cl-lightbox-holder">
+            <span class="cl-lightbox-close"></span>
+            <div class="cl-lightbox-body">
+                <div class="drag-rate rating-container cl-lightbox-slide" data-casino-name="${data.casinoName}">
+                    <h2 class="cl-lightbox-rate-title">
+                        <p>How would you rate your experience at</p>
+                        <strong>${data.casinoName}?</strong>
+                    </h2>
+                    <div class="drag-rate-range" data-casino-name="${data.casinoName}">
+                        <h3 class="drag-rate-range-heading">
+                            <span class="drag-rate-range-title">Drag to rate</span>
+                            <span class="drag-rate-range-score">0/10</span>
+                        </h3>
+                        <input type="text" class="js-drag-rate"/>
+                    </div>
+                </div>
+
+                <div class="form cl-lightbox-slide" data-img-dir="" data-country="" data-casino-id="${data.casinoID}" style="display: none;">
+                    <h2 class="cl-lightbox-form-title">
+                        <div>Thank you!</div>
+                        How would you describe your experience?
+                    </h2>
+
+                    <div class="form-row">
+                        <input type="text" class="textfield" name="title" placeholder="Add a review title...">
+                    </div>
+                    <div class="form-row">
+                        <textarea name="body" rows="3" class="textfield" placeholder="Let us know more (minimum 50 characters)"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" class="textfield" name="name" placeholder="Username">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" class="textfield" name="email" placeholder="Email (it won't be published)">
+                    </div>
+                    <div class="form-row">
+                        <input class="btn" type="submit" name="submit" id="gtm_feedback" value="Send feedback">
+                    </div>
+                </div>
+
+                <div class="cl-lightbox-message cl-lightbox-slide" style="display: none;">
+                    <div class="cl-lightbox-message-sign">
+                        <i class="icon-icon_available"></i>
+                    </div>
+                    <div class="cl-lightbox-message-text">Thanks for your feedback!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</:if>

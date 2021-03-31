@@ -41,7 +41,7 @@
                     RESTRICTED
                 </a>
              <:else>
-                 <a href="/visit/${normalize(${data.casino.name})}"  rel="nofollow" target=”_blank” class="cta_visit">Visit Casino</a>
+                 <a href="/visit/${normalize(${data.casino.name})}" data-casino-id="${data.casino.id}" rel="nofollow" target=”_blank” class="btn_visit cta_visit">Visit Casino</a>
             </:if>
         </div>
 

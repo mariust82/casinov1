@@ -52,6 +52,10 @@
                 "database",
                 "nosql"
             ],
+            "support": {
+                "issues": "https://github.com/aherne/lucinda_db/issues",
+                "source": "https://github.com/aherne/lucinda_db/tree/v2.0.3"
+            },
             "time": "2020-12-04T10:24:01+00:00"
         },
         {
@@ -91,10 +95,6 @@
                 "mvc",
                 "stderr"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/errors-api/issues",
-                "source": "https://github.com/aherne/errors-api/tree/v1.4.0"
-            },
             "time": "2020-10-16T04:53:37+00:00"
         },
         {
@@ -143,10 +143,6 @@
                 "engine",
                 "framework"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/lucinda-framework-engine/issues",
-                "source": "https://github.com/aherne/lucinda-framework-engine/tree/v1.4.5"
-            },
             "time": "2020-11-27T08:28:59+00:00"
         },
         {
@@ -181,10 +177,6 @@
                 "caching",
                 "http"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/http-caching-api/issues",
-                "source": "https://github.com/aherne/http-caching-api/tree/v2.1.2"
-            },
             "time": "2020-07-29T14:17:55+00:00"
         },
         {
@@ -220,10 +212,6 @@
                 "internationalization",
                 "localization"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/php-internationalization-api/issues",
-                "source": "https://github.com/aherne/php-internationalization-api/tree/v2.0.6"
-            },
             "time": "2019-11-17T10:25:42+00:00"
         },
         {
@@ -258,10 +246,6 @@
                 "loggers",
                 "logging"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/php-logging-api/issues",
-                "source": "https://github.com/aherne/php-logging-api/tree/master"
-            },
             "time": "2019-11-17T10:25:07+00:00"
         },
         {
@@ -302,10 +286,6 @@
                 "stdout",
                 "view resolvers"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/php-servlets-api/issues",
-                "source": "https://github.com/aherne/php-servlets-api/tree/v2.2.1"
-            },
             "time": "2020-10-16T08:33:39+00:00"
         },
         {
@@ -346,10 +326,6 @@
                 "nosql",
                 "redis"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/php-nosql-data-access-api/issues",
-                "source": "https://github.com/aherne/php-nosql-data-access-api/tree/master"
-            },
             "time": "2019-11-17T10:24:31+00:00"
         },
         {
@@ -384,10 +360,6 @@
                 "client",
                 "oauth2"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/oauth2client/issues",
-                "source": "https://github.com/aherne/oauth2client/tree/master"
-            },
             "time": "2019-11-17T10:26:27+00:00"
         },
         {
@@ -423,6 +395,10 @@
                 "query",
                 "sql"
             ],
+            "support": {
+                "issues": "https://github.com/aherne/php-sql-statements-api/issues",
+                "source": "https://github.com/aherne/php-sql-statements-api/tree/v1.0.8"
+            },
             "time": "2021-02-25T08:52:44+00:00"
         },
         {
@@ -461,10 +437,6 @@
                 "request parameters",
                 "validation"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/php-request-validator/issues",
-                "source": "https://github.com/aherne/php-request-validator/tree/v1.1.1"
-            },
             "time": "2019-12-04T08:06:06+00:00"
         },
         {
@@ -503,6 +475,10 @@
                 "feed",
                 "rss"
             ],
+            "support": {
+                "issues": "https://github.com/aherne/rss-generator/issues",
+                "source": "https://github.com/aherne/rss-generator/tree/v1.0.4"
+            },
             "time": "2021-02-25T11:30:10+00:00"
         },
         {
@@ -544,10 +520,6 @@
                 "token",
                 "xml"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/php-security-api/issues",
-                "source": "https://github.com/aherne/php-security-api/tree/master"
-            },
             "time": "2020-01-15T05:51:58+00:00"
         },
         {
@@ -582,10 +554,6 @@
                 "data access",
                 "sql"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/php-sql-data-access-api/issues",
-                "source": "https://github.com/aherne/php-sql-data-access-api/tree/v2.1.0.1"
-            },
             "time": "2020-01-03T06:33:32+00:00"
         },
         {
@@ -621,10 +589,6 @@
                 "templating",
                 "views"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/php-view-language-api/issues",
-                "source": "https://github.com/aherne/php-view-language-api/tree/master"
-            },
             "time": "2020-03-09T08:19:47+00:00"
         }
     ],
@@ -669,6 +633,10 @@
                 "tables",
                 "unix console"
             ],
+            "support": {
+                "issues": "https://github.com/aherne/console_table/issues",
+                "source": "https://github.com/aherne/console_table/tree/v1.0.1"
+            },
             "time": "2021-02-20T10:09:18+00:00"
         },
         {
@@ -716,10 +684,6 @@
                 "https",
                 "wrapper"
             ],
-            "support": {
-                "issues": "https://github.com/aherne/requester/issues",
-                "source": "https://github.com/aherne/requester/tree/v1.0.5"
-            },
             "time": "2020-11-08T07:40:48+00:00"
         },
         {
@@ -765,6 +729,10 @@
             "keywords": [
                 "unit testing"
             ],
+            "support": {
+                "issues": "https://github.com/aherne/unit-testing/issues",
+                "source": "https://github.com/aherne/unit-testing/tree/v1.1.9"
+            },
             "time": "2021-02-20T10:53:43+00:00"
         }
     ],
@@ -775,5 +743,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }
