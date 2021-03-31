@@ -5423,7 +5423,7 @@ a:focus {
   font-size: 13px;
   /* line-height: 18px; */
   /* padding: 6px 10px; */
-  padding: 8px;
+  padding: 6px 10px;
   position: relative;
   /* display: flex;
   align-items: center; */
@@ -13044,6 +13044,7 @@ h1.title + .subtitle{
 .game-soft, .game-title, .list-item-trun, .select2-container .select2-selection--single .select2-selection__rendered, .select2-container--default .select2-results__option[aria-selected] .wrap, .select2-results__option, .wrap {
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 @media (min-width: 768px){
