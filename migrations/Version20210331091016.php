@@ -12,7 +12,7 @@ class Version20210331091016 implements \Hlis\Migration\Script
         user_ip varchar(45) not null,
         casino_id int(10) null,
         date_time timestamp,
-        PRIMARY KEY(id),
+        PRIMARY KEY(id)
         ) Engine=INNODB");
 
         SQL("ALTER TABLE casinos__visits ADD INDEX (user_ip)");
