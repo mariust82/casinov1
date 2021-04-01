@@ -13,7 +13,7 @@ class GameTypes
 
     public function getGamesCount()
     {
-        return SQL("
+        return NoSQL("
         SELECT t3.name AS unit ,COUNT(DISTINCT t1.id) AS counter 
         FROM games AS t1 INNER JOIN game_types AS t3 ON t1.game_type_id = t3.id 
         INNER JOIN game_play__matches AS t6 ON t1.id = t6.game_id 
@@ -22,7 +22,7 @@ class GameTypes
         WHERE t1.is_open = 1
         GROUP BY t3.id
         ORDER BY counter DESC, t3.id ASC
-        ")->toMap("unit", "counter");
+        ", [], ["games"], function($resultSet) { return $resultSet->toMap("unit", "counter"); });
     }
 
     public function getAll()
