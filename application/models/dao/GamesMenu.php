@@ -27,7 +27,7 @@ class GamesMenu
             $object = new MenuItem();
             $object->title = $name;
             $object->url = "/games/".$this->generatePathParameter($name);
-            $object->is_active = ($name==$selectedEntry?true:false);
+            $object->is_active = $name==$selectedEntry;
             $this->pages[] = $object;
         }
     }

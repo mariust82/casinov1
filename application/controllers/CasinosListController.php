@@ -81,6 +81,7 @@ abstract class CasinosListController extends BaseController
         if ($page === 'no-deposit-bonus') {
             return 'free_bonus';
         }
+        $piece = '';
         switch ($url) {
             case 'casinos':
                 $piece = 'label';

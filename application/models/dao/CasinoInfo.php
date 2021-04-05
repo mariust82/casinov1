@@ -101,7 +101,7 @@ class CasinoInfo
     
     private function isCasinoMobile($id) {
         $res = SQL("SELECT COUNT(id) FROM `casinos__play_versions` WHERE casino_id = {$id} AND play_version_id = 4")->toValue();
-        return $res > 0 ? TRUE : FALSE;
+        return $res > 0;
     }
 
     private function getAllLiveGameTypes($id)
@@ -425,8 +425,7 @@ class CasinoInfo
             INNER JOIN game_types AS t2 ON t1.	game_type_id = t2.id
             WHERE t1.casino_id =  $casinoId";
 
-        $data = SQL($q)->toList();
-        return $data;
+        return SQL($q)->toList();
     }
 
     public function getCasinoDepositMethods($casino_id)

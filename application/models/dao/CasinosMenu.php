@@ -56,7 +56,7 @@ class CasinosMenu
                 $object = new MenuItem();
                 $object->title = $title;
                 $object->url = $url;
-                $object->is_active = ($url==$selectedEntry?true:false);
+                $object->is_active = $url==$selectedEntry;
                 $this->pages[] = $object;
             }
         } else {
@@ -80,7 +80,7 @@ class CasinosMenu
                 $object = new MenuItem();
                 $object->title = $finalTitle;
                 $object->url = $finalUrl;
-                $object->is_active = ($url==$selectedEntry?true:false);
+                $object->is_active = $url==$selectedEntry;
                 $this->pages[] = $object;
             }
         }
@@ -91,37 +91,26 @@ class CasinosMenu
         switch ($currentPage) {
             case "bonus-list/no-deposit-bonus":
                 return "/bonus-list/no-deposit-bonus";
-                break;
             case "casinos/best":
                 return "/casinos/best";
-                break;
             case "casinos/new":
                 return "/casinos/new";
-                break;
             case "casinos/mobile":
                 return "/casinos/mobile";
-                break;
             case "casinos/low-wagering":
                 return "/casinos/low-wagering";
-                break;
             case "casinos/recommended":
                 return "/casinos/recommended";
-                break;
             case "casinos/stay-away":
                 return "/casinos/stay-away";
-                break;
             case "softwares/".strtolower(str_replace(' ', '-', $entity)):
                 return "/softwares/".strtolower(str_replace(' ', '-', $entity));
-                break;
             case "countries-list/".$this->generatePathParameter($country):
                 return "/countries-list/{country}";
-                break;
             case "casinos/no-account-casinos":
                  return "/casinos/no-account-casinos";
-                 break;
             default:
                 return "/{page}";
-                break;
         }
     }
 

@@ -62,8 +62,7 @@ class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller 
         $object = new CasinosList($casinoFilter);
         $results = $object->getResults($sortBy, 0, $limit,$offset);
         $total = $object->getTotal();
-        $return = ['total' => $total, 'result' => $results];
-        return $return;
+        return ['total' => $total, 'result' => $results];
     }
 
 }

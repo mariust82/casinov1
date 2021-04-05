@@ -26,8 +26,7 @@ class SingleArticle extends ArticlesModel
     
     public function denormalize($text)
     {
-        $ret = preg_replace('/[- #]/', ' ', $text);
-        return $ret;
+        return preg_replace('/[- #]/', ' ', $text);
     }
 
     private function setUploadPath()

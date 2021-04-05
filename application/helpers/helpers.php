@@ -38,8 +38,7 @@ function get_rating($score)
 
 function h2_to_tile($text)
 {
-    $p = preg_replace("/(-{3})(.*)(-{3})/", "<h2 class=\"text-title\"><span>$2</span></h2>", $text);
-    return $p;
+    return preg_replace("/(-{3})(.*)(-{3})/", "<h2 class=\"text-title\"><span>$2</span></h2>", $text);
 }
 
 function datef($date)
@@ -130,6 +129,7 @@ function gameNames($games){
 function getBankingTitles($name, $index)
 {
     $counter=0;
+    $items = [];
     foreach ($name as $key => $item) {
         if ($counter >= $index) {
             $items[$key] = $key;
@@ -141,6 +141,7 @@ function getBankingTitles($name, $index)
 
 function get_string($name, $index)
 {
+    $items = [];
     foreach ($name as $key => $item) {
         if ($key > $index-1) {
             $items[$key] = $item;

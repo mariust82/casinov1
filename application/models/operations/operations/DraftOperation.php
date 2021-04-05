@@ -45,7 +45,7 @@ class DraftOperation implements OperationsInterface
 
     private function createNewDraft(AbstractSavableObject $savableObject)
     {
-        $insertId = DB(
+        return DB(
             "
             INSERT INTO drafts set user_id = :user_id, panel_id = :panel_id, entity_id = :entity_id, 
             entity_name = :entity_name, payload = :payload, date_modified = :date_modified",
@@ -53,13 +53,11 @@ class DraftOperation implements OperationsInterface
                 ':entity_id' => $savableObject->entity_id, ':entity_name' => $savableObject->entity_name,
                 ':payload' => serialize($savableObject->payload), ':date_modified' => date('Y-m-d H:i:s'))
         )->getInsertId();
-
-        return $insertId;
     }
 
     private function updateDraft(AbstractSavableObject $savableObject)
     {
-        $affectedRows = DB(
+        return DB(
             "
             UPDATE drafts set user_id = :user_id, panel_id = :panel_id, entity_id = :entity_id, 
             entity_name = :entity_name, payload = :payload, date_modified = :date_modified
@@ -69,8 +67,6 @@ class DraftOperation implements OperationsInterface
                 ':payload' => serialize($savableObject->payload), ':date_modified' => $savableObject->date_modified,
                 ':id' => $savableObject->id)
         )->getAffectedRows();
-
-        return $affectedRows;
     }
 
     public function getObject()

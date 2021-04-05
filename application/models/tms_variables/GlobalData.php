@@ -10,10 +10,9 @@ class GlobalData extends \TMS\VariablesHolder
 {
     public function getTotalCasinosOnSite()
     {
-        $casinoCount = SQL("
+        return SQL("
           SELECT COUNT(id) FROM casinos  
           WHERE is_open = 1
         ")->toValue();
-        return $casinoCount;
     }
 }

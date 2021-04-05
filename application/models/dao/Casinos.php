@@ -92,17 +92,16 @@ class Casinos implements FieldValidator
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
         WHERE t1.casino_id = $casinoID AND t2.name IN (".($isFree?"'No Deposit Bonus','Free Spins','Free Play','Bonus Spins'":"'First Deposit Bonus'").")
         ";
-        $resultSet = SQL($query);
-        while ($row = $resultSet->toRow()) {
-            $bonus = new CasinoBonus();
-            $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
-            $bonus->min_deposit = $row["deposit_minimum"];
-            $bonus->wagering = $row["wagering"];
-            $bonus->games_allowed = $row["games"];
-            $bonus->code = $row["codes"];
-            $bonus->type = $row["name"];
-            return $bonus;
-        }
+        $row = SQL($query)->toRow();
+        $bonus = new CasinoBonus();
+        $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
+        $bonus->min_deposit = $row["deposit_minimum"];
+        $bonus->wagering = $row["wagering"];
+        $bonus->games_allowed = $row["games"];
+        $bonus->code = $row["codes"];
+        $bonus->type = $row["name"];
+
+        return $bonus;
     }
 
     public function isCountryAccepted($casinoID, $countryID)

@@ -51,6 +51,7 @@ class CasinoHelper
 
     public function get_string($name)
     {
+        $items = [];
         foreach ($name as $key => $item) {
             if ($key != 0) {
                 $items[$key] = $item;

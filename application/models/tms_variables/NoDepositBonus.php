@@ -9,8 +9,7 @@ class NoDepositBonus extends \TMS\VariablesHolder
 
     private function getCountry()
     {
-        $country =  !empty($this->parameters["response"]->attributes("country")) ?  $this->parameters["response"]->attributes("country") : '';
-        return $country;
+        return !empty($this->parameters["response"]->attributes("country")) ?  $this->parameters["response"]->attributes("country") : '';
     }
 
     public function newestInCurentList()
@@ -30,9 +29,7 @@ class NoDepositBonus extends \TMS\VariablesHolder
         $newestNoDepInTheList->setFilter($filterParams);
 
         $casino =  $newestNoDepInTheList->getData(CasinoSortCriteria::NEWEST);
-        $bonus_type_value = !empty($casino[0]->bonus_free->amount) ? $casino[0]->bonus_free->amount : '';
-
-        return $bonus_type_value ;
+        return !empty($casino[0]->bonus_free->amount) ? $casino[0]->bonus_free->amount : '';
     }
 
     public function newestInTheSite()
@@ -44,8 +41,7 @@ class NoDepositBonus extends \TMS\VariablesHolder
         $newestNoDepInTheSite->setFilter($filterParams);
         $casino =  $newestNoDepInTheSite->getData(CasinoSortCriteria::NEWEST);
 
-        $bonus_type_value = !empty($casino[0]->bonus_free->amount) ?  $casino[0]->bonus_free->amount : '';
-        return  $bonus_type_value;
+        return !empty($casino[0]->bonus_free->amount) ?  $casino[0]->bonus_free->amount : '';
     }
 
 
@@ -66,8 +62,7 @@ class NoDepositBonus extends \TMS\VariablesHolder
         $newestNoDepInTheList->setFilter($filterParams);
 
         $casino =  $newestNoDepInTheList->getData(CasinoSortCriteria::TOP_RATED);
-        $bonus_type_value = !empty($casino[0]->bonus_free->amount) ?  $casino[0]->bonus_free->amount : '';
-        return $bonus_type_value;
+        return !empty($casino[0]->bonus_free->amount) ?  $casino[0]->bonus_free->amount : '';
     }
 
     public function bestInSite()
@@ -79,8 +74,6 @@ class NoDepositBonus extends \TMS\VariablesHolder
         $newestNoDepInTheSite = new NoDepositBonusData($country);
         $newestNoDepInTheSite->setFilter($filterParams);
         $casino =  $newestNoDepInTheSite->getData(CasinoSortCriteria::TOP_RATED);
-        $bonus_type_value = !empty($casino[0]->bonus_free->amount) ?  $casino[0]->bonus_free->amount : '';
-
-        return  $bonus_type_value;
+        return !empty($casino[0]->bonus_free->amount) ?  $casino[0]->bonus_free->amount : '';
     }
 }

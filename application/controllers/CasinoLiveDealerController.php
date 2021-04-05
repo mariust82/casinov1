@@ -44,7 +44,7 @@ class CasinoLiveDealerController extends CasinosListController
 
         $page =  $object->getInfoByURL($url, $this->response->attributes("selected_entity"));
         $this->pageInfoSpecifications($page);
-        $this->response->attributes("page_info", $page, $this->response->attributes("total_casinos"));
+        $this->response->attributes("page_info", $page);
     }
 
     protected function pageInfoSpecifications(&$page)
