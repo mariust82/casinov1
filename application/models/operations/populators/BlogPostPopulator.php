@@ -68,8 +68,6 @@ class BlogPostPopulator implements PopulatorInterface
 
         $newRoute->value = $route;
         $newRoute->pattern = $routePatternId;
-        $routeId = $this->routes->add($newRoute);
-
-        return $routeId;
+        return $this->routes->add($newRoute);
     }
 }

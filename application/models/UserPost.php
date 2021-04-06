@@ -59,8 +59,7 @@ class UserPost {
             try {
                 $dao = new UserPostDao($this->db_table, $this->filled_parameters);
                 $item = $dao->getPostQuery();
-                $insertId = $item->getInsertId();
-                return $insertId;
+                return $item->getInsertId();
             } catch (Exception $e) {
                 $this->setError($this->post_error_msg);
                 return false;

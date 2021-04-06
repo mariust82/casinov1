@@ -38,8 +38,7 @@ class Visits extends \TMS\VariablesHolder
         $filter = new CasinoFilter(['label' => 'new'], $country);
         $casinos = new CasinosList($filter);
         $result = $casinos->getResults(CasinoSortCriteria::NEWEST, 1, 1);
-        $total = SQL("SELECT clicks FROM casinos WHERE id = " . $result[0]->id)->toValue();
-        return $total;
+        return SQL("SELECT clicks FROM casinos WHERE id = " . $result[0]->id)->toValue();
     }
 
     private function getCountry()

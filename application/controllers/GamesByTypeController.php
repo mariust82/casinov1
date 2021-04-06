@@ -52,8 +52,7 @@ class GamesByTypeController extends BaseController
     {
         $parameter = $this->request->getValidator()->parameters("type");
         $param = $parameter == 'classic-slots' ? 'slots' : $parameter;
-        $name = strtolower(str_replace("-", " ", $param));
-        return $name;
+        return strtolower(str_replace("-", " ", $param));
     }
 
     protected function pageInfo()

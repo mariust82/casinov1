@@ -3,11 +3,6 @@ require_once("vendor/lucinda/queries/plugins/MySQL/MySQLSelect.php");
 require_once("MariaDBSelectGroup.php");
 require_once("application/models/dao/BestCasinoLabel.php");
 
-use Lucinda\Query\MySQLComparisonOperator;
-use Lucinda\Query\MySQLCondition;
-use Lucinda\Query\MySQLSelect;
-use Lucinda\Query\Select;
-
 class CasinosListQuery
 {
     const CASINO_SCORE = 7.5;
@@ -229,8 +224,8 @@ class CasinosListQuery
     private function addLowMinimumDepositCondition(Lucinda\Query\Condition $where)
     {
         $where->setBetween("t1.deposit_minimum", self::CASINO_MINIMUM_DEPOSIT_MIN, self::CASINO_MINIMUM_DEPOSIT_MAX);
-        $where->set("cc.is_primary", 1, Lucinda\Query\ComparisonOperator::EQUALS);
-        $where->set("c.is_crypto", 0, Lucinda\Query\ComparisonOperator::EQUALS);
+        $where->set("cc.is_primary", 1);
+        $where->set("c.is_crypto", 0);
     }
 
     private function setOrderBy(Lucinda\Query\OrderBy $orderBy, CasinoFilter $filter, $sortBy)

@@ -1,7 +1,6 @@
 <?php
 require_once("application/models/CasinoFilter.php");
 require_once("application/models/dao/CasinosList.php");
-use Lucinda\MVC\STDOUT\Controller;
 
 class GameManufacturerFilterController extends Lucinda\MVC\STDOUT\Controller
 {

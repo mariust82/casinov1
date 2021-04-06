@@ -40,7 +40,7 @@ class ArticlesController extends BaseController
         $this->init();
         $articles_ctrl = new Articles($this->application->attributes('parent_schema'));
         $items = $articles_ctrl->getList($this->filter, $this->offset, self::LIMIT);
-        $upload = new ArticlesModel($items);
+        $upload = new ArticlesModel();
         $this->response->attributes("results", $items['results']);
         $this->response->attributes("category", $this->category);
         $this->response->attributes("total", $items['total']);

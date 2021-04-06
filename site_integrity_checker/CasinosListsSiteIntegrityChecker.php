@@ -31,10 +31,10 @@ class CasinosListsSiteIntegrityChecker extends SiteIntegrityChecker
         $this->checkSimple(new CasinosListsRobotsValidator("https://" . $this->domainName . "/robots.txt?t=".uniqid()), "robots.txt");
         
         $responses = $this->setResponses($pages);
-        $this->checkMulti(new HttpLinksValidator($responses), $pages);
-        $this->checkMulti(new SeoValidator($responses), $pages);
-        $this->checkMulti(new HttpStatusValidator($responses), $pages);
-        $this->checkMulti(new PageSpeedValidator($responses), $pages);
+        $this->checkMulti(new HttpLinksValidator(), $pages);
+        $this->checkMulti(new SeoValidator(), $pages);
+        $this->checkMulti(new HttpStatusValidator(), $pages);
+        $this->checkMulti(new PageSpeedValidator(), $pages);
     }
 
 }
