@@ -3,9 +3,9 @@
 <xml>
     <listeners>
         <listener class="AsyncListener"/>
-        <listener class="FileCachingListener"/>
         <listener class="SQLDataSourceInjector"/>
         <listener class="NoSQLDataSourceInjector"/>
+        <listener class="DatabaseCachingListener"/>
         <listener class="ErrorListener"/>
         <listener class="RebrandingListener"/>
         <listener class="IPDetectionListener"/>

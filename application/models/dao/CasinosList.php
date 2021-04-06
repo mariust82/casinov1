@@ -353,7 +353,7 @@ class CasinosList
         }
         $queryGenerator = new CasinosListQuery($this->filter, array($fields), null, 0, '');
         $query = $queryGenerator->getQuery();
-        return NoSQL($query, [], ["casinos"], function($resultSet) { return $resultSet->toValue(); });
+        return SQL($query)->toValue();
     }
 
     public function getBestCasinosByCountry($id,$currency_id,$lang_id,$limit=5,$offset=0) {
