@@ -7216,7 +7216,7 @@ input[type=submit]
   display: -ms-flexbox;
   display: flex;
   font-weight: 600;
-  margin: 0 0 5px;
+  margin: 0 0 10px;
   font-size:14px;
 }
 
@@ -7229,7 +7229,7 @@ input[type=submit]
   .review-name,
   .review-title{
     font-size: 13px;
-    margin: 0 0 3px;
+    margin: 0 0 10px;
     line-height: 1;
   }
 
