@@ -32,10 +32,8 @@ class NoAccountLabel
     {
         $order_by = implode(",", $this->filter->sort_by);
 
-        $query="SELECT id FROM casinos WHERE no_registration = ". $this->filter->is_open ."  AND no_registration = " . $this->filter->no_registration . "
-         ORDER BY ". $order_by ." LIMIT  ". self::NO_ACCOUNT_LIMIT ;
-
-        return $query;
+        return "SELECT id FROM casinos WHERE no_registration = ". $this->filter->is_open ."  AND no_registration = " . $this->filter->no_registration . "
+         ORDER BY ". $order_by ." LIMIT  ". self::NO_ACCOUNT_LIMIT;
     }
 
     private function getAllNoAccountCasinos()

@@ -14,7 +14,7 @@ class LocalCasinoSynchronization extends NewCasinoSynchronization
 {
     public function __construct($xmlFile = "configuration.xml", $usePackagist = false)
     {
-        parent::__construct($xmlFile, $usePackagist);
+        parent::__construct($xmlFile);
 
         $object = new NoAccountLabel();
         $object->resetNoAccountLabelFromSync();

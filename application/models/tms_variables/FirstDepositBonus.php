@@ -18,6 +18,7 @@ class FirstDepositBonus extends \TMS\VariablesHolder
         if (!empty($casino[0]) && $casino[0]->bonus_first_deposit->amount) {
             return $casino[0]->bonus_first_deposit->amount;
         }
+        return null;
     }
 
     public function getPopularInList()
@@ -30,6 +31,7 @@ class FirstDepositBonus extends \TMS\VariablesHolder
         if (!empty($casino[0]) && $casino[0]->bonus_first_deposit->amount) {
             return $casino[0]->bonus_first_deposit->amount;
         }
+        return null;
     }
     public function getNewestInList()
     {
@@ -41,5 +43,6 @@ class FirstDepositBonus extends \TMS\VariablesHolder
         if (!empty($casino[0]) && $casino[0]->bonus_first_deposit->amount) {
             return $casino[0]->bonus_first_deposit->amount;
         }
+        return null;
     }
 }

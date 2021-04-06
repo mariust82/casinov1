@@ -39,7 +39,7 @@ class PendingOperation implements OperationsInterface
 
     private function createNewPendingObject(AbstractPendingSavableObject $savableObject)
     {
-        $insertId = DB(
+        return DB(
             "
             INSERT INTO dashboard SET saver_user_id = :saver_user_id, current_user_id = :current_user_id, element_id = :element_id,
             panel_id = :panel_id, status_id = :status_id, payload = :payload, date_added = :date_added,
@@ -51,13 +51,11 @@ class PendingOperation implements OperationsInterface
                 ':date_modified' => $savableObject->date_modified, ':draft_id' => $savableObject->draft_id
             )
         )->getInsertId();
-
-        return $insertId;
     }
 
     private function updatePendingObject(AbstractPendingSavableObject $savableObject)
     {
-        $affectedRows = DB(
+        return DB(
             "
             UPDATE dashboard SET saver_user_id = :saver_user_id, current_user_id = :current_user_id, element_id = :element_id,
             panel_id = :panel_id, status_id = :status_id, payload = :payload, date_added = :date_added,
@@ -69,7 +67,5 @@ class PendingOperation implements OperationsInterface
                 ':date_modified' => $savableObject->date_modified, ':draft_id' => $savableObject->draft_id
             )
         )->getInsertId();
-
-        return $affectedRows;
     }
 }

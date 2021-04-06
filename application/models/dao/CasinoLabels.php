@@ -79,9 +79,7 @@ class CasinoLabels implements CasinoCounter
         ")->toMap("unit", "counter");
 
         $labels = array_merge($array, $features);
-        $orderLabels =  $this->orderLabels($labels);
-
-        return $orderLabels;
+        return $this->orderLabels($labels);
     }
 
     /*public function validate($name) {

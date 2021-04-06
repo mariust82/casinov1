@@ -22,9 +22,7 @@ class Drafts
         // I should create a new DraftModelPopulator to populate the DraftObject, but for this test i will
         // manually populate the properties;
 
-        $drafts = $this->populate($results);
-
-        return $drafts;
+        return $this->populate($results);
     }
 
     public function getInfoById($id)

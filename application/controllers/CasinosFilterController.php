@@ -41,7 +41,7 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes("filter", $filter->getCasinoLabel());
         $this->response->attributes("total_casinos", $total);
         $this->response->attributes("total_casinos_left", $total - $offset);
-        $this->response->attributes("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset, true));
+        $this->response->attributes("casinos", $object->getResults($sortCriteria, $page, $this->limit, $offset));
         $this->response->attributes('page_type', $this->getPageType($filter));
         $this->response->attributes('selected_entity', isset($params['free_bonus']) ? $params['free_bonus'] : $filter->getCasinoLabel());
     }
@@ -68,7 +68,7 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
         }
 
         $sort_criteria = $this->request->attributes('validation_results')->get('sort');
-        if (empty($sort_criteria) || $sort_criteria==null) {
+        if (empty($sort_criteria)) {
             return CasinoSortCriteria::NONE;
         }
 
