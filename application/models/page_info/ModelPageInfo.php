@@ -141,13 +141,11 @@ class ModelPageInfo extends ArrayPageInfo implements InterfaceInfo, IPageInfo
     {
         $url = $this->request->getValidator()->getPage();
         $key = array_search($url, array_column($this->routes, 'url'));
-        $value = !empty($this->routes[$key][$attribute_name]) ? $this->routes[$key][$attribute_name] : '';
-        return $value;
+        return !empty($this->routes[$key][$attribute_name]) ? $this->routes[$key][$attribute_name] : '';
     }
 
     private function getHInfo()
     {
-        $hinfo = array('info' => $this->getAttribute('view_subtitle'), 'page' => 'page');
-        return $hinfo;
+        return array('info' => $this->getAttribute('view_subtitle'), 'page' => 'page');
     }
 }

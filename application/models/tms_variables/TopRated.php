@@ -20,6 +20,7 @@ class TopRated extends \TMS\VariablesHolder
             $casinoCode = strtolower(str_replace(" ", "-", $casino->name));
             return '<a href="/reviews/'.$casinoCode.'-review">'.$casino->name.'</a>';
         }
+        return '';
     }
 
     public function getTopRatedCasinoInTheSite()
@@ -34,5 +35,6 @@ class TopRated extends \TMS\VariablesHolder
             $casinoCode = strtolower(str_replace(" ", "-", $casinoName));
             return '<a href="/reviews/'.$casinoCode.'-review">' . $casinoName . '</a>';
         }
+        return '';
     }
 }

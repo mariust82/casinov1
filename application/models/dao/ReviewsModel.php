@@ -20,8 +20,6 @@ class ReviewsModel
         $review->parent = $this->reviewData["parent"];
         $review->status = $this->reviewData['review_status'];
         $object = new CasinoReviews();
-        $id = $object->insert($this->reviewData['casino_id'], $review);
-
-        return $id;
+        return $object->insert($this->reviewData['casino_id'], $review);
     }
 }

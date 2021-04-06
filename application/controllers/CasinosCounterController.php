@@ -17,8 +17,7 @@ abstract class CasinosCounterController extends BaseController
 
     protected function getResults(CasinoCounter $object)
     {
-        $counts = $object->getCasinosCount();
-        return $counts;
+        return $object->getCasinosCount();
     }
 
     /**

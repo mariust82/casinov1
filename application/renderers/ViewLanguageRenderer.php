@@ -51,9 +51,7 @@ class ViewLanguageRenderer extends \Lucinda\MVC\STDERR\ErrorRenderer implements 
 
                 // saves stream
                 $response->getOutputStream()->write($output);
-            } catch (Exception $e) {
-                $this->handle($e);
-            } catch (Throwable $e) {
+            } catch (Exception | Throwable $e) {
                 $this->handle($e);
             }
         }
