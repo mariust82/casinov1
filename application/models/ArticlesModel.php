@@ -33,6 +33,8 @@ class ArticlesModel {
                 return '/' . $object->payload->id;
             case 'live':
                 return '/' . $object->id;
+            default :
+                return '';
         }
     }
     

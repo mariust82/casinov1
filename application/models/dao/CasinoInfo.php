@@ -230,7 +230,7 @@ class CasinoInfo
         WHERE t1.casino_id = ".$id." AND t2.name IN ('".implode("','", $bonusTypes)."')";
         $row = SQL($query)->toRow();
         if (empty($row)) {
-            return;
+            return null;
         }
 
         if (strtolower($row['amount']) == 'none' || strlen($row['amount'])==0) {
@@ -309,6 +309,7 @@ class CasinoInfo
         } elseif ($score >= 9 && $score <= 10) {
             return 'Excellent';
         }
+        return '';
     }
 
     private function getAbbreviation($casinos)

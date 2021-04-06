@@ -66,7 +66,7 @@ class Casinos implements FieldValidator
             WHERE t1.id = :id  
         ", array(":id"=>$id))->toRow();
         if (empty($row)) {
-            return;
+            return null;
         }
 
         $object = new Casino();

@@ -99,6 +99,7 @@ function getAbbreviation($name, $amount)
         }
         return $abbr;
     }
+    return '';
 }
 
 function formatDate($date)

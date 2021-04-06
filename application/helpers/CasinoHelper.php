@@ -47,6 +47,7 @@ class CasinoHelper
         } elseif ($score >= 8 && $score <= 10) {
             return 'Excellent';
         }
+        return '';
     }
 
     public function get_string($name)
