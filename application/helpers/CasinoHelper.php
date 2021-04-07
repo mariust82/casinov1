@@ -47,10 +47,12 @@ class CasinoHelper
         } elseif ($score >= 8 && $score <= 10) {
             return 'Excellent';
         }
+        return '';
     }
 
     public function get_string($name)
     {
+        $items = [];
         foreach ($name as $key => $item) {
             if ($key != 0) {
                 $items[$key] = $item;

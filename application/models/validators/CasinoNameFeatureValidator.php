@@ -11,13 +11,10 @@ class CasinoNameFeatureValidator extends \Lucinda\RequestValidator\ParameterVali
         switch ($value) {
             case "live dealer":
                 return "Live Dealer";
-                break;
             case "ecogra casinos":
                 return "eCOGRA Casinos";
-                break;
             default:
                 return null;
-                break;
         }
     }
 }

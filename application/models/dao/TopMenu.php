@@ -147,11 +147,9 @@ class TopMenu
 
             case '/countries-list/united-states':
                 return 'US';
-                break;
 
             case '/countries-list/united-kingdom':
                 return 'UK';
-                break;
         }
 
         return '';
@@ -165,7 +163,7 @@ class TopMenu
             $object = new MenuItem();
             $object->title = $title;
             $object->url = $entry_data['item_url'];
-            $object->is_active = ($title==$selectedEntry?true:false);
+            $object->is_active = $title==$selectedEntry;
 
             if (!empty($entry_data["sub_items"])) {
                 $object->have_submenu = true;
@@ -173,13 +171,12 @@ class TopMenu
                     $si = new MenuItem();
                     $si->title = $subItemTitle;
                     $si->url = $subItemUrl;
-                    $si->is_active = ("/".$specific_page==$subItemUrl?true:false);
+                    $si->is_active = "/".$specific_page==$subItemUrl;
                     $object->submenuItems[] = $si;
                 }
             }
             $this->pages[] = $object;
         }
-//        var_dump($this->pages);
     }
 
     private function getSelectedEntry($currentPage, $specificPage = '')
@@ -187,7 +184,6 @@ class TopMenu
         switch ($currentPage) {
             case "bonus-list/(name)":
                 return "NO DEPOSIT CASINOS";
-                break;
 
             case "casinos":
             case "casinos/(name)":
@@ -198,28 +194,22 @@ class TopMenu
                  */
                 if ($specificPage === "casinos/new") {
                     return 'NEW CASINOS';
-                    break;
                 }
 
                 return "CASINOS";
-                break;
 
             case "softwares":
             case "softwares/(name)":
                 return "SOFTWARES";
-                break;
             case "bonus-list":
             case "bonus-list/(name)":
                 return "BONUSES";
-                break;
             case "countries":
             case "countries-list/(name)":
                 return "COUNTRIES";
-                break;
                 case "banking":
             case "banking/(name)":
                 return "BANKING";
-                break;
             case "live-dealer/(TYPE)":
             case "features/(name)":
                 /*
@@ -227,23 +217,18 @@ class TopMenu
                 */
                 if ($specificPage === "features/ecogra-casinos") {
                     return "CASINOS";
-                    break;
                 }
                 return "LIVE";
-                break;
             case "games":
             case "games/(type)":
             case "play/(name)":
                 return "GAMES";
-                break;
             case "blog":
             case "blog/(category)":
             case "(category)/(name)":
                 return "BLOG";
-                break;
             default:
                 return "";
-                break;
         }
     }
 

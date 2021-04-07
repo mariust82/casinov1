@@ -55,12 +55,11 @@ class PublishOperation implements OperationsInterface
 
     private function createNewPendingDashboard(AbstractPendingSavableObject $savableObject)
     {
-        $insertId = DB(
+        return DB(
             "
           INSERT INTO drafts SET saver_user_id = :saver_user_id",
             array(':saver_user_id' => $savableObject->user_id)
         )->getInsertId();
-        return $insertId;
     }
 
     public function getObject()
@@ -72,7 +71,7 @@ class PublishOperation implements OperationsInterface
     {
         $payload = $savableObject->payload;
 
-        $insertId = DB(
+        return DB(
             "
             INSERT INTO blog_posts SET title = :title, reading_time = :reading_time, content = :content,
             title_image_desktop = :title_image_desktop, title_image_mobile = :title_image_mobile,
@@ -84,8 +83,6 @@ class PublishOperation implements OperationsInterface
                 ':post_date' => $payload->postDate, ':route_id' => $payload->route_id
             )
         )->getInsertId();
-
-        return $insertId;
     }
 
     private function update($savableObject)

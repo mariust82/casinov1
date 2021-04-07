@@ -6,17 +6,14 @@ class Games extends \TMS\VariablesHolder
 {
     public function getNumberOfGamesInTheCurrentList()
     {
-        $totalGames = !empty($this->parameters["response"]->attributes("total_games")) ? $this->parameters["response"]->attributes("total_games") : '';
-        return $totalGames;
+        return !empty($this->parameters["response"]->attributes("total_games")) ? $this->parameters["response"]->attributes("total_games") : '';
     }
 
     public function getNumberOfGamesInSite()
     {
-        $casinoCount = SQL("
+        return SQL("
           SELECT COUNT(id) FROM games  
         ")->toValue();
-
-        return $casinoCount;
     }
 
     public function getNewestGameInSite()
@@ -33,9 +30,8 @@ class Games extends \TMS\VariablesHolder
     public function getNewestGameInCurrentList()
     {
         $gamesTms = new GamesTms($this->parameters["request"]);
-        $result = $gamesTms->getData(GameSortCriteria::NEWEST, 1, 1);
-        $name = !empty($result['list'][0]->name) ? $result['list'][0]->name : '';
-        return $name;
+        $result = $gamesTms->getData(GameSortCriteria::NEWEST);
+        return !empty($result['list'][0]->name) ? $result['list'][0]->name : '';
     }
 
     public function getMostPopularGameInSite()
@@ -52,9 +48,8 @@ class Games extends \TMS\VariablesHolder
     public function getMostPopularGameInCurrentList()
     {
         $gamesTms = new GamesTms($this->parameters["request"]);
-        $result = $gamesTms->getData(GameSortCriteria::MOST_PLAYED, 1, 1);
-        $name = !empty($result['list'][0]->name) ? $result['list'][0]->name : '';
-        return $name;
+        $result = $gamesTms->getData(GameSortCriteria::MOST_PLAYED);
+        return !empty($result['list'][0]->name) ? $result['list'][0]->name : '';
         
     }
 
@@ -74,9 +69,8 @@ class Games extends \TMS\VariablesHolder
     public function getSoftwareOfNewestGameInCurrentList()
     {
         $gamesTms = new GamesTms($this->parameters["request"]);
-        $result = $gamesTms->getData(GameSortCriteria::NEWEST, 1, 1);
-        $name = !empty($result['list'][0]->manufacturer) ? $result['list'][0]->manufacturer : '';
-        return $name;
+        $result = $gamesTms->getData(GameSortCriteria::NEWEST);
+        return !empty($result['list'][0]->manufacturer) ? $result['list'][0]->manufacturer : '';
     }
 
     public function getSoftwareOfTheMostPopularGameInSite()
@@ -95,8 +89,7 @@ class Games extends \TMS\VariablesHolder
     public function getSoftwareOfTheMostPopularGameInCurentList()
     {
         $gamesTms = new GamesTms($this->parameters["request"]);
-        $result = $gamesTms->getData(GameSortCriteria::MOST_PLAYED, 1, 1);
-        $name = !empty($result['list'][0]->manufacturer) ? $result['list'][0]->manufacturer : '';
-        return $name;
+        $result = $gamesTms->getData(GameSortCriteria::MOST_PLAYED);
+        return !empty($result['list'][0]->manufacturer) ? $result['list'][0]->manufacturer : '';
     }
 }

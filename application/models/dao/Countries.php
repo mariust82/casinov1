@@ -73,8 +73,8 @@ class Countries implements CasinoCounter
               WHERE t3.is_open = 1
               GROUP BY t2.country_id) AS cnt
         WHERE cnt.country_id = t1.id AND t1.code != '"
-            . self::EXCLUDED_COUNTRY_CODE . "'"
-        )->toMap("unit", "counter");
+            . self::EXCLUDED_COUNTRY_CODE . "'
+        ")->toMap("unit", "counter");
         arsort($result);
         return $result;
     }

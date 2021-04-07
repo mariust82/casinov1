@@ -40,8 +40,7 @@ class CasinosByBankingMethodController extends CasinosListController
         $object = new CasinosList($casinoFilter);
         $results = $object->getResults($sortBy, 0, $limit);
         $total = $object->getTotal();
-        $return = ['total'=>$total,'result'=>$results];
-        return $return;
+        return ['total'=>$total,'result'=>$results];
     }
     
     protected function init() {

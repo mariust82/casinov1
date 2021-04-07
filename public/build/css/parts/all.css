@@ -35,7 +35,8 @@
   overflow-x: hidden;
 }
 
-blockquote.widget{
+blockquote.widget,
+.subtitle blockquote{
   color:#60686A;
   position: relative;
   padding-left: 34px;
@@ -44,7 +45,8 @@ blockquote.widget{
 }
 
 @media screen and (max-width: 767px) {
-  blockquote.widget{
+  blockquote.widget,
+  .subtitle blockquote{
     line-height:26px;
     padding-left: 20px;
   }
@@ -55,13 +57,15 @@ blockquote.widget{
   background-color: none;
   visibility: visible !important;
 }
-blockquote.widget p span{
+blockquote.widget p span,
+.subtitle blockquote p span{
   color: #60686A !important;
   font-size: 18px !important;
   font-family: 'Open Sans';
 }
 
-blockquote.widget p{
+blockquote.widget p,
+.subtitle blockquote p{
   padding:0;
   font-size: 18px !important;
   line-height:34px !important;
@@ -5417,9 +5421,12 @@ a:focus {
   font-weight: 600;
   color: #60686A;
   font-size: 13px;
-  line-height: 18px;
+  /* line-height: 18px; */
+  /* padding: 6px 10px; */
   padding: 6px 10px;
   position: relative;
+  /* display: flex;
+  align-items: center; */
 }
 
 @media screen and (max-width:767px) {
@@ -13037,6 +13044,7 @@ h1.title + .subtitle{
 .game-soft, .game-title, .list-item-trun, .select2-container .select2-selection--single .select2-selection__rendered, .select2-container--default .select2-results__option[aria-selected] .wrap, .select2-results__option, .wrap {
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 @media (min-width: 768px){
@@ -14015,6 +14023,7 @@ h1.title + .subtitle{
 }
 .tf_flex .software-tooltipster .tooltipster-content{
   padding: 0;
+  display: block !important;
 }
 .tf_flex .close_tf_wrap span:first-of-type{
   font-size: 15px;
@@ -14417,7 +14426,7 @@ h1.title + .subtitle{
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index:1;
+  z-index:10;
 }
 .cl-lightbox-close {
   position:absolute;
@@ -14641,5 +14650,12 @@ h1.title + .subtitle{
   }
   .select2-dropdown:after, .select2-dropdown:before{
     left: 60px;
+  }
+}
+
+@media (max-width: 767px){
+  .carousel-slide .rating_list_view.list-rating {
+    text-indent: unset !important;
+    min-width: 82px !important;
   }
 }

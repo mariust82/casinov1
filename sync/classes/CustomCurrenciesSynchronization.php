@@ -1,10 +1,6 @@
 <?php
-
-require_once("src/controllers/CurrenciesSynchronization.php");
-
-class CasinosListsCurrenciesSynchronization extends CurrenciesSynchronization
+class CustomCurrenciesSynchronization extends CurrenciesSynchronization
 {
-
     /**
      * @param $item
      */

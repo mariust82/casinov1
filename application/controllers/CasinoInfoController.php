@@ -46,7 +46,7 @@ class CasinoInfoController extends BaseController
 
         if ($total>0) {
             $this->response->attributes("total_reviews", $total);
-            $this->response->attributes("reviews", $object->getAll($info->id, 0, 0));
+            $this->response->attributes("reviews", $object->getAll($info->id, 0));
         } else {
             $this->response->attributes("total_reviews", 0);
             $this->response->attributes("reviews", array());

@@ -13,7 +13,7 @@ class PageNotFoundController extends Lucinda\MVC\STDERR\Controller
         $object = new PageInfoDAO();
         $this->response->attributes("page_info", $object->getInfoByURL("404"));
 
-        $this->response->attributes("use_bundle", (in_array(ENVIRONMENT, ["dev","live"])?true:false));
+        $this->response->attributes("use_bundle", in_array(ENVIRONMENT, ["dev","live"]));
 
         $this->response->attributes("version", (string)$this->application->getTag('application')['version']);
 
