@@ -4069,13 +4069,7 @@ a:focus {
   color:#fff;
 }
 
-@media screen and (max-width:767px) {
-  .btn-wrn,
-  .btn.btn-warning{
-   /* background: none;*/
-    color:#DB2424;
-  }
-}
+
 
 .btn-rst,
 .btn.btn-restricted{
