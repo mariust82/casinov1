@@ -4072,7 +4072,7 @@ a:focus {
 @media screen and (max-width:767px) {
   .btn-wrn,
   .btn.btn-warning{
-    background: none;
+   /* background: none;*/
     color:#DB2424;
   }
 }
