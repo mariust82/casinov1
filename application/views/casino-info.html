@@ -121,7 +121,7 @@
 
 			</div>
 			<div class="casino-review-country casino-review-mobile">
-				<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="20" height="14">
+				<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="${data.country.code}" width="20" height="14">
 				${data.country.name}
 				${data.country_status_text}
 			</div>
@@ -184,7 +184,7 @@
 									<:else>
 										<i class="icon-icon_unavailable"></i>
 								</:if>
-								<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+								<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="${data.country.code}" width="26" height="20">
 							</div>
 						</div>
 						<div class="detail-box">
@@ -672,7 +672,7 @@
 									<:else>
 										<i class="icon-icon_unavailable"></i>
 								</:if>
-								<img class="${data.country_status} country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+								<img class="${data.country_status} country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="${data.country.code}" width="26" height="20">
 							</div>
 							<div class="similar-row">
 								<:if test="!empty(${data.country.currency})">
@@ -778,10 +778,10 @@
 								<div class="similar-row">
 									<:if test="${item.is_country_accepted} == 1">
 										<i class="icon-icon_available"></i>
-										<img class="accepted country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+										<img class="accepted country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="${data.country.code}" width="26" height="20">
 										<:else>
 											<i class="icon-icon_unavailable"></i>
-											<img class="not-accepted country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+											<img class="not-accepted country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="${data.country.code}" width="26" height="20">
 									</:if>
 								</div>
 								<div class="similar-row">
