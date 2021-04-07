@@ -353,6 +353,7 @@ var ListFilters = function (obj) {
                 if (_url === '/casinos-filter/') {
                     ShowTFPopup();
                     CloseTFPopup();
+                    copyToClipboard();
                 }
                 
                 if($('.list-body').children().length >= totalItems) {
