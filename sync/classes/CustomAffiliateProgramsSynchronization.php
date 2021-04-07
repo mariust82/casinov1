@@ -7,8 +7,8 @@ class CustomAffiliateProgramsSynchronization extends AffiliateProgramsSynchroniz
             require_once("hlis/query_cache/MongoDriver.php");
             $cache = new \Hlis\QueryCache\MongoDriver("casinoslists.cache_".$this->application->getEnvironment());
             $cache->delete(["is_affiliate_program"=>true]);
-            
-            Cron::destroy();
         }
+        
+        Cron::destroy();
     }
 }
