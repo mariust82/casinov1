@@ -63,7 +63,7 @@ class Countries implements CasinoCounter
 
     public function getCasinosCount()
     {
-        $result = NoSQL("
+        $result = SQL("
         SELECT t1.name AS unit, cnt.nr as counter
         FROM countries AS t1,
              (SELECT t2.country_id, count(t2.casino_id) as nr
@@ -74,7 +74,7 @@ class Countries implements CasinoCounter
               GROUP BY t2.country_id) AS cnt
         WHERE cnt.country_id = t1.id AND t1.code != '"
             . self::EXCLUDED_COUNTRY_CODE . "'
-        ", [], ["casinos"], function($resultSet) { return $resultSet->toMap("unit", "counter"); });
+        ")->toMap("unit", "counter");
         arsort($result);
         return $result;
     }
