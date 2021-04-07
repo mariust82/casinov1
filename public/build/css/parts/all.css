@@ -13814,8 +13814,9 @@ h1.title + .subtitle{
 
 @media screen and (max-width:767px) {
     .list-rating.excellent {
-        text-indent: 0!important;
-        min-width: unset;
+        width: unset!important;
+        text-indent: initial!important;
+        min-width: 82px;
     }
 }
 
