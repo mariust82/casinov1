@@ -7,9 +7,9 @@ class CustomGameManufacturesSynchronization extends NewGameManufacturersSynchron
             require_once("hlis/query_cache/MongoDriver.php");
             $cache = new \Hlis\QueryCache\MongoDriver("casinoslists.cache_".$this->application->getEnvironment());
             $cache->delete(["is_game_manufacturer"=>true]);
-            
-            Cron::destroy();
         }
+        
+        Cron::destroy();
     }
     
     protected function setSoftware($item)

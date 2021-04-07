@@ -32,9 +32,9 @@ class CustomCasinosSynchronization extends NewCasinoSynchronization
             require_once("hlis/query_cache/MongoDriver.php");
             $cache = new \Hlis\QueryCache\MongoDriver("casinoslists.cache_".$this->application->getEnvironment());
             $cache->delete(["is_casino"=>true]);
-            
-            Cron::destroy();
         }
+        
+        Cron::destroy();
     }
     
     protected function setLabels($casinoID, $info)
