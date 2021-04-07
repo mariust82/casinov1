@@ -13784,8 +13784,8 @@ h1.title + .subtitle{
 @media screen and (max-width:767px) {
   .similar_casino-box .list-rating,
   .carousel-grid-casinos .list-rating{
-    text-indent: -1000px!important;
-    min-width: 0;
+  /*  text-indent: -1000px!important;
+    min-width: 0;*/
   }
 }
 
@@ -13812,13 +13812,6 @@ h1.title + .subtitle{
 }
 
 
-@media screen and (max-width:767px) {
-    .list-rating.excellent {
-        width: unset!important;
-        text-indent: initial!important;
-        min-width: 82px;
-    }
-}
 
 .carousel-box-container .carousel-slide
 {
