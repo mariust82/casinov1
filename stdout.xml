@@ -11,4 +11,5 @@
     <geoip ref="xml/geoip"/>
     <gameplay ref="xml/gameplay"/>
     <hosts ref="xml/hosts"/>
+    <cache ref="xml/cache"/>
 </xml>

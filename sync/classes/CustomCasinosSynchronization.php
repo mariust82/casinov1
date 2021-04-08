@@ -10,32 +10,30 @@ require_once(dirname(__DIR__, 2)."/application/models/dao/BestCasinoLabel.php");
 require_once(dirname(__DIR__, 2)."/application/models/dao/LowWageringCasinoLabel.php");
 require_once(dirname(__DIR__, 2)."/application/models/dao/NoAccountLabel.php");
 
-class LocalCasinoSynchronization extends NewCasinoSynchronization
+class CustomCasinosSynchronization extends NewCasinoSynchronization
 {
-    public function __construct($xmlFile = "configuration.xml", $usePackagist = false)
-    {
-        parent::__construct($xmlFile);
-
-        $object = new NoAccountLabel();
-        $object->resetNoAccountLabelFromSync();
-        $object->populateNoAccountLabel();
-
-        $object = new BestCasinoLabel(true);
-        $object->resetBestLabelFromSync();
-        $object->populateBestLabel();
-
-        $object = new LowWageringCasinoLabel();
-        $object->resetLowWageringLabel();
-        $object->populateLowWageringLabel();
-    }
-    
     protected function destroy() {
         if($this->dataUpdated) {
+            // update labels
+            $object = new NoAccountLabel();
+            $object->resetNoAccountLabelFromSync();
+            $object->populateNoAccountLabel();
+            
+            $object = new BestCasinoLabel(true);
+            $object->resetBestLabelFromSync();
+            $object->populateBestLabel();
+            
+            $object = new LowWageringCasinoLabel();
+            $object->resetLowWageringLabel();
+            $object->populateLowWageringLabel();
+            
+            // update cache
             chdir(dirname(__DIR__, 2));
-            require ("vendor/autoload.php");
-            $maintenance = new Lucinda\DB\DatabaseMaintenance(dirname(__DIR__,2)."/xml/file_db.xml", $this->application->getEnvironment());
-            $maintenance->deleteByTag("casinos");
+            require_once("hlis/query_cache/MongoDriver.php");
+            $cache = new \Hlis\QueryCache\MongoDriver("casinoslists.cache_".$this->application->getEnvironment());
+            $cache->delete(["is_casino"=>true]);
         }
+        
         Cron::destroy();
     }
     

@@ -1,8 +1,17 @@
 <?php
-require_once("src/controllers/NewGameManufacturersSynchronization.php");
-
-class CasinoslistsGameManufacturesSynchronization extends NewGameManufacturersSynchronization
+class CustomGameManufacturesSynchronization extends NewGameManufacturersSynchronization
 {
+    protected function destroy() {
+        if($this->dataUpdated) {
+            chdir(dirname(__DIR__, 2));
+            require_once("hlis/query_cache/MongoDriver.php");
+            $cache = new \Hlis\QueryCache\MongoDriver("casinoslists.cache_".$this->application->getEnvironment());
+            $cache->delete(["is_game_manufacturer"=>true]);
+        }
+        
+        Cron::destroy();
+    }
+    
     protected function setSoftware($item)
     {
         $updates = array();

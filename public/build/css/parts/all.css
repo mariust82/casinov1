@@ -4069,13 +4069,7 @@ a:focus {
   color:#fff;
 }
 
-@media screen and (max-width:767px) {
-  .btn-wrn,
-  .btn.btn-warning{
-    background: none;
-    color:#DB2424;
-  }
-}
+
 
 .btn-rst,
 .btn.btn-restricted{
@@ -5585,6 +5579,7 @@ a:focus {
   text-align: center;
   border-radius: 5px;
   font-size: 13px;
+  font-weight: bold;
   text-transform: uppercase;
   color: #465156;
   background: #F7F7F7;
@@ -6479,7 +6474,7 @@ a:focus {
 
 @media screen and (max-width: 767px) {
   .casino-review .btn-middle {
-    padding: 12px 22px;
+    padding: 11px 22px;
   }
   .casino-review .btn-restricted {
     padding-top: 10px;
@@ -6695,7 +6690,7 @@ a:focus {
 
 @media screen and (max-width: 690px) {
   .box {
-    padding: 10px;
+    padding: 15px 10px 10px;
   }
 }
 
@@ -7216,7 +7211,7 @@ input[type=submit]
   display: -ms-flexbox;
   display: flex;
   font-weight: 600;
-  margin: 0 0 5px;
+  margin: 0 0 10px;
   font-size:14px;
 }
 
@@ -7229,7 +7224,7 @@ input[type=submit]
   .review-name,
   .review-title{
     font-size: 13px;
-    margin: 0 0 3px;
+    margin: 0 0 10px;
     line-height: 1;
   }
 
@@ -11458,9 +11453,9 @@ hr.widget{
   .game-type_container:nth-of-type(9) {
     order: 8;
   }
-  .info_list-title{
+/*  .info_list-title{
     width: 26%;
-  }
+  }*/
 }
 
 
@@ -13789,8 +13784,8 @@ h1.title + .subtitle{
 @media screen and (max-width:767px) {
   .similar_casino-box .list-rating,
   .carousel-grid-casinos .list-rating{
-    text-indent: -1000px!important;
-    min-width: 0;
+  /*  text-indent: -1000px!important;
+    min-width: 0;*/
   }
 }
 
@@ -13815,7 +13810,6 @@ h1.title + .subtitle{
 
   }
 }
-
 
 
 
