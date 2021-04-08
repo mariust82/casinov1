@@ -1,0 +1,16 @@
+{
+  "urls": [
+    {
+      "link": "https://www.casinoslists.com/",
+      "name": "index"
+    },
+    {
+      "link": "https://www.casinoslists.com/casinos/new",
+      "name": "casinos.new"
+    },
+    {
+      "link": "https://www.casinoslists.com/casinos/best",
+      "name": "casinos.best"
+    }
+  ]
+}
