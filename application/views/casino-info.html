@@ -71,13 +71,13 @@
 						<img class="lazy_loaded" data-src="${getCasinoLogo(${data.casino.code}, 124, 82)}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
 					</div>
 					<:set var="score_class" val="get_rating(${data.casino.rating})"/>
-					<div class="list-rating ${normalize(${score_class})}" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
+					<div class="list-rating ${normalize(${data.casino_score_class})}" itemprop="aggregateRating" itemscope="" itemtype="http://schema.org/AggregateRating">
 						<:if test="${data.casino.rating} == 0">
 							No score
 							<div class="list-rating-score">-</div>
 							<meta itemprop="ratingValue" content="1">
 							<:else>
-								${score_class}
+								${data.casino_score_class}
 								<span class="list-rating-score">${ceil(${data.casino_score})}</span>
 								<meta itemprop="ratingValue" content="${ceil(${data.casino_score})}">
 						</:if>
