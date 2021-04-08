@@ -14659,4 +14659,7 @@ h1.title + .subtitle{
     overflow: hidden;
     white-space: nowrap;
   }
+  .header-search-mobile.js-trigger-search{
+    max-width: calc(100% - 60px);
+  }
 }
