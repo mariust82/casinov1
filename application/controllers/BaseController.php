@@ -25,6 +25,8 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $this->response->attributes("version", $this->application->getVersion());
         $this->response->attributes("use_bundle", in_array(ENVIRONMENT, ["dev","live"]));
+        $this->response->attributes("critical_css", $this->getCriticalCss());
+
         $contentManager = new \CMS\ContentManager(
             $this->request->getURI()->getPage()?$this->request->getURI()->getPage():"index",
             $this->application->attributes("parent_schema"),
@@ -32,6 +34,18 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
             ["response"=>$this->response, "request"=>$this->request]
         );
         $this->response->attributes("widgets", $contentManager->getTexts(true));
+    }
+
+    /**
+     * Get critical css path.
+     *
+     * @return string
+     */
+    protected function getCriticalCss(): string
+    {
+        $page = in_array($this->request->getURI()->getPage(), ['', '/']) ? 'index' : $this->request->getURI()->getPage();
+
+        return dirname(__DIR__, 2) . '/public/build/css/compilations/' . str_replace('/', '.', $page) . '.css';
     }
 
     abstract protected function service();
