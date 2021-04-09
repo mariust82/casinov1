@@ -19,10 +19,26 @@ require_once("dao/entities/Entity.php");
  */
 function SQL($query, $boundParameters = array())
 {
+    // gets result from document DB if present
+    $cache = ServiceContainer::get(Cache::class);
+    if ($key = $cache->getKey($query, $boundParameters)) {
+        $value = $cache->read($key);
+        if ($value) {
+            return $value;
+        }
+    }
+    
+    // compiles result from sql DB
     $benchmark = new Hlis\Benchmark("queries.log", 0.1);
     $preparedStatement = Lucinda\SQL\ConnectionSingleton::getInstance()->createPreparedStatement();
     $preparedStatement->prepare($query);
     $result = $preparedStatement->execute($boundParameters);
     $benchmark->run(["query" => $query, "parameters" => $boundParameters]);
-    return $result;
+    
+    // if cacheable, update cache
+    if ($key) {
+        return $cache->write($key, $result->toList());
+    } else {
+        return $result;
+    }
 }
