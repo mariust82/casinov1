@@ -3,6 +3,7 @@ require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once("queries/CasinosListQuery.php");
 require_once("application/helpers/CasinoHelper.php");
+require_once("application/models/dao/CasinoInfo.php");
 
 class CasinosList
 {
@@ -49,7 +50,7 @@ class CasinosList
             $object->name = $row["name"];
             $object->code = $row["code"];
             $object->withdrawal_minimum = $row['withdraw_minimum'];
-            $object->rating = ceil($row["average_rating"]);
+            $object->rating = $this->getRating($row["id"], $this->filter->getDetectedCountry()->id);
             $object->date_established = $row["date_established"];
             $object->status = $row["status"];
             $object->deposit_minimum = $row["deposit_minimum"];
@@ -85,6 +86,11 @@ class CasinosList
         }
         
         return array_values($output);
+    }
+
+    private function getRating($casinoID, $countryID) {
+        $object = new CasinoInfo($casinoID, $countryID);
+        return $object->getCasinoScore($casinoID);
     }
     
     protected function appendAcceptedCountry(array &$output, string $allowedIds): void
@@ -167,6 +173,7 @@ class CasinosList
         while ($row = $result->toRow()) {
             $object = $output[$row["casino_id"]];
             $output[$row["casino_id"]]->currencies = $row["symbol"];
+            $output[$row["casino_id"]]->deposit_minimum = ($object->deposit_minimum?$row["symbol"].$object->deposit_minimum:"");
             $output[$row["casino_id"]]->withdrawal_minimum = ($object->withdrawal_minimum?$row["symbol"].$object->withdrawal_minimum:"");
         }
     }

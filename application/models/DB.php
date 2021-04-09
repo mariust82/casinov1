@@ -35,10 +35,10 @@ function SQL($query, $boundParameters = array())
     $result = $preparedStatement->execute($boundParameters);
     $benchmark->run(["query" => $query, "parameters" => $boundParameters]);
     
-    // if cacheable, update cache 
+    // if cacheable, update cache
     if ($key) {
         return $cache->write($key, $result->toList());
     } else {
         return $result;
-    }    
+    }
 }

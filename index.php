@@ -1,5 +1,6 @@
 <?php
 require "vendor/autoload.php";
+
 // load benchmark
 require "hlis/Benchmark.php";
 $benchmark = new \Hlis\Benchmark("pages.log", 0.25);
@@ -32,4 +33,7 @@ require_once("vendor/lucinda/mvc/loader.php");
 new Lucinda\MVC\STDOUT\FrontController((ENVIRONMENT != "frontend" ? "stdout.xml" : "stdout_frontend.xml"));
 
 // run benchmark
-$benchmark->run();
+$duration = $benchmark->run();
+if (!empty($_GET["sic"])) {
+    echo "DURATION: ".$duration;
+}

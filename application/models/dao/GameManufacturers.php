@@ -41,8 +41,9 @@ class GameManufacturers implements CasinoCounter
         
         // get number of casinos for above
         $resultSet = SQL("
-        SELECT COUNT(casino_id) AS nr, game_manufacturer_id
+        SELECT COUNT(DISTINCT casino_id) AS nr, game_manufacturer_id
         FROM casinos__game_manufacturers
+        INNER JOIN  casinos as c ON casino_id = c.id AND c.is_open=1
         WHERE game_manufacturer_id IN (".implode(",", array_keys($software)).")
         GROUP BY game_manufacturer_id
         ");

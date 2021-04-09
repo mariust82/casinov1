@@ -29,12 +29,12 @@ class CustomCasinosSynchronization extends NewCasinoSynchronization
             
             // update cache
             chdir(dirname(__DIR__, 2));
-            require_once("hlis/query_cache/MongoDriver.php");
-            $cache = new \Hlis\QueryCache\MongoDriver("casinoslists.cache_".$this->application->getEnvironment());
-            $cache->delete(["is_casino"=>true]);
-            
-            Cron::destroy();
+            require ("vendor/autoload.php");
+            $maintenance = new Lucinda\DB\DatabaseMaintenance(dirname(__DIR__,2)."/xml/file_db.xml", $this->application->getEnvironment());
+            $maintenance->deleteByTag("casino");
         }
+        
+        Cron::destroy();
     }
     
     protected function setLabels($casinoID, $info)
