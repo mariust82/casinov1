@@ -204,12 +204,13 @@ function AddingReview(obj) {
             email: email,
             body: message,
             parent: _reviewID,
-            casino_id: _this.data('casino-id')
+            casino_id: $('#reviews-form').data('casino-id')
         };
         _sendReview(ajaxData, _this);
     },
     
     _sendReview = function (ajaxData, _this) {
+
         if (BUSY_REQUEST)
             return;
         BUSY_REQUEST = true;
@@ -350,11 +351,12 @@ function AddingReview(obj) {
             'click': function (e) {
                 var error = _prepReview(_wrap);
 
-                if (error === false) {
-                    e.stopPropagation();
-                } else {
-                    _prepAjaxData(_wrap);
-                }
+                    if (error === false) {
+                        e.stopPropagation();
+                    } else {
+                        _prepAjaxData(_wrap);
+                    }
+
             }
         });
     },

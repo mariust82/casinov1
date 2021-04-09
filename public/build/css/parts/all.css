@@ -14653,3 +14653,13 @@ h1.title + .subtitle{
     min-width: 82px !important;
   }
 }
+
+@media (max-width: 320px){
+  .header-search-mobile.js-trigger-search span{
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .header-search-mobile.js-trigger-search{
+    max-width: calc(100% - 60px);
+  }
+}
