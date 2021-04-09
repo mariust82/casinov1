@@ -296,8 +296,6 @@ function changeViewElements(filterView,container,gridClass,listClass){
             changeViewElements($('.filter .view'),$('.data-container-holder'),'grid_view','list-view');
         }
         gridViewBoxPopup();
-
-
     });
 
     $(document).ajaxComplete(function() {
@@ -653,22 +651,24 @@ function raiseCasinoPage(key) {
 
 function gridViewBoxPopup(){
     if($('.open-popup-spec').length > 0){
-        $('.open-popup-spec').click(function(){
+        $('body').on('click', '.open-popup-spec', function(){
             $(".welcome_package-popup-trigger").closest('.wp-title').find('.welcome_package-popup').removeClass('active');
             $(this).closest('.popup-spec').find('.popup-casino-spec').toggleClass('active');
             $('.open-popup-spec').not(this).closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
         });
-        $('.close-popup-spec').click(function(){
+        $('body').on('click', '.close-popup-spec', function(){
             $('.popup-casino-spec').removeClass('active');
         });
     }
+
     if($(".welcome_package-popup-trigger").length > 0){
-        $(".welcome_package-popup-trigger").click(function(){
+        $('body').on('click', '.welcome_package-popup-trigger', function(){
             $('.open-popup-spec').closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
             $(this).closest('.wp-title').find('.welcome_package-popup').toggleClass('active');
             $(".welcome_package-popup-trigger").not(this).closest('.wp-title').find('.welcome_package-popup').removeClass('active');
         });
-        $('.close-popup-wp').click(function(){
+
+        $('body').on('click', '.close-popup-wp', function(){
             $('.welcome_package-popup').removeClass('active');
         });
     }
