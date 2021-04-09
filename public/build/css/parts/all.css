@@ -1394,45 +1394,6 @@ button.swiper-pagination-bullet {
   animation: tooltipster-fading 400ms;
 }
 
-
-/* rotate */
-
-@-webkit-keyframes tooltipster-rotating {
-  25% {
-    -webkit-transform: rotate(-2deg);
-    transform: rotate(-2deg);
-  }
-  75% {
-    -webkit-transform: rotate(2deg);
-    transform: rotate(2deg);
-  }
-  100% {
-    -webkit-transform: rotate(0);
-    transform: rotate(0);
-  }
-}
-
-@keyframes tooltipster-rotating {
-  25% {
-    -webkit-transform: rotate(-2deg);
-    transform: rotate(-2deg);
-  }
-  75% {
-    -webkit-transform: rotate(2deg);
-    transform: rotate(2deg);
-  }
-  100% {
-    -webkit-transform: rotate(0);
-    transform: rotate(0);
-  }
-}
-
-.tooltipster-update-rotate {
-  -webkit-animation: tooltipster-rotating 600ms;
-  animation: tooltipster-rotating 600ms;
-}
-
-
 /* scale */
 
 @-webkit-keyframes tooltipster-scaling {
@@ -4003,6 +3964,14 @@ a:focus {
     background: none;
     text-align: right;
   }
+
+  .list-item-cell-buttons .btn-err{
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    text-align: center;
+  }
+
   .btn-err svg {
     width: 27px;
     height: 27px;
@@ -12165,6 +12134,9 @@ hr.widget{
 }
 
 @media (max-width: 500px){
+  .tooltipster-sidetip.tooltipster-popup{
+    width:100% !important;
+  }
   .tooltipster-sidetip.tooltipster-popup .tooltipster-content{
     padding: 0 !important;
   }
