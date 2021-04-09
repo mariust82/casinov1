@@ -11,17 +11,17 @@
         	<ban>comment</ban>
         </bans>
         <tables>
-        	<table name="affiliate_programs" syncs="affiliate_program"/>
+        	<table name="affiliate_programs" syncs="affiliate-program"/>
 			<table name="banking_method_types"/>
-			<table name="banking_methods" syncs="banking_method"/>
-			<table name="banking_methods__countries" syncs="banking_method"/>
+			<table name="banking_methods" syncs="banking-method"/>
+			<table name="banking_methods__countries" syncs="banking-method"/>
 			<table name="bonus_labels"/>
 			<table name="bonus_types"/>
 			<table name="bonuses" syncs="bonus"/>
 			<table name="bonuses__casinos" syncs="bonus,casino"/>
 			<table name="bonuses__countries" syncs="bonus"/>
 			<table name="bonuses__currencies" syncs="bonus"/>
-			<table name="bonuses__game_manufacturers" syncs="bonus,game_manufacturer"/>
+			<table name="bonuses__game_manufacturers" syncs="bonus,game-manufacturer"/>
 			<table name="bonuses__game_types" syncs="bonus"/>
 			<table name="bonuses__games" syncs="bonus,game"/>
 			<table name="bonuses__games_orphan" syncs="bonus"/>
@@ -38,10 +38,10 @@
 			<table name="casinos__countries" syncs="casino"/>
 			<table name="casinos__countries_allowed" syncs="casino"/>
 			<table name="casinos__currencies" syncs="casino"/>
-			<table name="casinos__deposit_methods" syncs="casino,banking_method"/>
+			<table name="casinos__deposit_methods" syncs="casino,banking-method"/>
 			<table name="casinos__emails" syncs="casino"/>
 			<table name="casinos__faxes" syncs="casino"/>
-			<table name="casinos__game_manufacturers" syncs="casino,game_manufacturer"/>
+			<table name="casinos__game_manufacturers" syncs="casino,game-manufacturer"/>
 			<table name="casinos__game_types" syncs="casino"/>
 			<table name="casinos__labels" syncs="casino"/>
 			<table name="casinos__languages" syncs="casino"/>
@@ -51,7 +51,7 @@
 			<table name="casinos__phones" syncs="casino"/>
 			<table name="casinos__play_versions" syncs="casino"/>
 			<table name="casinos__withdraw_maximums" syncs="casino"/>
-			<table name="casinos__withdraw_methods" syncs="casino,banking_method"/>
+			<table name="casinos__withdraw_methods" syncs="casino,banking-method"/>
 			<table name="casinos__withdraw_timeframes" syncs="casino"/>
 			<table name="casinos_bonuses_types"/>
 			<table name="certifications"/>
@@ -60,8 +60,8 @@
 			<table name="countries_not_supported"/>
 			<table name="currencies"/>
 			<table name="game_features"/>
-			<table name="game_manufacturers" syncs="game_manufacturer"/>
-			<table name="game_manufacturers__countries" syncs="game_manufacturer"/>
+			<table name="game_manufacturers" syncs="game-manufacturer"/>
+			<table name="game_manufacturers__countries" syncs="game-manufacturer"/>
 			<table name="game_play__matches" syncs="game"/>
 			<table name="game_play__patterns"/>
 			<table name="game_play__types"/>
