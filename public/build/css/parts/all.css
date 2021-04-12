@@ -1490,12 +1490,12 @@ corresponds to the arrow we want to display */
   width: 20px;
 }
 
-@media screen and (max-width:690px) {
+/*@media screen and (max-width:690px) {
   .tooltipster-sidetip.tooltipster-top .tooltipster-arrow {
     -webkit-transform: translateX(10px);
     transform: translateX(10px);
   }
-}
+}*/
 
 /* common rules between .tooltipster-arrow-background and .tooltipster-arrow-border */
 
