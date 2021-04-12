@@ -2825,6 +2825,9 @@ a:focus {
     display:inline;
     color:#fff;
     opacity:.5;
+    width:100%;
+    text-indent:-6%;
+    text-align:center;
   }
 
   .header-search-mobile.js-trigger-search .icon-search {
@@ -2835,17 +2838,15 @@ a:focus {
   }
 }
 
-@media screen and (max-width:690px) {
-  .header-search-mobile.js-trigger-search{
-    margin:0 5%;
+@media screen and (max-width:1023px) { 
+  .header-search-mobile.js-trigger-search span{
+    text-indent:-11%;
   }
 }
 
-@media screen and (max-width:1023px) { 
-  .header-search-mobile.js-trigger-search span{
-    width:100%;
-    text-indent:-6%;
-    text-align:center;
+@media screen and (max-width:690px) {
+  .header-search-mobile.js-trigger-search{
+    margin:0 5%;
   }
 }
 
