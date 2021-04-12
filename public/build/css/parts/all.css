@@ -1297,14 +1297,6 @@ button.swiper-pagination-bullet {
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
 }
 
-@media screen and (max-width:690px) {
-  .tooltipster-grow.tooltipster-show:not(.tooltipster-popup) {
-    -webkit-transform: scale(1, 1023) translateX(-10px);
-    transform: scale(1, 1) translateX(-10px);
-  }
-}
-
-
 /* swing */
 
 .tooltipster-swing {
