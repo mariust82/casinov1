@@ -10520,6 +10520,8 @@ hr.widget{
 }
 .list-view .games_allowed{
   text-align: left;
+  -webkit-justify-content:flex-start;
+  justify-content:flex-start;
 }
 .list-view .list-heading.list-item {
   display: -webkit-flex;
