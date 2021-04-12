@@ -347,7 +347,7 @@ var ListFilters = function (obj) {
                     if (typeof updateGameData == 'function') {
                         updateGameData();
                     }
-                    gridViewBoxPopup();
+                    // gridViewBoxPopup();
                 }
                 
                 if (_url === '/casinos-filter/') {

@@ -1,8 +1,5 @@
 var gulp = require('gulp');
-
-gulp.task('compile-dev', function () {
-    return run('node bundle_dev.js').exec();
-});
+var run = require('gulp-run');
 
 gulp.task('minify', function () {
     return run('node minify.js').exec();
@@ -13,7 +10,7 @@ gulp.task('bundle', function () {
 });
 
 gulp.task('default', function () {
-    gulp.watch(['public/build/css/parts/**/*.css', 'public/build/js/parts/**/*.js'], gulp.series('compile-dev', 'bundle', 'minify', 'bundle'));
+    gulp.watch(['public/build/css/parts/**/*.css', 'public/build/js/parts/**/*.js'], gulp.series('minify', 'bundle'));
 });
 
 var penthouse = require("penthouse");
