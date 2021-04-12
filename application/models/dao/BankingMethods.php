@@ -44,12 +44,14 @@ class BankingMethods implements CasinoCounter
         $resultSet = SQL("
         SELECT casino_id, banking_method_id
         FROM casinos__deposit_methods
+        INNER JOIN  casinos as c ON casino_id = c.id AND c.is_open=1
         WHERE banking_method_id IN (".implode(",", array_keys($bankingMethods)).")
         
         UNION
         
         SELECT casino_id, banking_method_id
         FROM casinos__withdraw_methods
+        INNER JOIN  casinos as c ON casino_id = c.id AND c.is_open=1
         WHERE banking_method_id IN (".implode(",", array_keys($bankingMethods)).")
         ");
         while($row = $resultSet->toRow()) {
