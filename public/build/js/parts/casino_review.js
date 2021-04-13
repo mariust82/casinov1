@@ -87,7 +87,7 @@ function AddingReview(obj) {
         ok = true;
         if (parent.data('id') != undefined) {
             _reviewID = parent.data('id');
-            // console.log(_reviewID + 'ttt');
+             console.log(_reviewID + 'ttt');
             _is_child = true;
 
             if (parent.next().find('.reply-data-holder').length > 0) {
@@ -152,12 +152,15 @@ function AddingReview(obj) {
             _field_message.parent().find('.field-error-required').remove();
         }
 
-        if ($('.drag-rate-range-score').html() == '0/10') {
-            $('.drag-rate-title').addClass('error');
-            ok = false;
-        } else {
-            $('.drag-rate-title').removeClass('error');
+        if(!_is_child) {
+            if ($('.drag-rate-range-score').html() == '0/10') {
+                $('.drag-rate-title').addClass('error');
+                ok = false;
+            } else {
+                $('.drag-rate-title').removeClass('error');
+            }
         }
+
 
         if (!ok) {
             _contact_error_required.show();
@@ -166,6 +169,7 @@ function AddingReview(obj) {
             _contact_error_required.hide();
         }
 
+        console.log(_is_child);
         if (!_is_child) {
             if (_rate_slider_result === '0') {
                 _contact_error_rate.show();

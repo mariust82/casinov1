@@ -1271,7 +1271,7 @@ var Filters = function (obj) {
                     } else {
                         $('.js-more-items').show();
                     }
-                    gridViewBoxPopup();
+                    // gridViewBoxPopup();
                 } else if (_url === '/games-filter/') {
 
                     if (parseInt($('.qty-items-quantity').html()) <= limit_items) {
