@@ -34,36 +34,33 @@
 
 <:if test="isset(${data.currency})">
     <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.currency}" code="${data.language}" softwares="${data.softwares}" key="true"/>
-    <:else>
-        <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.country.name}" code="${data.country.code}" softwares="${data.softwares}" key="false"/>
+<:else>
+    <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.country.name}" code="${data.country.code}" softwares="${data.softwares}" key="false"/>
 </:if>
+
 <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
     <:set var="grid_view_class" val="grid_view"/>
-    <:else>
-        <:set var="grid_view_class" val="list-view"/>
+<:else>
+    <:set var="grid_view_class" val="list-view"/>
 </:if>
-<div class="data-container-holder ${grid_view_class}"
-<:if test="isset(${data.limit_per_page})">
-    data-limit-per-page="${data.limit_per_page}"
-</:if>
+<div class="data-container-holder ${grid_view_class}" <:if test="isset(${data.limit_per_page})"> data-limit-per-page="${data.limit_per_page}"</:if> >
+
 <div class="holder">
     <:set var="low_wagering_class" val="(${data.selected_entity} == 'Low Wagering' ? 'low_wagering_list' : ''  )"/>
     <div class="data-container ${low_wagering_class}" data-type="${data.page_type}" data-type-value="${data.selected_entity}">
         <div class="qty-items" data-load-total="${data.total_casinos}">${data.total_casinos} results</div>
         <:if test="${data.selected_entity} == 'New'">
             <casino:list type="ESTABLISHED" id="1" data="${data.casinos}"/>
-            <:elseif test="${data.selected_entity} == 'Low Wagering'">
-                <casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
-                <:elseif test="${data.selected_entity} == 'Fast Payout'">
-                    <casino:list type="WITHDRAWAL" id="1" data="${data.casinos}"/>
-                    <:else>
-                        <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
+        <:elseif test="${data.selected_entity} == 'Low Wagering'">
+            <casino:list type="BONUS FOR NEW PLAYERS" id="1" data="${data.casinos}"/>
+        <:elseif test="${data.selected_entity} == 'Fast Payout'">
+            <casino:list type="WITHDRAWAL" id="1" data="${data.casinos}"/>
+        <:else>
+            <casino:list type="SOFTWARE" id="1" data="${data.casinos}"/>
         </:if>
-
     </div>
 </div>
 <filter:reset/>
-
 
 <:if test="${data.total_casinos} > count(${data.casinos})">
     <div class="btn-holder">
