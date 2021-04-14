@@ -625,28 +625,26 @@ function raiseCasinoPage(key) {
 }
 
 function gridViewBoxPopup(){
-    if($('.open-popup-spec').length > 0){
-        $('body').on('click', '.open-popup-spec', function(){
-            $(".welcome_package-popup-trigger").closest('.wp-title').find('.welcome_package-popup').removeClass('active');
-            $(this).closest('.popup-spec').find('.popup-casino-spec').toggleClass('active');
-            $('.open-popup-spec').not(this).closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
-        });
-        $('body').on('click', '.close-popup-spec', function(){
-            $('.popup-casino-spec').removeClass('active');
-        });
-    }
 
-    if($(".welcome_package-popup-trigger").length > 0){
-        $('body').on('click', '.welcome_package-popup-trigger', function(){
-            $('.open-popup-spec').closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
-            $(this).closest('.wp-title').find('.welcome_package-popup').toggleClass('active');
-            $(".welcome_package-popup-trigger").not(this).closest('.wp-title').find('.welcome_package-popup').removeClass('active');
-        });
+    $('body').on('click', '.open-popup-spec', function(){
+        $(".welcome_package-popup-trigger").closest('.wp-title').find('.welcome_package-popup').removeClass('active');
+        $(this).closest('.popup-spec').find('.popup-casino-spec').toggleClass('active');
+        $('.open-popup-spec').not(this).closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
+    });
+    
+    $('body').on('click', '.close-popup-spec', function(){
+        $('.popup-casino-spec').removeClass('active');
+    });
 
-        $('body').on('click', '.close-popup-wp', function(){
-            $('.welcome_package-popup').removeClass('active');
-        });
-    }
+    $('body').on('click', '.welcome_package-popup-trigger', function(){
+        $('.open-popup-spec').closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
+        $(this).closest('.wp-title').find('.welcome_package-popup').toggleClass('active');
+        $(".welcome_package-popup-trigger").not(this).closest('.wp-title').find('.welcome_package-popup').removeClass('active');
+    });
+
+    $('body').on('click', '.close-popup-wp', function(){
+        $('.welcome_package-popup').removeClass('active');
+    });
 }
 function closeCasinoPopup(container){
     $('.bonus-popup').find('.close_popup-wp').click(function(e){
