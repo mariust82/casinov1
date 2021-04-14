@@ -56,7 +56,7 @@
             <:set var="i" val="0"/>
             <:foreach var="$[data]" val="result">
                 <:set var="fdb_amount" val="checkForAbbr(${result.bonus_first_deposit.amount})"/>
-                <casino:item-${list_view}/>
+                <casino:item-list/>
                 <:set var="i" val="${i}+1"/>
             </:foreach>
 
