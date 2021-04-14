@@ -104,4 +104,13 @@
 			</div>
 		</div>
 	</:if>
+	<:if test="isset(${data.widgets.upper})">
+		<div class="block related">
+			<div class="container">
+				<div class="subtitle plain-text plain-text-lower">
+					${implode("\n", ${data.widgets.upper})}
+				</div>
+			</div>
+		</div>
+	</:if>
 <site:bottom menu="${data.menu_top}"/>
