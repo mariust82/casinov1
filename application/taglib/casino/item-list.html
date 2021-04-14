@@ -1,4 +1,3 @@
-<:set var="fdb_amount" val="checkForAbbr(${result.bonus_first_deposit.amount})"/>
 <div class="list-item loaded-item">
 	<div class="list-item-cell list-item-casino">
 		<:if test="${result.new} == true && '$[type]' != 'ESTABLISHED'">
@@ -49,7 +48,7 @@
                 <:if test="'$[type]' == 'WITHDRAWAL'">
                     <:set var="tf_class" val="tf_flex"/>
                 </:if>
-                
+
 				<div class="list-item-flex ${tf_class}" data-id="${result.id}">
 					<:if test="'$[type]' == 'ESTABLISHED'">
 						<span class="upper">${formatDate(${result.date_established})}</span>
