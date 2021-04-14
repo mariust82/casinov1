@@ -314,7 +314,7 @@
 							<div class="game_types">
 								<:foreach var="${games}" key="key" val="value">
 									<div class='game-type_container <:if test="${value}"> available <:else> unavailable </:if>'>
-										<img alt="${key}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg">
+										<img class="lazy_loaded" alt="${key}" data-src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg" width="36" height="36">
 										<span class="game-type_name">${key}</span>
 									</div>
 								</:foreach>
@@ -329,7 +329,7 @@
 						<:if test="${key}<8">
 							<span class="soft_link list-item-trun software_image" data-nr="${key+1}">
 								<a class="list-title list_link" href="/softwares/${normalize(${software})}">
-									<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software} logo">
+									<img class="lazy_loaded" data-src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software} logo" width="60" height="40">
 								</a>
 							</span>
 						</:if>
