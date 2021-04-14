@@ -380,7 +380,7 @@ class CasinosList
             $object->id = $row['id'];
             $object->name = $row["name"];
             $object->code = $row["code"];
-            $object->rating = $row['average_rating'];
+            $object->rating = $this->getRating($row["id"], $this->filter->getDetectedCountry()->id);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->is_currency_accepted = $row['currency_supported'];
             $object->is_language_accepted = $row['language_accepted'];
