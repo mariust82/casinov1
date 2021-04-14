@@ -16,6 +16,8 @@ var ListFilters = function (obj) {
             _moreButton,
             _resetButton,
             _itemsPerPage = 25,
+            _viewButton = $('.change_view .icon'),
+            _listView = 'grid',
             _request = new XMLHttpRequest();
 
 
@@ -100,14 +102,21 @@ var ListFilters = function (obj) {
 
             return false;
         });
+
+        _viewButton.off();
+        _viewButton.on('click', function () {
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, ''), 'replace', this);
+
+            return false;
+        });
     },
     
     _getAjaxParams = function (_paramName, _paramValue, _action, _this) {
 
         var _ajaxDataParams = {
-            list_view: _listHolder.attr('data-view')
+            list_view: _this.attr('data-view');
         };
-        
+
         $.each(_switchers, function (index, el) {
             if ($(el).is(':checked')) {
                 _ajaxDataParams[$(el).attr('name')] = 1;

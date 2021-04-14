@@ -53,12 +53,12 @@
                 <:set var="fdb_amount" val="checkForAbbr(${result.bonus_first_deposit.amount})"/>
                 <:if test="isset(${data.list_view})">
                     <:if test="${data.list_view} == 'list'">
-    	                <casino:item-list/>
+    	                <casino:item-list type="$[type]"/>
                     <:else>
-                    	<casino:item-grid/>
+                    	<casino:item-grid type="$[type]"/>
                     </:if>
                 <:else>
-                	<casino:item-list/>
+                	<casino:item-list type="$[type]"/>
                 </:if>
                 <:set var="i" val="${i}+1"/>
             </:foreach>
