@@ -10970,6 +10970,10 @@ hr.widget{
   justify-content: center;
   text-align: center;
 }
+
+.game-type_container img{
+  width:auto;
+}
 .game-type_name{
   font: normal normal normal 13px/20px Open Sans;
   letter-spacing: 0px;
@@ -14515,4 +14519,14 @@ h1.title + .subtitle{
   .header-search-mobile.js-trigger-search{
     max-width: calc(100% - 60px);
   }
+}
+
+img[data-src] {
+  opacity:0;
+  transition: none;
+}
+
+img[src] {
+  opacity:1;
+  transition: opacity .3s linear;
 }
