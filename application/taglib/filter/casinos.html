@@ -103,10 +103,10 @@
 	</:if>
 	<:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
 		<div class="view">
-			<div class="icon icon-box_view active">
+			<div class="icon icon-box_view active" data-view="grid">
 				<svg class="svg-icon"><use xlink:href="#icon-box-view"></use></svg>
 			</div>
-			<div class="icon icon-list_view">
+			<div class="icon icon-list_view" data-view="list">
 				<svg class="svg-icon"><use xlink:href="#icon-list-view"></use></svg>
 			</div>
 		</div>
