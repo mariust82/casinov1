@@ -158,12 +158,14 @@ function changeViewElements(filterView,container,gridClass,listClass){
             $this.addClass('active');
             container.removeClass(listClass);
             container.addClass(gridClass);
+            container.attr('data-view', 'grid');
+
         }else if($this.hasClass('icon-list_view') && boxView.hasClass('active')){
             boxView.removeClass('active');
             $this.addClass('active');
             container.addClass(listClass);
             container.removeClass(gridClass);
-
+            container.attr('data-view', 'list');
         }
     });
 }

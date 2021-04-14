@@ -38,12 +38,7 @@
     <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.country.name}" code="${data.country.code}" softwares="${data.softwares}" key="false"/>
 </:if>
 
-<:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
-    <:set var="grid_view_class" val="grid_view"/>
-<:else>
-    <:set var="grid_view_class" val="list-view"/>
-</:if>
-<div class="data-container-holder ${grid_view_class}" <:if test="isset(${data.limit_per_page})"> data-limit-per-page="${data.limit_per_page}"</:if> >
+<div class="data-container-holder list-view" data-view="list" <:if test="isset(${data.limit_per_page})"> data-limit-per-page="${data.limit_per_page}"</:if> >
 
 <div class="holder">
     <:set var="low_wagering_class" val="(${data.selected_entity} == 'Low Wagering' ? 'low_wagering_list' : ''  )"/>

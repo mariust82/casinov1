@@ -11,7 +11,8 @@ var ListFilters = function (obj) {
             _paramValue = _targetContainer.data('type-value'),
             _ajaxContent = $('.aj-content'),
             _emptyContent = $('.empty-filters'),
-            _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
+            _listHolder = _obj.next('.data-container-holder'),
+            _loaderHolder = _listHolder.find('.holder'),
             _moreButton,
             _resetButton,
             _itemsPerPage = 25,
@@ -36,7 +37,6 @@ var ListFilters = function (obj) {
     }
 
     var ShowTFPopup = function () {
-        console.dir('shay');
         $(".tf_flex").on('click', function () {
             var id = $(this).data('id');
             var _this = $(this);
@@ -104,7 +104,9 @@ var ListFilters = function (obj) {
     
     _getAjaxParams = function (_paramName, _paramValue, _action, _this) {
 
-        var _ajaxDataParams = {};
+        var _ajaxDataParams = {
+            list_view: _listHolder.attr('data-view');
+        };
         $.each(_switchers, function (index, el) {
             if ($(el).is(':checked')) {
                 _ajaxDataParams[$(el).attr('name')] = 1;
@@ -842,9 +844,7 @@ function initCustomSelect() {
     _filterOptions.prop("selected", false);
     $(".select2").on('click', function () {
         // processCheckboxes();
-
     });
-
 };
 
 

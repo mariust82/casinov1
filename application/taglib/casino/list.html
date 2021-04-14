@@ -468,7 +468,11 @@
                     </div>
                 </div>
 
-                <casino:item-${data.view}/>
+                <:set var="list_view" val="list"/>
+                <:if test="isset(${data.list_view})">
+                    <:set var="list_view" val="${data.list_view}"/>
+                </:if>
+                <casino:item-${list_view}/>
                 <:set var="i" val="${i}+1"/>
             </:foreach>
 
