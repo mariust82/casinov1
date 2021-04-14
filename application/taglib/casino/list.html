@@ -12,6 +12,10 @@
 <:else>
     <:set var="data_total" val=""/>
 </:if>
+<:set var="list_view" val="list"/>
+<:if test="isset(${data.list_view})">
+    <:set var="list_view" val="${data.list_view}"/>
+</:if>
 <div class="list">
     <div class="list-heading list-item">
         <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
