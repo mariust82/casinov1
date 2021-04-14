@@ -15,11 +15,6 @@
     <:set var="data_total" val=""/>
 </:if>
 
-<:set var="list_view" val="list"/>
-<:if test="isset(${data.list_view})">
-    <:set var="list_view" val="${data.list_view}"/>
-</:if>
-
 <div class="list">
     <div class="list-heading list-item">
         <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
@@ -56,7 +51,15 @@
             <:set var="i" val="0"/>
             <:foreach var="$[data]" val="result">
                 <:set var="fdb_amount" val="checkForAbbr(${result.bonus_first_deposit.amount})"/>
-                <casino:item-list/>
+                <:if test="isset(${data.list_view})">
+                    <:if test="${data.list_view} == 'list'">
+    	                <casino:item-list/>
+                    <:else>
+                    	<casino:item-grid/>
+                    </:if>
+                <:else>
+                	<casino:item-list/>
+                </:if>
                 <:set var="i" val="${i}+1"/>
             </:foreach>
 
