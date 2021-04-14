@@ -217,7 +217,7 @@ var initImageLazyLoad = function () {
         }
 
         if ($(window).scrollTop() < 5) {
-            $('body').removeClass('site__header_sticky');
+            $('body').removeClass('site__header_hidden');
         }
     });
 
