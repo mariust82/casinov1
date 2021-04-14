@@ -109,7 +109,7 @@ var initImageLazyLoad = function () {
         }
 
         $(document).on('scroll mousemove', function(){
-            loadStyles(['ion.rangeSlider']);
+            loadStyles(['swiper', 'ion.rangeSlider', 'select2', 'tooltipster']);
             loadScripts(['assets/ion.rangeSlider.min', 'assets/jquery-nicescroll', 'assets/tooltipster', 'assets/swiper', 'bindings']);
             $(document).unbind("scroll mousemove");
 
