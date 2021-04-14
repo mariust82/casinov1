@@ -105,8 +105,9 @@ var ListFilters = function (obj) {
     _getAjaxParams = function (_paramName, _paramValue, _action, _this) {
 
         var _ajaxDataParams = {
-            list_view: _listHolder.attr('data-view');
+            list_view: _listHolder.attr('data-view')
         };
+        
         $.each(_switchers, function (index, el) {
             if ($(el).is(':checked')) {
                 _ajaxDataParams[$(el).attr('name')] = 1;
