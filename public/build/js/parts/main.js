@@ -145,28 +145,6 @@ var initImageLazyLoad = function () {
         imageDefer("lazy_loaded");
     }
 };
-function changeViewElements(filterView,container,gridClass,listClass){
-    var boxView = filterView.find('.icon-box_view'),
-    listView = filterView.find('.icon-list_view'),
-    filterViewBtn = filterView.find('.icon');
-    filterViewBtn.click(function(event) {
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        var $this = $(this);
-        if($this.hasClass('icon-box_view') && listView.hasClass('active')){
-            listView.removeClass('active');
-            $this.addClass('active');
-            // container.removeClass(listClass);
-            // container.addClass(gridClass);
-
-        }else if($this.hasClass('icon-list_view') && boxView.hasClass('active')){
-            boxView.removeClass('active');
-            $this.addClass('active');
-            // container.addClass(listClass);
-            // container.removeClass(gridClass);
-        }
-    });
-}
 
 (function ($) {
     BUSY_REQUEST = false;
@@ -292,9 +270,6 @@ function changeViewElements(filterView,container,gridClass,listClass){
         }
 
         initImageLazyLoad();
-        if($('.filter').find('.view').length > 0){
-            changeViewElements($('.filter .view'),$('.data-container-holder'),'grid_view','list-view');
-        }
         gridViewBoxPopup();
     });
 

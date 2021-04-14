@@ -98,23 +98,29 @@ var ListFilters = function (obj) {
 
         _resetButton.off();
         _resetButton.on('click', function () {
-            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset'), 'add', this);
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset', this), 'add', this);
 
             return false;
         });
 
         _viewButton.off();
         _viewButton.on('click', function () {
-            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, ''), 'replace', this);
-
+            _listHolder
+                .removeClass('list-view grid-view')
+                .addClass($(this).attr('data-view')+'-view')
+                .attr('data-view', $(this).attr('data-view'));
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, '', this), 'replace', this);
             return false;
         });
     },
     
     _getAjaxParams = function (_paramName, _paramValue, _action, _this) {
+        $('.list-body').css('opacity', 0);
 
         var _ajaxDataParams = {
-            list_view: _this.attr('data-view')
+            list_view: _listHolder.attr('data-view')
         };
 
         $.each(_switchers, function (index, el) {
@@ -391,6 +397,7 @@ var ListFilters = function (obj) {
             complete: function () {
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
+                $('.list-body').css('opacity', 1);
             }
         });
 
