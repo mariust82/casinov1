@@ -6,14 +6,13 @@ class GameManufacturers implements CasinoCounter
 {
     public function getTopProviders($countryID, $limit)
     {
-        // gets all banking methods accepted by country sorted by priority
         $software = [];
         $resultSet = SQL("
             SELECT t1.id, t1.name, t1.priority
             FROM game_manufacturers AS t1 
             LEFT JOIN game_manufacturers__countries AS t2 ON t1.id = t2.game_manufacturer_id AND t2.country_id = :country 
             WHERE t1.is_open = 1 AND (t2.id IS NULL OR t2.is_allowed=1)
-            ORDER BY priority DESC, id DESC,
+            ORDER BY priority DESC, id DESC
             LIMIT ".$limit, [":country"=>$countryID]);
 
 
