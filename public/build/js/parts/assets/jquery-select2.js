@@ -6538,4 +6538,20 @@
         }
     });
 })(jQuery);
+
+function initCustomSelect() {
+    var _filterOptions = $('.js-filter > option');
+
+    $('.js-filter').select2MultiCheckboxes({
+        templateSelection: function (selected, total) {
+            return "Software";
+        }
+    })
+
+    _filterOptions.prop("selected", false);
+    $(".select2").on('click', function () {
+        // processCheckboxes();
+    });
+};
+
 initCustomSelect();
