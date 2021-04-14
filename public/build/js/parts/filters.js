@@ -114,7 +114,7 @@ var ListFilters = function (obj) {
     _getAjaxParams = function (_paramName, _paramValue, _action, _this) {
 
         var _ajaxDataParams = {
-            list_view: _this.attr('data-view');
+            list_view: _this.attr('data-view')
         };
 
         $.each(_switchers, function (index, el) {
