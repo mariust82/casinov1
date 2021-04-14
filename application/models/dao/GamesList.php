@@ -51,8 +51,7 @@ class GamesList
     {
         // build query
         $query = $this->getQuery(["COUNT(t1.id) AS nr"]);
-        $result =SQL($query)->toValue();
-        return $result;
+        return SQL($query)->toValue();
     }
 
     private function getQuery($columns)

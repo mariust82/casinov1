@@ -13,7 +13,6 @@ require_once 'application/models/operations/savable_objects/DraftObject.php';
 require_once 'application/models/dao/entities/BlogPost.php';
 
 use function get_class;
-use function serialize;
 
 class SavableObjectFactory
 {

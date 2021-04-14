@@ -16,8 +16,7 @@ class CasinosBySoftwareController extends CasinosListController
     {
         $id = $this->request->attributes('validation_results')->get('name');
         $gm = new GameManufacturers();
-        $name = $gm->getGameManufactures($id);
-        return $name;
+        return $gm->getGameManufactures($id);
     }
     
     private function getCasinos($filter, $sortBy, $limit, $label='')
@@ -33,8 +32,7 @@ class CasinosBySoftwareController extends CasinosListController
         $object = new CasinosList($casinoFilter);
         $results = $object->getResults($sortBy, 0, $limit);
         $total = $object->getTotal();
-        $return = ['total'=>$total,'result'=>$results];
-        return $return;
+        return ['total'=>$total,'result'=>$results];
     }
     
     protected function init() {

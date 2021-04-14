@@ -106,8 +106,7 @@ class ListsSearch extends AbstractSearch
         $where->set('t3.is_open', 1);
         $where->setLike('t1.name', "'%".$this->value."%'");
         $res = SQL($select->toString());
-        $output = $this->loop($res, "bonus-list/(name)");
-        return $output;
+        return $this->loop($res, "bonus-list/(name)");
     }
 
     public function getCasinos()
@@ -190,8 +189,7 @@ class ListsSearch extends AbstractSearch
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);
         $res = SQL($select->toString());
-        $output = $this->loop($res, "countries-list/(name)");
-        return $output;
+        return $this->loop($res, "countries-list/(name)");
     }
     
     public function getBanking()
@@ -206,8 +204,7 @@ class ListsSearch extends AbstractSearch
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);
         $res = SQL($select->toString());
-        $output = $this->loop($res, "banking/(name)");
-        return $output;
+        return $this->loop($res, "banking/(name)");
     }
     
     public function getGames()
@@ -220,8 +217,7 @@ class ListsSearch extends AbstractSearch
         $select->groupBy(['t1.id']);
         $select->orderBy()->add('counter', Lucinda\Query\OrderByOperator::DESC);
         $res = SQL($select->toString());
-        $output = $this->loop($res, "games/(type)");
-        return $output;
+        return $this->loop($res, "games/(type)");
     }
 
     public function getSearchSuggestions($user_country){

@@ -26,16 +26,15 @@ class ArticlesModel {
                     return '/blogs/drafts/tmp';
                 }
                 return '/blogs/drafts/' . $object->id;
-                break;
             case 'publish':
                 if (!$object) {
                     return '/blogs/drafts/tmp';
                 }
                 return '/' . $object->payload->id;
-                break;
             case 'live':
                 return '/' . $object->id;
-                break;
+            default :
+                return '';
         }
     }
     

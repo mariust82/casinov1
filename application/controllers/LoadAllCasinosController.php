@@ -58,7 +58,7 @@ class LoadAllCasinosController extends CasinosFilterController {
         }
         $this->response->attributes("filter", $filter->getCasinoLabel());
         $this->response->attributes("total_casinos", $total);
-        $this->response->attributes("casinos", $object->getResults($sort, $page, $this->limit, $offset, true));
+        $this->response->attributes("casinos", $object->getResults($sort, $page, $this->limit, $offset));
         $this->response->attributes('page_type', $this->getPageType($filter));
         $this->response->attributes('selected_entity', $filter->getCasinoLabel());
     }

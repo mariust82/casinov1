@@ -10,7 +10,6 @@ namespace gtm\operations;
 
 use function array_shift;
 use TMS\Exception;
-use function unserialize;
 
 use TMS\Content;
 use TMS\Contents;
@@ -68,7 +67,7 @@ class TmsOperation implements OperationsInterface
         if (!$content) {
             $this->addContent($payload, $routeId, $routePatternInfo->positions[0]->id);
         } else {
-            $this->editContent($content, $contents);
+            $this->editContent($content);
         }
     }
 
@@ -93,9 +92,7 @@ class TmsOperation implements OperationsInterface
 
         $newRoute->value = $route;
         $newRoute->pattern = $routePatternId;
-        $routeId = $this->routes->add($newRoute);
-
-        return $routeId;
+        return $this->routes->add($newRoute);
     }
 
     /**

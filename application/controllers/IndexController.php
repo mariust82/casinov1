@@ -1,5 +1,4 @@
 <?php
-use Hlis\GameManufacturer;
 
 require_once("application/models/CasinoFilter.php");
 require_once("application/models/CasinoSortCriteria.php");
@@ -105,8 +104,7 @@ class IndexController extends BaseController
     private function getTopPicks($filter)
     {
         $object = new CasinosList(new CasinoFilter($filter, $this->request->attributes("country")));
-        $results = $object->getTopPicks($this->request->attributes("country")->id);
-        return $results;
+        return $object->getTopPicks($this->request->attributes("country")->id);
     }
 
     private function countCasinosByCountry($filter)

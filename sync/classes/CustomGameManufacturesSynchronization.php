@@ -1,8 +1,17 @@
 <?php
-require_once("src/controllers/NewGameManufacturersSynchronization.php");
-
-class CasinoslistsGameManufacturesSynchronization extends NewGameManufacturersSynchronization
+class CustomGameManufacturesSynchronization extends NewGameManufacturersSynchronization
 {
+    protected function destroy() {
+        if($this->dataUpdated) {
+            chdir(dirname(__DIR__, 2));
+            require ("vendor/autoload.php");
+            $maintenance = new Lucinda\DB\DatabaseMaintenance(dirname(__DIR__,2)."/xml/file_db.xml", $this->application->getEnvironment());
+            $maintenance->deleteByTag("game-manufacturer");
+        }
+        
+        Cron::destroy();
+    }
+    
     protected function setSoftware($item)
     {
         $updates = array();
@@ -15,9 +24,5 @@ class CasinoslistsGameManufacturesSynchronization extends NewGameManufacturersSy
             DB::execute("INSERT INTO game_manufacturers SET ".$this->getQuerySet($updates), $updates);
         }
     }
-    
-    protected function setCountries($softwareID, $countries)
-    {
-        return;
-    }
+
 }
