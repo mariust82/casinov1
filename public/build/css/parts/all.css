@@ -1,4 +1,39 @@
 @charset "UTF-8";
+@font-face {
+  font-family: 'Open Sans';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url('/public/build/fonts/OpenSans-Light-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url('/public/build/fonts/OpenSans-Regular-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'), url('/public/build/fonts/OpenSans-SemiBold-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url('/public/build/fonts/OpenSans-Bold-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Condensed Bold'), local('OpenSansCondensed-Bold'), url('/public/build/fonts/OpenSansCondensed-Bold-latin.woff2') format('woff2');
+}
 
 @font-face {
   font-family: 'icomoon';
@@ -6142,9 +6177,6 @@ input[type=submit]
     margin: 0;
     display: block;
   }
-  .select2-dropdown {
-    margin: 0;
-  }
 }
 
 .contact .social li {
@@ -7790,153 +7822,6 @@ abbr[title] {
   font-weight:600;
 }
 
-.pagination{
-  height:50px;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
-  box-shadow: 0 1px 6px rgba(0,0,0,.16);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-@media screen and (max-width: 767px) {
-  .pagination{
-    height:auto;
-    position:relative;
-    padding:50px 0 0 0;
-    box-shadow:none;
-    border-radius:0;
-    overflow:visible;
-  }
-}
-
-.pagination-wrapper{
-  display: -webkit-flex;
-  display: flex;
-  border:1px solid #E2E2E2;
-  border-width:0 1px;
-}
-
-@media screen and (max-width: 767px) {
-  .pagination-wrapper{
-    width:100%;
-    border:none;
-    box-shadow: 0 1px 6px rgba(0,0,0,.16);
-    border-radius: 2px;
-    overflow:hidden;
-  }
-}
-
-.pagination a,
-.pagination span{
-  width:80px;
-  height:100%;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-}
-
-@media screen and (max-width: 767px) {
-  .pagination a,
-  .pagination span{
-    width:auto;
-    height:40px;
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
-  }
-}
-
-.pagination-wrapper a,
-.pagination-wrapper span{
-  border-left:1px solid #e2e2e2;
-  color:#878CA4;
-}
-
-.pagination-wrapper .active,
-.pagination-wrapper span,
-.pagination-wrapper a:hover{
-  background:#F3F3F3;
-  color:#465156;
-}
-
-.pagination-wrapper a:first-child,
-.pagination-wrapper span:first-child{
-  border-left:none;
-}
-
-.pagination .pagination-prev,
-.pagination .pagination-next{
-  width:140px;
-  font-weight:900;
-  text-transform:uppercase;
-}
-
-@media screen and (max-width: 767px) {
-  .pagination .pagination-prev,
-  .pagination .pagination-next{
-    position:absolute;
-    top:0;
-    left:0;
-    border-radius: 2px;
-    box-shadow: 0 1px 6px rgba(0,0,0,.16);
-  }
-
-  .pagination .pagination-next{
-    left:auto;
-    right:0;
-  }
-}
-
-.pagination .pagination-prev:hover,
-.pagination .pagination-next:hover{
-  opacity:.6;
-}
-
-.pagination .pagination-prev:before,
-.pagination .pagination-next:after{
-  content:'';
-  width:6px;
-  height:6px;
-  top:1px;
-  position:relative;
-}
-
-.pagination .pagination-prev{
-  background:#F3F3F3;
-  color:#878CA4;
-}
-
-.pagination .pagination-prev:before{
-  -webkit-transform:rotate(-45deg);
-  transform:rotate(-45deg);
-  border:2px solid #878CA4;
-  border-width:2px 0 0 2px;
-  margin:0 5px 0 0;
-}
-
-.pagination .pagination-next{
-  background:#878CA4;
-  color:#fff;
-}
-
-.pagination .pagination-next:after{
-  -webkit-transform:rotate(45deg);
-  transform:rotate(45deg);
-  border:2px solid #fff;
-  border-width:2px 2px 0 0;
-  margin:0 0 0 5px;
-}
-
-
-.pagination .disabled{
-  pointer-events:none;
-  opacity:.6;
-}
 .img_wrapper{
   vertical-align:middle;
 }
@@ -10771,73 +10656,10 @@ h1.title + .subtitle{
   }
 }
 
-.select2-search--dropdown, [class*=" icon-"], [class^=icon-] {
-  font-family: icomoon!important;
-  speak: none;
-  font-style: normal;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.select2-search--dropdown {
-  position: absolute;
-  z-index: 5;
-  background-color: #fff;
-  padding: 0 20px 8px 5px;
-}
-
-.select2-search--dropdown:before {
-  content: "\e900";
-  position: absolute;
-  left: 20px;
-  top: 11px;
-  font-weight: 700;
-  color: #a8aec8;
-}
-
-.select2-container--default .select2-search--dropdown .select2-search__field {
-  border: 1px solid #e8eaf3;
-  height: 36px;
-  font-family: open sans,Helvetica,Arial,sans-serif;
-  font-size: 13px;
-}
-
-.select2-search--dropdown .select2-search__field {
-  padding: 0 10px 0 35px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.select2-container--default .select2-results__option[aria-selected] .wrap {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  font-size: 13px;
-  padding-right: 20px;
-}
-
 .soft_count {
   position: absolute;
   color: #a8aec8;
   right: 7%;
-}
-
-.select2-container--default .select2-results__option[aria-selected] .wrap {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  font-size: 13px;
-  padding-right: 20px;
-}
-
-.game-soft, .game-title, .list-item-trun, .select2-container .select2-selection--single .select2-selection__rendered, .select2-container--default .select2-results__option[aria-selected] .wrap, .select2-results__option, .wrap {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 
 @media (min-width: 768px){
@@ -10847,9 +10669,6 @@ h1.title + .subtitle{
     white-space: nowrap;
     text-overflow: ellipsis;
     width: 165px!important;
-  }
-  .select2-container--open .select2-dropdown--below {
-    width: auto!important;
   }
 }
 .wrap {
