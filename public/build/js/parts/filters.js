@@ -16,7 +16,7 @@ var ListFilters = function (obj) {
             _moreButton,
             _resetButton,
             _itemsPerPage = 25,
-            _viewButton = $('.change_view .icon'),
+            _viewButton = $('.view .icon'),
             _listView = 'grid',
             _request = new XMLHttpRequest();
 
