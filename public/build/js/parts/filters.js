@@ -11,10 +11,13 @@ var ListFilters = function (obj) {
             _paramValue = _targetContainer.data('type-value'),
             _ajaxContent = $('.aj-content'),
             _emptyContent = $('.empty-filters'),
-            _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
+            _listHolder = _obj.next('.data-container-holder'),
+            _loaderHolder = _listHolder.find('.holder'),
             _moreButton,
             _resetButton,
             _itemsPerPage = 25,
+            _viewButton = $('.view .icon'),
+            _listView = 'grid',
             _request = new XMLHttpRequest();
 
 
@@ -36,7 +39,6 @@ var ListFilters = function (obj) {
     }
 
     var ShowTFPopup = function () {
-        console.dir('shay');
         $(".tf_flex").on('click', function () {
             var id = $(this).data('id');
             var _this = $(this);
@@ -96,15 +98,27 @@ var ListFilters = function (obj) {
 
         _resetButton.off();
         _resetButton.on('click', function () {
-            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset'), 'add', this);
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset', this), 'add', this);
 
+            return false;
+        });
+
+        _viewButton.off();
+        _viewButton.on('click', function () {
+            _listHolder.attr('data-view', $(this).attr('data-view'));
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, '', this), 'replace', this);
             return false;
         });
     },
     
     _getAjaxParams = function (_paramName, _paramValue, _action, _this) {
 
-        var _ajaxDataParams = {};
+        var _ajaxDataParams = {
+            list_view: _listHolder.attr('data-view')
+        };
+
         $.each(_switchers, function (index, el) {
             if ($(el).is(':checked')) {
                 _ajaxDataParams[$(el).attr('name')] = 1;
@@ -183,14 +197,6 @@ var ListFilters = function (obj) {
     },
     
     _ajaxRequestCasinos = function (_ajaxDataParams, _action, _this) {
-        /* if (allGameItemsReceived) {
-            if (typeof updateGameItemsCounters === "function") {
-                updateGameItemsCounters();
-            }
-            return;
-        }*/
-
-       // console.log();
 
         $('.overlay, .loader').fadeIn('fast');
 
@@ -199,17 +205,7 @@ var ListFilters = function (obj) {
         BUSY_REQUEST = true;
         _request.abort();
 
-/*        var theme = window.location.pathname.split('themes/');
-        if (typeof _ajaxDataParams['themes'] == 'undefined') {
-            if (theme.length == 2)
-                _ajaxDataParams['themes'] = theme[1];
-        } else {
-            var _themesArray = _ajaxDataParams['themes'].split(',');
-            _themesArray.push(theme[1]);
-            _ajaxDataParams['themes'] = _themesArray.join(',');
-        }*/
         _ajaxDataParams['url'] = window.location.pathname;
-        //sortMode = _ajaxDataParams['sort'];
 
         _request = $.ajax({
             url: _url + AJAX_CUR_PAGE,
@@ -217,7 +213,6 @@ var ListFilters = function (obj) {
             dataType: 'html',
             type: 'GET',
             success: function (data) {
-              //  _targetAddContainer = $(_this).closest('.container').find('.data-add-container:first');
                 var scrollPos = $(document).scrollTop();
                 var cont = $(data).find('.loaded-item');
                 var loadTotal = $(data).filter('[data-load-total]').data('load-total');
@@ -274,14 +269,12 @@ var ListFilters = function (obj) {
                         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                         $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
                     }
-                    //initMoboleBonusesPop(ww);
                 } else {
 
 
                     if (_action == 'replace') {
                         _targetContainer.html('');
                         _targetContainer.html(data);
-                        //_targetAddContainer.html('');
 
                         if (_ajaxDataParams['game_type'] == "Best" && loadTotal > 100) {
                             $('.qty-items span').text(100);
@@ -379,6 +372,9 @@ var ListFilters = function (obj) {
             complete: function () {
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
+                _listHolder
+                .removeClass('list-view grid-view')
+                .addClass(_listHolder.attr('data-view')+'-view');
             }
         });
 
@@ -842,9 +838,7 @@ function initCustomSelect() {
     _filterOptions.prop("selected", false);
     $(".select2").on('click', function () {
         // processCheckboxes();
-
     });
-
 };
 
 
