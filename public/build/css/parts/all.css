@@ -2802,6 +2802,7 @@ a:focus {
 
 .header-search-mobile span{
   display:none;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 1023px) {
