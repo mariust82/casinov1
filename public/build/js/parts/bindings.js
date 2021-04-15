@@ -434,7 +434,6 @@ copyTooltipConfigGames = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        console.log(instance);
         instance.content('\
                 <div class="centered">\
                      Code copied to clipboard\
@@ -1377,7 +1376,6 @@ var Filters = function (obj) {
         _resetButton = $('.js-reset-items');
         _switchers.off();
         _switchers.on('click', function () {
-            // console.log('795 _switchers.on');
             _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue), 'replace');
         });
 
@@ -1545,7 +1543,6 @@ var Filters = function (obj) {
                 }
             },
             complete: function () {
-                // console.log(parseInt($('.qty-items').attr('data-load-total')));
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
                 if (_url === '/casinos-filter/') {

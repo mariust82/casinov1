@@ -87,7 +87,6 @@ function AddingReview(obj) {
         ok = true;
         if (parent.data('id') != undefined) {
             _reviewID = parent.data('id');
-             console.log(_reviewID + 'ttt');
             _is_child = true;
 
             if (parent.next().find('.reply-data-holder').length > 0) {
@@ -100,15 +99,10 @@ function AddingReview(obj) {
                 _reviewHolder = parent.closest('.reply-data-holder');
             }
             _childReplies = parent.find('.js-reply-btn span');
-
-
-            // console.log(_reviewID + 't4');
         } else {
             _is_child = false;
             _reviewHolder = $('#review-data-holder');
         }
-
-        // console.log(_reviewID + 't');
 
         if (title === '') {
             var errorMessage = $('<div class="field-error-required not-valid action-field">Please fill in a title for your review</div>')
@@ -169,7 +163,6 @@ function AddingReview(obj) {
             _contact_error_required.hide();
         }
 
-        console.log(_is_child);
         if (!_is_child) {
             if (_rate_slider_result === '0') {
                 _contact_error_rate.show();
@@ -219,7 +212,6 @@ function AddingReview(obj) {
             return;
         BUSY_REQUEST = true;
         _request.abort();
-        // console.log(ajaxData);
         _request = $.ajax({
             url: "/casino/review-write",
             data: ajaxData,
@@ -237,7 +229,6 @@ function AddingReview(obj) {
             },
             error: function (jqXHR) {
                 _errors_found = $.parseJSON(jqXHR.responseText);
-                console.error("Could not send message!");
                 console.log(_errors_found.body.message);
             },
             complete: function () {

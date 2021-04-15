@@ -1,5 +1,6 @@
 <div class="overlay"></div>
 <site:css-loader/>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <:if test="${data.use_bundle}">
     <:if if test="!empty(${data.page_type}) && ${data.page_type} == 'game_info'">
         <script defer src="/public/build/js/compilations/gameplay.js?ver=${data.version}"></script>

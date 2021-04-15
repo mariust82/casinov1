@@ -149,8 +149,6 @@ var ListFilters = function (obj) {
         _ajaxDataParams[_paramName] = _paramValue;
         $.each(_selectFilter, function (index, el) {
             if ($(el).val() != 'undefined' && $(el).val() != null) {
-                /* console.log($(el).attr('name'));
-                console.log($(el).val().join());*/
                 _ajaxDataParams[$(el).attr('name')] = $(el).val().join();
             }
         });
@@ -163,19 +161,11 @@ var ListFilters = function (obj) {
                 _ajaxDataParams['features'] = '';
                 _ajaxDataParams['themes'] = '';
             }
-            /*if (typeof _ajaxDataParams['software'] === 'undefined' && typeof $('.data-container').data('software') !== 'undefined')
-            {
-                _ajaxDataParams['software'] = $('.data-container').data('software');
-            }*/
-        } /*else {
-            _ajaxDataParams['software'] = $('.data-container').data('software');
-        }*/
+        } 
 
         _targetAddContainer = $(_this).closest('.container').find('.data-add-container:first');
 
         _ajaxDataParams['offset'] = _action == 'add' ? $(_targetAddContainer).children().length : 0;
-
-       // console.log(_ajaxDataParams);
 
         if (typeof AJAX_CUR_PAGE == "undefined")
             AJAX_CUR_PAGE = 0;
@@ -183,16 +173,6 @@ var ListFilters = function (obj) {
         if (_action != 'add' || _action == 'reset') {
             AJAX_CUR_PAGE = 0;
         }
-
-        /* if (sortMode != _ajaxDataParams['sort']) {
-            if (typeof resetGameItemsCounter === "function") {
-                resetGameItemsCounter();
-            }
-        }
-
-        if (path === '/best-online-slots')
-            gameItemsBoxCounter = 5; */
-
         return _ajaxDataParams;
     },
     
@@ -296,7 +276,6 @@ var ListFilters = function (obj) {
                             _emptyContent.hide();
                         }
                     } else {
-                     //   console.log(_this);
                         if ($('.games-list').hasClass('list-view')) {
                             _targetAddContainer.addClass('list-view');
                         }
@@ -328,8 +307,9 @@ var ListFilters = function (obj) {
 
 
                     if (loadTotal <= itemsNumberLoaded) {
-                        if (_url === '/real-money-slots')
+                        if (_url === '/real-money-slots'){
                             _moreButton.hide();
+                        }
                         else{
                            // allGameItemsReceived = true;
                         }
@@ -352,7 +332,6 @@ var ListFilters = function (obj) {
                 if($('.list-body').children().length >= totalItems) {
                     _moreButton.hide();
                 }
-                //imageDefer("lazy_loaded");
                 if ($.fn.tooltipster) {
                     $('.js-tooltip').tooltipster(tooltipConfig);
                     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
@@ -573,54 +552,6 @@ function UpdateSelectFilter(_this) {
                 // console.log("complete");
             });
         }
-
-
-        /*if (selected_feature === '' && $(_this).attr('name') != 'features') {
-            $.ajax({
-                url: '/filter-features',
-                type: 'GET',
-                data: {
-                    type: type,
-                    theme: theme,
-                    software: software,
-                    pageNewSlots: pageNewSlots
-                },
-                dataType: 'html'
-            })
-            .done(function (data) {
-                $('#filters .select.features').html(data);
-            })
-            .fail(function () {
-                // console.log("error");
-            })
-            .always(function () {
-                // console.log("complete");
-            });
-        }
-
-        if (typeof selected_theme === 'undefined' && $(_this).attr('name') != 'themes') {
-            $.ajax({
-                url: '/filter-themes',
-                type: 'GET',
-                data: {
-                    type: type,
-                    software: software,
-                    selected_feature: selected_feature,
-                    theme: theme,
-                    pageNewSlots: pageNewSlots
-                },
-                dataType: 'html'
-            })
-            .done(function (data) {
-                $('#filters .select.themes').html(data);
-            })
-            .fail(function () {
-                // console.log("error");
-            })
-            .always(function () {
-                // console.log("complete");
-            });
-        }*/
     }
 
 }
@@ -662,48 +593,6 @@ function prepareSelectFilter() {
                 // console.log("complete");
             });
         }
-
-    /*    $.ajax({
-            url: '/filter-features',
-            type: 'GET',
-            data: {
-                type: type,
-                theme: theme,
-                software: software,
-                pageNewSlots: pageNewSlots
-            },
-            dataType: 'html'
-        })
-        .done(function (data) {
-            $('#filters .select.features').append(data);
-        })
-        .fail(function () {
-            // console.log("error");
-        })
-        .always(function () {
-            // console.log("complete");
-        });
-
-        $.ajax({
-            url: '/filter-themes',
-            type: 'GET',
-            data: {
-                type: type,
-                software: software,
-                theme: theme,
-                pageNewSlots: pageNewSlots
-            },
-            dataType: 'html'
-        })
-        .done(function (data) {
-            $('#filters .select.themes').append(data);
-        })
-        .fail(function () {
-            // console.log("error");
-        })
-        .always(function () {
-            // console.log("complete");
-        });*/
     }
 
 }
