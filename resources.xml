@@ -3,6 +3,8 @@
 <xml>
     <js source="public/build/js/parts" destination="public/build/js/compilations">
         <file name="casino_view">
+            <file name="assets/jquery-3.6.0.min" />
+            <file name="assets/jquery-migrate-1.4.1" />
             <file name="global_js/image-defer" />
             <file name="vote"/>
             <file name="main"/>
@@ -10,28 +12,38 @@
             <file name="tracker"/>
         </file>
         <file name="blog">
+            <file name="assets/jquery-3.6.0.min" />
+            <file name="assets/jquery-migrate-1.4.1" />
             <file name="global_js/image-defer" />
             <file name="vote"/>
             <file name="main"/>
             <file name="tracker"/>
         </file>
         <file name="contact">
+            <file name="assets/jquery-3.6.0.min" />
+            <file name="assets/jquery-migrate-1.4.1" />
             <file name="main"/>
             <file name="contact"/>
         </file>
         <file name="gameplay">
+            <file name="assets/jquery-3.6.0.min" />
+            <file name="assets/jquery-migrate-1.4.1" />
             <file name="global_js/image-defer" />
             <file name="main"/>
             <file name="gameplay"/>
             <file name="tracker"/>
         </file>
         <file name="main">
+            <file name="assets/jquery-3.6.0.min" />
+            <file name="assets/jquery-migrate-1.4.1" />
             <file name="global_js/image-defer" />
             <file name="main"/>
             <file name="tracker"/>
         </file>
         <!-- bundle used only for local dev -->
         <file name="bundle">
+            <file name="assets/jquery-3.6.0.min" />
+            <file name="assets/jquery-migrate-1.4.1" />
             <file name="global_js/image-defer" />
             <file name="tracker"/>
         </file>

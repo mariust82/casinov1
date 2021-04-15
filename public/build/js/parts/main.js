@@ -1,3 +1,4 @@
+jQuery.migrateMute = true;
 var AJAX_CUR_PAGE = 1;
 var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
@@ -447,10 +448,8 @@ var initImageLazyLoad = function () {
                         element.after(moreLinesButton);
                     }
                 }
-
                 element.fadeIn();
             });
-
             return this;
         };
 
