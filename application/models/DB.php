@@ -29,7 +29,7 @@ function SQL($query, $boundParameters = array())
             }
         }
     } else {
-        $query = preg_replace("/(^|[\s|\n]+)select([\s|\n]+)/i", '${1}SELECT SQL_NO_CACHE${2}', $query);
+        $query = preg_replace("/(^|[\s|\n|\t]+)select([\s|\n|\t]+)/i", '${1}SELECT SQL_NO_CACHE${2}', $query, 1);
     }
     
     // compiles result from sql DB
