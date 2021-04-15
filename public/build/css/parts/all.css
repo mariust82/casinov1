@@ -12176,7 +12176,7 @@ h1.title + .subtitle{
   }
 }
 
-img[data-src] {
+/*img[data-src] {
   opacity:0;
   transition: none;
 }
@@ -12184,7 +12184,7 @@ img[data-src] {
 img[src] {
   opacity:1;
   transition: opacity .3s linear;
-}
+}*/
 
 .swiper-wrapper {
   position: relative;
