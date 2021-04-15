@@ -275,6 +275,9 @@ var ListFilters = function (obj) {
                             _loaderHolder.show();
                             _emptyContent.hide();
                         }
+                        if(cont.length === loadTotal){
+                            _moreButton.hide();
+                        }
                     } else {
                         if ($('.games-list').hasClass('list-view')) {
                             _targetAddContainer.addClass('list-view');
