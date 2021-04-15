@@ -679,6 +679,12 @@ body {
   padding-top: 73px;
 }
 
+@media screen and (max-width: 1023px) {
+  body {
+    padding-top: 50px;
+  }
+}
+
 @media screen and (max-width: 690px) {
   body {
     font-size: 13px;
@@ -1444,15 +1450,16 @@ a:focus {
   top:0;
   left:50%;
   width: 100%;
+  height:100%;
   -webkit-transform:translateX(-50%);
   transform:translateX(-50%);
 }
 
-@media screen and (max-width: 1024px) {
+/*@media screen and (max-width: 1024px) {
   .promo-img img{
     width: auto;
   }
-}
+}*/
 
 .promo-text {
   color: #fff;
@@ -9072,15 +9079,15 @@ h1.title + .subtitle{
   }
 }
 
-/*img[data-src] {
+img[data-src] {
   opacity:0;
   transition: none;
 }
 
 img[src] {
   opacity:1;
-  transition: opacity .3s linear;
-}*/
+  transition: opacity .1s linear;
+}
 
 .swiper-wrapper {
   position: relative;
