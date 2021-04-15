@@ -26,7 +26,6 @@
             <link rel="stylesheet" type="text/css" href="/public/build/css/compilations/all.css?ver=${data.version}" media="all">
         </:if>
 
-        <link rel="preload" href="https://code.jquery.com/jquery-2.2.4.min.js" as="script">
         <:if if test="!empty(${data.page_type}) && ${data.page_type} == 'game_info'">
             <link rel="preload" href="/public/build/js/compilations/gameplay.js?ver=${data.version}" as="script">
         <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'reviews'">
