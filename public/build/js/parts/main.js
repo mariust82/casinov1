@@ -96,20 +96,12 @@ var initImageLazyLoad = function () {
         });
         
         //Load Defer Scripts and Binding
-        if ($('.links-nav').length) {
-            loadScripts(['bindings', 'assets/swiper']);
-        }
-
-        if (!$('.casino-review').length && $('.btn_visit').length) {
-            loadScripts(['casino_review']);
-        }
-        
         if ($('.filter').length) {
             loadScripts(['assets/jquery-select2', 'filters']);
         }
 
         $(document).on('scroll mousemove', function(){
-            loadStyles(['swiper', 'ion.rangeSlider', 'select2', 'tooltipster']);
+            loadStyles(['defer']);
             loadScripts(['assets/ion.rangeSlider.min', 'assets/jquery-nicescroll', 'assets/tooltipster', 'assets/swiper', 'bindings']);
             $(document).unbind("scroll mousemove");
 

@@ -47,7 +47,13 @@
             <file name="all"/>
         </file>
         <file name="gameplay">
+            <file name="all"/>
             <file name="gameplay"/>
+        </file>
+        <file name="casino_view">
+            <file name="comments"/>
+            <file name="all"/>
+            <file name="casino_view"/>
         </file>
     </css>
 </xml>
