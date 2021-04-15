@@ -3932,6 +3932,14 @@ a:focus {
 
 .filter-check-label {
   cursor: pointer;
+  white-space:nowrap;
+}
+
+@media (max-width:767px) {
+	.filter-check-label {
+	  white-space:initial;
+	}
+
 }
 
 .filter .img-flag {
