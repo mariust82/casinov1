@@ -6,11 +6,6 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="format-detection" content="address=no">
     <title>$[title]</title>
-    <:if test="isset(${data.critical_css}) && file_exists(${data.critical_css})">
-        <style>
-            ${file_get_contents(${data.critical_css})}
-        </style>
-    </:if>
     <meta name="description" content="$[description]">
 
     <link rel="preload" as="font" href="/public/build/fonts/OpenSans-Light-latin.woff2" type="font/woff2" crossorigin="anonymous">
