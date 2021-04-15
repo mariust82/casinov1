@@ -20,12 +20,16 @@ require_once("dao/entities/Entity.php");
 function SQL($query, $boundParameters = array())
 {
     // gets result from document DB if present
+    $key = null;
     $cache = ServiceContainer::get(Cache::class);
-    if ($key = $cache->getKey($query, $boundParameters)) {
-        $value = $cache->read($key);
-        if ($value) {
-            return $value;
+    if ($queryAnalyzer = $cache->analyze($query)) {
+        if ($key = $cache->getKey($queryAnalyzer, $boundParameters)) {
+            if ($value = $cache->read($key)) {
+                return $value;
+            }
         }
+    } else {
+        $query = preg_replace("/(^|[\s|\n|\t]+)select([\s|\n|\t]+)/i", '${1}SELECT SQL_NO_CACHE${2}', $query, 1);
     }
     
     // compiles result from sql DB
