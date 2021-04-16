@@ -10,6 +10,31 @@
             </:if>
         </div>
 
+        <!-- if page is software or country  -->
+        <:if test="isset(${data.software})">
+            <:if test="${data.best_casinos_total} > 0">
+                <div class="block">
+                    <div class="container carousel-grid-casinos">
+                        <:set var="desc" val="isset(${data.widgets.best}) ? implode('\n', ${data.widgets.best}) : ''"/>
+                        <casino:carousel-grid flag="${data.country.code}" page="software" total="${data.best_casinos_total}" value="${data.software}" section="top" type="best" id="best-software" title="Best ${data.software} Casinos"  items="${data.best_casinos}" country="${data.country.code}" description="${desc}"/>
+                    </div>
+                </div>
+                <h2 class="title title-middle">All ${data.software} Online Casinos</h2>
+            </:if>
+        <:elseif test="isset(${data.country_page})">
+            <:if test="${data.best_casinos_total} > 0">
+                <div class="block">
+                    <div class="container carousel-grid-casinos">
+                        <:set var="desc" val="isset(${data.widgets.best}) ? implode('\n', ${data.widgets.best}) : ''"/>
+                        <casino:carousel-grid flag="${data.country_code}" page="country" total="${data.best_casinos_total}" value="${data.country_id}" section="top" id="best-country" type="best" title="Best ${data.country_page} Online Casinos"  items="${data.best_casinos}" country="${data.country_page}" description="${desc}"/>
+                    </div>
+                </div>
+                <h2 class="title title-middle">All ${data.country_page} Online Casinos</h2>
+            </:if>
+        </:if>
+        <!-- end if -->
+        <!-- /end if page is software or country -->
+
         <:if test="isset(${data.currency})">
             <filter:casinos id="${data.selected_entity}" filter="${data.filter}" name="${data.currency}" code="${data.language}" softwares="${data.softwares}" key="true"/>
         <:else>
@@ -41,6 +66,7 @@
                 </div>
             </div>
         </div>
+
         <filter:reset/>
 
         <:if test="${data.total_casinos} > count(${data.casinos})">
@@ -234,6 +260,7 @@
                 <div><span>${implode("\n", ${data.widgets.lower})}</span></div>
             </div>
         </:if>
+
     </div>
 </div>
 <site:bottom menu="${data.menu_top}"/>
