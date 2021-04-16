@@ -19,8 +19,8 @@
                         <casino:carousel-grid flag="${data.country.code}" page="software" total="${data.best_casinos_total}" value="${data.software}" section="top" type="best" id="best-software" title="Best ${data.software} Casinos"  items="${data.best_casinos}" country="${data.country.code}" description="${desc}"/>
                     </div>
                 </div>
-                <h2 class="title title-middle">All ${data.software} Online Casinos</h2>
             </:if>
+            <h2 class="title title-middle">All ${data.software} Online Casinos</h2>
         <:elseif test="isset(${data.country_page})">
             <:if test="${data.best_casinos_total} > 0">
                 <div class="block">
@@ -29,8 +29,8 @@
                         <casino:carousel-grid flag="${data.country_code}" page="country" total="${data.best_casinos_total}" value="${data.country_id}" section="top" id="best-country" type="best" title="Best ${data.country_page} Online Casinos"  items="${data.best_casinos}" country="${data.country_page}" description="${desc}"/>
                     </div>
                 </div>
-                <h2 class="title title-middle">All ${data.country_page} Online Casinos</h2>
             </:if>
+            <h2 class="title title-middle">All ${data.country_page} Online Casinos</h2>
         </:if>
         <!-- end if -->
         <!-- /end if page is software or country -->
