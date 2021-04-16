@@ -40,8 +40,6 @@ class CasinosList
             $offset
         );
         $query = $queryGenerator->getQuery();
-        
-//        echo $query;
         $resultSet = SQL($query);
 
         while ($row = $resultSet->toRow()) {
@@ -50,12 +48,13 @@ class CasinosList
             $object->name = $row["name"];
             $object->code = $row["code"];
             $object->withdrawal_minimum = $row['withdraw_minimum'];
-            $object->rating = $this->getRating($row["id"], $this->filter->getDetectedCountry()->id);
+//            $object->rating = $this->getRating($row["id"], $this->filter->getDetectedCountry()->id);
             $object->date_established = $row["date_established"];
             $object->status = $row["status"];
             $object->deposit_minimum = $row["deposit_minimum"];
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
+            $object->rating = 0;
             $object->score_class = $this->helper->getScoreClass($object->rating);
             if ($this->filter->getCasinoLabel() == 'Fast Payout') {
                 $object->withdrawal_timeframes = $row['end'] == 0 ? "Instant" : "Up to ".$row['end']." hours";
@@ -78,14 +77,29 @@ class CasinosList
         $this->appendSoftwares($output, $allowedIds);
         $this->appendBonuses($output, $allowedIds);
         $this->appendBankingMethods($output, $allowedIds);
+        $this->appendRating($output, $allowedIds);
 
-        foreach ($output as $arg) {
-            if (sizeof($arg->softwares)>1) {
-                $arg->all_softwares = $this->helper->get_string($arg->softwares);
-            }
-        }
+        array_walk($output, function (Casino &$casino){
+            $casino->all_softwares = $this->helper->get_string($casino->softwares);
+        });
         
         return array_values($output);
+    }
+
+    /**
+     * Append rating for casinos.
+     *
+     * @param array $output
+     * @param string $allowedIds
+     */
+    private function appendRating(array &$output, string $allowedIds): void
+    {
+        $resultSet = SQL("SELECT casino_id, SUM(value) / COUNT(value) AS average FROM casinos__ratings
+                        WHERE casino_id IN ({$allowedIds}) GROUP BY casino_id");
+        while ($row = $resultSet->toRow()) {
+            $output[$row["casino_id"]]->rating = $row['average'];
+            $output[$row["casino_id"]]->score_class = $this->helper->getScoreClass($row['average']);
+        }
     }
 
     private function getRating($casinoID, $countryID) {
@@ -259,7 +273,6 @@ class CasinosList
     
     protected function appendSoftwares(array &$output, $allowedIds)
     {
-        
         // append softwares
         $query = "
         SELECT t1.casino_id, t2.name
