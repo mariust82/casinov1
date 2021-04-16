@@ -3932,7 +3932,6 @@ a:focus {
 
 .filter-check-label {
   cursor: pointer;
-  white-space:nowrap;
 }
 
 @media (max-width:767px) {
