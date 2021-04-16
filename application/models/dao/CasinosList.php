@@ -48,7 +48,6 @@ class CasinosList
             $object->name = $row["name"];
             $object->code = $row["code"];
             $object->withdrawal_minimum = $row['withdraw_minimum'];
-//            $object->rating = $this->getRating($row["id"], $this->filter->getDetectedCountry()->id);
             $object->date_established = $row["date_established"];
             $object->status = $row["status"];
             $object->deposit_minimum = $row["deposit_minimum"];
