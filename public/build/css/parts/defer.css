@@ -646,6 +646,12 @@ corresponds to the arrow we want to display */
   margin-bottom: 12px;
   width: 100%;
 }
+.game-type-item svg{
+  color:#2171ce;
+}
+.game-type-item.unavailable svg{
+  color:#000;
+}
 .popup-casino-spec .game-type-item .game-type_name{
   margin: 0 0 0 13px;
   width: calc(100% - 50px);
@@ -3810,20 +3816,6 @@ button.swiper-pagination-bullet {
   .similar_casino-box .list-rating .list-rating-score,
   .swiper-container .list-rating .list-rating-score{
     width: 21px!important;
-  }
-}
-
-.carousel-box-container .swiper-slide {
-  width: 24% !important;
-  height: 350px !important;
-  min-width: 230px;
-  min-height: 319px;
-  margin-right: 10.5px !important;
-}
-
-@media screen and (max-width: 1000px){
-  .carousel-box-container .swiper-slide{
-    min-width: 232.5px;
   }
 }
 

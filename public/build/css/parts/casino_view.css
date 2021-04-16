@@ -95,6 +95,15 @@
 .game-type_container img{
   width:auto;
 }
+
+.game-type_container svg{
+	color:#2171ce;
+}
+
+.game-type_container.unavailable svg{
+	color:#000;
+}
+
 .game-type_name{
   font: normal normal normal 13px/20px Open Sans;
   letter-spacing: 0px;

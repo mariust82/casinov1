@@ -8592,14 +8592,28 @@ h1.title + .subtitle{
   }
 }
 
-.carousel-box-container .carousel-slide
-{
+.carousel-box-container .carousel-slide {
   width: 100%;
   height: 100%;
   padding: 15px 15px 10px 15px;
   -webkit-align-items: center;
   align-items: center;
 }
+
+.carousel-box-container .swiper-slide {
+  width: 24% !important;
+  height: 350px !important;
+  min-width: 230px;
+  min-height: 319px;
+  margin-right: 10.5px !important;
+}
+
+@media screen and (max-width: 1000px){
+  .carousel-box-container .swiper-slide{
+    min-width: 232.5px;
+  }
+}
+
 .carousel-box-container .carousel-slide .casino-img-logo{
   width: 90px;
   height: 59.52px;

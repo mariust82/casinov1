@@ -93,7 +93,8 @@
 				<:if test="!empty(${result.bonus_first_deposit.min_deposit})">
 					<div class="row">
 						<span class="icon">
-							<img src="/public/build/images/arrow-down-bold-circle.svg" width="16" height="16" alt="Deposit">
+							<!-- <img src="/public/build/images/arrow-down-bold-circle.svg" width="16" height="16" alt="Deposit"> -->
+							<svg class="svg-icon"><use xlink:href="#icon-arrow-down-circle"></use></svg>
 						</span>
 						Minimum deposit: ${result.bonus_first_deposit.min_deposit}
 					</div>
@@ -102,7 +103,8 @@
 				<:if test="!empty(${result.withdrawal_minimum})">
 					<div class="row">
 						<span class="icon">
-							<img src="/public/build/images/arrow-up-bold-circle.svg" width="16" height="16" alt="Withdrawal">
+							<!-- <img src="/public/build/images/arrow-up-bold-circle.svg" width="16" height="16" alt="Withdrawal"> -->
+							<svg class="svg-icon"><use xlink:href="#icon-arrow-up-circle"></use></svg>
 						</span>
 						Minimum withdrawal: ${result.withdrawal_minimum}
 					</div>
@@ -111,7 +113,8 @@
 				<:if test="!empty(${result.withdrawal_timeframes})">
 					<div class="row">
 						<span class="icon">
-							<img src="/public/build/images/timer_icon.svg" width="36" height="36">
+							<!-- <img src="/public/build/images/timer_icon.svg" width="36" height="36"> -->
+							<svg class="svg-icon"><use xlink:href="#icon-timer_icon"></use></svg>
 						</span>
 						Withdrawal timeframe: ${result.withdrawal_timeframes} 
 					</div>
@@ -196,7 +199,8 @@
                         <:foreach var="${games}" key="key" val="value">
                             <:if test="${counter} < 3">
                                 <div class='game-type-item <:if test="${value}"> available <:else> unavailable </:if>'>
-                                    <img alt="${key}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg" width="36" height="36">
+                                    <!-- <img alt="${key}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg" width="36" height="36"> -->
+                                    <svg class="svg-icon"><use xlink:href="#icon-${strtolower(str_replace(' ','_',${key}))}"></use></svg>
                                 </div>
                             </:if>
                             <:set var="counter" val="${counter}+1"/>
@@ -208,7 +212,8 @@
                             <i class="icon-icon_unavailable close-popup-spec"></i>
                             <:foreach var="${games}" key="key" val="value">
                                 <div class='game-type-item <:if test="${value}"> available <:else> unavailable </:if>'>
-                                    <img alt="${key}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg" width="36" height="36">
+                                    <!-- <img alt="${key}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg" width="36" height="36"> -->
+                                    <svg class="svg-icon"><use xlink:href="#icon-${strtolower(str_replace(' ','_',${key}))}"></use></svg>
                                     <span class="game-type_name">${key}</span>
                                 </div>
                             </:foreach>

@@ -314,7 +314,8 @@
 							<div class="game_types">
 								<:foreach var="${games}" key="key" val="value">
 									<div class='game-type_container <:if test="${value}"> available <:else> unavailable </:if>'>
-										<img class="lazy_loaded" alt="${key}" data-src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg" width="36" height="36">
+										<!-- <img class="lazy_loaded" alt="${key}" data-src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg" width="36" height="36"> -->
+										<svg class="svg-icon"><use xlink:href="#icon-${strtolower(str_replace(' ','_',${key}))}"></use></svg>
 										<span class="game-type_name">${key}</span>
 									</div>
 								</:foreach>
