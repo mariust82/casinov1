@@ -98,6 +98,7 @@
 
 .game-type_container svg{
 	color:#2171ce;
+	font-size:34px;
 }
 
 .game-type_container.unavailable svg{
