@@ -651,7 +651,9 @@ corresponds to the arrow we want to display */
   font-size:34px;
 }
 .game-type-item.unavailable svg{
-  color:#000;
+  opacity: 0.8;
+  -webkit-filter: grayscale(1) brightness(70%) hue-rotate(90deg);
+  filter: grayscale(1) brightness(70%) hue-rotate(90deg);
 }
 .popup-casino-spec .game-type-item .game-type_name{
   margin: 0 0 0 13px;

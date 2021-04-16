@@ -102,7 +102,9 @@
 }
 
 .game-type_container.unavailable svg{
-	color:#000;
+	opacity: 0.8;
+	-webkit-filter: grayscale(1) brightness(70%) hue-rotate(90deg);
+	filter: grayscale(1) brightness(70%) hue-rotate(90deg);
 }
 
 .game-type_name{
