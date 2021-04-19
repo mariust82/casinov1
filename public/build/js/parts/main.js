@@ -80,7 +80,7 @@ function loadScripts(_scripts) {
 function loadStyles(_styles) {
     var version = $('.controller_main').data("version");
     $.each(_styles, function(index, style) {
-        if (!$("link[href='/public/build/js/compilations/"+style+".js?v="+version+"']").length) {
+        if (!$("link[href='/public/build/css/compilations/"+style+".css?v="+version+"']").length) {
             $("head").append($('<link rel="stylesheet" type="text/css" href="/public/build/css/compilations/'+style+'.css?v='+version+'" media="all">"'));
         }
     });
