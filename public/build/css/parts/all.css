@@ -2018,6 +2018,7 @@ a:focus {
 
 .list-item-cell.list-item-alt-bonus {
   width: 14%;
+  padding:0 10px 0 0;
 }
 
 @media screen and (max-width: 690px) {
@@ -3935,9 +3936,9 @@ a:focus {
 }
 
 @media (max-width:767px) {
-	.filter-check-label {
-	  white-space:initial;
-	}
+  .filter-check-label {
+    white-space:initial;
+  }
 
 }
 
