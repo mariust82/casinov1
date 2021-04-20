@@ -4,7 +4,7 @@ class PageInfoDAO
 {
     public function getInfoByURL($url, $entity=null, $casinos_number = '')
     {
-        $row = SQL("SELECT * FROM pages WHERE url=:url", array(":url"=>$url))->toRow();
+        $row = SQL("SELECT body_title, head_title, head_description FROM pages WHERE url=:url", array(":url"=>$url))->toRow();
         $object = new PageInfo();
         if ($row) {
             $object->head_title = $this->feedValues($row["head_title"], $entity, $casinos_number);

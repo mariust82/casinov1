@@ -34,7 +34,7 @@ class ListsSearch extends AbstractSearch
     public function setData($arr)
     {
         for ($i = 0;$i<count($arr);$i++) {
-            $row = SQL("SELECT * FROM pages WHERE url=:url", array(":url"=>$arr[$i]['url']))->toRow();
+            $row = SQL("SELECT body_title FROM pages WHERE url=:url", array(":url"=>$arr[$i]['url']))->toRow();
             if ($arr[$i]['url'] != 'games/(type)') {
                 $arr[$i]['url'] = str_replace('(name)', strtolower(str_replace(' ', '-', $arr[$i]['name'])), $arr[$i]['url']);
             } else {
