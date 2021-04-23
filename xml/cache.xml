@@ -78,6 +78,7 @@
 			<table name="play_versions"/>
 			<table name="player_statuses"/>
 			<table name="player_types"/>
+			<table name="themes"/>
         </tables>
     </cache>
 </xml>
