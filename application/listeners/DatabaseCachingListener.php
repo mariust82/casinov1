@@ -13,10 +13,12 @@ class DatabaseCachingListener extends ApplicationListener
 {
     public function run()
     {
+        $connection = new \Lucinda\DB\Wrapper(dirname(__DIR__,2)."/xml/file_db.xml", ENVIRONMENT);
         ServiceContainer::set(Cache::class, new Cache(
-            new Configuration($this->application->getTag("cache")), 
-            new FileDBDriver(dirname(__DIR__,2)."/xml/file_db.xml", ENVIRONMENT)
-        ));
+            new Configuration($this->application->getTag("cache")),
+            new FileDBDriver($connection)
+            ));
+        ServiceContainer::set(Wrapper::class, $connection);
     }
 }
 
