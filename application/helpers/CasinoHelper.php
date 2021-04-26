@@ -38,26 +38,22 @@ class CasinoHelper
 
     public function getScoreClass($score)
     {
-        if ($score == 0) {
+        if (!$score || $score < 1) {
             return 'No score';
-        } elseif ($score >= 1 && $score <= 4.99) {
-            return  'Poor';
-        } elseif ($score >= 5 && $score <= 7.99) {
-            return  'Good';
-        } elseif ($score >= 8 && $score <= 10) {
+        } elseif ($score >= 1 && $score < 5) {
+            return 'Poor';
+        } elseif ($score >= 5 && $score < 8) {
+            return 'Good';
+        } elseif ($score >= 8) {
             return 'Excellent';
         }
         return '';
     }
 
-    public function get_string($name)
+    public function get_string($items)
     {
-        $items = [];
-        foreach ($name as $key => $item) {
-            if ($key != 0) {
-                $items[$key] = $item;
-            }
-        }
+        array_shift($items);
+
         return implode(", ", $items);
     }
 

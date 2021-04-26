@@ -43,7 +43,7 @@
                             <div class="carousel-slide">
                                 <a href="${href}/${strtolower(str_replace(' ', '-',${result.name}))}" class="option-box">
                                     <div class="image-container">
-                                        <img src="${imgSrc}/${strtolower(str_replace(' ', '_',${result.name}))}.png" alt="${result.name} Logo">
+                                        <img class="lazy_loaded" data-src="${imgSrc}/${strtolower(str_replace(' ', '_',${result.name}))}.png" width="80" height="53" alt="${result.name} Logo">
                                     </div>
                                     <div class="option-info">
                                         <span>${result.name}</span>

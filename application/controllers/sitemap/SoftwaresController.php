@@ -13,7 +13,7 @@ class SoftwaresController extends AbstractSitemapController
     
     protected function getItems()
     {
-        return $this->dao->getAllBySoftware();
+        return $this->dao->getAllSoftwares();
     }
 
     protected function getUrlPattern()

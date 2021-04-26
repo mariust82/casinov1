@@ -9,6 +9,7 @@
         	<ban>click</ban>
         	<ban>vote</ban>
         	<ban>comment</ban>
+        	<ban>played</ban>
         </bans>
         <tables>
         	<table name="affiliate_programs" syncs="affiliate-program"/>

@@ -3,6 +3,7 @@ require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once("queries/CasinosListQuery.php");
 require_once("application/helpers/CasinoHelper.php");
+require_once("application/models/dao/CasinoInfo.php");
 
 class CasinosList
 {
@@ -39,8 +40,6 @@ class CasinosList
             $offset
         );
         $query = $queryGenerator->getQuery();
-        
-//        echo $query;
         $resultSet = SQL($query);
 
         while ($row = $resultSet->toRow()) {
@@ -49,12 +48,12 @@ class CasinosList
             $object->name = $row["name"];
             $object->code = $row["code"];
             $object->withdrawal_minimum = $row['withdraw_minimum'];
-            $object->rating = ceil($row["average_rating"]);
             $object->date_established = $row["date_established"];
             $object->status = $row["status"];
             $object->deposit_minimum = $row["deposit_minimum"];
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
+            $object->rating = 0;
             $object->score_class = $this->helper->getScoreClass($object->rating);
             if ($this->filter->getCasinoLabel() == 'Fast Payout') {
                 $object->withdrawal_timeframes = $row['end'] == 0 ? "Instant" : "Up to ".$row['end']." hours";
@@ -77,14 +76,34 @@ class CasinosList
         $this->appendSoftwares($output, $allowedIds);
         $this->appendBonuses($output, $allowedIds);
         $this->appendBankingMethods($output, $allowedIds);
+        $this->appendRating($output, $allowedIds);
 
-        foreach ($output as $arg) {
-            if (sizeof($arg->softwares)>1) {
-                $arg->all_softwares = $this->helper->get_string($arg->softwares);
-            }
-        }
+        array_walk($output, function (Casino &$casino){
+            $casino->all_softwares = $this->helper->get_string($casino->softwares);
+        });
         
         return array_values($output);
+    }
+
+    /**
+     * Append rating for casinos.
+     *
+     * @param array $output
+     * @param string $allowedIds
+     */
+    private function appendRating(array &$output, string $allowedIds): void
+    {
+        $resultSet = SQL("SELECT casino_id, SUM(value) / COUNT(value) AS average FROM casinos__ratings
+                        WHERE casino_id IN ({$allowedIds}) GROUP BY casino_id");
+        while ($row = $resultSet->toRow()) {
+            $output[$row["casino_id"]]->rating = $row['average'];
+            $output[$row["casino_id"]]->score_class = $this->helper->getScoreClass($row['average']);
+        }
+    }
+
+    private function getRating($casinoID, $countryID) {
+        $object = new CasinoInfo($casinoID, $countryID);
+        return $object->getCasinoScore($casinoID);
     }
     
     protected function appendAcceptedCountry(array &$output, string $allowedIds): void
@@ -167,6 +186,7 @@ class CasinosList
         while ($row = $result->toRow()) {
             $object = $output[$row["casino_id"]];
             $output[$row["casino_id"]]->currencies = $row["symbol"];
+            $output[$row["casino_id"]]->deposit_minimum = ($object->deposit_minimum?$row["symbol"].$object->deposit_minimum:"");
             $output[$row["casino_id"]]->withdrawal_minimum = ($object->withdrawal_minimum?$row["symbol"].$object->withdrawal_minimum:"");
         }
     }
@@ -252,7 +272,6 @@ class CasinosList
     
     protected function appendSoftwares(array &$output, $allowedIds)
     {
-        
         // append softwares
         $query = "
         SELECT t1.casino_id, t2.name
@@ -373,7 +392,7 @@ class CasinosList
             $object->id = $row['id'];
             $object->name = $row["name"];
             $object->code = $row["code"];
-            $object->rating = $row['average_rating'];
+            $object->rating = $this->getRating($row["id"], $this->filter->getDetectedCountry()->id);
             $object->is_country_accepted = $row["is_country_supported"];
             $object->is_currency_accepted = $row['currency_supported'];
             $object->is_language_accepted = $row['language_accepted'];

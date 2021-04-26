@@ -25,7 +25,8 @@ class CasinoReviews
         $output = array();
     
         $resultSet = SQL("
-                SELECT t1.*, t2.code AS country
+                SELECT tt1.id, t1.name, t1.email, t1.body, t1.parent_id, t1.likes, t1.`date`,
+                   t1.title, t2.code AS country
                 FROM casinos__reviews AS t1
                 INNER JOIN countries AS t2 ON t1.country_id = t2.id
                 WHERE t1.status != 3 AND t1.parent_id = ".$parentID."  
@@ -50,18 +51,18 @@ class CasinoReviews
     public function getAll($casinoID, $page, $parentID = 0)
     {
         $output = array();
-
         // get main reviews
         $resultSet = SQL("
-            SELECT t1.*, t2.code AS country, t3.value AS rating
+            SELECT t1.id, t1.name, t1.email, t1.body, t1.parent_id, t1.likes, t1.`date`,
+                   t1.title, t2.code AS country, t3.value AS rating
             FROM casinos__reviews AS t1
             INNER JOIN countries AS t2 ON t1.country_id = t2.id
             LEFT JOIN casinos__ratings AS t3 ON t1.casino_id = t3.casino_id AND t1.ip = t3.ip
             WHERE t1.status != 3 AND  t1.casino_id = :casino_id
             AND t1.parent_id = 0
             ORDER BY t1.date DESC 
-            LIMIT ".self::LIMIT." OFFSET ".($page*self::LIMIT)."
-        ", array(":casino_id"=>$casinoID));
+            LIMIT " . self::LIMIT . " OFFSET " . ($page * self::LIMIT),
+            array(":casino_id" => $casinoID));
 
         while ($row = $resultSet->toRow()) {
             $object = new CasinoReview();
@@ -93,7 +94,8 @@ class CasinoReviews
                 $output[$row["parent_id"]]->total_children = $row["nr"];
                 
                 $res = SQL("
-                SELECT t1.*, t2.code AS country
+                SELECT t1.id, t1.name, t1.email, t1.body, t1.parent_id, t1.likes, t1.`date`,
+                   t1.title, t2.code AS country
                 FROM casinos__reviews AS t1
                 INNER JOIN countries AS t2 ON t1.country_id = t2.id
                 WHERE t1.status != 3 AND t1.parent_id = ".$row["parent_id"]."
