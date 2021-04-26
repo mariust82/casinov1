@@ -27,7 +27,6 @@ class CasinosFilterController extends Lucinda\MVC\STDOUT\Controller
 
     public function run()
     {
-        $this->response->attributes("list_view", $this->request->parameters("list_view") );
         $this->response->attributes("country", $this->request->attributes("country"));
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
 

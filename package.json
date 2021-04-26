@@ -9,9 +9,6 @@
     "gulp-uglify": "^3.0.2",
     "xml2js": "^0.4.23"
   },
-  "devDependencies": {
-    "penthouse": "^2.3.2"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

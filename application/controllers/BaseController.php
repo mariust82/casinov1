@@ -25,7 +25,6 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
         $this->response->attributes("version", $this->application->getVersion());
         $this->response->attributes("use_bundle", in_array(ENVIRONMENT, ["dev","live"]));
-
         $contentManager = new \CMS\ContentManager(
             $this->request->getURI()->getPage()?$this->request->getURI()->getPage():"index",
             $this->application->attributes("parent_schema"),

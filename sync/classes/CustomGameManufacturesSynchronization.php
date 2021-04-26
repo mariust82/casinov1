@@ -24,5 +24,9 @@ class CustomGameManufacturesSynchronization extends NewGameManufacturersSynchron
             DB::execute("INSERT INTO game_manufacturers SET ".$this->getQuerySet($updates), $updates);
         }
     }
-
+    
+    protected function setCountries($softwareID, $countries)
+    {
+        return;
+    }
 }

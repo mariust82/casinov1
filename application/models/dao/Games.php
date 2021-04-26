@@ -69,16 +69,4 @@ class Games
         LIMIT 8
         ")->toList();
     }
-
-    public function getAllSoftwares() {
-
-        return SQL("SELECT MAX(t1.date) AS data, t1.name
-        FROM game_manufacturers AS t1
-        INNER JOIN casinos__game_manufacturers AS t2 ON t1.id = t2.game_manufacturer_id
-        INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
-        LEFT JOIN games as g on g.game_manufacturer_id = t1.id
-        WHERE t3.is_open = 1
-        GROUP BY t1.id
-        ORDER BY data DESC, t1.name ASC")->toMap("name", "data");
-    }
 }

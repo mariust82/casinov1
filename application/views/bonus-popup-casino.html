@@ -127,7 +127,7 @@
                 <:if test="${key}<3">
                     <span class="soft_link list-item-trun" data-nr="${key+1}">
                         <a class="list-title list_link" href="/softwares/${strtolower(str_replace(' ', '-',${software}))}">
-                            <img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" width="80" height="53" alt="${software}">
+                            <img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}">
                         </a>
                     </span>
                 </:if>
@@ -149,7 +149,7 @@
                     <:if test="${counter}<3">
                         <span class="soft_link list-item-trun">
                             <a class="list-title list_link" href="/banking/${strtolower(str_replace(' ', '-',${key}))}">
-                                <img class="list-title list_link" src="/public/sync/banking_method_light/68x39/${strtolower(str_replace(' ', '_',${bank_method.logo}))}.png" width="80" height="53" alt="${key}">
+                                <img class="list-title list_link" src="/public/sync/banking_method_light/68x39/${strtolower(str_replace(' ', '_',${bank_method.logo}))}.png" alt="${key}">
                             </a>
                         </span>
                     </:if>

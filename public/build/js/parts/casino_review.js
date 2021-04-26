@@ -87,6 +87,7 @@ function AddingReview(obj) {
         ok = true;
         if (parent.data('id') != undefined) {
             _reviewID = parent.data('id');
+            // console.log(_reviewID + 'ttt');
             _is_child = true;
 
             if (parent.next().find('.reply-data-holder').length > 0) {
@@ -99,10 +100,15 @@ function AddingReview(obj) {
                 _reviewHolder = parent.closest('.reply-data-holder');
             }
             _childReplies = parent.find('.js-reply-btn span');
+
+
+            // console.log(_reviewID + 't4');
         } else {
             _is_child = false;
             _reviewHolder = $('#review-data-holder');
         }
+
+        // console.log(_reviewID + 't');
 
         if (title === '') {
             var errorMessage = $('<div class="field-error-required not-valid action-field">Please fill in a title for your review</div>')
@@ -146,15 +152,12 @@ function AddingReview(obj) {
             _field_message.parent().find('.field-error-required').remove();
         }
 
-        if(!_is_child) {
-            if ($('.drag-rate-range-score').html() == '0/10') {
-                $('.drag-rate-title').addClass('error');
-                ok = false;
-            } else {
-                $('.drag-rate-title').removeClass('error');
-            }
+        if ($('.drag-rate-range-score').html() == '0/10') {
+            $('.drag-rate-title').addClass('error');
+            ok = false;
+        } else {
+            $('.drag-rate-title').removeClass('error');
         }
-
 
         if (!ok) {
             _contact_error_required.show();
@@ -201,17 +204,17 @@ function AddingReview(obj) {
             email: email,
             body: message,
             parent: _reviewID,
-            casino_id: $('#reviews-form').data('casino-id')
+            casino_id: _this.data('casino-id')
         };
         _sendReview(ajaxData, _this);
     },
     
     _sendReview = function (ajaxData, _this) {
-
         if (BUSY_REQUEST)
             return;
         BUSY_REQUEST = true;
         _request.abort();
+        // console.log(ajaxData);
         _request = $.ajax({
             url: "/casino/review-write",
             data: ajaxData,
@@ -229,6 +232,7 @@ function AddingReview(obj) {
             },
             error: function (jqXHR) {
                 _errors_found = $.parseJSON(jqXHR.responseText);
+                console.error("Could not send message!");
                 console.log(_errors_found.body.message);
             },
             complete: function () {
@@ -346,12 +350,11 @@ function AddingReview(obj) {
             'click': function (e) {
                 var error = _prepReview(_wrap);
 
-                    if (error === false) {
-                        e.stopPropagation();
-                    } else {
-                        _prepAjaxData(_wrap);
-                    }
-
+                if (error === false) {
+                    e.stopPropagation();
+                } else {
+                    _prepAjaxData(_wrap);
+                }
             }
         });
     },

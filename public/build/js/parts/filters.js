@@ -11,13 +11,10 @@ var ListFilters = function (obj) {
             _paramValue = _targetContainer.data('type-value'),
             _ajaxContent = $('.aj-content'),
             _emptyContent = $('.empty-filters'),
-            _listHolder = _obj.next('.data-container-holder'),
-            _loaderHolder = _listHolder.find('.holder'),
+            _loaderHolder = _obj.next('.data-container-holder').find('.holder'),
             _moreButton,
             _resetButton,
             _itemsPerPage = 25,
-            _viewButton = $('.view .icon'),
-            _listView = 'grid',
             _request = new XMLHttpRequest();
 
 
@@ -39,6 +36,7 @@ var ListFilters = function (obj) {
     }
 
     var ShowTFPopup = function () {
+        console.dir('shay');
         $(".tf_flex").on('click', function () {
             var id = $(this).data('id');
             var _this = $(this);
@@ -98,27 +96,15 @@ var ListFilters = function (obj) {
 
         _resetButton.off();
         _resetButton.on('click', function () {
-            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset', this), 'add', this);
+            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, 'reset'), 'add', this);
 
-            return false;
-        });
-
-        _viewButton.off();
-        _viewButton.on('click', function () {
-            _listHolder.attr('data-view', $(this).attr('data-view'));
-            $(this).siblings().removeClass('active');
-            $(this).addClass('active');
-            _ajaxRequestCasinos(_getAjaxParams(_paramName, _paramValue, '', this), 'replace', this);
             return false;
         });
     },
     
     _getAjaxParams = function (_paramName, _paramValue, _action, _this) {
 
-        var _ajaxDataParams = {
-            list_view: _listHolder.attr('data-view')
-        };
-
+        var _ajaxDataParams = {};
         $.each(_switchers, function (index, el) {
             if ($(el).is(':checked')) {
                 _ajaxDataParams[$(el).attr('name')] = 1;
@@ -149,6 +135,8 @@ var ListFilters = function (obj) {
         _ajaxDataParams[_paramName] = _paramValue;
         $.each(_selectFilter, function (index, el) {
             if ($(el).val() != 'undefined' && $(el).val() != null) {
+                /* console.log($(el).attr('name'));
+                console.log($(el).val().join());*/
                 _ajaxDataParams[$(el).attr('name')] = $(el).val().join();
             }
         });
@@ -161,11 +149,19 @@ var ListFilters = function (obj) {
                 _ajaxDataParams['features'] = '';
                 _ajaxDataParams['themes'] = '';
             }
-        } 
+            /*if (typeof _ajaxDataParams['software'] === 'undefined' && typeof $('.data-container').data('software') !== 'undefined')
+            {
+                _ajaxDataParams['software'] = $('.data-container').data('software');
+            }*/
+        } /*else {
+            _ajaxDataParams['software'] = $('.data-container').data('software');
+        }*/
 
         _targetAddContainer = $(_this).closest('.container').find('.data-add-container:first');
 
         _ajaxDataParams['offset'] = _action == 'add' ? $(_targetAddContainer).children().length : 0;
+
+       // console.log(_ajaxDataParams);
 
         if (typeof AJAX_CUR_PAGE == "undefined")
             AJAX_CUR_PAGE = 0;
@@ -173,10 +169,28 @@ var ListFilters = function (obj) {
         if (_action != 'add' || _action == 'reset') {
             AJAX_CUR_PAGE = 0;
         }
+
+        /* if (sortMode != _ajaxDataParams['sort']) {
+            if (typeof resetGameItemsCounter === "function") {
+                resetGameItemsCounter();
+            }
+        }
+
+        if (path === '/best-online-slots')
+            gameItemsBoxCounter = 5; */
+
         return _ajaxDataParams;
     },
     
     _ajaxRequestCasinos = function (_ajaxDataParams, _action, _this) {
+        /* if (allGameItemsReceived) {
+            if (typeof updateGameItemsCounters === "function") {
+                updateGameItemsCounters();
+            }
+            return;
+        }*/
+
+       // console.log();
 
         $('.overlay, .loader').fadeIn('fast');
 
@@ -185,7 +199,17 @@ var ListFilters = function (obj) {
         BUSY_REQUEST = true;
         _request.abort();
 
+/*        var theme = window.location.pathname.split('themes/');
+        if (typeof _ajaxDataParams['themes'] == 'undefined') {
+            if (theme.length == 2)
+                _ajaxDataParams['themes'] = theme[1];
+        } else {
+            var _themesArray = _ajaxDataParams['themes'].split(',');
+            _themesArray.push(theme[1]);
+            _ajaxDataParams['themes'] = _themesArray.join(',');
+        }*/
         _ajaxDataParams['url'] = window.location.pathname;
+        //sortMode = _ajaxDataParams['sort'];
 
         _request = $.ajax({
             url: _url + AJAX_CUR_PAGE,
@@ -193,6 +217,7 @@ var ListFilters = function (obj) {
             dataType: 'html',
             type: 'GET',
             success: function (data) {
+              //  _targetAddContainer = $(_this).closest('.container').find('.data-add-container:first');
                 var scrollPos = $(document).scrollTop();
                 var cont = $(data).find('.loaded-item');
                 var loadTotal = $(data).filter('[data-load-total]').data('load-total');
@@ -249,12 +274,14 @@ var ListFilters = function (obj) {
                         $('.js-tooltip-content').tooltipster(contentTooltipConfig);
                         $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
                     }
+                    //initMoboleBonusesPop(ww);
                 } else {
 
 
                     if (_action == 'replace') {
                         _targetContainer.html('');
                         _targetContainer.html(data);
+                        //_targetAddContainer.html('');
 
                         if (_ajaxDataParams['game_type'] == "Best" && loadTotal > 100) {
                             $('.qty-items span').text(100);
@@ -275,10 +302,8 @@ var ListFilters = function (obj) {
                             _loaderHolder.show();
                             _emptyContent.hide();
                         }
-                        if(cont.length === loadTotal){
-                            _moreButton.hide();
-                        }
                     } else {
+                     //   console.log(_this);
                         if ($('.games-list').hasClass('list-view')) {
                             _targetAddContainer.addClass('list-view');
                         }
@@ -310,9 +335,8 @@ var ListFilters = function (obj) {
 
 
                     if (loadTotal <= itemsNumberLoaded) {
-                        if (_url === '/real-money-slots'){
+                        if (_url === '/real-money-slots')
                             _moreButton.hide();
-                        }
                         else{
                            // allGameItemsReceived = true;
                         }
@@ -323,18 +347,18 @@ var ListFilters = function (obj) {
                     if (typeof updateGameData == 'function') {
                         updateGameData();
                     }
-                    // gridViewBoxPopup();
+                    gridViewBoxPopup();
                 }
                 
                 if (_url === '/casinos-filter/') {
                     ShowTFPopup();
                     CloseTFPopup();
-                    copyToClipboard();
                 }
                 
                 if($('.list-body').children().length >= totalItems) {
                     _moreButton.hide();
                 }
+                //imageDefer("lazy_loaded");
                 if ($.fn.tooltipster) {
                     $('.js-tooltip').tooltipster(tooltipConfig);
                     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
@@ -354,9 +378,6 @@ var ListFilters = function (obj) {
             complete: function () {
                 BUSY_REQUEST = false;
                 $('.overlay, .loader').fadeOut('fast');
-                _listHolder
-                .removeClass('list-view grid-view')
-                .addClass(_listHolder.attr('data-view')+'-view');
             }
         });
 
@@ -555,6 +576,54 @@ function UpdateSelectFilter(_this) {
                 // console.log("complete");
             });
         }
+
+
+        /*if (selected_feature === '' && $(_this).attr('name') != 'features') {
+            $.ajax({
+                url: '/filter-features',
+                type: 'GET',
+                data: {
+                    type: type,
+                    theme: theme,
+                    software: software,
+                    pageNewSlots: pageNewSlots
+                },
+                dataType: 'html'
+            })
+            .done(function (data) {
+                $('#filters .select.features').html(data);
+            })
+            .fail(function () {
+                // console.log("error");
+            })
+            .always(function () {
+                // console.log("complete");
+            });
+        }
+
+        if (typeof selected_theme === 'undefined' && $(_this).attr('name') != 'themes') {
+            $.ajax({
+                url: '/filter-themes',
+                type: 'GET',
+                data: {
+                    type: type,
+                    software: software,
+                    selected_feature: selected_feature,
+                    theme: theme,
+                    pageNewSlots: pageNewSlots
+                },
+                dataType: 'html'
+            })
+            .done(function (data) {
+                $('#filters .select.themes').html(data);
+            })
+            .fail(function () {
+                // console.log("error");
+            })
+            .always(function () {
+                // console.log("complete");
+            });
+        }*/
     }
 
 }
@@ -596,6 +665,48 @@ function prepareSelectFilter() {
                 // console.log("complete");
             });
         }
+
+    /*    $.ajax({
+            url: '/filter-features',
+            type: 'GET',
+            data: {
+                type: type,
+                theme: theme,
+                software: software,
+                pageNewSlots: pageNewSlots
+            },
+            dataType: 'html'
+        })
+        .done(function (data) {
+            $('#filters .select.features').append(data);
+        })
+        .fail(function () {
+            // console.log("error");
+        })
+        .always(function () {
+            // console.log("complete");
+        });
+
+        $.ajax({
+            url: '/filter-themes',
+            type: 'GET',
+            data: {
+                type: type,
+                software: software,
+                theme: theme,
+                pageNewSlots: pageNewSlots
+            },
+            dataType: 'html'
+        })
+        .done(function (data) {
+            $('#filters .select.themes').append(data);
+        })
+        .fail(function () {
+            // console.log("error");
+        })
+        .always(function () {
+            // console.log("complete");
+        });*/
     }
 
 }
@@ -717,6 +828,23 @@ function resetFilter(_select) {
    // $('.' + selectName + '+.select2 .select2-selection__rendered').html(window[selectName + '_placeholder']);
 
 }
+
+function initCustomSelect() {
+    var _filterOptions = $('.js-filter > option');
+
+    $('.js-filter').select2MultiCheckboxes({
+        templateSelection: function (selected, total) {
+            return "Software";
+        }
+    })
+
+    _filterOptions.prop("selected", false);
+    $(".select2").on('click', function () {
+        // processCheckboxes();
+
+    });
+
+};
 
 
 var selectedItems = [];
