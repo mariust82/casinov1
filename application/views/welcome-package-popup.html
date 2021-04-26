@@ -2,16 +2,12 @@
     <i class="icon-icon_unavailable close_popup-wp"></i>
     <div class="bonuses-wp">
         <:if test="!empty(${data.bonus.bonus_free})">
-            <div class="bonus-item">
-                <div class="bonus-box bonus-free">
-                    <box:bonus data="data.bonus" modifier="bonus_free" heading="0" title="Free Deposit Bonus" icon="icon-icon_bonuses"/>
-                </div>
+            <div class="bonus-item bonus-box bonus-free">
+                <box:bonus data="data.bonus" modifier="bonus_free" heading="0" title="Free Deposit Bonus" icon="icon-icon_bonuses"/>
             </div>
         </:if>
-        <div class="bonus-item">
-            <div class="bonus-box bonus-first">
-                <box:bonus data="data.bonus" modifier="bonus_first_deposit" heading="0" title="First Deposit Bonus" icon="icon-free-bonus-icon"/>
-            </div>
+        <div class="bonus-item bonus-box bonus-first">
+            <box:bonus data="data.bonus" modifier="bonus_first_deposit" heading="0" title="First Deposit Bonus" icon="icon-free-bonus-icon"/>
         </div>
     </div>
 </div>
