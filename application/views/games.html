@@ -31,6 +31,12 @@
 					<a href="#" class="btn-bordered load js-more-items">LOAD MORE GAMES</a>
 				</div>
 			</:if>
+			
+			 <span>
+                            <:if test="isset(${data.widgets.lower})">
+                                ${implode("\n", ${data.widgets.lower})}
+                            </:if>
+                        </span>
 
 		</div>
 	</div>
