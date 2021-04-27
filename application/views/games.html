@@ -32,11 +32,11 @@
 				</div>
 			</:if>
 			
-			 <span>
-                            <:if test="isset(${data.widgets.lower})">
-                                ${implode("\n", ${data.widgets.lower})}
-                            </:if>
-                        </span>
+			<:if test="isset(${data.widgets.lower})">
+			    <div class="subtitle plain-text plain-text-lower">
+				<div><span>${implode("\n", ${data.widgets.lower})}</span></div>
+			    </div>
+			</:if>
 
 		</div>
 	</div>
