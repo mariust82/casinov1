@@ -628,6 +628,7 @@
   }
   .row-details{
     margin-top: 0;
+    white-space:nowrap;
   }
   .row-details i{
     width: 100%;
