@@ -9123,3 +9123,9 @@ img[src] {
   transition-property: transform, -webkit-transform;
   box-sizing: content-box;
 }
+
+@media (min-width: 690px) and (max-width: 1023px){
+  .filter-filter {
+      width: unset;
+  }
+}
