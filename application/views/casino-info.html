@@ -70,16 +70,16 @@
 					<div class="casino-review-heading-img">
 						<img class="lazy_loaded" data-src="${getCasinoLogo(${data.casino.code}, 124, 82)}" width="124" height="82" alt="${data.casino.name} Logo" title="${data.casino.name}">
 					</div>
-					<:set var="score_class" val="get_rating(${data.casino_score})"/>
+					<:set var="score_class" val="get_rating(${data.casino.rating})"/>
 					<:set var="aggregate_rating_prop" val=""/>
-					<:if test="${data.casino_score} > 0">
+					<:if test="${data.casino.rating} > 0">
 						<:set var="aggregate_rating_prop" val="itemprop='aggregateRating' itemscope='' itemtype='https://schema.org/AggregateRating'"/>
 					</:if>
 					<div class="list-rating ${normalize(${score_class})}" ${aggregate_rating_prop}>
-						<:if test="${data.casino_score} > 0">
+						<:if test="${data.casino.rating} > 0">
 							${score_class}
-							<span class="list-rating-score">${ceil(${data.casino_score})}</span>
-							<meta itemprop="ratingValue" content="${ceil(${data.casino_score})}">
+							<span class="list-rating-score">${ceil(${data.casino.rating})}</span>
+							<meta itemprop="ratingValue" content="${ceil(${data.casino.rating})}">
 							<meta itemprop="itemReviewed" content="${data.casino.name}">
 							<meta itemprop="worstRating" content="1">
 							<meta itemprop="bestRating" content="10">
