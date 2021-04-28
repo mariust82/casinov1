@@ -627,12 +627,9 @@
     width: 26%;
   }
   .row-details{
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
     margin-top: 0;
   }
   .row-details i{
-    margin: 0 0 8px 0 !important;
     width: 100%;
     text-align: center;
   }
