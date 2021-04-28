@@ -631,7 +631,7 @@
     white-space:nowrap;
   }
   .row-details i{
-    width: 100%;
+    width: 20px;
     text-align: center;
   }
 }
