@@ -28,7 +28,8 @@ class CasinosList
             "cs.name AS status", 
             "t1.name", 
             "t1.code", 
-            "(t1.rating_total/t1.rating_votes) AS average_rating", 
+            "(t1.rating_total/t1.rating_votes) AS average_rating",
+            "t1.rating_votes",
             "t1.date_established", 
             "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
 
@@ -53,7 +54,8 @@ class CasinosList
             $object->deposit_minimum = $row["deposit_minimum"];
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
-            $object->rating = 0;
+            $object->rating = $row["average_rating"];
+            $object->rating_votes = $row["rating_votes"];
             $object->score_class = $this->helper->getScoreClass($object->rating);
             if ($this->filter->getCasinoLabel() == 'Fast Payout') {
                 $object->withdrawal_timeframes = $row['end'] == 0 ? "Instant" : "Up to ".$row['end']." hours";
@@ -76,34 +78,12 @@ class CasinosList
         $this->appendSoftwares($output, $allowedIds);
         $this->appendBonuses($output, $allowedIds);
         $this->appendBankingMethods($output, $allowedIds);
-        $this->appendRating($output, $allowedIds);
 
         array_walk($output, function (Casino &$casino){
             $casino->all_softwares = $this->helper->get_string($casino->softwares);
         });
         
         return array_values($output);
-    }
-
-    /**
-     * Append rating for casinos.
-     *
-     * @param array $output
-     * @param string $allowedIds
-     */
-    private function appendRating(array &$output, string $allowedIds): void
-    {
-        $resultSet = SQL("SELECT casino_id, SUM(value) / COUNT(value) AS average FROM casinos__ratings
-                        WHERE casino_id IN ({$allowedIds}) GROUP BY casino_id");
-        while ($row = $resultSet->toRow()) {
-            $output[$row["casino_id"]]->rating = $row['average'];
-            $output[$row["casino_id"]]->score_class = $this->helper->getScoreClass($row['average']);
-        }
-    }
-
-    private function getRating($casinoID, $countryID) {
-        $object = new CasinoInfo($casinoID, $countryID);
-        return $object->getCasinoScore($casinoID);
     }
     
     protected function appendAcceptedCountry(array &$output, string $allowedIds): void
@@ -378,7 +358,12 @@ class CasinosList
     public function getBestCasinosByCountry($id,$currency_id,$lang_id,$limit=5,$offset=0) {
         $output = [];
         $date = date("Y-m-d", strtotime(date("Y-m-d") . " -6 months"));
-        $res = SQL("SELECT DISTINCT t1.id, t1.name,t1.tc_link , t1.code , (t1.rating_total/t1.rating_votes) AS average_rating, IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported, IF(t15.casino_id IS NOT NULL,1,0) AS currency_supported, IF(t17.casino_id IS NOT NULL,1,0) AS language_accepted, IF(t1.tc_link<>'', 1, 0) AS is_tc_link, t19.id AS complex_case 
+        $res = SQL("SELECT DISTINCT t1.id, t1.name,t1.tc_link , t1.code , (t1.rating_total/t1.rating_votes) AS average_rating,
+                    t1.rating_votes,
+                    IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported,
+                    IF(t15.casino_id IS NOT NULL,1,0) AS currency_supported,
+                    IF(t17.casino_id IS NOT NULL,1,0) AS language_accepted,
+                    IF(t1.tc_link<>'', 1, 0) AS is_tc_link, t19.id AS complex_case 
                     FROM casinos AS t1 
                     INNER JOIN casino_statuses_extended AS t19 ON t1.status_id = t19.status_id 
                     LEFT OUTER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id AND t15.currency_id = {$currency_id}
@@ -392,7 +377,8 @@ class CasinosList
             $object->id = $row['id'];
             $object->name = $row["name"];
             $object->code = $row["code"];
-            $object->rating = $this->getRating($row["id"], $this->filter->getDetectedCountry()->id);
+            $object->rating = $row["average_rating"];
+            $object->rating_votes = $row["rating_votes"];
             $object->is_country_accepted = $row["is_country_supported"];
             $object->is_currency_accepted = $row['currency_supported'];
             $object->is_language_accepted = $row['language_accepted'];
