@@ -21,7 +21,7 @@ class CasinoInfo
 
     public function getUserScore($casinoID, $ip)
     {
-        return SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = {$casinoID}", array(":ip" => $ip))->toValue();
+        return SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = {$casinoID} AND status != 3", array(":ip" => $ip))->toValue();
     }
 
 

@@ -117,7 +117,7 @@ class Casinos implements FieldValidator
         if (!$casinoID) {
             return null;
         }
-        $currentVote = SQL("SELECT value FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip", array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
+        $currentVote = SQL("SELECT value FROM casinos__ratings WHERE casino_id = :casinoId AND ip = :ip AND status != 3", array(":casinoId"=>$casinoID,":ip"=>$ip))->toValue();
         $extra_query = '';
         if (empty($currentVote)) {
 
@@ -126,7 +126,7 @@ class Casinos implements FieldValidator
                 casino_id = :casino,
                 ip = :ip,
                 value = :value
-                ON DUPLICATE KEY UPDATE value = :value
+                ON DUPLICATE KEY UPDATE value = :value, status = 1
               ", array(":casino"=>$casinoID, ":ip"=>$ip, ":value"=>$value))->getAffectedRows();
             $extra_query = ', rating_votes=rating_votes+1 ';
         } else {
