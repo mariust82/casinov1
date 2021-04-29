@@ -28,12 +28,10 @@ class CasinoInfo
     private function setResult($id, $countryId)
     {
         $resultSet = SQL("
-        SELECT t1.*,
-         t4.name AS status, 
-         (t1.rating_total/t1.rating_votes) AS average_rating,
-          t2.name AS affiliate_program,
-          IF(t1.tc_link<>'',1,0) AS is_tc_link,
-          t5.value AS note
+        SELECT t1.id, t1.name, t1.code, t1.is_live_chat, t1.deposit_minimum,
+            t1.withdraw_minimum, t1.date_established, t1.rating_votes,
+            t4.name AS status,  (t1.rating_total/t1.rating_votes) AS average_rating,
+            t2.name AS affiliate_program, IF(t1.tc_link<>'',1,0) AS is_tc_link, t5.value AS note
         FROM casinos AS t1
         LEFT JOIN affiliate_programs AS t2 ON t1.affiliate_program_id = t2.id
         LEFT JOIN casinos__play_versions AS t3 ON t1.id = t3.casino_id AND t3.play_version_id = 2
@@ -188,7 +186,7 @@ class CasinoInfo
     private function getWithdrawLimits($id, $currencies)
     {
         $output = array();
-        $resultSet = SQL("SELECT * FROM casinos__withdraw_maximums WHERE casino_id = ".$id);
+        $resultSet = SQL("SELECT amount, unit FROM casinos__withdraw_maximums WHERE casino_id = ".$id);
         while ($row = $resultSet->toRow()) {
             if (!$row["unit"]) {
                 $output[] = "none";
@@ -226,7 +224,8 @@ class CasinoInfo
     private function getBonus($id, $bonusTypes)
     {
         $query = "
-        SELECT t1.*, t2.name FROM casinos__bonuses AS t1
+        SELECT t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name
+        FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
         WHERE t1.casino_id = ".$id." AND t2.name IN ('".implode("','", $bonusTypes)."')";
         $row = SQL($query)->toRow();
@@ -334,18 +333,17 @@ class CasinoInfo
 
     public function getWelcomePackage($casino_id)
     {
-        $q = "
-                 SELECT
-            t1.*, t2.name as bonus_type_name
-            FROM casinos__bonuses AS t1 INNER JOIN
-            bonus_types as t2 ON t1.bonus_type_id = t2.id
-            WHERE t2.name IN ('First Deposit Bonus','No Deposit Bonus' ,'Welcome Package' , 'Free Spins') AND t1.casino_id = ".$casino_id."
-             ORDER BY  CASE
-                    WHEN t2.name  = 'Free Spins'  THEN 0
-                     WHEN t2.name  = 'No Deposit Bonus'  THEN 1
-                     WHEN t2.name = 'First Deposit Bonus'  THEN 2
-                     WHEN t2.name = 'Welcome Package' THEN 3
-                     END ASC
+        $q = "SELECT t1.codes, t1.amount, t1.wagering, t1.deposit_minimum,
+                t1.games, t1.availability, t2.name as bonus_type_name
+            FROM casinos__bonuses AS t1 INNER JOIN bonus_types as t2 ON t1.bonus_type_id = t2.id
+            WHERE t2.name IN ('First Deposit Bonus','No Deposit Bonus' ,'Welcome Package' , 'Free Spins')
+                AND t1.casino_id = ".$casino_id."
+            ORDER BY CASE
+                WHEN t2.name  = 'Free Spins'  THEN 0
+                WHEN t2.name  = 'No Deposit Bonus'  THEN 1
+                WHEN t2.name = 'First Deposit Bonus'  THEN 2
+                WHEN t2.name = 'Welcome Package' THEN 3
+            END ASC
         ";
         $w_packages = SQL($q)->toList();
 
@@ -391,9 +389,8 @@ class CasinoInfo
 
     public function getMatchBonuses($casino_id)
     {
-        $q = "
-                 SELECT
-            t1.*, t2.name as bonus_type_name
+        $q = "SELECT t1.codes, t1.amount, t1.wagering, t1.deposit_minimum,
+                t1.games, t1.availability, t2.name as bonus_type_name
             FROM casinos__bonuses AS t1 
             INNER JOIN bonus_types as t2 ON t1.bonus_type_id = t2.id
             WHERE t2.name IN ('Match Bonus') AND t1.casino_id = ".$casino_id."

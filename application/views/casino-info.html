@@ -124,7 +124,7 @@
 
 			</div>
 			<div class="casino-review-country casino-review-mobile">
-				<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="20" height="14">
+				<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="${data.country.code}" width="20" height="14">
 				${data.country.name}
 				${data.country_status_text}
 			</div>
@@ -134,7 +134,7 @@
 	<div class="section">
 		<div class="container">
 			<div class="welcome-package_box box">
-				<div class="title title-middle">Welcome package</div>
+				<h2 class="title title-middle">Welcome package</h2>
 				<:if test="!empty(${data.casino.bonus_first_deposit.amount})">
 					<div class="bonus-holder">
 						<:if test="!empty(${data.casino.bonus_free})">
@@ -183,7 +183,7 @@
 									<:else>
 										<i class="icon-icon_unavailable"></i>
 								</:if>
-								<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+								<img class="${data.country_status} lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="${data.country.code}" width="26" height="20">
 							</div>
 						</div>
 						<div class="detail-box">
@@ -313,7 +313,8 @@
 							<div class="game_types">
 								<:foreach var="${games}" key="key" val="value">
 									<div class='game-type_container <:if test="${value}"> available <:else> unavailable </:if>'>
-										<img alt="${key}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg">
+										<!-- <img class="lazy_loaded" alt="${key}" data-src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg" width="36" height="36"> -->
+										<svg class="svg-icon"><use xlink:href="#icon-${strtolower(str_replace(' ','_',${key}))}"></use></svg>
 										<span class="game-type_name">${key}</span>
 									</div>
 								</:foreach>
@@ -328,7 +329,7 @@
 						<:if test="${key}<8">
 							<span class="soft_link list-item-trun software_image" data-nr="${key+1}">
 								<a class="list-title list_link" href="/softwares/${normalize(${software})}">
-									<img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software} logo">
+									<img class="lazy_loaded" data-src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software} logo" width="60" height="40">
 								</a>
 							</span>
 						</:if>
@@ -347,7 +348,7 @@
 	<div id="full_package" class="section">
 		<div class="container">
 			<div class="box box-alt2">
-				<div class="title title-middle">Full Welcome Package</div>
+				<h2 class="title title-middle">Full Welcome Package</h2>
 				<:if test="!empty(${data.casino.welcome_package})">
 					<div class="section-content">
 						<table class="table table-package">
@@ -454,7 +455,7 @@
 	<div class="section">
 		<div class="container">
 			<div class="box box-alt2">
-				<div class="title title-middle">Banking</div>
+				<h2 class="title title-middle">Banking</h2>
 				<div class="twocolumn flex-reverse">
 					<div class="section-sidebar">
 						<div class="def-column">
@@ -671,7 +672,7 @@
 									<:else>
 										<i class="icon-icon_unavailable"></i>
 								</:if>
-								<img class="${data.country_status} country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+								<img class="${data.country_status} country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="${data.country.code}" width="26" height="20">
 							</div>
 							<div class="similar-row">
 								<:if test="!empty(${data.country.currency})">
@@ -777,10 +778,10 @@
 								<div class="similar-row">
 									<:if test="${item.is_country_accepted} == 1">
 										<i class="icon-icon_available"></i>
-										<img class="accepted country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+										<img class="accepted country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="${data.country.code}" width="26" height="20">
 										<:else>
 											<i class="icon-icon_unavailable"></i>
-											<img class="not-accepted country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="" width="26" height="20">
+											<img class="not-accepted country-flg lazy_loaded" data-src="/public/build/images/flags/${data.country.code}.png" alt="${data.country.code}" width="26" height="20">
 									</:if>
 								</div>
 								<div class="similar-row">
