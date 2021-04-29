@@ -13,14 +13,15 @@ class CasinoInfo
     {
         $this->setResult($id, $countryId);
     }
-    
+
     public function getCasinoScore($casinoID)
     {
-        return SQL("SELECT SUM(value) / COUNT(value) AS average FROM casinos__ratings WHERE casino_id = {$casinoID}")->toValue();
+        return SQL("SELECT SUM(value) / COUNT(value) AS average FROM casinos__ratings WHERE casino_id = {$casinoID} AND status != 3")->toValue();
     }
+
     public function getUserScore($casinoID, $ip)
     {
-        return  SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = {$casinoID}", array(":ip"=>$ip))->toValue();
+        return SQL("SELECT value FROM casinos__ratings WHERE ip = :ip AND casino_id = {$casinoID} AND status != 3", array(":ip" => $ip))->toValue();
     }
 
 

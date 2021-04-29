@@ -3,6 +3,7 @@ require_once("entities/Casino.php");
 require_once("entities/CasinoBonus.php");
 require_once("queries/CasinosListQuery.php");
 require_once("application/helpers/CasinoHelper.php");
+require_once("application/models/dao/CasinoInfo.php");
 
 class CasinosList
 {
@@ -27,7 +28,8 @@ class CasinosList
             "cs.name AS status", 
             "t1.name", 
             "t1.code", 
-            "(t1.rating_total/t1.rating_votes) AS average_rating", 
+            "(t1.rating_total/t1.rating_votes) AS average_rating",
+            "t1.rating_votes",
             "t1.date_established", 
             "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
 
@@ -39,8 +41,6 @@ class CasinosList
             $offset
         );
         $query = $queryGenerator->getQuery();
-        
-//        echo $query;
         $resultSet = SQL($query);
 
         while ($row = $resultSet->toRow()) {
@@ -49,12 +49,13 @@ class CasinosList
             $object->name = $row["name"];
             $object->code = $row["code"];
             $object->withdrawal_minimum = $row['withdraw_minimum'];
-            $object->rating = ceil($row["average_rating"]);
             $object->date_established = $row["date_established"];
             $object->status = $row["status"];
             $object->deposit_minimum = $row["deposit_minimum"];
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
+            $object->rating = $row["average_rating"];
+            $object->rating_votes = $row["rating_votes"];
             $object->score_class = $this->helper->getScoreClass($object->rating);
             if ($this->filter->getCasinoLabel() == 'Fast Payout') {
                 $object->withdrawal_timeframes = $row['end'] == 0 ? "Instant" : "Up to ".$row['end']." hours";
@@ -78,11 +79,9 @@ class CasinosList
         $this->appendBonuses($output, $allowedIds);
         $this->appendBankingMethods($output, $allowedIds);
 
-        foreach ($output as $arg) {
-            if (sizeof($arg->softwares)>1) {
-                $arg->all_softwares = $this->helper->get_string($arg->softwares);
-            }
-        }
+        array_walk($output, function (Casino &$casino){
+            $casino->all_softwares = $this->helper->get_string($casino->softwares);
+        });
         
         return array_values($output);
     }
@@ -167,6 +166,7 @@ class CasinosList
         while ($row = $result->toRow()) {
             $object = $output[$row["casino_id"]];
             $output[$row["casino_id"]]->currencies = $row["symbol"];
+            $output[$row["casino_id"]]->deposit_minimum = ($object->deposit_minimum?$row["symbol"].$object->deposit_minimum:"");
             $output[$row["casino_id"]]->withdrawal_minimum = ($object->withdrawal_minimum?$row["symbol"].$object->withdrawal_minimum:"");
         }
     }
@@ -252,7 +252,6 @@ class CasinosList
     
     protected function appendSoftwares(array &$output, $allowedIds)
     {
-        
         // append softwares
         $query = "
         SELECT t1.casino_id, t2.name
@@ -359,7 +358,12 @@ class CasinosList
     public function getBestCasinosByCountry($id,$currency_id,$lang_id,$limit=5,$offset=0) {
         $output = [];
         $date = date("Y-m-d", strtotime(date("Y-m-d") . " -6 months"));
-        $res = SQL("SELECT DISTINCT t1.id, t1.name,t1.tc_link , t1.code , (t1.rating_total/t1.rating_votes) AS average_rating, IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported, IF(t15.casino_id IS NOT NULL,1,0) AS currency_supported, IF(t17.casino_id IS NOT NULL,1,0) AS language_accepted, IF(t1.tc_link<>'', 1, 0) AS is_tc_link, t19.id AS complex_case 
+        $res = SQL("SELECT DISTINCT t1.id, t1.name,t1.tc_link , t1.code , (t1.rating_total/t1.rating_votes) AS average_rating,
+                    t1.rating_votes,
+                    IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported,
+                    IF(t15.casino_id IS NOT NULL,1,0) AS currency_supported,
+                    IF(t17.casino_id IS NOT NULL,1,0) AS language_accepted,
+                    IF(t1.tc_link<>'', 1, 0) AS is_tc_link, t19.id AS complex_case 
                     FROM casinos AS t1 
                     INNER JOIN casino_statuses_extended AS t19 ON t1.status_id = t19.status_id 
                     LEFT OUTER JOIN casinos__currencies AS t15 ON t1.id = t15.casino_id AND t15.currency_id = {$currency_id}
@@ -373,7 +377,8 @@ class CasinosList
             $object->id = $row['id'];
             $object->name = $row["name"];
             $object->code = $row["code"];
-            $object->rating = $row['average_rating'];
+            $object->rating = $row["average_rating"];
+            $object->rating_votes = $row["rating_votes"];
             $object->is_country_accepted = $row["is_country_supported"];
             $object->is_currency_accepted = $row['currency_supported'];
             $object->is_language_accepted = $row['language_accepted'];

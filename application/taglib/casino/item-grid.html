@@ -1,0 +1,313 @@
+<div class="list-item loaded-item">
+    <div class="list-item-cell list-item-casino-logo">
+        <img width="98" height="65" class="lazy_loaded" data-src="${getCasinoLogo(${result.code}, 85, 56)}" onerror="this.onerror=null; this.src='/public/build/images/default_casino_logo.png'" alt="${result.name} Logo">
+	</div>
+	<div class="list-item-cell list-item-casino">
+
+		<:if test="${result.new} == true && '$[type]' != 'ESTABLISHED'">
+			<div class="new-casino"></div>
+		</:if>
+
+		<div class="list-flex">
+			<:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
+			<img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
+
+			<:set var="score_class" val="get_rating(${result.rating})"/>
+			<div class="list-rating ${normalize(${score_class})}">
+				<:if test="${result.rating} == 0">
+					${score_class}
+					<span class="list-rating-score">-</span>
+					<div class=" list-rating-score list-rating-score-mobile">|</div>
+				<:else>
+					${score_class}
+					<span class="list-rating-score">
+						${ceil(${result.rating})}
+					</span>
+				</:if>
+			</div>
+
+			<div class="list-title-holder">
+				<a href="/reviews/${normalize(${result.name})}-review" class="list-title">
+					${result.name}
+					<:if test="'$[type]' == 'ESTABLISHED' && ${data.is_mobile}">
+						<div class="list-small-text upper">${formatDate(${result.date_established})}</div>
+					</:if>
+				</a>
+
+				<:if test="'$[type]' == 'WITHDRAWAL' && ${data.is_mobile}">
+					<div class="list-small-text upper tf_flex" data-id="${result.id}">${result.withdrawal_timeframes}</div>
+				</:if>
+
+				<:if test="${result.is_tc_link}">
+					<a href="/visit/${normalize(${result.name})}-terms" target="_blank" rel="nofollow" class="additional-link">T&C applies</a>
+				</:if>
+			</div>
+			<div class="casino-info_container">
+				<div class="row">
+					<:if test="${result.is_country_accepted} == 1">
+						<i class="icon icon-icon_available"></i>
+					<:else>
+						<i class="icon icon-icon_unavailable"></i>
+					</:if>
+
+					<img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
+					<span>
+						Players from ${data.country.name} are <:if test="${result.is_country_accepted} == 1">
+						accepted
+						<:else>
+						not accepted
+						</:if>
+					</span>
+				</div>
+				<div class="row">
+					<:if test="${result.is_language_accepted} == 1">
+						<i class="icon icon-icon_available"></i>
+					<:else>
+						<i class="icon icon-icon_unavailable"></i>
+					</:if>
+
+					<span>
+						${data.country.languages.0} <:if test="${result.is_language_accepted} == 1">
+						available
+						<:else>
+						not available
+						</:if>
+					</span>
+				</div>
+				<:if test="!empty(${result.currencies}) && ${result.is_country_accepted} == 1">
+					<div class="row">
+						<:if test="${result.is_currency_accepted} == 1">
+							<i class="icon icon-icon_available"></i>
+						<:else>
+							<i class="icon icon-icon_unavailable"></i>
+						</:if>
+						<span>
+							${mb_substr(${result.currencies}, 0, 1, "UTF-8")} <:if test="${result.is_currency_accepted} == 1">
+							accepted
+							<:else>
+							not accepted
+							</:if>
+						</span>
+					</div>
+				</:if>
+				<:if test="!empty(${result.bonus_first_deposit.min_deposit})">
+					<div class="row">
+						<span class="icon">
+							<!-- <img src="/public/build/images/arrow-down-bold-circle.svg" width="16" height="16" alt="Deposit"> -->
+							<svg class="svg-icon"><use xlink:href="#icon-arrow-down-bold-circle"></use></svg>
+						</span>
+						Minimum deposit: ${result.bonus_first_deposit.min_deposit}
+					</div>
+				</:if>
+
+				<:if test="!empty(${result.withdrawal_minimum})">
+					<div class="row">
+						<span class="icon">
+							<!-- <img src="/public/build/images/arrow-up-bold-circle.svg" width="16" height="16" alt="Withdrawal"> -->
+							<svg class="svg-icon"><use xlink:href="#icon-arrow-up-bold-circle"></use></svg>
+						</span>
+						Minimum withdrawal: ${result.withdrawal_minimum}
+					</div>
+				</:if>
+
+				<:if test="!empty(${result.withdrawal_timeframes})">
+					<div class="row">
+						<span class="icon">
+							<!-- <img src="/public/build/images/timer_icon.svg" width="36" height="36"> -->
+							<svg class="svg-icon"><use xlink:href="#icon-timer_icon"></use></svg>
+						</span>
+						Withdrawal timeframe: ${result.withdrawal_timeframes} 
+					</div>
+				</:if>
+			</div>
+			<:if test="strtolower(${data.page_type}) !== 'index' && strtolower(${data.page_type}) !== 'game_info'">
+			<div class="welcome_package-container">
+				<span class="wp-title">Welcome Package 
+					<:if test="(isset(${result.bonus_free}) && ${result.bonus_free} !== null) || (isset(${result.bonus_first_deposit}))">
+						<span class="welcome_package-popup-trigger">i</span>
+						<div class="welcome_package-popup">
+							<i class="icon-icon_unavailable close-popup-wp"></i>
+							<div class="bonuses-wp">
+								<:if test="!empty(${result.bonus_free})">
+									<div class="bonus-item bonus-box bonus-free">
+										<box:bonus data="result" modifier="bonus_free" heading="0" title="Free Deposit Bonus" icon="icon-icon_bonuses"/>
+									</div>
+								</:if>
+								<div class="bonus-item bonus-box bonus-first">
+									<box:bonus data="result" modifier="bonus_first_deposit" heading="0" title="First Deposit Bonus" icon="icon-free-bonus-icon"/>
+								</div>
+							</div>
+						</div>
+					</:if>
+				</span>
+				<:if test="(isset(${result.bonus_free}) && ${result.bonus_free} !== null) || (isset(${result.bonus_first_deposit}))">
+					<:if test="isset(${result.bonus_free}) && ${result.bonus_free} !== null">
+						<span class="wp-bonus-title free">${result.bonus_free.amount} ${result.bonus_free.type}</span>
+					</:if>
+					<:if test="isset(${result.bonus_first_deposit})">
+						<span class="wp-bonus-title">${result.bonus_first_deposit.amount} ${result.bonus_first_deposit.type}</span>
+					</:if>
+				<:else>
+					<span class="wp-bonus-title">No welcome bonuses.</span>
+				</:if>
+			</div>
+			</:if>
+		</div>
+	</div>
+
+    <:if test="isset(${result.bonus_free.amount})">
+        <:set var="fb_amount" val="checkForAbbr(${result.bonus_free.amount})"/>
+    </:if>
+    <:if test="isset(${result.bonus_free.type})">
+        <:set var="fb_abbreviation" val="getAbbreviation(${result.bonus_free.type}, ${fdb_amount})"/>
+    </:if>
+
+    <div class="list-item-cell list-flex list-item-cell-buttons button-wrapper">
+        <a href="/reviews/${normalize(${result.name})}-review" class="cta-btn btn-reviews">
+            Player Reviews <:if test="${result.comments} > 0">(${result.comments})</:if>
+        </a>
+        <:if test="${result.status}=='Blacklisted'">
+            <a href="/visit/${normalize(${result.name})}" class="cta-btn btn-blk btn-err" target="_blank" rel="nofollow">
+                <svg class="svg-icon"><use xlink:href="#icon-blacklisted"></use></svg>
+                <span>Blacklisted</span>
+            </a>
+        <:elseif test="${result.status}=='Warning'">
+            <a href="/visit/${normalize(${result.name})}" class="cta-btn btn-wrn btn-err" target="_blank" rel="nofollow">
+                <svg class="svg-icon"><use xlink:href="#icon-warning"></use></svg>
+                <span>Warning</span>
+            </a>
+        <:elseif test="!${result.is_country_accepted}">
+            <a href="/visit/${normalize(${result.name})}" class="cta-btn btn btn-rest" target="_blank" rel="nofollow">
+                REST
+            </a>
+        <:else>
+            <a href="/visit/${normalize(${result.name})}" data-casino-id="${result.id}" class="btn_visit cta-btn btn btn-small" target="_blank" rel="nofollow">
+                Visit
+            </a>
+        </:if>
+        <:if test="strtolower(${data.page_type}) !== 'index' && strtolower(${data.page_type}) !== 'game_info'">
+            <div class="casino-specifications">
+                <span class="spec-title">Game Types</span>
+                <:set var="games" val="checkGameAvailability(${result.casino_game_types})"/>
+                <div class="spec-row">
+                    <:set var="counter" val="0"/>
+                    <div class="spec-items g_types">
+                        <:foreach var="${games}" key="key" val="value">
+                            <:if test="${counter} < 3">
+                                <div class='game-type-item <:if test="${value}"> available <:else> unavailable </:if>'>
+                                    <!-- <img alt="${key}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg" width="36" height="36"> -->
+                                    <svg class="svg-icon"><use xlink:href="#icon-${strtolower(str_replace(' ','_',${key}))}"></use></svg>
+                                </div>
+                            </:if>
+                            <:set var="counter" val="${counter}+1"/>
+                        </:foreach>
+                    </div>
+                    <div class="popup-spec">
+                        <span class="open-popup-spec">Show all (10)</span>
+                        <div class="popup-casino-spec">
+                            <i class="icon-icon_unavailable close-popup-spec"></i>
+                            <:foreach var="${games}" key="key" val="value">
+                                <div class='game-type-item <:if test="${value}"> available <:else> unavailable </:if>'>
+                                    <!-- <img alt="${key}" src="/public/build/images/${strtolower(str_replace(' ','_',${key}))}.svg" width="36" height="36"> -->
+                                    <svg class="svg-icon"><use xlink:href="#icon-${strtolower(str_replace(' ','_',${key}))}"></use></svg>
+                                    <span class="game-type_name">${key}</span>
+                                </div>
+                            </:foreach>
+                        </div>
+                    </div>
+                </div>
+                <:if test="count(${result.softwares}) > 0">             
+                    <span class="spec-title">Software Providers</span>
+                    <div class="spec-row">
+                        <div class="spec-items">
+                            <:foreach var="${result.softwares}" key="key" val="software">
+                                <:if test="${key} < 3 && count(${result.softwares}) !== 4">
+                                    <a class="list-title list_link item-spec software" href="/softwares/${normalize(${software})}">
+                                        <img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}" width="60" height="40">
+                                    </a>
+                                <:elseif test="count(${result.softwares}) == 4">
+                                    <a class="list-title list_link item-spec software" href="/softwares/${normalize(${software})}">
+                                        <img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software}" width="60" height="40">
+                                    </a>
+                                </:if>
+                            </:foreach>
+                        </div>
+                        <:set var="extraSoftwares" val="count(${result.softwares})-4"/>
+                        <:if test="${extraSoftwares} > 0 && count(${result.softwares}) !== 4 ">
+                            <div class="popup-spec">
+                                <span class="open-popup-spec">Show all (${count(${result.softwares})})</span>
+                                <div class="popup-casino-spec big">
+                                    <i class="icon-icon_unavailable close-popup-spec"></i>
+                                    <div class="list_scroll">
+                                        <:foreach var="${result.softwares}" key="key" val="software">
+                                            <a class="list-title list_link item-spec software" href="/softwares/${normalize(${software})}">
+                                                <img src="/public/sync/software_logo_light/80x53/${strtolower(str_replace(' ', '_',${software}))}.png" alt="${software} Logo" width="60" height="40">
+                                                ${software}
+                                            </a>
+                                        </:foreach>
+                                    </div>
+                                </div>
+                            </div>
+                        </:if>
+                    </div>
+                </:if>
+                <:if test="count(${result.casino_deposit_methods}) > 0">
+                    <span class="spec-title">Banking</span>
+                    <div class="spec-row">
+                        <div class="spec-items">
+                            <:set var="k" val="0"/>
+                            <:foreach var="${result.casino_deposit_methods}" key="dep_method" val="dep_method_data">
+                                <:if test="${k} < 3 && count(${result.casino_deposit_methods}) !== 4">
+                                    <a class="list-title list_link banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
+                                        <img src="/public/sync/banking_method_light/68x39/${strtolower(str_replace(' ', '_',${dep_method_data.logo}))}.png" alt="${dep_method} Logo"  width="60" height="34">
+                                    </a>
+                                <:elseif test="count(${result.casino_deposit_methods}) == 4">
+                                    <a class="list-title list_link banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
+                                        <img src="/public/sync/banking_method_light/68x39/${strtolower(str_replace(' ', '_',${dep_method_data.logo}))}.png" alt="${dep_method} Logo"  width="60" height="34">
+                                    </a>
+                                </:if>
+                                <:set var="k" val="${k}+1"/>
+                            </:foreach>
+                            <:unset var="k"/>
+                        </div>
+                        <:set var="extraMethods" val="count(${result.casino_deposit_methods})-4"/>
+                        <:if test="${extraMethods} > 0 && count(${result.casino_deposit_methods}) !== 4">
+                            <div class="popup-spec">
+                                <span class="open-popup-spec">Show all (${count(${result.casino_deposit_methods})})</span>
+                                <div class="popup-casino-spec large">
+                                    <i class="icon-icon_unavailable close-popup-spec"></i>
+                                    <div class="list_scroll">
+                                        <div class="list-headings">
+                                            <span>Method</span>
+                                            <span>Deposit</span>
+                                            <span>Withdrawal</span>
+                                        </div>
+                                        <:foreach var="${result.casino_deposit_methods}" key="dep_method" val="dep_method_data">
+                                            <div class="list-item-spec">
+                                                <a class="list-title list_link item-spec banking" href="/banking/${strtolower(str_replace(' ', '-', ${dep_method}))}">
+                                                    <img src="/public/sync/banking_method_light/68x39/${strtolower(str_replace(' ', '_',${dep_method_data.logo}))}.png" alt="${dep_method} Logo" width="60" height="34">
+                                                    ${dep_method}
+                                                </a>
+                                                <:if test="empty(${dep_method_data.deposit_methods})">
+                                                    <span><i class="icon-icon_unavailable"></i></span>
+                                                <:else>
+                                                    <span><i class="icon-icon_available"></i></span>
+                                                </:if>
+                                                <:if test="empty(${dep_method_data.withdraw_methods})">
+                                                    <span><i class="icon-icon_unavailable"></i></span>
+                                                <:else>
+                                                    <span><i class="icon-icon_available"></i></span>
+                                                </:if>
+                                            </div>
+                                        </:foreach>
+                                    </div>
+                                </div>
+                            </div>
+                        </:if>
+                    </div>
+                </:if>
+            </div>
+        </:if>
+    </div>
+</div>
+<:set var="i" val="${i}+1"/>

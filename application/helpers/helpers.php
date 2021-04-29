@@ -1,9 +1,7 @@
 <?php
 function normalize($name)
 {
-    $str = str_replace(" ", "-", $name);
-    $str = str_replace("#", "-", $str);
-    return strtolower($str);
+    return strtolower(str_replace([' ', '#'], "-", $name));
 }
 
 function countryNormalize($name)
@@ -19,17 +17,18 @@ function parse_video($url)
 function get_rating($score)
 {
     $string = "";
-    if ($score == 0) {
+    $score = ceil($score);
+    if (!$score || $score < 1) {
         $string = 'No score';
-    } elseif ($score >= 1 && $score <= 2.99) {
+    } elseif ($score >= 1 && $score < 3) {
         $string = 'Terrible';
-    } elseif ($score >= 3 && $score <= 4.99) {
+    } elseif ($score >= 3 && $score < 5) {
         $string = 'Poor';
-    } elseif ($score >= 5 && $score <= 6.99) {
+    } elseif ($score >= 5 && $score < 7) {
         $string = 'Good';
-    } elseif ($score >= 7 && $score <= 8.99) {
+    } elseif ($score >= 7 && $score < 9) {
         $string = 'Very good';
-    } elseif ($score >= 9 && $score <= 10) {
+    } elseif ($score >= 9) {
         $string = 'Excellent';
     }
 
