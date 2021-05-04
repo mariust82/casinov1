@@ -69,21 +69,17 @@ function checkIfIsMobileDevice() {
     return false;
 }
 
-function loadScripts(_scripts) {
+function loadScripts() {
     var version = $('.controller_main').data("version");
-    $.each(_scripts, function(index, script) {
-        if (!$("script[src='/public/build/js/compilations/"+script+".js?v="+version+"']").length) {
-            $("body").append($('<script defer type="text/javascript" src="/public/build/js/compilations/'+script+'.js?v='+version+'"></script>"'));
-        }
-    });
+    if (!$("script[src='/public/build/js/compilations/defer.js?v="+version+"']").length) {
+        $("body").append($('<script defer type="text/javascript" src="/public/build/js/compilations/defer.js?v='+version+'"></script>"'));
+    }
 }
 function loadStyles(_styles) {
     var version = $('.controller_main').data("version");
-    $.each(_styles, function(index, style) {
-        if (!$("link[href='/public/build/css/compilations/"+style+".css?v="+version+"']").length) {
-            $("head").append($('<link rel="stylesheet" type="text/css" href="/public/build/css/compilations/'+style+'.css?v='+version+'" media="all">"'));
-        }
-    });
+    if (!$("link[href='/public/build/css/compilations/defer.css?v="+version+"']").length) {
+        $("body").append($('<link rel="stylesheet" type="text/css" href="/public/build/css/compilations/defer.css?v='+version+'" media="all">"'));
+    }
 }
 
 function getInternetExplorerVersion() {
@@ -121,12 +117,15 @@ var initImageLazyLoad = function () {
         
         //Load Defer Scripts and Binding
         if ($('.filter').length) {
-            loadScripts(['assets/jquery-select2', 'filters']);
+            setTimeout(function() {
+                loadStyles();
+                loadScripts();
+            }, 3000);
         }
 
         $(document).on('scroll mousemove', function(){
-            loadStyles(['defer']);
-            loadScripts(['assets/ion.rangeSlider.min', 'assets/jquery-nicescroll', 'assets/tooltipster', 'assets/swiper', 'bindings']);
+            loadStyles();
+            loadScripts();
             $(document).unbind("scroll mousemove");
 
             initSite();
