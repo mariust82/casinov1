@@ -894,8 +894,23 @@ function sliderInit(params) {
         breakpoints: {
             1024: {
                 freeMode: true,
-                slidesPerView: 'auto'
+                slidesPerView: 6,
             },
+            768: {
+                slidesPerView: 5,
+            },
+            700: {
+                slidesPerView: 4.5,
+            },
+            639: {
+                slidesPerView: 4.5,
+            },
+            479: {
+                slidesPerView: 2.5,
+            },
+            320: {
+                slidesPerView: 2,
+            }
         },
         on: {
             reachEnd: function(e) {
@@ -1064,7 +1079,7 @@ sliderInit({
 
 sliderInit({
     container: '#top-software',
-    sledesPerViw: 6,
+    sledesPerViw: 4,
     nextClass: '.cn5',
     prevClass: '.cp5'
 });
