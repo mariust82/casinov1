@@ -123,10 +123,10 @@ var initImageLazyLoad = function () {
             }, 3000);
         }
 
-        $(document).on('scroll mousemove', function(){
+        $(document).one('scroll mousemove', function(){
             loadStyles();
             loadScripts();
-            $(document).unbind("scroll mousemove");
+            // $(document).unbind("scroll mousemove");
 
             initSite();
             initToggleMenu();
