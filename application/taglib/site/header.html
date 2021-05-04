@@ -16,14 +16,20 @@
     <:if test="${data.use_bundle}">
 
         <:if if test="!empty(${data.page_type}) && ${data.page_type} == 'game_info'">
-            <link rel="preload" href="/public/build/css/compilations/gameplay.css?ver=${data.version}" as="style">
-            <link rel="stylesheet" type="text/css" href="/public/build/css/compilations/gameplay.css?ver=${data.version}" media="all">
+            <link rel="preload" href="/public/build/css/compilations/gameplay.css?ver=${data.version}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+            <noscript>
+                <link rel="stylesheet" type="text/css" href="/public/build/css/compilations/gameplay.css?ver=${data.version}" media="all">
+            </noscript>
         <:elseif test="!empty(${data.page_type}) && ${data.page_type} == 'reviews'">
-            <link rel="preload" href="/public/build/css/compilations/casino_view.css?ver=${data.version}" as="style">
-            <link rel="stylesheet" type="text/css" href="/public/build/css/compilations/casino_view.css?ver=${data.version}" media="all">
+            <link rel="preload" href="/public/build/css/compilations/casino_view.css?ver=${data.version}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+            <noscript>
+                <link rel="stylesheet" type="text/css" href="/public/build/css/compilations/casino_view.css?ver=${data.version}" media="all">
+            </noscript>
         <:else>
-            <link rel="preload" href="/public/build/css/compilations/all.css?ver=${data.version}" as="style">
-            <link rel="stylesheet" type="text/css" href="/public/build/css/compilations/all.css?ver=${data.version}" media="all">
+            <link rel="preload" href="/public/build/css/compilations/all.css?ver=${data.version}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+            <noscript>
+                <link rel="stylesheet" type="text/css" href="/public/build/css/compilations/all.css?ver=${data.version}" media="all">
+            </noscript>
         </:if>
 
         <:if if test="!empty(${data.page_type}) && ${data.page_type} == 'game_info'">
