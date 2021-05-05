@@ -5193,7 +5193,7 @@ a:focus {
 
 .js-condense {
   overflow: hidden;
-  display:none;
+  height: 93px;
 }
 
 .js-condense>span {
