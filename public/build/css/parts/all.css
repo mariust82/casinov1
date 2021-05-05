@@ -6582,6 +6582,13 @@ hr.widget{
 
 .lw .casinos-list .slide-box .row:nth-of-type(3){
   justify-content:flex-start;
+  width:25%;
+}
+
+@media (max-width:800px) {
+  .lw .casinos-list .slide-box .row:nth-of-type(3){
+    width:auto%;
+  }
 }
 
 .slide-box-amount {
