@@ -6663,7 +6663,7 @@ hr.widget{
   margin-bottom: 0;
   border-bottom: 1px solid #e8eaf3;
 }
-.list-view .casinos-list .slide-box .row.edges {
+.list:not(.lw) .list-view .casinos-list .slide-box .row.edges {
   -webkit-order: 2;
   order: 2;
   width: calc(75% - 350px);
@@ -6673,7 +6673,7 @@ hr.widget{
 .list-view .casinos-list .logo-casino {
   display: none;
 }
-.list-view .casinos-list .slide-box .row:nth-of-type(3) {
+.list:not(.lw) .list-view .casinos-list .slide-box .row:nth-of-type(3) {
   -webkit-order: 1;
   order: 1;
   width: 25%;
@@ -6683,6 +6683,12 @@ hr.widget{
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
 }
+
+.lw .list-view .casinos-list .slide-box .row:nth-of-type(3) {
+  -webkit-justify-content: left;
+  justify-content: left;
+}
+
 .list-view .casinos-list .dashed {
   width: 140px;
   height: 30px!important;
