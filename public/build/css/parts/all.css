@@ -6579,6 +6579,11 @@ hr.widget{
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
 }
+
+.lw .casinos-list .slide-box .row:nth-of-type(3){
+  justify-content:flex-start;
+}
+
 .slide-box-amount {
   color: #465156;
   font-size: 14px;
@@ -6647,9 +6652,19 @@ hr.widget{
   width: calc(78% - 346px);
   margin-right: 25px;
 }
-/* .list-item-cell:nth-child(3) {
-  width: 18%;
-} */
+
+@media (max-width:800px) {
+  .list-view .lw .list-heading .list-item-cell.list-casino {
+    width: calc(87.5% - 346px);
+  }
+}
+
+@media (max-width:767px) {
+  .list-view .lw .list-heading .list-item-cell.list-casino {
+    width: auto;
+    margin: 0 5px 0 10px;
+  }
+}
 
 .list-view .casinos-list .slide-box {
   margin-left: 0;
@@ -6684,11 +6699,6 @@ hr.widget{
   flex-wrap: wrap;
 }
 
-.lw .list-view .casinos-list .slide-box .row:nth-of-type(3) {
-  -webkit-justify-content: left;
-  justify-content: left;
-}
-
 .list-view .casinos-list .dashed {
   width: 140px;
   height: 30px!important;
@@ -6701,6 +6711,20 @@ hr.widget{
   -webkit-order: 3;
   order: 3;
 }
+
+.list-view .lw .casinos-list .slide-box .row.edges {
+  width: 36%;
+  margin: 0 8.5% 0 0;
+  flex-shrink: 0;
+}
+
+@media (max-width:767px) {
+  .list-view .lw .casinos-list .slide-box .row.edges {
+    width: auto;
+    margin: 0 0 3px;
+  }
+}
+
 .list-view .casinos-list .slide-box .row:last-of-type {
   -webkit-order: 4;
   order: 4;
@@ -6833,7 +6857,7 @@ hr.widget{
     display: block;
   }
 
-  .list-view .list-heading .list-item-cell.list-casino:before {
+  .list-view .lw .list-heading .list-item-cell.list-bonus:before {
     content: '/';
     margin-right: 5px;
   }
