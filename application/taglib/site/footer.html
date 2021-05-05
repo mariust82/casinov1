@@ -1,6 +1,6 @@
 <div class="overlay"></div>
 <site:css-loader/>
-<script src="https://code.jquery.com/jquery-2.1.3.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/jquery-2.1.3.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <:if test="${data.use_bundle}">
     <:if if test="!empty(${data.page_type}) && ${data.page_type} == 'game_info'">
         <script defer src="/public/build/js/compilations/gameplay.js?ver=${data.version}"></script>
