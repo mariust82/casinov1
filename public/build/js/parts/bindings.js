@@ -2194,7 +2194,7 @@ function initExpandingText() {
                 currentclass = "section",
                 singleline = parseFloat(element.css("line-height")),
                 auto = 1,
-                fullheight = element.children('span').innerHeight() - (parseInt($("p",  $(this)).first().css("margin-top")) * 2),
+                fullheight = element.children('span').innerHeight() - (parseInt($("p",  element).first().css("margin-top")) * 2),
                 settings = $.extend({
                     linecount: auto,
                     baseclass: baseclass,
@@ -2215,7 +2215,6 @@ function initExpandingText() {
             element.wrap(wrapper);
 
             if (element.parent().not(wrapjs)) {
-
                 if (fullheight > linescount) {
 
                     element.addClass(ellipsisclass).css({'min-height': linescount, 'max-height': linescount, 'overflow': 'hidden'});
