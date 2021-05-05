@@ -6586,14 +6586,14 @@ hr.widget{
   flex-wrap: wrap;
 }
 
-.lw .casinos-list .slide-box .row:nth-of-type(3){
+.list-view .lw .casinos-list .slide-box .row:nth-of-type(3){
   justify-content:flex-start;
   width:25%;
 }
 
 @media (max-width:800px) {
-  .lw .casinos-list .slide-box .row:nth-of-type(3){
-    width:auto%;
+  .list-view .lw .casinos-list .slide-box .row:nth-of-type(3){
+    width:auto;
   }
 }
 
