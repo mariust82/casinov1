@@ -643,7 +643,7 @@
     width: 102px !important;
     height: 26px !important;
   }
-  .casino-review-heading-right .list-rating-score{
+  .casino-review-heading-right .list-rating .list-rating-score{
     height: 25px !important;
     width: 24px !important;
     display: -webkit-inline-flex;
@@ -652,6 +652,7 @@
     align-items: center;
     -webkit-justify-content: center;
     justify-content: center;
+    margin-top: -1px;
   }
 
 }
