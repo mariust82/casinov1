@@ -3,7 +3,7 @@
 <xml>
     <js source="public/build/js/parts" destination="public/build/js/compilations">
         <file name="casino_view">
-            <!-- <file name="global_js/jquery-2.1.3.min" /> -->
+            <file name="global_js/jquery-2.1.3.min" />
             <file name="global_js/image-defer" />
             <file name="vote"/>
             <file name="main"/>
@@ -11,26 +11,26 @@
             <file name="tracker"/>
         </file>
         <file name="blog">
-            <!-- <file name="global_js/jquery-2.1.3.min" /> -->
+            <file name="global_js/jquery-2.1.3.min" />
             <file name="global_js/image-defer" />
             <file name="vote"/>
             <file name="main"/>
             <file name="tracker"/>
         </file>
         <file name="contact">
-            <!-- <file name="global_js/jquery-2.1.3.min" /> -->
+            <file name="global_js/jquery-2.1.3.min" />
             <file name="main"/>
             <file name="contact"/>
         </file>
         <file name="gameplay">
-            <!-- <file name="global_js/jquery-2.1.3.min" /> -->
+            <file name="global_js/jquery-2.1.3.min" />
             <file name="global_js/image-defer" />
             <file name="main"/>
             <file name="gameplay"/>
             <file name="tracker"/>
         </file>
         <file name="main">
-            <!-- <file name="global_js/jquery-2.1.3.min" /> -->
+            <file name="global_js/jquery-2.1.3.min" />
             <file name="global_js/image-defer" />
             <file name="main"/>
             <file name="tracker"/>
