@@ -1,5 +1,7 @@
 jQuery.migrateMute = true;
 var AJAX_CUR_PAGE = 1;
+var SCRIPTS_LOADED = false;
+var STYLES_LOADED = false;
 var GAME_CURR_PAGE = 1;
 var NEW_CURR_PAGE = 1;
 var BEST_CURR_PAGE = 1;
@@ -73,12 +75,32 @@ function loadScripts() {
     var version = $('.controller_main').data("version");
     if (!$("script[src='/public/build/js/compilations/defer.js?v="+version+"']").length) {
         $("body").append($('<script defer type="text/javascript" src="/public/build/js/compilations/defer.js?v='+version+'"></script>"'));
+        SCRIPTS_LOADED = true;
     }
+
+    initSite();
+    initToggleMenu();
+    initSearch();
+    initTooltipseter();
+    bindButtons();
+
+    new SearchPanel($('.header'));
+
+    if ($('#filters').length > 0) {
+        new ListFilters($('#filters'));
+    }
+
+    if ($('.filter-filter').length > 0) {
+        new ListFilters($('#filters'));
+    }
+
+    new newsletter($('.subscribe'));
 }
-function loadStyles(_styles) {
+function loadStyles() {
     var version = $('.controller_main').data("version");
     if (!$("link[href='/public/build/css/compilations/defer.css?v="+version+"']").length) {
         $("body").append($('<link rel="stylesheet" type="text/css" href="/public/build/css/compilations/defer.css?v='+version+'" media="all">"'));
+        STYLES_LOADED = true;
     }
 }
 
@@ -118,33 +140,24 @@ var initImageLazyLoad = function () {
         //Load Defer Scripts and Binding
         if ($('.filter').length) {
             setTimeout(function() {
-                loadStyles();
-                loadScripts();
+                if (!STYLES_LOADED) {
+                    loadStyles();
+                }
+
+                if (!SCRIPTS_LOADED) {
+                    loadScripts();
+                }
             }, 3000);
         }
 
         $(document).one('scroll mousemove', function(){
-            loadStyles();
-            loadScripts();
-            // $(document).unbind("scroll mousemove");
-
-            initSite();
-            initToggleMenu();
-            initSearch();
-            initTooltipseter();
-            bindButtons();
-
-            new SearchPanel($('.header'));
-
-            if ($('#filters').length > 0) {
-                new ListFilters($('#filters'));
+            if (!STYLES_LOADED) {
+                loadStyles();
             }
 
-            if ($('.filter-filter').length > 0) {
-                new ListFilters($('#filters'));
+            if (!SCRIPTS_LOADED) {
+                loadScripts();
             }
-
-            new newsletter($('.subscribe'));
         });
         initExpandingText();
         menuHoverAction();

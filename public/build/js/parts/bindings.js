@@ -1159,11 +1159,12 @@ function bindButtons() {
         }
     });
 
-    $('.js-more-games').click(function () {
+    console.log('test');
+
+    $('.js-more-games').on('click', function () {
         $(this).addClass('loading');
         var id = $(this).data('software');
         var self = $(this);
-        console.dir('/games-by-software/' + GAME_CURR_PAGE);
         _request = $.ajax({
             url: '/games-by-software/' + GAME_CURR_PAGE,
             data: {
