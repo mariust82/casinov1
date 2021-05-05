@@ -1904,6 +1904,12 @@ a:focus {
     padding: 10px;
     width: auto;
   }
+
+  .list.lw .list-item{
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .low_wagering_list .list-item .list-rating {
     display: none;
   }
@@ -6662,14 +6668,14 @@ hr.widget{
 
 @media (max-width:800px) {
   .list-view .lw .list-heading .list-item-cell.list-casino {
-    width: calc(87.5% - 346px);
+    width: calc(88% - 346px);
   }
 }
 
 @media (max-width:767px) {
   .list-view .lw .list-heading .list-item-cell.list-casino {
     width: auto;
-    margin: 0 5px 0 10px;
+    margin: 0 5px 0 0;
   }
 }
 
