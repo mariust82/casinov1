@@ -15,8 +15,8 @@
         <div class="row">
             <:if test="isset(${result.bonus_free}) && ${result.bonus_free} !== null">
                 <span class="slide-box-amount">${result.bonus_free.amount} ${result.bonus_free.type}</span>
-                <:else>
-                    <span class="slide-box-amount">${fdb_amount}</span>
+            <:else>
+                <span class="slide-box-amount">${fdb_amount}</span>
             </:if>
             
             <div class="games_allowed">Games:

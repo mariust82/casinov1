@@ -15,11 +15,11 @@
     <:set var="data_total" val=""/>
 </:if>
 
-<div class="list">
+<div class="list ${(${isLowWagering} || ${isNoDeposit})?'lw':''}">
     <div class="list-heading list-item">
-        <:if test="strtolower(${data.selected_entity}) == 'no deposit bonus' || strtolower(${data.selected_entity}) == 'low wagering'">
-            <div class="list-item-cell list-heading-title list-bonus">BONUS</div>
+        <:if test="${isLowWagering} || ${isNoDeposit}">
             <div class="list-item-cell list-heading-title list-casino">CASINO</div>
+            <div class="list-item-cell list-heading-title list-bonus">BONUS</div>
             <div class="list-item-cell list-heading-title list-code">BONUS CODE</div>
         <:else>
             <div class="list-item-cell list-item-casino list-heading-title">CASINO</div>
