@@ -17,6 +17,7 @@ function imageDefer(className) {
 			for(var j=0; j<entries.length; j++) {
 				var element = entries[j].target;
 				if(entries[j].isIntersecting===true && element.src=="") {
+					console.log(element.getAttribute('data-alt'));
 					element.src = element.getAttribute("data-src");
 				}
 			}

@@ -66,7 +66,7 @@ var initImageLazyLoad = function () {
         $('body').on('click', '.btn_visit', function(){
             feedbackPopup($(this));
         });
-        
+
         //Load Defer Scripts and Binding
         if ($('.filter').length) {
             setTimeout(function() {
@@ -89,7 +89,7 @@ var initImageLazyLoad = function () {
                 loadScripts();
             }
         });
-        
+
         setStyleProps();
 
         // document.ontouchmove = function (e) {
