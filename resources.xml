@@ -35,9 +35,20 @@
             <file name="main"/>
             <file name="tracker"/>
         </file>
+
+        <file name="defer">
+            <file name="assets/jquery-select2" />
+            <file name="filters" />
+            <file name="assets/ion.rangeSlider.min" />
+            <file name="assets/jquery-nicescroll" />
+            <file name="assets/tooltipster" />
+            <file name="assets/swiper" />
+            <file name="bindings" />
+        </file>
+
         <!-- bundle used only for local dev -->
         <file name="bundle">
-            <file name="global_js/jquery-2.1.3.min" />
+            <file name="assets/jquery-select2" />
             <file name="global_js/image-defer" />
             <file name="tracker"/>
         </file>

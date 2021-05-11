@@ -1,46 +1,45 @@
 var ww = $(window).width();
 
+function getInternetExplorerVersion() {
+    var rv = -1;
+    if (navigator.appName == 'Microsoft Internet Explorer') {
+        var ua = navigator.userAgent;
+        var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null)
+            rv = parseFloat(RegExp.$1);
+    }
+    else if (navigator.appName == 'Netscape') {
+        var ua = navigator.userAgent;
+        var re = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null)
+            rv = parseFloat(RegExp.$1);
+    }
+    return rv;
+}
+
+function checkIfIsMobileDevice() {
+    var winsize = $(window).width();
+
+    $(window).resize(function () {
+        winsize = $(window).width();
+    });
+
+    if (winsize < 1000) {
+        return true;
+    }
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        return true;
+    }
+
+    return false;
+}
+
 function closeCasinoPopup(container){
     $('.bonus-popup').find('.close_popup-wp').click(function(e){
         e.stopPropagation();
         $('.bonus-popup').remove();
     });
-}
-
-function feedbackPopup(_this) {
-    var _request = new XMLHttpRequest();
-    _request.abort();
-    _request = $.ajax({
-        url: "/casino/feedback-popup",
-        data: {
-            id: _this.data('casino-id')
-        },
-        dataType: 'HTML',
-        timeout: 20000,
-        type: 'POST',
-        cache: false,
-        success: function (data) {
-            if($(data).filter('.cl-lightbox').data('show-popup') == 1) {
-                $('body').append(data);
-                $(".js-drag-rate").ionRangeSlider(rangeRatingConfig);
-            }
-        },
-        error: function (jqXHR) {
-            console.log(jqXHR);
-        }
-    });
-}
-
-function feedbackPopupNextStep(step, isFinal) {
-    var slides = $('.cl-lightbox-slide');
-    slides.hide();
-    slides.eq(step - 1).show();
-    
-    if (isFinal) {
-        setTimeout(function() {
-            closeClLightbox();
-        }, 3000);
-    }
 }
 
 function feedbackPopup(_this) {
@@ -1174,11 +1173,10 @@ function bindButtons() {
         }
     });
 
-    $('.js-more-games').click(function () {
+    $('.js-more-games').on('click', function () {
         $(this).addClass('loading');
         var id = $(this).data('software');
         var self = $(this);
-        console.dir('/games-by-software/' + GAME_CURR_PAGE);
         _request = $.ajax({
             url: '/games-by-software/' + GAME_CURR_PAGE,
             data: {
@@ -2152,3 +2150,303 @@ var initSite = function () {
         e.preventDefault();
     });
 }
+
+function gridViewBoxPopup(){
+    $('body').on('click', '.open-popup-spec', function(){
+        $(".welcome_package-popup-trigger").closest('.wp-title').find('.welcome_package-popup').removeClass('active');
+        $(this).closest('.popup-spec').find('.popup-casino-spec').toggleClass('active');
+        $('.open-popup-spec').not(this).closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
+    });
+
+    $('body').on('click', '.close-popup-spec', function(){
+        $('.popup-casino-spec').removeClass('active');
+    });
+
+    $('body').on('click', '.welcome_package-popup-trigger', function(){
+        $('.open-popup-spec').closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
+        $(this).closest('.wp-title').find('.welcome_package-popup').toggleClass('active');
+        $(".welcome_package-popup-trigger").not(this).closest('.wp-title').find('.welcome_package-popup').removeClass('active');
+    });
+
+    $('body').on('click', '.close-popup-wp', function(){
+        $('.welcome_package-popup').removeClass('active');
+    });
+}
+gridViewBoxPopup();
+
+function scrollToBlock() {
+    $('body').on('click', 'a[href^="#"]', function() {
+        var block = $(this).attr('href');
+
+        if ($(block).length > 0) {
+            $('html, body').animate({
+                scrollTop: $(block).offset().top
+            }, 400);
+        }
+
+        return false;
+    });
+}
+
+function menuHoverAction() {
+    if (!checkIfIsMobileDevice()) {
+        $('.header-menu__list-holder .expand-holder').on('mouseout', function (e) {
+            $('.expand-holder').removeClass('opened');
+        })
+    }
+}
+
+function initExpandingText() {
+    $.fn.moreLines = function (options) {
+
+        "use strict";
+
+        this.each(function () {
+
+            var element = $(this),
+                baseclass = "b-morelines_",
+                basejsclass = "js-morelines_",
+                currentclass = "section",
+                singleline = parseFloat(element.css("line-height")),
+                auto = 1,
+                fullheight = element.children('span').innerHeight() - (parseInt($("p",  element).first().css("margin-top")) * 2),
+                settings = $.extend({
+                    linecount: auto,
+                    baseclass: baseclass,
+                    basejsclass: basejsclass,
+                    classspecific: currentclass,
+                    buttontxtmore: "more lines",
+                    buttontxtless: "less lines",
+                    animationspeed: auto
+                }, options),
+                ellipsisclass = settings.baseclass + settings.classspecific + "_ellipsis",
+                buttonclass = settings.baseclass + settings.classspecific + "_button",
+                wrapcss = settings.baseclass + settings.classspecific + "_wrapper",
+                wrapjs = settings.basejsclass + settings.classspecific + "_wrapper",
+                wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs);
+                singleline = (singleline / 1.6) + parseFloat(element.css("font-size"));
+                var linescount = singleline * settings.linecount;
+
+            element.wrap(wrapper);
+
+            if (element.parent().not(wrapjs)) {
+                if (fullheight > linescount) {
+
+                    element.addClass(ellipsisclass).css({'min-height': linescount, 'max-height': linescount, 'overflow': 'hidden'});
+
+                    var moreLinesButton = $("<div>", {
+                        "class": buttonclass,
+                        click: function () {
+
+                            element.toggleClass(ellipsisclass);
+                            $(this).toggleClass(buttonclass + '_active');
+
+                            if (element.css('max-height') !== 'none') {
+                                element.css({'height': linescount, 'max-height': ''}).animate({height: '100%'}, settings.animationspeed, function () {
+                                    moreLinesButton.html(settings.buttontxtless);
+                                });
+
+                            } else {
+                                element.animate({height: linescount}, settings.animationspeed, function () {
+                                    moreLinesButton.html(settings.buttontxtmore);
+                                    element.css('max-height', linescount);
+                                });
+                            }
+                        },
+                        html: settings.buttontxtmore
+                    });
+
+                    element.after(moreLinesButton);
+                }
+            }
+            element.fadeIn();
+        });
+        return this;
+    };
+
+    $('.js-condense').moreLines({
+        linecount: 3,
+        baseclass: 'js-condense',
+        basejsclass: 'js-condense',
+        classspecific: '_readmore',
+        buttontxtmore: "Read More",
+        buttontxtless: "Read Less",
+        animationspeed: 250
+    });
+}
+
+initExpandingText();
+
+// if a table have more than 2 columns and the table has class ".advanced_table"
+function responsiveTables(breakpoint) {
+    breakpoint = breakpoint || '800px';
+    if ($('.advanced_table').length > 0) {
+        $('.advanced_table').each(function(i) {
+            i++;
+            var className = 'jrt-instance-' + i;
+            var $this = $(this);
+            $this.addClass('jrt');
+            $this.addClass(className);
+            var respondHtml = '<style type="text/css">\n';
+            respondHtml +=
+                '@media only screen and (max-width:' +
+                breakpoint +
+                ')  {\n';
+            if ($this.find('thead').length > 0) {
+                $this.find('thead th').each(function(i) {
+                    var $tdText = $(this)
+                        .text()
+                        .replace(/\s+/g, ' ');
+                    i++;
+                    respondHtml +=
+                        '\t.' +
+                        className +
+                        '>tbody>tr>td.jrt-cell-' +
+                        i +
+                        ':before { content: "' +
+                        $tdText +
+                        '"; }\n';
+                });
+            }
+            $this.find('tbody td').each(function(i) {
+                $(this).wrapInner( "<em></em>" );
+            });
+            $this.find('tbody > tr').each(function(i) {
+                var $this = $(this);
+                i++;
+                var arrColspan = [];
+                var modIndex = [];
+                $this.find('td').each(function(i, c, m) {
+                    var $this = $(this);
+                    i++;
+                    if (modIndex > 0) {
+                        modIndex[0];
+                        i++;
+                    }
+                    if (arrColspan > 0) {
+                        m = i + arrColspan.shift() - 1;
+                        modIndex.splice(0, 1);
+                        modIndex.push(m);
+                        i = m;
+                    }
+                    if ($this.is('[colspan]')) {
+                        c = parseInt($(this).prop('colspan'), 10);
+                        arrColspan.push(c);
+                    }
+                    $this.addClass('jrt-cell-' + i);
+                });
+            });
+            if ($this.find('thead').length > 0) {
+                respondHtml += '}\n';
+                respondHtml += '</style>';
+                $this.before(respondHtml);
+            }
+        });
+    }
+}
+responsiveTables();
+
+var user_rate = $('.rating-container').data('user-rate');
+if ($('.box img.not-accepted').length) {
+    $('.br-widget a').unbind("mouseenter mouseleave mouseover click");
+} else {
+    if (user_rate > 0) {
+        $('.br-widget').children().each(function () {
+            $(this).unbind("mouseenter mouseleave mouseover click");
+            if (parseInt($(this).data('rating-value')) <= parseInt(user_rate)) {
+                $(this).addClass('br-active');
+            }
+        });
+        $('.br-widget').unbind("mouseenter mouseleave mouseover click");
+    }
+}
+
+$("body").on('click', ".tf_flex", function() {
+    var id = $(this).data('id');
+    var _this = $(this);
+    $.ajax({
+        url: '/timeframe-tooltip',
+        type: 'POST',
+        data: {
+            id: id
+        },
+        dataType: 'html'
+    })
+    .done(function (data) {
+        $(".software-tooltipster").remove();
+        _this.append(data);
+        CloseTFPopup();
+    });
+});
+
+var windowToBottom = 5;
+$(window).on('scroll', function () {
+
+    if (windowToBottom < $(window).scrollTop()) {
+        //scroll down
+        $('body').addClass('site__header_hidden');
+        windowToBottom = $(window).scrollTop();
+    } else {
+        //scroll up
+        if ((windowToBottom - $(window).scrollTop()) > ($(window).height() / 3)) {
+            $('body').removeClass('site__header_hidden');
+            windowToBottom = $(window).scrollTop();
+        }
+    }
+
+    if ($(window).scrollTop() < 5) {
+        $('body').removeClass('site__header_hidden');
+    }
+});
+
+//detect when scrolling is stoped
+$.fn.scrollEnd = function (callback, timeout) {
+    $(this).scroll(function () {
+        var $this = $(this);
+        if ($this.data('scrollTimeout')) {
+            clearTimeout($this.data('scrollTimeout'));
+        }
+        $this.data('scrollTimeout', setTimeout(callback, timeout));
+    });
+};
+
+if ($(window).width() < 768) {
+    $(window).scrollEnd(function () {
+        if ($(window).scrollTop() !== 0) {
+            $('body').addClass('site__header_sticky');
+        }
+    }, 800);
+
+    if (/\/reviews\//.test(window.location.href) && $('.btn-group-mobile .btn-middle').length > 0) {
+        var appended = false;
+        var position = $(window).height() / 2 + $(window).scrollTop();
+        var body = $('body');
+        $(window).on('scroll', function () {
+            if ($(window).scrollTop() > position && appended === false) {
+                body.append('<a rel="nofollow" target="_blank" class="btn-play-now" href="' + $('.btn-group-mobile .btn-middle').attr('href') + '">Play Now</a>');
+                body.addClass('play-now-appended');
+                appended = true;
+            }
+        });
+    }
+}
+
+function CloseTFPopup() {
+    $('.close_tf_wrap').on('click', function (e) {
+        console.dir($(this).parent().parent().parent());
+        $(this).parent().parent().parent().remove();
+        e.stopPropagation();
+    });
+}
+
+function setIframeAsResponsive() {
+    var iframes = $('.plain-text iframe');
+
+    if (iframes.length) {
+        iframes.each(function (index, el) {
+            $(el).wrap('<div class="iframe-wrapper"></div>');
+        });
+    }
+}
+
+setIframeAsResponsive();
