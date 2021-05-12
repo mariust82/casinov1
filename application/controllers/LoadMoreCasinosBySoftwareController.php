@@ -58,7 +58,7 @@ class LoadMoreCasinosBySoftwareController extends Lucinda\MVC\STDOUT\Controller 
                 $casinoFilter->setPromoted(TRUE);
             }
         }
-        $casinoFilter->setSoftware($this->request->parameters("id"));
+        $casinoFilter->setSoftware($this->request->parameters("software"));
         $object = new CasinosList($casinoFilter);
         $results = $object->getResults($sortBy, 0, $limit,$offset);
         $total = $object->getTotal();
