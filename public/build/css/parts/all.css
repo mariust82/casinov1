@@ -9172,3 +9172,10 @@ img[src] {
       width: unset;
   }
 }
+.swiper-container{
+  overflow:hidden;
+}
+.carousel .swiper-slide{
+  min-width:155.5px;
+  margin-right: 5px;
+}
