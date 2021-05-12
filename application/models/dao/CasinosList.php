@@ -348,7 +348,7 @@ class CasinosList
         if ($this->filter->getPlayVersion() == "Live Dealer") {
             $fields = "COUNT(DISTINCT t1.id) AS nr";
         } else {
-            $fields = "COUNT(DISTINCT t1.id) AS nr";
+            $fields = "COUNT(t1.id) AS nr";
         }
         $queryGenerator = new CasinosListQuery($this->filter, array($fields), null, 0, '');
         $query = $queryGenerator->getQuery();
