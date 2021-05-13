@@ -194,6 +194,7 @@ var ListFilters = function (obj) {
             success: function (data) {
                 var scrollPos = $(document).scrollTop();
                 var cont = $(data).find('.loaded-item');
+                var loadedItems = $(".loaded-item").length + cont.length;
                 var loadTotal = $(data).filter('[data-load-total]').data('load-total');
                 var totalItems = $(data).find('.qty-items').data('load-total');
 
@@ -272,9 +273,6 @@ var ListFilters = function (obj) {
                             _loaderHolder.show();
                             _emptyContent.hide();
                         }
-                        if(cont.length === loadTotal){
-                            _moreButton.hide();
-                        }
                     } else {
 
                         if (cont.length < 24) {
@@ -335,8 +333,7 @@ var ListFilters = function (obj) {
                     CloseTFPopup();
                     copyToClipboard();
                 }
-                
-                if($('.list-body').children().length >= totalItems) {
+                if(loadedItems >= loadTotal || $('.list-body').children().length >= totalItems) {
                     _moreButton.hide();
                 }
                 if ($.fn.tooltipster) {
