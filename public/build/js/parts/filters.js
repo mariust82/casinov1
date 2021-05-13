@@ -169,7 +169,6 @@ var ListFilters = function (obj) {
 
         if (typeof AJAX_CUR_PAGE == "undefined")
             AJAX_CUR_PAGE = 0;
-        AJAX_CUR_PAGE++;
         if (_action != 'add' || _action == 'reset') {
             AJAX_CUR_PAGE = 0;
         }
@@ -250,8 +249,6 @@ var ListFilters = function (obj) {
                         $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
                     }
                 } else {
-
-
                     if (_action == 'replace') {
                         _targetContainer.html('');
                         _targetContainer.html(data);
@@ -279,11 +276,18 @@ var ListFilters = function (obj) {
                             _moreButton.hide();
                         }
                     } else {
+
+                        if (cont.length < 24) {
+                            _moreButton.hide();
+                        }
+
                         if ($('.games-list').hasClass('list-view')) {
                             _targetAddContainer.addClass('list-view');
                         }
 
                         _targetAddContainer.append(cont);
+
+
                     }
 
                     if (_url === '/slots-filter/') {
@@ -345,6 +349,7 @@ var ListFilters = function (obj) {
                     resetFilter();
                 }
                 $(document).scrollTop(scrollPos);
+                AJAX_CUR_PAGE++;
             },
             error: function (XMLHttpRequest) {
                 if (XMLHttpRequest.statusText != "abort") {
