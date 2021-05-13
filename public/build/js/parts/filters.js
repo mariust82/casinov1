@@ -333,9 +333,14 @@ var ListFilters = function (obj) {
                     CloseTFPopup();
                     copyToClipboard();
                 }
-                if(loadedItems >= loadTotal || $('.list-body').children().length >= totalItems) {
+                if (_action == 'add') {
+                    if(loadedItems >= loadTotal || $('.list-body').children().length >= totalItems) {
+                        _moreButton.hide();
+                    }
+                } else if(cont.length > 0 && cont.length < 24) {
                     _moreButton.hide();
                 }
+
                 if ($.fn.tooltipster) {
                     $('.js-tooltip').tooltipster(tooltipConfig);
                     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
