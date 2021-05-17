@@ -10,6 +10,7 @@
   "dir": "ltr",
   "lang": "en_US",
   "orientation": "portrait-primary",
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/public/build/images/icons/icon-48x48.png",
