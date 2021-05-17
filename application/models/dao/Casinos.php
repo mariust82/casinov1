@@ -7,7 +7,7 @@ class Casinos implements FieldValidator
 {
     public function getHighRollerNumber()
     {
-        return (integer) SQL("SELECT count(*) AS nr FROM casinos WHERE is_high_roller=1")->toValue();
+        return (integer) SQL("SELECT count(id) AS nr FROM casinos WHERE is_high_roller=1")->toValue();
     }
 
     public function validate($name)
