@@ -14,7 +14,13 @@ var isSearchResultEvent = false;
 $.ajaxSetup({
     cache: true
 });
-
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+        .register('/sw.js')
+        .then(function () {
+            console.log('SW registered!');
+        });
+}
 function loadScripts() {
     var version = $('.controller_main').data("version");
     if (!$("script[src='/public/build/js/compilations/defer.js?v="+version+"']").length) {
