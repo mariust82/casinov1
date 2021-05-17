@@ -16,7 +16,7 @@ $.ajaxSetup({
 });
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-        .register('/sw.js')
+        .register('/sw.js?v=' + version)
         .then(function () {
             console.log('SW registered!');
         });
