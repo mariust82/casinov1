@@ -4,6 +4,8 @@ self.addEventListener('install', event => {
         caches.open('static')
             .then(cache => {
                 cache.add('/');
+                cache.add('/public/build/css/compilations/all.css' + version);
+                cache.add('public/build/js/compilations/defer.js' + version);
             })
     );
 });
@@ -26,7 +28,7 @@ self.addEventListener('fetch', event => {
                                     cache.put(event.request.url, dynamicResponse.clone());
                                     return dynamicResponse;
                                 });
-                        });
+                        }).catch(error => console.log(error));
                 }
             })
     );
