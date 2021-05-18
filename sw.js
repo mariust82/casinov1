@@ -1,5 +1,13 @@
 self.addEventListener('install', event => {
-    console.log('[SW] V1 installing…');
+    const version = event.target.location.search;
+    event.waitUntil(
+        caches.open('static')
+            .then(cache => {
+                cache.addAll([
+                    '/'
+                ]);
+            })
+    );
 });
 
 self.addEventListener('activate', event => {
