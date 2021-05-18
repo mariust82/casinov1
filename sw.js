@@ -3,9 +3,7 @@ self.addEventListener('install', event => {
     event.waitUntil(
         caches.open('static')
             .then(cache => {
-                cache.addAll([
-                    '/'
-                ]);
+                cache.add('/');
             })
     );
 });
