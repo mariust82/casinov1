@@ -12,7 +12,25 @@ self.addEventListener('install', event => {
 
 self.addEventListener('activate', event => {
     console.log('[SW] V1 now ready to handle fetches!');
+    return self.clients.claim();
 });
 self.addEventListener('fetch', event => {
-    console.log('fetch');
+    event.respondWith(
+        caches.match(event.request)
+            .then(response => {
+                console.log(response);
+                if (response) {
+                    return response;
+                } else {
+                    return fetch(event.request)
+                        .then(dynamicResponse => {
+                            return caches.open('dynamic')
+                                .then(cache => {
+                                    cache.put(event.request.url, dynamicResponse.clone());
+                                    return dynamicResponse;
+                                });
+                        });
+                }
+            })
+    );
 });
