@@ -14,21 +14,5 @@ self.addEventListener('activate', event => {
     console.log('[SW] V1 now ready to handle fetches!');
 });
 self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request)
-            .then(response => {
-                if (response) {
-                    return response;
-                } else {
-                    return fetch(event.request)
-                        .then(dynamicResponse => {
-                            return caches.open('dynamic')
-                                .then(cache => {
-                                    cache.put(event.request.url, dynamicResponse);
-                                    return dynamicResponse;
-                                });
-                        });
-                }
-            })
-    );
+    console.log('fetch');
 });
