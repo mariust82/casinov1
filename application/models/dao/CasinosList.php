@@ -27,8 +27,7 @@ class CasinosList
             "t1.status_id", 
             "cs.name AS status", 
             "t1.name", 
-            "t1.code", 
-            "(t1.rating_total/t1.rating_votes) AS average_rating",
+            "t1.code",
             "t1.rating_votes",
             "t1.date_established", 
             "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
@@ -54,7 +53,7 @@ class CasinosList
             $object->deposit_minimum = $row["deposit_minimum"];
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
-            $object->rating = $row["average_rating"];
+            $object->rating = 0;
             $object->rating_votes = $row["rating_votes"];
             $object->score_class = $this->helper->getScoreClass($object->rating);
             if ($this->filter->getCasinoLabel() == 'Fast Payout') {
@@ -78,6 +77,7 @@ class CasinosList
         $this->appendSoftwares($output, $allowedIds);
         $this->appendBonuses($output, $allowedIds);
         $this->appendBankingMethods($output, $allowedIds);
+        $this->appendRating($output, $allowedIds);
 
         array_walk($output, function (Casino &$casino){
             $casino->all_softwares = $this->helper->get_string($casino->softwares);
@@ -192,6 +192,25 @@ class CasinosList
 
         while ($row = $result->toRow()) {
             $output[$row["casino_id"]]->comments = $row["ctn"];
+        }
+    }
+    /**
+     * Append casinos rating.
+     *
+     * @param array $output
+     * @param string $allowedIds
+     *
+     * @throws \Lucinda\SQL\ConnectionException
+     * @throws \Lucinda\SQL\StatementException
+     */
+    protected function appendRating(array &$output, string $allowedIds): void
+    {
+        // append average rating
+        $query = "SELECT id, (rating_total/rating_votes) AS average_rating
+            FROM casinos WHERE id IN (" . $allowedIds . ");";
+        $resultSet = SQL($query);
+        while ($row = $resultSet->toRow()) {
+            $output[$row["id"]]->rating = ceil($row["average_rating"]);
         }
     }
 
@@ -358,8 +377,7 @@ class CasinosList
     public function getBestCasinosByCountry($id,$currency_id,$lang_id,$limit=5,$offset=0) {
         $output = [];
         $date = date("Y-m-d", strtotime(date("Y-m-d") . " -6 months"));
-        $res = SQL("SELECT DISTINCT t1.id, t1.name,t1.tc_link , t1.code , (t1.rating_total/t1.rating_votes) AS average_rating,
-                    t1.rating_votes,
+        $res = SQL("SELECT DISTINCT t1.id, t1.name,t1.tc_link , t1.code, t1.rating_votes,
                     IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported,
                     IF(t15.casino_id IS NOT NULL,1,0) AS currency_supported,
                     IF(t17.casino_id IS NOT NULL,1,0) AS language_accepted,
@@ -371,13 +389,13 @@ class CasinosList
                     INNER JOIN casinos__countries_allowed AS t2 ON t1.id = t2.casino_id AND t2.country_id = {$id} 
                     LEFT OUTER JOIN casino_statuses AS cs ON t1.status_id = cs.id WHERE t1.is_open = 1 AND t1.status_id IN (0,3)
                     AND t1.date_established <= '{$date}' AND t1.rating_votes >= 10 AND (t1.rating_total/t1.rating_votes) >= 7.5 
-                    GROUP BY t1.id ORDER BY average_rating DESC, t1.priority DESC, t1.id DESC LIMIT {$limit} OFFSET {$offset}");
+                    GROUP BY t1.id ORDER BY (t1.rating_total/t1.rating_votes) DESC, t1.priority DESC, t1.id DESC LIMIT {$limit} OFFSET {$offset}");
         while ($row = $res->toRow()) {
             $object = new Casino();
             $object->id = $row['id'];
             $object->name = $row["name"];
             $object->code = $row["code"];
-            $object->rating = $row["average_rating"];
+            $object->rating = 0;
             $object->rating_votes = $row["rating_votes"];
             $object->is_country_accepted = $row["is_country_supported"];
             $object->is_currency_accepted = $row['currency_supported'];
@@ -389,6 +407,7 @@ class CasinosList
         $allowedIds = implode(",", array_keys($output));
         if (!empty($allowedIds)) {
             $this->appendBonuses($output, $allowedIds);
+            $this->appendRating($output, $allowedIds);
         }
 
         return $output;

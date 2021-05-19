@@ -246,7 +246,7 @@ class CasinosListQuery
                     break;
                 case CasinoSortCriteria::TOP_RATED:
                     $orderBy->add('complex_case', 'ASC');
-                    $orderBy->add("average_rating", "DESC");
+                    $orderBy->add("(t1.rating_total/t1.rating_votes)", "DESC");
                     $orderBy->add("t1.priority", "DESC");
                     $orderBy->add("t1.id", "DESC");
                     break;
