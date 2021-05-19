@@ -28,6 +28,11 @@
       "sizes": "144x144"
     },
     {
+      "src": "/public/build/images/icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
       "src": "/public/build/images/icons/icon-256x256.png",
       "type": "image/png",
       "sizes": "256x256"
