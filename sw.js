@@ -38,7 +38,8 @@ let CONFIGURATIONS = {
 function preCacheAppShell(appVersion) {
     return caches.open(CONFIGURATIONS.cache_static)
         .then(cache => {
-            cache.addAll(CONFIGURATIONS.resources);
+            cache.addAll(CONFIGURATIONS.resources)
+                .catch(error => console.log('[SW] Something went wrong with addAll: ' + error));
         })
         .catch(error => console.log('[SW] Something went wrong with caching AppShell: ' + error));
 }
