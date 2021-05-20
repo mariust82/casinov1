@@ -8,7 +8,7 @@ let CONFIGURATIONS = {
         "/public/build/css/compilations/gameplay.css",
         "/public/build/css/compilations/casino_view.css",
         "/public/build/css/compilations/defer.css",
-        "/public/build/css/compilations/ion.rangeSlider",
+        "/public/build/css/compilations/ion.rangeSlider.css",
         "/public/build/js/parts/global_js/jquery-2.1.3.min.js",
         "/public/build/js/parts/assets/jquery-nicescroll.js",
         "/public/build/js/compilations/main.js",
