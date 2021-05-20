@@ -1,5 +1,5 @@
 let CONFIGURATIONS = {
-    cache_version: 5,
+    cache_version: 6,
     resources: [
         "/",
         "/bonus-list/no-deposit-bonus",
@@ -73,6 +73,10 @@ self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
+                console.log(event.request.cache, event.request.mode);
+                if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') {
+                    return fetch(event.request);
+                }
                 if (!event.request.url.match(/(google)|(tracker)|(png)/)) {
                     return response || fetch(event.request)
                         .then((dynamicResponse) => {
