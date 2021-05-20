@@ -1,5 +1,5 @@
 let CONFIGURATIONS = {
-    cache_version: 8,
+    cache_version: 9,
     resources: [
         "/",
         "/bonus-list/no-deposit-bonus",
@@ -38,12 +38,13 @@ let CONFIGURATIONS = {
 function preCacheAppShell(appVersion) {
     return caches.open(CONFIGURATIONS.cache_static)
         .then((cache) => {
-            CONFIGURATIONS.resources.forEach((url) => {
+            CONFIGURATIONS.resources.map((url) => {
                 url = !url.match(/\.(ico|gif|jpg|png|css|js|webp)$/) ? url : url + appVersion;
-                cache.add(url)
-                    .catch((error) => console.log('[SW] Something went wrong with adding url "' + url + '". Log: ' + error));
+                return new Request(url, {cache: 'no-cache'});
+                // cache.add(url)
+                //     .catch((error) => console.log('[SW] Something went wrong with adding url "' + url + '". Log: ' + error));
             });
-            return true;
+            return cache.addAll(CONFIGURATIONS.resources);
         })
         .catch((error) => console.log('[SW] Something went wrong with caching AppShell: ' + error));
 }
@@ -70,21 +71,28 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    event.respondWith((async () => {
-        const cachedResponse = await caches.match(event.request);
-        if (cachedResponse) {
-            return cachedResponse;
-        }
-
-        const response = await fetch(event.request);
-        if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-        }
-
-        const responseToCache = response.clone();
-        const cache = await caches.open(CONFIGURATIONS.cache_dynamic);
-        await cache.put(event.request, responseToCache);
-
-        return response;
-    })());
+    if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') {
+        return;
+    }
+    event.respondWith(
+        caches.match(event.request)
+            .then((response) => {
+                console.log(event.request.cache, event.request.mode);
+                if (!event.request.url.match(/(google)|(tracker)|(png)/)) {
+                    return response || fetch(event.request, {cache: "no-cache"})
+                        .then((dynamicResponse) => {
+                            return caches.open(CONFIGURATIONS.cache_dynamic)
+                                .then((cache) => {
+                                    cache.put(event.request.url, dynamicResponse.clone());
+                                    return dynamicResponse;
+                                })
+                                .catch((error) => console.log('[SW] Something went wrong with dynamic cache: ' + error));
+                        })
+                        .catch((error) => console.log('[SW] Something went wrong with fetch: ' + error));
+                } else {
+                    return fetch(event.request);
+                }
+            })
+            .catch((error) => console.log('[SW] Something went wrong with cache: ' + error))
+    );
 });
