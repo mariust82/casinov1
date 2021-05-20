@@ -1,5 +1,5 @@
 let CONFIGURATIONS = {
-    cache_version: 6,
+    cache_version: 8,
     resources: [
         "/",
         "/bonus-list/no-deposit-bonus",
@@ -48,11 +48,11 @@ function preCacheAppShell(appVersion) {
         .catch((error) => console.log('[SW] Something went wrong with caching AppShell: ' + error));
 }
 
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
     event.waitUntil(preCacheAppShell(event.target.location.search));
 });
 
-self.addEventListener('activate', event => {
+self.addEventListener('activate', (event) => {
     console.log('[SW] V1 now ready to handle fetches!');
     event.waitUntil(
         caches.keys()
@@ -69,29 +69,22 @@ self.addEventListener('activate', event => {
     return self.clients.claim();
 });
 
-self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request)
-            .then((response) => {
-                console.log(event.request.cache, event.request.mode);
-                if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') {
-                    return fetch(event.request);
-                }
-                if (!event.request.url.match(/(google)|(tracker)|(png)/)) {
-                    return response || fetch(event.request)
-                        .then((dynamicResponse) => {
-                            return caches.open(CONFIGURATIONS.cache_dynamic)
-                                .then((cache) => {
-                                    cache.put(event.request.url, dynamicResponse.clone());
-                                    return dynamicResponse;
-                                })
-                                .catch((error) => console.log('[SW] Something went wrong with dynamic cache: ' + error));
-                        })
-                        .catch((error) => console.log('[SW] Something went wrong with fetch: ' + error));
-                } else {
-                    return fetch(event.request);
-                }
-            })
-            .catch((error) => console.log('[SW] Something went wrong with cache: ' + error))
-    );
+self.addEventListener('fetch', (event) => {
+    event.respondWith((async () => {
+        const cachedResponse = await caches.match(event.request);
+        if (cachedResponse) {
+            return cachedResponse;
+        }
+
+        const response = await fetch(event.request);
+        if (!response || response.status !== 200 || response.type !== 'basic') {
+            return response;
+        }
+
+        const responseToCache = response.clone();
+        const cache = await caches.open(CONFIGURATIONS.cache_dynamic);
+        await cache.put(event.request, responseToCache);
+
+        return response;
+    })());
 });
