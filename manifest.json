@@ -2,8 +2,8 @@
   "name": "Complete Online Casino Lists & Bonuses - CasinosLists.com",
   "short_name": "CasinosLists.com",
   "description": "Best Online Casino Lists & Bonuses updated on a daily basis.",
-  "start_url": "https://dev.casinoslists.com",
-  "scope": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#fff",
   "theme_color": "#2171CE",
@@ -30,7 +30,8 @@
     {
       "src": "/public/build/images/icons/icon-192x192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "maskable"
     },
     {
       "src": "/public/build/images/icons/icon-256x256.png",
