@@ -1,5 +1,5 @@
 let CONFIGURATIONS = {
-    cache_version: 2,
+    cache_version: 4,
     resources: [
         "/",
         "/bonus-list/no-deposit-bonus",
@@ -72,18 +72,20 @@ self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
             .then((response) => {
-                return response || fetch(event.request)
-                    .then((dynamicResponse) => {
-                        return caches.open(CONFIGURATIONS.cache_dynamic)
-                            .then((cache) => {
-                                if (!event.request.url.match(/(google)|(tracker)|(png)/)) {
+                if (!event.request.url.match(/(google)|(tracker)|(png)/)) {
+                    return response || fetch(event.request)
+                        .then((dynamicResponse) => {
+                            return caches.open(CONFIGURATIONS.cache_dynamic)
+                                .then((cache) => {
                                     cache.put(event.request.url, dynamicResponse.clone());
-                                }
-                                return dynamicResponse;
-                            })
-                            .catch((error) => console.log('[SW] Something went wrong with dynamic cache: ' + error));
-                    })
-                    .catch((error) => console.log('[SW] Something went wrong with fetch: ' + error));
+                                    return dynamicResponse;
+                                })
+                                .catch((error) => console.log('[SW] Something went wrong with dynamic cache: ' + error));
+                        })
+                        .catch((error) => console.log('[SW] Something went wrong with fetch: ' + error));
+                } else {
+                    return fetch(event.request);
+                }
             })
             .catch((error) => console.log('[SW] Something went wrong with cache: ' + error))
     );
