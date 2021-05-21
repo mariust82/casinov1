@@ -1,5 +1,5 @@
 let CONFIGURATIONS = {
-    cache_version: 9,
+    cache_version: 10,
     resources: [
         "/",
         "/bonus-list/no-deposit-bonus",
@@ -40,9 +40,8 @@ function preCacheAppShell(appVersion) {
         .then((cache) => {
             CONFIGURATIONS.resources.map((url) => {
                 url = !url.match(/\.(ico|gif|jpg|png|css|js|webp)$/) ? url : url + appVersion;
-                return new Request(url, {cache: 'no-cache'});
-                // cache.add(url)
-                //     .catch((error) => console.log('[SW] Something went wrong with adding url "' + url + '". Log: ' + error));
+                cache.add(url)
+                    .catch((error) => console.log('[SW] Something went wrong with adding url "' + url + '". Log: ' + error));
             });
             return cache.addAll(CONFIGURATIONS.resources);
         })
@@ -72,7 +71,7 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
     if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin') {
-        return;
+        return fetch(event.request);
     }
     event.respondWith(
         caches.match(event.request)
