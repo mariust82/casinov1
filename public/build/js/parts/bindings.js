@@ -679,7 +679,10 @@ function newsletter(obj) {
 
                             $('.action-added').remove();
                             $.each(arr, function (index, val) {
-                                var $msg = '<div class="action-field action-added not-valid ">' + val + '</div>';
+                                var $msg = $('<div>', {
+                                    class: 'action-field action-added not-valid',
+                                    html: val
+                                });
                                 $('.review-submit-holder .msg-holder').append($msg);
                             });
                         }
