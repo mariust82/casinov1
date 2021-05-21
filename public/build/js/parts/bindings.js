@@ -395,11 +395,7 @@ copyTooltipConfig = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content('\
-                <div class="centered">\
-                    <i class="icon icon-icon_available"></i> Code copied to clipboard\
-                </div>\
-            ');
+        instance.content($("#copyTooltip").tmpl());
     }
 };
 copyTooltipConfigGames = {
@@ -410,11 +406,7 @@ copyTooltipConfigGames = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content('\
-                <div class="centered">\
-                     Code copied to clipboard\
-                </div>\
-            ');
+        instance.content($("#copyTooltipAlt").tmpl());
     }
 };
 
