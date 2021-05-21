@@ -1,5 +1,5 @@
 let CONFIGURATIONS = {
-    cache_version: 10,
+    cache_version: 13,
     resources: [
         "/",
         "/bonus-list/no-deposit-bonus",
@@ -38,12 +38,11 @@ let CONFIGURATIONS = {
 function preCacheAppShell(appVersion) {
     return caches.open(CONFIGURATIONS.cache_static)
         .then((cache) => {
-            CONFIGURATIONS.resources.map((url) => {
+            CONFIGURATIONS.resources.forEach((url) => {
                 url = !url.match(/\.(ico|gif|jpg|png|css|js|webp)$/) ? url : url + appVersion;
                 cache.add(url)
                     .catch((error) => console.log('[SW] Something went wrong with adding url "' + url + '". Log: ' + error));
             });
-            return cache.addAll(CONFIGURATIONS.resources);
         })
         .catch((error) => console.log('[SW] Something went wrong with caching AppShell: ' + error));
 }
