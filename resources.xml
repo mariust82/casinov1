@@ -43,6 +43,7 @@
             <file name="assets/jquery-nicescroll" />
             <file name="assets/tooltipster" />
             <file name="assets/swiper" />
+            <file name="assets/jquery.tmpl" />
             <file name="bindings" />
         </file>
 
