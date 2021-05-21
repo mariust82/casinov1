@@ -3,7 +3,7 @@
   "short_name": "CasinosLists.com",
   "description": "Best Online Casino Lists & Bonuses updated on a daily basis.",
   "start_url": "/",
-  "scope": "./",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#fff",
   "theme_color": "#2171CE",

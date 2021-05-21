@@ -18,7 +18,7 @@ function loadScripts() {
     var version = $('.controller_main').data("version");
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker
-            .register('/sw.js?v=' + version)
+            .register('/sw.js?v=' + version, {scope: "/"})
             .then(function () {
                 console.log('SW registered!');
             });
