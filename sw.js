@@ -39,7 +39,7 @@ function preCacheAppShell(appVersion) {
     return caches.open(CONFIGURATIONS.cache_static)
         .then((cache) => {
             CONFIGURATIONS.resources.forEach((url) => {
-                url = !url.match(/\.(ico|gif|jpg|png|css|js|webp)$/) ? url : url + appVersion;
+                url = url.match(/\.(css|js)$/) ? url + appVersion : url;
                 cache.add(url)
                     .catch((error) => console.log('[SW] Something went wrong with adding url "' + url + '". Log: ' + error));
             });
