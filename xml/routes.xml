@@ -169,6 +169,7 @@
         <route url="casino/bonus-popup" controller="CasinoBonusPopUpController" view="bonus-popup-casino">
             <parameter name="casino" validator="CasinoNameValidator"/>
         </route>
+        <route url="offline" controller="OfflineController" view="offline"/>
         <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" format="sitemap"/>
         <route url="sitemap_cas_bon.php" controller="sitemap/BonusTypesController" format="sitemap"/>
         <route url="sitemap_cas_cas.php" controller="sitemap/CasinoLabelsController" format="sitemap"/>
