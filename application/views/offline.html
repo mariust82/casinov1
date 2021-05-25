@@ -1,0 +1,19 @@
+<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}"
+          page="page-offline"/>
+
+<div class="container">
+    <div class="heading">
+        <h1 class="title">${data.page_info.head_title}</h1>
+    </div>
+    <div class="subtitle plain-text">
+        <h2 class="title title-middle">${data.page_info.body_title}</h2>
+        <p><a href="/">GO BACK TO HOMEPAGE</a> or you'll be redirected in 10 seconds</p>
+    </div>
+    <script>
+        setTimeout(function () {
+            window.location.href = "/";
+        }, 10000);
+    </script>
+</div>
+
+<site:bottom menu="${data.menu_top}"/>

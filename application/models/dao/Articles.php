@@ -23,7 +23,8 @@ class Articles
 
         $results = SQL(
             "
-            SELECT a.*
+            SELECT a.id, a.title, a.min_read, a.content, a.titleImageDesktop,
+                   a.titleImageMobile, a.thumbnail, a.date_added, a.route_id
             FROM articles a 
             WHERE is_draft = 0 AND deleted = 0 AND a.url = :url;",
             array(':url' => "$route")
@@ -55,7 +56,9 @@ class Articles
         //DB('SET NAMES UTF8');
         $name = preg_replace('/[^\da-z]/i', ' ', urldecode($name)); //allow only alphanumeric, case insensitive and -
         $results = SQL("
-        SELECT articles.* FROM articles
+        SELECT articles.id, articles.title, articles.min_read, articles.content, articles.titleImageDesktop,
+                   articles.titleImageMobile, articles.thumbnail, articles.date_added, articles.route_id
+            FROM articles
         WHERE is_draft = 0 AND deleted = 0 AND articles.`title`=:name LIMIT 1
         ", [':name' => $name]);
         $results = ResultSetWrapper::from($results)->toList(new Article(), ['rating' => new Rating()]);
@@ -71,8 +74,11 @@ class Articles
         //DB('SET NAMES UTF8');
         $query_vars = [];
         $select = new Lucinda\Query\Select("articles","a");
-        $select->fields()->add("SQL_CALC_FOUND_ROWS a.*")->add("a.likes","`rating.likes`")->add("a.dislikes","`rating.dislikes`")->add("a.content")->add("at.value","type");
-        $select->joinInner("article__types","at")->on(["a.type_id"=>"at.id"]);
+        $select->fields()->add("a.id")->add("a.title")->add("a.url")
+            ->add("a.date_added")->add("a.min_read")->add("a.titleImageDesktop")
+            ->add("a.titleImageMobile")->add("a.thumbnail")->add("a.likes")
+            ->add("a.dislikes")->add("a.content")->add("at.value", "type");
+        $select->joinInner("article__types", "at")->on(["a.type_id" => "at.id"]);
         
         $where =  $select->where();
         $where->set("a.deleted", 0);
@@ -95,10 +101,12 @@ class Articles
             $query_vars[':id4'] = $filters['name'];
             $where->set("a.`url`", ":id4");
         }
+        $selectCount = clone $select;
+        $selectCount->fields(['COUNT(a.id)']);
         $select->orderBy()->add("a.id",Lucinda\Query\OrderByOperator::DESC);
         $select->limit($limit, $offset);
         $resultSet = SQL($select->toString(), $query_vars);
-        $foundRows = (int)SQL('SELECT FOUND_ROWS()')->toValue();
+        $foundRows = (int)SQL($selectCount->toString(), $query_vars)->toValue();
         $results = [];
         while ($row = $resultSet->toRow()) {
             $article = new Article();

@@ -22,7 +22,7 @@ class FreeBonus extends \TMS\VariablesHolder
 
     public function getTotalCasinos()
     {
-        $query = "SELECT COUNT(*) FROM `casinos__bonuses` WHERE bonus_type_id IN (3,4,5,6,11) AND deposit_minimum IN ('','0','$0','€0','£0')";
+        $query = "SELECT COUNT(DISTINCT casino_id) FROM `casinos__bonuses` WHERE bonus_type_id IN (3,4,5,6,11) AND deposit_minimum IN ('','0','$0','€0','£0')";
         return SQL($query)->toValue();
     }
 }

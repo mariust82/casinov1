@@ -169,7 +169,6 @@ var ListFilters = function (obj) {
 
         if (typeof AJAX_CUR_PAGE == "undefined")
             AJAX_CUR_PAGE = 0;
-        AJAX_CUR_PAGE++;
         if (_action != 'add' || _action == 'reset') {
             AJAX_CUR_PAGE = 0;
         }
@@ -195,6 +194,7 @@ var ListFilters = function (obj) {
             success: function (data) {
                 var scrollPos = $(document).scrollTop();
                 var cont = $(data).find('.loaded-item');
+                var loadedItems = $(".loaded-item").length + cont.length;
                 var loadTotal = $(data).filter('[data-load-total]').data('load-total');
                 var totalItems = $(data).find('.qty-items').data('load-total');
 
@@ -250,8 +250,6 @@ var ListFilters = function (obj) {
                         $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
                     }
                 } else {
-
-
                     if (_action == 'replace') {
                         _targetContainer.html('');
                         _targetContainer.html(data);
@@ -275,15 +273,19 @@ var ListFilters = function (obj) {
                             _loaderHolder.show();
                             _emptyContent.hide();
                         }
-                        if(cont.length === loadTotal){
+                    } else {
+
+                        if (cont.length < 24) {
                             _moreButton.hide();
                         }
-                    } else {
+
                         if ($('.games-list').hasClass('list-view')) {
                             _targetAddContainer.addClass('list-view');
                         }
 
                         _targetAddContainer.append(cont);
+
+
                     }
 
                     if (_url === '/slots-filter/') {
@@ -331,10 +333,14 @@ var ListFilters = function (obj) {
                     CloseTFPopup();
                     copyToClipboard();
                 }
-                
-                if($('.list-body').children().length >= totalItems) {
+                if (_action == 'add') {
+                    if(loadedItems >= loadTotal || $('.list-body').children().length >= totalItems) {
+                        _moreButton.hide();
+                    }
+                } else if(cont.length > 0 && cont.length < 24) {
                     _moreButton.hide();
                 }
+
                 if ($.fn.tooltipster) {
                     $('.js-tooltip').tooltipster(tooltipConfig);
                     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
@@ -345,6 +351,7 @@ var ListFilters = function (obj) {
                     resetFilter();
                 }
                 $(document).scrollTop(scrollPos);
+                AJAX_CUR_PAGE++;
             },
             error: function (XMLHttpRequest) {
                 if (XMLHttpRequest.statusText != "abort") {

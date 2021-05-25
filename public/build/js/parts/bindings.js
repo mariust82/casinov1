@@ -395,11 +395,7 @@ copyTooltipConfig = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content('\
-                <div class="centered">\
-                    <i class="icon icon-icon_available"></i> Code copied to clipboard\
-                </div>\
-            ');
+        instance.content($("#copyTooltip").tmpl());
     }
 };
 copyTooltipConfigGames = {
@@ -410,11 +406,7 @@ copyTooltipConfigGames = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content('\
-                <div class="centered">\
-                     Code copied to clipboard\
-                </div>\
-            ');
+        instance.content($("#copyTooltipAlt").tmpl());
     }
 };
 
@@ -687,7 +679,10 @@ function newsletter(obj) {
 
                             $('.action-added').remove();
                             $.each(arr, function (index, val) {
-                                var $msg = '<div class="action-field action-added not-valid ">' + val + '</div>';
+                                var $msg = $('<div>', {
+                                    class: 'action-field action-added not-valid',
+                                    html: val
+                                });
                                 $('.review-submit-holder .msg-holder').append($msg);
                             });
                         }
@@ -893,23 +888,20 @@ function sliderInit(params) {
         breakpoints: {
             1024: {
                 freeMode: true,
-                slidesPerView: 6,
+                slidesPerView: 6
             },
             768: {
-                slidesPerView: 5,
+                slidesPerView: 5
             },
             700: {
-                slidesPerView: 4.5,
+                slidesPerView: 'auto'
             },
-            639: {
-                slidesPerView: 4.5,
-            },
-            479: {
-                slidesPerView: 2.5,
-            },
-            320: {
-                slidesPerView: 2,
-            }
+            // 639: {
+            //     slidesPerView: 4.5
+            // },
+            // 479: {
+            //     slidesPerView: 2
+            // }
         },
         on: {
             reachEnd: function(e) {
@@ -1078,7 +1070,7 @@ sliderInit({
 
 sliderInit({
     container: '#top-software',
-    sledesPerViw: 4,
+    sledesPerViw: 6,
     nextClass: '.cn5',
     prevClass: '.cp5'
 });
@@ -1292,7 +1284,6 @@ function bindButtons() {
             type: 'post',
             success: function (data) {
                 AJAX_CUR_PAGE++;
-                console.dir(data);
                 $('.cards-list-wrapper').append(data);
                 if ($(self).data('total') === $('.cards-list-wrapper').children().length) {
                     $(self).hide();

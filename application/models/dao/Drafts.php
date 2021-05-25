@@ -15,7 +15,7 @@ class Drafts
 {
     public function getInfoByName($name)
     {
-        $results = SQL("select *
+        $results = SQL("select id, entity_id, user_id, entity_name, payload, date_modified
                             from drafts
                             where entity_name like :name;", array(':name' => "%$name%"));
 
@@ -27,7 +27,7 @@ class Drafts
 
     public function getInfoById($id)
     {
-        $results = SQL("select *
+        $results = SQL("select id, entity_id, user_id, entity_name, payload, date_modified
                             from drafts
                             where id = :id;", array(':id' => "$id"));
         return $this->populate($results);

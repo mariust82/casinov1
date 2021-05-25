@@ -3828,16 +3828,14 @@ button.swiper-pagination-bullet {
   min-width: 150px;
   min-height: 169px;
   margin-right: 10px !important;
-  /* background: #FFFFFF 0% 0% no-repeat padding-box;
-  box-shadow: 0px 1px 6px #00000029; */
   border-radius: 2px;
 }
 
 @media (max-width:690px) {
   .carousel-option-container .swiper-slide {
-    width: 130px !important;
+    width: 155.5px !important;
     height: 149px !important;
-    min-width: 130px;
+    min-width: 155.5px;
     min-height: 149px;
     margin-right: 10px !important;
   }

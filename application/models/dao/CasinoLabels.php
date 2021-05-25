@@ -18,7 +18,7 @@ class CasinoLabels implements CasinoCounter
     {
         $labels =  SQL("
         SELECT
-        t1.name AS unit, count(*) as counter
+        t1.name AS unit, count(t1.id) as counter
         FROM casino_labels AS t1
         INNER JOIN casinos__labels AS t2 ON t1.id = t2.label_id
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id
@@ -39,7 +39,7 @@ class CasinoLabels implements CasinoCounter
 
         $mobile =  SQL("
         SELECT DISTINCT 
-        t1.name AS unit, count(*) as counter
+        t1.name AS unit, count(t1.id) as counter
        
         FROM play_versions AS t1
         INNER JOIN casinos__play_versions AS t2 ON t1.id = t2.play_version_id
@@ -69,7 +69,7 @@ class CasinoLabels implements CasinoCounter
         
         $features =  SQL("
         SELECT
-        t1.name AS unit, count(*) as counter
+        t1.name AS unit, count(t1.id) as counter
         FROM certifications AS t1
         INNER JOIN casinos__certifications AS t2 ON t1.id = t2.certification_id
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id

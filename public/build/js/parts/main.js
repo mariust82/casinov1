@@ -14,9 +14,15 @@ var isSearchResultEvent = false;
 $.ajaxSetup({
     cache: true
 });
-
 function loadScripts() {
     var version = $('.controller_main').data("version");
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('/sw.js?v=' + version, {scope: "/"})
+            .then(function () {
+                console.log('SW registered!');
+            });
+    }
     if (!$("script[src='/public/build/js/compilations/defer.js?v="+version+"']").length) {
         $("body").append($('<script defer type="text/javascript" src="/public/build/js/compilations/defer.js?v='+version+'"></script>"'));
         SCRIPTS_LOADED = true;
