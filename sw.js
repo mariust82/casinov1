@@ -109,12 +109,12 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
     if (!CONFIGURATIONS.isNetworkOnly(event.request.url)) {
-        if (CONFIGURATIONS.isPreCached(event.request.url)) {
-            event.respondWith(
-                caches.match(event.request)
-                    .catch((error) => console.log('[SW] Something went wrong with matching static cache: ' + error))
-            );
-        } else {
+        // if (CONFIGURATIONS.isPreCached(event.request.url)) {
+        //     event.respondWith(
+        //         caches.match(event.request)
+        //             .catch((error) => console.log('[SW] Something went wrong with matching static cache: ' + error))
+        //     );
+        // } else {
             event.respondWith(
                 caches.match(event.request)
                     .then((response) => {
@@ -138,7 +138,7 @@ self.addEventListener('fetch', (event) => {
                     })
                     .catch((error) => console.log('[SW] Something went wrong with matching dynamic cache: ' + error))
             );
-        }
+        // }
     }
     return;
 });
