@@ -1,43 +1,51 @@
-'use strict';
-
 let CONFIGURATIONS = {
     cache_version: 14,
     resources: [
-        "/public/build/css/compilations/all.css",
-        "/public/build/css/compilations/gameplay.css",
-        "/public/build/css/compilations/casino_view.css",
+        "/manifest.json",
+        // CSS
+        "public/build/css/compilations/all.css",
+        "public/build/css/compilations/gameplay.css",
+        "public/build/css/compilations/casino_view.css",
         "/public/build/css/compilations/defer.css",
         "/public/build/css/compilations/ion.rangeSlider.css",
-        "/public/build/js/parts/global_js/jquery-2.1.3.min.js",
-        "/public/build/js/parts/assets/jquery-nicescroll.js",
-        "/public/build/js/compilations/main.js",
-        "/public/build/js/compilations/vote.js",
-        "/public/build/js/compilations/gameplay.js",
-        "/public/build/js/compilations/casino_review.js",
-        "/public/build/js/compilations/contact.js",
-        "/public/build/js/compilations/defer.js",
+        // JS
+        "public/build/js/compilations/blog.js",
+        "public/build/js/compilations/casino_view.js",
+        "public/build/js/compilations/contact.js",
+        "public/build/js/compilations/defer.js",
+        "public/build/js/compilations/gameplay.js",
+        "public/build/js/compilations/main.js",
+        // Fonts
         "/public/build/fonts/OpenSans-Regular-latin.woff2",
         "/public/build/fonts/OpenSansCondensed-Bold-latin.woff2",
-        "/public/build/fonts/icomoon.ttf?stten7",
-        "/public/build/images/text-header/home-img-2.webp"
+        "/public/build/fonts/icomoon.ttf?stten7"
+    ],
+    images: [
+        "/public/favicon.ico",
+        "/public/build/images/text-header/home-img-2.webp",
+        "/public/build/images/default_casino_logo.png"
     ],
     pages: [
         "/",
         "/bonus-list/no-deposit-bonus",
         "/casinos/new",
-        "/offline",
+        "/offline"
     ],
     getStaticResources: function () {
         return [
             ...this.resources,
+            ...this.images,
             ...this.pages
         ];
     },
-    isCacheable: function (url) {
+    isNetworkOnly: function (url) {
         if (url.match(/(google)|(tracker)|(png)/)) {
-            return false;
+            return true;
         }
-        return !this.inResources(url);
+        return false;
+    },
+    isPreCached: function (url) {
+        return this.inResources(url);
     },
     inResources: function (url) {
         for (let i = 0; i < this.resources.length; i++) {
@@ -88,7 +96,8 @@ self.addEventListener('activate', (event) => {
             .then((keyList) => {
                 return Promise.all(keyList.map(key => {
                     if (key !== CONFIGURATIONS.cache_static && key !== CONFIGURATIONS.cache_dynamic) {
-                        return caches.delete(key);
+                        return caches.delete(key)
+                            .catch((error) => console.log('[SW] Something went wrong when deleting key: ' + error));
                     }
                 }));
             })
@@ -99,28 +108,37 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    if (event.request.cache === 'only-if-cached' && event.request.mode !== 'same-origin' || !CONFIGURATIONS.isCacheable(event.request.url)) {
-        event.respondWith(fetch(event.request));
-    } else {
-        event.respondWith(
-            caches.match(event.request)
-                .then((response) => {
-                    return response || fetch(event.request)
-                        .then((dynamicResponse) => {
-                            return caches.open(CONFIGURATIONS.cache_dynamic)
-                                .then((cache) => {
-                                    cache.put(event.request.url, dynamicResponse.clone());
-                                    return dynamicResponse;
-                                })
-                                .catch(error => console.log('[SW] Something went wrong with dynamic cache: ' + error));
-                        })
-                        .catch((error) => {
-                            // console.log('[SW] Something went wrong with fetch: ' + error);
-                            return caches.open(CONFIGURATIONS.cache_static)
-                                .then(cache => cache.match('offline'));
-                        });
-                })
-                .catch((error) => console.log('[SW] Something went wrong with cache: ' + error))
-        );
+    if (!CONFIGURATIONS.isNetworkOnly(event.request.url)) {
+        if (CONFIGURATIONS.isPreCached(event.request.url)) {
+            event.respondWith(
+                caches.match(event.request)
+                    .catch((error) => console.log('[SW] Something went wrong with matching static cache: ' + error))
+            );
+        } else {
+            event.respondWith(
+                caches.match(event.request)
+                    .then((response) => {
+                        return response || fetch(event.request)
+                            .then((dynamicResponse) => {
+                                return caches.open(CONFIGURATIONS.cache_dynamic)
+                                    .then((cache) => {
+                                        cache.put(event.request, dynamicResponse.clone());
+                                        return dynamicResponse;
+                                    })
+                                    .catch(error => console.log('[SW] Something went wrong with storing dynamic cache: ' + error));
+                            })
+                            .catch((error) => {
+                                return caches.open(CONFIGURATIONS.cache_static)
+                                    .then((cache) => {
+                                        if (event.request.headers.get('accept').includes('text/html')) {
+                                            return cache.match('offline');
+                                        }
+                                    });
+                            });
+                    })
+                    .catch((error) => console.log('[SW] Something went wrong with matching dynamic cache: ' + error))
+            );
+        }
     }
+    return;
 });

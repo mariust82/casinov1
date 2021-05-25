@@ -18,13 +18,13 @@ function loadScripts() {
     var version = $('.controller_main').data("version");
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker
-            .register('/sw.js?v=' + version, {scope: "/"})
+            .register('/sw.js?ver=' + version, {scope: "/"})
             .then(function () {
                 console.log('SW registered!');
             });
     }
-    if (!$("script[src='/public/build/js/compilations/defer.js?v="+version+"']").length) {
-        $("body").append($('<script defer type="text/javascript" src="/public/build/js/compilations/defer.js?v='+version+'"></script>"'));
+    if (!$("script[src='/public/build/js/compilations/defer.js?ver="+version+"']").length) {
+        $("body").append($('<script defer type="text/javascript" src="/public/build/js/compilations/defer.js?ver='+version+'"></script>"'));
         SCRIPTS_LOADED = true;
     }
 
@@ -51,8 +51,8 @@ function loadScripts() {
 
 function loadStyles() {
     var version = $('.controller_main').data("version");
-    if (!$("link[href='/public/build/css/compilations/defer.css?v="+version+"']").length) {
-        $("body").append($('<link rel="stylesheet" type="text/css" href="/public/build/css/compilations/defer.css?v='+version+'" media="all">"'));
+    if (!$("link[href='/public/build/css/compilations/defer.css?ver="+version+"']").length) {
+        $("body").append($('<link rel="stylesheet" type="text/css" href="/public/build/css/compilations/defer.css?ver='+version+'" media="all">"'));
         STYLES_LOADED = true;
     }
 }
