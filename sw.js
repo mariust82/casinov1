@@ -1,5 +1,5 @@
 let CONFIGURATIONS = {
-    cache_version: 14,
+    cache_version: 15,
     resources: [
         "/manifest.json",
         // CSS

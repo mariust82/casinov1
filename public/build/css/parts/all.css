@@ -4,7 +4,7 @@
   font-display: swap;
   font-style: normal;
   font-weight: 400;
-  src: local('Open Sans Regular'), local('OpenSans-Regular'), 
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
   url('/public/build/fonts/OpenSans-Regular-latin.woff2') format('woff2');
 }
 @font-face {
@@ -12,7 +12,7 @@
   font-display: swap;
   font-style: normal;
   font-weight: 700;
-  src: local('Open Sans Condensed Bold'), local('OpenSansCondensed-Bold'), 
+  src: local('Open Sans Condensed Bold'), local('OpenSansCondensed-Bold'),
   url('/public/build/fonts/OpenSansCondensed-Bold-latin.woff2') format('woff2');
 }
 
@@ -117,7 +117,7 @@ blockquote.widget p,
   color: #646464 !important;
 }
 
-.lower_pragraph .special_block_text h2, 
+.lower_pragraph .special_block_text h2,
 .subtitle .special_block_text h2{
   margin:0 0 10px;
 }
@@ -1018,7 +1018,7 @@ a:focus {
   .header-search-mobile.js-trigger-search{
     margin:0 5%;
   }
-  
+
   .header-search-mobile.js-trigger-search span{
     text-indent:-11%;
   }
@@ -2741,14 +2741,14 @@ a:focus {
   width:100%;
 }
 
-.list-item-cell-buttons .btn-small, 
+.list-item-cell-buttons .btn-small,
 .list-item-cell-buttons .btn-rest {
   padding: 7px 16px 8px;
   margin: -2px 0 0 0;
 }
 
 @media screen and (max-width: 767px) {
-  .list-item-cell-buttons .btn-small, 
+  .list-item-cell-buttons .btn-small,
   .list-item-cell-buttons .btn-rest {
     padding: 7px 7px 8px;
     width:27px;
@@ -7407,13 +7407,13 @@ hr.widget{
   .casino-info_container .row .icon{
     font-size: 12px;
   }
-  
+
 }
 @media(max-width:690px){
   .wp-bonus-title{
     font-size: 13px;
   }
-  
+
   .spec-items .banking img, .spec-items .software img{
     width: 50px;
   }
@@ -9044,7 +9044,7 @@ h1.title + .subtitle{
 }
 
 .welcome_package-popup .bonuses-wp{
-  -ms-overflow-style: none; 
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
 .welcome_package-popup .bonuses-wp::-webkit-scrollbar{
@@ -9060,7 +9060,7 @@ h1.title + .subtitle{
   .welcome_package-popup .bonuses-wp{
     max-height: 325px;
     overflow: auto;
-    
+
   }
   .search{
     padding-top: 20px;
@@ -9178,4 +9178,12 @@ img[src] {
 .carousel .swiper-slide{
   min-width:155.5px;
   margin-right: 5px;
+}
+
+#btn-add-to-home-screen {
+    position: absolute;
+    border-radius: 15px;
+    border: none;
+    margin-left: 45px;
+    display: none;
 }
