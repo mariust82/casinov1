@@ -4,9 +4,10 @@
 	<header class="header">
 		<div class="container">
 			<div class="header-logo">
-				<a href="/" class="logo">
+				<a href="/" class="logo" aria-label="Home">
 					<i class="icon-logo"><i class="path1"></i><i class="path2"></i><i class="icon-crown"></i></i>
 				</a>
+				<button id="btn-add-to-home-screen" title="Add to home screen">+</button>
 			</div>
 			<a href="#" class="header-search-mobile js-mobile-search-opener js-trigger-search">
 				<i class="icon-search"></i>
@@ -35,7 +36,7 @@
 				</ul>
 			</nav>
 			<div class="header-search ${('$[page]'=='search'?'force-visible':'')}" id="search" data-img-dir="/public/sync">
-				<a href="#" class="header-search-btn js-search-opener js-trigger-search">
+				<a href="#" class="header-search-btn js-search-opener js-trigger-search" aria-label="Search">
 					<i class="icon-search"></i>
 				</a>
 				<div class="header-search-input" id="search-form">
