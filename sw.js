@@ -1,5 +1,5 @@
 let CONFIGURATIONS = {
-    cache_version: 15,
+    cache_version: 1,
     resources: [
         "/manifest.json",
         // CSS
@@ -39,7 +39,7 @@ let CONFIGURATIONS = {
         ];
     },
     isNetworkOnly: function (url) {
-        if (url.match(/(google)|(tracker)|(png)/)) {
+        if (url.match(/(google)|(tracker)/)) {
             return true;
         }
         return false;
@@ -108,19 +108,19 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    if (!CONFIGURATIONS.isNetworkOnly(event.request.url)) {
-        // if (CONFIGURATIONS.isPreCached(event.request.url)) {
-        //     event.respondWith(
-        //         caches.match(event.request)
-        //             .catch((error) => console.log('[SW] Something went wrong with matching static cache: ' + error))
-        //     );
-        // } else {
+    if (!CONFIGURATIONS.isNetworkOnly(event.request.url) && event.request.method === 'GET') {
+        if (CONFIGURATIONS.isPreCached(event.request.url)) {
+            event.respondWith(
+                caches.match(event.request)
+                    .catch((error) => console.log('[SW] Something went wrong with matching static cache: ' + error))
+            );
+        } else {
             event.respondWith(
                 caches.match(event.request)
                     .then((response) => {
                         return response || fetch(event.request)
                             .then((dynamicResponse) => {
-                                return caches.open(CONFIGURATIONS.cache_dynamic)
+                                return !dynamicResponse.ok ? dynamicResponse : caches.open(CONFIGURATIONS.cache_dynamic)
                                     .then((cache) => {
                                         cache.put(event.request, dynamicResponse.clone());
                                         return dynamicResponse;
@@ -138,7 +138,7 @@ self.addEventListener('fetch', (event) => {
                     })
                     .catch((error) => console.log('[SW] Something went wrong with matching dynamic cache: ' + error))
             );
-        // }
+        }
     }
     return;
 });
