@@ -9193,3 +9193,9 @@ img[src] {
     margin-top: -7px;
   }
 }
+
+
+.help-guide-link {
+  text-decoration: underline;
+  font-weight: bold;
+}
