@@ -9172,3 +9172,8 @@ img[src] {
       width: unset;
   }
 }
+
+.help-guide-link, .help-guide-link:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
