@@ -9187,3 +9187,9 @@ img[src] {
     margin-left: 45px;
     display: none;
 }
+
+
+.help-guide-link {
+  text-decoration: underline;
+  font-weight: bold;
+}
