@@ -109,36 +109,29 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
     if (!CONFIGURATIONS.isNetworkOnly(event.request.url) && event.request.method === 'GET') {
-        if (CONFIGURATIONS.isPreCached(event.request.url)) {
-            event.respondWith(
-                caches.match(event.request)
-                    .catch((error) => console.log('[SW] Something went wrong with matching static cache: ' + error))
-            );
-        } else {
-            event.respondWith(
-                caches.match(event.request)
-                    .then((response) => {
-                        return response || fetch(event.request)
-                            .then((dynamicResponse) => {
-                                return !dynamicResponse.ok ? dynamicResponse : caches.open(CONFIGURATIONS.cache_dynamic)
-                                    .then((cache) => {
-                                        cache.put(event.request, dynamicResponse.clone());
-                                        return dynamicResponse;
-                                    })
-                                    .catch(error => console.log('[SW] Something went wrong with storing dynamic cache: ' + error));
-                            })
-                            .catch((error) => {
-                                return caches.open(CONFIGURATIONS.cache_static)
-                                    .then((cache) => {
-                                        if (event.request.headers.get('accept').includes('text/html')) {
-                                            return cache.match('offline');
-                                        }
-                                    });
-                            });
-                    })
-                    .catch((error) => console.log('[SW] Something went wrong with matching dynamic cache: ' + error))
-            );
-        }
+        event.respondWith(
+            caches.match(event.request)
+                .then((response) => {
+                    return response || fetch(event.request)
+                        .then((dynamicResponse) => {
+                            return !dynamicResponse.ok ? dynamicResponse : caches.open(CONFIGURATIONS.cache_dynamic)
+                                .then((cache) => {
+                                    cache.put(event.request, dynamicResponse.clone());
+                                    return dynamicResponse;
+                                })
+                                .catch(error => console.log('[SW] Something went wrong with storing dynamic cache: ' + error));
+                        })
+                        .catch((error) => {
+                            return caches.open(CONFIGURATIONS.cache_static)
+                                .then((cache) => {
+                                    if (event.request.headers.get('accept').includes('text/html')) {
+                                        return cache.match('offline');
+                                    }
+                                });
+                        });
+                })
+                .catch((error) => console.log('[SW] Something went wrong with matching dynamic cache: ' + error))
+        );
     }
     return;
 });
