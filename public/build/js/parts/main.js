@@ -14,6 +14,7 @@ var isSearchResultEvent = false;
 $.ajaxSetup({
     cache: true
 });
+
 function loadScripts() {
     var version = $('.controller_main').data("version");
     if ('serviceWorker' in navigator) {
@@ -22,9 +23,9 @@ function loadScripts() {
             .then(function () {
                 console.log('SW registered!');
             });
-        let deferredPrompt;
-        const addBtn = document.querySelector('#btn-add-to-home-screen');
-        window.addEventListener('beforeinstallprompt', (e) => {
+        var deferredPrompt;
+        var addBtn = document.querySelector('#btn-add-to-home-screen');
+        window.addEventListener('beforeinstallprompt', function(e){
             console.log("beforeinstallprompt, installable");
             // Prevent Chrome 67 and earlier from automatically showing the prompt
             e.preventDefault();
@@ -33,13 +34,13 @@ function loadScripts() {
             // Update UI to notify the user they can add to home screen
             addBtn.style.display = 'block';
 
-            addBtn.addEventListener('click', (e) => {
+            addBtn.addEventListener('click', function(e){
                 // hide our user interface that shows our A2HS button
                 addBtn.style.display = 'none';
                 // Show the prompt
                 deferredPrompt.prompt();
                 // Wait for the user to respond to the prompt
-                deferredPrompt.userChoice.then((choiceResult) => {
+                deferredPrompt.userChoice.then(function(choiceResult){
                     if (choiceResult.outcome === 'accepted') {
                         console.log('User accepted the A2HS prompt');
                     } else {
