@@ -14,7 +14,7 @@ function parse_video($url)
     return str_replace("youtu.be", "youtube.com/embed", $url);
 }
 
-function get_rating($score)
+function get_rating($score, $formatted=false)
 {
     $string = "";
     $score = ceil($score);
@@ -32,6 +32,9 @@ function get_rating($score)
         $string = 'Excellent';
     }
 
+    if($formatted) {
+        return str_replace(' ', '-', strtolower($string));
+    }
     return $string;
 }
 
