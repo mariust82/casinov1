@@ -50,6 +50,8 @@
             <file name="assets/swiper" />
             <file name="assets/jquery.tmpl" />
             <file name="bindings" />
+            <file name="utility"/>
+            <file name="pwa"/>
         </file>
 
         <!-- bundle used only for local dev -->

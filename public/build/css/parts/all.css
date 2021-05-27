@@ -9187,6 +9187,12 @@ img[src] {
     margin-left: 45px;
     display: none;
 }
+@media (max-width: 480px){
+  #btn-add-to-home-screen {
+    margin-left: 20px;
+    margin-top: -7px;
+  }
+}
 
 
 .help-guide-link {
