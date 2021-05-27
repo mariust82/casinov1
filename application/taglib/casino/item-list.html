@@ -6,7 +6,7 @@
 
 		<div class="list-flex">
 			<:set var="accepted_class" val="(${result.is_country_accepted} == 1?'accepted':'not-accepted')"/>
-			<img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="30" height="20" alt="${data.country.code}">
+			<img class="${accepted_class} lazy_loaded flag-spacing" data-src="/public/build/images/flags/${data.country.code}.png" width="32" height="24" alt="${data.country.code}">
 
 			<:set var="score_class" val="get_rating(${result.rating})"/>
 			<div class="list-rating ${normalize(${score_class})}">

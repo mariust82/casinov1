@@ -1,5 +1,5 @@
 let CONFIGURATIONS = {
-    cache_version: 15,
+    cache_version: 1,
     resources: [
         "/manifest.json",
         // CSS
@@ -39,7 +39,7 @@ let CONFIGURATIONS = {
         ];
     },
     isNetworkOnly: function (url) {
-        if (url.match(/(google)|(tracker)|(png)/)) {
+        if (url.match(/(google)|(tracker)/)) {
             return true;
         }
         return false;
@@ -108,37 +108,94 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    if (!CONFIGURATIONS.isNetworkOnly(event.request.url)) {
-        // if (CONFIGURATIONS.isPreCached(event.request.url)) {
-        //     event.respondWith(
-        //         caches.match(event.request)
-        //             .catch((error) => console.log('[SW] Something went wrong with matching static cache: ' + error))
-        //     );
-        // } else {
-            event.respondWith(
-                caches.match(event.request)
-                    .then((response) => {
-                        return response || fetch(event.request)
-                            .then((dynamicResponse) => {
-                                return caches.open(CONFIGURATIONS.cache_dynamic)
-                                    .then((cache) => {
-                                        cache.put(event.request, dynamicResponse.clone());
-                                        return dynamicResponse;
-                                    })
-                                    .catch(error => console.log('[SW] Something went wrong with storing dynamic cache: ' + error));
-                            })
-                            .catch((error) => {
-                                return caches.open(CONFIGURATIONS.cache_static)
-                                    .then((cache) => {
-                                        if (event.request.headers.get('accept').includes('text/html')) {
-                                            return cache.match('offline');
-                                        }
-                                    });
-                            });
-                    })
-                    .catch((error) => console.log('[SW] Something went wrong with matching dynamic cache: ' + error))
-            );
-        // }
+    if (!CONFIGURATIONS.isNetworkOnly(event.request.url) && event.request.method === 'GET') {
+        event.respondWith(
+            caches.match(event.request)
+                .then((response) => {
+                    return response || fetch(event.request)
+                        .then((dynamicResponse) => {
+                            return !dynamicResponse.ok ? dynamicResponse : caches.open(CONFIGURATIONS.cache_dynamic)
+                                .then((cache) => {
+                                    cache.put(event.request, dynamicResponse.clone());
+                                    return dynamicResponse;
+                                })
+                                .catch(error => console.log('[SW] Something went wrong with storing dynamic cache: ' + error));
+                        })
+                        .catch((error) => {
+                            return caches.open(CONFIGURATIONS.cache_static)
+                                .then((cache) => {
+                                    if (event.request.headers.get('accept').includes('text/html')) {
+                                        return cache.match('offline');
+                                    }
+                                });
+                        });
+                })
+                .catch((error) => console.log('[SW] Something went wrong with matching dynamic cache: ' + error))
+        );
     }
     return;
+});
+self.addEventListener('notificationclick', function (event) {
+    var notification = event.notification;
+    var action = event.action;
+
+    console.log(notification);
+
+    if (action === 'confirm') {
+        console.log('Confirm was chosen');
+        notification.close();
+    } else {
+        console.log(action);
+        event.waitUntil(
+            clients.matchAll()
+                .then(function (clis) {
+                    var client = clis.find(function (c) {
+                        return c.visibilityState === 'visible';
+                    });
+
+                    if (client !== undefined) {
+                        client.navigate(notification.data.url);
+                        client.focus();
+                    } else {
+                        clients.openWindow(notification.data.url);
+                    }
+                    notification.close();
+                })
+        );
+    }
+});
+
+self.addEventListener('notificationclose', function (event) {
+    console.log('Notification was closed', event);
+});
+
+self.addEventListener('push', function (event) {
+    console.log('Push Notification received', event);
+
+    var data = {title: 'New!', content: 'Something new happened!', openUrl: '/'};
+    if (event.data) {
+        data = JSON.parse(event.data.text());
+    }
+    var options = {
+        body: data.content,
+        icon: '/src/images/icons/app-icon-96x96.png',
+        badge: '/src/images/icons/app-icon-96x96.png',
+        data: {
+            url: data.openUrl
+        },
+        image: '/public/build/images/icons/icon-256x256.png',
+        dir: 'ltr',
+        lang: 'en-US', // BCP 47,
+        vibrate: [100, 50, 200],
+        tag: 'confirm-notification',
+        renotify: true,
+        actions: [
+            {action: 'confirm', title: 'Okay', icon: '/public/build/images/icons/icon-96x96.png'},
+            {action: 'cancel', title: 'Cancel', icon: '/public/build/images/icons/icon-96x96.png'}
+        ]
+    };
+
+    event.waitUntil(
+        self.registration.showNotification(data.title, options)
+    );
 });
