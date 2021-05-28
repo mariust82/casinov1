@@ -1,20 +1,20 @@
 let CONFIGURATIONS = {
-    cache_version: 1,
+    cache_version: 2,
     resources: [
         "/manifest.json",
         // CSS
-        "public/build/css/compilations/all.css",
-        "public/build/css/compilations/gameplay.css",
-        "public/build/css/compilations/casino_view.css",
+        "/public/build/css/compilations/all.css",
+        "/public/build/css/compilations/gameplay.css",
+        "/public/build/css/compilations/casino_view.css",
         "/public/build/css/compilations/defer.css",
         "/public/build/css/compilations/ion.rangeSlider.css",
         // JS
-        "public/build/js/compilations/blog.js",
-        "public/build/js/compilations/casino_view.js",
-        "public/build/js/compilations/contact.js",
-        "public/build/js/compilations/defer.js",
-        "public/build/js/compilations/gameplay.js",
-        "public/build/js/compilations/main.js",
+        "/public/build/js/compilations/blog.js",
+        "/public/build/js/compilations/casino_view.js",
+        "/public/build/js/compilations/contact.js",
+        "/public/build/js/compilations/defer.js",
+        "/public/build/js/compilations/gameplay.js",
+        "/public/build/js/compilations/main.js",
         // Fonts
         "/public/build/fonts/OpenSans-Regular-latin.woff2",
         "/public/build/fonts/OpenSansCondensed-Bold-latin.woff2",
