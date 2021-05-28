@@ -74,12 +74,12 @@
     {
       "src": "/public/build/images/screenshot1.png",
       "type": "image/png",
-      "sizes": "540x645"
+      "sizes": "960x692"
     },
     {
       "src": "/public/build/images/screenshot2.png",
       "type": "image/png",
-      "sizes": "540x673"
+      "sizes": "960x557"
     }
   ]
 }
