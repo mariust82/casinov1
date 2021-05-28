@@ -51,7 +51,7 @@ if ('serviceWorker' in navigator) {
                     {action: 'cancel', title: 'Cancel', icon: '/public/build/images/icons/icon-96x96.png'}
                 ]
             };
-
+            notificationSubscriptionBtn.style.display = 'none';
             navigator.serviceWorker.ready
                 .then(function (swreg) {
                     swreg.showNotification('Successfully subscribed!', options);
@@ -76,22 +76,27 @@ if ('serviceWorker' in navigator) {
                         applicationServerKey: convertedVapidPublicKey
                     });
                 } else {
-                    // We have a subscription
+                    return null;
                 }
             })
             .then(function (newSub) {
-                console.log('newSub', newSub);
-                return fetch('https://quickstart-1601993978019-default-rtdb.europe-west1.firebasedatabase.app/subscriptions.json', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify(newSub)
-                })
-                    .catch(function (err) {
-                        console.log(err);
+                if (newSub) {
+                    var fbDocument = JSON.stringify({
+                        subscriptionInfo: newSub,
+                        siteId: 'cl'
                     });
+                    return fetch('https://quickstart-1601993978019-default-rtdb.europe-west1.firebasedatabase.app/subscriptions.json', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: fbDocument
+                    })
+                        .catch(function (err) {
+                            console.log(err);
+                        });
+                }
             })
             .then(function (res) {
                 if (res.ok) {
