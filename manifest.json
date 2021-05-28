@@ -11,6 +11,32 @@
   "lang": "en-US",
   "orientation": "portrait-primary",
   "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "New Online Casinos!",
+      "short_name": "New Online Casinos",
+      "description": "New Online Casinos. Check out the newest casino releases from the last 12 months. Newly-launched Online Casino Sites & Bonuses!",
+      "url": "/casinos/new",
+      "icons": [
+        {
+          "src": "/public/build/images/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "No Deposit Bonus & Free Spins Online Casinos - Keep your winnings!",
+      "short_name": "No Deposit Bonus",
+      "description": " Full List of No Deposit Casinos. Free Spins, Free Play & No Deposit Bonuses on Sign up allowing you to keep what you win with no deposit required!",
+      "url": "/bonus-list/no-deposit-bonus",
+      "icons": [
+        {
+          "src": "/public/build/images/icons/icon-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
   "icons": [
     {
       "src": "/public/build/images/icons/icon-48x48.png",
@@ -42,6 +68,18 @@
       "src": "/public/build/images/icons/icon-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/public/build/images/screenshot1.png",
+      "type": "image/png",
+      "sizes": "960x692"
+    },
+    {
+      "src": "/public/build/images/screenshot2.png",
+      "type": "image/png",
+      "sizes": "960x557"
     }
   ]
 }
