@@ -4,12 +4,12 @@
 			<:set var="index" val="0"/>
         	<:foreach var="$[items]" val="item">
                 <div class="swiper-slide">
-                	<a href="/reviews/${normalize(${item.name})}-review" class="carousel-slide">
+                	<a href="/reviews/${get_rating(${item.name})}-review" class="carousel-slide">
                 		<div class="carousel-slide-img">
                 			<div>
                 				<img class="lazy_loaded" data-src="${getCasinoLogo(${data.best_casinos.${index}.code}, 85, 56)}" width="85" onerror="this.onerror=null; this.src='/public/build/images/default_casino_logo.png'" height="56" alt="${item.name} Logo" title="${item.name}">
                 			</div>
-							<div class="carousel-slide-rating ${normalize($[items][$index]['score_class'])}">
+							<div class="carousel-slide-rating ${get_rating(${item.rating},true)}">
 		                		${ceil(${item.rating})}
 		                	</div>
                 		</div>
