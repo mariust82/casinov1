@@ -1943,11 +1943,7 @@ var SearchPanel = function (obj) {
                 return name.replace(/\s/g, '-').toLowerCase();
             },
             getItemPattern = function (itemData) {
-                var pattern = '<li>\
-                    <a class="search-results-label" href="/' + itemData.link.replace("/games/", "") + '">\
-                        ' + itemData.name + '\
-                    </a>\
-                </li>';
+                var pattern = '<li><a class="search-results-label" href="/' + itemData.link.replace("/games/", "") + '">' + itemData.name + '</a></li>';
 
                 return pattern;
             },
