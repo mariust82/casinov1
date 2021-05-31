@@ -139,13 +139,9 @@ self.addEventListener('notificationclick', function (event) {
     var notification = event.notification;
     var action = event.action;
 
-    console.log(notification);
-
-    if (action === 'confirm') {
-        console.log('Confirm was chosen');
+    if (action === 'cancel') {
         notification.close();
     } else {
-        console.log(action);
         event.waitUntil(
             clients.matchAll()
                 .then(function (clis) {
@@ -166,7 +162,7 @@ self.addEventListener('notificationclick', function (event) {
 });
 
 self.addEventListener('notificationclose', function (event) {
-    console.log('Notification was closed', event);
+    console.log('Notification was closed');
 });
 
 self.addEventListener('push', function (event) {
