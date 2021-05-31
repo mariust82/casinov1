@@ -1,5 +1,5 @@
 let CONFIGURATIONS = {
-    cache_version: 2,
+    cache_version: 1,
     resources: [
         "/manifest.json",
         // CSS
@@ -73,6 +73,7 @@ let CONFIGURATIONS = {
  * @returns {Promise<Cache | void>}
  */
 function preCacheAppShell(appVersion) {
+    CONFIGURATIONS.cache_version = appVersion.split('=')[1];
     return caches.open(CONFIGURATIONS.cache_static)
         .then((cache) => {
             let resources = CONFIGURATIONS.getStaticResources();
@@ -145,7 +146,7 @@ self.addEventListener('notificationclick', function (event) {
         event.waitUntil(
             clients.matchAll()
                 .then(function (clis) {
-                    var client = clis.find(function (c) {
+                    let client = clis.find(function (c) {
                         return c.visibilityState === 'visible';
                     });
 
@@ -167,12 +168,11 @@ self.addEventListener('notificationclose', function (event) {
 
 self.addEventListener('push', function (event) {
     console.log('Push Notification received', event);
-
-    var data = {title: 'New!', content: 'Something new happened!', openUrl: '/'};
+    let data = {title: 'New bonuses!', content: 'We have new bonuses please have a look!', openUrl: '/'};
     if (event.data) {
         data = JSON.parse(event.data.text());
     }
-    var options = {
+    let options = {
         body: data.content,
         icon: '/src/images/icons/app-icon-96x96.png',
         badge: '/src/images/icons/app-icon-96x96.png',
@@ -181,7 +181,7 @@ self.addEventListener('push', function (event) {
         },
         image: '/public/build/images/icons/icon-256x256.png',
         dir: 'ltr',
-        lang: 'en-US', // BCP 47,
+        lang: 'en-US',
         vibrate: [100, 50, 200],
         tag: 'confirm-notification',
         renotify: true,
