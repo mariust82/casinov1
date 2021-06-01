@@ -140,9 +140,7 @@ self.addEventListener('notificationclick', function (event) {
     var notification = event.notification;
     var action = event.action;
 
-    if (action === 'cancel') {
-        notification.close();
-    } else {
+    if (action === 'open') {
         event.waitUntil(
             clients.matchAll()
                 .then(function (clis) {
@@ -159,6 +157,8 @@ self.addEventListener('notificationclick', function (event) {
                     notification.close();
                 })
         );
+    } else {
+        notification.close();
     }
 });
 
@@ -186,8 +186,7 @@ self.addEventListener('push', function (event) {
         tag: 'confirm-notification',
         renotify: true,
         actions: [
-            {action: 'confirm', title: 'Okay', icon: '/public/build/images/icons/icon-96x96.png'},
-            {action: 'cancel', title: 'Cancel', icon: '/public/build/images/icons/icon-96x96.png'}
+            {action: 'open', title: 'Open', icon: '/public/build/images/icons/icon-96x96.png'}
         ]
     };
 
