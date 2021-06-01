@@ -1,14 +1,19 @@
 if ('serviceWorker' in navigator) {
     var deferredPrompt;
-    var addBtn = document.querySelector('#btn-add-to-home-screen');
+    var siteId = 'cl';
+    var addToHomeScreenBtn = document.querySelector('#btn-add-to-home-screen');
     var notificationSubscriptionBtn = document.querySelector('.news-btn');
     var versionContainer = document.querySelector('.controller_main');
     var version = versionContainer.getAttribute('data-version');
+    var vapidPublicKey = 'BD2JY9S9yYiasakRQnyOvHb5vbQ3zgMhIC6wABWXv2J2gHlfprAZ7ovBSOFm0I6DECDbQmX21tUsYGgW31AFeWg';
+    var fbUrl = 'https://quickstart-1601993978019-default-rtdb.europe-west1.firebasedatabase.app';
+
     navigator.serviceWorker
         .register('/sw.js?ver=' + version, {scope: "/"})
         .then(function () {
             console.log('SW registered!');
         });
+
     window.addEventListener('beforeinstallprompt', function (e) {
         console.log("beforeinstallprompt, installable");
         // Prevent Chrome 67 and earlier from automatically showing the prompt
@@ -16,10 +21,10 @@ if ('serviceWorker' in navigator) {
         // Stash the event so it can be triggered later.
         deferredPrompt = e;
         // Update UI to notify the user they can add to home screen
-        addBtn.style.display = 'block';
-        addBtn.addEventListener('click', function (e) {
+        addToHomeScreenBtn.style.display = 'block';
+        addToHomeScreenBtn.addEventListener('click', function (e) {
             // hide our user interface that shows our A2HS button
-            addBtn.style.display = 'none';
+            addToHomeScreenBtn.style.display = 'none';
             // Show the prompt
             deferredPrompt.prompt();
             // Wait for the user to respond to the prompt
@@ -32,46 +37,55 @@ if ('serviceWorker' in navigator) {
                 deferredPrompt = null;
             });
         });
+
+        return false;
     });
 
-    function displayConfirmNotification() {
-        if ('serviceWorker' in navigator) {
-            var options = {
-                body: 'You successfully subscribed to our Notification service!',
-                icon: '/public/build/images/icons/icon-96x96.png',
-                image: '/public/build/images/icons/icon-256x256.png',
-                dir: 'ltr',
-                lang: 'en-US', // BCP 47,
-                vibrate: [100, 50, 200],
-                badge: '/public/build/images/icons/icon-96x96.png',
-                tag: 'confirm-notification',
-                renotify: true,
-                actions: [
-                    {action: 'confirm', title: 'Okay', icon: '/public/build/images/icons/icon-96x96.png'},
-                    {action: 'cancel', title: 'Cancel', icon: '/public/build/images/icons/icon-96x96.png'}
-                ]
-            };
-            notificationSubscriptionBtn.style.display = 'none';
-            navigator.serviceWorker.ready
-                .then(function (swreg) {
-                    swreg.showNotification('Successfully subscribed!', options);
-                });
+    function getDateInfo() {
+        return {
+            timeZone: new Date().getTimezoneOffset() / -60,
+            timeZoneName: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            timeZoneTitle: new Date().toTimeString().slice(9)
         }
     }
 
-    function configurePushSub() {
-        var reg;
+    function displayConfirmNotification() {
+        var options = {
+            body: 'You successfully subscribed to our Notification service!',
+            icon: '/public/build/images/icons/icon-96x96.png',
+            image: '/public/build/images/icons/icon-256x256.png',
+            dir: 'ltr',
+            lang: 'en-US',
+            vibrate: [100, 50, 200],
+            badge: '/public/build/images/icons/icon-96x96.png',
+            tag: 'confirm-notification',
+            renotify: true,
+            data: {
+                url: '/'
+            },
+            actions: [
+                {action: 'confirm', title: 'Okay', icon: '/public/build/images/icons/icon-96x96.png'}
+            ]
+        };
+        notificationSubscriptionBtn.style.display = 'none';
         navigator.serviceWorker.ready
-            .then(function (swreg) {
-                reg = swreg;
-                return swreg.pushManager.getSubscription();
+            .then(function (swRegistration) {
+                swRegistration.showNotification('Successfully subscribed!', options);
+            });
+    }
+
+    function configurePushSubscription() {
+        var swRegistration;
+        navigator.serviceWorker.ready
+            .then(function (swReg) {
+                swRegistration = swReg;
+                return swRegistration.pushManager.getSubscription();
             })
-            .then(function (sub) {
-                if (sub === null) {
+            .then(function (pushSubscription) {
+                if (pushSubscription === null) {
                     // Create a new subscription
-                    var vapidPublicKey = 'BD2JY9S9yYiasakRQnyOvHb5vbQ3zgMhIC6wABWXv2J2gHlfprAZ7ovBSOFm0I6DECDbQmX21tUsYGgW31AFeWg';
                     var convertedVapidPublicKey = urlBase64ToUint8Array(vapidPublicKey);
-                    return reg.pushManager.subscribe({
+                    return swRegistration.pushManager.subscribe({
                         userVisibleOnly: true,
                         applicationServerKey: convertedVapidPublicKey
                     });
@@ -79,13 +93,14 @@ if ('serviceWorker' in navigator) {
                     return null;
                 }
             })
-            .then(function (newSub) {
-                if (newSub) {
+            .then(function (newPushSubscription) {
+                if (newPushSubscription) {
                     var fbDocument = JSON.stringify({
-                        subscriptionInfo: newSub,
-                        siteId: 'cl'
+                        date: getDateInfo(),
+                        siteId: siteId,
+                        subscriptionInfo: newPushSubscription,
                     });
-                    return fetch('https://quickstart-1601993978019-default-rtdb.europe-west1.firebasedatabase.app/subscriptions.json', {
+                    return fetch(fbUrl + '/subscriptions.json', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -99,7 +114,7 @@ if ('serviceWorker' in navigator) {
                 }
             })
             .then(function (res) {
-                if (res.ok) {
+                if (res && res.ok) {
                     displayConfirmNotification();
                 }
             })
@@ -110,16 +125,15 @@ if ('serviceWorker' in navigator) {
 
     function askForNotificationPermission() {
         Notification.requestPermission(function (result) {
-            console.log('User Choice', result);
             if (result !== 'granted') {
                 console.log('No notification permission granted!');
             } else {
-                configurePushSub();
+                configurePushSubscription();
             }
         });
     }
 
-    if ('Notification' in window && 'serviceWorker' in navigator) {
+    if ('Notification' in window) {
         notificationSubscriptionBtn.addEventListener('click', function (e) {
             askForNotificationPermission();
         });
