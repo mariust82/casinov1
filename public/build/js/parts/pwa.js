@@ -8,11 +8,9 @@ if ('serviceWorker' in navigator) {
     var vapidPublicKey = 'BD2JY9S9yYiasakRQnyOvHb5vbQ3zgMhIC6wABWXv2J2gHlfprAZ7ovBSOFm0I6DECDbQmX21tUsYGgW31AFeWg';
     var fbUrl = 'https://quickstart-1601993978019-default-rtdb.europe-west1.firebasedatabase.app';
 
-    navigator.serviceWorker
-        .register('/sw.js?ver=' + version, {scope: "/"})
-        .then(function () {
-            console.log('SW registered!');
-        });
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js?ver=' + version, {scope: "/"});
+    });
 
     window.addEventListener('beforeinstallprompt', function (e) {
         console.log("beforeinstallprompt, installable");
