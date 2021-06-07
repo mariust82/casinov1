@@ -133,9 +133,5 @@ if ('serviceWorker' in navigator) {
         notificationSubscriptionBtn.addEventListener('click', function (e) {
             askForNotificationPermission();
         });
-    } else {
-        alert('Notification not in window');
     }
-} else {
-    alert('serviceWorker not in navigator');
 }
