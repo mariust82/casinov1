@@ -10,7 +10,8 @@ if ('serviceWorker' in navigator) {
     var fbUrl = 'https://quickstart-1601993978019-default-rtdb.europe-west1.firebasedatabase.app';
 
     navigator.serviceWorker.register('/sw.js?ver=' + version, {scope: "/"})
-        .then(() => console.log('serviceWorker registered'));
+        .then(() => console.log('serviceWorker registered'))
+        .catch((err) => console.log('serviceWorker registration failed: ', err));
 
     window.addEventListener('beforeinstallprompt', function (e) {
         console.log("beforeinstallprompt, installable");
@@ -137,4 +138,6 @@ if ('serviceWorker' in navigator) {
             askForNotificationPermission();
         });
     }
+} else {
+    console.log("'serviceWorker' not in navigator");
 }
