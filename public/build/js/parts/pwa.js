@@ -1,4 +1,5 @@
 if ('serviceWorker' in navigator) {
+    console.log("'serviceWorker' in navigator");
     var deferredPrompt;
     var siteId = 'cl';
     var addToHomeScreenBtn = document.querySelector('#btn-add-to-home-screen');
@@ -8,7 +9,8 @@ if ('serviceWorker' in navigator) {
     var vapidPublicKey = 'BD2JY9S9yYiasakRQnyOvHb5vbQ3zgMhIC6wABWXv2J2gHlfprAZ7ovBSOFm0I6DECDbQmX21tUsYGgW31AFeWg';
     var fbUrl = 'https://quickstart-1601993978019-default-rtdb.europe-west1.firebasedatabase.app';
 
-    navigator.serviceWorker.register('/sw.js?ver=' + version, {scope: "/"});
+    navigator.serviceWorker.register('/sw.js?ver=' + version, {scope: "/"})
+        .then(() => console.log('serviceWorker registered'));
 
     window.addEventListener('beforeinstallprompt', function (e) {
         console.log("beforeinstallprompt, installable");
@@ -130,6 +132,7 @@ if ('serviceWorker' in navigator) {
     }
 
     if ('Notification' in window) {
+        console.log("'Notification' in window");
         notificationSubscriptionBtn.addEventListener('click', function (e) {
             askForNotificationPermission();
         });
