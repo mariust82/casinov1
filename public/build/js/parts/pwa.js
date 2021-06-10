@@ -1,5 +1,4 @@
 if ('serviceWorker' in navigator) {
-    console.log("'serviceWorker' in navigator");
     var deferredPrompt;
     var siteId = 'cl';
     var addToHomeScreenBtn = document.querySelector('#btn-add-to-home-screen');
@@ -9,7 +8,7 @@ if ('serviceWorker' in navigator) {
     var vapidPublicKey = 'BD2JY9S9yYiasakRQnyOvHb5vbQ3zgMhIC6wABWXv2J2gHlfprAZ7ovBSOFm0I6DECDbQmX21tUsYGgW31AFeWg';
     var fbUrl = 'https://quickstart-1601993978019-default-rtdb.europe-west1.firebasedatabase.app';
 
-    navigator.serviceWorker.register('/sw.js?ver=' + version, {scope: "/"})
+    navigator.serviceWorker.register('/sw.js?ver=' + version, {scope: "./"})
         .then(() => console.log('serviceWorker registered'))
         .catch((err) => console.log('serviceWorker registration failed: ', err));
 
@@ -77,40 +76,43 @@ if ('serviceWorker' in navigator) {
         var swRegistration;
         navigator.serviceWorker.ready
             .then(function (swReg) {
-                swRegistration = swReg;
-                return swRegistration.pushManager.getSubscription();
-            })
-            .then(function (pushSubscription) {
-                if (pushSubscription === null) {
-                    // Create a new subscription
-                    var convertedVapidPublicKey = urlBase64ToUint8Array(vapidPublicKey);
-                    return swRegistration.pushManager.subscribe({
-                        userVisibleOnly: true,
-                        applicationServerKey: convertedVapidPublicKey
-                    });
-                } else {
+                if (!swReg) {
+                    console.log('ServiceWorkerRegistration failed...', swReg);
                     return null;
                 }
+                swRegistration = swReg;
+                return swReg.pushManager.getSubscription();
+            })
+            .then(function (pushSubscription) {
+                if (!pushSubscription) {
+                    return null;
+                }
+                // Create a new subscription
+                return swRegistration.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+                });
             })
             .then(function (newPushSubscription) {
-                if (newPushSubscription) {
-                    var fbDocument = JSON.stringify({
-                        date: getDateInfo(),
-                        siteId: siteId,
-                        subscriptionInfo: newPushSubscription,
-                    });
-                    return fetch(fbUrl + '/subscriptions.json', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: fbDocument
-                    })
-                        .catch(function (err) {
-                            console.log(err);
-                        });
+                if (!newPushSubscription) {
+                    return null;
                 }
+                var fbDocument = JSON.stringify({
+                    date: getDateInfo(),
+                    siteId: siteId,
+                    subscriptionInfo: newPushSubscription,
+                });
+                return fetch(fbUrl + '/subscriptions.json', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: fbDocument
+                })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
             })
             .then(function (res) {
                 if (res && res.ok) {
@@ -133,10 +135,11 @@ if ('serviceWorker' in navigator) {
     }
 
     if ('Notification' in window) {
-        console.log("'Notification' in window");
         notificationSubscriptionBtn.addEventListener('click', function (e) {
             askForNotificationPermission();
         });
+    } else {
+        console.log("'Notification' not in window");
     }
 } else {
     console.log("'serviceWorker' not in navigator");
