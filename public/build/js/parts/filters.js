@@ -942,13 +942,11 @@ function processCheckboxes(_this) {
         }else{
             var selectedListItems = [];
             $('li.select2-results__option[aria-selected="true"]').each(function( i ) {
-                console.log($(this).find(".wrap").html());
                 selectedListItems.push($(this).find(".wrap").html());
-                console.log(selectedListItems);
             });
             $('.select2-selection__rendered').html(selectedListItems.join(', '));
         }
     }
 
-    setTimeout(resetPlaceholder, 500);
+    setTimeout(resetPlaceholder, 300);
 }
