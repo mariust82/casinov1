@@ -3911,3 +3911,15 @@ button.swiper-pagination-bullet {
 /*end swiper*/
 
 /*common styles*/
+
+
+.select2-container--open .select2-dropdown--above {
+  width: 100% !important;
+  margin-top: 0 !important;
+}
+.select2-dropdown.select2-dropdown--above:after, .select2-dropdown.select2-dropdown--above:before{
+  top: calc(100% + 20px) !important;
+  transform: translate(-50%,-100%) rotate(
+          180deg
+  );
+}
