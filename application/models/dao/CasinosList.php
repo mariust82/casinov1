@@ -29,7 +29,6 @@ class CasinosList
             "cs.name AS status",
             "t1.name",
             "t1.code",
-            "t1.rating_votes",
             "t1.date_established",
             "IF(t1.tc_link<>'', 1, 0) AS is_tc_link");
 
@@ -54,7 +53,7 @@ class CasinosList
             $object->is_tc_link = $row["is_tc_link"];
             $object->new = $this->helper->isCasinoNew($row["date_established"]);
             $object->rating = 0;
-            $object->rating_votes = $row["rating_votes"];
+            $object->rating_votes = 0;
             $object->score_class = $this->helper->getScoreClass($object->rating);
             if ($this->filter->getCasinoLabel() == 'Fast Payout') {
                 $object->withdrawal_timeframes = $row['end'] == 0 ? "Instant" : "Up to " . $row['end'] . " hours";
@@ -207,11 +206,12 @@ class CasinosList
     protected function appendRating(array &$output, string $allowedIds): void
     {
         // append average rating
-        $query = "SELECT id, (rating_total/rating_votes) AS average_rating
+        $query = "SELECT id, rating_votes, (rating_total/rating_votes) AS average_rating
             FROM casinos WHERE id IN (" . $allowedIds . ");";
         $resultSet = SQL($query);
         while ($row = $resultSet->toRow()) {
             $output[$row["id"]]->rating = ceil($row["average_rating"]);
+            $output[$row["id"]]->rating_votes = $row["rating_votes"];
         }
     }
 
@@ -372,7 +372,7 @@ class CasinosList
     {
         $output = [];
         $date = date("Y-m-d", strtotime(date("Y-m-d") . " -6 months"));
-        $res = SQL("SELECT DISTINCT t1.id, t1.name,t1.tc_link , t1.code, t1.rating_votes,
+        $res = SQL("SELECT DISTINCT t1.id, t1.name,t1.tc_link , t1.code,
                     IF(t2.casino_id IS NOT NULL, 1, 0) AS is_country_supported,
                     IF(t15.casino_id IS NOT NULL,1,0) AS currency_supported,
                     IF(t17.casino_id IS NOT NULL,1,0) AS language_accepted,
@@ -391,7 +391,7 @@ class CasinosList
             $object->name = $row["name"];
             $object->code = $row["code"];
             $object->rating = 0;
-            $object->rating_votes = $row["rating_votes"];
+            $object->rating_votes = 0;
             $object->is_country_accepted = $row["is_country_supported"];
             $object->is_currency_accepted = $row['currency_supported'];
             $object->is_language_accepted = $row['language_accepted'];
