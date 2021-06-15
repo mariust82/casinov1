@@ -939,7 +939,7 @@ function processCheckboxes(_this) {
         if ($('.select2-container').find('li.select2-results__option[aria-selected="true"]').length == 0){
             var $select = $(_this);
             var selectName = $select.attr('name');
-            $('.' + selectName + '+.select2 .select2-selection__rendered').html(window[selectName + '_placeholder']);
+            $('.select2-selection__rendered').html(window[selectName + '_placeholder']);
             clearButtonSelector.hide();
         }
     }
