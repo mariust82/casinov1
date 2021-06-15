@@ -939,6 +939,14 @@ function processCheckboxes(_this) {
         if ($('.select2-container').find('li.select2-results__option[aria-selected="true"]').length == 0){
             $('.select2-selection__rendered').html("Software");
             clearButtonSelector.hide();
+        }else{
+            var selectedListItems = [];
+            $('li.select2-results__option[aria-selected="true"]').each(function( i ) {
+                console.log($(this).find(".wrap").html());
+                selectedListItems.push($(this).find(".wrap").html());
+                console.log(selectedListItems);
+            });
+            $('.select2-selection__rendered').html(selectedListItems.join(', '));
         }
     }
 
