@@ -4319,7 +4319,7 @@
 
                 if (newDirection == 'above' ||
                     (isCurrentlyAbove && newDirection !== 'below')) {
-                    css.top = container.top - parentOffset.top - dropdown.height;
+                    css.top = container.top - parentOffset.top - dropdown.height - 10;
                 }
 
                 if (newDirection != null) {
