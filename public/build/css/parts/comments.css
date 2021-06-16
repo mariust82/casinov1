@@ -59,7 +59,7 @@
 }
 
 #reviews-form .action-field.field-error-required, 
-.review-child .review-form .action-field.field-error-required{
+.review-form .action-field.field-error-required{
   margin:5px 0 0 0;
   display:block;
   text-align:left;
