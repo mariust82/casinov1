@@ -73,26 +73,29 @@ if ('serviceWorker' in navigator) {
     }
 
     function configurePushSubscription() {
-        var swRegistration;
+        var swrPushManager;
         navigator.serviceWorker.ready
             .then(function (swReg) {
                 console.log(swReg);
                 if (!swReg) {
                     console.log('ServiceWorkerRegistration failed...', swReg);
                     return null;
-                } else {
-                    swRegistration = window.safari.pushNotification;
-                    return swRegistration.getSubscription();
-                    // swRegistration = swReg;
-                    // return swReg.pushManager.getSubscription();
+                } else if ('pushManager' in swReg) {
+                    swrPushManager = swReg.pushManager;
+                    return swrPushManager.getSubscription();
+                } else if ('safari' in window) {
+                    console.log(swReg);
+                    swrPushManager = window.safari.pushManager;
+                    return swrPushManager.getSubscription();
                 }
+                console.log("Something went wrong with ServiceWorkerRegistration", swReg);
             })
             .then(function (pushSubscription) {
                 if (!pushSubscription) {
                     return null;
                 } else {
                     // Create a new subscription
-                    return swRegistration.pushManager.subscribe({
+                    return swrPushManager.subscribe({
                         userVisibleOnly: true,
                         applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
                     });
