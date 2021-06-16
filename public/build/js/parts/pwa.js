@@ -76,6 +76,7 @@ if ('serviceWorker' in navigator) {
         var swRegistration;
         navigator.serviceWorker.ready
             .then(function (swReg) {
+                console.log(swReg);
                 if (!swReg) {
                     console.log('ServiceWorkerRegistration failed...', swReg);
                     return null;
