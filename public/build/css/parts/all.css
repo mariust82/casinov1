@@ -9203,9 +9203,11 @@ img[src] {
   font-weight: bold;
 }
 
-/* .js-condense{
-overflow: visible;
+.bonus-box .list-item-flex{
+  pointer-events: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
-.js-condense.js-condense_readmore_ellipsis{
-overflow: hidden;
-} */
