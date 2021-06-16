@@ -47,9 +47,7 @@
 						<a href="/visit/${normalize(${data.casino.name})}"
 						   class="btn_play btn btn-middle btn-${item_status}"
 						   rel="nofollow"
-						<:if test="${item_status} != 'blacklisted' && ${item_status} != 'warning' && ${item_status} != 'restricted'">
-							target="_blank"
-						</:if>
+						   target="_blank"
 						>
 						<:if test="${item_status} == 'blacklisted' || ${item_status} == 'warning'">
 							<svg class="svg-icon"><use xlink:href="#icon-${item_status}"></use></svg>
