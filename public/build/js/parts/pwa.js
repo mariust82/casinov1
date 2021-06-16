@@ -81,8 +81,10 @@ if ('serviceWorker' in navigator) {
                     console.log('ServiceWorkerRegistration failed...', swReg);
                     return null;
                 } else {
-                    swRegistration = swReg;
-                    return swReg.pushManager.getSubscription();
+                    swRegistration = window.safari.pushNotification;
+                    return swRegistration.getSubscription();
+                    // swRegistration = swReg;
+                    // return swReg.pushManager.getSubscription();
                 }
             })
             .then(function (pushSubscription) {
