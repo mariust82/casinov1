@@ -3167,7 +3167,7 @@
          * @public
          */
         constrain: function(width, height) {
-
+            width = width + 1;
             this.constraints = {
                 width: width,
                 height: height
