@@ -5821,8 +5821,8 @@ html.no-scroll {
 }
 
 .info-list .item{
-  margin-right: 10px;
-  padding-right: 10px;
+  margin-right: 13px;
+  padding-right: 13px;
   position: relative;
   color: #A1AEB8;
 }
@@ -9202,3 +9202,10 @@ img[src] {
   text-decoration: underline;
   font-weight: bold;
 }
+
+/* .js-condense{
+overflow: visible;
+}
+.js-condense.js-condense_readmore_ellipsis{
+overflow: hidden;
+} */

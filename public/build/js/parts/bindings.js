@@ -2213,9 +2213,8 @@ function initExpandingText() {
                 wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs);
                 singleline = (singleline / 1.6) + parseFloat(element.css("font-size"));
                 var linescount = singleline * settings.linecount;
-
             element.wrap(wrapper);
-
+            fullheight = fullheight + 30;
             if (element.parent().not(wrapjs)) {
                 if (fullheight > linescount) {
 
