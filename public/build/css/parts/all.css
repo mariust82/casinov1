@@ -9202,3 +9202,10 @@ img[src] {
   text-decoration: underline;
   font-weight: bold;
 }
+
+.js-condense{
+overflow: visible;
+}
+.js-condense.js-condense_readmore_ellipsis{
+overflow: hidden;
+}
