@@ -2215,7 +2215,8 @@ function initExpandingText() {
                 var linescount = singleline * settings.linecount;
 
             element.wrap(wrapper);
-
+            console.log(singleline);
+            console.log(fullheight);
             if (element.parent().not(wrapjs)) {
                 if (fullheight > linescount) {
 
