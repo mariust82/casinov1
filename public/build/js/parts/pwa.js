@@ -79,44 +79,49 @@ if ('serviceWorker' in navigator) {
                 if (!swReg) {
                     console.log('ServiceWorkerRegistration failed...', swReg);
                     return null;
+                } else {
+                    swRegistration = swReg;
+                    return swReg.pushManager.getSubscription();
                 }
-                swRegistration = swReg;
-                return swReg.pushManager.getSubscription();
             })
             .then(function (pushSubscription) {
                 if (!pushSubscription) {
                     return null;
+                } else {
+                    // Create a new subscription
+                    return swRegistration.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+                    });
                 }
-                // Create a new subscription
-                return swRegistration.pushManager.subscribe({
-                    userVisibleOnly: true,
-                    applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
-                });
             })
             .then(function (newPushSubscription) {
                 if (!newPushSubscription) {
                     return null;
-                }
-                var fbDocument = JSON.stringify({
-                    date: getDateInfo(),
-                    siteId: siteId,
-                    subscriptionInfo: newPushSubscription,
-                });
-                return fetch(fbUrl + '/subscriptions.json', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: fbDocument
-                })
-                    .catch(function (err) {
-                        console.log(err);
+                } else {
+                    var fbDocument = JSON.stringify({
+                        date: getDateInfo(),
+                        siteId: siteId,
+                        subscriptionInfo: newPushSubscription,
                     });
+                    return fetch(fbUrl + '/subscriptions.json', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: fbDocument
+                    })
+                        .catch(function (err) {
+                            console.log(err);
+                        });
+                }
             })
             .then(function (res) {
                 if (res && res.ok) {
                     displayConfirmNotification();
+                } else {
+                    alert("Something went wrong with subscription");
                 }
             })
             .catch(function (err) {
