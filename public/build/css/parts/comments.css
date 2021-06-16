@@ -658,7 +658,7 @@
 
 }
 
-.bonus-box-list-label+strong.list-item-flex{
+.bonus-box .list-item-flex{
   pointer-events: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
