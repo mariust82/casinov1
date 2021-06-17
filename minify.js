@@ -2,6 +2,7 @@ var fs = require("fs"),
     xml2js = require("xml2js"),
     parser = new xml2js.Parser(),
     gulp = require('gulp'),
+    babel = require('gulp-babel'),
     uglify = require("gulp-uglify"),
     minifyCss = require("gulp-clean-css")
 ;
@@ -30,6 +31,7 @@ fs.readFile("resources.xml", function(error, data) {
             }
             if(type==="js") {
                 gulp.src(sourceFolder+'/**/*.js')
+                    .pipe(babel({presets: ['es2015']}))
                     .pipe(uglify())
                     .pipe(gulp.dest(destinationFolder+'/'))
             } else if(type==="css") {
