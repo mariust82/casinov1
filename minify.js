@@ -2,7 +2,7 @@ var fs = require("fs"),
     xml2js = require("xml2js"),
     parser = new xml2js.Parser(),
     gulp = require('gulp'),
-    babel = require('gulp-babel'),
+    // babel = require('gulp-babel'),
     uglify = require("gulp-uglify"),
     minifyCss = require("gulp-clean-css")
 ;
