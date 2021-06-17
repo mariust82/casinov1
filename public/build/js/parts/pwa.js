@@ -76,19 +76,13 @@ if ('serviceWorker' in navigator) {
         var swrPushManager;
         navigator.serviceWorker.ready
             .then(function (swReg) {
-                console.log(swReg);
-                if (!swReg) {
+                if (!swReg || !('pushManager' in swReg)) {
                     console.log('ServiceWorkerRegistration failed...', swReg);
                     return null;
-                } else if ('pushManager' in swReg) {
+                } else {
                     swrPushManager = swReg.pushManager;
                     return swrPushManager.getSubscription();
-                } else if ('safari' in window) {
-                    console.log(swReg);
-                    swrPushManager = window.safari.pushManager;
-                    return swrPushManager.getSubscription();
                 }
-                console.log("Something went wrong with ServiceWorkerRegistration", swReg);
             })
             .then(function (pushSubscription) {
                 if (!pushSubscription) {
