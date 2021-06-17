@@ -31,7 +31,7 @@ fs.readFile("resources.xml", function(error, data) {
             }
             if(type==="js") {
                 gulp.src(sourceFolder+'/**/*.js')
-                    .pipe(babel({presets: ['es2015']}))
+                    // .pipe(babel({presets: ['es2015']}))
                     .pipe(uglify())
                     .pipe(gulp.dest(destinationFolder+'/'))
             } else if(type==="css") {
