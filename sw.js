@@ -27,8 +27,6 @@ let CONFIGURATIONS = {
     ],
     pages: [
         "/",
-        "/bonus-list/no-deposit-bonus",
-        "/casinos/new",
         "/offline"
     ],
     getStaticResources: function () {
@@ -162,31 +160,25 @@ self.addEventListener('notificationclick', function (event) {
     }
 });
 
-self.addEventListener('notificationclose', function (event) {
-    console.log('Notification was closed');
-});
-
 self.addEventListener('push', function (event) {
-    console.log('Push Notification received', event);
     let data = {title: 'New bonuses!', content: 'We have new bonuses please have a look!', openUrl: '/'};
     if (event.data) {
         data = JSON.parse(event.data.text());
     }
     let options = {
         body: data.content,
-        icon: '/src/images/icons/app-icon-96x96.png',
-        badge: '/src/images/icons/app-icon-96x96.png',
+        icon: '/src/images/icons/maskable_icon_x96.png',
+        badge: '/src/images/icons/maskable_icon_x48.png',
         data: {
             url: data.openUrl
         },
-        image: '/public/build/images/icons/icon-256x256.png',
         dir: 'ltr',
         lang: 'en-US',
         vibrate: [100, 50, 200],
         tag: 'confirm-notification',
         renotify: true,
         actions: [
-            {action: 'open', title: 'Open', icon: '/public/build/images/icons/icon-96x96.png'}
+            {action: 'open', title: 'Open'}
         ]
     };
 
