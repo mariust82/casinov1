@@ -33,21 +33,6 @@ abstract class BaseController extends Lucinda\MVC\STDOUT\Controller
             ["response"=>$this->response, "request"=>$this->request]
         );
         $this->response->attributes("widgets", $contentManager->getTexts(true));
-        $this->response->attributes("is_pwa_device", $this->isPwaDevice());
-    }
-
-    protected function isPwaDevice(): ?string
-    {
-        $mobileDetect = new Mobile_Detect();
-        if ($mobileDetect->isMobile()) {
-            if ($mobileDetect->version('Android')) {
-                return 'android';
-            }
-            if ($mobileDetect->is('IOS')) {
-                return 'ios';
-            }
-        }
-        return null;
     }
 
     abstract protected function service();
