@@ -26,7 +26,10 @@ let CONFIGURATIONS = {
     ],
     pages: [
         "/",
-        "/offline"
+        "/offline",
+        "/offline",
+        "/pwa-popups?device=android",
+        "/pwa-popups?device=ios"
     ],
     getStaticResources: function () {
         return [
