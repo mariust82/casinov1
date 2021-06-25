@@ -13,13 +13,5 @@
 	<site:footer/>
 	<site:svg/>
 	<site:js-templates/>
-	<:if test="isset(${data.is_pwa_device}) && ${data.is_pwa_device}">
-		<:if test="${data.is_pwa_device} === 'android'">
-			<pwa:android/>
-			<pwa:notification/>
-		<:else>
-			<pwa:ios/>
-		</:if>
-	</:if>
 </body>
 </html>
