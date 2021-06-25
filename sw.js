@@ -7,7 +7,6 @@ let CONFIGURATIONS = {
         "/public/build/css/compilations/gameplay.css",
         "/public/build/css/compilations/casino_view.css",
         "/public/build/css/compilations/defer.css",
-        "/public/build/css/compilations/ion.rangeSlider.css",
         // JS
         "/public/build/js/compilations/blog.js",
         "/public/build/js/compilations/casino_view.js",
