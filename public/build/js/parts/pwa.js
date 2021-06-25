@@ -238,7 +238,7 @@ if ('serviceWorker' in navigator) {
                                     if (res && res.ok) {
                                         displayConfirmNotification();
                                     } else {
-                                        alert("Something went wrong with subscription");
+                                        console.log(res, swrPushManager);
                                     }
                                 })
                                 .catch(function (err) {
