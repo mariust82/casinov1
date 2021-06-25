@@ -10,6 +10,8 @@
             <file name="main"/>
             <file name="casino_review"/>
             <file name="tracker"/>
+            <file name="utility"/>
+            <file name="pwa"/>
         </file>
         <file name="blog">
             <file name="assets/jquery-3.6.0.min" />
@@ -18,12 +20,16 @@
             <file name="vote"/>
             <file name="main"/>
             <file name="tracker"/>
+            <file name="utility"/>
+            <file name="pwa"/>
         </file>
         <file name="contact">
             <file name="assets/jquery-3.6.0.min" />
             <file name="assets/jquery-migrate-3.3.2.min" />
             <file name="main"/>
             <file name="contact"/>
+            <file name="utility"/>
+            <file name="pwa"/>
         </file>
         <file name="gameplay">
             <file name="assets/jquery-3.6.0.min" />
@@ -32,6 +38,8 @@
             <file name="main"/>
             <file name="gameplay"/>
             <file name="tracker"/>
+            <file name="utility"/>
+            <file name="pwa"/>
         </file>
         <file name="main">
             <file name="assets/jquery-3.6.0.min" />
@@ -39,6 +47,8 @@
             <file name="global_js/image-defer" />
             <file name="main"/>
             <file name="tracker"/>
+            <file name="utility"/>
+            <file name="pwa"/>
         </file>
 
         <file name="defer">
@@ -50,8 +60,6 @@
             <file name="assets/swiper" />
             <file name="assets/jquery.tmpl" />
             <file name="bindings" />
-            <file name="utility"/>
-            <file name="pwa"/>
         </file>
 
         <!-- bundle used only for local dev -->

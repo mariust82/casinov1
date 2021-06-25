@@ -57,7 +57,10 @@ if ('serviceWorker' in navigator) {
                         function showA2HSPopup() {
                             if (!sessionStorage.getItem('isA2HSPopupClosed') &&
                                 !localStorage.getItem('isA2HSPopupClosed')) {
-                                pwaInstallationPopup.style.display = 'block';
+                                setTimeout(function () {
+                                    console.log('pwaInstallationPopup... showing' + defaultTimeOut);
+                                    pwaInstallationPopup.style.display = 'block';
+                                }, defaultTimeOut);
                             }
                         }
 
@@ -76,6 +79,16 @@ if ('serviceWorker' in navigator) {
                         notAgainA2HSPopup.addEventListener('click', function () {
                             hideA2HSPopup(false);
                         });
+                        if (mobileOperatingSystem === 'ios') {
+                            showA2HSPopup();
+                        }
+                        window.addEventListener('appinstalled', function () {
+                            localStorage.setItem('isA2HSAccepted', true);
+                            // Clear the deferredPrompt so it can be garbage collected
+                            deferredPrompt = null;
+                            // Optionally, send analytics event to indicate successful install
+                            console.log('PWA was installed');
+                        });
                         window.addEventListener('beforeinstallprompt', function (e) {
                             // Prevent Chrome 67 and earlier from automatically showing the prompt
                             e.preventDefault();
@@ -84,9 +97,9 @@ if ('serviceWorker' in navigator) {
                             // Stash the event so it can be triggered later.
                             deferredPrompt = e;
                             // Update UI to notify the user they can add to home screen
-                            setTimeout(function () {
-                                showA2HSPopup();
-                            }, defaultTimeOut)
+
+                            console.log('pwaInstallationPopup... before showing' + defaultTimeOut);
+                            showA2HSPopup();
                             A2HSBtn.addEventListener('click', function (e) {
                                 console.log('Adding to Home Screen');
                                 // hide our user interface that shows our A2HS button
