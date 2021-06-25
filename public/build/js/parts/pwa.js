@@ -49,6 +49,7 @@ if ('serviceWorker' in navigator) {
                 if (isAppended) {
                     var pwaInstallationPopup = document.querySelector('.pwa-popup-installation');
                     if (pwaInstallationPopup && !localStorage.getItem('isA2HSAccepted')) {
+                        console.log('pwaInstallationPopup...');
                         var A2HSBtn = document.querySelector('#btn-add-to-home-screen');
                         var closeA2HSPopup = document.querySelector('.pwa-popup_close-home-screen');
                         var notAgainA2HSPopup = document.querySelector('.pwa-popup_not-again');
@@ -109,16 +110,18 @@ if ('serviceWorker' in navigator) {
                     }
 
                     var pwaNotificationPopup = document.querySelector('.pwa-popup-notification');
-                    if (pwaNotificationPopup && 'Notification' in window && localStorage.getItem('isA2HSAccepted')) {
+                    if (pwaNotificationPopup &&
+                        'Notification' in window &&
+                        localStorage.getItem('isA2HSAccepted') &&
+                        !localStorage.getItem('isNotificationAccepted')) {
+                        console.log('pwaNotificationPopup...');
                         var notificationSubscriptionBtn = document.querySelector('#btn-allow-notifications');
                         var closeNotificationPopupBtn = document.querySelector('.pwa-popup_close-notification');
                         var noThanksBtn = document.querySelector('.pwa-popup_no-thanks');
 
                         function showNotificationPopup() {
                             if (!sessionStorage.getItem('isNotificationPopupClosed') &&
-                                !localStorage.getItem('isNotificationPopupClosed') &&
-                                !localStorage.getItem('isNotificationAccepted')
-                            ) {
+                                !localStorage.getItem('isNotificationPopupClosed')) {
                                 pwaNotificationPopup.style.display = 'block';
                             }
                         }
@@ -133,10 +136,10 @@ if ('serviceWorker' in navigator) {
                         }
 
                         closeNotificationPopupBtn.addEventListener('click', function () {
-                            hideNotificationPopup(false);
+                            hideNotificationPopup(true);
                         });
                         noThanksBtn.addEventListener('click', function () {
-                            hideNotificationPopup(true);
+                            hideNotificationPopup(false);
                         });
 
                         setTimeout(function () {
