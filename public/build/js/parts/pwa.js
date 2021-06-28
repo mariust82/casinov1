@@ -194,18 +194,15 @@ if ('serviceWorker' in navigator) {
                             var serviceWorkedRegistration;
                             navigator.serviceWorker.ready
                                 .then(function (swReg) {
-                                    console.log("swReg && 'pushManager' in swReg", swReg && 'pushManager' in swReg, swReg);
                                     if (swReg && 'pushManager' in swReg) {
                                         serviceWorkedRegistration = swReg;
                                         return swReg.pushManager.getSubscription();
                                     } else {
-                                        console.log('ServiceWorkerRegistration failed...', swReg);
-                                        return null;
+                                        return false;
                                     }
                                 })
                                 .then(function (pushSubscription) {
-                                    console.log('pushSubscription', pushSubscription);
-                                    if (pushSubscription) {
+                                    if (pushSubscription === null) {
                                         // Create a new subscription
                                         return serviceWorkedRegistration.pushManager.subscribe({
                                             userVisibleOnly: true,
@@ -216,6 +213,7 @@ if ('serviceWorker' in navigator) {
                                     }
                                 })
                                 .then(function (newPushSubscription) {
+                                    console.log('newPushSubscription', newPushSubscription);
                                     if (newPushSubscription) {
                                         var fbDocument = JSON.stringify({
                                             date: getDateInfo(),
@@ -241,7 +239,6 @@ if ('serviceWorker' in navigator) {
                                     if (res && res.ok) {
                                         displayConfirmNotification();
                                     } else {
-                                        console.log('res && res.ok', res, serviceWorkedRegistration);
                                         hideNotificationPopup(true);
                                     }
                                 })
