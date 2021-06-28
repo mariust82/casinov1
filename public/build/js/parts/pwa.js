@@ -129,7 +129,6 @@ if ('serviceWorker' in navigator) {
                         'Notification' in window &&
                         localStorage.getItem('isA2HSAccepted') &&
                         !localStorage.getItem('isNotificationAccepted')) {
-                        console.log('pwaNotificationPopup...');
                         var notificationSubscriptionBtn = document.querySelector('#btn-allow-notifications');
                         var closeNotificationPopupBtn = document.querySelector('.pwa-popup_close-notification');
                         var notificationsDeclinedBtn = document.querySelector('.pwa-popup_notifications-declined');
@@ -190,7 +189,6 @@ if ('serviceWorker' in navigator) {
                                     }
                                 ]
                             };
-                            notificationSubscriptionBtn.style.display = 'none';
                             navigator.serviceWorker.ready
                                 .then(function (swRegistration) {
                                     hideNotificationPopup();
@@ -246,8 +244,6 @@ if ('serviceWorker' in navigator) {
                                 .then(function (res) {
                                     if (res && res.ok) {
                                         displayConfirmNotification();
-                                    } else {
-                                        hideNotificationPopup();
                                     }
                                 })
                                 .catch(function (err) {
@@ -266,10 +262,9 @@ if ('serviceWorker' in navigator) {
                         }
 
                         notificationSubscriptionBtn.addEventListener('click', function (e) {
+                            hideNotificationPopup();
                             askForNotificationPermission();
                         });
-                    } else {
-                        console.log("'Notification' not in window, or pwa-popup-notification doesn't existing.");
                     }
                 }
             });
