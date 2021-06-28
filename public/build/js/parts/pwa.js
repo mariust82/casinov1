@@ -190,32 +190,32 @@ if ('serviceWorker' in navigator) {
                         }
 
                         function configurePushSubscription() {
-                            var swrPushManager;
+                            var serviceWorkedRegistration;
                             navigator.serviceWorker.ready
                                 .then(function (swReg) {
-                                    if (!swReg || !('pushManager' in swReg)) {
+                                    console.log(swReg && 'pushManager' in swReg);
+                                    if (swReg && 'pushManager' in swReg) {
+                                        serviceWorkedRegistration = swReg;
+                                        return swReg.pushManager.getSubscription();
+                                    } else {
                                         console.log('ServiceWorkerRegistration failed...', swReg);
                                         return null;
-                                    } else {
-                                        swrPushManager = swReg.pushManager;
-                                        return swrPushManager.getSubscription();
                                     }
                                 })
                                 .then(function (pushSubscription) {
+                                    console.log(pushSubscription);
                                     if (!pushSubscription) {
                                         return null;
                                     } else {
                                         // Create a new subscription
-                                        return swrPushManager.subscribe({
+                                        return serviceWorkedRegistration.pushManager.subscribe({
                                             userVisibleOnly: true,
                                             applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
                                         });
                                     }
                                 })
                                 .then(function (newPushSubscription) {
-                                    if (!newPushSubscription) {
-                                        return null;
-                                    } else {
+                                    if (newPushSubscription) {
                                         var fbDocument = JSON.stringify({
                                             date: getDateInfo(),
                                             siteId: siteId,
@@ -232,13 +232,15 @@ if ('serviceWorker' in navigator) {
                                             .catch(function (err) {
                                                 console.log(err);
                                             });
+                                    } else {
+                                        return null;
                                     }
                                 })
                                 .then(function (res) {
                                     if (res && res.ok) {
                                         displayConfirmNotification();
                                     } else {
-                                        console.log(res, swrPushManager);
+                                        console.log(res, serviceWorkedRegistration);
                                     }
                                 })
                                 .catch(function (err) {

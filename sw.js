@@ -8,12 +8,12 @@ let CONFIGURATIONS = {
         "/public/build/css/compilations/casino_view.css",
         "/public/build/css/compilations/defer.css",
         // JS
+        "/public/build/js/compilations/main.js",
         "/public/build/js/compilations/blog.js",
         "/public/build/js/compilations/casino_view.js",
         "/public/build/js/compilations/contact.js",
-        "/public/build/js/compilations/defer.js",
         "/public/build/js/compilations/gameplay.js",
-        "/public/build/js/compilations/main.js",
+        "/public/build/js/compilations/defer.js",
         // Fonts
         "/public/build/fonts/OpenSans-Regular-latin.woff2",
         "/public/build/fonts/OpenSansCondensed-Bold-latin.woff2",
@@ -26,7 +26,6 @@ let CONFIGURATIONS = {
     ],
     pages: [
         "/",
-        "/offline",
         "/offline",
         "/pwa-popups?device=android",
         "/pwa-popups?device=ios"
@@ -127,6 +126,8 @@ self.addEventListener('fetch', (event) => {
                                 .then((cache) => {
                                     if (event.request.headers.get('accept').includes('text/html')) {
                                         return cache.match('offline');
+                                    } else {
+                                        return;
                                     }
                                 });
                         });
