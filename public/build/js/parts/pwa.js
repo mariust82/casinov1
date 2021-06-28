@@ -63,26 +63,33 @@ if ('serviceWorker' in navigator) {
                             }
                         }
 
-                        function hideA2HSPopup(isSession) {
-                            pwaInstallationPopup.style.display = 'none';
-                            if (isSession) {
+                        function setA2HSState(state) {
+                            if (state === 'installed') {
+                                localStorage.setItem('isA2HSAccepted', true);
+                            } else if (state === 'session') {
                                 sessionStorage.setItem('isA2HSPopupClosed', true);
-                            } else {
+                            } else if (state === 'local') {
                                 localStorage.setItem('isA2HSPopupClosed', true);
                             }
                         }
 
+                        function hideA2HSPopup() {
+                            pwaInstallationPopup.style.display = 'none';
+                        }
+
                         closeA2HSPopupBtn.addEventListener('click', function () {
-                            hideA2HSPopup(true);
+                            hideA2HSPopup();
+                            setA2HSState('session');
                         });
                         installationDeclinedBtn.addEventListener('click', function () {
-                            hideA2HSPopup(false);
+                            hideA2HSPopup();
+                            setA2HSState('local');
                         });
                         if (mobileOperatingSystem === 'ios') {
                             showA2HSPopup();
                         }
                         window.addEventListener('appinstalled', function () {
-                            localStorage.setItem('isA2HSAccepted', true);
+                            setA2HSState('installed');
                             // Clear the deferredPrompt so it can be garbage collected
                             deferredPrompt = null;
                             // Optionally, send analytics event to indicate successful install
@@ -98,13 +105,13 @@ if ('serviceWorker' in navigator) {
 
                             showA2HSPopup();
                             A2HSBtn.addEventListener('click', function (e) {
-                                hideA2HSPopup(false);
+                                hideA2HSPopup();
                                 // Show the prompt
                                 deferredPrompt.prompt();
                                 // Wait for the user to respond to the prompt
                                 deferredPrompt.userChoice.then(function (choiceResult) {
                                     if (choiceResult.outcome === 'accepted') {
-                                        localStorage.setItem('isA2HSAccepted', true);
+                                        setA2HSState('installed');
                                         console.log('User accepted the A2HS prompt');
                                     } else {
                                         console.log('User dismissed the A2HS prompt');
@@ -134,20 +141,27 @@ if ('serviceWorker' in navigator) {
                             }
                         }
 
-                        function hideNotificationPopup(isSession) {
-                            pwaNotificationPopup.style.display = 'none';
-                            if (isSession) {
+                        function setNotificationState(state) {
+                            if (state === 'accepted') {
+                                localStorage.setItem('isNotificationAccepted', true);
+                            } else if (state === 'session') {
                                 sessionStorage.setItem('isNotificationPopupClosed', true);
-                            } else {
+                            } else if (state === 'local') {
                                 localStorage.setItem('isNotificationPopupClosed', true);
                             }
                         }
 
+                        function hideNotificationPopup() {
+                            pwaNotificationPopup.style.display = 'none';
+                        }
+
                         closeNotificationPopupBtn.addEventListener('click', function () {
-                            hideNotificationPopup(true);
+                            hideNotificationPopup();
+                            setNotificationState('session');
                         });
                         notificationsDeclinedBtn.addEventListener('click', function () {
-                            hideNotificationPopup(false);
+                            hideNotificationPopup();
+                            setNotificationState('local');
                         });
 
                         setTimeout(function () {
@@ -179,8 +193,8 @@ if ('serviceWorker' in navigator) {
                             notificationSubscriptionBtn.style.display = 'none';
                             navigator.serviceWorker.ready
                                 .then(function (swRegistration) {
-                                    localStorage.setItem('isNotificationAccepted', true);
-                                    hideNotificationPopup(true);
+                                    hideNotificationPopup();
+                                    setNotificationState('accepted');
                                     swRegistration.showNotification('Successfully subscribed!', options);
                                 });
                         }
@@ -233,7 +247,7 @@ if ('serviceWorker' in navigator) {
                                     if (res && res.ok) {
                                         displayConfirmNotification();
                                     } else {
-                                        hideNotificationPopup(true);
+                                        hideNotificationPopup();
                                     }
                                 })
                                 .catch(function (err) {
