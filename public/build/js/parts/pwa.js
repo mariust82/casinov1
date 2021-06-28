@@ -185,6 +185,7 @@ if ('serviceWorker' in navigator) {
                             navigator.serviceWorker.ready
                                 .then(function (swRegistration) {
                                     localStorage.setItem('isNotificationAccepted', true);
+                                    hideNotificationPopup(true);
                                     swRegistration.showNotification('Successfully subscribed!', options);
                                 });
                         }
@@ -193,7 +194,7 @@ if ('serviceWorker' in navigator) {
                             var serviceWorkedRegistration;
                             navigator.serviceWorker.ready
                                 .then(function (swReg) {
-                                    console.log(swReg && 'pushManager' in swReg);
+                                    console.log("swReg && 'pushManager' in swReg", swReg && 'pushManager' in swReg, swReg);
                                     if (swReg && 'pushManager' in swReg) {
                                         serviceWorkedRegistration = swReg;
                                         return swReg.pushManager.getSubscription();
@@ -203,15 +204,15 @@ if ('serviceWorker' in navigator) {
                                     }
                                 })
                                 .then(function (pushSubscription) {
-                                    console.log(pushSubscription);
-                                    if (!pushSubscription) {
-                                        return null;
-                                    } else {
+                                    console.log('pushSubscription', pushSubscription);
+                                    if (pushSubscription) {
                                         // Create a new subscription
                                         return serviceWorkedRegistration.pushManager.subscribe({
                                             userVisibleOnly: true,
                                             applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
                                         });
+                                    } else {
+                                        return null;
                                     }
                                 })
                                 .then(function (newPushSubscription) {
@@ -240,7 +241,8 @@ if ('serviceWorker' in navigator) {
                                     if (res && res.ok) {
                                         displayConfirmNotification();
                                     } else {
-                                        console.log(res, serviceWorkedRegistration);
+                                        console.log('res && res.ok', res, serviceWorkedRegistration);
+                                        hideNotificationPopup(true);
                                     }
                                 })
                                 .catch(function (err) {
