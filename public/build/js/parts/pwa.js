@@ -49,10 +49,9 @@ if ('serviceWorker' in navigator) {
                 if (isAppended) {
                     var pwaInstallationPopup = document.querySelector('.pwa-popup-installation');
                     if (pwaInstallationPopup && !localStorage.getItem('isA2HSAccepted')) {
-                        console.log('pwaInstallationPopup...');
                         var A2HSBtn = document.querySelector('#btn-add-to-home-screen');
-                        var closeA2HSPopup = document.querySelector('.pwa-popup_close-home-screen');
-                        var notAgainA2HSPopup = document.querySelector('.pwa-popup_not-again');
+                        var closeA2HSPopupBtn = document.querySelector('.pwa-popup_close-home-screen');
+                        var installationDeclinedBtn = document.querySelector('.pwa-popup_installation-declined');
 
                         function showA2HSPopup() {
                             if (!sessionStorage.getItem('isA2HSPopupClosed') &&
@@ -73,10 +72,10 @@ if ('serviceWorker' in navigator) {
                             }
                         }
 
-                        closeA2HSPopup.addEventListener('click', function () {
+                        closeA2HSPopupBtn.addEventListener('click', function () {
                             hideA2HSPopup(true);
                         });
-                        notAgainA2HSPopup.addEventListener('click', function () {
+                        installationDeclinedBtn.addEventListener('click', function () {
                             hideA2HSPopup(false);
                         });
                         if (mobileOperatingSystem === 'ios') {
@@ -93,17 +92,13 @@ if ('serviceWorker' in navigator) {
                             // Prevent Chrome 67 and earlier from automatically showing the prompt
                             e.preventDefault();
                             e.stopPropagation();
-                            console.log('PWA is installable.');
                             // Stash the event so it can be triggered later.
                             deferredPrompt = e;
                             // Update UI to notify the user they can add to home screen
 
-                            console.log('pwaInstallationPopup... before showing' + defaultTimeOut);
                             showA2HSPopup();
                             A2HSBtn.addEventListener('click', function (e) {
-                                console.log('Adding to Home Screen');
-                                // hide our user interface that shows our A2HS button
-                                pwaInstallationPopup.style.display = 'none';
+                                hideA2HSPopup(false);
                                 // Show the prompt
                                 deferredPrompt.prompt();
                                 // Wait for the user to respond to the prompt
@@ -130,7 +125,7 @@ if ('serviceWorker' in navigator) {
                         console.log('pwaNotificationPopup...');
                         var notificationSubscriptionBtn = document.querySelector('#btn-allow-notifications');
                         var closeNotificationPopupBtn = document.querySelector('.pwa-popup_close-notification');
-                        var noThanksBtn = document.querySelector('.pwa-popup_no-thanks');
+                        var notificationsDeclinedBtn = document.querySelector('.pwa-popup_notifications-declined');
 
                         function showNotificationPopup() {
                             if (!sessionStorage.getItem('isNotificationPopupClosed') &&
@@ -151,7 +146,7 @@ if ('serviceWorker' in navigator) {
                         closeNotificationPopupBtn.addEventListener('click', function () {
                             hideNotificationPopup(true);
                         });
-                        noThanksBtn.addEventListener('click', function () {
+                        notificationsDeclinedBtn.addEventListener('click', function () {
                             hideNotificationPopup(false);
                         });
 
