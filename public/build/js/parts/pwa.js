@@ -213,7 +213,6 @@ if ('serviceWorker' in navigator) {
                                     }
                                 })
                                 .then(function (newPushSubscription) {
-                                    console.log('newPushSubscription', newPushSubscription);
                                     if (newPushSubscription) {
                                         var fbDocument = JSON.stringify({
                                             date: getDateInfo(),
