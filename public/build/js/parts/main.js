@@ -106,9 +106,6 @@ var initImageLazyLoad = function () {
         initImageLazyLoad();
     });
 
-    $(document).ajaxComplete(function() {
-        initImageLazyLoad();
-    });
 
     function detectIsKeyboardOpened() {
         $(document).on('focus', 'input, textarea', function () {
