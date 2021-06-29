@@ -3919,6 +3919,9 @@ button.swiper-pagination-bullet {
 }
 .select2-dropdown.select2-dropdown--above:after, .select2-dropdown.select2-dropdown--above:before{
   top: calc(100% + 20px) !important;
+  -webkit-transform: translate(-50%,-100%) rotate(
+          180deg
+  );
   transform: translate(-50%,-100%) rotate(
           180deg
   );
@@ -4020,7 +4023,9 @@ button.swiper-pagination-bullet {
     border-bottom: 1px solid #DBDBDB;
     padding: 10px 0;
     margin: 15px 0;
+    display:-webkit-flex;
     display:flex;
+    -webkit-align-items:center;
     align-items:center;
     color:#465156;
     font-size:13px;
