@@ -896,7 +896,7 @@ function sliderInit(params) {
             1024: {
                 freeMode: true,
                 slidesPerView: 6,
-                slidesOffsetAfter: 300,
+                // slidesOffsetAfter: 300,
             },
             768: {
                 slidesPerView: 5,
@@ -904,7 +904,7 @@ function sliderInit(params) {
             },
             700: {
                 slidesPerView: 'auto',
-                slidesOffsetAfter: 30,
+                slidesOffsetAfter: 10,
             },
             // 639: {
             //     slidesPerView: 4.5
