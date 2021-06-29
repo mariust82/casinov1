@@ -3140,7 +3140,7 @@ corresponds to the arrow we want to display */
 .select2-container--default .select2-search--dropdown .select2-search__field {
   border: 1px solid #e8eaf3;
   height: 36px;
-  font-family: open sans,Helvetica,Arial,sans-serif;
+  font-family: 'Open sans', sans-serif;
   font-size: 13px;
 }
 

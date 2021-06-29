@@ -81,7 +81,7 @@ blockquote.widget p span,
 .subtitle blockquote p span {
     color: #60686A !important;
     font-size: 18px !important;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
 }
 
 blockquote.widget p,
