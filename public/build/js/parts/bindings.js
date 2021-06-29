@@ -900,6 +900,7 @@ function sliderInit(params) {
             },
             768: {
                 slidesPerView: 5,
+                slidesOffsetAfter: 300,
             },
             700: {
                 slidesPerView: 'auto',
