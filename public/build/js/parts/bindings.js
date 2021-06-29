@@ -885,6 +885,7 @@ function searchDropClose(_drop) {
 
 function sliderInit(params) {
     var swiperMain = new Swiper(params.container, {
+        slidesOffsetAfter: 100,
         slidesPerView: params.sledesPerViw,
         spaceBetween: 5,
         navigation: {
@@ -913,8 +914,6 @@ function sliderInit(params) {
             reachEnd: function(e) {
             var containerSlide = params.container;
             var loadedSlides = $(containerSlide).find(".swiper-slide").length;
-            console.log(loadedSlides);
-            console.log(params.sledesPerViw);
             if (params.hasLazySlides && !(loadedSlides < params.sledesPerViw)) {
                 getMoreSlides({
                     url: params.lazySlidesUrl,
