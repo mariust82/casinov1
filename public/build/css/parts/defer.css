@@ -3993,7 +3993,10 @@ button.swiper-pagination-bullet {
     color: #60686A;
     opacity: 1;
     display:inline-block;
-    margin:15px 0 0 0;
+}
+
+#pwa_first_android .btn-cancel{
+  margin:15px 0 0 0;
 }
 
 .pwa-popup-notification .title-middle {
