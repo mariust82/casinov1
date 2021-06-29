@@ -19,6 +19,6 @@ class SoftwareListValidator extends \Lucinda\RequestValidator\ParameterValidator
 
         $results = SQL("SELECT id FROM game_manufacturers WHERE name IN (".implode(",", $softwares).")")->toColumn();
 
-        return sizeof($results) == sizeof($softwares) ? $results : null;
+        return sizeof($results) == sizeof($softwares) ? $results : [];
     }
 }

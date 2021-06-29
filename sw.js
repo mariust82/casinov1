@@ -7,14 +7,13 @@ let CONFIGURATIONS = {
         "/public/build/css/compilations/gameplay.css",
         "/public/build/css/compilations/casino_view.css",
         "/public/build/css/compilations/defer.css",
-        "/public/build/css/compilations/ion.rangeSlider.css",
         // JS
+        "/public/build/js/compilations/main.js",
         "/public/build/js/compilations/blog.js",
         "/public/build/js/compilations/casino_view.js",
         "/public/build/js/compilations/contact.js",
-        "/public/build/js/compilations/defer.js",
         "/public/build/js/compilations/gameplay.js",
-        "/public/build/js/compilations/main.js",
+        "/public/build/js/compilations/defer.js",
         // Fonts
         "/public/build/fonts/OpenSans-Regular-latin.woff2",
         "/public/build/fonts/OpenSansCondensed-Bold-latin.woff2",
@@ -27,9 +26,9 @@ let CONFIGURATIONS = {
     ],
     pages: [
         "/",
-        "/bonus-list/no-deposit-bonus",
-        "/casinos/new",
-        "/offline"
+        "/offline",
+        "/pwa-popups?device=android",
+        "/pwa-popups?device=ios"
     ],
     getStaticResources: function () {
         return [
@@ -127,6 +126,8 @@ self.addEventListener('fetch', (event) => {
                                 .then((cache) => {
                                     if (event.request.headers.get('accept').includes('text/html')) {
                                         return cache.match('offline');
+                                    } else {
+                                        return;
                                     }
                                 });
                         });
@@ -162,31 +163,25 @@ self.addEventListener('notificationclick', function (event) {
     }
 });
 
-self.addEventListener('notificationclose', function (event) {
-    console.log('Notification was closed');
-});
-
 self.addEventListener('push', function (event) {
-    console.log('Push Notification received', event);
     let data = {title: 'New bonuses!', content: 'We have new bonuses please have a look!', openUrl: '/'};
     if (event.data) {
         data = JSON.parse(event.data.text());
     }
     let options = {
         body: data.content,
-        icon: '/src/images/icons/app-icon-96x96.png',
-        badge: '/src/images/icons/app-icon-96x96.png',
+        icon: '/src/images/icons/maskable_icon_x96.png',
+        badge: '/src/images/icons/maskable_icon_x48.png',
         data: {
             url: data.openUrl
         },
-        image: '/public/build/images/icons/icon-256x256.png',
         dir: 'ltr',
         lang: 'en-US',
         vibrate: [100, 50, 200],
         tag: 'confirm-notification',
         renotify: true,
         actions: [
-            {action: 'open', title: 'Open', icon: '/public/build/images/icons/icon-96x96.png'}
+            {action: 'open', title: 'Open'}
         ]
     };
 

@@ -2,7 +2,6 @@
 <!DOCTYPE xml>
 <xml>
     <routes validators_path="application/models/validators">
-        <route url="bugs" controller="BugsController"/>
         <route url="index" controller="IndexController" view="index"/>
         <route url="banking/(name)" controller="CasinosByBankingMethodController" view="casinos" rebrand_tables="banking_methods">
             <parameter name="name" validator="BanckingMethodNameValidator"/>
@@ -170,6 +169,7 @@
             <parameter name="casino" validator="CasinoNameValidator"/>
         </route>
         <route url="offline" controller="OfflineController" view="offline"/>
+        <route url="pwa-popups" controller="PWAPopupsController" view="pwa-popups"/>
         <route url="sitemap_cas_bank.php" controller="sitemap/BankingMethodsController" format="sitemap"/>
         <route url="sitemap_cas_bon.php" controller="sitemap/BonusTypesController" format="sitemap"/>
         <route url="sitemap_cas_cas.php" controller="sitemap/CasinoLabelsController" format="sitemap"/>

@@ -15,7 +15,8 @@ class CasinoBonusPopUpController extends Lucinda\MVC\STDOUT\Controller
         $this->response->attributes("bonus", $casinos->getBonus($casinoID, (boolean) $this->request->parameters("is_free")));
         $this->response->attributes("bonus_type", $this->request->parameters("is_free"));
         $countries = new Countries();
-        $this->response->attributes("country", $countries->getCountryDetails($this->request->attributes("country")->name)[0]);
+        $countryDetails = $countries->getCountryDetails($this->request->attributes("country")->name);
+        $this->response->attributes("country", $countryDetails[0] ?? []);
     }
 }
 

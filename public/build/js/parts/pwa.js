@@ -1,41 +1,11 @@
 if ('serviceWorker' in navigator) {
     var deferredPrompt;
     var siteId = 'cl';
-    var addToHomeScreenBtn = document.querySelector('#btn-add-to-home-screen');
-    var notificationSubscriptionBtn = document.querySelector('.news-btn');
+    var defaultTimeOut = 10000;
     var versionContainer = document.querySelector('.controller_main');
     var version = versionContainer.getAttribute('data-version');
     var vapidPublicKey = 'BD2JY9S9yYiasakRQnyOvHb5vbQ3zgMhIC6wABWXv2J2gHlfprAZ7ovBSOFm0I6DECDbQmX21tUsYGgW31AFeWg';
     var fbUrl = 'https://quickstart-1601993978019-default-rtdb.europe-west1.firebasedatabase.app';
-
-    navigator.serviceWorker.register('/sw.js?ver=' + version, {scope: "/"});
-
-    window.addEventListener('beforeinstallprompt', function (e) {
-        console.log("beforeinstallprompt, installable");
-        // Prevent Chrome 67 and earlier from automatically showing the prompt
-        e.preventDefault();
-        // Stash the event so it can be triggered later.
-        deferredPrompt = e;
-        // Update UI to notify the user they can add to home screen
-        addToHomeScreenBtn.style.display = 'block';
-        addToHomeScreenBtn.addEventListener('click', function (e) {
-            // hide our user interface that shows our A2HS button
-            addToHomeScreenBtn.style.display = 'none';
-            // Show the prompt
-            deferredPrompt.prompt();
-            // Wait for the user to respond to the prompt
-            deferredPrompt.userChoice.then(function (choiceResult) {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the A2HS prompt');
-                } else {
-                    console.log('User dismissed the A2HS prompt');
-                }
-                deferredPrompt = null;
-            });
-        });
-
-        return false;
-    });
 
     function getDateInfo() {
         return {
@@ -45,93 +15,257 @@ if ('serviceWorker' in navigator) {
         }
     }
 
-    function displayConfirmNotification() {
-        var options = {
-            body: 'You successfully subscribed to our Notification service!',
-            icon: '/public/build/images/icons/icon-96x96.png',
-            image: '/public/build/images/icons/icon-256x256.png',
-            dir: 'ltr',
-            lang: 'en-US',
-            vibrate: [100, 50, 200],
-            badge: '/public/build/images/icons/icon-96x96.png',
-            tag: 'confirm-notification',
-            renotify: true,
-            data: {
-                url: '/'
-            },
-            actions: [
-                {action: 'confirm', title: 'Okay', icon: '/public/build/images/icons/icon-96x96.png'}
-            ]
-        };
-        notificationSubscriptionBtn.style.display = 'none';
-        navigator.serviceWorker.ready
-            .then(function (swRegistration) {
-                swRegistration.showNotification('Successfully subscribed!', options);
-            });
+    function getMobileOperatingSystem() {
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        if (/android/i.test(userAgent)) {
+            return 'android';
+        }
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return 'ios';
+        }
+
+        return 'unknown';
     }
 
-    function configurePushSubscription() {
-        var swRegistration;
-        navigator.serviceWorker.ready
-            .then(function (swReg) {
-                swRegistration = swReg;
-                return swRegistration.pushManager.getSubscription();
+    var mobileOperatingSystem = getMobileOperatingSystem();
+    if (mobileOperatingSystem !== 'unknown') {
+        navigator.serviceWorker.register('/sw.js?ver=' + version)
+            .then(() => console.log('serviceWorker registered'))
+            .catch((err) => console.log('serviceWorker registration failed: ', err));
+
+        fetch('/pwa-popups?device=' + mobileOperatingSystem)
+            .then(function (response) {
+                return response.ok ? response.text() : null;
             })
-            .then(function (pushSubscription) {
-                if (pushSubscription === null) {
-                    // Create a new subscription
-                    var convertedVapidPublicKey = urlBase64ToUint8Array(vapidPublicKey);
-                    return swRegistration.pushManager.subscribe({
-                        userVisibleOnly: true,
-                        applicationServerKey: convertedVapidPublicKey
-                    });
+            .then(function (html) {
+                if (html) {
+                    $('body').append(html.replace('<head/>', ''));
+                    return true;
                 } else {
-                    return null;
+                    return false;
                 }
             })
-            .then(function (newPushSubscription) {
-                if (newPushSubscription) {
-                    var fbDocument = JSON.stringify({
-                        date: getDateInfo(),
-                        siteId: siteId,
-                        subscriptionInfo: newPushSubscription,
-                    });
-                    return fetch(fbUrl + '/subscriptions.json', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: fbDocument
-                    })
-                        .catch(function (err) {
-                            console.log(err);
+            .then(function (isAppended) {
+                if (isAppended) {
+                    var pwaInstallationPopup = document.querySelector('.pwa-popup-installation');
+                    if (pwaInstallationPopup && !localStorage.getItem('isA2HSAccepted')) {
+                        var A2HSBtn = document.querySelector('#btn-add-to-home-screen');
+                        var closeA2HSPopupBtn = document.querySelector('.pwa-popup_close-home-screen');
+                        var installationDeclinedBtn = document.querySelector('.pwa-popup_installation-declined');
+
+                        function showA2HSPopup() {
+                            if (!sessionStorage.getItem('isA2HSPopupClosed') &&
+                                !localStorage.getItem('isA2HSPopupClosed')) {
+                                setTimeout(function () {
+                                    console.log('pwaInstallationPopup... showing' + defaultTimeOut);
+                                    pwaInstallationPopup.style.display = 'block';
+                                }, defaultTimeOut);
+                            }
+                        }
+
+                        function setA2HSState(state) {
+                            if (state === 'installed') {
+                                localStorage.setItem('isA2HSAccepted', true);
+                            } else if (state === 'session') {
+                                sessionStorage.setItem('isA2HSPopupClosed', true);
+                            } else if (state === 'local') {
+                                localStorage.setItem('isA2HSPopupClosed', true);
+                            }
+                        }
+
+                        function hideA2HSPopup() {
+                            pwaInstallationPopup.style.display = 'none';
+                        }
+
+                        closeA2HSPopupBtn.addEventListener('click', function () {
+                            hideA2HSPopup();
+                            setA2HSState('session');
                         });
+                        installationDeclinedBtn.addEventListener('click', function () {
+                            hideA2HSPopup();
+                            setA2HSState('local');
+                        });
+                        window.addEventListener('appinstalled', function () {
+                            setA2HSState('installed');
+                            // Clear the deferredPrompt so it can be garbage collected
+                            deferredPrompt = null;
+                            // Optionally, send analytics event to indicate successful install
+                            console.log('PWA was installed');
+                        });
+                        window.addEventListener('beforeinstallprompt', function (e) {
+                            // Prevent Chrome 67 and earlier from automatically showing the prompt
+                            e.preventDefault();
+                            e.stopPropagation();
+                            // Stash the event so it can be triggered later.
+                            deferredPrompt = e;
+                            // Update UI to notify the user they can add to home screen
+
+                            showA2HSPopup();
+                            A2HSBtn.addEventListener('click', function (e) {
+                                hideA2HSPopup();
+                                // Show the prompt
+                                deferredPrompt.prompt();
+                                // Wait for the user to respond to the prompt
+                                deferredPrompt.userChoice.then(function (choiceResult) {
+                                    if (choiceResult.outcome === 'accepted') {
+                                        setA2HSState('installed');
+                                        console.log('User accepted the A2HS prompt');
+                                    } else {
+                                        console.log('User dismissed the A2HS prompt');
+                                    }
+                                    deferredPrompt = null;
+                                });
+                            });
+
+                            return false;
+                        });
+                    }
+
+                    var pwaNotificationPopup = document.querySelector('.pwa-popup-notification');
+                    if (pwaNotificationPopup &&
+                        'Notification' in window &&
+                        localStorage.getItem('isA2HSAccepted') &&
+                        !localStorage.getItem('isNotificationAccepted')) {
+                        var notificationSubscriptionBtn = document.querySelector('#btn-allow-notifications');
+                        var closeNotificationPopupBtn = document.querySelector('.pwa-popup_close-notification');
+                        var notificationsDeclinedBtn = document.querySelector('.pwa-popup_notifications-declined');
+
+                        function showNotificationPopup() {
+                            if (!sessionStorage.getItem('isNotificationPopupClosed') &&
+                                !localStorage.getItem('isNotificationPopupClosed')) {
+                                pwaNotificationPopup.style.display = 'block';
+                            }
+                        }
+
+                        function setNotificationState(state) {
+                            if (state === 'accepted') {
+                                localStorage.setItem('isNotificationAccepted', true);
+                            } else if (state === 'session') {
+                                sessionStorage.setItem('isNotificationPopupClosed', true);
+                            } else if (state === 'local') {
+                                localStorage.setItem('isNotificationPopupClosed', true);
+                            }
+                        }
+
+                        function hideNotificationPopup() {
+                            pwaNotificationPopup.style.display = 'none';
+                        }
+
+                        closeNotificationPopupBtn.addEventListener('click', function () {
+                            hideNotificationPopup();
+                            setNotificationState('session');
+                        });
+                        notificationsDeclinedBtn.addEventListener('click', function () {
+                            hideNotificationPopup();
+                            setNotificationState('local');
+                        });
+
+                        setTimeout(function () {
+                            showNotificationPopup();
+                        }, defaultTimeOut)
+
+                        function displayConfirmNotification() {
+                            var options = {
+                                body: 'You successfully subscribed to our Notification service!',
+                                icon: '/public/build/images/icons/icon-96x96.png',
+                                image: '/public/build/images/icons/icon-256x256.png',
+                                dir: 'ltr',
+                                lang: 'en-US',
+                                vibrate: [100, 50, 200],
+                                badge: '/public/build/images/icons/icon-96x96.png',
+                                tag: 'confirm-notification',
+                                renotify: true,
+                                data: {
+                                    url: '/'
+                                },
+                                actions: [
+                                    {
+                                        action: 'confirm',
+                                        title: 'Okay',
+                                        icon: '/public/build/images/icons/icon-96x96.png'
+                                    }
+                                ]
+                            };
+                            navigator.serviceWorker.ready
+                                .then(function (swRegistration) {
+                                    hideNotificationPopup();
+                                    setNotificationState('accepted');
+                                    swRegistration.showNotification('Successfully subscribed!', options);
+                                });
+                        }
+
+                        function configurePushSubscription() {
+                            var serviceWorkedRegistration;
+                            navigator.serviceWorker.ready
+                                .then(function (swReg) {
+                                    if (swReg && 'pushManager' in swReg) {
+                                        serviceWorkedRegistration = swReg;
+                                        return swReg.pushManager.getSubscription();
+                                    } else {
+                                        return false;
+                                    }
+                                })
+                                .then(function (pushSubscription) {
+                                    if (pushSubscription === null) {
+                                        // Create a new subscription
+                                        return serviceWorkedRegistration.pushManager.subscribe({
+                                            userVisibleOnly: true,
+                                            applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+                                        });
+                                    } else {
+                                        return null;
+                                    }
+                                })
+                                .then(function (newPushSubscription) {
+                                    if (newPushSubscription) {
+                                        var fbDocument = JSON.stringify({
+                                            date: getDateInfo(),
+                                            siteId: siteId,
+                                            subscriptionInfo: newPushSubscription,
+                                        });
+                                        return fetch(fbUrl + '/subscriptions.json', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json',
+                                                'Accept': 'application/json'
+                                            },
+                                            body: fbDocument
+                                        })
+                                            .catch(function (err) {
+                                                console.log(err);
+                                            });
+                                    } else {
+                                        return null;
+                                    }
+                                })
+                                .then(function (res) {
+                                    if (res && res.ok) {
+                                        displayConfirmNotification();
+                                    }
+                                })
+                                .catch(function (err) {
+                                    console.log(err);
+                                });
+                        }
+
+                        function askForNotificationPermission() {
+                            Notification.requestPermission(function (result) {
+                                if (result !== 'granted') {
+                                    console.log('No notification permission granted!');
+                                } else {
+                                    configurePushSubscription();
+                                }
+                            });
+                        }
+
+                        notificationSubscriptionBtn.addEventListener('click', function (e) {
+                            hideNotificationPopup();
+                            askForNotificationPermission();
+                        });
+                    }
                 }
-            })
-            .then(function (res) {
-                if (res && res.ok) {
-                    displayConfirmNotification();
-                }
-            })
-            .catch(function (err) {
-                console.log(err);
             });
     }
-
-    function askForNotificationPermission() {
-        Notification.requestPermission(function (result) {
-            if (result !== 'granted') {
-                console.log('No notification permission granted!');
-            } else {
-                configurePushSubscription();
-            }
-        });
-    }
-
-    if ('Notification' in window) {
-        notificationSubscriptionBtn.addEventListener('click', function (e) {
-            askForNotificationPermission();
-        });
-    }
+} else {
+    console.log("'serviceWorker' not in navigator");
 }

@@ -1,0 +1,8 @@
+<:if test="isset(${data.pwaDevice})">
+    <:if test="${data.pwaDevice} === 'android'">
+        <pwa:android/>
+        <pwa:notification/>
+    <:else>
+        <pwa:ios/>
+    </:if>
+</:if>

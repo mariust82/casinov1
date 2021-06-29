@@ -201,7 +201,7 @@ function grayscaleIE() {
     if (getInternetExplorerVersion() >= 10) {
         $('img.not-accepted').each(function () {
             var el = $(this);
-            el.css({"position": "absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
+            el.css({"position": "absolute"}).wrap($("#imgWrapper").tmpl()).clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
                 var el = $(this);
                 el.parent().css({"width": this.width, "height": this.height});
                 el.dequeue();
@@ -395,7 +395,7 @@ copyTooltipConfig = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content($("#copyTooltip").tmpl());
+        instance.content($("#copyTooltip").tmpl().html());
     }
 };
 copyTooltipConfigGames = {
@@ -406,7 +406,7 @@ copyTooltipConfigGames = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content($("#copyTooltipAlt").tmpl());
+        instance.content($("#copyTooltipAlt").tmpl().html());
     }
 };
 
@@ -888,13 +888,16 @@ function sliderInit(params) {
         breakpoints: {
             1024: {
                 freeMode: true,
-                slidesPerView: 6
+                slidesPerView: 6,
+                // slidesOffsetAfter: 300,
             },
             768: {
-                slidesPerView: 5
+                slidesPerView: 5,
+                slidesOffsetAfter: 270,
             },
             700: {
-                slidesPerView: 'auto'
+                slidesPerView: 'auto',
+                slidesOffsetAfter: 0,
             },
             // 639: {
             //     slidesPerView: 4.5
@@ -905,7 +908,9 @@ function sliderInit(params) {
         },
         on: {
             reachEnd: function(e) {
-            if (params.hasLazySlides) {
+            var containerSlide = params.container;
+            var loadedSlides = $(containerSlide).find(".swiper-slide").length;
+            if (params.hasLazySlides && !(loadedSlides < params.sledesPerViw)) {
                 getMoreSlides({
                     url: params.lazySlidesUrl,
                     container: params.container,
@@ -2213,9 +2218,8 @@ function initExpandingText() {
                 wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs);
                 singleline = (singleline / 1.6) + parseFloat(element.css("font-size"));
                 var linescount = singleline * settings.linecount;
-
             element.wrap(wrapper);
-
+            fullheight = fullheight + 30;
             if (element.parent().not(wrapjs)) {
                 if (fullheight > linescount) {
 
@@ -2431,7 +2435,7 @@ function setIframeAsResponsive() {
 
     if (iframes.length) {
         iframes.each(function (index, el) {
-            $(el).wrap('<div class="iframe-wrapper"></div>');
+            $(el).wrap($("#iframeWrapper").tmpl());
         });
     }
 }
