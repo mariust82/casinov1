@@ -913,6 +913,8 @@ function sliderInit(params) {
             reachEnd: function(e) {
             var containerSlide = params.container;
             var loadedSlides = $(containerSlide).find(".swiper-slide").length;
+            console.log(loadedSlides);
+            console.log(params.sledesPerViw);
             if (params.hasLazySlides && !(params.sledesPerViw < loadedSlides)) {
                 getMoreSlides({
                     url: params.lazySlidesUrl,
