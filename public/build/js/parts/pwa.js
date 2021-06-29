@@ -85,6 +85,9 @@ if ('serviceWorker' in navigator) {
                             hideA2HSPopup();
                             setA2HSState('local');
                         });
+                        if (mobileOperatingSystem === 'ios') {
+                            showA2HSPopup();
+                        }
                         window.addEventListener('appinstalled', function () {
                             setA2HSState('installed');
                             // Clear the deferredPrompt so it can be garbage collected
@@ -99,7 +102,6 @@ if ('serviceWorker' in navigator) {
                             // Stash the event so it can be triggered later.
                             deferredPrompt = e;
                             // Update UI to notify the user they can add to home screen
-
                             showA2HSPopup();
                             A2HSBtn.addEventListener('click', function (e) {
                                 hideA2HSPopup();
