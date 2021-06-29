@@ -900,11 +900,11 @@ function sliderInit(params) {
             },
             768: {
                 slidesPerView: 5,
-                slidesOffsetAfter: 300,
+                slidesOffsetAfter: 270,
             },
             700: {
                 slidesPerView: 'auto',
-                slidesOffsetAfter: 10,
+                slidesOffsetAfter: 0,
             },
             // 639: {
             //     slidesPerView: 4.5
