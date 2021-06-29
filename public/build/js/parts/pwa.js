@@ -85,9 +85,6 @@ if ('serviceWorker' in navigator) {
                             hideA2HSPopup();
                             setA2HSState('local');
                         });
-                        if (mobileOperatingSystem === 'ios') {
-                            showA2HSPopup();
-                        }
                         window.addEventListener('appinstalled', function () {
                             setA2HSState('installed');
                             // Clear the deferredPrompt so it can be garbage collected
