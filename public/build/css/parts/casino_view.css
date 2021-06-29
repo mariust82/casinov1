@@ -16,7 +16,7 @@
   -webkit-align-items: center;
   align-items: center;
   margin-top: 17px;
-  font: normal normal 600 14px/20px Open Sans;
+  font: normal normal 600 14px/20px 'Open Sans', sans-serif;
   letter-spacing: 0px;
   color: #465156;
 }
@@ -108,7 +108,7 @@
 }
 
 .game-type_name{
-  font: normal normal normal 13px/20px Open Sans;
+  font: normal normal normal 13px/20px 'Open Sans', sans-serif;
   letter-spacing: 0px;
   color: #878CA4;
   margin-top: 10px;
@@ -219,7 +219,7 @@
 .similar_casinos-header{
   width: 15%;
   min-width: 133px;
-  font: normal normal 600 11px/18px Open Sans;
+  font: normal normal 600 11px/18px 'Open Sans', sans-serif;
   letter-spacing: 0px;
   color: #465156;
   text-transform: uppercase;
@@ -272,7 +272,7 @@
   text-align: -moz-left;
   font-stretch: condensed;
   font-weight: 700;
-  font-family: "Open Sans Condensed";
+  font-family: 'Open Sans Condensed', sans-serif;
   text-align: center;
   text-transform: uppercase;
   -webkit-transform: rotateZ(315deg);
@@ -294,7 +294,7 @@
   text-align: -moz-left;
   font-stretch: condensed;
   font-weight: 700;
-  font-family: "Open Sans Condensed";
+  font-family: 'Open Sans Condensed', sans-serif;
   text-align: center;
   text-transform: uppercase;
   -webkit-transform: rotateZ(315deg);
@@ -318,7 +318,7 @@
 }
 .similar_casino-name{
   text-align: center;
-  font: normal normal bold 13px/28px Open Sans;
+  font: normal normal bold 13px/28px 'Open Sans', sans-serif;
   letter-spacing: 0px;
   margin-bottom: 20px;
   display: block;
@@ -337,14 +337,14 @@
 }
 .similar_casino-box .votes{
   text-align: left;
-  font: normal normal normal 12px/19px Open Sans;
+  font: normal normal normal 12px/19px 'Open Sans', sans-serif;
   letter-spacing: 0px;
   color: #465156;
 }
 .similar-row {
   margin: 20px 0;
   text-align: left;
-  font: normal normal normal 13px/28px Open Sans;
+  font: normal normal normal 13px/28px 'Open Sans', sans-serif;
   letter-spacing: 0px;
   color: #465156;
   display: -webkit-flex;
