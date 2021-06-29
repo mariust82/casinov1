@@ -885,7 +885,7 @@ function searchDropClose(_drop) {
 
 function sliderInit(params) {
     var swiperMain = new Swiper(params.container, {
-        slidesOffsetAfter: 100,
+        slidesOffsetAfter: 250,
         slidesPerView: params.sledesPerViw,
         spaceBetween: 5,
         navigation: {
