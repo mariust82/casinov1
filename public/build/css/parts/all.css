@@ -9653,3 +9653,21 @@ img[src] {
     padding: 10px 0;
     margin: 15px 0;
 }
+@media (max-width: 320px){
+    .carousel-box-container .country-wrap{
+        font-size: 11px;
+    }
+    .carousel.carousel-box-container .swiper-slide{
+        min-width: 232.5px;
+    }
+    .btn-bordered.load{
+        min-width: 100%;
+    }
+    .container{
+        max-width: 100vw;
+        margin: 0 !important;
+    }
+    body{
+        overflow-x: hidden;
+    }
+}
