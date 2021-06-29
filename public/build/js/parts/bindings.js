@@ -201,7 +201,7 @@ function grayscaleIE() {
     if (getInternetExplorerVersion() >= 10) {
         $('img.not-accepted').each(function () {
             var el = $(this);
-            el.css({"position": "absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
+            el.css({"position": "absolute"}).wrap($("#imgWrapper").tmpl()).clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
                 var el = $(this);
                 el.parent().css({"width": this.width, "height": this.height});
                 el.dequeue();
@@ -386,12 +386,6 @@ tooltipConfig = {
     animation: 'grow',
     debug: false,
 };
-var copyDiv = document.createElement("div"),
-    copyIcon = document.createElement("i");
-copyDiv.classList.add("centered");
-copyIcon.classList.add("icon"); copyIcon.classList.add("icon-icon_available");
-copyDiv.append(copyIcon);
-copyDiv.append("Code copied to clipboard");
 
 copyTooltipConfig = {
     trigger: 'click',
@@ -401,7 +395,7 @@ copyTooltipConfig = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content(copyDiv);
+        instance.content($("#copyTooltip").tmpl().html());
     }
 };
 copyTooltipConfigGames = {
@@ -2441,7 +2435,7 @@ function setIframeAsResponsive() {
 
     if (iframes.length) {
         iframes.each(function (index, el) {
-            $(el).wrap('<div class="iframe-wrapper"></div>');
+            $(el).wrap($("#iframeWrapper").tmpl());
         });
     }
 }
