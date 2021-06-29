@@ -390,7 +390,7 @@ var copyDiv = document.createElement("div"),
     copyIcon = document.createElement("i");
 copyDiv.classList.add("centered");
 copyIcon.classList.add("icon"); copyIcon.classList.add("icon-icon_available");
-copyDiv.append(copyIcon.outerHTML + "Code copied to clipboard");
+copyDiv.append(copyIcon + "Code copied to clipboard");
 
 copyTooltipConfig = {
     trigger: 'click',
