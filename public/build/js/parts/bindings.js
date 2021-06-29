@@ -395,7 +395,7 @@ copyTooltipConfig = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content($("#copyTooltip").tmpl());
+        instance.content($("#copyTooltip").tmpl().html());
     }
 };
 copyTooltipConfigGames = {
@@ -406,7 +406,7 @@ copyTooltipConfigGames = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content($("#copyTooltipAlt").tmpl());
+        instance.content($("#copyTooltipAlt").tmpl().html());
     }
 };
 
