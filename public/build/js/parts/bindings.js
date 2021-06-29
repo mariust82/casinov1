@@ -915,7 +915,7 @@ function sliderInit(params) {
             var loadedSlides = $(containerSlide).find(".swiper-slide").length;
             console.log(loadedSlides);
             console.log(params.sledesPerViw);
-            if (params.hasLazySlides && !(params.sledesPerViw < loadedSlides)) {
+            if (params.hasLazySlides && !(loadedSlides < params.sledesPerViw)) {
                 getMoreSlides({
                     url: params.lazySlidesUrl,
                     container: params.container,
