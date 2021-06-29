@@ -583,7 +583,7 @@ function findObjectByKey(array, key, value) {
 var is_options_loaded = false;
 
 if ($.fn.select2) {
-    // select2tags();
+    select2tags();
 
     var ua = window.navigator.userAgent;
     var msie = ua.indexOf("MSIE");
@@ -704,9 +704,6 @@ function prepareSelectFilter() {
 
 }
 
-function filtesrAjax(cb) {
-
-}
 
 function customSelectFunc() {
     $.fn.select2.amd.require([
