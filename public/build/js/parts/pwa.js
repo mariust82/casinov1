@@ -102,7 +102,6 @@ if ('serviceWorker' in navigator) {
                             // Stash the event so it can be triggered later.
                             deferredPrompt = e;
                             // Update UI to notify the user they can add to home screen
-
                             showA2HSPopup();
                             A2HSBtn.addEventListener('click', function (e) {
                                 hideA2HSPopup();
