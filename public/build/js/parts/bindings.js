@@ -386,6 +386,11 @@ tooltipConfig = {
     animation: 'grow',
     debug: false,
 };
+var copyDiv = document.createElement("div"),
+    copyIcon = document.createElement("i");
+copyDiv.classList.add("centered");
+copyIcon.classList.add("icon"); copyIcon.classList.add("icon-icon_available");
+copyDiv.append(copyIcon.outerHTML + "Code copied to clipboard");
 
 copyTooltipConfig = {
     trigger: 'click',
@@ -395,7 +400,7 @@ copyTooltipConfig = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content($("#copyTooltip").tmpl());
+        instance.content(copyDiv.outerHTML);
     }
 };
 copyTooltipConfigGames = {
@@ -406,7 +411,7 @@ copyTooltipConfigGames = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content($("#copyTooltipAlt").tmpl());
+        instance.content($("#copyTooltipAlt").tmpl().html());
     }
 };
 
