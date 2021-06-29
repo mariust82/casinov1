@@ -400,7 +400,7 @@ copyTooltipConfig = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content(copyDiv.outerHTML);
+        instance.content(copyDiv);
     }
 };
 copyTooltipConfigGames = {
