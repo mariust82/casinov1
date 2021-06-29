@@ -405,9 +405,10 @@ copyTooltipConfig = {
     }
 };
 
-var copyDivAlt = document.createElement("div"),
+var copyDivAlt = document.createElement("div");
 copyDivAlt.classList.add("centered");
 copyDivAlt.append("Code copied to clipboard");
+
 copyTooltipConfigGames = {
     trigger: 'click',
     maxWidth: 260,
