@@ -115,7 +115,7 @@ blockquote.widget p,
     border: 1px solid #E2E2E3 !important;
     padding: 20px 15px 20px 15px !important;
     background: #F8F8F8 !important;
-    font-family: "Open Sans";
+    font-family: "Open Sans", sans-serif;
     font-size: 14px !important;
     line-height: 28px !important;
     color: #646464 !important;
@@ -261,7 +261,7 @@ button {
 
 .title-name, .vote-block-title {
     color: #465156;
-    font: 700 18px/1.4 'Open Sans';
+    font: 700 18px/1.4 'Open Sans', sans-serif;
 }
 
 .single-blog {
@@ -2402,7 +2402,7 @@ a:focus {
     text-align: -moz-left;
     font-stretch: condensed;
     font-weight: bold;
-    font-family: "Open Sans Condensed";
+    font-family: "Open Sans Condensed", sans-serif;
     text-align: center;
     position: relative;
     z-index: 3;
@@ -2416,7 +2416,7 @@ a:focus {
 @media screen and (max-width: 690px) {
     .new-casino-text {
         font-size: 9px;
-        font-family: "Open Sans";
+        font-family: "Open Sans", sans-serif;
     }
 }
 
@@ -2436,7 +2436,7 @@ a:focus {
     text-align: -moz-left;
     font-stretch: condensed;
     font-weight: bold;
-    font-family: "Open Sans Condensed";
+    font-family: "Open Sans Condensed", sans-serif;
     text-align: center;
     text-transform: uppercase;
 }
@@ -5715,7 +5715,7 @@ html.no-scroll {
 .no_welcome_bonuses {
     font-size: 14px;
     color: #465156;
-    font-family: "Open Sans";
+    font-family: "Open Sans", sans-serif;
     text-align: left;
 }
 
@@ -5782,7 +5782,7 @@ html.no-scroll {
 
 .card-title {
     color: #465156;
-    font: 700 18px/1.4 'Open Sans';
+    font: 700 18px/1.4 'Open Sans', sans-serif;
     margin-bottom: 10px;
 }
 
@@ -6732,7 +6732,7 @@ hr.widget {
     width: 100%;
     text-align: center;
     color: #a8aec8;
-    font: normal normal 600 12px/18px Open Sans;
+    font: normal normal 600 12px/18px 'Open Sans', sans-serif;
     font-weight: 400;
     display: -webkit-flex;
     display: flex;
@@ -6886,7 +6886,7 @@ hr.widget {
 }
 
 .list-view .casinos-list .casino_name_list_view {
-    font: normal normal 600 14px/20px Open Sans;
+    font: normal normal 600 14px/20px 'Open Sans', sans-serif;
     letter-spacing: 0;
     color: #658ae8;
     cursor: pointer;
@@ -7057,7 +7057,7 @@ hr.widget {
     display: block;
     width: 100%;
     text-align: left;
-    font: normal normal 400 12px/18px Open Sans;
+    font: normal normal 400 12px/18px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #A8AEC8;
 }
@@ -7107,7 +7107,7 @@ hr.widget {
     justify-content: center;
     -webkit-align-items: center;
     align-items: center;
-    font: normal normal bold 14px/26px Open Sans;
+    font: normal normal bold 14px/26px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #2171CE;
     cursor: pointer;
@@ -7150,7 +7150,7 @@ hr.widget {
 
 .info_list-title {
     text-align: left;
-    font: normal normal normal 13px/20px Open Sans;
+    font: normal normal normal 13px/20px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #878CA4;
     width: 35%;
@@ -7158,14 +7158,14 @@ hr.widget {
 
 .info_list-value {
     text-align: left;
-    font: normal normal normal 13px/20px Open Sans;
+    font: normal normal normal 13px/20px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #465156;
 }
 
 .title-uppercase {
     text-align: left;
-    font: normal normal 600 11px/18px Open Sans;
+    font: normal normal 600 11px/18px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #465156;
     text-transform: uppercase;
@@ -7278,7 +7278,7 @@ hr.widget {
     align-items: center;
     text-transform: uppercase;
     text-align: center;
-    font: normal normal 600 11px/15px Open Sans;
+    font: normal normal 600 11px/15px 'Open Sans', sans-serif;
     letter-spacing: 0.55px;
     margin-top: 0;
 }
@@ -7339,7 +7339,7 @@ hr.widget {
     order: 3;
     margin: 25px 0 15px 0;
     text-align: left;
-    font: normal normal normal 13px/28px Open Sans;
+    font: normal normal normal 13px/28px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #465156;
 }
@@ -7347,7 +7347,7 @@ hr.widget {
 .grid-view .casino_items-view.list-title-holder {
     -webkit-order: 1;
     order: 1;
-    font: normal normal bold 16px/22px Open Sans;
+    font: normal normal bold 16px/22px 'Open Sans', sans-serif;
 }
 
 .grid-view .casino_items-view .welcome_package-container {
@@ -7363,7 +7363,7 @@ hr.widget {
 
 .wp-title, .spec-title {
     text-align: left;
-    font: normal normal 600 11px/18px Open Sans;
+    font: normal normal 600 11px/18px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     text-transform: uppercase;
     color: #465156;
@@ -7385,7 +7385,7 @@ hr.widget {
 }
 
 .wp-bonus-title {
-    font: normal normal 600 14px/18px Open Sans;
+    font: normal normal 600 14px/18px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     margin-bottom: 8px;
 }
@@ -7413,7 +7413,7 @@ hr.widget {
 }
 
 .grid-view .list-title {
-    font: normal normal bold 16px/22px Open Sans;
+    font: normal normal bold 16px/22px 'Open Sans', sans-serif;
 }
 
 .casino-info_container .row .icon {
@@ -7442,7 +7442,7 @@ hr.widget {
 
 .list-headings {
     text-align: left;
-    font: normal normal 600 11px/18px Open Sans;
+    font: normal normal 600 11px/18px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #465156;
     text-transform: uppercase;
@@ -7464,7 +7464,7 @@ hr.widget {
 }
 
 .item-spec.banking {
-    font: normal normal normal 12px/20px Open Sans;
+    font: normal normal normal 12px/20px 'Open Sans', sans-serif;
     width: calc(100% - 150px);
     display: -webkit-inline-flex;
     display: inline-flex;
@@ -7601,7 +7601,7 @@ hr.widget {
     }
 
     .grid-view .list-title {
-        font: normal normal bold 14px/20px Open Sans;
+        font: normal normal bold 14px/20px 'Open Sans', sans-serif;
     }
 
     .casino-info_container .row .icon {
@@ -7722,7 +7722,7 @@ hr.widget {
     align-items: center;
     height: 46px;
     text-align: center;
-    font: normal normal 600 13px/18px Open Sans;
+    font: normal normal 600 13px/18px 'Open Sans', sans-serif;
     border-radius: 4px;
 }
 
@@ -7783,7 +7783,7 @@ hr.widget {
 
 .note-title {
     text-align: left;
-    font: normal normal bold 11px/19px Open Sans;
+    font: normal normal bold 11px/19px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #465156;
     text-transform: uppercase;
@@ -7791,7 +7791,7 @@ hr.widget {
 
 .note p {
     text-align: left;
-    font: normal normal normal 13px/20px Open Sans;
+    font: normal normal normal 13px/20px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #878CA4;
 }
@@ -7817,7 +7817,7 @@ hr.widget {
     border-radius: 6px;
     padding: 12px 15px;
     text-align: left;
-    font: normal normal normal 14px/20px Open Sans;
+    font: normal normal normal 14px/20px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #465156;
     display: -webkit-flex;
@@ -7903,7 +7903,7 @@ hr.widget {
 .cat_title {
     display: block;
     text-align: left;
-    font: normal normal 600 11px/24px Open Sans;
+    font: normal normal 600 11px/24px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #878CA4;
     margin-bottom: 6px;
@@ -8063,7 +8063,7 @@ h1.title + .subtitle {
     font-size: 18px;
     line-height: 34px;
     margin: 36px 0;
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
 }
 
 .subtitle .widget.featured_box {
@@ -8682,7 +8682,7 @@ h1.title + .subtitle {
 }
 
 .rating-container {
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     width: 100%;
     margin: 0 0 40px;
     display: -webkit-flex;
@@ -8898,7 +8898,7 @@ h1.title + .subtitle {
     border-radius: 4px;
     height: 40px;
     text-align: center;
-    font: normal normal 600 11px/15px Open Sans;
+    font: normal normal 600 11px/15px 'Open Sans', sans-serif;
     letter-spacing: 0.55px;
     color: #FFFFFF;
     text-transform: uppercase;
@@ -8932,7 +8932,7 @@ h1.title + .subtitle {
 }
 
 .list_scroll .list-title {
-    font: normal normal normal 12px/20px Open Sans;
+    font: normal normal normal 12px/20px 'Open Sans', sans-serif;
 }
 
 .plain-link {
@@ -8983,7 +8983,7 @@ h1.title + .subtitle {
 
 .carousel-box-container .casino-name {
     text-align: center;
-    font: normal normal 600 15px/20px Open Sans;
+    font: normal normal 600 15px/20px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #2171CE;
     margin-bottom: 5px;
@@ -9010,7 +9010,7 @@ h1.title + .subtitle {
     -webkit-justify-content: center;
     justify-content: center;
     margin-bottom: 10px;
-    font: normal normal normal 13px/28px Open Sans;
+    font: normal normal normal 13px/28px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #465156;
 }
@@ -9058,7 +9058,7 @@ h1.title + .subtitle {
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
     position: relative;
-    font: normal normal 600 12px/18px Open Sans;
+    font: normal normal 600 12px/18px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     cursor: pointer;
     text-align: center;
@@ -9076,7 +9076,7 @@ h1.title + .subtitle {
 
 .country-details-wrap {
     margin-bottom: 10px;
-    font: normal normal normal 13px/28px Open Sans;
+    font: normal normal normal 13px/28px 'Open Sans', sans-serif;
 }
 
 .country-details-wrap i {
@@ -9137,7 +9137,7 @@ h1.title + .subtitle {
     max-height: 69px;
     width: 100%;
     text-align: center;
-    font: normal normal 600 13px/18px Open Sans;
+    font: normal normal 600 13px/18px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #465156;
     -webkit-flex-wrap: wrap;
@@ -9147,7 +9147,7 @@ h1.title + .subtitle {
 
 .option-box .casinos-count {
     width: 100%;
-    font: normal normal 600 12px/18px Open Sans;
+    font: normal normal 600 12px/18px 'Open Sans', sans-serif;
     letter-spacing: 0px;
     color: #2171CE;
 }
@@ -9164,12 +9164,12 @@ h1.title + .subtitle {
     .option-box .option-info {
         height: 61px;
         max-height: 61px;
-        font: normal normal 600 12px/15px Open Sans;
+        font: normal normal 600 12px/15px 'Open Sans', sans-serif;
         padding: 14px 0;
     }
 
     .option-box .casinos-count {
-        font: normal normal 600 11px/18px Open Sans;
+        font: normal normal 600 11px/18px 'Open Sans', sans-serif;
     }
 }
 
@@ -9297,7 +9297,7 @@ h1.title + .subtitle {
     color: #fff;
     margin: 21px auto 0 auto;
     text-align: center;
-    font: normal normal 600 11px/15px Open Sans;
+    font: normal normal 600 11px/15px 'Open Sans', sans-serif;
     letter-spacing: 0.55px;
     text-transform: uppercase;
 }
