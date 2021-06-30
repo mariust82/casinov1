@@ -24,9 +24,8 @@ let CONFIGURATIONS = {
         "/public/build/images/text-header/home-img-2.webp",
         "/public/build/images/default_casino_logo.png"
     ],
+    offline_page: "/offline",
     pages: [
-        "/",
-        "/offline",
         "/pwa-popups?device=android",
         "/pwa-popups?device=ios"
     ],
@@ -34,7 +33,8 @@ let CONFIGURATIONS = {
         return [
             ...this.resources,
             ...this.images,
-            ...this.pages
+            ...this.pages,
+            this.offline_page
         ];
     },
     isNetworkOnly: function (url) {
@@ -56,7 +56,7 @@ let CONFIGURATIONS = {
     },
     getOfflinePage: function (accept) {
         return caches.open(this.cache_static)
-            .then((cache) => accept.includes('text/html') ? cache.match('/offline') : new Response());
+            .then((cache) => accept.includes('text/html') ? cache.match(this.offline_page) : new Response());
     },
     _cache_static: "static-v",
     get cache_static() {
@@ -111,27 +111,36 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-    if (!CONFIGURATIONS.isNetworkOnly(event.request.url) && event.request.method === 'GET') {
-        event.respondWith(
-            fetch(event.request)
-                .then((res) => {
-                    if (res.ok) {
-                        let clonedResponse = res.clone();
-                        caches.open(CONFIGURATIONS.cache_dynamic)
-                            .then(function (cache) {
-                                cache.put(event.request.url, clonedResponse)
-                                    .catch(error => console.log("Something went wrong with storage", error));
-                            });
-                    }
-                    return res;
-                })
-                .catch((error) => {
-                    return caches.match(event.request)
-                        .then((response) => {
-                            return response || CONFIGURATIONS.getOfflinePage(event.request.headers.get('accept'));
-                        }).catch(() => CONFIGURATIONS.getOfflinePage(event.request.headers.get('accept')));
-                })
-        );
+    if (event.request.method === 'GET' && !CONFIGURATIONS.isNetworkOnly(event.request.url)) {
+        if (CONFIGURATIONS.isPreCached(event.request.url)) {
+            console.log('Get from pre-cached: ', event.request.url);
+            event.respondWith(
+                caches.match(event.request).catch((error) => console.log('Failed from pre-cached: ', error))
+            )
+        } else {
+            event.respondWith(
+                fetch(event.request)
+                    .then((res) => {
+                        console.log('res.status: ', res.status);
+                        if (res.status === 200) {
+                            let clonedResponse = res.clone();
+                            caches.open(CONFIGURATIONS.cache_dynamic)
+                                .then(function (cache) {
+                                    cache.put(event.request.url, clonedResponse)
+                                        .catch(error => console.log("Something went wrong with storage", error));
+                                });
+                        }
+                        return res;
+                    })
+                    .catch((error) => {
+                        console.log('Fetch error: ', error);
+                        return caches.match(event.request)
+                            .then((response) => {
+                                return response || CONFIGURATIONS.getOfflinePage(event.request.headers.get('accept'));
+                            }).catch(() => CONFIGURATIONS.getOfflinePage(event.request.headers.get('accept')));
+                    })
+            );
+        }
     }
     return;
 });
