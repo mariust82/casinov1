@@ -388,12 +388,6 @@ tooltipConfig = {
     animation: 'grow',
     debug: false,
 };
-var copyDiv = document.createElement("div"),
-    copyIcon = document.createElement("i");
-copyDiv.classList.add("centered");
-copyIcon.classList.add("icon"); copyIcon.classList.add("icon-icon_available");
-copyDiv.append(copyIcon);
-copyDiv.append("Code copied to clipboard");
 
 copyTooltipConfig = {
     trigger: 'click',
@@ -403,13 +397,9 @@ copyTooltipConfig = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content(copyDiv);
+        instance.content($("#copyTooltip").tmpl());
     }
 };
-
-var copyDivAlt = document.createElement("div");
-copyDivAlt.classList.add("centered");
-copyDivAlt.append("Code copied to clipboard");
 
 copyTooltipConfigGames = {
     trigger: 'click',
@@ -419,7 +409,7 @@ copyTooltipConfigGames = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content(copyDivAlt);
+        instance.content($("#copyTooltipAlt").tmpl());
     }
 };
 
@@ -2468,10 +2458,6 @@ function setIframeAsResponsive() {
 
     if (iframes.length) {
         iframes.each(function (index, el) {
-            var iframeWrapper = document.createElement("div");
-            iframeWrapper.classList.add("iframe-wrapper");
-
-            // $(el).wrap(iframeWrapper);
             $(el).wrap($("#iframeWrapper").tmpl());
         });
     }
