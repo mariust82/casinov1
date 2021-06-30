@@ -830,6 +830,7 @@ function resetFilter(_select) {
     $('.select2-results__options').children().attr('aria-selected', false);
 
     $('.select2-selection__rendered').text('Software');
+    console.log("testing");
    // $('.' + selectName + '+.select2 .select2-selection__rendered').html(window[selectName + '_placeholder']);
 
 }
@@ -948,12 +949,15 @@ function processCheckboxes(_this) {
         if ($('.select2-container').find('li.select2-results__option[aria-selected="true"]').length == 0){
             $('.select2-selection__rendered').html("Software");
             clearButtonSelector.hide();
+            console.log("tst");
         }else{
             var selectedListItems = [];
             $('li.select2-results__option[aria-selected="true"]').each(function( i ) {
                 selectedListItems.push($(this).find(".wrap").html());
             });
             $('.select2-selection__rendered').html(selectedListItems.join(', '));
+            console.log("tst2");
+
         }
     }
 
