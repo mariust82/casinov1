@@ -153,7 +153,7 @@ function initImageLazyLoad() {
             $('.separate-table').remove();
             _th.each(function (index, el) {
                 var i = index;
-                var _newTable = $('<table class="separate-table"></table>');
+                var _newTable = $("#separateTable").tmpl();
 
                 _tr.each(function (index, el) {
                     var _itemTh = $(el).find('th').eq(i).clone().wrap('<tr></tr>').parent();
