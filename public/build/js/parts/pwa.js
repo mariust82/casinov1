@@ -26,6 +26,14 @@ if ('serviceWorker' in navigator) {
         return 'unknown';
     }
 
+    function isPWAInstalled() {
+        var displays = ["fullscreen", "standalone", "minimal-ui"];
+        return navigator.standalone || displays.some(function (displayMode) {
+            return window.matchMedia('(display-mode: ' + displayMode + ')').matches;
+        });
+    }
+
+
     var mobileOperatingSystem = getMobileOperatingSystem();
     if (mobileOperatingSystem !== 'unknown') {
         navigator.serviceWorker.register('/sw.js?ver=' + version)
@@ -84,7 +92,7 @@ if ('serviceWorker' in navigator) {
                             hideA2HSPopup();
                             setA2HSState('local');
                         });
-                        if (mobileOperatingSystem === 'ios') {
+                        if (mobileOperatingSystem === 'ios' && !isPWAInstalled()) {
                             showA2HSPopup();
                         }
                         window.addEventListener('appinstalled', function () {
