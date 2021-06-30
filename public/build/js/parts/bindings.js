@@ -1341,7 +1341,7 @@ var Filters = function (obj) {
 
             mutations.forEach(function (mutation) {
                 if (mutation.type === "childList" && mutation.addedNodes.length !== 0 && c < 1) {
-                    initImageLazyLoad();
+                    initImageLazy();
                     c++;
                 }
             });
@@ -1515,13 +1515,13 @@ var Filters = function (obj) {
                         _targetAddContainer.append(cont);
                         _moreButton.removeClass('loading');
                         refresh();
-                        initImageLazyLoad();
 
                         if (cont.length < limit_items) {
                             _moreButton.hide();
                         }
                     }, 1000)
                 }
+                initImageLazy();
                 _construct();
 
                 checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
@@ -1550,8 +1550,9 @@ var Filters = function (obj) {
                         $('.js-more-items').show();
                     }
                 }
+
                 grayscaleIE();
-                initImageLazyLoad();
+                initImageLazy();
                 copyToClipboard();
             }
         });

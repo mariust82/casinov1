@@ -52,13 +52,13 @@
         </file>
 
         <file name="defer">
+            <file name="assets/jquery.tmpl" />
             <file name="assets/jquery-select2" />
             <file name="filters" />
             <file name="assets/ion.rangeSlider.min" />
             <file name="assets/jquery-nicescroll" />
             <file name="assets/tooltipster" />
             <file name="assets/swiper" />
-            <file name="assets/jquery.tmpl" />
             <file name="bindings" />
         </file>
 
