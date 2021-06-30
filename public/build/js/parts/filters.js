@@ -830,6 +830,7 @@ function resetFilter(_select) {
     $('.select2-results__options').children().attr('aria-selected', false);
 
     $('.select2-selection__rendered').text('Software');
+    console.log("testing");
    // $('.' + selectName + '+.select2 .select2-selection__rendered').html(window[selectName + '_placeholder']);
 
 }
