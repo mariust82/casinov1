@@ -274,7 +274,12 @@ var rangeRatingConfig = {
     hide_from_to: true,
     hide_min_max: true,
     onChange: function (data) {
-        $('.drag-rate-range-score').html('<span>' + data.from + '</span>' + '/10 ' + '<span>' + getGrade(data.from).text + '</span>');
+        var _dataScore = {
+            'score': data.from,
+            'text': getGrade(data.from).text
+        }
+        
+        $('.drag-rate-range-score').html($("#scoreHolder").tmpl(_dataScore));
         $('.drag-rate-range')
                 .removeClass('terrible poor good very-good excellent')
                 .addClass(getGrade(data.from).class);
@@ -344,14 +349,21 @@ var Score = function (obj) {
 
                 $('.drag-rate').find('.action-field').show();
 
-                $('.drag-rate-range-score').html('<span>' + _score + '</span>' + '/10 ' + '<span>' + getGrade(_score).text + '</span>');
+                var _dataScore = {
+                    'score': _score,
+                    'text': getGrade(_score).text
+                }
+                $('.drag-rate-range-score').html($("#scoreHolder").tmpl(_dataScore));
                 $('.rating-container-score-value').text(data.body['total_score']);
                 $('.count-value').text(data.body['total_votes']);
 
                 $( ".rating-container-stats-row" ).each(function( index ) {
                     var percents = setVotePercents(data.body['votes'][types_array[index]], data.body['total_votes']);
                     $(this).find('.rating-container-stats-bar').css('width', percents);
-                    $(this).find('.rating-container-stats-score').html( percents + "<span>(" + data.body['votes'][types_array[index]] + ")</span>");
+                    var _dataVotes = {
+                        'votes': data.body['votes'][types_array[index]]
+                    }
+                    $(this).find('.rating-container-stats-score').html( percents + $("#votesHolder").tmpl(_dataVotes));
                 });
 
                 $('.rating-container-score-grade')
