@@ -18,7 +18,14 @@ $.ajaxSetup({
 function loadScripts() {
     var version = $('.controller_main').data("version");
     if (!$("script[src='/public/build/js/compilations/defer.js?ver="+version+"']").length) {
-        $("body").append($('<script defer type="text/javascript" src="/public/build/js/compilations/defer.js?ver='+version+'"></script>"'));
+        var _script = document.createElement("script");
+        $(_script).attr({
+            'defer': 'defer',
+            'type': 'text/javascript',
+            'src': '/public/build/js/compilations/defer.js?ver='+version
+        });
+
+        $("body").append($(_script));
         SCRIPTS_LOADED = true;
     }
 
@@ -46,7 +53,14 @@ function loadScripts() {
 function loadStyles() {
     var version = $('.controller_main').data("version");
     if (!$("link[href='/public/build/css/compilations/defer.css?ver="+version+"']").length) {
-        $("body").append($('<link rel="stylesheet" type="text/css" href="/public/build/css/compilations/defer.css?ver='+version+'" media="all">"'));
+        var _style = document.createElement("link");
+        $(_style).attr({
+            'rel': 'stylesheet',
+            'type': 'text/css',
+            'media': 'all',
+            'href': '/public/build/css/compilations/defer.css?ver='+version
+        });
+        $("body").append($(_style));
         STYLES_LOADED = true;
     }
 }
