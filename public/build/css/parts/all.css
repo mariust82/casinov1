@@ -846,7 +846,7 @@ a:focus {
     display: flex;
     -webkit-align-items: center;
     align-items: center;
-    overflow: hidden;
+    /*overflow: hidden;*/
     padding: 7px 0 5px;
     width: 19px;
     transition: width 0.3s linear;
