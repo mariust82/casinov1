@@ -533,7 +533,8 @@ function select2tags() {
         });
 
         // Adding Fake Selection Placeholder
-        $('<div class="select2-selection__custom">' + placeholder + '</div>').appendTo($t.next().find('.select2-selection'));
+
+        $($("#select2SelectionCustom").tmpl({'placeholder':placeholder})).appendTo($t.next().find('.select2-selection'));
     });
 
 
@@ -564,9 +565,11 @@ function select2tags() {
     // DISPLAY TAGS
     function displayTags() {
         $(".tags-area").html("");
-
+        var _data = {};
         for (i = 0; i < tags.length; i++) {
-            $('<a href="#" class="tag" data-select="' + tags[i].select + '"><span class="value">' + tags[i].value + "</span></a>").appendTo($(".tags-area"));
+            _data['select'] = tags[i].select;
+            _data['value'] = tags[i].value;
+            $($("#select2Tag").tmpl(_data)).appendTo($(".tags-area"));
         }
     }
 }
