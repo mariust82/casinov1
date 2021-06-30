@@ -2471,7 +2471,8 @@ function setIframeAsResponsive() {
             var iframeWrapper = document.createElement("div");
             iframeWrapper.classList.add("iframe-wrapper");
 
-            $(el).wrap(iframeWrapper);
+            // $(el).wrap(iframeWrapper);
+            $(el).wrap($("#iframeWrapper").tmpl());
         });
     }
 }
