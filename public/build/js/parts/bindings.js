@@ -356,14 +356,14 @@ var Score = function (obj) {
                 $('.drag-rate-range-score').html($("#scoreHolder").tmpl(_dataScore));
                 $('.rating-container-score-value').text(data.body['total_score']);
                 $('.count-value').text(data.body['total_votes']);
-
+                var _dataVotes = {}
                 $( ".rating-container-stats-row" ).each(function( index ) {
                     var percents = setVotePercents(data.body['votes'][types_array[index]], data.body['total_votes']);
                     $(this).find('.rating-container-stats-bar').css('width', percents);
-                    var _dataVotes = {
-                        'votes': data.body['votes'][types_array[index]]
-                    }
-                    $(this).find('.rating-container-stats-score').html( percents + $("#votesHolder").tmpl(_dataVotes));
+                    _dataVotes['votes'] = data.body['votes'][types_array[index]];
+                    $(this).find('.rating-container-stats-score')
+                    .html( percents)
+                    .append($("#votesHolder").tmpl(_dataVotes));
                 });
 
                 $('.rating-container-score-grade')
