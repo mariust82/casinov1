@@ -27,6 +27,7 @@ let CONFIGURATIONS = {
     ],
     offline_page: "/offline",
     pages: [
+        "/",
         "/pwa-popups?device=android",
         "/pwa-popups?device=ios"
     ],
@@ -113,10 +114,16 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
     if (event.request.method === 'GET' && !CONFIGURATIONS.isNetworkOnly(event.request.url)) {
+        console.log('Handling fetch event for', event.request.url);
         if (CONFIGURATIONS.isPreCached(event.request.url)) {
             console.log('Get from pre-cached: ', event.request.url);
             event.respondWith(
-                caches.match(event.request).catch((error) => console.log('Failed from pre-cached: ', error))
+                caches.open(CONFIGURATIONS.cache_static)
+                    .then((cache) => {
+                        return cache.match(event.request)
+                            .then((response) => response)
+                            .catch((error) => console.log('Failed from pre-cached: %s', error))
+                    })
             )
         } else {
             event.respondWith(
