@@ -124,16 +124,7 @@ self.addEventListener('fetch', (event) => {
                     .then((res) => {
                         console.log('res.status: ', res.status);
                         if (res.status === 200) {
-                            console.log('res', res);
                             let clonedResponse = res.clone();
-                            if (!clonedResponse.headers.get('Content-Length')) {
-                                let getContentLengthResponse = clonedResponse.clone();
-                                getContentLengthResponse.text()
-                                    .then((data) => {
-                                        console.log(data.length);
-                                        clonedResponse.headers.set('Content-Length', data.length)
-                                    });
-                            }
                             console.log('Content-Length: ', clonedResponse.headers.get('Content-Length'));
                             caches.open(CONFIGURATIONS.cache_dynamic)
                                 .then(function (cache) {
