@@ -131,7 +131,7 @@ self.addEventListener('fetch', (event) => {
                                 getContentLengthResponse.text()
                                     .then((data) => {
                                         console.log(data.length);
-                                        clonedResponse.headers.append('Content-Length', data.length)
+                                        clonedResponse.headers.set('Content-Length', data.length)
                                     });
                             }
                             console.log('Content-Length: ', clonedResponse.headers.get('Content-Length'));
