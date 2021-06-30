@@ -78,6 +78,13 @@
     });
 })(jQuery);
 
+function initImageLazy() {
+    console.log(imageDefer);
+    if (typeof imageDefer != "undefined") {
+        imageDefer("lazy_loaded");
+    }
+};
+
 function initCustomSelect() {
     var _filterOptions = $('.js-filter > option');
 
@@ -449,6 +456,8 @@ var ListFilters = function (obj) {
                 }
                 $(document).scrollTop(scrollPos);
                 AJAX_CUR_PAGE++;
+
+                initImageLazy();
             },
             error: function (XMLHttpRequest) {
                 if (XMLHttpRequest.statusText != "abort") {

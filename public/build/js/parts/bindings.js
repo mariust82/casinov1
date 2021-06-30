@@ -1,12 +1,5 @@
 var ww = $(window).width();
 
-function initImageLazy() {
-    console.log(imageDefer);
-    if (typeof imageDefer != "undefined") {
-        imageDefer("lazy_loaded");
-    }
-};
-
 function getInternetExplorerVersion() {
     var rv = -1;
     if (navigator.appName == 'Microsoft Internet Explorer') {
@@ -1522,13 +1515,13 @@ var Filters = function (obj) {
                         _targetAddContainer.append(cont);
                         _moreButton.removeClass('loading');
                         refresh();
-                        initImageLazy();
 
                         if (cont.length < limit_items) {
                             _moreButton.hide();
                         }
                     }, 1000)
                 }
+                initImageLazy();
                 _construct();
 
                 checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
