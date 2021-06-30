@@ -22,6 +22,7 @@ let CONFIGURATIONS = {
     images: [
         "/public/favicon.ico",
         "/public/build/images/text-header/home-img-2.webp",
+        "/public/build/images/games/default_game_ss.png",
         "/public/build/images/default_casino_logo.png"
     ],
     offline_page: "/offline",
@@ -123,7 +124,17 @@ self.addEventListener('fetch', (event) => {
                     .then((res) => {
                         console.log('res.status: ', res.status);
                         if (res.status === 200) {
+                            console.log('res', res);
                             let clonedResponse = res.clone();
+                            if (!clonedResponse.headers.get('Content-Length')) {
+                                let getContentLengthResponse = clonedResponse.clone();
+                                getContentLengthResponse.text()
+                                    .then((data) => {
+                                        console.log(data.length);
+                                        clonedResponse.headers.append('Content-Length', data.length)
+                                    });
+                            }
+                            console.log('Content-Length: ', clonedResponse.headers.get('Content-Length'));
                             caches.open(CONFIGURATIONS.cache_dynamic)
                                 .then(function (cache) {
                                     cache.put(event.request.url, clonedResponse)
