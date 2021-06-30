@@ -55,9 +55,8 @@ let CONFIGURATIONS = {
         return false;
     },
     getOfflinePage: function (accept) {
-        console.log(this.cache_static);
         return caches.open(this.cache_static)
-            .then((cache) => accept.includes('text/html') ? cache.match('/offline') : null);
+            .then((cache) => accept.includes('text/html') ? cache.match('/offline') : new Response());
     },
     _cache_static: "static-v",
     get cache_static() {
@@ -131,7 +130,7 @@ self.addEventListener('fetch', (event) => {
                     return caches.match(event.request)
                         .then((response) => {
                             return response || CONFIGURATIONS.getOfflinePage(event.request.headers.get('accept'));
-                        }).catch((error) => CONFIGURATIONS.getOfflinePage(event.request.headers.get('accept'))) || event.request;
+                        }).catch(() => CONFIGURATIONS.getOfflinePage(event.request.headers.get('accept')));
                 })
         );
     }

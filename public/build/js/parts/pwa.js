@@ -6,14 +6,6 @@ if ('serviceWorker' in navigator) {
     var vapidPublicKey = 'BD2JY9S9yYiasakRQnyOvHb5vbQ3zgMhIC6wABWXv2J2gHlfprAZ7ovBSOFm0I6DECDbQmX21tUsYGgW31AFeWg';
     var fbUrl = 'https://casinoslists-default-rtdb.firebaseio.com';
 
-    function getDateInfo() {
-        return {
-            timeZone: new Date().getTimezoneOffset() / -60,
-            timeZoneName: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            timeZoneTitle: new Date().toTimeString().slice(9)
-        }
-    }
-
     function getMobileOperatingSystem() {
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
         if (/android/i.test(userAgent)) {
@@ -26,19 +18,24 @@ if ('serviceWorker' in navigator) {
         return 'unknown';
     }
 
-    function isPWAInstalled() {
-        var displays = ["fullscreen", "standalone", "minimal-ui"];
-        return navigator.standalone || displays.some(function (displayMode) {
-            return window.matchMedia('(display-mode: ' + displayMode + ')').matches;
-        });
-    }
-
-
     var mobileOperatingSystem = getMobileOperatingSystem();
     if (mobileOperatingSystem !== 'unknown') {
-        navigator.serviceWorker.register('/sw.js?ver=' + version)
-            .then(() => console.log('serviceWorker registered'))
-            .catch((err) => console.log('serviceWorker registration failed: ', err));
+        navigator.serviceWorker.register('/sw.js?ver=' + version);
+
+        function getDateInfo() {
+            return {
+                timeZone: new Date().getTimezoneOffset() / -60,
+                timeZoneName: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timeZoneTitle: new Date().toTimeString().slice(9)
+            }
+        }
+
+        function isPWAInstalled() {
+            var displays = ["fullscreen", "standalone", "minimal-ui"];
+            return navigator.standalone || displays.some(function (displayMode) {
+                return window.matchMedia('(display-mode: ' + displayMode + ')').matches;
+            });
+        }
 
         fetch('/pwa-popups?device=' + mobileOperatingSystem)
             .then(function (response) {
@@ -64,7 +61,6 @@ if ('serviceWorker' in navigator) {
                             if (!sessionStorage.getItem('isA2HSPopupClosed') &&
                                 !localStorage.getItem('isA2HSPopupClosed')) {
                                 setTimeout(function () {
-                                    console.log('pwaInstallationPopup... showing' + defaultTimeOut);
                                     pwaInstallationPopup.style.display = 'block';
                                 }, defaultTimeOut);
                             }
@@ -99,8 +95,6 @@ if ('serviceWorker' in navigator) {
                             setA2HSState('installed');
                             // Clear the deferredPrompt so it can be garbage collected
                             deferredPrompt = null;
-                            // Optionally, send analytics event to indicate successful install
-                            console.log('PWA was installed');
                         });
                         window.addEventListener('beforeinstallprompt', function (e) {
                             // Prevent Chrome 67 and earlier from automatically showing the prompt
@@ -110,21 +104,20 @@ if ('serviceWorker' in navigator) {
                             deferredPrompt = e;
                             // Update UI to notify the user they can add to home screen
                             showA2HSPopup();
-                            A2HSBtn.addEventListener('click', function (e) {
-                                hideA2HSPopup();
-                                // Show the prompt
-                                deferredPrompt.prompt();
-                                // Wait for the user to respond to the prompt
-                                deferredPrompt.userChoice.then(function (choiceResult) {
-                                    if (choiceResult.outcome === 'accepted') {
-                                        setA2HSState('installed');
-                                        console.log('User accepted the A2HS prompt');
-                                    } else {
-                                        console.log('User dismissed the A2HS prompt');
-                                    }
-                                    deferredPrompt = null;
+                            if (A2HSBtn) {
+                                A2HSBtn.addEventListener('click', function (e) {
+                                    hideA2HSPopup();
+                                    // Show the prompt
+                                    deferredPrompt.prompt();
+                                    // Wait for the user to respond to the prompt
+                                    deferredPrompt.userChoice.then(function (choiceResult) {
+                                        if (choiceResult.outcome === 'accepted') {
+                                            setA2HSState('installed');
+                                        }
+                                        deferredPrompt = null;
+                                    });
                                 });
-                            });
+                            }
 
                             return false;
                         });
@@ -238,10 +231,7 @@ if ('serviceWorker' in navigator) {
                                                 'Accept': 'application/json'
                                             },
                                             body: fbDocument
-                                        })
-                                            .catch(function (err) {
-                                                console.log(err);
-                                            });
+                                        });
                                     } else {
                                         return null;
                                     }
@@ -250,17 +240,12 @@ if ('serviceWorker' in navigator) {
                                     if (res && res.ok) {
                                         displayConfirmNotification();
                                     }
-                                })
-                                .catch(function (err) {
-                                    console.log(err);
                                 });
                         }
 
                         function askForNotificationPermission() {
                             Notification.requestPermission(function (result) {
-                                if (result !== 'granted') {
-                                    console.log('No notification permission granted!');
-                                } else {
+                                if (result === 'granted') {
                                     configurePushSubscription();
                                 }
                             });
@@ -274,6 +259,4 @@ if ('serviceWorker' in navigator) {
                 }
             });
     }
-} else {
-    console.log("'serviceWorker' not in navigator");
 }
