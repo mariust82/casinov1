@@ -1,6 +1,7 @@
 var ww = $(window).width();
 
 function initImageLazy() {
+    console.log(imageDefer);
     if (typeof imageDefer != "undefined") {
         imageDefer("lazy_loaded");
     }
