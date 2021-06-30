@@ -201,7 +201,9 @@ function grayscaleIE() {
     if (getInternetExplorerVersion() >= 10) {
         $('img.not-accepted').each(function () {
             var el = $(this);
-            el.css({"position": "absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
+            var img_wrapper = document.createElement("div");
+            img_wrapper.classList.add("img_wrapper");
+            el.css({"position": "absolute"}).wrap(img_wrapper).clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
                 var el = $(this);
                 el.parent().css({"width": this.width, "height": this.height});
                 el.dequeue();
@@ -1959,7 +1961,17 @@ var SearchPanel = function (obj) {
                 return name.replace(/\s/g, '-').toLowerCase();
             },
             getItemPattern = function (itemData) {
-                var pattern = '<li><a class="search-results-label" href="/' + itemData.link.replace("/games/", "") + '">' + itemData.name + '</a></li>';
+                var searchLi = document.createElement("li");
+                var searchA = document.createElement("a");
+                $(searchA).attr({
+                    'class': 'search-results-label',
+                    'href': itemData.link.replace("/games/", "")
+                });
+                $(searchA).text(itemData.name);
+
+                $(searchLi).append($(searchA))
+
+                var pattern = $(searchLi);
 
                 return pattern;
             },
@@ -2425,7 +2437,17 @@ if ($(window).width() < 768) {
         var body = $('body');
         $(window).on('scroll', function () {
             if ($(window).scrollTop() > position && appended === false) {
-                body.append('<a rel="nofollow" target="_blank" class="btn-play-now" href="' + $('.btn-group-mobile .btn-middle').attr('href') + '">Play Now</a>');
+                var playBtn = document.createElement("a");
+                $(playBtn).attr({
+                    'rel': 'nofollow',
+                    'target': '_blank',
+                    'class': 'btn-play-now',
+                    'href': $('.btn-group-mobile .btn-middle').attr('href')
+                });
+
+                $(playBtn).text('Play Now');
+
+                body.append($(playBtn));
                 body.addClass('play-now-appended');
                 appended = true;
             }
@@ -2446,7 +2468,10 @@ function setIframeAsResponsive() {
 
     if (iframes.length) {
         iframes.each(function (index, el) {
-            $(el).wrap('<div class="iframe-wrapper"></div>');
+            var iframeWrapper = document.createElement("div");
+            iframeWrapper.classList.add("iframe-wrapper");
+
+            $(el).wrap(iframeWrapper);
         });
     }
 }
