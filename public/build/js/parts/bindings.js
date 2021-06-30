@@ -1,5 +1,11 @@
 var ww = $(window).width();
 
+function initImageLazy() {
+    if (typeof imageDefer != "undefined") {
+        imageDefer("lazy_loaded");
+    }
+};
+
 function getInternetExplorerVersion() {
     var rv = -1;
     if (navigator.appName == 'Microsoft Internet Explorer') {
@@ -1341,7 +1347,7 @@ var Filters = function (obj) {
 
             mutations.forEach(function (mutation) {
                 if (mutation.type === "childList" && mutation.addedNodes.length !== 0 && c < 1) {
-                    initImageLazyLoad();
+                    initImageLazy();
                     c++;
                 }
             });
@@ -1515,7 +1521,7 @@ var Filters = function (obj) {
                         _targetAddContainer.append(cont);
                         _moreButton.removeClass('loading');
                         refresh();
-                        initImageLazyLoad();
+                        initImageLazy();
 
                         if (cont.length < limit_items) {
                             _moreButton.hide();
@@ -1550,9 +1556,9 @@ var Filters = function (obj) {
                         $('.js-more-items').show();
                     }
                 }
-                
+
                 grayscaleIE();
-                initImageLazyLoad();
+                initImageLazy();
                 copyToClipboard();
             }
         });
