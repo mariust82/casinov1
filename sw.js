@@ -94,7 +94,6 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-    console.log('[SW] V1 now ready to handle fetches!');
     event.waitUntil(
         caches.keys()
             .then((keyList) => {
