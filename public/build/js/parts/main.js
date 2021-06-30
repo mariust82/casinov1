@@ -51,7 +51,7 @@ function loadStyles() {
     }
 }
 
-var initImageLazyLoad = function () {
+function initImageLazyLoad() {
     if (typeof imageDefer != "undefined") {
         imageDefer("lazy_loaded");
     }

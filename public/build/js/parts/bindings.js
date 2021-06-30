@@ -1550,6 +1550,7 @@ var Filters = function (obj) {
                         $('.js-more-items').show();
                     }
                 }
+                
                 grayscaleIE();
                 initImageLazyLoad();
                 copyToClipboard();
