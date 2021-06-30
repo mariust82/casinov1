@@ -117,14 +117,15 @@ self.addEventListener('fetch', (event) => {
         console.log('Handling fetch event for', event.request.url);
         if (CONFIGURATIONS.isPreCached(event.request.url)) {
             console.log('Get from pre-cached: ', event.request.url);
-            event.respondWith(
-                caches.open(CONFIGURATIONS.cache_static)
-                    .then((cache) => {
-                        return cache.match(event.request)
-                            .then((response) => response)
-                            .catch((error) => console.log('Failed from pre-cached: %s', error))
-                    })
-            )
+            var cachedResponse = caches.open(CONFIGURATIONS.cache_static)
+                .then((cache) => {
+                    return cache.match(event.request)
+                        .then((response) => response)
+                        .catch((error) => console.log('Failed from pre-cached: %s', error))
+                });
+            if (cachedResponse) {
+                event.respondWith(cachedResponse);
+            }
         } else {
             event.respondWith(
                 fetch(event.request)
