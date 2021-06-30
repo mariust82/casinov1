@@ -946,7 +946,7 @@ function processCheckboxes(_this) {
     }
 
     function resetPlaceholder(){
-        if ($('.select2-container--open').find('li.select2-results__option[aria-selected="true"]').length == 0){
+        if ($('.select2-container').find('li.select2-results__option[aria-selected="true"]').length == 0){
             $('.select2-selection__rendered').html("Software");
             clearButtonSelector.hide();
         }else{
@@ -955,8 +955,6 @@ function processCheckboxes(_this) {
                 selectedListItems.push($(this).find(".wrap").html());
             });
             $('.select2-selection__rendered').html(selectedListItems.join(', '));
-            console.log("tst2");
-
         }
     }
 
