@@ -533,8 +533,8 @@ function select2tags() {
         });
 
         // Adding Fake Selection Placeholder
-
-        $($("#select2SelectionCustom").tmpl({'placeholder':placeholder})).appendTo($t.next().find('.select2-selection'));
+        $('<div class="select2-selection__custom">' + placeholder + '</div>').appendTo($t.next().find('.select2-selection'));
+        // $($("#select2SelectionCustom").tmpl({'placeholder':placeholder})).appendTo($t.next().find('.select2-selection'));
     });
 
 
