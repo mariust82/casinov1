@@ -55,8 +55,9 @@ let CONFIGURATIONS = {
         return false;
     },
     getOfflinePage: function (accept) {
+        console.log(this.cache_static);
         return caches.open(this.cache_static)
-            .then(() => accept.includes('text/html') ? cache.match('/offline') : null);
+            .then((cache) => accept.includes('text/html') ? cache.match('/offline') : null);
     },
     _cache_static: "static-v",
     get cache_static() {

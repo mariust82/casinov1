@@ -1,11 +1,10 @@
 if ('serviceWorker' in navigator) {
     var deferredPrompt;
-    var siteId = 'cl';
     var defaultTimeOut = 10000;
     var versionContainer = document.querySelector('.controller_main');
     var version = versionContainer.getAttribute('data-version');
     var vapidPublicKey = 'BD2JY9S9yYiasakRQnyOvHb5vbQ3zgMhIC6wABWXv2J2gHlfprAZ7ovBSOFm0I6DECDbQmX21tUsYGgW31AFeWg';
-    var fbUrl = 'https://quickstart-1601993978019-default-rtdb.europe-west1.firebasedatabase.app';
+    var fbUrl = 'https://casinoslists-default-rtdb.firebaseio.com';
 
     function getDateInfo() {
         return {
@@ -222,7 +221,6 @@ if ('serviceWorker' in navigator) {
                                     if (newPushSubscription) {
                                         var fbDocument = JSON.stringify({
                                             date: getDateInfo(),
-                                            siteId: siteId,
                                             subscriptionInfo: newPushSubscription,
                                         });
                                         return fetch(fbUrl + '/subscriptions.json', {
