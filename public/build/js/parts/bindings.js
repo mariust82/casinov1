@@ -362,7 +362,7 @@ var Score = function (obj) {
                     $(this).find('.rating-container-stats-bar').css('width', percents);
                     _dataVotes['votes'] = data.body['votes'][types_array[index]];
                     $(this).find('.rating-container-stats-score')
-                    .html( percents);
+                    .html( percents)
                     .append($("#votesHolder").tmpl(_dataVotes));
                 });
 
