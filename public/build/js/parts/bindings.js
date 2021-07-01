@@ -1116,6 +1116,7 @@ function refresh() {
         showCasinoBonuses();
     }
     copyToClipboard();
+    initImageLazy();
 }
 
 function copyToClipboard() {
