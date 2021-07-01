@@ -7,7 +7,7 @@ class Casinos implements FieldValidator
 {
     public function getHighRollerNumber()
     {
-        return (integer) SQL("SELECT count(*) AS nr FROM casinos WHERE is_high_roller=1")->toValue();
+        return (integer) SQL("SELECT count(id) AS nr FROM casinos WHERE is_high_roller=1")->toValue();
     }
 
     public function validate($name)
@@ -86,20 +86,20 @@ class Casinos implements FieldValidator
 
     public function getBonus($casinoID, $isFree)
     {
-        $query = "
-        SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name 
+        $bonus = new CasinoBonus();
+        $query = "SELECT t1.casino_id, t1.codes, t1.amount, t1.wagering, t1.deposit_minimum, t1.games, t2.name 
         FROM casinos__bonuses AS t1
         INNER JOIN bonus_types AS t2 ON t1.bonus_type_id = t2.id
-        WHERE t1.casino_id = $casinoID AND t2.name IN (".($isFree?"'No Deposit Bonus','Free Spins','Free Play','Bonus Spins'":"'First Deposit Bonus'").")
-        ";
+        WHERE t1.casino_id = $casinoID AND t2.name IN (" . ($isFree ? "'No Deposit Bonus','Free Spins','Free Play','Bonus Spins'" : "'First Deposit Bonus'") . ")";
         $row = SQL($query)->toRow();
-        $bonus = new CasinoBonus();
-        $bonus->amount = ($row["name"]=="Free Spins"?trim(str_replace("FS", "", $row["amount"])):$row["amount"]);
-        $bonus->min_deposit = $row["deposit_minimum"];
-        $bonus->wagering = $row["wagering"];
-        $bonus->games_allowed = $row["games"];
-        $bonus->code = $row["codes"];
-        $bonus->type = $row["name"];
+        if ($row) {
+            $bonus->amount = ($row["name"] == "Free Spins" ? trim(str_replace("FS", "", $row["amount"])) : $row["amount"]);
+            $bonus->min_deposit = $row["deposit_minimum"];
+            $bonus->wagering = $row["wagering"];
+            $bonus->games_allowed = $row["games"];
+            $bonus->code = $row["codes"];
+            $bonus->type = $row["name"];
+        }
 
         return $bonus;
     }

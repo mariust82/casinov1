@@ -201,7 +201,9 @@ function grayscaleIE() {
     if (getInternetExplorerVersion() >= 10) {
         $('img.not-accepted').each(function () {
             var el = $(this);
-            el.css({"position": "absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
+            var img_wrapper = document.createElement("div");
+            img_wrapper.classList.add("img_wrapper");
+            el.css({"position": "absolute"}).wrap(img_wrapper).clone().addClass('img_grayscale').css({"position": "absolute", "z-index": "5", "opacity": "0"}).insertBefore(el).queue(function () {
                 var el = $(this);
                 el.parent().css({"width": this.width, "height": this.height});
                 el.dequeue();
@@ -272,7 +274,12 @@ var rangeRatingConfig = {
     hide_from_to: true,
     hide_min_max: true,
     onChange: function (data) {
-        $('.drag-rate-range-score').html('<span>' + data.from + '</span>' + '/10 ' + '<span>' + getGrade(data.from).text + '</span>');
+        var _dataScore = {
+            'score': data.from,
+            'text': getGrade(data.from).text
+        }
+        
+        $('.drag-rate-range-score').html($("#scoreHolder").tmpl(_dataScore));
         $('.drag-rate-range')
                 .removeClass('terrible poor good very-good excellent')
                 .addClass(getGrade(data.from).class);
@@ -342,14 +349,21 @@ var Score = function (obj) {
 
                 $('.drag-rate').find('.action-field').show();
 
-                $('.drag-rate-range-score').html('<span>' + _score + '</span>' + '/10 ' + '<span>' + getGrade(_score).text + '</span>');
+                var _dataScore = {
+                    'score': _score,
+                    'text': getGrade(_score).text
+                }
+                $('.drag-rate-range-score').html($("#scoreHolder").tmpl(_dataScore));
                 $('.rating-container-score-value').text(data.body['total_score']);
                 $('.count-value').text(data.body['total_votes']);
-
+                var _dataVotes = {}
                 $( ".rating-container-stats-row" ).each(function( index ) {
                     var percents = setVotePercents(data.body['votes'][types_array[index]], data.body['total_votes']);
                     $(this).find('.rating-container-stats-bar').css('width', percents);
-                    $(this).find('.rating-container-stats-score').html( percents + "<span>(" + data.body['votes'][types_array[index]] + ")</span>");
+                    _dataVotes['votes'] = data.body['votes'][types_array[index]];
+                    $(this).find('.rating-container-stats-score')
+                    .html( percents)
+                    .append($("#votesHolder").tmpl(_dataVotes));
                 });
 
                 $('.rating-container-score-grade')
@@ -395,13 +409,10 @@ copyTooltipConfig = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content('\
-                <div class="centered">\
-                    <i class="icon icon-icon_available"></i> Code copied to clipboard\
-                </div>\
-            ');
+        instance.content($("#copyTooltip").tmpl());
     }
 };
+
 copyTooltipConfigGames = {
     trigger: 'click',
     maxWidth: 260,
@@ -410,11 +421,7 @@ copyTooltipConfigGames = {
     contentAsHTML: true,
     debug: false,
     functionBefore: function (instance, helper) {
-        instance.content('\
-                <div class="centered">\
-                     Code copied to clipboard\
-                </div>\
-            ');
+        instance.content($("#copyTooltipAlt").tmpl());
     }
 };
 
@@ -687,7 +694,10 @@ function newsletter(obj) {
 
                             $('.action-added').remove();
                             $.each(arr, function (index, val) {
-                                var $msg = '<div class="action-field action-added not-valid ">' + val + '</div>';
+                                var $msg = $('<div>', {
+                                    class: 'action-field action-added not-valid',
+                                    html: val
+                                });
                                 $('.review-submit-holder .msg-holder').append($msg);
                             });
                         }
@@ -893,12 +903,29 @@ function sliderInit(params) {
         breakpoints: {
             1024: {
                 freeMode: true,
-                slidesPerView: 'auto'
+                slidesPerView: 6,
+                // slidesOffsetAfter: 300,
             },
+            768: {
+                slidesPerView: 5,
+                slidesOffsetAfter: 270,
+            },
+            700: {
+                slidesPerView: 'auto',
+                slidesOffsetAfter: 0,
+            },
+            // 639: {
+            //     slidesPerView: 4.5
+            // },
+            // 479: {
+            //     slidesPerView: 2
+            // }
         },
         on: {
             reachEnd: function(e) {
-            if (params.hasLazySlides) {
+            var containerSlide = params.container;
+            var loadedSlides = $(containerSlide).find(".swiper-slide").length;
+            if (params.hasLazySlides && !(loadedSlides < params.sledesPerViw)) {
                 getMoreSlides({
                     url: params.lazySlidesUrl,
                     container: params.container,
@@ -1277,7 +1304,6 @@ function bindButtons() {
             type: 'post',
             success: function (data) {
                 AJAX_CUR_PAGE++;
-                console.dir(data);
                 $('.cards-list-wrapper').append(data);
                 if ($(self).data('total') === $('.cards-list-wrapper').children().length) {
                     $(self).hide();
@@ -1327,7 +1353,7 @@ var Filters = function (obj) {
 
             mutations.forEach(function (mutation) {
                 if (mutation.type === "childList" && mutation.addedNodes.length !== 0 && c < 1) {
-                    initImageLazyLoad();
+                    initImageLazy();
                     c++;
                 }
             });
@@ -1501,13 +1527,13 @@ var Filters = function (obj) {
                         _targetAddContainer.append(cont);
                         _moreButton.removeClass('loading');
                         refresh();
-                        initImageLazyLoad();
 
                         if (cont.length < limit_items) {
                             _moreButton.hide();
                         }
                     }, 1000)
                 }
+                initImageLazy();
                 _construct();
 
                 checkStringLength($('.data-add-container .bonus-box, .data-container .bonus-box'), 21);
@@ -1536,8 +1562,9 @@ var Filters = function (obj) {
                         $('.js-more-items').show();
                     }
                 }
+
                 grayscaleIE();
-                initImageLazyLoad();
+                initImageLazy();
                 copyToClipboard();
             }
         });
@@ -1937,11 +1964,17 @@ var SearchPanel = function (obj) {
                 return name.replace(/\s/g, '-').toLowerCase();
             },
             getItemPattern = function (itemData) {
-                var pattern = '<li>\
-                    <a class="search-results-label" href="/' + itemData.link.replace("/games/", "") + '">\
-                        ' + itemData.name + '\
-                    </a>\
-                </li>';
+                var searchLi = document.createElement("li");
+                var searchA = document.createElement("a");
+                $(searchA).attr({
+                    'class': 'search-results-label',
+                    'href': itemData.link.replace("/games/", "")
+                });
+                $(searchA).text(itemData.name);
+
+                $(searchLi).append($(searchA))
+
+                var pattern = $(searchLi);
 
                 return pattern;
             },
@@ -2137,23 +2170,23 @@ var initSite = function () {
 }
 
 function gridViewBoxPopup(){
-    $('body').on('click', '.open-popup-spec', function(){
+    $('.data-container-holder').on('click', '.open-popup-spec', function(){
         $(".welcome_package-popup-trigger").closest('.wp-title').find('.welcome_package-popup').removeClass('active');
         $(this).closest('.popup-spec').find('.popup-casino-spec').toggleClass('active');
         $('.open-popup-spec').not(this).closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
     });
 
-    $('body').on('click', '.close-popup-spec', function(){
+    $('.data-container-holder').on('click', '.close-popup-spec', function(){
         $('.popup-casino-spec').removeClass('active');
     });
 
-    $('body').on('click', '.welcome_package-popup-trigger', function(){
+    $('.data-container-holder').on('click', '.welcome_package-popup-trigger', function(){
         $('.open-popup-spec').closest('.popup-spec').find('.popup-casino-spec').removeClass('active');
         $(this).closest('.wp-title').find('.welcome_package-popup').toggleClass('active');
         $(".welcome_package-popup-trigger").not(this).closest('.wp-title').find('.welcome_package-popup').removeClass('active');
     });
 
-    $('body').on('click', '.close-popup-wp', function(){
+    $('.data-container-holder').on('click', '.close-popup-wp', function(){
         $('.welcome_package-popup').removeClass('active');
     });
 }
@@ -2211,9 +2244,8 @@ function initExpandingText() {
                 wrapper = $("<div>").addClass(wrapcss + ' ' + wrapjs);
                 singleline = (singleline / 1.6) + parseFloat(element.css("font-size"));
                 var linescount = singleline * settings.linecount;
-
             element.wrap(wrapper);
-
+            fullheight = fullheight + 30;
             if (element.parent().not(wrapjs)) {
                 if (fullheight > linescount) {
 
@@ -2408,7 +2440,17 @@ if ($(window).width() < 768) {
         var body = $('body');
         $(window).on('scroll', function () {
             if ($(window).scrollTop() > position && appended === false) {
-                body.append('<a rel="nofollow" target="_blank" class="btn-play-now" href="' + $('.btn-group-mobile .btn-middle').attr('href') + '">Play Now</a>');
+                var playBtn = document.createElement("a");
+                $(playBtn).attr({
+                    'rel': 'nofollow',
+                    'target': '_blank',
+                    'class': 'btn-play-now',
+                    'href': $('.btn-group-mobile .btn-middle').attr('href')
+                });
+
+                $(playBtn).text('Play Now');
+
+                body.append($(playBtn));
                 body.addClass('play-now-appended');
                 appended = true;
             }
@@ -2429,7 +2471,7 @@ function setIframeAsResponsive() {
 
     if (iframes.length) {
         iframes.each(function (index, el) {
-            $(el).wrap('<div class="iframe-wrapper"></div>');
+            $(el).wrap($("#iframeWrapper").tmpl());
         });
     }
 }

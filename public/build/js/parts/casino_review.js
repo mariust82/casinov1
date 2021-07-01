@@ -105,7 +105,10 @@ function AddingReview(obj) {
         }
 
         if (title === '') {
-            var errorMessage = $('<div class="field-error-required not-valid action-field">Please fill in a title for your review</div>')
+            var errorMessage = $('<div>', {
+                class: 'field-error-required not-valid action-field',
+                html: 'Please fill in a title for your review'
+            });
             var container = _field_title.parent();
             container.find('.action-field')
             .remove();
@@ -116,7 +119,10 @@ function AddingReview(obj) {
         }
 
         if (name === '') {
-            var errorMessage = $('<div class="field-error-required not-valid action-field">Please fill in your name</div>')
+            var errorMessage = $('<div>', {
+                class: 'field-error-required not-valid action-field',
+                html: 'Please fill in your name'
+            });
             var container = _field_name.parent();
             container.find('.action-field')
             .remove();
@@ -126,7 +132,10 @@ function AddingReview(obj) {
             _field_name.parent().find('.field-error-required').remove();
         }
         if (email === '' || !validateEmail(email)) {
-            var errorMessage = $('<div class="field-error-required not-valid action-field">Please fill in a valid email address</div>')
+            var errorMessage = $('<div>', {
+                class: 'field-error-required not-valid action-field',
+                html: 'Please fill in a valid email address'
+            });
             var container = _field_email.parent();
             container.find('.action-field')
             .remove();
@@ -136,7 +145,10 @@ function AddingReview(obj) {
             _field_email.parent().find('.field-error-required').remove();
         }
         if (message === '' || message.trim().length < 50) {
-            var errorMessage = $('<div class="field-error-required not-valid action-field">The review must contain at least 50 characters</div>')
+            var errorMessage = $('<div>', {
+                class: 'field-error-required not-valid action-field',
+                html: 'The review must contain at least 50 characters'
+            });
             var container = _field_message.parent();
             container.find('.action-field')
             .remove();

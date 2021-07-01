@@ -1,0 +1,90 @@
+{
+  "name": "The most up-to date list for Online Casinos and Bonuses - CasinosLists.com",
+  "short_name": "CasinosLists.com",
+  "description": "Best Online Casino Lists & Bonuses updated on a daily basis.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#2171CE",
+  "dir": "ltr",
+  "lang": "en-US",
+  "orientation": "portrait-primary",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/public/build/images/icons/maskable_icon_x48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/public/build/images/icons/maskable_icon_x72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "/public/build/images/icons/maskable_icon_x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/public/build/images/icons/maskable_icon_x128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/public/build/images/icons/maskable_icon_x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/public/build/images/icons/maskable_icon_x384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "/public/build/images/icons/maskable_icon_x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "New Online Casinos!",
+      "short_name": "New Online Casinos",
+      "description": "New Online Casinos. Check out the newest casino releases from the last 12 months. Newly-launched Online Casino Sites & Bonuses!",
+      "url": "/casinos/new",
+      "icons": [
+        {
+          "src": "/public/build/images/icons/maskable_icon_x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "No Deposit Bonus & Free Spins Online Casinos - Keep your winnings!",
+      "short_name": "No Deposit Bonus",
+      "description": " Full List of No Deposit Casinos. Free Spins, Free Play & No Deposit Bonuses on Sign up allowing you to keep what you win with no deposit required!",
+      "url": "/bonus-list/no-deposit-bonus",
+      "icons": [
+        {
+          "src": "/public/build/images/icons/maskable_icon_x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/public/build/images/screenshot1.png",
+      "type": "image/png",
+      "sizes": "960x692"
+    },
+    {
+      "src": "/public/build/images/screenshot2.png",
+      "type": "image/png",
+      "sizes": "960x557"
+    }
+  ]
+}

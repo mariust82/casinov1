@@ -67,7 +67,7 @@ class GameManufacturers implements CasinoCounter
     {
         return SQL("
         SELECT
-        t1.name AS unit, count(*) as counter
+        t1.name AS unit, count(t1.id) as counter
         FROM game_manufacturers AS t1
         INNER JOIN casinos__game_manufacturers AS t2 ON t1.id = t2.game_manufacturer_id
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id

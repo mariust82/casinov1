@@ -17,8 +17,15 @@ $.ajaxSetup({
 
 function loadScripts() {
     var version = $('.controller_main').data("version");
-    if (!$("script[src='/public/build/js/compilations/defer.js?v="+version+"']").length) {
-        $("body").append($('<script defer type="text/javascript" src="/public/build/js/compilations/defer.js?v='+version+'"></script>"'));
+    if (!$("script[src='/public/build/js/compilations/defer.js?ver="+version+"']").length) {
+        var _script = document.createElement("script");
+        $(_script).attr({
+            'defer': 'defer',
+            'type': 'text/javascript',
+            'src': '/public/build/js/compilations/defer.js?ver='+version
+        });
+
+        $("body").append($(_script));
         SCRIPTS_LOADED = true;
     }
 
@@ -45,13 +52,20 @@ function loadScripts() {
 
 function loadStyles() {
     var version = $('.controller_main').data("version");
-    if (!$("link[href='/public/build/css/compilations/defer.css?v="+version+"']").length) {
-        $("body").append($('<link rel="stylesheet" type="text/css" href="/public/build/css/compilations/defer.css?v='+version+'" media="all">"'));
+    if (!$("link[href='/public/build/css/compilations/defer.css?ver="+version+"']").length) {
+        var _style = document.createElement("link");
+        $(_style).attr({
+            'rel': 'stylesheet',
+            'type': 'text/css',
+            'media': 'all',
+            'href': '/public/build/css/compilations/defer.css?ver='+version
+        });
+        $("body").append($(_style));
         STYLES_LOADED = true;
     }
 }
 
-var initImageLazyLoad = function () {
+function initImageLazyLoad() {
     if (typeof imageDefer != "undefined") {
         imageDefer("lazy_loaded");
     }
@@ -66,7 +80,7 @@ var initImageLazyLoad = function () {
         $('body').on('click', '.btn_visit', function(){
             feedbackPopup($(this));
         });
-        
+
         //Load Defer Scripts and Binding
         if ($('.filter').length) {
             setTimeout(function() {
@@ -89,7 +103,7 @@ var initImageLazyLoad = function () {
                 loadScripts();
             }
         });
-        
+
         setStyleProps();
 
         // document.ontouchmove = function (e) {
@@ -106,9 +120,6 @@ var initImageLazyLoad = function () {
         initImageLazyLoad();
     });
 
-    $(document).ajaxComplete(function() {
-        initImageLazyLoad();
-    });
 
     function detectIsKeyboardOpened() {
         $(document).on('focus', 'input, textarea', function () {
@@ -142,7 +153,7 @@ var initImageLazyLoad = function () {
             $('.separate-table').remove();
             _th.each(function (index, el) {
                 var i = index;
-                var _newTable = $('<table class="separate-table"></table>');
+                var _newTable = $("#separateTable").tmpl();
 
                 _tr.each(function (index, el) {
                     var _itemTh = $(el).find('th').eq(i).clone().wrap('<tr></tr>').parent();

@@ -7,7 +7,7 @@ class Certifications implements FieldValidator
     {
         return SQL("
         SELECT
-        count(*) as counter
+        count(t1.id) as counter
         FROM certifications AS t1
         INNER JOIN casinos__certifications AS t2 ON t1.id = t2.certification_id
         INNER JOIN casinos AS t3 ON t2.casino_id = t3.id

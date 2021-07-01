@@ -5,13 +5,17 @@ require_once("application/models/dao/CasinosList.php");
 require_once("application/models/dao/CasinosMenu.php");
 require_once("BaseController.php");
 require_once("application/models/caching/CasinosListKey.php");
+require_once('hlis/mobile_detection/DeviceDetection.php');
+
 
 abstract class CasinosListController extends BaseController
 {
-    protected $limit = 50;
+    protected $limit = 52;
+    protected $mobileLimit = 51;
 
     public function service()
     {
+        $this->limit = DeviceDetection::getInstance()->is_mobile() ? $this->mobileLimit : $this->limit;
         $this->response->attributes("selected_entity", ucwords($this->getSelectedEntity()));
         $this->response->attributes('is_mobile', $this->request->attributes("is_mobile"));
 

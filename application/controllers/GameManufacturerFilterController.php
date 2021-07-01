@@ -4,13 +4,14 @@ require_once("application/models/dao/CasinosList.php");
 
 class GameManufacturerFilterController extends Lucinda\MVC\STDOUT\Controller
 {
-    public function run() {
+    public function run()
+    {
         $parameters = $this->request->parameters();
         $filter = new CasinoFilter(
             array($parameters["filter"] => $parameters["entity"]),
             $this->request->attributes("country")
         );
         $object = new CasinosList($filter);
-        $this->response->attributes("software", $object->getManufacturers('', null, ''));
+        $this->response->attributes("software", $object->getManufacturers());
     }
 }

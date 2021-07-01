@@ -3167,7 +3167,6 @@
          * @public
          */
         constrain: function(width, height) {
-
             this.constraints = {
                 width: width,
                 height: height
@@ -4175,7 +4174,7 @@
                         // content will otherwise break lines at each word to keep up with the
                         // body overflow strategy.
                         height: finalResult.size.height,
-                        width: finalResult.size.width
+                        width: finalResult.size.width + 2
                     })
                     .find('.tooltipster-arrow')
                     .css({

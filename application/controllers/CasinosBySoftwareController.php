@@ -30,8 +30,8 @@ class CasinosBySoftwareController extends CasinosListController
         }
         $casinoFilter->setSoftware($this->getSelectedEntity());
         $object = new CasinosList($casinoFilter);
-        $results = $object->getResults($sortBy, 0, $limit);
         $total = $object->getTotal();
+        $results = $object->getResults($sortBy, 0, $limit);
         return ['total'=>$total,'result'=>$results];
     }
     

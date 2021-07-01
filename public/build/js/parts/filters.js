@@ -1,3 +1,107 @@
+/**
+ * jQuery Select2 Multi checkboxes
+ * - allow to select multi values via normal dropdown control
+ *
+ * author      : wasikuss
+ * repo        : https://github.com/wasikuss/select2-multi-checkboxes
+ * inspired by : https://github.com/select2/select2/issues/411
+ * License     : MIT
+ */
+(function($) {
+    var S2MultiCheckboxes = function(options, element) {
+        var self = this;
+        self.options = options;
+        self.$element = $(element);
+        var values = self.$element.val();
+        self.$element.removeAttr('multiple');
+        self.select2 = self.$element.select2({
+            allowClear: true,
+            minimumResultsForSearch: options.minimumResultsForSearch,
+            placeholder: options.placeholder,
+            closeOnSelect: true,
+            templateSelection: function() {
+                return self.options.templateSelection(self.$element.val() || [], $('option', self.$element).length);
+            },
+            templateResult: function(result) {
+                if (result.loading !== undefined)
+                    return result.text;
+                return $('<div>').text(result.text).addClass(self.options.wrapClass);
+            },
+            matcher: function(params, data) {
+                var original_matcher = $.fn.select2.defaults.defaults.matcher;
+                var result = original_matcher(params, data);
+                if (result && self.options.searchMatchOptGroups && data.children && result.children && data.children.length != result.children.length) {
+                    result.children = data.children;
+                }
+                return result;
+            }
+        }).data('select2');
+        self.select2.$results.off("mouseup").on("mouseup", ".select2-results__option[aria-selected]", (function(self) {
+            return function(evt) {
+                var $this = $(this);
+
+                var data = $this.data('data');
+
+                if ($this.attr('aria-selected') === 'true') {
+                    self.trigger('unselect', {
+                        originalEvent: evt,
+                        data: data
+                    });
+                    return;
+                }
+
+                self.trigger('select', {
+                    originalEvent: evt,
+                    data: data
+                });
+            }
+        })(self.select2));
+        self.$element.attr('multiple', 'multiple').val(values).trigger('change.select2');
+    }
+
+    $.fn.extend({
+        select2MultiCheckboxes: function() {
+            var options = $.extend({
+                placeholder: 'Choose elements',
+                templateSelection: function(selected, total) {
+                    return selected.length + ' > ' + total + ' total';
+                },
+                wrapClass: 'wrap checkbox',
+                minimumResultsForSearch: -1,
+                searchMatchOptGroups: true
+            }, arguments[0]);
+
+            this.each(function() {
+                new S2MultiCheckboxes(options, this);
+            });
+        }
+    });
+})(jQuery);
+
+function initImageLazy() {
+    console.log(imageDefer);
+    if (typeof imageDefer != "undefined") {
+        imageDefer("lazy_loaded");
+    }
+};
+
+function initCustomSelect() {
+    var _filterOptions = $('.js-filter > option');
+
+    $('.js-filter').select2MultiCheckboxes({
+        templateSelection: function (selected, total) {
+            return "Software";
+        }
+    })
+
+    _filterOptions.prop("selected", false);
+    $(".select2").on('click', function () {
+        // processCheckboxes();
+    });
+};
+
+initCustomSelect();
+
 var ListFilters = function (obj) {
 
     var _obj = obj,
@@ -169,7 +273,6 @@ var ListFilters = function (obj) {
 
         if (typeof AJAX_CUR_PAGE == "undefined")
             AJAX_CUR_PAGE = 0;
-        AJAX_CUR_PAGE++;
         if (_action != 'add' || _action == 'reset') {
             AJAX_CUR_PAGE = 0;
         }
@@ -195,6 +298,7 @@ var ListFilters = function (obj) {
             success: function (data) {
                 var scrollPos = $(document).scrollTop();
                 var cont = $(data).find('.loaded-item');
+                var loadedItems = $(".loaded-item").length + cont.length;
                 var loadTotal = $(data).filter('[data-load-total]').data('load-total');
                 var totalItems = $(data).find('.qty-items').data('load-total');
 
@@ -250,8 +354,6 @@ var ListFilters = function (obj) {
                         $('.js-tooltip-content-popup').tooltipster(contentTooltipConfigPopup);
                     }
                 } else {
-
-
                     if (_action == 'replace') {
                         _targetContainer.html('');
                         _targetContainer.html(data);
@@ -275,15 +377,19 @@ var ListFilters = function (obj) {
                             _loaderHolder.show();
                             _emptyContent.hide();
                         }
-                        if(cont.length === loadTotal){
+                    } else {
+
+                        if (cont.length < 24) {
                             _moreButton.hide();
                         }
-                    } else {
+
                         if ($('.games-list').hasClass('list-view')) {
                             _targetAddContainer.addClass('list-view');
                         }
 
                         _targetAddContainer.append(cont);
+
+
                     }
 
                     if (_url === '/slots-filter/') {
@@ -331,10 +437,14 @@ var ListFilters = function (obj) {
                     CloseTFPopup();
                     copyToClipboard();
                 }
-                
-                if($('.list-body').children().length >= totalItems) {
+                if (_action == 'add') {
+                    if(loadedItems >= loadTotal || $('.list-body').children().length >= totalItems) {
+                        _moreButton.hide();
+                    }
+                } else if(cont.length > 0 && cont.length < 24) {
                     _moreButton.hide();
                 }
+
                 if ($.fn.tooltipster) {
                     $('.js-tooltip').tooltipster(tooltipConfig);
                     $('.js-copy-tooltip').tooltipster(copyTooltipConfig);
@@ -345,6 +455,9 @@ var ListFilters = function (obj) {
                     resetFilter();
                 }
                 $(document).scrollTop(scrollPos);
+                AJAX_CUR_PAGE++;
+
+                initImageLazy();
             },
             error: function (XMLHttpRequest) {
                 if (XMLHttpRequest.statusText != "abort") {
@@ -429,7 +542,8 @@ function select2tags() {
         });
 
         // Adding Fake Selection Placeholder
-        $('<div class="select2-selection__custom">' + placeholder + '</div>').appendTo($t.next().find('.select2-selection'));
+
+        $($("#select2SelectionCustom").tmpl({'placeholder':placeholder})).appendTo($t.next().find('.select2-selection'));
     });
 
 
@@ -460,9 +574,11 @@ function select2tags() {
     // DISPLAY TAGS
     function displayTags() {
         $(".tags-area").html("");
-
+        var _data = {};
         for (i = 0; i < tags.length; i++) {
-            $('<a href="#" class="tag" data-select="' + tags[i].select + '"><span class="value">' + tags[i].value + "</span></a>").appendTo($(".tags-area"));
+            _data['select'] = tags[i].select;
+            _data['value'] = tags[i].value;
+            $($("#select2Tag").tmpl(_data)).appendTo($(".tags-area"));
         }
     }
 }
@@ -600,9 +716,6 @@ function prepareSelectFilter() {
 
 }
 
-function filtesrAjax(cb) {
-
-}
 
 function customSelectFunc() {
     $.fn.select2.amd.require([
@@ -623,55 +736,58 @@ function customSelectFunc() {
                 );
 
         var DropdownAdapter = Utils.Decorate(
-                Utils.Decorate(
-                        Dropdown,
-                        DropdownSearch
-                        ),
-                AttachBody
-                );
+                                    Utils.Decorate(
+                                        Dropdown, 
+                                        DropdownSearch,
+                                        Placeholder
+                                    ),
+                                    AttachBody
+                                );
 
         for (var i = 0; i < options.length; i++) {
-            window[options[i] + '_element'].select2({
-                theme: 'default drop_' + i,
-                placeholder: window[options[i] + '_placeholder'],
-                selectionAdapter: SelectionAdapter,
-                dropdownAdapter: DropdownAdapter,
-                allowClear: true,
-                matcher: matchCustom,
-                templateResult: function (data, i) {
-                    $('.select2-results__options').niceScroll({
-                        cursorcolor: "#A8AEC8",
-                        cursorwidth: "3px",
-                        autohidemode: false,
-                        cursorborder: "1px solid #A8AEC8",
-                        horizrailenabled: false,
-                    });
-                    if (!data.id) {
-                        return data.text;
-                    }
+            if ($(window[options[i] + '_element']).length) {
+                window[options[i] + '_element'].select2({
+                    theme: 'default drop_' + i,
+                    placeholder: window[options[i] + '_placeholder'],
+                    selectionAdapter: SelectionAdapter,
+                    dropdownAdapter: DropdownAdapter,
+                    allowClear: true,
+                    matcher: matchCustom,
+                    templateResult: function (data, i) {
+                        $('.select2-results__options').niceScroll({
+                            cursorcolor: "#A8AEC8",
+                            cursorwidth: "3px",
+                            autohidemode: false,
+                            cursorborder: "1px solid #A8AEC8",
+                            horizrailenabled: false,
+                        });
+                        if (!data.id) {
+                            return data.text;
+                        }
 
-                    var $res = $('<div></div>');
-                    var $res1 = $('<span></span>');
-                    var $res2 = $('<span></span>');
-                    var result = data.text.split('|');
+                        var $res = $('<div></div>');
+                        var $res1 = $('<span></span>');
+                        var $res2 = $('<span></span>');
+                        var result = data.text.split('|');
 
-                    $res1.text(result[0]);
-                    $res2.text(result[1]);
-                    $res1.addClass('wrap');
-                    $res2.addClass('soft_count');
-                    $res.append($res1);
-                    $res.append($res2);
-                    return $res;
-                },
-                // templateSelection: function (data) {
-                //     if (!data.id) {
-                //         return data.text;
-                //     }
-                //     var selected = window[options[i]+'_element'].val();
-                //     selected = selected.join(', ');
-                //     return selected;
-                // }
-            });
+                        $res1.text(result[0]);
+                        $res2.text(result[1]);
+                        $res1.addClass('wrap');
+                        $res2.addClass('soft_count');
+                        $res.append($res1);
+                        $res.append($res2);
+                        return $res;
+                    },
+                    // templateSelection: function (data) {
+                    //     if (!data.id) {
+                    //         return data.text;
+                    //     }
+                    //     var selected = window[options[i]+'_element'].val();
+                    //     selected = selected.join(', ');
+                    //     return selected;
+                    // }
+                });
+            }
         }
 
         function matchCustom(params, data) {
@@ -714,6 +830,7 @@ function resetFilter(_select) {
     $('.select2-results__options').children().attr('aria-selected', false);
 
     $('.select2-selection__rendered').text('Software');
+    console.log("testing");
    // $('.' + selectName + '+.select2 .select2-selection__rendered').html(window[selectName + '_placeholder']);
 
 }
@@ -827,4 +944,19 @@ function processCheckboxes(_this) {
     function printClearButtonText(searchIDs) {
         $('.clearFilter').text('Clear ' + searchIDs + ' selected filters');
     }
+
+    function resetPlaceholder(){
+        if ($('.select2-container').find('li.select2-results__option[aria-selected="true"]').length == 0){
+            $('.select2-selection__rendered').html("Software");
+            clearButtonSelector.hide();
+        }else{
+            var selectedListItems = [];
+            $('li.select2-results__option[aria-selected="true"]').each(function( i ) {
+                selectedListItems.push($(this).find(".wrap").html());
+            });
+            $('.select2-selection__rendered').html(selectedListItems.join(', '));
+        }
+    }
+
+    setTimeout(resetPlaceholder, 300);
 }
