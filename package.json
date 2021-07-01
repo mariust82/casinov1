@@ -21,8 +21,5 @@
   "bugs": {
     "url": "https://github.com/hliscorp/casinoslists/issues"
   },
-  "homepage": "https://github.com/hliscorp/casinoslists#readme",
-  "devDependencies": {
-    "@babel/core": "^7.14.6"
-  }
+  "homepage": "https://github.com/hliscorp/casinoslists#readme"
 }
