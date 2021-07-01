@@ -98,7 +98,7 @@ class BankingMethods implements CasinoCounter
         ORDER BY t1.name ASC
         ")->toColumn();
     }
-    
+
     public function getAllByDate()
     {
         return SQL("SELECT name, sort_criteria FROM
