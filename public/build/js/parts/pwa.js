@@ -34,6 +34,7 @@ if ('serviceWorker' in navigator) {
     }
 
     var mobileOperatingSystem = getMobileOperatingSystem();
+    alert(mobileOperatingSystem);
     if (mobileOperatingSystem !== 'unknown') {
         navigator.serviceWorker.register('/sw.js?ver=' + version);
 
@@ -51,16 +52,20 @@ if ('serviceWorker' in navigator) {
             })
             .then(function (isAppended) {
                 if (isAppended) {
+                    alert("Popup appended");
                     var pwaInstallationPopup = document.querySelector('.pwa-popup-installation');
                     if (pwaInstallationPopup && !localStorage.getItem('isA2HSAccepted')) {
+                        alert("Popup existing and can be triggered..");
                         var A2HSBtn = document.querySelector('#btn-add-to-home-screen');
                         var closeA2HSPopupBtn = document.querySelector('.pwa-popup_close-home-screen');
                         var installationDeclinedBtn = document.querySelector('.pwa-popup_installation-declined');
 
                         function showA2HSPopup() {
+                            alert("Triggered");
                             if (!sessionStorage.getItem('isA2HSPopupClosed') &&
                                 !localStorage.getItem('isA2HSPopupClosed')) {
                                 setTimeout(function () {
+                                    alert("After timeout Triggered");
                                     pwaInstallationPopup.style.display = 'block';
                                 }, defaultTimeOut);
                             }
@@ -89,6 +94,7 @@ if ('serviceWorker' in navigator) {
                             setA2HSState('local');
                         });
                         if (mobileOperatingSystem === 'ios' && !isPWAInstalled()) {
+                            alert("Popup starting")
                             showA2HSPopup();
                         }
                         window.addEventListener('appinstalled', function () {
