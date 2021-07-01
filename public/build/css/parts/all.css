@@ -8974,7 +8974,7 @@ h1.title + .subtitle {
 
 @media screen and (max-width: 1000px) {
     .carousel-box-container .swiper-slide {
-        min-width: 232.5px;
+        min-width: 232.5px !important;
     }
 }
 
