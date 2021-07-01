@@ -6,6 +6,21 @@ if ('serviceWorker' in navigator) {
     var vapidPublicKey = 'BD2JY9S9yYiasakRQnyOvHb5vbQ3zgMhIC6wABWXv2J2gHlfprAZ7ovBSOFm0I6DECDbQmX21tUsYGgW31AFeWg';
     var fbUrl = 'https://casinoslists-default-rtdb.firebaseio.com';
 
+    function getDateInfo() {
+        return {
+            timeZone: new Date().getTimezoneOffset() / -60,
+            timeZoneName: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            timeZoneTitle: new Date().toTimeString().slice(9)
+        }
+    }
+
+    function isPWAInstalled() {
+        var displays = ["fullscreen", "standalone", "minimal-ui"];
+        return navigator.standalone || displays.some(function (displayMode) {
+            return window.matchMedia('(display-mode: ' + displayMode + ')').matches;
+        });
+    }
+
     function getMobileOperatingSystem() {
         var userAgent = navigator.userAgent || navigator.vendor || window.opera;
         if (/android/i.test(userAgent)) {
@@ -21,21 +36,6 @@ if ('serviceWorker' in navigator) {
     var mobileOperatingSystem = getMobileOperatingSystem();
     if (mobileOperatingSystem !== 'unknown') {
         navigator.serviceWorker.register('/sw.js?ver=' + version);
-
-        function getDateInfo() {
-            return {
-                timeZone: new Date().getTimezoneOffset() / -60,
-                timeZoneName: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                timeZoneTitle: new Date().toTimeString().slice(9)
-            }
-        }
-
-        function isPWAInstalled() {
-            var displays = ["fullscreen", "standalone", "minimal-ui"];
-            return navigator.standalone || displays.some(function (displayMode) {
-                return window.matchMedia('(display-mode: ' + displayMode + ')').matches;
-            });
-        }
 
         fetch('/pwa-popups?device=' + mobileOperatingSystem)
             .then(function (response) {
