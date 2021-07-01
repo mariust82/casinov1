@@ -112,45 +112,10 @@ self.addEventListener('activate', (event) => {
     return self.clients.claim();
 });
 
-self.addEventListener('fetch', (event) => {
-    if (event.request.method === 'GET' && !CONFIGURATIONS.isNetworkOnly(event.request.url)) {
-        console.log('Handling fetch event for', event.request.url);
-        if (CONFIGURATIONS.isPreCached(event.request.url)) {
-            console.log('Get from pre-cached: ', event.request.url);
-            event.respondWith(
-                caches.open(CONFIGURATIONS.cache_static).then((cache) => {
-                    let cached = cache.match(event.request).catch((error) => console.log("matched failed: %s", error));
-                    console.log(cached);
-                    return cached;
-                })
-            )
-        } else {
-            event.respondWith(
-                fetch(event.request)
-                    .then((res) => {
-                        console.log('res.status: ', res.status);
-                        if (res.status === 200) {
-                            let clonedResponse = res.clone();
-                            caches.open(CONFIGURATIONS.cache_dynamic)
-                                .then(function (cache) {
-                                    cache.put(event.request.url, clonedResponse)
-                                        .catch(error => console.log("Something went wrong with storage", error));
-                                });
-                        }
-                        return res;
-                    })
-                    .catch((error) => {
-                        console.log('Fetch error: ', error);
-                        return caches.match(event.request)
-                            .then((response) => {
-                                return response || CONFIGURATIONS.getOfflinePage(event.request.headers.get('accept'));
-                            }).catch(() => CONFIGURATIONS.getOfflinePage(event.request.headers.get('accept')));
-                    })
-            );
-        }
-    }
-    return;
+self.addEventListener('fetch', function (event) {
+    event.respondWith(fetch(event.request));
 });
+
 self.addEventListener('notificationclick', function (event) {
     var notification = event.notification;
     var action = event.action;
