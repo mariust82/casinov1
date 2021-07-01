@@ -149,8 +149,8 @@ self.addEventListener('push', function (event) {
     }
     let options = {
         body: data.content,
-        icon: '/src/images/icons/maskable_icon_x96.png',
-        badge: '/src/images/icons/maskable_icon_x48.png',
+        icon: '/public/build/images/icons/maskable_icon_x96.png',
+        badge: '/public/build/images/icons/maskable_icon_x48.png',
         data: {
             url: data.openUrl
         },

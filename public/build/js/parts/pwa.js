@@ -170,12 +170,12 @@ if (mobileOperatingSystem !== 'unknown') {
                     function displayConfirmNotification() {
                         var options = {
                             body: 'You successfully subscribed to our Notification service!',
-                            icon: '/public/build/images/icons/icon-96x96.png',
-                            image: '/public/build/images/icons/icon-256x256.png',
+                            icon: '/public/build/images/icons/maskable_icon_x96.png',
+                            image: '/public/build/images/icons/maskable_icon_x128.png',
                             dir: 'ltr',
                             lang: 'en-US',
                             vibrate: [100, 50, 200],
-                            badge: '/public/build/images/icons/icon-96x96.png',
+                            badge: '/public/build/images/icons/maskable_icon_x96.png',
                             tag: 'confirm-notification',
                             renotify: true,
                             data: {
