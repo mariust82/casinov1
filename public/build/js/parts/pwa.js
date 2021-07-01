@@ -1,3 +1,4 @@
+alert('serviceWorker' in navigator);
 if ('serviceWorker' in navigator) {
     var deferredPrompt;
     var defaultTimeOut = 10000;
