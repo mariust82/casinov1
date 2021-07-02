@@ -1,8 +1,8 @@
 <:if test="isset(${data.pwaDevice})">
     <:if test="${data.pwaDevice} === 'android'">
-        <pwa:android/>
+        <pwa:android isInstalled="${data.isInstalled}"/>
         <pwa:notification/>
     <:else>
-        <pwa:ios/>
+        <pwa:ios isInstalled="${data.isInstalled}"/>
     </:if>
 </:if>

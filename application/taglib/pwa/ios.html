@@ -1,4 +1,8 @@
-<div class="pwa-popup pwa-popup-installation" id="pwa_first_ios">
+<:if test="$[isInstalled] === 'true'">
+    <div class="pwa-popup pwa-popup-installation" id="pwa_third_ios">
+<:else>
+    <div class="pwa-popup pwa-popup-installation" id="pwa_first_ios">
+</:if>
     <div class="pwa-popup_header">
         <i class="icon-icon_unavailable pwa-popup_close pwa-popup_close-home-screen"></i>
     </div>
@@ -17,7 +21,7 @@
             Add to Home Screen
         </div>
         <div class="pwa-popup_footer">
-            <a href="#" class="btn-cancel pwa-popup_installation-declined" title="Don't show again">Don't show again</a>
+            <a href="#" id="pwa_declined_ios" class="btn-cancel pwa-popup_installation-declined" title="Don't show again">Don't show again</a>
         </div>
     </div>
 </div>
