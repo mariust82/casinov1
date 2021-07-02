@@ -1,4 +1,8 @@
-<div class="pwa-popup pwa-popup-installation" id="pwa_first_android">
+<:if test="$[isInstalled] === 'true'">
+    <div class="pwa-popup pwa-popup-installation" id="pwa_third_android">
+<:else>
+    <div class="pwa-popup pwa-popup-installation" id="pwa_first_android">
+</:if>
     <div class="pwa-popup_header">
         <i class="icon-icon_unavailable pwa-popup_close pwa-popup_close-home-screen"></i>
     </div>
@@ -12,7 +16,7 @@
             <a href="#" id="btn-add-to-home-screen" class="btn show_all-button" title="Add to Home Screen">
                 Add to Home Screen
             </a>
-            <a href="#" class="btn-cancel pwa-popup_installation-declined" title="Don't show again">Don't show again</a>
+            <a href="#" id="pwa_declined_android" class="btn-cancel pwa-popup_installation-declined" title="Don't show again">Don't show again</a>
         </div>
     </div>
 </div>
