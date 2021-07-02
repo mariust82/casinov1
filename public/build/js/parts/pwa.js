@@ -37,8 +37,8 @@ if (mobileOperatingSystem !== 'unknown') {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/sw.js?ver=' + version);
     }
-
-    fetch('/pwa-popups?device=' + mobileOperatingSystem)
+    var isInstalled = isPWAInstalled();
+    fetch('/pwa-popups?device=' + mobileOperatingSystem + '&isInstalled=' + isInstalled)
         .then(function (response) {
             return response.ok ? response.text() : null;
         })
@@ -89,7 +89,7 @@ if (mobileOperatingSystem !== 'unknown') {
                         hideA2HSPopup();
                         setA2HSState('local');
                     });
-                    if (mobileOperatingSystem === 'ios' && !isPWAInstalled()) {
+                    if (mobileOperatingSystem === 'ios' && !isInstalled) {
                         showA2HSPopup();
                     }
                     window.addEventListener('appinstalled', function () {
@@ -185,7 +185,7 @@ if (mobileOperatingSystem !== 'unknown') {
                                 {
                                     action: 'confirm',
                                     title: 'Okay',
-                                    icon: '/public/build/images/icons/icon-96x96.png'
+                                    icon: '/public/build/images/icons/maskable_icon_x96.png'
                                 }
                             ]
                         };
