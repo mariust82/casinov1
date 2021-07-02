@@ -2150,7 +2150,7 @@ var SearchPanel = function (obj) {
     _construct();
 };
 
-var initSite = function () {
+function initSite() {
 
     copyToClipboard();
     checkStringLength($('.list .bonus-box'), 21);
