@@ -3951,11 +3951,11 @@
                 container.on('open', function () {
                     self.$search.attr('tabindex', 0);
 
-                    self.$search.focus();
+                    // self.$search.focus();
 
-                    window.setTimeout(function () {
-                        self.$search.focus();
-                    }, 0);
+                    // window.setTimeout(function () {
+                    //     self.$search.focus();
+                    // }, 0);
                 });
 
                 container.on('close', function () {
@@ -3982,6 +3982,7 @@
                     }
                 });
             };
+            
 
             Search.prototype.handleSearch = function (evt) {
                 if (!this._keyUpPrevented) {
