@@ -1994,9 +1994,9 @@ var SearchPanel = function (obj) {
                 } else {
                     for (var item in items) {
                         if (type == 'games') {
-                            link = 'play/' + getWebName(items[item]);
+                            link = '/play/' + getWebName(items[item]);
                         } else if (type == 'casinos') {
-                            link = 'reviews/' + getWebName(items[item]) + '-review';
+                            link = '/reviews/' + getWebName(items[item]) + '-review';
                         }
 
                         var _item = getItemPattern({
@@ -2087,7 +2087,7 @@ var SearchPanel = function (obj) {
 
                     for (var casino in casinos) {
                         var _item = getItemPattern({
-                            link: 'reviews/' + getWebName(casinos[casino]) + '-review',
+                            link: '/reviews/' + getWebName(casinos[casino]) + '-review',
                             name: casinos[casino]
                         });
                         _searchCasinosContainer.append(_item);
@@ -2096,7 +2096,7 @@ var SearchPanel = function (obj) {
                     for (var page in pages) {
 
                         var _item = getItemPattern({
-                            link: 'play/' + getWebName(pages[page]),
+                            link: '/play/' + getWebName(pages[page]),
                             name: pages[page]
                         });
 
