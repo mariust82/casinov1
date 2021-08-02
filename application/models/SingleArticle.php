@@ -44,8 +44,8 @@ class SingleArticle extends ArticlesModel
             $titleImageMobile = end($exp_titleImageMobile);
             
             $this->titleImageThumbnail = '/upload' . $folder . '/' . $thumbnail;
-            $this->titleImageDesktop = '/upload' . $folder . '/' . $titleImageDesktop;
-            $this->titleImageMobile = '/upload' . $folder . '/' . $titleImageMobile;
+            $this->titleImageDesktop = '/upload' . $folder . '/' . $titleImageDesktop."jpg";
+            $this->titleImageMobile = '/upload' . $folder . '/' . $titleImageMobile."jpg";
         }
     }
     
