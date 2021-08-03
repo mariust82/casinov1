@@ -1305,8 +1305,8 @@ function bindButtons() {
             type: 'post',
             success: function (data) {
                 AJAX_CUR_PAGE++;
-                initImageLazyLoad();
                 $('.cards-list-wrapper').append(data);
+                initImageLazyLoad();
                 if ($(self).data('total') === $('.cards-list-wrapper').children().length) {
                     $(self).hide();
                 }
