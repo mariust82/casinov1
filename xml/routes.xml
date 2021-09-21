@@ -2,6 +2,7 @@
 <!DOCTYPE xml>
 <xml>
     <routes validators_path="application/models/validators">
+        <route url="test" controller="TestController" view="test"/>
         <route url="index" controller="IndexController" view="index"/>
         <route url="banking/(name)" controller="CasinosByBankingMethodController" view="casinos" rebrand_tables="banking_methods">
             <parameter name="name" validator="BanckingMethodNameValidator"/>
