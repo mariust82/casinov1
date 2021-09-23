@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "lucinda/db",
-            "version": "v2.0.3",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/lucinda_db.git",
-                "reference": "2142a7b6377abd628165a1779405d9abf799dcbe"
+                "reference": "1c071e5cfa2a4f178d2ec216519bc58027daeea9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/lucinda_db/zipball/2142a7b6377abd628165a1779405d9abf799dcbe",
-                "reference": "2142a7b6377abd628165a1779405d9abf799dcbe",
+                "url": "https://api.github.com/repos/aherne/lucinda_db/zipball/1c071e5cfa2a4f178d2ec216519bc58027daeea9",
+                "reference": "1c071e5cfa2a4f178d2ec216519bc58027daeea9",
                 "shasum": ""
             },
             "require": {
@@ -32,7 +32,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Lucinda\\DB\\": "src/"
+                    "Lucinda\\DB\\": "src/",
+                    "Test\\Lucinda\\DB\\": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -54,9 +55,9 @@
             ],
             "support": {
                 "issues": "https://github.com/aherne/lucinda_db/issues",
-                "source": "https://github.com/aherne/lucinda_db/tree/v2.0.3"
+                "source": "https://github.com/aherne/lucinda_db/tree/v2.0.4"
             },
-            "time": "2020-12-04T10:24:01+00:00"
+            "time": "2021-06-24T05:35:27+00:00"
         },
         {
             "name": "lucinda/errors-mvc",
@@ -643,16 +644,16 @@
     "packages-dev": [
         {
             "name": "lucinda/console",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/aherne/console_table.git",
-                "reference": "8666998ca1f2d20cfca1472eff95e6bbb3efb747"
+                "url": "https://github.com/aherne/console.git",
+                "reference": "600b535672a087a4571525dd711c7fcaaa326ca3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/console_table/zipball/8666998ca1f2d20cfca1472eff95e6bbb3efb747",
-                "reference": "8666998ca1f2d20cfca1472eff95e6bbb3efb747",
+                "url": "https://api.github.com/repos/aherne/console/zipball/600b535672a087a4571525dd711c7fcaaa326ca3",
+                "reference": "600b535672a087a4571525dd711c7fcaaa326ca3",
                 "shasum": ""
             },
             "require": {
@@ -661,7 +662,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Lucinda\\Console\\": "src/"
+                    "Lucinda\\Console\\": "src/",
+                    "Test\\Lucinda\\Console\\": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -682,10 +684,10 @@
                 "unix console"
             ],
             "support": {
-                "issues": "https://github.com/aherne/console_table/issues",
-                "source": "https://github.com/aherne/console_table/tree/v1.0.1"
+                "issues": "https://github.com/aherne/console/issues",
+                "source": "https://github.com/aherne/console/tree/v1.1.0"
             },
-            "time": "2021-02-20T10:09:18+00:00"
+            "time": "2021-08-08T08:38:30+00:00"
         },
         {
             "name": "lucinda/requester",
@@ -740,22 +742,23 @@
         },
         {
             "name": "lucinda/unit-testing",
-            "version": "v1.1.9",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aherne/unit-testing.git",
-                "reference": "4054420054e36fbc7e7235259addc6cd47d8a4fb"
+                "reference": "80452a506ac0604687734f4269ef398598125717"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aherne/unit-testing/zipball/4054420054e36fbc7e7235259addc6cd47d8a4fb",
-                "reference": "4054420054e36fbc7e7235259addc6cd47d8a4fb",
+                "url": "https://api.github.com/repos/aherne/unit-testing/zipball/80452a506ac0604687734f4269ef398598125717",
+                "reference": "80452a506ac0604687734f4269ef398598125717",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-pdo": "*",
                 "ext-simplexml": "*",
+                "ext-tokenizer": "*",
                 "lucinda/console": "~1.0",
                 "php": "^7.1"
             },
@@ -783,9 +786,9 @@
             ],
             "support": {
                 "issues": "https://github.com/aherne/unit-testing/issues",
-                "source": "https://github.com/aherne/unit-testing/tree/v1.1.9"
+                "source": "https://github.com/aherne/unit-testing/tree/v1.2.1"
             },
-            "time": "2021-02-20T10:53:43+00:00"
+            "time": "2021-08-08T10:29:45+00:00"
         }
     ],
     "aliases": [],
@@ -800,5 +803,5 @@
         "ext-bcmath": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

@@ -1,15 +1,15 @@
 <?php
-require_once("BaseController.php");
+//require_once("BaseController.php");
 
-class TestController extends BaseController
+require_once("application/models/dao/TestPageDAO.php");
+
+
+class TestController extends \Lucinda\MVC\STDOUT\Controller
 {
-    public function service()
+    public function run()
     {
-    }
-
-    protected function pageInfo()
-    {
-        $this->request->parameters("offset");
+        //$this->request->parameters("offset");
+        //$parameter = $this->request->getValidator()->parameters("name");
 
         $object = new TestPageDAO();
         $this->response->attributes("casinos", $object->getCasinosInfo());

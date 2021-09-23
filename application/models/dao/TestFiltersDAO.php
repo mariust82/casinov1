@@ -1,16 +1,15 @@
 <?php
 require_once("entities/TestDataCasino.php");
 require_once("entities/TestDataCasinoBonus.php");
+require_once("queries/TestFiltersListQuery.php");
 
-class TestPageDAO
+class TestFiltersDAO
 {
-    CONST LIMIT = 10;
-    CONST OFFSET = 0;
 
-    public function getCasinosInfo()
+    public function getCasinosInfo($aParameters)
     {
-        //$this->query = SQL("SELECT id, code, name FROM casinos ORDER BY name LIMIT :limit OFFSET :offset", array("limit"=>self::LIMIT, "offset"=>self::OFFSET));  //error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10' OFFSET '0'' at line 1
-        $resultSet = SQL("SELECT id, code, name FROM casinos ORDER BY name LIMIT ".self::LIMIT." OFFSET ".self::OFFSET);
+        $queryGenerator = new TestFiltersListQuery($aParameters);
+        $resultSet = SQL($queryGenerator->getQuery());
         $output = array();
         while ($row = $resultSet->toRow()) {
             $object = new TestDataCasino();
@@ -46,5 +45,21 @@ class TestPageDAO
             $casino_bonuses_info[] = $object;
         }
         return $casino_bonuses_info;
+    }
+
+    public function getCasinosInfoOld($aParameters)
+    {
+        $queryGenerator = new TestFiltersListQuery($aParameters);
+        $resultSet = SQL($queryGenerator->getQuery());
+
+        $output = array();
+        while ($row = $resultSet->toRow()) {
+            $object = new TestDataCasino();
+            $object->id = $row["id"];
+            $object->code = $row["code"];
+            $object->name = $row["name"];
+            $object->casino_bonuses[$row["bonus_type_id"]] = $this->getCasinoBonusesInfo($object->id);
+        }
+        return $output;
     }
 }

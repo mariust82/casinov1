@@ -1,0 +1,33 @@
+
+
+<div class="filter-bar">
+
+</div>
+
+<div class="ajax_response_wrap">
+    <:foreach var="${data.casinos}" key ="id" val="casino_data">
+        <div class="casino-box labeled">
+            <a target="_blank" href="/link/${casino_data.code}" class="casino-img-logo">
+                <img width="85" height="56" title="${casino_data.name}" src="https://chipy.com/images_repo/casino_logo_light/70x47/${strtolower(${casino_data.code})}.png">
+            </a>
+            <div class="casino-info_box">
+                <span class="casino-name">
+                    <a href="/reviews/${casino_data.code}">${casino_data.name}</a>
+                </span>
+            </div>
+            <:foreach var="${casino_data.casino_bonuses}" key ="id" val="casino_bonuses_data">
+                <div class="bonus js-bonus-wrap" data-casino-id="${id}">
+                    <:if test="${casino_bonuses_data.bonus_type_name} == 'NDB'">
+                        <span class="bonus-free">${casino_bonuses_data.amount} ${casino_bonuses_data.bonus_type_name}</span>
+                        <:else>
+                            <span class="tooltipstered">${casino_bonuses_data.amount} ${casino_bonuses_data.bonus_type_name}</span>
+                    </:if>
+                </div>
+            </:foreach>
+        </div>
+    </:foreach>
+
+
+
+</div>
+

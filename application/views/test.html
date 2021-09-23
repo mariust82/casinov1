@@ -1,34 +1,39 @@
-<site:top title="${data.page_info.head_title}" description="${data.page_info.head_description}" menu="${data.menu_top}" page="test"/>
+
 
 <div class="filter-bar">
 
 </div>
 
 <div class="ajax_response_wrap">
-    <:foreach var="${data.casinos}" key ="id" val="casino_data">
-        <div class="casino-box labeled">
-            <a target="_blank" href="/link/${casino_data.code}" class="casino-img-logo">
-                <img width="85" height="56" title="${casino_data.name}" src="/public/sync/casino_logo_light/85x56//${strtolower(${casino_data.code})}">
-            </a>
-            <div class="casino-info_box">
-                <span class="casino-name">
-                    <a href="/reviews/${casino_data.code}">${casino_data.name}</a>
-                </span>
-            </div>
-            <:foreach var="${casino_data.casino_bonuses}" key ="id" val="casino_bonuses_data">
-                <div class="bonus js-bonus-wrap" data-casino-id="${id}">
-                    <:if test="${casino_bonuses_data.bonus_type_name} == 'NDB'">
-                        <span class="bonus-free">${casino_bonuses_data.amount} ${casino_bonuses_data.bonus_type_name}</span>
-                        <:else>
-                            <span class="tooltipstered">${casino_bonuses_data.amount} ${casino_bonuses_data.bonus_type_name}</span>
-                    </:if>
-                </div>
-            </:foreach>
-        </div>
-    </:foreach>
-
-
+    <table>
+        <:foreach var="${data.casinos}" key ="id" val="casino_data">
+            <tr class="bonus-box-list-label">
+                <td>
+                    <a target="_blank" href="/link/${casino_data.code}" class="casino-img-logo">
+                        <img width="85" height="56" title="${casino_data.name}" src="https://chipy.com/images_repo/casino_logo_light/70x47/${strtolower(${casino_data.code})}.png">
+                    </a>
+                </td>
+                <td>
+                    <span class="casino-name">
+                        <a href="/reviews/${casino_data.code}">${casino_data.name}</a>
+                    </span>
+                </td>
+                <td>
+                    <:foreach var="${casino_data.casino_bonuses}" key ="id" val="casino_bonuses_data">
+                        <:if test="${casino_bonuses_data.bonus_type_name} == 'No Deposit Bonus'">
+                            <div class="bonus-free" style="color:green">
+                                ${casino_bonuses_data.amount} ${casino_bonuses_data.bonus_type_name}
+                            </div>
+                            <:elseif test="${casino_bonuses_data.bonus_type_name} == 'First Deposit Bonus'">
+                                <div class="tooltipstered">
+                                    ${casino_bonuses_data.amount} ${casino_bonuses_data.bonus_type_name}
+                                </div>
+                        </:if>
+                    </:foreach>
+                </td>
+            </tr>
+        </:foreach>
+    </table>
 
 </div>
 
-<site:bottom menu="${data.menu_top}"/>
