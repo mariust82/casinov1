@@ -12,6 +12,7 @@ class TestController extends \Lucinda\MVC\STDOUT\Controller
         //$parameter = $this->request->getValidator()->parameters("name");
 
         $object = new TestPageDAO();
+        $this->response->attributes("main_call", 'true');
         $this->response->attributes("casinos", $object->getCasinosInfo());
     }
 }

@@ -10,7 +10,7 @@ abstract class TestFiltersQuery
         $this->filtersData = $filtersParameters;
         $this->setMainQueryBody();
         $this->setWhere();
-        //$this->setOrderBy();
+        $this->setOrderBy();
         $this->setLimit();
         //$this->setFields();
         //$this->setJoins();

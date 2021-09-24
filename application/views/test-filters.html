@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+
+
+<input type="checkbox" id="open-casinos" name="open-casinos" value="1" onclick="loadDoc()">
+
+<div id="demo"><h2>Let AJAX change this text</h2></div>
+
+<script>
+    function loadDoc() {
+
+        $.ajax({
+            url: "/test-ajax",
+            type: 'POST',
+            data: {
+                //id: 'This is mydata'
+                openedCasinos: $('input#open-casinos').prop('checked')
+            },
+            dataType: 'HTML',
+            timeout: 20000,
+
+            cache: false,
+            success: function (data) {
+                //alert(data);
+                document.getElementById("demo").innerHTML = data;
+
+                if($(data).filter('.cl-lightbox').data('show-popup') == 1) {
+                    $('body').append(data);
+                    $(".js-drag-rate").ionRangeSlider(rangeRatingConfig);
+                }
+            },
+            error: function (data) {
+                //alert('error');
+                console.log(data);
+            }
+        });
+
+
+    }
+
+
+</script>
+
+</body>
+</html>

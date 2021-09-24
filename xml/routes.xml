@@ -3,8 +3,10 @@
 <xml>
     <routes validators_path="application/models/validators">
         <route url="test" controller="TestController" view="test" method="GET"/>
-        <route url="test-filters" controller="TestFiltersController" view="test" method="POST"/>
-            <parameter name="name" validator="IntegerValidator"/>
+        <route url="test-ajax" controller="TestAjaxController" method="POST" view="test"/>
+            <parameter name="openedCasinos" validator="StringValidator"/>
+        <route url="test-filters" controller="TestFiltersController" view="test-filter" method="POST"/>
+        <route url="test-call" controller="TestCallController" view="test-filters" method="GET"/>
         <route url="index" controller="IndexController" view="index"/>
         <route url="banking/(name)" controller="CasinosByBankingMethodController" view="casinos" rebrand_tables="banking_methods">
             <parameter name="name" validator="BanckingMethodNameValidator"/>

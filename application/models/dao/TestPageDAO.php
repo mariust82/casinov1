@@ -1,16 +1,31 @@
 <?php
 require_once("entities/TestDataCasino.php");
 require_once("entities/TestDataCasinoBonus.php");
+require_once("queries/TestAjaxListQuery.php");
 
 class TestPageDAO
 {
     CONST LIMIT = 10;
     CONST OFFSET = 0;
 
-    public function getCasinosInfo()
+    private array $queryFilters = array();
+
+    public function __construct(string $showOpenedCasinos = 'false')
+    {
+        if($showOpenedCasinos=='true'){
+            $this->queryFilters['where_condition'] = true;
+        }
+    }
+
+    public function getCasinosInfo(): array
     {
         //$this->query = SQL("SELECT id, code, name FROM casinos ORDER BY name LIMIT :limit OFFSET :offset", array("limit"=>self::LIMIT, "offset"=>self::OFFSET));  //error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''10' OFFSET '0'' at line 1
-        $resultSet = SQL("SELECT id, code, name FROM casinos ORDER BY name LIMIT ".self::LIMIT." OFFSET ".self::OFFSET);
+        //$resultSet = SQL("SELECT id, code, name FROM casinos ORDER BY name LIMIT ".self::LIMIT." OFFSET ".self::OFFSET);
+        $queryGenerator = new TestFiltersListQuery($this->queryFilters);
+        $resultSet = SQL($queryGenerator->getQuery());
+        /*echo "<pre>";
+        print_r($resultSet);
+        die();*/
         $output = array();
         while ($row = $resultSet->toRow()) {
             $object = new TestDataCasino();
@@ -23,7 +38,7 @@ class TestPageDAO
         return $output;
     }
 
-    private function getCasinoBonusesInfo(int $casionId)
+    private function getCasinoBonusesInfo(int $casionId): array
     {
         $resultSet = SQL("
                 SELECT 
